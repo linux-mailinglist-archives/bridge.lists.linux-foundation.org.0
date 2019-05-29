@@ -2,51 +2,55 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439E51A50E
-	for <lists.bridge@lfdr.de>; Sat, 11 May 2019 00:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3931B2E083
+	for <lists.bridge@lfdr.de>; Wed, 29 May 2019 17:05:41 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id DB558F39;
-	Fri, 10 May 2019 22:06:29 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 7E3A926C1;
+	Wed, 29 May 2019 15:05:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id B99FFF1E
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 0B95925F2
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 10 May 2019 22:06:26 +0000 (UTC)
+	Wed, 29 May 2019 14:59:01 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id A3CC21FB
+Received: from deadmen.hmeau.com (helcar.hmeau.com [216.24.177.18])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 5D9B7619
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 10 May 2019 22:06:25 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d8])
-	(using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	(Authenticated sender: davem-davemloft)
-	by shards.monkeyblade.net (Postfix) with ESMTPSA id B4E8B133E975E;
-	Fri, 10 May 2019 15:06:24 -0700 (PDT)
-Date: Fri, 10 May 2019 15:06:22 -0700 (PDT)
-Message-Id: <20190510.150622.135840136910324302.davem@davemloft.net>
-To: tobin@kernel.org
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20190510025212.10109-1-tobin@kernel.org>
-References: <20190510025212.10109-1-tobin@kernel.org>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
-	(shards.monkeyblade.net [149.20.54.216]);
-	Fri, 10 May 2019 15:06:25 -0700 (PDT)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+	Wed, 29 May 2019 14:59:00 +0000 (UTC)
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+	by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
+	id 1hW02W-0006AC-Rs; Wed, 29 May 2019 22:58:52 +0800
+Received: from herbert by gondobar with local (Exim 4.89)
+	(envelope-from <herbert@gondor.apana.org.au>)
+	id 1hW02P-0004f6-Qx; Wed, 29 May 2019 22:58:45 +0800
+Date: Wed, 29 May 2019 22:58:45 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Dmitry Vyukov <dvyukov@google.com>
+Message-ID: <20190529145845.bcvuc5ows4dedqh3@gondor.apana.org.au>
+References: <000000000000862b160580765e94@google.com>
+	<3c44c1ff-2790-ec06-35c6-3572b92170c7@cumulusnetworks.com>
+	<CACT4Y+ZA8gBURbeZaDtrt5NoqFy8a8W3jyaWbs34Qjic4Bu+DA@mail.gmail.com>
+	<20190220102327.lq2zyqups2fso75z@gondor.apana.org.au>
+	<CACT4Y+bUTWcvqEebNjoagw0JtM77NXwVu+i3cYmhgnntZRWyfg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACT4Y+bUTWcvqEebNjoagw0JtM77NXwVu+i3cYmhgnntZRWyfg@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: nikolay@cumulusnetworks.com, gregkh@linuxfoundation.org,
-	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	linux-kernel@vger.kernel.org, tyhicks@canonical.com, netdev@vger.kernel.org
-Subject: Re: [Bridge] [PATCH v2] bridge: Fix error path for
-	kobject_init_and_add()
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
+	bridge@lists.linux-foundation.org,
+	syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+	LKML <linux-kernel@vger.kernel.org>,
+	syzbot <syzbot+bc5ab0af2dbf3b0ae897@syzkaller.appspotmail.com>,
+	Thomas Graf <tgraf@suug.ch>, David Miller <davem@davemloft.net>
+Subject: Re: [Bridge] KASAN: use-after-free Read in br_mdb_ip_get
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -61,26 +65,36 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-From: "Tobin C. Harding" <tobin@kernel.org>
-Date: Fri, 10 May 2019 12:52:12 +1000
+Hi Dmitry:
 
-> Currently error return from kobject_init_and_add() is not followed by a
-> call to kobject_put().  This means there is a memory leak.  We currently
-> set p to NULL so that kfree() may be called on it as a noop, the code is
-> arguably clearer if we move the kfree() up closer to where it is
-> called (instead of after goto jump).
+On Thu, Feb 21, 2019 at 11:54:42AM +0100, Dmitry Vyukov wrote:
+>
+> Taking into account that this still happened only once, I tend to
+> write it off onto a previous silent memory corruption (we have dozens
+> of known bugs that corrupt memory). So if several people already
+> looked at it and don't see the root cause, it's probably time to stop
+> spending time on this until we have more info.
 > 
-> Remove a goto label 'err1' and jump to call to kobject_put() in error
-> return from kobject_init_and_add() fixing the memory leak.  Re-name goto
-> label 'put_back' to 'err1' now that we don't use err1, following current
-> nomenclature (err1, err2 ...).  Move call to kfree out of the error
-> code at bottom of function up to closer to where memory was allocated.
-> Add comment to clarify call to kfree().
-> 
-> Signed-off-by: Tobin C. Harding <tobin@kernel.org>
-> ---
-> 
-> v1 was a part of a set.  I have dropped the other patch until I can work
-> out a correct solution.
+> Although, there was also this one:
+> https://groups.google.com/d/msg/syzkaller-bugs/QfCCSxdB1aM/y2cn9IZJCwAJ
+> I have not checked if it can be the root cause of this report, but it
+> points suspiciously close to this stack and when I looked at it, it
+> the report looked legit.
 
-Applied and queued up for -stable, thanks.
+Have you had any more reports of this kind coming from br_multicast?
+
+It looks like
+
+ommit 1515a63fc413f160d20574ab0894e7f1020c7be2
+Author: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Date:   Wed Apr 3 23:27:24 2019 +0300
+
+    net: bridge: always clear mcast matching struct on reports and leaves
+
+may have at least fixed the uninitialised value error.
+
+Thanks,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
