@@ -2,90 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC8D3A6B2
-	for <lists.bridge@lfdr.de>; Sun,  9 Jun 2019 17:44:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D18D73A6CB
+	for <lists.bridge@lfdr.de>; Sun,  9 Jun 2019 18:23:40 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id A9A6AC7F;
-	Sun,  9 Jun 2019 15:44:26 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id B3E66CB7;
+	Sun,  9 Jun 2019 16:23:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 1401C2C
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 21DFB2C
 	for <bridge@lists.linux-foundation.org>;
-	Sun,  9 Jun 2019 15:44:23 +0000 (UTC)
+	Sun,  9 Jun 2019 16:23:22 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com
-	[209.85.208.67])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 2C1B8174
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
+	[209.85.208.65])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id D71CC711
 	for <bridge@lists.linux-foundation.org>;
-	Sun,  9 Jun 2019 15:44:21 +0000 (UTC)
-Received: by mail-ed1-f67.google.com with SMTP id w33so10385457edb.10
+	Sun,  9 Jun 2019 16:23:20 +0000 (UTC)
+Received: by mail-ed1-f65.google.com with SMTP id a14so8612004edv.12
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 09 Jun 2019 08:44:21 -0700 (PDT)
+	Sun, 09 Jun 2019 09:23:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brauner.io; s=google;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=pMFPZMSiGklfaZyfuFOGH+2W0X1p8u7TpG+RYN4ZXnY=;
-	b=EXmd3v5obVkBPoKbED/ljCt8sh5huVmTgTEujveNN6i39S4CCp7O401AeWJlt0MXPL
-	rjFmwoNnZKuzleSsdaYCDsRFm3MJSvJhIoGBbY+vsjEZIyMlYCz+QfYmBRuYOK46zxIA
-	q8MV3LVdz/l8m8L/tAFdKEnQ0k2GVoHT05JxNQ370QxtZSKN0m7n4DrpN0aYmkazGElI
-	eoD9qXhK3Z8kR6OD930EKB89POnoOJWbwleOlz6TPHsJkmpoAoex22apfAlQai2Bz8rO
-	hJUGi5hIw43EirJpBm1j7e/lHQA+3kVb2DREdowJbOi9feiwF/xdfk1WivCifhXFI25k
-	Yr2A==
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=7DVC0/uiSTBqozKjpL2lztjn7upfih/z+bOVWSHs3GU=;
+	b=RGk2eK93ZiEJPgkhLoILYOX9fmoTjER9GIhmCHW2weCRphBKUIBtT+4Jvn17m5oXDF
+	LA1FShm3G1OTeFXqxHGc+IJNVM7NudBE8QQIxssr6zbO2CebqCOIk/v0Ez/Fw4f1JuxD
+	LMVrWRIZlX2R7mz4sNARcGYJDgOQf3Js7JzbOdpQg8c/WFHqQdu3Vq9Psc2vcwrQKnGj
+	J420O0BBi5s0CjY+TbillB/YtpkxdR3Uefv09DOg9Sf1H93wAlh7qmswtLK/9YF1OldY
+	R1eViaCVuUNpviZ5g/I0Kh/Kln1Vux5VCy4HPTd4xa65nxsYIP2kddV422zrU4zO/Blf
+	UN+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=pMFPZMSiGklfaZyfuFOGH+2W0X1p8u7TpG+RYN4ZXnY=;
-	b=nXdvcWhkbI4mC3ZGdYlOTBm1n27qi7BjELw6vLaBxBxg8+qaUc8ajtWqhl82Bc0Ipm
-	NL3o+SNfDbDw1pV2o4depxxIzGP3c3UnaMHvjrniwFWoklXicwT2AEVu5ApuCUXaruKm
-	+uvBkaQHLo0YcRX2X6g9RIqIb5AGai+nImqDek+ZGpZNOiyEUv/8W3KrPDplPSSyJ2pm
-	Q1POgh0gdqJSkHUBrIF4gGUmtA3hsj2JhN9leMb1M/r7yvCAlZN9rMx4bcfpVIeaM0Dt
-	4kbPtxwxAiDg1PQkDGZVjYsnfKR8C8kj99h7mvOcZVjt3UuaGrhJ5dzW+7ZPZyfUd+z7
-	c2AQ==
-X-Gm-Message-State: APjAAAUZHqSz2EPhmsZgDDkbcsmp+GbgZggUcfcNijwbRWrSvHkhIPju
-	7yvroCUnT1yikIOPWqdi1X4VPQ==
-X-Google-Smtp-Source: APXvYqxbc2xDk7pO55cfSqSdryDdStSJH1Te+y+n+bvtTiprqPiFfuOTHM1iD6YH02QCzObZygTxkQ==
-X-Received: by 2002:a17:906:4f87:: with SMTP id
-	o7mr55245469eju.281.1560095060514; 
-	Sun, 09 Jun 2019 08:44:20 -0700 (PDT)
-Received: from brauner.io ([2a02:8109:9cc0:6dac:cd8f:f6e9:1b84:bbb1])
-	by smtp.gmail.com with ESMTPSA id z3sm2102247edh.71.2019.06.09.08.44.17
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=7DVC0/uiSTBqozKjpL2lztjn7upfih/z+bOVWSHs3GU=;
+	b=Li5pghfgQWk+D9mg87RNVA/S4scV1Rbk7kmcyEwO4XnljWQ6W9XlZq0emboRIp+WFo
+	IzdSjwgU5rJyEOhKzgZTKvuP4ILrDmL1Ov3XdaEPT/jDgEeov+zqD5HB/DE6SM5MLmuR
+	s8rPLA3wU1DBZ6Fv2I2DQslgJMzHVrqsg9T/YD1QaoTbe2CtpqBzclovw0h4cLurNNjr
+	eKd6X5kUOnco28UwoyaERWxj/OZei6BnGyUNPitaG1qOc6RKcnGRPXJ2cWLpbdPmxwCV
+	OOwu1NN4ZkwInajEqJl2mcGvq+icc+ojBm3UxzEebiCTWxVXE/QFRrI89oySxsz9fp/3
+	HX9A==
+X-Gm-Message-State: APjAAAWaZnhKg6wtlzFMlALnt6qpx8D2PrANPaBJHT17VQNb1Tib6E3k
+	oqAbmTx8dkfSIfN2ppTdoSkplg==
+X-Google-Smtp-Source: APXvYqxlMVg9vnSVRsQHUpfB2JSCZ9E7+bhFFVyhiBzP3+OhLOXa/0ZBe7AKt+td6mO2I+loLlf9zw==
+X-Received: by 2002:a17:906:308a:: with SMTP id
+	10mr16029454ejv.124.1560097399433; 
+	Sun, 09 Jun 2019 09:23:19 -0700 (PDT)
+Received: from localhost.localdomain (ip5f5bd67a.dynamic.kabel-deutschland.de.
+	[95.91.214.122]) by smtp.gmail.com with ESMTPSA id
+	r12sm1069489eda.39.2019.06.09.09.23.17
 	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Sun, 09 Jun 2019 08:44:19 -0700 (PDT)
-Date: Sun, 9 Jun 2019 17:44:16 +0200
+	Sun, 09 Jun 2019 09:23:18 -0700 (PDT)
 From: Christian Brauner <christian@brauner.io>
-To: Pablo Neira Ayuso <pablo@netfilter.org>
-Message-ID: <20190609154415.kkzmzl2jp5esoczu@brauner.io>
-References: <20190606114142.15972-1-christian@brauner.io>
-	<20190606114142.15972-2-christian@brauner.io>
-	<20190606081440.61ea1c62@hermes.lan>
-	<20190606151937.mdpalfk7urvv74ub@brauner.io>
-	<20190606163035.x7rvqdwubxiai5t6@salvia>
-	<20190607132516.q3zwmzrynvqo7mzn@brauner.io>
-	<20190607142858.vgkljqohn34rxhe2@salvia>
-	<20190607144343.nzdlnuo4csllcy7q@salvia>
+To: davem@davemloft.net, netdev@vger.kernel.org,
+	netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
+	bridge@lists.linux-foundation.org
+Date: Sun,  9 Jun 2019 18:23:03 +0200
+Message-Id: <20190609162304.3388-1-christian@brauner.io>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190607144343.nzdlnuo4csllcy7q@salvia>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: ueberall@themenzentrisch.de, vapier@chromium.org, richardrose@google.com,
-	bhthompson@google.com, nikolay@cumulusnetworks.com,
-	netdev@vger.kernel.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org, fw@strlen.de,
-	linux-kernel@vger.kernel.org, joelhockey@chromium.org,
-	tyhicks@canonical.com, coreteam@netfilter.org,
-	netfilter-devel@vger.kernel.org, kadlec@blackhole.kfki.hu,
-	smbarber@chromium.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH RESEND net-next 1/2] br_netfilter: add struct
-	netns_brnf
+	nikolay@cumulusnetworks.com, joelhockey@chromium.org,
+	roopa@cumulusnetworks.com, fw@strlen.de,
+	linux-kernel@vger.kernel.org, tyhicks@canonical.com,
+	bhthompson@google.com, Christian Brauner <christian@brauner.io>,
+	kadlec@blackhole.kfki.hu, smbarber@chromium.org, pablo@netfilter.org
+Subject: [Bridge] [PATCH net-next v1 0/1] br_netfilter: enable in
+	non-initial netns
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -100,82 +91,72 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On Fri, Jun 07, 2019 at 04:43:43PM +0200, Pablo Neira Ayuso wrote:
-> On Fri, Jun 07, 2019 at 04:28:58PM +0200, Pablo Neira Ayuso wrote:
-> > On Fri, Jun 07, 2019 at 03:25:16PM +0200, Christian Brauner wrote:
-> > > On Thu, Jun 06, 2019 at 06:30:35PM +0200, Pablo Neira Ayuso wrote:
-> > > > On Thu, Jun 06, 2019 at 05:19:39PM +0200, Christian Brauner wrote:
-> > > > > On Thu, Jun 06, 2019 at 08:14:40AM -0700, Stephen Hemminger wrote:
-> > > > > > On Thu,  6 Jun 2019 13:41:41 +0200
-> > > > > > Christian Brauner <christian@brauner.io> wrote:
-> > > > > > 
-> > > > > > > +struct netns_brnf {
-> > > > > > > +#ifdef CONFIG_SYSCTL
-> > > > > > > +	struct ctl_table_header *ctl_hdr;
-> > > > > > > +#endif
-> > > > > > > +
-> > > > > > > +	/* default value is 1 */
-> > > > > > > +	int call_iptables;
-> > > > > > > +	int call_ip6tables;
-> > > > > > > +	int call_arptables;
-> > > > > > > +
-> > > > > > > +	/* default value is 0 */
-> > > > > > > +	int filter_vlan_tagged;
-> > > > > > > +	int filter_pppoe_tagged;
-> > > > > > > +	int pass_vlan_indev;
-> > > > > > > +};
-> > > > > > 
-> > > > > > Do you really need to waste four bytes for each
-> > > > > > flag value. If you use a u8 that would work just as well.
-> > > > > 
-> > > > > I think we had discussed something like this but the problem why we
-> > > > > can't do this stems from how the sysctl-table stuff is implemented.
-> > > > > I distinctly remember that it couldn't be done with a flag due to that.
-> > > > 
-> > > > Could you define a pernet_operations object? I mean, define the id and size
-> > > > fields, then pass it to register_pernet_subsys() for registration.
-> > > > Similar to what we do in net/ipv4/netfilter/ipt_CLUSTER.c, see
-> > > > clusterip_net_ops and clusterip_pernet() for instance.
-> > > 
-> > > Hm, I don't think that would work. The sysctls for br_netfilter are
-> > > located in /proc/sys/net/bridge under /proc/sys/net which is tightly
-> > > integrated with the sysctls infrastructure for all of net/ and all the
-> > > folder underneath it including "core", "ipv4" and "ipv6".
-> > > I don't think creating and managing files manually in /proc/sys/net is
-> > > going to fly. It also doesn't seem very wise from a consistency and
-> > > complexity pov. I'm also not sure if this would work at all wrt to file
-> > > creation and reference counting if there are two different ways of
-> > > managing them in the same subfolder...
-> > > (clusterip creates files manually underneath /proc/net which probably is
-> > > the reason why it gets away with it.)
-> > 
-> > br_netfilter is now a module, and br_netfilter_hooks.c is part of it
-> > IIRC, this file registers these sysctl entries from the module __init
-> > path.
-> > 
-> > It would be a matter of adding a new .init callback to the existing
-> > brnf_net_ops object in br_netfilter_hooks.c. Then, call
-> > register_net_sysctl() from this .init callback to register the sysctl
-> > entries per netns.
-> 
-> Actually, this is what you patch is doing...
-> 
-> > There is already a brnf_net area that you can reuse for this purpose,
-> > to place these pernetns flags...
-> > 
-> > struct brnf_net {
-> >         bool enabled;
-> > };
-> > 
-> > which is going to be glad to have more fields (under the #ifdef
-> > CONFIG_SYSCTL) there.
-> 
-> ... except that struct brnf_net is not used to store the ctl_table.
-> 
-> So what I'm propose should be result in a small update to your patch 2/2.
+Hey everyone,
 
-Actually not, I think. I had to rework it substantially but I think the
-outcome is quite nice. :) I'll send a new version now/today. :)
+/* v1 */
+This is a rework of the patch to not touch struct net at all and instead
+rely on the pernet infrastructure directly to namespace the sysctls.
+
+/* v0 */
+This is another resend of the same patch series. I have received so many
+requests, pings, and questions that I would really like to push for this
+again.
+
+Over time I have seen multiple reports by users who want to run applications
+(Kubernetes e.g. via [1]) that require the br_netfilter module in
+non-initial network namespaces. There are *a lot* of issues for this. A
+shortlist including ChromeOS and other big users is found below under
+[2]! Even non-devs already tried to get more traction on this by
+commenting on the patchset (cf. [3]).
+
+Currently, the /proc/sys/net/bridge folder is only created in the
+initial network namespace. This patch series ensures that the
+/proc/sys/net/bridge folder is available in each network namespace if
+the module is loaded and disappears from all network namespaces when the
+module is unloaded.
+The patch series also makes the sysctls:
+
+bridge-nf-call-arptables
+bridge-nf-call-ip6tables
+bridge-nf-call-iptables
+bridge-nf-filter-pppoe-tagged
+bridge-nf-filter-vlan-tagged
+bridge-nf-pass-vlan-input-dev
+
+apply per network namespace. This unblocks some use-cases where users
+would like to e.g. not do bridge filtering for bridges in a specific
+network namespace while doing so for bridges located in another network
+namespace.
+The netfilter rules are afaict already per network namespace so it
+should be safe for users to specify whether a bridge device inside their
+network namespace is supposed to go through iptables et al. or not.
+Also, this can already be done by setting an option for each individual
+bridge via Netlink. It should also be possible to do this for all
+bridges in a network namespace via sysctls.
 
 Thanks!
 Christian
+
+[1]: https://github.com/zimmertr/Bootstrap-Kubernetes-with-Ansible
+[2]: https://bugs.chromium.org/p/chromium/issues/detail?id=878034 
+     https://github.com/lxc/lxd/issues/5193
+     https://discuss.linuxcontainers.org/t/bridge-nf-call-iptables-and-swap-error-on-lxd-with-kubeadm/2204
+     https://github.com/lxc/lxd/issues/3306
+     https://gitlab.com/gitlab-org/gitlab-runner/issues/3705
+     https://ubuntuforums.org/showthread.php?t=2415032
+     https://medium.com/@thomaszimmerman93/hi-im-unable-to-get-kubeadm-init-to-run-due-to-br-netfilter-not-being-loaded-within-the-5642a4ccfece
+[3]: https://lkml.org/lkml/2019/3/7/365
+
+*** BLURB HERE ***
+
+Christian Brauner (1):
+  br_netfilter: namespace bridge netfilter sysctls
+
+ include/net/netfilter/br_netfilter.h |   3 +-
+ net/bridge/br_netfilter_hooks.c      | 291 ++++++++++++++++++---------
+ net/bridge/br_netfilter_ipv6.c       |   2 +-
+ 3 files changed, 204 insertions(+), 92 deletions(-)
+
+-- 
+2.21.0
+
