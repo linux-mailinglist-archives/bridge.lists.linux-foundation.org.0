@@ -2,76 +2,129 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D263B834
-	for <lists.bridge@lfdr.de>; Mon, 10 Jun 2019 17:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6672D3B9C0
+	for <lists.bridge@lfdr.de>; Mon, 10 Jun 2019 18:41:30 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 8850BCAA;
-	Mon, 10 Jun 2019 15:21:40 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 12458D99;
+	Mon, 10 Jun 2019 16:40:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 09AD9C84
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 5870BC8E
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 10 Jun 2019 15:21:37 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
-	[209.85.221.66])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7A39582F
+	Mon, 10 Jun 2019 16:25:44 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mx.kolabnow.com (mx.kolabnow.com [95.128.36.41])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7A21B174
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 10 Jun 2019 15:21:35 +0000 (UTC)
-Received: by mail-wr1-f66.google.com with SMTP id d18so9606449wrs.5
-	for <bridge@lists.linux-foundation.org>;
-	Mon, 10 Jun 2019 08:21:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cumulusnetworks.com; s=google;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=E/V+F42zy5zDKXGy0YG+Ock4S+/7BVw/qPxdB1U2uGs=;
-	b=RSLSKKk0Jh+zqrNJW4rQrIzFfUaR2OwteUKHFydDh+k1VWL0Gdjei10FjpMsTD6LQx
-	K0D/wl1ro0m3nkYc3AFFzOyn5g5VBXMkQgaVP4RnrLgoFYX5q1W3nXnM+xDtca3Y+AXw
-	7w06UdyA+BT1AON8gHw3iRKpXf6CamR2Q7hdY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=E/V+F42zy5zDKXGy0YG+Ock4S+/7BVw/qPxdB1U2uGs=;
-	b=BXVPaZJX4blkZ2/8YfAzVolsVTRh4wda2UguveF+NP2hoXvwdK6vL7Q/9HrV1vMujg
-	koc0H9TePfILa17ajO+rYE7MAGaxzIsna1LjDR4bB9Bs9M8KPdn207+zHSzh881Vyw7A
-	kroIuACeWs/0tRhOdKWH1mwYEM+GiDeFYoc2FZ8HI9rGov5vXnvU0+Nl/2rAg6kiITHv
-	w611hg0BU7RHTR5V3UU7vZJQNZQ2f9nvAiGZdM6wJZpzrH8tl/vXj1tK++NHHnoRQtFa
-	CxZTcDWfveGwWQZya/XjkiLVuVxhZSG+SZcK3SVts43ewRbZHiX95/lhQx7qlfVLK31r
-	72+A==
-X-Gm-Message-State: APjAAAXC/8DBux2EG5DD7uwxCqugpjhKV7DksLN4UKqs0Thh+foD7UUX
-	El029JmkbsWuk8GGSoX2Jo2KCw==
-X-Google-Smtp-Source: APXvYqypApQbwGQXshxFKWF08IJiSXphABA2kZ7DNpaLAT6oBbWhwNaoYuCj33hmoJeLOHxMx8K1/Q==
-X-Received: by 2002:adf:ee4a:: with SMTP id w10mr34236928wro.311.1560180094079;
-	Mon, 10 Jun 2019 08:21:34 -0700 (PDT)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id 66sm5461960wma.11.2019.06.10.08.21.33
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Mon, 10 Jun 2019 08:21:33 -0700 (PDT)
-To: wenxu@ucloud.cn, roopa@cumulusnetworks.com
-References: <1560159846-29933-1-git-send-email-wenxu@ucloud.cn>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <55b99afa-7ce5-f9e3-89fb-6f3d17985519@cumulusnetworks.com>
-Date: Mon, 10 Jun 2019 18:21:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+	Mon, 10 Jun 2019 16:25:43 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+	by ext-mx-out003.mykolab.com (Postfix) with ESMTP id 1FF58403E2;
+	Mon, 10 Jun 2019 18:25:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+	content-type:content-type:content-transfer-encoding:mime-version
+	:references:in-reply-to:message-id:date:date:subject:subject
+	:from:from:received:received:received; s=dkim20160331; t=
+	1560183940; x=1561998341; bh=ySLNIX1jiCqldrmER8p/c1YOLUiUU7vfIBo
+	k3u7v1yA=; b=Qbjr2lAFN/nwTVFb3YkUWU/8tkK2xRuhjZsLMgdCND9R34aGoNh
+	L2rcHMjFoWIBOEyBgi+MymRMgil8vhsvUkvUoupC7SoATMEh/iy6YPVpjA+5H4ji
+	Sq9azbND3/SSpkJHQo81xewDfs7u1H8fnDh9kVM4AjM48YEfBXsuVqT4rapzKmul
+	1Ei88sIKitJClBwofZmi6InRA8gbKUKcVg7DR+C8Og1oKRbf3v3PTi2BIL/5Ow+m
+	fE5WCn3ir1WHhOXjbX9mYQIY6ionQ0oEGjmBF7gnqu8ILBGEfAUdczCqRfLLNKCu
+	Mgna0odiTpKA/ttrTXGmAUMaLJYKwuOFR2wMFJm6jNdjUVsq50EPgBNt5hojESRK
+	ARVzFlktwS9I7Dg3zxTTNCvNs1SDiPwRgnX2zRa6o2Hrxw0ZA9SD5NGvxwjwYkXn
+	RcfHGYEqdsFjfhrPUKzbyHovzfhc/DvM6es5MEDChVM6hbtU3ebGQuYz5ZzCLoU5
+	Tf5CE5ptqRaJnjqoewc+2I8Ou8dWd2AozVQYRI4NAjcWVDkkpXeNqNKSa8KUmZ9G
+	AbcsC0D7p3FXd28Z6d8F8A8HeKobEE1AM4rGfzQsMzvMT1TA0Dv5erAQVa/NLGEs
+	kZJ5ZtcjwU/5TJ6pEvxuxKdns93Yhvd/oWDj/yITosqRFhYy+AwM5lfQ=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Score: -1.9
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+Received: from mx.kolabnow.com ([127.0.0.1])
+	by localhost (ext-mx-out003.mykolab.com [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id n9ph0Cuw_TXP; Mon, 10 Jun 2019 18:25:40 +0200 (CEST)
+Received: from int-mx002.mykolab.com (unknown [10.9.13.2])
+	by ext-mx-out003.mykolab.com (Postfix) with ESMTPS id 3D67D403AA;
+	Mon, 10 Jun 2019 18:25:39 +0200 (CEST)
+Received: from ext-subm003.mykolab.com (unknown [10.9.6.3])
+	by int-mx002.mykolab.com (Postfix) with ESMTPS id 6CFED3431;
+	Mon, 10 Jun 2019 18:25:38 +0200 (CEST)
+From: Federico Vaga <federico.vaga@vaga.pv.it>
+To: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Date: Mon, 10 Jun 2019 18:25:36 +0200
+Message-ID: <6349042.qd6NX4z2Zd@harkonnen>
+In-Reply-To: <3d40d111d0512d785b6a67573772f532f88d2359.1560045490.git.mchehab+samsung@kernel.org>
+References: <cover.1560045490.git.mchehab+samsung@kernel.org>
+	<3d40d111d0512d785b6a67573772f532f88d2359.1560045490.git.mchehab+samsung@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <1560159846-29933-1-git-send-email-wenxu@ucloud.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org
-Subject: Re: [Bridge] [PATCH net-next] bridge: Set the pvid for untaged
- packet before prerouting
+X-Mailman-Approved-At: Mon, 10 Jun 2019 16:40:25 +0000
+Cc: , linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
+	Stanislaw Gruszka <sgruszka@redhat.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+	bridge@lists.linux-foundation.org,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	David Woodhouse <dwmw2@infr.linuxfoundation.org>,
+	Palmer Dabbelt <palmer@sifive.com>, alsa-devel@alsa-project.org,
+	dri-devel@lists.freedesktop.org, Ofer Levi <oferle@mellanox.com>,
+	Masahiro Yamada <yamada.masahiro@socionext.com>,
+	Harry Wei <harryxiyou@gmail.com>, Paul Mackerras <paulus@samba.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-riscv@lists.infradead.org, Vincent Chen <deanbo422@gmail.com>,
+	Aurelien Jacquiot <jacquiot.aurelien@gmail.com>,
+	Jonas Bonn <jonas@southpole.se>,
+	Alex Shi <alex.shi@linux.alibaba.com>, linux-c6x-dev@linux-c6x.org,
+	linux-scsi@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+	netdev@vger.kernel.org, Marek Vasut <marek.vasut@gmail.com>,
+	coreteam@netfilter.org, Mark Salter <msalter@redhat.com>,
+	Al exey Kuznetsov <kuznet@ms2.inr.ac.ru>,
+	linux-snps-arc@lists.infradead.org,
+	Roopa Prabhu <roopa@cumulusnetworks.com>,
+	Pablo Neira Ayuso <pablo@netfilter.org>, devel@driverdev.osuosl.org,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Johannes Berg <johannes.berg@intel.com>,
+	Intel Linux Wireless <linuxwifi@intel.com>,
+	linux-kbuild@vger.kernel.org,
+	"James E.J. Bottomley" <jejb@linux.ibm.com>,
+	Jozsef Kadlecsik <kadlec@blackhole.kfki.hu>,
+	linuxppc-dev@lists.ozlabs.org,
+	Mauro Carvalho Chehab <mchehab@infradead.org>,
+	adead.or@mail.linuxfoundation.org, openrisc@lists.librecores.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Greentime Hu <green.hu@gmail.com>, linux-mtd@lists.infradead.org,
+	Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
+	Stafford Horne <shorne@gmail.com>,
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+	Kalle Valo <kvalo@codeaurora.org>,
+	Jon Maloy <jon.maloy@ericsson.com>, Michal Simek <monstr@monstr.eu>,
+	Michal Marek <michal.lkml@markovi.net>,
+	Nikolay Aleksandrov <nikolay@cumulusnetworks>,
+	Teddy Wang <teddy.wang@siliconmotion.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
+	Vineet Gupta <vgupta@synopsys.com>, linux-usb@vger.kernel.org,
+	Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+	tipc-discussion@lists.sourceforge.net,
+	Sudip Mukherjee <sudipm.mukherjee@gmail.com>,
+	Miguel Ojeda Sandonis <miguel.ojeda.sandonis@gmail.com>,
+	netfilter-devel@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+	Ying Xue <ying.xue@windriver.com>,
+	Luca Coelho <luciano.coelho@intel.com>,
+	Brian Norris <computersforpeace@gmail.com>,
+	com@mail.linuxfoundation.org, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH v3 14/33] docs: kbuild: convert docs to ReST
+	and rename to *.rst
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -86,44 +139,93 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 10/06/2019 12:44, wenxu@ucloud.cn wrote:
-> From: wenxu <wenxu@ucloud.cn>
+In data Sunday, June 9, 2019 4:27:04 AM CEST, Mauro Carvalho Chehab ha 
+scritto:
+> The kbuild documentation clearly shows that the documents
+> there are written at different times: some use markdown,
+> some use their own peculiar logic to split sections.
 > 
-> bridge vlan add dev veth1 vid 200 pvid untagged
-> bridge vlan add dev veth2 vid 200 pvid untagged
+> Convert everything to ReST without affecting too much
+> the author's style and avoiding adding uneeded markups.
 > 
-> nft add table bridge firewall
-> nft add chain bridge firewall zones { type filter hook prerouting priority - 300 \; }
-> nft add rule bridge firewall zones counter ct zone set vlan id map { 100 : 1, 200 : 2 }
+> The conversion is actually:
+>   - add blank lines and identation in order to identify paragraphs;
+>   - fix tables markups;
+>   - add some lists markups;
+>   - mark literal blocks;
+>   - adjust title markups.
 > 
-> As above set the bridge port with pvid, the received packet don't contain
-> the vlan tag which means the packet should belong to vlan 200 through pvid.
-> User can do conntrack base base on vlan id and map the vlan id to zone id
-> in the prerouting hook.
+> At its new index.rst, let's add a :orphan: while this is not linked to
+> the main index.rst file, in order to avoid build warnings.
 > 
-> Signed-off-by: wenxu <wenxu@ucloud.cn>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 > ---
->  net/bridge/br_input.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+>  Documentation/admin-guide/README.rst          |   2 +-
+>  ...eaders_install.txt => headers_install.rst} |   5 +-
+>  Documentation/kbuild/index.rst                |  27 +
+>  Documentation/kbuild/issues.rst               |  11 +
+>  .../kbuild/{kbuild.txt => kbuild.rst}         | 119 ++--
+>  ...nfig-language.txt => kconfig-language.rst} | 232 ++++----
+>  ...anguage.txt => kconfig-macro-language.rst} |  37 +-
+>  .../kbuild/{kconfig.txt => kconfig.rst}       | 136 +++--
+>  .../kbuild/{makefiles.txt => makefiles.rst}   | 530 +++++++++++-------
+>  .../kbuild/{modules.txt => modules.rst}       | 168 +++---
+>  Documentation/kernel-hacking/hacking.rst      |   4 +-
+>  Documentation/process/coding-style.rst        |   2 +-
+>  Documentation/process/submit-checklist.rst    |   2 +-
+>  .../it_IT/kernel-hacking/hacking.rst          |   4 +-
+>  .../it_IT/process/coding-style.rst            |   2 +-
+>  .../it_IT/process/submit-checklist.rst        |   2 +-
 
-Nacked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Limited to translations/it_IT
 
-Hi,
-I don't think this is a good idea for a few reasons:
-- duplicating code (pvid insertion by __allowed_ingress)
-- adding 2 new tests in the fast path (even 3 in the vlan filtering case)
-- issue can be solved with current state by using different config
+Acked-by: Federico Vaga <federico.vaga@vaga.pv.it>
 
-Why do you need the vid to be set when you can assume that all the traffic from
-that port belongs to the pvid vlan ? In this case you can match the port ifindex
-for example and associate the zones based on that. Another approach - you can
-insert the vlan by tc's vlan action on ingress, you'll get the same effect.
+>  .../zh_CN/process/coding-style.rst            |   2 +-
+>  .../zh_CN/process/submit-checklist.rst        |   2 +-
+>  Kconfig                                       |   2 +-
+>  arch/arc/plat-eznps/Kconfig                   |   2 +-
+>  arch/c6x/Kconfig                              |   2 +-
+>  arch/microblaze/Kconfig.debug                 |   2 +-
+>  arch/microblaze/Kconfig.platform              |   2 +-
+>  arch/nds32/Kconfig                            |   2 +-
+>  arch/openrisc/Kconfig                         |   2 +-
+>  arch/powerpc/sysdev/Kconfig                   |   2 +-
+>  arch/riscv/Kconfig                            |   2 +-
+>  drivers/auxdisplay/Kconfig                    |   2 +-
+>  drivers/firmware/Kconfig                      |   2 +-
+>  drivers/mtd/devices/Kconfig                   |   2 +-
+>  drivers/net/ethernet/smsc/Kconfig             |   6 +-
+>  drivers/net/wireless/intel/iwlegacy/Kconfig   |   4 +-
+>  drivers/net/wireless/intel/iwlwifi/Kconfig    |   2 +-
+>  drivers/parport/Kconfig                       |   2 +-
+>  drivers/scsi/Kconfig                          |   4 +-
+>  drivers/staging/sm750fb/Kconfig               |   2 +-
+>  drivers/usb/misc/Kconfig                      |   4 +-
+>  drivers/video/fbdev/Kconfig                   |  14 +-
+>  net/bridge/netfilter/Kconfig                  |   2 +-
+>  net/ipv4/netfilter/Kconfig                    |   2 +-
+>  net/ipv6/netfilter/Kconfig                    |   2 +-
+>  net/netfilter/Kconfig                         |  16 +-
+>  net/tipc/Kconfig                              |   2 +-
+>  scripts/Kbuild.include                        |   4 +-
+>  scripts/Makefile.host                         |   2 +-
+>  scripts/kconfig/symbol.c                      |   2 +-
+>  .../tests/err_recursive_dep/expected_stderr   |  14 +-
+>  sound/oss/dmasound/Kconfig                    |   6 +-
+>  48 files changed, 840 insertions(+), 561 deletions(-)
+>  rename Documentation/kbuild/{headers_install.txt => headers_install.rst}
+> (96%) create mode 100644 Documentation/kbuild/index.rst
+>  create mode 100644 Documentation/kbuild/issues.rst
+>  rename Documentation/kbuild/{kbuild.txt => kbuild.rst} (72%)
+>  rename Documentation/kbuild/{kconfig-language.txt => kconfig-language.rst}
+> (85%) rename Documentation/kbuild/{kconfig-macro-language.txt =>
+> kconfig-macro-language.rst} (94%) rename Documentation/kbuild/{kconfig.txt
+> => kconfig.rst} (80%)
+>  rename Documentation/kbuild/{makefiles.txt => makefiles.rst} (83%)
+>  rename Documentation/kbuild/{modules.txt => modules.rst} (84%)
 
-Overall this looks like an issue solvable by different config instead of adding new tests
-in the fast path and increasing the complexity of the bridge input code for little value.
 
-Cheers,
- Nik
+
 
 
