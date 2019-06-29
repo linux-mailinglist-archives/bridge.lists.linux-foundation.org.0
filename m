@@ -2,57 +2,75 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 547E7598F3
-	for <lists.bridge@lfdr.de>; Fri, 28 Jun 2019 13:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F4F5B082
+	for <lists.bridge@lfdr.de>; Sun, 30 Jun 2019 18:06:27 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id E481ACB2;
-	Fri, 28 Jun 2019 11:02:32 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 65705B6C;
+	Sun, 30 Jun 2019 16:06:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id BDB4DC74
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 99397BA4
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 28 Jun 2019 11:02:29 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-X-Greylist: greylisting inactive for zahari.doychev@linux.com in SQLgrey-1.7.6
-Received: from sipsolutions.net (s3.sipsolutions.net [144.76.43.62])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 3617913A;
-	Fri, 28 Jun 2019 11:02:29 +0000 (UTC)
-Received: by sipsolutions.net with esmtpsa
-	(TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1hgoe7-0007P4-VS; Fri, 28 Jun 2019 13:02:24 +0200
-Message-ID: <411e7717a68243fc775910ee01fa110c45ce0630.camel@sipsolutions.net>
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Toshiaki Makita <toshiaki.makita1@gmail.com>, Alexei Starovoitov
-	<alexei.starovoitov@gmail.com>
-Date: Fri, 28 Jun 2019 13:02:22 +0200
-In-Reply-To: <828a23fe-8466-ae65-7829-620f32aacead@gmail.com>
-	(sfid-20190617_131539_212442_3AC98020)
-References: <68c99662210c8e9e37f198ddf8cb00bccf301c4b.camel@sipsolutions.net>
-	<20190615151913.cgrfyflwwnhym4u2@ast-mbp.dhcp.thefacebook.com>
-	<e487656b854ca999d14eb8072e5553eb2676a9f4.camel@sipsolutions.net>
-	<828a23fe-8466-ae65-7829-620f32aacead@gmail.com>
-	(sfid-20190617_131539_212442_3AC98020)
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-3.fc28) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+	Sat, 29 Jun 2019 12:00:13 +0000 (UTC)
+X-Greylist: delayed 00:05:25 by SQLgrey-1.7.6
+Received: from linuxlounge.net (linuxlounge.net [88.198.164.195])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 9F6CD82D
+	for <bridge@lists.linux-foundation.org>;
+	Sat, 29 Jun 2019 12:00:12 +0000 (UTC)
+To: Roopa Prabhu <roopa@cumulusnetworks.com>,
+	Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	bridge@lists.linux-foundation.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxlounge.net;
+	s=mail; t=1561809285;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	to:to:cc:cc:content-type:content-type:
+	content-transfer-encoding:content-transfer-encoding:openpgp:openpgp:autocrypt:autocrypt;
+	bh=K8SkvK23rxnJCbNhKHlL7+FkuFf6K/rRGr7z7WQxE34=;
+	b=XTA/bdMtrJ1BSlqAQ7R5pY6mt9mrmE1bvoOEojZLQ4ifiP44cB5hh2VL2MOM5+QZDQGmbY
+	6zwdUzsfa4E26dizPwFWk2bv/ny/METx85VW2oyQR1uxgBK7NlQyeZz/V8kwEp04W2NMMx
+	42T0lEc2xopfRfg5NpzV+vvpNmxwpcU=
+Openpgp: preference=signencrypt
+Autocrypt: addr=martin@linuxlounge.net; prefer-encrypt=mutual; keydata=
+	mQENBEv1rfkBCADFlzzmynjVg8L5ok/ef2Jxz8D96PtEAP//3U612b4QbHXzHC6+C2qmFEL6
+	5kG1U1a7PPsEaS/A6K9AUpDhT7y6tX1IxAkSkdIEmIgWC5Pu2df4+xyWXarJfqlBeJ82biot
+	/qETntfo01wm0AtqfJzDh/BkUpQw0dbWBSnAF6LytoNEggIGnUGmzvCidrEEsTCO6YlHfKIH
+	cpz7iwgVZi4Ajtsky8v8P8P7sX0se/ce1L+qX/qN7TnXpcdVSfZpMnArTPkrmlJT4inBLhKx
+	UeDMQmHe+BQvATa21fhcqi3BPIMwIalzLqVSIvRmKY6oYdCbKLM2TZ5HmyJepusl2Gi3ABEB
+	AAG0J01hcnRpbiBXZWluZWx0IDxtYXJ0aW5AbGludXhsb3VuZ2UubmV0PokBWAQTAQoAQgIb
+	IwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEWIQTu0BYCvL0ZbDi8mh+9SqBSj2PxfgUC
+	W/RuFQUJEd/znAAKCRC9SqBSj2PxfpfDCACDx6BYz6cGMiweQ96lXi+ihx7RBaXsfPp2KxUo
+	eHilrDPqknq62XJibCyNCJiYGNb+RUS5WfDUAqxdl4HuNxQMC/sYlbP4b7p9Y1Q9QiTP4f6M
+	8+Uvpicin+9H/lye5hS/Gp2KUiVI/gzqW68WqMhARUYw00lVSlJHy+xHEGVuQ0vmeopjU81R
+	0si4+HhMX2HtILTxoUcvm67AFKidTHYMJKwNyMHiLLvSK6wwiy+MXaiqrMVTwSIOQhLgLVcJ
+	33GNJ2Emkgkhs6xcaiN8xTjxDmiU7b5lXW4JiAsd1rbKINajcA7DVlZ/evGfpN9FczyZ4W6F
+	Rf21CxSwtqv2SQHBuQENBEv1rfkBCADJX6bbb5LsXjdxDeFgqo+XRUvW0bzuS3SYNo0fuktM
+	5WYMCX7TzoF556QU8A7C7bDUkT4THBUzfaA8ZKIuneYW2WN1OI0zRMpmWVeZcUQpXncWWKCg
+	LBNYtk9CCukPE0OpDFnbR+GhGd1KF/YyemYnzwW2f1NOtHjwT3iuYnzzZNlWoZAR2CRSD02B
+	YU87Mr2CMXrgG/pdRiaD+yBUG9RxCUkIWJQ5dcvgrsg81vOTj6OCp/47Xk/457O0pUFtySKS
+	jZkZN6S7YXl/t+8C9g7o3N58y/X95VVEw/G3KegUR2SwcLdok4HaxgOy5YHiC+qtGNZmDiQn
+	NXN7WIN/oof7ABEBAAGJATwEGAEKACYCGwwWIQTu0BYCvL0ZbDi8mh+9SqBSj2PxfgUCW/Ru
+	GAUJEd/znwAKCRC9SqBSj2PxfpzMCACH55MVYTVykq+CWj1WMKHex9iFg7M9DkWQCF/Zl+0v
+	QmyRMEMZnFW8GdX/Qgd4QbZMUTOGevGxFPTe4p0PPKqKEDXXXxTTHQETE/Hl0jJvyu+MgTxG
+	E9/KrWmsmQC7ogTFCHf0vvVY3UjWChOqRE19Buk4eYpMbuU1dYefLNcD15o4hGDhohYn3SJr
+	q9eaoO6rpnNIrNodeG+1vZYG1B2jpEdU4v354ziGcibt5835IONuVdvuZMFQJ4Pn2yyC+qJe
+	ekXwZ5f4JEt0lWD9YUxB2cU+xM9sbDcQ2b6+ypVFzMyfU0Q6LzYugAqajZ10gWKmeyjisgyq
+	sv5UJTKaOB/t
+Message-ID: <41ac3aa3-cbf7-1b7b-d847-1fb308334931@linuxlounge.net>
+Date: Sat, 29 Jun 2019 13:54:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: David Ahern <dsahern@gmail.com>,
-	Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
-	netdev@vger.kernel.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org,
-	Zahari Doychev <zahari.doychev@linux.com>, jhs@mojatatu.com,
-	Jiri Pirko <jiri@mellanox.com>,
-	Toshiaki Makita <makita.toshiaki@lab.ntt.co.jp>,
-	Cong Wang <xiyou.wangcong@gmail.com>,
-	Simon Horman <simon.horman@netronome.com>
-Subject: Re: [Bridge] VLAN tags in mac_len
+X-Mailman-Approved-At: Sun, 30 Jun 2019 16:06:11 +0000
+Cc: netdev@vger.kernel.or
+Subject: [Bridge] Use-after-free in br_multicast_rcv
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -64,136 +82,97 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 	<mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Martin Weinelt via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Martin Weinelt <martin@linuxlounge.net>
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On Mon, 2019-06-17 at 20:15 +0900, Toshiaki Makita wrote:
+Hello,
 
-> I'll try to explain the problem I see, which cannot be fixed by option 1...
-> The bug is in tcf_vlan_act(), and mainly in skb->data, not in mac_len.
-> 
-> Consider about vlan packets from NIC, but non-hw-accelerated, where
-> vlan devices are configured to receive them.
-> 
-> When __netif_receive_skb_core() is called, skb is like this.
-> 
-> +-----+------+--------
-> > eth | vlan | TCP/IP
-> 
-> +-----+------+--------
->        ^
->       data
-> 
-> skb->data is at the beginning of the vlan header.
+we've recently been experiencing memory leaks on our Linux-based routers,
+at least as far back as v4.19.16.
 
-Right.
+After rebuilding with KASAN it found a use-after-free in 
+br_multicast_rcv which I could reproduce on v5.2.0-rc6. 
 
-> This is reasonable because we did not process the vlan tag at this point.
+Please find the KASAN report below, I'm not sure what else to provide so
+feel free to ask.
 
-I think with this simple sentence you just threw a whole new semantic
-issue into the mix, one that I at least hadn't considered.
+Best,
+  Martin
 
-However, it's not clear to me whether we should consider a tag as
-processed or not when we push it.
 
-In a sense, this means we should have two different VLAN tag push
-options - considering it processed or unprocessed. Or maybe it should
-always be considered unprocessed, but that's not what we do today.
+==================================================================
+BUG: KASAN: use-after-free in br_multicast_rcv+0x480c/0x4ad0 [bridge]
+Read of size 2 at addr ffff8880421302b4 by task ksoftirqd/1/16
 
-> Then after vlan_do_receive() (receive the skb on a vlan device), the skb is like this.
-> 
-> +-----+--------
-> > eth | TCP/IP
-> 
-> +-----+--------
->        ^
->       data
-> 
-> Or if reorder_hdr is off (which does not remove vlan tags when receiving on vlan devices),
-> 
-> +-----+------+--------
-> > eth | vlan | TCP/IP
-> 
-> +-----+------+--------
->               ^
->              data
-> 
-> Relying on this mechanism, we are currently able to handle multiple vlan tags.
-> 
-> For example if we have 2 tags,
-> 
-> - On __netif_receive_skb_core() invocation
-> 
-> +-----+------+------+--------
-> > eth | vlan | vlan | TCP/IP
-> 
-> +-----+------+------+--------
->        ^
->       data
-> 
-> - After first vlan_do_receive()
-> 
-> +-----+------+--------
-> > eth | vlan | TCP/IP
-> 
-> +-----+------+--------
->        ^
->       data
-> 
-> Or if reorder_hdr is off,
-> 
-> +-----+------+------+--------
-> > eth | vlan | vlan | TCP/IP
-> 
-> +-----+------+------+--------
->               ^
->              data
-> 
-> When we process one tag, the data goes forward by one tag.
+CPU: 1 PID: 16 Comm: ksoftirqd/1 Tainted: G           OE     5.2.0-rc6+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.10.2-1 04/01/2014
+Call Trace:
+ dump_stack+0x71/0xab
+ print_address_description+0x6a/0x280
+ ? br_multicast_rcv+0x480c/0x4ad0 [bridge]
+ __kasan_report+0x152/0x1aa
+ ? br_multicast_rcv+0x480c/0x4ad0 [bridge]
+ ? br_multicast_rcv+0x480c/0x4ad0 [bridge]
+ kasan_report+0xe/0x20
+ br_multicast_rcv+0x480c/0x4ad0 [bridge]
+ ? br_multicast_disable_port+0x150/0x150 [bridge]
+ ? ktime_get_with_offset+0xb4/0x150
+ ? __kasan_kmalloc.constprop.6+0xa6/0xf0
+ ? __netif_receive_skb+0x1b0/0x1b0
+ ? br_fdb_update+0x10e/0x6e0 [bridge]
+ ? br_handle_frame_finish+0x3c6/0x11d0 [bridge]
+ br_handle_frame_finish+0x3c6/0x11d0 [bridge]
+ ? br_pass_frame_up+0x3a0/0x3a0 [bridge]
+ ? virtnet_probe+0x1c80/0x1c80 [virtio_net]
+ br_handle_frame+0x731/0xd90 [bridge]
+ ? select_idle_sibling+0x25/0x7d0
+ ? br_handle_frame_finish+0x11d0/0x11d0 [bridge]
+ __netif_receive_skb_core+0xced/0x2d70
+ ? virtqueue_get_buf_ctx+0x230/0x1130 [virtio_ring]
+ ? do_xdp_generic+0x20/0x20
+ ? virtqueue_napi_complete+0x39/0x70 [virtio_net]
+ ? virtnet_poll+0x94d/0xc78 [virtio_net]
+ ? receive_buf+0x5120/0x5120 [virtio_net]
+ ? __netif_receive_skb_one_core+0x97/0x1d0
+ __netif_receive_skb_one_core+0x97/0x1d0
+ ? __netif_receive_skb_core+0x2d70/0x2d70
+ ? _raw_write_trylock+0x100/0x100
+ ? __queue_work+0x41e/0xbe0
+ process_backlog+0x19c/0x650
+ ? _raw_read_lock_irq+0x40/0x40
+ net_rx_action+0x71e/0xbc0
+ ? __switch_to_asm+0x40/0x70
+ ? napi_complete_done+0x360/0x360
+ ? __switch_to_asm+0x34/0x70
+ ? __switch_to_asm+0x40/0x70
+ ? __schedule+0x85e/0x14d0
+ __do_softirq+0x1db/0x5f9
+ ? takeover_tasklets+0x5f0/0x5f0
+ run_ksoftirqd+0x26/0x40
+ smpboot_thread_fn+0x443/0x680
+ ? sort_range+0x20/0x20
+ ? schedule+0x94/0x210
+ ? __kthread_parkme+0x78/0xf0
+ ? sort_range+0x20/0x20
+ kthread+0x2ae/0x3a0
+ ? kthread_create_worker_on_cpu+0xc0/0xc0
+ ret_from_fork+0x35/0x40
 
-Right, that's a very good point.
+The buggy address belongs to the page:
+page:ffffea0001084c00 refcount:0 mapcount:-128 mapping:0000000000000000 index:0x0
+flags: 0xffffc000000000()
+raw: 00ffffc000000000 ffffea0000cfca08 ffffea0001098608 0000000000000000
+raw: 0000000000000000 0000000000000003 00000000ffffff7f 0000000000000000
+page dumped because: kasan: bad access detected
 
-> Now looking at TC vlan case...
-> 
-> After it inserts two tags, the skb looks like:
-> 
-> (The first tag is in vlan_tci)
-> +-----+------+--------
-> > eth | vlan | TCP/IP
-> 
-> +-----+------+--------
->               ^
->              data
-> 
-> The data pointer went forward before we process it.
-> This is apparently wrong. I think we don't want to (or cannot?) handle cases like this
-> after tcf_vlan_act(). This is why I said we should remember mac_len there.
-
-Right, makes a lot of sense.
-
-If you consider a tc VLAN pop, you'd argue that it should pop the next
-unprocessed tag I guess, since if it was processed then it doesn't
-really exist any more (semantically, you still see it if reorder_hdr is
-off), right?
-
-> So, my opinion is:
-> On ingress, data pointer can be at the end of vlan header and mac_len probably should
-> include vlan tag length, but only after the vlan tag is processed.
-
-You're basically arguing for option (3), I think, making VLAN push/pop
-not manipulate mac_len since they can just push/pop *unprocessed* tags,
-right?
-
-I fear this will cause all kinds of trouble in other code. Perhaps we
-need to make this processed/unprocessed state more explicit.
-
-> Bridge may need to handle mac_len that is not equal to ETH_HLEN but to me it's a
-> different problem.
-
-Yes. Like I just said to Daniel, I think we should make bridge handle
-mac_len so that we can just exclude it from this whole discussion.
-Regardless of the mac_len and processed/unprocessed tags, it would just
-work as expected.
-
-johannes
-
+Memory state around the buggy address:
+ ffff888042130180: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888042130200: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff888042130280: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                                     ^
+ ffff888042130300: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888042130380: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================
+Disabling lock debugging due to kernel taint
