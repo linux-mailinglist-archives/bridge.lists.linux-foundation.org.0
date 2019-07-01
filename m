@@ -2,75 +2,75 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB295C1AF
-	for <lists.bridge@lfdr.de>; Mon,  1 Jul 2019 19:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 262745C200
+	for <lists.bridge@lfdr.de>; Mon,  1 Jul 2019 19:32:05 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id DB70440AE;
-	Mon,  1 Jul 2019 17:03:20 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id C10A64B61;
+	Mon,  1 Jul 2019 17:31:30 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 3DFC8407F
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 9734F4A34
 	for <bridge@lists.linux-foundation.org>;
-	Mon,  1 Jul 2019 17:03:18 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
-	[209.85.128.65])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 0741E782
+	Mon,  1 Jul 2019 17:31:27 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from linuxlounge.net (linuxlounge.net [88.198.164.195])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id DC375832
 	for <bridge@lists.linux-foundation.org>;
-	Mon,  1 Jul 2019 17:03:16 +0000 (UTC)
-Received: by mail-wm1-f65.google.com with SMTP id f17so287530wme.2
-	for <bridge@lists.linux-foundation.org>;
-	Mon, 01 Jul 2019 10:03:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cumulusnetworks.com; s=google;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=SG3c1bytHc4Lg6OlNggpaL51TFc+3K1rkGSSWjHw9kU=;
-	b=Pu0M+D5IWXH6Dbwks64En+Od19SEYzWFFcxnPG0+fyxU8gjOKGfEtPzVj4NZWpVRIp
-	ckOQzyiO3OExYIxCh5LUN96SfemaexrshOBavF9kdNW1eH3drgYKvhWLjEqptcBbPvVs
-	iKh9HP1o6ixL1aCkBixRGgXiJx9Go9IoTtf4o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=SG3c1bytHc4Lg6OlNggpaL51TFc+3K1rkGSSWjHw9kU=;
-	b=QZcmCmbPUwxeiSNGOGzNannBDJcpSqZwfR69etTCTA635QYks+7QBnStQsXLwp/9LX
-	xWGE7lJSnwYcfU79rldjLlwGdl7eTaLvdUY4KsnK+BtJlRcqLrFqgkY/HX+DCLoKP9lS
-	F9ZnP5TBPDjoLQzdZdr2Eiw431XP+Q3NYmhzYL4Fhv/AcAGpeqU2+7b4sEeMp5EvKEno
-	vrrKnFSgnpUa2hW83LO+5RaGPgNHUTqUrTp59ihSrPTYsIrMME1yu4Zp23F5sCDHp9pz
-	xIooeqH1S9J7GHHclCFq+DYAhHu6XphWWrvY4rK3U9kbnIBV4p7laZu5IhOn2WS41cKR
-	aenQ==
-X-Gm-Message-State: APjAAAWcFv9C+MDDau68kzn9zLwxgCloFnAZAvM+LXQxeGLeZJ47NqL5
-	BVac7SBaJMdkzlTfFeL9fVtsoQ==
-X-Google-Smtp-Source: APXvYqwQWppoJhJWlHXTbnp7Km8CRzdAdEO19J9WGTowCqoH7908fSAoX11S/h15bAGbEhklRAH9mQ==
-X-Received: by 2002:a1c:770d:: with SMTP id t13mr163768wmi.79.1562000595571;
-	Mon, 01 Jul 2019 10:03:15 -0700 (PDT)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id
-	n3sm11268603wro.59.2019.07.01.10.03.14
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Mon, 01 Jul 2019 10:03:15 -0700 (PDT)
-To: Martin Weinelt <martin@linuxlounge.net>, bridge@lists.linux-foundation.org,
-	Roopa Prabhu <roopa@cumulusnetworks.com>
+	Mon,  1 Jul 2019 17:31:26 +0000 (UTC)
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@cumulusnetworks.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxlounge.net;
+	s=mail; t=1562002285;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	to:to:cc:cc:content-type:content-type:
+	content-transfer-encoding:content-transfer-encoding:
+	in-reply-to:in-reply-to:references:references:openpgp:openpgp:autocrypt:autocrypt;
+	bh=aWKgJMb+TS/EjABfNXN1Y47POkRjcI6nGrOk4+90WBc=;
+	b=GzyNN9RBVda1v2iAyUMcf/nzNrKuBOTw/Is50W9TQgzB8iRZMdAhPHcRVddSsTdEFKbnWi
+	ZsPxY7zMYT3disSGqC3KP6V0Gp3NtmjCiARZwsxRSDbfR5xfTT6SlC8VJ8Bdu3mppYCo37
+	f77BlsKHKA2Iu+Wy0zqV+z3VxQaypjU=
 References: <41ac3aa3-cbf7-1b7b-d847-1fb308334931@linuxlounge.net>
 	<E0170D52-C181-4F0F-B5F8-F1801C2A8F5A@cumulusnetworks.com>
 	<21ab085f-0f7f-88bc-b661-af74dd9eeea2@linuxlounge.net>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <cc232ed3-9e02-ebb4-4901-9d617013abb8@cumulusnetworks.com>
-Date: Mon, 1 Jul 2019 20:03:14 +0300
+	<cc232ed3-9e02-ebb4-4901-9d617013abb8@cumulusnetworks.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=martin@linuxlounge.net; prefer-encrypt=mutual; keydata=
+	mQENBEv1rfkBCADFlzzmynjVg8L5ok/ef2Jxz8D96PtEAP//3U612b4QbHXzHC6+C2qmFEL6
+	5kG1U1a7PPsEaS/A6K9AUpDhT7y6tX1IxAkSkdIEmIgWC5Pu2df4+xyWXarJfqlBeJ82biot
+	/qETntfo01wm0AtqfJzDh/BkUpQw0dbWBSnAF6LytoNEggIGnUGmzvCidrEEsTCO6YlHfKIH
+	cpz7iwgVZi4Ajtsky8v8P8P7sX0se/ce1L+qX/qN7TnXpcdVSfZpMnArTPkrmlJT4inBLhKx
+	UeDMQmHe+BQvATa21fhcqi3BPIMwIalzLqVSIvRmKY6oYdCbKLM2TZ5HmyJepusl2Gi3ABEB
+	AAG0J01hcnRpbiBXZWluZWx0IDxtYXJ0aW5AbGludXhsb3VuZ2UubmV0PokBWAQTAQoAQgIb
+	IwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEWIQTu0BYCvL0ZbDi8mh+9SqBSj2PxfgUC
+	W/RuFQUJEd/znAAKCRC9SqBSj2PxfpfDCACDx6BYz6cGMiweQ96lXi+ihx7RBaXsfPp2KxUo
+	eHilrDPqknq62XJibCyNCJiYGNb+RUS5WfDUAqxdl4HuNxQMC/sYlbP4b7p9Y1Q9QiTP4f6M
+	8+Uvpicin+9H/lye5hS/Gp2KUiVI/gzqW68WqMhARUYw00lVSlJHy+xHEGVuQ0vmeopjU81R
+	0si4+HhMX2HtILTxoUcvm67AFKidTHYMJKwNyMHiLLvSK6wwiy+MXaiqrMVTwSIOQhLgLVcJ
+	33GNJ2Emkgkhs6xcaiN8xTjxDmiU7b5lXW4JiAsd1rbKINajcA7DVlZ/evGfpN9FczyZ4W6F
+	Rf21CxSwtqv2SQHBuQENBEv1rfkBCADJX6bbb5LsXjdxDeFgqo+XRUvW0bzuS3SYNo0fuktM
+	5WYMCX7TzoF556QU8A7C7bDUkT4THBUzfaA8ZKIuneYW2WN1OI0zRMpmWVeZcUQpXncWWKCg
+	LBNYtk9CCukPE0OpDFnbR+GhGd1KF/YyemYnzwW2f1NOtHjwT3iuYnzzZNlWoZAR2CRSD02B
+	YU87Mr2CMXrgG/pdRiaD+yBUG9RxCUkIWJQ5dcvgrsg81vOTj6OCp/47Xk/457O0pUFtySKS
+	jZkZN6S7YXl/t+8C9g7o3N58y/X95VVEw/G3KegUR2SwcLdok4HaxgOy5YHiC+qtGNZmDiQn
+	NXN7WIN/oof7ABEBAAGJATwEGAEKACYCGwwWIQTu0BYCvL0ZbDi8mh+9SqBSj2PxfgUCW/Ru
+	GAUJEd/znwAKCRC9SqBSj2PxfpzMCACH55MVYTVykq+CWj1WMKHex9iFg7M9DkWQCF/Zl+0v
+	QmyRMEMZnFW8GdX/Qgd4QbZMUTOGevGxFPTe4p0PPKqKEDXXXxTTHQETE/Hl0jJvyu+MgTxG
+	E9/KrWmsmQC7ogTFCHf0vvVY3UjWChOqRE19Buk4eYpMbuU1dYefLNcD15o4hGDhohYn3SJr
+	q9eaoO6rpnNIrNodeG+1vZYG1B2jpEdU4v354ziGcibt5835IONuVdvuZMFQJ4Pn2yyC+qJe
+	ekXwZ5f4JEt0lWD9YUxB2cU+xM9sbDcQ2b6+ypVFzMyfU0Q6LzYugAqajZ10gWKmeyjisgyq
+	sv5UJTKaOB/t
+Message-ID: <3fcf8b05-e1ad-ac97-10bf-bd2b6354424c@linuxlounge.net>
+Date: Mon, 1 Jul 2019 19:31:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <21ab085f-0f7f-88bc-b661-af74dd9eeea2@linuxlounge.net>
+In-Reply-To: <cc232ed3-9e02-ebb4-4901-9d617013abb8@cumulusnetworks.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: netdev@vger.kernel.org
@@ -86,212 +86,94 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 	<mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Martin Weinelt via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Martin Weinelt <martin@linuxlounge.net>
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Hi Martin,
+Hi Nik,
 
-On 01/07/2019 19:53, Martin Weinelt wrote:
-> Hi Nik,
+On 7/1/19 7:03 PM, Nikolay Aleksandrov wrote:
+> Hi Martin,
 > 
-> more info below.
-> 
-> On 6/29/19 3:11 PM, nikolay@cumulusnetworks.com wrote:
->> On 29 June 2019 14:54:44 EEST, Martin Weinelt <martin@linuxlounge.net> wrote:
->>> Hello,
->>>
->>> we've recently been experiencing memory leaks on our Linux-based
->>> routers,
->>> at least as far back as v4.19.16.
->>>
->>> After rebuilding with KASAN it found a use-after-free in 
->>> br_multicast_rcv which I could reproduce on v5.2.0-rc6. 
->>>
->>> Please find the KASAN report below, I'm anot sure what else to provide
->>> so
->>> feel free to ask.
->>>
->>> Best,
->>>  Martin
->>>
->>>
+> On 01/07/2019 19:53, Martin Weinelt wrote:
+>> Hi Nik,
 >>
->> Hi Martin, 
->> I'll look into this, are there any specific steps to reproduce it? 
+>> more info below.
 >>
->> Thanks, 
->>    Nik
->>>  
-> Each server is a KVM Guest and has 18 bridges with the same master/slave
-> relationships:
+>> On 6/29/19 3:11 PM, nikolay@cumulusnetworks.com wrote:
+>>> On 29 June 2019 14:54:44 EEST, Martin Weinelt <martin@linuxlounge.net> wrote:
+>>>> Hello,
+>>>>
+>>>> we've recently been experiencing memory leaks on our Linux-based
+>>>> routers,
+>>>> at least as far back as v4.19.16.
+>>>>
+>>>> After rebuilding with KASAN it found a use-after-free in 
+>>>> br_multicast_rcv which I could reproduce on v5.2.0-rc6. 
+>>>>
+>>>> Please find the KASAN report below, I'm anot sure what else to provide
+>>>> so
+>>>> feel free to ask.
+>>>>
+>>>> Best,
+>>>>  Martin
+>>>>
+>>>>
+>>>
+>>> Hi Martin, 
+>>> I'll look into this, are there any specific steps to reproduce it? 
+>>>
+>>> Thanks, 
+>>>    Nik
+>>>>  
+>> Each server is a KVM Guest and has 18 bridges with the same master/slave
+>> relationships:
+>>
+>>   bridge -> batman-adv -> {l2 tunnel, virtio device}
+>>
+>> Linus Lüssing from the batman-adv asked me to apply this patch to help
+>> debugging.
+>>
+>> v5.2-rc6-170-g728254541ebc with this patch yielded the following KASAN 
+>> report, not sure if the additional information at the end is a result of
+>> the added patch though.
+>>
+>> Best,
+>>   Martin
+>>
 > 
->   bridge -> batman-adv -> {l2 tunnel, virtio device}
+> I see a couple of issues that can cause out-of-bounds accesses in br_multicast.c
+> more specifically there're pskb_may_pull calls and accesses to stale skb pointers.
+> I've had these on my "to fix" list for some time now, will prepare, test the fixes and
+> send them for review. In a few minutes I'll send a test patch for you.
+> That being said, I thought you said you've been experiencing memory leaks, but below
+> reports are for out-of-bounds accesses, could you please clarify if you were
+> speaking about these or is there another issue as well ?
+> If you're experiencing memory leaks, are you sure they're related to the bridge ?
+> You could try kmemleak for those.
 > 
-> Linus Lüssing from the batman-adv asked me to apply this patch to help
-> debugging.
-> 
-> v5.2-rc6-170-g728254541ebc with this patch yielded the following KASAN 
-> report, not sure if the additional information at the end is a result of
-> the added patch though.
-> 
-> Best,
->   Martin
-> 
-
-I see a couple of issues that can cause out-of-bounds accesses in br_multicast.c
-more specifically there're pskb_may_pull calls and accesses to stale skb pointers.
-I've had these on my "to fix" list for some time now, will prepare, test the fixes and
-send them for review. In a few minutes I'll send a test patch for you.
-That being said, I thought you said you've been experiencing memory leaks, but below
-reports are for out-of-bounds accesses, could you please clarify if you were
-speaking about these or is there another issue as well ?
-If you're experiencing memory leaks, are you sure they're related to the bridge ?
-You could try kmemleak for those.
-
-Thank you,
- Nik
-
-> From 47a04e977311a0c45f26905588f563b55239da7f Mon Sep 17 00:00:00 2001
-> From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
-> Date: Sat, 29 Jun 2019 20:24:23 +0200
-> Subject: [PATCH] bridge: DEBUG: ipv6_addr_is_ll_all_nodes() wrappers for impr.
->  call traces
-> 
-> ---
->  net/bridge/br_multicast.c | 70 +++++++++++++++++++++++++++++++++++----
->  1 file changed, 63 insertions(+), 7 deletions(-)
-> 
-> diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-> index de22c8fbbb15..224a43318955 100644
-> --- a/net/bridge/br_multicast.c
-> +++ b/net/bridge/br_multicast.c
-> @@ -57,6 +57,42 @@ static void br_ip6_multicast_leave_group(struct net_bridge *br,
->  					 struct net_bridge_port *port,
->  					 const struct in6_addr *group,
->  					 __u16 vid, const unsigned char *src);
-> +
-> +static noinline void br_ip6_multicast_leave_group_mld2report(
-> +					 struct net_bridge *br,
-> +					 struct net_bridge_port *port,
-> +					 const struct in6_addr *group,
-> +					 __u16 vid,
-> +					 const unsigned char *src)
-> +{
-> +	br_ip6_multicast_leave_group(br, port, group, vid, src);
-> +}
-> +
-> +static noinline void br_ip6_multicast_leave_group_ipv6rcv(
-> +					 struct net_bridge *br,
-> +					 struct net_bridge_port *port,
-> +					 const struct in6_addr *group,
-> +					 __u16 vid,
-> +					 const unsigned char *src)
-> +{
-> +	br_ip6_multicast_leave_group(br, port, group, vid, src);
-> +}
-> +
-> +
-> +static noinline bool ipv6_addr_is_ll_all_nodes_addgroup(const struct in6_addr *addr)
-> +{
-> +	return ipv6_addr_is_ll_all_nodes(addr);
-> +}
-> +
-> +static noinline bool ipv6_addr_is_ll_all_nodes_leavegroup(const struct in6_addr *addr)
-> +{
-> +	return ipv6_addr_is_ll_all_nodes(addr);
-> +}
-> +
-> +static noinline bool ipv6_addr_is_ll_all_nodes_mcastrcv(const struct in6_addr *addr)
-> +{
-> +	return ipv6_addr_is_ll_all_nodes(addr);
-> +}
->  #endif
->  
->  static struct net_bridge_mdb_entry *br_mdb_ip_get_rcu(struct net_bridge *br,
-> @@ -595,7 +631,7 @@ static int br_ip6_multicast_add_group(struct net_bridge *br,
->  {
->  	struct br_ip br_group;
->  
-> -	if (ipv6_addr_is_ll_all_nodes(group))
-> +	if (ipv6_addr_is_ll_all_nodes_addgroup(group))
->  		return 0;
->  
->  	memset(&br_group, 0, sizeof(br_group));
-> @@ -605,6 +641,26 @@ static int br_ip6_multicast_add_group(struct net_bridge *br,
->  
->  	return br_multicast_add_group(br, port, &br_group, src);
->  }
-> +
-> +static noinline int br_ip6_multicast_add_group_mld2report(
-> +				      struct net_bridge *br,
-> +				      struct net_bridge_port *port,
-> +				      const struct in6_addr *group,
-> +				      __u16 vid,
-> +				      const unsigned char *src)
-> +{
-> +	return br_ip6_multicast_add_group(br, port, group, vid, src);
-> +}
-> +
-> +static noinline int br_ip6_multicast_add_group_ipv6rcv(
-> +				      struct net_bridge *br,
-> +				      struct net_bridge_port *port,
-> +				      const struct in6_addr *group,
-> +				      __u16 vid,
-> +				      const unsigned char *src)
-> +{
-> +	return br_ip6_multicast_add_group(br, port, group, vid, src);
-> +}
->  #endif
->  
->  static void br_multicast_router_expired(struct timer_list *t)
-> @@ -1022,10 +1078,10 @@ static int br_ip6_multicast_mld2_report(struct net_bridge *br,
->  		if ((grec->grec_type == MLD2_CHANGE_TO_INCLUDE ||
->  		     grec->grec_type == MLD2_MODE_IS_INCLUDE) &&
->  		    ntohs(*nsrcs) == 0) {
-> -			br_ip6_multicast_leave_group(br, port, &grec->grec_mca,
-> +			br_ip6_multicast_leave_group_mld2report(br, port, &grec->grec_mca,
->  						     vid, src);
->  		} else {
-> -			err = br_ip6_multicast_add_group(br, port,
-> +			err = br_ip6_multicast_add_group_mld2report(br, port,
->  							 &grec->grec_mca, vid,
->  							 src);
->  			if (err)
-> @@ -1494,7 +1550,7 @@ static void br_ip6_multicast_leave_group(struct net_bridge *br,
->  	struct br_ip br_group;
->  	struct bridge_mcast_own_query *own_query;
->  
-> -	if (ipv6_addr_is_ll_all_nodes(group))
-> +	if (ipv6_addr_is_ll_all_nodes_leavegroup(group))
->  		return;
->  
->  	own_query = port ? &port->ip6_own_query : &br->ip6_own_query;
-> @@ -1658,7 +1714,7 @@ static int br_multicast_ipv6_rcv(struct net_bridge *br,
->  	err = ipv6_mc_check_mld(skb);
->  
->  	if (err == -ENOMSG) {
-> -		if (!ipv6_addr_is_ll_all_nodes(&ipv6_hdr(skb)->daddr))
-> +		if (!ipv6_addr_is_ll_all_nodes_mcastrcv(&ipv6_hdr(skb)->daddr))
->  			BR_INPUT_SKB_CB(skb)->mrouters_only = 1;
->  
->  		if (ipv6_addr_is_all_snoopers(&ipv6_hdr(skb)->daddr)) {
-> @@ -1683,7 +1739,7 @@ static int br_multicast_ipv6_rcv(struct net_bridge *br,
->  	case ICMPV6_MGM_REPORT:
->  		src = eth_hdr(skb)->h_source;
->  		BR_INPUT_SKB_CB(skb)->mrouters_only = 1;
-> -		err = br_ip6_multicast_add_group(br, port, &mld->mld_mca, vid,
-> +		err = br_ip6_multicast_add_group_ipv6rcv(br, port, &mld->mld_mca, vid,
->  						 src);
->  		break;
->  	case ICMPV6_MLD2_REPORT:
-> @@ -1694,7 +1750,7 @@ static int br_multicast_ipv6_rcv(struct net_bridge *br,
->  		break;
->  	case ICMPV6_MGM_REDUCTION:
->  		src = eth_hdr(skb)->h_source;
-> -		br_ip6_multicast_leave_group(br, port, &mld->mld_mca, vid, src);
-> +		br_ip6_multicast_leave_group_ipv6rcv(br, port, &mld->mld_mca, vid, src);
->  		break;
->  	}
->  
+> Thank you,
+>  Nik
 > 
 
+we had been experiencing memory leaks on v4.19.37, thats why we started to turn on
+KASAN and kmemleak in the first place. This is when we found this use-after-free.
+
+The memory leak exists, and is a separate issue. Apparently kmemleak does not work,
+I suspect the early log size is too small
+
+root@gw02:~# echo scan > /sys/kernel/debug/kmemleak                                                                                                                                                                                 -bash: echo: write error: Device or resource busy
+
+CONFIG_HAVE_DEBUG_KMEMLEAK=y
+CONFIG_DEBUG_KMEMLEAK=y
+CONFIG_DEBUG_KMEMLEAK_EARLY_LOG_SIZE=400
+# CONFIG_DEBUG_KMEMLEAK_TEST is not set
+# CONFIG_DEBUG_KMEMLEAK_DEFAULT_OFF is not set
+CONFIG_DEBUG_KMEMLEAK_AUTO_SCAN=y
+
+I'll increase the early log size with the next build to try and get more information
+on the memory leak, I'll open a separate thread for that then.
+
+Thanks,
+  Martin
