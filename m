@@ -2,78 +2,91 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4224C5D7E8
-	for <lists.bridge@lfdr.de>; Tue,  2 Jul 2019 23:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8A085D7E9
+	for <lists.bridge@lfdr.de>; Tue,  2 Jul 2019 23:51:55 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 89FB4FF6;
-	Tue,  2 Jul 2019 21:48:57 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 25A8110A2;
+	Tue,  2 Jul 2019 21:49:01 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 68C80182F
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 3029E1A72
 	for <bridge@lists.linux-foundation.org>;
-	Tue,  2 Jul 2019 12:37:33 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from linuxlounge.net (linuxlounge.net [88.198.164.195])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id C5820834
+	Tue,  2 Jul 2019 14:27:34 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+	[209.85.221.65])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7A73F834
 	for <bridge@lists.linux-foundation.org>;
-	Tue,  2 Jul 2019 12:37:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxlounge.net;
-	s=mail; t=1562071051;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
-	references:references:openpgp:openpgp:autocrypt:autocrypt;
-	bh=QwFRkItdW1M7k4agnxTsrRvmLb/4bS9WjKKcKoKQ+Xw=;
-	b=uFMFM7iuNjrk0oV+0w6ldYsORzv+QTLui1LftPBTockPtiRVI6V08jpc3Yo8JsglcDk021
-	FhOAajzg2HXVA5kzsOaoN4lf/j2ETGs5DbepGfi7BQI7wVrG8OST/Jej7z4M/b7dtpZxR5
-	8NtBWKQe2JRBIZM3SQzOQljIl3buy9Q=
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org
-References: <20190702120021.13096-1-nikolay@cumulusnetworks.com>
-	<20190702120021.13096-3-nikolay@cumulusnetworks.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=martin@linuxlounge.net; prefer-encrypt=mutual; keydata=
-	mQENBEv1rfkBCADFlzzmynjVg8L5ok/ef2Jxz8D96PtEAP//3U612b4QbHXzHC6+C2qmFEL6
-	5kG1U1a7PPsEaS/A6K9AUpDhT7y6tX1IxAkSkdIEmIgWC5Pu2df4+xyWXarJfqlBeJ82biot
-	/qETntfo01wm0AtqfJzDh/BkUpQw0dbWBSnAF6LytoNEggIGnUGmzvCidrEEsTCO6YlHfKIH
-	cpz7iwgVZi4Ajtsky8v8P8P7sX0se/ce1L+qX/qN7TnXpcdVSfZpMnArTPkrmlJT4inBLhKx
-	UeDMQmHe+BQvATa21fhcqi3BPIMwIalzLqVSIvRmKY6oYdCbKLM2TZ5HmyJepusl2Gi3ABEB
-	AAG0J01hcnRpbiBXZWluZWx0IDxtYXJ0aW5AbGludXhsb3VuZ2UubmV0PokBWAQTAQoAQgIb
-	IwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEWIQTu0BYCvL0ZbDi8mh+9SqBSj2PxfgUC
-	W/RuFQUJEd/znAAKCRC9SqBSj2PxfpfDCACDx6BYz6cGMiweQ96lXi+ihx7RBaXsfPp2KxUo
-	eHilrDPqknq62XJibCyNCJiYGNb+RUS5WfDUAqxdl4HuNxQMC/sYlbP4b7p9Y1Q9QiTP4f6M
-	8+Uvpicin+9H/lye5hS/Gp2KUiVI/gzqW68WqMhARUYw00lVSlJHy+xHEGVuQ0vmeopjU81R
-	0si4+HhMX2HtILTxoUcvm67AFKidTHYMJKwNyMHiLLvSK6wwiy+MXaiqrMVTwSIOQhLgLVcJ
-	33GNJ2Emkgkhs6xcaiN8xTjxDmiU7b5lXW4JiAsd1rbKINajcA7DVlZ/evGfpN9FczyZ4W6F
-	Rf21CxSwtqv2SQHBuQENBEv1rfkBCADJX6bbb5LsXjdxDeFgqo+XRUvW0bzuS3SYNo0fuktM
-	5WYMCX7TzoF556QU8A7C7bDUkT4THBUzfaA8ZKIuneYW2WN1OI0zRMpmWVeZcUQpXncWWKCg
-	LBNYtk9CCukPE0OpDFnbR+GhGd1KF/YyemYnzwW2f1NOtHjwT3iuYnzzZNlWoZAR2CRSD02B
-	YU87Mr2CMXrgG/pdRiaD+yBUG9RxCUkIWJQ5dcvgrsg81vOTj6OCp/47Xk/457O0pUFtySKS
-	jZkZN6S7YXl/t+8C9g7o3N58y/X95VVEw/G3KegUR2SwcLdok4HaxgOy5YHiC+qtGNZmDiQn
-	NXN7WIN/oof7ABEBAAGJATwEGAEKACYCGwwWIQTu0BYCvL0ZbDi8mh+9SqBSj2PxfgUCW/Ru
-	GAUJEd/znwAKCRC9SqBSj2PxfpzMCACH55MVYTVykq+CWj1WMKHex9iFg7M9DkWQCF/Zl+0v
-	QmyRMEMZnFW8GdX/Qgd4QbZMUTOGevGxFPTe4p0PPKqKEDXXXxTTHQETE/Hl0jJvyu+MgTxG
-	E9/KrWmsmQC7ogTFCHf0vvVY3UjWChOqRE19Buk4eYpMbuU1dYefLNcD15o4hGDhohYn3SJr
-	q9eaoO6rpnNIrNodeG+1vZYG1B2jpEdU4v354ziGcibt5835IONuVdvuZMFQJ4Pn2yyC+qJe
-	ekXwZ5f4JEt0lWD9YUxB2cU+xM9sbDcQ2b6+ypVFzMyfU0Q6LzYugAqajZ10gWKmeyjisgyq
-	sv5UJTKaOB/t
-Message-ID: <fdd4c5d2-1872-bac5-3aa9-107e2081b18f@linuxlounge.net>
-Date: Tue, 2 Jul 2019 14:37:28 +0200
+	Tue,  2 Jul 2019 14:27:33 +0000 (UTC)
+Received: by mail-wr1-f65.google.com with SMTP id x4so18075964wrt.6
+	for <bridge@lists.linux-foundation.org>;
+	Tue, 02 Jul 2019 07:27:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=EvUD0G7ZLwM85um29w40yj3BLaLrf8+fkprze7AgXNg=;
+	b=DrpE3UpNbWUGjDYvTqLX3fvgMdTrRLaxHJLpNBeQZU7wzjche41R79xGFkswL8KoPY
+	zVSzzUZv5rfcljAXNiFx7suJ7R/xmVM/zaPGOLwYNMyUPF1s0Q1+R1vGLKZDaA2o8PCt
+	IPh7RBd7m4PGlp5POrk1oLrfn5CJOSBQgIjgg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=EvUD0G7ZLwM85um29w40yj3BLaLrf8+fkprze7AgXNg=;
+	b=RzW/ihEo9A9hzCYLlfcZ+9QUnQOUNuLetZVeozZw4PWYnliL4J3ehcreCOw6oOBgwr
+	eQAQPJf2suyVg+glRKz/fm/8qU+UxJkAcamEXKdETQ77K6U/SmvKgaWfsxgG/E95/Qfd
+	y3dtbdorRvsdF3mvWgQukfPxHEd39CZoYvKbWsI91dSAO+Il5uLfo4LJzraAJZz4VKy9
+	8djXr0tBIwkRqv2gPp0rs5BeLqZMOG22lIiyUh/BRk74PaFJHSrC/vBKiHC+sDdjCuLx
+	bh0p1Kwty1PiC57lcmkoNYy/QzBLtZLoW0YdcAKf5dsmtwMaF/dTEIauyoiBRKwr//iR
+	FINQ==
+X-Gm-Message-State: APjAAAV92E1+bNkWWpOT3vzg2bUS++JwmTT2ML/WB0jCZYlwmeXhFj6/
+	cbGBYVtuWEkxYT9SOj8AB8Qk2A==
+X-Google-Smtp-Source: APXvYqxh4w3loFivtXTdoyivP+vj02ZyRUER9CIjkB7eqjStukVyHFTwuU3SE6szdCB0CMJhrLhD3Q==
+X-Received: by 2002:a5d:5386:: with SMTP id d6mr16098031wrv.207.1562077652079; 
+	Tue, 02 Jul 2019 07:27:32 -0700 (PDT)
+Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+	by smtp.gmail.com with ESMTPSA id
+	o11sm2203164wmh.37.2019.07.02.07.27.30
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Tue, 02 Jul 2019 07:27:31 -0700 (PDT)
+To: =?UTF-8?Q?Linus_L=c3=bcssing?= <linus.luessing@c0d3.blue>,
+	Ido Schimmel <idosch@idosch.org>
+References: <20190620235639.24102-1-vivien.didelot@gmail.com>
+	<5d653a4d-3270-8e53-a5e0-88ea5e7a4d3f@gmail.com>
+	<20190621172952.GB9284@t480s.localdomain>
+	<20190623070949.GB13466@splinter>
+	<20190623072605.2xqb56tjydqz2jkx@shell.armlinux.org.uk>
+	<20190623074427.GA21875@splinter> <20190629162945.GB17143@splinter>
+	<20190630165601.GC2500@otheros>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <da75f439-87fb-6e77-4042-a95953f92f75@cumulusnetworks.com>
+Date: Tue, 2 Jul 2019 17:27:29 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.1
-In-Reply-To: <20190702120021.13096-3-nikolay@cumulusnetworks.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="aUTpxe2HGk2DC1XXzq6MoiRXZ0eHKSzRs"
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+	Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <20190630165601.GC2500@otheros>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: yoshfuji@linux-ipv6.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net 2/4] net: bridge: mcast: fix stale ipv6 hdr
- pointer when handling v6 query
+Cc: "andrew@lunn.ch" <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+	Jiri Pirko <jiri@resnulli.us>, b.a.t.m.a.n@lists.open-mesh.org,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	bridge@lists.linux-foundation.org,
+	Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	Ido Schimmel <idosch@mellanox.com>,
+	Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [Bridge] [RFC net-next] net: dsa: add support for MC_DISABLED
+	attribute
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -85,88 +98,81 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 	<mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Martin Weinelt via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Martin Weinelt <martin@linuxlounge.net>
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---aUTpxe2HGk2DC1XXzq6MoiRXZ0eHKSzRs
-Content-Type: multipart/mixed; boundary="NfWoGR4PvcfAR9f75qVkkbowdPSqBgO69";
- protected-headers="v1"
-From: Martin Weinelt <martin@linuxlounge.net>
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org
-Cc: roopa@cumulusnetworks.com, davem@davemloft.net,
- bridge@lists.linux-foundation.org, yoshfuji@linux-ipv6.org
-Message-ID: <fdd4c5d2-1872-bac5-3aa9-107e2081b18f@linuxlounge.net>
-Subject: Re: [PATCH net 2/4] net: bridge: mcast: fix stale ipv6 hdr pointer
- when handling v6 query
-References: <20190702120021.13096-1-nikolay@cumulusnetworks.com>
- <20190702120021.13096-3-nikolay@cumulusnetworks.com>
-In-Reply-To: <20190702120021.13096-3-nikolay@cumulusnetworks.com>
+On 30/06/2019 19:56, Linus Lüssing wrote:
+> On Sat, Jun 29, 2019 at 07:29:45PM +0300, Ido Schimmel wrote:
+>> I would like to avoid having drivers take the querier state into account
+>> as it will only complicate things further.
+> 
+> I absolutely share your pain. Initially in the early prototypes of
+> multicast awareness in batman-adv we did not consider the querier state.
+> And doing so later did indeed complicate the code a good bit in batman-adv
+> (together with the IGMP/MLD suppression issues). I would have loved to
+> avoid that.
+> 
+> 
+>> Is there anything we can do about it? Enable the bridge querier if no
+>> other querier was detected? Commit c5c23260594c ("bridge: Add
+>> multicast_querier toggle and disable queries by default") disabled
+>> queries by default, but I'm only suggesting to turn them on if no other
+>> querier was detected on the link. Do you think it's still a problem?
+> 
+> As soon as you start becoming the querier, you will not be able to reliably
+> detect anymore whether you are the only querier candidate.
+> 
+> If any random Linux host using a bridge device were potentially becoming
+> a querier, that would cause quite some trouble when this host is
+> behind some bad, bottleneck connection. This host will receive
+> all multicast traffic, not just IGMP/MLD reports. And with a
+> congested connection and then unreliable IGMP/MLD, multicast would
+> become unreliable overall in this domain. So it's important that
+> your querier is not running in the "dark, remote, dusty closet" of
+> your network (topologically speaking).
+> 
 
---NfWoGR4PvcfAR9f75qVkkbowdPSqBgO69
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
++1
+We definitely don't want random hosts becoming queriers
 
-Tested-by: Martin Weinelt <martin@linuxlounge.net>
+>> On Sun, Jun 23, 2019 at 10:44:27AM +0300, Ido Schimmel wrote:
+>>> See commit b00589af3b04 ("bridge: disable snooping if there is no
+>>> querier"). I think that's unfortunate behavior that we need because
+>>> multicast snooping is enabled by default. If it weren't enabled by
+>>> default, then anyone enabling it would also make sure there's a querier
+>>> in the network.
+> 
+> I do not quite understand that point. In a way, that's what we
+> have right now, isn't it? By default it's disabled, because by
+> default there is no querier on the link. So anyone wanting to use
+> multicast snooping will need to make sure there's a querier in the
+> network.
+> 
 
-On 7/2/19 2:00 PM, Nikolay Aleksandrov wrote:
-> We get a pointer to the ipv6 hdr in br_ip6_multicast_query but we may
-> call pskb_may_pull afterwards and end up using a stale pointer.
-> So use the header directly, it's just 1 place where it's needed.
->=20
-> Fixes: 08b202b67264 ("bridge br_multicast: IPv6 MLD support.")
-> Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-> ---
->  net/bridge/br_multicast.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->=20
-> diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-> index f37897e7b97b..3d8deac2353d 100644
-> --- a/net/bridge/br_multicast.c
-> +++ b/net/bridge/br_multicast.c
-> @@ -1279,7 +1279,6 @@ static int br_ip6_multicast_query(struct net_brid=
-ge *br,
->  				  u16 vid)
->  {
->  	unsigned int transport_len =3D ipv6_transport_len(skb);
-> -	const struct ipv6hdr *ip6h =3D ipv6_hdr(skb);
->  	struct mld_msg *mld;
->  	struct net_bridge_mdb_entry *mp;
->  	struct mld2_query *mld2q;
-> @@ -1323,7 +1322,7 @@ static int br_ip6_multicast_query(struct net_brid=
-ge *br,
-> =20
->  	if (is_general_query) {
->  		saddr.proto =3D htons(ETH_P_IPV6);
-> -		saddr.u.ip6 =3D ip6h->saddr;
-> +		saddr.u.ip6 =3D ipv6_hdr(skb)->saddr;
-> =20
->  		br_multicast_query_received(br, port, &br->ip6_other_query,
->  					    &saddr, max_delay);
->=20
+Indeed, also you could create the bridge with explicit mcast parameters if you need
+different behaviour on start. Unfortunately I think you'll have to handle
+the querier state.
 
+> 
+> Overall I think the querier (election) mechanism in the standards could
+> need an update. While the lowest-address first might have
+> worked well back then, in uniform, fully wired networks where the
+> position of the querier did not matter, this is not a good
+> solution anymore in networks involving wireless, dynamic connections.
+> Especially in wireless mesh networks this is a bit of an issue for
+> us. Ideally, the querier mechanism were dismissed in favour of simply
+> unsolicited, periodic IGMP/MLD reports...
+> 
+> But of course, updating IETF standards is no solution for now. 
+> 
+> While more complicated, it would not be impossible to consider the
+> querier state, would it? I mean you probably already need to
+> consider the case of a user disabling multicast snooping during
+> runtime, right? So similarly, you could react to appearing or
+> disappearing queriers?
+> 
+> Cheers, Linus
+> 
 
-
---NfWoGR4PvcfAR9f75qVkkbowdPSqBgO69--
-
---aUTpxe2HGk2DC1XXzq6MoiRXZ0eHKSzRs
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEE7tAWAry9GWw4vJofvUqgUo9j8X4FAl0bUAgACgkQvUqgUo9j
-8X5fcAf/cxwx2Jd5RMEWJU3S5Mc06qa6MpH+ssC31UKha2emhkwE4wZxkknT7viv
-CRTcMcWJRPk4qkrYHFYpWuy5z7G+fjS9PlhwzHrIbtF8Qv+zausK+MTFqeI6QtsC
-z3xrUPvb6oO0l1cqAAuwezXH+1HBmN97tTNXZrBQe2fjaYC5fZ+qUD8PsxpxT5QA
-37WJvkb7BVQhkXPZLCNFZpO/0R6dtNlx0c/iHX4LyaSGuXOd5Z3ZppvAiQL9UGtp
-lw7CjWuLhLhWU2s4yrXTc1gOEMJnRZDU/rO39Xck0Zf4K3pMsWxQx82B1LqrExfB
-LsxsDRwFEjjO7gQdld64Qj/XnH2rsw==
-=74Je
------END PGP SIGNATURE-----
-
---aUTpxe2HGk2DC1XXzq6MoiRXZ0eHKSzRs--
+Thanks,
+ Nik
