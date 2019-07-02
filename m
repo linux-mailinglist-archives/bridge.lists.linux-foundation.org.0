@@ -2,69 +2,48 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30365D7DF
-	for <lists.bridge@lfdr.de>; Tue,  2 Jul 2019 23:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ACD55D7ED
+	for <lists.bridge@lfdr.de>; Tue,  2 Jul 2019 23:53:05 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 69C9C1812;
-	Tue,  2 Jul 2019 21:48:27 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 631731874;
+	Tue,  2 Jul 2019 21:49:11 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id ADE692219
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id D25AE1BB3
 	for <bridge@lists.linux-foundation.org>;
-	Tue,  2 Jul 2019 21:21:09 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
-	[209.85.128.67])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 16444782
+	Tue,  2 Jul 2019 21:35:43 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 625AC70D
 	for <bridge@lists.linux-foundation.org>;
-	Tue,  2 Jul 2019 21:21:08 +0000 (UTC)
-Received: by mail-wm1-f67.google.com with SMTP id f17so70679wme.2
-	for <bridge@lists.linux-foundation.org>;
-	Tue, 02 Jul 2019 14:21:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cumulusnetworks.com; s=google;
-	h=subject:from:to:cc:references:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=Q0vmPs4YL5Qmtfli/VH/0lsB9Ep4mMtKja2fne3rfaU=;
-	b=MG3FrL/FgWs5TvynBgMPAd22w9AtseB35xsSWEJnQKPPk8fKjmtNqWsvvhY5BT7Yq4
-	vkLN/LFSucg6WH9FgCiW1BiG3hnVsXmKd7skuOU+XFKHD9NcdcR8z8KhjQVr46ikOeI0
-	YT71D12uDYKff6IXppzYwU2aMGfs3FVhm/diA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=Q0vmPs4YL5Qmtfli/VH/0lsB9Ep4mMtKja2fne3rfaU=;
-	b=Upajb9P8TrlypCxmzYs4FQoGO8tx1AlGuWm3cZGUk0C3JtDIQXtRvwzGxoREYGveNj
-	ch5EFyAIIW9h+EutG9HSF760GLJ/SMV1HA0flI40G3XUZOcvaZRpXyfNMTueAytrK2Zg
-	iXTb4L/lJlwiP5pYFvFlOplV/9LCwRhKmZ8pFZLZBaYAi3CKAprZ48sPLZHJW3PMNDfX
-	jO4zEMevST8PbHahWQQFxhE1JDSO4fC7iWB8dg8x9SOsWGqHQf8a8PF1G/IfXWRu3JqA
-	CwBLcSK97V/mPNkp9epDum+5dK9Ky1GtDts5EG601HgB56W67DOaiFqxZgc/Wn5gZWBg
-	eF4Q==
-X-Gm-Message-State: APjAAAVAyAaHD2xpR5TwjQIwIVSXioDO2cjBnjZM7Zj6gZK/8Nr+tisb
-	drVAohcO/4ObQ8n/j9xHr7ZRQw==
-X-Google-Smtp-Source: APXvYqyKB/bsI1NDRSJTeUQYxjbstts/oBxF2rERAXuTJdf7qmbiJKooS8yiX6MNOZPs0O18UkHRvA==
-X-Received: by 2002:a1c:6c08:: with SMTP id h8mr4897795wmc.62.1562102467600;
-	Tue, 02 Jul 2019 14:21:07 -0700 (PDT)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id c1sm159717wrh.1.2019.07.02.14.21.06
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Tue, 02 Jul 2019 14:21:07 -0700 (PDT)
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-To: Andrew Lunn <andrew@lunn.ch>
+	Tue,  2 Jul 2019 21:35:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124;
+	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=ZknEdyZ1T4tCO8tHmRX93ivSc3EBe24oWP4BwRhJ2Q0=;
+	b=TYEN0hMZKShpozJvjr/W9Y1Srn
+	iaaqJaCW3jncpzHmm3Y+Dogy7v6DYmTCxq2ob5wMgxdl8KTfwzyiDXnN/xjBCAMvqUVit5pkeskg4
+	6vRmtmlc5vthbW7UyxuzRgsUekvcAeeRi2JwIK9aUBoeijunwkNHXb+mHSewJgugPPaA=; 
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+	(envelope-from <andrew@lunn.ch>)
+	id 1hiQRA-0000XZ-Q8; Tue, 02 Jul 2019 23:35:40 +0200
+Date: Tue, 2 Jul 2019 23:35:40 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <20190702213540.GD28471@lunn.ch>
 References: <20190702204705.GC28471@lunn.ch>
 	<55f24bfb-4239-dda8-24f8-26b6b2fa9f9e@cumulusnetworks.com>
-Message-ID: <4a015cbf-41bc-8ba0-94b5-ec2702e51c33@cumulusnetworks.com>
-Date: Wed, 3 Jul 2019 00:21:05 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <55f24bfb-4239-dda8-24f8-26b6b2fa9f9e@cumulusnetworks.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+User-Agent: Mutt/1.5.23 (2014-03-12)
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
@@ -87,63 +66,22 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 03/07/2019 00:19, Nikolay Aleksandrov wrote:
-> On 02/07/2019 23:47, Andrew Lunn wrote:
->> Hi Nikolay
->>
->> The man page says that the bridge forward_delay is in units of
->> seconds, and should be between 2 and 30.
->>
->> I've tested on a couple of different kernel versions, and this appears
->> to be not working correctly:
->>
->> ip link set br0 type bridge forward_delay 2
->> RTNETLINK answers: Numerical result out of range
->>
->> ip link set br0 type bridge forward_delay 199
->> RTNETLINK answers: Numerical result out of range
->>
->> ip link set br0 type bridge forward_delay 200
->> # 
->>
->> ip link set br0 type bridge forward_delay 3000
->> #
->>
->> ip link set br0 type bridge forward_delay 3001
->> RTNETLINK answers: Numerical result out of range
->>
->> I've not checked what delay is actually being used here, but clearly
->> something is mixed up.
->>
->> grep HZ .config 
->> CONFIG_HZ_PERIODIC=y
->> # CONFIG_NO_HZ_IDLE is not set
->> # CONFIG_NO_HZ_FULL is not set
->> # CONFIG_NO_HZ is not set
->> CONFIG_HZ_FIXED=0
->> CONFIG_HZ_100=y
->> # CONFIG_HZ_200 is not set
->> # CONFIG_HZ_250 is not set
->> # CONFIG_HZ_300 is not set
->> # CONFIG_HZ_500 is not set
->> # CONFIG_HZ_1000 is not set
->> CONFIG_HZ=100
->>
->> Thanks
->> 	Andrew
->>
-> 
 > Hi Andrew,
 > The man page is wrong, these have been in USER_HZ scaled clock_t format from the beginning.
 > TBH a lot of the time/delay bridge config options are messed up like that.
-> We've been discussing adding special _ms versions in iproute2 to make them
-> more user-friendly and understandable. Will cook a patch for the man page.
-> 
-> Cheers,
->  Nik
-> 
-> 
 
-Err, I meant it is seconds just scaled, if it wasn't clear.
+Hi Nikola
 
+Yes, that is a mess.
 
+arch/alpha/include/asm/param.h:# define USER_HZ						1024
+arch/ia64/include/asm/param.h:# define USER_HZ						HZ
+include/asm-generic/param.h:# define USER_HZ						100
+
+And ia64 does
+# define HZ             CONFIG_HZ
+
+So it seems pretty hard for user space to get this right in a generic
+fashion.
+
+	Andrew
