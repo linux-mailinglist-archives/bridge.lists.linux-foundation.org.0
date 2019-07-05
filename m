@@ -2,67 +2,66 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B9260216
-	for <lists.bridge@lfdr.de>; Fri,  5 Jul 2019 10:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3CD60227
+	for <lists.bridge@lfdr.de>; Fri,  5 Jul 2019 10:28:42 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id CB9991017;
-	Fri,  5 Jul 2019 08:25:35 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 4A37E1033;
+	Fri,  5 Jul 2019 08:28:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 46A04FF9
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 0137D101E
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 08:25:32 +0000 (UTC)
+	Fri,  5 Jul 2019 08:28:32 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
-	[209.85.221.65])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id B94B570D
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+	[209.85.128.65])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7D61670D
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 08:25:31 +0000 (UTC)
-Received: by mail-wr1-f65.google.com with SMTP id u18so9017503wru.1
+	Fri,  5 Jul 2019 08:28:32 +0000 (UTC)
+Received: by mail-wm1-f65.google.com with SMTP id 207so7947781wma.1
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 05 Jul 2019 01:25:31 -0700 (PDT)
+	Fri, 05 Jul 2019 01:28:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cumulusnetworks.com; s=google;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=QdI/+SYCsxY3INQuhw7JvmpOSaPdcwC03yXDxoauh68=;
-	b=eMcRgBYSbFPn9Ig6FBm++m3rc1Cye/pYaPigJLOeUBQFd2yutFghxgh6eE2nSJEeQI
-	zB9KDtX1Lx+bSRwHWtK2UI0au2xOR3vDON4hYXT+FvLIwmhdyDUXl84uJL6U+MBxLO+e
-	wl38roNL4UgcF8vyHJ6w8fLzNxZodvm+oMlEI=
+	bh=hZ+xm6CrUEywAVzXTfhFxGsIwIJgpN0+1W8s2x/bags=;
+	b=c3IzIeVMeule+KQO+Y5hOKFEAcp51mU3jBwWgfNIszd5EwFwOzPrcwrBiO0yh4hMVg
+	IR0QIQ96MLJHjrDefnKjJTbRIPIm6dsiiPNS+lfblbTO6vE3CGL2B/FuDwPrpHSF0P1J
+	7mbU1JuBtnp1e3PXHrUqqkSabTQ0/5JwR9BZk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language
 	:content-transfer-encoding;
-	bh=QdI/+SYCsxY3INQuhw7JvmpOSaPdcwC03yXDxoauh68=;
-	b=ao6HSuJs8tsaoEn/KePg4Y1xfLauXtlIdJLmbTGgh4a5mw2SbYovvah0TdHfeAbLo6
-	FTJcLI/ExBjpTu0lM/hYPzi0WjZIglEMwuaRwGsmfmHsm1Eru2511d3v59rerCYG3IQ6
-	/Bk9vWUArYhPqyZ21OEKPHZYm5kW3+yQyqToZTlciSm/upNKBl1+/dK3snRO0Gz8OdS6
-	5Rbis9zf0oEd2ZBLmOrS6UYQr0a3Idg/JNNRGwUKrVb86Ew8fJuFsPP/7GReCxqEFT1q
-	xRBKhYVCXFaEyVp/JftrjPOBDDDALkQUW7Nn8I2YCeowwokrXzpanwV/n00jLZga+mkv
-	Vkrg==
-X-Gm-Message-State: APjAAAWZH/b8Xd+pPqWUawNbOyisfsNb8Blb4VLJUBSdNX/en+gNhyD1
-	BA3F7Tg4zkb71/rA0r635qdXLCg+6fWTpg==
-X-Google-Smtp-Source: APXvYqzaXHgRS8ho7/358mwiQMYodkjXtM4Gb6lO97yClj8UHkbvPtb8jNzlUOYqLpBWoJ9cp00eSA==
-X-Received: by 2002:a5d:4a02:: with SMTP id m2mr2668157wrq.193.1562315130141; 
-	Fri, 05 Jul 2019 01:25:30 -0700 (PDT)
+	bh=hZ+xm6CrUEywAVzXTfhFxGsIwIJgpN0+1W8s2x/bags=;
+	b=LhMgIMJdNWosbkCxUh2Hwu7fnjtsYwsQ1w1+bG3qPcG6r1pNIKQr8P/9I+g9l22LK+
+	2gDZ4IySt1YiBQhpIMOmpgZxvoIM0IgF7ieyP9MdmDFIGZ+x1tPqZyZ5RVNFMRDIdT4+
+	fvDLzZWawZGLuEWpb5psQfMebUZwsfA9viDFS6Krgos44/djvs96HmzNrtwx+9YU3mgT
+	WvwsabP6JyNF5hvPlgp40l0IAOiMdjZklas2+zoZq48MLcuv+db5Y0QSKY2W97r1/cwp
+	jwH2OedXUvCss5+J4AbZsRszoqvplDV/yW1j1WkEiEEXdWnpyuu5aXcXUArGcAUL5Zic
+	Bc/A==
+X-Gm-Message-State: APjAAAVCDnvHGiuJHF59uhEypYgI7xK91xcC4neBKJvAnZH2OTdpVvuQ
+	B702RnDDGlEPx+mepEy5uYdxFMb/T8ECCA==
+X-Google-Smtp-Source: APXvYqxzDAEN+dnlzeXr4qqgdU+mY/XR5GFfju144HdaPPYRNbmXzcUPePKSquXotxTDowFoKAz+kA==
+X-Received: by 2002:a1c:eb0a:: with SMTP id j10mr2429839wmh.1.1562315310906;
+	Fri, 05 Jul 2019 01:28:30 -0700 (PDT)
 Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id
-	o6sm14729172wra.27.2019.07.05.01.25.29
+	by smtp.gmail.com with ESMTPSA id e7sm7594574wmd.0.2019.07.05.01.28.29
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Fri, 05 Jul 2019 01:25:29 -0700 (PDT)
+	Fri, 05 Jul 2019 01:28:30 -0700 (PDT)
 To: wenxu@ucloud.cn, pablo@netfilter.org
 References: <1562224955-3979-1-git-send-email-wenxu@ucloud.cn>
-	<1562224955-3979-5-git-send-email-wenxu@ucloud.cn>
+	<1562224955-3979-6-git-send-email-wenxu@ucloud.cn>
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <a598a8b7-caa5-af39-609e-42e53ecf3727@cumulusnetworks.com>
-Date: Fri, 5 Jul 2019 11:25:28 +0300
+Message-ID: <89cf54d6-c36f-d59b-a414-5829aebd4552@cumulusnetworks.com>
+Date: Fri, 5 Jul 2019 11:28:28 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <1562224955-3979-5-git-send-email-wenxu@ucloud.cn>
+In-Reply-To: <1562224955-3979-6-git-send-email-wenxu@ucloud.cn>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,7 +71,8 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH 5/7 nf-next] bridge: add br_vlan_get_proto()
+Subject: Re: [Bridge] [PATCH 6/7 nf-next] netfilter: nft_meta_bridge: Add
+ NFT_META_BRI_IIFVPROTO support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -90,14 +90,17 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 On 04/07/2019 10:22, wenxu@ucloud.cn wrote:
 > From: wenxu <wenxu@ucloud.cn>
 > 
-> This new function allows you to fetch bridge vlan proto.
+> This patch provide a meta to get the bridge vlan proto
+> 
+> nft add rule bridge firewall zones counter meta br_vlan_proto 0x8100
 > 
 > Signed-off-by: wenxu <wenxu@ucloud.cn>
 > ---
->  include/linux/if_bridge.h |  6 ++++++
->  net/bridge/br_vlan.c      | 10 ++++++++++
->  2 files changed, 16 insertions(+)
+>  include/uapi/linux/netfilter/nf_tables.h |  2 ++
+>  net/bridge/netfilter/nft_meta_bridge.c   | 12 ++++++++++++
+>  2 files changed, 14 insertions(+)
 > 
 
 
-Acked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Reviewed-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+
