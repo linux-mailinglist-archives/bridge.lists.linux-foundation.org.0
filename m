@@ -2,48 +2,76 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233835F36F
-	for <lists.bridge@lfdr.de>; Thu,  4 Jul 2019 09:24:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A85E601FB
+	for <lists.bridge@lfdr.de>; Fri,  5 Jul 2019 10:16:35 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 75F14D83;
-	Thu,  4 Jul 2019 07:22:58 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 7F1FEF81;
+	Fri,  5 Jul 2019 08:16:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 326EAC11
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id E6FE3F74
 	for <bridge@lists.linux-foundation.org>;
-	Thu,  4 Jul 2019 07:22:44 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from m9784.mail.qiye.163.com (m9784.mail.qiye.163.com
-	[220.181.97.84])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTP id 5F78587D
+	Fri,  5 Jul 2019 08:16:20 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
+	[209.85.128.68])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 607F787B
 	for <bridge@lists.linux-foundation.org>;
-	Thu,  4 Jul 2019 07:22:43 +0000 (UTC)
-Received: from localhost.localdomain (unknown [123.59.132.129])
-	by m9784.mail.qiye.163.com (Hmail) with ESMTPA id 7556641AFA;
-	Thu,  4 Jul 2019 15:22:38 +0800 (CST)
-From: wenxu@ucloud.cn
-To: pablo@netfilter.org,
-	nikolay@cumulusnetworks.com
-Date: Thu,  4 Jul 2019 15:22:35 +0800
-Message-Id: <1562224955-3979-7-git-send-email-wenxu@ucloud.cn>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1562224955-3979-1-git-send-email-wenxu@ucloud.cn>
+	Fri,  5 Jul 2019 08:16:16 +0000 (UTC)
+Received: by mail-wm1-f68.google.com with SMTP id a15so7885834wmj.5
+	for <bridge@lists.linux-foundation.org>;
+	Fri, 05 Jul 2019 01:16:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=4peepLiWhCkWmJMx6sNyd4wCIbHYDrXG09wLZE8Lxtc=;
+	b=WuvrBzJuIaPhIsJY2lVj5+75oQzyfNhGBKNHDIEFWqo92/jIr+1VspbpsiPsDzJSQA
+	Q1SYdbnJR4rOGf9zfl/Uaz+WEE0tjO2eB6FvPoYbGj/xsNch+8A+Z7gawDLtDz/ShT9B
+	8tosHgNaNTU7sGjt7pRvrVdA5DNSXMbGbM4VA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=4peepLiWhCkWmJMx6sNyd4wCIbHYDrXG09wLZE8Lxtc=;
+	b=m/lOurY7+VoQ6pD4wA331Xexr2NIo2/u6yPLUu0liT2mYDnI35UXKV2aGCVX6cKdA8
+	Lnusor2kFhuipG/uZgmYrj6PtywPREotu0p0WJezF8NsPR71vSizUi5oJc/y+51S44jk
+	bXez0g8dX+i8xIbg0mdJ0PqKyBLhm/6o40syzRQgxci3W/2f+/dW/RcIBhhzVZZ6Edmr
+	xBn3vldBXvFGvgBS7d2Q6XbEZHi4+t3C0TBVp7I9GgkWpQCYQDnMqqGjIjuTAk0swILy
+	jcgzuEvKt8WOC6BXqbShSIovKJVmTp/N+i84biu4ylckRwqpaXIWoPstaDOMqKKohlWF
+	3WLw==
+X-Gm-Message-State: APjAAAVU7lC8bwoeOzKNmQhfr70GRoAi8tJZyw9fBW17w5C/Z1+/fsB7
+	lFUsI0Bd6+o4URqskjGlmTKgZPEfYSf8Lg==
+X-Google-Smtp-Source: APXvYqzZJph7epRe6tGfT1xdpagVt6kzFr4EeMRWBPNDYo0lw2rPWvhCN5tFvTMfnv+KM7IDDWHJLw==
+X-Received: by 2002:a1c:c545:: with SMTP id v66mr2259142wmf.51.1562314574850; 
+	Fri, 05 Jul 2019 01:16:14 -0700 (PDT)
+Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+	by smtp.gmail.com with ESMTPSA id u1sm6898650wml.14.2019.07.05.01.16.13
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Fri, 05 Jul 2019 01:16:14 -0700 (PDT)
+To: wenxu@ucloud.cn, pablo@netfilter.org
 References: <1562224955-3979-1-git-send-email-wenxu@ucloud.cn>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZVkpVSElLQkJCQkxCQkxJQ09ZV1koWU
-	FJQjdXWS1ZQUlXWQkOFx4IWUFZNTQpNjo3JCkuNz5ZBg++
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nkk6Sjo5DTgwPglIKxxDPy4Y
-	PE5PCz5VSlVKTk1JSUlPQk5DTkJNVTMWGhIXVQweFQMOOw4YFxQOH1UYFUVZV1kSC1lBWUpJSFVO
-	QlVKSElVSklCWVdZCAFZQU9NSko3Bg++
-X-HM-Tid: 0a6bbbdd1c242086kuqy7556641afa
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <2b5f91c9-c564-ea90-89c9-85443cae4bd7@cumulusnetworks.com>
+Date: Fri, 5 Jul 2019 11:16:12 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <1562224955-3979-1-git-send-email-wenxu@ucloud.cn>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org
-Subject: [Bridge] [PATCH 7/7 nf-next] netfilter:nft_meta: add NFT_META_VLAN
-	support
+Subject: Re: [Bridge] [PATCH 1/7 nf-next] netfilter: separate bridge meta
+ key from nft_meta into meta_bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -58,128 +86,26 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-From: wenxu <wenxu@ucloud.cn>
+On 04/07/2019 10:22, wenxu@ucloud.cn wrote:
+> From: wenxu <wenxu@ucloud.cn>
+> 
+> Separate bridge meta key from nft_meta to meta_bridge for other key
+> support. So there is n dependency between nft_meta and the bridge
+> module
+> 
+> Signed-off-by: wenxu <wenxu@ucloud.cn>
+> ---
+>  include/net/netfilter/nft_meta.h       |  44 ++++++++++++
+>  net/bridge/netfilter/Kconfig           |   6 ++
+>  net/bridge/netfilter/Makefile          |   1 +
+>  net/bridge/netfilter/nft_meta_bridge.c | 127 +++++++++++++++++++++++++++++++++
+>  net/netfilter/nf_tables_core.c         |   1 +
+>  net/netfilter/nft_meta.c               |  81 ++++++++-------------
+>  6 files changed, 207 insertions(+), 53 deletions(-)
+>  create mode 100644 include/net/netfilter/nft_meta.h
+>  create mode 100644 net/bridge/netfilter/nft_meta_bridge.c
+> 
 
-This patch provide a meta vlan to set the vlan tag of the packet.
+Reviewed-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 
-for q-in-q outer vlan id 20:
-meta vlan set 0x88a8:20
-
-set the default 0x8100 vlan type with vlan id 20
-meta vlan set 20
-
-Signed-off-by: wenxu <wenxu@ucloud.cn>
----
- include/net/netfilter/nft_meta.h         |  5 ++++-
- include/uapi/linux/netfilter/nf_tables.h |  4 ++++
- net/netfilter/nft_meta.c                 | 22 ++++++++++++++++++++++
- 3 files changed, 30 insertions(+), 1 deletion(-)
-
-diff --git a/include/net/netfilter/nft_meta.h b/include/net/netfilter/nft_meta.h
-index 5c69e9b..cb0f1e8 100644
---- a/include/net/netfilter/nft_meta.h
-+++ b/include/net/netfilter/nft_meta.h
-@@ -6,7 +6,10 @@ struct nft_meta {
- 	enum nft_meta_keys	key:8;
- 	union {
- 		enum nft_registers	dreg:8;
--		enum nft_registers	sreg:8;
-+		struct {
-+			enum nft_registers	sreg:8;
-+			enum nft_registers	sreg2:8;
-+		};
- 	};
- };
- 
-diff --git a/include/uapi/linux/netfilter/nf_tables.h b/include/uapi/linux/netfilter/nf_tables.h
-index a0d1dbd..699524a 100644
---- a/include/uapi/linux/netfilter/nf_tables.h
-+++ b/include/uapi/linux/netfilter/nf_tables.h
-@@ -797,6 +797,7 @@ enum nft_exthdr_attributes {
-  * @NFT_META_OIFKIND: packet output interface kind name (dev->rtnl_link_ops->kind)
-  * @NFT_META_BRI_IIFPVID: packet input bridge port pvid
-  * @NFT_META_BRI_IIFVPROTO: packet input bridge vlan proto
-+ * @NFT_META_VLAN: packet vlan metadata
-  */
- enum nft_meta_keys {
- 	NFT_META_LEN,
-@@ -829,6 +830,7 @@ enum nft_meta_keys {
- 	NFT_META_OIFKIND,
- 	NFT_META_BRI_IIFPVID,
- 	NFT_META_BRI_IIFVPROTO,
-+	NFT_META_VLAN,
- };
- 
- /**
-@@ -895,12 +897,14 @@ enum nft_hash_attributes {
-  * @NFTA_META_DREG: destination register (NLA_U32)
-  * @NFTA_META_KEY: meta data item to load (NLA_U32: nft_meta_keys)
-  * @NFTA_META_SREG: source register (NLA_U32)
-+ * @NFTA_META_SREG2: source register (NLA_U32)
-  */
- enum nft_meta_attributes {
- 	NFTA_META_UNSPEC,
- 	NFTA_META_DREG,
- 	NFTA_META_KEY,
- 	NFTA_META_SREG,
-+	NFTA_META_SREG2,
- 	__NFTA_META_MAX
- };
- #define NFTA_META_MAX		(__NFTA_META_MAX - 1)
-diff --git a/net/netfilter/nft_meta.c b/net/netfilter/nft_meta.c
-index 18a848b..9303de3 100644
---- a/net/netfilter/nft_meta.c
-+++ b/net/netfilter/nft_meta.c
-@@ -271,6 +271,17 @@ void nft_meta_set_eval(const struct nft_expr *expr,
- 		skb->secmark = value;
- 		break;
- #endif
-+	case NFT_META_VLAN: {
-+		u32 *sreg2 = &regs->data[meta->sreg2];
-+		__be16 vlan_proto;
-+		u16 vlan_tci;
-+
-+		vlan_tci = nft_reg_load16(sreg);
-+		vlan_proto = nft_reg_load16(sreg2);
-+
-+		__vlan_hwaccel_put_tag(skb, vlan_proto, vlan_tci);
-+		break;
-+	}
- 	default:
- 		WARN_ON(1);
- 	}
-@@ -281,6 +292,7 @@ void nft_meta_set_eval(const struct nft_expr *expr,
- 	[NFTA_META_DREG]	= { .type = NLA_U32 },
- 	[NFTA_META_KEY]		= { .type = NLA_U32 },
- 	[NFTA_META_SREG]	= { .type = NLA_U32 },
-+	[NFTA_META_SREG2]	= { .type = NLA_U32 },
- };
- EXPORT_SYMBOL_GPL(nft_meta_policy);
- 
-@@ -432,6 +444,13 @@ int nft_meta_set_init(const struct nft_ctx *ctx,
- 	case NFT_META_PKTTYPE:
- 		len = sizeof(u8);
- 		break;
-+	case NFT_META_VLAN:
-+		len = sizeof(u16);
-+		priv->sreg2 = nft_parse_register(tb[NFTA_META_SREG2]);
-+		err = nft_validate_register_load(priv->sreg2, len);
-+		if (err < 0)
-+			return err;
-+		break;
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -457,6 +476,9 @@ int nft_meta_get_dump(struct sk_buff *skb,
- 		goto nla_put_failure;
- 	if (nft_dump_register(skb, NFTA_META_DREG, priv->dreg))
- 		goto nla_put_failure;
-+	if (priv->key == NFT_META_VLAN &&
-+	    nft_dump_register(skb, NFTA_META_SREG2, priv->sreg2))
-+		goto nla_put_failure;
- 	return 0;
- 
- nla_put_failure:
--- 
-1.8.3.1
 
