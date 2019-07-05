@@ -2,67 +2,66 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51EC967DAB
-	for <lists.bridge@lfdr.de>; Sun, 14 Jul 2019 08:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E79967DAC
+	for <lists.bridge@lfdr.de>; Sun, 14 Jul 2019 08:05:23 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 2C3FF5149;
-	Sun, 14 Jul 2019 06:04:27 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id E23031849;
+	Sun, 14 Jul 2019 06:04:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id BB93D1692
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 18793169E
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 20:45:26 +0000 (UTC)
+	Fri,  5 Jul 2019 20:45:35 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.us.es (mail.us.es [193.147.175.20])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 0EEDA70D
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7C95070D
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 20:45:25 +0000 (UTC)
+	Fri,  5 Jul 2019 20:45:34 +0000 (UTC)
 Received: from antivirus1-rhel7.int (unknown [192.168.2.11])
-	by mail.us.es (Postfix) with ESMTP id 8ABBBFB6C8
+	by mail.us.es (Postfix) with ESMTP id 14547FB6C9
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 22:45:24 +0200 (CEST)
+	Fri,  5 Jul 2019 22:45:33 +0200 (CEST)
 Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
-	by antivirus1-rhel7.int (Postfix) with ESMTP id 7DCCE1851C
+	by antivirus1-rhel7.int (Postfix) with ESMTP id 07D54DA4D1
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 22:45:24 +0200 (CEST)
+	Fri,  5 Jul 2019 22:45:33 +0200 (CEST)
 Received: by antivirus1-rhel7.int (Postfix, from userid 99)
-	id 7369ADA732; Fri,  5 Jul 2019 22:45:24 +0200 (CEST)
+	id F1A19DA801; Fri,  5 Jul 2019 22:45:32 +0200 (CEST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
-	by antivirus1-rhel7.int (Postfix) with ESMTP id 7881DDA4CA;
-	Fri,  5 Jul 2019 22:45:22 +0200 (CEST)
+	by antivirus1-rhel7.int (Postfix) with ESMTP id 0B49ADA708;
+	Fri,  5 Jul 2019 22:45:31 +0200 (CEST)
 Received: from 192.168.1.97 (192.168.1.97)
 	by antivirus1-rhel7.int (F-Secure/fsigk_smtp/550/antivirus1-rhel7.int); 
-	Fri, 05 Jul 2019 22:45:22 +0200 (CEST)
+	Fri, 05 Jul 2019 22:45:31 +0200 (CEST)
 X-Virus-Status: clean(F-Secure/fsigk_smtp/550/antivirus1-rhel7.int)
 Received: from us.es (sys.soleta.eu [212.170.55.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested) (Authenticated sender: 1984lsi)
-	by entrada.int (Postfix) with ESMTPSA id 5813C4265A2F;
-	Fri,  5 Jul 2019 22:45:22 +0200 (CEST)
-Date: Fri, 5 Jul 2019 22:45:21 +0200
+	by entrada.int (Postfix) with ESMTPSA id D62AB4265A2F;
+	Fri,  5 Jul 2019 22:45:30 +0200 (CEST)
+Date: Fri, 5 Jul 2019 22:45:30 +0200
 X-SMTPAUTHUS: auth mail.us.es
 From: Pablo Neira Ayuso <pablo@netfilter.org>
 To: wenxu@ucloud.cn
-Message-ID: <20190705204521.u2mq22wt5h2u6nnr@salvia>
+Message-ID: <20190705204530.rsbmku4xkvtpkkcc@salvia>
 References: <1562332598-17415-1-git-send-email-wenxu@ucloud.cn>
-	<1562332598-17415-4-git-send-email-wenxu@ucloud.cn>
+	<1562332598-17415-5-git-send-email-wenxu@ucloud.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1562332598-17415-4-git-send-email-wenxu@ucloud.cn>
+In-Reply-To: <1562332598-17415-5-git-send-email-wenxu@ucloud.cn>
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-Virus-Scanned: ClamAV using ClamSMTP
 Cc: nikolay@cumulusnetworks.com, bridge@lists.linux-foundation.org,
 	netfilter-devel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH 4/7 nf-next v2] netfilter: nft_meta_bridge: add
- NFT_META_BRI_IIFPVID support
+Subject: Re: [Bridge] [PATCH 5/7 nf-next v2] bridge: add br_vlan_get_proto()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -77,19 +76,9 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On Fri, Jul 05, 2019 at 09:16:35PM +0800, wenxu@ucloud.cn wrote:
+On Fri, Jul 05, 2019 at 09:16:36PM +0800, wenxu@ucloud.cn wrote:
 > From: wenxu <wenxu@ucloud.cn>
 > 
-> nft add table bridge firewall
-> nft add chain bridge firewall zones { type filter hook prerouting priority - 300 \; }
-> nft add rule bridge firewall zones counter ct zone set vlan id map { 100 : 1, 200 : 2 }
-> 
-> As above set the bridge port with pvid, the received packet don't contain
-> the vlan tag which means the packet should belong to vlan 200 through pvid.
-> With this pacth user can get the pvid of bridge ports.
-> 
-> So add the following rule for as the first rule in the chain of zones.
-> 
-> nft add rule bridge firewall zones counter meta vlan set meta briifpvid
+> This new function allows you to fetch bridge vlan proto.
 
 Applied, thanks.
