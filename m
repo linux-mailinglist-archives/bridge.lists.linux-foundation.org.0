@@ -2,65 +2,66 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A85E601FB
-	for <lists.bridge@lfdr.de>; Fri,  5 Jul 2019 10:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0527660205
+	for <lists.bridge@lfdr.de>; Fri,  5 Jul 2019 10:19:02 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 7F1FEF81;
-	Fri,  5 Jul 2019 08:16:25 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 4DBAEF9A;
+	Fri,  5 Jul 2019 08:18:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id E6FE3F74
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 3928BF89
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 08:16:20 +0000 (UTC)
+	Fri,  5 Jul 2019 08:18:53 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
-	[209.85.128.68])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 607F787B
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+	[209.85.128.67])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id AABE387B
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  5 Jul 2019 08:16:16 +0000 (UTC)
-Received: by mail-wm1-f68.google.com with SMTP id a15so7885834wmj.5
+	Fri,  5 Jul 2019 08:18:52 +0000 (UTC)
+Received: by mail-wm1-f67.google.com with SMTP id p74so4862998wme.4
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 05 Jul 2019 01:16:16 -0700 (PDT)
+	Fri, 05 Jul 2019 01:18:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cumulusnetworks.com; s=google;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=4peepLiWhCkWmJMx6sNyd4wCIbHYDrXG09wLZE8Lxtc=;
-	b=WuvrBzJuIaPhIsJY2lVj5+75oQzyfNhGBKNHDIEFWqo92/jIr+1VspbpsiPsDzJSQA
-	Q1SYdbnJR4rOGf9zfl/Uaz+WEE0tjO2eB6FvPoYbGj/xsNch+8A+Z7gawDLtDz/ShT9B
-	8tosHgNaNTU7sGjt7pRvrVdA5DNSXMbGbM4VA=
+	bh=xNaeeNQ+DrT/MDlwiypulX86a/vhe/+Mo0zzZKV7q8c=;
+	b=JehHPgs6sR8BLe7UByCaHBk14ZJNP0GNmUXJbLqc1ZTfXPb8PUTWfJ2nZ6RLnGFo1L
+	J1k+aGLyEvR5cwemuYJ5jXbTdE/3GDchqRdGac05YNIAXbxIgzJrDjUoZF2bZCIs0LHd
+	8UsvftCyyEzzFDGFryG44SKvKD2/6OgSjMYQU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language
 	:content-transfer-encoding;
-	bh=4peepLiWhCkWmJMx6sNyd4wCIbHYDrXG09wLZE8Lxtc=;
-	b=m/lOurY7+VoQ6pD4wA331Xexr2NIo2/u6yPLUu0liT2mYDnI35UXKV2aGCVX6cKdA8
-	Lnusor2kFhuipG/uZgmYrj6PtywPREotu0p0WJezF8NsPR71vSizUi5oJc/y+51S44jk
-	bXez0g8dX+i8xIbg0mdJ0PqKyBLhm/6o40syzRQgxci3W/2f+/dW/RcIBhhzVZZ6Edmr
-	xBn3vldBXvFGvgBS7d2Q6XbEZHi4+t3C0TBVp7I9GgkWpQCYQDnMqqGjIjuTAk0swILy
-	jcgzuEvKt8WOC6BXqbShSIovKJVmTp/N+i84biu4ylckRwqpaXIWoPstaDOMqKKohlWF
-	3WLw==
-X-Gm-Message-State: APjAAAVU7lC8bwoeOzKNmQhfr70GRoAi8tJZyw9fBW17w5C/Z1+/fsB7
-	lFUsI0Bd6+o4URqskjGlmTKgZPEfYSf8Lg==
-X-Google-Smtp-Source: APXvYqzZJph7epRe6tGfT1xdpagVt6kzFr4EeMRWBPNDYo0lw2rPWvhCN5tFvTMfnv+KM7IDDWHJLw==
-X-Received: by 2002:a1c:c545:: with SMTP id v66mr2259142wmf.51.1562314574850; 
-	Fri, 05 Jul 2019 01:16:14 -0700 (PDT)
+	bh=xNaeeNQ+DrT/MDlwiypulX86a/vhe/+Mo0zzZKV7q8c=;
+	b=erOAq/W5FVZic3XrzS1wtDOGOMvLeFcvWwhC4EU4yWWcVlJ0GF1eTQd88vmB4AwP9L
+	IHwUOZcLAoDQ4GwwqTdmoiXEmAya7w4yyFnlYMgAB6L50M0ZGqYJZR4jrR/yc8jUml7f
+	CLS7T1ihxpL5O6ChXif2HrZBE6LOQ+r6Z/NNOywuRKWIVrfCIcDbWjoVzE4guCG/tJCN
+	AAWIIYGRfTYZR8ivwOvywMXReeXmNfuPSy5mCEg2WR88GVuDPc1gQIbBJDc3nCpfqVDy
+	v9pGkwBMf+WjpYDYU7mMQ82ElqJ80Xt6VIi5lsj1o8ROf2GD54EA/y8vro/YXSaMBtCz
+	4MAg==
+X-Gm-Message-State: APjAAAXtIsLn5GNgbA8m79gwqmW1msMGr1bVS3IpyGPAxzIYY0TaDL5c
+	498v3rQhkC2ReHhgXEkpL7t3dUwrIfBmCg==
+X-Google-Smtp-Source: APXvYqwua5wSPZZ5dvFM8Gh/e9hvNksw/eFcfk0k+YX6EbO3Bha7QwvoFSozmIDDGxTTdpCfdOHPZw==
+X-Received: by 2002:a7b:c766:: with SMTP id x6mr2302197wmk.40.1562314731102;
+	Fri, 05 Jul 2019 01:18:51 -0700 (PDT)
 Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id u1sm6898650wml.14.2019.07.05.01.16.13
+	by smtp.gmail.com with ESMTPSA id 72sm8076210wrk.22.2019.07.05.01.18.50
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Fri, 05 Jul 2019 01:16:14 -0700 (PDT)
+	Fri, 05 Jul 2019 01:18:50 -0700 (PDT)
 To: wenxu@ucloud.cn, pablo@netfilter.org
 References: <1562224955-3979-1-git-send-email-wenxu@ucloud.cn>
+	<1562224955-3979-2-git-send-email-wenxu@ucloud.cn>
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <2b5f91c9-c564-ea90-89c9-85443cae4bd7@cumulusnetworks.com>
-Date: Fri, 5 Jul 2019 11:16:12 +0300
+Message-ID: <ccca906e-eb4f-efa0-abc5-664be9d8044b@cumulusnetworks.com>
+Date: Fri, 5 Jul 2019 11:18:49 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <1562224955-3979-1-git-send-email-wenxu@ucloud.cn>
+In-Reply-To: <1562224955-3979-2-git-send-email-wenxu@ucloud.cn>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -70,8 +71,8 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH 1/7 nf-next] netfilter: separate bridge meta
- key from nft_meta into meta_bridge
+Subject: Re: [Bridge] [PATCH 2/7 nf-next] netfilter: nft_meta_bridge: Remove
+ the br_private.h header
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -89,23 +90,16 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 On 04/07/2019 10:22, wenxu@ucloud.cn wrote:
 > From: wenxu <wenxu@ucloud.cn>
 > 
-> Separate bridge meta key from nft_meta to meta_bridge for other key
-> support. So there is n dependency between nft_meta and the bridge
-> module
+> Mkae the nft_bridge_meta can't direct access the bridge
+> internal API.
 > 
 > Signed-off-by: wenxu <wenxu@ucloud.cn>
 > ---
->  include/net/netfilter/nft_meta.h       |  44 ++++++++++++
->  net/bridge/netfilter/Kconfig           |   6 ++
->  net/bridge/netfilter/Makefile          |   1 +
->  net/bridge/netfilter/nft_meta_bridge.c | 127 +++++++++++++++++++++++++++++++++
->  net/netfilter/nf_tables_core.c         |   1 +
->  net/netfilter/nft_meta.c               |  81 ++++++++-------------
->  6 files changed, 207 insertions(+), 53 deletions(-)
->  create mode 100644 include/net/netfilter/nft_meta.h
->  create mode 100644 net/bridge/netfilter/nft_meta_bridge.c
+>  net/bridge/netfilter/nft_meta_bridge.c | 19 ++++++++++++++-----
+>  1 file changed, 14 insertions(+), 5 deletions(-)
 > 
 
+Nice, thanks!
 Reviewed-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 
 
