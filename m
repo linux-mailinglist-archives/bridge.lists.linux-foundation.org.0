@@ -2,66 +2,67 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4E7F67DB3
-	for <lists.bridge@lfdr.de>; Sun, 14 Jul 2019 08:07:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA4367DB4
+	for <lists.bridge@lfdr.de>; Sun, 14 Jul 2019 08:07:19 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id C18D46D29;
-	Sun, 14 Jul 2019 06:04:48 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 13BDD1869;
+	Sun, 14 Jul 2019 06:04:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id B8D581C2F
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 568B11C54
 	for <bridge@lists.linux-foundation.org>;
-	Sat,  6 Jul 2019 12:02:46 +0000 (UTC)
+	Sat,  6 Jul 2019 12:11:47 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
-	[209.85.221.66])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id CDAB487E
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
+	[209.85.128.68])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 944B687C
 	for <bridge@lists.linux-foundation.org>;
-	Sat,  6 Jul 2019 12:02:45 +0000 (UTC)
-Received: by mail-wr1-f66.google.com with SMTP id n9so3195529wrr.4
+	Sat,  6 Jul 2019 12:11:46 +0000 (UTC)
+Received: by mail-wm1-f68.google.com with SMTP id s3so11521356wms.2
 	for <bridge@lists.linux-foundation.org>;
-	Sat, 06 Jul 2019 05:02:45 -0700 (PDT)
+	Sat, 06 Jul 2019 05:11:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cumulusnetworks.com; s=google;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=4EbNExg+eeJy8G4OPlBwKsMIGrrWxQfyRl+kvZT6XoE=;
-	b=EQ3u+Arfn+T84bTpym4AoPrymvvWZgkDFzNQq0a/dq5Q4pDylnihfnFR1E6gfGNurD
-	02tqdOt0ntAaUasXpwZQqY9RLJ2GVNCk0S71PSrO4wD1AsJS6Hxr5q0wgorXbKqxjjYU
-	t8QvpnnsweerViwwVx1ZnuH1gHwkGhUFf2QzU=
+	bh=g999pEtD0FzSaL6N2yZxnu1/NtRd71+QrEpF9P4ldP4=;
+	b=UHM+VHpwAwdLD4joN7tLl/jxi0KshZBnLutF5EHC4s9ioNUMD0HuDbanq5lbiGu9c7
+	IfMT1moTcP3xXlwQ9Eub75jS4WBmZS9kSFG0IDktIKP0BUVVqGMw64l7PavdG+B4kKsI
+	gSjWA50/3eNwN9ivaeeuctCp4JLUz9nupp49w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language
 	:content-transfer-encoding;
-	bh=4EbNExg+eeJy8G4OPlBwKsMIGrrWxQfyRl+kvZT6XoE=;
-	b=VeEBdzg6u5kF9qyz/aMaOrupz1WHJMhEKvWLSYBJPxO5InNI1h63bWhUgAPo68LFs+
-	k17EI5TJrWfuAGkiYxNy+9TLjXOC0ZlpUaFZ7GxFTZip78qZLMBJkJwGPUEusDvFQcT4
-	aJtA5DQmlHIiS1KC8VD22KRf480EfjYyLfRCqMq9hmbYyRDYICtldkNkXShuHiNQZnBn
-	h2g7SK5IXA3UKChPwD9XZy0lnsVRpkDhGOHg3N12y2HocIFHxOJazvAqK2uhkRUthmSL
-	EYNZ5ry2nEqHKbOaZH2T+eN1/DHmvAzav2IKGLdzEGZsXtEhEU21hmx3g9wsu46t654e
-	Z15g==
-X-Gm-Message-State: APjAAAXjwMxbCXsSpnxmnMipmmO6azzjfe6JPEKutvSZxiDMATclw7yF
-	cCfXQFYXQDYXH/Byjgawa5a6fta+QBk=
-X-Google-Smtp-Source: APXvYqwrND7Z7euDzBteINY2CyuK2aTxQFWf1dlkZ0Y1miBSdPadDvgU0QLveKN1v2Rydj+kRqqecw==
-X-Received: by 2002:adf:ecc4:: with SMTP id s4mr9651980wro.331.1562414563602; 
-	Sat, 06 Jul 2019 05:02:43 -0700 (PDT)
+	bh=g999pEtD0FzSaL6N2yZxnu1/NtRd71+QrEpF9P4ldP4=;
+	b=NeIcCMbn5cJ6WA2um2o3EcRK8jsWS7y4zUnWOgC1ZJyFjTY4qQr9LA0hxOz5z0B0+H
+	aOYRJf2z615hvMmPFV8ePOgTfL9XVj1GRm8/4ppDF+UsSMN/A6pwj4X5vxGpy5JMSzev
+	cSQ+mjD/DJYpC7GVnbDIMQzpfxu+JFv/Vbt83iWh4lfSIzsnakHkRPRkYDu7WjrJqcns
+	fRl+sKluYs1qWgZB7qfSO9BJjlZWCOEvZcBSr0cfpZqkIzR4F8G2o10fiSt+NMT5Q1u7
+	bwAP15j0NqU9BwJosf+jp8wHXKIt9+4AT9f2SVZimTxOsCU0DWVwLTJPO757T9Mxxirk
+	25RA==
+X-Gm-Message-State: APjAAAU7BaSyuTim8ajDmiaeRc2vXdyxcXmAkPXKyvT+wEwsr+0NfgoE
+	oJRfYBPrR7onXEP1f9k9yW3rSMW/KqY=
+X-Google-Smtp-Source: APXvYqxyxIKYYs+ixRHiwhEfmT4bufHMONxBlK+LPfSOX4ViWsuGc58UMlmNb+JVkoqZv4+535Z9qg==
+X-Received: by 2002:a1c:7e14:: with SMTP id z20mr7847450wmc.83.1562415104876; 
+	Sat, 06 Jul 2019 05:11:44 -0700 (PDT)
 Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id x6sm5674002wrt.63.2019.07.06.05.02.42
+	by smtp.gmail.com with ESMTPSA id
+	n125sm16134723wmf.6.2019.07.06.05.11.43
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Sat, 06 Jul 2019 05:02:42 -0700 (PDT)
-To: wenxu@ucloud.cn, pablo@netfilter.org
-References: <1562332598-17415-1-git-send-email-wenxu@ucloud.cn>
-	<1562332598-17415-7-git-send-email-wenxu@ucloud.cn>
+	Sat, 06 Jul 2019 05:11:44 -0700 (PDT)
+To: wenxu@ucloud.cn, pablo@netfilter.org, fw@strlen.de
+References: <1562364550-16974-1-git-send-email-wenxu@ucloud.cn>
+	<1562364550-16974-3-git-send-email-wenxu@ucloud.cn>
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <caaaa242-6bb8-9d5e-af66-a0cd6592f81d@cumulusnetworks.com>
-Date: Sat, 6 Jul 2019 15:02:41 +0300
+Message-ID: <114db8d1-2267-a338-688a-61f7f6db53ac@cumulusnetworks.com>
+Date: Sat, 6 Jul 2019 15:11:43 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <1562332598-17415-7-git-send-email-wenxu@ucloud.cn>
+In-Reply-To: <1562364550-16974-3-git-send-email-wenxu@ucloud.cn>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -71,8 +72,8 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH nf-next v2] netfilter:nft_meta: add
-	NFT_META_VLAN support
+Subject: Re: [Bridge] [PATCH 3/5 nf-next v3] bridge: add
+	br_vlan_get_info_rcu()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -87,139 +88,103 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 05/07/2019 16:16, wenxu@ucloud.cn wrote:
+On 06/07/2019 01:09, wenxu@ucloud.cn wrote:
 > From: wenxu <wenxu@ucloud.cn>
 > 
-> This patch provide a meta vlan to set the vlan tag of the packet.
-> 
-> for q-in-q outer vlan id 20:
-> meta vlan set 0x88a8:20
-> 
-> set the default 0x8100 vlan type with vlan id 20
-> meta vlan set 20
+> This new function allows you to fetch vlan info from packet path.
 > 
 > Signed-off-by: wenxu <wenxu@ucloud.cn>
 > ---
->  include/net/netfilter/nft_meta.h         |  5 ++++-
->  include/uapi/linux/netfilter/nf_tables.h |  4 ++++
->  net/netfilter/nft_meta.c                 | 25 +++++++++++++++++++++++++
->  3 files changed, 33 insertions(+), 1 deletion(-)
+>  include/linux/if_bridge.h |  7 +++++++
+>  net/bridge/br_vlan.c      | 23 ++++++++++++++++++-----
+>  2 files changed, 25 insertions(+), 5 deletions(-)
 > 
 
-The patch looks fine, just a note: you'll only be able to work with the
-outer tag, so guessing to achieve a double-tagged frame you'll have to
-add another NFT_META_VLAN_INNER(?) and will have to organize them one
-after another.
+Hi,
+This patch will need more work, comments below.
 
-Reviewed-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-
-> diff --git a/include/net/netfilter/nft_meta.h b/include/net/netfilter/nft_meta.h
-> index 5c69e9b..cb0f1e8 100644
-> --- a/include/net/netfilter/nft_meta.h
-> +++ b/include/net/netfilter/nft_meta.h
-> @@ -6,7 +6,10 @@ struct nft_meta {
->  	enum nft_meta_keys	key:8;
->  	union {
->  		enum nft_registers	dreg:8;
-> -		enum nft_registers	sreg:8;
-> +		struct {
-> +			enum nft_registers	sreg:8;
-> +			enum nft_registers	sreg2:8;
-> +		};
->  	};
->  };
->  
-> diff --git a/include/uapi/linux/netfilter/nf_tables.h b/include/uapi/linux/netfilter/nf_tables.h
-> index a0d1dbd..699524a 100644
-> --- a/include/uapi/linux/netfilter/nf_tables.h
-> +++ b/include/uapi/linux/netfilter/nf_tables.h
-> @@ -797,6 +797,7 @@ enum nft_exthdr_attributes {
->   * @NFT_META_OIFKIND: packet output interface kind name (dev->rtnl_link_ops->kind)
->   * @NFT_META_BRI_IIFPVID: packet input bridge port pvid
->   * @NFT_META_BRI_IIFVPROTO: packet input bridge vlan proto
-> + * @NFT_META_VLAN: packet vlan metadata
->   */
->  enum nft_meta_keys {
->  	NFT_META_LEN,
-> @@ -829,6 +830,7 @@ enum nft_meta_keys {
->  	NFT_META_OIFKIND,
->  	NFT_META_BRI_IIFPVID,
->  	NFT_META_BRI_IIFVPROTO,
-> +	NFT_META_VLAN,
->  };
->  
->  /**
-> @@ -895,12 +897,14 @@ enum nft_hash_attributes {
->   * @NFTA_META_DREG: destination register (NLA_U32)
->   * @NFTA_META_KEY: meta data item to load (NLA_U32: nft_meta_keys)
->   * @NFTA_META_SREG: source register (NLA_U32)
-> + * @NFTA_META_SREG2: source register (NLA_U32)
->   */
->  enum nft_meta_attributes {
->  	NFTA_META_UNSPEC,
->  	NFTA_META_DREG,
->  	NFTA_META_KEY,
->  	NFTA_META_SREG,
-> +	NFTA_META_SREG2,
->  	__NFTA_META_MAX
->  };
->  #define NFTA_META_MAX		(__NFTA_META_MAX - 1)
-> diff --git a/net/netfilter/nft_meta.c b/net/netfilter/nft_meta.c
-> index 18a848b..fb3d12e 100644
-> --- a/net/netfilter/nft_meta.c
-> +++ b/net/netfilter/nft_meta.c
-> @@ -271,6 +271,20 @@ void nft_meta_set_eval(const struct nft_expr *expr,
->  		skb->secmark = value;
->  		break;
+> diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
+> index 9e57c44..5c85608 100644
+> --- a/include/linux/if_bridge.h
+> +++ b/include/linux/if_bridge.h
+> @@ -92,6 +92,8 @@ static inline bool br_multicast_router(const struct net_device *dev)
+>  int br_vlan_get_proto(const struct net_device *dev, u16 *p_proto);
+>  int br_vlan_get_info(const struct net_device *dev, u16 vid,
+>  		     struct bridge_vlan_info *p_vinfo);
+> +int br_vlan_get_info_rcu(const struct net_device *dev, u16 vid,
+> +			 struct bridge_vlan_info *p_vinfo);
+>  #else
+>  static inline bool br_vlan_enabled(const struct net_device *dev)
+>  {
+> @@ -118,6 +120,11 @@ static inline int br_vlan_get_info(const struct net_device *dev, u16 vid,
+>  {
+>  	return -EINVAL;
+>  }
+> +static inline int br_vlan_get_info_rcu(const struct net_device *dev, u16 vid,
+> +				       struct bridge_vlan_info *p_vinfo)
+> +{
+> +	return -EINVAL;
+> +}
 >  #endif
-> +	case NFT_META_VLAN: {
-> +		u32 *sreg2 = &regs->data[meta->sreg2];
-> +		u16 vlan_proto;
-> +		u16 vlan_tci;
-> +
-> +		vlan_tci = nft_reg_load16(sreg);
-> +		vlan_proto = nft_reg_load16(sreg2);
-> +
-> +		if (vlan_proto != ETH_P_8021Q && vlan_proto != ETH_P_8021AD)
-> +			return;
-> +
-> +		__vlan_hwaccel_put_tag(skb, htons(vlan_proto), vlan_tci & VLAN_VID_MASK);
-> +		break;
-> +	}
->  	default:
->  		WARN_ON(1);
->  	}
-> @@ -281,6 +295,7 @@ void nft_meta_set_eval(const struct nft_expr *expr,
->  	[NFTA_META_DREG]	= { .type = NLA_U32 },
->  	[NFTA_META_KEY]		= { .type = NLA_U32 },
->  	[NFTA_META_SREG]	= { .type = NLA_U32 },
-> +	[NFTA_META_SREG2]	= { .type = NLA_U32 },
->  };
->  EXPORT_SYMBOL_GPL(nft_meta_policy);
 >  
-> @@ -432,6 +447,13 @@ int nft_meta_set_init(const struct nft_ctx *ctx,
->  	case NFT_META_PKTTYPE:
->  		len = sizeof(u8);
->  		break;
-> +	case NFT_META_VLAN:
-> +		len = sizeof(u16);
-> +		priv->sreg2 = nft_parse_register(tb[NFTA_META_SREG2]);
-> +		err = nft_validate_register_load(priv->sreg2, len);
-> +		if (err < 0)
-> +			return err;
-> +		break;
->  	default:
->  		return -EOPNOTSUPP;
->  	}
-> @@ -457,6 +479,9 @@ int nft_meta_get_dump(struct sk_buff *skb,
->  		goto nla_put_failure;
->  	if (nft_dump_register(skb, NFTA_META_DREG, priv->dreg))
->  		goto nla_put_failure;
-> +	if (priv->key == NFT_META_VLAN &&
-> +	    nft_dump_register(skb, NFTA_META_SREG2, priv->sreg2))
-> +		goto nla_put_failure;
+>  #if IS_ENABLED(CONFIG_BRIDGE)
+> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+> index 021cc9f66..2799a88 100644
+> --- a/net/bridge/br_vlan.c
+> +++ b/net/bridge/br_vlan.c
+> @@ -1267,15 +1267,13 @@ int br_vlan_get_pvid_rcu(const struct net_device *dev, u16 *p_pvid)
+>  }
+>  EXPORT_SYMBOL_GPL(br_vlan_get_pvid_rcu);
+>  
+> -int br_vlan_get_info(const struct net_device *dev, u16 vid,
+> -		     struct bridge_vlan_info *p_vinfo)
+> +static int __br_vlan_get_info(const struct net_device *dev, u16 vid,
+> +			      struct net_bridge_port *p,
+> +			      struct bridge_vlan_info *p_vinfo)
+>  {
+>  	struct net_bridge_vlan_group *vg;
+>  	struct net_bridge_vlan *v;
+> -	struct net_bridge_port *p;
+>  
+> -	ASSERT_RTNL();
+
+Removing the assert here doesn't make the function proper for RCU usage.
+You'll either have to split it in two and use the proper accessors to
+retrieve the vlan group based on the context (rtnl or rcu) or you'll
+just have to add a second version of this function which uses the proper
+accessors. Also note that for the RCU version you need to check if vg
+is null.
+
+> -	p = br_port_get_check_rtnl(dev);
+>  	if (p)
+>  		vg = nbp_vlan_group(p);
+>  	else if (netif_is_bridge_master(dev))
+> @@ -1291,8 +1289,23 @@ int br_vlan_get_info(const struct net_device *dev, u16 vid,
+>  	p_vinfo->flags = v->flags;
 >  	return 0;
+>  }
+> +
+> +int br_vlan_get_info(const struct net_device *dev, u16 vid,
+> +		     struct bridge_vlan_info *p_vinfo)
+> +{
+> +	ASSERT_RTNL();
+> +
+> +	return __br_vlan_get_info(dev, vid, br_port_get_check_rtnl(dev), p_vinfo);
+> +}
+>  EXPORT_SYMBOL_GPL(br_vlan_get_info);
 >  
->  nla_put_failure:
+> +int br_vlan_get_info_rcu(const struct net_device *dev, u16 vid,
+> +			 struct bridge_vlan_info *p_vinfo)
+> +{
+> +	return __br_vlan_get_info(dev, vid, br_port_get_check_rtnl(dev), p_vinfo);
+> +}
+> +EXPORT_SYMBOL_GPL(br_vlan_get_info_rcu);
+> +
+
+This should use br_port_get_check_rcu().
+
+>  static int br_vlan_is_bind_vlan_dev(const struct net_device *dev)
+>  {
+>  	return is_vlan_dev(dev) &&
 > 
 
