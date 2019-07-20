@@ -2,64 +2,86 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BFA76F4D8
-	for <lists.bridge@lfdr.de>; Sun, 21 Jul 2019 21:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA8E71E23
+	for <lists.bridge@lfdr.de>; Tue, 23 Jul 2019 19:56:32 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 84022A7A;
-	Sun, 21 Jul 2019 19:00:07 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 54BD4CC4;
+	Tue, 23 Jul 2019 17:56:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 781AF504
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id BD91D15E9
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 21 Jul 2019 19:00:04 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.us.es (mail.us.es [193.147.175.20])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 1488FE6
+	Sat, 20 Jul 2019 12:31:36 +0000 (UTC)
+X-Greylist: delayed 00:07:53 by SQLgrey-1.7.6
+Received: from mta-p7.oit.umn.edu (mta-p7.oit.umn.edu [134.84.196.207])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 5F1AD8BD
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 21 Jul 2019 18:59:55 +0000 (UTC)
-Received: from antivirus1-rhel7.int (unknown [192.168.2.11])
-	by mail.us.es (Postfix) with ESMTP id 7623BC330C
+	Sat, 20 Jul 2019 12:31:36 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+	by mta-p7.oit.umn.edu (Postfix) with ESMTP id 14396CCC
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 21 Jul 2019 20:59:50 +0200 (CEST)
-Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
-	by antivirus1-rhel7.int (Postfix) with ESMTP id 674DA11510D
+	Sat, 20 Jul 2019 12:23:43 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p7.oit.umn.edu ([127.0.0.1])
+	by localhost (mta-p7.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HCA1D-RDQ8ea for <bridge@lists.linux-foundation.org>;
+	Sat, 20 Jul 2019 07:23:42 -0500 (CDT)
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+	[209.85.166.72])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mta-p7.oit.umn.edu (Postfix) with ESMTPS id D7D1ECAF
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 21 Jul 2019 20:59:50 +0200 (CEST)
-Received: by antivirus1-rhel7.int (Postfix, from userid 99)
-	id 45A2E115109; Sun, 21 Jul 2019 20:59:50 +0200 (CEST)
+	Sat, 20 Jul 2019 07:23:42 -0500 (CDT)
+Received: by mail-io1-f72.google.com with SMTP id u84so37802042iod.1
+	for <bridge@lists.linux-foundation.org>;
+	Sat, 20 Jul 2019 05:23:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
+	h=from:to:cc:subject:date:message-id;
+	bh=K+9BHnE6RbUTOFhStcy8LrNMOZBD7Jm9/NExEpRtGTs=;
+	b=VsAKaUY5H8pRtOL9M2UvY9iZeZDLaYKRfFF0N8a+Ayc6PHMdqmm/9LShwhaw19OENE
+	pxtbM5Fx5DUA1WzHR5dxLHVeAKGy9wKZXYgRBawbE8gT60iqJsAjGCOPSjBdSDDgFxvu
+	b7Wr0bcGk88XngcmuNvn83WoG1nUCpjjQaU9cJI+MIRtg86w26V7jxttyupJtMxWd/HB
+	ZNw/Rn624IVLdtvABLf7EWYHrhdx7u+JpOfG34xrmKCHBbNWQawqc/DwOrZRcYdi1DQ/
+	3tvSHgoFfGyPCW6CymV+IYbxh4sDtLrW7kVl2JQZ6QC8HV0+Ih1vS9KCl1OiZvVwOR6c
+	aJ1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=K+9BHnE6RbUTOFhStcy8LrNMOZBD7Jm9/NExEpRtGTs=;
+	b=Y2T2uenoM8qBpF9gnb6jetu4agMwG6dgyj4HWI6GUrohIDdgv6rHZ9hDX3o4WQ/oii
+	lp2X2JMVYbBKIH9w8FALCtrwUSaKjFJYqaAcdtS84Fo3wg/MCpi6q877L/koAP2/v/8s
+	STpnIvp1jT14v2lt2wkJQB9QVocqaA2MyahTCVQ5oW0RyDo7LbMjTdlIXS7fB6rv1MOt
+	FwzE65JqmUTUCZZqYTSeMEWtTPeGrWthqLqdk2viWNIRCjBLRonSsTE0c3w1FIGPCKRv
+	RAbenB8utIrTADGdsaPuN6LIkjFUX9K+AlCU42LFq2DUJR06/oK6qjRxlBBwPrjzOsJy
+	uiYg==
+X-Gm-Message-State: APjAAAUVlffLAmksHxUM/sJUSZmy2XUoOxjNSV+lESvcbgWmtjb4AlDr
+	rq856MNTsO3gKm5dSxR+djq5kdSOVzXU7VhDL8dYTwLUDiPhBY63dUzF434OwdfQ/pFSdGfAOJP
+	dR1ScPrlLMJU96fPnBVKPzXmx13V+Kt69FY8=
+X-Received: by 2002:a6b:b206:: with SMTP id b6mr58517915iof.286.1563625422515; 
+	Sat, 20 Jul 2019 05:23:42 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxIvZ8x2BA1J9vY8UGimtCbB808vFCxS2Rq0GnEylvdPLpsmWAHPUhim/AqK6Ko3OIPJUTULA==
+X-Received: by 2002:a6b:b206:: with SMTP id b6mr58517902iof.286.1563625422367; 
+	Sat, 20 Jul 2019 05:23:42 -0700 (PDT)
+Received: from BlueSky.hil-mspphdt.msp.wayport.net ([107.17.71.65])
+	by smtp.gmail.com with ESMTPSA id
+	m10sm58326660ioj.75.2019.07.20.05.23.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 20 Jul 2019 05:23:41 -0700 (PDT)
+From: Wenwen Wang <wang6495@umn.edu>
+To: Wenwen Wang <wenwen@cs.uga.edu>
+Date: Sat, 20 Jul 2019 07:22:45 -0500
+Message-Id: <1563625366-3602-1-git-send-email-wang6495@umn.edu>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_MED autolearn=unavailable version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=unavailable version=3.3.1
-Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
-	by antivirus1-rhel7.int (Postfix) with ESMTP id D618CDA704;
-	Sun, 21 Jul 2019 20:59:47 +0200 (CEST)
-Received: from 192.168.1.97 (192.168.1.97)
-	by antivirus1-rhel7.int (F-Secure/fsigk_smtp/550/antivirus1-rhel7.int); 
-	Sun, 21 Jul 2019 20:59:47 +0200 (CEST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/antivirus1-rhel7.int)
-Received: from us.es (unknown [31.4.214.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested) (Authenticated sender: 1984lsi)
-	by entrada.int (Postfix) with ESMTPSA id 8999F4265A2F;
-	Sun, 21 Jul 2019 20:59:47 +0200 (CEST)
-Date: Sun, 21 Jul 2019 20:59:45 +0200
-X-SMTPAUTHUS: auth mail.us.es
-From: Pablo Neira Ayuso <pablo@netfilter.org>
-To: Wenwen Wang <wang6495@umn.edu>
-Message-ID: <20190721185945.76vsrm6ruge64das@salvia>
-References: <1563625366-3602-1-git-send-email-wang6495@umn.edu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1563625366-3602-1-git-send-email-wang6495@umn.edu>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Virus-Scanned: ClamAV using ClamSMTP
-Cc: Wenwen Wang <wenwen@cs.uga.edu>,
-	Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+X-Mailman-Approved-At: Tue, 23 Jul 2019 17:56:18 +0000
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
 	"open list:ETHERNET BRIDGE" <netdev@vger.kernel.org>,
 	Roopa Prabhu <roopa@cumulusnetworks.com>,
 	"moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
@@ -67,9 +89,9 @@ Cc: Wenwen Wang <wenwen@cs.uga.edu>,
 	Jozsef Kadlecsik <kadlec@netfilter.org>,
 	"open list:NETFILTER" <coreteam@netfilter.org>,
 	"open list:NETFILTER" <netfilter-devel@vger.kernel.org>,
-	"David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH] netfilter: ebtables: compat: fix a memory leak
-	bug
+	"David S. Miller" <davem@davemloft.net>,
+	Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: [Bridge] [PATCH] netfilter: ebtables: compat: fix a memory leak bug
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -84,17 +106,39 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On Sat, Jul 20, 2019 at 07:22:45AM -0500, Wenwen Wang wrote:
-> From: Wenwen Wang <wenwen@cs.uga.edu>
-> 
-> In compat_do_replace(), a temporary buffer is allocated through vmalloc()
-> to hold entries copied from the user space. The buffer address is firstly
-> saved to 'newinfo->entries', and later on assigned to 'entries_tmp'. Then
-> the entries in this temporary buffer is copied to the internal kernel
-> structure through compat_copy_entries(). If this copy process fails,
-> compat_do_replace() should be terminated. However, the allocated temporary
-> buffer is not freed on this path, leading to a memory leak.
-> 
-> To fix the bug, free the buffer before returning from compat_do_replace().
+From: Wenwen Wang <wenwen@cs.uga.edu>
 
-Applied, thanks.
+In compat_do_replace(), a temporary buffer is allocated through vmalloc()
+to hold entries copied from the user space. The buffer address is firstly
+saved to 'newinfo->entries', and later on assigned to 'entries_tmp'. Then
+the entries in this temporary buffer is copied to the internal kernel
+structure through compat_copy_entries(). If this copy process fails,
+compat_do_replace() should be terminated. However, the allocated temporary
+buffer is not freed on this path, leading to a memory leak.
+
+To fix the bug, free the buffer before returning from compat_do_replace().
+
+Signed-off-by: Wenwen Wang <wenwen@cs.uga.edu>
+---
+ net/bridge/netfilter/ebtables.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/net/bridge/netfilter/ebtables.c b/net/bridge/netfilter/ebtables.c
+index 963dfdc..fd84b48e 100644
+--- a/net/bridge/netfilter/ebtables.c
++++ b/net/bridge/netfilter/ebtables.c
+@@ -2261,8 +2261,10 @@ static int compat_do_replace(struct net *net, void __user *user,
+ 	state.buf_kern_len = size64;
+ 
+ 	ret = compat_copy_entries(entries_tmp, tmp.entries_size, &state);
+-	if (WARN_ON(ret < 0))
++	if (WARN_ON(ret < 0)) {
++		vfree(entries_tmp);
+ 		goto out_unlock;
++	}
+ 
+ 	vfree(entries_tmp);
+ 	tmp.entries_size = size64;
+-- 
+2.7.4
+
