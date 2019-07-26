@@ -2,28 +2,28 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD8C76C4E
-	for <lists.bridge@lfdr.de>; Fri, 26 Jul 2019 17:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5D376C4F
+	for <lists.bridge@lfdr.de>; Fri, 26 Jul 2019 17:04:47 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 6727ADC5;
-	Fri, 26 Jul 2019 15:04:09 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 13735DF2;
+	Fri, 26 Jul 2019 15:04:11 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 43DC1AEF
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 3F92486D
 	for <bridge@lists.linux-foundation.org>;
-	Thu, 25 Jul 2019 14:28:11 +0000 (UTC)
+	Fri, 26 Jul 2019 12:09:24 +0000 (UTC)
 X-Greylist: delayed 00:07:05 by SQLgrey-1.7.6
-Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
-	[68.232.153.233])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 95728B0
+Received: from esa4.microchip.iphmx.com (esa4.microchip.iphmx.com
+	[68.232.154.123])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7FDD289C
 	for <bridge@lists.linux-foundation.org>;
-	Thu, 25 Jul 2019 14:28:10 +0000 (UTC)
-Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+	Fri, 26 Jul 2019 12:09:23 +0000 (UTC)
+Received-SPF: Pass (esa4.microchip.iphmx.com: domain of
 	Horatiu.Vultur@microchip.com designates 198.175.253.82 as
 	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+	client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
 	envelope-from="Horatiu.Vultur@microchip.com";
 	x-sender="Horatiu.Vultur@microchip.com";
 	x-conformance=spf_only; x-record-type="v=spf1";
@@ -31,48 +31,51 @@ Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
 	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
 	a:mx2.microchip.iphmx.com include:servers.mcsv.net
 	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa3.microchip.iphmx.com: no sender
+Received-SPF: None (esa4.microchip.iphmx.com: no sender
 	authenticity information available from domain of
 	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+	client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
 	envelope-from="Horatiu.Vultur@microchip.com";
 	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa3.microchip.iphmx.com;
+Authentication-Results: esa4.microchip.iphmx.com;
 	dkim=none (message not signed) header.i=none;
 	spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
 	spf=None smtp.helo=postmaster@email.microchip.com;
 	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: +zUMXScR/IuLVaoogFLG0eUFNk/cAntHaKZhUr2c0LTY9rqicfEs+mlubuSl0eQA10HINvK1SY
-	fQ+v4pLoQm8xHkim4iesTvc+K+us513GtF6PqU2nrn+iLXXxeCg6kRn9d1wP3rmzQ82of3aOZw
-	ONZzliXHcJECA0quRaCAV6+p3ilx8npUv4kPDPNZtOA3XR3yyDtZqa/cC0Lh4edu1sja4T24Cj
-	X4pRqaMfbLFRMbGhclCIWdFBxgGN0X2agSPIAqMOSbzeDuhebAYMyRRnzfO/XEBLX1xL2ekEMN
-	3PM=
-X-IronPort-AV: E=Sophos;i="5.64,307,1559545200"; d="scan'208";a="42755638"
+IronPort-SDR: in/kLbMGljgw9nMBlpLUpozaNNyK8cll10nugEDYF3GkV//tEA1toRMo90M40kR5Y1oVx4VG8q
+	fP5PfAOcC5A1nD0C/PfQy38C3NQnU9/SM9agMzndmy5gbpsFVT34le8PC+9gyj+SvLebUee0eq
+	IMS/kK3kmj+siGL1D76AbFu/PBTnoijlywQVtx5nXUn77qIU6N+zPX9HjnHhO21CTzbO/wPmo+
+	4wmPqYmrAM2De68Fc2/xJbhtpaprDm077RK4RKBHGco1tWWO/I0WitrU+mU5LCME9fhce6LO4e
+	8R8=
+X-IronPort-AV: E=Sophos;i="5.64,310,1559545200"; d="scan'208";a="42089128"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
 	([198.175.253.82])
-	by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	25 Jul 2019 07:21:04 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
-	chn-vm-ex03.mchp-main.com (10.10.87.152) with Microsoft SMTP Server
+	by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+	26 Jul 2019 05:02:17 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+	chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
 	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Thu, 25 Jul 2019 07:21:04 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex01.mchp-main.com
-	(10.10.85.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
-	Transport; Thu, 25 Jul 2019 07:21:03 -0700
-Date: Thu, 25 Jul 2019 16:21:03 +0200
+	15.1.1713.5; Fri, 26 Jul 2019 05:02:16 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
+	(10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+	Transport; Fri, 26 Jul 2019 05:02:16 -0700
+Date: Fri, 26 Jul 2019 14:02:15 +0200
 From: Horatiu Vultur <horatiu.vultur@microchip.com>
 To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20190725142101.65tusauc6fzxb2yp@soft-dev3.microsemi.net>
+Message-ID: <20190726120214.c26oj5vks7g5ntwu@soft-dev3.microsemi.net>
 References: <1564055044-27593-1-git-send-email-horatiu.vultur@microchip.com>
 	<7e7a7015-6072-d884-b2ba-0a51177245ab@cumulusnetworks.com>
 	<eef063fe-fd3a-7e02-89c2-e40728a17578@cumulusnetworks.com>
+	<20190725142101.65tusauc6fzxb2yp@soft-dev3.microsemi.net>
+	<b9ce433a-3ef7-fe15-642a-659c5715d992@cumulusnetworks.com>
+	<e6ad982f-4706-46f9-b8f0-1337b09de350@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <eef063fe-fd3a-7e02-89c2-e40728a17578@cumulusnetworks.com>
+In-Reply-To: <e6ad982f-4706-46f9-b8f0-1337b09de350@cumulusnetworks.com>
 User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+	autolearn=unavailable version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 X-Mailman-Approved-At: Fri, 26 Jul 2019 15:04:05 +0000
@@ -97,154 +100,188 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 
 Hi Nikolay,
 
-The 07/25/2019 16:21, Nikolay Aleksandrov wrote:
+The 07/26/2019 12:26, Nikolay Aleksandrov wrote:
 > External E-Mail
 > 
 > 
-> On 25/07/2019 16:06, Nikolay Aleksandrov wrote:
-> > On 25/07/2019 14:44, Horatiu Vultur wrote:
-> >> There is no way to configure the bridge, to receive only specific link
-> >> layer multicast addresses. From the description of the command 'bridge
-> >> fdb append' is supposed to do that, but there was no way to notify the
-> >> network driver that the bridge joined a group, because LLADDR was added
-> >> to the unicast netdev_hw_addr_list.
+> On 26/07/2019 11:41, Nikolay Aleksandrov wrote:
+> > On 25/07/2019 17:21, Horatiu Vultur wrote:
+> >> Hi Nikolay,
 > >>
-> >> Therefore update fdb_add_entry to check if the NLM_F_APPEND flag is set
-> >> and if the source is NULL, which represent the bridge itself. Then add
-> >> address to multicast netdev_hw_addr_list for each bridge interfaces.
-> >> And then the .ndo_set_rx_mode function on the driver is called. To notify
-> >> the driver that the list of multicast mac addresses changed.
+> >> The 07/25/2019 16:21, Nikolay Aleksandrov wrote:
+> >>> External E-Mail
+> >>>
+> >>>
+> >>> On 25/07/2019 16:06, Nikolay Aleksandrov wrote:
+> >>>> On 25/07/2019 14:44, Horatiu Vultur wrote:
+> >>>>> There is no way to configure the bridge, to receive only specific link
+> >>>>> layer multicast addresses. From the description of the command 'bridge
+> >>>>> fdb append' is supposed to do that, but there was no way to notify the
+> >>>>> network driver that the bridge joined a group, because LLADDR was added
+> >>>>> to the unicast netdev_hw_addr_list.
+> >>>>>
+> >>>>> Therefore update fdb_add_entry to check if the NLM_F_APPEND flag is set
+> >>>>> and if the source is NULL, which represent the bridge itself. Then add
+> >>>>> address to multicast netdev_hw_addr_list for each bridge interfaces.
+> >>>>> And then the .ndo_set_rx_mode function on the driver is called. To notify
+> >>>>> the driver that the list of multicast mac addresses changed.
+> >>>>>
+> >>>>> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> >>>>> ---
+> >>>>>  net/bridge/br_fdb.c | 49 ++++++++++++++++++++++++++++++++++++++++++++++---
+> >>>>>  1 file changed, 46 insertions(+), 3 deletions(-)
+> >>>>>
+> >>>>
+> >>>> Hi,
+> >>>> I'm sorry but this patch is wrong on many levels, some notes below. In general
+> >>>> NLM_F_APPEND is only used in vxlan, the bridge does not handle that flag at all.
+> >>>> FDB is only for *unicast*, nothing is joined and no multicast should be used with fdbs.
+> >>>> MDB is used for multicast handling, but both of these are used for forwarding.
+> >>>> The reason the static fdbs are added to the filter is for non-promisc ports, so they can
+> >>>> receive traffic destined for these FDBs for forwarding.
+> >>>> If you'd like to join any multicast group please use the standard way, if you'd like to join
+> >>>> it only on a specific port - join it only on that port (or ports) and the bridge and you'll
+> >>>
+> >>> And obviously this is for the case where you're not enabling port promisc mode (non-default).
+> >>> In general you'll only need to join the group on the bridge to receive traffic for it
+> >>> or add it as an mdb entry to forward it.
+> >>>
+> >>>> have the effect that you're describing. What do you mean there's no way ?
 > >>
-> >> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> >> ---
-> >>  net/bridge/br_fdb.c | 49 ++++++++++++++++++++++++++++++++++++++++++++++---
-> >>  1 file changed, 46 insertions(+), 3 deletions(-)
+> >> Thanks for the explanation.
+> >> There are few things that are not 100% clear to me and maybe you can
+> >> explain them, not to go totally in the wrong direction. Currently I am
+> >> writing a network driver on which I added switchdev support. Then I was
+> >> looking for a way to configure the network driver to copy link layer
+> >> multicast address to the CPU port.
+> >>
+> >> If I am using bridge mdb I can do it only for IP multicast addreses,
+> >> but how should I do it if I want non IP frames with link layer multicast
+> >> address to be copy to CPU? For example: all frames with multicast
+> >> address '01-21-6C-00-00-01' to be copy to CPU. What is the user space
+> >> command for that?
 > >>
 > > 
-> > Hi,
-> > I'm sorry but this patch is wrong on many levels, some notes below. In general
-> > NLM_F_APPEND is only used in vxlan, the bridge does not handle that flag at all.
-> > FDB is only for *unicast*, nothing is joined and no multicast should be used with fdbs.
-> > MDB is used for multicast handling, but both of these are used for forwarding.
-> > The reason the static fdbs are added to the filter is for non-promisc ports, so they can
-> > receive traffic destined for these FDBs for forwarding.
-> > If you'd like to join any multicast group please use the standard way, if you'd like to join
-> > it only on a specific port - join it only on that port (or ports) and the bridge and you'll
+> > Check SIOCADDMULTI (ip maddr from iproute2), f.e. add that mac to the port
+> > which needs to receive it and the bridge will send it up automatically since
+> > it's unknown mcast (note that if there's a querier, you'll have to make the
+> > bridge mcast router if it is not the querier itself). It would also flood it to all
 > 
-> And obviously this is for the case where you're not enabling port promisc mode (non-default).
-> In general you'll only need to join the group on the bridge to receive traffic for it
-> or add it as an mdb entry to forward it.
+> Actually you mentioned non-IP traffic, so the querier stuff is not a problem. This
+> traffic will always be flooded by the bridge (and also a copy will be locally sent up).
+> Thus only the flooding may need to be controlled.
+
+OK, I see, but the part which is not clear to me is, which bridge
+command(from iproute2) to use so the bridge would notify the network
+driver(using swichdev or not) to configure the HW to copy all the frames
+with dmac '01-21-6C-00-00-01' to CPU? So that the bridge can receive
+those frames and then just to pass them up.
+Definitly I would not like to set the front ports in promisc mode, to
+copy all the frames to CPU because I think that would overkill it.
+Thanks,
+
 > 
-> > have the effect that you're describing. What do you mean there's no way ?
-
-Thanks for the explanation.
-There are few things that are not 100% clear to me and maybe you can
-explain them, not to go totally in the wrong direction. Currently I am
-writing a network driver on which I added switchdev support. Then I was
-looking for a way to configure the network driver to copy link layer
-multicast address to the CPU port.
-
-If I am using bridge mdb I can do it only for IP multicast addreses,
-but how should I do it if I want non IP frames with link layer multicast
-address to be copy to CPU? For example: all frames with multicast
-address '01-21-6C-00-00-01' to be copy to CPU. What is the user space
-command for that?
-
+> > other ports so you may want to control that. It really depends on the setup
+> > and the how the hardware is configured.
 > > 
-> > In addition you're allowing a mix of mcast functions to be called with unicast addresses
-> > and vice versa, it is not that big of a deal because the kernel will simply return an error
-> > but still makes no sense.
-> > 
-> > Nacked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-> > 
-> >> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-> >> index b1d3248..d93746d 100644
-> >> --- a/net/bridge/br_fdb.c
-> >> +++ b/net/bridge/br_fdb.c
-> >> @@ -175,6 +175,29 @@ static void fdb_add_hw_addr(struct net_bridge *br, const unsigned char *addr)
-> >>  	}
-> >>  }
-> >>  
-> >> +static void fdb_add_hw_maddr(struct net_bridge *br, const unsigned char *addr)
-> >> +{
-> >> +	int err;
-> >> +	struct net_bridge_port *p;
-> >> +
-> >> +	ASSERT_RTNL();
-> >> +
-> >> +	list_for_each_entry(p, &br->port_list, list) {
-> >> +		if (!br_promisc_port(p)) {
-> >> +			err = dev_mc_add(p->dev, addr);
-> >> +			if (err)
-> >> +				goto undo;
-> >> +		}
-> >> +	}
-> >> +
-> >> +	return;
-> >> +undo:
-> >> +	list_for_each_entry_continue_reverse(p, &br->port_list, list) {
-> >> +		if (!br_promisc_port(p))
-> >> +			dev_mc_del(p->dev, addr);
-> >> +	}
-> >> +}
-> >> +
-> >>  /* When a static FDB entry is deleted, the HW address from that entry is
-> >>   * also removed from the bridge private HW address list and updates all
-> >>   * the ports with needed information.
-> >> @@ -192,13 +215,27 @@ static void fdb_del_hw_addr(struct net_bridge *br, const unsigned char *addr)
-> >>  	}
-> >>  }
-> >>  
-> >> +static void fdb_del_hw_maddr(struct net_bridge *br, const unsigned char *addr)
-> >> +{
-> >> +	struct net_bridge_port *p;
-> >> +
-> >> +	ASSERT_RTNL();
-> >> +
-> >> +	list_for_each_entry(p, &br->port_list, list) {
-> >> +		if (!br_promisc_port(p))
-> >> +			dev_mc_del(p->dev, addr);
-> >> +	}
-> >> +}
-> >> +
-> >>  static void fdb_delete(struct net_bridge *br, struct net_bridge_fdb_entry *f,
-> >>  		       bool swdev_notify)
-> >>  {
-> >>  	trace_fdb_delete(br, f);
-> >>  
-> >> -	if (f->is_static)
-> >> +	if (f->is_static) {
-> >>  		fdb_del_hw_addr(br, f->key.addr.addr);
-> >> +		fdb_del_hw_maddr(br, f->key.addr.addr);
-> > 
-> > Walking over all ports again for each static delete is a no-go.
-> > 
-> >> +	}
-> >>  
-> >>  	hlist_del_init_rcu(&f->fdb_node);
-> >>  	rhashtable_remove_fast(&br->fdb_hash_tbl, &f->rhnode,
-> >> @@ -843,13 +880,19 @@ static int fdb_add_entry(struct net_bridge *br, struct net_bridge_port *source,
-> >>  			fdb->is_local = 1;
-> >>  			if (!fdb->is_static) {
-> >>  				fdb->is_static = 1;
-> >> -				fdb_add_hw_addr(br, addr);
-> >> +				if (flags & NLM_F_APPEND && !source)
-> >> +					fdb_add_hw_maddr(br, addr);
-> >> +				else
-> >> +					fdb_add_hw_addr(br, addr);
-> >>  			}
-> >>  		} else if (state & NUD_NOARP) {
-> >>  			fdb->is_local = 0;
-> >>  			if (!fdb->is_static) {
-> >>  				fdb->is_static = 1;
-> >> -				fdb_add_hw_addr(br, addr);
-> >> +				if (flags & NLM_F_APPEND && !source)
-> >> +					fdb_add_hw_maddr(br, addr);
-> >> +				else
-> >> +					fdb_add_hw_addr(br, addr);
-> >>  			}
-> >>  		} else {
-> >>  			fdb->is_local = 0;
+> >>>>
+> >>>> In addition you're allowing a mix of mcast functions to be called with unicast addresses
+> >>>> and vice versa, it is not that big of a deal because the kernel will simply return an error
+> >>>> but still makes no sense.
+> >>>>
+> >>>> Nacked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+> >>>>
+> >>>>> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
+> >>>>> index b1d3248..d93746d 100644
+> >>>>> --- a/net/bridge/br_fdb.c
+> >>>>> +++ b/net/bridge/br_fdb.c
+> >>>>> @@ -175,6 +175,29 @@ static void fdb_add_hw_addr(struct net_bridge *br, const unsigned char *addr)
+> >>>>>  	}
+> >>>>>  }
+> >>>>>  
+> >>>>> +static void fdb_add_hw_maddr(struct net_bridge *br, const unsigned char *addr)
+> >>>>> +{
+> >>>>> +	int err;
+> >>>>> +	struct net_bridge_port *p;
+> >>>>> +
+> >>>>> +	ASSERT_RTNL();
+> >>>>> +
+> >>>>> +	list_for_each_entry(p, &br->port_list, list) {
+> >>>>> +		if (!br_promisc_port(p)) {
+> >>>>> +			err = dev_mc_add(p->dev, addr);
+> >>>>> +			if (err)
+> >>>>> +				goto undo;
+> >>>>> +		}
+> >>>>> +	}
+> >>>>> +
+> >>>>> +	return;
+> >>>>> +undo:
+> >>>>> +	list_for_each_entry_continue_reverse(p, &br->port_list, list) {
+> >>>>> +		if (!br_promisc_port(p))
+> >>>>> +			dev_mc_del(p->dev, addr);
+> >>>>> +	}
+> >>>>> +}
+> >>>>> +
+> >>>>>  /* When a static FDB entry is deleted, the HW address from that entry is
+> >>>>>   * also removed from the bridge private HW address list and updates all
+> >>>>>   * the ports with needed information.
+> >>>>> @@ -192,13 +215,27 @@ static void fdb_del_hw_addr(struct net_bridge *br, const unsigned char *addr)
+> >>>>>  	}
+> >>>>>  }
+> >>>>>  
+> >>>>> +static void fdb_del_hw_maddr(struct net_bridge *br, const unsigned char *addr)
+> >>>>> +{
+> >>>>> +	struct net_bridge_port *p;
+> >>>>> +
+> >>>>> +	ASSERT_RTNL();
+> >>>>> +
+> >>>>> +	list_for_each_entry(p, &br->port_list, list) {
+> >>>>> +		if (!br_promisc_port(p))
+> >>>>> +			dev_mc_del(p->dev, addr);
+> >>>>> +	}
+> >>>>> +}
+> >>>>> +
+> >>>>>  static void fdb_delete(struct net_bridge *br, struct net_bridge_fdb_entry *f,
+> >>>>>  		       bool swdev_notify)
+> >>>>>  {
+> >>>>>  	trace_fdb_delete(br, f);
+> >>>>>  
+> >>>>> -	if (f->is_static)
+> >>>>> +	if (f->is_static) {
+> >>>>>  		fdb_del_hw_addr(br, f->key.addr.addr);
+> >>>>> +		fdb_del_hw_maddr(br, f->key.addr.addr);
+> >>>>
+> >>>> Walking over all ports again for each static delete is a no-go.
+> >>>>
+> >>>>> +	}
+> >>>>>  
+> >>>>>  	hlist_del_init_rcu(&f->fdb_node);
+> >>>>>  	rhashtable_remove_fast(&br->fdb_hash_tbl, &f->rhnode,
+> >>>>> @@ -843,13 +880,19 @@ static int fdb_add_entry(struct net_bridge *br, struct net_bridge_port *source,
+> >>>>>  			fdb->is_local = 1;
+> >>>>>  			if (!fdb->is_static) {
+> >>>>>  				fdb->is_static = 1;
+> >>>>> -				fdb_add_hw_addr(br, addr);
+> >>>>> +				if (flags & NLM_F_APPEND && !source)
+> >>>>> +					fdb_add_hw_maddr(br, addr);
+> >>>>> +				else
+> >>>>> +					fdb_add_hw_addr(br, addr);
+> >>>>>  			}
+> >>>>>  		} else if (state & NUD_NOARP) {
+> >>>>>  			fdb->is_local = 0;
+> >>>>>  			if (!fdb->is_static) {
+> >>>>>  				fdb->is_static = 1;
+> >>>>> -				fdb_add_hw_addr(br, addr);
+> >>>>> +				if (flags & NLM_F_APPEND && !source)
+> >>>>> +					fdb_add_hw_maddr(br, addr);
+> >>>>> +				else
+> >>>>> +					fdb_add_hw_addr(br, addr);
+> >>>>>  			}
+> >>>>>  		} else {
+> >>>>>  			fdb->is_local = 0;
+> >>>>>
+> >>>>
+> >>>
 > >>
 > > 
 > 
