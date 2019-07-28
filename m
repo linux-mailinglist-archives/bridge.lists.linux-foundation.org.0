@@ -2,74 +2,67 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80FCB780E4
-	for <lists.bridge@lfdr.de>; Sun, 28 Jul 2019 20:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEB07823F
+	for <lists.bridge@lfdr.de>; Mon, 29 Jul 2019 01:08:02 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 878C7C3F;
-	Sun, 28 Jul 2019 18:22:42 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id B14FFC9E;
+	Sun, 28 Jul 2019 23:07:53 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id C0FDEBB3
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 85C4786D
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 28 Jul 2019 18:22:39 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
-	[209.85.128.66])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 468595E4
+	Sun, 28 Jul 2019 23:07:50 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 0A820604
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 28 Jul 2019 18:22:39 +0000 (UTC)
-Received: by mail-wm1-f66.google.com with SMTP id h19so41470366wme.0
-	for <bridge@lists.linux-foundation.org>;
-	Sun, 28 Jul 2019 11:22:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cumulusnetworks.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=r321PWAMEFjT5r81kKiX/eqJ1FlWbJsSU+glz5FPlrk=;
-	b=H4WINix3uy3a6QX74h26aV3AF9n+/bxK8se1JV5ZbSrbV8s3wdqLJqwG4z4YCaR6R5
-	7c4X+P/+OmLUJ/iinT/IFpl2gaDR90xWToajOcwHPgljU4lLjIvQodfvCBZaswuXR6AG
-	bfQKFVAS8jkPb/OTa3c29y6rSADRhDW6l1JSo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=r321PWAMEFjT5r81kKiX/eqJ1FlWbJsSU+glz5FPlrk=;
-	b=JIFlMJt2AMtY5JkFBI6TsywOEin48Fvz3pOw5aBRzPwel7cniH3q1VruO0yyP9H82d
-	I676ytPVN5k9eL+ZODmhF7XkEd/mPRVYlug4C+vtw9ALksl/u2nOQLuHHL2/LdZIiHXx
-	K/0KE1ZePGjEqrjWas3UW6FSxIxb4B7bkyo5ekNIjxImZ+37SvkTQfveHd1QvQx9XKWC
-	v/WDUleXtfoQgq49AeOzV2vCo39OZwLChVx+8BkvPbz8yEGQQ9A4sGnBFxoarreirp1y
-	JkR9kM56mgvQVNzfqq3BpDzaFJufXKvLpVmrNOLIJVaOQgwuJAFyfK0fkDLNuWgoedct
-	5/Mw==
-X-Gm-Message-State: APjAAAWcHLHfQfgRMaLtUsPCZuEKYVaDClMST6PMW7ekZw6zlw5QUYmg
-	tpFaEK4S4Vdc/hu5syLvS1hd+Q==
-X-Google-Smtp-Source: APXvYqyMWaPBojtlQZ3jFCCTAayF2xx+l1yFdqq0YcPgGgx7Zr4HKtO9gucA7w7DrldfG7fj33lVaA==
-X-Received: by 2002:a05:600c:21d4:: with SMTP id
-	x20mr87708714wmj.61.1564338157785; 
-	Sun, 28 Jul 2019 11:22:37 -0700 (PDT)
-Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
-	[84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id 5sm48753956wmg.42.2019.07.28.11.22.35
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Sun, 28 Jul 2019 11:22:36 -0700 (PDT)
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-To: netdev@vger.kernel.org
-Date: Sun, 28 Jul 2019 21:22:30 +0300
-Message-Id: <20190728182230.28818-1-nikolay@cumulusnetworks.com>
-X-Mailer: git-send-email 2.21.0
+	Sun, 28 Jul 2019 23:07:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124;
+	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=rgynBm9hctybZUQVcP0RXwQdxJdI0dv3Bh59KGp9aWo=;
+	b=CEzzNg0Xm/Z5ZBhcLdThuFymBA
+	3m2WnPrllV0f9OJX4NEWnjuV4tuMKPsDcGlKkETaNLhGbKx6cDsNYO6hMT/yS8pLPcX3D9foSF9cp
+	KNe4aEAtQeNKWIaIXvwStAnRykxDdlJRAfnYWuaj3vdzxMx4Jb6cbcZz9Q6Pbx4HEtAk=; 
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+	(envelope-from <andrew@lunn.ch>)
+	id 1hrsGT-0006hC-MQ; Mon, 29 Jul 2019 01:07:41 +0200
+Date: Mon, 29 Jul 2019 01:07:41 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
+Message-ID: <20190728230741.GF23125@lunn.ch>
+References: <7e7a7015-6072-d884-b2ba-0a51177245ab@cumulusnetworks.com>
+	<eef063fe-fd3a-7e02-89c2-e40728a17578@cumulusnetworks.com>
+	<20190725142101.65tusauc6fzxb2yp@soft-dev3.microsemi.net>
+	<b9ce433a-3ef7-fe15-642a-659c5715d992@cumulusnetworks.com>
+	<e6ad982f-4706-46f9-b8f0-1337b09de350@cumulusnetworks.com>
+	<20190726120214.c26oj5vks7g5ntwu@soft-dev3.microsemi.net>
+	<20190726134613.GD18223@lunn.ch>
+	<20190726195010.7x75rr74v7ph3m6m@lx-anielsen.microsemi.net>
+	<20190727030223.GA29731@lunn.ch>
+	<20190728191558.zuopgfqza2iz5d5b@lx-anielsen.microsemi.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190728191558.zuopgfqza2iz5d5b@lx-anielsen.microsemi.net>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
 	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	davem@davemloft.net, syzbot+88533dc8b582309bf3ee@syzkaller.appspotmail.com
-Subject: [Bridge] [PATCH net] net: bridge: delete local fdbs on device init
-	failure
+	linux-kernel@vger.kernel.org, davem@davemloft.net,
+	Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
+	groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -84,45 +77,44 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On initialization failure we have to delete all local fdbs which were
-inserted due to the default pvid. This problem has been present since the
-inception of default_pvid. Note that currently there are 2 cases:
-1) in br_dev_init() when br_multicast_init() fails
-2) if register_netdevice() fails after calling ndo_init()
+> Trying to get back to the original problem:
+> 
+> We have a network which implements the ODVA/DLR ring protocol. This protocol
+> sends out a beacon frame as often as every 3 us (as far as I recall, default I
+> believe is 400 us) to this MAC address: 01:21:6C:00:00:01.
+> 
+> Try take a quick look at slide 10 in [1].
+> 
+> If we assume that the SwitchDev driver implemented such that all multicast
+> traffic goes to the CPU, then we should really have a way to install a HW
+> offload path in the silicon, such that these packets does not go to the CPU (as
+> they are known not to be use full, and a frame every 3 us is a significant load
+> on small DMA connections and CPU resources).
+> 
+> If we assume that the SwitchDev driver implemented such that only "needed"
+> multicast packets goes to the CPU, then we need a way to get these packets in
+> case we want to implement the DLR protocol.
+> 
+> I'm sure that both models can work, and I do not think that this is the main
+> issue here.
+> 
+> Our initial attempt was to allow install static L2-MAC entries and append
+> multiple ports to such an entry in the MAC table. This was rejected, for several
+> good reasons it seems. But I'm not sure it was clear what we wanted to achieve,
+> and why we find it to be important. Hopefully this is clear with a real world
+> use-case.
+> 
+> Any hints or ideas on what would be a better way to solve this problems will be
+> much appreciated.
 
-This patch takes care of both since br_vlan_flush() is called on both
-occasions. Also the new fdb delete would be a no-op on normal bridge device
-destruction since the local fdbs would've been already flushed by
-br_dev_delete(). This is not an issue for ports since nbp_vlan_init() is
-called last when adding a port thus nothing can fail after it.
+I always try to think about how this would work if i had a bunch of
+discrete network interfaces, not a switch. What APIs are involved in
+configuring such a system? How does the Linux network stack perform
+software DLR? How is the reception and blocking of the multicast group
+performed?
 
-Reported-by: syzbot+88533dc8b582309bf3ee@syzkaller.appspotmail.com
-Fixes: 5be5a2df40f0 ("bridge: Add filtering support for default_pvid")
-Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
----
-Tested with the provided reproducer and can no longer trigger the leak.
-Also tested the br_multicast_init() failure manually by making it always
-return an error.
+Once you understand how it works in the software implement, it should
+then be more obvious which switchdev hooks should be used to
+accelerate this using hardware.
 
- net/bridge/br_vlan.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index 021cc9f66804..3e6a702e4c21 100644
---- a/net/bridge/br_vlan.c
-+++ b/net/bridge/br_vlan.c
-@@ -715,6 +715,11 @@ void br_vlan_flush(struct net_bridge *br)
- 
- 	ASSERT_RTNL();
- 
-+	/* delete auto-added default pvid local fdbs before flushing vlans
-+	 * otherwise these will be leaked on bridge device init failure
-+	 */
-+	br_fdb_delete_by_port(br, NULL, 0, 1);
-+
- 	vg = br_vlan_group(br);
- 	__vlan_flush(vg);
- 	RCU_INIT_POINTER(br->vlgrp, NULL);
--- 
-2.21.0
-
+	   Andrew
