@@ -2,58 +2,58 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D28E7DCBC
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:43:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3232D7DCC2
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:45:52 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 056B414BB;
-	Thu,  1 Aug 2019 13:43:47 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 276661519;
+	Thu,  1 Aug 2019 13:45:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 4B9E91756
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 215E418BD
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 29 Jul 2019 12:50:23 +0000 (UTC)
+	Mon, 29 Jul 2019 13:42:25 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
-	[209.85.221.68])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 8280C604
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
+	[209.85.128.68])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 6BFBC2C6
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 29 Jul 2019 12:50:22 +0000 (UTC)
-Received: by mail-wr1-f68.google.com with SMTP id g17so61715423wrr.5
+	Mon, 29 Jul 2019 13:42:24 +0000 (UTC)
+Received: by mail-wm1-f68.google.com with SMTP id x15so53914775wmj.3
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 29 Jul 2019 05:50:22 -0700 (PDT)
+	Mon, 29 Jul 2019 06:42:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cumulusnetworks.com; s=google;
-	h=subject:from:to:cc:references:message-id:date:user-agent
+	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=FaAv73c7/caKA+SdXX+K+mh6Cm/86re9CSFJB7tkoPQ=;
-	b=KW0x3QFgAkbJtmPiI15VrDGcIK27GRcEgALtT7jEwcEraGN0NVvEz0pwJrsydt95ER
-	Gscowby0iaA/F56RCBP3ZeYqmxbBk0IT8HWNux4xxYpbZXYyoOy5qSmYe11ZL7x4A70k
-	GOuwSowPaBiPvlK5jU1gZjN8I57ndtLQhpu2M=
+	bh=j+ACxE9Mwzw6xWU30d22KqY3pHLYPl1O/glNu0hxiHY=;
+	b=MC7xU0pHuapGWfs4KLHfrnZcN05TRPsFKeNY4bNmRTwgUa1w+s5GMeKUT4NXEqf4oi
+	YzG0l8BxpwqnFh6cKdI7jv5i0TBkyM/RMk6cd8rR1w/ujyRFlexytPmDF1yVjDvdo2an
+	LwMVs9uSbWG5X1wea8aZ90BzvWg+Em85UW3Yg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language
 	:content-transfer-encoding;
-	bh=FaAv73c7/caKA+SdXX+K+mh6Cm/86re9CSFJB7tkoPQ=;
-	b=cCzXv+Mn+DMVkCFqb8OOnDXYXfpF+kndCis7F3DHpyfm2EPFERGQ0ohoLd53tXzU1/
-	khatvAVn8SdlPD+p5k2G5Sru9Vn2UVC7Rz8oEJg+CCZy21uvj2GFP5vh3qiTyKRCnmOL
-	1ZwpH8EE4sjfmAK9bRX+Z9yWPuGXtmVLe84ilRp4GyhPZYHx+cAWjuFJR2dJpOC2S92y
-	eNZfO67MEz0mhFMXEoYMgFC5UGFxU9P7PmSa6p7yqh52By5lgkAgK3W/NoBhjR7jcLwC
-	O/CnCdFTYeOANOgthYCbCycyliTgKIOwJ1RKu2JQlR9HLZ4hBGGv4dO2/ozJm4PqcKMG
-	/jZQ==
-X-Gm-Message-State: APjAAAUeaNM8JXccfPC+Qg8Wwt8f7ZVvjsOnUpTYZrJ/PSg3Xx0NttH8
-	4ZzNiaD8KudhkuscFrOlwQZHYg==
-X-Google-Smtp-Source: APXvYqylO0ojx7HMCNib0ntkfakVQdA8p4X9NuiyKtM1VMknioWDrk4uX2Xz5EwZvObFvgSjRiOTJw==
-X-Received: by 2002:a5d:6a52:: with SMTP id t18mr19177948wrw.178.1564404620043;
-	Mon, 29 Jul 2019 05:50:20 -0700 (PDT)
+	bh=j+ACxE9Mwzw6xWU30d22KqY3pHLYPl1O/glNu0hxiHY=;
+	b=pP4SV05qu/7t6P7SpJcswcENq15zod6UaIXgnsPgbNc2+wklfHTzjk/Fm8J7CChSS9
+	FI0MhMEidwYjlUU+tS8nHoYQVwSXe4j4oN2wR64ugMQXGXWz4uO1JrOYKFFDOhtgZmRp
+	kEG9cK0kFvV0fs1KDHIff1wnZfmdOmRXvTke/lWYgdwaYeFIvI68BxJDGKdyOPoK1zy+
+	xhWMdGXFF+7aN0Kh606Dzm+vBqfwlohuQ9BooqLnyOHkOD8045x+Bc1/imfWiBfUvF/e
+	Loc0yY/AaT5AI9OMlLI4iwhNMnUh3KTGkmcPAewXHtVDVr+0DJXxKXiPOjv6tSh6G+AK
+	1hwQ==
+X-Gm-Message-State: APjAAAUwMv5msduOx0oHPsQIr1cDBGirv4QuWjkGJ/TVX7fqcRG1N/uN
+	AnSa5goHUgP0IhiM6r72R3kcNw==
+X-Google-Smtp-Source: APXvYqydOKWO17ri+TzMoeOccpJuKMChMjFQ6Bvu+YRI/iEq3SL6FX0mvLlJqrz6+KJNGCmDp0lcYw==
+X-Received: by 2002:a1c:a5c2:: with SMTP id
+	o185mr97993540wme.172.1564407742994; 
+	Mon, 29 Jul 2019 06:42:22 -0700 (PDT)
 Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
 	by smtp.gmail.com with ESMTPSA id
-	a67sm67519549wmh.40.2019.07.29.05.50.18
+	q10sm63839086wrf.32.2019.07.29.06.42.22
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Mon, 29 Jul 2019 05:50:19 -0700 (PDT)
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+	Mon, 29 Jul 2019 06:42:22 -0700 (PDT)
 To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
 References: <1564055044-27593-1-git-send-email-horatiu.vultur@microchip.com>
 	<7e7a7015-6072-d884-b2ba-0a51177245ab@cumulusnetworks.com>
@@ -65,12 +65,14 @@ References: <1564055044-27593-1-git-send-email-horatiu.vultur@microchip.com>
 	<b755f613-e6d8-a2e6-16cd-6f13ec0a6ddc@cumulusnetworks.com>
 	<20190729121409.wa47uelw5f6l4vs4@lx-anielsen.microsemi.net>
 	<95315f9e-0d31-2d34-ba50-11e1bbc1465c@cumulusnetworks.com>
-Message-ID: <f4347439-0b96-f7f6-db34-4c7afbeba141@cumulusnetworks.com>
-Date: Mon, 29 Jul 2019 15:50:18 +0300
+	<20190729131420.tqukz55tz26jkg73@lx-anielsen.microsemi.net>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <3cc69103-d194-2eca-e7dd-e2fa6a730223@cumulusnetworks.com>
+Date: Mon, 29 Jul 2019 16:42:21 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <95315f9e-0d31-2d34-ba50-11e1bbc1465c@cumulusnetworks.com>
+In-Reply-To: <20190729131420.tqukz55tz26jkg73@lx-anielsen.microsemi.net>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -98,72 +100,88 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 29/07/2019 15:22, Nikolay Aleksandrov wrote:
-> Hi Allan,
-> On 29/07/2019 15:14, Allan W. Nielsen wrote:
->> Hi Nikolay,
->>
->> First of all, as mentioned further down in this thread, I realized that our
->> implementation of the multicast floodmasks does not align with the existing SW
->> implementation. We will change this, such that all multicast packets goes to the
->> SW bridge.
->>
->> This changes things a bit, not that much.
->>
->> I actually think you summarized the issue we have (after changing to multicast
->> flood-masks) right here:
->>
->> The 07/26/2019 12:26, Nikolay Aleksandrov wrote:
->>>>> Actually you mentioned non-IP traffic, so the querier stuff is not a problem. This
->>>>> traffic will always be flooded by the bridge (and also a copy will be locally sent up).
->>>>> Thus only the flooding may need to be controlled.
->>
->> This seems to be exactly what we need.
->>
->> Assuming we have a SW bridge (br0) with 4 slave interfaces (eth0-3). We use this
->> on a network where we want to limit the flooding of frames with dmac
->> 01:21:6C:00:00:01 (which is non IP traffic) to eth0 and eth1.
->>
->> One way of doing this could potentially be to support the following command:
->>
->> bridge fdb add    01:21:6C:00:00:01 port eth0
->> bridge fdb append 01:21:6C:00:00:01 port eth1
->>
-
-And the fdbs become linked lists ? So we'll increase the complexity for something
-that is already supported by ACLs (e.g. tc) and also bridge per-port multicast
-flood flag ?
-
-I'm sorry but that doesn't sound good to me for a case which is very rare and
-there are existing ways to solve without incurring performance hits or increasing
-code complexity.
-
->> On 25/07/2019 16:06, Nikolay Aleksandrov wrote:
->>>>>>>>>  In general NLM_F_APPEND is only used in vxlan, the bridge does not
->>>>>>>>>  handle that flag at all.  FDB is only for *unicast*, nothing is joined
->>>>>>>>>  and no multicast should be used with fdbs. MDB is used for multicast
->>>>>>>>>  handling, but both of these are used for forwarding.
->> This is true, and this should have been addressed in the patch, we were too
->> focused on setting up the offload patch in the driver, and forgot to do the SW
->> implementation.
->>
->> Do you see any issues in supporting this flag, and updating the SW
->> forwarding in br_handle_frame_finish such that it can support/allow a FDB entry
->> to be a multicast?
->>
+On 29/07/2019 16:14, Allan W. Nielsen wrote:
+> The 07/29/2019 15:22, Nikolay Aleksandrov wrote:
+>> Yes, all of the multicast code is handled differently, it doesn't go through the fdb
+>> lookup or code at all. I don't see how you'll do a lookup in the fdb table with a
+>> multicast mac address, take a look at br_handle_frame_finish() and you'll notice
+>> that when a multicast dmac is detected then we use the bridge mcast code for lookups
+>> and forwarding.
 > 
-> Yes, all of the multicast code is handled differently, it doesn't go through the fdb
-> lookup or code at all. I don't see how you'll do a lookup in the fdb table with a
-> multicast mac address, take a look at br_handle_frame_finish() and you'll notice
-> that when a multicast dmac is detected then we use the bridge mcast code for lookups
-> and forwarding. If you're trying to achieve Rx only on the bridge of these then
-> why not just use Ido's tc suggestion or even the ip maddr add offload for each port ?
+> Here is my thinking (needs much more elaboration, which will come if we do a
+> patch to test it out):
 > 
-> If you add a multicast mac in the fdb (currently allowed, but has no effect) and you
-> use dev_mc_add() as suggested that'd just be a hack to pass it down and it is already
-> possible to achieve via other methods, no need to go through the bridge.
 > 
->> /Allan
+> In br_pkt_type
+> 
+> Rename BR_PKT_MULTICAST to BR_PKT_MULTICAST_IP
+> Add a new type called BR_PKT_MULTICAST_L2
+> 
+> In br_handle_frame_finish
+> 
+> 	if (is_multicast_ether_addr(dest)) {
+> 		/* by definition the broadcast is also a multicast address */
+> 		if (is_broadcast_ether_addr(dest)) {
+> 			pkt_type = BR_PKT_BROADCAST;
+> 			local_rcv = true;
+> 		} else {
+> 			pkt_type = BR_PKT_MULTICAST;
+> 			if (br_multicast_rcv(br, p, skb, vid))
+> 				goto drop;
+> 		}
+> 	}
+> 
+> Change the code above to detect if it is a BR_PKT_MULTICAST_IP or a
+> BR_PKT_MULTICAST_L2
+> 
+> 
+> In this section:
+> 
+> switch (pkt_type) {
+> ....
+> }
+> 
+> if (dst) {
+> } else {
+> }
+> 
+> Add awareness to the BR_PKT_MULTICAST_L2 type, and allow it do forwarding
+> according to the static entry if it is there.
+> 
+
+All of these add overhead to everyone - standard unicast and multicast forwarding.
+Also as mentioned in my second email the fdb would need changes which would further
+increase that overhead and also the code complexity for everyone for a use-case which
+is very rare when there are alternatives today which avoid all of that. Offload tc rules
+and add a rule to allow that traffic on ingress for particular ports, then either use
+the bridge multicast flood flag or tc again to restrict flood to other egress ports.
+
+Alternatively use ip maddr add which calls dev_mc_add() which is what the patch was
+trying to do in the first place to allow the Rx of these packets and then control
+the flooding via one of the above methods.
+
+Alternatively offload nft and use that to control the traffic.
+
+I'm sure there are more ways that I'm missing. :)
+
+If you find a way to achieve this without incurring a performance hit or significant
+code complexity increase, and without breaking current use-cases (e.g. unexpected default
+forwarding behaviour changes) then please send a patch and we can discuss it further with
+all details present. People have provided enough alternatives which avoid all of the
+problems.
+
+>> If you're trying to achieve Rx only on the bridge of these then
+>> why not just use Ido's tc suggestion or even the ip maddr add offload for each port ?
 >>
+>> If you add a multicast mac in the fdb (currently allowed, but has no effect) and you
+>> use dev_mc_add() as suggested that'd just be a hack to pass it down and it is already
+>> possible to achieve via other methods, no need to go through the bridge.
+> 
+> Well, I wanted the SW bridge implementation to behave the same with an without
+> HW offload.
+> 
+> And also, I believe that is conceptually belongs to the MAC tables.
+> 
+> /Allan
 > 
 
