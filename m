@@ -2,79 +2,85 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55687DCA5
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B762E7DCB7
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:42:59 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 2FDDD1016;
-	Thu,  1 Aug 2019 13:39:38 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id CE56F1409;
+	Thu,  1 Aug 2019 13:40:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id CDB684201
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 06CA3103E
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 22:40:07 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
-	[209.85.221.67])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 242596CE
+	Mon, 29 Jul 2019 06:09:29 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
+	[66.111.4.26])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 6EC7F2C6
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 22:40:07 +0000 (UTC)
-Received: by mail-wr1-f67.google.com with SMTP id f9so71380709wre.12
-	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 15:40:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cumulusnetworks.com; s=google;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=mfhsqc0xEWQd66BFU0M2p3Go+hte74AED6AOyPt5Bek=;
-	b=hkPWTHKisbyoJ6Qp+q1em+N6EHGZjrb6kjcwFpOGNd2Ce0dirGPPb9TvPKP0U5ILBd
-	b/FQbGxtmwIC7nyqo+pooZ4VZjbEzCJ43MRmlMocIRxrlestb6t7DvGgKlsDcXMtM1f3
-	wuVdeK48DJaxYQYADAEbjW19VaIA9JgHzeCNQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=mfhsqc0xEWQd66BFU0M2p3Go+hte74AED6AOyPt5Bek=;
-	b=sQRWzLdN72j7ZlnhvoIHN5/QJ44dgNZiA0Dyfr5Vufx7+nF94P9fz9R1G6B+NVJ5lr
-	KtSTwNwyJB+BczZ8MQUBoxQ21a/ZADCrqRs+3b+Am0hbnTEbfdDDT5P5codhuPLxy+hc
-	443rf3belUgQ8uJiWqkrbSlb3ZcXtFImZcnZ2sD8VYbQYarAufaHlwW/Z57xLtAGGai2
-	3KyneAJvHLMzDkDRAJrVeyR1meuOb2W/2gm1xLFgQRiOVwGzQXjuMzxv2zpXCf7fjqYZ
-	ZDULkL/SRQW8ZqZZ3QaQX8RbudBSP/l4gCP8a5gA8GvX105gyht2naP/h9tMHxTAxOPI
-	Fo+g==
-X-Gm-Message-State: APjAAAV6NAm0+LoxfZnouaeICqtE4rLiG8T9QossPReiiYgCYUm7ipEI
-	uTnxztcSCl3unAYaAhXV9n2XZ7ZiFNa+eg==
-X-Google-Smtp-Source: APXvYqx2aHClGbT+5UXps9NR1/Yv3rHEoSR4XVpmjGTQNo17EBxhvjxo8MS23xbszQlRJQuvg0v8+A==
-X-Received: by 2002:a5d:6408:: with SMTP id z8mr119638806wru.246.1564612805810;
-	Wed, 31 Jul 2019 15:40:05 -0700 (PDT)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id
-	o7sm60551463wmf.43.2019.07.31.15.40.04
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Wed, 31 Jul 2019 15:40:05 -0700 (PDT)
-To: netdev@vger.kernel.org
-References: <20190731183623.20127-1-nikolay@cumulusnetworks.com>
-	<20190731223736.18856-1-nikolay@cumulusnetworks.com>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <319fda43-195d-2b92-7f62-7e273c084a29@cumulusnetworks.com>
-Date: Thu, 1 Aug 2019 01:40:03 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
+	Mon, 29 Jul 2019 06:09:28 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id B022721BA9;
+	Mon, 29 Jul 2019 02:09:27 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+	by compute3.internal (MEProxy); Mon, 29 Jul 2019 02:09:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=/SBTOk
+	cbxtFVR/CQbarJXCkuOQOjrMyBPaPW6M0UaOY=; b=tU5hGH3MbArrHjbFBCxnyN
+	sLwoXsz5UlH8fSkija53SDNKpwKyPmwLL7Q77iRj6oep4VVras9IhIY7B1Lh2Q9v
+	Xlxr19rUz3fWZxt2yb+gj9YAib0kv06C6KrIDKQmwkCJTO39eMNIUGMJ+O1yHjFX
+	TKFan5XnAtpVvarDGVGGLYjS3SDbe45WOPY0UFaIDVMT+cIClG3XbqqpFYgivyvR
+	3wI90SEMVIWAD9WcWtzmYmGXhHTlOy0cAamegbz7XLhK29Epy0o4mjayLrSMIFvD
+	AwhdDJkiGyAGCK46262UZXarz/0kS3EBU+ls0ITFWz5mkajFWbGKd6GYrG9FRBrg
+	==
+X-ME-Sender: <xms:lY0-XeRFLxc_89Ovi38c5c_4U18LY6x5fm8VPMYK5X3eHaL9qagLzg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrledtgddutdefucetufdoteggodetrfdotf
+	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+	uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+	cujfgurhepfffhvffukfhfgggtuggjfgesthdtredttdervdenucfhrhhomhepkfguohcu
+	ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecukfhppedule
+	efrdegjedrudeihedrvdehudenucfrrghrrghmpehmrghilhhfrhhomhepihguohhstghh
+	sehiughoshgthhdrohhrghenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:lY0-Xd2kBRcEYGfdOM8_THMJW0L6ZW9vqSdM5B44LGtdTnWIN37btw>
+	<xmx:lY0-XQwM7I5k4jx9ZTP45nbw-0EhJq7RqtoOOiPtEo7yvX75kVceGQ>
+	<xmx:lY0-XRzMUeoucuNzVH_GhHIT6y8K0XE7AkeCd_uf7V3MVCZtJySAMg>
+	<xmx:l40-XQI3KeEhB6FjU7hI4CPYZNNBhBX9ZcxHhLknPV5foPv5GHOioQ>
+Received: from localhost (unknown [193.47.165.251])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 63E4D80061;
+	Mon, 29 Jul 2019 02:09:25 -0400 (EDT)
+Date: Mon, 29 Jul 2019 09:09:23 +0300
+From: Ido Schimmel <idosch@idosch.org>
+To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
+Message-ID: <20190729060923.GA16938@splinter>
+References: <7e7a7015-6072-d884-b2ba-0a51177245ab@cumulusnetworks.com>
+	<eef063fe-fd3a-7e02-89c2-e40728a17578@cumulusnetworks.com>
+	<20190725142101.65tusauc6fzxb2yp@soft-dev3.microsemi.net>
+	<b9ce433a-3ef7-fe15-642a-659c5715d992@cumulusnetworks.com>
+	<e6ad982f-4706-46f9-b8f0-1337b09de350@cumulusnetworks.com>
+	<20190726120214.c26oj5vks7g5ntwu@soft-dev3.microsemi.net>
+	<20190726134613.GD18223@lunn.ch>
+	<20190726195010.7x75rr74v7ph3m6m@lx-anielsen.microsemi.net>
+	<20190727030223.GA29731@lunn.ch>
+	<20190728191558.zuopgfqza2iz5d5b@lx-anielsen.microsemi.net>
 MIME-Version: 1.0
-In-Reply-To: <20190731223736.18856-1-nikolay@cumulusnetworks.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190728191558.zuopgfqza2iz5d5b@lx-anielsen.microsemi.net>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	davem@davemloft.net, michael-dev <michael-dev@fami-braun.de>
-Subject: Re: [Bridge] [PATCH net v2] net: bridge: move vlan init/deinit to
- NETDEV_REGISTER/UNREGISTER
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+	bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	davem@davemloft.net, Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
+	groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -89,63 +95,42 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 01/08/2019 01:37, Nikolay Aleksandrov wrote:
-> Most of the bridge device's vlan init bugs come from the fact that it's
-> done in the wrong place, way too early in ndo_init() before the device is
-> even assigned an ifindex. That makes error handling harder, especially for
-> older kernels which don't have bridge ndo_uninit callback. It also
-> introduces another bug when the bridge's dev_addr is added as fdb in the
-> the initial default pvid on vlan initialization, the fdb notification has
-> ifindex/NDA_MASTER both equal to 0 (see example below) which really
-> makes no sense for user-space[0]. Usually user-space software would ignore
-> such entries, but they are actually valid and will eventually have all
-> necessary attributes. I chose to change the order because this can be
-> backported to all kernels even pre-ndo_uninit ones without many changes
-> and it keeps init/deinit symmetric. As a bonus this allows us to keep
-> the vlan init/deinit entirely in br_vlan.c and remove those exports.
-> It makes much more sense to send a notification *after* the device has
-> registered and has a proper ifindex allocated rather than before when
-> there's a chance that the registration might still fail.
+On Sun, Jul 28, 2019 at 09:15:59PM +0200, Allan W. Nielsen wrote:
+> If we assume that the SwitchDev driver implemented such that all multicast
+> traffic goes to the CPU, then we should really have a way to install a HW
+> offload path in the silicon, such that these packets does not go to the CPU (as
+> they are known not to be use full, and a frame every 3 us is a significant load
+> on small DMA connections and CPU resources).
 > 
-> For the demonstration below a small change to iproute2 for printing all fdb
-> notifications is added, because it contained a workaround not to show
-> entries with ifindex == 0.
-> Command executed while monitoring: $ ip l add br0 type bridge
-> Before (both ifindex and master == 0):
-> $ bridge monitor fdb
-> 36:7e:8a:b3:56:ba dev * vlan 1 master * permanent
-> 
-> After (proper br0 ifindex):
-> $ bridge monitor fdb
-> e6:2a:ae:7a:b7:48 dev br0 vlan 1 master br0 permanent
-> 
-> v2: on error in br_vlan_init set br->vlgrp to NULL
-> 
-> [0] https://bugzilla.kernel.org/show_bug.cgi?id=204389
-> 
-> Reported-by: michael-dev <michael-dev@fami-braun.de>
-> Fixes: 5be5a2df40f0 ("bridge: Add filtering support for default_pvid")
-> Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-> ---
-> I tried a few different approaches to resolve this but they were all
-> unsuitable for some kernels, this approach can go to stables easily
-> and IMO is the way this had to be done from the start. Alternatively
-> we could move only the br_vlan_add and pair it with a br_vlan_del of
-> default_pvid on the same events, but I don't think it hurts to move
-> the whole init/deinit there as it'd help older stable releases as well.
-> 
-> I also tested the br_vlan_init error handling after the move by always
-> returning errors from all over it. Since errors at NETDEV_REGISTER cause
-> NETDEV_UNREGISTER we can deinit vlans properly for all cases regardless
-> why it happened (e.g. device destruction or init error).
-> 
->  net/bridge/br.c         |  5 ++++-
->  net/bridge/br_device.c  | 10 ----------
->  net/bridge/br_private.h | 19 ++++---------------
->  net/bridge/br_vlan.c    | 25 ++++++++++++++++++-------
->  4 files changed, 26 insertions(+), 33 deletions(-)
-> 
+> If we assume that the SwitchDev driver implemented such that only "needed"
+> multicast packets goes to the CPU, then we need a way to get these packets in
+> case we want to implement the DLR protocol.
 
-Aargh, I apologize for the noise, this is the wrong v2 patch...
-Will send the correct one as v3 in a moment.
+I'm not familiar with the HW you're working with, so the below might not
+be relevant.
 
+In case you don't want to send all multicast traffic to the CPU (I'll
+refer to it later), you can install an ingress tc filter that traps to
+the CPU the packets you do want to receive. Something like:
+
+# tc qdisc add dev swp1 clsact
+# tc filter add dev swp1 pref 1 ingress flower skip_sw dst_mac \
+	01:21:6C:00:00:01 action trap
+
+If your HW supports sharing the same filter among multiple ports, then
+you can install your filter in a tc shared block and bind multiple ports
+to it.
+
+Another option is to always send a *copy* of multicast packets to the
+CPU, but make sure the HW uses a policer that prevents the CPU from
+being overwhelmed. To avoid packets being forwarded twice (by HW and
+SW), you will need to mark such packets in your driver with
+'skb->offload_fwd_mark = 1'.
+
+Now, in case user wants to allow the CPU to receive certain packets at a
+higher rate, a tc filter can be used. It will be identical to the filter
+I mentioned earlier, but with a 'police' action chained before 'trap'.
+
+I don't think this is currently supported by any driver, but I believe
+it's the right way to go: By default the CPU receives all the traffic it
+should receive and user can fine-tune it using ACLs.
