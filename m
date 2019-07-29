@@ -2,81 +2,84 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6727DCB0
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78B0C7DCCF
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:50:16 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 3B55413F4;
-	Thu,  1 Aug 2019 13:39:59 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 04AE71563;
+	Thu,  1 Aug 2019 13:49:47 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 548D5AEC6
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 561181C28
 	for <bridge@lists.linux-foundation.org>;
-	Thu,  1 Aug 2019 12:58:52 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
-	[216.71.150.166])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id E5FA77ED
+	Mon, 29 Jul 2019 17:51:41 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
+	[66.111.4.25])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id BA9175E4
 	for <bridge@lists.linux-foundation.org>;
-	Thu,  1 Aug 2019 12:58:51 +0000 (UTC)
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
-	Horatiu.Vultur@microchip.com designates 198.175.253.82 as
-	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="Horatiu.Vultur@microchip.com";
-	x-conformance=spf_only; x-record-type="v=spf1";
-	x-record-text="v=spf1 mx a:ushub1.microchip.com
-	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-	a:mx2.microchip.iphmx.com include:servers.mcsv.net
-	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
-	authenticity information available from domain of
-	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com;
-	dkim=none (message not signed) header.i=none;
-	spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
-	spf=None smtp.helo=postmaster@email.microchip.com;
-	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: 2+Lg3f808W8Ko/TvGY+D0dzXyTWjYgoH5Xuh4Ylc7SPwyJD4SFv/vajNl8U2pEd45vtGXMaS7X
-	Xb+S+miSsGcsI59JfV6Amm57ollqFXT/Ij+Sf0/IfC/X4Wr6SJ4bKg1WvYT1GM86kq6n4LgwT6
-	LDiDu1TqDE/LUur4OxzLZGks8YUZVHdGQxne0BzoqojNtmrJloCCKixAkvz/SqeJwgsZ77JY0+
-	mbMe5eUXHVNcn5XCvvdazbXaRfIFXT2cRn/a7VdoSJC8NLhPn36odf0rRv24I0Y7GS2WpV7tOW
-	pvw=
-X-IronPort-AV: E=Sophos;i="5.64,334,1559545200"; d="scan'208";a="42025085"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
-	([198.175.253.82])
-	by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	01 Aug 2019 05:51:45 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
-	chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Thu, 1 Aug 2019 05:51:44 -0700
-Received: from soft-dev3.microsemi.net (10.10.85.251) by
-	chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
-	15.1.1713.5 via Frontend Transport; Thu, 1 Aug 2019 05:51:42 -0700
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: <nikolay@cumulusnetworks.com>, <idosch@mellanox.com>, <andrew@lunn.ch>,
-	<allan.nielsen@microchip.com>
-Date: Thu, 1 Aug 2019 14:51:27 +0200
-Message-ID: <1564663887-27854-1-git-send-email-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.7.4
+	Mon, 29 Jul 2019 17:51:40 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id 984B721F4C;
+	Mon, 29 Jul 2019 13:51:39 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+	by compute3.internal (MEProxy); Mon, 29 Jul 2019 13:51:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Vpmx8x
+	fcs9+OL5FkaK+/UEwKsySo7yiF3ecK8DXDOSg=; b=grga5bl+eOQHaywMoChyiC
+	ztI4BSrPCjEChRuC/fOz8w9tdiHjIO/2BN8Siw4Wd8Ssgk73YBGdkTFRiOXORHnq
+	1ixaCVz80BvG7qmjfcYd+Pq/tFBvK+Ar2rKCU2m5J1niugkNAPcylN3NO9TvaRUr
+	gD0I3frsL19ErIscBrj8Ujuj3GO3OLO5rylSDocWrpMtbaRVO31InrLB4mxzUaTE
+	RoS8OQ7K0G01inyKaLpNfaYTMEfkDUmyub7gIAL5hryNZPz4P7ItRdLZOojk08m+
+	TYDI3QBSPDDIzK0rTeQuL1Ujf50Y55GWsUri7aaCk38fLqEpzB/9kb7DqZDHtWWg
+	==
+X-ME-Sender: <xms:KzI_XWdCnabs6lZOlxQbAAvuiQbx80MlLGwwM-VXeBoVT7-hlqPyDQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrledugdduudekucetufdoteggodetrfdotf
+	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+	uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+	cujfgurhepfffhvffukfhfgggtuggjfgesthdtredttdervdenucfhrhhomhepkfguohcu
+	ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecukfhppedule
+	efrdegjedrudeihedrvdehudenucfrrghrrghmpehmrghilhhfrhhomhepihguohhstghh
+	sehiughoshgthhdrohhrghenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:KzI_XdXlBs49ugvzZza8H6XeRA5IEtMCBss9b6945oWVd3T5MVMU0A>
+	<xmx:KzI_XX8hOiBa7dseYn0xAEeadx715Tc158nwU3EwZ1kcMWtZ7TBvAg>
+	<xmx:KzI_XU_exZEZWnorcwuYN5v4J8EqYZWAaIu7N20pH5QNn1QTOiqidQ>
+	<xmx:KzI_Xa8Xn2gLFLpqsNVZMyIVqqUYTFZloJP4mf3O2qNSj8Kt4qy1oA>
+Received: from localhost (unknown [193.47.165.251])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 8BA5D380074;
+	Mon, 29 Jul 2019 13:51:38 -0400 (EDT)
+Date: Mon, 29 Jul 2019 20:51:36 +0300
+From: Ido Schimmel <idosch@idosch.org>
+To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
+Message-ID: <20190729175136.GA28572@splinter>
+References: <e6ad982f-4706-46f9-b8f0-1337b09de350@cumulusnetworks.com>
+	<20190726120214.c26oj5vks7g5ntwu@soft-dev3.microsemi.net>
+	<b755f613-e6d8-a2e6-16cd-6f13ec0a6ddc@cumulusnetworks.com>
+	<20190729121409.wa47uelw5f6l4vs4@lx-anielsen.microsemi.net>
+	<95315f9e-0d31-2d34-ba50-11e1bbc1465c@cumulusnetworks.com>
+	<20190729131420.tqukz55tz26jkg73@lx-anielsen.microsemi.net>
+	<3cc69103-d194-2eca-e7dd-e2fa6a730223@cumulusnetworks.com>
+	<20190729135205.oiuthcyesal4b4ct@lx-anielsen.microsemi.net>
+	<e4cd0db9-695a-82a7-7dc0-623ded66a4e5@cumulusnetworks.com>
+	<20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=unavailable version=3.3.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org, fw@strlen.de,
-	linux-kernel@vger.kernel.org, Horatiu
-	Vultur <horatiu.vultur@microchip.com>, tglx@linutronix.de,
-	davem@davemloft.net
-Subject: [Bridge] [iproute2,rfc] bridge: mdb: Extend with with LLADDR
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
+	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+	linux-kernel@vger.kernel.org, davem@davemloft.net,
+	Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
+	groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -91,88 +94,68 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Extend bridge mdb command to accept as group also link layer multicast
-addresss. The old behaviour is not change.
+On Mon, Jul 29, 2019 at 04:35:09PM +0200, Allan W. Nielsen wrote:
+> The 07/29/2019 17:21, Nikolay Aleksandrov wrote:
+> > On 29/07/2019 16:52, Allan W. Nielsen wrote:
+> > > The 07/29/2019 15:50, Nikolay Aleksandrov wrote:
+> > >> On 29/07/2019 15:22, Nikolay Aleksandrov wrote:
+> > >>> Hi Allan,
+> > >>> On 29/07/2019 15:14, Allan W. Nielsen wrote:
+> > >>>> First of all, as mentioned further down in this thread, I realized that our
+> > >>>> implementation of the multicast floodmasks does not align with the existing SW
+> > >>>> implementation. We will change this, such that all multicast packets goes to the
+> > >>>> SW bridge.
+> > >>>>
+> > >>>> This changes things a bit, not that much.
+> > >>>>
+> > >>>> I actually think you summarized the issue we have (after changing to multicast
+> > >>>> flood-masks) right here:
+> > >>>>
+> > >>>> The 07/26/2019 12:26, Nikolay Aleksandrov wrote:
+> > >>>>>>> Actually you mentioned non-IP traffic, so the querier stuff is not a problem. This
+> > >>>>>>> traffic will always be flooded by the bridge (and also a copy will be locally sent up).
+> > >>>>>>> Thus only the flooding may need to be controlled.
+> > >>>>
+> > >>>> This seems to be exactly what we need.
+> > >>>>
+> > >>>> Assuming we have a SW bridge (br0) with 4 slave interfaces (eth0-3). We use this
+> > >>>> on a network where we want to limit the flooding of frames with dmac
+> > >>>> 01:21:6C:00:00:01 (which is non IP traffic) to eth0 and eth1.
+> > >>>>
+> > >>>> One way of doing this could potentially be to support the following command:
+> > >>>>
+> > >>>> bridge fdb add    01:21:6C:00:00:01 port eth0
+> > >>>> bridge fdb append 01:21:6C:00:00:01 port eth1
+> > >> And the fdbs become linked lists?
+> > > Yes, it will most likely become a linked list
+> > > 
+> > >> So we'll increase the complexity for something that is already supported by
+> > >> ACLs (e.g. tc) and also bridge per-port multicast flood flag ?
+> > > I do not think it can be supported with the facilities we have today in tc.
+> > > 
+> > > We can do half of it (copy more fraems to the CPU) with tc, but we can not limit
+> > > the floodmask of a frame with tc (say we want it to flood to 2 out of 4 slave
+> > > ports).
+> > Why not ? You attach an egress filter for the ports and allow that dmac on only
+> > 2 of the ports.
+> Because we want a solution which we eventually can offload in HW. And the HW
+> facilities we have is doing ingress processing (we have no egress ACLs in this
+> design), and if we try to offload an egress rule, with an ingress HW facility,
+> then we will run into other issues.
 
-To add new mdb entry:
-bridge mdb add dev br0 port eth0 grp 11:22:33:44:55:66 permanent vid 1
+Can you please clarify what you're trying to achieve? I just read the
+thread again and my impression is that you're trying to locally receive
+packets with a certain link layer multicast address. Nik suggested
+SIOCADDMULTI and I suggested a tc filter to get the packet to the CPU.
 
-To display existing entries:
-bridge mdb
-dev br0 port eth4 grp 01:00:00:00:00:01 permanent offload vid 1
+If you now want to limit the ports to which this packet is flooded, then
+you can use tc filters in *software*:
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- bridge/mdb.c                   | 29 ++++++++++++++++++++++++-----
- include/uapi/linux/if_bridge.h |  1 +
- 2 files changed, 25 insertions(+), 5 deletions(-)
+# tc qdisc add dev eth2 clsact
+# tc filter add dev eth2 egress pref 1 flower skip_hw \
+	dst_mac 01:21:6C:00:00:01 action drop
 
-diff --git a/bridge/mdb.c b/bridge/mdb.c
-index 928ae56..057c0b6 100644
---- a/bridge/mdb.c
-+++ b/bridge/mdb.c
-@@ -138,9 +138,21 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
- 	print_string(PRINT_ANY, "port", " port %s",
- 		     ll_index_to_name(e->ifindex));
- 
--	print_color_string(PRINT_ANY, ifa_family_color(af),
--			    "grp", " grp %s",
--			    inet_ntop(af, src, abuf, sizeof(abuf)));
-+	if (e->addr.proto == htons(ETH_P_IP) ||
-+	    e->addr.proto == htons(ETH_P_IPV6)) {
-+		print_color_string(PRINT_ANY, ifa_family_color(af),
-+				   "grp", " grp %s",
-+				   inet_ntop(af, src, abuf, sizeof(abuf)));
-+	} else {
-+		const char *lladdr;
-+		SPRINT_BUF(b1);
-+
-+		lladdr = ll_addr_n2a(e->addr.u.mac, ETH_ALEN, 0, b1,
-+				     sizeof(b1));
-+
-+		print_color_string(PRINT_ANY, COLOR_MAC, "grp", " grp %s",
-+				   lladdr);
-+	}
- 
- 	print_string(PRINT_ANY, "state", " %s",
- 			   (e->state & MDB_PERMANENT) ? "permanent" : "temp");
-@@ -380,6 +392,7 @@ static int mdb_modify(int cmd, int flags, int argc, char **argv)
- 	};
- 	struct br_mdb_entry entry = {};
- 	char *d = NULL, *p = NULL, *grp = NULL;
-+	char abuf[ETH_ALEN];
- 	short vid = 0;
- 
- 	while (argc > 0) {
-@@ -422,8 +435,14 @@ static int mdb_modify(int cmd, int flags, int argc, char **argv)
- 
- 	if (!inet_pton(AF_INET, grp, &entry.addr.u.ip4)) {
- 		if (!inet_pton(AF_INET6, grp, &entry.addr.u.ip6)) {
--			fprintf(stderr, "Invalid address \"%s\"\n", grp);
--			return -1;
-+			if (sscanf(grp, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",
-+				   abuf, abuf+1, abuf+2, abuf+3, abuf+4,
-+				   abuf+5) != 6) {
-+				fprintf(stderr, "Invalid address \"%s\"\n", grp);
-+				return -1;
-+			}
-+			memcpy(entry.addr.u.mac, abuf, ETH_ALEN);
-+			entry.addr.proto = 0;
- 		} else
- 			entry.addr.proto = htons(ETH_P_IPV6);
- 	} else
-diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 04f763c..88aad9c 100644
---- a/include/uapi/linux/if_bridge.h
-+++ b/include/uapi/linux/if_bridge.h
-@@ -243,6 +243,7 @@ struct br_mdb_entry {
- 		union {
- 			__be32	ip4;
- 			struct in6_addr ip6;
-+			__u8	mac[ETH_ALEN];
- 		} u;
- 		__be16		proto;
- 	} addr;
--- 
-2.7.4
+If you want to forward the packet in hardware and locally receive it,
+you can chain several mirred action and then a trap action.
 
+Both options avoid HW egress ACLs which your design does not support.
