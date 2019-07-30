@@ -2,68 +2,50 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5680F7DD67
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E72B27DD68
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:07:31 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 6B828AC8;
-	Thu,  1 Aug 2019 14:07:19 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 652BF2905;
+	Thu,  1 Aug 2019 14:07:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id D33AC2E7D
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 5D2832CE4
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 14:34:12 +0000 (UTC)
+	Tue, 30 Jul 2019 17:18:13 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 4486CF1
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id ED2D56CE
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 14:34:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124;
-	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=0W0+mRwLqmOfmgb+U09T1ELePqWxxs2khnaIID5pQgE=;
-	b=b0KlczLt2Z1pkj5Zj0Mvo5i21d
-	+HAHbbFYbXFpKPTJWXQmCP2UAmWm8z0keX1iaNubOR3Uo6eft1WySXrrJ9CvIyTEOlzs78zMNvfVS
-	3X1RmVB9G0dv299nrNfe/avRnp7UvYu2O+q0hL85TQNNYrUFWBagdFmyJyaEOUUmYF14=; 
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-	(envelope-from <andrew@lunn.ch>)
-	id 1hsTCS-00005y-3q; Tue, 30 Jul 2019 16:34:00 +0200
-Date: Tue, 30 Jul 2019 16:34:00 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
-Message-ID: <20190730143400.GO28552@lunn.ch>
-References: <b755f613-e6d8-a2e6-16cd-6f13ec0a6ddc@cumulusnetworks.com>
-	<20190729121409.wa47uelw5f6l4vs4@lx-anielsen.microsemi.net>
-	<95315f9e-0d31-2d34-ba50-11e1bbc1465c@cumulusnetworks.com>
-	<20190729131420.tqukz55tz26jkg73@lx-anielsen.microsemi.net>
-	<3cc69103-d194-2eca-e7dd-e2fa6a730223@cumulusnetworks.com>
-	<20190729135205.oiuthcyesal4b4ct@lx-anielsen.microsemi.net>
-	<e4cd0db9-695a-82a7-7dc0-623ded66a4e5@cumulusnetworks.com>
-	<20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
-	<20190729175136.GA28572@splinter>
-	<20190730062721.p4vrxo5sxbtulkrx@lx-anielsen.microsemi.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190730062721.p4vrxo5sxbtulkrx@lx-anielsen.microsemi.net>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	Tue, 30 Jul 2019 17:18:12 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+	(using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	(Authenticated sender: davem-davemloft)
+	by shards.monkeyblade.net (Postfix) with ESMTPSA id 3BADA12652B2F;
+	Tue, 30 Jul 2019 10:18:12 -0700 (PDT)
+Date: Tue, 30 Jul 2019 10:18:11 -0700 (PDT)
+Message-Id: <20190730.101811.1836331521043535108.davem@davemloft.net>
+To: nikolay@cumulusnetworks.com
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20190730112100.18156-1-nikolay@cumulusnetworks.com>
+References: <20190730112100.18156-1-nikolay@cumulusnetworks.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+	(shards.monkeyblade.net [149.20.54.216]);
+	Tue, 30 Jul 2019 10:18:12 -0700 (PDT)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
-	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	linux-kernel@vger.kernel.org, davem@davemloft.net,
-	Ido Schimmel <idosch@idosch.org>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
-	groups
+Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+	bridge@lists.linux-foundation.org
+Subject: Re: [Bridge] [PATCH net] net: bridge: mcast: don't delete permanent
+ entries when fast leave is enabled
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -78,17 +60,21 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Hi Allan
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Date: Tue, 30 Jul 2019 14:21:00 +0300
 
-Just throwing out another idea....
+> diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+> index 3d8deac2353d..f8cac3702712 100644
+> --- a/net/bridge/br_multicast.c
+> +++ b/net/bridge/br_multicast.c
+> @@ -1388,6 +1388,9 @@ br_multicast_leave_group(struct net_bridge *br,
+>  			if (!br_port_group_equal(p, port, src))
+>  				continue;
+>  
+> +			if (p->flags & MDB_PG_FLAGS_PERMANENT)
+> +				break;
+> +
 
-The whole offloading story has been you use the hardware to accelerate
-what the Linux stack can already do.
-
-In this case, you want to accelerate Device Level Ring, DLR.  But i've
-not yet seen a software implementation of DLR. Should we really be
-considering first adding DLR to the SW bridge? Make it an alternative
-to the STP code? Once we have a generic implementation we can then
-look at how it can be accelerated using switchdev.
-
-     Andrew
+Like David, I also don't understand why this can be a break.  Is it because
+permanent entries are always the last on the list?  Why will there be no
+other entries that might need to be processed on the list?
