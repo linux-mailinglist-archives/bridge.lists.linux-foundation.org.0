@@ -2,47 +2,79 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4107DD21
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BDC7DD22
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:01:21 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 7624D18BC;
-	Thu,  1 Aug 2019 13:59:44 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 3435F1905;
+	Thu,  1 Aug 2019 13:59:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 18AB62C9A
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 087BC2CA2
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 12:36:06 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from Chamillionaire.breakpoint.cc (Chamillionaire.breakpoint.cc
-	[193.142.43.52])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 96A8A2C6
+	Tue, 30 Jul 2019 12:41:28 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
+	[209.85.221.66])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 501DD2C6
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 12:36:05 +0000 (UTC)
-Received: from fw by Chamillionaire.breakpoint.cc with local (Exim 4.89)
-	(envelope-from <fw@strlen.de>)
-	id 1hsRLy-0003m8-Pk; Tue, 30 Jul 2019 14:35:42 +0200
-Date: Tue, 30 Jul 2019 14:35:42 +0200
-From: Florian Westphal <fw@strlen.de>
-To: Rundong Ge <rdong.ge@gmail.com>
-Message-ID: <20190730123542.zrsrfvcy7t2n3d4g@breakpoint.cc>
+	Tue, 30 Jul 2019 12:41:27 +0000 (UTC)
+Received: by mail-wr1-f66.google.com with SMTP id n9so40533787wrr.4
+	for <bridge@lists.linux-foundation.org>;
+	Tue, 30 Jul 2019 05:41:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=BlP4513unQUdet+MKvQ2g15uNq4TvoNSOCqk6BEJf7o=;
+	b=gJ1Zv7I1MINBx3xVNBcaEWYgqiAI2Hxdpv8UWLgZ1l+KCYj74JMQWldehUfc6SIkAz
+	6wAw9qlPZq6SQKIeNsAhxvcBfOZEMvPvAc5Q0LHyJdD4gVZgojW4m+qLNz4GfrBixnVY
+	AKPWBhhHasuwPOKwO/HteYm4dTpfSYy2+WL0w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=BlP4513unQUdet+MKvQ2g15uNq4TvoNSOCqk6BEJf7o=;
+	b=II4kTv2mAmSr8LuXSLe7FLnWNtXlOaxRw9Ub5NINm0gLLkOsid3a/xVMS1jkhCdmZ5
+	WO/o0twfW+/5oIePRO+US6xu2Z+vYlcrjACLexDliB/zechJD5TOjN4ufhr8Z399ZPz2
+	BSK96jJ9mTY0XT2gCiHSjn/EqG6qhHIpM2An1YsEeYykpZ86BoQubZMOPgaDc0uaj9ch
+	y01ujiyFmRL/zhZTue2vkV76McA7eJ9lOQaucfKO7nHs1KbFfJOLMDvBAH6Uet37P2dG
+	z1DB7uFR+MvMGA6LfVMc0DYk+cZ3KIE1xl5uv1W5+Zv99FDqUus4DW3njycTnmK2y0sf
+	KedQ==
+X-Gm-Message-State: APjAAAUMFdYVPQcjtJvynbiK9+1sDdIjynI+FIreL3rdO448VtbOQIaB
+	UrQA2IAxXJvOEXhJzDSsczue1A==
+X-Google-Smtp-Source: APXvYqymLpYKBAlscHzFKItEq4jYCoeLBstlJUeaMgXHLDywH09H+q/A04KfrqhOZLQGA6w7A4n4MQ==
+X-Received: by 2002:a5d:5507:: with SMTP id b7mr12759586wrv.35.1564490485822; 
+	Tue, 30 Jul 2019 05:41:25 -0700 (PDT)
+Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+	by smtp.gmail.com with ESMTPSA id
+	g12sm94634989wrv.9.2019.07.30.05.41.24
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Tue, 30 Jul 2019 05:41:25 -0700 (PDT)
+To: Rundong Ge <rdong.ge@gmail.com>, davem@davemloft.net
 References: <20190730122534.30687-1-rdong.ge@gmail.com>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <1dc87e69-628b-fd04-619a-8dbe5bdfa108@cumulusnetworks.com>
+Date: Tue, 30 Jul 2019 15:41:23 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 In-Reply-To: <20190730122534.30687-1-rdong.ge@gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: yoshfuji@linux-ipv6.org, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
 	bridge@lists.linux-foundation.org, fw@strlen.de,
 	linux-kernel@vger.kernel.org, kadlec@netfilter.org,
-	nikolay@cumulusnetworks.com, coreteam@netfilter.org,
-	netfilter-devel@vger.kernel.org, kuznet@ms2.inr.ac.ru,
-	davem@davemloft.net, pablo@netfilter.org
+	coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
+	kuznet@ms2.inr.ac.ru, pablo@netfilter.org
 Subject: Re: [Bridge] [PATCH] bridge:fragmented packets dropped by bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
@@ -58,7 +90,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Rundong Ge <rdong.ge@gmail.com> wrote:
+On 30/07/2019 15:25, Rundong Ge wrote:
 > Given following setup:
 > -modprobe br_netfilter
 > -echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
@@ -75,22 +107,42 @@ Rundong Ge <rdong.ge@gmail.com> wrote:
 > mtu1500 - mtu1500|bridge|1500 - mtu1500
 >   A                  |            B
 >                    mtu1300
-
-How can a bridge forward a frame from A/B to mtu1300?
-
+> 
 > With netfilter defragmentation/conntrack enabled, fragmented
 > packets from A will be defragmented in prerouting, and refragmented
 > at postrouting.
-
-Yes, but I don't see how that relates to the problem at hand.
-
 > But in this scenario the bridge found the frag_max_size(1500) is
 > larger than the dst mtu stored in the fake_rtable whitch is
 > always equal to the bridge's mtu 1300, then packets will be dopped.
-
-What happens without netfilter or non-fragmented packets?
-
+> 
 > This modifies ip_skb_dst_mtu to use the out dev's mtu instead
 > of bridge's mtu in bridge refragment.
+> 
+> Signed-off-by: Rundong Ge <rdong.ge@gmail.com>
+> ---
+>  include/net/ip.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/net/ip.h b/include/net/ip.h
+> index 29d89de..0512de3 100644
+> --- a/include/net/ip.h
+> +++ b/include/net/ip.h
+> @@ -450,6 +450,8 @@ static inline unsigned int ip_dst_mtu_maybe_forward(const struct dst_entry *dst,
+>  static inline unsigned int ip_skb_dst_mtu(struct sock *sk,
+>  					  const struct sk_buff *skb)
+>  {
+> +	if ((skb_dst(skb)->flags & DST_FAKE_RTABLE) && skb->dev)
+> +		return min(skb->dev->mtu, IP_MAX_MTU);
+>  	if (!sk || !sk_fullsock(sk) || ip_sk_use_pmtu(sk)) {
+>  		bool forwarding = IPCB(skb)->flags & IPSKB_FORWARDED;
+>  
+> 
 
-It seems quite a hack?  The above setup should use a router, not a bridge.
+I don't think this is correct, there's a reason why the bridge chooses the smallest
+possible MTU out of its members and this is simply a hack to circumvent it.
+If you really like to do so just set the bridge MTU manually, we've added support
+so it won't change automatically to the smallest, but then how do you pass packets
+1500 -> 1300 in this setup ?
+
+You're talking about the frag_size check in br_nf_ip_fragment(), right ?
+
