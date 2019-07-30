@@ -2,73 +2,74 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC607DD1E
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD787DD20
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:00:47 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 479BB1834;
-	Thu,  1 Aug 2019 13:59:40 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 8E74E1885;
+	Thu,  1 Aug 2019 13:59:42 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id D6E1D2C11
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 3DDA72C16
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 12:21:14 +0000 (UTC)
+	Tue, 30 Jul 2019 12:25:39 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
-	[209.85.128.67])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 1EC852C6
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com
+	[209.85.166.68])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id DCDA37DB
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 12:21:14 +0000 (UTC)
-Received: by mail-wm1-f67.google.com with SMTP id a15so56953379wmj.5
+	Tue, 30 Jul 2019 12:25:38 +0000 (UTC)
+Received: by mail-io1-f68.google.com with SMTP id g20so127546884ioc.12
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 30 Jul 2019 05:21:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cumulusnetworks.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=TlNchQ/vtVIj+X/dPogW/VhRCNvW7uKobaOaSR9wIVw=;
-	b=XztUXeM97JDaihnB0HagW5xvRBMhRYAr79vQdfBG04yIqoZYcKub3kXOUsu9ULFsjm
-	BIzlEU01i72gcZwbffxBob+Ml856DF5tWt2iinloyTic4HrdjAPmJmjuHsJ1aFytONGB
-	EsMVjzQJwTbx1vE/QlYDqe3xTgtpoPu9BXczg=
+	Tue, 30 Jul 2019 05:25:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=s5yWI2xfBi7yZUvh5vbuUYKfiAIOr2+n9/J+pTBAvvA=;
+	b=oNRi4RrqZcCHcv3ihpvxRh05FVUCJujtgcfihPqzEIhibrVSyvLxH6ou+KPX3QcJW1
+	8odyqmb9Xy6OZW3Akl4mhb8QXyeta1TByczNxiawqeZqlsAEQgeNH4zWnRQNZjNaanng
+	0uyuZIy+8zTVFFxa0Ya/KrP2BWiVnBI9uP6oyFln1SImZYqFXKVsPFuT21tgQZ7JxlFX
+	Fs+CbA/+uEvCQ0ZUgz9IPY356ERlad9t/WiFeJ2j53Gucbi1JlQ9yIBQgH0c0Te24k7b
+	EffDwc1jhPKoAalhRJA+XcovRIjMe2TsRZptfp0V8HA2/1B5SE8WZ8hszhzXBdu/7690
+	DokQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=TlNchQ/vtVIj+X/dPogW/VhRCNvW7uKobaOaSR9wIVw=;
-	b=jz2HLhJr9xjxKLPMMYEPYqRl8ybUhfKcY606ocygYbFldhjapmaXETJE5e5OIVhEq4
-	zu2b3LtgLkcOKc9lxCJgEZl4+2k0NIKeYO7RIaQKxk+cFvy6JrVoreNWzadbk1PW2plo
-	iDch/ovuAaAytPAaIB+2bfFmOdB939mJdAQk5q9XR58AGgDvXZjADxZoxU0tbR3XXgb3
-	RtzSfmcHXx5rfWqW342j/GkkUx0miR6FtcEuxZGRUyhe9ChGd0niauEUBHStcBZClRZY
-	g4oo6a/pbsKs7bOZS4a18ygk4WEY1UQbAmS0oyM440z1GTMqkAVV4i2Kn5QWXxrIavcO
-	JeKg==
-X-Gm-Message-State: APjAAAUA1Vc0gtP9rGtggujilK7OwIMznCJtYirhu4hL082EMPujkKA3
-	BvuDWTRCK09egUdizIGP60i1pw==
-X-Google-Smtp-Source: APXvYqz/bHR9d2rrOZ/49Uk9ujDRweI5mm2fYTQ2y7HdZbDIekx0jz1Rut9ZywlIODtRP0IhMrEqog==
-X-Received: by 2002:a1c:a848:: with SMTP id r69mr102326719wme.12.1564489272624;
-	Tue, 30 Jul 2019 05:21:12 -0700 (PDT)
-Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
-	[84.238.136.197]) by smtp.gmail.com with ESMTPSA id
-	l25sm49316717wme.13.2019.07.30.05.21.11
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Tue, 30 Jul 2019 05:21:11 -0700 (PDT)
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-To: netdev@vger.kernel.org
-Date: Tue, 30 Jul 2019 15:20:41 +0300
-Message-Id: <20190730122041.14647-1-nikolay@cumulusnetworks.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=s5yWI2xfBi7yZUvh5vbuUYKfiAIOr2+n9/J+pTBAvvA=;
+	b=UTa06W8XbhHVFhKIbK8vkFn0F7Ye0VHPn74vpqF4cCCO8vtfSH6KSUHqSVs3MEMmup
+	2pfguMNrWaSNuinJTR6CCuqvSfgCMqC+kbNoxbHjBWFbwlJMZ1N3PLNw4G6GUNzOOP7r
+	xavco8JkoJ3O1kKEJTgaz7D1xRxUsVofZv4rywqUjhJv66N4OplUMLHDYYB5cW9BHSCQ
+	WM9D9ae4wo9krHrKwCR57q/nHEgBpXn1HXNCrEmZ1Qv6+z8BuLa+syxqNe/5R9ki9aHz
+	ssVq6I1/my1bHQZqorraWtQTHh23dW9Ylr/3xQ9SiUXlE1Wzt8CBaIaw5jnLowra2xLZ
+	QV1w==
+X-Gm-Message-State: APjAAAVYU64rxnBZRDnT8hpBSQ2aICC24T/yjI1zj5e2aHK0vIE94dwO
+	icxtGNw57BIYI8TmdOnOUw==
+X-Google-Smtp-Source: APXvYqyQH9tqYauuovKG4HR22AWdKr93hT9a4O67gZNyhFbLW2ujv+hKs4GCYjdavvE1y4Ujue7gVA==
+X-Received: by 2002:a6b:cd86:: with SMTP id
+	d128mr106118586iog.234.1564489538291; 
+	Tue, 30 Jul 2019 05:25:38 -0700 (PDT)
+Received: from ip-172-31-35-247.us-east-2.compute.internal
+	(ec2-52-15-165-154.us-east-2.compute.amazonaws.com. [52.15.165.154])
+	by smtp.gmail.com with ESMTPSA id
+	j23sm52454755ioo.6.2019.07.30.05.25.37
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 30 Jul 2019 05:25:37 -0700 (PDT)
+From: Rundong Ge <rdong.ge@gmail.com>
+To: davem@davemloft.net
+Date: Tue, 30 Jul 2019 12:25:34 +0000
+Message-Id: <20190730122534.30687-1-rdong.ge@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+Cc: rdong.ge@gmail.com, yoshfuji@linux-ipv6.org, netdev@vger.kernel.org,
 	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	davem@davemloft.net
-Subject: [Bridge] [PATCH net-next] net: bridge: mcast: add delete due to
-	fast-leave mdb flag
+	fw@strlen.de, linux-kernel@vger.kernel.org, kadlec@netfilter.org,
+	nikolay@cumulusnetworks.com, coreteam@netfilter.org,
+	netfilter-devel@vger.kernel.org, kuznet@ms2.inr.ac.ru, pablo@netfilter.org
+Subject: [Bridge] [PATCH] bridge:fragmented packets dropped by bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -83,72 +84,51 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-In user-space there's no way to distinguish why an mdb entry was deleted
-and that is a problem for daemons which would like to keep the mdb in
-sync with remote ends (e.g. mlag) but would also like to converge faster.
-In almost all cases we'd like to age-out the remote entry for performance
-and convergence reasons except when fast-leave is enabled. In that case we
-want explicit immediate remote delete, thus add mdb flag which is set only
-when the entry is being deleted due to fast-leave.
+Given following setup:
+-modprobe br_netfilter
+-echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+-brctl addbr br0
+-brctl addif br0 enp2s0
+-brctl addif br0 enp3s0
+-brctl addif br0 enp6s0
+-ifconfig enp2s0 mtu 1300
+-ifconfig enp3s0 mtu 1500
+-ifconfig enp6s0 mtu 1500
+-ifconfig br0 up
 
-Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+                 multi-port
+mtu1500 - mtu1500|bridge|1500 - mtu1500
+  A                  |            B
+                   mtu1300
+
+With netfilter defragmentation/conntrack enabled, fragmented
+packets from A will be defragmented in prerouting, and refragmented
+at postrouting.
+But in this scenario the bridge found the frag_max_size(1500) is
+larger than the dst mtu stored in the fake_rtable whitch is
+always equal to the bridge's mtu 1300, then packets will be dopped.
+
+This modifies ip_skb_dst_mtu to use the out dev's mtu instead
+of bridge's mtu in bridge refragment.
+
+Signed-off-by: Rundong Ge <rdong.ge@gmail.com>
 ---
- include/uapi/linux/if_bridge.h | 1 +
- net/bridge/br_mdb.c            | 2 ++
- net/bridge/br_multicast.c      | 2 +-
- net/bridge/br_private.h        | 1 +
- 4 files changed, 5 insertions(+), 1 deletion(-)
+ include/net/ip.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 773e476a8e54..1b3c2b643a02 100644
---- a/include/uapi/linux/if_bridge.h
-+++ b/include/uapi/linux/if_bridge.h
-@@ -237,6 +237,7 @@ struct br_mdb_entry {
- #define MDB_PERMANENT 1
- 	__u8 state;
- #define MDB_FLAGS_OFFLOAD	(1 << 0)
-+#define MDB_FLAGS_FAST_LEAVE	(1 << 1)
- 	__u8 flags;
- 	__u16 vid;
- 	struct {
-diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index bf6acd34234d..428af1abf8cc 100644
---- a/net/bridge/br_mdb.c
-+++ b/net/bridge/br_mdb.c
-@@ -60,6 +60,8 @@ static void __mdb_entry_fill_flags(struct br_mdb_entry *e, unsigned char flags)
- 	e->flags = 0;
- 	if (flags & MDB_PG_FLAGS_OFFLOAD)
- 		e->flags |= MDB_FLAGS_OFFLOAD;
-+	if (flags & MDB_PG_FLAGS_FAST_LEAVE)
-+		e->flags |= MDB_FLAGS_FAST_LEAVE;
- }
+diff --git a/include/net/ip.h b/include/net/ip.h
+index 29d89de..0512de3 100644
+--- a/include/net/ip.h
++++ b/include/net/ip.h
+@@ -450,6 +450,8 @@ static inline unsigned int ip_dst_mtu_maybe_forward(const struct dst_entry *dst,
+ static inline unsigned int ip_skb_dst_mtu(struct sock *sk,
+ 					  const struct sk_buff *skb)
+ {
++	if ((skb_dst(skb)->flags & DST_FAKE_RTABLE) && skb->dev)
++		return min(skb->dev->mtu, IP_MAX_MTU);
+ 	if (!sk || !sk_fullsock(sk) || ip_sk_use_pmtu(sk)) {
+ 		bool forwarding = IPCB(skb)->flags & IPSKB_FORWARDED;
  
- static void __mdb_entry_to_br_ip(struct br_mdb_entry *entry, struct br_ip *ip)
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 3d8deac2353d..3d4b2817687f 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -1393,7 +1393,7 @@ br_multicast_leave_group(struct net_bridge *br,
- 			del_timer(&p->timer);
- 			kfree_rcu(p, rcu);
- 			br_mdb_notify(br->dev, port, group, RTM_DELMDB,
--				      p->flags);
-+				      p->flags | MDB_PG_FLAGS_FAST_LEAVE);
- 
- 			if (!mp->ports && !mp->host_joined &&
- 			    netif_running(br->dev))
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index e8cf03b43b7d..c4fd307fbfdc 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -199,6 +199,7 @@ struct net_bridge_fdb_entry {
- 
- #define MDB_PG_FLAGS_PERMANENT	BIT(0)
- #define MDB_PG_FLAGS_OFFLOAD	BIT(1)
-+#define MDB_PG_FLAGS_FAST_LEAVE	BIT(2)
- 
- struct net_bridge_port_group {
- 	struct net_bridge_port		*port;
 -- 
-2.21.0
+1.8.3.1
 
