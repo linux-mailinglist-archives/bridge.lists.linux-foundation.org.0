@@ -2,28 +2,28 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A4E82015
-	for <lists.bridge@lfdr.de>; Mon,  5 Aug 2019 17:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F16C58201A
+	for <lists.bridge@lfdr.de>; Mon,  5 Aug 2019 17:28:25 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 04C63E0E;
-	Mon,  5 Aug 2019 15:26:02 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 62020E1E;
+	Mon,  5 Aug 2019 15:26:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 1068E1978
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 05034246B
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 29 Jul 2019 14:35:12 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
-	[216.71.154.253])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 8EB995E4
+	Tue, 30 Jul 2019 06:34:32 +0000 (UTC)
+X-Greylist: delayed 00:07:06 by SQLgrey-1.7.6
+Received: from esa4.microchip.iphmx.com (esa4.microchip.iphmx.com
+	[68.232.154.123])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 6FDCAA8
 	for <bridge@lists.linux-foundation.org>;
-	Mon, 29 Jul 2019 14:35:11 +0000 (UTC)
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+	Tue, 30 Jul 2019 06:34:31 +0000 (UTC)
+Received-SPF: Pass (esa4.microchip.iphmx.com: domain of
 	Allan.Nielsen@microchip.com designates 198.175.253.82 as
 	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+	client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
 	envelope-from="Allan.Nielsen@microchip.com";
 	x-sender="Allan.Nielsen@microchip.com";
 	x-conformance=spf_only; x-record-type="v=spf1";
@@ -31,41 +31,39 @@ Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
 	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
 	a:mx2.microchip.iphmx.com include:servers.mcsv.net
 	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
+Received-SPF: None (esa4.microchip.iphmx.com: no sender
 	authenticity information available from domain of
 	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+	client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
 	envelope-from="Allan.Nielsen@microchip.com";
 	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com;
+Authentication-Results: esa4.microchip.iphmx.com;
 	dkim=none (message not signed) header.i=none;
 	spf=Pass smtp.mailfrom=Allan.Nielsen@microchip.com;
 	spf=None smtp.helo=postmaster@email.microchip.com;
 	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: PvxHzyGMjwszKpUYApDD/v/JSkAUvEiJfnAnWccnM0ZPnZ8QcbwU7efZpX8HIZYIsrFxgmfpjU
-	hBS2g0B29MVca5KPRZuOep1ROkpbsqcB6qy7ghXd75fMES9ulZmjR4TLLdhQ9TLlUHhHh+yuW3
-	nb0jC2PJLntUZ9EzdcSUbFIoDFI96JrD3jpFGcUAZb6GPmHqukCosyqrMCI9O5kD8HqsTRz5zh
-	NVYa0v+XBL34PmZxzMkFGekYyx9nPB8/YUHejphmd/oaq4AOHqs7mNpHWM0+OqntROR3Hcy/VV
-	0oA=
-X-IronPort-AV: E=Sophos;i="5.64,323,1559545200"; d="scan'208";a="40097631"
+IronPort-SDR: J0cATDpZs7qRKgH9tpimCyLWaFwhPVNUT87pe13JM204EJlK7fa9U14roaUwlzPyPnfbmDiA3C
+	zOFyxfROpZcyfJEqO+BuEV62VtyYpFPMmRttElC+t4jpYwwXcyP2wQjI+cLu0rmoZ5PiT/MMbg
+	KZ/20nF3B3dDMpFjv7hjZibyqOtlQFflpDnWJeV8u/KjrjzAzQxxSBGS2K01dacqGzrciSWzFU
+	BcJ6zQFD3t1rmQscvog+mNlvG8BltCVusUKeMqdzo9cNiMYISTpnZm1eb8uDCgwosKqFcvIMvU
+	FE0=
+X-IronPort-AV: E=Sophos;i="5.64,325,1559545200"; d="scan'208";a="42450189"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
 	([198.175.253.82])
-	by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	29 Jul 2019 07:35:10 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
-	chn-vm-ex01.mchp-main.com (10.10.87.71) with Microsoft SMTP Server
+	by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+	29 Jul 2019 23:27:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+	chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
 	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Mon, 29 Jul 2019 07:35:09 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
-	(10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
-	Transport; Mon, 29 Jul 2019 07:35:09 -0700
-Date: Mon, 29 Jul 2019 16:35:09 +0200
+	15.1.1713.5; Mon, 29 Jul 2019 23:27:23 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex03.mchp-main.com
+	(10.10.85.151) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+	Transport; Mon, 29 Jul 2019 23:27:23 -0700
+Date: Tue, 30 Jul 2019 08:27:22 +0200
 From: "Allan W. Nielsen" <allan.nielsen@microchip.com>
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
-References: <b9ce433a-3ef7-fe15-642a-659c5715d992@cumulusnetworks.com>
-	<e6ad982f-4706-46f9-b8f0-1337b09de350@cumulusnetworks.com>
-	<20190726120214.c26oj5vks7g5ntwu@soft-dev3.microsemi.net>
+To: Ido Schimmel <idosch@idosch.org>
+Message-ID: <20190730062721.p4vrxo5sxbtulkrx@lx-anielsen.microsemi.net>
+References: <20190726120214.c26oj5vks7g5ntwu@soft-dev3.microsemi.net>
 	<b755f613-e6d8-a2e6-16cd-6f13ec0a6ddc@cumulusnetworks.com>
 	<20190729121409.wa47uelw5f6l4vs4@lx-anielsen.microsemi.net>
 	<95315f9e-0d31-2d34-ba50-11e1bbc1465c@cumulusnetworks.com>
@@ -73,19 +71,22 @@ References: <b9ce433a-3ef7-fe15-642a-659c5715d992@cumulusnetworks.com>
 	<3cc69103-d194-2eca-e7dd-e2fa6a730223@cumulusnetworks.com>
 	<20190729135205.oiuthcyesal4b4ct@lx-anielsen.microsemi.net>
 	<e4cd0db9-695a-82a7-7dc0-623ded66a4e5@cumulusnetworks.com>
+	<20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
+	<20190729175136.GA28572@splinter>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <e4cd0db9-695a-82a7-7dc0-623ded66a4e5@cumulusnetworks.com>
+In-Reply-To: <20190729175136.GA28572@splinter>
 User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 X-Mailman-Approved-At: Mon, 05 Aug 2019 15:25:46 +0000
-Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-	davem@davemloft.net, Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
+	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+	linux-kernel@vger.kernel.org, davem@davemloft.net,
+	Horatiu Vultur <horatiu.vultur@microchip.com>
 Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
 	groups
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -102,52 +103,97 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-The 07/29/2019 17:21, Nikolay Aleksandrov wrote:
-> On 29/07/2019 16:52, Allan W. Nielsen wrote:
-> > The 07/29/2019 15:50, Nikolay Aleksandrov wrote:
-> >> On 29/07/2019 15:22, Nikolay Aleksandrov wrote:
-> >>> Hi Allan,
-> >>> On 29/07/2019 15:14, Allan W. Nielsen wrote:
-> >>>> First of all, as mentioned further down in this thread, I realized that our
-> >>>> implementation of the multicast floodmasks does not align with the existing SW
-> >>>> implementation. We will change this, such that all multicast packets goes to the
-> >>>> SW bridge.
-> >>>>
-> >>>> This changes things a bit, not that much.
-> >>>>
-> >>>> I actually think you summarized the issue we have (after changing to multicast
-> >>>> flood-masks) right here:
-> >>>>
-> >>>> The 07/26/2019 12:26, Nikolay Aleksandrov wrote:
-> >>>>>>> Actually you mentioned non-IP traffic, so the querier stuff is not a problem. This
-> >>>>>>> traffic will always be flooded by the bridge (and also a copy will be locally sent up).
-> >>>>>>> Thus only the flooding may need to be controlled.
-> >>>>
-> >>>> This seems to be exactly what we need.
-> >>>>
-> >>>> Assuming we have a SW bridge (br0) with 4 slave interfaces (eth0-3). We use this
-> >>>> on a network where we want to limit the flooding of frames with dmac
-> >>>> 01:21:6C:00:00:01 (which is non IP traffic) to eth0 and eth1.
-> >>>>
-> >>>> One way of doing this could potentially be to support the following command:
-> >>>>
-> >>>> bridge fdb add    01:21:6C:00:00:01 port eth0
-> >>>> bridge fdb append 01:21:6C:00:00:01 port eth1
-> >> And the fdbs become linked lists?
-> > Yes, it will most likely become a linked list
-> > 
-> >> So we'll increase the complexity for something that is already supported by
-> >> ACLs (e.g. tc) and also bridge per-port multicast flood flag ?
-> > I do not think it can be supported with the facilities we have today in tc.
-> > 
-> > We can do half of it (copy more fraems to the CPU) with tc, but we can not limit
-> > the floodmask of a frame with tc (say we want it to flood to 2 out of 4 slave
-> > ports).
-> Why not ? You attach an egress filter for the ports and allow that dmac on only
-> 2 of the ports.
-Because we want a solution which we eventually can offload in HW. And the HW
-facilities we have is doing ingress processing (we have no egress ACLs in this
-design), and if we try to offload an egress rule, with an ingress HW facility,
-then we will run into other issues.
+The 07/29/2019 20:51, Ido Schimmel wrote:
+> Can you please clarify what you're trying to achieve? I just read the
+> thread again and my impression is that you're trying to locally receive
+> packets with a certain link layer multicast address.
+Yes. The thread is also a bit confusing because we half way through realized
+that we misunderstood how the multicast packets should be handled (sorry about
+that). To begin with we had a driver where multicast packets was only copied to
+the CPU if someone needed it. Andrew and Nikolay made us aware that this is not
+how other drivers are doing it, so we changed the driver to include the CPU in
+the default multicast flood-mask.
 
+This changes the objective a bit. To begin with we needed to get more packets to
+the CPU (which could have been done using tc ingress rules and a trap action).
+
+Now after we changed the driver, we realized that we need something to limit the
+flooding of certain L2 multicast packets. This is the new problem we are trying
+to solve!
+
+Example: Say we have a bridge with 4 slave interfaces, then we want to install a
+forwarding rule saying that packets to a given L2-multicast MAC address, should
+only be flooded to 2 of the 4 ports.
+
+(instead of adding rules to get certain packets to the CPU, we are now adding
+other rules to prevent other packets from going to the CPU and other ports where
+they are not needed/wanted).
+
+This is exactly the same thing as IGMP snooping does dynamically, but only for
+IP multicast.
+
+The "bridge mdb" allow users to manually/static add/del a port to a multicast
+group, but still it operates on IP multicast address (not L2 multicast
+addresses).
+
+> Nik suggested SIOCADDMULTI.
+It is not clear to me how this should be used to limit the flooding, maybe we
+can make some hacks, but as far as I understand the intend of this is maintain
+the list of addresses an interface should receive. I'm not sure this should
+influence how for forwarding decisions are being made.
+
+> and I suggested a tc filter to get the packet to the CPU.
+The TC solution is a good solution to the original problem where wanted to copy
+more frames to the CPU. But we were convinced that this is not the right
+approach, and that the CPU by default should receive all multicast packets, and
+we should instead try to find a way to limit the flooding of certain frames as
+an optimization.
+
+> If you now want to limit the ports to which this packet is flooded, then
+> you can use tc filters in *software*:
+> 
+> # tc qdisc add dev eth2 clsact
+> # tc filter add dev eth2 egress pref 1 flower skip_hw \
+> 	dst_mac 01:21:6C:00:00:01 action drop
+Yes. This can work in the SW bridge.
+
+> If you want to forward the packet in hardware and locally receive it,
+> you can chain several mirred action and then a trap action.
+I'm not I fully understand how this should be done, but it does sound like it
+becomes quite complicated. Also, as far as I understand it will mean that we
+will be using TCAM/ACL resources to do something that could have been done with
+a simple MAC entry.
+
+> Both options avoid HW egress ACLs which your design does not support.
+True, but what is wrong with expanding the functionality of the normal
+forwarding/MAC operations to allow multiple destinations?
+
+It is not an uncommon feature (I just browsed the manual of some common L2
+switches and they all has this feature).
+
+It seems to fit nicely into the existing user-interface:
+
+bridge fdb add    01:21:6C:00:00:01 port eth0
+bridge fdb append 01:21:6C:00:00:01 port eth1
+
+It seems that it can be added to the existing implementation with out adding
+significant complexity.
+
+It will be easy to offload in HW.
+
+I do not believe that it will be a performance issue, if this is a concern then
+we may have to do a bit of benchmarking, or we can make it a configuration
+option.
+
+Long story short, we (Horatiu and I) learned a lot from the discussion here, and
+I think we should try do a new patch with the learning we got. Then it is easier
+to see what it actually means to the exiting code, complexity, exiting drivers,
+performance, default behavioral, backwards compatibly, and other valid concerns.
+
+If the patch is no good, and cannot be fixed, then we will go back and look
+further into alternative solutions.
+
+-- 
 /Allan
+
+
