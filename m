@@ -2,66 +2,94 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB37682036
-	for <lists.bridge@lfdr.de>; Mon,  5 Aug 2019 17:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E370282038
+	for <lists.bridge@lfdr.de>; Mon,  5 Aug 2019 17:30:46 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id A2EBCEDC;
-	Mon,  5 Aug 2019 15:26:13 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 61A7BEE8;
+	Mon,  5 Aug 2019 15:26:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id AEE50410D
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id F39784167
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 19:15:44 +0000 (UTC)
-X-Greylist: delayed 00:10:00 by SQLgrey-1.7.6
-Received: from sonic308-55.consmr.mail.gq1.yahoo.com
-	(sonic308-55.consmr.mail.gq1.yahoo.com [98.137.68.31])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 63ADBA8
+	Wed, 31 Jul 2019 19:38:59 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
+	[68.232.153.233])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 86A4B7DB
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 19:15:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aim.com; s=a2048;
-	t=1564600544; bh=Xf6EC8BZEYPRUd/RHRAnCys6BP1a6r+eNkdmdNo0RJw=;
-	h=From:Subject:Date:To:From:Subject;
-	b=oKsvsxV93lL7BynaeGraHqjISzbVenF1qk7sbOAF5KK1oRUmI2xFbF13ijuECIxjbgldw8j/xMW3t1TPqIkJT/QidrR2QgWof+uKiTNwQm2/QrsIjuiuIfBLQDSJJYOd5nwvFRNO/w/MSVBEdMp4zDsDzl+J2sJtMZRqLKgRPrnB1phRwd0UWA3i8BrgfwYCdn4MSMEat1HqfQUs26Z1puOmhU0Ak2zk65+DxBY+6bVaUlJRZ/qtqPG7xAuep5/YbimE8p44vAISfIA0WiMxMwycvt7u38LpYz6+a6/LPIOby9Cb5QMAywhGNfn8HaIgSBtXQPQfEhPbWrOrL+mHyg==
-X-YMail-OSG: 9bGtGzcVM1k_g0TWbgMpXjNk0vaS1Yfl6MYtHHsFK0kr4dTsbgNRHUT4VXYQiCL
-	KP60UQGJDdiNJWqISqGGb6qrBfGtvtk9wHClZ7f7qUAaf8aRCbEytXbndRXc_iqgNZmQLMGI_TgT
-	aufsfCEaYE7z.vRDI5zeo.imP3fIaqE.D5nVIsiN_76kMdvkKMP9y_niap8f15MEOMu0XRkIGQNt
-	YnSWvlOva2odeYzUxOm8bk9m09m7OmrNhANyaZrFvLw4iac6DJO1JaEt3K4tbKEjn4cy0Kfc6tWy
-	HtMPlVzEHIzhpovH81irss9zuZv6jfNuRqkGpZZFbAAxBY4MC7FhggaPu8uz9FlcKPGC_ccNy4ht
-	gumhGKLYLRsHA96VsCxTQICrwoWMjKe_sJWKtnc54VHDGEi3k5.dc3zUWhYLH43UrUNanr3Q3Yac
-	IQJu6x82HEdi6hqrK.dlZ.FnsXajZ_LD7CyAjQci2EH0L75BgkC6yGOYUV0qgaHYRtiijBTWoG_0
-	vJupIr8A4WgF.Z9suii3e6Fc6MMsbFFFf0OWP1EBIUhImfAg8RjtcgoqNttw1MCoi53q8VolXL._
-	uK13dCDrxk8WmdrZDNXde1chWXLcp1vdY71kCtnFDMk_Oktv0T84Db5oYR23QQlK1HQiDG3oeRcu
-	vPSyU5Q9W_zPAze8PeK6WU3VnYyi0VJJwZVMHoJ8YohyMfACaeEuYTl1mZ67sfJFMx320MZfK_UV
-	PqAKyMYNEcLdSyRvKTpn_nQ1KpebW6nDZ650uP0.DyhTKYSAS7tIuNN7T4FhgUBQKEmkCz0Uec0G
-	FfB52LsMt1PUN9Tdzz7PrCdLE4uXcRD8z8C0g8s_pyNno.P7ulpXr1UhyPgggYq5wo6gzybDxG4q
-	w3nrYQVlLASABR8eXehYB1CrOeeSGtDgrgd6ujfKgO..OfuxDjZIXO9IOtVpU4S5pNHq6MSrBvGC
-	LMYnRm5Dq7pnWg5bgR1LpKPL36g_mnGJ68gLu8kgwlmUPY0ESMXJV.UgoMlAcMJ1NVzXpRLgCkmm
-	cUdASeZK87Muws4ZHfrd7o5Y0Ee.bYuAJQH4jVkjjFD4vw2O8N7MQISLFFlZCyvFEie6rWppkKIn
-	Cbg9wBLwReaIfwVriYXHJCN9Epqm.C1iggBGen5YqrV4JW927WS.h6Fl8rWCs0lWzM_51sQmCgCq
-	GIujNydmWKkDP_izhntscMi4THiN3TPjAbzR2
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic308.consmr.mail.gq1.yahoo.com with HTTP;
-	Wed, 31 Jul 2019 19:15:44 +0000
-Received: by smtp413.mail.gq1.yahoo.com (Oath Hermes SMTP Server) with ESMTPA
-	ID 979920ad4f52350114c1c628aaa231f7; 
-	Wed, 31 Jul 2019 18:55:40 +0000 (UTC)
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
-Message-Id: <A23F6E83-0634-4BFA-AE82-DA947D3544CF@aim.com>
-Date: Wed, 31 Jul 2019 11:55:37 -0700
-To: bridge@lists.linux-foundation.org
-X-Mailer: Apple Mail (2.3445.104.11)
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+	Wed, 31 Jul 2019 19:38:59 +0000 (UTC)
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+	Allan.Nielsen@microchip.com designates 198.175.253.82 as
+	permitted sender) identity=mailfrom;
+	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+	envelope-from="Allan.Nielsen@microchip.com";
+	x-sender="Allan.Nielsen@microchip.com";
+	x-conformance=spf_only; x-record-type="v=spf1";
+	x-record-text="v=spf1 mx a:ushub1.microchip.com
+	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+	a:mx2.microchip.iphmx.com include:servers.mcsv.net
+	include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+	authenticity information available from domain of
+	postmaster@email.microchip.com) identity=helo;
+	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+	envelope-from="Allan.Nielsen@microchip.com";
+	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com;
+	dkim=none (message not signed) header.i=none;
+	spf=Pass smtp.mailfrom=Allan.Nielsen@microchip.com;
+	spf=None smtp.helo=postmaster@email.microchip.com;
+	dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: QItxWUjXxfmU58bkTu20RlW73WJdjALj2MyPDaIJfYsdwd0l/DoJQ2Z5SZzQ643YJ01xgLQGcg
+	Pwd2koZ/Qv3uLxEtxpflj3G9gcFAXEFTkmVj6CtaqWU+TlVISaJz7exB7XXhELQBW9LHO9zLnk
+	7D7il3cB1U6fX8IJ6wHFT9Txf2gdw9CYqdlkSLjY3LUIQmJK9RHZUg5J9BwN09EOi10zYR6G0m
+	ZxiTgcXeIVbAcjpEe7JKVpOGWhrUMRWXzTrzpVa0zSonlMVTcTfqLZnP7EFDXOu5XC4Wha9Scq
+	TNQ=
+X-IronPort-AV: E=Sophos;i="5.64,331,1559545200"; d="scan'208";a="43512647"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+	([198.175.253.82])
+	by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+	31 Jul 2019 12:38:58 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+	chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+	15.1.1713.5; Wed, 31 Jul 2019 12:38:57 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex01.mchp-main.com
+	(10.10.85.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+	Transport; Wed, 31 Jul 2019 12:38:56 -0700
+Date: Wed, 31 Jul 2019 21:38:57 +0200
+From: "Allan W. Nielsen" <allan.nielsen@microchip.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Message-ID: <20190731193855.sgpbvam5v2a5gkia@lx-anielsen.microsemi.net>
+References: <20190729135205.oiuthcyesal4b4ct@lx-anielsen.microsemi.net>
+	<e4cd0db9-695a-82a7-7dc0-623ded66a4e5@cumulusnetworks.com>
+	<20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
+	<20190729175136.GA28572@splinter>
+	<20190730062721.p4vrxo5sxbtulkrx@lx-anielsen.microsemi.net>
+	<20190730143400.GO28552@lunn.ch>
+	<20190730190000.diacyjw6owqkf7uf@lx-anielsen.microsemi.net>
+	<20190731033156.GE9523@lunn.ch>
+	<20190731080149.oyqcrw42utxjizsx@lx-anielsen.microsemi.net>
+	<20190731134550.GA23028@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20190731134550.GA23028@lunn.ch>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 X-Mailman-Approved-At: Mon, 05 Aug 2019 15:25:46 +0000
-Subject: [Bridge] Split path for packets, and bridge configuration problem.
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
+	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+	linux-kernel@vger.kernel.org, davem@davemloft.net,
+	Ido Schimmel <idosch@idosch.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
+	groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -73,34 +101,51 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 	<mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: John Clark via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: John Clark <jeclark2006@aim.com>
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
+The 07/31/2019 15:45, Andrew Lunn wrote:
+> > Here is how I see it:
+> > 
+> > Teach the SW bridge about non-IP multicast addresses. Initially the switch
+> > should forward all MAC multicast frames to the CPU. Today MDB rules can be
+> > installed (either static or dynamic by IGMP), which limit the flooding of IPv4/6
+> > multicast streams. In the same way, we should have a way to install a rule
+> > (FDM/ or MDB) to limit the flooding of L2 multicast frames.
+> > 
+> > If foreign interfaces (or br0 it self) is part of the destination list, then
+> > traffic also needs to go to the CPU.
+> > 
+> > By doing this, we can for explicitly configured dst mac address:
+> > - limit the flooding on the on the SW bridge interfaces
+> > - limit the flooding on the on the HW bridge interfaces
+> > - prevent them to go to the CPU if they are not needed
+> This is all very complex because of all the different corner cases. So
+> i don't think we want a user API to do the CPU part, we want the
+> network stack to do it. Otherwise the user is going to get is wrong,
+> break their network, and then come running to the list for help.
+Not sure I really understand what to conclude from this... Their are already
+many ways the user can break it (tc has great hooks for that), and I not think
+we can really prevent the user in configuring something that break stuff (but
+we should not make it too easy either).
 
-I=E2=80=99m trying to configure a Linux system to bridge an ethernet =
-link for packet ingress from a local network and combine that with a =
-radio link for the reply packet egress.
+Anyway, Horatiu has come a long way in creating a (surprising simple) patch
+which allow us to limit the flooding of L2-multicast. It is following the
+guidance from Nikolay, it is using the MDB database, and I beleive it is well
+aligned with the existing sw-bridge design.
 
-I vaguely recall something like this use to be used for Satellite links, =
-where the incoming packets from the outside world were via the Sat link, =
-but outgoing packets were via a terrestrial link, phone modem or DSL, =
-depending.
+I hope it will be ready tomorrow, then we can have a look at it and see if it is
+any good.
 
-What I have working is the packet entering the bridge on the ethernet =
-link, then I see the MAC address of the node from the in the =E2=80=98brid=
-ge show=E2=80=99 output, but even if I assign the MAC address to the =
-=E2=80=98radio=E2=80=99 tap interface, I see both the =E2=80=98ethernet=E2=
-=80=99 port as =E2=80=98master=E2=80=99, and the tap device as =
-=E2=80=98self=E2=80=99, but no packets are sent to the tap device.
+> This also fits with how we do things in DSA. There is deliberately no
+> user space concept for configuring the DSA CPU port. To user space,
+> the switch is just a bunch of Linux interfaces. Everything to do with
+> the CPU port is hidden away in the DSA core layer, the DSA drivers,
+> and a little bit in the bridge.
 
-In the past I=E2=80=99ve just written user apps that basically implement =
-tunnels and using collection of such apps and taps, gotten packets to =
-where I need them to be.
+Understood, but as far as I understand, in DSA you still have the br0 interface,
+which kind-of represent the traffic going to the CPU (like in pure SW bridge,
+and SwitchDev offloaded SW-bridge).
 
-I was trying to use more standard tools, and not write more custom code.
-
-Thanks for any assistance.
-John Clark.
+/Allan
 
