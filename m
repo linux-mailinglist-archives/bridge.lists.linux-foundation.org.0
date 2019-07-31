@@ -2,61 +2,63 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 472857DC98
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1CE17DCA1
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:39:45 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 2B960FC6;
-	Thu,  1 Aug 2019 13:35:34 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 6B30B1050;
+	Thu,  1 Aug 2019 13:39:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 1C7C3409E
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 866CD4049
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 18:36:47 +0000 (UTC)
+	Wed, 31 Jul 2019 22:37:46 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
-	[209.85.128.65])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id D2C2DA8
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 5B69E7DB
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 18:36:45 +0000 (UTC)
-Received: by mail-wm1-f65.google.com with SMTP id s15so39375493wmj.3
+	Wed, 31 Jul 2019 22:37:45 +0000 (UTC)
+Received: by mail-wr1-f67.google.com with SMTP id n4so71477828wrs.3
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 11:36:45 -0700 (PDT)
+	Wed, 31 Jul 2019 15:37:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cumulusnetworks.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=jvbPu4YBYO12LCpE//3PfLYjJ0yC3CUYvT15uCxwmXA=;
-	b=O8kU7Qu9qVR758Jz8QyNZCragqjTNCly5T/5LOi68NsNIfKMKldX0XQQG/FeIDAz7S
-	xsGy2BbNE73i9/bDJ8odymQUkhLiuBwTew0dW21QKBqwa7Yq44lfAUD/FkzxXOvdGdaJ
-	rpnv2BJHlAF0Pvd7FKY7nlGImGMhVkzZNSeWM=
+	h=from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding;
+	bh=8pO/u2UxpYHbGHBioUPH5ZDqgJG5rCQHhYtZqabYo9c=;
+	b=FNvzT+uty1VdREz96XmSva9/UJ/IXQR5sKeWKIhPAqYqXDOCJYHedUXYipW1Tbe516
+	qxsa6nYng2ns9XPDaxtuW/bUKB2peYQx4E28ufCPnXKRjQpEzaFJH7pKACpfoHv5r/4H
+	z1HsCI9BSlXsiCdodDErv+ZtTrL2LHt43yNJQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=jvbPu4YBYO12LCpE//3PfLYjJ0yC3CUYvT15uCxwmXA=;
-	b=d3TN1gHpc7otmXJqbZjHnhHh9soT/5oee487EzcppnSyOnZ7PyYUJ1bp6YN8m0AwLf
-	MSUwSwSAHhlcw5E8psR6o1KBU0QoLuCZeFkCUbZMPuR2gz0nPQ6loh9xgkVEHyZIvSF0
-	nhElMOUz5ia2U9Tz8d95l+wBbiRLAFjuKjO3/CVxBAejW7h2AUBHIrAnmpI+B3QbWBJK
-	cAJx6g0Htz05PQvUWIrAvBTQch5xVYkHOr7zBCcjoBTZcOzF9G9prYUhXvxFmG3b10d4
-	FucXKMt6W655zgO2SEsPtX3b6Oye8qREtuGVyumHLFnEYaMfuxvCZwz76UjisYqhCdMn
-	02hw==
-X-Gm-Message-State: APjAAAXTnHlMkprYnE/ThTAO2jLNzrQDIdjwkaQYoj99O37mpGp9/mVM
-	n72t4oSOuV5NNk+Cvc8UVUXe4Q==
-X-Google-Smtp-Source: APXvYqzQLxDV9jTF74wccbrK4ElNxiUfRhoLLD96o6qCfVRVev15yQBNIcXfck3nXFZNnA0MbJ7J+g==
-X-Received: by 2002:a1c:c742:: with SMTP id x63mr118261665wmf.0.1564598204358; 
-	Wed, 31 Jul 2019 11:36:44 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=8pO/u2UxpYHbGHBioUPH5ZDqgJG5rCQHhYtZqabYo9c=;
+	b=UARHIVz7B8wSY0tklmr7Zz1Qaxlkrqy7EmefvO+C8A86pQQvlH+3py9HUseLRpS5L1
+	Jsyfz/aqyLU7W0YX524dREWDqkmqRVgET2aQg6HOMnEHSV6rrUsn+1/Zd2+jcfNIpjb4
+	3PSrIVbCO5kijnO2FJnSxWLr1KSrfT6bbyDkK9NJJFeVGodHCVJXFE8uNFjDUkVZL48H
+	uUlvO8uGInQG7VTc9pDDtpMnZUt7Av6iAgs2MU7DwFXVnltsUKpV2qtSXnP1WEAoM8YJ
+	jp0ljvQ5D3FVjrzndA39GtYo5oTw7QpIRvzlTUohtiyBFGoVJZCcl1/gItsD+89TUQE5
+	troQ==
+X-Gm-Message-State: APjAAAXKqz4EYn+UMCTCae4w9DuaWwZuFlUjc/p16qPtffRfPsVjElKJ
+	veJWdK6HxG1tFUdB60AEmQd0xQ==
+X-Google-Smtp-Source: APXvYqw8qX2v2sXxeZN4OXiZScjziWVk/Pl36/MT/wFA4ZGEvtCBTs00LArm2LP+DQNbyJy3HH02wg==
+X-Received: by 2002:a5d:4205:: with SMTP id n5mr127937612wrq.52.1564612663863; 
+	Wed, 31 Jul 2019 15:37:43 -0700 (PDT)
 Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
 	[84.238.136.197]) by smtp.gmail.com with ESMTPSA id
-	c11sm117220457wrq.45.2019.07.31.11.36.42
+	p18sm69045718wrm.16.2019.07.31.15.37.42
 	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Wed, 31 Jul 2019 11:36:43 -0700 (PDT)
+	Wed, 31 Jul 2019 15:37:43 -0700 (PDT)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 To: netdev@vger.kernel.org
-Date: Wed, 31 Jul 2019 21:36:23 +0300
-Message-Id: <20190731183623.20127-1-nikolay@cumulusnetworks.com>
+Date: Thu,  1 Aug 2019 01:37:36 +0300
+Message-Id: <20190731223736.18856-1-nikolay@cumulusnetworks.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190731183623.20127-1-nikolay@cumulusnetworks.com>
+References: <20190731183623.20127-1-nikolay@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -67,7 +69,7 @@ X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
 	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
 	davem@davemloft.net, michael-dev <michael-dev@fami-braun.de>
-Subject: [Bridge] [PATCH net] net: bridge: move vlan init/deinit to
+Subject: [Bridge] [PATCH net v2] net: bridge: move vlan init/deinit to
 	NETDEV_REGISTER/UNREGISTER
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
@@ -112,6 +114,8 @@ After (proper br0 ifindex):
 $ bridge monitor fdb
 e6:2a:ae:7a:b7:48 dev br0 vlan 1 master br0 permanent
 
+v2: on error in br_vlan_init set br->vlgrp to NULL
+
 [0] https://bugzilla.kernel.org/show_bug.cgi?id=204389
 
 Reported-by: michael-dev <michael-dev@fami-braun.de>
@@ -133,8 +137,8 @@ why it happened (e.g. device destruction or init error).
  net/bridge/br.c         |  5 ++++-
  net/bridge/br_device.c  | 10 ----------
  net/bridge/br_private.h | 19 ++++---------------
- net/bridge/br_vlan.c    | 23 ++++++++++++++++-------
- 4 files changed, 24 insertions(+), 33 deletions(-)
+ net/bridge/br_vlan.c    | 25 ++++++++++++++++++-------
+ 4 files changed, 26 insertions(+), 33 deletions(-)
 
 diff --git a/net/bridge/br.c b/net/bridge/br.c
 index d164f63a4345..8a8f9e5f264f 100644
@@ -251,7 +255,7 @@ index e8cf03b43b7d..96dd1c68d73f 100644
  }
  #endif
 diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index a544e161c7fa..266c1214b9f9 100644
+index a544e161c7fa..6a17408b4eb8 100644
 --- a/net/bridge/br_vlan.c
 +++ b/net/bridge/br_vlan.c
 @@ -709,7 +709,7 @@ int br_vlan_delete(struct net_bridge *br, u16 vid)
@@ -281,7 +285,16 @@ index a544e161c7fa..266c1214b9f9 100644
  {
  	struct net_bridge_vlan_group *vg;
  	int ret = -ENOMEM;
-@@ -1469,13 +1471,19 @@ static void nbp_vlan_set_vlan_dev_state(struct net_bridge_port *p, u16 vid)
+@@ -1083,6 +1085,8 @@ int br_vlan_init(struct net_bridge *br)
+ 	return ret;
+ 
+ err_vlan_add:
++	RCU_INIT_POINTER(br->vlgrp, NULL);
++	synchronize_rcu();
+ 	vlan_tunnel_deinit(vg);
+ err_tunnel_init:
+ 	rhashtable_destroy(&vg->vlan_hash);
+@@ -1469,13 +1473,19 @@ static void nbp_vlan_set_vlan_dev_state(struct net_bridge_port *p, u16 vid)
  }
  
  /* Must be protected by RTNL. */
@@ -304,7 +317,7 @@ index a544e161c7fa..266c1214b9f9 100644
  	case NETDEV_CHANGEUPPER:
  		info = ptr;
  		br_vlan_upper_change(dev, info->upper_dev, info->linking);
-@@ -1483,12 +1491,13 @@ void br_vlan_bridge_event(struct net_device *dev, unsigned long event,
+@@ -1483,12 +1493,13 @@ void br_vlan_bridge_event(struct net_device *dev, unsigned long event,
  
  	case NETDEV_CHANGE:
  	case NETDEV_UP:
