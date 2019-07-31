@@ -2,50 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361137DCAB
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:41:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F1847DCAC
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 15:41:20 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 51DAE10D1;
-	Thu,  1 Aug 2019 13:39:48 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 59A30138D;
+	Thu,  1 Aug 2019 13:39:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 317AD4263
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 59EC43EA5
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 23:13:59 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id D40E96CE
+	Wed, 31 Jul 2019 23:32:57 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+	[209.85.208.195])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id A61F06CE
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 23:13:58 +0000 (UTC)
-Received: from localhost (c-24-20-22-31.hsd1.or.comcast.net [24.20.22.31])
-	(using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	(Authenticated sender: davem-davemloft)
-	by shards.monkeyblade.net (Postfix) with ESMTPSA id 5CE8C12659B7F;
-	Wed, 31 Jul 2019 16:13:58 -0700 (PDT)
-Date: Wed, 31 Jul 2019 19:13:57 -0400 (EDT)
-Message-Id: <20190731.191357.886589630333387649.davem@davemloft.net>
-To: nikolay@cumulusnetworks.com
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20190730122041.14647-1-nikolay@cumulusnetworks.com>
-References: <20190730122041.14647-1-nikolay@cumulusnetworks.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
+	Wed, 31 Jul 2019 23:32:56 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id h10so67412188ljg.0
+	for <bridge@lists.linux-foundation.org>;
+	Wed, 31 Jul 2019 16:32:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=CX+W2vODD3zGUj/joWK7YfYg9vtMH4AGLIbP0a3owOM=;
+	b=NmKGubUQ61jLeyg5LFUsUxAHzdospAsPZVPSOgfWpOB6Lh8DQv0SyO+dAa4fBn1cxe
+	WC97uvjLQUT3tX2qHRzDbAJBnhjdaodWudOAQwGgy29wXvsqmE76NpYns42K4EXnvDvk
+	E28nfl6itmpuKBWeM9hKMakSqkjmbHAwaiTKo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=CX+W2vODD3zGUj/joWK7YfYg9vtMH4AGLIbP0a3owOM=;
+	b=SVKhpKF9mBPfPD5HuGF2yqaXQabbqS/Elt1luNGuqHpynSv995LMzoBXHqP/JNNQQ3
+	MUxsmtDdTNOuWCNgQtD4HeY0oWUDq26YXWdVP94oErYjcD5025cZIBZuMBULLQm4oHKT
+	UrZ8PHFTwBziyX1UztQdVwZhTMsJMi8vYidDiwOUUWyVmJggsJgsMLBZBJ2VtuVWRdBy
+	gaCXqUyz/kKLjS8b7jMvm7/P2avPsD6Q23Wwy1SdQ/nkeyRdye3eRgtt9FJ4NrOxkgGE
+	RcPFiU9VnzAro4hsRk0c8+xoRN6PQwH5qXZB+3zrfCXR6cbzmQciLQ3geFZQ7iMLBDS7
+	o2RQ==
+X-Gm-Message-State: APjAAAX6a87uo6gwYSAhxT1fUwzHLl0wv4QAVz+2fUTDfVS883D60SBC
+	XWHs+zZg1/PxfAO9pxdnZb6OUA==
+X-Google-Smtp-Source: APXvYqyKZvZlTIuro1i68XRxTVikQLptULFWQ0xk+x2CLH6K/OpdUcY5d1jPiQvlVq9WF9o4oXouew==
+X-Received: by 2002:a2e:9ac4:: with SMTP id p4mr25556932ljj.185.1564615975037; 
+	Wed, 31 Jul 2019 16:32:55 -0700 (PDT)
+Received: from [192.168.0.109] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+	by smtp.googlemail.com with ESMTPSA id
+	e62sm14273888ljf.82.2019.07.31.16.32.52
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Wed, 31 Jul 2019 16:32:53 -0700 (PDT)
+To: Stephen Hemminger <stephen@networkplumber.org>
+References: <319fda43-195d-2b92-7f62-7e273c084a29@cumulusnetworks.com>
+	<20190731224955.10908-1-nikolay@cumulusnetworks.com>
+	<20190731155338.15ff34cb@hermes.lan>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <c9a68f85-49f6-6d02-e130-a03d540aa0a7@cumulusnetworks.com>
+Date: Thu, 1 Aug 2019 02:32:51 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190731155338.15ff34cb@hermes.lan>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
-	(shards.monkeyblade.net [149.20.54.216]);
-	Wed, 31 Jul 2019 16:13:58 -0700 (PDT)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org
-Subject: Re: [Bridge] [PATCH net-next] net: bridge: mcast: add delete due to
- fast-leave mdb flag
+	bridge@lists.linux-foundation.org, davem@davemloft.net,
+	michael-dev <michael-dev@fami-braun.de>
+Subject: Re: [Bridge] [PATCH net v3] net: bridge: move vlan init/deinit to
+ NETDEV_REGISTER/UNREGISTER
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -60,17 +91,32 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Date: Tue, 30 Jul 2019 15:20:41 +0300
-
-> In user-space there's no way to distinguish why an mdb entry was deleted
-> and that is a problem for daemons which would like to keep the mdb in
-> sync with remote ends (e.g. mlag) but would also like to converge faster.
-> In almost all cases we'd like to age-out the remote entry for performance
-> and convergence reasons except when fast-leave is enabled. In that case we
-> want explicit immediate remote delete, thus add mdb flag which is set only
-> when the entry is being deleted due to fast-leave.
+On 8/1/19 1:53 AM, Stephen Hemminger wrote:
+>   
+>> -int br_vlan_init(struct net_bridge *br)
+>> +static int br_vlan_init(struct net_bridge *br)
+>>  {
+>>  	struct net_bridge_vlan_group *vg;
+>>  	int ret = -ENOMEM;
+>> @@ -1083,6 +1085,8 @@ int br_vlan_init(struct net_bridge *br)
+>>  	return ret;
+>>  
+>>  err_vlan_add:
+>> +	RCU_INIT_POINTER(br->vlgrp, NULL);
+>> +	synchronize_rcu();
 > 
-> Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+> Calling sychronize_rcu is expensive. And the callback for
+> notifier is always called with rtnl_head. 
+> 
+> Why not just keep the pointer initialization back in the
+> code where bridge is created, it was safe there.
+> 
 
-Applied, thanks Nikolay.
+Because now the device registered and we've published the group, right now
+it is not an issue but if we expose an rcu helper we'll have to fix this
+because it'd become a bug.
+I'd prefer to have the error path correct and future-proof it, since it's
+an error path we're not concerned with speed, but rather correctness. Also
+these are rarely exercised so the bug might remain for a very long time.
+
+
