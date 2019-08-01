@@ -2,76 +2,74 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B117E378
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 21:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3247D7E49D
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 23:06:20 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 8489135B7;
-	Thu,  1 Aug 2019 19:48:20 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id ACFBD1690;
+	Thu,  1 Aug 2019 21:06:12 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 8B74D35AC
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id D294E22DA
 	for <bridge@lists.linux-foundation.org>;
-	Thu,  1 Aug 2019 19:48:17 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
-	[216.71.150.166])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7EB718AC
+	Thu,  1 Aug 2019 20:08:20 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-qk1-f194.google.com (mail-qk1-f194.google.com
+	[209.85.222.194])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 711588AB
 	for <bridge@lists.linux-foundation.org>;
-	Thu,  1 Aug 2019 19:48:16 +0000 (UTC)
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
-	Horatiu.Vultur@microchip.com designates 198.175.253.82 as
-	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="Horatiu.Vultur@microchip.com";
-	x-conformance=spf_only; x-record-type="v=spf1";
-	x-record-text="v=spf1 mx a:ushub1.microchip.com
-	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-	a:mx2.microchip.iphmx.com include:servers.mcsv.net
-	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
-	authenticity information available from domain of
-	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com;
-	dkim=none (message not signed) header.i=none;
-	spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
-	spf=None smtp.helo=postmaster@email.microchip.com;
-	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: vh3SLtMYu6k4fqJwhEDyt9vB+HTFrRtUMMAYRXhLpZz/G5/KmnyRPtQ6KVry3TRiuG/YK8jJ6m
-	Hmmubl6WlDk9ohCjUswhFHuMTZM87QrjuHgT5KK5bJp1D+97sKARTYHu8+7muTpHWb/lLDu5dk
-	cPUxkt7wFbyTQQasCcHEtlXbNlEtnrRbwYD5p7ftCdqVf8b4S+EGJkr9Srwa+Mq+tkxTw52vru
-	LvKk+ztTVLe8MhJ664jNcB16AfSCI9HzS0glqLH/PkY5H1hpzbcmhxuj5GHFJkkOa1WJdyNZyK
-	gvs=
-X-IronPort-AV: E=Sophos;i="5.64,335,1559545200"; d="scan'208";a="42100612"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
-	([198.175.253.82])
-	by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	01 Aug 2019 12:48:15 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
-	chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Thu, 1 Aug 2019 12:48:07 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex03.mchp-main.com
-	(10.10.85.151) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
-	Transport; Thu, 1 Aug 2019 12:48:08 -0700
-Date: Thu, 1 Aug 2019 21:48:02 +0200
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: Vivien Didelot <vivien.didelot@gmail.com>
-Message-ID: <20190801194801.rqv5jvb5vxjo2dor@soft-dev3.microsemi.net>
+	Thu,  1 Aug 2019 20:08:20 +0000 (UTC)
+Received: by mail-qk1-f194.google.com with SMTP id 201so53022529qkm.9
+	for <bridge@lists.linux-foundation.org>;
+	Thu, 01 Aug 2019 13:08:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:message-id:from:to:cc:subject:in-reply-to:references
+	:mime-version:content-disposition:content-transfer-encoding;
+	bh=B+yDfdKT+RmatLe61Ax4/UEmkLt8JT8gE8mDRLs1ASo=;
+	b=F2DtJQPVW600MwUqAoGNDBJim0olwalXuP0oaVzNa0fuigELEEjv1TPS9O2t4zW1XQ
+	pXpruzdZOB/VBi3a/Ru2xZqOapjbUY0dPt4Dayk+xHSRgZZVajTvGk70Z2HIA5Y5cMwl
+	ambxZXgnsb/qDkp7nYq3cJFgRehXf/PvlySs2VBmdpH+M5ZDNJxP9VCfgdVNdKV17ZGT
+	ES8W4E3m+l2EhVQavzX1ZQ+2ImO1izjQsAj5HIa8nYb0s2XUwvrhRfs4a+oxfu/a5Z1X
+	VDRc8KtlnltBx/XBJhhIbBM1tf19KqXDgLfg7P/EJ+wO60b9kMWEw1/tLyFLRY/BaNsl
+	MQaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:message-id:from:to:cc:subject:in-reply-to
+	:references:mime-version:content-disposition
+	:content-transfer-encoding;
+	bh=B+yDfdKT+RmatLe61Ax4/UEmkLt8JT8gE8mDRLs1ASo=;
+	b=IK+n7Wptr0QRdcW7GJW6Ug2XiNMM9z8/eBE+YOfNtLN8LkWmaUbr8mqSDcukcCod8Z
+	4s/jCgxHiIHzniC1w85/9qOk88buJXRToeHrHrAOrgoidMz3/AlD9h56rMzOaBrjepjw
+	4VBebAoO8W8qtd9JVZ12PnTbdP8Pctt9T7CXg8bWYv90mkVwd+VaPw7mXMMvSlkgsY4x
+	c1C8iuK6dHTcfmh+c2d2uLlP7oa8rsrQePK5FKeHatGmmbi5qNJ1QSP0lXJtWdaQkB8n
+	6118L4YyZWiAEKEMWxBN9aCwgtI6uz4leu/Z9L+ulncU7nBdM6PDtINa05Fm21fEDg1l
+	zKhQ==
+X-Gm-Message-State: APjAAAWXn+n1oZpal30rYM0Vc3CuGLREEsSQvPN6f+/TYZK0tybIXhCW
+	VFixM+0QjIulAlzw+KjXLpU=
+X-Google-Smtp-Source: APXvYqxqpChOnoBfs+GBxQM4vK6z+sYjBISy2ym7G3Sq1RF3r0v+c1tE3tcbulGCOi3Xo0MFPdQASA==
+X-Received: by 2002:a37:680e:: with SMTP id d14mr88871406qkc.207.1564690099390;
+	Thu, 01 Aug 2019 13:08:19 -0700 (PDT)
+Received: from localhost (modemcable249.105-163-184.mc.videotron.ca.
+	[184.163.105.249]) by smtp.gmail.com with ESMTPSA id
+	q73sm17611144qke.90.2019.08.01.13.08.18
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Thu, 01 Aug 2019 13:08:18 -0700 (PDT)
+Date: Thu, 1 Aug 2019 16:08:17 -0400
+Message-ID: <20190801160817.GB9619@t480s.localdomain>
+From: Vivien Didelot <vivien.didelot@gmail.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+In-Reply-To: <20190801194801.rqv5jvb5vxjo2dor@soft-dev3.microsemi.net>
 References: <1564055044-27593-1-git-send-email-horatiu.vultur@microchip.com>
 	<20190801151739.GB32290@t480s.localdomain>
+	<20190801194801.rqv5jvb5vxjo2dor@soft-dev3.microsemi.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190801151739.GB32290@t480s.localdomain>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
 Cc: nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
@@ -94,29 +92,25 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Hi Vivien,
+Hi Horatiu,
 
-The 08/01/2019 15:17, Vivien Didelot wrote:
-> External E-Mail
+On Thu, 1 Aug 2019 21:48:02 +0200, Horatiu Vultur <horatiu.vultur@microchip.com> wrote:
+> > I'm a bit late in the conversation. Isn't this what you want?
+> > 
+> >     ip address add <multicast IPv4 address> dev br0 autojoin
+> > 
 > 
-> I'm a bit late in the conversation. Isn't this what you want?
+> Not really, I was looking in a way to register the ports to link layer
+> multicast address. Sorry for the confusion, my description of the patch
+> was totally missleaning.
 > 
->     ip address add <multicast IPv4 address> dev br0 autojoin
-> 
+> If you follow this thread you will get a better idea what we wanted to
+> achive. We got some really good comments and based on these we send a
+> RFC[1]. 
 
-Not really, I was looking in a way to register the ports to link layer
-multicast address. Sorry for the confusion, my description of the patch
-was totally missleaning.
+OK great! Keep me in the loop, I enjoy bridge and multicast very much ;-)
 
-If you follow this thread you will get a better idea what we wanted to
-achive. We got some really good comments and based on these we send a
-RFC[1]. 
 
-> 
-> Thanks,
-> Vivien
+Thanks,
 
-[1] https://patchwork.ozlabs.org/patch/1140468/
-
--- 
-/Horatiu
+	Vivien
