@@ -2,68 +2,79 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id C999D7DD47
-	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 099787DD6E
+	for <lists.bridge@lfdr.de>; Thu,  1 Aug 2019 16:08:36 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id E7B8628FE;
-	Thu,  1 Aug 2019 14:04:06 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 27BDB25F5;
+	Thu,  1 Aug 2019 14:08:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 5CC693641
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 65203FD3
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 03:32:10 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id EC841E7
+	Thu,  1 Aug 2019 14:07:33 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
+	[209.85.221.66])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 2C3DC5F4
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 31 Jul 2019 03:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124;
-	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=/PRBSjjzZGNNa9kAWUv68TK+FZFcHYZiK63wl+1TixQ=;
-	b=SRfNb0JbfHkfL9RKCMGHN1hd9p
-	wxZhYIk+cBm4osChEaesCfMC/4r2t0sfxyoiqSEWiiOUDs2PammaebjYjB+CnsTzGhcfUUXbHrPaO
-	BnDNFkr5XM2odvN687G8yCemddTdEWE9VUd3D5A15digeB09pu7CA9ooylADxB38nb98=; 
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-	(envelope-from <andrew@lunn.ch>)
-	id 1hsfLI-0003yQ-R0; Wed, 31 Jul 2019 05:31:56 +0200
-Date: Wed, 31 Jul 2019 05:31:56 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
-Message-ID: <20190731033156.GE9523@lunn.ch>
-References: <95315f9e-0d31-2d34-ba50-11e1bbc1465c@cumulusnetworks.com>
-	<20190729131420.tqukz55tz26jkg73@lx-anielsen.microsemi.net>
-	<3cc69103-d194-2eca-e7dd-e2fa6a730223@cumulusnetworks.com>
-	<20190729135205.oiuthcyesal4b4ct@lx-anielsen.microsemi.net>
-	<e4cd0db9-695a-82a7-7dc0-623ded66a4e5@cumulusnetworks.com>
-	<20190729143508.tcyebbvleppa242d@lx-anielsen.microsemi.net>
-	<20190729175136.GA28572@splinter>
-	<20190730062721.p4vrxo5sxbtulkrx@lx-anielsen.microsemi.net>
-	<20190730143400.GO28552@lunn.ch>
-	<20190730190000.diacyjw6owqkf7uf@lx-anielsen.microsemi.net>
+	Thu,  1 Aug 2019 14:07:31 +0000 (UTC)
+Received: by mail-wr1-f66.google.com with SMTP id p13so73719268wru.10
+	for <bridge@lists.linux-foundation.org>;
+	Thu, 01 Aug 2019 07:07:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=XoMikWCt2BvkT6bPfOK2U8c/fCL/4NTf2rKAmIgSuMw=;
+	b=MUQmZ8ra3678e0GFkUDOz9SXjHdhyvyHUNoLY1GJd1aXafm4Z/KsTGc36hk5kvVwrn
+	gKjszIaAaJ/Wct6In5htTNAVIY4cGmvKKXFnYa7kWNzpXVSLQONwuiXUVDlHYrFY0KMQ
+	jkg3dSC3b8G0wvKoOULGZGBM+10wvpsMqgKPU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=XoMikWCt2BvkT6bPfOK2U8c/fCL/4NTf2rKAmIgSuMw=;
+	b=figX3w3XBGLbWzcm6L4GcKC8Xr1zUNCijC84xA7S2t5XQbXvm5Oz9xziWaggL9Gssv
+	PyyVZoVUvSU9v/9igtzAoW7vjGn2sR04Sy1pIbR7Zmew/vg6xJimCftixWlb7AVxBb0B
+	NRCVRTQr7WxeL5zab/qOgmi5i+HpsKC7E3SgKmKTEcpjwX48HiCfW7KYwFkMc5sXH2eq
+	gaSrPgBwvDkzvL/qYTw5+emkiKrqnz/7QoEmFSbxwuHSFDbvrK36oOvnX7dpztsICVxq
+	7xUW/V9xVkUQuwKb1yKmUIEZWUmUEXeI6D0vQk46yV9RQxD4C1CDSXlfkwGzPyXKY0tq
+	q56g==
+X-Gm-Message-State: APjAAAX/shivGR5+Mc+Rn12pP9b6v3qxPMHq/UJdZNmhmv8FtB82aV+4
+	EiGszPI/SFpmTCVYFMUHaPp6jfb9fvWj0A==
+X-Google-Smtp-Source: APXvYqyZfNYyDv6YNSOWVxezJ2sIvOMgfWBIjpa67rrpFSpiecq0Fto5l23AEUTaYX063jXD6ph16A==
+X-Received: by 2002:adf:b1cb:: with SMTP id
+	r11mr132471179wra.328.1564668449271; 
+	Thu, 01 Aug 2019 07:07:29 -0700 (PDT)
+Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+	by smtp.gmail.com with ESMTPSA id
+	v12sm61655413wrr.87.2019.08.01.07.07.27
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Thu, 01 Aug 2019 07:07:28 -0700 (PDT)
+To: Horatiu Vultur <horatiu.vultur@microchip.com>, idosch@mellanox.com,
+	andrew@lunn.ch, allan.nielsen@microchip.com
+References: <1564663840-27721-1-git-send-email-horatiu.vultur@microchip.com>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <f758fdbf-4e0a-57b3-f13d-23e893ba7458@cumulusnetworks.com>
+Date: Thu, 1 Aug 2019 17:07:25 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190730190000.diacyjw6owqkf7uf@lx-anielsen.microsemi.net>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <1564663840-27721-1-git-send-email-horatiu.vultur@microchip.com>
+Content-Type: multipart/mixed; boundary="------------F92E64033FFB71AE03742F84"
+Content-Language: en-US
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
-	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	linux-kernel@vger.kernel.org, davem@davemloft.net,
-	Ido Schimmel <idosch@idosch.org>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: Re: [Bridge] [PATCH] net: bridge: Allow bridge to joing multicast
-	groups
+Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+	bridge@lists.linux-foundation.org, fw@strlen.de,
+	linux-kernel@vger.kernel.org, tglx@linutronix.de, davem@davemloft.net
+Subject: Re: [Bridge] [net-next,
+	rfc] net: bridge: mdb: Extend with multicast LLADDR
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -78,67 +89,725 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-> Our plan was to implement this in pure SW, and then look at how to HW offload
-> it.
+This is a multi-part message in MIME format.
+--------------F92E64033FFB71AE03742F84
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-Great.
+Hi Horatiu,
+Overall I think MDB is the right way, we'd like to contain the multicast code.
+A few comments below.
 
-> But this will take some time before we have anything meaning full to show.
+On 01/08/2019 15:50, Horatiu Vultur wrote:
+> Based on the discussion on the topic[1], we extend the functionality of
+> the 'bridge mdb' command to accept link layer multicast address. This
+> required only few changes and it fits nicely with the current
+> implementation and also the old implementation was not changed.
 > 
-> > Make it an alternative to the STP code?
-> I'm still working on learning the details of DLR, but I actually believe that it
-> in some situations may co-exists with STP ;-)
+> In this patch, we have added a MAC address to the union in 'struct br_ip'.
+> If we want to continue like this we should properly rename the structure as
+> it is not an IP any more.
+> 
+> To create a group for two of the front ports the following entries can
+> be added:
+> bridge mdb add dev br0 port eth0 grp 01:00:00:00:00:04 permanent vid 1
+> bridge mdb add dev br0 port eth1 grp 01:00:00:00:00:04 permanent vid 1
+> 
+> Now the entries will be display as following:
+> dev br0 port eth0 grp 01:00:00:00:00:04 permanent offload vid 1
+> dev br0 port eth1 grp 01:00:00:00:00:04 permanent offload vid 1
+> 
+> This requires changes to iproute2 as well, see the follogin patch for that.
+> 
+> Now if frame with dmac '01:00:00:00:00:04' will arrive at one of the front
+> ports. If we have HW offload support, then the frame will be forwarded by
+> the switch, and need not to go to the CPU. In a pure SW world, the frame is
+> forwarded by the SW bridge, which will flooded it only the ports which are
+> part of the group.
+> 
+> So far so good. This is an important part of the problem we wanted to solve.
+> 
+> But, there is one drawback of this approach. If you want to add two of the
+> front ports and br0 to receive the frame then I can't see a way of doing it
+> with the bridge mdb command. To do that it requireds many more changes to
+> the existing code.
+> 
+> Example:
+> bridge mdb add dev br0 port eth0 grp 01:00:00:00:00:04 permanent vid 1
+> bridge mdb add dev br0 port eth1 grp 01:00:00:00:00:04 permanent vid 1
+> bridge mdb add dev br0 port br0 grp 01:00:00:00:00:04 permanent vid 1 // This looks wrong.
+> 
+> We believe we come a long way by re-using the facilities in MDB (thanks for
+> convincing us in doing this), but we are still not completely happy with
+> the result.
+> 
 
-The PDF you linked to suggests this as well. But i think you will need
-to make some core changes to the bridge. At the moment, STP is a
-bridge level property. But you are going to need it to be a per-port
-option. You can then use DLR on the ring ports, and optionally STP on
-the other ports.
+Just add self argument for the bridge mdb command, no need to specify it twice.
 
-> But what we are looking at here, is to offload a
-> non-aware-(DLR|MRP)-switch which happens to be placed in a network
-> with these protocols running.
+> If I only look at the user-interface (iproute2), and completely ignore all
+> the implementation details, then I still think that the FDB sub command is
+> more suitable for this. Today, FDB is for unicast, and MDB is for multicast.
+> We could change this such that MDB is for IP-multicast, and FDB is
+> forwarding in general (we should prevent FDB in install IP-multicast rules,
+> but we suggest to allow it to install MAC-Multicast rules).
+> 
+> The example from above would now look like this:
+> bridge fdb add 01:00:00:00:00:04 dev eth0 static self master
+> bridge fdb add 01:00:00:00:00:04 dev eth1 static self master
+> bridge fdb add 01:00:00:00:00:04 dev br0 static self master
+> 
+> It would be very similar to the "bridge vlan" command which also allow to
+> specify groups with and without br0.
+> 
+> Next observation is on the hashing data structure. In 'net_bridge_mdb_entry'
+> we only use/need the net_bridge_port_group/ports member (and the MAC
+> address, which we hacked into the br_ip struct) when we are a L2-multicast
+> entry. This type allow use to re-use the br_multicast_flood function
+> which does a lot of the work for us.
+> 
+> Also, the key used to do the lookup in the FDB is already a MAC address
+> (no need to hack the br_ip).
+> 
 
-So we need to think about why we are passing traffic to the CPU port,
-and under what conditions can it be blocked.
+Look at it as extending br_ip, it's not a hack but a valid mcast use-case.
+In fact br_ip is an internal structure which can easily be renamed.
 
-1) The interface is not part of a bridge. In this case, we only need
-the switch to pass to the CPU port MC addresses which have been set
-via set_rx_mode().
+> Regarding the events generated by switchdev: In the current proposal this
+> is a SWITCHDEV_OBJ_ID_PORT_MDB which refer to the switchdev_obj_port_mdb
+> type. If we changed to use the SWITCHDEV_FDB_ADD_TO_BRIDGE event, then
+> the associated data type would be switchdev_notifier_fdb_info - which also
+> has the information we need.
+> 
+> Using the FDB database, can still reuse the net_bridge_port_group type (and
+> associated functions), and I other parts from the MDB call graph as well.
+> 
 
-I think this case does not apply for what you want. You have two ports
-bridges together as part of the ring.
+We don't want to mix these.
 
-2) The interface is part of a bridge. There are a few sub-cases
+> If this sounds appealing, then we can do a proposal based on the idea.
+> 
+> If the MDB patch is what we can agree on, then we will continue polish this
+> and look for a solution to control the inclusion/exclusion of the br0
+> device (hints will be most appreciated).
+> 
 
-a) IGMP snooping is being performed. We can block multicast where
-there is no interest in the group. But this is limited to IP
-multicast.
+Yes, please. Let's work on this implementation. Some code comments below.
 
-b) IGMP snooping is not being used and all interfaces in the bridge
-are ports of the switch. IP Multicast can be blocked to the CPU.
+> [1] https://patchwork.ozlabs.org/patch/1136878/
+> 
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Co-developed-by: Allan W. Nielsen <allan.nielsen@microchip.com>
+> Signed-off-by: Allan W. Nielsen <allan.nielsen@microchip.com>
+> ---
+>  include/linux/if_bridge.h      |  1 +
+>  include/uapi/linux/if_bridge.h |  1 +
+>  net/bridge/br_device.c         |  7 +++++--
+>  net/bridge/br_forward.c        |  3 ++-
+>  net/bridge/br_input.c          | 13 ++++++++++--
+>  net/bridge/br_mdb.c            | 47 +++++++++++++++++++++++++++++++++++-------
+>  net/bridge/br_multicast.c      |  4 +++-
+>  net/bridge/br_private.h        |  3 ++-
+>  8 files changed, 64 insertions(+), 15 deletions(-)
+> 
 
-c) IGMP snooping is not being used and there is a non-switch interface
-in the bridge. Multicast needed is needed, so it can be flooded out
-this port.
+Overall I don't think we need this BR_PKT_MULTICAST_L2, we could do the below much
+easier and without the checks if you use a per-mdb flag that says it's to be treated
+as a MULTICAST_L2 entry. Then you remove all of the BR_PKT_MULTICAST_L2 code (see the
+attached patch based on this one for example). and continue processing it as it is processed today.
+We'll keep the fast-path with minimal number of new conditionals.
 
-d) set_rx_mode() has been called on the br0 interface, indicating
-there is interest in the packets on the host. They must be sent to the
-CPU so they can be delivered locally.
+Something like the patch I've attached to this reply, note that it is not complete
+just to show the intent, you'll have to re-work br_mdb_notify() to make it proper
+and there're most probably other details I've missed. If you find even better/less
+complex way to do it then please do.
 
-e) ????
+Cheers,
+ Nik
 
-Does the Multicast MAC address being used by DLR also map to an IP
-mmulticast address? 01:21:6C:00:00:0[123] appear to be the MAC
-addresses used by DLR. IPv4 multicast MAC addresses are
-01:00:5E:XX:XX:XX. IPv6 multicast MAC addresses are 33:33:XX:XX:XX:XX.
+> diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
+> index f3fab5d..07b092a 100644
+> --- a/include/linux/if_bridge.h
+> +++ b/include/linux/if_bridge.h
+> @@ -16,6 +16,7 @@
+>  struct br_ip {
+>  	union {
+>  		__be32	ip4;
+> +		__u8	mac[ETH_ALEN];
+>  #if IS_ENABLED(CONFIG_IPV6)
+>  		struct in6_addr ip6;
+>  #endif
+> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+> index 773e476..e535a81 100644
+> --- a/include/uapi/linux/if_bridge.h
+> +++ b/include/uapi/linux/if_bridge.h
+> @@ -243,6 +243,7 @@ struct br_mdb_entry {
+>  		union {
+>  			__be32	ip4;
+>  			struct in6_addr ip6;
+> +			__u8	mac[ETH_ALEN];
+>  		} u;
+>  		__be16		proto;
+>  	} addr;
+> diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
+> index c05def8..b2d9041 100644
+> --- a/net/bridge/br_device.c
+> +++ b/net/bridge/br_device.c
+> @@ -83,7 +83,7 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
+>  		br_flood(br, skb, BR_PKT_BROADCAST, false, true);
+>  	} else if (is_multicast_ether_addr(dest)) {
+>  		if (unlikely(netpoll_tx_running(dev))) {
+> -			br_flood(br, skb, BR_PKT_MULTICAST, false, true);
+> +			br_flood(br, skb, BR_PKT_MULTICAST_IP, false, true);
+>  			goto out;
+>  		}
+>  		if (br_multicast_rcv(br, NULL, skb, vid)) {
+> @@ -95,8 +95,11 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
+>  		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
+>  		    br_multicast_querier_exists(br, eth_hdr(skb)))
+>  			br_multicast_flood(mdst, skb, false, true);
+> +		else if (mdst && skb->protocol != htons(ETH_P_IP) &&
+> +			 skb->protocol != htons(ETH_P_IPV6))
+> +			br_multicast_flood(mdst, skb, false, true);
+>  		else
+> -			br_flood(br, skb, BR_PKT_MULTICAST, false, true);
+> +			br_flood(br, skb, BR_PKT_MULTICAST_IP, false, true);
+>  	} else if ((dst = br_fdb_find_rcu(br, dest, vid)) != NULL) {
+>  		br_forward(dst->dst, skb, false, true);
+>  	} else {
+> diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+> index 8663700..36b58e8 100644
+> --- a/net/bridge/br_forward.c
+> +++ b/net/bridge/br_forward.c
+> @@ -203,7 +203,8 @@ void br_flood(struct net_bridge *br, struct sk_buff *skb,
+>  			if (!(p->flags & BR_FLOOD))
+>  				continue;
+>  			break;
+> -		case BR_PKT_MULTICAST:
+> +		case BR_PKT_MULTICAST_IP:
+> +		case BR_PKT_MULTICAST_L2:
+>  			if (!(p->flags & BR_MCAST_FLOOD) && skb->dev != br->dev)
+>  				continue;
+>  			break;
+> diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+> index 21b74e7..a7db0c5 100644
+> --- a/net/bridge/br_input.c
+> +++ b/net/bridge/br_input.c
+> @@ -99,9 +99,13 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+>  			pkt_type = BR_PKT_BROADCAST;
+>  			local_rcv = true;
+>  		} else {
+> -			pkt_type = BR_PKT_MULTICAST;
+> +			pkt_type = BR_PKT_MULTICAST_IP;
+>  			if (br_multicast_rcv(br, p, skb, vid))
+>  				goto drop;
+> +
+> +			if (skb->protocol != htons(ETH_P_IP) &&
+> +			    skb->protocol != htons(ETH_P_IPV6))
+> +				pkt_type = BR_PKT_MULTICAST_L2;
+>  		}
+>  	}
+>  
+> @@ -129,7 +133,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+>  	}
+>  
+>  	switch (pkt_type) {
+> -	case BR_PKT_MULTICAST:
+> +	case BR_PKT_MULTICAST_L2:
+> +		mdst = br_mdb_get(br, skb, vid);
+> +		if (mdst)
+> +			mcast_hit = true;
+> +		break;
+> +	case BR_PKT_MULTICAST_IP:
+>  		mdst = br_mdb_get(br, skb, vid);
+>  		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
+>  		    br_multicast_querier_exists(br, eth_hdr(skb))) {
+> diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+> index bf6acd3..b337a30 100644
+> --- a/net/bridge/br_mdb.c
+> +++ b/net/bridge/br_mdb.c
+> @@ -67,12 +67,19 @@ static void __mdb_entry_to_br_ip(struct br_mdb_entry *entry, struct br_ip *ip)
+>  	memset(ip, 0, sizeof(struct br_ip));
+>  	ip->vid = entry->vid;
+>  	ip->proto = entry->addr.proto;
+> -	if (ip->proto == htons(ETH_P_IP))
+> +	switch (ip->proto) {
+> +	case htons(ETH_P_IP):
+>  		ip->u.ip4 = entry->addr.u.ip4;
+> +		break;
+>  #if IS_ENABLED(CONFIG_IPV6)
+> -	else
+> +	case htons(ETH_P_IPV6):
+>  		ip->u.ip6 = entry->addr.u.ip6;
+> +		break;
+>  #endif
+> +	default:
+> +		ether_addr_copy(ip->u.mac, entry->addr.u.mac);
+> +		break;
+> +	}
+>  }
+>  
+>  static int br_mdb_fill_info(struct sk_buff *skb, struct netlink_callback *cb,
+> @@ -117,12 +124,19 @@ static int br_mdb_fill_info(struct sk_buff *skb, struct netlink_callback *cb,
+>  			e.ifindex = port->dev->ifindex;
+>  			e.vid = p->addr.vid;
+>  			__mdb_entry_fill_flags(&e, p->flags);
+> -			if (p->addr.proto == htons(ETH_P_IP))
+> +			switch (p->addr.proto) {
+> +			case htons(ETH_P_IP):
+>  				e.addr.u.ip4 = p->addr.u.ip4;
+> +				break;
+>  #if IS_ENABLED(CONFIG_IPV6)
+> -			if (p->addr.proto == htons(ETH_P_IPV6))
+> +			case htons(ETH_P_IPV6):
+>  				e.addr.u.ip6 = p->addr.u.ip6;
+> +				break;
+>  #endif
+> +			default:
+> +				ether_addr_copy(e.addr.u.mac, p->addr.u.mac);
+> +				break;
+> +			}
+>  			e.addr.proto = p->addr.proto;
+>  			nest_ent = nla_nest_start_noflag(skb,
+>  							 MDBA_MDB_ENTRY_INFO);
+> @@ -322,12 +336,19 @@ static void br_mdb_switchdev_host_port(struct net_device *dev,
+>  		.vid = entry->vid,
+>  	};
+>  
+> -	if (entry->addr.proto == htons(ETH_P_IP))
+> +	switch (entry->addr.proto) {
+> +	case htons(ETH_P_IP):
+>  		ip_eth_mc_map(entry->addr.u.ip4, mdb.addr);
+> +		break;
+>  #if IS_ENABLED(CONFIG_IPV6)
+> -	else
+> +	case htons(ETH_P_IPV6):
+>  		ipv6_eth_mc_map(&entry->addr.u.ip6, mdb.addr);
+> +		break;
+>  #endif
+> +	default:
+> +		ether_addr_copy(mdb.addr, entry->addr.u.mac);
+> +		break;
+> +	}
+>  
+>  	mdb.obj.orig_dev = dev;
+>  	switch (type) {
+> @@ -367,12 +388,19 @@ static void __br_mdb_notify(struct net_device *dev, struct net_bridge_port *p,
+>  	int err = -ENOBUFS;
+>  
+>  	port_dev = __dev_get_by_index(net, entry->ifindex);
+> -	if (entry->addr.proto == htons(ETH_P_IP))
+> +	switch (entry->addr.proto) {
+> +	case htons(ETH_P_IP):
+>  		ip_eth_mc_map(entry->addr.u.ip4, mdb.addr);
+> +		break;
+>  #if IS_ENABLED(CONFIG_IPV6)
+> -	else
+> +	case htons(ETH_P_IPV6):
+>  		ipv6_eth_mc_map(&entry->addr.u.ip6, mdb.addr);
+> +		break;
+>  #endif
+> +	default:
+> +		ether_addr_copy(mdb.addr, entry->addr.u.mac);
+> +		break;
+> +	}
+>  
+>  	mdb.obj.orig_dev = port_dev;
+>  	if (p && port_dev && type == RTM_NEWMDB) {
+> @@ -423,6 +451,7 @@ void br_mdb_notify(struct net_device *dev, struct net_bridge_port *port,
+>  #if IS_ENABLED(CONFIG_IPV6)
+>  	entry.addr.u.ip6 = group->u.ip6;
+>  #endif
+> +	ether_addr_copy(group->u.mac, entry.addr.u.mac);
+>  	entry.vid = group->vid;
+>  	__mdb_entry_fill_flags(&entry, flags);
+>  	__br_mdb_notify(dev, port, &entry, type);
+> @@ -510,6 +539,8 @@ static bool is_valid_mdb_entry(struct br_mdb_entry *entry)
+>  		if (ipv6_addr_is_ll_all_nodes(&entry->addr.u.ip6))
+>  			return false;
+>  #endif
+> +	} else if (is_multicast_ether_addr(entry->addr.u.mac)) {
+> +		;
+>  	} else
+>  		return false;
+>  	if (entry->state != MDB_PERMANENT && entry->state != MDB_TEMPORARY)
+> diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+> index de22c8f..01250c1 100644
+> --- a/net/bridge/br_multicast.c
+> +++ b/net/bridge/br_multicast.c
+> @@ -133,7 +133,9 @@ struct net_bridge_mdb_entry *br_mdb_get(struct net_bridge *br,
+>  		break;
+>  #endif
+>  	default:
+> -		return NULL;
+> +		ip.proto = 0;
+> +		ether_addr_copy(ip.u.mac, eth_hdr(skb)->h_dest);
+> +		break;
+>  	}
+>  
+>  	return br_mdb_ip_get_rcu(br, &ip);
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index 159a0e2..60e2430d 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -590,7 +590,8 @@ void br_fdb_offloaded_set(struct net_bridge *br, struct net_bridge_port *p,
+>  /* br_forward.c */
+>  enum br_pkt_type {
+>  	BR_PKT_UNICAST,
+> -	BR_PKT_MULTICAST,
+> +	BR_PKT_MULTICAST_IP,
+> +	BR_PKT_MULTICAST_L2,
+>  	BR_PKT_BROADCAST
+>  };
+>  int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb);
+> 
 
-So one possibility here is to teach the SW bridge about non-IP
-multicast addresses. Initially the switch should forward all MAC
-multicast frames to the CPU. If the frame is not an IPv4 or IPv6
-frame, and there has not been a call to set_rx_mode() for the MAC
-address on the br0 interface, and the bridge only contains switch
-ports, switchdev could be used to block the multicast to the CPU
-frame, but forward it out all other ports of the bridge.
 
-      Andrew
+--------------F92E64033FFB71AE03742F84
+Content-Type: text/x-patch;
+ name="0001-net-bridge-mdb-Extend-with-multicast-LLADDR.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="0001-net-bridge-mdb-Extend-with-multicast-LLADDR.patch"
+
+From 611cb2250c06a22d08819bc2d3d67bb7a2867cc4 Mon Sep 17 00:00:00 2001
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+Date: Thu, 1 Aug 2019 14:50:40 +0200
+Subject: [RFC incomplete] net: bridge: mdb: Extend with multicast LLADDR
+
+Based on the discussion on the topic[1], we extend the functionality of
+the 'bridge mdb' command to accept link layer multicast address. This
+required only few changes and it fits nicely with the current
+implementation and also the old implementation was not changed.
+
+In this patch, we have added a MAC address to the union in 'struct br_ip'.
+If we want to continue like this we should properly rename the structure as
+it is not an IP any more.
+
+To create a group for two of the front ports the following entries can
+be added:
+bridge mdb add dev br0 port eth0 grp 01:00:00:00:00:04 permanent vid 1
+bridge mdb add dev br0 port eth1 grp 01:00:00:00:00:04 permanent vid 1
+
+Now the entries will be display as following:
+dev br0 port eth0 grp 01:00:00:00:00:04 permanent offload vid 1
+dev br0 port eth1 grp 01:00:00:00:00:04 permanent offload vid 1
+
+This requires changes to iproute2 as well, see the follogin patch for that.
+
+Now if frame with dmac '01:00:00:00:00:04' will arrive at one of the front
+ports. If we have HW offload support, then the frame will be forwarded by
+the switch, and need not to go to the CPU. In a pure SW world, the frame is
+forwarded by the SW bridge, which will flooded it only the ports which are
+part of the group.
+
+So far so good. This is an important part of the problem we wanted to solve.
+
+But, there is one drawback of this approach. If you want to add two of the
+front ports and br0 to receive the frame then I can't see a way of doing it
+with the bridge mdb command. To do that it requireds many more changes to
+the existing code.
+
+Example:
+bridge mdb add dev br0 port eth0 grp 01:00:00:00:00:04 permanent vid 1
+bridge mdb add dev br0 port eth1 grp 01:00:00:00:00:04 permanent vid 1
+bridge mdb add dev br0 port br0 grp 01:00:00:00:00:04 permanent vid 1 // This looks wrong.
+
+We believe we come a long way by re-using the facilities in MDB (thanks for
+convincing us in doing this), but we are still not completely happy with
+the result.
+
+If I only look at the user-interface (iproute2), and completely ignore all
+the implementation details, then I still think that the FDB sub command is
+more suitable for this. Today, FDB is for unicast, and MDB is for multicast.
+We could change this such that MDB is for IP-multicast, and FDB is
+forwarding in general (we should prevent FDB in install IP-multicast rules,
+but we suggest to allow it to install MAC-Multicast rules).
+
+The example from above would now look like this:
+bridge fdb add 01:00:00:00:00:04 dev eth0 static self master
+bridge fdb add 01:00:00:00:00:04 dev eth1 static self master
+bridge fdb add 01:00:00:00:00:04 dev br0 static self master
+
+It would be very similar to the "bridge vlan" command which also allow to
+specify groups with and without br0.
+
+Next observation is on the hashing data structure. In 'net_bridge_mdb_entry'
+we only use/need the net_bridge_port_group/ports member (and the MAC
+address, which we hacked into the br_ip struct) when we are a L2-multicast
+entry. This type allow use to re-use the br_multicast_flood function
+which does a lot of the work for us.
+
+Also, the key used to do the lookup in the FDB is already a MAC address
+(no need to hack the br_ip).
+
+Regarding the events generated by switchdev: In the current proposal this
+is a SWITCHDEV_OBJ_ID_PORT_MDB which refer to the switchdev_obj_port_mdb
+type. If we changed to use the SWITCHDEV_FDB_ADD_TO_BRIDGE event, then
+the associated data type would be switchdev_notifier_fdb_info - which also
+has the information we need.
+
+Using the FDB database, can still reuse the net_bridge_port_group type (and
+associated functions), and I other parts from the MDB call graph as well.
+
+If this sounds appealing, then we can do a proposal based on the idea.
+
+If the MDB patch is what we can agree on, then we will continue polish this
+and look for a solution to control the inclusion/exclusion of the br0
+device (hints will be most appreciated).
+
+[1] https://patchwork.ozlabs.org/patch/1136878/
+
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+Co-developed-by: Allan W. Nielsen <allan.nielsen@microchip.com>
+Signed-off-by: Allan W. Nielsen <allan.nielsen@microchip.com>
+---
+ include/linux/if_bridge.h      |  1 +
+ include/uapi/linux/if_bridge.h |  1 +
+ net/bridge/br_device.c         |  7 +++--
+ net/bridge/br_forward.c        |  3 ++-
+ net/bridge/br_input.c          | 13 ++++++++--
+ net/bridge/br_mdb.c            | 47 ++++++++++++++++++++++++++++------
+ net/bridge/br_multicast.c      |  4 ++-
+ net/bridge/br_private.h        |  3 ++-
+ 8 files changed, 64 insertions(+), 15 deletions(-)
+
+diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
+index 9e57c4411734..68f2558b1a23 100644
+--- a/include/linux/if_bridge.h
++++ b/include/linux/if_bridge.h
+@@ -16,6 +16,7 @@
+ struct br_ip {
+ 	union {
+ 		__be32	ip4;
++		__u8	mac[ETH_ALEN];
+ #if IS_ENABLED(CONFIG_IPV6)
+ 		struct in6_addr ip6;
+ #endif
+diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+index 1b3c2b643a02..49a2de0b7420 100644
+--- a/include/uapi/linux/if_bridge.h
++++ b/include/uapi/linux/if_bridge.h
+@@ -244,6 +244,7 @@ struct br_mdb_entry {
+ 		union {
+ 			__be32	ip4;
+ 			struct in6_addr ip6;
++			__u8	mac[ETH_ALEN];
+ 		} u;
+ 		__be16		proto;
+ 	} addr;
+diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
+index 681b72862c16..581d6875cdb2 100644
+--- a/net/bridge/br_device.c
++++ b/net/bridge/br_device.c
+@@ -84,7 +84,7 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
+ 		br_flood(br, skb, BR_PKT_BROADCAST, false, true);
+ 	} else if (is_multicast_ether_addr(dest)) {
+ 		if (unlikely(netpoll_tx_running(dev))) {
+-			br_flood(br, skb, BR_PKT_MULTICAST, false, true);
++			br_flood(br, skb, BR_PKT_MULTICAST_IP, false, true);
+ 			goto out;
+ 		}
+ 		if (br_multicast_rcv(br, NULL, skb, vid)) {
+@@ -96,8 +96,11 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
+ 		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
+ 		    br_multicast_querier_exists(br, eth_hdr(skb)))
+ 			br_multicast_flood(mdst, skb, false, true);
++		else if (mdst && skb->protocol != htons(ETH_P_IP) &&
++			 skb->protocol != htons(ETH_P_IPV6))
++			br_multicast_flood(mdst, skb, false, true);
+ 		else
+-			br_flood(br, skb, BR_PKT_MULTICAST, false, true);
++			br_flood(br, skb, BR_PKT_MULTICAST_IP, false, true);
+ 	} else if ((dst = br_fdb_find_rcu(br, dest, vid)) != NULL) {
+ 		br_forward(dst->dst, skb, false, true);
+ 	} else {
+diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+index 86637000f275..36b58e86d719 100644
+--- a/net/bridge/br_forward.c
++++ b/net/bridge/br_forward.c
+@@ -203,7 +203,8 @@ void br_flood(struct net_bridge *br, struct sk_buff *skb,
+ 			if (!(p->flags & BR_FLOOD))
+ 				continue;
+ 			break;
+-		case BR_PKT_MULTICAST:
++		case BR_PKT_MULTICAST_IP:
++		case BR_PKT_MULTICAST_L2:
+ 			if (!(p->flags & BR_MCAST_FLOOD) && skb->dev != br->dev)
+ 				continue;
+ 			break;
+diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+index 09b1dd8cd853..f69e710a7f55 100644
+--- a/net/bridge/br_input.c
++++ b/net/bridge/br_input.c
+@@ -97,9 +97,13 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+ 			pkt_type = BR_PKT_BROADCAST;
+ 			local_rcv = true;
+ 		} else {
+-			pkt_type = BR_PKT_MULTICAST;
++			pkt_type = BR_PKT_MULTICAST_IP;
+ 			if (br_multicast_rcv(br, p, skb, vid))
+ 				goto drop;
++
++			if (skb->protocol != htons(ETH_P_IP) &&
++			    skb->protocol != htons(ETH_P_IPV6))
++				pkt_type = BR_PKT_MULTICAST_L2;
+ 		}
+ 	}
+ 
+@@ -127,7 +131,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+ 	}
+ 
+ 	switch (pkt_type) {
+-	case BR_PKT_MULTICAST:
++	case BR_PKT_MULTICAST_L2:
++		mdst = br_mdb_get(br, skb, vid);
++		if (mdst)
++			mcast_hit = true;
++		break;
++	case BR_PKT_MULTICAST_IP:
+ 		mdst = br_mdb_get(br, skb, vid);
+ 		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
+ 		    br_multicast_querier_exists(br, eth_hdr(skb))) {
+diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+index 428af1abf8cc..25d182f45fde 100644
+--- a/net/bridge/br_mdb.c
++++ b/net/bridge/br_mdb.c
+@@ -69,12 +69,19 @@ static void __mdb_entry_to_br_ip(struct br_mdb_entry *entry, struct br_ip *ip)
+ 	memset(ip, 0, sizeof(struct br_ip));
+ 	ip->vid = entry->vid;
+ 	ip->proto = entry->addr.proto;
+-	if (ip->proto == htons(ETH_P_IP))
++	switch (ip->proto) {
++	case htons(ETH_P_IP):
+ 		ip->u.ip4 = entry->addr.u.ip4;
++		break;
+ #if IS_ENABLED(CONFIG_IPV6)
+-	else
++	case htons(ETH_P_IPV6):
+ 		ip->u.ip6 = entry->addr.u.ip6;
++		break;
+ #endif
++	default:
++		ether_addr_copy(ip->u.mac, entry->addr.u.mac);
++		break;
++	}
+ }
+ 
+ static int br_mdb_fill_info(struct sk_buff *skb, struct netlink_callback *cb,
+@@ -119,12 +126,19 @@ static int br_mdb_fill_info(struct sk_buff *skb, struct netlink_callback *cb,
+ 			e.ifindex = port->dev->ifindex;
+ 			e.vid = p->addr.vid;
+ 			__mdb_entry_fill_flags(&e, p->flags);
+-			if (p->addr.proto == htons(ETH_P_IP))
++			switch (p->addr.proto) {
++			case htons(ETH_P_IP):
+ 				e.addr.u.ip4 = p->addr.u.ip4;
++				break;
+ #if IS_ENABLED(CONFIG_IPV6)
+-			if (p->addr.proto == htons(ETH_P_IPV6))
++			case htons(ETH_P_IPV6):
+ 				e.addr.u.ip6 = p->addr.u.ip6;
++				break;
+ #endif
++			default:
++				ether_addr_copy(e.addr.u.mac, p->addr.u.mac);
++				break;
++			}
+ 			e.addr.proto = p->addr.proto;
+ 			nest_ent = nla_nest_start_noflag(skb,
+ 							 MDBA_MDB_ENTRY_INFO);
+@@ -324,12 +338,19 @@ static void br_mdb_switchdev_host_port(struct net_device *dev,
+ 		.vid = entry->vid,
+ 	};
+ 
+-	if (entry->addr.proto == htons(ETH_P_IP))
++	switch (entry->addr.proto) {
++	case htons(ETH_P_IP):
+ 		ip_eth_mc_map(entry->addr.u.ip4, mdb.addr);
++		break;
+ #if IS_ENABLED(CONFIG_IPV6)
+-	else
++	case htons(ETH_P_IPV6):
+ 		ipv6_eth_mc_map(&entry->addr.u.ip6, mdb.addr);
++		break;
+ #endif
++	default:
++		ether_addr_copy(mdb.addr, entry->addr.u.mac);
++		break;
++	}
+ 
+ 	mdb.obj.orig_dev = dev;
+ 	switch (type) {
+@@ -369,12 +390,19 @@ static void __br_mdb_notify(struct net_device *dev, struct net_bridge_port *p,
+ 	int err = -ENOBUFS;
+ 
+ 	port_dev = __dev_get_by_index(net, entry->ifindex);
+-	if (entry->addr.proto == htons(ETH_P_IP))
++	switch (entry->addr.proto) {
++	case htons(ETH_P_IP):
+ 		ip_eth_mc_map(entry->addr.u.ip4, mdb.addr);
++		break;
+ #if IS_ENABLED(CONFIG_IPV6)
+-	else
++	case htons(ETH_P_IPV6):
+ 		ipv6_eth_mc_map(&entry->addr.u.ip6, mdb.addr);
++		break;
+ #endif
++	default:
++		ether_addr_copy(mdb.addr, entry->addr.u.mac);
++		break;
++	}
+ 
+ 	mdb.obj.orig_dev = port_dev;
+ 	if (p && port_dev && type == RTM_NEWMDB) {
+@@ -425,6 +453,7 @@ void br_mdb_notify(struct net_device *dev, struct net_bridge_port *port,
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	entry.addr.u.ip6 = group->u.ip6;
+ #endif
++	ether_addr_copy(group->u.mac, entry.addr.u.mac);
+ 	entry.vid = group->vid;
+ 	__mdb_entry_fill_flags(&entry, flags);
+ 	__br_mdb_notify(dev, port, &entry, type);
+@@ -512,6 +541,8 @@ static bool is_valid_mdb_entry(struct br_mdb_entry *entry)
+ 		if (ipv6_addr_is_ll_all_nodes(&entry->addr.u.ip6))
+ 			return false;
+ #endif
++	} else if (is_multicast_ether_addr(entry->addr.u.mac)) {
++		;
+ 	} else
+ 		return false;
+ 	if (entry->state != MDB_PERMANENT && entry->state != MDB_TEMPORARY)
+diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+index 3d4b2817687f..aa28a322ce9d 100644
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -133,7 +133,9 @@ struct net_bridge_mdb_entry *br_mdb_get(struct net_bridge *br,
+ 		break;
+ #endif
+ 	default:
+-		return NULL;
++		ip.proto = 0;
++		ether_addr_copy(ip.u.mac, eth_hdr(skb)->h_dest);
++		break;
+ 	}
+ 
+ 	return br_mdb_ip_get_rcu(br, &ip);
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index c4fd307fbfdc..1f2a880a9d17 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -592,7 +592,8 @@ void br_fdb_offloaded_set(struct net_bridge *br, struct net_bridge_port *p,
+ /* br_forward.c */
+ enum br_pkt_type {
+ 	BR_PKT_UNICAST,
+-	BR_PKT_MULTICAST,
++	BR_PKT_MULTICAST_IP,
++	BR_PKT_MULTICAST_L2,
+ 	BR_PKT_BROADCAST
+ };
+ int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb);
+-- 
+2.21.0
+
+
+--------------F92E64033FFB71AE03742F84--
