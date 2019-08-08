@@ -2,63 +2,83 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB3984FE9
-	for <lists.bridge@lfdr.de>; Wed,  7 Aug 2019 17:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F99A85C6E
+	for <lists.bridge@lfdr.de>; Thu,  8 Aug 2019 10:04:44 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id E0475E97;
-	Wed,  7 Aug 2019 15:29:48 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 0ED0FC8F;
+	Thu,  8 Aug 2019 08:04:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id EBFF7E6C
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 31637C5D
 	for <bridge@lists.linux-foundation.org>;
-	Wed,  7 Aug 2019 15:29:45 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from bombadil.infradead.org (bombadil.infradead.org
-	[198.137.202.133])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 8A309823
+	Thu,  8 Aug 2019 08:04:33 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+	[209.85.221.65])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 72BEC14D
 	for <bridge@lists.linux-foundation.org>;
-	Wed,  7 Aug 2019 15:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-	Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=oTLsonCa2JJCZquZIr02tCIa6cKQIoCJzf/6u+G0eLM=;
-	b=VpMFLl0A1PNebanbYxVShplQ6
-	owR9HSB6WQhXM7FtQ1KBgyZTkRk+yHQ86qtMqsWD7hr1P1GIddyL7uHdtmbhh9J/rne41GOgTIuXb
-	QNcLmNfEz83irO95WBGPJwNxEL7VeTbBmn8rB2gok7N3zhLJpu93XP3shL9iRYPuvF7r8XEQhdYyT
-	UIVMdSeS457+iMuygc27wzDX/39tdKnOExx0nSZcn+NNwbkkzcKUHC5Huh98ImRDvsOxLsyuqkLd9
-	YhcgjlmrsTueF3dyb9g/ryQnaf9HSD4mYJu4PpPdV5c+JZX5myz+xgOkjcpg8KV0NVPnHQIdrXq4K
-	oqNJkdL/g==;
-Received: from static-50-53-52-16.bvtn.or.frontiernet.net ([50.53.52.16]
-	helo=[192.168.1.17])
-	by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-	id 1hvNsn-0003gV-1L; Wed, 07 Aug 2019 15:29:45 +0000
-To: Stephen Rothwell <sfr@canb.auug.org.au>,
-	Linux Next Mailing List <linux-next@vger.kernel.org>
-References: <20190807183606.372ca1a4@canb.auug.org.au>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <f54391d9-6259-d08b-8b5f-c844093071d8@infradead.org>
-Date: Wed, 7 Aug 2019 08:29:44 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	Thu,  8 Aug 2019 08:04:32 +0000 (UTC)
+Received: by mail-wr1-f65.google.com with SMTP id g17so93921659wrr.5
+	for <bridge@lists.linux-foundation.org>;
+	Thu, 08 Aug 2019 01:04:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=sender:date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=zMsNZPgG1h/gk8iP3BIALAS6VnOFS8kzvEAWQ1MBsZg=;
+	b=CHH1omBqOPi6U3LqSz9XFqLi7lP+MV2oshT2YuNoDzXouyWYREEgdPzEn1mp3X/cpc
+	nYQT1BC0/rEbf36R5XsAubuizp3A5Z/yCK13JiDmq15VNRRaxCj7/epuAU46LXeMEbtC
+	cCCEsjJfeeUzFYZZJN6u1qO/3r4KlJqhdhL6red4j1Mkxde7a1jjib/G1pBX0E4fe43w
+	tBb7KfQvUwWtw0wIV5yX7PUhaGung4lGni1PAg3U3650Q+0Ky2/Cd1mfqEKgRgKHmnBS
+	KGrZw/DAykfnmcp6ZCHKSG3WwgYnCljD5qJoePOEg+wa5YVydjdsxGs1/V4Ho3skWkF4
+	QPqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+	:references:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=zMsNZPgG1h/gk8iP3BIALAS6VnOFS8kzvEAWQ1MBsZg=;
+	b=H7wky0cVVMdXmAplS6Ik0uCpcrsw5vdvlYmZR8ksIbT5lI9+mMQzcu+xv3qTEfhXly
+	O97G+YK2DLH86JHUzu7XDO3A7otOO0FJaSnYptMfF3rsNfgVBlDJGvQCitPJ5XGB+sxf
+	qQI26LcpxlneHAN/6QrgjNnSEjBecqfp/b8ta3+S6rAqQ4phKqjis3vPAYmv+xzhRUX3
+	JI5wvBpRgzCemc1yLooyymILUru4pvmy+quuAlaMtf5zFaj2yBZNXWkqpO8TZ2DNEDQn
+	3oh28jvI1Sv8TweT7AqSvlYrFI7gISv6jWjpqIhm5PoU8heUfO9K3FDIlV2H4nHNZG8M
+	RYCA==
+X-Gm-Message-State: APjAAAWt5z0KT0n4F2Z9RA9JlVaf6hGmDrdZVDtZFDwLuJMb2hPwY4Wx
+	FurrzOm7k0fAlpZmvSiXfVc=
+X-Google-Smtp-Source: APXvYqwcCmOCECVPe3g66qXq1EukQ0kTA+KuiuWlG+x7+4RS4Rw/MHHc+Xj4GTCR8bUBXzhoWjN65Q==
+X-Received: by 2002:adf:c7c7:: with SMTP id y7mr15041576wrg.44.1565251470932; 
+	Thu, 08 Aug 2019 01:04:30 -0700 (PDT)
+Received: from tycho (ipbcc09208.dynamic.kabel-deutschland.de. [188.192.146.8])
+	by smtp.gmail.com with ESMTPSA id
+	t19sm1449349wmi.29.2019.08.08.01.04.29
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Thu, 08 Aug 2019 01:04:30 -0700 (PDT)
+Date: Thu, 8 Aug 2019 10:04:29 +0200
+From: Zahari Doychev <zahari.doychev@linux.com>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <20190808080428.o2eqqfdscl274sr5@tycho>
+References: <20190805153740.29627-1-zahari.doychev@linux.com>
+	<20190805153740.29627-2-zahari.doychev@linux.com>
+	<48058179-9690-54e2-f60c-c372446bfde9@cumulusnetworks.com>
 MIME-Version: 1.0
-In-Reply-To: <20190807183606.372ca1a4@canb.auug.org.au>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48058179-9690-54e2-f60c-c372446bfde9@cumulusnetworks.com>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	bridge@lists.linux-foundation.org,
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [Bridge] linux-next: Tree for Aug 7
- (net/bridge/netfilter/nf_conntrack_bridge.c)
+Cc: makita.toshiaki@lab.ntt.co.jp, dsahern@gmail.com, jiri@resnulli.us,
+	netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+	bridge@lists.linux-foundation.org, jhs@mojatatu.com,
+	simon.horman@netronome.com, xiyou.wangcong@gmail.com,
+	johannes@sipsolutions.net, alexei.starovoitov@gmail.com, ast@plumgrid.com
+Subject: Re: [Bridge] [PATCH v2 1/1] net: bridge: use mac_len in bridge
+	forwarding
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -73,77 +93,103 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 8/7/19 1:36 AM, Stephen Rothwell wrote:
-> Hi all,
+On Wed, Aug 07, 2019 at 12:17:43PM +0300, Nikolay Aleksandrov wrote:
+> Hi Zahari,
+> On 05/08/2019 18:37, Zahari Doychev wrote:
+> > The bridge code cannot forward packets from various paths that set up the
+> > SKBs in different ways. Some of these packets get corrupted during the
+> > forwarding as not always is just ETH_HLEN pulled at the front. This happens
+> > e.g. when VLAN tags are pushed bu using tc act_vlan on ingress.
+> Overall the patch looks good, I think it shouldn't introduce any regressions
+> at least from the codepaths I was able to inspect, but please include more
+> details in here from the cover letter, in fact you don't need it just add all of
+> the details here so we have them, especially the test setup. Also please provide
+> some details how this patch was tested. It'd be great if you could provide a
+> selftest for it so we can make sure it's considered when doing future changes.
+
+Hi Nik,
+
+Thanks for the reply. I will do the suggested corrections and try creating a
+selftest. I assume it should go to the net/forwarding together with the other
+bridge tests as a separate patch.
+
+Regards,
+Zahari
+
 > 
-> Changes since 20190806:
+> Thank you,
+>  Nik
 > 
-
-on i386:
-when CONFIG_NF_TABLES is not set/enabled:
-
-  CC      net/bridge/netfilter/nf_conntrack_bridge.o
-In file included from ../net/bridge/netfilter/nf_conntrack_bridge.c:21:0:
-../include/net/netfilter/nf_tables.h: In function ‘nft_gencursor_next’:
-../include/net/netfilter/nf_tables.h:1224:14: error: ‘const struct net’ has no member named ‘nft’; did you mean ‘nf’?
-  return net->nft.gencursor + 1 == 1 ? 1 : 0;
-              ^~~
-              nf
-In file included from ../include/linux/export.h:45:0,
-                 from ../include/linux/linkage.h:7,
-                 from ../include/linux/kernel.h:8,
-                 from ../include/linux/skbuff.h:13,
-                 from ../include/linux/ip.h:16,
-                 from ../net/bridge/netfilter/nf_conntrack_bridge.c:3:
-../include/net/netfilter/nf_tables.h: In function ‘nft_genmask_cur’:
-../include/net/netfilter/nf_tables.h:1235:29: error: ‘const struct net’ has no member named ‘nft’; did you mean ‘nf’?
-  return 1 << READ_ONCE(net->nft.gencursor);
-                             ^
-../include/linux/compiler.h:261:17: note: in definition of macro ‘__READ_ONCE’
-  union { typeof(x) __val; char __c[1]; } __u;   \
-                 ^
-../include/net/netfilter/nf_tables.h:1235:14: note: in expansion of macro ‘READ_ONCE’
-  return 1 << READ_ONCE(net->nft.gencursor);
-              ^~~~~~~~~
-../include/net/netfilter/nf_tables.h:1235:29: error: ‘const struct net’ has no member named ‘nft’; did you mean ‘nf’?
-  return 1 << READ_ONCE(net->nft.gencursor);
-                             ^
-../include/linux/compiler.h:263:22: note: in definition of macro ‘__READ_ONCE’
-   __read_once_size(&(x), __u.__c, sizeof(x));  \
-                      ^
-../include/net/netfilter/nf_tables.h:1235:14: note: in expansion of macro ‘READ_ONCE’
-  return 1 << READ_ONCE(net->nft.gencursor);
-              ^~~~~~~~~
-../include/net/netfilter/nf_tables.h:1235:29: error: ‘const struct net’ has no member named ‘nft’; did you mean ‘nf’?
-  return 1 << READ_ONCE(net->nft.gencursor);
-                             ^
-../include/linux/compiler.h:263:42: note: in definition of macro ‘__READ_ONCE’
-   __read_once_size(&(x), __u.__c, sizeof(x));  \
-                                          ^
-../include/net/netfilter/nf_tables.h:1235:14: note: in expansion of macro ‘READ_ONCE’
-  return 1 << READ_ONCE(net->nft.gencursor);
-              ^~~~~~~~~
-../include/net/netfilter/nf_tables.h:1235:29: error: ‘const struct net’ has no member named ‘nft’; did you mean ‘nf’?
-  return 1 << READ_ONCE(net->nft.gencursor);
-                             ^
-../include/linux/compiler.h:265:30: note: in definition of macro ‘__READ_ONCE’
-   __read_once_size_nocheck(&(x), __u.__c, sizeof(x)); \
-                              ^
-../include/net/netfilter/nf_tables.h:1235:14: note: in expansion of macro ‘READ_ONCE’
-  return 1 << READ_ONCE(net->nft.gencursor);
-              ^~~~~~~~~
-../include/net/netfilter/nf_tables.h:1235:29: error: ‘const struct net’ has no member named ‘nft’; did you mean ‘nf’?
-  return 1 << READ_ONCE(net->nft.gencursor);
-                             ^
-../include/linux/compiler.h:265:50: note: in definition of macro ‘__READ_ONCE’
-   __read_once_size_nocheck(&(x), __u.__c, sizeof(x)); \
-                                                  ^
-../include/net/netfilter/nf_tables.h:1235:14: note: in expansion of macro ‘READ_ONCE’
-  return 1 << READ_ONCE(net->nft.gencursor);
-              ^~~~~~~~~
-make[4]: *** [../scripts/Makefile.build:273: net/bridge/netfilter/nf_conntrack_bridge.o] Error 1
-
-
-
--- 
-~Randy
+> > 
+> > The problem is fixed by using skb->mac_len instead of ETH_HLEN, which makes
+> > sure that the skb headers are correctly restored. This usually does not
+> > change anything, execpt the local bridge transmits which now need to set
+> > the skb->mac_len correctly in br_dev_xmit, as well as the broken case noted
+> > above.
+> > 
+> > Signed-off-by: Zahari Doychev <zahari.doychev@linux.com>
+> > ---
+> >  net/bridge/br_device.c  | 3 ++-
+> >  net/bridge/br_forward.c | 4 ++--
+> >  net/bridge/br_vlan.c    | 3 ++-
+> >  3 files changed, 6 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
+> > index 681b72862c16..aeb77ff60311 100644
+> > --- a/net/bridge/br_device.c
+> > +++ b/net/bridge/br_device.c
+> > @@ -55,8 +55,9 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
+> >  	BR_INPUT_SKB_CB(skb)->frag_max_size = 0;
+> >  
+> >  	skb_reset_mac_header(skb);
+> > +	skb_reset_mac_len(skb);
+> >  	eth = eth_hdr(skb);
+> > -	skb_pull(skb, ETH_HLEN);
+> > +	skb_pull(skb, skb->mac_len);
+> >  
+> >  	if (!br_allowed_ingress(br, br_vlan_group_rcu(br), skb, &vid))
+> >  		goto out;
+> > diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+> > index 86637000f275..edb4f3533f05 100644
+> > --- a/net/bridge/br_forward.c
+> > +++ b/net/bridge/br_forward.c
+> > @@ -32,7 +32,7 @@ static inline int should_deliver(const struct net_bridge_port *p,
+> >  
+> >  int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb)
+> >  {
+> > -	skb_push(skb, ETH_HLEN);
+> > +	skb_push(skb, skb->mac_len);
+> >  	if (!is_skb_forwardable(skb->dev, skb))
+> >  		goto drop;
+> >  
+> > @@ -94,7 +94,7 @@ static void __br_forward(const struct net_bridge_port *to,
+> >  		net = dev_net(indev);
+> >  	} else {
+> >  		if (unlikely(netpoll_tx_running(to->br->dev))) {
+> > -			skb_push(skb, ETH_HLEN);
+> > +			skb_push(skb, skb->mac_len);
+> >  			if (!is_skb_forwardable(skb->dev, skb))
+> >  				kfree_skb(skb);
+> >  			else
+> > diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+> > index 021cc9f66804..88244c9cc653 100644
+> > --- a/net/bridge/br_vlan.c
+> > +++ b/net/bridge/br_vlan.c
+> > @@ -466,13 +466,14 @@ static bool __allowed_ingress(const struct net_bridge *br,
+> >  		/* Tagged frame */
+> >  		if (skb->vlan_proto != br->vlan_proto) {
+> >  			/* Protocol-mismatch, empty out vlan_tci for new tag */
+> > -			skb_push(skb, ETH_HLEN);
+> > +			skb_push(skb, skb->mac_len);
+> >  			skb = vlan_insert_tag_set_proto(skb, skb->vlan_proto,
+> >  							skb_vlan_tag_get(skb));
+> >  			if (unlikely(!skb))
+> >  				return false;
+> >  
+> >  			skb_pull(skb, ETH_HLEN);
+> > +			skb_reset_network_header(skb);
+> >  			skb_reset_mac_len(skb);
+> >  			*vid = 0;
+> >  			tagged = false;
+> > 
+> 
