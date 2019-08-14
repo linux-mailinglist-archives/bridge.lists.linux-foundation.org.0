@@ -2,61 +2,63 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD90B8DCF8
-	for <lists.bridge@lfdr.de>; Wed, 14 Aug 2019 20:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661638DE7B
+	for <lists.bridge@lfdr.de>; Wed, 14 Aug 2019 22:11:54 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id C54E8E28;
-	Wed, 14 Aug 2019 18:26:12 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id D4C57DB6;
+	Wed, 14 Aug 2019 20:11:45 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id AB5E9DDD
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id E52EAC90
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 14 Aug 2019 18:26:09 +0000 (UTC)
+	Wed, 14 Aug 2019 20:11:42 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 330458A0
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 374928D
 	for <bridge@lists.linux-foundation.org>;
-	Wed, 14 Aug 2019 18:26:09 +0000 (UTC)
-Date: Wed, 14 Aug 2019 20:26:04 +0200
+	Wed, 14 Aug 2019 20:11:42 +0000 (UTC)
+Date: Wed, 14 Aug 2019 22:11:38 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
-	t=1565807167;
+	t=1565813500;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	in-reply-to:in-reply-to:references:references;
-	bh=7nyPcyqyP1juKKcIR2Q9YuG+lYaGhTARXGVglzh/Y5Q=;
-	b=PGbW1DmxbCzsmxwfYv6xF/QbmNKC7wyjcAH6jiVLh2j6fajxyxXV/bvn0hzrWP9ibZw/ug
-	wnbIVjh6kO4a6wtaC1BZpgGnuBKchM08EKHpo1geUzSGWGsYYhGVAo+CZNQwFhvjXs87cb
-	BBeNi+rBDahfxeHSnw2UiOuU3sRWBlnnEu+GQcAgCWg/0/XuKqCRLX8PgwGx2zsGko6UoO
-	XC80W34IlpfE2usj1CMTIf6VgCPZBBqcybDV4slqLXK8DNBTbipBoScC4QFdc85XsjIiLy
-	mMv+NTydzt6jcl+ioTuTADysxJb/dnCONEvS5y45M+9+ibeHvX5Qwz4Fg7g+Wg==
+	bh=zwP/DJWHFexvMmej3C7q8t73rgsDcQJ5forpfODbiYo=;
+	b=Wh4qqA7vCxQpUVySXP5/KuHzSBqJSgf9AR59887R9mTCCnFBi1RcUfuYiKzOaQMqI99rni
+	MGKK/4IBAbluIo1a7jglf3Q5jLvRAGPmFszrafNVKMYXf4RjuVgaPKWm4mH6f08WHVmipF
+	EX0d2Uu/BlzEkQ6U7V9pb78f1gVMdn114PSmdyQoOBIy8Tbt7j+cbTzc9pEP5J1oupUUTJ
+	7wkgvJoJDQo48fnme7UkckC6yYMSyYqJF2hZItQzV1XQN8ZapY3p0S/aDOM3Hjyw5cY7Zt
+	besvG8hGfznq60OxFz/B3Avvr2UFIEz6NGNTyCSq0j9ojtWdXPtWZIccZmidEA==
 From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: David Miller <davem@davemloft.net>
-Message-ID: <20190814182604.GD2431@otheros>
-References: <dc0d0b1bc3c67e2a1346b0dd1f68428eb956fbb7.1565649789.git.sbrivio@redhat.com>
-	<20190814.125858.37782529545578263.davem@davemloft.net>
+To: Patrick Ruddy <pruddy@vyatta.att-mail.com>
+Message-ID: <20190814201138.GE2431@otheros>
+References: <20190813141804.20515-1-pruddy@vyatta.att-mail.com>
+	<20190813195341.GA27005@splinter>
+	<43ed59db-9228-9132-b9a5-31c8d1e8e9e9@cumulusnetworks.com>
+	<620d3cfbe58e3ae87ef1d5e7f2aa1588cac3e64a.camel@vyatta.att-mail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190814.125858.37782529545578263.davem@davemloft.net>
+In-Reply-To: <620d3cfbe58e3ae87ef1d5e7f2aa1588cac3e64a.camel@vyatta.att-mail.com>
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue;
-	s=2018; t=1565807167;
+	s=2018; t=1565813500;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	in-reply-to:in-reply-to:references:references;
-	bh=7nyPcyqyP1juKKcIR2Q9YuG+lYaGhTARXGVglzh/Y5Q=;
-	b=uDIVkXrgRpouFUngVd4C2nCWWFUIXK3NYhgt5j86GuWq1Rf76Jd4KPZHDN0zqM+7dV6IBz
-	XNHK5/Uxqswbj5632RMtmWD/L8210i6P+4p41jAL3ZIsmDDnOcEosocyx3tgLAkNQqfCbk
-	1GxMKZmLTzESQdtxSg7BkwcmgBBJeoyEOO4Nyce3c41rSKBHYAjMH0qW97R0lVHhYmO30l
-	1PfDKsehPCWDjTbJ2MMIkbP3e/N2pCnxCAd3wZRQpQGeGHcNLuvPgcCO5HtNbLwZHYfgQ4
-	1u420PqV85YYB1GfYMM3HIL/QnMvFXoGiK/Zr6Q2F8XfDLqHsBPnAy8kQtjW2Q==
-ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1565807167; a=rsa-sha256; cv=none;
-	b=enHP1R8Q2q6zHICqT2mBNg82Id9fdD6P+2VX3zOVOPO0M9LXPGixPR6+wV/s61T2zfAzzr
-	Prcc8IpF1Zzr83ipw4AZcuarvAeSuCNA7aD+oVq+QH42O2w29TGJKh6D6hOfeJeYgZaBa9
-	IoHv55QLpDTPYaV2/aLwMECB6sAYZNAtgKZ7+DGpawyNI/sRAHdmkrLyKxhjHD+3gmLbjJ
-	73bnCgqiZ6Y7QARt02FBA2uALe1j8qvUXKyDyeMlGAws8Gpx87K7DfJANKaQ4n6KoWNsbY
-	xj6iXu0zbOD3wnOJk/32N+UoSSP/WYj9aKx06uq0Ltpx19dQ4rznrnArncZSGg==
+	bh=zwP/DJWHFexvMmej3C7q8t73rgsDcQJ5forpfODbiYo=;
+	b=qihCM6s9ze8tehxUpnzLVgdt7g7o6RYeNS9XeldWr2nb9MPwxummIHe89tOuNTyVTieST+
+	5rjhZw3zLU7Obm4WLknsMZAEQKBCcRKAL97MTn7phNJImoBuM68svPBr6LO5zVCxRXCcTs
+	cSAivA9GwmjMRnAIpxYz4sjlX+9sesN9eXCTKwe3xoCvwi2+OddYccQZgnLcPsSdhJc1Pv
+	kpSJeBWlExhd6YEXj2ZkdmP8QbG7cAL5apIv7mE6MgprYox0u3LV4HtfSfoRvQEBv2aBKl
+	1uuzKoa8O6KXBZ4JD0eTIHiMuBa5/kbzIQJPiALIMNywEx4cD3AZWimV6fHHZA==
+ARC-Seal: i=1; s=2018; d=c0d3.blue; t=1565813500; a=rsa-sha256; cv=none;
+	b=ABKAmH5Hgr9zdqzy4nzvQm+PxfxRwuY0Xg/soQWt03/OhGShpxUA+UtzkyRA2bte8KVZTp
+	cf01k0jrtY6GuHRRYBJNmby8IorlQJS4jFyq40a1PyPYTPDeNJKr/ccE8wmrT4pj32NTjR
+	iDwwSTmHf/vxAj7I+afVXtlPaqCh+eohM2MSVQSINsMahM+5VqAG7gyu+tKIEMHiGteL9t
+	8gibZkCZHZOVEQG2ScEFZjaSww/4/eAPNcRWMAHvKZKIukWUyLKQTryDROlP3K1pTRf3I/
+	APo/Lz3PinhMlmxINF2JjIMazDkr1gouxMrvwfbUhcrUZHPHozrtPYH/ElvkPg==
 ARC-Authentication-Results: i=1; ORIGINATING;
 	auth=pass smtp.auth=linus.luessing@c0d3.blue
 	smtp.mailfrom=linus.luessing@c0d3.blue
@@ -67,10 +69,11 @@ X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: bridge@lists.linux-foundation.org, haliu@redhat.com, netdev@vger.kernel.org,
-	gnault@redhat.com, sbrivio@redhat.com, edumazet@google.com
-Subject: Re: [Bridge] [PATCH net] ipv6: Fix return value of
- ipv6_mc_may_pull() for malformed packets
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	Ido Schimmel <idosch@idosch.org>, roopa@cumulusnetworks.com,
+	bridge@lists.linux-foundation.org, netdev@vger.kernel.org
+Subject: Re: [Bridge] [PATCH net-next] mcast: ensure L-L IPv6 packets are
+ accepted by bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -85,30 +88,37 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On Wed, Aug 14, 2019 at 12:58:58PM -0400, David Miller wrote:
-> From: Stefano Brivio <sbrivio@redhat.com>
-> Date: Tue, 13 Aug 2019 00:46:01 +0200
+On Wed, Aug 14, 2019 at 05:40:58PM +0100, Patrick Ruddy wrote:
+> The group is being joined by MLD at the L3 level but the packets are
+> not being passed up to the l3 interface becasue there is a MLD querier
+> on the network
 > 
-> > Commit ba5ea614622d ("bridge: simplify ip_mc_check_igmp() and
-> > ipv6_mc_check_mld() calls") replaces direct calls to pskb_may_pull()
-> > in br_ipv6_multicast_mld2_report() with calls to ipv6_mc_may_pull(),
-> > that returns -EINVAL on buffers too short to be valid IPv6 packets,
-> > while maintaining the previous handling of the return code.
-> > 
-> > This leads to the direct opposite of the intended effect: if the
-> > packet is malformed, -EINVAL evaluates as true, and we'll happily
-> > proceed with the processing.
-> > 
-> > Return 0 if the packet is too short, in the same way as this was
-> > fixed for IPv4 by commit 083b78a9ed64 ("ip: fix ip_mc_may_pull()
-> > return value").
-> > 
-> > I don't have a reproducer for this, unlike the one referred to by
-> > the IPv4 commit, but this is clearly broken.
-> > 
-> > Fixes: ba5ea614622d ("bridge: simplify ip_mc_check_igmp() and ipv6_mc_check_mld() calls")
-> > Signed-off-by: Stefano Brivio <sbrivio@redhat.com>
+> snippet from /proc/net/igmp6
+> ...
+> 40   sw1             ff0200000000000000000001ff008700     1 00000004 0
+> 40   sw1             ff020000000000000000000000000002     1 00000004 0
+> 40   sw1             ff020000000000000000000000000001     1 0000000C 0
+> 40   sw1             ff010000000000000000000000000001     1 00000008 0
+> 41   lo1             ff020000000000000000000000000001     1 0000000C 0
+> 41   lo1             ff010000000000000000000000000001     1 00000008 0
+> 42   sw1.1           ff020000000000000000000000000006     1 00000004 0
+> 42   sw1.1           ff020000000000000000000000000005     1 00000004 0
+> 42   sw1.1           ff0200000000000000000001ff000000     2 00000004 0
+> 42   sw1.1           ff0200000000000000000001ff008700     1 00000004 0
+> 42   sw1.1           ff0200000000000000000001ff000099     1 00000004 0
+> 42   sw1.1           ff020000000000000000000000000002     1 00000004 0
+> 42   sw1.1           ff020000000000000000000000000001     1 0000000C 0
+> 42   sw1.1           ff010000000000000000000000000001     1 00000008 0
+> ...
 > 
-> Applied and queued up for -stable.
+> the bridge is sw1 and the l3 intervace is sw1.1
 
-Urgh, sorry... and thanks for the fix(es), absolutely right...
+What kind of interface is sw1.1 exactly? Is it a VLAN or a VRF
+interface? Something else?
+
+Could you also post the output of bridge mdb show?
+
+Regards, Linus
+
+
+PS: Also please include the bridge mailinglist in the future.
