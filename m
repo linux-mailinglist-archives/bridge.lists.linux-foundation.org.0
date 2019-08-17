@@ -2,51 +2,75 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A61890926
-	for <lists.bridge@lfdr.de>; Fri, 16 Aug 2019 22:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3CD29103D
+	for <lists.bridge@lfdr.de>; Sat, 17 Aug 2019 13:22:55 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 18BF88DC;
-	Fri, 16 Aug 2019 20:04:24 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 0BD35B5F;
+	Sat, 17 Aug 2019 11:22:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id E20A18D7
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 199C0AEF
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 16 Aug 2019 20:04:20 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 50483E5
+	Sat, 17 Aug 2019 11:22:30 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 994B763D
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 16 Aug 2019 20:04:18 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
-	(using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	(Authenticated sender: davem-davemloft)
-	by shards.monkeyblade.net (Postfix) with ESMTPSA id C46FC13E99252;
-	Fri, 16 Aug 2019 13:04:17 -0700 (PDT)
-Date: Fri, 16 Aug 2019 13:04:17 -0700 (PDT)
-Message-Id: <20190816.130417.1610388599335442981.davem@davemloft.net>
-To: nikolay@cumulusnetworks.com
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20190814170501.1808-1-nikolay@cumulusnetworks.com>
-References: <81258876-5f03-002c-5aa8-2d6d00e6d99e@cumulusnetworks.com>
-	<20190814170501.1808-1-nikolay@cumulusnetworks.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=iso-8859-7
-Content-Transfer-Encoding: base64
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
-	(shards.monkeyblade.net [149.20.54.216]);
-	Fri, 16 Aug 2019 13:04:18 -0700 (PDT)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+	Sat, 17 Aug 2019 11:22:27 +0000 (UTC)
+Received: by mail-wr1-f67.google.com with SMTP id z11so3985874wrt.4
+	for <bridge@lists.linux-foundation.org>;
+	Sat, 17 Aug 2019 04:22:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding;
+	bh=uGqrtStYIQ/gG4009jwt9tOaQZGkVkkXlx2NS4SiirU=;
+	b=ZtM9408P+KgDletkOKWAlAdeR4QyapJg85TBbsvBLmOlmikx7HU4TLtj8fWPtGO5pb
+	wGMfntiiKHX6RnFeLHAYEQ+BpM40BftYYtJVu8xKz6M6252kQAlCSjOIxZyTvPCES3fU
+	5Az6CwpXff6ksO92Mc5WM8UdDiWlhJHqzbvKo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=uGqrtStYIQ/gG4009jwt9tOaQZGkVkkXlx2NS4SiirU=;
+	b=R/2DVmoCW21MnJU1oF3fOzAJWE0hbnwcMKRYhfae+HVaB+0dB7YOIh9OUXXu0kz5mt
+	dYIt9WWJYK1qFVqUjHIBp1EbRD8r7qOm5JP3xnNNB9AT5St3eYdVl32tSrj0zr0U1QF/
+	knbmP3SnTiFvegL71vzd/qWCtcyrCZshHxBxVITLYKRG8O9j1GYUx12tEjsYoclxeYFS
+	tkUix2sBenQYF5UDsTkqyr88b/bUPfxXOzAbiKTumdHrtMT9L9TMbpvYPdKQoMtvpKGt
+	ud6EZ0f+PM7hBpjWYdCeQmlUnFU+TopgeNqHjzyKM98ZzAQ/ZoyHvYEgqSjpe2TRabr3
+	/1IQ==
+X-Gm-Message-State: APjAAAV+kiaX0t4+DwSbgtHjsZRJlNXOzRSOzkBnlu3E1gALUBiOb8Iq
+	e0igqdQLTkxbWM7V7ymaVJ62sQ==
+X-Google-Smtp-Source: APXvYqzUUe6LtII18GjSQtJq3C+pwGe2SCorDdpnI4svQg2Ve5qN2A5IMizZYMhJfZASKI5aFExSxw==
+X-Received: by 2002:a5d:6a45:: with SMTP id t5mr7938283wrw.228.1566040946127; 
+	Sat, 17 Aug 2019 04:22:26 -0700 (PDT)
+Received: from debil.localdomain (84-238-136-197.ip.btc-net.bg.
+	[84.238.136.197]) by smtp.gmail.com with ESMTPSA id
+	o14sm13900244wrg.64.2019.08.17.04.22.25
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Sat, 17 Aug 2019 04:22:25 -0700 (PDT)
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+To: netdev@vger.kernel.org
+Date: Sat, 17 Aug 2019 14:22:09 +0300
+Message-Id: <20190817112213.27097-1-nikolay@cumulusnetworks.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190816.130417.1610388599335442981.davem@davemloft.net>
+References: <20190816.130417.1610388599335442981.davem@davemloft.net>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
-	bridge@lists.linux-foundation.org
-Subject: Re: [Bridge] [PATCH net-next v2 0/4] net: bridge: mdb: allow
- dump/add/del of host-joined entries
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+	davem@davemloft.net
+Subject: [Bridge] [PATCH net-next v3 0/4] net: bridge: mdb: allow
+	dump/add/del of host-joined entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -61,18 +85,44 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-RnJvbTogTmlrb2xheSBBbGVrc2FuZHJvdiA8bmlrb2xheUBjdW11bHVzbmV0d29ya3MuY29tPg0K
-RGF0ZTogV2VkLCAxNCBBdWcgMjAxOSAyMDowNDo1NyArMDMwMA0KDQo+IFRoaXMgc2V0IG1ha2Vz
-IHRoZSBicmlkZ2UgZHVtcCBob3N0LWpvaW5lZCBtZGIgZW50cmllcywgdGhleSBzaG91bGQgYmUN
-Cj4gdHJlYXRlZCBhcyBub3JtYWwgZW50cmllcyBzaW5jZSB0aGV5IHRha2UgYSBzbG90IGFuZCBh
-cmUgYWdpbmcgb3V0Lg0KIC4uLg0KDQpQbGVhc2UgcmVzcGluIHdpdGggdGhpcyB3YXJuaW5nIGZp
-eGVkOg0KDQpuZXQvYnJpZGdlL2JyX21kYi5jOiBJbiBmdW5jdGlvbiChYnJfbWRiX2FkZKI6DQpu
-ZXQvYnJpZGdlL2JyX21kYi5jOjcyNTo0OiB3YXJuaW5nOiChcKIgbWF5IGJlIHVzZWQgdW5pbml0
-aWFsaXplZCBpbiB0aGlzIGZ1bmN0aW9uIFstV21heWJlLXVuaW5pdGlhbGl6ZWRdDQogICAgX19i
-cl9tZGJfbm90aWZ5KGRldiwgcCwgZW50cnksIFJUTV9ORVdNREIpOw0KICAgIF5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fg0KDQpbZGF2ZW1AbG9jYWxob3N0IG5ldC1u
-ZXh0XSQgZ2NjIC0tdmVyc2lvbg0KZ2NjIChHQ0MpIDguMy4xIDIwMTkwMjIzIChSZWQgSGF0IDgu
-My4xLTIpDQpDb3B5cmlnaHQgKEMpIDIwMTggRnJlZSBTb2Z0d2FyZSBGb3VuZGF0aW9uLCBJbmMu
-DQpUaGlzIGlzIGZyZWUgc29mdHdhcmU7IHNlZSB0aGUgc291cmNlIGZvciBjb3B5aW5nIGNvbmRp
-dGlvbnMuICBUaGVyZSBpcyBOTw0Kd2FycmFudHk7IG5vdCBldmVuIGZvciBNRVJDSEFOVEFCSUxJ
-VFkgb3IgRklUTkVTUyBGT1IgQSBQQVJUSUNVTEFSIFBVUlBPU0UuDQo=
+Hi,
+This set makes the bridge dump host-joined mdb entries, they should be
+treated as normal entries since they take a slot and are aging out.
+We already have notifications for them but we couldn't dump them until
+now so they remained hidden. We dump them similar to how they're
+notified, in order to keep user-space compatibility with the dumped
+objects (e.g. iproute2 dumps mdbs in a format which can be fed into
+add/del commands) we allow host-joined groups also to be added/deleted via
+mdb commands. That can later be used for L2 mcast MAC manipulation as
+was recently discussed. Note that iproute2 changes are not necessary,
+this set will work with the current user-space mdb code.
+
+Patch 01 - a trivial comment move
+Patch 02 - factors out the mdb filling code so it can be
+           re-used for the host-joined entries
+Patch 03 - dumps host-joined entries
+Patch 04 - allows manipulation of host-joined entries via standard mdb
+           calls
+
+v3: fix compiler warning in patch 04 (DaveM)
+v2: change patch 04 to avoid double notification and improve host group
+    manual removal if no ports are present in the group
+
+Thanks,
+ Nik
+
+
+Nikolay Aleksandrov (4):
+  net: bridge: mdb: move vlan comments
+  net: bridge: mdb: factor out mdb filling
+  net: bridge: mdb: dump host-joined entries as well
+  net: bridge: mdb: allow add/delete for host-joined groups
+
+ net/bridge/br_mdb.c       | 175 +++++++++++++++++++++++++-------------
+ net/bridge/br_multicast.c |  30 +++++--
+ net/bridge/br_private.h   |   2 +
+ 3 files changed, 142 insertions(+), 65 deletions(-)
+
+-- 
+2.21.0
+
