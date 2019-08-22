@@ -2,82 +2,59 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9DA099F71
-	for <lists.bridge@lfdr.de>; Thu, 22 Aug 2019 21:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA419A0D1
+	for <lists.bridge@lfdr.de>; Thu, 22 Aug 2019 22:08:40 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id CE6F9DBC;
-	Thu, 22 Aug 2019 19:08:13 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 7A7FEE17;
+	Thu, 22 Aug 2019 20:08:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 89568DA6
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id BFA52DD6
 	for <bridge@lists.linux-foundation.org>;
-	Thu, 22 Aug 2019 19:08:10 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
-	[68.232.153.233])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 2433567F
+	Thu, 22 Aug 2019 20:08:28 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id C725D8A2
 	for <bridge@lists.linux-foundation.org>;
-	Thu, 22 Aug 2019 19:08:10 +0000 (UTC)
-Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
-	Horatiu.Vultur@microchip.com designates 198.175.253.82 as
-	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="Horatiu.Vultur@microchip.com";
-	x-conformance=spf_only; x-record-type="v=spf1";
-	x-record-text="v=spf1 mx a:ushub1.microchip.com
-	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-	a:mx2.microchip.iphmx.com include:servers.mcsv.net
-	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa3.microchip.iphmx.com: no sender
-	authenticity information available from domain of
-	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa3.microchip.iphmx.com;
-	dkim=none (message not signed) header.i=none;
-	spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
-	spf=None smtp.helo=postmaster@email.microchip.com;
-	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: p6TsNpFV/dT6Lm9QJJSaBBDLeHrS08P8mpzPc2Jre12VTgrPM5DLhQ6Uul1zO8W/AubdAqQXh0
-	+37Hh7O248bBlLmfag3hRxbsGIM/CDuTjvHi8+n1kPQaIqE/KfL8bX3Sv4VoCrQTBSMVGjOK1i
-	replUztcpqCjKar5ksg8scvGXn/hatJXdqkqqYZr0pmCGJW0Ewgvzy2W7QlZ8h9Sl3Kg4VKUKc
-	8x4JklPR6d3TqdZ2LpRGNkgefozjLn5M/9qEeUsP2fLuZtwwGnLM555LqEdZGO1kBPTGI+7oEH
-	w5I=
-X-IronPort-AV: E=Sophos;i="5.64,417,1559545200"; d="scan'208";a="46283521"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
-	([198.175.253.82])
-	by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	22 Aug 2019 12:08:09 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
-	chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Thu, 22 Aug 2019 12:08:07 -0700
-Received: from soft-dev3.microsemi.net (10.10.85.251) by
-	chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
-	15.1.1713.5 via Frontend Transport; Thu, 22 Aug 2019 12:08:05 -0700
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: <roopa@cumulusnetworks.com>, <nikolay@cumulusnetworks.com>,
-	<davem@davemloft.net>, <UNGLinuxDriver@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <allan.nielsen@microchip.com>,
-	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<bridge@lists.linux-foundation.org>
-Date: Thu, 22 Aug 2019 21:07:30 +0200
-Message-ID: <1566500850-6247-4-git-send-email-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1566500850-6247-1-git-send-email-horatiu.vultur@microchip.com>
+	Thu, 22 Aug 2019 20:08:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124;
+	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Ouh1hyA4cnUUtU66BbaszA14lgEbgI+hW7TPxZskfjA=;
+	b=2YBLfaiSJjF9YvxwEJ63tFNfLf
+	NgaAM1cajy0G+MKXV0ek0VyWAA2A2jdYFKagzeAznZj+f1uhGOamR9xPHUmjNRKRI4NEn774Y6oog
+	pQlCVkQA/uY9HkHC7rtBXUbBi13ZDESxVdM4S/9OOKhAMjzpFLWZeDaaKqoJ3UxH5oH4=; 
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+	(envelope-from <andrew@lunn.ch>)
+	id 1i0tNZ-0007Bu-Ol; Thu, 22 Aug 2019 22:08:17 +0200
+Date: Thu, 22 Aug 2019 22:08:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Message-ID: <20190822200817.GD21295@lunn.ch>
 References: <1566500850-6247-1-git-send-email-horatiu.vultur@microchip.com>
+	<1566500850-6247-2-git-send-email-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1566500850-6247-2-git-send-email-horatiu.vultur@microchip.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH 3/3] net: mscc: Implement promisc mode.
+Cc: alexandre.belloni@bootlin.com, nikolay@cumulusnetworks.com,
+	netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+	bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	UNGLinuxDriver@microchip.com, allan.nielsen@microchip.com,
+	davem@davemloft.net
+Subject: Re: [Bridge] [PATCH 1/3] net: Add HW_BRIDGE offload feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -92,58 +69,19 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Before when a port was added to a bridge then the port was added in
-promisc mode. But because of the patches:
-commit 6657c3d812dc5d ("net: Add HW_BRIDGE offload feature")
-commit e2e3678c292f9c (net: mscc: Use NETIF_F_HW_BRIDGE")
+> +/* Determin if the SW bridge can be offloaded to HW. Return true if all
+> + * the interfaces of the bridge have the feature NETIF_F_HW_SWITCHDEV set
+> + * and have the same netdev_ops.
+> + */
 
-the port is not needed to be in promisc mode to be part of the bridge.
-So it is possible to togle the promisc mode of the port even if it is or
-not part of the bridge.
+Hi Horatiu
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/net/ethernet/mscc/ocelot.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Why do you need these restrictions. The HW bridge should be able to
+learn that a destination MAC address can be reached via the SW
+bridge. The software bridge can then forward it out the correct
+interface.
 
-diff --git a/drivers/net/ethernet/mscc/ocelot.c b/drivers/net/ethernet/mscc/ocelot.c
-index c9cf2bee..9fa97fe 100644
---- a/drivers/net/ethernet/mscc/ocelot.c
-+++ b/drivers/net/ethernet/mscc/ocelot.c
-@@ -691,6 +691,25 @@ static void ocelot_set_rx_mode(struct net_device *dev)
- 	__dev_mc_sync(dev, ocelot_mc_sync, ocelot_mc_unsync);
- }
- 
-+static void ocelot_change_rx_flags(struct net_device *dev, int flags)
-+{
-+	struct ocelot_port *port = netdev_priv(dev);
-+	struct ocelot *ocelot = port->ocelot;
-+	u32 val;
-+
-+	if (!(flags & IFF_PROMISC))
-+		return;
-+
-+	val = ocelot_read_gix(ocelot, ANA_PORT_CPU_FWD_CFG,
-+			      port->chip_port);
-+	if (dev->flags & IFF_PROMISC)
-+		val |= ANA_PORT_CPU_FWD_CFG_CPU_SRC_COPY_ENA;
-+	else
-+		val &= ~(ANA_PORT_CPU_FWD_CFG_CPU_SRC_COPY_ENA);
-+
-+	ocelot_write_gix(ocelot, val, ANA_PORT_CPU_FWD_CFG, port->chip_port);
-+}
-+
- static int ocelot_port_get_phys_port_name(struct net_device *dev,
- 					  char *buf, size_t len)
- {
-@@ -1070,6 +1089,7 @@ static const struct net_device_ops ocelot_port_netdev_ops = {
- 	.ndo_stop			= ocelot_port_stop,
- 	.ndo_start_xmit			= ocelot_port_xmit,
- 	.ndo_set_rx_mode		= ocelot_set_rx_mode,
-+	.ndo_change_rx_flags		= ocelot_change_rx_flags,
- 	.ndo_get_phys_port_name		= ocelot_port_get_phys_port_name,
- 	.ndo_set_mac_address		= ocelot_port_set_mac_address,
- 	.ndo_get_stats64		= ocelot_get_stats64,
--- 
-2.7.4
+Or are you saying your hardware cannot learn from frames which come
+from the CPU?
 
+	Andrew
