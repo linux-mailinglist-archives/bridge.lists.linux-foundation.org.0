@@ -2,85 +2,62 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 778109AFC7
-	for <lists.bridge@lfdr.de>; Fri, 23 Aug 2019 14:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 529D29B0D3
+	for <lists.bridge@lfdr.de>; Fri, 23 Aug 2019 15:25:59 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 8FC5DE8F;
-	Fri, 23 Aug 2019 12:39:36 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 91B1AEE5;
+	Fri, 23 Aug 2019 13:25:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 14776E62
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 5E474EC3
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 23 Aug 2019 12:39:34 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
-	[68.232.153.233])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id F1F987FB
+	Fri, 23 Aug 2019 13:25:49 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 41FBF7FB
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 23 Aug 2019 12:39:32 +0000 (UTC)
-Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
-	Horatiu.Vultur@microchip.com designates 198.175.253.82 as
-	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="Horatiu.Vultur@microchip.com";
-	x-conformance=spf_only; x-record-type="v=spf1";
-	x-record-text="v=spf1 mx a:ushub1.microchip.com
-	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-	a:mx2.microchip.iphmx.com include:servers.mcsv.net
-	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa3.microchip.iphmx.com: no sender
-	authenticity information available from domain of
-	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa3.microchip.iphmx.com;
-	dkim=none (message not signed) header.i=none;
-	spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
-	spf=None smtp.helo=postmaster@email.microchip.com;
-	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: RZNuFDnl1BBXOhwfHF/9hW+Lc4xuyvpZaKis9sXHXxKK7TVC50toYnMKpU9L/2ypdjbLtNZGhA
-	gyUZ9oN7oqyib/Zf9AZ7Q+TALCOkqSrfFXiPkVGfIGfU1cQx+S1HxMBRZLk/x1NyWgxRlPr+18
-	bAoiz5xf+d7MS0TeuWs3iIMAlh3Xczyq1JMUNbvI0fUTWp0kmD91I+2tQTBtC+3h6doQKWjLSA
-	AQ+mWfj3StDmNH2mvy9qwgOrvEIdKn4GG2NKazN7+M9QixbWVZ/6IlWSDL86XRYN6fi2wdapjm
-	Lfc=
-X-IronPort-AV: E=Sophos;i="5.64,421,1559545200"; d="scan'208";a="46368782"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
-	([198.175.253.82])
-	by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	23 Aug 2019 05:39:32 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
-	chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Fri, 23 Aug 2019 05:39:31 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex03.mchp-main.com
-	(10.10.85.151) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
-	Transport; Fri, 23 Aug 2019 05:39:31 -0700
-Date: Fri, 23 Aug 2019 14:39:30 +0200
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Message-ID: <20190823123929.ta4ikozz7jwkwbo2@soft-dev3.microsemi.net>
+	Fri, 23 Aug 2019 13:25:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124;
+	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=AgwFiLu0EACaDMPU3nVH88QXua+KzaStz26zPOJIN8I=;
+	b=uTDQQT6rWKx2Wf4n20xHa+E1yu
+	Shj56AdUjogsV/v9JEiBh9YDQYexFknZ4ftWAD7oZuV5Cd9raeljUHsd4dlwdIu/MhopBAp2fzN+4
+	HDbyGeT6xGdZ/v79J32sQtrcsUN9Swl+qxJK5JzEtTSRCndImFPuhGbv/mdr7LR+85Zk=; 
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+	(envelope-from <andrew@lunn.ch>)
+	id 1i19ZS-0003rk-Ch; Fri, 23 Aug 2019 15:25:38 +0200
+Date: Fri, 23 Aug 2019 15:25:38 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Message-ID: <20190823132538.GO13020@lunn.ch>
 References: <1566500850-6247-1-git-send-email-horatiu.vultur@microchip.com>
-	<1566500850-6247-2-git-send-email-horatiu.vultur@microchip.com>
-	<20190822200817.GD21295@lunn.ch>
+	<1e16da88-08c5-abd5-0a3e-b8e6c3db134a@cumulusnetworks.com>
+	<b2c52206-82d1-ef28-aeec-a5dcdbe9df6c@cumulusnetworks.com>
+	<20190823122657.njk2tcgur2zu74i7@soft-dev3.microsemi.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190822200817.GD21295@lunn.ch>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+In-Reply-To: <20190823122657.njk2tcgur2zu74i7@soft-dev3.microsemi.net>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: alexandre.belloni@bootlin.com, nikolay@cumulusnetworks.com,
+Cc: alexandre.belloni@bootlin.com,
+	Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
 	netdev@vger.kernel.org, roopa@cumulusnetworks.com,
 	bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
 	UNGLinuxDriver@microchip.com, allan.nielsen@microchip.com,
 	davem@davemloft.net
-Subject: Re: [Bridge] [PATCH 1/3] net: Add HW_BRIDGE offload feature
+Subject: Re: [Bridge] [PATCH 0/3] Add NETIF_F_HW_BRIDGE feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -95,43 +72,53 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-The 08/22/2019 22:08, Andrew Lunn wrote:
-> External E-Mail
+> > > Why do the devices have to be from the same driver ?
+> After seeing yours and Andrews comments I realize that I try to do two
+> things, but I have only explained one of them.
 > 
-> 
-> > +/* Determin if the SW bridge can be offloaded to HW. Return true if all
-> > + * the interfaces of the bridge have the feature NETIF_F_HW_SWITCHDEV set
-> > + * and have the same netdev_ops.
-> > + */
-> 
-> Hi Horatiu
-> 
-> Why do you need these restrictions. The HW bridge should be able to
-> learn that a destination MAC address can be reached via the SW
-> bridge. The software bridge can then forward it out the correct
-> interface.
-> 
-> Or are you saying your hardware cannot learn from frames which come
-> from the CPU?
-> 
-> 	Andrew
-> 
-Hi Andrew,
+> Here is what I was trying to do:
+> A. Prevent ports from going into promisc mode, if it is not needed.
 
-I do not believe that our HW can learn from frames which comes from the
-CPU, at least not in the way they are injected today. But in case of Ocelot
-(and the next chip we are working on), we have other issues in mixing with
-foreign interfaces which is why we have the check in
-ocelot_netdevice_dev_check.
+The switch definition is promisc is a bit odd. You really need to
+split it into two use cases.
 
-More important, as we responded to Nikolay, we properly introduced this
-restriction for the wrong reasons.
+The Linux interface is not a member of a bridge. In this case, promisc
+mode would mean all frames ingressing the port should be forwarded to
+the CPU. Without promisc, you can program the hardware to just accept
+frames with the interfaces MAC address. So this is just the usual
+behaviour of an interface.
 
-In SW bridge I will remove all these restrictions and only set ports in
-promisc mode only if NETIF_F_HW_BRIDGE is not set.
-Then in the network driver I can see if a foreign interface is added to
-the bridge, and when that happens I can set the port in promisc mode.
-Then the frames will be flooded to the SW bridge which eventually will
-send to the foreign interface.
--- 
-/Horatiu
+When the interface is part of the bridge, then you can turn on all the
+learning and not forward frames to the CPU, unless the CPU asks for
+them. But you need to watch out for various flags. By default, you
+should flood to the CPU, unknown destinations to the CPU etc. But some
+of these can be turned off by flags.
+
+> B. Prevent adding the CPU to the flood-mask (in Ocelot we have a
+> flood-mask controlling who should be included when flooding due to
+> destination unknown).
+
+So destination unknown should be flooded to the CPU. The CPU might
+know where to send the frame.
+
+> To solve item "B", the network driver needs to detect if there is a
+> foreign interfaces added to the bridge. If that is the case then to add
+> the CPU port to the flooding mask otherwise no.
+
+It is not just a foreign interface. What about the MAC address on the
+bridge interface?
+
+> > > This is too specific targeting some devices.
+> Maybe I was wrong to mention specific HW in the commit message. The
+> purpose of the patch was to add an optimization (not to copy all the
+> frames to the CPU) for HW that is capable of learning and flooding the
+> frames.
+
+To some extent, this is also tied to your hardware not learning MAC
+addresses from frames passed from the CPU. You should also consider
+fixing this. The SW bridge does send out notifications when it
+adds/removes MAC addresses to its tables. You probably want to receive
+this modifications, and use them to program your hardware to forward
+frames to the CPU when needed.
+
+       Andrew
