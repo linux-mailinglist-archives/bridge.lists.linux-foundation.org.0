@@ -2,85 +2,74 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99469C4E7
-	for <lists.bridge@lfdr.de>; Sun, 25 Aug 2019 18:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 648099D4C4
+	for <lists.bridge@lfdr.de>; Mon, 26 Aug 2019 19:14:50 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id DB63110F9;
-	Sun, 25 Aug 2019 16:37:43 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 210F01BF1;
+	Mon, 26 Aug 2019 17:13:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id D9C3A10EC
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id E691F1805
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 25 Aug 2019 16:37:40 +0000 (UTC)
-X-Greylist: delayed 00:07:06 by SQLgrey-1.7.6
-Received: from esa1.microchip.iphmx.com (esa1.microchip.iphmx.com
-	[68.232.147.91])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 6E98688E
+	Mon, 26 Aug 2019 02:46:06 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-vs1-f65.google.com (mail-vs1-f65.google.com
+	[209.85.217.65])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id DC80F756
 	for <bridge@lists.linux-foundation.org>;
-	Sun, 25 Aug 2019 16:37:40 +0000 (UTC)
-Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
-	Horatiu.Vultur@microchip.com designates 198.175.253.82 as
-	permitted sender) identity=mailfrom;
-	client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="Horatiu.Vultur@microchip.com";
-	x-conformance=spf_only; x-record-type="v=spf1";
-	x-record-text="v=spf1 mx a:ushub1.microchip.com
-	a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-	a:mx2.microchip.iphmx.com include:servers.mcsv.net
-	include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa1.microchip.iphmx.com: no sender
-	authenticity information available from domain of
-	postmaster@email.microchip.com) identity=helo;
-	client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-	envelope-from="Horatiu.Vultur@microchip.com";
-	x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa1.microchip.iphmx.com;
-	dkim=none (message not signed) header.i=none;
-	spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
-	spf=None smtp.helo=postmaster@email.microchip.com;
-	dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: 3X9lT3fgRWqEy3ymSwR6mZoLl1PqtNc7RMtkjEPM6qHhPwoSFMxwHQyCe4o1YO8WbbAbjSs+nx
-	YJFoO5TEaHl6E46Fs46i0TiHmLvnUpLOZovdNYjwUOH1V7l1vJLWi+1Ummg0apzITBESTrkA7R
-	MDOb/OqPwMOOHf4yrdRrdS8bbSYMVZKd0L79NRW7lQ9O+dLsKRk9b3bX8Czfdf+rgHPSlhNCZd
-	fBvvUXPfwT5r/ff0zsMZq1vl5rvChSIbeYGNXG9Ao+9FrB+Gj2Q/BxXTJIyDCmxoNia2uZtsAf
-	dvI=
-X-IronPort-AV: E=Sophos;i="5.64,429,1559545200"; d="scan'208";a="47898997"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
-	([198.175.253.82])
-	by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	25 Aug 2019 09:30:26 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
-	chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Sun, 25 Aug 2019 09:30:25 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
-	(10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
-	Transport; Sun, 25 Aug 2019 09:30:25 -0700
-Date: Sun, 25 Aug 2019 18:30:25 +0200
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: Jiri Pirko <jiri@resnulli.us>
-Message-ID: <20190825163023.hkc23lv7b5vvphdb@soft-dev3.microsemi.net>
-References: <1566500850-6247-1-git-send-email-horatiu.vultur@microchip.com>
-	<e47a318c-6446-71cd-660c-8592037d8166@gmail.com>
-	<20190824074204.GA15041@nanopsycho.orion>
+	Mon, 26 Aug 2019 02:46:04 +0000 (UTC)
+Received: by mail-vs1-f65.google.com with SMTP id j25so9927072vsq.12
+	for <bridge@lists.linux-foundation.org>;
+	Sun, 25 Aug 2019 19:46:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=Ng3r5ONd1UXk9XbKRQ/zQ2B6srwD/ZPTNQ4V19/Kj9k=;
+	b=bnUIMT7JohUlW4Oahlrsf7w9EBYZqsvNo09J+X+VLhDwVpX6jTeQWC6IN6sIQAq7fp
+	0a54HgDv5nhu19OUAynDvvP15aLc44u6qo11gYC5RnNCo0J3lGtNAqhB7eWX8kzNEk/r
+	hRrg9fGUKL9FK97XUN+qWd2ptbq0ggMlaPw9C9ifvDxMrj9ox9RBsmdJDuINDmZ+2Qut
+	yvN3RnEFO8fuxwRn8FSXkieO1xxa/17uHZz9eIBgCTs0py11lO5bPabcGqwRMFnmeZ3C
+	mOH/WFKR23C0xMfMtYjDn5R3uHjgc0j7kKQa5+LCkhqbZY3Fsx7eSvmew0cspGOTaZtD
+	TsUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=Ng3r5ONd1UXk9XbKRQ/zQ2B6srwD/ZPTNQ4V19/Kj9k=;
+	b=iv2KjK9OhmGauDZ1OPxY4gx17ZdaTJ4Nu9lk3wyJIBp/3Ypzi+aBzAd825EChDujJQ
+	OuIrLMs4Oon7h5uglH04EQH/mO7xDfqFboFV6+R5xVRRLAAGjXYf9vhQdsUXxnobj+QC
+	iOlh6ydOUeg/69Q0MfH0Dv4SMbp6couiq6TAWZU3k+sHfarSNzyh/PtScAkHguLj82pD
+	LKNG50jEcouMbzf/XdaQeV9JcR16SXU6L2+jBxRvFKnX6UTVBfb2EpUusCpeBcMqKpIF
+	hrHll1cqhyXpUtcGsdrEYW+AQWB3mrb/EsZ5pmnDUVLAn2Y2WZMPLXKC2rBMtzxbUsoi
+	exyQ==
+X-Gm-Message-State: APjAAAVXqt5HVZMe9MF/+GdZYniV3p4NnKQblq9AgD+PRff5e+53sXZQ
+	lwD0wfAjKXwPSWj9azG6TATpVoeIVIeiklggPg==
+X-Google-Smtp-Source: APXvYqzQCcgTMZNQ/nWhyrJuz9jbUm0rIgbeTEFk88hIcZ0/xc+RP1r9NgPZajYUzJYrKIyUk683wwYVBYswndDjx/Q=
+X-Received: by 2002:a67:eb12:: with SMTP id a18mr9289943vso.231.1566787563972; 
+	Sun, 25 Aug 2019 19:46:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20190824074204.GA15041@nanopsycho.orion>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+References: <20190730122534.30687-1-rdong.ge@gmail.com>
+	<1dc87e69-628b-fd04-619a-8dbe5bdfa108@cumulusnetworks.com>
+In-Reply-To: <1dc87e69-628b-fd04-619a-8dbe5bdfa108@cumulusnetworks.com>
+From: Rundong Ge <rdong.ge@gmail.com>
+Date: Mon, 26 Aug 2019 10:45:52 +0800
+Message-ID: <CAN1LvyoL3YUot0JAfz1BwN9LBxM0XUgSkYHhWJ75DFHW_-6+zw@mail.gmail.com>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: alexandre.belloni@bootlin.com, Florian Fainelli <f.fainelli@gmail.com>,
-	nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
-	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
-	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-	allan.nielsen@microchip.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH 0/3] Add NETIF_F_HW_BRIDGE feature
+Cc: yoshfuji@linux-ipv6.org, netdev@vger.kernel.org,
+	Roopa Prabhu <roopa@cumulusnetworks.com>,
+	bridge@lists.linux-foundation.org,
+	Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+	kadlec@netfilter.org, coreteam@netfilter.org,
+	netfilter-devel@vger.kernel.org, kuznet@ms2.inr.ac.ru,
+	davem@davemloft.net, Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: Re: [Bridge] [PATCH] bridge:fragmented packets dropped by bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -95,75 +84,77 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-The 08/24/2019 09:42, Jiri Pirko wrote:
-> External E-Mail
-> 
-> 
-> Sat, Aug 24, 2019 at 01:25:02AM CEST, f.fainelli@gmail.com wrote:
-> >On 8/22/19 12:07 PM, Horatiu Vultur wrote:
-> >> Current implementation of the SW bridge is setting the interfaces in
-> >> promisc mode when they are added to bridge if learning of the frames is
-> >> enabled.
-> >> In case of Ocelot which has HW capabilities to switch frames, it is not
-> >> needed to set the ports in promisc mode because the HW already capable of
-> >> doing that. Therefore add NETIF_F_HW_BRIDGE feature to indicate that the
-> >> HW has bridge capabilities. Therefore the SW bridge doesn't need to set
-> >> the ports in promisc mode to do the switching.
+On Tue, Jul 30, 2019 at 8:41 PM Nikolay Aleksandrov
+<nikolay@cumulusnetworks.com> wrote:
+>
+> On 30/07/2019 15:25, Rundong Ge wrote:
+> > Given following setup:
+> > -modprobe br_netfilter
+> > -echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+> > -brctl addbr br0
+> > -brctl addif br0 enp2s0
+> > -brctl addif br0 enp3s0
+> > -brctl addif br0 enp6s0
+> > -ifconfig enp2s0 mtu 1300
+> > -ifconfig enp3s0 mtu 1500
+> > -ifconfig enp6s0 mtu 1500
+> > -ifconfig br0 up
 > >
-> >Then do not do anything when the ndo_set_rx_mode() for the ocelot
-> >network device is called and indicates that IFF_PROMISC is set and that
-> >your network port is a bridge port member. That is what mlxsw does AFAICT.
-
-Yes, but then if you want to monitor all the traffic on a bridge port
-you will not be able to do that. And this seems to be a limitation.
-This is the case for mlxsw and ocelot(it doesn't implement at all
-promisc mode) and might be others.
-
-> 
-> Correct.
-> 
+> >                  multi-port
+> > mtu1500 - mtu1500|bridge|1500 - mtu1500
+> >   A                  |            B
+> >                    mtu1300
 > >
-> >As other pointed out, the Linux bridge implements a software bridge by
-> >default, and because it needs to operate on a wide variety of network
-> >devices, all with different capabilities, the easiest way to make sure
-> >that all management (IGMP, BPDU, etc. ) as well as non-management
-> >traffic can make it to the bridge ports, is to put the network devices
-> >in promiscuous mode.
-
-What if the HW can copy all the management traffic to the SW bridge and
-HW knows to learn and flood frames. Then there is no point to set a
-network port in promisc mode just because it is a bridge port member.
-> >If this is suboptimal for you, you can take
-> >shortcuts in your driver that do not hinder the overall functionality.
-
-If I add this check, I don't see how any other network drivers will be
-affected by this. If a network driver will start to use this then it
-needs to know that the HW should be configure to include CPU in the
-flood mask and to know which addresses can be reached through SW bridge.
-
+> > With netfilter defragmentation/conntrack enabled, fragmented
+> > packets from A will be defragmented in prerouting, and refragmented
+> > at postrouting.
+> > But in this scenario the bridge found the frag_max_size(1500) is
+> > larger than the dst mtu stored in the fake_rtable whitch is
+> > always equal to the bridge's mtu 1300, then packets will be dopped.
 > >
-> >> This optimization takes places only if all the interfaces that are part
-> >> of the bridge have this flag and have the same network driver.
-> >> 
-> >> If the bridge interfaces is added in promisc mode then also the ports part
-> >> of the bridge are set in promisc mode.
-> >> 
-> >> Horatiu Vultur (3):
-> >>   net: Add HW_BRIDGE offload feature
-> >>   net: mscc: Use NETIF_F_HW_BRIDGE
-> >>   net: mscc: Implement promisc mode.
-> >> 
-> >>  drivers/net/ethernet/mscc/ocelot.c | 26 ++++++++++++++++++++++++--
-> >>  include/linux/netdev_features.h    |  3 +++
-> >>  net/bridge/br_if.c                 | 29 ++++++++++++++++++++++++++++-
-> >>  net/core/ethtool.c                 |  1 +
-> >>  4 files changed, 56 insertions(+), 3 deletions(-)
-> >> 
+> > This modifies ip_skb_dst_mtu to use the out dev's mtu instead
+> > of bridge's mtu in bridge refragment.
+> >
+> > Signed-off-by: Rundong Ge <rdong.ge@gmail.com>
+> > ---
+> >  include/net/ip.h | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/include/net/ip.h b/include/net/ip.h
+> > index 29d89de..0512de3 100644
+> > --- a/include/net/ip.h
+> > +++ b/include/net/ip.h
+> > @@ -450,6 +450,8 @@ static inline unsigned int ip_dst_mtu_maybe_forward(const struct dst_entry *dst,
+> >  static inline unsigned int ip_skb_dst_mtu(struct sock *sk,
+> >                                         const struct sk_buff *skb)
+> >  {
+> > +     if ((skb_dst(skb)->flags & DST_FAKE_RTABLE) && skb->dev)
+> > +             return min(skb->dev->mtu, IP_MAX_MTU);
+> >       if (!sk || !sk_fullsock(sk) || ip_sk_use_pmtu(sk)) {
+> >               bool forwarding = IPCB(skb)->flags & IPSKB_FORWARDED;
 > >
 > >
-> >-- 
-> >Florian
-> 
+>
+> I don't think this is correct, there's a reason why the bridge chooses the smallest
+> possible MTU out of its members and this is simply a hack to circumvent it.
+> If you really like to do so just set the bridge MTU manually, we've added support
+> so it won't change automatically to the smallest, but then how do you pass packets
+> 1500 -> 1300 in this setup ?
+>
+> You're talking about the frag_size check in br_nf_ip_fragment(), right ?
+>
 
--- 
-/Horatiu
+Hi Nikolay
+My setup may not be common. And may I know if there is any reason to
+use output port's MTU
+to do the re-fragment check but then use the bridge's MTU to do the re-fragment?
+Is it the expected behavior that the bridge's MTU will affect the
+FORWARD traffic re-fragment,
+because I used to think the bridge's MTU will only effect the OUTPUT
+traffic sent from "br0".
+And the modification in this patch will replace the MTU in the
+fake_rtable which is only
+used in the FORWARD re-fragment and won't affect the local traffic from "br0".
+
+TKS
+Raydodn
