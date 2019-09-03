@@ -2,83 +2,88 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9874AA69FC
-	for <lists.bridge@lfdr.de>; Tue,  3 Sep 2019 15:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8381BA70EE
+	for <lists.bridge@lfdr.de>; Tue,  3 Sep 2019 18:47:15 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 05EB4DA5;
-	Tue,  3 Sep 2019 13:36:43 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 03912DA3;
+	Tue,  3 Sep 2019 16:47:07 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 5A244D90
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id C08F7CCA
 	for <bridge@lists.linux-foundation.org>;
-	Tue,  3 Sep 2019 13:36:40 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
-	[209.85.221.68])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id B8C87756
+	Tue,  3 Sep 2019 16:47:03 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+	[148.163.156.1])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 0FFA6709
 	for <bridge@lists.linux-foundation.org>;
-	Tue,  3 Sep 2019 13:36:39 +0000 (UTC)
-Received: by mail-wr1-f68.google.com with SMTP id l11so8709348wrx.5
-	for <bridge@lists.linux-foundation.org>;
-	Tue, 03 Sep 2019 06:36:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=sender:date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=XXWSbLsKaHg5I5JkLpivESPwDR8ogw0XgJNZimWH3ok=;
-	b=Teo2ZSWsXJgYtI6aGJ8QIQR+ijFjruZMSiEKuPtDDv0rMWQA0JmLG8nCCISOKQnYOy
-	NetFt3DFd8uyAB6021HDj4DFccgfSM4sBbIlxeI1rKOwg3QzraEgEh+ThJcOSdrv5d55
-	uExIHOud/g8s4F0JPk7gKA21BRQPPzEtOtip2/XRe+lhkE11tZ4PWNIMOWN5QJZqWTtK
-	Fdb1GR/CCAVhWDIN7dqtnJ8cf1VY4BVaHTBaPKv3H8hPnsdvKauzoulc4sl9lfsh9RoR
-	ZfIpNv+vVinopMauyptxX2ecDAnDzLuhRMkyoBI06LnO1RCjRYVURbwuBH0N63JG858w
-	Z6xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-	:references:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=XXWSbLsKaHg5I5JkLpivESPwDR8ogw0XgJNZimWH3ok=;
-	b=HSnqljjMF4R7cheJNfd8uohMaLE7xwOM2BnKkvaTja3734Cx9v4ZasqgQOgSZSNpfl
-	zNxMFbMr30HIbBKOA7Ia6nVQrfpW6tVUVDfc7uZN90AMLe1cflr3JxnvneN/LXkjd2PJ
-	TLHH6G+UMNRHuZSjLlUN6pEttipwp6AEVc8nlMbqWPFJNUtH4HkBYDZr8bdw3rKWWkdy
-	UQTiWHFkdu4RT9MCUbsxDNAr3GT5ebyxYMkFEwAeuJNDobGneKyTO5NYOh5YiUirBLVt
-	8fJQhWm1kGEQ/wuXqWQqo9uNvqf0AnMQZYdH9Z9ERqXLeP+JIPY7C6sce4f5v8whLnjF
-	ka5w==
-X-Gm-Message-State: APjAAAVzEIhGcDWUp1hYYsWh2dp7oO8W++TZ9qQjgZdxJswTkNpt7A2k
-	JW2pjMHb1wGLdp2pEh4lS/I=
-X-Google-Smtp-Source: APXvYqz4KjqpS358nHrAmtKP8SWA3RqP5GCb/rip3hF2qCoodxn/l/koaslM3TPkpsB28aXEdVBDig==
-X-Received: by 2002:a5d:4402:: with SMTP id z2mr10102991wrq.183.1567517798269; 
-	Tue, 03 Sep 2019 06:36:38 -0700 (PDT)
-Received: from tycho (ipbcc09208.dynamic.kabel-deutschland.de. [188.192.146.8])
-	by smtp.gmail.com with ESMTPSA id
-	f143sm11102046wme.40.2019.09.03.06.36.37
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Tue, 03 Sep 2019 06:36:37 -0700 (PDT)
-Date: Tue, 3 Sep 2019 15:36:36 +0200
-From: Zahari Doychev <zahari.doychev@linux.com>
-To: Toshiaki Makita <toshiaki.makita1@gmail.com>
-Message-ID: <20190903133635.siw6xcaqwk7m5a5a@tycho>
-References: <20190902181000.25638-1-zahari.doychev@linux.com>
-	<76b7723b-68dd-0efc-9a93-0597e9d9b827@gmail.com>
+	Tue,  3 Sep 2019 16:47:03 +0000 (UTC)
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
+	x83GkwGH041085; Tue, 3 Sep 2019 12:47:00 -0400
+Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com
+	[169.55.85.253])
+	by mx0a-001b2d01.pphosted.com with ESMTP id 2usu0btfrs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Tue, 03 Sep 2019 12:47:00 -0400
+Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
+	by ppma01wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id
+	x83GkVM1010308; Tue, 3 Sep 2019 16:46:59 GMT
+Received: from b03cxnp07029.gho.boulder.ibm.com
+	(b03cxnp07029.gho.boulder.ibm.com [9.17.130.16])
+	by ppma01wdc.us.ibm.com with ESMTP id 2uqgh6krsu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Tue, 03 Sep 2019 16:46:59 +0000
+Received: from b03ledav005.gho.boulder.ibm.com
+	(b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+	by b03cxnp07029.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with
+	ESMTP id x83GkwJb41943354
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=OK); Tue, 3 Sep 2019 16:46:58 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 952C1BE053;
+	Tue,  3 Sep 2019 16:46:58 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 93DF7BE05A;
+	Tue,  3 Sep 2019 16:46:55 +0000 (GMT)
+Received: from LeoBras (unknown [9.80.220.79])
+	by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
+	Tue,  3 Sep 2019 16:46:55 +0000 (GMT)
+Message-ID: <99e3ef9c5ead1c95df697d49ab9cc83a95b0ac7c.camel@linux.ibm.com>
+From: Leonardo Bras <leonardo@linux.ibm.com>
+To: Pablo Neira Ayuso <pablo@netfilter.org>
+Date: Tue, 03 Sep 2019 13:46:50 -0300
+In-Reply-To: <20190830205802.GS20113@breakpoint.cc>
+References: <20190830181354.26279-1-leonardo@linux.ibm.com>
+	<20190830181354.26279-2-leonardo@linux.ibm.com>
+	<20190830205802.GS20113@breakpoint.cc>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-rrgSbHLI/0xPSTHf0NdV"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <76b7723b-68dd-0efc-9a93-0597e9d9b827@gmail.com>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2019-09-03_03:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1906280000 definitions=main-1909030171
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: bridge@lists.linux-foundation.org, jiri@resnulli.us,
-	nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
-	roopa@cumulusnetworks.com, makita.toshiaki@lab.ntt.co.jp,
-	jhs@mojatatu.com, alexei.starovoitov@gmail.com,
-	simon.horman@netronome.com, xiyou.wangcong@gmail.com,
-	johannes@sipsolutions.net, dsahern@gmail.com
-Subject: Re: [Bridge] [PATCH v3 1/2] net: bridge: use mac_len in bridge
- forwarding
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
+	Roopa Prabhu <roopa@cumulusnetworks.com>,
+	bridge@lists.linux-foundation.org,
+	FlorianWestphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+	Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
+	netfilter-devel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH v4 1/2] netfilter: Terminate rule eval if
+ protocol=IPv6 and ipv6 module is disabled
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -93,73 +98,68 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On Tue, Sep 03, 2019 at 08:37:36PM +0900, Toshiaki Makita wrote:
-> Hi Zahari,
-> 
-> Sorry for reviewing this late.
-> 
-> On 2019/09/03 3:09, Zahari Doychev wrote:
-> ...
-> > @@ -466,13 +466,14 @@ static bool __allowed_ingress(const struct net_bridge *br,
-> >   		/* Tagged frame */
-> >   		if (skb->vlan_proto != br->vlan_proto) {
-> >   			/* Protocol-mismatch, empty out vlan_tci for new tag */
-> > -			skb_push(skb, ETH_HLEN);
-> > +			skb_push(skb, skb->mac_len);
-> >   			skb = vlan_insert_tag_set_proto(skb, skb->vlan_proto,
-> >   							skb_vlan_tag_get(skb));
-> 
-> I think we should insert vlan at skb->data, i.e. mac_header + mac_len, while this
-> function inserts the tag at mac_header + ETH_HLEN which is not always the correct
-> offset.
 
-Maybe I am misunderstanding the concern here but this should make sure that
-the VLAN tag from the skb is move back in the payload as the outer most tag.
-So it should follow the ethernet header. It looks like this e.g.,:
+--=-rrgSbHLI/0xPSTHf0NdV
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VLAN1 in skb:
-+------+------+-------+
-| DMAC | SMAC | ETYPE |
-+------+------+-------+
+On Fri, 2019-08-30 at 22:58 +0200, Florian Westphal wrote:
+> Leonardo Bras <leonardo@linux.ibm.com> wrote:
+> > If IPv6 is disabled on boot (ipv6.disable=3D1), but nft_fib_inet ends u=
+p
+> > dealing with a IPv6 packet, it causes a kernel panic in
+> > fib6_node_lookup_1(), crashing in bad_page_fault.
+> >=20
+> > The panic is caused by trying to deference a very low address (0x38
+> > in ppc64le), due to ipv6.fib6_main_tbl =3D NULL.
+> > BUG: Kernel NULL pointer dereference at 0x00000038
+> >=20
+> > The kernel panic was reproduced in a host that disabled IPv6 on boot an=
+d
+> > have to process guest packets (coming from a bridge) using it's ip6tabl=
+es.
+> >=20
+> > Terminate rule evaluation when packet protocol is IPv6 but the ipv6 mod=
+ule
+> > is not loaded.
+> >=20
+> > Signed-off-by: Leonardo Bras <leonardo@linux.ibm.com>
+>=20
+> Acked-by: Florian Westphal <fw@strlen.de>
+>=20
 
-VLAN1 moved to payload:
-+------+------+-------+-------+
-| DMAC | SMAC | VLAN1 | ETYPE |
-+------+------+-------+-------+
+Hello Pablo,
 
-VLAN2 in skb:
-+------+------+-------+-------+
-| DMAC | SMAC | VLAN1 | ETYPE |
-+------+------+-------+-------+
+Any trouble with this patch?=20
+I could see the other* one got applied, but not this one.
+*(The other did not get acked, so i released it alone as v5)
 
-VLAN2 moved to payload:
+Is there any fix I need to do in this one?
 
-+------+------+-------+-------+
-| DMAC | SMAC | VLAN2 | VLAN1 | ....
-+------+------+-------+-------+
+Best regards,
+Leonardo Bras
 
-Doing the skb push with mac_len makes sure that VLAN tag is inserted in the
-correct offset. For mac_len == ETH_HLEN this does not change the current
-behaviour.
+--=-rrgSbHLI/0xPSTHf0NdV
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-> 
-> >   			if (unlikely(!skb))
-> >   				return false;
-> >   			skb_pull(skb, ETH_HLEN);
-> 
-> Now skb->data is mac_header + ETH_HLEN which would be broken when mac_len is not
-> ETH_HLEN?
+-----BEGIN PGP SIGNATURE-----
 
-I thought it would be better to point in this case to the outer tag as otherwise
-if mac_len is used the skb->data will point to the next tag which I find somehow
-inconsistent or do you see some case where this can cause problems?
+iQIzBAABCAAdFiEEMdeUgIzgjf6YmUyOlQYWtz9SttQFAl1umPoACgkQlQYWtz9S
+ttTiuA//eKqD59zYaIAIlPAbMVWkpOfquO4lDm1Xeh+YuLGxUkxsydD1UoScNzBr
++TWn4e6Lb3ky6T51kawUC3oZOgz8Czxzx/Rmcs7SYVVzQpj+eTnAlRROcMg4oFr2
+t6d8Bm2MRJeFd6nAw5KUsdFIgF7zng6qAq6NNBJprF90lM9l88w7D5vwGhUs6rOx
+aGNG98+5JUM7D19OcfPuCNAf3mk5eWlYMouBHroAe5DMy93xLtacFMmUxtUrwz14
+SooMEazcmg3TejHyYBE81lqU2J81CJhXBF0IkmzivMG7BCI47piq4+DF0tjg2Zqx
+C+SxMJVW7szxurSiyAsLktbY8/fS4c0gtTneqHM5dDezY5YIRLKQGiDV5BUQ0+UK
+zMB0UY4dlYbeBSqlmtfIuSnQakz0bBzNd1YVxfzo7rSMab3AAOqrkjPdi2HBRAw5
+Q+9G3S2gF1CTLHZx0ybMBvFw79tWsBcUINx82nWJcUqEPaGNW4bhByxaG+CLQ8+s
+5jQkDUrfgi75TrE2EBGJBOU94XAh5j1AHMrGLYu3Dq6wdNW4B527T1y51V2+zrBB
+6vLlhpUuQz/g+YLgV8sc9UqRmpq1zi4kASkDI4lMN7ku4f+jvkpau0nT+QDGkL1/
+zzA1mzWsg1sMbMDIPQ60FSv5a6n6pcyoQRqj5Y50wqpiW2pYW3M=
+=8B6P
+-----END PGP SIGNATURE-----
 
+--=-rrgSbHLI/0xPSTHf0NdV--
 
-> 
-> > +			skb_reset_network_header(skb);
-> >   			skb_reset_mac_len(skb);
-> >   			*vid = 0;
-> >   			tagged = false;
-> > 
-> 
-> Toshiaki Makita
