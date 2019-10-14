@@ -2,67 +2,66 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE56CA111
-	for <lists.bridge@lfdr.de>; Thu,  3 Oct 2019 17:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA70D6AD4
+	for <lists.bridge@lfdr.de>; Mon, 14 Oct 2019 22:33:47 +0200 (CEST)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 0F20AFE5;
-	Thu,  3 Oct 2019 15:19:51 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id AACD52280;
+	Mon, 14 Oct 2019 20:33:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id B5F6FE67
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id D80102271
 	for <bridge@lists.linux-foundation.org>;
-	Wed,  2 Oct 2019 12:15:59 +0000 (UTC)
-X-Greylist: delayed 00:15:07 by SQLgrey-1.7.6
-Received: from mail.ledlenser.com (mail.ledlenser.com [217.5.148.18])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 9EC148BB
+	Mon, 14 Oct 2019 20:33:35 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.7.6
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+	[209.85.128.65])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 3C78A6CE
 	for <bridge@lists.linux-foundation.org>;
-	Wed,  2 Oct 2019 12:15:58 +0000 (UTC)
-Received: from mail.ledlenser.com ([192.168.0.221])
-	by mail.ledlenser.com  with ESMTP id x92C0ktq027383-x92C0kts027383
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK);
-	Wed, 2 Oct 2019 14:00:46 +0200
-Received: from ex13.zweibrueder.com (192.168.0.220) by EX13-2.zweibrueder.com
-	(192.168.0.221) with Microsoft SMTP Server (TLS) id 15.0.1473.3;
-	Wed, 2 Oct 2019 14:00:46 +0200
-Received: from ex13.zweibrueder.com ([fe80::78de:1dbe:e9f9:952a]) by
-	ex13.zweibrueder.com ([fe80::78de:1dbe:e9f9:952a%14]) with mapi id
-	15.00.1473.005; Wed, 2 Oct 2019 14:00:46 +0200
-From: Andreas Triller <andreas.triller@ledlenser.com>
-To: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
-	"adrian27oradea@gmail.com" <adrian27oradea@gmail.com>
-Thread-Topic: Re: Re: [Bridge] linux bridge does not forward arp reply back
-	packets in a vmware vm
-Thread-Index: AdV5A0Awj05TganWTf6EstXhk0Wwgw==
-Date: Wed, 2 Oct 2019 12:00:46 +0000
-Message-ID: <ce505dbeaf6345049e43b3ff2a3bf260@ex13.zweibrueder.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.0.112]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	Mon, 14 Oct 2019 20:33:35 +0000 (UTC)
+Received: by mail-wm1-f65.google.com with SMTP id i16so18532376wmd.3
+	for <bridge@lists.linux-foundation.org>;
+	Mon, 14 Oct 2019 13:33:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=RL+qRYT6Goj58mWMl95r8FGMxjYOCcO4sf1iNuaKh9U=;
+	b=dMpX4osW+Gizh9wuXThIULR+SMojXNXSVsVvoWi5OvVzxXiLGj195gyZ0EdA3ugmnf
+	pNJa9ZRwkxgN96umOkiqmG22sEeEnHfHxbwOCABF932ETOIQozeKKpwV4kOYVqDZdYpg
+	HCazf1SLvF8mNO3JApRICKFlRopM9A0+MQ9KKpJvlyBDThEZ2i3z8fb3COic55OAQtJM
+	8uPRQDu4QUAbItWuMpA1YNQofcuzZx5hpVW/0/UlNHEzP8FGK2ePDh9KDJ/pasgRXdbd
+	qmhX6qiIJmhColRpPsyAtExuKOWc9pX84aDJFFd9WvWi3x/EZikS4XryeAB1saHR+0vu
+	jghQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=RL+qRYT6Goj58mWMl95r8FGMxjYOCcO4sf1iNuaKh9U=;
+	b=j2XBHIokJoOna+c/AvESGraUURYGtdeHZO6Ei/DjmN5X6S8ur+nKQoAhvJOJ3m+cet
+	cYmXF8IFDxOxtL0wuwvsUiV4Oxx5B6eyzrrR1zuViyJIQJgfRl8xTH7U4n0YAZi94nuV
+	i+4a2pOhXEgcq3ia8vzOzI9N8CMsP2SqHVljHGw62edWt5cjBC+JAK7SG3uEpZ63aGwv
+	q6372f7pHDrJrjqVOmRYWasran4UdmtXqtd1bYvT1sg1Mh94VdRz1wnBQUR5WXvoM9WR
+	8vuP2UgBurfoViW3Gag6CxeuG+yQrlnA+1ptycCnhfDwADOV9LzznI6L8GdKFJvABB0O
+	onoQ==
+X-Gm-Message-State: APjAAAVa75kw+MkknNr5KyYF7aWe4KrADdzpX5geVA7so0PPjHn0QuIZ
+	FPuYFgyM1CR4k456jtjby+73cl5dP/IUxuI9AXw=
+X-Google-Smtp-Source: APXvYqzXLid+PDcZKtgZAJnd+DnjNjmGs2LNAqZ3GOO2Khpo/muwpEqr2khANBlfQMDwxJ+eHJscGM6cBUWo4kOCBzY=
+X-Received: by 2002:a1c:2d85:: with SMTP id
+	t127mr15762182wmt.109.1571085213841; 
+	Mon, 14 Oct 2019 13:33:33 -0700 (PDT)
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=ledlenser.com;
-	s=ledlenser.com_19; c=relaxed/relaxed; 
-	h=from:to:subject:date:message-id:content-type:mime-version;
-	bh=E2m385NOBg54L8KTHwA5prBk0f5tcPCFzfd5bDjkeVs=;
-	b=N+u4+kcONJeM6+CQZ21WQHcvhms1lXR6Ti4O7PrA3OaIiE9miIap2RHecMGClD62uIMuKgi3X8H9
-	3Ppk41RRnRmGDinNHPsVtvc7MVsfGTsZPvaqDhUcysBOssD8aW1DISMfqWPJu0frzlmCTeSNlJkA
-	H9EldSLqbtYSj+jR5qiZTlr9saUnIaH3jsfZ9PKV4gFlAWYGm6sVlfOStatFvOKhxqRcJHHutcA0
-	r9YdZQkMZmfFF276OE2vjUiHXlvLFBgdHcNyqnNAuITeYhDbiqU7cU24wLfhpfp6iGNtJ3PyIQMy
-	d0WNM8BEBNTlrs8CPmD2DP+GHaT+zxEmBN8N5A==
+From: Richard Weinberger <richard.weinberger@gmail.com>
+Date: Mon, 14 Oct 2019 22:33:22 +0200
+Message-ID: <CAFLxGvwnOi6dSq5yLM78XskweQOY6aPbRt==G9wv5qS+dfj8bw@mail.gmail.com>
+To: netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-X-Mailman-Approved-At: Thu, 03 Oct 2019 15:19:48 +0000
-Subject: Re: [Bridge] linux bridge does not forward arp reply back packets
- in a vmware vm
+Cc: nikolay@cumulusnetworks.com, Greg KH <gregkh@linuxfoundation.org>,
+	Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org
+Subject: [Bridge] Bridge port userspace events broken?
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -77,77 +76,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-Dear Adrian,
+Hi!
 
-Thanks a lot for posting this to the mailing list. I had almost the exact s=
-ame setup and hit the same problem. Your post lead me to the solution.
-In my case I use 2 Linux bridges connected with a VxLAN tunnel which then g=
-oes through an IPSec VPN over the internet. (Meant to stretch some VLANs on=
- Layer 2 over a standard ISP line.)
+My userspace needs /sys/class/net/eth0/brport/group_fwd_mask, so I set
+up udev rules
+to wait for the sysfs file.
+Without luck.
+Also "udevadm monitor" does not show any event related to
+/sys/class/net/eth0/brport when I assign eth0 to a bridge.
 
-[ESXi with productive servers and Linux bridge]--[VxLAN<->IPSec]--(Internet=
-)--[IPSec<->VxLAN]--[Linux Bridge]--[Physical switch in remote office]
+First I thought that the bridge code just misses to emit some events but
+br_add_if() calls kobject_uevent() which is good.
 
-I also saw the ARP request 3 times in a capture, which as you wrote explain=
-s why the bridge fails in standard mode. I could also make it work by setti=
-ng the setageing parameter to 0.
-In the end I am quite sure I know what caused the multiplied ARP requests, =
-in case you did not find out yourself.
-My Linux bridges are VMs inside 2 different ESXi hosts. The tap device of t=
-he bridge was connected to a portgroup on a vswitch which allowed promiscuo=
-us mode and had VLAN 4095 assigned, which means "all VLANs".
-I was quite surprised when I sniffed the traffic coming out of the far side=
- bridge, since it contained complete IP conversations between other VMs liv=
-ing on the same ESXi host as the near end bridge! Not only broadcasts where=
- transmitted, but everything the vswitch handled.
-To mitigate, I moved the tap device of the Linux bridges to a new vswitch w=
-ith only one port group (also VLAN 4095), connected to the physical switch =
-by a dedicated uplink. This lets the physical switch filter all traffic tha=
-t is not meant to enter the tunnel. This also stopped the multiplied ARP re=
-quests, so I could revert the bridges back to the normal mode with MAC agei=
-ng. I guess the reason for the multiplied ARP requests was the existence of=
- the other port groups in the same vswitch as the tap device, maybe in comb=
-ination with promiscuous mode.
+Greg gave me the hint that the bridge code might not use the kobject model
+correctly.
 
-Thanks a lot again for your input, you stopped me scratching my head.
+Enabling kobjekt debugging shows that all events are dropped:
+[   36.904602] device eth0 entered promiscuous mode
+[   36.904786] kobject: 'brport' (0000000028a47e33): kobject_uevent_env
+[   36.904789] kobject: 'brport' (0000000028a47e33):
+kobject_uevent_env: filter function caused the event to drop!
 
-Best regards
+If I understood Greg correctly this is because the bridge code uses
+plain kobjects which
+have a parent object. Therefore all events are dropped.
 
-Andreas Triller
+Shouldn't brport be a kset just like net_device->queues_kset?
 
-On Mon, Dec 18, 2017 at 10:05 AM, Adrian Pascalau
-<https://lists.linuxfoundation.org/mailman/listinfo/bridge> wrote:
-> On Mon, Dec 18, 2017 at 4:54 AM, Toshiaki Makita
-> <https://lists.linuxfoundation.org/mailman/listinfo/bridge> wrote:
->> On 2017/12/17 5:01, Adrian P wrote:
->> ...
->>> Further investigation reveals something strange: when the
->>> communication starts with an arp request (which happens almost all the
->>> time), the bridge wrongly assigns the eth0 mac address to port 1,
->>> instead of port 3.
->>>
->>> Flow again:
->>>
->>> default gw --- vmware --- [ ens160 bridge tap ] --- eth0
->>>
->>> On my bridge, ens160 is port 1, and the tap interface is port 3. Eth0
->>> mac address is fa:16:3e:9a:04:95
->>>
->>> What I have found is that in the forwarding table, the bridge wrongly
->>> assigns the eth0 mac address to the port 1, which is ens160 interface,
->>> instead of assigning it to the port 3, which is the tap interface.
->>> This happens only if the arp table in the cirros VM instance does not
->>> contain the mac address of the destination I am pinging (default gw in
->>> this case), so the cirros VM sends an arp request. See below the eth0
->>> mac address wrongly  assigned in the forwarding table to the port 1:
->>>
->>> # brctl showmacs brq025a9a94-58 | grep fa:16:3e:9a:04:95
->>>   1     fa:16:3e:9a:04:95       no                 0.67
->>>
->>> However, if I manually add the mac address of the destination IP I am
->>> pining into the cirros VM instance arp table, and there is no arp
->>> request sent, just icmp packets going out, then the bridge correctly
->>> assigns the eth0 mac address to the port 3, which is the tap
->>> interface, and everything starts working fine. See below the eth0 mac
->>> address correctly assigned in the forwarding table to the port 3:
-
+-- 
+Thanks,
+//richard
