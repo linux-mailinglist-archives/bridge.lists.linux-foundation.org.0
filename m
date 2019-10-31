@@ -2,79 +2,78 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06496EB483
-	for <lists.bridge@lfdr.de>; Thu, 31 Oct 2019 17:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43391EB7F4
+	for <lists.bridge@lfdr.de>; Thu, 31 Oct 2019 20:28:17 +0100 (CET)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id DE65FCDB;
-	Thu, 31 Oct 2019 16:16:09 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 7EB63E5B;
+	Thu, 31 Oct 2019 19:28:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 72E709E7
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 51E5EE40
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 29 Oct 2019 14:09:02 +0000 (UTC)
+	Thu, 31 Oct 2019 19:28:06 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
-	[209.85.166.200])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 1D05089E
+Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
+	[209.85.208.193])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 9D4DD89E
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 29 Oct 2019 14:09:02 +0000 (UTC)
-Received: by mail-il1-f200.google.com with SMTP id i74so9410803ild.13
+	Thu, 31 Oct 2019 19:28:05 +0000 (UTC)
+Received: by mail-lj1-f193.google.com with SMTP id t5so7911914ljk.0
 	for <bridge@lists.linux-foundation.org>;
-	Tue, 29 Oct 2019 07:09:02 -0700 (PDT)
+	Thu, 31 Oct 2019 12:28:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cumulusnetworks.com; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=TnCbq2000sgK9KKfW0a0I1LlWJLVNeCp1tHN1Di2rZ0=;
+	b=K4WeBKfV4LVJUx9dWAsJXRPNV5GU2cS/3jB7ikEIQNTer3zdMFt55qG5Dv3SG0otQ2
+	XgYvoxht5SxklhFM/+jjbxfv/50HS2Oa/WQ2lBh/qeNEIvyWWQnT3obeCZUsEaSTCLwp
+	8BvACCPR4tHb1dtnWdgF7RweVv2ZNg7HD4Jl0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
-	:from:to;
-	bh=ZXDP0wwnNkRnGcZ/hxzyUBVhVAKO5MP3N/7b/HrN89M=;
-	b=Lo6TRRawxzCZyZV2st+qIv5aiatI+3YJQ9CmiFgPcHuRthR/juBTOORh+H6erty1Fz
-	4+FK94vCXcwHAh69vXuYGZo9AAWP1v70sWwRycMrZfDJsqKPv0Gvmv9Hy7v4vRsdmjNU
-	1N5++aGmTEZCCz4ntLyeHbj62NUzNJUHJNGdmCmIK9mWhLypY33El+DgrRcduzEsaK97
-	/Vu9UIXCSZqQlsSRVZ6jzFlZ9VomBf07UUG+iwm1+SGYQcszQDRehP98ZMgD3iTkIed/
-	iQjeiJF8bsffE7chuopAs4NOsaCSf4ADIbE+PTZm4sAmDQGcdXxUbP8ZMAFg9Fs+iGdu
-	/H3Q==
-X-Gm-Message-State: APjAAAXys+vwjqwNB9+19hq0T/BIAjpd+/YnO9qfBGKWs8eLAwDYTdja
-	CVc79wgpOT7OIxU/R1Cf8DJ9bceD60TbZjYyRnXW7BuJOq0I
-X-Google-Smtp-Source: APXvYqyEO6WTdX2TT1MAC5wh+aMxnQAZiQ9NAP9Ue+ASML0EMHR89Lk5xJp5JZTyc5Ij4tXWW9iYcXeag4DdS0UpQCxA/Rt7L8JZ
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=TnCbq2000sgK9KKfW0a0I1LlWJLVNeCp1tHN1Di2rZ0=;
+	b=bGmyY8M9e4ji7m3rx+A1poJNdZFYww8GiNGYC0sBNEHxFpBI+zqpRvQjFDkpqe1cq1
+	L7fqVkBShbgQn3+X2IbFrcCLDjVLVEuh1y/8xyFDQP1zhFBqzw2fVZ3RFL5lDQwz6k+m
+	kskCc0pu+DV9n2r1LE2p4pL7w9fr23WxXWI4IGS18UEeT5m5ZUBhQztD4N8e7VcrJy8N
+	USbEZ59lTicQ7NFCxXdqzRVzrqJ2pCDNWJuidyguQM/2EQz+lpoD/6U7UqCTsR5m18Zm
+	vyhXlKHNWN6RKtyUsNRQp24O0a6T0k4ON+ZNhv8YRa0cCM9NYtqxjf+dMdZ1ufzpJ7fH
+	qM/g==
+X-Gm-Message-State: APjAAAU+1LYEac3f05IfKgaOJmhcauOOK8QU6uH5Nqx9E9XON2xdIz3n
+	cIPlxMOxYPnEnugoz/rJP+ggdECAbfA=
+X-Google-Smtp-Source: APXvYqyUQ5kzEbBRvsqE0Zym867THLLJuL57Z2vzRG+u5rwex/Ypu4aDDFy0rYIsQ+5wxV2eJatiFw==
+X-Received: by 2002:a2e:b5a2:: with SMTP id f2mr5300902ljn.108.1572550083554; 
+	Thu, 31 Oct 2019 12:28:03 -0700 (PDT)
+Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+	by smtp.gmail.com with ESMTPSA id d27sm2432810lfb.3.2019.10.31.12.28.02
+	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+	Thu, 31 Oct 2019 12:28:02 -0700 (PDT)
+To: Joe Perches <joe@perches.com>, netdev@vger.kernel.org
+References: <20191029114559.28653-1-nikolay@cumulusnetworks.com>
+	<8e21b79c1adf5c3c4fb94c11fbe30371c4e96943.camel@perches.com>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <14ab24ad-e730-989a-db61-9cd377104a7a@cumulusnetworks.com>
+Date: Thu, 31 Oct 2019 21:28:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.1.1
 MIME-Version: 1.0
-X-Received: by 2002:a92:8394:: with SMTP id p20mr28056667ilk.73.1572358141217; 
-	Tue, 29 Oct 2019 07:09:01 -0700 (PDT)
-Date: Tue, 29 Oct 2019 07:09:01 -0700
-In-Reply-To: <0000000000009ea5720595dc03a3@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000007792ff05960d289d@google.com>
-From: syzbot <syzbot+692f39f040c1f415567b@syzkaller.appspotmail.com>
-To: a@unstable.cc, alex.aring@gmail.com, allison@lohutok.net, andrew@lunn.ch, 
-	andy@greyhouse.net, ap420073@gmail.com, aroulin@cumulusnetworks.com, 
-	ast@domdv.de, b.a.t.m.a.n@lists.open-mesh.org, 
-	bridge@lists.linux-foundation.org, cleech@redhat.com,
-	daniel@iogearbox.net, 
-	davem@davemloft.net, dcaratti@redhat.com, dsa@cumulusnetworks.com, 
-	edumazet@google.com, f.fainelli@gmail.com, fw@strlen.de, 
-	gregkh@linuxfoundation.org, gustavo@embeddedor.com, gvaradar@cisco.com, 
-	haiyangz@microsoft.com, idosch@mellanox.com, info@metux.net, 
-	ivan.khoronzhuk@linaro.org, j.vosburgh@gmail.com, j@w1.fi, 
-	jakub.kicinski@netronome.com, jhs@mojatatu.com, jiri@mellanox.com, 
-	jiri@resnulli.us, johan.hedberg@gmail.com, johannes.berg@intel.com, 
-	john.hurley@netronome.com, jwi@linux.ibm.com,
-	kstewart@linuxfoundation.org, 
-	kvalo@codeaurora.org, kys@microsoft.com, lariel@mellanox.com, 
-	linmiaohe@huawei.com, linux-bluetooth@vger.kernel.org, 
-	linux-hams@vger.kernel.org, linux-hyperv@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-ppp@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, linux-wpan@vger.kernel.org, 
-	liuhangbin@gmail.com, marcel@holtmann.org, mareklindner@neomailbox.ch
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-X-Spam-Status: No, score=3.3 required=5.0 tests=BAYES_00, DOS_RCVD_IP_TWICE_B, 
-	FROM_LOCAL_HEX, RCVD_IN_DNSWL_NONE,
-	SORTED_RECIPS autolearn=no version=3.3.1
-X-Spam-Level: ***
+In-Reply-To: <8e21b79c1adf5c3c4fb94c11fbe30371c4e96943.camel@perches.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-X-Mailman-Approved-At: Thu, 31 Oct 2019 16:16:05 +0000
-Subject: Re: [Bridge] BUG: MAX_LOCKDEP_KEYS too low!
+Cc: roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+	davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 0/7] net: bridge: convert fdbs to use
+	bitops
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -89,24 +88,75 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-syzbot has bisected this bug to:
+On 31/10/2019 20:37, Joe Perches wrote:
+> On Tue, 2019-10-29 at 13:45 +0200, Nikolay Aleksandrov wrote:
+>> Hi,
+>> We'd like to have a well-defined behaviour when changing fdb flags. The
+>> problem is that we've added new fields which are changed from all
+>> contexts without any locking. We are aware of the bit test/change races
+>> and these are fine (we can remove them later), but it is considered
+>> undefined behaviour to change bitfields from multiple threads and also
+>> on some architectures that can result in unexpected results,
+>> specifically when all fields between the changed ones are also
+>> bitfields. The conversion to bitops shows the intent clearly and
+>> makes them use functions with well-defined behaviour in such cases.
+>> There is no overhead for the fast-path, the bit changing functions are
+>> used only in special cases when learning and in the slow path.
+>> In addition this conversion allows us to simplify fdb flag handling and
+>> avoid bugs for future bits (e.g. a forgetting to clear the new bit when
+>> allocating a new fdb). All bridge selftests passed, also tried all of the
+>> converted bits manually in a VM.
+>>
+>> Thanks,
+>>  Nik
+>>
+>> Nikolay Aleksandrov (7):
+>>   net: bridge: fdb: convert is_local to bitops
+>>   net: bridge: fdb: convert is_static to bitops
+>>   net: bridge: fdb: convert is_sticky to bitops
+>>   net: bridge: fdb: convert added_by_user to bitops
+>>   net: bridge: fdb: convert added_by_external_learn to use bitops
+>>   net: bridge: fdb: convert offloaded to use bitops
+>>   net: bridge: fdb: set flags directly in fdb_create
+> 
+> Wouldn't it be simpler to change all these bitfields to bool?
+> 
+> The next member is ____cachline_aligned_in_smp so it's not
+> like the struct size matters or likely even changes.
+> 
 
-commit ab92d68fc22f9afab480153bd82a20f6e2533769
-Author: Taehee Yoo <ap420073@gmail.com>
-Date:   Mon Oct 21 18:47:51 2019 +0000
+I guess it's just preference now, I'd prefer having 1 field which is well
+packed and can contain more bits (and more are to come) instead of bunch
+of bool or u8 fields which is a waste of space. We can set them together, it's more
+compact and also the atomic bitops make it clear that these can change
+without any locking. We're about to add new bits to these and it's nice
+to have a clear understanding and well-defined API for them. Specifically
+the test_and_set/clear_bit() can simplify code considerably.
 
-     net: core: add generic lockdep keys
+> ---
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index ce2ab1..46d2f10 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -183,12 +183,12 @@ struct net_bridge_fdb_entry {
+>  
+>  	struct net_bridge_fdb_key	key;
+>  	struct hlist_node		fdb_node;
+> -	unsigned char			is_local:1,
+> -					is_static:1,
+> -					is_sticky:1,
+> -					added_by_user:1,
+> -					added_by_external_learn:1,
+> -					offloaded:1;
+> +	bool				is_local;
+> +	bool				is_static;
+> +	bool				is_sticky;
+> +	bool				added_by_user;
+> +	bool				added_by_external_learn;
+> +	bool				offloaded;
+>  
+>  	/* write-heavy members should not affect lookups */
+>  	unsigned long			updated ____cacheline_aligned_in_smp;
+> 
+> 
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12e05224e00000
-start commit:   60c1769a Add linux-next specific files for 20191028
-git tree:       linux-next
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=11e05224e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=16e05224e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=cb86688f30db053d
-dashboard link: https://syzkaller.appspot.com/bug?extid=692f39f040c1f415567b
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=10be9ed0e00000
-
-Reported-by: syzbot+692f39f040c1f415567b@syzkaller.appspotmail.com
-Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
