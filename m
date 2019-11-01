@@ -2,77 +2,72 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from mail.linuxfoundation.org (mail.linuxfoundation.org [140.211.169.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2020BEC3B5
-	for <lists.bridge@lfdr.de>; Fri,  1 Nov 2019 14:33:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C1AEC3B6
+	for <lists.bridge@lfdr.de>; Fri,  1 Nov 2019 14:34:06 +0100 (CET)
 Received: from mail.linux-foundation.org (localhost [127.0.0.1])
-	by mail.linuxfoundation.org (Postfix) with ESMTP id 0F93019B8;
-	Fri,  1 Nov 2019 13:33:43 +0000 (UTC)
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 2ED4519BF;
+	Fri,  1 Nov 2019 13:33:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@mail.linuxfoundation.org
 Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
 	[172.17.192.35])
-	by mail.linuxfoundation.org (Postfix) with ESMTPS id 2903B180A
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 7C8AE182A
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  1 Nov 2019 12:40:09 +0000 (UTC)
+	Fri,  1 Nov 2019 12:46:47 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.7.6
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
-	[209.85.167.67])
-	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 7E81D87B
+Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
+	[209.85.208.193])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id CEDB663D
 	for <bridge@lists.linux-foundation.org>;
-	Fri,  1 Nov 2019 12:40:08 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id a6so3730886lfo.3
+	Fri,  1 Nov 2019 12:46:46 +0000 (UTC)
+Received: by mail-lj1-f193.google.com with SMTP id q2so3573854ljg.7
 	for <bridge@lists.linux-foundation.org>;
-	Fri, 01 Nov 2019 05:40:08 -0700 (PDT)
+	Fri, 01 Nov 2019 05:46:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cumulusnetworks.com; s=google;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=o8ofZ8eXn+g9/RF1tzn7A+DDx4j3eT/FW3TtKGM6VyE=;
-	b=Ng8wgICpvpl1MfKvPqHa0mPOudn1mBAB5RoXVdSLBNf5UJWAyf9zafHKqhK4WnDrdV
-	hNDUzcK7yBFt5L6iZCL9dJ4pVs2OuLBc0f0qeTMguHKgE4HCDmJXuhTbgvwtn3ejnOIL
-	HHcnPMCxiafLfuGC4xBvZyDX1HauQpq/kH1Qw=
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=jSTLEPaxXRk5sSmG9oSsPXFVdXLQlUfBUPDhCvkx5go=;
+	b=RlJIncS5V/VeZ8tPU8EEBpDu0ecPVdk1TB589EL92OS3o6Lj/2CpEeDsKsB6b618GV
+	8L3X3n1laq2hQ/uB/NIkih6WDZyT5owW4NktaFEqJOQeK6yQN3cufbWoZnaHcSDpgim7
+	sLB18ckMTXbKNu2euww+eB/lnbRZu4oTB+QR8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
 	:content-transfer-encoding;
-	bh=o8ofZ8eXn+g9/RF1tzn7A+DDx4j3eT/FW3TtKGM6VyE=;
-	b=AljjsC0+zq6tJaAujY2/FeEA2QU8O5borNgW2eu6yGO+Y0HctUmiayLQwTuQyl8PSg
-	y4GSztA9pVULolMUS1s7HrwGs6SXF69v0+NVGe8H9564Q0/uteyMHuHV6NP2WpA6x4/7
-	p3TYtX1FzzywDCyizTP/x5OcMeGe5C+MPv16QacDrU+3MRY3MtoJfcrSO/H3+SsKvwrT
-	jVNWtC4jv3Cs9hjhhjuamM7aCRVKEnZv6D/Ss/K5KxBSXtILOjyQ6iq8J1iNVEqh62+c
-	vkyvjWlvqJuqLlnfharIYmveKHTgIcnrPBjM736d7KQ0dIgqgs8zaD9AL1JyWvK9zX6I
-	UwqQ==
-X-Gm-Message-State: APjAAAXLTV5UpzdaQLR8M8JeaVMc1z2+M8c5SqG/BGD2rrxqmwxcFboZ
-	3thwaSdKMUAXG1eyNPcTkGCPCA==
-X-Google-Smtp-Source: APXvYqznRsj4Tuag+vZIMClNNYXsLqbHaLZ5hXMSJywhknE607w8pkePzAta0Po0xwQfm2uV2zSuTA==
-X-Received: by 2002:a19:651b:: with SMTP id z27mr7080070lfb.117.1572612006816; 
-	Fri, 01 Nov 2019 05:40:06 -0700 (PDT)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
-	by smtp.gmail.com with ESMTPSA id
-	c24sm2771269lfm.20.2019.11.01.05.40.05
-	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-	Fri, 01 Nov 2019 05:40:06 -0700 (PDT)
-To: netdev@vger.kernel.org
-References: <20191101123844.17518-1-nikolay@cumulusnetworks.com>
+	bh=jSTLEPaxXRk5sSmG9oSsPXFVdXLQlUfBUPDhCvkx5go=;
+	b=CexmbNR7jcRT2RnyQyOS0lGzeT3SXZ1LeOx0uW98riv8KaFAFBnU7D6lFvcckX3t0B
+	fah+PdgxjdHuQ0fsjESBuwKJISfPs18tyZxaDQ/S2Iz5pmkvuQ4qqP9Ya9H/cMC6ubZB
+	h0OLTumyX6PTKnGwErrT6FArKs5v2HxLDaGIS58V3U5OW8Zls/dGOC+N9KQoi6zmBSRq
+	PDc0hpFefbipcakggbu7jFDXR5TqLaE3MY/fLYr/sOlSmDlXhb+CcwCR1Jp9uCX2sUPa
+	pmYZQOHKZLlthjncn8dGYLZYoJkoBR5ZsgEj7faL4xvd54W+k3R9X1sDloV4K4WivCJO
+	frTw==
+X-Gm-Message-State: APjAAAW2l2hJrXZcgoyY6Hb426JYbNn6JYq/GMUwqWH+M3TjXp41Vaib
+	p80/AbfdTAyXQViD4R3O9paKVA==
+X-Google-Smtp-Source: APXvYqxE/rdihjXmi5LCYrM2menfTABueMAuRtPKQ209emxoC+iX2FZZzoleq8tRAVMciQR9j1ZvPA==
+X-Received: by 2002:a2e:7a02:: with SMTP id v2mr3015462ljc.224.1572612405283; 
+	Fri, 01 Nov 2019 05:46:45 -0700 (PDT)
+Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
+	[84.238.136.197])
+	by smtp.gmail.com with ESMTPSA id t4sm2297909lji.40.2019.11.01.05.46.43
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Fri, 01 Nov 2019 05:46:44 -0700 (PDT)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <3a71de17-99ab-813f-62f2-691cde514e31@cumulusnetworks.com>
-Date: Fri, 1 Nov 2019 14:40:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.1.1
+To: netdev@vger.kernel.org
+Date: Fri,  1 Nov 2019 14:46:36 +0200
+Message-Id: <20191101124639.32140-1-nikolay@cumulusnetworks.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20191101123844.17518-1-nikolay@cumulusnetworks.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	smtp1.linux-foundation.org
-Cc: roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+	roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
 	davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/3] net: bridge: minor followup
+Subject: [Bridge] [PATCH net-next v2 0/3] net: bridge: minor followup
 	optimizations
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.12
@@ -88,33 +83,31 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Sender: bridge-bounces@lists.linux-foundation.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 
-On 01/11/2019 14:38, Nikolay Aleksandrov wrote:
-> Hi,
-> After the converted flags to bitops we can take advantage of the flags
-> assignment and remove one test and three atomic bitops from the learning
-> paths (patch 01 and patch 02), patch 03 restores the unlikely() when taking
-> over HW learned entries.
-> 
-> Thanks,
->  Nik
-> 
-> 
-> Nikolay Aleksandrov (3):
->   net: bridge: fdb: br_fdb_update can take flags directly
->   net: bridge: fdb: avoid two atomic bitops in
->     br_fdb_external_learn_add()
->   net: bridge: fdb: restore unlikely() when taking over externally added
->     entries
-> 
->  include/trace/events/bridge.h | 12 ++++++------
->  net/bridge/br_fdb.c           | 30 +++++++++++++++---------------
->  net/bridge/br_input.c         |  4 ++--
->  net/bridge/br_private.h       |  2 +-
->  4 files changed, 24 insertions(+), 24 deletions(-)
-> 
+Hi,
+After the converted flags to bitops we can take advantage of the flags
+assignment and remove one test and three atomic bitops from the learning
+paths (patch 01 and patch 02), patch 03 restores the unlikely() when taking
+over HW learned entries.
+
+v2: a clean export of the latest set version
+
+Thanks,
+ Nik
 
 
-Aaargh.. apologies for the noise, the script caught an older set export.
-Will re-post a proper v2 in a minute.
+Nikolay Aleksandrov (3):
+  net: bridge: fdb: br_fdb_update can take flags directly
+  net: bridge: fdb: avoid two atomic bitops in
+    br_fdb_external_learn_add()
+  net: bridge: fdb: restore unlikely() when taking over externally added
+    entries
 
+ include/trace/events/bridge.h | 12 ++++++------
+ net/bridge/br_fdb.c           | 30 +++++++++++++++---------------
+ net/bridge/br_input.c         |  4 ++--
+ net/bridge/br_private.h       |  2 +-
+ 4 files changed, 24 insertions(+), 24 deletions(-)
+
+-- 
+2.21.0
 
