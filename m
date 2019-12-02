@@ -1,85 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC33110214
-	for <lists.bridge@lfdr.de>; Tue,  3 Dec 2019 17:23:44 +0100 (CET)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 089AB110213
+	for <lists.bridge@lfdr.de>; Tue,  3 Dec 2019 17:23:43 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 7092687E63;
-	Tue,  3 Dec 2019 16:23:42 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id A962587711;
+	Tue,  3 Dec 2019 16:23:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gszooBiEqVCb; Tue,  3 Dec 2019 16:23:41 +0000 (UTC)
+	with ESMTP id JEsu+QAnbr4J; Tue,  3 Dec 2019 16:23:40 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 209F887E75;
-	Tue,  3 Dec 2019 16:23:39 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 839C1877A8;
+	Tue,  3 Dec 2019 16:23:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E4F91C1798;
-	Tue,  3 Dec 2019 16:23:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 59236C1798;
+	Tue,  3 Dec 2019 16:23:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A9536C087F
- for <bridge@lists.linux-foundation.org>; Mon,  2 Dec 2019 04:07:09 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 86B79C087F
+ for <bridge@lists.linux-foundation.org>; Mon,  2 Dec 2019 17:05:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 999028762E
- for <bridge@lists.linux-foundation.org>; Mon,  2 Dec 2019 04:07:09 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 740F785ADC
+ for <bridge@lists.linux-foundation.org>; Mon,  2 Dec 2019 17:05:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vTPpMCcpN8a7 for <bridge@lists.linux-foundation.org>;
- Mon,  2 Dec 2019 04:07:05 +0000 (UTC)
+ with ESMTP id Vj3FfkNmkftZ for <bridge@lists.linux-foundation.org>;
+ Mon,  2 Dec 2019 17:05:11 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 16E4B860BC
- for <bridge@lists.linux-foundation.org>; Mon,  2 Dec 2019 04:07:02 +0000 (UTC)
-Received: by mail-il1-f197.google.com with SMTP id z10so15139114ilm.2
- for <bridge@lists.linux-foundation.org>; Sun, 01 Dec 2019 20:07:02 -0800 (PST)
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
+ [209.85.166.200])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id D347B85A84
+ for <bridge@lists.linux-foundation.org>; Mon,  2 Dec 2019 17:05:11 +0000 (UTC)
+Received: by mail-il1-f200.google.com with SMTP id i74so215251ild.13
+ for <bridge@lists.linux-foundation.org>; Mon, 02 Dec 2019 09:05:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=oWsENjm7d/+QABjuPHBYSJPPMCuN6XI9dZYPsoGDEJo=;
- b=WlfC70teP7yxOfFBb7LZQT5wCdkDiv2P5IMDSRCKbQfRAb1Th0vUAFXxGc52D/79o9
- FKMLlZt9W3n0tWuo7cd3B9DkZHEGfGvZgDhiYRPd7nVg27y+mhwq/WIt4IukQ71z9r3T
- 6Vfcwas2mTjWwe4z1hroXYL9l9SC1/HHz0UDyWD//yPTIORyIsIHJGiy2DPXrRNoEc8U
- Y+bEQFcNgMBN55A/+uePVEwVtitPhvt8NVPUkjKEc8AswROao0/D8I+0Z7eHgtwgzNrM
- 2UDJkIBkJ7SVzWaCApcD9Jrm6xUYuemd++CJgL1xD/CLNA3OMrKC4YmLeFpNvKYWqGu6
- vdDg==
-X-Gm-Message-State: APjAAAWgfZluk0mJDrW79h539mfjSM65+PZGrLkT/5bi9oUyvZYYYTvG
- hw4sn8z6d6D17Xpp4Dby4/g5jjEdtiQ2qPir1LFbt3pImcf6
-X-Google-Smtp-Source: APXvYqwbNau2iLq/cBIAuQInsyrPMPEuwnt2BDzeyB8yqBtnk0ZK4FLDDa7c3GeQTvUxRw7rZ0iE6vluQVplMVvE3Si4+oaVnUb7
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=/F3uYH/byikiR4pmME4NQXaB6rRlktnnY/q/Qtr+i/s=;
+ b=pbYDL60iQq94PmXF9Zh+Toe7zjLpyHSwMH9I6ZYacNggbxMApWbMKrz8tJaLbTM2LI
+ RSeGrpOeI3JIITu1tAwnAr36rj9xaSkHzfsbWyMmaaL+fp/691XJglpRjNbikGEKEnE/
+ IjXoqow9/OLm6hQSY0+2uynMjU3lYNJY1AmjgEFVVFaIaIDAzjYVij64q4BWbyZFB6Mm
+ /jhac00+RRPxqJvyOV0JzRWmhUYrDcB7b+q+qJ+Azu4e0dN4rNScMRgRXluNylc7oiPT
+ zFu0VXNv1hFKsUCc/8/KOA0el3aIARtdoBiZkxWU4JRgYx08opsi5wD66qGz7VGodRfP
+ HYgQ==
+X-Gm-Message-State: APjAAAVPODcI5zDNV8HedSlAUCr3T2jcllAKteulXIOSDpwcqmyi2ifp
+ tfu8bIZecB5KpclyPhdReOuAruEpxK/JJzUiJutzPIgEURGC
+X-Google-Smtp-Source: APXvYqzH3vRxxo/e5Rnqon9juvNsa0peNh8SNnU9SFGGATkjF0W0EzwyjVm/9zbzPbmVcjQdCrHlvcQtR9q+hG+UgogP+UAoGXjl
 MIME-Version: 1.0
-X-Received: by 2002:a5d:8184:: with SMTP id u4mr50614802ion.155.1575259621372; 
- Sun, 01 Dec 2019 20:07:01 -0800 (PST)
-Date: Sun, 01 Dec 2019 20:07:01 -0800
-In-Reply-To: <000000000000c280ba05988b6242@google.com>
+X-Received: by 2002:a05:6e02:68a:: with SMTP id
+ o10mr17451276ils.202.1575306311244; 
+ Mon, 02 Dec 2019 09:05:11 -0800 (PST)
+Date: Mon, 02 Dec 2019 09:05:11 -0800
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000293e9f0598b0b69d@google.com>
-From: syzbot <syzbot+4925d60532bf4c399608@syzkaller.appspotmail.com>
-To: a@unstable.cc, akpm@linux-foundation.org, alex.aring@gmail.com, 
- allison@lohutok.net, andrew@lunn.ch, andy@greyhouse.net, ap420073@gmail.com, 
- aryabinin@virtuozzo.com, ast@domdv.de, b.a.t.m.a.n@lists.open-mesh.org, 
- bridge@lists.linux-foundation.org, christophe.leroy@c-s.fr, cleech@redhat.com, 
- daniel@iogearbox.net, davem@davemloft.net, dja@axtens.net, 
- dsa@cumulusnetworks.com, dvyukov@google.com, edumazet@google.com, 
- f.fainelli@gmail.com, fw@strlen.de, glider@google.com, gor@linux.ibm.com, 
- gregkh@linuxfoundation.org, gustavo@embeddedor.com, gvaradar@cisco.com, 
- haiyangz@microsoft.com, hdanton@sina.com, idosch@mellanox.com, info@metux.net, 
- j.vosburgh@gmail.com, j@w1.fi, jakub.kicinski@netronome.com, jhs@mojatatu.com, 
- jiri@resnulli.us, johan.hedberg@gmail.com, johannes.berg@intel.com, 
- jwi@linux.ibm.com, kasan-dev@googlegroups.com, kstewart@linuxfoundation.org, 
- kvalo@codeaurora.org, kys@microsoft.com, lariel@mellanox.com, 
- linmiaohe@huawei.com, linux-bluetooth@vger.kernel.org, 
- linux-hams@vger.kernel.org, linux-hyperv@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mm@kvack.org, linux-ppp@vger.kernel.org
+Message-ID: <0000000000001821bf0598bb955c@google.com>
+From: syzbot <syzbot+2add91c08eb181fea1bf@syzkaller.appspotmail.com>
+To: bridge@lists.linux-foundation.org, davem@davemloft.net, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ nikolay@cumulusnetworks.com, roopa@cumulusnetworks.com, 
+ syzkaller-bugs@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 X-Mailman-Approved-At: Tue, 03 Dec 2019 16:23:37 +0000
-Subject: Re: [Bridge] BUG: sleeping function called from invalid context in
-	__alloc_pages_nodemask
+Subject: [Bridge] memory leak in fdb_create (2)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,25 +80,79 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-syzbot has bisected this bug to:
+Hello,
 
-commit ab92d68fc22f9afab480153bd82a20f6e2533769
-Author: Taehee Yoo <ap420073@gmail.com>
-Date:   Mon Oct 21 18:47:51 2019 +0000
+syzbot found the following crash on:
 
-     net: core: add generic lockdep keys
+HEAD commit:    ceb30747 Merge tag 'y2038-cleanups-5.5' of git://git.kerne..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=142b3e7ee00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=26f873e40f2b4134
+dashboard link: https://syzkaller.appspot.com/bug?extid=2add91c08eb181fea1bf
+compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12976feee00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10604feee00000
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=15769712e00000
-start commit:   419593da Add linux-next specific files for 20191129
-git tree:       linux-next
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=17769712e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=13769712e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=7c04b0959e75c206
-dashboard link: https://syzkaller.appspot.com/bug?extid=4925d60532bf4c399608
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=16148e9ce00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=12a1f786e00000
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+2add91c08eb181fea1bf@syzkaller.appspotmail.com
 
-Reported-by: syzbot+4925d60532bf4c399608@syzkaller.appspotmail.com
-Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
+BUG: memory leak
+unreferenced object 0xffff888124fa7080 (size 128):
+   comm "syz-executor163", pid 7170, jiffies 4294954254 (age 12.500s)
+   hex dump (first 32 bytes):
+     d1 16 b6 1f 81 88 ff ff 00 00 00 00 00 00 00 00  ................
+     aa aa aa aa aa 0c 00 00 00 00 00 00 00 00 00 00  ................
+   backtrace:
+     [<000000001bbce457>] kmemleak_alloc_recursive  
+include/linux/kmemleak.h:43 [inline]
+     [<000000001bbce457>] slab_post_alloc_hook mm/slab.h:586 [inline]
+     [<000000001bbce457>] slab_alloc mm/slab.c:3319 [inline]
+     [<000000001bbce457>] kmem_cache_alloc+0x13f/0x2c0 mm/slab.c:3483
+     [<000000005e78ed69>] fdb_create+0x37/0x530 net/bridge/br_fdb.c:498
+     [<000000009cc867aa>] fdb_insert+0xb2/0xf0 net/bridge/br_fdb.c:537
+     [<00000000a443c9ff>] br_fdb_change_mac_address+0x80/0x1f0  
+net/bridge/br_fdb.c:316
+     [<00000000370e41a8>] br_stp_change_bridge_id+0x4c/0x190  
+net/bridge/br_stp_if.c:223
+     [<00000000db15c550>] br_set_mac_address+0xa2/0xb0  
+net/bridge/br_device.c:251
+     [<00000000547a827c>] dev_set_mac_address+0xdd/0x150 net/core/dev.c:8350
+     [<0000000068a207bd>] __bond_release_one.cold+0x319/0x4ac  
+drivers/net/bonding/bond_main.c:2055
+     [<00000000189411c7>] bond_slave_netdev_event  
+drivers/net/bonding/bond_main.c:3169 [inline]
+     [<00000000189411c7>] bond_netdev_event+0x2ac/0x2c0  
+drivers/net/bonding/bond_main.c:3280
+     [<000000002bd5677b>] notifier_call_chain+0x66/0xb0 kernel/notifier.c:95
+     [<0000000044f0058c>] __raw_notifier_call_chain kernel/notifier.c:396  
+[inline]
+     [<0000000044f0058c>] raw_notifier_call_chain+0x2e/0x40  
+kernel/notifier.c:403
+     [<000000009782bbd6>] call_netdevice_notifiers_info net/core/dev.c:1893  
+[inline]
+     [<000000009782bbd6>] call_netdevice_notifiers_info+0x60/0xb0  
+net/core/dev.c:1878
+     [<000000005904fef6>] call_netdevice_notifiers_extack  
+net/core/dev.c:1905 [inline]
+     [<000000005904fef6>] call_netdevice_notifiers net/core/dev.c:1919  
+[inline]
+     [<000000005904fef6>] rollback_registered_many+0x373/0x640  
+net/core/dev.c:8743
+     [<00000000806944eb>] unregister_netdevice_many.part.0+0x17/0x90  
+net/core/dev.c:9906
+     [<00000000c0997ee2>] unregister_netdevice_many+0x24/0x30  
+net/core/dev.c:9905
+     [<0000000042445981>] rtnl_delete_link+0x63/0xa0  
+net/core/rtnetlink.c:2926
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+
+
+---
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+syzbot can test patches for this bug, for details see:
+https://goo.gl/tpsmEJ#testing-patches
