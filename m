@@ -2,89 +2,87 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48465118F99
-	for <lists.bridge@lfdr.de>; Tue, 10 Dec 2019 19:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 782BD1190D6
+	for <lists.bridge@lfdr.de>; Tue, 10 Dec 2019 20:39:49 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id B34A08793D;
-	Tue, 10 Dec 2019 18:16:44 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 1A2A583102;
+	Tue, 10 Dec 2019 19:39:48 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 3AKbk1kRLtDJ; Tue, 10 Dec 2019 18:16:44 +0000 (UTC)
+	with ESMTP id I3zn3nITti-t; Tue, 10 Dec 2019 19:39:47 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 5CECC87916;
-	Tue, 10 Dec 2019 18:16:44 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id D6702855E1;
+	Tue, 10 Dec 2019 19:39:47 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3C286C1796;
-	Tue, 10 Dec 2019 18:16:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EFF3AC1D88;
+	Tue, 10 Dec 2019 19:39:43 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8E3CDC0881
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 18:16:42 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 27E95C0881
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 19:39:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 79A5722731
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 18:16:42 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 237DA85F7D
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 19:39:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5N2ewtvSxDBl for <bridge@lists.linux-foundation.org>;
- Tue, 10 Dec 2019 18:16:41 +0000 (UTC)
+ with ESMTP id pjUMfda8qKKZ for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Dec 2019 19:39:35 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-qk1-f194.google.com (mail-qk1-f194.google.com
- [209.85.222.194])
- by silver.osuosl.org (Postfix) with ESMTPS id F2D132046D
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 18:16:40 +0000 (UTC)
-Received: by mail-qk1-f194.google.com with SMTP id d202so17263517qkb.1
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 10:16:40 -0800 (PST)
+Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com
+ [209.85.160.193])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id CBFFF85F54
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 19:39:34 +0000 (UTC)
+Received: by mail-qt1-f193.google.com with SMTP id t17so3887931qtr.7
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 11:39:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=date:message-id:from:to:cc:subject:in-reply-to:references
  :mime-version:content-disposition:content-transfer-encoding;
- bh=Js+t/imDnAhNiv+s8X3Rf/niWKTG1Cd0eo7I2V5WDgA=;
- b=sPHsMOc88EUoOe/hcIbbxqxMairaW0tiKYqf0W1UhlZNzVRiSjC9z3hJD9lvr2HnZd
- wvtedcSIYZHca7riIAsF2f0XNQ5CmsboZmTTmvCcW2sEGyiAe5XFdFjrxjGDFSAllcbK
- JgXxoM6nLcuIQI0XvL9zhzG1ZmSx6DSnMjjvhsxWAxqkG7f4qdwFuZ7PNHhwcf089JgA
- Iomz230rH6ei8HFpsXXvzughInlwaH1Rr6/7saAFeKuIiTQYhuodD+filjvmkvjvgJ3U
- ENdRRMd9TaYXBEMwxL6tUTI23+6oVnwNwxcHqPM+xcJhHKKmY02nm0J36+efLQw40IUG
- BpTA==
+ bh=lhiNdVC12nCt8MlphHeNeXsppJHwJXSdVTCOLb3ahXE=;
+ b=mVxM7iSVV/fJa7CCTSh9gS1EjUUhQtROEIUQEHdzVn1zNAU3PG0vNxRzPjSWofjHgZ
+ ugWkGOdN4LCE8DKbwHJL0DJt24YFP4bxZXjgApONHGBb5y8IJmVwx574VvhcVHf2sBlL
+ HB60b42pfla8/r1sKziGjeGJv5oce1uCdqEij3r6hN+uK5UqDIBMLwyb/wvCHsGNo5l5
+ RrS+sVIJUmgSJPgnU3BoP6UOEiMRvQn3RnrYdoNYsK6/WJ6De1qrREgshWFvxG3WCsCW
+ cmov1+bx9aKLaloZm+BQP31YIJOJr4vX+soePPXfHPgO8GdjDniAPsZZwoDf1VoTMcyv
+ GexA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:message-id:from:to:cc:subject:in-reply-to
  :references:mime-version:content-disposition
  :content-transfer-encoding;
- bh=Js+t/imDnAhNiv+s8X3Rf/niWKTG1Cd0eo7I2V5WDgA=;
- b=FxhxVBoqzOpaZWh0dPiyHo29gYuAboh0WGBD6sou8dzNQgxFLPVSoiNfWJXX/Lj7Ot
- FLkf1sTjcLsCYw5AJpUMuetfHDjX8N2kPtd9LEKrR8EqdWnatyPi2sYwcL3LnPGZOj1A
- 2qMMvHetTmXETqS1C8kOuAzNAnn6Zur4i1QNZbDk5trZziNOrQiRZ6tHjxwRhMkAU0ym
- DvnfOOuFgOQ2VIHodMybdjbbm2eV8ILWYFTnFZLEaIw0R6N96UmOO4OCKGtogwZe5q0j
- qKfAjCCVZsfY3S8mfe75BKYOSD0SouHkDnEq7CkipPlnjk937EXlUTZfyGrv1cj5Pm8S
- EKJg==
-X-Gm-Message-State: APjAAAWOOTbXVpA5n3ujCoxW7+86/pIH2bfzAflKtmW2UlnEMmsDKKRp
- Lm8Pt9RgtWTtH0+nJlF+vTc=
-X-Google-Smtp-Source: APXvYqwpkDh+vDXn+8s0scyroCk31thpaMR68T54lWKcjxn6wrW2TJy74i1kIXSn4LhIFx+6DxxpVw==
-X-Received: by 2002:a37:7bc7:: with SMTP id w190mr5690067qkc.391.1576001799963; 
- Tue, 10 Dec 2019 10:16:39 -0800 (PST)
+ bh=lhiNdVC12nCt8MlphHeNeXsppJHwJXSdVTCOLb3ahXE=;
+ b=PPFAvhreKhaGttRuUaQStLtnjKq0AWWeAXYMkAbIyms9vAOmMoijwYKzl9hsSGjAsT
+ DOkIutK6tguYRYEAwAKBja7UaNIndG+ULB1grXMmRdjip/82bDe4g3tjgGqemBKfxkHG
+ 6zjiZ/Te1fpja8mW0wc//pOHod8PuJqNz4q2ci15uy46Lzw2B0Tj/e7z4KjMWMyjv8Uq
+ +mgPbiKyKV3PX0zhFQo/ZkEFpKcv5IWbhJGLBqIyAXE/EnVeefFo9pE5p9Nc9UyGKk9X
+ f2V6VClYwxrupmNiyvyWVFClPzcByYypB20TNqoD6eLmZfW1QdtXqenTweu8QVky8qd6
+ LXAQ==
+X-Gm-Message-State: APjAAAVp0fwoEFabYLNRRd3NNNa9y8VDUv5ByMK91W5cvFusLzSkMIH0
+ cNRn9yXmVzd9iIChziBzr0M=
+X-Google-Smtp-Source: APXvYqwU1xxAUS2fWCQNFh42v/nXu9DqiiWlsyq9lJNmp5wvKyArMv0ENCgUYFRU+5XyEjTRYnAs2w==
+X-Received: by 2002:ac8:664a:: with SMTP id j10mr31595333qtp.70.1576006773764; 
+ Tue, 10 Dec 2019 11:39:33 -0800 (PST)
 Received: from localhost (modemcable249.105-163-184.mc.videotron.ca.
  [184.163.105.249])
- by smtp.gmail.com with ESMTPSA id x16sm1143414qki.110.2019.12.10.10.16.34
+ by smtp.gmail.com with ESMTPSA id o7sm1211842qkd.119.2019.12.10.11.39.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Dec 2019 10:16:35 -0800 (PST)
-Date: Tue, 10 Dec 2019 13:16:33 -0500
-Message-ID: <20191210131633.GB1344570@t480s.localdomain>
+ Tue, 10 Dec 2019 11:39:32 -0800 (PST)
+Date: Tue, 10 Dec 2019 14:39:31 -0500
+Message-ID: <20191210143931.GF1344570@t480s.localdomain>
 From: Vivien Didelot <vivien.didelot@gmail.com>
-To: Stephen Hemminger <stephen@networkplumber.org>
-In-Reply-To: <20191209161345.5b3e757a@hermes.lan>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+In-Reply-To: <a3b8e24d-5152-7243-545f-8a3e5fbaa53a@cumulusnetworks.com>
 References: <20191209230522.1255467-1-vivien.didelot@gmail.com>
- <20191209230522.1255467-2-vivien.didelot@gmail.com>
- <20191209161345.5b3e757a@hermes.lan>
+ <a3b8e24d-5152-7243-545f-8a3e5fbaa53a@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
- Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH iproute2 v2] iplink: add support for STP xstats
+Cc: netdev@vger.kernel.org, Roopa Prabhu <roopa@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next] net: bridge: add STP xstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,33 +97,72 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Stephen,
+Hi Nikolay,
 
-On Mon, 9 Dec 2019 16:13:45 -0800, Stephen Hemminger <stephen@networkplumber.org> wrote:
-> On Mon,  9 Dec 2019 18:05:22 -0500
-> Vivien Didelot <vivien.didelot@gmail.com> wrote:
-> 
-> > Add support for the BRIDGE_XSTATS_STP xstats, as follow:
-> > 
-> >     # ip link xstats type bridge_slave dev lan5
-> >                         STP BPDU:
-> >                           RX: 0
-> >                           TX: 39
-> >                         STP TCN:
-> >                           RX: 0
-> >                           TX: 0
-> >                         STP Transitions:
-> >                           Blocked: 0
-> >                           Forwarding: 1
-> >                         IGMP queries:
-> >                           RX: v1 0 v2 0 v3 0
-> >                           TX: v1 0 v2 0 v3 0
-> >     ...
-> 
-> Might I suggest a more concise format:
-> 	STP BPDU:  RX: 0 TX: 39
-> 	STP TCN:   RX: 0 TX:0
-> 	STP Transitions: Blocked: 0 Forwarding: 1
-> ...
+On Tue, 10 Dec 2019 09:49:59 +0200, Nikolay Aleksandrov <nikolay@cumulusnetworks.com> wrote:
 
-I don't mind if you prefer this format ;-)
+> Why did you send the bridge patch again ? Does it have any changes ?
+
+The second iproute2 patch does not include the include guards update, but
+I kept the bridge_stp_stats structure and the BRIDGE_XSTATS_STP definition
+otherwise iproute2 wouldn't compile.
+
+> 
+> Why do you need percpu ? All of these seem to be incremented with the
+> bridge lock held. A few more comments below.
+
+All other xstats are incremented percpu, I simply followed the pattern.
+
+> >  	struct net_bridge_port *p
+> >  		= container_of(kobj, struct net_bridge_port, kobj);
+> > +	free_percpu(p->stp_stats);
+> 
+> Please leave a new line between local var declaration and the code. I know
+> it was missing, but you can add it now. :)
+
+OK.
+
+> > +	if (p) {
+> > +		struct bridge_stp_xstats xstats;
+> 
+> Please rename the local var here, using just xstats is misleading.
+> Maybe stp_xstats ?
+
+This isn't misleading to me since its scope is limited to the current block
+and not the entire function. The block above dumping the VLAN xstats is
+using a local "struct br_vlan_stats stats" variable for example.
+
+> 
+> > +
+> > +		br_stp_get_xstats(p, &xstats);
+> > +
+> > +		if (nla_put(skb, BRIDGE_XSTATS_STP, sizeof(xstats), &xstats))
+> > +			goto nla_put_failure;
+> 
+> Could you please follow how mcast xstats are dumped and do something similar ?
+> It'd be nice to have similar code to audit.
+
+Sure. I would also love to have easily auditable code in net/bridge. For
+the bridge STP xstats I followed the VLAN xstats code above, which does:
+
+    if (nla_put(skb, BRIDGE_XSTATS_VLAN, sizeof(vxi), &vxi))
+        goto nla_put_failure;
+
+But I can change the STP xstats code to the following:
+
+    if (p) {
+        nla = nla_reserve_64bit(skb, BRIDGE_XSTATS_STP,
+                                sizeof(struct bridge_stp_xstats),
+                                BRIDGE_XSTATS_PAD);
+        if (!nla)
+            goto nla_put_failure;
+
+        br_stp_get_xstats(p, nla_data(nla));
+    }
+
+Would that be preferred?
+
+
+Thanks,
+
+	Vivien
