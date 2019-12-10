@@ -2,71 +2,78 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721FB119277
-	for <lists.bridge@lfdr.de>; Tue, 10 Dec 2019 21:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01903119347
+	for <lists.bridge@lfdr.de>; Tue, 10 Dec 2019 22:08:52 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 0BC8A8842A;
-	Tue, 10 Dec 2019 20:53:09 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 8D0BC879A7;
+	Tue, 10 Dec 2019 21:08:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LB0hNuEaW5yV; Tue, 10 Dec 2019 20:53:08 +0000 (UTC)
+	with ESMTP id 8xp4NIMBJLrE; Tue, 10 Dec 2019 21:08:50 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 886AB884B5;
-	Tue, 10 Dec 2019 20:53:08 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 91559883A8;
+	Tue, 10 Dec 2019 21:08:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4FF1EC1796;
-	Tue, 10 Dec 2019 20:53:08 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 68BF1C1797;
+	Tue, 10 Dec 2019 21:08:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E43BBC0881
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 20:53:06 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 53527C0881
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 21:08:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id D2A6286A48
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 20:53:06 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 414F7874A7
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 21:08:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XRaaqrDM2d-Q for <bridge@lists.linux-foundation.org>;
- Tue, 10 Dec 2019 20:53:04 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
- [209.85.167.68])
- by whitealder.osuosl.org (Postfix) with ESMTPS id B772B8647A
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 20:53:03 +0000 (UTC)
-Received: by mail-lf1-f68.google.com with SMTP id 15so14892792lfr.2
- for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 12:53:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=fmEDmfNgnyzrZ9VU2XdpzBoL/tPjn0qLVvtc+e2r5Oc=;
- b=e/m83JTC4nzbv0VlJKT759lat2DxFAV1JO9gV9wxjF0R5Yzaj5KEgMvHgSe7iDlWtl
- 9NYuG/xynOebC8eY6gGKmUGR/l7TG6X6zk0rl1lB5GWhSPS/WA7gp+KvLifJuRLlXllq
- LRzSl+cE0UrQUNwU+f/m7IMF3aYK6jefaQZr0=
+ with ESMTP id H6lUkPvpDkLF for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Dec 2019 21:08:42 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-qt1-f195.google.com (mail-qt1-f195.google.com
+ [209.85.160.195])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 026208639B
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 21:08:39 +0000 (UTC)
+Received: by mail-qt1-f195.google.com with SMTP id i12so2982674qtp.6
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Dec 2019 13:08:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:message-id:from:to:cc:subject:in-reply-to:references
+ :mime-version:content-disposition:content-transfer-encoding;
+ bh=3nRYlS0/YHih4zITmDaDbI3UpDrDOmoWaeoqzXN/ZeQ=;
+ b=sIdCi2e60wFGD2yHBP69y330EaJI8nNHi7epjFzetDNeXwlj0wuR9rnoPzmcXw/BZ0
+ b0k4kW1TF25SPsxcPM8XXV5AXxXS2dRrZIYXKcblY1aDsHrfNKZfxDQRZ7URIuSnvqt9
+ rX69UE00nwNP05osLtNKA4cgluLQKwSC3leMhHLmk1GvNt2FdQTlL4Xi0nQZm0sIbKDO
+ RfXlMwlZyXi10aVci8Huk5G5RG99sHDCsUfBI2bUFLI2DqozfDfCkGQF4RShEUP/vAy0
+ 7GTVzY1sSQE0Gsi/SkOLKTg9WqFePjetKcWPk8tCz7bt7Xkq5pNRJyrKfJbXkiAYIm53
+ Qpdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=x-gm-message-state:date:message-id:from:to:cc:subject:in-reply-to
+ :references:mime-version:content-disposition
  :content-transfer-encoding;
- bh=fmEDmfNgnyzrZ9VU2XdpzBoL/tPjn0qLVvtc+e2r5Oc=;
- b=aVzsRZru8Co9wSUKZmIE/a8+mznixsg2pg9cAHYDfGU1hS/V3GKx1j+y4N93g6PuuG
- nY/lOhNjT99BFpnR296yyP4GJViibsypY895X6h1IBgMKd8OxfDBfJtguxxNdK+fAubQ
- xfiqhVXQo+20FsclfWSuChs93RmtMSvmzCqDCtnVskwuWNdR0oCBUdi5lo6Kj8dpIsPz
- zZcfefA8ihNQSaUw9in4RJRpbWeGOfNbXSwOszqmtyYYNdBGx+ckI9ms3AyjmbTx4ogf
- BI7QaZny4bgs+b7h4RTD2vUbuPgGF4cByKV532aXkDlZ5bTKdWmH/7MQbXLlrXUg5gak
- TT5Q==
-X-Gm-Message-State: APjAAAXuBK3Tv1O3D4EQ/QdE8AquLkX/+7LFScgMlYHybTSuRkH+U1EW
- p0P+l8eAi6kwG7FRspEPgPuz4w==
-X-Google-Smtp-Source: APXvYqztVGhd39FvfMSc3HRG4lNOgzYmTNPv5ZkG2/05mrVJPhxKKzf0q98tjbnD0vmM8sQuuLFIWg==
-X-Received: by 2002:a19:6d13:: with SMTP id i19mr20713750lfc.6.1576011181363; 
- Tue, 10 Dec 2019 12:53:01 -0800 (PST)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id b63sm1829309lfg.79.2019.12.10.12.53.00
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 10 Dec 2019 12:53:00 -0800 (PST)
-To: Vivien Didelot <vivien.didelot@gmail.com>
+ bh=3nRYlS0/YHih4zITmDaDbI3UpDrDOmoWaeoqzXN/ZeQ=;
+ b=ZwSTjjP71hIItjZO3r7y1OCJwPpCVj7d7jv72Z5BCdHOWdQm4WZiUuaTTEkEqomH2m
+ 1DqZmeHDCVH0L+TPLvMjvLIfUrLoqPyHvnd3ltTlm/GJnpym79m6c0SXAPfRvCQT/F5E
+ tqSQ9FXT4BCoAidFX35dyGw+jQnGoosU9cRd9n9k6ehxhou+zZ+7cjR1923gJyH5xPs0
+ YeksCkxYBAEjnIddvJfl0V4u5TSi885/mN19F0SJKODqK8VS0/1f6ao8zCOtFmc1iaR/
+ WxYwBRZ9kXUQ1ZdCo9H/I502VWoAJ3BXK+qb0FgwLOKHFmVuK84feiAzc/RuJLrdx8gL
+ aOXw==
+X-Gm-Message-State: APjAAAWB6lv4ok8QVM8duiF3lnvJghwZiIZNU49F/EwywIjxWl8hFKQY
+ 1MHWuObn4gQaB9rQgY2Q7Pw=
+X-Google-Smtp-Source: APXvYqx5XO1J58kTgw63WFnWTS22IVEci4YpTRq/EMSSUXKSpAZhlpgoNz3pVX7u2v2KS+84GtNgrA==
+X-Received: by 2002:ac8:45c7:: with SMTP id e7mr4702199qto.334.1576012118946; 
+ Tue, 10 Dec 2019 13:08:38 -0800 (PST)
+Received: from localhost (modemcable249.105-163-184.mc.videotron.ca.
+ [184.163.105.249])
+ by smtp.gmail.com with ESMTPSA id x68sm1305885qkc.22.2019.12.10.13.08.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Dec 2019 13:08:38 -0800 (PST)
+Date: Tue, 10 Dec 2019 16:08:36 -0500
+Message-ID: <20191210160836.GB1439145@t480s.localdomain>
+From: Vivien Didelot <vivien.didelot@gmail.com>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+In-Reply-To: <40090370-4d81-0ea9-e81a-da59534161b7@cumulusnetworks.com>
 References: <20191209230522.1255467-1-vivien.didelot@gmail.com>
  <a3b8e24d-5152-7243-545f-8a3e5fbaa53a@cumulusnetworks.com>
  <20191210143931.GF1344570@t480s.localdomain>
@@ -74,16 +81,11 @@ References: <20191209230522.1255467-1-vivien.didelot@gmail.com>
  <20191210151047.GB1423505@t480s.localdomain>
  <1aa8b6e4-6a73-60b0-c5fb-c0dfa05e27e6@cumulusnetworks.com>
  <20191210153441.GB1429230@t480s.localdomain>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <40090370-4d81-0ea9-e81a-da59534161b7@cumulusnetworks.com>
-Date: Tue, 10 Dec 2019 22:52:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+ <40090370-4d81-0ea9-e81a-da59534161b7@cumulusnetworks.com>
 MIME-Version: 1.0
-In-Reply-To: <20191210153441.GB1429230@t480s.localdomain>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 Cc: netdev@vger.kernel.org, Roopa Prabhu <roopa@cumulusnetworks.com>,
  bridge@lists.linux-foundation.org, "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net-next] net: bridge: add STP xstats
@@ -101,40 +103,36 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 10/12/2019 22:34, Vivien Didelot wrote:
-> On Tue, 10 Dec 2019 22:15:26 +0200, Nikolay Aleksandrov <nikolay@cumulusnetworks.com> wrote:
->>>>>> Why do you need percpu ? All of these seem to be incremented with the
->>>>>> bridge lock held. A few more comments below.
->>>>>
->>>>> All other xstats are incremented percpu, I simply followed the pattern.
->>>>>
->>>>
->>>> We have already a lock, we can use it and avoid the whole per-cpu memory handling.
->>>> It seems to be acquired in all cases where these counters need to be changed.
->>>
->>> Since the other xstats counters are currently implemented this way, I prefer
->>> to keep the code as is, until we eventually change them all if percpu is in
->>> fact not needed anymore.
->>>
->>> The new series is ready and I can submit it now if there's no objection.
->>
->> There is a reason other counters use per-cpu - they're incremented without any locking from fast-path.
->> The bridge STP code already has a lock which is acquired in all of these paths and we don't need
->> this overhead and the per-cpu memory allocations. Unless you can find a STP codepath which actually
->> needs per-cpu, I'd prefer you drop it.
+On Tue, 10 Dec 2019 22:52:59 +0200, Nikolay Aleksandrov <nikolay@cumulusnetworks.com> wrote:
+> >>>>>> Why do you need percpu ? All of these seem to be incremented with the
+> >>>>>> bridge lock held. A few more comments below.
+> >>>>>
+> >>>>> All other xstats are incremented percpu, I simply followed the pattern.
+> >>>>>
+> >>>>
+> >>>> We have already a lock, we can use it and avoid the whole per-cpu memory handling.
+> >>>> It seems to be acquired in all cases where these counters need to be changed.
+> >>>
+> >>> Since the other xstats counters are currently implemented this way, I prefer
+> >>> to keep the code as is, until we eventually change them all if percpu is in
+> >>> fact not needed anymore.
+> >>>
+> >>> The new series is ready and I can submit it now if there's no objection.
+> >>
+> >> There is a reason other counters use per-cpu - they're incremented without any locking from fast-path.
+> >> The bridge STP code already has a lock which is acquired in all of these paths and we don't need
+> >> this overhead and the per-cpu memory allocations. Unless you can find a STP codepath which actually
+> >> needs per-cpu, I'd prefer you drop it.
+> > 
+> > Ho ok I understand what you mean now. I'll drop the percpu attribute.
 > 
-> Ho ok I understand what you mean now. I'll drop the percpu attribute.
-> 
-> 
-> Thanks,
-> 
-> 	Vivien
-> 
+> Great, thanks again.
+> I think it's clear, but I'll add just in case to avoid extra work - you can drop
+> the dynamic memory allocation altogether and make the struct part of net_bridge_port.
 
-Great, thanks again.
-I think it's clear, but I'll add just in case to avoid extra work - you can drop
-the dynamic memory allocation altogether and make the struct part of net_bridge_port.
+Yup, that's what I've done and it makes the patch shamely small now ;)
 
-Cheers,
- Nik
 
+Thanks,
+
+	Vivien
