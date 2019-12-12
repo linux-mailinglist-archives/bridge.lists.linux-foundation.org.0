@@ -1,87 +1,85 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DA8E11C61F
-	for <lists.bridge@lfdr.de>; Thu, 12 Dec 2019 07:55:40 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D29A11D501
+	for <lists.bridge@lfdr.de>; Thu, 12 Dec 2019 19:14:36 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 3F86585044;
-	Thu, 12 Dec 2019 06:55:38 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id ED2EE88890;
+	Thu, 12 Dec 2019 18:14:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id eIa-77svNBCZ; Thu, 12 Dec 2019 06:55:38 +0000 (UTC)
+	with ESMTP id ocvCjkiH+aDn; Thu, 12 Dec 2019 18:14:32 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id ED8B985C7D;
-	Thu, 12 Dec 2019 06:55:37 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 2AEEA88876;
+	Thu, 12 Dec 2019 18:14:32 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B659FC0881;
-	Thu, 12 Dec 2019 06:55:37 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 08282C0881;
+	Thu, 12 Dec 2019 18:14:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7DE09C0881
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 06:55:36 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1784CC0881
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 11:35:03 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 6702585ADB
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 06:55:36 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id DF3FA88817
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 11:35:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dmCJlK2QpY52 for <bridge@lists.linux-foundation.org>;
- Thu, 12 Dec 2019 06:55:35 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
- [209.85.208.195])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 981DF85044
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 06:55:35 +0000 (UTC)
-Received: by mail-lj1-f195.google.com with SMTP id h23so984258ljc.8
- for <bridge@lists.linux-foundation.org>; Wed, 11 Dec 2019 22:55:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=ag166LO41mmIdH93hcAzJxPUu6DQ+iUSSg9O8F3Mz+8=;
- b=bOiADHgew3Ea4mYbibX0J/zHUQu24msSSDM1WwGDDvtHFiRtPwzVvTlAznwc5T8Usd
- /0NaheD+OFNIMT07YicGgnBkfBcqlnixQYJ8SUcl2sFpDaZ98qChoqfsIpUnD8dW3fSt
- FXg1lZcDeIK4fBamc7bQ3xx+ZdnAasH906KQM=
+ with ESMTP id bIxOBsSUU3tP for <bridge@lists.linux-foundation.org>;
+ Thu, 12 Dec 2019 11:35:02 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 0A1AE87079
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 11:35:01 +0000 (UTC)
+Received: by mail-io1-f69.google.com with SMTP id i8so1330419ioi.0
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 03:35:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=ag166LO41mmIdH93hcAzJxPUu6DQ+iUSSg9O8F3Mz+8=;
- b=lNc1LL60zLs84JB9PDfuUZIuyRWktGH/e3INiqM7ZZCez/ITij7VjfGhlka9ij9a7u
- SVzvjTLeX/MyqKnAy+eEtzqqD0HIxfIrQD1XXMPWnrq5ShQdDp2OgZzVJJiCG9M90akL
- sLWmdBbMc/lfoKTQG+QcTfNKL5BG+geu10kWVXaL8dWhX03G8e9atcEGrxRqU0WXisYr
- 9slpcg7ia+JWkUBe69CRXNNzG4l2cXkBZJR5pA56h3mHX317DbOOqjzqU0hTtWBb3sbC
- e8QsY2V/n3BB+HJh2iqRwdy5opWDJkjjPX7nKeUsMunrpJXnOvK0bKk5AD9+V7/2/QRR
- ay4w==
-X-Gm-Message-State: APjAAAWMNODYxgl3EGFvg13/o4MXdIZ+OJr2Jqx1PtZt5FjsgbNMbRU2
- 6w9313vX+Hyh0Bu0J3/7P4URzg==
-X-Google-Smtp-Source: APXvYqxfmn1yC+2iKxoENGwinteXcKfYcMJw6Ta1Md7l2HIh9+ngK2JufWxhXRmcIjvZOX7CAViBHQ==
-X-Received: by 2002:a2e:8505:: with SMTP id j5mr4286573lji.235.1576133733488; 
- Wed, 11 Dec 2019 22:55:33 -0800 (PST)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id x12sm2401731ljd.92.2019.12.11.22.55.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 11 Dec 2019 22:55:32 -0800 (PST)
-To: Vivien Didelot <vivien.didelot@gmail.com>,
- "David S. Miller" <davem@davemloft.net>
-References: <20191212010711.1664000-1-vivien.didelot@gmail.com>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <15115a6a-b95f-8de0-12ac-c3c98301ae25@cumulusnetworks.com>
-Date: Thu, 12 Dec 2019 08:55:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=zFl6E7DmT67W68XqVzR2aCsqjcFpWexNUq+6/CXmVUk=;
+ b=SUO5XLL9FE839cL+vBLzH1voFpsaWAPUOyDOOqj7Jr7wac961WuGCfkyHw1CQSCd3N
+ QKWdvOK+EFGgpIGe78ZrZgnLypuLF+/O7iXyTjj6FwFnGkcuWVb2mrqcDv9z6HU+FjWx
+ doWITNp75RC1kQxDdkNqOZelqA6OLR/vLDrOaklDLNWMShsCvcvFoBTT/vxbIEzR500h
+ XKSnTNZJyZ72WpT/9s5b5Y8B5hTZD3hkAyNFPPwFVzemdgBu7OI1AL0HXX7RYc7uizHl
+ Qwb/1O45cS/kYEiVe5W+7kIMysjE+wAPqqt3jH/AZSk0uMMTQiAehwlv3WbhzaekyXPH
+ 11Hw==
+X-Gm-Message-State: APjAAAUzd+9L7V8CRSb+mEpTUC25ZzJxmipiq1KaNj+jwy6aFRbz5mJG
+ vwhHtCv2vzEeOl12DHAXsTpJa+eX3dAkvfC3xH1/TiDvZ/En
+X-Google-Smtp-Source: APXvYqx7tAF42179GqyQGzxmn7mnoZxL7LgtxR3PNlsI/lOpd2FmYULEa+vakNib69tHnoQvSF7+iHISpB+uiby7hAsvBYRTiqDc
 MIME-Version: 1.0
-In-Reply-To: <20191212010711.1664000-1-vivien.didelot@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, Roopa Prabhu <roopa@cumulusnetworks.com>,
- bridge@lists.linux-foundation.org, David Ahern <dsahern@gmail.com>
-Subject: Re: [Bridge] [PATCH net-next v3] net: bridge: add STP xstats
+X-Received: by 2002:a92:3b19:: with SMTP id i25mr7844146ila.85.1576150500982; 
+ Thu, 12 Dec 2019 03:35:00 -0800 (PST)
+Date: Thu, 12 Dec 2019 03:35:00 -0800
+In-Reply-To: <000000000000b6b03205997b71cf@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000b949ee0599802274@google.com>
+From: syzbot <syzbot+31043da7725b6ec210f1@syzkaller.appspotmail.com>
+To: a@unstable.cc, alex.aring@gmail.com, allison@lohutok.net, andrew@lunn.ch, 
+ andy@greyhouse.net, ap420073@gmail.com, ast@domdv.de, ast@kernel.org, 
+ b.a.t.m.a.n@lists.open-mesh.org, bpf@vger.kernel.org, 
+ bridge@lists.linux-foundation.org, cleech@redhat.com, daniel@iogearbox.net, 
+ davem@davemloft.net, dsa@cumulusnetworks.com, dsahern@gmail.com, 
+ dvyukov@google.com, f.fainelli@gmail.com, fw@strlen.de, 
+ gregkh@linuxfoundation.org, haiyangz@microsoft.com, hawk@kernel.org, 
+ hdanton@sina.com, idosch@mellanox.com, info@metux.net, j.vosburgh@gmail.com, 
+ j@w1.fi, jakub.kicinski@netronome.com, jhs@mojatatu.com, jiri@mellanox.com, 
+ jiri@resnulli.us, johan.hedberg@gmail.com, johannes.berg@intel.com, 
+ john.fastabend@gmail.com, john.hurley@netronome.com, jwi@linux.ibm.com, 
+ kafai@fb.com, kstewart@linuxfoundation.org, kvalo@codeaurora.org, 
+ kys@microsoft.com, linux-bluetooth@vger.kernel.org, 
+ linux-fsdevel@vger.kernel.org, linux-hams@vger.kernel.org, 
+ linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-ppp@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ linux-wpan@vger.kernel.org, liuhangbin@gmail.com, marcel@holtmann.org
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+X-Mailman-Approved-At: Thu, 12 Dec 2019 18:14:30 +0000
+Subject: Re: [Bridge] BUG: corrupted list in __dentry_kill (2)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,23 +94,25 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 12/12/2019 03:07, Vivien Didelot wrote:
-> This adds rx_bpdu, tx_bpdu, rx_tcn, tx_tcn, transition_blk,
-> transition_fwd xstats counters to the bridge ports copied over via
-> netlink, providing useful information for STP.
-> 
-> Signed-off-by: Vivien Didelot <vivien.didelot@gmail.com>
-> ---
->  include/uapi/linux/if_bridge.h | 10 ++++++++++
->  net/bridge/br_netlink.c        | 13 +++++++++++++
->  net/bridge/br_private.h        |  2 ++
->  net/bridge/br_stp.c            | 15 +++++++++++++++
->  net/bridge/br_stp_bpdu.c       |  4 ++++
->  5 files changed, 44 insertions(+)
-> 
+syzbot has bisected this bug to:
 
-Looks good to me, thanks!
+commit ab92d68fc22f9afab480153bd82a20f6e2533769
+Author: Taehee Yoo <ap420073@gmail.com>
+Date:   Mon Oct 21 18:47:51 2019 +0000
 
-Acked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+     net: core: add generic lockdep keys
 
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12d37cb6e00000
+start commit:   938f49c8 Add linux-next specific files for 20191211
+git tree:       linux-next
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=11d37cb6e00000
+console output: https://syzkaller.appspot.com/x/log.txt?x=16d37cb6e00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=96834c884ba7bb81
+dashboard link: https://syzkaller.appspot.com/bug?extid=31043da7725b6ec210f1
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12dc83dae00000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=16ac8396e00000
 
+Reported-by: syzbot+31043da7725b6ec210f1@syzkaller.appspotmail.com
+Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
+
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
