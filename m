@@ -1,90 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2E911C0D0
-	for <lists.bridge@lfdr.de>; Thu, 12 Dec 2019 00:51:27 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7EAA386DE7;
-	Wed, 11 Dec 2019 23:51:25 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pixSjHfSa2Nt; Wed, 11 Dec 2019 23:51:24 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 8378386E66;
-	Wed, 11 Dec 2019 23:51:24 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 44181C0881;
-	Wed, 11 Dec 2019 23:51:24 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4D97DC0881
- for <bridge@lists.linux-foundation.org>; Wed, 11 Dec 2019 23:51:22 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D40811C1C7
+	for <lists.bridge@lfdr.de>; Thu, 12 Dec 2019 02:02:45 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 394A7886F3
- for <bridge@lists.linux-foundation.org>; Wed, 11 Dec 2019 23:51:22 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id CCE6188721;
+	Thu, 12 Dec 2019 01:02:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZKjtE3-mojyO; Thu, 12 Dec 2019 01:02:43 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by hemlock.osuosl.org (Postfix) with ESMTP id 6E78688723;
+	Thu, 12 Dec 2019 01:02:43 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3441EC0881;
+	Thu, 12 Dec 2019 01:02:43 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1BE9DC0881
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 01:02:41 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by whitealder.osuosl.org (Postfix) with ESMTP id 0A7AF8503D
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 01:02:41 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id IVZ7-5fPdRf8 for <bridge@lists.linux-foundation.org>;
- Wed, 11 Dec 2019 23:51:21 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
- [209.85.214.194])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 4202A886E4
- for <bridge@lists.linux-foundation.org>; Wed, 11 Dec 2019 23:51:21 +0000 (UTC)
-Received: by mail-pl1-f194.google.com with SMTP id q16so216158plr.10
- for <bridge@lists.linux-foundation.org>; Wed, 11 Dec 2019 15:51:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=kQFxMWNV4rgLBmw4zuw/aZgjr7Z3zb6XFoOJB/+sV9I=;
- b=r1TZS5QMatjWbLH5EaYwA2CYRpw0u9gnsPDXWvyUsCPRiNauT66mOl+3/MS5XLLglo
- Xy9TaK0MndN3MMWdjbsBlZhh7g34/f4luVrSrcs+1klheGOTmk4rSan5FMqYCi7y86OI
- K+YqrMh+WEjGFFrDHV4daw6GN+LNbewJaNLRRLwzEb64UtO9XBaW8Uzq0dtNPDXX2pPR
- yvEIFo+NHxmiwXB9GXh5uxH3CV9sbJtBJXMwZy1bK8JYpgS2Q72atPzzPa265z8qx7JY
- ObB4xKHZmSed0mgzq1oHOiJ6vUIZw1CDcxp5gekJ6l+TgLx2ffES0suL++/43IVZqu23
- U51Q==
+ with ESMTP id X--gWbYwY-Fs for <bridge@lists.linux-foundation.org>;
+ Thu, 12 Dec 2019 01:02:40 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-qv1-f68.google.com (mail-qv1-f68.google.com
+ [209.85.219.68])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 34B6B84F12
+ for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 01:02:40 +0000 (UTC)
+Received: by mail-qv1-f68.google.com with SMTP id d17so286642qvs.2
+ for <bridge@lists.linux-foundation.org>; Wed, 11 Dec 2019 17:02:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:message-id:from:to:cc:subject:in-reply-to:references
+ :mime-version:content-disposition:content-transfer-encoding;
+ bh=bDu6UlocVr8yC7RA+vB1bpLyWumODdkZotQceKQnYYs=;
+ b=PoAXSiR2m6vRgvmrW+eo5ZjFm9n+6JKutN/xPdn5nri69rqF2gXfNVdSKp8TSmP0KG
+ JnbNf1p1O1h8zpGmbGqEvPJmfpXvzyVS9DJ0UEr5VJueIHMa4RGgilrOEJLk69h+acuO
+ LzvHDaHEVqlECvwxqZdEB8eW1PNjcJUVFKwL41E3a15548vgzTjXmj8ex78fGMjckvSe
+ 6pe8yBrm4fxDLiv9Fmr6iPPvvzk2gcB95t/WJqlaF6zHFQZ0wFPO6jXVpAxPKEpociLW
+ PerRrj3HU0IoR9tvgfXATdMgzVOBlNuroTITvomGkzRmZrNqubBwfrbJlLyC1PZtvvxj
+ tjGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=kQFxMWNV4rgLBmw4zuw/aZgjr7Z3zb6XFoOJB/+sV9I=;
- b=IIKFr3R7jF44T2zgwrTykdVRlD6yP/8ij0m9LtcVBYlCcW3tlUBdGoTn7f05/94Ir+
- gL7/86jzo3uIxUipIgcaTRmQ3WRrAhGt/2qURzskCv9NmrQbWRizv85+YSgc/YNp7o3H
- JBZnNMz/zIUIlK3ydYeGn6r9T1idCItYDRB9rNJueKfFHP4Fvxq4CpwUW6gm5mWOgn+k
- pg+PYuNeVUVg3kyBctmInS7T2+u39T9J1CzckSWzV8//dbCBIHdNTZk8h8OoAjPPjQKc
- gohJkaLJUj27XnlK5TboQg3VVGiT5MDWJcTivLtkYE7Ne4fb2lquxAPRWgY4JvyI+4OH
- iDaQ==
-X-Gm-Message-State: APjAAAWEyh40Fzb8QTJger17pCEL0Xr+rRoTsDpsmD+O/xzfJFimqUOd
- /fnweYZZlFHPTWQOk8On0rRbwRBQLsU=
-X-Google-Smtp-Source: APXvYqyUa7q0yLtfW9aGxFE+qQYWXcdLj+ncDZmXWGuGTutIoSHc//eDxsjQ3jfUumBlpQaJUcqA1g==
-X-Received: by 2002:a17:902:8b86:: with SMTP id
- ay6mr6102040plb.223.1576106689937; 
- Wed, 11 Dec 2019 15:24:49 -0800 (PST)
-Received: from shemminger-XPS-13-9360 ([167.220.58.27])
- by smtp.gmail.com with ESMTPSA id s196sm4523159pfs.136.2019.12.11.15.24.49
+ h=x-gm-message-state:date:message-id:from:to:cc:subject:in-reply-to
+ :references:mime-version:content-disposition
+ :content-transfer-encoding;
+ bh=bDu6UlocVr8yC7RA+vB1bpLyWumODdkZotQceKQnYYs=;
+ b=Gji0TgYe63Ygl6ebMDDrDIKbZAngWH5NjpgfqGupeO138pptv02OhWG6Y9J9HHZgat
+ pZdrQouaSNd45NjuHHtSW1el8CznESBgv/G9P4/Wo+uI27xxG0Ph6I1fUpzbFlHoH5n5
+ lpBQSok2SnK71CZzfBPHaM8khO8RhO819cQ7z8xkFaLHcbgyTX3lq841gFiDr9oiaMrX
+ KF86as5sJt6L7pTyKaTduEY7Rtb2yLJzdN8yrC8HxjT+1tmzNwqOrltUzKOsU7C1pVaR
+ 0PNHM1CFHl4DCmkExU3uNTc+ZQTwFQyRCPZ5eFZYJ5HEGNAngFiVi5ZEhDe/xjQ8QrbT
+ DG/w==
+X-Gm-Message-State: APjAAAVD1OuIZazjRUaXuO4JyjVorRSYOIVuzeMqw6dBPbHt4Ht5dCDr
+ MVPvUt9yPzqpJpDU6agp9q8=
+X-Google-Smtp-Source: APXvYqy86vHP9w+iedPQNxW8573lsPDMclA+vgOa5vTcd21lpc/CQqoLWQu539HK1d+6DJG7JbGd1w==
+X-Received: by 2002:ad4:4949:: with SMTP id o9mr5675617qvy.189.1576112559109; 
+ Wed, 11 Dec 2019 17:02:39 -0800 (PST)
+Received: from localhost (modemcable249.105-163-184.mc.videotron.ca.
+ [184.163.105.249])
+ by smtp.gmail.com with ESMTPSA id 201sm1258360qkf.10.2019.12.11.17.02.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Dec 2019 15:24:49 -0800 (PST)
-Date: Wed, 11 Dec 2019 15:24:46 -0800
-From: Stephen Hemminger <stephen@networkplumber.org>
-To: Vivien Didelot <vivien.didelot@gmail.com>
-Message-ID: <20191211152446.4334559d@shemminger-XPS-13-9360>
-In-Reply-To: <20191210131633.GB1344570@t480s.localdomain>
-References: <20191209230522.1255467-1-vivien.didelot@gmail.com>
- <20191209230522.1255467-2-vivien.didelot@gmail.com>
- <20191209161345.5b3e757a@hermes.lan>
- <20191210131633.GB1344570@t480s.localdomain>
+ Wed, 11 Dec 2019 17:02:38 -0800 (PST)
+Date: Wed, 11 Dec 2019 20:02:37 -0500
+Message-ID: <20191211200237.GB1661911@t480s.localdomain>
+From: Vivien Didelot <vivien.didelot@gmail.com>
+To: David Miller <davem@davemloft.net>
+In-Reply-To: <20191211.141658.433012532951670675.davem@davemloft.net>
+References: <20191211134133.GB1587652@t480s.localdomain>
+ <20191211.120120.991784482938734303.davem@davemloft.net>
+ <20191211164754.GB1616641@t480s.localdomain>
+ <20191211.141658.433012532951670675.davem@davemloft.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
- Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH iproute2 v2] iplink: add support for STP xstats
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Cc: nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
+ roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+ dsahern@gmail.com
+Subject: Re: [Bridge] [PATCH net-next v2] net: bridge: add STP xstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,38 +100,22 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 10 Dec 2019 13:16:33 -0500
-Vivien Didelot <vivien.didelot@gmail.com> wrote:
+Hi David,
 
-> Hi Stephen,
+On Wed, 11 Dec 2019 14:16:58 -0800 (PST), David Miller <davem@davemloft.net> wrote:
+> > To be more precise, what I don't get is that when
+> > I move the BRIDGE_XSTATS_STP definition *after* BRIDGE_XSTATS_PAD, the STP
+> > xstats don't show up anymore in iproute2.
 > 
-> On Mon, 9 Dec 2019 16:13:45 -0800, Stephen Hemminger <stephen@networkplumber.org> wrote:
-> > On Mon,  9 Dec 2019 18:05:22 -0500
-> > Vivien Didelot <vivien.didelot@gmail.com> wrote:
-> >   
-> > > Add support for the BRIDGE_XSTATS_STP xstats, as follow:
-> > > 
-> > >     # ip link xstats type bridge_slave dev lan5
-> > >                         STP BPDU:
-> > >                           RX: 0
-> > >                           TX: 39
-> > >                         STP TCN:
-> > >                           RX: 0
-> > >                           TX: 0
-> > >                         STP Transitions:
-> > >                           Blocked: 0
-> > >                           Forwarding: 1
-> > >                         IGMP queries:
-> > >                           RX: v1 0 v2 0 v3 0
-> > >                           TX: v1 0 v2 0 v3 0
-> > >     ...  
-> > 
-> > Might I suggest a more concise format:
-> > 	STP BPDU:  RX: 0 TX: 39
-> > 	STP TCN:   RX: 0 TX:0
-> > 	STP Transitions: Blocked: 0 Forwarding: 1
-> > ...  
-> 
-> I don't mind if you prefer this format ;-)
+> Because you ahve to recompile iproute2 so that it uses the corrected value
+> in the kernel header, did you do that?
 
-Just trying to reduce the long output. Which is already too long for the xstat as it is.
+Meh you were correct, my rebuild didn't pick up the header change :-/
+
+I also moved the STP xstats copy below the mcast xstats copy to be consistent
+with the order. I'll respin right away.
+
+
+Thanks,
+
+	Vivien
