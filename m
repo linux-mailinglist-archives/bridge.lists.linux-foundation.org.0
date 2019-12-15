@@ -1,85 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D29A11D501
-	for <lists.bridge@lfdr.de>; Thu, 12 Dec 2019 19:14:36 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AA711F5BF
+	for <lists.bridge@lfdr.de>; Sun, 15 Dec 2019 05:32:59 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id ED2EE88890;
-	Thu, 12 Dec 2019 18:14:34 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 1DCF284DD1;
+	Sun, 15 Dec 2019 04:32:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ocvCjkiH+aDn; Thu, 12 Dec 2019 18:14:32 +0000 (UTC)
+	with ESMTP id DSerYUYP7jyO; Sun, 15 Dec 2019 04:32:57 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 2AEEA88876;
-	Thu, 12 Dec 2019 18:14:32 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id A19E984D0F;
+	Sun, 15 Dec 2019 04:32:57 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 08282C0881;
-	Thu, 12 Dec 2019 18:14:32 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 83A63C1D85;
+	Sun, 15 Dec 2019 04:32:57 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1784CC0881
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 11:35:03 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5E807C0881
+ for <bridge@lists.linux-foundation.org>; Sun, 15 Dec 2019 04:32:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id DF3FA88817
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 11:35:02 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 4763884D0F
+ for <bridge@lists.linux-foundation.org>; Sun, 15 Dec 2019 04:32:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id bIxOBsSUU3tP for <bridge@lists.linux-foundation.org>;
- Thu, 12 Dec 2019 11:35:02 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
- [209.85.166.69])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 0A1AE87079
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 11:35:01 +0000 (UTC)
-Received: by mail-io1-f69.google.com with SMTP id i8so1330419ioi.0
- for <bridge@lists.linux-foundation.org>; Thu, 12 Dec 2019 03:35:01 -0800 (PST)
+ with ESMTP id 2KAZNjEs6FKU for <bridge@lists.linux-foundation.org>;
+ Sun, 15 Dec 2019 04:32:54 +0000 (UTC)
+X-Greylist: delayed 00:22:05 by SQLgrey-1.7.6
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com
+ [209.85.166.68])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id C72BB84AD2
+ for <bridge@lists.linux-foundation.org>; Sun, 15 Dec 2019 04:32:54 +0000 (UTC)
+Received: by mail-io1-f68.google.com with SMTP id c16so3626962ioo.8
+ for <bridge@lists.linux-foundation.org>; Sat, 14 Dec 2019 20:32:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=netronome-com.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :organization:mime-version:content-transfer-encoding;
+ bh=xY694KnXGlHwEnM5IxCeasI3CBIwUmkENhRchcSKqBs=;
+ b=jQMDnKdtj5UjOtGBLN76SKHmmIcQU5b7bnWPN53p7CZ/WbEMVXW3UZXOvkSbd2mXpP
+ yKgn65PesyrI4h+gkOOiJ10S0fJBYKYSakWrCTvb7D3QWmQQ3kdNyHO1O7oLeXQKh7m9
+ muFlUcabl/xplTzsi9cevgdgRsTiIbHrhk9xAoIkQe3RBcnl4GH3JBjBc5y7Ga3Bmz8c
+ kfCOckUKF3mctdIZ1/wwZUS7SiRs1JyF4f8rfiD2i8Lw5wbOyipxvr0hwskmRdDAeW+c
+ lvejhZciw3hsja6TWiDD6R2R+r4f/ThG6xjohlwoBEi47ZPXKJjxA2BsrRjKsD0l3LAM
+ OaWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=zFl6E7DmT67W68XqVzR2aCsqjcFpWexNUq+6/CXmVUk=;
- b=SUO5XLL9FE839cL+vBLzH1voFpsaWAPUOyDOOqj7Jr7wac961WuGCfkyHw1CQSCd3N
- QKWdvOK+EFGgpIGe78ZrZgnLypuLF+/O7iXyTjj6FwFnGkcuWVb2mrqcDv9z6HU+FjWx
- doWITNp75RC1kQxDdkNqOZelqA6OLR/vLDrOaklDLNWMShsCvcvFoBTT/vxbIEzR500h
- XKSnTNZJyZ72WpT/9s5b5Y8B5hTZD3hkAyNFPPwFVzemdgBu7OI1AL0HXX7RYc7uizHl
- Qwb/1O45cS/kYEiVe5W+7kIMysjE+wAPqqt3jH/AZSk0uMMTQiAehwlv3WbhzaekyXPH
- 11Hw==
-X-Gm-Message-State: APjAAAUzd+9L7V8CRSb+mEpTUC25ZzJxmipiq1KaNj+jwy6aFRbz5mJG
- vwhHtCv2vzEeOl12DHAXsTpJa+eX3dAkvfC3xH1/TiDvZ/En
-X-Google-Smtp-Source: APXvYqx7tAF42179GqyQGzxmn7mnoZxL7LgtxR3PNlsI/lOpd2FmYULEa+vakNib69tHnoQvSF7+iHISpB+uiby7hAsvBYRTiqDc
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:organization:mime-version:content-transfer-encoding;
+ bh=xY694KnXGlHwEnM5IxCeasI3CBIwUmkENhRchcSKqBs=;
+ b=uJKmldCcGXsDJXMEeqeDlyAlSp3neXDInkpFv5fTJem3RVESMG2B8uoLrPwGvgnJaQ
+ cQjb6/gBFHvHa5oy9q9XWsL5K05DHF8h3+q4GHdWAe5P2PDkwWzj0CoDGzM+vmSrdJ0k
+ rjrMQixAsc7qtVpzIgLtCtLm+XKR+rg1/UYUOkwo1zBcWsAEJj4Fezra0Wol7AeP9pfn
+ RLAu2O8uVedZwbjwXO2ofd5BqfMna0zxENJuSKLqh7NWvEuKZ5xdrxZHi5qxUaxAeFi3
+ IIM0x3cdU4O0awXSs/XD8cZ0PkzIpjiyARWxIg1LVYg36nRR3+bHw7K/r8n/+aIHWo+c
+ rcZw==
+X-Gm-Message-State: APjAAAUDpvDWA5eI6deZIKfxs+gaJJ+M4ZOAxjLys11MHgucYwGcXaSN
+ 7Dv0y3kcmviSjeSt+H4udppGL6BnjHs=
+X-Google-Smtp-Source: APXvYqwbdy+7fNEzR4dEsZoza9VgO6c96pEK2SX1UlMZxBn7OPgObEd/YI7rd8E2ejr7kt1aEJsFVA==
+X-Received: by 2002:a63:3756:: with SMTP id g22mr9734524pgn.375.1576382614756; 
+ Sat, 14 Dec 2019 20:03:34 -0800 (PST)
+Received: from cakuba.netronome.com (c-73-202-202-92.hsd1.ca.comcast.net.
+ [73.202.202.92])
+ by smtp.gmail.com with ESMTPSA id n2sm7403672pgn.71.2019.12.14.20.03.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 14 Dec 2019 20:03:34 -0800 (PST)
+Date: Sat, 14 Dec 2019 20:03:32 -0800
+From: Jakub Kicinski <jakub.kicinski@netronome.com>
+To: Vivien Didelot <vivien.didelot@gmail.com>
+Message-ID: <20191214200332.1c4d414f@cakuba.netronome.com>
+In-Reply-To: <20191212010711.1664000-1-vivien.didelot@gmail.com>
+References: <20191212010711.1664000-1-vivien.didelot@gmail.com>
+Organization: Netronome Systems, Ltd.
 MIME-Version: 1.0
-X-Received: by 2002:a92:3b19:: with SMTP id i25mr7844146ila.85.1576150500982; 
- Thu, 12 Dec 2019 03:35:00 -0800 (PST)
-Date: Thu, 12 Dec 2019 03:35:00 -0800
-In-Reply-To: <000000000000b6b03205997b71cf@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000b949ee0599802274@google.com>
-From: syzbot <syzbot+31043da7725b6ec210f1@syzkaller.appspotmail.com>
-To: a@unstable.cc, alex.aring@gmail.com, allison@lohutok.net, andrew@lunn.ch, 
- andy@greyhouse.net, ap420073@gmail.com, ast@domdv.de, ast@kernel.org, 
- b.a.t.m.a.n@lists.open-mesh.org, bpf@vger.kernel.org, 
- bridge@lists.linux-foundation.org, cleech@redhat.com, daniel@iogearbox.net, 
- davem@davemloft.net, dsa@cumulusnetworks.com, dsahern@gmail.com, 
- dvyukov@google.com, f.fainelli@gmail.com, fw@strlen.de, 
- gregkh@linuxfoundation.org, haiyangz@microsoft.com, hawk@kernel.org, 
- hdanton@sina.com, idosch@mellanox.com, info@metux.net, j.vosburgh@gmail.com, 
- j@w1.fi, jakub.kicinski@netronome.com, jhs@mojatatu.com, jiri@mellanox.com, 
- jiri@resnulli.us, johan.hedberg@gmail.com, johannes.berg@intel.com, 
- john.fastabend@gmail.com, john.hurley@netronome.com, jwi@linux.ibm.com, 
- kafai@fb.com, kstewart@linuxfoundation.org, kvalo@codeaurora.org, 
- kys@microsoft.com, linux-bluetooth@vger.kernel.org, 
- linux-fsdevel@vger.kernel.org, linux-hams@vger.kernel.org, 
- linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-ppp@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-wpan@vger.kernel.org, liuhangbin@gmail.com, marcel@holtmann.org
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-X-Mailman-Approved-At: Thu, 12 Dec 2019 18:14:30 +0000
-Subject: Re: [Bridge] BUG: corrupted list in __dentry_kill (2)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
+ Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
+ David Ahern <dsahern@gmail.com>, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next v3] net: bridge: add STP xstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,25 +97,11 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-syzbot has bisected this bug to:
+On Wed, 11 Dec 2019 20:07:10 -0500, Vivien Didelot wrote:
+> This adds rx_bpdu, tx_bpdu, rx_tcn, tx_tcn, transition_blk,
+> transition_fwd xstats counters to the bridge ports copied over via
+> netlink, providing useful information for STP.
+> 
+> Signed-off-by: Vivien Didelot <vivien.didelot@gmail.com>
 
-commit ab92d68fc22f9afab480153bd82a20f6e2533769
-Author: Taehee Yoo <ap420073@gmail.com>
-Date:   Mon Oct 21 18:47:51 2019 +0000
-
-     net: core: add generic lockdep keys
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12d37cb6e00000
-start commit:   938f49c8 Add linux-next specific files for 20191211
-git tree:       linux-next
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=11d37cb6e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=16d37cb6e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=96834c884ba7bb81
-dashboard link: https://syzkaller.appspot.com/bug?extid=31043da7725b6ec210f1
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12dc83dae00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=16ac8396e00000
-
-Reported-by: syzbot+31043da7725b6ec210f1@syzkaller.appspotmail.com
-Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+Applied, thank you!
