@@ -2,59 +2,59 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A407112B648
-	for <lists.bridge@lfdr.de>; Fri, 27 Dec 2019 18:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEB8E12B6A5
+	for <lists.bridge@lfdr.de>; Fri, 27 Dec 2019 18:44:26 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id D453887AA1;
-	Fri, 27 Dec 2019 17:41:48 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 80871878D1;
+	Fri, 27 Dec 2019 17:44:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id dKFTXVqbZzkx; Fri, 27 Dec 2019 17:41:48 +0000 (UTC)
+	with ESMTP id anl98amD4eJj; Fri, 27 Dec 2019 17:44:23 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 7976187A52;
-	Fri, 27 Dec 2019 17:41:47 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 53DDF87A4F;
+	Fri, 27 Dec 2019 17:44:23 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 661B5C1D87;
-	Fri, 27 Dec 2019 17:41:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 33823C0881;
+	Fri, 27 Dec 2019 17:44:23 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 19449C0881
- for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:41:46 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EDC4EC0881
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 1071C8389C
- for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:41:46 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id DCEFC8589A
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id MviHqANlSlXr for <bridge@lists.linux-foundation.org>;
- Fri, 27 Dec 2019 17:41:45 +0000 (UTC)
+ with ESMTP id ZZjA-T+Xx1bP for <bridge@lists.linux-foundation.org>;
+ Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 4A4BB81B76
- for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:41:45 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 2C6D88389C
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 017D621582;
- Fri, 27 Dec 2019 17:41:43 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id E841321744;
+ Fri, 27 Dec 2019 17:44:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1577468505;
- bh=QqJno5wkD79YdW2aWjhjalkDVoSW8IX3cUj8I0dPFKY=;
+ s=default; t=1577468661;
+ bh=61QqtsM7heF3ZrrF9P/X7IR582ifXhr/shcSYIh1waI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=09dWvhGQyuxpZm7Z/wYgseFIr54Oe6QBzhgSO/RFjYU+AVIbTt7pPOPqUpIxk0UJS
- SCorezGRkC6yGkCF7YcM4J8i8HYnHBG72DsUoFkR/1VlUoM+mOVNFaY1i9OKz3/KVc
- gJIyS6fqhMsZ3c+ldI+y0Xaz1ClfoVhgodP+yCug=
+ b=Jx0qRi+C3d9E4g3rj3RUwW6lLxOkjmWGp1sAGP/75W2nZpZnqnOvTCnuqfVSlS5y9
+ OJcZBuaXB0v3VzpI9eqbJF2O2WJuPcrGH1Ioyl5jOA3fjq8ex9G9jY/Hg1G3802OpK
+ C9jcNadAOVULrjMH+bo6vgzBLLImqFm1tVyVzBr8=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Fri, 27 Dec 2019 12:38:26 -0500
-Message-Id: <20191227174055.4923-38-sashal@kernel.org>
+Date: Fri, 27 Dec 2019 12:42:50 -0500
+Message-Id: <20191227174352.6264-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191227174055.4923-1-sashal@kernel.org>
-References: <20191227174055.4923-1-sashal@kernel.org>
+In-Reply-To: <20191227174352.6264-1-sashal@kernel.org>
+References: <20191227174352.6264-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -64,8 +64,8 @@ Cc: Sasha Levin <sashal@kernel.org>, coreteam@netfilter.org,
  Florian Westphal <fw@strlen.de>, Eric Dumazet <edumazet@google.com>,
  syzbot <syzkaller@googlegroups.com>, netfilter-devel@vger.kernel.org,
  Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: [Bridge] [PATCH AUTOSEL 5.4 038/187] netfilter: bridge: make sure
-	to pull arp header in br_nf_forward_arp()
+Subject: [Bridge] [PATCH AUTOSEL 4.19 22/84] netfilter: bridge: make sure to
+	pull arp header in br_nf_forward_arp()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -173,10 +173,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/net/bridge/br_netfilter_hooks.c b/net/bridge/br_netfilter_hooks.c
-index af7800103e51..59980ecfc962 100644
+index 212c184c1eee..ccab290c14d4 100644
 --- a/net/bridge/br_netfilter_hooks.c
 +++ b/net/bridge/br_netfilter_hooks.c
-@@ -662,6 +662,9 @@ static unsigned int br_nf_forward_arp(void *priv,
+@@ -646,6 +646,9 @@ static unsigned int br_nf_forward_arp(void *priv,
  		nf_bridge_pull_encap_header(skb);
  	}
  
@@ -184,7 +184,7 @@ index af7800103e51..59980ecfc962 100644
 +		return NF_DROP;
 +
  	if (arp_hdr(skb)->ar_pln != 4) {
- 		if (is_vlan_arp(skb, state->net))
+ 		if (IS_VLAN_ARP(skb))
  			nf_bridge_push_encap_header(skb);
 -- 
 2.20.1
