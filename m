@@ -2,59 +2,59 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB8E12B6A5
-	for <lists.bridge@lfdr.de>; Fri, 27 Dec 2019 18:44:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB3D12B90F
+	for <lists.bridge@lfdr.de>; Fri, 27 Dec 2019 19:02:46 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 80871878D1;
-	Fri, 27 Dec 2019 17:44:24 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 1AFEB8778E;
+	Fri, 27 Dec 2019 18:02:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id anl98amD4eJj; Fri, 27 Dec 2019 17:44:23 +0000 (UTC)
+	with ESMTP id eCE+Pd0tyPtJ; Fri, 27 Dec 2019 18:02:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 53DDF87A4F;
-	Fri, 27 Dec 2019 17:44:23 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id C28CB877E1;
+	Fri, 27 Dec 2019 18:02:44 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 33823C0881;
-	Fri, 27 Dec 2019 17:44:23 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9383FC1D87;
+	Fri, 27 Dec 2019 18:02:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EDC4EC0881
- for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E89F2C0881
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 18:02:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id DCEFC8589A
- for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id D1017875BC
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 18:02:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ZZjA-T+Xx1bP for <bridge@lists.linux-foundation.org>;
- Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
+ with ESMTP id pju2VE6ffZZG for <bridge@lists.linux-foundation.org>;
+ Fri, 27 Dec 2019 18:02:42 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 2C6D88389C
- for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 17:44:21 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 092C8873DA
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Dec 2019 18:02:42 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id E841321744;
- Fri, 27 Dec 2019 17:44:19 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id B0F74206CB;
+ Fri, 27 Dec 2019 18:02:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1577468661;
- bh=61QqtsM7heF3ZrrF9P/X7IR582ifXhr/shcSYIh1waI=;
+ s=default; t=1577469761;
+ bh=e5Ov5cgaM9/3H+Bt/42hA27Z5Z0HZUsHp8mZ2ybRNGo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Jx0qRi+C3d9E4g3rj3RUwW6lLxOkjmWGp1sAGP/75W2nZpZnqnOvTCnuqfVSlS5y9
- OJcZBuaXB0v3VzpI9eqbJF2O2WJuPcrGH1Ioyl5jOA3fjq8ex9G9jY/Hg1G3802OpK
- C9jcNadAOVULrjMH+bo6vgzBLLImqFm1tVyVzBr8=
+ b=LIe+IdXj/IhH5UwqA9DfUJHASeRDBaEU5O1vnbH3DY+SNjlp+1SI9MTEv5khYm7g1
+ jWaCNPF+8dq41QWoy8zliruSz5I7IDZC6siEI79sbmA/8C188mO5wh2tNeLBR+EjHP
+ WW3BPI1F5iaiY9fwHB26qxDBoAXhmvIdc5InV9aw=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Fri, 27 Dec 2019 12:42:50 -0500
-Message-Id: <20191227174352.6264-22-sashal@kernel.org>
+Date: Fri, 27 Dec 2019 13:01:39 -0500
+Message-Id: <20191227180222.7076-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191227174352.6264-1-sashal@kernel.org>
-References: <20191227174352.6264-1-sashal@kernel.org>
+In-Reply-To: <20191227180222.7076-1-sashal@kernel.org>
+References: <20191227180222.7076-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -64,7 +64,7 @@ Cc: Sasha Levin <sashal@kernel.org>, coreteam@netfilter.org,
  Florian Westphal <fw@strlen.de>, Eric Dumazet <edumazet@google.com>,
  syzbot <syzkaller@googlegroups.com>, netfilter-devel@vger.kernel.org,
  Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: [Bridge] [PATCH AUTOSEL 4.19 22/84] netfilter: bridge: make sure to
+Subject: [Bridge] [PATCH AUTOSEL 4.14 14/57] netfilter: bridge: make sure to
 	pull arp header in br_nf_forward_arp()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -173,10 +173,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/net/bridge/br_netfilter_hooks.c b/net/bridge/br_netfilter_hooks.c
-index 212c184c1eee..ccab290c14d4 100644
+index 89936e0d55c9..6feab2279143 100644
 --- a/net/bridge/br_netfilter_hooks.c
 +++ b/net/bridge/br_netfilter_hooks.c
-@@ -646,6 +646,9 @@ static unsigned int br_nf_forward_arp(void *priv,
+@@ -643,6 +643,9 @@ static unsigned int br_nf_forward_arp(void *priv,
  		nf_bridge_pull_encap_header(skb);
  	}
  
