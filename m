@@ -1,86 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B41E13163E
-	for <lists.bridge@lfdr.de>; Mon,  6 Jan 2020 17:41:19 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E2A135C42
+	for <lists.bridge@lfdr.de>; Thu,  9 Jan 2020 16:09:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 0ED4086D9A;
-	Mon,  6 Jan 2020 16:41:17 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 422BF845D5;
+	Thu,  9 Jan 2020 15:09:27 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Ip44+PGMgfLU; Mon,  6 Jan 2020 16:41:16 +0000 (UTC)
+	with ESMTP id R8XDhRI8dwqF; Thu,  9 Jan 2020 15:09:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 061ED86D72;
-	Mon,  6 Jan 2020 16:41:16 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id E6D0F841AC;
+	Thu,  9 Jan 2020 15:09:25 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C0C00C0881;
-	Mon,  6 Jan 2020 16:41:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id BE894C0881;
+	Thu,  9 Jan 2020 15:09:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9A51BC0881
- for <bridge@lists.linux-foundation.org>; Sun,  5 Jan 2020 22:58:03 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 67D53C0881
+ for <bridge@lists.linux-foundation.org>; Thu,  9 Jan 2020 15:09:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 9221386747
- for <bridge@lists.linux-foundation.org>; Sun,  5 Jan 2020 22:58:03 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 5FCE0214E9
+ for <bridge@lists.linux-foundation.org>; Thu,  9 Jan 2020 15:09:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ie3SFVAVJZN6 for <bridge@lists.linux-foundation.org>;
- Sun,  5 Jan 2020 22:58:01 +0000 (UTC)
+ with ESMTP id dgTQjUL1aGEb for <bridge@lists.linux-foundation.org>;
+ Thu,  9 Jan 2020 15:09:23 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
- [209.85.166.198])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 67D8D86542
- for <bridge@lists.linux-foundation.org>; Sun,  5 Jan 2020 22:58:01 +0000 (UTC)
-Received: by mail-il1-f198.google.com with SMTP id h18so27148982ilc.2
- for <bridge@lists.linux-foundation.org>; Sun, 05 Jan 2020 14:58:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=MybccZLowdSuY610EZVsc1I89suuz7NXH7uvIv0mFvY=;
- b=gsVjcj47aqLg/YMpdJ8W6HHE1/jyzuZe81QTfJslm4ZdbEDJ91XHCyAjUSfff2FcQ1
- fRb4+Gpc3a2/enHbkWZZcRXsJdJ8QQaCSmSn7Z01l9uqPuPcIF7kv5QeoqQFkxGhcqNQ
- NOeb4XpsmpvKHC7ogb/cMPXBXkesc+QquaO9F4H16pZF2ZacwWO2aYExAi5rccaAO41g
- iAxy3As8gPYeuYxOIVP58NaQ7BVXr33YYKXIGIxXfklejUIAsygeWhExQsdGcfy0N5KF
- nj60YQS5U9u8c42EE0bV4qcO8mfUSyMqk1EaWI2gzyrqzahiQmaaPmpP5A1yfB28DNXb
- T6+w==
-X-Gm-Message-State: APjAAAWcek+B0/ENW08Tr2V1uSEEffDMtqXb2dUniSp8v4XeF8n3wNiu
- ghI+rV6EGF9U5C0ekTEa2v7dcNosPRX4Ivd/NyzY2UB+cMf1
-X-Google-Smtp-Source: APXvYqwI1kaOaU+6OhN9mHkSBgJLPiiG9E2oMRL3MMauj8xdpOQ/nYJTOKJNppAbqi17MDpHQfb0GrThss7Ve4NxONRpCk4GrB8O
+Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
+ [216.71.150.166])
+ by silver.osuosl.org (Postfix) with ESMTPS id 06C5820133
+ for <bridge@lists.linux-foundation.org>; Thu,  9 Jan 2020 15:09:22 +0000 (UTC)
+Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
+ Horatiu.Vultur@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+ envelope-from="Horatiu.Vultur@microchip.com";
+ x-sender="Horatiu.Vultur@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+ include:servers.mcsv.net include:mktomail.com
+ include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa5.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+ envelope-from="Horatiu.Vultur@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa5.microchip.iphmx.com;
+ dkim=none (message not signed) header.i=none;
+ spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: nM/GDVUI9M/QJqpveaGTobj09Tc5FBpJ9fB6v/xLNkQ/vmVLUMI1+4tAoy0VyU/uUN7ul/0yj4
+ MpK1MT0vIGAmlTGcVPaZXxcMXql78AJ+55Amn1bEqsZ/Uv7lMOgurZsBDzOEcFmuJfE5VCXVbM
+ b8WOPLdywmOBDqFrRRup7fp79yMTpoXpuzmO+M/av2zvmTIhwtmbjyOteR+mzIkEGdB/O3NkdO
+ RtOj0of/HXvFW9fGcX7GqQam4c81J3lhuFNfxA0+LzMFqcGNVoRmfw/X3uFltL1w2mIEzja7UJ
+ oZ4=
+X-IronPort-AV: E=Sophos;i="5.69,414,1571727600"; d="scan'208";a="61363790"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 09 Jan 2020 08:09:21 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 9 Jan 2020 08:09:18 -0700
+Received: from soft-dev3.microsemi.net (10.10.85.251) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Thu, 9 Jan 2020 08:09:16 -0700
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>
+Date: Thu, 9 Jan 2020 16:06:37 +0100
+Message-ID: <20200109150640.532-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Received: by 2002:a92:3996:: with SMTP id h22mr81182568ilf.129.1578265080765; 
- Sun, 05 Jan 2020 14:58:00 -0800 (PST)
-Date: Sun, 05 Jan 2020 14:58:00 -0800
-In-Reply-To: <000000000000ab3f800598cec624@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000802598059b6c7989@google.com>
-From: syzbot <syzbot+4ec99438ed7450da6272@syzkaller.appspotmail.com>
-To: a@unstable.cc, alex.aring@gmail.com, allison@lohutok.net, andrew@lunn.ch, 
- andy@greyhouse.net, ap420073@gmail.com, ast@domdv.de, 
- b.a.t.m.a.n@lists.open-mesh.org, bridge@lists.linux-foundation.org, 
- cleech@redhat.com, daniel@iogearbox.net, davem@davemloft.net, 
- dsa@cumulusnetworks.com, f.fainelli@gmail.com, fw@strlen.de, 
- gregkh@linuxfoundation.org, gustavo@embeddedor.com, haiyangz@microsoft.com, 
- info@metux.net, j.vosburgh@gmail.com, j@w1.fi, jakub.kicinski@netronome.com, 
- jhs@mojatatu.com, jiri@resnulli.us, johan.hedberg@gmail.com, 
- johannes.berg@intel.com, jwi@linux.ibm.com, kstewart@linuxfoundation.org, 
- kvalo@codeaurora.org, kys@microsoft.com, linmiaohe@huawei.com, 
- linux-bluetooth@vger.kernel.org, linux-hams@vger.kernel.org, 
- linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-ppp@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-wpan@vger.kernel.org, liuhangbin@gmail.com, marcel@holtmann.org, 
- mareklindner@neomailbox.ch, mkubecek@suse.cz, mmanning@vyatta.att-mail.com, 
- netdev@vger.kernel.org, nikolay@cumulusnetworks.com, 
- oss-drivers@netronome.com, paulus@samba.org, ralf@linux-mips.org, 
- roopa@cumulusnetworks.com, sashal@kernel.org
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-X-Mailman-Approved-At: Mon, 06 Jan 2020 16:41:14 +0000
-Subject: Re: [Bridge] WARNING: bad unlock balance in sch_direct_xmit
+Content-Type: text/plain
+Cc: andrew@lunn.ch, jakub.kicinski@netronome.com, nikolay@cumulusnetworks.com,
+ roopa@cumulusnetworks.com, jiri@mellanox.com, vivien.didelot@gmail.com,
+ UNGLinuxDriver@microchip.com, anirudh.venkataramanan@intel.com,
+ jeffrey.t.kirsher@intel.com, dsahern@gmail.com, olteanv@gmail.com,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, davem@davemloft.net
+Subject: [Bridge] [RFC net-next Patch 0/3] net: bridge: mrp: Add support for
+	Media Redundancy Protocol(MRP)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,25 +103,103 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-syzbot has bisected this bug to:
+Media Redundancy Protocol is a data network protocol standardized by
+International Electrotechnical Commission as IEC 62439-2. It allows rings of
+Ethernet switches to overcome any single failure with recovery time faster than
+STP. It is primarily used in Industrial Ethernet applications.
 
-commit ab92d68fc22f9afab480153bd82a20f6e2533769
-Author: Taehee Yoo <ap420073@gmail.com>
-Date:   Mon Oct 21 18:47:51 2019 +0000
+This is the first proposal of implementing a subset of the standard. It supports
+only 2 roles of an MRP node. It supports only Media Redundancy Manager(MRM) and
+Media Redundancy Client(MRC). In a MRP ring, each node needs to support MRP and
+in a ring can be only one MRM and multiple MRC. It is possible to have multiple
+instances of MRP on a single node. But a port can be part of only one MRP
+instance.
 
-     net: core: add generic lockdep keys
+The MRM is responsible for detecting when there is a loop in the ring. It is
+sending the frame MRP_Test to detect the loops. It would send MRP_Test on both
+ports in the ring and if the frame is received at the other end, then the ring
+is closed. Meaning that there is a loop. In this case it sets the port state to
+BLOCKED, not allowing traffic to pass through except MRP frames. In case it
+stops receiving MRP_Test frames from itself then the MRM will detect that the
+ring is open, therefor it would notify the other nodes of this change and will
+set the state of the port to be FORWARDING.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=15e88ec6e00000
-start commit:   36487907 Merge branch 'akpm' (patches from Andrew)
-git tree:       upstream
-final crash:    https://syzkaller.appspot.com/x/report.txt?x=17e88ec6e00000
-console output: https://syzkaller.appspot.com/x/log.txt?x=13e88ec6e00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=f2f3ef188b7e16cf
-dashboard link: https://syzkaller.appspot.com/bug?extid=4ec99438ed7450da6272
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1722c5c1e00000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=167aee3ee00000
+The MRC is responsible for forwarding MRP_Test frames between the ring ports
+(and not to flood on other ports) and to listen when there is a change in the
+network to clear the FDB.
 
-Reported-by: syzbot+4ec99438ed7450da6272@syzkaller.appspotmail.com
-Fixes: ab92d68fc22f ("net: core: add generic lockdep keys")
+Similar with STP, MRP is implemented on top of the bridge and they can't be
+enable at the same time. While STP runs on all ports of the bridge, MRP needs to
+run only on 2 ports.
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+The bridge needs to:
+- notify when the link of one of the ports goes down or up, because MRP instance
+  needs to react to link changes by sending MRP_LinkChange frames.
+- notify when one of the ports are removed from the bridge or when the bridge
+  is destroyed, because if the port is part of the MRP ring then MRP state
+  machine should be stopped.
+- add a handler to allow MRP instance to process MRP frames, if MRP is enabled.
+  This is similar with STP design.
+- add logic for MRP frames inside the bridge. The bridge will just detect MRP
+  frames and it would forward them to the upper layer to allow to process it.
+- update the logic to update non-MRP frames. If MRP is enabled, then look also
+  at the state of the port to decide to forward or not.
+
+To create a MRP instance on the bridge:
+$ bridge mrp add dev br0 p_port eth0 s_port eth1 ring_role 2 ring_id 1
+
+Where:
+p_port, s_port: can be any port under the bridge
+ring_role: can have the value 1(MRC - Media Redundancy Client) or
+           2(MRM - Media Redundancy Manager). In a ring can be only one MRM.
+ring_id: unique id for each MRP instance.
+
+It is possible to create multiple instances. Each instance has to have it's own
+ring_id and a port can't be part of multiple instances:
+$ bridge mrp add dev br0 p_port eth2 s_port eth3 ring_role 1 ring_id 2
+
+To see current MRP instances and their status:
+$ bridge mrp show
+dev br0 p_port eth2 s_port eth3 ring_role 1 ring_id 2 ring_state 3
+dev br0 p_port eth0 s_port eth1 ring_role 2 ring_id 1 ring_state 4
+
+If this patch series is well received, the in the future it could be extended
+with the following:
+- add support for Media Redundancy Automanager. This role allows a node to
+  detect if needs to behave as a MRM or MRC. The advantage of this role is that
+  the user doesn't need to configure the nodes each time they are added/removed
+  from a ring and it adds redundancy to the manager.
+- add support for Interconnect rings. This allow to connect multiple rings.
+- add HW offloading. The standard defines 4 recovery times (500, 200, 30 and 10
+  ms). To be able to achieve 30 and 10 it is required by the HW to generate the
+  MRP_Test frames and detect when the ring is open/closed.
+
+Horatiu Vultur (3):
+  net: bridge: mrp: Add support for Media Redundancy Protocol
+  net: bridge: mrp: Integrate MRP into the bridge
+  net: bridge: mrp: Add netlink support to configure MRP
+
+ include/uapi/linux/if_bridge.h |   27 +
+ include/uapi/linux/if_ether.h  |    1 +
+ include/uapi/linux/rtnetlink.h |    7 +
+ net/bridge/Kconfig             |   12 +
+ net/bridge/Makefile            |    2 +
+ net/bridge/br.c                |   19 +
+ net/bridge/br_device.c         |    3 +
+ net/bridge/br_forward.c        |    1 +
+ net/bridge/br_if.c             |   10 +
+ net/bridge/br_input.c          |   22 +
+ net/bridge/br_mrp.c            | 1517 ++++++++++++++++++++++++++++++++
+ net/bridge/br_mrp_timer.c      |  227 +++++
+ net/bridge/br_netlink.c        |    9 +
+ net/bridge/br_private.h        |   30 +
+ net/bridge/br_private_mrp.h    |  208 +++++
+ security/selinux/nlmsgtab.c    |    5 +-
+ 16 files changed, 2099 insertions(+), 1 deletion(-)
+ create mode 100644 net/bridge/br_mrp.c
+ create mode 100644 net/bridge/br_mrp_timer.c
+ create mode 100644 net/bridge/br_private_mrp.h
+
+-- 
+2.17.1
+
