@@ -1,91 +1,106 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944041377A3
-	for <lists.bridge@lfdr.de>; Fri, 10 Jan 2020 21:03:47 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 3CC2C226D0;
-	Fri, 10 Jan 2020 20:03:46 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id SHfqfftMtyon; Fri, 10 Jan 2020 20:03:45 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id B6CD322219;
-	Fri, 10 Jan 2020 20:03:45 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 93EF1C0881;
-	Fri, 10 Jan 2020 20:03:45 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 82955C0881
- for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 20:03:44 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88A581377C4
+	for <lists.bridge@lfdr.de>; Fri, 10 Jan 2020 21:12:57 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 6FE1988501
- for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 20:03:44 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 3163888516;
+	Fri, 10 Jan 2020 20:12:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id SSLWbb+YeoZP; Fri, 10 Jan 2020 20:12:55 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by hemlock.osuosl.org (Postfix) with ESMTP id 7148A8850A;
+	Fri, 10 Jan 2020 20:12:55 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4DC3CC0881;
+	Fri, 10 Jan 2020 20:12:55 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 16307C0881
+ for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 20:12:53 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by silver.osuosl.org (Postfix) with ESMTP id 028E12226E
+ for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 20:12:53 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id IrO1SuOqw9PW for <bridge@lists.linux-foundation.org>;
- Fri, 10 Jan 2020 20:03:43 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
- [209.85.208.193])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 9FFB287762
- for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 20:03:42 +0000 (UTC)
-Received: by mail-lj1-f193.google.com with SMTP id r19so3383864ljg.3
- for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 12:03:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=date:in-reply-to:references:mime-version:content-transfer-encoding
- :subject:to:cc:from:message-id;
- bh=1Ym1ky3QD6f3IfF+EM/zO4+gog3cH55P6RTJDsna7IQ=;
- b=E38DqpbV3vggOQto0Gi9BjS2Txq4gAHx7whMemoyjXJNP75s1nKgPat2YZRL432Tao
- qYWsDoTkFfl/v8ouvUvcpfEsKsNgoqvLwPPUpzcCUvr1wip+DAocvEVOjgTLKrFRxZHk
- SoGgYf71/qtcoy41LLSYnM/sNCy++UXCF9L6o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:in-reply-to:references:mime-version
- :content-transfer-encoding:subject:to:cc:from:message-id;
- bh=1Ym1ky3QD6f3IfF+EM/zO4+gog3cH55P6RTJDsna7IQ=;
- b=RLOv3Q2wjJuOQga6tSg4JPyIPi3PlWXtyiyS9eXHwwqm72LvKIGRAL3I/wkaQb4aJQ
- ucEln26LpulfpIbkNqf9xJugi3d1GEXFjYRjy9uHJVxsp66rqubG5lKBYR+OoCxiN5nZ
- I3JH8Hna2LvR3bEndnUiT8Qlq3O724Spz7a3jsXBdMd5FEoPLTMAbYY/XrHLhlJGuGoL
- DjPEGrKh/kzqpTmOUT2I9xkPmNg2MoEeS6ICrhC35bIRhU27pWZ+Bdlf3ssVzW5CEtjN
- Y5Ds1lm/r9pBK0XOrtrJpX4EftzNDz3ZyRqBHGi6qta0hJZqNmpXGXqRacBDpN9EVaha
- HhpQ==
-X-Gm-Message-State: APjAAAWydgzZNYRa2HG/cJwmKD1Vce8ZxDh6/R91x+Fu91OY5oG2lZti
- rY9c9bxmCSr6+F8UWh07U2UsJw==
-X-Google-Smtp-Source: APXvYqx/ej5J4uGDUdnnFlnCCL4JCUBhgAYSWrgCWagdQjKwJQuQLD7tWziH1FplrsmwiLVLAanJcg==
-X-Received: by 2002:a05:651c:30a:: with SMTP id
- a10mr3722167ljp.101.1578686620688; 
- Fri, 10 Jan 2020 12:03:40 -0800 (PST)
-Received: from localhost ([149.62.204.86])
- by smtp.gmail.com with ESMTPSA id h10sm1438834ljc.39.2020.01.10.12.03.39
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 10 Jan 2020 12:03:40 -0800 (PST)
-Date: Fri, 10 Jan 2020 22:03:37 +0200
-In-Reply-To: <20200110.112736.1849382588448237535.davem@davemloft.net>
+ with ESMTP id dQeNGPGELezj for <bridge@lists.linux-foundation.org>;
+ Fri, 10 Jan 2020 20:12:52 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
+ [68.232.153.233])
+ by silver.osuosl.org (Postfix) with ESMTPS id B3CAC22219
+ for <bridge@lists.linux-foundation.org>; Fri, 10 Jan 2020 20:12:51 +0000 (UTC)
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+ Horatiu.Vultur@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+ envelope-from="Horatiu.Vultur@microchip.com";
+ x-sender="Horatiu.Vultur@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+ include:servers.mcsv.net include:mktomail.com
+ include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+ envelope-from="Horatiu.Vultur@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com;
+ dkim=none (message not signed) header.i=none;
+ spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: RsIxXXDtMziDLP2OETwv1zuBtmRv/8ykYlfq5EMFaCPIb74QPVzZ5Z+ZM3+9WKXE+TI7R6TaNS
+ g1wTxdgRJ9Oo8VvK9u1l77IfAMsAAfV33Qz6r4X0tATrDVoD5/mMpFMVeiP4rzhfhyQrIHaEYv
+ QgxhIbzd09WWHW+YSNk5/fqt2j+oaM0G4WHryye0vycqDfjfmwZzwjQ2MX52dAVa2B0FYXH2yP
+ AgU23LhXMHFM5powJXQtXhVtscTtYqNNVNoNhDdmDvhG0M9ZKWz6mzWR5GW5FM9zKxq9ZbL//M
+ a6I=
+X-IronPort-AV: E=Sophos;i="5.69,418,1571727600"; d="scan'208";a="62916906"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 10 Jan 2020 13:12:49 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 10 Jan 2020 13:12:48 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Fri, 10 Jan 2020 13:12:47 -0700
+Date: Fri, 10 Jan 2020 21:12:48 +0100
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Message-ID: <20200110201248.tletol7glyr4soqz@soft-dev3.microsemi.net>
 References: <20200109150640.532-1-horatiu.vultur@microchip.com>
  <6f1936e9-97e5-9502-f062-f2925c9652c9@cumulusnetworks.com>
- <20200110.112736.1849382588448237535.davem@davemloft.net>
+ <20200110160456.enzomhfsce7bptu3@soft-dev3.microsemi.net>
+ <CA+h21hrq7U4EdqSgpYQRjK8rkcJdvD5jXCSOH_peA-R4xCocTg@mail.gmail.com>
+ <20200110172536.42rdfwdc6eiwsw7m@soft-dev3.microsemi.net>
+ <20200110175608.GK19739@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-To: David Miller <davem@davemloft.net>
-From: nikolay@cumulusnetworks.com
-Message-ID: <3CD4F75F-C462-4CF2-B31A-C2E023D3F065@cumulusnetworks.com>
-Cc: andrew@lunn.ch, jakub.kicinski@netronome.com, netdev@vger.kernel.org,
- roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
- UNGLinuxDriver@microchip.com, anirudh.venkataramanan@intel.com,
- jiri@mellanox.com, jeffrey.t.kirsher@intel.com, dsahern@gmail.com,
- olteanv@gmail.com, horatiu.vultur@microchip.com
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20200110175608.GK19739@lunn.ch>
+User-Agent: NeoMutt/20180716
+Cc: Jakub Kicinski <jakub.kicinski@netronome.com>,
+ Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org, lkml <linux-kernel@vger.kernel.org>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+ anirudh.venkataramanan@intel.com, Jiri
+ Pirko <jiri@mellanox.com>, Jeff Kirsher <jeffrey.t.kirsher@intel.com>,
+ David Ahern <dsahern@gmail.com>, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [RFC net-next Patch 0/3] net: bridge: mrp: Add support
-	for Media Redundancy Protocol(MRP)
+ for Media Redundancy Protocol(MRP)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -100,37 +115,79 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 10 January 2020 21:27:36 EET, David Miller <davem@davemloft=2Enet> wrote=
-:
->From: Nikolay Aleksandrov <nikolay@cumulusnetworks=2Ecom>
->Date: Fri, 10 Jan 2020 16:13:36 +0200
->
->> I agree with Stephen here, IMO you have to take note of how STP has
->progressed
->> and that bringing it in the kernel was a mistake, these days mstpd
->has an active
->> community and much better support which is being extended=2E This looks
->best implemented
->> in user-space in my opinion with minimal kernel changes to support
->it=2E You could simply
->> open a packet socket with a filter and work through that, you don't
->need new netlink
->> sockets=2E I'm not familiar with the protocol so can't really be the
->judge of that, if
->> you present a good argument for needing a new netlink socket for
->these packets - then
->> sure, ok=2E
->
->With a userland implementation, what approach do you suggest for
->DSA/switchdev offload
->of this stuff?
+The 01/10/2020 18:56, Andrew Lunn wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> > > Horatiu, could you also give some references to the frames that need
+> > > to be sent. I've no idea what information they need to contain, if the
+> > > contents is dynamic, or static, etc.
+> > It is dynamic - but trivial...
+> 
+> If it is trivial, i don't see why you are so worried about abstracting
+> it?
+Maybe we misunderstood each other. When you asked if it is dynamic or
+static, I thought you meant if it is the same frame being send repeated
+or if it needs to be changed. It needs to be changed but the changes are
+trivial, but it means that a non-MRP aware frame generator can't
+properly offload this.
 
-Good question, there was no mention of that initially, or I missed it at l=
-east=2E=20
-There aren't many details about what/how will be offloaded right now=2E
-We need more information about what will be offloaded and how it will fit=
-=2E=20
+> 
+> > Here is a dump from WireShark with
+> > annotation on what our HW can update:
+> >
+> > Ethernet II, Src: 7a:8b:b1:35:96:e1 (7a:8b:b1:35:96:e1), Dst: Iec_00:00:01 (01:15:4e:00:00:01)
+> >     Destination: Iec_00:00:01 (01:15:4e:00:00:01)
+> >     Source: 7a:8b:b1:35:96:e1 (7a:8b:b1:35:96:e1)
+> >     Type: MRP (0x88e3)
+> > PROFINET MRP MRP_Test, MRP_Common, MRP_End
+> >     MRP_Version: 1
+> >     MRP_TLVHeader.Type: MRP_Test (0x02)
+> >         MRP_TLVHeader.Type: MRP_Test (0x02)
+> >         MRP_TLVHeader.Length: 18
+> >         MRP_Prio: 0x1f40 High priorities
+> >         MRP_SA: 7a:8b:b1:35:96:e1 (7a:8b:b1:35:96:e1)
+> >         MRP_PortRole: Primary ring port (0x0000)
+> >         MRP_RingState: Ring closed (0x0001)
+> >         MRP_Transition: 0x0001
+> >         MRP_TimeStamp [ms]: 0x000cf574             <---------- Updated automatic
+> >     MRP_TLVHeader.Type: MRP_Common (0x01)
+> >         MRP_TLVHeader.Type: MRP_Common (0x01)
+> >         MRP_TLVHeader.Length: 18
+> >         MRP_SequenceID: 0x00e9                     <---------- Updated automatic
+> >         MRP_DomainUUID: ffffffff-ffff-ffff-ffff-ffffffffffff
+> >     MRP_TLVHeader.Type: MRP_End (0x00)
+> >         MRP_TLVHeader.Type: MRP_End (0x00)
+> >         MRP_TLVHeader.Length: 0
+> >
+> > But all the fields can change, but to change the other fields we need to
+> > interact with the HW. Other SoC may have other capabilities in their
+> > offload. As an example, if the ring becomes open then the fields
+> > MRP_RingState and MRP_Transition need to change and in our case this
+> > requires SW interference.
+> 
+> Isn't SW always required? You need to tell your state machine that the
+> state has changed.
+In the manager role(MRM), SW is always required. The client can be
+implemented simply by limiting the flood-mask of the L2 multicast MAC
+used.
 
+The auto and the interconnect roles also required SW to drive the
+protocol. These roles are not part of this patch set.
 
+> 
+> > Would you like a PCAP file as an example? Or do you want a better
+> > description of the frame format.
+> 
+> I was hoping for a link to an RFC, or some standards document.
+Yeah, I would love to have that as well... Unfortunately this is
+standardized by IEC, and the standards are not free.
+It can be bought here: https://webstore.iec.ch/publication/24434
 
-l
+Due to the copyright/license of the PDF, I'm not allowed to give you a
+copy of the one I have.
+
+> 
+>   Andrew
+
+-- 
+/Horatiu
