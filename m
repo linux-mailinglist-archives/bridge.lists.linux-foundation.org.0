@@ -1,95 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEC213B160
-	for <lists.bridge@lfdr.de>; Tue, 14 Jan 2020 18:52:45 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 298E813B186
+	for <lists.bridge@lfdr.de>; Tue, 14 Jan 2020 18:58:44 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 07E5886382;
-	Tue, 14 Jan 2020 17:52:44 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 0ED7E84FB0;
+	Tue, 14 Jan 2020 17:58:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id d9wMU9mRlXHG; Tue, 14 Jan 2020 17:52:39 +0000 (UTC)
+	with ESMTP id K0r9MSm_4CPG; Tue, 14 Jan 2020 17:58:38 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 173A886388;
-	Tue, 14 Jan 2020 17:52:39 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id D154F84DFF;
+	Tue, 14 Jan 2020 17:58:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E08B5C1D8D;
-	Tue, 14 Jan 2020 17:52:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B2FD8C077D;
+	Tue, 14 Jan 2020 17:58:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 98401C077D
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 17:52:37 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E2A6AC077D
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 17:58:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 852C420436
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 17:52:37 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id D1A7D20513
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 17:58:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zNrMUKIIq2d1 for <bridge@lists.linux-foundation.org>;
- Tue, 14 Jan 2020 17:52:32 +0000 (UTC)
+ with ESMTP id zE66Bgce+pOp for <bridge@lists.linux-foundation.org>;
+ Tue, 14 Jan 2020 17:58:31 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
- [209.85.167.65])
- by silver.osuosl.org (Postfix) with ESMTPS id EA01320531
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 17:52:31 +0000 (UTC)
-Received: by mail-lf1-f65.google.com with SMTP id n12so10523155lfe.3
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 09:52:31 -0800 (PST)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+ [209.85.208.179])
+ by silver.osuosl.org (Postfix) with ESMTPS id 13BF81FD43
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 17:58:31 +0000 (UTC)
+Received: by mail-lj1-f179.google.com with SMTP id o13so15390915ljg.4
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jan 2020 09:58:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=DSwJDN8tvKZIB15Co+RV4TjQqizFvEQ1g5xhaUGMxvM=;
- b=BxuIw7llM5VJ5Foo76K6dEzNdP/AoQSUESBDwYDOo/GzWwHehjwLp44avxKn67rQP4
- a9BsJXhkVJ5/SfNjUBZBWRVoMxodH6+t8I4+07dys6oUnl/uTK57Fs6T7z8xFwSsvwu0
- C4i8KCHQR1kwSFo3imo6IqI7+FgOp25qxxJBQ=
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=4lvd4hONF4LwQ0KcHPfRvvqYGPQNzQBVH0ylqHglG+U=;
+ b=e8DEKRPlXoM8gE2YiOrEiUZdNFMy7q5S9RzC5clSP9ltor8zYOx2W+bpxhhMh5HVvE
+ VEH41BXSLrhXK03uKplOQv461L4yaga18aLv8a9ptQixB3KgJc0rvOgAI5IryIW+3KQ6
+ x3kbwh+QO8uJGSVzHvASIz78omT7bW35QViXM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=DSwJDN8tvKZIB15Co+RV4TjQqizFvEQ1g5xhaUGMxvM=;
- b=QSvuT45IkaSh7HJs5waGzPLp5a0YWqXQLZBueFtQ3/uLWYP4SyBa0pmWRBGmFvgaqa
- o6lma7uIg5C3v9lmdfY79cw6zfoWU+JtFq0gR/3dbRo0aj46t8ttMT6rcKhGhhDnXMLG
- cfKVQ+WAUQyitBIjoJEtotj/fg2gRnxy42OXBzN8Yyz37/rB7h0q4bQE21GyQnufohM7
- Ef1o0jQjGxc439L4lObKBGJfPKO2aoD9UxJc9G3cOQ1aoYdixs7g4ieeY0d5kZpMkPK5
- cEoay2U2i9QVkHybKuk4xGEt0k/vOZNjS/+SbbCi/V+XnbjqP2qLKBzzmV+nnQJdFtX1
- BCJQ==
-X-Gm-Message-State: APjAAAWWgxXF4IMAHXPAHnV0ZICSA6zvXFrhTua/ZGt+uOb8V2+5P+de
- 9X1mgjTRjP+kXdG5/KP5J0bwuTholxM=
-X-Google-Smtp-Source: APXvYqyZmFT5TWZSmX4q8zW9ZMDHt7BfreCFFdL1gB1A1XHgyV+RG7FHFhHQJvxinyuJEFinalnzzA==
-X-Received: by 2002:ac2:5147:: with SMTP id q7mr2550922lfd.87.1579024349496;
- Tue, 14 Jan 2020 09:52:29 -0800 (PST)
-Received: from [192.168.0.107] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id t20sm7774941ljk.87.2020.01.14.09.52.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 14 Jan 2020 09:52:28 -0800 (PST)
-To: David Ahern <dsahern@gmail.com>, Jakub Kicinski <kuba@kernel.org>
-References: <20200113155233.20771-1-nikolay@cumulusnetworks.com>
- <20200113155233.20771-4-nikolay@cumulusnetworks.com>
- <20200114055544.77a7806f@cakuba.hsd1.ca.comcast.net>
- <076a7a9f-67c6-483a-7b86-f9d70be6ad47@gmail.com>
- <00c4bc6b-2b31-338e-a9ad-b4ea28fc731c@cumulusnetworks.com>
- <344f496a-5d34-4292-b663-97353f6cfa94@cumulusnetworks.com>
- <d5291717-2ce5-97e0-6204-3ff0d27583c5@gmail.com>
- <aa9878d2-22d7-3bcd-deae-cf9bccd4226e@cumulusnetworks.com>
- <473cb0a5-f6ad-ccd3-9186-02713f9cb92f@gmail.com>
+ bh=4lvd4hONF4LwQ0KcHPfRvvqYGPQNzQBVH0ylqHglG+U=;
+ b=JM3sdVKuFU42GG3WBk/utOC9FSDRZkrjC0A0X1lvabpQ/SZc4x/ICIO+707MPc0K06
+ HaFoC6xZ7TWJl5eLeXGUfcvtdnfxgAsAtuegrFomsL//ALqsfKvE2Wubr0pIZyn/es8K
+ LtIed9Xt31+6fmfOmxEfikuL1mTFr98+PTy5opfrdQ3Yd+x2CY4+RY4/PKozcHYmQ2zD
+ uBpvRAkRqzA/kNF36Odal+oSYhVJ+YNqnvvzW+iK31E0iNB009kdwaCqHCIJLsyqJNc5
+ NHr7+w/7xD8pGdSZqKhHo/7Vh4ZNI4/gUaCCHHqdrukpBTUdKfI+CYCL0jz8chPFAeAe
+ k3Zg==
+X-Gm-Message-State: APjAAAVIQt97NWYolCoxKzbP5AWKpRaJLX0dRgBb6VFgkejt7IQmZmLQ
+ 2Z6vvixwwRnfC1Fj8b1+lS1cwA==
+X-Google-Smtp-Source: APXvYqyat+OPBi6KKdRfQCuLD6z6EVJdbn86ar77Psvojs+Mp+Wfs56qHEsMQBumL14GQp9iZkjjIQ==
+X-Received: by 2002:a2e:86d6:: with SMTP id n22mr15168541ljj.77.1579024708985; 
+ Tue, 14 Jan 2020 09:58:28 -0800 (PST)
+Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id a15sm7685655lfi.60.2020.01.14.09.58.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Jan 2020 09:58:27 -0800 (PST)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <71fd75c5-3bb2-abf8-4977-50911d49e142@cumulusnetworks.com>
-Date: Tue, 14 Jan 2020 19:52:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+To: netdev@vger.kernel.org
+Date: Tue, 14 Jan 2020 19:56:06 +0200
+Message-Id: <20200114175614.17543-1-nikolay@cumulusnetworks.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <473cb0a5-f6ad-ccd3-9186-02713f9cb92f@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
- bridge@lists.linux-foundation.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 3/8] net: bridge: vlan: add rtm
- definitions and dump support
+Content-Transfer-Encoding: 8bit
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+ dsahern@gmail.com, kuba@kernel.org, davem@davemloft.net
+Subject: [Bridge] [PATCH net-next v2 0/8] net: bridge: add vlan
+	notifications and rtm support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -104,19 +92,73 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 14/01/2020 18:53, David Ahern wrote:
-> On 1/14/20 9:50 AM, Nikolay Aleksandrov wrote:
->> Ah fair enough, so nlmsg_parse() would be better even without attrs.
-> 
-> that was the intention. It would be a good verification of the theory if
-> you could run a test with a larger ancillary header.
-> 
+Hi,
+This patch-set is a prerequisite for adding per-vlan options support
+because we need to be able to send vlan-only notifications and do larger
+vlan netlink dumps. Per-vlan options are needed as we move the control
+more to vlans and would like to add per-vlan state (needed for per-vlan
+STP and EVPN), per-vlan multicast options and control, and I'm sure
+there would be many more per-vlan options coming.
+Now we create/delete/dump vlans with the device AF_SPEC attribute which is
+fine since we support vlan ranges or use a compact bridge_vlan_info
+structure, but that cannot really be extended to support per-vlan options
+well. The biggest issue is dumping them - we tried using the af_spec with
+a new vlan option attribute but that led to insufficient message size
+quickly, also another minor problem with that is we have to dump all vlans
+always when notifying which, with options present, can be huge if they have
+different options set, so we decided to add new rtm message types
+specifically for vlans and register handlers for them and a new bridge vlan
+notification nl group for vlan-only notifications.
+The new RTM NEW/DEL/GETVLAN types introduced match the current af spec
+bridge functionality and in fact use the same helpers.
+The new nl format is:
+ [BRIDGE_VLANDB_ENTRY]
+    [BRIDGE_VLANDB_ENTRY_INFO] - bridge_vlan_info (either 1 vlan or
+                                                   range start)
+    [BRIDGE_VLANDB_ENTRY_RANGE] - range end
 
-Just did, works like expected. Tested all sorts of wrong messages and attributes,
-they get properly validated and thrown out.
+This allows to encapsulate a range in a single attribute and also to
+create vlans and immediately set options on all of them with a single
+attribute. The GETVLAN dump can span multiple messages and dump all the
+necessary information. The vlan-only notifications are sent on
+NEW/DELVLAN events or when vlan options change (currently only flags),
+we try hard to compress the vlans into ranges in the notifications as
+well. When the per-vlan options are added we'll add helpers to check for
+option equality between neighbor vlans and will keep compressing them
+when possible.
 
-Sending v2 in a minute. :)
+Note patch 02 is not really required, it's just a nice addition to have
+human-readable error messages from the different vlan checks.
 
-Thanks!
+iproute2 changes and selftests will be sent with the next set which adds
+the first per-vlan option - per-vlan state similar to the port state.
 
+v2: changed patch 03 and patch 04 to use nlmsg_parse() in order to
+    strictly validate the msg and make sure there are no remaining bytes
+
+
+Thank you,
+ Nik
+
+
+Nikolay Aleksandrov (8):
+  net: bridge: vlan: add helpers to check for vlan id/range validity
+  net: bridge: netlink: add extack error messages when processing vlans
+  net: bridge: vlan: add rtm definitions and dump support
+  net: bridge: vlan: add new rtm message support
+  net: bridge: vlan: add del rtm message support
+  net: bridge: vlan: add rtm range support
+  net: bridge: vlan: add rtnetlink group and notify support
+  net: bridge: vlan: notify on vlan add/delete/change flags
+
+ include/uapi/linux/if_bridge.h |  29 ++
+ include/uapi/linux/rtnetlink.h |   9 +
+ net/bridge/br_netlink.c        |  61 +++--
+ net/bridge/br_private.h        |  90 +++++++
+ net/bridge/br_vlan.c           | 473 +++++++++++++++++++++++++++++++--
+ security/selinux/nlmsgtab.c    |   5 +-
+ 6 files changed, 632 insertions(+), 35 deletions(-)
+
+-- 
+2.21.0
 
