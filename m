@@ -1,60 +1,60 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D9113E99C
-	for <lists.bridge@lfdr.de>; Thu, 16 Jan 2020 18:39:12 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 89F3C81E5E;
-	Thu, 16 Jan 2020 17:39:10 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id nlbMR3KqWOwx; Thu, 16 Jan 2020 17:39:06 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 1BFF181B8C;
-	Thu, 16 Jan 2020 17:39:06 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EC354C077D;
-	Thu, 16 Jan 2020 17:39:05 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 93D86C077D
- for <bridge@lists.linux-foundation.org>; Thu, 16 Jan 2020 17:39:04 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B9013EA8E
+	for <lists.bridge@lfdr.de>; Thu, 16 Jan 2020 18:45:03 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 7E5F187EA9
- for <bridge@lists.linux-foundation.org>; Thu, 16 Jan 2020 17:39:04 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 4AEE087F71;
+	Thu, 16 Jan 2020 17:45:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HY4qeJ7+1z9q; Thu, 16 Jan 2020 17:44:57 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by hemlock.osuosl.org (Postfix) with ESMTP id 719D687F5A;
+	Thu, 16 Jan 2020 17:44:57 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5295EC077D;
+	Thu, 16 Jan 2020 17:44:57 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 22B4FC077D
+ for <bridge@lists.linux-foundation.org>; Thu, 16 Jan 2020 17:44:56 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by whitealder.osuosl.org (Postfix) with ESMTP id 187C586C12
+ for <bridge@lists.linux-foundation.org>; Thu, 16 Jan 2020 17:44:56 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Mpd7mWWfOpBC for <bridge@lists.linux-foundation.org>;
- Thu, 16 Jan 2020 17:39:00 +0000 (UTC)
+ with ESMTP id EwgbZAoK5afU for <bridge@lists.linux-foundation.org>;
+ Thu, 16 Jan 2020 17:44:55 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 1DEB787C20
- for <bridge@lists.linux-foundation.org>; Thu, 16 Jan 2020 17:39:00 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 6D5BB86C11
+ for <bridge@lists.linux-foundation.org>; Thu, 16 Jan 2020 17:44:55 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 988D2246D7;
- Thu, 16 Jan 2020 17:38:58 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 44BDD24783;
+ Thu, 16 Jan 2020 17:44:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1579196340;
- bh=DpDwZjT5JL55OrFqatMzY1JDV7bYkHQBMDOrDiPxQqg=;
+ s=default; t=1579196695;
+ bh=DafYjLE3n3Q5W7KxpsvOtRj2irNzGbmQnj8g8RiiOkU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aMCFlnoH6TobdxhxmbUA+/AZAs0CiDnM4sHLEHdmqnapDVdDtI3rhh6I3s7Hybix9
- I5xIUfW4QLJSOz8pyrN5ghhz2BFFQ9DH5SgC+3HYSbe6PpLLrjhNHcjcTZqHR6xmnZ
- JKO29sVnRI6tUq6TbTsyt/co/6PUJSR7CpPuUQfM=
+ b=YnVwU/svH2+E12PSz2+MhkFVKcARMZSlYq88QzWj8qLT88nNcTGi+d59qxqupYb5B
+ Cg1x22HZZwkZ1m5G71OdZ0IOkr43gH7b30ndx7+yfsJhbWSCRCtjaPbK1loLw+fwui
+ M7mRr+P2GwnqrwCmmUCyu0L44+dK0KU4tt2D0u2E=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Thu, 16 Jan 2020 12:34:46 -0500
-Message-Id: <20200116173641.22137-97-sashal@kernel.org>
+Date: Thu, 16 Jan 2020 12:41:26 -0500
+Message-Id: <20200116174251.24326-89-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116173641.22137-1-sashal@kernel.org>
-References: <20200116173641.22137-1-sashal@kernel.org>
+In-Reply-To: <20200116174251.24326-1-sashal@kernel.org>
+References: <20200116174251.24326-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -64,7 +64,7 @@ Cc: Sasha Levin <sashal@kernel.org>,
  bridge@lists.linux-foundation.org, Florian Westphal <fw@strlen.de>,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: [Bridge] [PATCH AUTOSEL 4.9 137/251] netfilter: ebtables:
+Subject: [Bridge] [PATCH AUTOSEL 4.4 089/174] netfilter: ebtables:
 	CONFIG_COMPAT: reject trailing data after last rule
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -101,10 +101,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/net/bridge/netfilter/ebtables.c b/net/bridge/netfilter/ebtables.c
-index 56b7197f0373..1d850edecd72 100644
+index fd1af7cb960d..e7c170949b21 100644
 --- a/net/bridge/netfilter/ebtables.c
 +++ b/net/bridge/netfilter/ebtables.c
-@@ -2182,7 +2182,9 @@ static int compat_copy_entries(unsigned char *data, unsigned int size_user,
+@@ -2174,7 +2174,9 @@ static int compat_copy_entries(unsigned char *data, unsigned int size_user,
  	if (ret < 0)
  		return ret;
  
