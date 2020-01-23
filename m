@@ -1,86 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E9714702D
-	for <lists.bridge@lfdr.de>; Thu, 23 Jan 2020 18:58:46 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 22EFC2226B;
-	Thu, 23 Jan 2020 17:58:44 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ijwquwA5Q2-C; Thu, 23 Jan 2020 17:58:43 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 66C8F221D9;
-	Thu, 23 Jan 2020 17:58:43 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2EB56C0174;
-	Thu, 23 Jan 2020 17:58:43 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3DA80C0174
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 17:58:42 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6545B1472FB
+	for <lists.bridge@lfdr.de>; Thu, 23 Jan 2020 22:10:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 2A7BB884FA
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 17:58:42 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 67E7A881A8;
+	Thu, 23 Jan 2020 21:10:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hf5KR3lhOqpp; Thu, 23 Jan 2020 21:10:25 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by hemlock.osuosl.org (Postfix) with ESMTP id D87708837C;
+	Thu, 23 Jan 2020 21:10:25 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B0DE4C0174;
+	Thu, 23 Jan 2020 21:10:25 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id CD615C0174
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 21:10:24 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 3D2FE83339
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 21:10:17 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id W-N78pdoyTqw for <bridge@lists.linux-foundation.org>;
- Thu, 23 Jan 2020 17:58:41 +0000 (UTC)
+ with ESMTP id CuWB2MX3L78Q for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Jan 2020 21:10:16 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
- [209.85.167.66])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 43451884F5
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 17:58:41 +0000 (UTC)
-Received: by mail-lf1-f66.google.com with SMTP id b15so3016838lfc.4
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 09:58:41 -0800 (PST)
+Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
+ [209.85.208.68])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 7BCA08655C
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 21:10:16 +0000 (UTC)
+Received: by mail-ed1-f68.google.com with SMTP id m13so295731edb.6
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jan 2020 13:10:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
- h=date:in-reply-to:references:mime-version:content-transfer-encoding
- :subject:to:cc:from:message-id;
- bh=9PZb53gn3HlYV30IW/3Iin0xPniNCS5s4n7brqy6NFs=;
- b=cv/awR2y1PRHqf6zaD9Uia66fk7WiFyzcNZ3UBvU4btFuYJlOUEwQ0F9cG89sWoVC+
- /CujA9UE+XK+DhVYW7fU8SKZVIcVIYvSGcUQco44WeSfyacHnHD+omZ5rOhZ+LjYiZxw
- YML6rS+jM7HfWvQQCvV09Dh/SQ1E3KsVNnJKk=
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=/tAMaiitw1PyxFIS0OriuIYG+lTM5de1QiU8nvpGZ4U=;
+ b=S9nQS5M8GRxqDnKBmZCpo/gItUgfZy/2LR/PUWL3LW9ZHOl1HDQm9yQNydKZsdTly4
+ H+O6N6OoL0hGioUxzz76ffE6NdEh+tpUSXyHYFYrOVRBTkC22Ump2rR2NUFp2LVsWmvs
+ qtPaUH9edp7gfYpGKBmQwWcwSoBph6tZ9c3/o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:in-reply-to:references:mime-version
- :content-transfer-encoding:subject:to:cc:from:message-id;
- bh=9PZb53gn3HlYV30IW/3Iin0xPniNCS5s4n7brqy6NFs=;
- b=cAtL1BDR47kxrOweUdZL/N0Um+MtRR5WTLsdsJhO89j5rF4q27h8nFnS7A3VXJCedt
- hxHffx9JC8I16H47OxIhw9bWZm2dDe9DbPB8l5oGJCsxaOYK6laniQr884nf17q10Gkj
- BiBaReSfAGHhVUCGVmZx4Xq+JMn1YJ79QjIpcw3I3MG7jIeKG/bRiaCWJT1mbDzJLiL+
- inPORP8S1riJBiKZKzWIr0k1cTtvBcDvrr1gA8EAU59eslqz7y9+OH3iPKU/Gl+kE6nq
- e1REoRcgvnIptJuofr4YFlXP8m3tMQZ3rQgrMXegXjHHJBe14rqnoIPHRmJuHU2SNW2/
- o1nQ==
-X-Gm-Message-State: APjAAAVHieHziQqVAxfdtFzR949yEDrjdguujyc3LYVP3+snKN4kYYUv
- /Z2+yIRvSjDKr5xfpYl1GiZTqA==
-X-Google-Smtp-Source: APXvYqxzXniVD7W//rQr8q3tMwZteJwThhLh6xKvg5JLT79tWfpZn8Yuhfqxj9uz13D7Ywztb+KLSw==
-X-Received: by 2002:a19:760c:: with SMTP id c12mr5257474lff.60.1579802319215; 
- Thu, 23 Jan 2020 09:58:39 -0800 (PST)
-Received: from localhost (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id b17sm1449130lfp.15.2020.01.23.09.58.38
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 23 Jan 2020 09:58:38 -0800 (PST)
-Date: Thu, 23 Jan 2020 19:58:35 +0200
-In-Reply-To: <20200123082542.06ed0a53@hermes.lan>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=/tAMaiitw1PyxFIS0OriuIYG+lTM5de1QiU8nvpGZ4U=;
+ b=q1m39CmKzHYwyfItL+KSyGyodOf+Q2+cAUTeCjYV9KsiCF48wwM9qX3JxAReJ6E6cp
+ aqtmiW6f6xinfE5szwVQfDN/ZgkY1mAYkxInywEk0toM9jDiulSrhAYVMUKWRxB3Ni54
+ eMSfa7cgfao2KpGfAg5nSdmM5iE5w79T5E4bC0jv4TNKGmTYaUHGFAuyueji8BgPNrHB
+ /+lXxJKb5DRVSCkUdIsLbYphCSd1pBq5lnf54m2aw4XpqG7c63tj7RSJyi/rsdEkYQa8
+ W7P0Tln4n75f+WtZgzH+M9Uykl3FeSr27wLZqIfQ3m8n+hJetvOr3Ez6FQR55FmZaKbN
+ X2lw==
+X-Gm-Message-State: APjAAAXJRujr4J0mGtwn8uWapCY2ZZ7h6AH1eDkIOS25jSjjEI8rXTDz
+ KKnLjOPzjsrVeAl96uZ9pdUg5jYWHbc=
+X-Google-Smtp-Source: APXvYqyRn+MqAW0Zit1T7cZUHvA6hnhflt11PNiiZTzXjiH6/IAJoUEvHTLi4VuR/7E4pBsKFaM9DQ==
+X-Received: by 2002:a05:6402:b71:: with SMTP id
+ cb17mr8893554edb.125.1579813814598; 
+ Thu, 23 Jan 2020 13:10:14 -0800 (PST)
+Received: from [192.168.0.110] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+ by smtp.googlemail.com with ESMTPSA id ay24sm47153edb.29.2020.01.23.13.10.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 23 Jan 2020 13:10:14 -0800 (PST)
+To: netdev@vger.kernel.org
 References: <20200123132807.613-1-nikolay@cumulusnetworks.com>
- <20200123132807.613-2-nikolay@cumulusnetworks.com>
- <20200123082542.06ed0a53@hermes.lan>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <f67c2960-89ff-a6e6-14eb-27f6e4996a4a@cumulusnetworks.com>
+Date: Thu, 23 Jan 2020 23:10:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-To: Stephen Hemminger <stephen@networkplumber.org>
-From: nikolay@cumulusnetworks.com
-Message-ID: <B878D56B-BA6C-49A9-877D-5590BC4DC314@cumulusnetworks.com>
-Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
- bridge@lists.linux-foundation.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 1/4] net: bridge: check port state
-	before br_allowed_egress
+In-Reply-To: <20200123132807.613-1-nikolay@cumulusnetworks.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Cc: roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 0/4] net: bridge: add per-vlan state
+	option
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,23 +97,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 23 January 2020 18:25:42 EET, Stephen Hemminger <stephen@networkplumber=
-=2Eorg> wrote:
->On Thu, 23 Jan 2020 15:28:04 +0200
->Nikolay Aleksandrov <nikolay@cumulusnetworks=2Ecom> wrote:
->
->>  	return ((p->flags & BR_HAIRPIN_MODE) || skb->dev !=3D p->dev) &&
->> -		br_allowed_egress(vg, skb) && p->state =3D=3D BR_STATE_FORWARDING &&
->> +		p->state =3D=3D BR_STATE_FORWARDING && br_allowed_egress(vg, skb) &&
->>  		nbp_switchdev_allowed_egress(p, skb) &&
->>  		!br_skb_isolated(p, skb);
->>  }
->
->Maybe break this complex return for readability?
+On 1/23/20 3:28 PM, Nikolay Aleksandrov wrote:
+> Hi,
+> This set adds the first per-vlan option - state, which uses the new vlan
+> infrastructure that was recently added. It gives us forwarding control on
+> per-vlan basis. The first 3 patches prepare the vlan code to support option
+> dumping and modification. We still compress vlan ranges which have equal
+> options, each new option will have to add its own equality check to
+> br_vlan_opts_eq(). The vlans are created in forwarding state by default to
+> be backwards compatible and vlan state is considered only when the port
+> state is forwarding (more info in patch 4).
+> I'll send the selftest for the vlan state with the iproute2 patch-set.
+> 
+> Thanks,
+>   Nik
+> 
+> Nikolay Aleksandrov (4):
+>    net: bridge: check port state before br_allowed_egress
+>    net: bridge: vlan: add basic option dumping support
+>    net: bridge: vlan: add basic option setting support
+>    net: bridge: vlan: add per-vlan state
+> 
+>   include/uapi/linux/if_bridge.h |   2 +
+>   net/bridge/Makefile            |   2 +-
+>   net/bridge/br_device.c         |   3 +-
+>   net/bridge/br_forward.c        |   2 +-
+>   net/bridge/br_input.c          |   7 +-
+>   net/bridge/br_private.h        |  58 +++++++++++++-
+>   net/bridge/br_vlan.c           |  99 ++++++++++++++++++-----
+>   net/bridge/br_vlan_options.c   | 142 +++++++++++++++++++++++++++++++++
+>   8 files changed, 287 insertions(+), 28 deletions(-)
+>   create mode 100644 net/bridge/br_vlan_options.c
+> 
 
-Sure, sounds good, but is not the point of this commit=2E=20
-I'll prepare a separate cleanup patch for that=2E=20
+Hm, actually I just noticed that we send port notifications even if only changing options
+which should be avoided since now we have per-vlan notifications. We should be sending
+only those when changing options without create/delete.
+I'll make that change and send v2 after some tests tomorrow.
 
-Thanks,=20
+Cheers,
   Nik
-
