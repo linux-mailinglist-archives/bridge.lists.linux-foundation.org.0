@@ -2,74 +2,74 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D3D1483B0
-	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 12:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 118311483B1
+	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 12:40:44 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id A4AD187747;
-	Fri, 24 Jan 2020 11:40:38 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 10157877A8;
+	Fri, 24 Jan 2020 11:40:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TI2GEckqjksL; Fri, 24 Jan 2020 11:40:37 +0000 (UTC)
+	with ESMTP id Flz5drdSZxtv; Fri, 24 Jan 2020 11:40:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 1BEB787652;
-	Fri, 24 Jan 2020 11:40:37 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 8C6228779F;
+	Fri, 24 Jan 2020 11:40:39 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 018CBC0174;
-	Fri, 24 Jan 2020 11:40:37 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6C183C0174;
+	Fri, 24 Jan 2020 11:40:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 343F3C0174
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:35 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 99545C0174
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 29825884A1
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:35 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 8811A22817
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id UenS8aOfknyR for <bridge@lists.linux-foundation.org>;
- Fri, 24 Jan 2020 11:40:34 +0000 (UTC)
+ with ESMTP id r-iP+uUbLFkr for <bridge@lists.linux-foundation.org>;
+ Fri, 24 Jan 2020 11:40:36 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
- [209.85.208.193])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 1BC4988488
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:34 +0000 (UTC)
-Received: by mail-lj1-f193.google.com with SMTP id w1so2146760ljh.5
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 03:40:33 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by silver.osuosl.org (Postfix) with ESMTPS id E5DAB22816
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:35 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id x7so2093629ljc.1
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 03:40:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=TnEYqQ0aM638zm5shZjohvbYMiyGDKjlDb9qY1Q3PJ4=;
- b=GD/dx8UVe5tvNlYYxpzpjbMyLrDCcLzKVZ2crw3ZgNu9815x9k0EcUjijE03rZbm+R
- MDq5hvKjguWSGOIGS+6w1tNfQjL3NGRv7Dm3jssfMPPNU6GPWaHd1IK+MIdioMXinJCK
- J1yPQf9XeoKj44dSGQPGZI+u+iitEwd083jU0=
+ bh=5yKNtIK37FAfFms72I6UnllUgnm7awrb5S9l39w51AI=;
+ b=Ysvr8w/MIwJLe+i0RJUdm0xsDO0y6rtV0mAbC2vdLgqPuXaMj7mEm/s+/xlitv1dMB
+ v6RYkQ1GEsgCwLXJydrnMedMVI4N7sIxMMh0koPSwQCMng6b8bGtHP3IdblKHNycpSSU
+ uRedtO9LdehiXMROO9R4FAmci1E72wnTC0mW8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=TnEYqQ0aM638zm5shZjohvbYMiyGDKjlDb9qY1Q3PJ4=;
- b=Wx8oziqwKUwaBI+QKgc2iKBmzqognKPKz+a15SmP/tNLp9TYiq2ECF986qO5KDhLU2
- sYwJPmXrH1G0swv6Ys0DcCvL9JEn47JTX1ByWeFdoJAC6Itco9CvzzyNnKHLgSde81hA
- eyjUymj7nNz/cD+dK0SNzF1PfhhBbTnHlAgkxVhPd9KFq/O84uhUdWNgx7iRQ+dOP5Fj
- spXdotQoy+jb5bFeKIQs1NzrhVH0/JqBaQixR5PpqtCKF9Tx42JKNSUTt5RDumTX40oh
- JCwzxkbf4f2jh51ba9N5rQhSYkbuXIKbwkGdnCnEAXhcqREkrcMcMq5uYkPyCpaA7KU0
- L7Sw==
-X-Gm-Message-State: APjAAAW9k7c31vp9Cua175ill4zAYNM7hC/ChrpcU4KyJryy1jgGMalu
- gIA4AKzRkiWIjDnoF1VLDOWfog==
-X-Google-Smtp-Source: APXvYqwi7+Jgv7hY9jM3fvjkQZkFSn5ZYclSxJKh+lpT9t5uzFczPIhHZcnYRFJh24Mhxf6j9Cf0hA==
-X-Received: by 2002:a2e:9118:: with SMTP id m24mr2047779ljg.105.1579866032256; 
- Fri, 24 Jan 2020 03:40:32 -0800 (PST)
+ bh=5yKNtIK37FAfFms72I6UnllUgnm7awrb5S9l39w51AI=;
+ b=r5ex014odqFWF7rjIJnAyA//k2D+x8iD6rSca3tc5yf2EsUOknPctRNLUMzTanP7g+
+ PUVBBF/kddLK7My5SvvUjr/xjtMgW1ldNJNFEulQAy0gFJZTKsCCDgP0Oug9iVGEN+hl
+ 1g84QHuClb0mTk2Qq/bHUpgCzOGLD1sSZiTnoDsSAcWqNheDEB4pqMrG4SUxgBRy5r1A
+ rCpXL/rVgBg/OvkFktja4ji2SqMssWZABH+3xigyflIVAfIGuuUxWWpPdtzuLBdyqXUV
+ G3a+sA16LNXzinAeJu+PDKPh4ZeEkPIY3haOPNmbzmP3MwfxQYiNwVkR5+mtqhei9C6D
+ h4uw==
+X-Gm-Message-State: APjAAAWN+mdZBQH5S/6ziVWCEAj6HEU72HkOvCIeP4c/ib7I63vn8MWw
+ rkLE6iJnelCVlFIXZted7YyYyA==
+X-Google-Smtp-Source: APXvYqz+XNPlG9MVSrEktz5DdA1x2qMEVKfWdiR11Yvddab1sdOJtcuiDChMp1AcrL4ToouWswIt0A==
+X-Received: by 2002:a2e:9b57:: with SMTP id o23mr2089143ljj.278.1579866033700; 
+ Fri, 24 Jan 2020 03:40:33 -0800 (PST)
 Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id s22sm2996185ljm.41.2020.01.24.03.40.30
+ by smtp.gmail.com with ESMTPSA id s22sm2996185ljm.41.2020.01.24.03.40.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jan 2020 03:40:31 -0800 (PST)
+ Fri, 24 Jan 2020 03:40:33 -0800 (PST)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 To: netdev@vger.kernel.org
-Date: Fri, 24 Jan 2020 13:40:20 +0200
-Message-Id: <20200124114022.10883-3-nikolay@cumulusnetworks.com>
+Date: Fri, 24 Jan 2020 13:40:21 +0200
+Message-Id: <20200124114022.10883-4-nikolay@cumulusnetworks.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200124114022.10883-1-nikolay@cumulusnetworks.com>
 References: <20200124114022.10883-1-nikolay@cumulusnetworks.com>
@@ -78,8 +78,8 @@ Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
  roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
  davem@davemloft.net
-Subject: [Bridge] [PATCH net-next v2 2/4] net: bridge: vlan: add basic
-	option dumping support
+Subject: [Bridge] [PATCH net-next v2 3/4] net: bridge: vlan: add basic
+	option setting support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,163 +94,232 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-We'll be dumping the options for the whole range if they're equal. The
-first range vlan will be used to extract the options. The commit doesn't
-change anything yet it just adds the skeleton for the support. The dump
-will happen when the first option is added.
+This patch adds support for option modification of single vlans and
+ranges. It allows to only modify options, i.e. skip create/delete by
+using the BRIDGE_VLAN_INFO_ONLY_OPTS flag. When working with a range
+option changes we try to pack the notifications as much as possible.
+
+v2: do full port (all vlans) notification only when creating/deleting
+    vlans for compatibility, rework the range detection when changing
+    options, add more verbose extack errors and check if a vlan should
+    be used (br_vlan_should_use checks)
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 ---
- net/bridge/Makefile          |  2 +-
- net/bridge/br_private.h      |  8 ++++++++
- net/bridge/br_vlan.c         | 20 ++++++++++++++------
- net/bridge/br_vlan_options.c | 25 +++++++++++++++++++++++++
- 4 files changed, 48 insertions(+), 7 deletions(-)
- create mode 100644 net/bridge/br_vlan_options.c
+ include/uapi/linux/if_bridge.h |  1 +
+ net/bridge/br_private.h        |  8 ++++
+ net/bridge/br_vlan.c           | 41 +++++++++++++---
+ net/bridge/br_vlan_options.c   | 87 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 130 insertions(+), 7 deletions(-)
 
-diff --git a/net/bridge/Makefile b/net/bridge/Makefile
-index ac9ef337f0fa..49da7ae6f077 100644
---- a/net/bridge/Makefile
-+++ b/net/bridge/Makefile
-@@ -20,7 +20,7 @@ obj-$(CONFIG_BRIDGE_NETFILTER) += br_netfilter.o
+diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+index ac38f0b674b8..06bbfefa2141 100644
+--- a/include/uapi/linux/if_bridge.h
++++ b/include/uapi/linux/if_bridge.h
+@@ -130,6 +130,7 @@ enum {
+ #define BRIDGE_VLAN_INFO_RANGE_BEGIN	(1<<3) /* VLAN is start of vlan range */
+ #define BRIDGE_VLAN_INFO_RANGE_END	(1<<4) /* VLAN is end of vlan range */
+ #define BRIDGE_VLAN_INFO_BRENTRY	(1<<5) /* Global bridge VLAN entry */
++#define BRIDGE_VLAN_INFO_ONLY_OPTS	(1<<6) /* Skip create/delete/flags */
  
- bridge-$(CONFIG_BRIDGE_IGMP_SNOOPING) += br_multicast.o br_mdb.o
- 
--bridge-$(CONFIG_BRIDGE_VLAN_FILTERING) += br_vlan.o br_vlan_tunnel.o
-+bridge-$(CONFIG_BRIDGE_VLAN_FILTERING) += br_vlan.o br_vlan_tunnel.o br_vlan_options.o
- 
- bridge-$(CONFIG_NET_SWITCHDEV) += br_switchdev.o
- 
+ struct bridge_vlan_info {
+ 	__u16 flags;
 diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index a6226ff2f0cc..403df71d2cfa 100644
+index 403df71d2cfa..084904ee22a8 100644
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -1191,6 +1191,14 @@ static inline void br_vlan_notify(const struct net_bridge *br,
- }
+@@ -976,6 +976,8 @@ void br_vlan_notify(const struct net_bridge *br,
+ 		    const struct net_bridge_port *p,
+ 		    u16 vid, u16 vid_range,
+ 		    int cmd);
++bool br_vlan_can_enter_range(const struct net_bridge_vlan *v_curr,
++			     const struct net_bridge_vlan *range_end);
+ 
+ static inline struct net_bridge_vlan_group *br_vlan_group(
+ 					const struct net_bridge *br)
+@@ -1197,6 +1199,12 @@ bool br_vlan_opts_eq(const struct net_bridge_vlan *v1,
+ 		     const struct net_bridge_vlan *v2);
+ bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v);
+ size_t br_vlan_opts_nl_size(void);
++int br_vlan_process_options(const struct net_bridge *br,
++			    const struct net_bridge_port *p,
++			    struct net_bridge_vlan *range_start,
++			    struct net_bridge_vlan *range_end,
++			    struct nlattr **tb,
++			    struct netlink_ext_ack *extack);
  #endif
  
-+/* br_vlan_options.c */
-+#ifdef CONFIG_BRIDGE_VLAN_FILTERING
-+bool br_vlan_opts_eq(const struct net_bridge_vlan *v1,
-+		     const struct net_bridge_vlan *v2);
-+bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v);
-+size_t br_vlan_opts_nl_size(void);
-+#endif
-+
  struct nf_br_ops {
- 	int (*br_dev_xmit_hook)(struct sk_buff *skb);
- };
 diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index e4f7dd10c3f8..75ec3da92b0b 100644
+index 75ec3da92b0b..d747756eac63 100644
 --- a/net/bridge/br_vlan.c
 +++ b/net/bridge/br_vlan.c
-@@ -1547,7 +1547,9 @@ void br_vlan_port_event(struct net_bridge_port *p, unsigned long event)
- 	}
+@@ -1667,8 +1667,8 @@ void br_vlan_notify(const struct net_bridge *br,
  }
  
-+/* v_opts is used to dump the options which must be equal in the whole range */
- static bool br_vlan_fill_vids(struct sk_buff *skb, u16 vid, u16 vid_range,
-+			      const struct net_bridge_vlan *v_opts,
- 			      u16 flags)
- {
- 	struct bridge_vlan_info info;
-@@ -1572,6 +1574,9 @@ static bool br_vlan_fill_vids(struct sk_buff *skb, u16 vid, u16 vid_range,
- 	    nla_put_u16(skb, BRIDGE_VLANDB_ENTRY_RANGE, vid_range))
- 		goto out_err;
- 
-+	if (v_opts && !br_vlan_opts_fill(skb, v_opts))
-+		goto out_err;
-+
- 	nla_nest_end(skb, nest);
- 
- 	return true;
-@@ -1586,7 +1591,8 @@ static size_t rtnl_vlan_nlmsg_size(void)
- 	return NLMSG_ALIGN(sizeof(struct br_vlan_msg))
- 		+ nla_total_size(0) /* BRIDGE_VLANDB_ENTRY */
- 		+ nla_total_size(sizeof(u16)) /* BRIDGE_VLANDB_ENTRY_RANGE */
--		+ nla_total_size(sizeof(struct bridge_vlan_info)); /* BRIDGE_VLANDB_ENTRY_INFO */
-+		+ nla_total_size(sizeof(struct bridge_vlan_info)) /* BRIDGE_VLANDB_ENTRY_INFO */
-+		+ br_vlan_opts_nl_size(); /* bridge vlan options */
- }
- 
- void br_vlan_notify(const struct net_bridge *br,
-@@ -1595,7 +1601,7 @@ void br_vlan_notify(const struct net_bridge *br,
- 		    int cmd)
- {
- 	struct net_bridge_vlan_group *vg;
--	struct net_bridge_vlan *v;
-+	struct net_bridge_vlan *v = NULL;
- 	struct br_vlan_msg *bvm;
- 	struct nlmsghdr *nlh;
- 	struct sk_buff *skb;
-@@ -1647,7 +1653,7 @@ void br_vlan_notify(const struct net_bridge *br,
- 		goto out_kfree;
- 	}
- 
--	if (!br_vlan_fill_vids(skb, vid, vid_range, flags))
-+	if (!br_vlan_fill_vids(skb, vid, vid_range, v, flags))
- 		goto out_err;
- 
- 	nlmsg_end(skb, nlh);
-@@ -1665,7 +1671,8 @@ static bool br_vlan_can_enter_range(const struct net_bridge_vlan *v_curr,
- 				    const struct net_bridge_vlan *range_end)
+ /* check if v_curr can enter a range ending in range_end */
+-static bool br_vlan_can_enter_range(const struct net_bridge_vlan *v_curr,
+-				    const struct net_bridge_vlan *range_end)
++bool br_vlan_can_enter_range(const struct net_bridge_vlan *v_curr,
++			     const struct net_bridge_vlan *range_end)
  {
  	return v_curr->vid - range_end->vid == 1 &&
--	       range_end->flags == v_curr->flags;
-+	       range_end->flags == v_curr->flags &&
-+	       br_vlan_opts_eq(v_curr, range_end);
+ 	       range_end->flags == v_curr->flags &&
+@@ -1824,11 +1824,11 @@ static int br_vlan_rtm_process_one(struct net_device *dev,
+ {
+ 	struct bridge_vlan_info *vinfo, vrange_end, *vinfo_last = NULL;
+ 	struct nlattr *tb[BRIDGE_VLANDB_ENTRY_MAX + 1];
++	bool changed = false, skip_processing = false;
+ 	struct net_bridge_vlan_group *vg;
+ 	struct net_bridge_port *p = NULL;
+ 	int err = 0, cmdmap = 0;
+ 	struct net_bridge *br;
+-	bool changed = false;
+ 
+ 	if (netif_is_bridge_master(dev)) {
+ 		br = netdev_priv(dev);
+@@ -1882,16 +1882,43 @@ static int br_vlan_rtm_process_one(struct net_device *dev,
+ 	switch (cmd) {
+ 	case RTM_NEWVLAN:
+ 		cmdmap = RTM_SETLINK;
++		skip_processing = !!(vinfo->flags & BRIDGE_VLAN_INFO_ONLY_OPTS);
+ 		break;
+ 	case RTM_DELVLAN:
+ 		cmdmap = RTM_DELLINK;
+ 		break;
+ 	}
+ 
+-	err = br_process_vlan_info(br, p, cmdmap, vinfo, &vinfo_last, &changed,
+-				   extack);
+-	if (changed)
+-		br_ifinfo_notify(cmdmap, br, p);
++	if (!skip_processing) {
++		struct bridge_vlan_info *tmp_last = vinfo_last;
++
++		/* br_process_vlan_info may overwrite vinfo_last */
++		err = br_process_vlan_info(br, p, cmdmap, vinfo, &tmp_last,
++					   &changed, extack);
++
++		/* notify first if anything changed */
++		if (changed)
++			br_ifinfo_notify(cmdmap, br, p);
++
++		if (err)
++			return err;
++	}
++
++	/* deal with options */
++	if (cmd == RTM_NEWVLAN) {
++		struct net_bridge_vlan *range_start, *range_end;
++
++		if (vinfo_last) {
++			range_start = br_vlan_find(vg, vinfo_last->vid);
++			range_end = br_vlan_find(vg, vinfo->vid);
++		} else {
++			range_start = br_vlan_find(vg, vinfo->vid);
++			range_end = range_start;
++		}
++
++		err = br_vlan_process_options(br, p, range_start, range_end,
++					      tb, extack);
++	}
+ 
+ 	return err;
  }
- 
- static int br_vlan_dump_dev(const struct net_device *dev,
-@@ -1729,7 +1736,8 @@ static int br_vlan_dump_dev(const struct net_device *dev,
- 			u16 flags = br_vlan_flags(range_start, pvid);
- 
- 			if (!br_vlan_fill_vids(skb, range_start->vid,
--					       range_end->vid, flags)) {
-+					       range_end->vid, range_start,
-+					       flags)) {
- 				err = -EMSGSIZE;
- 				break;
- 			}
-@@ -1748,7 +1756,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
- 	 */
- 	if (!err && range_start &&
- 	    !br_vlan_fill_vids(skb, range_start->vid, range_end->vid,
--			       br_vlan_flags(range_start, pvid)))
-+			       range_start, br_vlan_flags(range_start, pvid)))
- 		err = -EMSGSIZE;
- 
- 	cb->args[1] = err ? idx : 0;
 diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
-new file mode 100644
-index 000000000000..55fcdc9c380c
---- /dev/null
+index 55fcdc9c380c..27275ac3e42e 100644
+--- a/net/bridge/br_vlan_options.c
 +++ b/net/bridge/br_vlan_options.c
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2020, Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-+#include <linux/kernel.h>
-+#include <linux/netdevice.h>
-+#include <linux/rtnetlink.h>
-+#include <linux/slab.h>
+@@ -23,3 +23,90 @@ size_t br_vlan_opts_nl_size(void)
+ {
+ 	return 0;
+ }
 +
-+#include "br_private.h"
-+
-+/* check if the options between two vlans are equal */
-+bool br_vlan_opts_eq(const struct net_bridge_vlan *v1,
-+		     const struct net_bridge_vlan *v2)
++static int br_vlan_process_one_opts(const struct net_bridge *br,
++				    const struct net_bridge_port *p,
++				    struct net_bridge_vlan_group *vg,
++				    struct net_bridge_vlan *v,
++				    struct nlattr **tb,
++				    bool *changed,
++				    struct netlink_ext_ack *extack)
 +{
-+	return true;
-+}
-+
-+bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v)
-+{
-+	return true;
-+}
-+
-+size_t br_vlan_opts_nl_size(void)
-+{
++	*changed = false;
 +	return 0;
++}
++
++int br_vlan_process_options(const struct net_bridge *br,
++			    const struct net_bridge_port *p,
++			    struct net_bridge_vlan *range_start,
++			    struct net_bridge_vlan *range_end,
++			    struct nlattr **tb,
++			    struct netlink_ext_ack *extack)
++{
++	struct net_bridge_vlan *v, *curr_start = NULL, *curr_end = NULL;
++	struct net_bridge_vlan_group *vg;
++	int vid, err = 0;
++	u16 pvid;
++
++	if (p)
++		vg = nbp_vlan_group(p);
++	else
++		vg = br_vlan_group(br);
++
++	if (!range_start || !br_vlan_should_use(range_start)) {
++		NL_SET_ERR_MSG_MOD(extack, "Vlan range start doesn't exist, can't process options");
++		return -ENOENT;
++	}
++	if (!range_end || !br_vlan_should_use(range_end)) {
++		NL_SET_ERR_MSG_MOD(extack, "Vlan range end doesn't exist, can't process options");
++		return -ENOENT;
++	}
++
++	pvid = br_get_pvid(vg);
++	for (vid = range_start->vid; vid <= range_end->vid; vid++) {
++		bool changed = false;
++
++		v = br_vlan_find(vg, vid);
++		if (!v || !br_vlan_should_use(v)) {
++			NL_SET_ERR_MSG_MOD(extack, "Vlan in range doesn't exist, can't process options");
++			err = -ENOENT;
++			break;
++		}
++
++		err = br_vlan_process_one_opts(br, p, vg, v, tb, &changed,
++					       extack);
++		if (err)
++			break;
++
++		if (changed) {
++			/* vlan options changed, check for range */
++			if (!curr_start) {
++				curr_start = v;
++				curr_end = v;
++				continue;
++			}
++
++			if (v->vid == pvid ||
++			    !br_vlan_can_enter_range(v, curr_end)) {
++				br_vlan_notify(br, p, curr_start->vid,
++					       curr_end->vid, RTM_NEWVLAN);
++				curr_start = v;
++			}
++			curr_end = v;
++		} else {
++			/* nothing changed and nothing to notify yet */
++			if (!curr_start)
++				continue;
++
++			br_vlan_notify(br, p, curr_start->vid, curr_end->vid,
++				       RTM_NEWVLAN);
++			curr_start = NULL;
++			curr_end = NULL;
++		}
++	}
++	if (curr_start)
++		br_vlan_notify(br, p, curr_start->vid, curr_end->vid,
++			       RTM_NEWVLAN);
++
++	return err;
 +}
 -- 
 2.21.0
