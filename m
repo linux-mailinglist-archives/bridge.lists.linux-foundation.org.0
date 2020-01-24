@@ -2,39 +2,39 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747AE148BCF
-	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 17:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB5F148BD0
+	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 17:19:57 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 14E1288076;
-	Fri, 24 Jan 2020 16:19:55 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 412FA880C0;
+	Fri, 24 Jan 2020 16:19:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NqBkyhOrRbrh; Fri, 24 Jan 2020 16:19:53 +0000 (UTC)
+	with ESMTP id zv0AkIV+EwBa; Fri, 24 Jan 2020 16:19:54 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 74DD288098;
-	Fri, 24 Jan 2020 16:19:53 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id A9DD0880C1;
+	Fri, 24 Jan 2020 16:19:54 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5EE13C0174;
-	Fri, 24 Jan 2020 16:19:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 89789C0174;
+	Fri, 24 Jan 2020 16:19:54 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1CAA9C0174
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:52 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 71F4EC18DD
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 0B73C228A4
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:52 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 6E1B2228A4
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3YCygiJ3mi6Z for <bridge@lists.linux-foundation.org>;
- Fri, 24 Jan 2020 16:19:51 +0000 (UTC)
+ with ESMTP id jjmGJk1-xgRz for <bridge@lists.linux-foundation.org>;
+ Fri, 24 Jan 2020 16:19:50 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
  [216.71.154.253])
- by silver.osuosl.org (Postfix) with ESMTPS id 12B67228A0
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:51 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTPS id CAF672288E
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:50 +0000 (UTC)
 Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
  Horatiu.Vultur@microchip.com designates 198.175.253.82 as
  permitted sender) identity=mailfrom;
@@ -57,24 +57,24 @@ Authentication-Results: esa6.microchip.iphmx.com;
  spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
  spf=None smtp.helo=postmaster@email.microchip.com;
  dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: +FvT4PgZPtezS7ktZ8vSBz8QMBMmu+d3HeOyBatLVnYR+EW9Hy5f2RdavxgWP6475FlQVtwMxv
- pDslQDOyYtajI8V9nk+8aeebVzLvSUV26xYz6cM8fPRRz0iuWZgEs3xKVLxK7A4TnO8LBENbwd
- gpt07RX3p+RSZY1T7XX6nOkl/DsdizrSX0DI56pm7UUWx79nvC/vArvy91fVJS+Go6EpwPCo8w
- LbxzcNLAWSIMJlL20Hsto4D3Oh2tpn+WsQjx44UwZTV6XizZOdp/tIvhQceUneTRrZ74x1xLtb
- Hqw=
+IronPort-SDR: 1JPYT53oAV1jOip3/IPJRU/lPeFO1ilCVciS8MM2cVJPZKbYcatXw4bdtaUMxWCYkSrUvuzVT9
+ LG+6TwxY1X924jkt++0GPZJ6X8uVmk8uUAVV8p3UzyPPXVyWxGpV28Q8il13L8/pjelx68R+Ym
+ bgO17W7DVCDAR9U+zd+1hfVYx2FF52pXWrRlHCOTdb9BrQEvuUGzTVLzFYkONtJyATFk3ksR5E
+ ho6geLUJbTWHcP21AqosEHT6LNGaOZAnGmoy9aByFMh2Mjf57k2VHL5Abi6TrwWDtVqi0nUg6s
+ aD8=
 X-IronPort-AV: E=Sophos;i="5.70,358,1574146800"; 
-   d="scan'208";a="19415"
+   d="scan'208";a="19416"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
  24 Jan 2020 09:19:49 -0700
 Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 24 Jan 2020 09:19:46 -0700
+ 15.1.1713.5; Fri, 24 Jan 2020 09:19:49 -0700
 Received: from soft-dev3.microsemi.net (10.10.85.251) by
  chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Fri, 24 Jan 2020 09:19:44 -0700
+ 15.1.1713.5 via Frontend Transport; Fri, 24 Jan 2020 09:19:46 -0700
 From: Horatiu Vultur <horatiu.vultur@microchip.com>
 To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
  <bridge@lists.linux-foundation.org>, <jiri@resnulli.us>,
@@ -82,16 +82,16 @@ To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
  <nikolay@cumulusnetworks.com>, <anirudh.venkataramanan@intel.com>,
  <olteanv@gmail.com>, <andrew@lunn.ch>, <jeffrey.t.kirsher@intel.com>,
  <UNGLinuxDriver@microchip.com>
-Date: Fri, 24 Jan 2020 17:18:24 +0100
-Message-ID: <20200124161828.12206-7-horatiu.vultur@microchip.com>
+Date: Fri, 24 Jan 2020 17:18:25 +0100
+Message-ID: <20200124161828.12206-8-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200124161828.12206-1-horatiu.vultur@microchip.com>
 References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [RFC net-next v3 06/10] net: bridge: mrp: switchdev:
-	Extend switchdev API to offload MRP
+Subject: [Bridge] [RFC net-next v3 07/10] net: bridge: mrp: switchdev:
+	Implement MRP API for switchdev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,120 +106,169 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Extend switchdev API to add support for MRP. The HW is notified in
-following cases:
-
-SWITCHDEV_OBJ_ID_PORT_MRP: This is used when a port is added/removed from the
-  mrp ring.
-
-SWITCHDEV_OBJ_ID_RING_ROLE_MRP: This is used when the role of the node
-  changes. The current supported roles are Media Redundancy Manager and Media
-  Redundancy Client.
-
-SWITCHDEV_OBJ_ID_RING_TEST_MRP: This is used when to start/stop sending
-  MRP_Test frames on the mrp ring ports. This is called only on nodes that have
-  the role Media Redundancy Manager.
-
-SWITCHDEV_ATTR_ID_MRP_PORT_STATE: This is used when the port's state is
-  changed. It can be in blocking/forwarding mode.
-
-SWITCHDEV_ATTR_ID_MRP_PORT_ROLE: This is used when port's role changes. The
-  roles of the port can be primary/secondary. This is required to notify HW
-  because the MRP_Test frame contains the field MRP_PortRole that contains this
-  information.
-
-SWITCHDEV_ATTR_ID_MRP_RING_STATE: This is used when the ring changes it states
-  to open or closed. This is required to notify HW because the MRP_Test frame
-  contains the field MRP_InState which contains this information.
+Implement the MRP api for switchdev.
+These functions will just eventually call the switchdev functions:
+switchdev_port_obj_add/del and switchdev_port_attr_set.
 
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- include/net/switchdev.h | 51 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+ net/bridge/br_mrp_switchdev.c | 147 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 147 insertions(+)
+ create mode 100644 net/bridge/br_mrp_switchdev.c
 
-diff --git a/include/net/switchdev.h b/include/net/switchdev.h
-index aee86a189432..b1ed170fc01d 100644
---- a/include/net/switchdev.h
-+++ b/include/net/switchdev.h
-@@ -40,6 +40,11 @@ enum switchdev_attr_id {
- 	SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING,
- 	SWITCHDEV_ATTR_ID_BRIDGE_MC_DISABLED,
- 	SWITCHDEV_ATTR_ID_BRIDGE_MROUTER,
-+#ifdef CONFIG_BRIDGE_MRP
-+	SWITCHDEV_ATTR_ID_MRP_PORT_STATE,
-+	SWITCHDEV_ATTR_ID_MRP_PORT_ROLE,
-+	SWITCHDEV_ATTR_ID_MRP_RING_STATE,
-+#endif
- };
- 
- struct switchdev_attr {
-@@ -55,6 +60,11 @@ struct switchdev_attr {
- 		clock_t ageing_time;			/* BRIDGE_AGEING_TIME */
- 		bool vlan_filtering;			/* BRIDGE_VLAN_FILTERING */
- 		bool mc_disabled;			/* MC_DISABLED */
-+#ifdef CONFIG_BRIDGE_MRP
-+		u8 mrp_port_state;			/* MRP_PORT_STATE */
-+		u8 mrp_port_role;			/* MRP_PORT_ROLE */
-+		u8 mrp_ring_state;			/* MRP_RING_STATE */
-+#endif
- 	} u;
- };
- 
-@@ -63,6 +73,11 @@ enum switchdev_obj_id {
- 	SWITCHDEV_OBJ_ID_PORT_VLAN,
- 	SWITCHDEV_OBJ_ID_PORT_MDB,
- 	SWITCHDEV_OBJ_ID_HOST_MDB,
-+#ifdef CONFIG_BRIDGE_MRP
-+	SWITCHDEV_OBJ_ID_PORT_MRP,
-+	SWITCHDEV_OBJ_ID_RING_TEST_MRP,
-+	SWITCHDEV_OBJ_ID_RING_ROLE_MRP,
-+#endif
- };
- 
- struct switchdev_obj {
-@@ -94,6 +109,42 @@ struct switchdev_obj_port_mdb {
- #define SWITCHDEV_OBJ_PORT_MDB(OBJ) \
- 	container_of((OBJ), struct switchdev_obj_port_mdb, obj)
- 
+diff --git a/net/bridge/br_mrp_switchdev.c b/net/bridge/br_mrp_switchdev.c
+new file mode 100644
+index 000000000000..2226d98806de
+--- /dev/null
++++ b/net/bridge/br_mrp_switchdev.c
+@@ -0,0 +1,147 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
 +
-+#ifdef CONFIG_BRIDGE_MRP
-+/* SWITCHDEV_OBJ_ID_PORT_MRP */
-+struct switchdev_obj_port_mrp {
-+	struct switchdev_obj obj;
-+	struct net_device *port;
-+	u32 ring_nr;
-+};
++#include <net/switchdev.h>
 +
-+#define SWITCHDEV_OBJ_PORT_MRP(OBJ) \
-+	container_of((OBJ), struct switchdev_obj_port_mrp, obj)
++#include "br_private_mrp.h"
 +
-+/* SWITCHDEV_OBJ_ID_RING_TEST_MRP */
-+struct switchdev_obj_ring_test_mrp {
-+	struct switchdev_obj obj;
-+	/* The value is in us and a value of 0 represents to stop */
-+	u32 interval;
-+	u8 max_miss;
-+	u32 ring_nr;
-+};
++int br_mrp_port_switchdev_add(struct net_bridge_port *p, u32 ring_nr)
++{
++	struct net_bridge *br = p->br;
++	struct switchdev_obj_port_mrp mrp = {
++		.obj.orig_dev = br->dev,
++		.obj.id = SWITCHDEV_OBJ_ID_PORT_MRP,
++		.port = p->dev,
++		.ring_nr = ring_nr,
++	};
++	int err = 0;
 +
-+#define SWITCHDEV_OBJ_RING_TEST_MRP(OBJ) \
-+	container_of((OBJ), struct switchdev_obj_ring_test_mrp, obj)
++	err = switchdev_port_obj_add(br->dev, &mrp.obj, NULL);
 +
-+/* SWICHDEV_OBJ_ID_RING_ROLE_MRP */
-+struct switchdev_obj_ring_role_mrp {
-+	struct switchdev_obj obj;
-+	u8 ring_role;
-+	u32 ring_nr;
-+};
++	if (err && err != -EOPNOTSUPP)
++		return err;
 +
-+#define SWITCHDEV_OBJ_RING_ROLE_MRP(OBJ) \
-+	container_of((OBJ), struct switchdev_obj_ring_role_mrp, obj)
++	return 0;
++}
 +
-+#endif
++int br_mrp_switchdev_set_ring_role(struct br_mrp *mrp,
++				   enum br_mrp_ring_role_type role)
++{
++	struct switchdev_obj_ring_role_mrp mrp_role = {
++		.obj.orig_dev = mrp->br->dev,
++		.obj.id = SWITCHDEV_OBJ_ID_RING_ROLE_MRP,
++		.ring_role = role,
++		.ring_nr = mrp->ring_nr,
++	};
++	int err = 0;
 +
- typedef int switchdev_obj_dump_cb_t(struct switchdev_obj *obj);
- 
- enum switchdev_notifier_type {
++	pr_info("%s role: %d\n", __func__, role);
++
++	if (role == BR_MRP_RING_ROLE_DISABLED)
++		err = switchdev_port_obj_del(mrp->br->dev, &mrp_role.obj);
++	else
++		err = switchdev_port_obj_add(mrp->br->dev, &mrp_role.obj, NULL);
++
++	if (err && err != -EOPNOTSUPP)
++		return err;
++
++	return 0;
++}
++
++int br_mrp_switchdev_send_ring_test(struct br_mrp *mrp, u32 interval,
++				    u8 max_miss)
++{
++	struct switchdev_obj_ring_test_mrp test = {
++		.obj.orig_dev = mrp->br->dev,
++		.obj.id = SWITCHDEV_OBJ_ID_RING_TEST_MRP,
++		.interval = interval,
++		.max_miss = max_miss,
++		.ring_nr = mrp->ring_nr,
++	};
++	int err = 0;
++
++	if (interval == 0)
++		err = switchdev_port_obj_del(mrp->br->dev, &test.obj);
++	else
++		err = switchdev_port_obj_add(mrp->br->dev, &test.obj, NULL);
++
++	return err;
++}
++
++int br_mrp_port_switchdev_del(struct net_bridge_port *p, u32 ring_nr)
++{
++	struct net_bridge *br = p->br;
++	struct switchdev_obj_port_mrp mrp = {
++		.obj.orig_dev = br->dev,
++		.obj.id = SWITCHDEV_OBJ_ID_PORT_MRP,
++		.port = p->dev,
++		.ring_nr = ring_nr,
++	};
++	int err = 0;
++
++	err = switchdev_port_obj_del(br->dev, &mrp.obj);
++
++	if (err && err != -EOPNOTSUPP)
++		return err;
++
++	return 0;
++}
++
++int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
++				    enum br_mrp_port_state_type state)
++{
++	struct switchdev_attr attr = {
++		.orig_dev = p->dev,
++		.id = SWITCHDEV_ATTR_ID_MRP_PORT_STATE,
++		.u.mrp_port_state = state,
++	};
++	int err = 0;
++
++	pr_info("%s port: %s, state: %d\n", __func__, p->dev->name, state);
++
++	err = switchdev_port_attr_set(p->dev, &attr);
++	if (err && err != -EOPNOTSUPP)
++		br_warn(p->br, "error setting offload MRP state on port %u(%s)\n",
++			(unsigned int)p->port_no, p->dev->name);
++
++	return err;
++}
++
++int br_mrp_port_switchdev_set_role(struct net_bridge_port *p,
++				   enum br_mrp_port_role_type role)
++{
++	struct switchdev_attr attr = {
++		.orig_dev = p->dev,
++		.id = SWITCHDEV_ATTR_ID_MRP_PORT_ROLE,
++		.u.mrp_port_role = role,
++	};
++	int err;
++
++	err = switchdev_port_attr_set(p->dev, &attr);
++	if (err && err != -EOPNOTSUPP)
++		return err;
++
++	return 0;
++}
++
++int br_mrp_switchdev_set_ring_state(struct br_mrp *mrp,
++				    enum br_mrp_ring_state_type state)
++{
++	struct switchdev_attr attr = {
++		.id = SWITCHDEV_ATTR_ID_MRP_RING_STATE,
++		.u.mrp_ring_state = state,
++	};
++	int err = 0;
++
++	attr.orig_dev = mrp->p_port->dev,
++	err = switchdev_port_attr_set(mrp->p_port->dev, &attr);
++	if (err && err != -EOPNOTSUPP)
++		return err;
++
++	attr.orig_dev = mrp->s_port->dev;
++	err = switchdev_port_attr_set(mrp->s_port->dev, &attr);
++	if (err && err != -EOPNOTSUPP)
++		return err;
++
++	return err;
++}
++
 -- 
 2.17.1
 
