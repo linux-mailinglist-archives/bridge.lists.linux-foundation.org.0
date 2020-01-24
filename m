@@ -1,44 +1,44 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81DF148BD2
-	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 17:20:03 +0100 (CET)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B77148BD3
+	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 17:20:05 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 7F8998786B;
-	Fri, 24 Jan 2020 16:20:02 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 73FB2228A4;
+	Fri, 24 Jan 2020 16:20:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1xKvjcFktM7W; Fri, 24 Jan 2020 16:20:00 +0000 (UTC)
+	with ESMTP id YKdkLR+IDf7H; Fri, 24 Jan 2020 16:20:03 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 569BD87865;
-	Fri, 24 Jan 2020 16:20:00 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id A0435228A7;
+	Fri, 24 Jan 2020 16:20:03 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4D3C7C0174;
-	Fri, 24 Jan 2020 16:20:00 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 89C5DC0174;
+	Fri, 24 Jan 2020 16:20:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1FCB1C18DD
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:58 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DCCB9C0174
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:20:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 0AD96880C2
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:58 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id C72CD88046
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:20:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3DcTlds6U6tt for <bridge@lists.linux-foundation.org>;
- Fri, 24 Jan 2020 16:19:57 +0000 (UTC)
+ with ESMTP id o6hwgmdaj20U for <bridge@lists.linux-foundation.org>;
+ Fri, 24 Jan 2020 16:20:00 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
- [216.71.154.253])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 517C1880A1
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:57 +0000 (UTC)
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+Received: from esa1.microchip.iphmx.com (esa1.microchip.iphmx.com
+ [68.232.147.91])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id E342B880A1
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 16:19:59 +0000 (UTC)
+Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
  Horatiu.Vultur@microchip.com designates 198.175.253.82 as
  permitted sender) identity=mailfrom;
- client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+ client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
  envelope-from="Horatiu.Vultur@microchip.com";
  x-sender="Horatiu.Vultur@microchip.com";
  x-conformance=spf_only; x-record-type="v=spf1";
@@ -46,35 +46,34 @@ Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
  include:servers.mcsv.net include:mktomail.com
  include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
+Received-SPF: None (esa1.microchip.iphmx.com: no sender
  authenticity information available from domain of
  postmaster@email.microchip.com) identity=helo;
- client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+ client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
  envelope-from="Horatiu.Vultur@microchip.com";
  x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com;
+Authentication-Results: esa1.microchip.iphmx.com;
  dkim=none (message not signed) header.i=none;
  spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com;
  spf=None smtp.helo=postmaster@email.microchip.com;
  dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: VSPTccWq1rIi8LY78/CKRQ05upZrJVWLQTSfCVKiGQOOuUmSFvj1nl3obxhMrkAso2fIaY5lfG
- /+bn8jtvlxEV102fwNQ5Uud2z4sj76kFXmYsmFEaVUARmmKZtpSJqBX8lA93zE0KpeSqlfJhnW
- NEFWx4DmFqlo1LwxjnsIRYYt9Q67hE17eVo+hFLzA/L0ZkzaWFhIV4cRdQx5ed3ULffwE4/Aa1
- QVZglerGLqHwFqadV1FliDNL9aGK3egCTkkxKXkzwYZJW8AP7uQxlnVHccDk51N39EbeBqBPvV
- e2k=
-X-IronPort-AV: E=Sophos;i="5.70,358,1574146800"; 
-   d="scan'208";a="19442"
+IronPort-SDR: Aii8WtEQJgKX2qMsYKDWye+Vz2dqyK2vYDHVaNRN60+HVguv+aUnyfq766v00mUvGn8cvjDyzW
+ 7Ig7rwOkKoa4XoJn1a8bDUx9SaMkIgIu9XxS3jNhKMjzS65oZ0DF5LYeFVNjhgNk/4Z4Sw1eLH
+ 50aWtO7Qu1IvuoDMnEvI+NO4OIjuZmsBH5Gv060ZteeWP16EBRUO0m0ipc8y/bXP27kjORwOv8
+ 9cJaZZa9CHc8Lz4qx5ygbmmyjomAtnAbZObpUWYEPz3F102x5c/Jofk9Xggy0CQvpNFetxflxe
+ 0uI=
+X-IronPort-AV: E=Sophos;i="5.70,358,1574146800"; d="scan'208";a="65924355"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 24 Jan 2020 09:19:56 -0700
+ by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 24 Jan 2020 09:19:59 -0700
 Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
  chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 24 Jan 2020 09:19:56 -0700
+ 15.1.1713.5; Fri, 24 Jan 2020 09:19:59 -0700
 Received: from soft-dev3.microsemi.net (10.10.85.251) by
  chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Fri, 24 Jan 2020 09:19:53 -0700
+ 15.1.1713.5 via Frontend Transport; Fri, 24 Jan 2020 09:19:56 -0700
 From: Horatiu Vultur <horatiu.vultur@microchip.com>
 To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
  <bridge@lists.linux-foundation.org>, <jiri@resnulli.us>,
@@ -82,16 +81,16 @@ To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
  <nikolay@cumulusnetworks.com>, <anirudh.venkataramanan@intel.com>,
  <olteanv@gmail.com>, <andrew@lunn.ch>, <jeffrey.t.kirsher@intel.com>,
  <UNGLinuxDriver@microchip.com>
-Date: Fri, 24 Jan 2020 17:18:27 +0100
-Message-ID: <20200124161828.12206-10-horatiu.vultur@microchip.com>
+Date: Fri, 24 Jan 2020 17:18:28 +0100
+Message-ID: <20200124161828.12206-11-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200124161828.12206-1-horatiu.vultur@microchip.com>
 References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [RFC net-next v3 09/10] net: bridge: mrp: Integrate MRP
-	into the bridge
+Subject: [Bridge] [RFC net-next v3 10/10] net: bridge: mrp: Update Kconfig
+	and Makefile
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,159 +105,45 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-To integrate MRP into the bridge, the bridge needs to do the following:
-- initialized and destroy the generic netlink used by MRP
-- detect if the MRP frame was received on a port that is part of a MRP ring. In
-  case it was not, then forward the frame as usual, otherwise redirect the frame
-  to the upper layer.
+Add the option BRIDGE_MRP to allow to build in or not MRP support.
+The default value is N.
 
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- net/bridge/br.c         | 11 +++++++++++
- net/bridge/br_device.c  |  3 +++
- net/bridge/br_if.c      |  6 ++++++
- net/bridge/br_input.c   | 14 ++++++++++++++
- net/bridge/br_private.h | 14 ++++++++++++++
- 5 files changed, 48 insertions(+)
+ net/bridge/Kconfig  | 12 ++++++++++++
+ net/bridge/Makefile |  2 ++
+ 2 files changed, 14 insertions(+)
 
-diff --git a/net/bridge/br.c b/net/bridge/br.c
-index b6fe30e3768f..d5e556eed4ba 100644
---- a/net/bridge/br.c
-+++ b/net/bridge/br.c
-@@ -344,6 +344,12 @@ static int __init br_init(void)
- 	if (err)
- 		goto err_out5;
+diff --git a/net/bridge/Kconfig b/net/bridge/Kconfig
+index e4fb050e2078..51a6414145d2 100644
+--- a/net/bridge/Kconfig
++++ b/net/bridge/Kconfig
+@@ -61,3 +61,15 @@ config BRIDGE_VLAN_FILTERING
+ 	  Say N to exclude this support and reduce the binary size.
  
-+#ifdef CONFIG_BRIDGE_MRP
-+	err = br_mrp_netlink_init();
-+	if (err)
-+		goto err_out6;
-+#endif
+ 	  If unsure, say Y.
 +
- 	brioctl_set(br_ioctl_deviceless_stub);
- 
- #if IS_ENABLED(CONFIG_ATM_LANE)
-@@ -358,6 +364,11 @@ static int __init br_init(void)
- 
- 	return 0;
- 
-+#ifdef CONFIG_BRIDGE_MRP
-+err_out6:
-+	br_netlink_fini();
-+#endif
++config BRIDGE_MRP
++	bool "MRP protocol"
++	depends on BRIDGE
++	default n
++	help
++	  If you say Y here, then the Ethernet bridge will be able to run MRP
++	  protocol to detect loops
 +
- err_out5:
- 	unregister_switchdev_notifier(&br_switchdev_notifier);
- err_out4:
-diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
-index fb38add21b37..29966754d86a 100644
---- a/net/bridge/br_device.c
-+++ b/net/bridge/br_device.c
-@@ -464,6 +464,9 @@ void br_dev_setup(struct net_device *dev)
- 	spin_lock_init(&br->lock);
- 	INIT_LIST_HEAD(&br->port_list);
- 	INIT_HLIST_HEAD(&br->fdb_list);
-+#ifdef CONFIG_BRIDGE_MRP
-+	INIT_LIST_HEAD(&br->mrp_list);
-+#endif
- 	spin_lock_init(&br->hash_lock);
- 
- 	br->bridge_id.prio[0] = 0x80;
-diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
-index 4fe30b182ee7..9b8bb41c0574 100644
---- a/net/bridge/br_if.c
-+++ b/net/bridge/br_if.c
-@@ -331,6 +331,9 @@ static void del_nbp(struct net_bridge_port *p)
- 
- 	spin_lock_bh(&br->lock);
- 	br_stp_disable_port(p);
-+#ifdef CONFIG_BRIDGE_MRP
-+	p->mrp_aware = false;
-+#endif
- 	spin_unlock_bh(&br->lock);
- 
- 	br_ifinfo_notify(RTM_DELLINK, NULL, p);
-@@ -427,6 +430,9 @@ static struct net_bridge_port *new_nbp(struct net_bridge *br,
- 	p->port_no = index;
- 	p->flags = BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD;
- 	br_init_port(p);
-+#ifdef CONFIG_BRIDGE_MRP
-+	p->mrp_aware = false;
-+#endif
- 	br_set_state(p, BR_STATE_DISABLED);
- 	br_stp_port_timer_init(p);
- 	err = br_multicast_add_port(p);
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 8944ceb47fe9..de7066b077e2 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -21,6 +21,9 @@
- #include <linux/rculist.h>
- #include "br_private.h"
- #include "br_private_tunnel.h"
-+#ifdef CONFIG_BRIDGE_MRP
-+#include "br_private_mrp.h"
-+#endif
- 
- static int
- br_netif_receive_skb(struct net *net, struct sock *sk, struct sk_buff *skb)
-@@ -338,6 +341,17 @@ rx_handler_result_t br_handle_frame(struct sk_buff **pskb)
- 			return RX_HANDLER_CONSUMED;
- 		}
- 	}
-+#ifdef CONFIG_BRIDGE_MRP
-+	/* If there is no MRP instance do normal forwarding */
-+	if (!p->mrp_aware)
-+		goto forward;
++	  Say N to exclude this support and reduce the binary size.
 +
-+	if (skb->protocol == htons(ETH_P_MRP))
-+		return RX_HANDLER_PASS;
++	  If unsure, say N.
+diff --git a/net/bridge/Makefile b/net/bridge/Makefile
+index ac9ef337f0fa..b2e11b819af5 100644
+--- a/net/bridge/Makefile
++++ b/net/bridge/Makefile
+@@ -25,3 +25,5 @@ bridge-$(CONFIG_BRIDGE_VLAN_FILTERING) += br_vlan.o br_vlan_tunnel.o
+ bridge-$(CONFIG_NET_SWITCHDEV) += br_switchdev.o
+ 
+ obj-$(CONFIG_NETFILTER) += netfilter/
 +
-+	if (p->state == BR_STATE_BLOCKING)
-+		goto drop;
-+#endif
- 
- forward:
- 	switch (p->state) {
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index f540f3bdf294..a5d01a394f54 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -285,6 +285,10 @@ struct net_bridge_port {
- 	u16				backup_redirected_cnt;
- 
- 	struct bridge_stp_xstats	stp_xstats;
-+
-+#ifdef CONFIG_BRIDGE_MRP
-+	bool				mrp_aware;
-+#endif
- };
- 
- #define kobj_to_brport(obj)	container_of(obj, struct net_bridge_port, kobj)
-@@ -424,6 +428,10 @@ struct net_bridge {
- 	int offload_fwd_mark;
- #endif
- 	struct hlist_head		fdb_list;
-+
-+#ifdef CONFIG_BRIDGE_MRP
-+	struct list_head		mrp_list;
-+#endif
- };
- 
- struct br_input_skb_cb {
-@@ -1165,6 +1173,12 @@ unsigned long br_timer_value(const struct timer_list *timer);
- extern int (*br_fdb_test_addr_hook)(struct net_device *dev, unsigned char *addr);
- #endif
- 
-+/* br_mrp.c */
-+#ifdef CONFIG_BRIDGE_MRP
-+int br_mrp_netlink_init(void);
-+void br_mrp_netlink_uninit(void);
-+#endif
-+
- /* br_netlink.c */
- extern struct rtnl_link_ops br_link_ops;
- int br_netlink_init(void);
++bridge-$(CONFIG_BRIDGE_MRP)	+= br_mrp.o br_mrp_netlink.o br_mrp_switchdev.o
 -- 
 2.17.1
 
