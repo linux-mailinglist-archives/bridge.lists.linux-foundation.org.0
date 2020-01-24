@@ -1,83 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5D41483AE
-	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 12:40:35 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD061483AF
+	for <lists.bridge@lfdr.de>; Fri, 24 Jan 2020 12:40:36 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 897B288498;
-	Fri, 24 Jan 2020 11:40:33 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 286D286A24;
+	Fri, 24 Jan 2020 11:40:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id nDu5UQVt0HDm; Fri, 24 Jan 2020 11:40:33 +0000 (UTC)
+	with ESMTP id qYpJS1XhWmUY; Fri, 24 Jan 2020 11:40:34 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 53EDC88488;
-	Fri, 24 Jan 2020 11:40:33 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id C201186B6D;
+	Fri, 24 Jan 2020 11:40:34 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3BB88C0174;
-	Fri, 24 Jan 2020 11:40:33 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A93EFC0174;
+	Fri, 24 Jan 2020 11:40:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 76CCEC0174
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:32 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6A33CC1D82
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 6BB0788488
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:32 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 4D67688498
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id EyzKfLlXjHn1 for <bridge@lists.linux-foundation.org>;
- Fri, 24 Jan 2020 11:40:31 +0000 (UTC)
+ with ESMTP id X2Cc7MJBCqyg for <bridge@lists.linux-foundation.org>;
+ Fri, 24 Jan 2020 11:40:32 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 87EE288498
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:31 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id b15so909643lfc.4
- for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 03:40:31 -0800 (PST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 83BF888488
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 11:40:32 +0000 (UTC)
+Received: by mail-lj1-f195.google.com with SMTP id x7so2093493ljc.1
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Jan 2020 03:40:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=0FtJ6MlkdUyddBUzFcRR+OPGQmZ6SOcizcRhY4N8y5g=;
- b=H7F9m+jtsbzB+CI3Nr3fqV0xj5szLDh+/z4SjVgAzAwlpGQQEOJ/CYvk4Xdte7rtxs
- 5GfABf37WsmS0BNydt0ZHx65l4KyjDSDOCyU4D50sgRpBsNb0QrphykWy4XuEc7dBrhP
- xdZicEqlUBXkpHsijNsUT/bK3YtpynMYyOzb0=
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=mtj5BWUVGyinNX7wvC73dcZuNmbbOVj5imGPpnqwC7s=;
+ b=DYp8SwaR2RtLl8bAH4YtgflR2ni8IhDhhdGRpD50QqlucoswbUPkbngw/FOuoWA5u6
+ klQB+ECYE54zTCpHLMNmnfv7vTigPUKItG3YEZNenCaHNCu/4x3HYaTkFyVpCmkfroJD
+ JIoCb+UGy6A5aUy+bsiwt58xiyK+daw7J+eJ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=0FtJ6MlkdUyddBUzFcRR+OPGQmZ6SOcizcRhY4N8y5g=;
- b=s7GsOz+qB3X3rS4Jz9TlrVc7in2Io0BDj0YvyAdZ6ARv9Eu8Ykd3ViboEIPR9Q/How
- zjeWZJlyf9HwGBQrKhNSkKjbnqU4OlxkVzMZ16Ve2rSmLR3mr+L/Y4lYibdlopvn+NHf
- B5I0NEXh8o3HEEXD9aBF5MQlbTjEhcUm8IqLHt1YUiU1q4rhlK6mE+iUrDPY5DCDHMI1
- uy+4N68uqCugQgl0SAma1J3rFfl7utdO25k7JUCMOiF9WHfLuXx7oSRy0m4eQRjANbLE
- sO3fVugecuSqFot6ybLPKX5r2d4rvwB1egoxPkVDUs6kD1tLtFz8FBMIXqljSA60TFT0
- 0AvQ==
-X-Gm-Message-State: APjAAAXbPdlVAtFXk8K/rMK8QphQ0Mq+aT/lWAyfiDLcXWp25Dyx7ksp
- T6bIiWjQzkp8puUJc2Vza2U1Ew==
-X-Google-Smtp-Source: APXvYqzErOQdCSPkyV+v/nJqqimQLFO4/zmxqbQmm27qllVn6Gwz+FR4ElvUByJ02FzlUTB4ceRdGQ==
-X-Received: by 2002:a19:c210:: with SMTP id l16mr1211806lfc.35.1579866029368; 
- Fri, 24 Jan 2020 03:40:29 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=mtj5BWUVGyinNX7wvC73dcZuNmbbOVj5imGPpnqwC7s=;
+ b=ICoiYWQukw/HHX0BTDlxAltEjr27DPk4CWZeZX1U4W8ztGMiWGgRbm6x4N7iw7Iog4
+ 0UdZz+p7K8l8NIHM3DBOIYk0eZpYYpM/NMwbksNYUiIUeqyQzd4FXw2EZ7mtqwulSHbQ
+ 9YNpkKmVAqnkaLsPEsn2WBHsuiOhi2vF9liPjEIeQ/nSuqgtEoLdwaMYxkNllcWE3YUj
+ wBTkxTY1/JPT4hxjaABjz7AeiVFtWqXkuP6VClHkhA3rYTqZPepQDIcRwN3s7eKpi2Kr
+ 8SIzY2PDQ8vnUyk1UMHS1ZORq/rpF2b9cpBfxmDs34CBL+fBr2UWfmXAxVGtnf8uAGjK
+ 4+wA==
+X-Gm-Message-State: APjAAAV/fllp5ZAQ7dfHqhchzb5N/4TnnnX+OgCVze8Br7A6zSMk9U16
+ sFkWhe/gpWbGjDbTYQjGek+VZg==
+X-Google-Smtp-Source: APXvYqwlblPgJAJLYhrRZf0N0nEa2vwWnf0IBSfqztxfEWsBk25yrq1GwuN4AVK62xzXV+NxQkfWmQ==
+X-Received: by 2002:a05:651c:1068:: with SMTP id
+ y8mr2073916ljm.71.1579866030741; 
+ Fri, 24 Jan 2020 03:40:30 -0800 (PST)
 Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id s22sm2996185ljm.41.2020.01.24.03.40.28
+ by smtp.gmail.com with ESMTPSA id s22sm2996185ljm.41.2020.01.24.03.40.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jan 2020 03:40:28 -0800 (PST)
+ Fri, 24 Jan 2020 03:40:30 -0800 (PST)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 To: netdev@vger.kernel.org
-Date: Fri, 24 Jan 2020 13:40:18 +0200
-Message-Id: <20200124114022.10883-1-nikolay@cumulusnetworks.com>
+Date: Fri, 24 Jan 2020 13:40:19 +0200
+Message-Id: <20200124114022.10883-2-nikolay@cumulusnetworks.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20200124114022.10883-1-nikolay@cumulusnetworks.com>
+References: <20200124114022.10883-1-nikolay@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
  roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
  davem@davemloft.net
-Subject: [Bridge] [PATCH net-next v2 0/4] net: bridge: add per-vlan state
-	option
+Subject: [Bridge] [PATCH net-next v2 1/4] net: bridge: check port state
+	before br_allowed_egress
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -92,42 +95,28 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi,
-This set adds the first per-vlan option - state, which uses the new vlan
-infrastructure that was recently added. It gives us forwarding control on
-per-vlan basis. The first 3 patches prepare the vlan code to support option
-dumping and modification. We still compress vlan ranges which have equal
-options, each new option will have to add its own equality check to
-br_vlan_opts_eq(). The vlans are created in forwarding state by default to
-be backwards compatible and vlan state is considered only when the port
-state is forwarding (more info in patch 4).
-I'll send the selftest for the vlan state with the iproute2 patch-set.
+If we make sure that br_allowed_egress is called only when we have
+BR_STATE_FORWARDING state then we can avoid a test later when we add
+per-vlan state.
 
-v2: patch 3: do full (all-vlan) notification only on vlan
-    create/delete, otherwise use the per-vlan notifications only,
-    rework how option change ranges are detected, add more verbose error
-    messages when setting options and add checks if a vlan should be used.
+Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+---
+ net/bridge/br_forward.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
- Nik
-
-Nikolay Aleksandrov (4):
-  net: bridge: check port state before br_allowed_egress
-  net: bridge: vlan: add basic option dumping support
-  net: bridge: vlan: add basic option setting support
-  net: bridge: vlan: add per-vlan state
-
- include/uapi/linux/if_bridge.h |   2 +
- net/bridge/Makefile            |   2 +-
- net/bridge/br_device.c         |   3 +-
- net/bridge/br_forward.c        |   2 +-
- net/bridge/br_input.c          |   7 +-
- net/bridge/br_private.h        |  59 +++++++++++-
- net/bridge/br_vlan.c           | 108 ++++++++++++++++------
- net/bridge/br_vlan_options.c   | 160 +++++++++++++++++++++++++++++++++
- 8 files changed, 311 insertions(+), 32 deletions(-)
- create mode 100644 net/bridge/br_vlan_options.c
-
+diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+index 86637000f275..7629b63f6f30 100644
+--- a/net/bridge/br_forward.c
++++ b/net/bridge/br_forward.c
+@@ -25,7 +25,7 @@ static inline int should_deliver(const struct net_bridge_port *p,
+ 
+ 	vg = nbp_vlan_group_rcu(p);
+ 	return ((p->flags & BR_HAIRPIN_MODE) || skb->dev != p->dev) &&
+-		br_allowed_egress(vg, skb) && p->state == BR_STATE_FORWARDING &&
++		p->state == BR_STATE_FORWARDING && br_allowed_egress(vg, skb) &&
+ 		nbp_switchdev_allowed_egress(p, skb) &&
+ 		!br_skb_isolated(p, skb);
+ }
 -- 
 2.21.0
 
