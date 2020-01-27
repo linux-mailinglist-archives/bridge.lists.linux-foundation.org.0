@@ -1,98 +1,117 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFB114B21E
-	for <lists.bridge@lfdr.de>; Tue, 28 Jan 2020 10:58:35 +0100 (CET)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9474A14B294
+	for <lists.bridge@lfdr.de>; Tue, 28 Jan 2020 11:29:25 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id AFA7087BD3;
-	Tue, 28 Jan 2020 09:58:33 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 2C7B2204F6;
+	Tue, 28 Jan 2020 10:29:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zy6Yec-Mbo+o; Tue, 28 Jan 2020 09:58:32 +0000 (UTC)
+	with ESMTP id 1CrzaFhpiaX4; Tue, 28 Jan 2020 10:29:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id EAFB587BD7;
-	Tue, 28 Jan 2020 09:58:31 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 3295C204FE;
+	Tue, 28 Jan 2020 10:29:17 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D1ABFC0171;
-	Tue, 28 Jan 2020 09:58:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0F958C0171;
+	Tue, 28 Jan 2020 10:29:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 380F1C0171
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 09:58:30 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AA450C0171
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Jan 2020 15:01:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 267C4857A3
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 09:58:30 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 8AA1C87347
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Jan 2020 15:01:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id EmyyE6EA4QKg for <bridge@lists.linux-foundation.org>;
- Tue, 28 Jan 2020 09:58:29 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
- [68.232.153.233])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 1BF018577A
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 09:58:29 +0000 (UTC)
-Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
- Allan.Nielsen@microchip.com designates 198.175.253.82 as
- permitted sender) identity=mailfrom;
- client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
- envelope-from="Allan.Nielsen@microchip.com";
- x-sender="Allan.Nielsen@microchip.com";
- x-conformance=spf_only; x-record-type="v=spf1";
- x-record-text="v=spf1 mx a:ushub1.microchip.com
- a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
- include:servers.mcsv.net include:mktomail.com
- include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa3.microchip.iphmx.com: no sender
- authenticity information available from domain of
- postmaster@email.microchip.com) identity=helo;
- client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
- envelope-from="Allan.Nielsen@microchip.com";
- x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa3.microchip.iphmx.com;
- dkim=none (message not signed) header.i=none;
- spf=Pass smtp.mailfrom=Allan.Nielsen@microchip.com;
- spf=None smtp.helo=postmaster@email.microchip.com;
- dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: 3ooP4EUi7o1dd/qLIe/RQWggY6ulveshOV6z0oFTdLuv+xQl1pxCsPDcLnaH+oRnFtC3URKFXe
- 7zttOz4rd1/6TVfswOU28bHNKukny7Y57ki9GnCrgjYxIBMQ4MpinzUtc4zu/3HhL3iVPUH+OS
- digIMVKDca5tLyVB4JSJvObkOPqNl4I8X2CQ9vNeD8zZKHdY6Igrc8IHrAdqTAMs+fgfLI6Qu+
- jIwKc9POznwPlLhTlbHf85X8gjVdGh7YkRGEkYez4BTNfURhfgmylqoKwo0p4fgd86bi5B/xUM
- gAE=
-X-IronPort-AV: E=Sophos;i="5.70,373,1574146800"; d="scan'208";a="64719401"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 28 Jan 2020 02:58:25 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 28 Jan 2020 02:58:24 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Tue, 28 Jan 2020 02:58:24 -0700
-Date: Tue, 28 Jan 2020 10:58:23 +0100
-From: "Allan W. Nielsen" <allan.nielsen@microchip.com>
-To: =?utf-8?Q?J=C3=BCrgen?= Lambrecht <j.lambrecht@televic.com>
-Message-ID: <20200128095823.limui36nes7e2hqh@lx-anielsen.microsemi.net>
+ with ESMTP id zTJvR0bvre1J for <bridge@lists.linux-foundation.org>;
+ Mon, 27 Jan 2020 15:01:46 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (mail-vi1eur05on2117.outbound.protection.outlook.com [40.107.21.117])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 9084F872E8
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Jan 2020 15:01:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qo4GFzY6LMH6WkdySjqIqXVdmVdDJmIRU23I5F7jQsqz3qGmn/ZvqKnm3iXgkIDlakQIY+E+MBqhrm6LHLmW4jA2G9oCtvB2dX4WtMuRPbDBnko9Zrp/bgSIRK+q6KVnf5K23gIAT4jJpca0KBwGqrGVXROq5RvJj2KIS/dryAgyhcUZtkCn2v64ChUV/iqPrmEjZO8p+NSGyEmAH4OjEiWUnNlVsR+D7c9vkQ/WFGBs+YGSJoVwxO59UeVymuSpXaFIJ8ElrvgSYRCpgzgNwQ+rRXG5ANbZfORczciCHrZrFaiPvi1490M23Nv9SCDKS5uxC3yJ9/N1H93dF6bReQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vfxmN6M+qSoBSMuH4LLbCunzFwNaYjkjHfOmTq+le0w=;
+ b=i580OshIyeuuukdjXcu4zp8g8TGcI6adNss2dZewFXHuUF/reOK6KIk53VCfCT5n+6TPAyZ07d0QJmom/XgUG4BaW05GHaa/vpdHULnpi7BOhv9UMUf0W5YaJSzK1wxdAGlgJLP1xN/6nNzfx6UqREcruRDlTioBTbJoopdJovOgAtUW/jdqkB3MD7j74w1BNNcNT1zLdwvZibM01l7o8KuZ6AYLOa6C/TjCA2HgRjm98r+FWkOwUynvDQrRS5hpoL+3XJRPYNYOeUntP4ULlZPdE4u23I6EQY3m3CtusDEbPVAEVejEfCGEPyBoZGfKL/orT3jNG19UCHP5HhCVPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=televic.com; dmarc=pass action=none header.from=televic.com;
+ dkim=pass header.d=televic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=televic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vfxmN6M+qSoBSMuH4LLbCunzFwNaYjkjHfOmTq+le0w=;
+ b=lBEQUSZowgJ99l3oS1zGfxQJDgGnMF3fMMhVamOtdQ4U1CjB0ImzAepACtI9//kbl7JkkVTCiTRt4sukl2NOg6+3zEuNGGF9YULnHBNgb1jyo7uy7ZU0r4UqcpNUgZ5UaV0bJV7Up9A0aDJ4aNeSGq+uVBdjfD+zxwc1D5igfLQ=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=J.Lambrecht@TELEVIC.com; 
+Received: from VI1PR07MB5085.eurprd07.prod.outlook.com (20.177.203.77) by
+ VI1PR07MB3437.eurprd07.prod.outlook.com (10.170.239.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2686.17; Mon, 27 Jan 2020 11:29:17 +0000
+Received: from VI1PR07MB5085.eurprd07.prod.outlook.com
+ ([fe80::6591:ac75:8bbf:2349]) by VI1PR07MB5085.eurprd07.prod.outlook.com
+ ([fe80::6591:ac75:8bbf:2349%5]) with mapi id 15.20.2686.019; Mon, 27 Jan 2020
+ 11:29:16 +0000
+To: Andrew Lunn <andrew@lunn.ch>
 References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
  <20200124161828.12206-7-horatiu.vultur@microchip.com>
  <20200125163504.GF18311@lunn.ch>
  <20200126132213.fmxl5mgol5qauwym@soft-dev3.microsemi.net>
  <20200126155911.GJ18311@lunn.ch>
- <13ac391c-61f5-cb77-69a0-416b0390f50d@televic.com>
- <20200127122752.g4eanjl2naazyfh3@lx-anielsen.microsemi.net>
- <8561814d-bfae-5e23-b0e8-a0e3adf800b4@televic.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
+From: =?UTF-8?Q?J=c3=bcrgen_Lambrecht?= <j.lambrecht@televic.com>
+Message-ID: <13ac391c-61f5-cb77-69a0-416b0390f50d@televic.com>
+Date: Mon, 27 Jan 2020 12:29:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <20200126155911.GJ18311@lunn.ch>
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8561814d-bfae-5e23-b0e8-a0e3adf800b4@televic.com>
-Cc: ivecera@redhat.com, Andrew Lunn <andrew@lunn.ch>, jiri@resnulli.us,
- nikolay@cumulusnetworks.com, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR07CA0022.eurprd07.prod.outlook.com
+ (2603:10a6:208:ac::35) To VI1PR07MB5085.eurprd07.prod.outlook.com
+ (2603:10a6:803:9d::13)
+MIME-Version: 1.0
+Received: from [10.40.216.140] (84.199.255.188) by
+ AM0PR07CA0022.eurprd07.prod.outlook.com (2603:10a6:208:ac::35) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2665.12 via Frontend Transport; Mon, 27 Jan 2020 11:29:15 +0000
+X-Originating-IP: [84.199.255.188]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 776a8e3e-9212-49f5-59a7-08d7a31c24a1
+X-MS-TrafficTypeDiagnostic: VI1PR07MB3437:
+X-Microsoft-Antispam-PRVS: <VI1PR07MB3437E7437BC93B1CDB48CC6BFF0B0@VI1PR07MB3437.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-Forefront-PRVS: 02951C14DC
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10019020)(4636009)(39850400004)(396003)(366004)(376002)(346002)(136003)(189003)(199004)(7416002)(4326008)(53546011)(16526019)(2616005)(66556008)(26005)(66476007)(956004)(186003)(66946007)(8676002)(5660300002)(31696002)(6486002)(478600001)(81166006)(81156014)(31686004)(86362001)(316002)(16576012)(36756003)(52116002)(2906002)(66574012)(8936002)(6916009);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR07MB3437;
+ H:VI1PR07MB5085.eurprd07.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: TELEVIC.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nH/UNwXhjzhq9raVOASj5HK3mZoragmDc5IGR/ObWknhN239fO7JFaANqn3Xiu05EWSWSg/X5gqEv/Ez947MW6PEYni8wX3AeeeExO0pLJsU16g5RnlTRLsMK4tPT5TNQTlHxEJCUf97w9ymGLVTqezqJRE/5d9fCrPkQMalGXEWv+dI3N0eYZ9JwTCWN+cKJU8Gc5moAeaVNnmhBgtGdQJ6RDWJiAA9zdNZHM0/awHYQiHkBLl2DgPricf9TAvqBMU3CywOKVEVcym1eUxDlEGkvcr6aniMomhJMK3LbZGDASGHb3PPmM/z6Z0zoEMhGC8OqS1ElNTVbty5mkk9cZcDxkGgDmwPIyI/9s5so4FSbVDV3liq0zLDbHM9UCTzjOILd6xGnHVMqPVjLIgkLlNn6iE0/Vi8UJMsInoeKV7tdBcqxewLPbQMd08+ZfMN
+X-MS-Exchange-AntiSpam-MessageData: /qgfFHnm2oj5HzKz+NZOH2Tq6GEtmLzG/6Npi11OSeMk7x5Nsm2B1EcKLFAwe7gI/vkUPa2hc+IUFYVELmbhi5yT1efqp3EZVd5rScxFx/+MtrX4/RJxdL1JBlenE5YPyipoucCUzdKbsBjOGTq3uQ==
+X-OriginatorOrg: televic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 776a8e3e-9212-49f5-59a7-08d7a31c24a1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2020 11:29:16.8008 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 68a8593e-d1fc-4a6a-b782-1bdcb0633231
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uuLyokYHCIuP/zKO41nSkCpgBkgbB/HS452rlQDoxqAZ7lt4kLoR86JIIJ8Iv1xa0RtNNpNYZ9zlqArbMILGDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB3437
+X-Mailman-Approved-At: Tue, 28 Jan 2020 10:29:14 +0000
+Cc: ivecera@redhat.com, jiri@resnulli.us, nikolay@cumulusnetworks.com,
+ netdev@vger.kernel.org, roopa@cumulusnetworks.com,
  bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
  davem@davemloft.net, UNGLinuxDriver@microchip.com,
  anirudh.venkataramanan@intel.com, jeffrey.t.kirsher@intel.com,
@@ -113,85 +132,24 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 27.01.2020 15:39, JÃ¼rgen Lambrecht wrote:
->EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->
->On 1/27/20 1:27 PM, Allan W. Nielsen wrote:
->> Hi JÃ¼rgen,
->>
->> On 27.01.2020 12:29, JÃ¼rgen Lambrecht wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>> On 1/26/20 4:59 PM, Andrew Lunn wrote:
->>>> Given the design of the protocol, if the hardware decides the OS etc
->>>> is dead, it should stop sending MRP_TEST frames and unblock the ports.
->>>> If then becomes a 'dumb switch', and for a short time there will be a
->>>> broadcast storm. Hopefully one of the other nodes will then take over
->>>> the role and block a port.
->This can probably be a configuration option in the hardware, how to fall-back.
->>
->>> In my experience a closed loop should never happen. It can make
->>> software crash and give other problems.  An other node should first
->>> take over before unblocking the ring ports. (If this is possible - I
->>> only follow this discussion halfly)
->>>
->>> What is your opinion?
->> Having loops in the network is never a good thing - but to be honest, I
->> think it is more important that we ensure the design can survive and
->> recover from loops.
->Indeed
->>
->> With the current design, it will be really hard to void loops when the
->> network boot. MRP will actually start with the ports blocked, but they
->> will be unblocked in the period from when the bridge is created and
->> until MRP is enabled. If we want to change this (which I'm not too keen
->> on), then we need to be able to block the ports while the bridge is
->> down.
->Our ring network is part of a bigger network. Loops are really not allowed.
-That is understood, and should be avoided. But I assume that switches
-which crashes is not allowed either ;-)
+On 1/26/20 4:59 PM, Andrew Lunn wrote:
+> Given the design of the protocol, if the hardware decides the OS etc
+> is dead, it should stop sending MRP_TEST frames and unblock the ports.
+> If then becomes a 'dumb switch', and for a short time there will be a
+> broadcast storm. Hopefully one of the other nodes will then take over
+> the role and block a port.
 
-We will consider if we somehow can block the ports before/after a
-user-space protocol kicks in. I can not promise anything, but we will
-see what can be done.
+In my experience a closed loop should never happen. It can make software crash and give other problems.
+An other node should first take over before unblocking the ring ports. (If this is possible - I only follow this discussion halfly)
 
->> And even if we do this, then we can not guarantee to avoid loops. Lets
->> assume we have a small ring with just 2 nodes: a MRM and a MRC. Lets
->> assume the MRM boots first. It will unblock both ports as the ring is
->> open. Now the MRC boots, and make the ring closed, and create a loop.
->> This will take some time (milliseconds) before the MRM notice this and
->> block one of the ports.
->In my view there is a bring-up and tear-down module needed. I don't
->know if it should be part of MRP or not? Probably not, so something on
->top of the mrp daemon.
-If we need this kind of policies, then I agree it should be on top of or
-out-side the user-space MRP daemon.
+What is your opinion?
 
->> But while we are at this topic, we need to add some functionality to
->> the user-space application such that it can set the priority of the MRP
->> frames. We will get that fixed.
->Indeed! In my old design I had to give high priority, else the loop was
->wrongly closed at high network load.
-Yes, I'm not surprised to hear that.
+(FYI:
+I made that mistake once doing a proof-of-concept ring design: during testing, when a "broken" Ethernet cable was "fixed" I had for a short time a loop, and then it happened often that that port of the (Marvell 88E6063) switch was blocked.  (To unblock, only solution was to bring that port down and up again, and then all "lost" packets came out in a burst.)
+That problem was caused by flow control (with pause frames), and disabling flow control fixed it, but flow-control is default on as far as I know.
+)
 
->I guess you mean the priority in the VLAN header?
->I think to remember one talked about the bride code being VLAN-agnostic.
-Yes, if it has a VLAN header (which is optional). But even without the
-VLAN header these frames needs to be classified to a high priority
-queue.
+Kind regards,
 
->>> (FYI: I made that mistake once doing a proof-of-concept ring design:
->>> during testing, when a "broken" Ethernet cable was "fixed" I had for a
->>> short time a loop, and then it happened often that that port of the
->>> (Marvell 88E6063) switch was blocked.  (To unblock, only solution was
->>> to bring that port down and up again, and then all "lost" packets came
->>> out in a burst.) That problem was caused by flow control (with pause
->>> frames), and disabling flow control fixed it, but flow-control is
->>> default on as far as I know.)
->> I see. It could be fun to see if what we have proposed so far will with
->> with such a switch.
->
->Depending on the projects I could work on it later this year (or only next year or not..)
-Sounds good - no hurry.
+Jürgen
 
-/Allan
