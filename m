@@ -1,73 +1,101 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFCD14A6E6
-	for <lists.bridge@lfdr.de>; Mon, 27 Jan 2020 16:06:27 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DFB114B21E
+	for <lists.bridge@lfdr.de>; Tue, 28 Jan 2020 10:58:35 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 151D320360;
-	Mon, 27 Jan 2020 15:06:26 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id AFA7087BD3;
+	Tue, 28 Jan 2020 09:58:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id E8ETZtXzM5Jn; Mon, 27 Jan 2020 15:06:25 +0000 (UTC)
+	with ESMTP id zy6Yec-Mbo+o; Tue, 28 Jan 2020 09:58:32 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id A5BFE20362;
-	Mon, 27 Jan 2020 15:06:25 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id EAFB587BD7;
+	Tue, 28 Jan 2020 09:58:31 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9186AC0171;
-	Mon, 27 Jan 2020 15:06:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D1ABFC0171;
+	Tue, 28 Jan 2020 09:58:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 71AA9C0171
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jan 2020 15:06:23 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 380F1C0171
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 09:58:30 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 5ED8E20362
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jan 2020 15:06:23 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 267C4857A3
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 09:58:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dfYmKD3igi15 for <bridge@lists.linux-foundation.org>;
- Mon, 27 Jan 2020 15:06:22 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
- by silver.osuosl.org (Postfix) with ESMTPS id A559D20360
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jan 2020 15:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=UvjYKQEomZljxw4yYS7NWvcMI7QwuePD0j2Ascrs53Y=; b=GIKMIgnLTgQ6+2t0UsJvhu9LRx
- hcRC1D95EQQ57+wINFyAWDsh9TjVnvFCYFKRqA7OgMyqB8DEh4htckxj9f6XHcCAmS8dHCFN6kRmF
- bQLaPtkJ0jLTiY+3jvakB3nTsoIK7QdxttYyzBKoYCiRShtCUwicd7gHRkCi5+smM0ek=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
- (envelope-from <andrew@lunn.ch>)
- id 1iw5xu-0006rM-Jy; Mon, 27 Jan 2020 16:06:14 +0100
-Date: Mon, 27 Jan 2020 16:06:14 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?J=FCrgen?= Lambrecht <j.lambrecht@televic.com>
-Message-ID: <20200127150614.GF13647@lunn.ch>
+ with ESMTP id EmyyE6EA4QKg for <bridge@lists.linux-foundation.org>;
+ Tue, 28 Jan 2020 09:58:29 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
+ [68.232.153.233])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 1BF018577A
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 09:58:29 +0000 (UTC)
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+ Allan.Nielsen@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+ envelope-from="Allan.Nielsen@microchip.com";
+ x-sender="Allan.Nielsen@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+ include:servers.mcsv.net include:mktomail.com
+ include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+ envelope-from="Allan.Nielsen@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com;
+ dkim=none (message not signed) header.i=none;
+ spf=Pass smtp.mailfrom=Allan.Nielsen@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: 3ooP4EUi7o1dd/qLIe/RQWggY6ulveshOV6z0oFTdLuv+xQl1pxCsPDcLnaH+oRnFtC3URKFXe
+ 7zttOz4rd1/6TVfswOU28bHNKukny7Y57ki9GnCrgjYxIBMQ4MpinzUtc4zu/3HhL3iVPUH+OS
+ digIMVKDca5tLyVB4JSJvObkOPqNl4I8X2CQ9vNeD8zZKHdY6Igrc8IHrAdqTAMs+fgfLI6Qu+
+ jIwKc9POznwPlLhTlbHf85X8gjVdGh7YkRGEkYez4BTNfURhfgmylqoKwo0p4fgd86bi5B/xUM
+ gAE=
+X-IronPort-AV: E=Sophos;i="5.70,373,1574146800"; d="scan'208";a="64719401"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 28 Jan 2020 02:58:25 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 28 Jan 2020 02:58:24 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Tue, 28 Jan 2020 02:58:24 -0700
+Date: Tue, 28 Jan 2020 10:58:23 +0100
+From: "Allan W. Nielsen" <allan.nielsen@microchip.com>
+To: =?utf-8?Q?J=C3=BCrgen?= Lambrecht <j.lambrecht@televic.com>
+Message-ID: <20200128095823.limui36nes7e2hqh@lx-anielsen.microsemi.net>
 References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
  <20200124161828.12206-7-horatiu.vultur@microchip.com>
  <20200125163504.GF18311@lunn.ch>
  <20200126132213.fmxl5mgol5qauwym@soft-dev3.microsemi.net>
  <20200126155911.GJ18311@lunn.ch>
- <20200127110418.f7443ecls6ih2fwt@lx-anielsen.microsemi.net>
- <c5733ddb-a837-b866-54bf-c631baf36c54@televic.com>
+ <13ac391c-61f5-cb77-69a0-416b0390f50d@televic.com>
+ <20200127122752.g4eanjl2naazyfh3@lx-anielsen.microsemi.net>
+ <8561814d-bfae-5e23-b0e8-a0e3adf800b4@televic.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c5733ddb-a837-b866-54bf-c631baf36c54@televic.com>
-Cc: ivecera@redhat.com, jiri@resnulli.us, nikolay@cumulusnetworks.com,
- netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+In-Reply-To: <8561814d-bfae-5e23-b0e8-a0e3adf800b4@televic.com>
+Cc: ivecera@redhat.com, Andrew Lunn <andrew@lunn.ch>, jiri@resnulli.us,
+ nikolay@cumulusnetworks.com, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
  bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
  davem@davemloft.net, UNGLinuxDriver@microchip.com,
- anirudh.venkataramanan@intel.com,
- "Allan W. Nielsen" <allan.nielsen@microchip.com>, jeffrey.t.kirsher@intel.com,
+ anirudh.venkataramanan@intel.com, jeffrey.t.kirsher@intel.com,
  olteanv@gmail.com, Horatiu Vultur <horatiu.vultur@microchip.com>
 Subject: Re: [Bridge] [RFC net-next v3 06/10] net: bridge: mrp: switchdev:
  Extend switchdev API to offload MRP
@@ -85,38 +113,85 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jan 27, 2020 at 03:26:38PM +0100, Jürgen Lambrecht wrote:
-> On 1/27/20 12:04 PM, Allan W. Nielsen wrote:
-> 
->             > How do you handle the 'headless chicken' scenario? User space
->             tells
->             > the port to start sending MRP_Test frames. It then dies. The
->             hardware
-> 
-> Andrew, I am a bit confused here - maybe I missed an email-thread, I'm sorry
-> then.
-> 
-> In previous emails you and others talked about hardware support to send packets
-> (inside the switch). But somebody also talked about data-plane and
-> control-plane (about STP in-kernel being a bad idea), and that data-plane is
-> in-kernel, and control plane is a mrp-daemon (in user space).
-> And in my mind, the "hardware" you mention is a frame-injector and can be both
-> real hardware and a driver in the kernel.
-> 
-> Do I see it right?
+On 27.01.2020 15:39, JÃ¼rgen Lambrecht wrote:
+>EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>
+>On 1/27/20 1:27 PM, Allan W. Nielsen wrote:
+>> Hi JÃ¼rgen,
+>>
+>> On 27.01.2020 12:29, JÃ¼rgen Lambrecht wrote:
+>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>
+>>> On 1/26/20 4:59 PM, Andrew Lunn wrote:
+>>>> Given the design of the protocol, if the hardware decides the OS etc
+>>>> is dead, it should stop sending MRP_TEST frames and unblock the ports.
+>>>> If then becomes a 'dumb switch', and for a short time there will be a
+>>>> broadcast storm. Hopefully one of the other nodes will then take over
+>>>> the role and block a port.
+>This can probably be a configuration option in the hardware, how to fall-back.
+>>
+>>> In my experience a closed loop should never happen. It can make
+>>> software crash and give other problems.  An other node should first
+>>> take over before unblocking the ring ports. (If this is possible - I
+>>> only follow this discussion halfly)
+>>>
+>>> What is your opinion?
+>> Having loops in the network is never a good thing - but to be honest, I
+>> think it is more important that we ensure the design can survive and
+>> recover from loops.
+>Indeed
+>>
+>> With the current design, it will be really hard to void loops when the
+>> network boot. MRP will actually start with the ports blocked, but they
+>> will be unblocked in the period from when the bridge is created and
+>> until MRP is enabled. If we want to change this (which I'm not too keen
+>> on), then we need to be able to block the ports while the bridge is
+>> down.
+>Our ring network is part of a bigger network. Loops are really not allowed.
+That is understood, and should be avoided. But I assume that switches
+which crashes is not allowed either ;-)
 
-Hi Jürgen
+We will consider if we somehow can block the ports before/after a
+user-space protocol kicks in. I can not promise anything, but we will
+see what can be done.
 
-It i still unclear where the MRP_Test frames should be generated,
-forward and consumed, either in kernel, or in user space.
+>> And even if we do this, then we can not guarantee to avoid loops. Lets
+>> assume we have a small ring with just 2 nodes: a MRM and a MRC. Lets
+>> assume the MRM boots first. It will unblock both ports as the ring is
+>> open. Now the MRC boots, and make the ring closed, and create a loop.
+>> This will take some time (milliseconds) before the MRM notice this and
+>> block one of the ports.
+>In my view there is a bring-up and tear-down module needed. I don't
+>know if it should be part of MRP or not? Probably not, so something on
+>top of the mrp daemon.
+If we need this kind of policies, then I agree it should be on top of or
+out-side the user-space MRP daemon.
 
-The userspace RSTP daemon generates and consumes all the BPDUs in
-userspace. But BPDUs are never forwarded. However MRP_Test frames are
-forwarded by client nodes. Are the MRP_Test frames then part of the
-data plane in a client?
+>> But while we are at this topic, we need to add some functionality to
+>> the user-space application such that it can set the priority of the MRP
+>> frames. We will get that fixed.
+>Indeed! In my old design I had to give high priority, else the loop was
+>wrongly closed at high network load.
+Yes, I'm not surprised to hear that.
 
-What i think is clear is that the state machine is in user space.
+>I guess you mean the priority in the VLAN header?
+>I think to remember one talked about the bride code being VLAN-agnostic.
+Yes, if it has a VLAN header (which is optional). But even without the
+VLAN header these frames needs to be classified to a high priority
+queue.
 
-For the rest, we are still exploring possibilities.
+>>> (FYI: I made that mistake once doing a proof-of-concept ring design:
+>>> during testing, when a "broken" Ethernet cable was "fixed" I had for a
+>>> short time a loop, and then it happened often that that port of the
+>>> (Marvell 88E6063) switch was blocked.  (To unblock, only solution was
+>>> to bring that port down and up again, and then all "lost" packets came
+>>> out in a burst.) That problem was caused by flow control (with pause
+>>> frames), and disabling flow control fixed it, but flow-control is
+>>> default on as far as I know.)
+>> I see. It could be fun to see if what we have proposed so far will with
+>> with such a switch.
+>
+>Depending on the projects I could work on it later this year (or only next year or not..)
+Sounds good - no hurry.
 
-    Andrew
+/Allan
