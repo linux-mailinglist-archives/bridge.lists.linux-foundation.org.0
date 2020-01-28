@@ -2,67 +2,82 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCCFD14B295
-	for <lists.bridge@lfdr.de>; Tue, 28 Jan 2020 11:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B72014B269
+	for <lists.bridge@lfdr.de>; Tue, 28 Jan 2020 11:17:14 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id E1A0120501;
-	Tue, 28 Jan 2020 10:29:24 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 50EEA20392;
+	Tue, 28 Jan 2020 10:17:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id u9kogWpmxGpu; Tue, 28 Jan 2020 10:29:22 +0000 (UTC)
+	with ESMTP id dnAe-IUeGhqb; Tue, 28 Jan 2020 10:17:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 10D861FF59;
-	Tue, 28 Jan 2020 10:29:18 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id EC8212034F;
+	Tue, 28 Jan 2020 10:17:09 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EABCFC0171;
-	Tue, 28 Jan 2020 10:29:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D0965C0171;
+	Tue, 28 Jan 2020 10:17:09 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C4374C0171
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:11:06 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 624BBC0171
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:17:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id B292481E40
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:11:06 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 573E2857A4
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:17:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wKDFiwcKQF_I for <bridge@lists.linux-foundation.org>;
- Tue, 28 Jan 2020 10:11:05 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com
- (mail-eopbgr60091.outbound.protection.outlook.com [40.107.6.91])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 465A481E25
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:11:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I3BPANtDab9JoLtXokUF31PqykxLmJ9icKtGrxrW/IcE1xvY6iQgo5YUxlpihH5CVqd9dAC9E/7ADVqvb21Gsdc5Zv3uvu0FANO26dLZsMPCYQcdO3kQL+bI4NTVte4YVkt+7hOdWq0AAWa4DwdUIoN2toWxTb91IcyQsFQDCZ42GeOnNJvkrd5+yJEm05Ac3+wYjVm45WSLhMPlu0dvgm+Jsc9xouYGjcpIArq8aSZ+ambxcrVEUE+6H86tXD9dcfovgoelHHg2oQnh+RDcwMLgqUZKEZLigW9nk4MnQdNTuWjqD7gubXKgRRss9We19Xmk9gQTJcMemp/4k1eJxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L0DMqGlTKm8HHRe49C+g1orF4N2RnDiTm6X2wJTIsjI=;
- b=deXNNTH8YZTscawF8YXf2bwn6lYR/jqJ/kRW5Prj0c8454S88osK0m+XOxxYUUyRdrqh5Q1NY/Wjsae6kfz/wizQjepMEK+oz4k70LZXtK801jobnhTMFbSFMzsjj8H4DsQ3kqJGz1IsuQcfLWDTw8ZpJZfYUUnO+scEHf80ViNttz+/1AkTzncnYFxKZLSSqdlEsafcjV5iGqnLQjD0PSs1G6sQAKgMbN1cgeVymMgpZjRMW/jaNP5V8xSDrCfu5EPCfBKHjqiKOYCl+U1WrhR4cTMbzDr1gQR8qcWwarumI1ulMmA9Ej3vPiRSEwtX+XXT250NJNIcNn2NVVBDLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=televic.com; dmarc=pass action=none header.from=televic.com;
- dkim=pass header.d=televic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=televic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L0DMqGlTKm8HHRe49C+g1orF4N2RnDiTm6X2wJTIsjI=;
- b=NmTtoeGOjdeqt32BRNT6LQbo05Hr/7wDh8H2bwjDTQOLnNRbYow0SCAIvKmj3Dkw46umZAbL9aPZliUdYe02aY19LkWhczmMih33e622PEE0crCWHXJISSsN4lVBSVUjoLFWaEbLwBGgZ9SdijgCgCgMqgUaQOC02oFL3hLI3Zk=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=J.Lambrecht@TELEVIC.com; 
-Received: from VI1PR07MB5085.eurprd07.prod.outlook.com (20.177.203.77) by
- VI1PR07MB3438.eurprd07.prod.outlook.com (10.170.238.152) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.18; Tue, 28 Jan 2020 09:56:24 +0000
-Received: from VI1PR07MB5085.eurprd07.prod.outlook.com
- ([fe80::6591:ac75:8bbf:2349]) by VI1PR07MB5085.eurprd07.prod.outlook.com
- ([fe80::6591:ac75:8bbf:2349%5]) with mapi id 15.20.2686.019; Tue, 28 Jan 2020
- 09:56:24 +0000
-From: =?UTF-8?Q?J=c3=bcrgen_Lambrecht?= <j.lambrecht@televic.com>
-To: Andrew Lunn <andrew@lunn.ch>,
- "Allan W. Nielsen" <allan.nielsen@microchip.com>
+ with ESMTP id cON3RsxqWVdT for <bridge@lists.linux-foundation.org>;
+ Tue, 28 Jan 2020 10:17:07 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
+ [216.71.150.166])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id A1C0285585
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:17:07 +0000 (UTC)
+Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
+ Allan.Nielsen@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+ envelope-from="Allan.Nielsen@microchip.com";
+ x-sender="Allan.Nielsen@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+ include:servers.mcsv.net include:mktomail.com
+ include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa5.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+ envelope-from="Allan.Nielsen@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa5.microchip.iphmx.com;
+ dkim=none (message not signed) header.i=none;
+ spf=Pass smtp.mailfrom=Allan.Nielsen@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: 9jdNgCZGuP6bJohSpAGjTFqulzRwrCR6WykVri09mT96SVtGibejsxkw6Y5OJmjLqei5kFDQfK
+ aGJN429epJRrfeu6OqgZ+95w6Qyz9XoSqdSZPIS8ekKn4VvXxB5s05bbqaz3Wk0dn5HcYtTdLk
+ Hyo6Ldu153cVwziRkmLI81CE9JhadQQO/K6yu076Ec6eeq63okYRQaBEo9sgQafVIT7/ncmYbt
+ p3EMGwpsawXo51xKFlWfZ30LCpga72VxRTuWm+AQr0sAHQEikD2ZZNEFCmMp0cppmP+ESzKBH5
+ p6M=
+X-IronPort-AV: E=Sophos;i="5.70,373,1574146800"; d="scan'208";a="63312956"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 28 Jan 2020 03:17:07 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 28 Jan 2020 03:17:06 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Tue, 28 Jan 2020 03:17:07 -0700
+Date: Tue, 28 Jan 2020 11:17:04 +0100
+From: "Allan W. Nielsen" <allan.nielsen@microchip.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Message-ID: <20200128101704.kjqok4lvpgo73pzz@lx-anielsen.microsemi.net>
 References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
  <20200124161828.12206-10-horatiu.vultur@microchip.com>
  <20200125161615.GD18311@lunn.ch>
@@ -70,50 +85,11 @@ References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
  <20200126171251.GK18311@lunn.ch>
  <20200127105746.i2txggfnql4povje@lx-anielsen.microsemi.net>
  <20200127134053.GG12816@lunn.ch>
-Message-ID: <eac22f69-94ae-2a36-f974-9aa840ac9bfc@televic.com>
-Date: Tue, 28 Jan 2020 10:56:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-In-Reply-To: <20200127134053.GG12816@lunn.ch>
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AM0PR0202CA0018.eurprd02.prod.outlook.com
- (2603:10a6:208:1::31) To VI1PR07MB5085.eurprd07.prod.outlook.com
- (2603:10a6:803:9d::13)
 MIME-Version: 1.0
-Received: from [10.40.216.140] (84.199.255.188) by
- AM0PR0202CA0018.eurprd02.prod.outlook.com (2603:10a6:208:1::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2665.21 via Frontend
- Transport; Tue, 28 Jan 2020 09:56:24 +0000
-X-Originating-IP: [84.199.255.188]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d8de529b-b420-422e-8c5f-08d7a3d855ff
-X-MS-TrafficTypeDiagnostic: VI1PR07MB3438:
-X-Microsoft-Antispam-PRVS: <VI1PR07MB343896DDC73644AFE14C76E8FF0A0@VI1PR07MB3438.eurprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 029651C7A1
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10019020)(4636009)(136003)(39850400004)(396003)(376002)(366004)(346002)(199004)(189003)(31686004)(2906002)(6486002)(26005)(186003)(53546011)(31696002)(16526019)(86362001)(956004)(2616005)(7416002)(81156014)(81166006)(8676002)(8936002)(66574012)(36756003)(5660300002)(52116002)(316002)(66476007)(66946007)(66556008)(4326008)(16576012)(478600001)(110136005);
- DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR07MB3438;
- H:VI1PR07MB5085.eurprd07.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-Received-SPF: None (protection.outlook.com: TELEVIC.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b67YXvIqJv5xEm6JQRhGq61ZkUa0DCCyvacPFF1hSpUVQQaDgSXqumkPRFJPPVKLh73ZPNOzSb0MUf+yVWpTGJjl5QAzooeCVgT0HY432F9MsHjTmwqxu8sIoVZBYGtP2sgHsTLaKJWtkq80Yt17gUxN0c870t4u6NjmneScIxrgI1je8sHhgCejnFyTsWEoEM1UVyx/rtkpZYbYUuEbXhsk2x7JrOEdRZ09qPYXQfsvdvC6PhvTZlVBUsXY88IbTwP5L7H7Dgvb8CPYM0tIOD1c+bnMnctR+SHMDYnIatHTno9uaq9Q8z70KH2YlC78wiT8y96CUZJSEwUYcfT3cPzMiWfH2brtfDKsizlROldN0quiqvgCtEHg0fxSRPn08a+9BFuxMZVCiNnmXpdsfNF0Pyz5zMSONjqq0rsj2WnCZJMtTXizdSGxAJM8TMN3
-X-MS-Exchange-AntiSpam-MessageData: td45fFvtkblVDbDIBXy3/Gf1jCzTonkftdW9G9ifDe/g13rIskgHkcPzFlKoFr2QYd1sNDSFYsu7R9w9w/cBV0A4p28ihhDeKOZ/Gh2PmnJfnFNKL42ize8jKywav3KFJ8MUOj88IBxS4b2E4r9Jug==
-X-OriginatorOrg: televic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8de529b-b420-422e-8c5f-08d7a3d855ff
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2020 09:56:24.8868 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 68a8593e-d1fc-4a6a-b782-1bdcb0633231
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EvV7q3kcrxTNsBa50Tf5Dq7CRGULcfxN6wZjMGJrqsvttgwG0UIHWv5d3AxY0mF2lAmFXVts5B/6LVHaYg2OwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB3438
-X-Mailman-Approved-At: Tue, 28 Jan 2020 10:29:14 +0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200127134053.GG12816@lunn.ch>
 Cc: ivecera@redhat.com, jiri@resnulli.us, nikolay@cumulusnetworks.com,
  netdev@vger.kernel.org, roopa@cumulusnetworks.com,
  bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
@@ -136,26 +112,103 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 1/27/20 2:40 PM, Andrew Lunn wrote:
+On 27.01.2020 14:40, Andrew Lunn wrote:
+>EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>
+>> > 'Thinking allowed' here.
+>> >
+>> >     +------------------------------------------+
+>> >     |                                          |
+>> >     +-->|H1|<---------->|H2|<---------->|H3|<--+
+>> >     eth0    eth1    eth0    eth1    eth0    eth1
+>> >      ^
+>> >      |
+>> >   Blocked
+>> >
+>> >
+>> > There are three major classes of user case here:
+>> >
+>> > 1) Pure software solution
+>> > You need the software bridge in the client to forward these frames
+>> > from the left side to the right side.
+>
+>> As far as I understand it is not the bridge which forward these frames -
+>> it is the user-space tool. This was to put as much functionality in
+>> user-space and only use the kernel to configure the HW. We can (and
+>> should) discuss if this is the right decision.
+>
+>So i need to flip the point around. How does the software switch know
+>not to forward the frames? Are you adding an MDB?
+In the current implementation (patch v3) this is done here:
+https://github.com/microchip-ung/mrp/blob/patch-v3/kernel-patches/v3-0009-net-bridge-mrp-Integrate-MRP-into-the-bridge.patch#L112
+
+We simply ask the bridge not to forward any MRP frames, on MRP enabled
+ports, and let "someone" else do that.
+
+>> We would properly have better performance if we do this in kernel-space.
+>
+>Yes, that is what i think. And if you can do it without any additional
+>code, using the forwarding tables, so much the better.
+I understand the motivation of using the existing forwarding mechanism,
+but I do not think we have all the hooks needed. But we can certainly
+limit the impact on the existing code as much as possible.
+
+>> BTW: It is not only from left to right, it is also from right to left.
+>> The MRM will inject packets on both ring ports, and monitor both.
+>
+>Using the same MAC address in both directions? I need to think what
+>that implies for MDB entries. It probably just works, since you never
+>flood back out the ingress port.
+Seems to work fine :-D
+
 >> Again, I do not know how other HW is designed, but all the SOC's we are
 >> working with, does allow us to add a TCAM rule which can redirect these
 >> frames to the CPU even on a blocked port.
-> It is not in scope for what you are doing, but i wonder how we
-> describe this in a generic Linux way? And then how we push it down to
-> the hardware?
 >
-> For the Marvell Switches, it might be possible to do this without the
-> TCAM. You can add forwarding DB entries marked as Management. It is
-> unclear if this overrides the blocked state, but it would be a bit odd
-> if it did not.
-A MGMT frame does override the blocked state according the the datasheet.
-And any MAC address can be loaded, not only 01:80:C2:00:00:0x (802.1D) and 01:80:C2:00:00:2x (GARP). Then the ATU is used instead of something specialized.
-(referring to Andrew's email of 20200126 6:12 PM)
-(I only checked again 88E6250/88E6220/88E6071/88E6070/88E6020 Functional Specification)
+>It is not in scope for what you are doing, but i wonder how we
+>describe this in a generic Linux way? And then how we push it down to
+>the hardware?
+>
+>For the Marvell Switches, it might be possible to do this without the
+>TCAM. You can add forwarding DB entries marked as Management. It is
+>unclear if this overrides the blocked state, but it would be a bit odd
+>if it did not.
+Based on this, and also on the input from JÃ¼rgen, I think there is a
+good chnage we can make this work for existing silicon from several
+vendors.
 
+>> > You could avoid this by adding MDB entries to the bridge. However,
+>> > this does not scale to more then one ring.
+>> I would prefer a solution where the individual drivers can do what is
+>> best on the given HW.
+>The nice thing about adding MDB is that it is making use of the
+>software bridge facilities. In general, the software bridge and
+>hardware bridges are pretty similar. If you can solve the problem
+>using generic software bridge features, not additional special cases
+>in code, you have good chance of being able to offload it to a
+>hardware bridge which is not MRP aware. The switchdev API for MRP
+>specific features should then allow you to make use of any additional
+>features the hardware might have.
+Yes, but the issues in using the MDB API for this is that it does not
+allow to look at source ports, and it does not allow to update the
+priority of the frames.
 
-Kind regards,
+>> Yes, the solution Horatiu has chosen, is not to forward MRP frames,
+>> received in MRP ring ports at all. This is done by the user-space tool.
+>>
+>> Again, not sure if this is the right way to do it, but it is what patch
+>> v3 does.
+>>
+>> The alternative to this would be to learn the bridge how to forward MRP
+>> frames when it is a MRC. The user-space tool then never needs to do
+>> this, it know that the kernel will take care of this part (either in SW
+>> or in HW).
+>I think that should be considered. I'm not saying it is the best way,
+>just that some thought should be put into it to figure out what it
+>actually implies.
+Sounds good - I will try to explain and illustrate this a bit better,
+such that we all have the same understanding of the problem we need to
+solve.
 
-Jürgen
-
+/Allan
 
