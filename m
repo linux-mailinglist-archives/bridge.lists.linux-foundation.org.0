@@ -1,123 +1,60 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC0B914B2B6
-	for <lists.bridge@lfdr.de>; Tue, 28 Jan 2020 11:35:44 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D191160527
+	for <lists.bridge@lfdr.de>; Sun, 16 Feb 2020 18:42:19 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 38C3C846C0;
-	Tue, 28 Jan 2020 10:35:43 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id EF52A87368;
+	Sun, 16 Feb 2020 17:42:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NIE7hR2AoQqm; Tue, 28 Jan 2020 10:35:42 +0000 (UTC)
+	with ESMTP id vAdyDBz-TWWX; Sun, 16 Feb 2020 17:42:16 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 72BA18401C;
-	Tue, 28 Jan 2020 10:35:42 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id BC7258733F;
+	Sun, 16 Feb 2020 17:42:16 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 497D6C1D85;
-	Tue, 28 Jan 2020 10:35:42 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 73504C1D8E;
+	Sun, 16 Feb 2020 17:42:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 70CA0C0171
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:35:41 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 05468C0171
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Feb 2020 15:07:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 5C26D84B26
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:35:41 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id E838D84798
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Feb 2020 15:06:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ORDiksHvDtk3 for <bridge@lists.linux-foundation.org>;
- Tue, 28 Jan 2020 10:35:40 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (mail-vi1eur05on2139.outbound.protection.outlook.com [40.107.21.139])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id CC44784BB6
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jan 2020 10:35:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FhnPIUd4pf4wcumgJxm/7EaTrviDIJ+5zBTdpfSxed7wfeiSi3NJyyQ1Ow+fS1bDclLpXuiZ+Siw4AvHSWomg61p8xolc+KTN+mmwqP8QvR+7ZWyXbgg3CPpoXt+sLdQxM4wAQhT5rtUtjbv5hp/q9d6ukMLSuhxUillj0nMjQvJxc9CyMVmLtoofUqarm2tAZ0WB6rgQQq1iO5yreo1I3kGTqX3u9ZmRTKq5eSJNeFjR+iWWDNGldgmvQwXAV//J1plyibnHbsQ/6yVE4iLuR1P2JHbsPrpLbGqiS9HiDCyghH4iSoVw+8fCuatEaJjOoABo5W2QuRBSphKvZTYmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0hP7bh6/USdKlEIf1iYj5wl/My/uWSKPZYQVGiy6lOU=;
- b=E5HHyiMuL+WbL5l/jm85tDXLJUaeqMpOh6OKmiqm1U2cwjCvcbd0GyXxay75mgCPcybZcuHi/o/AHSsWvXxrN4/+8p/EONj/YvHhpfdPqtXaph/51TA6Ox0ml2VE7o5/fM+4Z2kuZ5sFw6/isdYh8/0ZRHULutVXkFtK+F90A4eYk4GMA15sYWCXOPl9XEFu8QR5Qif+6SxBlhoRmsKUpHwS1l6siUECAH8lZr6AsYcaY/t1dSGlTSyzBB+99+41lKDdtUtW/6UeFvv0a6BlrgtuAdXzXVg781e7IXtBOuUxvgfk3Xg8choWKX50UfSC/3B173jD1ExW40UxDH5uzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=televic.com; dmarc=pass action=none header.from=televic.com;
- dkim=pass header.d=televic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=televic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0hP7bh6/USdKlEIf1iYj5wl/My/uWSKPZYQVGiy6lOU=;
- b=EKbvIpKwRFnrquktAaU/1L6PolaVrC4vJJmOsGoZ2GfwZyRCRkPH8cdckjBH3zOuDfwe6l0lNsC3WECSHE15uxx/T9GZQ3N4KwyWgGwoc0I2DKTC2Q9cbcor0sLdzkbHm6PRr0BzUa8X4uvm+OFW6XmbsHR9hOoYXmJjhUaZ7PY=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=J.Lambrecht@TELEVIC.com; 
-Received: from VI1PR07MB5085.eurprd07.prod.outlook.com (20.177.203.77) by
- VI1PR07MB4269.eurprd07.prod.outlook.com (20.176.2.16) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2686.15; Tue, 28 Jan 2020 10:35:36 +0000
-Received: from VI1PR07MB5085.eurprd07.prod.outlook.com
- ([fe80::6591:ac75:8bbf:2349]) by VI1PR07MB5085.eurprd07.prod.outlook.com
- ([fe80::6591:ac75:8bbf:2349%5]) with mapi id 15.20.2686.019; Tue, 28 Jan 2020
- 10:35:36 +0000
-To: Vinicius Costa Gomes <vinicius.gomes@intel.com>,
- "Allan W. Nielsen" <allan.nielsen@microchip.com>
-References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
- <20200124203406.2ci7w3w6zzj6yibz@lx-anielsen.microsemi.net>
- <87zhecimza.fsf@linux.intel.com>
- <20200125094441.kgbw7rdkuleqn23a@lx-anielsen.microsemi.net>
- <87imkz1bhq.fsf@intel.com>
-From: =?UTF-8?Q?J=c3=bcrgen_Lambrecht?= <j.lambrecht@televic.com>
-Message-ID: <83f98a49-d5b6-c5d8-9ca3-4c5eea8fb312@televic.com>
-Date: Tue, 28 Jan 2020 11:35:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-In-Reply-To: <87imkz1bhq.fsf@intel.com>
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AM6P193CA0128.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:209:85::33) To VI1PR07MB5085.eurprd07.prod.outlook.com
- (2603:10a6:803:9d::13)
+ with ESMTP id Nv5TtELflbaQ for <bridge@lists.linux-foundation.org>;
+ Mon, 10 Feb 2020 15:06:57 +0000 (UTC)
+X-Greylist: delayed 00:05:40 by SQLgrey-1.7.6
+Received: from thurn.uni-konstanz.de (thurn.uni-konstanz.de [134.34.240.38])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id AB7A182752
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Feb 2020 15:06:56 +0000 (UTC)
+Received: from omicron.kim.uni-konstanz.de (omicron.kim.uni-konstanz.de
+ [134.34.240.43])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by thurn.uni-konstanz.de (Postfix) with ESMTPS id 48GTcn4z5dzRM
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Feb 2020 16:01:13 +0100 (CET)
+Received: from thumbnail.fritz.box (cable-dynamic-87-245-127-186.shinternet.ch
+ [87.245.127.186])
+ by omicron.kim.uni-konstanz.de (Postfix) with ESMTPSA id 7FCDA8B0
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Feb 2020 16:00:58 +0100 (CET)
+Message-ID: <bce2e3fb5e6061a926250b942a958f992b0d85bc.camel@uni-konstanz.de>
+From: Marcel Waldvogel <marcel.waldvogel@uni-konstanz.de>
+To: bridge@lists.linux-foundation.org
+Date: Mon, 10 Feb 2020 16:00:49 +0100
+Content-Type: multipart/signed; micalg="sha-256";
+ protocol="application/pkcs7-signature"; 
+ boundary="=-azVBy5hFr493HO3LGIVb"
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-Received: from [10.40.216.140] (84.199.255.188) by
- AM6P193CA0128.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:85::33) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2665.22 via Frontend Transport; Tue, 28 Jan 2020 10:35:35 +0000
-X-Originating-IP: [84.199.255.188]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8ab37b3f-a9c9-4e59-455f-08d7a3ddcf93
-X-MS-TrafficTypeDiagnostic: VI1PR07MB4269:
-X-Microsoft-Antispam-PRVS: <VI1PR07MB426988D5BA313C7049945D8BFF0A0@VI1PR07MB4269.eurprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-Forefront-PRVS: 029651C7A1
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10019020)(4636009)(396003)(346002)(136003)(39850400004)(366004)(376002)(189003)(199004)(81166006)(8676002)(31696002)(81156014)(16526019)(186003)(31686004)(8936002)(53546011)(16576012)(7416002)(316002)(478600001)(52116002)(86362001)(966005)(26005)(110136005)(36756003)(66574012)(956004)(2616005)(4326008)(66946007)(5660300002)(2906002)(66556008)(66476007)(6486002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR07MB4269;
- H:VI1PR07MB5085.eurprd07.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: TELEVIC.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bVACnxu7rteSkYplAOg17zmvziUA7q9PD/bJhIPjLCnsweea7CQ5OvTMr6/dWbA4bQUPGAW3ehQQKm36yirBr3hrlm2IgEe+1+UZ0kXwp/RsuyI7AVQFXmcB9wE5nWimVYlAcrqexlyGWwW87w+FvfY0cwvz2qStbLvR81O4qAIjshktA14PeX+yW83OcFDLGNTuVTduQQG26+Z+j2HXx5o/4ZySeh6V6JCXiaCwRgWkJKqfEiTWCLAbNN3I06c2AsxdVeFhKCNVCKAZg0sRRf8RyogzrRrpfFcNLwdLaXb5PQPuSgyb2d0cH4KoUW+ZThloMPig6rs915Lm3rp6pOydxZTb1/JMjmFS3cAj7XtYSbBo+EpbgXHqG5mJpvA8KK6c+u13YoDIWqDvc0Yc40FsuyU21jQ1wLGQUzpb4FH2bJsBFJ/I6yARC/r1kDztopC61eRNuq+YicBncRj3OR00cUxJmWcYmr/J+e97tokyTrY9YWoiDgSLuJ/u5jIyFxzCYbcFjTT8A8SWVnptKA==
-X-MS-Exchange-AntiSpam-MessageData: qBXb6zTzWKLBEmmLqCWTrrFPZQS+eQ//Ga0quMoLNcrtzL9qoNMw0hmPM76jP0Zbb7lQsFj4w5UYntTH5w6U7hHBN5LCK+mqWDaferGhqmiQOrCrP2TJv5FhrOFpC3LKQGxfdj2gPj1n0bIEnqMVAA==
-X-OriginatorOrg: televic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ab37b3f-a9c9-4e59-455f-08d7a3ddcf93
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2020 10:35:36.4008 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 68a8593e-d1fc-4a6a-b782-1bdcb0633231
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uKTR1UiQU4wA9/IveeVaX6YNgtTJCLh0NXNUr4FZs9+nF6ToQ1Lqko6RX/TurRO8RY2drA0Pk+hlYZK9Ofbs0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB4269
-Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
- nikolay@cumulusnetworks.com, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- davem@davemloft.net, UNGLinuxDriver@microchip.com,
- anirudh.venkataramanan@intel.com, jeffrey.t.kirsher@intel.com,
- olteanv@gmail.com, Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: Re: [Bridge] [RFC net-next v3 00/10] net: bridge: mrp: Add support
- for Media Redundancy Protocol (MRP)
+X-Mailman-Approved-At: Sun, 16 Feb 2020 17:42:14 +0000
+Subject: [Bridge] Support for long interface names
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -132,62 +69,174 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 1/25/20 10:18 PM, Vinicius Costa Gomes wrote:
-> CAUTION: This Email originated from outside Televic. Do not click links or open attachments unless you recognize the sender and know the content is safe.
->
->
-> Hi,
->
-> "Allan W. Nielsen" <allan.nielsen@microchip.com> writes:
->
->> Hi Vinicius,
->>
->> On 24.01.2020 13:05, Vinicius Costa Gomes wrote:
->>> I have one idea and one question.
->> Let me answer the question before dicussing the idea.
->>
->>> The question that I have is: what's the relation of IEC 62439-2 to IEEE
->>> 802.1CB?
->> HSR and 802.1CB (often called FRER - Frame Replication and Elimination
->> for Reliability) shares a lot of functionallity. It is a while since I
->> read the 802.1CB standard, and I have only skimmed the HSR standard, but
->> as far as I understand 802.1CB is a super set of HSR. Also, I have not
->> studdied the HSR implementation.
->> Both HSR and 802.1CB replicate the frame and eliminate the additional
->> copies. If just 1 of the replicated fraems arrives, then higher layer
->> applications will not see any traffic lose.
->>
->> MRP is different, it is a ring protocol, much more like ERPS defined in
->> G.8032 by ITU. Also, MRP only make sense in switches, it does not make
->> sense in a host (like HSR does).
->>
->> [snip MPR explanation]
->>
->> Sorry for the long explanation, but it is important to understand this
->> when discussion the design.
-> Not at all, thanks a lot. Now it's clear to me that MRP and 802.1CB are
-> really different beasts, with different use cases/limitations:
->
->  - MRP: now that we have a ring, let's break the loop, and use the
->    redudancy provided by the ring to detect the problem and "repair" the
->    network if something bad happens;
-indeed. MRP is IEC 62439-2
->
->  - 802.1CB: now that we have a ring, let's send packets through
->    two different paths, and find a way to discard duplicated ones, so
->    even if something bad happens the packet will reach its destination;
 
-Not exactly, 802.1CB is independent of the network layout, according to the abstract on https://ieeexplore.ieee.org/document/8091139.
+--=-azVBy5hFr493HO3LGIVb
+Content-Type: multipart/alternative; boundary="=-CMJkvL+MJGbs24OVz8Wf"
 
-The IEC 62439-3 standard mentions 2 network layouts: 2 parallel paths and a ring:
 
-- IEC 62439-3.4 Parallel Redundancy Protocol (PRP): this runs on 2 separated parallel paths in the network
+--=-CMJkvL+MJGbs24OVz8Wf
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-- IEC 62439-3.5 HSR (High availability seamless redundancy): this runs on a ring: each host sends all data in 2 directions, and when it receives its own data back, it discards it (to avoid a loop).
+Hi,
+I've added support for long bridge interface names (such as"br-
+0081a64f416f") to "brctl show" (long physical interface names arenot a
+problem there).
+Please find a branch with the commit at=20
+https://github.com/MarcelWaldvogel/bridge-utils/tree/long-ifnames
 
-(and it is better to implement IEEE, because the standard costs only 151$, and the IEC ones cost 2x410$)
+-Marcel
+--=20
+Beste Gr=C3=BC=C3=9Fe,
 
-Kind regards,
+-Marcel Waldvogel
+University of Konstanz
+Distributed Systems Laboratory
+Efficient Secure and Private Collaboration
 
-Jürgen
+--=-CMJkvL+MJGbs24OVz8Wf
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr"><head></head><body style=3D"text-align:left; direction:lt=
+r;"><pre>Hi,</pre><pre><br></pre><pre>I've added support for long bridge in=
+terface names (such as</pre><pre>"br-0081a64f416f") to "brctl show" (long p=
+hysical interface names are</pre><pre>not a problem there).</pre><pre><br><=
+/pre><pre>Please find a branch with the commit at </pre><a href=3D"https://=
+github.com/MarcelWaldvogel/bridge-utils/tree/long-ifnames"><pre>https://git=
+hub.com/MarcelWaldvogel/bridge-utils/tree/long-ifnames</pre></a><pre><br></=
+pre><pre><br></pre><pre>-Marcel</pre><div><span><pre>-- <br></pre><div>Best=
+e Gr=C3=BC=C3=9Fe,</div><div><br></div><div><a href=3D"https://me.uni.kn/ma=
+rcel.waldvogel">-Marcel Waldvogel</a></div><div>University of Konstanz</div=
+><div>Distributed Systems Laboratory</div><div>Efficient Secure and Private=
+ Collaboration</div></span></div></body></html>
+
+--=-CMJkvL+MJGbs24OVz8Wf--
+
+--=-azVBy5hFr493HO3LGIVb
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCFjww
+ggUSMIID+qADAgECAgkA4wvV+K8l2YEwDQYJKoZIhvcNAQELBQAwgYIxCzAJBgNVBAYTAkRFMSsw
+KQYDVQQKDCJULVN5c3RlbXMgRW50ZXJwcmlzZSBTZXJ2aWNlcyBHbWJIMR8wHQYDVQQLDBZULVN5
+c3RlbXMgVHJ1c3QgQ2VudGVyMSUwIwYDVQQDDBxULVRlbGVTZWMgR2xvYmFsUm9vdCBDbGFzcyAy
+MB4XDTE2MDIyMjEzMzgyMloXDTMxMDIyMjIzNTk1OVowgZUxCzAJBgNVBAYTAkRFMUUwQwYDVQQK
+EzxWZXJlaW4genVyIEZvZXJkZXJ1bmcgZWluZXMgRGV1dHNjaGVuIEZvcnNjaHVuZ3NuZXR6ZXMg
+ZS4gVi4xEDAOBgNVBAsTB0RGTi1QS0kxLTArBgNVBAMTJERGTi1WZXJlaW4gQ2VydGlmaWNhdGlv
+biBBdXRob3JpdHkgMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMtg1/9moUHN0vqH
+l4pzq5lN6mc5WqFggEcVToyVsuXPztNXS43O+FZsFVV2B+pG/cgDRWM+cNSrVICxI5y+NyipCf8F
+XRgPxJiZN7Mg9mZ4F4fCnQ7MSjLnFp2uDo0peQcAIFTcFV9Kltd4tjTTwXS1nem/wHdN6r1ZB+Ba
+L2w8pQDcNb1lDY9/Mm3yWmpLYgHurDg0WUU2SQXaeMpqbVvAgWsRzNI8qIv4cRrKO+KA3Ra0Z3qL
+NupOkSk9s1FcragMvp0049ENF4N1xDkesJQLEvHVaY4l9Lg9K7/AjsMeO6W/VRCrKq4Xl14zzsjz
+9AkH4wKGMUZrAcUQDBHHWekCAwEAAaOCAXQwggFwMA4GA1UdDwEB/wQEAwIBBjAdBgNVHQ4EFgQU
+k+PYMiba1fFKpZFK4OpL4qIMz+EwHwYDVR0jBBgwFoAUv1kgNgB5oKAia4zV8mHSuCzLgkowEgYD
+VR0TAQH/BAgwBgEB/wIBAjAzBgNVHSAELDAqMA8GDSsGAQQBga0hgiwBAQQwDQYLKwYBBAGBrSGC
+LB4wCAYGZ4EMAQICMEwGA1UdHwRFMEMwQaA/oD2GO2h0dHA6Ly9wa2kwMzM2LnRlbGVzZWMuZGUv
+cmwvVGVsZVNlY19HbG9iYWxSb290X0NsYXNzXzIuY3JsMIGGBggrBgEFBQcBAQR6MHgwLAYIKwYB
+BQUHMAGGIGh0dHA6Ly9vY3NwMDMzNi50ZWxlc2VjLmRlL29jc3ByMEgGCCsGAQUFBzAChjxodHRw
+Oi8vcGtpMDMzNi50ZWxlc2VjLmRlL2NydC9UZWxlU2VjX0dsb2JhbFJvb3RfQ2xhc3NfMi5jZXIw
+DQYJKoZIhvcNAQELBQADggEBAIcL/z4Cm2XIVi3WO5qYi3FP2ropqiH5Ri71sqQPrhE4eTizDnS6
+dl2e6BiClmLbTDPo3flq3zK9LExHYFV/53RrtCyD2HlrtrdNUAtmB7Xts5et6u5/MOaZ/SLick0+
+hFvu+c+Z6n/XUjkurJgARH5pO7917tALOxrN5fcPImxHhPalR6D90Bo0fa3SPXez7vTXTf/D6OWS
+T1k+kEcQSrCFWMBvf/iu7QhCnh7U3xQuTY+8npTD5+32GPg8SecmqKc22CzeIs2LgtjZeOJVEqM7
+h0S2EQvVDFKvaYwPBt/QolOLV5h7z/0HJPT8vcP9SpIClxvyt7bPZYoaorVyGTkwggWsMIIElKAD
+AgECAgcbY7rQHiw9MA0GCSqGSIb3DQEBCwUAMIGVMQswCQYDVQQGEwJERTFFMEMGA1UEChM8VmVy
+ZWluIHp1ciBGb2VyZGVydW5nIGVpbmVzIERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYu
+MRAwDgYDVQQLEwdERk4tUEtJMS0wKwYDVQQDEyRERk4tVmVyZWluIENlcnRpZmljYXRpb24gQXV0
+aG9yaXR5IDIwHhcNMTYwNTI0MTEzODQwWhcNMzEwMjIyMjM1OTU5WjCBjTELMAkGA1UEBhMCREUx
+RTBDBgNVBAoMPFZlcmVpbiB6dXIgRm9lcmRlcnVuZyBlaW5lcyBEZXV0c2NoZW4gRm9yc2NodW5n
+c25ldHplcyBlLiBWLjEQMA4GA1UECwwHREZOLVBLSTElMCMGA1UEAwwcREZOLVZlcmVpbiBHbG9i
+YWwgSXNzdWluZyBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJ07eRxH3h+Gy8Zp
+1xCeOdfZojDbchwFfylfS2jxrRnWTOFrG7ELf6Gr4HuLi9gtzm6IOhDuV+UefwRRNuu6cG1joL6W
+LkDh0YNMZj0cZGnlm6Stcq5oOVGHecwX064vXWNxSzl660Knl5BpBb+Q/6RAcL0D57+eGIgfn5mI
+TQ5HjUhfZZkQ0tkqSe3BuS0dnxLLFdM/fx5ULzquk1enfnjK1UriGuXtQX1TX8izKvWKMKztFwUk
+P7agCwf9TRqaA1KgNpzeJIdl5Of6x5ZzJBTN0OgbaJ4YWa52fvfRCng8h0uwN89Tyjo4EPPLR22M
+ZD08WkVKusqAfLjz56dMTM0CAwEAAaOCAgUwggIBMBIGA1UdEwEB/wQIMAYBAf8CAQEwDgYDVR0P
+AQH/BAQDAgEGMCkGA1UdIAQiMCAwDQYLKwYBBAGBrSGCLB4wDwYNKwYBBAGBrSGCLAEBBDAdBgNV
+HQ4EFgQUazqYi/nyU4na4K2yMh4JH+iqO3QwHwYDVR0jBBgwFoAUk+PYMiba1fFKpZFK4OpL4qIM
+z+EwgY8GA1UdHwSBhzCBhDBAoD6gPIY6aHR0cDovL2NkcDEucGNhLmRmbi5kZS9nbG9iYWwtcm9v
+dC1nMi1jYS9wdWIvY3JsL2NhY3JsLmNybDBAoD6gPIY6aHR0cDovL2NkcDIucGNhLmRmbi5kZS9n
+bG9iYWwtcm9vdC1nMi1jYS9wdWIvY3JsL2NhY3JsLmNybDCB3QYIKwYBBQUHAQEEgdAwgc0wMwYI
+KwYBBQUHMAGGJ2h0dHA6Ly9vY3NwLnBjYS5kZm4uZGUvT0NTUC1TZXJ2ZXIvT0NTUDBKBggrBgEF
+BQcwAoY+aHR0cDovL2NkcDEucGNhLmRmbi5kZS9nbG9iYWwtcm9vdC1nMi1jYS9wdWIvY2FjZXJ0
+L2NhY2VydC5jcnQwSgYIKwYBBQUHMAKGPmh0dHA6Ly9jZHAyLnBjYS5kZm4uZGUvZ2xvYmFsLXJv
+b3QtZzItY2EvcHViL2NhY2VydC9jYWNlcnQuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQCBeEWkTqR/
+DlXwCbFqPnjMaDWpHPOVnj/z+N9rOHeJLI21rT7H8pTNoAauusyosa0zCLYkhmI2THhuUPDVbmCN
+T1IxQ5dGdfBi5G5mUcFCMWdQ5UnnOR7Ln8qGSN4IFP8VSytmm6A4nwDO/afr0X9XLchMX9wQEZc+
+lgQCXISoKTlslPwQkgZ7nu7YRrQbtQMMONncsKk/cQYLsgMHM8KNSGMlJTx6e1du94oFOO+4oK4v
+9NsH1VuEGMGpuEvObJAaguS5Pfp38dIfMwK/U+d2+dwmJUFvL6Yb+qQTkPp8ftkLYF3sv8pBoGH7
+EUkp2KgtdRXYShjqFu9VNCIaE40GMIIFtzCCBJ+gAwIBAgIMIU5ml8OE5LpKo0v7MA0GCSqGSIb3
+DQEBCwUAMIGNMQswCQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVp
+bmVzIERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4tUEtJMSUw
+IwYDVQQDDBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBMB4XDTE5MDcxNzA5MjMyM1oXDTIy
+MDcxNjA5MjMyM1owSDELMAkGA1UEBhMCREUxHjAcBgNVBAoMFVVuaXZlcnNpdGFldCBLb25zdGFu
+ejEZMBcGA1UEAwwQTWFyY2VsIFdhbGR2b2dlbDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBALf0FYcKDQOVTTFvJAoCo/eUoBICcKRP714JbUfSdhPadbnX/x9M6vJdJ2WP/c7vEujC79GO
+VxvodhJERTExWqciMagIzS+bBY9bPFV8V8InOr+0gUJ2Qe9RMSjWREhctBKW//9AlEj0ZTzOyaUw
+4lpKMrIMyKLtnLT9eAML1bU4XCACOKjA7uwXHwVbjJZV1KlEA6kmJzeGrzjx17JRV8ORVVIfgmU3
++Y/MX7PbefvzBLg3nGS96zvbsdxWATHorYZVYFWLvMfTBg+crn6uXYQQ3EeLRZek8HefR8TVS4Ho
+f3akKgyuXhmxTK/9O7fx0C83diPENgcjJg+8Km/8yH0CAwEAAaOCAlkwggJVMD4GA1UdIAQ3MDUw
+DwYNKwYBBAGBrSGCLAEBBDAQBg4rBgEEAYGtIYIsAQEEBDAQBg4rBgEEAYGtIYIsAgEEBDAJBgNV
+HRMEAjAAMA4GA1UdDwEB/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwHQYD
+VR0OBBYEFFO09z+YW7pEDNs2o5LvKaY7LcPDMB8GA1UdIwQYMBaAFGs6mIv58lOJ2uCtsjIeCR/o
+qjt0MCsGA1UdEQQkMCKBIG1hcmNlbC53YWxkdm9nZWxAdW5pLWtvbnN0YW56LmRlMIGNBgNVHR8E
+gYUwgYIwP6A9oDuGOWh0dHA6Ly9jZHAxLnBjYS5kZm4uZGUvZGZuLWNhLWdsb2JhbC1nMi9wdWIv
+Y3JsL2NhY3JsLmNybDA/oD2gO4Y5aHR0cDovL2NkcDIucGNhLmRmbi5kZS9kZm4tY2EtZ2xvYmFs
+LWcyL3B1Yi9jcmwvY2FjcmwuY3JsMIHbBggrBgEFBQcBAQSBzjCByzAzBggrBgEFBQcwAYYnaHR0
+cDovL29jc3AucGNhLmRmbi5kZS9PQ1NQLVNlcnZlci9PQ1NQMEkGCCsGAQUFBzAChj1odHRwOi8v
+Y2RwMS5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2NhY2VydC9jYWNlcnQuY3J0MEkG
+CCsGAQUFBzAChj1odHRwOi8vY2RwMi5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2Nh
+Y2VydC9jYWNlcnQuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBE7F48ds9um3qAAuWD+dgjEh7ibi6a
+wjBTgCnmOEzRvfBbYr7blR+vsaaNF7SuJF1O1R/00jXOXCiU+KE+2fK9NFLYoddx0PLHzWF1Xfx8
+jbzHt8AtGnhXGB6rpH1YFB6cu9h8VYANk6WNsTq26gXA9HMduh0iVD/JL6sDQU6tCQM7fTY0dD0J
+LmbCY1MkUq2m/7tqCUNxAL6F3MbqNk0yWAE8GUhTO4PbBLLJqhghMiE3rQKFMkWgsa7dGkUY08Y9
+aKQCXlhEZSgjIsLRxFlcIJwnPBm3l+/gmoNOpyFNJ+4tvSLkF8Oj2SJaCjKe7pVz5uv8uuD+nfAC
+dqRm+yafMIIFtzCCBJ+gAwIBAgIMIU5ml8OE5LpKo0v7MA0GCSqGSIb3DQEBCwUAMIGNMQswCQYD
+VQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVzIERldXRzY2hlbiBG
+b3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4tUEtJMSUwIwYDVQQDDBxERk4tVmVy
+ZWluIEdsb2JhbCBJc3N1aW5nIENBMB4XDTE5MDcxNzA5MjMyM1oXDTIyMDcxNjA5MjMyM1owSDEL
+MAkGA1UEBhMCREUxHjAcBgNVBAoMFVVuaXZlcnNpdGFldCBLb25zdGFuejEZMBcGA1UEAwwQTWFy
+Y2VsIFdhbGR2b2dlbDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALf0FYcKDQOVTTFv
+JAoCo/eUoBICcKRP714JbUfSdhPadbnX/x9M6vJdJ2WP/c7vEujC79GOVxvodhJERTExWqciMagI
+zS+bBY9bPFV8V8InOr+0gUJ2Qe9RMSjWREhctBKW//9AlEj0ZTzOyaUw4lpKMrIMyKLtnLT9eAML
+1bU4XCACOKjA7uwXHwVbjJZV1KlEA6kmJzeGrzjx17JRV8ORVVIfgmU3+Y/MX7PbefvzBLg3nGS9
+6zvbsdxWATHorYZVYFWLvMfTBg+crn6uXYQQ3EeLRZek8HefR8TVS4Hof3akKgyuXhmxTK/9O7fx
+0C83diPENgcjJg+8Km/8yH0CAwEAAaOCAlkwggJVMD4GA1UdIAQ3MDUwDwYNKwYBBAGBrSGCLAEB
+BDAQBg4rBgEEAYGtIYIsAQEEBDAQBg4rBgEEAYGtIYIsAgEEBDAJBgNVHRMEAjAAMA4GA1UdDwEB
+/wQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwHQYDVR0OBBYEFFO09z+YW7pE
+DNs2o5LvKaY7LcPDMB8GA1UdIwQYMBaAFGs6mIv58lOJ2uCtsjIeCR/oqjt0MCsGA1UdEQQkMCKB
+IG1hcmNlbC53YWxkdm9nZWxAdW5pLWtvbnN0YW56LmRlMIGNBgNVHR8EgYUwgYIwP6A9oDuGOWh0
+dHA6Ly9jZHAxLnBjYS5kZm4uZGUvZGZuLWNhLWdsb2JhbC1nMi9wdWIvY3JsL2NhY3JsLmNybDA/
+oD2gO4Y5aHR0cDovL2NkcDIucGNhLmRmbi5kZS9kZm4tY2EtZ2xvYmFsLWcyL3B1Yi9jcmwvY2Fj
+cmwuY3JsMIHbBggrBgEFBQcBAQSBzjCByzAzBggrBgEFBQcwAYYnaHR0cDovL29jc3AucGNhLmRm
+bi5kZS9PQ1NQLVNlcnZlci9PQ1NQMEkGCCsGAQUFBzAChj1odHRwOi8vY2RwMS5wY2EuZGZuLmRl
+L2Rmbi1jYS1nbG9iYWwtZzIvcHViL2NhY2VydC9jYWNlcnQuY3J0MEkGCCsGAQUFBzAChj1odHRw
+Oi8vY2RwMi5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2NhY2VydC9jYWNlcnQuY3J0
+MA0GCSqGSIb3DQEBCwUAA4IBAQBE7F48ds9um3qAAuWD+dgjEh7ibi6awjBTgCnmOEzRvfBbYr7b
+lR+vsaaNF7SuJF1O1R/00jXOXCiU+KE+2fK9NFLYoddx0PLHzWF1Xfx8jbzHt8AtGnhXGB6rpH1Y
+FB6cu9h8VYANk6WNsTq26gXA9HMduh0iVD/JL6sDQU6tCQM7fTY0dD0JLmbCY1MkUq2m/7tqCUNx
+AL6F3MbqNk0yWAE8GUhTO4PbBLLJqhghMiE3rQKFMkWgsa7dGkUY08Y9aKQCXlhEZSgjIsLRxFlc
+IJwnPBm3l+/gmoNOpyFNJ+4tvSLkF8Oj2SJaCjKe7pVz5uv8uuD+nfACdqRm+yafMYIDnTCCA5kC
+AQEwgZ4wgY0xCzAJBgNVBAYTAkRFMUUwQwYDVQQKDDxWZXJlaW4genVyIEZvZXJkZXJ1bmcgZWlu
+ZXMgRGV1dHNjaGVuIEZvcnNjaHVuZ3NuZXR6ZXMgZS4gVi4xEDAOBgNVBAsMB0RGTi1QS0kxJTAj
+BgNVBAMMHERGTi1WZXJlaW4gR2xvYmFsIElzc3VpbmcgQ0ECDCFOZpfDhOS6SqNL+zANBglghkgB
+ZQMEAgEFAKCCAc8wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjAw
+MjEwMTUwMDQ5WjAvBgkqhkiG9w0BCQQxIgQgiyNrkr6sB8uaPhzJyNgd/Cg+03HKkem+dBxGMwIt
+jIIwga8GCSsGAQQBgjcQBDGBoTCBnjCBjTELMAkGA1UEBhMCREUxRTBDBgNVBAoMPFZlcmVpbiB6
+dXIgRm9lcmRlcnVuZyBlaW5lcyBEZXV0c2NoZW4gRm9yc2NodW5nc25ldHplcyBlLiBWLjEQMA4G
+A1UECwwHREZOLVBLSTElMCMGA1UEAwwcREZOLVZlcmVpbiBHbG9iYWwgSXNzdWluZyBDQQIMIU5m
+l8OE5LpKo0v7MIGxBgsqhkiG9w0BCRACCzGBoaCBnjCBjTELMAkGA1UEBhMCREUxRTBDBgNVBAoM
+PFZlcmVpbiB6dXIgRm9lcmRlcnVuZyBlaW5lcyBEZXV0c2NoZW4gRm9yc2NodW5nc25ldHplcyBl
+LiBWLjEQMA4GA1UECwwHREZOLVBLSTElMCMGA1UEAwwcREZOLVZlcmVpbiBHbG9iYWwgSXNzdWlu
+ZyBDQQIMIU5ml8OE5LpKo0v7MA0GCSqGSIb3DQEBAQUABIIBAI63UIekg/e9tsQr/yvRUhtYS0Wn
+crQlNFQfVGAes+lpV3Q0WGxZOuROfYvpQ7hhGhWna9BwfhltIz/KmGcwswrrJfJUC1CkXIjgMIQr
+jyINjFzCUZMFk/rOh1MtAPHYTgD9fRsgPwimZHP3hI9hdXjjzPSpWK1jUAOPSZ680bjnQiNVY0OX
+j62bqRO3iAPg4WijYFPgePCvhN4Kwo7W9aZUbm6Egdna+YTrpdW8QiA0VYhc/MKCLkl46J3N/9W9
+L37mVBU1Fu01qGv4ZuMpMyyJNXqBKjQeZWf1afMyG425do9YckOpkskYQ8ac5f+D8c9wMaMlysSm
+VfI+0FiAN3wAAAAAAAA=
+
+
+--=-azVBy5hFr493HO3LGIVb--
 
