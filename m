@@ -1,78 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35F3B165929
-	for <lists.bridge@lfdr.de>; Thu, 20 Feb 2020 09:26:10 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D1D16592A
+	for <lists.bridge@lfdr.de>; Thu, 20 Feb 2020 09:26:11 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id BAE2286566;
-	Thu, 20 Feb 2020 08:26:08 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 83EFF85D8E;
+	Thu, 20 Feb 2020 08:26:09 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1081CSIXYutN; Thu, 20 Feb 2020 08:26:08 +0000 (UTC)
+	with ESMTP id xfZ70NYJsLPR; Thu, 20 Feb 2020 08:26:08 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 1247C81B7E;
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 61EFC85EBE;
 	Thu, 20 Feb 2020 08:26:08 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F1761C013E;
-	Thu, 20 Feb 2020 08:26:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3CF1FC1D81;
+	Thu, 20 Feb 2020 08:26:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4CFCFC013E
- for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 07:54:05 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 18CD3C013E
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 15:19:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 3614A20506
- for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 07:54:05 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id F0EF587B59
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 15:19:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vvwqy0JUI+Cf for <bridge@lists.linux-foundation.org>;
- Wed, 19 Feb 2020 07:54:04 +0000 (UTC)
+ with ESMTP id 6JRikwCiZaiP for <bridge@lists.linux-foundation.org>;
+ Wed, 19 Feb 2020 15:18:32 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200])
- by silver.osuosl.org (Postfix) with ESMTPS id 22475203BB
- for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 07:54:04 +0000 (UTC)
-Received: by mail-il1-f200.google.com with SMTP id p7so19243447ilq.16
- for <bridge@lists.linux-foundation.org>; Tue, 18 Feb 2020 23:54:04 -0800 (PST)
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
+ [209.85.210.195])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 2AF5B87A14
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 15:18:32 +0000 (UTC)
+Received: by mail-pf1-f195.google.com with SMTP id y5so198865pfb.11
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 07:18:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=ukKkOw2CD1p6V3m08F/J1FLQ/Kv80Rkqm5DlFEyeEwo=;
+ b=Ah7uoNUV021eb0uXbGTT4n8DSdPnmntOsRtdO0sIaVGmDz6Mx9DRCWkzlQUZdixw+q
+ EWquftTkt68WCGlW/aA5nVyhgl+UHA3gsnBdG89IY8cpIjgmPUkSlbSABOsRoUQRQiP2
+ tRiY/eEHI2tZExjQkFe8laVxjuRMHuzuVK45dlKZio/IG/07TcGQVIzIxWHJfXrtvd1a
+ HtRVxwNVVRPt42qadehr7FMIyLth4UrIOnrhkVj5fNTULu6IlHaSMd/bRTPytPu9Y5vU
+ PaRSz9bSbBntBZ+Ij+W79CdwpGDWwZ003hXlhvFCJlR5NffYtNcMGNj1KyqapsoM5/VY
+ K/gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to:content-transfer-encoding;
- bh=bhiLhZ0hGFmHCjOA0xxswOfkox27Yu7xmMOMfRdjKnY=;
- b=NdztAZuaB9xCy0EWkfekpP1KgdpbbeFrNRRCnNTl3gfhbBJqSFjMAp47Ui84zEKDWp
- 0zNUkX45Cz3Z7iau6PKRzgvPgVIb4JwQ0GLDSXDGCIAq4SjTiTg7UFzdlYkl32Fgs/8H
- fjObOGxuqSN36fk88FHYTZG0pO5emWAHxJMEj/bdm41NH3rIJUmtNs0UVqlFYDL+YOEz
- D2VOmmtJQ2PSMSlLPN7Iiwwip2qoqDFkTlvTvwvwV10qZg5IVSPYN8xSaGrFYhUPre40
- 3CSvE/H5EDJpo+Eg0oW+hZsLLSE3A27oDKaEQlcUtcaMoeUxjKeLLsm5Psf+6UtM9jFt
- Osfw==
-X-Gm-Message-State: APjAAAX05F+y+rr4BCYHUt05fBJC+YS2ns/sqUUomH8rWxQsJd8kXBxC
- 3+tOtP3BNwM6s7wP37qf9wNEN6dHST1EtbdLf4P+7bbJugYD
-X-Google-Smtp-Source: APXvYqxGYY13aZOMM0BSOmDQMzSYZrf2qmPLxLF8eTHCcZFD8r1N2DfCNIuzDx8cL8jZ8cKMDsJUm0ShbBazBm0Pcb2Lzvn6MzqR
-MIME-Version: 1.0
-X-Received: by 2002:a02:2101:: with SMTP id e1mr19970446jaa.29.1582098843467; 
- Tue, 18 Feb 2020 23:54:03 -0800 (PST)
-Date: Tue, 18 Feb 2020 23:54:03 -0800
-In-Reply-To: <0000000000006d7b1e059c7db653@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000908c50059ee9173a@google.com>
-From: syzbot <syzbot+b554d01b6c7870b17da2@syzkaller.appspotmail.com>
-To: a@unstable.cc, b.a.t.m.a.n@lists.open-mesh.org, 
- bridge@lists.linux-foundation.org, coreteam@netfilter.org, 
- davem@davemloft.net, florent.fourcot@wifirst.fr, fw@strlen.de, 
- jeremy@azazel.net, johannes.berg@intel.com, kadlec@blackhole.kfki.hu, 
- kadlec@netfilter.org, linux-kernel@vger.kernel.org, 
- mareklindner@neomailbox.ch, netdev@vger.kernel.org, 
- netfilter-devel@vger.kernel.org, nikolay@cumulusnetworks.com, 
- pablo@netfilter.org, roopa@cumulusnetworks.com, sw@simonwunderlich.de, 
- syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=ukKkOw2CD1p6V3m08F/J1FLQ/Kv80Rkqm5DlFEyeEwo=;
+ b=otLqDpLeHvgxt8i2xncY5b7nBVQv49lgT0Q8n+SJjAjoeS9yypwmzWo+VQljwVyavY
+ m06nupwU39mU8Jm3wZd22C02MqXCNaJAsVIyJ7kAxTQfVxirHBvi8f9D3laVVEMRtLHM
+ NFYChLLZE8P+gLps6i7h+jyVonMuB35qfL7A4lTxsqaYQY5yFD9xUMZBqFovGOKqSV6i
+ na1OXMCWJaQjishVa/xUwGKT6DvdUYM68a20onZzYWaCH2Mj4Ub3yvT6uX5yMQH2gvNX
+ Rq67lWNXFO2kEyQZupTsnx5xXYuSabvxVQNaJtMD7+oJxQZfKGofvsBqHGgG/dV5rOhF
+ KCUA==
+X-Gm-Message-State: APjAAAVPrBE8ZESOsgekXM+Qb8agqSvwAQPiuVt+pXDmQcQATVKeBCZB
+ kQU59U7qJZdCT8xVXmw1TQ==
+X-Google-Smtp-Source: APXvYqz7z38VUX56nB4cpmN4ssPqGh9I7Dl7gnU0/yRnff1inv5wjyvzdV1rumvg9fOMEZuF/4bZng==
+X-Received: by 2002:a62:78c1:: with SMTP id
+ t184mr26533069pfc.222.1582125511796; 
+ Wed, 19 Feb 2020 07:18:31 -0800 (PST)
+Received: from madhuparna-HP-Notebook.nitk.ac.in
+ ([2402:3a80:1ee1:f898:fdeb:e0c7:deeb:a606])
+ by smtp.gmail.com with ESMTPSA id v5sm45906pgc.11.2020.02.19.07.18.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Feb 2020 07:18:30 -0800 (PST)
+From: madhuparnabhowmik10@gmail.com
+To: roopa@cumulusnetworks.com, nikolay@cumulusnetworks.com, davem@davemloft.net
+Date: Wed, 19 Feb 2020 20:47:46 +0530
+Message-Id: <20200219151746.1050-1-madhuparnabhowmik10@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Thu, 20 Feb 2020 08:26:06 +0000
-Subject: Re: [Bridge] KASAN: use-after-free Read in bitmap_ip_ext_cleanup
+Cc: paulmck@kernel.org, frextrite@gmail.com, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>, joel@joelfernandes.org,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [Bridge] [PATCH] bridge: br_stp: Use built-in RCU list checking
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -87,31 +92,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-syzbot suspects this bug was fixed by commit:
+From: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
 
-commit 32c72165dbd0e246e69d16a3ad348a4851afd415
-Author: Kadlecsik J=C3=B3zsef <kadlec@blackhole.kfki.hu>
-Date:   Sun Jan 19 21:06:49 2020 +0000
+list_for_each_entry_rcu() has built-in RCU and lock checking.
 
-    netfilter: ipset: use bitmap infrastructure completely
+Pass cond argument to list_for_each_entry_rcu() to silence
+false lockdep warning when CONFIG_PROVE_RCU_LIST is enabled
+by default.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=3D17079245e000=
-00
-start commit:   8f8972a3 Merge tag 'mtd/fixes-for-5.5-rc7' of git://git.ke.=
-.
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=3Dd9290aeb7e6cf1c=
-4
-dashboard link: https://syzkaller.appspot.com/bug?extid=3Db554d01b6c7870b17=
-da2
-userspace arch: i386
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=3D145948d6e0000=
-0
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=3D16202cc9e00000
+Signed-off-by: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
+---
+ net/bridge/br_stp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-If the result looks correct, please mark the bug fixed by replying with:
+diff --git a/net/bridge/br_stp.c b/net/bridge/br_stp.c
+index 1f1410f8d312..8be12452071b 100644
+--- a/net/bridge/br_stp.c
++++ b/net/bridge/br_stp.c
+@@ -52,7 +52,8 @@ struct net_bridge_port *br_get_port(struct net_bridge *br, u16 port_no)
+ {
+ 	struct net_bridge_port *p;
+ 
+-	list_for_each_entry_rcu(p, &br->port_list, list) {
++	list_for_each_entry_rcu(p, &br->port_list, list,
++				lockdep_is_held(&br->lock)) {
+ 		if (p->port_no == port_no)
+ 			return p;
+ 	}
+-- 
+2.17.1
 
-#syz fix: netfilter: ipset: use bitmap infrastructure completely
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisectio=
-n
