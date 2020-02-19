@@ -1,70 +1,63 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB84162B26
-	for <lists.bridge@lfdr.de>; Tue, 18 Feb 2020 17:55:30 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 646F086C66;
-	Tue, 18 Feb 2020 16:55:29 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id VEevrdju2F2T; Tue, 18 Feb 2020 16:55:27 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 40A6386BB4;
-	Tue, 18 Feb 2020 16:55:27 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 17895C013E;
-	Tue, 18 Feb 2020 16:55:27 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 70706C013E
- for <bridge@lists.linux-foundation.org>; Tue, 18 Feb 2020 16:55:26 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id B77C2164EA4
+	for <lists.bridge@lfdr.de>; Wed, 19 Feb 2020 20:14:32 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 6D32884D7A
- for <bridge@lists.linux-foundation.org>; Tue, 18 Feb 2020 16:55:26 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 09AB2845D1;
+	Wed, 19 Feb 2020 19:14:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 3a-DBly1lAzU; Wed, 19 Feb 2020 19:14:29 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 6ADE784155;
+	Wed, 19 Feb 2020 19:14:29 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 53306C1D89;
+	Wed, 19 Feb 2020 19:14:29 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3E981C013E
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 19:14:28 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by hemlock.osuosl.org (Postfix) with ESMTP id 35EDF85DB5
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 19:14:28 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HrjcTmrvAQpo for <bridge@lists.linux-foundation.org>;
- Tue, 18 Feb 2020 16:55:24 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 7DE7F84BBE
- for <bridge@lists.linux-foundation.org>; Tue, 18 Feb 2020 16:55:24 +0000 (UTC)
-Received: from kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com
- (c-67-180-217-166.hsd1.ca.comcast.net [67.180.217.166])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id CFCEF2176D;
- Tue, 18 Feb 2020 16:55:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1582044924;
- bh=zYbH/t2V9dViGFpxKrN5WN7wgyb79NK7aWjvZ9PciMc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=R9r7mZsOXkH6Cq5Wn+tL7rpjvwdL3DqF//EHE9ESINIx3jR3WAWLykk2MhJ1MsWA9
- tSYdaAYD570uNZnKVG5i31pZYfBeMYJdQOuxMq8sw/svJvLjsXiWwpm3QckELfPlfA
- xp+dPDbYl4rHKvYknSzg0qDyp10Z+cb+/3M/3d/k=
-Date: Tue, 18 Feb 2020 08:55:22 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
-Message-ID: <20200218085522.630e4778@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
-In-Reply-To: <20200218121811.xo3o6zzrhl5p3j2s@lx-anielsen.microsemi.net>
-References: <20200124161828.12206-1-horatiu.vultur@microchip.com>
- <20200218121811.xo3o6zzrhl5p3j2s@lx-anielsen.microsemi.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+ with ESMTP id zRKb5T2wUStq for <bridge@lists.linux-foundation.org>;
+ Wed, 19 Feb 2020 19:14:26 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id C314F850A3
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Feb 2020 19:14:26 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id D053A15ADF498;
+ Wed, 19 Feb 2020 11:14:25 -0800 (PST)
+Date: Wed, 19 Feb 2020 11:14:25 -0800 (PST)
+Message-Id: <20200219.111425.339826041230667879.davem@davemloft.net>
+To: madhuparnabhowmik10@gmail.com
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20200219151746.1050-1-madhuparnabhowmik10@gmail.com>
+References: <20200219151746.1050-1-madhuparnabhowmik10@gmail.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
- nikolay@cumulusnetworks.com, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [149.20.54.216]);
+ Wed, 19 Feb 2020 11:14:26 -0800 (PST)
+Cc: paulmck@kernel.org, frextrite@gmail.com, nikolay@cumulusnetworks.com,
+ netdev@vger.kernel.org, roopa@cumulusnetworks.com,
  bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- davem@davemloft.net, UNGLinuxDriver@microchip.com,
- anirudh.venkataramanan@intel.com, jeffrey.t.kirsher@intel.com,
- olteanv@gmail.com, Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: Re: [Bridge] [RFC net-next v3 00/10] net: bridge: mrp: Add support
- for Media Redundancy Protocol (MRP)
+ joel@joelfernandes.org, linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [Bridge] [PATCH] bridge: br_stp: Use built-in RCU list checking
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,29 +72,17 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 18 Feb 2020 13:18:11 +0100 Allan W. Nielsen wrote:
-> But we should try make sure this also works in a backwards compatible
-> way with future MRP aware HW, and with existing (and future) SwitchDev
-> offloaded HW. At the very least we want to make this run on Ocelot, HW
-> offload the MRC role, but do the MRM in SW (as the HW is not capable of
-> this).
-> 
-> If we use the kernel to abstract the MRP forwarding (not the entire
-> protocol like we did in v1/v2, not just the HW like we did in v3) then
-> we will have more flxibility to support other HW with a different set of
-> offload facilities, we can most likely achieve better performance, and
-> it would be a cleaner design.
-> 
-> This will mean, that if user-space ask for MRP frame to be generated,
-> the kernel should make sure it will happen. The kernel can try to
-> offload this via the switchdev API, or it can do it in kernel-space.
-> 
-> Again, it will mean putting back some code into kernel space, but I
-> think it is worth it.
+From: madhuparnabhowmik10@gmail.com
+Date: Wed, 19 Feb 2020 20:47:46 +0530
 
-FWIW having the guarantee that the kernel can always perform requested
-service/operation (either thru offload or in SW in kernel space) seems
-appealing and in line what we've been doing for other offloads. 
+> From: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
+> 
+> list_for_each_entry_rcu() has built-in RCU and lock checking.
+> 
+> Pass cond argument to list_for_each_entry_rcu() to silence
+> false lockdep warning when CONFIG_PROVE_RCU_LIST is enabled
+> by default.
+> 
+> Signed-off-by: Madhuparna Bhowmik <madhuparnabhowmik10@gmail.com>
 
-IOW it'd be nice to have a kernel space software fallback for the
-offloaded operations.
+Applied, thank you.
