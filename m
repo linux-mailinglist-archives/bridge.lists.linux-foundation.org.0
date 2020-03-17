@@ -2,82 +2,85 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E65F2188325
+	by mail.lfdr.de (Postfix) with ESMTPS id DFC69188324
 	for <lists.bridge@lfdr.de>; Tue, 17 Mar 2020 13:10:13 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 6F9E9873CB;
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 6CDB1873B8;
 	Tue, 17 Mar 2020 12:10:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0zM6tdY4K-HH; Tue, 17 Mar 2020 12:10:10 +0000 (UTC)
+	with ESMTP id EEo6coG9hUuz; Tue, 17 Mar 2020 12:10:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 300B6870DE;
-	Tue, 17 Mar 2020 12:09:25 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 4DFEE870E5;
+	Tue, 17 Mar 2020 12:09:38 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0C21EC1D88;
-	Tue, 17 Mar 2020 12:09:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3E46DC013E;
+	Tue, 17 Mar 2020 12:09:38 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5353DC013E
- for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 12:09:23 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 10883C013E
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 12:09:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 3C32122EE7
- for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 12:09:23 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 0CB388939F
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 12:09:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vIVPWZPii5QY for <bridge@lists.linux-foundation.org>;
- Tue, 17 Mar 2020 12:09:22 +0000 (UTC)
+ with ESMTP id ohiiQOGTqOoA for <bridge@lists.linux-foundation.org>;
+ Tue, 17 Mar 2020 12:09:36 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by silver.osuosl.org (Postfix) with ESMTPS id 3774C228B3
- for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 12:09:22 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id x143so737505lff.12
- for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 05:09:22 -0700 (PDT)
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+ [209.85.167.66])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 25FB48939E
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 12:09:36 +0000 (UTC)
+Received: by mail-lf1-f66.google.com with SMTP id x143so738104lff.12
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Mar 2020 05:09:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=CdpI6plcLqffgBOnjrXIKu3Uafpf4rcXyJ3pN99AXIc=;
- b=ShQsp79LXm5GC7td8lqoA5hp/BSeNQvRiooz2UKFzmJRaAOzkgZjn7b41Fvhmuu49M
- ZOSLn29Uj5nZ3XIkCxxwHGn2zMBaz3HEqE6LtEqOfAjivToFZCCTvMvo7J5GAXaE/lgb
- PGCme0lxaWYhE70YuoIlNnCe0UdQsRuMBaFmI=
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=GmTVCUwzP2sd2RegUgToB05hVf+yztMs1t67J5XMm00=;
+ b=eKcVYTc9qQYhkE1Vi/Z417hbDiE3GtdPrKO4Cc7c/JdRPco1QtbXeyKIXljk94UweA
+ LTetgFdKrdZOFkrN7hdUXTWpNrqcvY5Pz4QRsrPOcGKC9x8gSPMQrBTChuqmK/PLJHmh
+ vBSF/AmONyIBLVQh/KL85aHRRSZ45u20es0rk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=CdpI6plcLqffgBOnjrXIKu3Uafpf4rcXyJ3pN99AXIc=;
- b=Sv15KubbWi2QDQHEjOqvVNKh+ygtLpkYMc9NZic97e7+Bo6eVUwSPMxsxdmxhND4WC
- Nybxgz7KSqU9pbZxpUzQGSTJEJi+y0IQtc0JLnAZ2ADGvU+HTYRutsPQED+OWglKIJ8/
- dD7NP1N7WuherKILDehCx2oFSKcFqcMfX3nbMNOkx8weS9uo8pOz2zlti8/KGbBrX6uU
- /u8sEx/1KLIReqkvgsGypENyRMjvXIesh7fFucmSoIhS8WO7Um2JHeaF5BnkmiWCz6Xc
- 0JF4PCI+C2Vv567i0UUvFREFMGAje4cwXnZtbqWgAiqi1fxNyU/fTRMvowpJPeu17AzN
- ydfA==
-X-Gm-Message-State: ANhLgQ2mHdPiNHNDmiRZFXfikhweFeiY6gVr3ElK2ku9QCUCVCOSNIPH
- RvrHKhsZA3PBpjXGcLW7iY6PrlaW88w=
-X-Google-Smtp-Source: ADFU+vt7TNrAM455nmXuZSvQyzDrNcKz83mZLGvVuBNS1c1ZgvK/q0xOYvcCY03iNh9MFPWzGv9L9w==
-X-Received: by 2002:ac2:5187:: with SMTP id u7mr2264091lfi.153.1584446960058; 
- Tue, 17 Mar 2020 05:09:20 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=GmTVCUwzP2sd2RegUgToB05hVf+yztMs1t67J5XMm00=;
+ b=gCOaDRPyizfitKMQO3xRtu4i5CjAkuWUQE8InfHCPzUf5NJwq+/5EAQYcq1dR/SOTa
+ eUhLE4FgCRXHMmMGFB+ygZ5TYDbV9ToSdJt9GJc+ZigSHiqAAaKJUc8RKRWO/YcN0l4y
+ Y8m64A3VFL0dZ9TXc+by9f1gE5ni+aLcOT59h/wOAUJM4Xpy4xOQoQqb4y0aZtQcfQk2
+ XUi9GVUuOIdgwkeftX+2ynAPxfoEFd8TuHqrOBuc9AeOAlf1V2ZKQjQb6OAKT0ieZzAT
+ I1NSa3j0LRkhQZlr6i0rtrsgabrYuI8BfFSTpxXu8fCy5nWse4ADXhsXKNgGEEqKc+Zg
+ Fjww==
+X-Gm-Message-State: ANhLgQ3kPQy1LMmohJL6ZEFHu073rbyP7TCY9F70VOAFGGcpx6M3mdeP
+ S1UFP066fxsGse+zPmuPHCC1IXlGW4w=
+X-Google-Smtp-Source: ADFU+vugWFGwwJhKQb9eK8dDenWdlgqg6g78daI30SkEmNCvy1L/n8cHoAWcl04YtE4oKVZcRUEurw==
+X-Received: by 2002:a05:6512:68b:: with SMTP id
+ t11mr2772915lfe.214.1584446974151; 
+ Tue, 17 Mar 2020 05:09:34 -0700 (PDT)
 Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id 23sm2389208lfa.28.2020.03.17.05.09.06
+ by smtp.gmail.com with ESMTPSA id 23sm2389208lfa.28.2020.03.17.05.09.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Mar 2020 05:09:11 -0700 (PDT)
+ Tue, 17 Mar 2020 05:09:26 -0700 (PDT)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 To: netdev@vger.kernel.org
-Date: Tue, 17 Mar 2020 14:08:32 +0200
-Message-Id: <20200317120836.1765164-1-nikolay@cumulusnetworks.com>
+Date: Tue, 17 Mar 2020 14:08:33 +0200
+Message-Id: <20200317120836.1765164-2-nikolay@cumulusnetworks.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200317120836.1765164-1-nikolay@cumulusnetworks.com>
+References: <20200317120836.1765164-1-nikolay@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
  roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
  davem@davemloft.net
-Subject: [Bridge] [PATCH net-next 0/4] net: bridge: vlan options: add
-	support for tunnel mapping
+Subject: [Bridge] [PATCH net-next 1/4] net: bridge: vlan options: rename
+	br_vlan_opts_eq to br_vlan_opts_eq_range
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -92,51 +95,66 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi,
-In order to bring the new vlan API on par with the old one and be able
-to completely migrate to the new one we need to support vlan tunnel mapping
-and statistics. This patch-set takes care of the former by making it a
-vlan option. There are two notable issues to deal with:
- - vlan range to tunnel range mapping
-   * The tunnel ids are globally unique for the vlan code and a vlan can
-     be mapped to one tunnel, so the old API took care of ranges by
-     taking the starting tunnel id value and incrementally mapping
-     vlan id(i) -> tunnel id(i). This set takes the same approach and
-     uses one new attribute - BRIDGE_VLANDB_ENTRY_TUNNEL_ID. If used
-     with a vlan range then it's the starting tunnel id to map.
+It is more appropriate name as it shows the intent of why we need to
+check the options' state. It also allows us to give meaning to the two
+arguments of the function: the first is the current vlan (v_curr) being
+checked if it could enter the range ending in the second one (range_end).
 
- - tunnel mapping removal
-   * Since there are no reserved/special tunnel ids defined, we can't
-     encode mapping removal within the new attribute, in order to be
-     able to remove a mapping we add a vlan flag which makes the new
-     tunnel option remove the mapping
+Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+---
+ net/bridge/br_private.h      | 4 ++--
+ net/bridge/br_vlan.c         | 2 +-
+ net/bridge/br_vlan_options.c | 8 ++++----
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
-The rest is pretty straight-forward, in fact we directly re-use the old
-code for manipulating tunnels by just mapping the command (set/del). In
-order to be able to keep detecting vlan ranges we check that the current
-vlan has a tunnel and it's extending the current vlan range end's tunnel
-id.
-
-Thanks,
- Nik
-
-
-Nikolay Aleksandrov (4):
-  net: bridge: vlan options: rename br_vlan_opts_eq to
-    br_vlan_opts_eq_range
-  net: bridge: vlan tunnel: constify bridge and port arguments
-  net: bridge: vlan options: add support for tunnel id dumping
-  net: bridge: vlan options: add support for tunnel mapping set/del
-
- include/uapi/linux/if_bridge.h |  2 +
- net/bridge/br_netlink_tunnel.c | 12 +++---
- net/bridge/br_private.h        |  4 +-
- net/bridge/br_private_tunnel.h | 17 +++++---
- net/bridge/br_vlan.c           |  3 +-
- net/bridge/br_vlan_options.c   | 74 +++++++++++++++++++++++++++++++---
- net/bridge/br_vlan_tunnel.c    |  5 ++-
- 7 files changed, 94 insertions(+), 23 deletions(-)
-
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index 5153ffe79a01..1f97703a52ff 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -1199,8 +1199,8 @@ static inline void br_vlan_notify(const struct net_bridge *br,
+ 
+ /* br_vlan_options.c */
+ #ifdef CONFIG_BRIDGE_VLAN_FILTERING
+-bool br_vlan_opts_eq(const struct net_bridge_vlan *v1,
+-		     const struct net_bridge_vlan *v2);
++bool br_vlan_opts_eq_range(const struct net_bridge_vlan *v_curr,
++			   const struct net_bridge_vlan *range_end);
+ bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v);
+ size_t br_vlan_opts_nl_size(void);
+ int br_vlan_process_options(const struct net_bridge *br,
+diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+index 6b5deca08b89..09bfda47fbbf 100644
+--- a/net/bridge/br_vlan.c
++++ b/net/bridge/br_vlan.c
+@@ -1694,7 +1694,7 @@ bool br_vlan_can_enter_range(const struct net_bridge_vlan *v_curr,
+ {
+ 	return v_curr->vid - range_end->vid == 1 &&
+ 	       range_end->flags == v_curr->flags &&
+-	       br_vlan_opts_eq(v_curr, range_end);
++	       br_vlan_opts_eq_range(v_curr, range_end);
+ }
+ 
+ static int br_vlan_dump_dev(const struct net_device *dev,
+diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
+index cd2eb194eb98..24cf2a621df9 100644
+--- a/net/bridge/br_vlan_options.c
++++ b/net/bridge/br_vlan_options.c
+@@ -7,11 +7,11 @@
+ 
+ #include "br_private.h"
+ 
+-/* check if the options between two vlans are equal */
+-bool br_vlan_opts_eq(const struct net_bridge_vlan *v1,
+-		     const struct net_bridge_vlan *v2)
++/* check if the options' state of v_curr allow it to enter the range */
++bool br_vlan_opts_eq_range(const struct net_bridge_vlan *v_curr,
++			   const struct net_bridge_vlan *range_end)
+ {
+-	return v1->state == v2->state;
++	return v_curr->state == range_end->state;
+ }
+ 
+ bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v)
 -- 
 2.24.1
 
