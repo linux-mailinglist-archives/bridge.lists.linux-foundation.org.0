@@ -2,80 +2,79 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF981AF006
-	for <lists.bridge@lfdr.de>; Sat, 18 Apr 2020 16:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F391AF05A
+	for <lists.bridge@lfdr.de>; Sat, 18 Apr 2020 16:52:06 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 06B0F88296;
-	Sat, 18 Apr 2020 14:48:59 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 924B28739D;
+	Sat, 18 Apr 2020 14:52:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id r39ismBrarXO; Sat, 18 Apr 2020 14:48:58 +0000 (UTC)
+	with ESMTP id T-Kj80ZqyLWJ; Sat, 18 Apr 2020 14:52:03 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 3CB658826E;
-	Sat, 18 Apr 2020 14:48:58 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id C52C886F12;
+	Sat, 18 Apr 2020 14:52:03 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2C586C0172;
-	Sat, 18 Apr 2020 14:48:58 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A678CC0172;
+	Sat, 18 Apr 2020 14:52:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4F454C0172
- for <bridge@lists.linux-foundation.org>; Sat, 18 Apr 2020 14:48:56 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7AC69C0172
+ for <bridge@lists.linux-foundation.org>; Sat, 18 Apr 2020 14:52:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 492FA8650A
- for <bridge@lists.linux-foundation.org>; Sat, 18 Apr 2020 14:48:56 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 706CC85624
+ for <bridge@lists.linux-foundation.org>; Sat, 18 Apr 2020 14:52:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3LaESa4EsT_c for <bridge@lists.linux-foundation.org>;
- Sat, 18 Apr 2020 14:48:55 +0000 (UTC)
+ with ESMTP id DxXQERkBCmIN for <bridge@lists.linux-foundation.org>;
+ Sat, 18 Apr 2020 14:52:01 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
- [216.71.154.253])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 0AC388449A
- for <bridge@lists.linux-foundation.org>; Sat, 18 Apr 2020 14:48:55 +0000 (UTC)
+Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
+ [216.71.150.166])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id A00DA848FA
+ for <bridge@lists.linux-foundation.org>; Sat, 18 Apr 2020 14:52:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1587221334; x=1618757334;
+ t=1587221521; x=1618757521;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=5aMZMPWPJ01c4ud7PttNThIhPars+cFRj/VqphxXMkA=;
- b=aie41My6jHDOmohsriVDsJCAvCiXuSF5u/K5ZNMAM9RzpFwtGuXkA/sP
- 074uBJzqc+lOZGZul4Gr/4QxKDV/eAVYA0TP0wd79M5ya3m/mMUGePu4J
- K4be713OvK/1ADWn+pahhLqGKxGIjxO6lt6dfH1R3XVX94fN+XK/sEseM
- i+k40S6fU8rOCBoy8tVQqPtY7G6tMwZelg/TmM8aVk7KBqfNJ9SW5GhML
- yDaxpV1lSOFxOCWsCcG69XNivMmId4LGDULsbgFYsUMLZ3A8D+2RcN3xl
- NDMWIXgBSoo5AGt8O94NpULnO9+kulCtK6hqLj1rKYg6mq7BxtNHVa7h3 w==;
-IronPort-SDR: VTv0V/iVkXVnsoXPomnwZpETgmZoJaljdZRFU2DrfjUMRKfTdQidgDts9SQqKLMYl0+s7yUNDU
- dvIXANFd7yd6BiKGaHkR7fiUQlOseCbfLUpPTzNPSSt37ag3Yh1OlWG01VceF/kpKlEOImaY8m
- KhCSgG4rpP3CNbEPYLOv1xPp5gHcfej2FwmrKCZcsQ1Vh94NgNvmzusx7oSeDdScYypiE/L0ol
- s2xJAcY7uwxDp5CTNMnI90sXdDX6MKVTxCmpuXJ+o+QCTU0JIJaKwAyFAkEl8Z0Y3uQpHVR3mw
- Tu4=
-X-IronPort-AV: E=Sophos;i="5.72,399,1580799600"; 
-   d="scan'208";a="9620713"
+ bh=C3YP8yE4p3sUrpu20KaBy3TdZyCFMvkjb9hsbrcNjhI=;
+ b=2DoVcbq6URRWX1uv52bCzZQlggV+t+VDixnSaP2DLdDpVPVWnnTj+l//
+ 88RTgKPWlaIPwht+Lskk5+5+vucEeN88aHEel4f9iKZrawbAdaJw+5dos
+ if06/VjQGMrTDJu13z7FZQUxds7VWZx/IEX9jej0DK/b9l0Wo6JoLksZ6
+ Ukp4CTN/pPfP+hWX/0F167FgTkdidW7Tix6VzKxBo/yJ6ZPHT46nRxPKS
+ uakfwHqCDWsYa8zZ8VNLG+rRlQtCdcbsiWMgyrfuSxmMmNs1T1dFwYsy5
+ vtQ+xe6XJOYceG2w32tj78hagVqu0HIj4Xa9uGytOkcuJEpBrKnkFYuS1 A==;
+IronPort-SDR: 05UYHcW6O85MPOiK9FjJllqWxK4fcLAoutWwPwraEyWZGXL2QjuQ9uzj3uzxXEezXyUJd3lXIc
+ Zk4MX3hGHGtH5y48LpYXZkefWG6yBT7nQ70l4dPbCw+GvIhkft3JIvHlj3eN5/HBjYWUb8+Fk8
+ ByIVl0pIMzbLvOUx9Zls5AO829/hOy21Wb7fAxaXcYfgjxPqp3nwliA/RCW6LFAw7QDpjsc+dl
+ Qx/9MBMYC4d6OkuzzJ3Qyphk4BURPuvojmnwgLyXd/rPfRaZNyQMPraBwSLZUhZKuvfyxzoNxY
+ OKQ=
+X-IronPort-AV: E=Sophos;i="5.72,399,1580799600"; d="scan'208";a="72972580"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 18 Apr 2020 07:48:53 -0700
+ by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 18 Apr 2020 07:52:00 -0700
 Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sat, 18 Apr 2020 07:48:30 -0700
+ 15.1.1713.5; Sat, 18 Apr 2020 07:52:00 -0700
 Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
  (10.10.85.152) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Sat, 18 Apr 2020 07:48:53 -0700
-Date: Sat, 18 Apr 2020 16:48:52 +0200
+ Transport; Sat, 18 Apr 2020 07:52:00 -0700
+Date: Sat, 18 Apr 2020 16:51:59 +0200
 From: Horatiu Vultur <horatiu.vultur@microchip.com>
 To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20200418144852.yfnxygdnxlcmmotj@soft-dev3.microsemi.net>
+Message-ID: <20200418145159.ovt6ey7m6nlq4k2q@soft-dev3.microsemi.net>
 References: <20200414112618.3644-1-horatiu.vultur@microchip.com>
  <20200414112618.3644-9-horatiu.vultur@microchip.com>
- <ef5f40ad-6d35-0897-3355-60c97777b79a@cumulusnetworks.com>
+ <c6666b49-a00f-2edf-8cb6-8d649a2eaedb@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <ef5f40ad-6d35-0897-3355-60c97777b79a@cumulusnetworks.com>
+In-Reply-To: <c6666b49-a00f-2edf-8cb6-8d649a2eaedb@cumulusnetworks.com>
 User-Agent: NeoMutt/20180716
 Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
  netdev@vger.kernel.org, roopa@cumulusnetworks.com,
@@ -98,7 +97,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The 04/18/2020 11:21, Nikolay Aleksandrov wrote:
+The 04/18/2020 11:34, Nikolay Aleksandrov wrote:
 > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
 > On 14/04/2020 14:26, Horatiu Vultur wrote:
@@ -115,7 +114,8 @@ The 04/18/2020 11:21, Nikolay Aleksandrov wrote:
 > > diff --git a/net/bridge/br_mrp_netlink.c b/net/bridge/br_mrp_netlink.c
 > > new file mode 100644
 > > index 000000000000..0d8253311595
-> > --- /dev/null> +++ b/net/bridge/br_mrp_netlink.c
+> > --- /dev/null
+> > +++ b/net/bridge/br_mrp_netlink.c
 > > @@ -0,0 +1,164 @@
 > > +// SPDX-License-Identifier: GPL-2.0-or-later
 > > +
@@ -148,9 +148,6 @@ The 04/18/2020 11:21, Nikolay Aleksandrov wrote:
 > > +
 > > +     if (br->stp_enabled != BR_NO_STP) {
 > > +             br_warn(br, "MRP can't be enabled if STP is already enabled\n");
-> 
-> Use extack.
-> 
 > > +             return -EINVAL;
 > > +     }
 > > +
@@ -176,6 +173,14 @@ The 04/18/2020 11:21, Nikolay Aleksandrov wrote:
 > > +                     nla_get_u32(tb[IFLA_BRIDGE_MRP_PORT_STATE]);
 > > +
 > > +             err = br_mrp_set_port_state(p, state);
+> 
+> This can be executed for any port, just noting it.
+
+Yes, maybe I should add an extra check in the function
+br_mrp_set_port_state, similar to the function br_mrp_set_port_role, to
+allow to be executed only on MRP_AWARE ports.
+
+> 
 > > +             if (err)
 > > +                     return err;
 > > +     }
@@ -185,6 +190,15 @@ The 04/18/2020 11:21, Nikolay Aleksandrov wrote:
 > > +                     nla_data(tb[IFLA_BRIDGE_MRP_PORT_ROLE]);
 > > +
 > > +             err = br_mrp_set_port_role(p, role);
+> 
+> This can be executed for any port also, shouldn't it be available only for MRP_AWARE ports?
+
+Yes, it can be executed for any port, but it would return an error if
+the port is not MRP_AWARE. Because the function br_mrp_set_port_role
+will check if the port is part of a ring and if it not then return
+-EINVAL.
+
+> 
 > > +             if (err)
 > > +                     return err;
 > > +     }
@@ -285,15 +299,6 @@ The 04/18/2020 11:21, Nikolay Aleksandrov wrote:
 > > +}
 > > +EXPORT_SYMBOL(br_mrp_port_open);
 > >
-> 
-> Why do you need this function when you already have br_ifinfo_notify() ?
-
-The reason of having this function was that, if I wanted to use the
-br_ifinfo_notify(), I had to add an extra field in the net_bridge_port
-just to store the loc variable. Which is not used anywhere else so I was
-not sure how good it is.
-But I can do these changes in the next version.
-
 > 
 
 -- 
