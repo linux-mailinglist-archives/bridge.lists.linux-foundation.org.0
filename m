@@ -1,70 +1,82 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4721B0CAD
-	for <lists.bridge@lfdr.de>; Mon, 20 Apr 2020 15:31:22 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E3971B0F6C
+	for <lists.bridge@lfdr.de>; Mon, 20 Apr 2020 17:11:47 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 326DF86B50;
-	Mon, 20 Apr 2020 13:31:21 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 6FCC387DD4;
+	Mon, 20 Apr 2020 15:11:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LjWUpWCoftgm; Mon, 20 Apr 2020 13:31:21 +0000 (UTC)
+	with ESMTP id fg1uYslKddKK; Mon, 20 Apr 2020 15:11:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id F1B2986064;
-	Mon, 20 Apr 2020 13:31:20 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id AFB3F87D94;
+	Mon, 20 Apr 2020 15:11:44 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D85B0C1D8D;
-	Mon, 20 Apr 2020 13:31:20 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8DE15C1D8E;
+	Mon, 20 Apr 2020 15:11:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 30758C0177
- for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 13:31:18 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 73D6CC0177
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 15:11:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 1FBB586447
- for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 13:31:18 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 6BF1986DC5
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 15:11:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id yr7zVmKm-up7 for <bridge@lists.linux-foundation.org>;
- Mon, 20 Apr 2020 13:31:17 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 4684D86064
- for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 13:31:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=bTtcioAVktBgcUTfi+bs1vdsWqSYfUDLbtTIZdRCNz8=; b=C7umDL1g3lTk+Vwd6Q6R0TWE8u
- q7btrSM81MUhI7cA63GDWG6lBHEUvpaDoh5aKxalnyyfYBVroMKB0Jz+Xt1OLMaCdTaevIGn4k8GH
- wz8y9FMWVXo4VBUod7x34sn1aIm9rZklz06PbBUXAraOLvFVIah0Y70QY21SQ0Mv3x3Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
- (envelope-from <andrew@lunn.ch>)
- id 1jQWW0-003pci-00; Mon, 20 Apr 2020 15:31:12 +0200
-Date: Mon, 20 Apr 2020 15:31:11 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: DENG Qingfang <dqfext@gmail.com>
-Message-ID: <20200420133111.GL785713@lunn.ch>
-References: <20200419161946.19984-1-dqfext@gmail.com>
- <20200419164251.GM836632@lunn.ch>
- <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
+ with ESMTP id YrrbJ4D2AQq5 for <bridge@lists.linux-foundation.org>;
+ Mon, 20 Apr 2020 15:11:40 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
+ [68.232.149.84])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 76ED086DB4
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 15:11:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1587395500; x=1618931500;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=s3zQXyGmklidFX59symdn4Qk7S18R1EzO24cUdDxYl0=;
+ b=qpYH9t9yvf8FrIeX7VwOtBhLm/dzg8GfVxTdSOLPolvMQL1Nl8x7Kcai
+ Qv92P6jCBCmRRXV5c6g5+OoyggNkeUi+cKrwzmJLLfFlUapBJ7aT6c7JS
+ YDz5pj66zK+uI+Y3zd1FFWV+rzm5/agiIgdGmX6iyRZhxPR1JcKGLWpDv
+ UOpdCy2o+gVivXCwVbg2BVrvuLfHbO1S9/1bkNlBCDG8VbWvqvTBki+vo
+ u6NIS60WKiOOwOPUalTFZl3kL4E3JsDBuVXmpgjILIGarHCwAQeM5PaAe
+ zPRdWoiLr+mRrQXucYeD89bPKNX6rvOtTPSLlApqMUrlIAM+HipVu6zSh Q==;
+IronPort-SDR: q2ZpVZlh1iXMbaXRUk1oL5rNmob3Uo9PiUrrjZohVNAfgo+F6zE0AWUq9F7Qiigp4JPxlGtH0L
+ 6vpqt5xJTkjbJT3OrOju1BcxHngD1LcaNPuXEDkcxQzFCi5UelqQDStyW1+WvV0eLCkYyJw89X
+ WdbzHjxr3f6zJGPwrwxm/4L28Mob6qx0RrOKLtG2DP1ujyckCmWL2yiuI32daz1yCCDYW0+Nj7
+ yIoLqjvlD8cz2YEUlAnuUxG7LG/FMqdAZ7VD1P3DIZ2PZDlpswhukSFJH8Wo3euJIuPzyWHz9g
+ vFI=
+X-IronPort-AV: E=Sophos;i="5.72,406,1580799600"; d="scan'208";a="72755047"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 20 Apr 2020 08:11:39 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 20 Apr 2020 08:11:39 -0700
+Received: from soft-dev3.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Mon, 20 Apr 2020 08:11:08 -0700
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: <nikolay@cumulusnetworks.com>, <davem@davemloft.net>, <jiri@resnulli.us>, 
+ <ivecera@redhat.com>, <kuba@kernel.org>, <roopa@cumulusnetworks.com>,
+ <olteanv@gmail.com>, <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>,
+ <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>
+Date: Mon, 20 Apr 2020 17:09:34 +0200
+Message-ID: <20200420150947.30974-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
- Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
- netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
- bridge@lists.linux-foundation.org, "David S . Miller" <davem@davemloft.net>,
- =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
- Jakub Kicinski <kuba@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [RFC PATCH net-next] net: bridge: fix client roaming
- from DSA user port
+Content-Type: text/plain
+Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net-next 00/13] net: bridge: mrp: Add support for
+	Media Redundancy Protocol(MRP)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,20 +91,144 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-> When a client moves from a hardware port (e.g. sw0p1) to a software port (wlan0)
-> or another hardware port that belongs to a different switch (sw1p1),
-> that MAC entry
-> in sw0's MAC table should be deleted, or replaced with the CPU port as
-> destination,
-> by DSA. Otherwise the client is unable to talk to other hosts on sw0 because sw0
-> still thinks the client is on sw0p1.
+Media Redundancy Protocol is a data network protocol standardized by
+International Electrotechnical Commission as IEC 62439-2. It allows rings of
+Ethernet switches to overcome any single failure with recovery time faster than
+STP. It is primarily used in Industrial Ethernet applications.
 
-The MAC address needs to move, no argument there. But what are the
-mechanisms which cause this. Is learning sufficient, or does DSA need
-to take an active role?
+Based on the previous RFC[1][2][3][4][5], the MRP state machine and all the
+timers were moved to userspace, except for the timers used to generate MRP Test
+frames.  In this way the userspace doesn't know and should not know if the HW or
+the kernel will generate the MRP Test frames. The following changes were added
+to the bridge to support the MRP:
+- the existing netlink interface was extended with MRP support,
+- allow to detect when a MRP frame was received on a MRP ring port
+- allow MRP instance to forward/terminate MRP frames
+- generate MRP Test frames in case the HW doesn't have support for this
 
-Forget about DSA for the moment. How does this work for two normal
-bridges? Is the flow of unicast packets sufficient? Does it requires a
-broadcast packet from the device after it moves?
+To be able to offload MRP support to HW, the switchdev API  was extend.
 
-	  Andrew
+With these changes the userspace doesn't do the following because already the
+kernel/HW will do:
+- doesn't need to forward/terminate MRP frames
+- doesn't need to generate MRP Test frames
+- doesn't need to detect when the ring is open/closed.
+
+The userspace application that is using the new netlink can be found here[6].
+
+The current implementation both in kernel and userspace supports only 2 roles:
+  MRM - this one is responsible to send MRP_Test and MRP_Topo frames on both
+  ring ports. It needs to process MRP_Test to know if the ring is open or
+  closed. This operation is desired to be offloaded to the HW because it
+  requires to generate and process up to 4000 frames per second. Whenever it
+  detects that the ring is open it sends MRP_Topo frames to notify all MRC about
+  changes in the topology. MRM needs also to process MRP_LinkChange frames,
+  these frames are generated by the MRC. When the ring is open then the state
+  of both ports is to forward frames and when the ring is closed then the
+  secondary port is blocked.
+
+  MRC - this one is responsible to forward MRP frames between the ring ports.
+  In case one of the ring ports gets a link down or up, then MRC will generate
+  a MRP_LinkChange frames. This node should also process MRP_Topo frames and to
+  clear its FDB when it receives this frame.
+
+ Userspace
+               Deamon +----------+ Client
+                +
+                |
+ +--------------|-----------------------------------------+
+  Kernel        |
+                + Netlink
+
+                |                              + Interrupt
+                |                              |
+ +--------------|------------------------------|----------+
+  HW            | Switchdev                    |
+                +                              |
+
+The user interacts using the client (called 'mrp'), the client talks to the
+deamon (called 'mrp_server'), which talks with the kernel using netlink. The
+kernel will try to offload the requests to the HW via switchdev API.
+
+If this will be accepted then in the future the netlink interface can be
+expended with multiple attributes which are required by different roles of the
+MRP. Like Media Redundancy Automanager(MRA), Media Interconnect Manager(MIM) and
+Media Interconnect Client(MIC).
+
+[1] https://www.spinics.net/lists/netdev/msg623647.html
+[2] https://www.spinics.net/lists/netdev/msg624378.html
+[3] https://www.spinics.net/lists/netdev/msg627500.html
+[4] https://www.spinics.net/lists/netdev/msg641005.html
+[5] https://www.spinics.net/lists/netdev/msg643991.html
+[6] https://github.com/microchip-ung/mrp/tree/patch-v6
+
+-v1:
+  - fix bisectability issues
+  - in case of errors use extack
+
+-RFC v5:
+  - use nla_parse_nested
+  - rework the usage of the rcu in br_mrp
+  - reorder patches
+  - few other small issues raised by Nikolay
+
+-RFC v4:
+  - extend existing netlink interface to add mrp support
+  - use rcu locks
+
+-RFC v3:
+  - move MRP state machine in userspace
+  - create generic netlink interface for configuring the HW using switchdev API
+
+-RFC v2:
+  - extend switchdev API to offload to HW
+
+Horatiu Vultur (13):
+  bridge: uapi: mrp: Add mrp attributes.
+  net: bridge: Add port attribute IFLA_BRPORT_MRP_RING_OPEN
+  bridge: mrp: Update Kconfig
+  bridge: mrp: Expose function br_mrp_port_open
+  bridge: mrp: Add MRP interface.
+  bridge: mrp: Extend bridge interface
+  switchdev: mrp: Extend switchdev API to offload MRP
+  bridge: switchdev: mrp: Implement MRP API for switchdev
+  bridge: mrp: Connect MRP API with the switchev API
+  bridge: mrp: Implement netlink interface to configure MRP
+  bridge: mrp: Update Makefile
+  bridge: mrp: Integrate MRP into the bridge
+  net: bridge: Add checks for enabling the STP.
+
+ include/linux/if_bridge.h          |   1 +
+ include/linux/mrp_bridge.h         |  27 ++
+ include/net/switchdev.h            |  62 ++++
+ include/uapi/linux/if_bridge.h     |  42 +++
+ include/uapi/linux/if_ether.h      |   1 +
+ include/uapi/linux/if_link.h       |   1 +
+ include/uapi/linux/mrp_bridge.h    |  84 +++++
+ net/bridge/Kconfig                 |  12 +
+ net/bridge/Makefile                |   2 +
+ net/bridge/br_device.c             |   3 +
+ net/bridge/br_if.c                 |   2 +
+ net/bridge/br_input.c              |   3 +
+ net/bridge/br_ioctl.c              |   3 +-
+ net/bridge/br_mrp.c                | 551 +++++++++++++++++++++++++++++
+ net/bridge/br_mrp_netlink.c        | 117 ++++++
+ net/bridge/br_mrp_switchdev.c      | 141 ++++++++
+ net/bridge/br_netlink.c            |  15 +-
+ net/bridge/br_private.h            |  42 ++-
+ net/bridge/br_private_mrp.h        |  60 ++++
+ net/bridge/br_stp.c                |   6 +
+ net/bridge/br_stp_if.c             |  11 +-
+ net/bridge/br_sysfs_br.c           |   4 +-
+ tools/include/uapi/linux/if_link.h |   1 +
+ 23 files changed, 1183 insertions(+), 8 deletions(-)
+ create mode 100644 include/linux/mrp_bridge.h
+ create mode 100644 include/uapi/linux/mrp_bridge.h
+ create mode 100644 net/bridge/br_mrp.c
+ create mode 100644 net/bridge/br_mrp_netlink.c
+ create mode 100644 net/bridge/br_mrp_switchdev.c
+ create mode 100644 net/bridge/br_private_mrp.h
+
+-- 
+2.17.1
+
