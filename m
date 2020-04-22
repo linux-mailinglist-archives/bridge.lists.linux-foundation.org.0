@@ -2,82 +2,85 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED37B1EC7C8
-	for <lists.bridge@lfdr.de>; Wed,  3 Jun 2020 05:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B51B1EC7C9
+	for <lists.bridge@lfdr.de>; Wed,  3 Jun 2020 05:27:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 2EFB887E77;
-	Wed,  3 Jun 2020 03:27:28 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id B642187E9B;
+	Wed,  3 Jun 2020 03:27:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uIaqE-vV4eQ0; Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
+	with ESMTP id OIPAwxv9ysRO; Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id E7FE387E76;
-	Wed,  3 Jun 2020 03:27:26 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 3BC8A87E90;
+	Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DA63BC016E;
-	Wed,  3 Jun 2020 03:27:26 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2E33CC016E;
+	Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 65241C0177
- for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 04:03:29 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E1E00C0175
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 5CAEF863DE
- for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 04:03:29 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id C85DC86E3A
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cW9In4zKMpan for <bridge@lists.linux-foundation.org>;
- Mon, 20 Apr 2020 04:03:28 +0000 (UTC)
+ with ESMTP id uVdb0JcmchYc for <bridge@lists.linux-foundation.org>;
+ Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-io1-f67.google.com (mail-io1-f67.google.com
- [209.85.166.67])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 832DD863D9
- for <bridge@lists.linux-foundation.org>; Mon, 20 Apr 2020 04:03:28 +0000 (UTC)
-Received: by mail-io1-f67.google.com with SMTP id n10so9460664iom.3
- for <bridge@lists.linux-foundation.org>; Sun, 19 Apr 2020 21:03:28 -0700 (PDT)
+Received: from mail-ot1-f68.google.com (mail-ot1-f68.google.com
+ [209.85.210.68])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 16B5386AA1
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
+Received: by mail-ot1-f68.google.com with SMTP id j26so1150892ots.0
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Apr 2020 23:01:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4yoSRAAq6ByLw23273SotPtzJ6Q/E4R2A/SjkRQDriw=;
- b=YXPZyWlH9RSSgnW5j4iBJYF58R50FLIv94XzPhsCL6y80GnIplmbo8VNoGUnNVX1Go
- q/RLTVUCtpjzdgWr8DqtYQXjJqiPUZKMk5EH11tX4xMI0VUtBICfyyWP7XoQfjzlWF1x
- MUSMdiYcJwUcGTW58A0DeGjHS6bbV16Z3Bvd/Xmr7O6ZqkIsgX+PEdjnwUAMeQSa33FV
- QcvCAKO550XbIg5IuuSpIrjH2CGQcHtR8QJlHR8l8UthPCOIM9xr82JA2t1b2UARa/NG
- RxNOCms/KgmbjQAnvWmhEQxJP9qeHQ13fnJkk5XxCF9nX1URKTmNnjQ1/xNK3AfTSfTZ
- eOYg==
+ :cc; bh=B4X6Wl2vhyTh+fWJF2DvDT914oag6V4/v305cxg0mr4=;
+ b=t1oyVd+RPlx7TXHksyQOzbeuw9x7wi//Ygm83/UevyITpYW3G8N0JCat0TQUYbhi9c
+ oL5Q0HsGGQLBkaGG4Rdi/uUpg6zfnRuRdlpVgN0aAqC3PH7iBsE4OKuLtUFIib7fK4eU
+ I7tCduulbvFXljrn/6DuAGSJfgckQcbY88WNlR4T0g+XXZvNh77SkjeHG0ldtiuvF+eK
+ +3a/f6nKCgCP2qqemkGxJ400cDYsv+WxUtozcZcPp5X+UFNYr9cp8hNBowVg9BxPtgyK
+ WKCWCaczNLsF1vXXHpuYRD3XF7g4ysGpgBnlDc2uDS7xyrmYTDfWi76lfZW4W8ZbRZ0q
+ mUTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4yoSRAAq6ByLw23273SotPtzJ6Q/E4R2A/SjkRQDriw=;
- b=IKLhx4i795RngX5GjRDHIc7oURGzMgF2lYqcrC43IneRSB9hypYS7pOng9vBlm8Dp/
- bLLgWi9aLoeQQiWNBa4MOapRoDCq32wooRHKCVzdlnQ2ZT35Jekn+qzHqC1riGD4XCT/
- G3pFvTDir/XcZ+z7e0SH8pO6w1SPSBWKhjvB5ZgPIzP/EfPgB7FnG/YuzIOh1dV8YMcL
- gY0h4xdLzA0Gq2Uz8C2RhIHVgwJwgmMlHYhsP1axVSaVTkEu2g7PmLYZ4BovhuemcoyY
- YzAN1PYngJq/8QdHrqOqt0NBpEAksjtLbpYK2kC/Dhqpwj1sciCLxNVBw1gqE18XiUV4
- AM3g==
-X-Gm-Message-State: AGi0Pubu1FA9ZsMioig/xB1npsVpYyRPGoe2ytnCyQW99Ucnm/4CBoU9
- /7/pv66HgYf2m3xMUYUvnya6nwGes28xWXck+Rg=
-X-Google-Smtp-Source: APiQypJMt4EucyO5DjUhF21hrpwcxMWTMsFBN0PMmm/20bhWcTZAWzgIBuDBRsg9osY03LII7y3mPwdP13o0g/rMcKw=
-X-Received: by 2002:a6b:8b05:: with SMTP id n5mr13906481iod.68.1587355407594; 
- Sun, 19 Apr 2020 21:03:27 -0700 (PDT)
+ bh=B4X6Wl2vhyTh+fWJF2DvDT914oag6V4/v305cxg0mr4=;
+ b=j6RDBrrwnHAD1s6/Vs8FmssuuPAMifB/Vo3vsurLHclamZgZqkJlc3v7smiFXSm/Wx
+ hAtRVZzPR+DJmGbQdEOMtQ7BCsniP4Bzo3n4J24pm3Y5HloGf+AgZvGGG36+gBxKWeE+
+ U8bUb0AAtiF515O2adF1U6m5feONr75esZSNkQG1GSmlH92xTGz8XC4pJXug9qyfWOLr
+ tiiynMlKinCZnNetcG+UHqUgf7EqBKeLuzrqzAUFSG9BaGn6K9/iFKCnHuTxeWQ4TGlj
+ LTvBED+qQkdZwlwV8Sa1FPzXesogbHMfRnp8KHcqgbgkiw3qKqIOwWTQ44qxNApwiodj
+ F6eA==
+X-Gm-Message-State: AGi0Pub99pnRTbuVJqwVIB64UkNlqAF1uxNr+MmBEcCisiPemCbmw924
+ rjKQx4+AKErQMzlY6FTUVtuc9KM5RDO7Rgddoag=
+X-Google-Smtp-Source: APiQypKvUeZB7xUCDrqGfHVWS50bx9VEY4ePxXOLGzjs3wc+vPD674hy9Pwa3Q04bQK/1Z5wDLK6QCupWcVXYuQdgaM=
+X-Received: by 2002:a9d:2c61:: with SMTP id f88mr2799730otb.86.1587535300252; 
+ Tue, 21 Apr 2020 23:01:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <20200419161946.19984-1-dqfext@gmail.com>
  <20200419164251.GM836632@lunn.ch>
-In-Reply-To: <20200419164251.GM836632@lunn.ch>
-From: DENG Qingfang <dqfext@gmail.com>
-Date: Mon, 20 Apr 2020 12:03:17 +0800
-Message-ID: <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
+ <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
+ <20200420133111.GL785713@lunn.ch>
+In-Reply-To: <20200420133111.GL785713@lunn.ch>
+From: Chuanhong Guo <gch981213@gmail.com>
+Date: Wed, 22 Apr 2020 14:01:28 +0800
+Message-ID: <CAJsYDVLZQ=ci1wp1_P0RcwsV8z27zMn4CPHHpueDF7OZ-X9aEg@mail.gmail.com>
 To: Andrew Lunn <andrew@lunn.ch>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 03 Jun 2020 03:27:25 +0000
 Cc: Florian Fainelli <f.fainelli@gmail.com>,
+ =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
  Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
  netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
  bridge@lists.linux-foundation.org, "David S . Miller" <davem@davemloft.net>,
- =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
- Jakub Kicinski <kuba@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
+ DENG Qingfang <dqfext@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Vivien Didelot <vivien.didelot@gmail.com>
 Subject: Re: [Bridge] [RFC PATCH net-next] net: bridge: fix client roaming
  from DSA user port
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -94,46 +97,65 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Apr 20, 2020 at 12:42 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Mon, Apr 20, 2020 at 12:19:46AM +0800, DENG Qingfang wrote:
-> > When a client roams from a DSA user port to a soft-bridged port (such as WiFi
-> > interface), the left-over MAC entry in the switch HW is not deleted, causing
-> > inconsistency between Linux fdb and the switch MAC table. As a result, the
-> > client cannot talk to other hosts which are on that DSA user port until the
-> > MAC entry expires.
-> >
-> > Solve this by notifying switchdev fdb to delete the leftover entry when an
-> > entry is updated. Remove the added_by_user check in DSA
-> >
-> > Signed-off-by: DENG Qingfang <dqfext@gmail.com>
-> > ---
-> > I tried this on mt7530 and mv88e6xxx, but only mt7530 works.
-> > In previous discussion[1], Andrew Lunn said "try playing with auto learning
-> > for the CPU port" but it didn't work on mv88e6xxx either
->
-> Hi Deng
->
-> We should probably first define how we expect moving MAC to work. Then
-> we can make any core fixes, and driver fixes.
->
-> For DSA, we have assumed that the software bridge and the hardware
-> bridge are independent, each performs its own learning. Only static
-> entries are kept in sync.
->
-> How should this separate learning work for a MAC address which moves?
+Hi!
 
-When a client moves from a hardware port (e.g. sw0p1) to a software port (wlan0)
-or another hardware port that belongs to a different switch (sw1p1),
-that MAC entry
-in sw0's MAC table should be deleted, or replaced with the CPU port as
-destination,
-by DSA. Otherwise the client is unable to talk to other hosts on sw0 because sw0
-still thinks the client is on sw0p1.
+On Tue, Apr 21, 2020 at 12:36 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> The MAC address needs to move, no argument there. But what are the
+> mechanisms which cause this. Is learning sufficient, or does DSA need
+> to take an active role?
 
-Discussion in OpenWrt GitHub:
-https://github.com/openwrt/openwrt/pull/2798#issuecomment-602221971
+cpu port learning will break switch operation if for whatever reason
+we want to disable bridge offloading (e.g. ebtables?). In this case
+a packet received from cpu port need to be sent back through
+cpu port to another switch port, and the switch will learn from this
+packet incorrectly.
 
+If we want cpu port learning to kick in, we need to make sure that:
+1. When bridge offload is enabled, the switch takes care of packet
+    flooding on switch ports itself, instead of flooding with software
+    bridge.
+2. Software bridge shouldn't forward any packet between ports
+    on the same switch.
+3. cpu port learning should only be enabled when bridge
+    offloading is used.
+
+Otherwise we need to manually sync fdb between software bridge
+and switch, specifically we need to take over fdb management
+on cpu port and tell the switch what devices are on the software
+bridge port side.
+
+I haven't read kernel bridge code thoroughly and have no idea
+which one is better/easier.
+
+Some switches (e.g. mt753x) have an option to forward packets
+with unknown destination port to cpu port only, instead of flooding.
+For this type of switch, the solution proposed in this patch is fine,
+because removing fdb entries has the same effect as telling switch
+that a device is on cpu port. If there's a switch without this feature,
+(which I have no idea if it exists) there will be issues on packet
+flooding behavior.
 
 >
->     Andrew
+> Forget about DSA for the moment. How does this work for two normal
+> bridges? Is the flow of unicast packets sufficient? Does it requires a
+> broadcast packet from the device after it moves?
+
+It doesn't have to be a broadcast packet but it needs a packet to go
+through both bridges.
+
+Say we have bridge A and bridge B, port A1 and B1 are connected
+together and a device is on port A2 first:
+Bridge A knows that this device is on port A2 and will forward traffic
+through A1 to B1 if needed. Bridge B sees these packets and knows
+device is on port B1.
+When the device move from A2 to B2, B updates its fdb and if a
+packet reaches A, A will update its fdb too.
+
+The problem addressed in this patch is that switch doesn't update
+its fdb when a device moves from switch to software bridge, because
+cpu port learning is disabled.
+
+-- 
+Regards,
+Chuanhong Guo
