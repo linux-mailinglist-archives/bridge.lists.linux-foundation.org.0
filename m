@@ -1,85 +1,73 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A6F1B4A4C
-	for <lists.bridge@lfdr.de>; Wed, 22 Apr 2020 18:22:29 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10401B6630
+	for <lists.bridge@lfdr.de>; Thu, 23 Apr 2020 23:36:58 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 7BECA21F5A;
-	Wed, 22 Apr 2020 16:22:17 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id D4AE0868B6;
+	Thu, 23 Apr 2020 21:36:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 2u6q0chmxImW; Wed, 22 Apr 2020 16:22:16 +0000 (UTC)
+	with ESMTP id PsOXYhFoTY9G; Thu, 23 Apr 2020 21:36:56 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id EB3E41FDFB;
-	Wed, 22 Apr 2020 16:22:15 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id C03F886D19;
+	Thu, 23 Apr 2020 21:36:55 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DEFC2C0175;
-	Wed, 22 Apr 2020 16:22:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A25C6C0175;
+	Thu, 23 Apr 2020 21:36:55 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id F108BC0175
- for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 16:22:14 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5107FC0175
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 21:36:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id E002F8757C
- for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 16:22:14 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 3A92787799
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 21:36:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id eB49dC6HojAh for <bridge@lists.linux-foundation.org>;
- Wed, 22 Apr 2020 16:22:14 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa4.microchip.iphmx.com (esa4.microchip.iphmx.com
- [68.232.154.123])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 2B8D687816
- for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 16:22:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1587572534; x=1619108534;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version;
- bh=TRDzYTTkszQZoBi8scNuBHRjQdUT5FUctOqTVt7xLgw=;
- b=U1IeZUUtYwpboci7qpjyul7AyKw9qX0VG538iccZtDNPgMLQIeAZB3Nv
- XEp55RlqjJ3nHX7b3Yh+iomHqVuw5mUcvqjp+NZgnRFYimIIHExWtY3XD
- 25aQ20Ay2TvkZlEZBOjPhUwe2jiGQ9rZk9/oqtuLwz9yl/cVwu8QjFgdS
- CPWKkUns6H4vJolP9S8TA6UVgbBVSJV5jn/sHpQPwnUc7jAKcsvzkHs/z
- zzVelXFe/NrqxYMTBsbWe5QO8KzvYjo5AYeQxP/2YcPE8jnURB/cKJuSL
- +FyDPS/56fPr60xt4MSk/Z4gVjo5yMqjtAEvke9i+E7cAMzpiUVLNw+L0 A==;
-IronPort-SDR: 3vqZ3NXJ69fiJBmI0T8thEi5Gc87e1QRZjTNTHvQo562wMKLGKcLtPg41KrWgoJi5MKMR54vof
- qzn/oWxxkKCHUEpwXdUncRLzaGwprbLBzP5HeTXppkW5IzWHkjzMLtbRfxkfSXTALk6arAlgFV
- 9ybxFzZ/w94I7kBNvJSFhKSfPU8VHeS06cSUFQeAReZtL5Kx2use0iBFpal51LT3nTtR9zG4Sy
- 2QWbP6TUNCdXey8/079eNA2bM4UzReCUQD9X8rN8vepPTBei+Jjt3mpG7zBMBrCufH5/obY2Db
- HJE=
-X-IronPort-AV: E=Sophos;i="5.73,304,1583218800"; d="scan'208";a="71205674"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 22 Apr 2020 09:22:13 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 22 Apr 2020 09:22:15 -0700
-Received: from soft-dev3.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Wed, 22 Apr 2020 09:22:12 -0700
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: <nikolay@cumulusnetworks.com>, <davem@davemloft.net>, <jiri@resnulli.us>, 
- <ivecera@redhat.com>, <kuba@kernel.org>, <roopa@cumulusnetworks.com>,
- <olteanv@gmail.com>, <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>,
- <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
- <bridge@lists.linux-foundation.org>
-Date: Wed, 22 Apr 2020 18:18:33 +0200
-Message-ID: <20200422161833.1123-12-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200422161833.1123-1-horatiu.vultur@microchip.com>
-References: <20200422161833.1123-1-horatiu.vultur@microchip.com>
+ with ESMTP id n-XyXBQcrrwg for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Apr 2020 21:36:51 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 2E1EC877A8
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 21:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=72UdNNtLattjMgSevGnzfPSXBZkjf27I30kkugB1DmQ=; b=RmofJN+fTjCmM2rwrw/KEjNZLZ
+ CcbKjOFmi+/gf/a1raNbrZKZy2OaX1ivorkrY3i3KW7dizDQARSR/wODe68yEKLIZM7znPxYL1MbI
+ 28kc8FSDgS84dPAIbNBopHgrQBwxbWrqNgcz/3GyfRwKA4RY6lZhPtWSsPRBVKNGAgA4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+ (envelope-from <andrew@lunn.ch>)
+ id 1jRjWV-004RzL-QO; Thu, 23 Apr 2020 23:36:43 +0200
+Date: Thu, 23 Apr 2020 23:36:43 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chuanhong Guo <gch981213@gmail.com>
+Message-ID: <20200423213643.GC1054188@lunn.ch>
+References: <20200419161946.19984-1-dqfext@gmail.com>
+ <20200419164251.GM836632@lunn.ch>
+ <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
+ <20200420133111.GL785713@lunn.ch>
+ <CAJsYDVLZQ=ci1wp1_P0RcwsV8z27zMn4CPHHpueDF7OZ-X9aEg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next v3 11/11] net: bridge: Add checks for
-	enabling the STP.
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJsYDVLZQ=ci1wp1_P0RcwsV8z27zMn4CPHHpueDF7OZ-X9aEg@mail.gmail.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+ =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+ Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org, "David S . Miller" <davem@davemloft.net>,
+ DENG Qingfang <dqfext@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [Bridge] [RFC PATCH net-next] net: bridge: fix client roaming
+ from DSA user port
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,127 +82,58 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-It is not possible to have the MRP and STP running at the same time on the
-bridge, therefore add check when enabling the STP to check if MRP is already
-enabled. In that case return error.
+On Wed, Apr 22, 2020 at 02:01:28PM +0800, Chuanhong Guo wrote:
+> Hi!
+> 
+> On Tue, Apr 21, 2020 at 12:36 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> >
+> > The MAC address needs to move, no argument there. But what are the
+> > mechanisms which cause this. Is learning sufficient, or does DSA need
+> > to take an active role?
+> 
+> cpu port learning will break switch operation if for whatever reason
+> we want to disable bridge offloading (e.g. ebtables?). In this case
+> a packet received from cpu port need to be sent back through
+> cpu port to another switch port, and the switch will learn from this
+> packet incorrectly.
+> 
+> If we want cpu port learning to kick in, we need to make sure that:
+> 1. When bridge offload is enabled, the switch takes care of packet
+>     flooding on switch ports itself, instead of flooding with software
+>     bridge.
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- net/bridge/br_ioctl.c    |  3 +--
- net/bridge/br_netlink.c  |  4 +++-
- net/bridge/br_private.h  |  3 ++-
- net/bridge/br_stp.c      |  6 ++++++
- net/bridge/br_stp_if.c   | 11 ++++++++++-
- net/bridge/br_sysfs_br.c |  4 +---
- 6 files changed, 23 insertions(+), 8 deletions(-)
+Hi Chuanhong
 
-diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
-index ae22d784b88a..5e71fc8b826f 100644
---- a/net/bridge/br_ioctl.c
-+++ b/net/bridge/br_ioctl.c
-@@ -242,8 +242,7 @@ static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
- 		if (!ns_capable(dev_net(dev)->user_ns, CAP_NET_ADMIN))
- 			return -EPERM;
- 
--		br_stp_set_enabled(br, args[1]);
--		ret = 0;
-+		ret = br_stp_set_enabled(br, args[1], NULL);
- 		break;
- 
- 	case BRCTL_SET_BRIDGE_PRIORITY:
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index 1a5e681a626a..a774e19c41bb 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -1109,7 +1109,9 @@ static int br_changelink(struct net_device *brdev, struct nlattr *tb[],
- 	if (data[IFLA_BR_STP_STATE]) {
- 		u32 stp_enabled = nla_get_u32(data[IFLA_BR_STP_STATE]);
- 
--		br_stp_set_enabled(br, stp_enabled);
-+		err = br_stp_set_enabled(br, stp_enabled, extack);
-+		if (err)
-+			return err;
- 	}
- 
- 	if (data[IFLA_BR_PRIORITY]) {
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 5835828320b6..c35647cb138a 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -1283,7 +1283,8 @@ int br_set_ageing_time(struct net_bridge *br, clock_t ageing_time);
- /* br_stp_if.c */
- void br_stp_enable_bridge(struct net_bridge *br);
- void br_stp_disable_bridge(struct net_bridge *br);
--void br_stp_set_enabled(struct net_bridge *br, unsigned long val);
-+int br_stp_set_enabled(struct net_bridge *br, unsigned long val,
-+		       struct netlink_ext_ack *extack);
- void br_stp_enable_port(struct net_bridge_port *p);
- void br_stp_disable_port(struct net_bridge_port *p);
- bool br_stp_recalculate_bridge_id(struct net_bridge *br);
-diff --git a/net/bridge/br_stp.c b/net/bridge/br_stp.c
-index 1f14b8455345..3e88be7aa269 100644
---- a/net/bridge/br_stp.c
-+++ b/net/bridge/br_stp.c
-@@ -36,6 +36,12 @@ void br_set_state(struct net_bridge_port *p, unsigned int state)
- 	};
- 	int err;
- 
-+	/* Don't change the state of the ports if they are driven by a different
-+	 * protocol.
-+	 */
-+	if (p->flags & BR_MRP_AWARE)
-+		return;
-+
- 	p->state = state;
- 	err = switchdev_port_attr_set(p->dev, &attr);
- 	if (err && err != -EOPNOTSUPP)
-diff --git a/net/bridge/br_stp_if.c b/net/bridge/br_stp_if.c
-index d174d3a566aa..a42850b7eb9a 100644
---- a/net/bridge/br_stp_if.c
-+++ b/net/bridge/br_stp_if.c
-@@ -196,10 +196,17 @@ static void br_stp_stop(struct net_bridge *br)
- 	br->stp_enabled = BR_NO_STP;
- }
- 
--void br_stp_set_enabled(struct net_bridge *br, unsigned long val)
-+int br_stp_set_enabled(struct net_bridge *br, unsigned long val,
-+		       struct netlink_ext_ack *extack)
- {
- 	ASSERT_RTNL();
- 
-+	if (br_mrp_enabled(br)) {
-+		NL_SET_ERR_MSG_MOD(extack,
-+				   "STP can't be enabled if MRP is already enabled\n");
-+		return -EINVAL;
-+	}
-+
- 	if (val) {
- 		if (br->stp_enabled == BR_NO_STP)
- 			br_stp_start(br);
-@@ -207,6 +214,8 @@ void br_stp_set_enabled(struct net_bridge *br, unsigned long val)
- 		if (br->stp_enabled != BR_NO_STP)
- 			br_stp_stop(br);
- 	}
-+
-+	return 0;
- }
- 
- /* called under bridge lock */
-diff --git a/net/bridge/br_sysfs_br.c b/net/bridge/br_sysfs_br.c
-index 9ab0f00b1081..7db06e3f642a 100644
---- a/net/bridge/br_sysfs_br.c
-+++ b/net/bridge/br_sysfs_br.c
-@@ -126,9 +126,7 @@ static ssize_t stp_state_show(struct device *d,
- 
- static int set_stp_state(struct net_bridge *br, unsigned long val)
- {
--	br_stp_set_enabled(br, val);
--
--	return 0;
-+	return br_stp_set_enabled(br, val, NULL);
- }
- 
- static ssize_t stp_state_store(struct device *d,
--- 
-2.17.1
+This is what the skb->offload_fwd_mark is all about. If this is set to
+1, it means the switch has done all the forwarding needed for ports in
+that switch. Most of the tag drivers set this unconditionally true.
 
+> 2. Software bridge shouldn't forward any packet between ports
+>     on the same switch.
+
+If skb->offload_fwd_mark is true, it won't.
+
+> 3. cpu port learning should only be enabled when bridge
+>     offloading is used.
+
+So it should be safe for most switch drivers. And the ones which don't
+set offload_fwd_mark are probably relying of software bridging, or are
+broken and replicating frames.
+
+> It doesn't have to be a broadcast packet but it needs a packet to go
+> through both bridges.
+> 
+> Say we have bridge A and bridge B, port A1 and B1 are connected
+> together and a device is on port A2 first:
+> Bridge A knows that this device is on port A2 and will forward traffic
+> through A1 to B1 if needed. Bridge B sees these packets and knows
+> device is on port B1.
+> When the device move from A2 to B2, B updates its fdb and if a
+> packet reaches A, A will update its fdb too.
+
+The issue here is 'if a packet reaches A'. B might have no reason to
+send a unicast packet to A, if none of the destinations the device is
+talking to is reached via A. Which is why i think a
+broadcast/multicast packet is more likely to be involved.
+
+		    Andrew
