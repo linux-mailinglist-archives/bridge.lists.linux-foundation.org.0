@@ -1,73 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10401B6630
-	for <lists.bridge@lfdr.de>; Thu, 23 Apr 2020 23:36:58 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id F29691B6AB0
+	for <lists.bridge@lfdr.de>; Fri, 24 Apr 2020 03:11:17 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id D4AE0868B6;
-	Thu, 23 Apr 2020 21:36:56 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 0E655886D1;
+	Fri, 24 Apr 2020 01:11:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PsOXYhFoTY9G; Thu, 23 Apr 2020 21:36:56 +0000 (UTC)
+	with ESMTP id bS70i7-FKAzr; Fri, 24 Apr 2020 01:11:14 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id C03F886D19;
-	Thu, 23 Apr 2020 21:36:55 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 088E58867E;
+	Fri, 24 Apr 2020 01:11:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A25C6C0175;
-	Thu, 23 Apr 2020 21:36:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D8C9CC1D7F;
+	Fri, 24 Apr 2020 01:11:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5107FC0175
- for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 21:36:53 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B092FC0175
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Apr 2020 01:11:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 3A92787799
- for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 21:36:53 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 98D5D87FF2
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Apr 2020 01:11:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id n-XyXBQcrrwg for <bridge@lists.linux-foundation.org>;
- Thu, 23 Apr 2020 21:36:51 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 2E1EC877A8
- for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 21:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=72UdNNtLattjMgSevGnzfPSXBZkjf27I30kkugB1DmQ=; b=RmofJN+fTjCmM2rwrw/KEjNZLZ
- CcbKjOFmi+/gf/a1raNbrZKZy2OaX1ivorkrY3i3KW7dizDQARSR/wODe68yEKLIZM7znPxYL1MbI
- 28kc8FSDgS84dPAIbNBopHgrQBwxbWrqNgcz/3GyfRwKA4RY6lZhPtWSsPRBVKNGAgA4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
- (envelope-from <andrew@lunn.ch>)
- id 1jRjWV-004RzL-QO; Thu, 23 Apr 2020 23:36:43 +0200
-Date: Thu, 23 Apr 2020 23:36:43 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chuanhong Guo <gch981213@gmail.com>
-Message-ID: <20200423213643.GC1054188@lunn.ch>
-References: <20200419161946.19984-1-dqfext@gmail.com>
- <20200419164251.GM836632@lunn.ch>
- <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
- <20200420133111.GL785713@lunn.ch>
- <CAJsYDVLZQ=ci1wp1_P0RcwsV8z27zMn4CPHHpueDF7OZ-X9aEg@mail.gmail.com>
+ with ESMTP id FUJM9YdIslLF for <bridge@lists.linux-foundation.org>;
+ Fri, 24 Apr 2020 01:11:10 +0000 (UTC)
+X-Greylist: delayed 01:05:39 by SQLgrey-1.7.6
+Received: from mail-pj1-f65.google.com (mail-pj1-f65.google.com
+ [209.85.216.65])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id CDA8887FEE
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Apr 2020 01:11:10 +0000 (UTC)
+Received: by mail-pj1-f65.google.com with SMTP id a5so3278190pjh.2
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Apr 2020 18:11:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=XHt+FuftJsPGeqKy6heDhwHg5C+HSjbnEYws52bz+vg=;
+ b=iG8USReCJE1ztEZykLXV7uL9Fy8/axncNlw+Bv/Q61VZ+IWsyngZOqRASZ6M5x44qB
+ EOc/OWaB1foWWTqyCLHFzJ2IbhUf5EHueFzU/+vf+LfTksaTHNeDgyFmlDchIRFueVTe
+ np46R07CrQETTvX4PrfvpwGVhAVyKLgACyXr/dlmyRyyp+dUSjXyebwne0nL3dnozeJN
+ pbCwj8I0fPluDjjOSpFm4ET1T+7T9gi0aziJORIw6u1CzwHNYsKMF8v00hsR8CXu5+Zo
+ cepx7pvgqE1XLOdDhd4EkZr+g6uvrlvPoGUApreJ2DCccoX2k2ZVr1UjbxH3Bn/I6v7v
+ 3iQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=XHt+FuftJsPGeqKy6heDhwHg5C+HSjbnEYws52bz+vg=;
+ b=UQidNNEO6ebQFMAE7vQXSZ6WRKIRZ1Fio9L9Hm6yDw/tM3UHmwZOOsjl9A82wBosAH
+ Z6Hp9SlI4qOZZ9iDMDxnVSqSS9LNXtFWycgrmFYvS9nEGLov4zUBrYJNuGSudjCxtCBl
+ IIWYO3jZy/KuKa2jo/hVYUzzfKNjuYNnjXJiB8Ucjybr7jo1fdDVYOlcLxLrZgd8nh32
+ UOV2GnQh54v3gaKhdM9pE5vJnjdWve11mpd2io9hcJ3MRhc4uScuFLzxbfqfJBk4Q4UT
+ iVAJpNK8XtIHxLDeYhV/y9FHWUAbg1gEH1YfpV7aH1rkkeyRiqkpyWru4UtwmnfWinSq
+ ybGw==
+X-Gm-Message-State: AGi0Pub/ObsNTftefR8UweHKkfNvBCSagg/w0JZAhqZJsBnxuP4toOTg
+ xX4K3jGPM+ZMuq1IRfL6cw2lXVh+aCs=
+X-Google-Smtp-Source: APiQypJvm23OV35t16ydy9e9LoxsKRo2WLGGXHyEG0PLKSWISnq2TVqRGPNdWN4YWMwdckZNAjHshw==
+X-Received: by 2002:a17:902:9a03:: with SMTP id
+ v3mr6151155plp.272.1587686730810; 
+ Thu, 23 Apr 2020 17:05:30 -0700 (PDT)
+Received: from hermes.lan (204-195-22-127.wavecable.com. [204.195.22.127])
+ by smtp.gmail.com with ESMTPSA id o15sm3325488pjp.41.2020.04.23.17.05.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Apr 2020 17:05:30 -0700 (PDT)
+Date: Thu, 23 Apr 2020 17:05:21 -0700
+From: Stephen Hemminger <stephen@networkplumber.org>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <20200423170521.65a3bc59@hermes.lan>
+In-Reply-To: <20181116165001.30896-1-nikolay@cumulusnetworks.com>
+References: <20181114172703.5795-1-nikolay@cumulusnetworks.com>
+ <20181116165001.30896-1-nikolay@cumulusnetworks.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJsYDVLZQ=ci1wp1_P0RcwsV8z27zMn4CPHHpueDF7OZ-X9aEg@mail.gmail.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
- =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
- Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
- netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
- bridge@lists.linux-foundation.org, "David S . Miller" <davem@davemloft.net>,
- DENG Qingfang <dqfext@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [RFC PATCH net-next] net: bridge: fix client roaming
- from DSA user port
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+ bridge@lists.linux-foundation.org, syzkaller-bugs@googlegroups.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net v3] net: bridge: fix vlan stats
+ use-after-free on destruction
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -82,58 +98,26 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Apr 22, 2020 at 02:01:28PM +0800, Chuanhong Guo wrote:
-> Hi!
+On Fri, 16 Nov 2018 18:50:01 +0200
+Nikolay Aleksandrov <nikolay@cumulusnetworks.com> wrote:
+
+> Syzbot reported a use-after-free of the global vlan context on port vlan
+> destruction. When I added per-port vlan stats I missed the fact that the
+> global vlan context can be freed before the per-port vlan rcu callback.
+> There're a few different ways to deal with this, I've chosen to add a
+> new private flag that is set only when per-port stats are allocated so
+> we can directly check it on destruction without dereferencing the global
+> context at all. The new field in net_bridge_vlan uses a hole.
 > 
-> On Tue, Apr 21, 2020 at 12:36 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > The MAC address needs to move, no argument there. But what are the
-> > mechanisms which cause this. Is learning sufficient, or does DSA need
-> > to take an active role?
+> v2: cosmetic change, move the check to br_process_vlan_info where the
+>     other checks are done
+> v3: add change log in the patch, add private (in-kernel only) flags in a
+>     hole in net_bridge_vlan struct and use that instead of mixing
+>     user-space flags with private flags
 > 
-> cpu port learning will break switch operation if for whatever reason
-> we want to disable bridge offloading (e.g. ebtables?). In this case
-> a packet received from cpu port need to be sent back through
-> cpu port to another switch port, and the switch will learn from this
-> packet incorrectly.
-> 
-> If we want cpu port learning to kick in, we need to make sure that:
-> 1. When bridge offload is enabled, the switch takes care of packet
->     flooding on switch ports itself, instead of flooding with software
->     bridge.
+> Fixes: 9163a0fc1f0c ("net: bridge: add support for per-port vlan stats")
+> Reported-by: syzbot+04681da557a0e49a52e5@syzkaller.appspotmail.com
+> Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 
-Hi Chuanhong
-
-This is what the skb->offload_fwd_mark is all about. If this is set to
-1, it means the switch has done all the forwarding needed for ports in
-that switch. Most of the tag drivers set this unconditionally true.
-
-> 2. Software bridge shouldn't forward any packet between ports
->     on the same switch.
-
-If skb->offload_fwd_mark is true, it won't.
-
-> 3. cpu port learning should only be enabled when bridge
->     offloading is used.
-
-So it should be safe for most switch drivers. And the ones which don't
-set offload_fwd_mark are probably relying of software bridging, or are
-broken and replicating frames.
-
-> It doesn't have to be a broadcast packet but it needs a packet to go
-> through both bridges.
-> 
-> Say we have bridge A and bridge B, port A1 and B1 are connected
-> together and a device is on port A2 first:
-> Bridge A knows that this device is on port A2 and will forward traffic
-> through A1 to B1 if needed. Bridge B sees these packets and knows
-> device is on port B1.
-> When the device move from A2 to B2, B updates its fdb and if a
-> packet reaches A, A will update its fdb too.
-
-The issue here is 'if a packet reaches A'. B might have no reason to
-send a unicast packet to A, if none of the destinations the device is
-talking to is reached via A. Which is why i think a
-broadcast/multicast packet is more likely to be involved.
-
-		    Andrew
+Why not just use v->stats itself as the flag.
+Since free of NULL is a nop it would be cleaner?
