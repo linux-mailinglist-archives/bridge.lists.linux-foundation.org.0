@@ -1,84 +1,85 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB881B90A7
-	for <lists.bridge@lfdr.de>; Sun, 26 Apr 2020 15:33:33 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 20E2A861A7;
-	Sun, 26 Apr 2020 13:24:06 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KxQrr3pEvOFq; Sun, 26 Apr 2020 13:24:05 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 2CDB486193;
-	Sun, 26 Apr 2020 13:24:05 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1784DC089E;
-	Sun, 26 Apr 2020 13:24:05 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7EB5EC0172
- for <bridge@lists.linux-foundation.org>; Sun, 26 Apr 2020 13:24:04 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52EFA1B90A3
+	for <lists.bridge@lfdr.de>; Sun, 26 Apr 2020 15:31:18 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 6E29C878BB
- for <bridge@lists.linux-foundation.org>; Sun, 26 Apr 2020 13:24:04 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id EE21087952;
+	Sun, 26 Apr 2020 13:24:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id sXM9ApBuGV93; Sun, 26 Apr 2020 13:24:08 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by hemlock.osuosl.org (Postfix) with ESMTP id 563C8878BB;
+	Sun, 26 Apr 2020 13:24:08 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4C7EAC0172;
+	Sun, 26 Apr 2020 13:24:08 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5B688C089E
+ for <bridge@lists.linux-foundation.org>; Sun, 26 Apr 2020 13:24:07 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 4838E859FC
+ for <bridge@lists.linux-foundation.org>; Sun, 26 Apr 2020 13:24:07 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Mja65rqraDJC for <bridge@lists.linux-foundation.org>;
- Sun, 26 Apr 2020 13:24:02 +0000 (UTC)
+ with ESMTP id 1OMlYeIoawK0 for <bridge@lists.linux-foundation.org>;
+ Sun, 26 Apr 2020 13:24:06 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
- [216.71.150.166])
- by hemlock.osuosl.org (Postfix) with ESMTPS id CD75A87824
- for <bridge@lists.linux-foundation.org>; Sun, 26 Apr 2020 13:24:02 +0000 (UTC)
+Received: from esa4.microchip.iphmx.com (esa4.microchip.iphmx.com
+ [68.232.154.123])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id DD13B85143
+ for <bridge@lists.linux-foundation.org>; Sun, 26 Apr 2020 13:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1587907443; x=1619443443;
+ t=1587907445; x=1619443445;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version;
- bh=uMNLM0da+vIkR8nBw+Dyvn6HeBpDlBrSYz90DQAIc6A=;
- b=Z6PUSqP/cz5+VturdK0zjLJzt5xzNkdlo+Nk0C6wAbZRy9ECfWkDESbI
- ffDFb03q3uX5FOKeJqqxZN2+red11QFPFN7glV+o6We1GLx+oS1wvt7XC
- aQSZBjRAPTql8b7Y98F0vptQqsJWozbdTXUL4ZY6qdfSFnXuJ0sHN023/
- vJGF3Sj9zOGeig7RrM75/67oVCW5vJsVGF2HnhnkwNXSxMHkbk7EpHfPk
- Meb5w6YQ8GZvYx/IraohvUMGq7j1O4bTr1MAo7u5LxyMEAY0blZlChPEL
- KtiArPmrvvJZdUf7TX3aJ8O77BACrhSDdgZ9gdef6E6x/HE3qWCQSbmbi g==;
-IronPort-SDR: ijvZESFttbS0bB2ZqhPCgILEvi4j1n/0vAJPx3jco33acOWLFSfjpIt7/vv0kCKWm4PSTU7hpc
- AaZSMjfgkMHVK9vsZ9zpQVdwVgsFDMH/O3aENn37mz77cY26sgtCtBusVZYsrCeyMjYFnNRZao
- p4WRyjTWrwtEEfYxjDhHZW6oXhsSPwKUDudstG4awGLl+SonAroQzhqC++S2QeIailmMTFA5Vd
- IjL9Wx02WYzDEBbKpeP5iB66yV6gGrayiCrIw3tTq7SXJaOapNH8wHRuCjXbGbbRLLVSVAoWgx
- oJ0=
-X-IronPort-AV: E=Sophos;i="5.73,320,1583218800"; d="scan'208";a="73846774"
+ bh=Wk5W6JOrVyShu0Bu566DjA/nJMtV0L8hDnh56QYpSOM=;
+ b=awwnWLRr526vC0VOmWMONQWS4jPToFHpxy+YecN7HU96OH/28UordxA5
+ LcKxkSwerbWwlAWIBKZ37zYNkx0QkWWlIP8CiQodvk1lfrSfU8GVgzqV3
+ VsQf3lKO6aIUzIsL9dYglKOHa81adW11YrpZjzzIvo8WHxbm2LHH2f/jf
+ Dmk7kUAnPXBXSHgfbmr/V1eiuQJUlMYT9w9nLlyvrDlDhaTa+hllZSOcw
+ pxnhTSXQBSPMn6W84/G8o4lqD5c+fM+lvXt9j+0lrQuxD+YaV8TJPk8b1
+ Ix0iRmS3m0bFDGMThdCsY59lY6Cd1ZQVVkXwAzcbiJv1JwbuljvLa9sIt g==;
+IronPort-SDR: yOFOj0/xQ/WoLStzKK91Leai4ECyMsaZuMP53K8arQHoh2D5oM/A+4CvI3dMD2KaskJQfNq3hA
+ spRXryp2QytOtCOa1gyr1bDzS2lLjecPeMLoFKo7MWaQcwEz9ri+5v1HFDl/sXjnnfoZ007h4w
+ CgYz6v70S33tf1NjwWRIw8LF/pFwSxjvvnzm5lr/RjRECNpdcSeJALUqG9Yspd3/UTauU6mOnp
+ Wr5h1V5iI8dRTt7mg5sLRAop8jjKWU1BDmUlME7jQWgS0vnHkQEDFlrvpGMnZee13ccgOyyl2F
+ 9mg=
+X-IronPort-AV: E=Sophos;i="5.73,320,1583218800"; d="scan'208";a="71551935"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 26 Apr 2020 06:24:02 -0700
+ by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 26 Apr 2020 06:24:05 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Sun, 26 Apr 2020 06:24:01 -0700
+ 15.1.1713.5; Sun, 26 Apr 2020 06:24:04 -0700
 Received: from soft-dev3.microsemi.net (10.10.115.15) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Sun, 26 Apr 2020 06:23:58 -0700
+ 15.1.1713.5 via Frontend Transport; Sun, 26 Apr 2020 06:24:01 -0700
 From: Horatiu Vultur <horatiu.vultur@microchip.com>
 To: <nikolay@cumulusnetworks.com>, <davem@davemloft.net>, <jiri@resnulli.us>, 
  <ivecera@redhat.com>, <kuba@kernel.org>, <roopa@cumulusnetworks.com>,
  <olteanv@gmail.com>, <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>,
  <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
  <bridge@lists.linux-foundation.org>
-Date: Sun, 26 Apr 2020 15:22:02 +0200
-Message-ID: <20200426132208.3232-6-horatiu.vultur@microchip.com>
+Date: Sun, 26 Apr 2020 15:22:03 +0200
+Message-ID: <20200426132208.3232-7-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200426132208.3232-1-horatiu.vultur@microchip.com>
 References: <20200426132208.3232-1-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next v4 05/11] bridge: mrp: Add MRP interface.
+Subject: [Bridge] [PATCH net-next v4 06/11] switchdev: mrp: Extend switchdev
+	API to offload MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,165 +94,130 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Define the MRP interface.
-This interface is used by the netlink to update the MRP instances and by the MRP
-to make the calls to switchdev to offload it to HW.
+Extend switchdev API to add support for MRP. The HW is notified in
+following cases:
 
-It defines an MRP instance 'struct br_mrp' which is a list of MRP instances.
-Which will be part of the 'struct net_bridge'. Each instance has 2 ring ports,
-a bridge and an ID.
+SWITCHDEV_OBJ_ID_MRP: This is used when a MRP instance is added/removed
+  from the MRP ring.
 
-In case the HW can't generate MRP Test frames then the SW will generate those.
+SWITCHDEV_OBJ_ID_RING_ROLE_MRP: This is used when the role of the node
+  changes. The current supported roles are MRM and MRC.
 
-br_mrp_add - adds a new MRP instance.
+SWITCHDEV_OBJ_ID_RING_TEST_MRP: This is used when to start/stop sending
+  MRP_Test frames on the mrp ring ports. This is called only on nodes that have
+  the role MRM. In case this fails then the SW will generate the frames.
 
-br_mrp_del - deletes an existing MRP instance. Each instance has an ID(ring_id).
+SWITCHDEV_OBJ_ID_RING_STATE_STATE: This is used when the ring changes it states
+  to open or closed. This is required to notify HW because the MRP_Test frame
+  contains the field MRP_InState which contains this information.
 
-br_mrp_set_port_state - changes the port state. The port can be in forwarding
-  state, which means that the frames can pass through or in blocked state which
-  means that the frames can't pass through except MRP frames. This will
-  eventually call the switchdev API to notify the HW. This information is used
-  also by the SW bridge to know how to forward frames in case the HW doesn't
-  have this capability.
+SWITCHDEV_ATTR_ID_MRP_PORT_STATE: This is used when the port's state is
+  changed. It can be in blocking/forwarding mode.
 
-br_mrp_set_port_role - a port role can be primary or secondary. This
-  information is required to be pushed to HW in case the HW can generate
-  MRP_Test frames.  Because the MRP_Test frames contains a file with this
-  information. Otherwise the HW will not be able to generate the frames
-  correctly.
-
-br_mrp_set_ring_state - a ring can be in state open or closed. State open means
-  that the mrp port stopped receiving MRP_Test frames, while closed means that
-  the mrp port received MRP_Test frames. Similar with br_mrp_port_role, this
-  information is pushed in HW because the MRP_Test frames contain this
+SWITCHDEV_ATTR_ID_MRP_PORT_ROLE: This is used when port's role changes. The
+  roles of the port can be primary/secondary. This is required to notify HW
+  because the MRP_Test frame contains the field MRP_PortRole that contains this
   information.
 
-br_mrp_set_ring_role - a ring can have the following roles MRM or MRC. For the
-  role MRM it is expected that the HW can terminate the MRP frames, notify the
-  SW that it stopped receiving MRP_Test frames and trapp all the other MRP
-  frames.  While for MRC mode it is expected that the HW can forward the MRP
-  frames only between the MRP ports and copy MRP_Topology frames to CPU. In
-  case the HW doesn't support a role it needs to return an error code different
-  than -EOPNOTSUPP.
-
-br_mrp_start_test - this starts/stops the generation of MRP_Test frames. To stop
-  the generation of frames the interval needs to have a value of 0. In this case
-  the userspace needs to know if the HW supports this or not. Not to have
-  duplicate frames(generated by HW and SW). Because if the HW supports this then
-  the SW will not generate anymore frames and will expect that the HW will
-  notify when it stopped receiving MRP frames using the function
-  br_mrp_port_open.
-
-br_mrp_port_open - this function is used by drivers to notify the userspace via
-  a netlink callback that one of the ports stopped receiving MRP_Test frames.
-  This function is called only when the node has the role MRM. It is not
-  supposed to be called from userspace.
-
-br_mrp_port_switchdev_add - this corresponds to the function br_mrp_add,
-  and will notify the HW that a MRP instance is added. The function gets
-  as parameter the MRP instance.
-
-br_mrp_port_switchdev_del - this corresponds to the function br_mrp_del,
-  and will notify the HW that a MRP instance is removed. The function
-  gets as parameter the ID of the MRP instance that is removed.
-
-br_mrp_port_switchdev_set_state - this corresponds to the function
-  br_mrp_set_port_state. It would notify the HW if it should block or not
-  non-MRP frames.
-
-br_mrp_port_switchdev_set_port - this corresponds to the function
-  br_mrp_set_port_role. It would set the port role, primary or secondary.
-
-br_mrp_switchdev_set_role - this corresponds to the function
-  br_mrp_set_ring_role and would set one of the role MRM or MRC.
-
-br_mrp_switchdev_set_ring_state - this corresponds to the function
-  br_mrp_set_ring_state and would set the ring to be open or closed.
-
-br_mrp_switchdev_send_ring_test - this corresponds to the function
-  br_mrp_start_test. This will notify the HW to start or stop generating
-  MRP_Test frames. Value 0 for the interval parameter means to stop generating
-  the frames.
-
-br_mrp_port_open - this function is used to notify the userspace that the port
-  lost the continuity of MRP Test frames.
-
-Reviewed-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- net/bridge/br_private_mrp.h | 63 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 net/bridge/br_private_mrp.h
+ include/net/switchdev.h | 62 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/net/bridge/br_private_mrp.h b/net/bridge/br_private_mrp.h
-new file mode 100644
-index 000000000000..2921a4b59f8e
---- /dev/null
-+++ b/net/bridge/br_private_mrp.h
-@@ -0,0 +1,63 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
+diff --git a/include/net/switchdev.h b/include/net/switchdev.h
+index aee86a189432..ae7aeb0d1f9c 100644
+--- a/include/net/switchdev.h
++++ b/include/net/switchdev.h
+@@ -40,6 +40,10 @@ enum switchdev_attr_id {
+ 	SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING,
+ 	SWITCHDEV_ATTR_ID_BRIDGE_MC_DISABLED,
+ 	SWITCHDEV_ATTR_ID_BRIDGE_MROUTER,
++#if IS_ENABLED(CONFIG_BRIDGE_MRP)
++	SWITCHDEV_ATTR_ID_MRP_PORT_STATE,
++	SWITCHDEV_ATTR_ID_MRP_PORT_ROLE,
++#endif
+ };
+ 
+ struct switchdev_attr {
+@@ -55,6 +59,11 @@ struct switchdev_attr {
+ 		clock_t ageing_time;			/* BRIDGE_AGEING_TIME */
+ 		bool vlan_filtering;			/* BRIDGE_VLAN_FILTERING */
+ 		bool mc_disabled;			/* MC_DISABLED */
++#if IS_ENABLED(CONFIG_BRIDGE_MRP)
++		u8 mrp_port_state;			/* MRP_PORT_STATE */
++		u8 mrp_port_role;			/* MRP_PORT_ROLE */
++		u8 mrp_ring_state;			/* MRP_RING_STATE */
++#endif
+ 	} u;
+ };
+ 
+@@ -63,6 +72,12 @@ enum switchdev_obj_id {
+ 	SWITCHDEV_OBJ_ID_PORT_VLAN,
+ 	SWITCHDEV_OBJ_ID_PORT_MDB,
+ 	SWITCHDEV_OBJ_ID_HOST_MDB,
++#if IS_ENABLED(CONFIG_BRIDGE_MRP)
++	SWITCHDEV_OBJ_ID_MRP,
++	SWITCHDEV_OBJ_ID_RING_TEST_MRP,
++	SWITCHDEV_OBJ_ID_RING_ROLE_MRP,
++	SWITCHDEV_OBJ_ID_RING_STATE_MRP,
++#endif
+ };
+ 
+ struct switchdev_obj {
+@@ -94,6 +109,53 @@ struct switchdev_obj_port_mdb {
+ #define SWITCHDEV_OBJ_PORT_MDB(OBJ) \
+ 	container_of((OBJ), struct switchdev_obj_port_mdb, obj)
+ 
 +
-+#ifndef _BR_PRIVATE_MRP_H_
-+#define _BR_PRIVATE_MRP_H_
-+
-+#include "br_private.h"
-+#include <uapi/linux/mrp_bridge.h>
-+
-+struct br_mrp {
-+	/* list of mrp instances */
-+	struct list_head		__rcu list;
-+
-+	struct net_bridge_port __rcu	*p_port;
-+	struct net_bridge_port __rcu	*s_port;
-+
-+	u32				ring_id;
-+
-+	enum br_mrp_ring_role_type	ring_role;
-+	u8				ring_role_offloaded;
-+	enum br_mrp_ring_state_type	ring_state;
-+	u32				ring_transitions;
-+
-+	struct delayed_work		test_work;
-+	u32				test_interval;
-+	unsigned long			test_end;
-+	u32				test_count_miss;
-+	u32				test_max_miss;
-+
-+	u32				seq_id;
-+
-+	struct rcu_head			rcu;
++#if IS_ENABLED(CONFIG_BRIDGE_MRP)
++/* SWITCHDEV_OBJ_ID_MRP */
++struct switchdev_obj_mrp {
++	struct switchdev_obj obj;
++	struct net_device *p_port;
++	struct net_device *s_port;
++	u32 ring_id;
 +};
 +
-+/* br_mrp.c */
-+int br_mrp_add(struct net_bridge *br, struct br_mrp_instance *instance);
-+int br_mrp_del(struct net_bridge *br, struct br_mrp_instance *instance);
-+int br_mrp_set_port_state(struct net_bridge_port *p,
-+			  enum br_mrp_port_state_type state);
-+int br_mrp_set_port_role(struct net_bridge_port *p,
-+			 struct br_mrp_port_role *role);
-+int br_mrp_set_ring_state(struct net_bridge *br,
-+			  struct br_mrp_ring_state *state);
-+int br_mrp_set_ring_role(struct net_bridge *br, struct br_mrp_ring_role *role);
-+int br_mrp_start_test(struct net_bridge *br, struct br_mrp_start_test *test);
++#define SWITCHDEV_OBJ_MRP(OBJ) \
++	container_of((OBJ), struct switchdev_obj_mrp, obj)
 +
-+/* br_mrp_switchdev.c */
-+int br_mrp_switchdev_add(struct net_bridge *br, struct br_mrp *mrp);
-+int br_mrp_switchdev_del(struct net_bridge *br, struct br_mrp *mrp);
-+int br_mrp_switchdev_set_ring_role(struct net_bridge *br, struct br_mrp *mrp,
-+				   enum br_mrp_ring_role_type role);
-+int br_mrp_switchdev_set_ring_state(struct net_bridge *br, struct br_mrp *mrp,
-+				    enum br_mrp_ring_state_type state);
-+int br_mrp_switchdev_send_ring_test(struct net_bridge *br, struct br_mrp *mrp,
-+				    u32 interval, u8 max_miss, u32 period);
-+int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
-+				    enum br_mrp_port_state_type state);
-+int br_mrp_port_switchdev_set_role(struct net_bridge_port *p,
-+				   enum br_mrp_port_role_type role);
++/* SWITCHDEV_OBJ_ID_RING_TEST_MRP */
++struct switchdev_obj_ring_test_mrp {
++	struct switchdev_obj obj;
++	/* The value is in us and a value of 0 represents to stop */
++	u32 interval;
++	u8 max_miss;
++	u32 ring_id;
++	u32 period;
++};
 +
-+/* br_mrp_netlink.c  */
-+int br_mrp_port_open(struct net_device *dev, u8 loc);
++#define SWITCHDEV_OBJ_RING_TEST_MRP(OBJ) \
++	container_of((OBJ), struct switchdev_obj_ring_test_mrp, obj)
 +
-+#endif /* _BR_PRIVATE_MRP_H */
++/* SWICHDEV_OBJ_ID_RING_ROLE_MRP */
++struct switchdev_obj_ring_role_mrp {
++	struct switchdev_obj obj;
++	u8 ring_role;
++	u32 ring_id;
++};
++
++#define SWITCHDEV_OBJ_RING_ROLE_MRP(OBJ) \
++	container_of((OBJ), struct switchdev_obj_ring_role_mrp, obj)
++
++struct switchdev_obj_ring_state_mrp {
++	struct switchdev_obj obj;
++	u8 ring_state;
++	u32 ring_id;
++};
++
++#define SWITCHDEV_OBJ_RING_STATE_MRP(OBJ) \
++	container_of((OBJ), struct switchdev_obj_ring_state_mrp, obj)
++
++#endif
++
+ typedef int switchdev_obj_dump_cb_t(struct switchdev_obj *obj);
+ 
+ enum switchdev_notifier_type {
 -- 
 2.17.1
 
