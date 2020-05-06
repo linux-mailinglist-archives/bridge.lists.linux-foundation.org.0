@@ -1,88 +1,62 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B51B1EC7C9
-	for <lists.bridge@lfdr.de>; Wed,  3 Jun 2020 05:27:33 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id A15B71EC7C7
+	for <lists.bridge@lfdr.de>; Wed,  3 Jun 2020 05:27:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id B642187E9B;
-	Wed,  3 Jun 2020 03:27:30 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 42D39886A6;
+	Wed,  3 Jun 2020 03:27:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id OIPAwxv9ysRO; Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
+	with ESMTP id 1kNpT-CJ-H9r; Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 3BC8A87E90;
+	by hemlock.osuosl.org (Postfix) with ESMTP id 7F4EE88602;
 	Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2E33CC016E;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6F0E6C016E;
 	Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E1E00C0175
- for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A5E03C0859
+ for <bridge@lists.linux-foundation.org>; Wed,  6 May 2020 06:17:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id C85DC86E3A
- for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 95BEC87708
+ for <bridge@lists.linux-foundation.org>; Wed,  6 May 2020 06:17:13 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uVdb0JcmchYc for <bridge@lists.linux-foundation.org>;
- Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
+ with ESMTP id fr+zlxG7eUDT for <bridge@lists.linux-foundation.org>;
+ Wed,  6 May 2020 06:17:11 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ot1-f68.google.com (mail-ot1-f68.google.com
- [209.85.210.68])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 16B5386AA1
- for <bridge@lists.linux-foundation.org>; Wed, 22 Apr 2020 06:01:41 +0000 (UTC)
-Received: by mail-ot1-f68.google.com with SMTP id j26so1150892ots.0
- for <bridge@lists.linux-foundation.org>; Tue, 21 Apr 2020 23:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=B4X6Wl2vhyTh+fWJF2DvDT914oag6V4/v305cxg0mr4=;
- b=t1oyVd+RPlx7TXHksyQOzbeuw9x7wi//Ygm83/UevyITpYW3G8N0JCat0TQUYbhi9c
- oL5Q0HsGGQLBkaGG4Rdi/uUpg6zfnRuRdlpVgN0aAqC3PH7iBsE4OKuLtUFIib7fK4eU
- I7tCduulbvFXljrn/6DuAGSJfgckQcbY88WNlR4T0g+XXZvNh77SkjeHG0ldtiuvF+eK
- +3a/f6nKCgCP2qqemkGxJ400cDYsv+WxUtozcZcPp5X+UFNYr9cp8hNBowVg9BxPtgyK
- WKCWCaczNLsF1vXXHpuYRD3XF7g4ysGpgBnlDc2uDS7xyrmYTDfWi76lfZW4W8ZbRZ0q
- mUTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=B4X6Wl2vhyTh+fWJF2DvDT914oag6V4/v305cxg0mr4=;
- b=j6RDBrrwnHAD1s6/Vs8FmssuuPAMifB/Vo3vsurLHclamZgZqkJlc3v7smiFXSm/Wx
- hAtRVZzPR+DJmGbQdEOMtQ7BCsniP4Bzo3n4J24pm3Y5HloGf+AgZvGGG36+gBxKWeE+
- U8bUb0AAtiF515O2adF1U6m5feONr75esZSNkQG1GSmlH92xTGz8XC4pJXug9qyfWOLr
- tiiynMlKinCZnNetcG+UHqUgf7EqBKeLuzrqzAUFSG9BaGn6K9/iFKCnHuTxeWQ4TGlj
- LTvBED+qQkdZwlwV8Sa1FPzXesogbHMfRnp8KHcqgbgkiw3qKqIOwWTQ44qxNApwiodj
- F6eA==
-X-Gm-Message-State: AGi0Pub99pnRTbuVJqwVIB64UkNlqAF1uxNr+MmBEcCisiPemCbmw924
- rjKQx4+AKErQMzlY6FTUVtuc9KM5RDO7Rgddoag=
-X-Google-Smtp-Source: APiQypKvUeZB7xUCDrqGfHVWS50bx9VEY4ePxXOLGzjs3wc+vPD674hy9Pwa3Q04bQK/1Z5wDLK6QCupWcVXYuQdgaM=
-X-Received: by 2002:a9d:2c61:: with SMTP id f88mr2799730otb.86.1587535300252; 
- Tue, 21 Apr 2020 23:01:40 -0700 (PDT)
+Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id B7596876FF
+ for <bridge@lists.linux-foundation.org>; Wed,  6 May 2020 06:17:11 +0000 (UTC)
+Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 2F845A04B3344AC12140;
+ Wed,  6 May 2020 14:17:05 +0800 (CST)
+Received: from huawei.com (10.175.124.28) by DGGEMS408-HUB.china.huawei.com
+ (10.3.19.208) with Microsoft SMTP Server id 14.3.487.0; Wed, 6 May 2020
+ 14:16:55 +0800
+From: Jason Yan <yanaijie@huawei.com>
+To: <roopa@cumulusnetworks.com>, <nikolay@cumulusnetworks.com>,
+ <davem@davemloft.net>, <kuba@kernel.org>,
+ <bridge@lists.linux-foundation.org>, <netdev@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Date: Wed, 6 May 2020 14:16:16 +0800
+Message-ID: <20200506061616.18929-1-yanaijie@huawei.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-References: <20200419161946.19984-1-dqfext@gmail.com>
- <20200419164251.GM836632@lunn.ch>
- <CALW65jYmcZJoP_i5=bgeWpcibzOmEPne3mHyBngE5bTiOZreDw@mail.gmail.com>
- <20200420133111.GL785713@lunn.ch>
-In-Reply-To: <20200420133111.GL785713@lunn.ch>
-From: Chuanhong Guo <gch981213@gmail.com>
-Date: Wed, 22 Apr 2020 14:01:28 +0800
-Message-ID: <CAJsYDVLZQ=ci1wp1_P0RcwsV8z27zMn4CPHHpueDF7OZ-X9aEg@mail.gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.175.124.28]
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Wed, 03 Jun 2020 03:27:25 +0000
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
- =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
- Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
- netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
- bridge@lists.linux-foundation.org, "David S . Miller" <davem@davemloft.net>,
- DENG Qingfang <dqfext@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [RFC PATCH net-next] net: bridge: fix client roaming
- from DSA user port
+Cc: Jason Yan <yanaijie@huawei.com>
+Subject: [Bridge] [PATCH net-next] net: bridge: return false in
+	br_mrp_enabled()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,65 +71,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi!
+Fix the following coccicheck warning:
 
-On Tue, Apr 21, 2020 at 12:36 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> The MAC address needs to move, no argument there. But what are the
-> mechanisms which cause this. Is learning sufficient, or does DSA need
-> to take an active role?
+net/bridge/br_private.h:1334:8-9: WARNING: return of 0/1 in function
+'br_mrp_enabled' with return type bool
 
-cpu port learning will break switch operation if for whatever reason
-we want to disable bridge offloading (e.g. ebtables?). In this case
-a packet received from cpu port need to be sent back through
-cpu port to another switch port, and the switch will learn from this
-packet incorrectly.
+Signed-off-by: Jason Yan <yanaijie@huawei.com>
+---
+ net/bridge/br_private.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-If we want cpu port learning to kick in, we need to make sure that:
-1. When bridge offload is enabled, the switch takes care of packet
-    flooding on switch ports itself, instead of flooding with software
-    bridge.
-2. Software bridge shouldn't forward any packet between ports
-    on the same switch.
-3. cpu port learning should only be enabled when bridge
-    offloading is used.
-
-Otherwise we need to manually sync fdb between software bridge
-and switch, specifically we need to take over fdb management
-on cpu port and tell the switch what devices are on the software
-bridge port side.
-
-I haven't read kernel bridge code thoroughly and have no idea
-which one is better/easier.
-
-Some switches (e.g. mt753x) have an option to forward packets
-with unknown destination port to cpu port only, instead of flooding.
-For this type of switch, the solution proposed in this patch is fine,
-because removing fdb entries has the same effect as telling switch
-that a device is on cpu port. If there's a switch without this feature,
-(which I have no idea if it exists) there will be issues on packet
-flooding behavior.
-
->
-> Forget about DSA for the moment. How does this work for two normal
-> bridges? Is the flow of unicast packets sufficient? Does it requires a
-> broadcast packet from the device after it moves?
-
-It doesn't have to be a broadcast packet but it needs a packet to go
-through both bridges.
-
-Say we have bridge A and bridge B, port A1 and B1 are connected
-together and a device is on port A2 first:
-Bridge A knows that this device is on port A2 and will forward traffic
-through A1 to B1 if needed. Bridge B sees these packets and knows
-device is on port B1.
-When the device move from A2 to B2, B updates its fdb and if a
-packet reaches A, A will update its fdb too.
-
-The problem addressed in this patch is that switch doesn't update
-its fdb when a device moves from switch to software bridge, because
-cpu port learning is disabled.
-
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index c35647cb138a..78d3a951180d 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -1331,7 +1331,7 @@ static inline int br_mrp_process(struct net_bridge_port *p, struct sk_buff *skb)
+ 
+ static inline bool br_mrp_enabled(struct net_bridge *br)
+ {
+-	return 0;
++	return false;
+ }
+ 
+ static inline void br_mrp_port_del(struct net_bridge *br,
 -- 
-Regards,
-Chuanhong Guo
+2.21.1
+
