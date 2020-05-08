@@ -1,67 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1C61C96AD
-	for <lists.bridge@lfdr.de>; Thu,  7 May 2020 18:39:55 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 896A41CABD5
+	for <lists.bridge@lfdr.de>; Fri,  8 May 2020 14:47:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 14BF385F49;
-	Thu,  7 May 2020 16:39:54 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 167B6896BA;
+	Fri,  8 May 2020 12:47:44 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rhWMqJae-EK6; Thu,  7 May 2020 16:39:53 +0000 (UTC)
+	with ESMTP id w4OvL+4fdHhC; Fri,  8 May 2020 12:47:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7560685F5A;
-	Thu,  7 May 2020 16:39:53 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 00832892AA;
+	Fri,  8 May 2020 12:47:41 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 56110C0890;
-	Thu,  7 May 2020 16:39:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CBCBBC07FF;
+	Fri,  8 May 2020 12:47:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4AFD4C07FF
- for <bridge@lists.linux-foundation.org>; Thu,  7 May 2020 16:39:52 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B2D17C07FF
+ for <bridge@lists.linux-foundation.org>; Fri,  8 May 2020 12:47:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 3A8478839A
- for <bridge@lists.linux-foundation.org>; Thu,  7 May 2020 16:39:52 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id A8EC18757A
+ for <bridge@lists.linux-foundation.org>; Fri,  8 May 2020 12:47:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nxKU1BzybmZA for <bridge@lists.linux-foundation.org>;
- Thu,  7 May 2020 16:39:51 +0000 (UTC)
+ with ESMTP id Vthi4qmUHRSR for <bridge@lists.linux-foundation.org>;
+ Fri,  8 May 2020 12:47:39 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 7888F88393
- for <bridge@lists.linux-foundation.org>; Thu,  7 May 2020 16:39:51 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 2D9CF87565
+ for <bridge@lists.linux-foundation.org>; Fri,  8 May 2020 12:47:39 +0000 (UTC)
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
  [83.86.89.107])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C801320838;
- Thu,  7 May 2020 16:39:50 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7B9ED221F7;
+ Fri,  8 May 2020 12:47:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1588869591;
- bh=wq2CHy58Cr6P3g53lcN3y4RE88fxN0x54WdnN8sOIko=;
- h=Subject:To:Cc:From:Date:From;
- b=k99ZnXN1Xe9/36qor8EMQZQYeE1HFIs0avbfPwlKKED5WjDC4Qc+GskEPSvkNAVyT
- 4F841Q2Q0eycKHg/x1MH/bPE6+kTK/5ldQDkUIXWTbBvmIogA2du6VxgMbkgCfulgq
- p7K8+LWZvcGaEjPtVouRvO5YOeYtYyCJQVrlXcXc=
-To: bridge@lists.linux-foundation.org, davem@davemloft.net,
- gregkh@linuxfoundation.org, kyeyoonp@codeaurora.org,
- nikolay@cumulusnetworks.com, roopa@cumulusnetworks.com,
- stephen@networkplumber.org
-From: <gregkh@linuxfoundation.org>
-Date: Thu, 07 May 2020 18:39:13 +0200
-Message-ID: <1588869553183206@kroah.com>
+ s=default; t=1588942059;
+ bh=lAWvsf08nZvSQrfzMExadqGz3aL2prjAHcmVRlzYXZg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=JGNdz8lZwZ3kZY97w3pSEMAvvhh7dn4Stde5hNe0kNCdKG7FNjmuBGtWkcJt4v8+K
+ rMLwlOiuDGZH0tvB6/W9/cZz4C2Q0ShogXGUC2AR+We+GQwWrcF9SAf94gAxwSJRAy
+ 96BL/d5htW9ok+xfgeuasAKfTQ/DeFpJslUCpcR0=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: linux-kernel@vger.kernel.org
+Date: Fri,  8 May 2020 14:34:32 +0200
+Message-Id: <20200508123144.177646487@linuxfoundation.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200508123124.574959822@linuxfoundation.org>
+References: <20200508123124.574959822@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
-Cc: stable-commits@vger.kernel.org
-Subject: [Bridge] Patch "net: bridge: don't increment tx_dropped in
-	br_do_proxy_arp" has been added to the 4.4-stable tree
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
+ stable@vger.kernel.org, Kyeyoon Park <kyeyoonp@codeaurora.org>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH 4.4 281/312] net: bridge: dont increment tx_dropped
+	in br_do_proxy_arp
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -75,27 +78,6 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
-
-
-This is a note to let you know that I've just added the patch titled
-
-    net: bridge: don't increment tx_dropped in br_do_proxy_arp
-
-to the 4.4-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
-
-The filename of the patch is:
-     net-bridge-don-t-increment-tx_dropped-in-br_do_proxy_arp.patch
-and it can be found in the queue-4.4 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From 85a3d4a9356b595d5440c3f1bf07ee7cecca1567 Mon Sep 17 00:00:00 2001
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Date: Tue, 30 Aug 2016 17:44:29 +0200
-Subject: net: bridge: don't increment tx_dropped in br_do_proxy_arp
 
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 
@@ -138,7 +120,3 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	if (parp->ar_pro != htons(ETH_P_IP) ||
 
 
-Patches currently in stable-queue which might be from nikolay@cumulusnetworks.com are
-
-queue-4.4/bonding-prevent-out-of-bound-accesses.patch
-queue-4.4/net-bridge-don-t-increment-tx_dropped-in-br_do_proxy_arp.patch
