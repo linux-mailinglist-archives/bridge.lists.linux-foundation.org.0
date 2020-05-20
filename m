@@ -1,89 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3961DB8AD
-	for <lists.bridge@lfdr.de>; Wed, 20 May 2020 17:51:09 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD981DB8D0
+	for <lists.bridge@lfdr.de>; Wed, 20 May 2020 17:57:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 1A4AA86E4C;
-	Wed, 20 May 2020 15:51:08 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 044DB866F0;
+	Wed, 20 May 2020 15:56:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9_JC0VnrvrLy; Wed, 20 May 2020 15:51:07 +0000 (UTC)
+	with ESMTP id EvLHmVV90eHQ; Wed, 20 May 2020 15:56:57 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id CEE6F86E5E;
-	Wed, 20 May 2020 15:51:06 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id BE5C5866F6;
+	Wed, 20 May 2020 15:56:57 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id AE328C0176;
-	Wed, 20 May 2020 15:51:06 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A2522C0176;
+	Wed, 20 May 2020 15:56:57 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2C378C0176
- for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 15:51:05 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DDDB2C0176
+ for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 15:56:56 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 1B6B586E5E
- for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 15:51:05 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id B6DCB24804
+ for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 15:56:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zwCONvCJd9kY for <bridge@lists.linux-foundation.org>;
- Wed, 20 May 2020 15:51:04 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com
- [209.85.216.67])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 4968C86E24
- for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 15:51:04 +0000 (UTC)
-Received: by mail-pj1-f67.google.com with SMTP id nu7so1485054pjb.0
- for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 08:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=PGt5BLdFYxU6z1cqTJIqi+js4tZYCy5XiqwrbJue7TA=;
- b=VBDVFrk6oKnVNDIw8raagKq5a8eJuK45dEaNEJhAanbz91rxFKnrQTllLBUsf1VmYC
- NoqgnZ2zzAHzxt/ftq82ycjy2pqQDQCGwnNPuNsAedzasPPDynnRSobblUVi2uAjP81x
- dloti4nJ8TCEoIefrSsNa+yBd5be88qsolNL9eu+S30O7URyhU7bdMrCvhOIgp/x2nh8
- VaJJHi5duJo24MpKRBmNnqCLc/OoeNEceeU7MEBsNfXTkm9fRGgI4MpAQZUCvNZfpOjZ
- aj/YNjC383Z9TeAONWCxS25M+59WYmG0oUtYGird2unKBRZuTIzj3PUiAQJTAtNiMlh/
- rSTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=PGt5BLdFYxU6z1cqTJIqi+js4tZYCy5XiqwrbJue7TA=;
- b=dQZkDTac3xiloG4mjUU4r2yi6IQL/F9s9P0mdTs4J69L1AVUV2EkP4gmK7ppp2tQlv
- OOyI8C3nmRbmGlV3qqoPgGHUwkcO9swVoH18mkUvS4mlS0b34YVoZfhOo6lpJqIbAFgI
- G+esRRB9WiSV6dWK7pDBN60Q6kXcZTCYft6RBOwi8FrDZjNfaTA+jGbVhqTCZVDehcEA
- EAnmIISd5JTevYUk4YYLKyvHkXUf4o64v3XW9nr2nh7AckTSqO/9SO4rnbT81xhXmP4S
- D2FGVdL4Cw+EGm29kgDQDZObq4LqKTRTRqtm4MzGWW0tbnzMlqS1DyQjuVPRHAfKZG12
- fJhg==
-X-Gm-Message-State: AOAM531W6P6hai/j1LGab7zbxxKpMvNprSALGinfBG/TGPo1J6/xbQif
- sTrGpqidCmuxE8LB4JkuBPvxiQ==
-X-Google-Smtp-Source: ABdhPJx04CU5osC8N8WwltpLcZT/kJVkSQfwexK2sh11BxrJR6el86m4PMpCODbiTjaQgxTmnH5d/A==
-X-Received: by 2002:a17:902:9342:: with SMTP id
- g2mr5279742plp.326.1589989863733; 
- Wed, 20 May 2020 08:51:03 -0700 (PDT)
-Received: from hermes.lan (204-195-22-127.wavecable.com. [204.195.22.127])
- by smtp.gmail.com with ESMTPSA id w19sm2343277pfc.95.2020.05.20.08.51.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 May 2020 08:51:03 -0700 (PDT)
-Date: Wed, 20 May 2020 08:50:54 -0700
-From: Stephen Hemminger <stephen@networkplumber.org>
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20200520085054.2031ad8a@hermes.lan>
-In-Reply-To: <20181116165001.30896-1-nikolay@cumulusnetworks.com>
-References: <20181114172703.5795-1-nikolay@cumulusnetworks.com>
- <20181116165001.30896-1-nikolay@cumulusnetworks.com>
+ with ESMTP id gVWfN825vhtw for <bridge@lists.linux-foundation.org>;
+ Wed, 20 May 2020 15:56:56 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by silver.osuosl.org (Postfix) with ESMTPS id D77732048B
+ for <bridge@lists.linux-foundation.org>; Wed, 20 May 2020 15:56:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1589990214;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Sno0GmQ/eQv+Rs74eF1UQLVprtgb41HhzSqFhBF9Z8s=;
+ b=UGc0n8gsFBKCSOZzkOk4vrC5yRgj8I47bMYFEwPk1eVq3HH0ZUZMOxi5kj2WQ77BLn0Gh9
+ wusGfxZ10FWb2xiNcJUdQW1X75P1QNr6Krbi+B5XdUz2E0nkwzy4VgbbMfJaYdG4zu9AyC
+ qYyQeVs/w7fSX4FZqSwzwn1uBcuffUA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-30-sIzVUj7MM16DmhemM8TuYQ-1; Wed, 20 May 2020 11:56:52 -0400
+X-MC-Unique: sIzVUj7MM16DmhemM8TuYQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id CF91580183C;
+ Wed, 20 May 2020 15:56:50 +0000 (UTC)
+Received: from ceranb (unknown [10.40.192.217])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id ECE755D9CA;
+ Wed, 20 May 2020 15:56:47 +0000 (UTC)
+Date: Wed, 20 May 2020 17:56:47 +0200
+From: Ivan Vecera <ivecera@redhat.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Message-ID: <20200520175647.32e6f5eb@ceranb>
+In-Reply-To: <20200520130923.3196432-3-horatiu.vultur@microchip.com>
+References: <20200520130923.3196432-1-horatiu.vultur@microchip.com>
+ <20200520130923.3196432-3-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, roopa@cumulusnetworks.com,
- bridge@lists.linux-foundation.org, syzkaller-bugs@googlegroups.com,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net v3] net: bridge: fix vlan stats
- use-after-free on destruction
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Cc: andrew@lunn.ch, jiri@resnulli.us, nikolay@cumulusnetworks.com,
+ netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ UNGLinuxDriver@microchip.com, kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH 2/3] switchdev: mrp: Remove the variable
+	mrp_ring_state
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,13 +89,31 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, 16 Nov 2018 18:50:01 +0200
-Nikolay Aleksandrov <nikolay@cumulusnetworks.com> wrote:
+On Wed, 20 May 2020 13:09:22 +0000
+Horatiu Vultur <horatiu.vultur@microchip.com> wrote:
 
-> +	if (v->priv_flags & BR_VLFLAG_PER_PORT_STATS)
->  		free_percpu(v->stats);
+> Remove the variable mrp_ring_state from switchdev_attr because is not
+> used anywhere.
+> The ring state is set using SWITCHDEV_OBJ_ID_RING_STATE_MRP.
+> 
+> Fixes: c284b5459008 ("switchdev: mrp: Extend switchdev API to offload MRP")
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  include/net/switchdev.h | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/include/net/switchdev.h b/include/net/switchdev.h
+> index ae7aeb0d1f9ca..db519957e134b 100644
+> --- a/include/net/switchdev.h
+> +++ b/include/net/switchdev.h
+> @@ -62,7 +62,6 @@ struct switchdev_attr {
+>  #if IS_ENABLED(CONFIG_BRIDGE_MRP)
+>  		u8 mrp_port_state;			/* MRP_PORT_STATE */
+>  		u8 mrp_port_role;			/* MRP_PORT_ROLE */
+> -		u8 mrp_ring_state;			/* MRP_RING_STATE */
+>  #endif
+>  	} u;
+>  };
 
-Why not not v->stats == NULL as a flag instead?
+Acked-by: Ivan Vecera <ivecera@redhat.com>
 
-Then the fact that free_percpu(NULL) is a Nop would mean less code
-in the bridge driver.
