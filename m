@@ -1,90 +1,98 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA91A1DC85D
-	for <lists.bridge@lfdr.de>; Thu, 21 May 2020 10:18:30 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 452211DCF00
+	for <lists.bridge@lfdr.de>; Thu, 21 May 2020 16:08:31 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id E491588148;
-	Thu, 21 May 2020 08:18:28 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 3A90589292;
+	Thu, 21 May 2020 14:08:29 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hY7hS8hqF94S; Thu, 21 May 2020 08:18:28 +0000 (UTC)
+	with ESMTP id W3QMhuVCdgsF; Thu, 21 May 2020 14:08:26 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id A7EE187F6A;
-	Thu, 21 May 2020 08:18:28 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 6216689284;
+	Thu, 21 May 2020 14:08:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8E48DC0176;
-	Thu, 21 May 2020 08:18:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3C8BCC0891;
+	Thu, 21 May 2020 14:08:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 42834C0176
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 08:18:27 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A44EDC0176
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:08:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 3DD0A87F6A
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 08:18:27 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 97F5088623
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:08:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id u97fN7XLvexa for <bridge@lists.linux-foundation.org>;
- Thu, 21 May 2020 08:18:26 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
- [209.85.128.67])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 490FA87F44
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 08:18:26 +0000 (UTC)
-Received: by mail-wm1-f67.google.com with SMTP id f134so4829543wmf.1
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 01:18:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=bqOLOWJcEnmegQMbnR/7WAD5Ory2NkimcCLFj6PkXT4=;
- b=MNKVdqYIQu1sZpEEWrjFHTTAgUy+R5a9ibTbTktvHRxg5WU3UwsT+DYDhAfDTZ1ZVN
- WUkF2IPbZmlF4VcwHRt2g+0rwVYfAWsxUMpNDxOZKs9mfmROSBdrBuvxcGKRLC1byQ50
- gtHo3VrT/HT9vEGVkBYTSpJJxyNB1z1PPj1jQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=bqOLOWJcEnmegQMbnR/7WAD5Ory2NkimcCLFj6PkXT4=;
- b=hrFYgHqCmwvy3DfvlSoZ6xCX9ZsSDLm9jF8Kn5kgoiJVgNW8AzFL/aI5Q2281mCwmq
- Ikz/HKlbogY0aCJGv+U8XYef570RdZnXY/F671liO3YpiakuuLuYqdGU62B6xmiGr14+
- 5k9L0+1/QHLjh79R5f1trZKd4sgd/lXVrZYPpOpbPYs/KeNPyAG9Ms/tVwuJcPPGN0yP
- i/zxcdRDdMpuRlz5xIFfI2hf/6jmc7orBIl3znwEGfXnNam8jhIai2UozjnO9rV2ngto
- yQ3gTJZJmHO3sRL+oYCXlb0DhPMpUn5BnJmX/UmV4FR3NSvIpSkwddj8HTyzOBADhje4
- 8/Yw==
-X-Gm-Message-State: AOAM532JkuyZPLV41EJokZ29zqo9UYcUqmJSdAKDoqgLHbh7P7IJ25bt
- yGsYESK4yCM6s4fz1wocyNSzkvtLHPYAEw==
-X-Google-Smtp-Source: ABdhPJwnoCs1FS19UI5zCtlLZR/jxDVg7B/c15iE+aCCyvnmoKKyxYyfj6nzMcAhOF8kUgyhShWwQg==
-X-Received: by 2002:a1c:2186:: with SMTP id h128mr7558309wmh.108.1590049104333; 
- Thu, 21 May 2020 01:18:24 -0700 (PDT)
-Received: from [192.168.0.109] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id v2sm5840676wrn.21.2020.05.21.01.18.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 May 2020 01:18:23 -0700 (PDT)
-To: Horatiu Vultur <horatiu.vultur@microchip.com>, jiri@resnulli.us,
- ivecera@redhat.com, davem@davemloft.net, kuba@kernel.org,
- roopa@cumulusnetworks.com, andrew@lunn.ch, UNGLinuxDriver@microchip.com,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- bridge@lists.linux-foundation.org
-References: <20200520130923.3196432-1-horatiu.vultur@microchip.com>
- <20200520130923.3196432-4-horatiu.vultur@microchip.com>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <05ddf496-9f6d-ae23-1bdb-40f0fe0e3b3c@cumulusnetworks.com>
-Date: Thu, 21 May 2020 11:18:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ with ESMTP id Muh31nMaqAGP for <bridge@lists.linux-foundation.org>;
+ Thu, 21 May 2020 14:08:23 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 3D8FD88617
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:08:23 +0000 (UTC)
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+ by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04LE7jmJ033874;
+ Thu, 21 May 2020 14:08:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=VtH50d3j8PGL5fadgDPMpo+HStraNOmQY5K9l3SYH/Q=;
+ b=cQK/u6IjxwwVLLC8pb1aAgmXTz3H7PM+14OySJ+Q+U9tTUVXD93HaHbcmmu7QTATP1kF
+ AI15s21aN/QSHDEfTHep6UG5rA6yVmNE925zWrvYC9Rou652Czt7fz/unTGETkPCzuOi
+ 2utO3KjH+DGPhIBR4mqkwV98RmIyIiYFZyapOSM0OCGCgYzDbalsEfXNQzJd4PDphPYc
+ RbH/mFKhqog5utSj40D3ddZ81RSrYB6V8pFLZ9ucxDlKgDT+jjvAhY/zrr6hdwomVuMD
+ iLkDxlOUG1u9T+q2gyMhZP1kquuO2Mvke3AE6NR8dp9GSUwd/+SSP6zsmRlAseB5yRj3 Qg== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by userp2120.oracle.com with ESMTP id 31501rf7bp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Thu, 21 May 2020 14:08:16 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04LDqVLg161832;
+ Thu, 21 May 2020 14:08:16 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by userp3030.oracle.com with ESMTP id 314gm982t9-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 21 May 2020 14:08:15 +0000
+Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 04LE8DDm001199;
+ Thu, 21 May 2020 14:08:13 GMT
+Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Thu, 21 May 2020 07:08:13 -0700
+Date: Thu, 21 May 2020 17:08:03 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: syzbot <syzbot+9c6f0f1f8e32223df9a4@syzkaller.appspotmail.com>
+Message-ID: <20200521140803.GI30374@kadam>
+References: <0000000000007b211005a6187dc9@google.com>
 MIME-Version: 1.0
-In-Reply-To: <20200520130923.3196432-4-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Bridge] [PATCH 3/3] bridge: mrp: Restore port state when
- deleting MRP instance
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0000000000007b211005a6187dc9@google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9627
+ signatures=668686
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ mlxlogscore=803
+ adultscore=0 phishscore=0 mlxscore=0 spamscore=0 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2004280000 definitions=main-2005210104
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9627
+ signatures=668686
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 spamscore=0
+ mlxlogscore=829 clxscore=1011 priorityscore=1501 cotscore=-2147483648
+ impostorscore=0 bulkscore=0 adultscore=0 malwarescore=0 phishscore=0
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2004280000 definitions=main-2005210106
+Cc: nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
+ roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+ syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
+ horatiu.vultur@microchip.com, kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] KASAN: slab-out-of-bounds Read in br_mrp_parse
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,60 +107,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 20/05/2020 16:09, Horatiu Vultur wrote:
-> When a MRP instance is deleted, then restore the port according to the
-> bridge state. If the bridge is up then the ports will be in forwarding
-> state otherwise will be in disabled state.
+On Wed, May 20, 2020 at 11:23:18AM -0700, syzbot wrote:
+> Hello,
 > 
-> Fixes: 9a9f26e8f7ea ("bridge: mrp: Connect MRP API with the switchdev API")
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  net/bridge/br_mrp.c | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+> syzbot found the following crash on:
+> 
+> HEAD commit:    dda18a5c selftests/bpf: Convert bpf_iter_test_kern{3, 4}.c..
+> git tree:       bpf-next
+                  ^^^^^^^^
+
+I can figure out what this is from reading Next/Trees but it would be
+more useful if it were easier to script.
+
+> console output: https://syzkaller.appspot.com/x/log.txt?x=10c4e63c100000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=668983fd3dd1087e
+> dashboard link: https://syzkaller.appspot.com/bug?extid=9c6f0f1f8e32223df9a4
+> compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17eaba3c100000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=128598f6100000
 > 
 
-Acked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+regards,
+dan carpenter
 
-> diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
-> index a5a3fa59c078a..bdd8920c15053 100644
-> --- a/net/bridge/br_mrp.c
-> +++ b/net/bridge/br_mrp.c
-> @@ -229,6 +229,7 @@ static void br_mrp_test_work_expired(struct work_struct *work)
->  static void br_mrp_del_impl(struct net_bridge *br, struct br_mrp *mrp)
->  {
->  	struct net_bridge_port *p;
-> +	u8 state;
->  
->  	/* Stop sending MRP_Test frames */
->  	cancel_delayed_work_sync(&mrp->test_work);
-> @@ -240,20 +241,24 @@ static void br_mrp_del_impl(struct net_bridge *br, struct br_mrp *mrp)
->  	p = rtnl_dereference(mrp->p_port);
->  	if (p) {
->  		spin_lock_bh(&br->lock);
-> -		p->state = BR_STATE_FORWARDING;
-> +		state = netif_running(br->dev) ?
-> +				BR_STATE_FORWARDING : BR_STATE_DISABLED;
-> +		p->state = state;
->  		p->flags &= ~BR_MRP_AWARE;
->  		spin_unlock_bh(&br->lock);
-> -		br_mrp_port_switchdev_set_state(p, BR_STATE_FORWARDING);
-> +		br_mrp_port_switchdev_set_state(p, state);
->  		rcu_assign_pointer(mrp->p_port, NULL);
->  	}
->  
->  	p = rtnl_dereference(mrp->s_port);
->  	if (p) {
->  		spin_lock_bh(&br->lock);
-> -		p->state = BR_STATE_FORWARDING;
-> +		state = netif_running(br->dev) ?
-> +				BR_STATE_FORWARDING : BR_STATE_DISABLED;
-> +		p->state = state;
->  		p->flags &= ~BR_MRP_AWARE;
->  		spin_unlock_bh(&br->lock);
-> -		br_mrp_port_switchdev_set_state(p, BR_STATE_FORWARDING);
-> +		br_mrp_port_switchdev_set_state(p, state);
->  		rcu_assign_pointer(mrp->s_port, NULL);
->  	}
->  
-> 
 
