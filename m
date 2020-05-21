@@ -1,97 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 452211DCF00
-	for <lists.bridge@lfdr.de>; Thu, 21 May 2020 16:08:31 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 876F71DCFB3
+	for <lists.bridge@lfdr.de>; Thu, 21 May 2020 16:28:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 3A90589292;
-	Thu, 21 May 2020 14:08:29 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 2738E88643;
+	Thu, 21 May 2020 14:28:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id W3QMhuVCdgsF; Thu, 21 May 2020 14:08:26 +0000 (UTC)
+	with ESMTP id anlyVcrFF6xW; Thu, 21 May 2020 14:28:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 6216689284;
-	Thu, 21 May 2020 14:08:26 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id DE21788635;
+	Thu, 21 May 2020 14:28:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3C8BCC0891;
-	Thu, 21 May 2020 14:08:26 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C2052C0176;
+	Thu, 21 May 2020 14:28:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A44EDC0176
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:08:24 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 456C8C0176
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:28:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 97F5088623
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:08:24 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 3FE7788635
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:28:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Muh31nMaqAGP for <bridge@lists.linux-foundation.org>;
- Thu, 21 May 2020 14:08:23 +0000 (UTC)
+ with ESMTP id S5PuUlV+6qs0 for <bridge@lists.linux-foundation.org>;
+ Thu, 21 May 2020 14:28:17 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 3D8FD88617
- for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:08:23 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04LE7jmJ033874;
- Thu, 21 May 2020 14:08:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=VtH50d3j8PGL5fadgDPMpo+HStraNOmQY5K9l3SYH/Q=;
- b=cQK/u6IjxwwVLLC8pb1aAgmXTz3H7PM+14OySJ+Q+U9tTUVXD93HaHbcmmu7QTATP1kF
- AI15s21aN/QSHDEfTHep6UG5rA6yVmNE925zWrvYC9Rou652Czt7fz/unTGETkPCzuOi
- 2utO3KjH+DGPhIBR4mqkwV98RmIyIiYFZyapOSM0OCGCgYzDbalsEfXNQzJd4PDphPYc
- RbH/mFKhqog5utSj40D3ddZ81RSrYB6V8pFLZ9ucxDlKgDT+jjvAhY/zrr6hdwomVuMD
- iLkDxlOUG1u9T+q2gyMhZP1kquuO2Mvke3AE6NR8dp9GSUwd/+SSP6zsmRlAseB5yRj3 Qg== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by userp2120.oracle.com with ESMTP id 31501rf7bp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Thu, 21 May 2020 14:08:16 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 04LDqVLg161832;
- Thu, 21 May 2020 14:08:16 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
- by userp3030.oracle.com with ESMTP id 314gm982t9-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 21 May 2020 14:08:15 +0000
-Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
- by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 04LE8DDm001199;
- Thu, 21 May 2020 14:08:13 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Thu, 21 May 2020 07:08:13 -0700
-Date: Thu, 21 May 2020 17:08:03 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: syzbot <syzbot+9c6f0f1f8e32223df9a4@syzkaller.appspotmail.com>
-Message-ID: <20200521140803.GI30374@kadam>
-References: <0000000000007b211005a6187dc9@google.com>
+Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
+ [209.85.222.196])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id D306988632
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 14:28:17 +0000 (UTC)
+Received: by mail-qk1-f196.google.com with SMTP id f13so7402563qkh.2
+ for <bridge@lists.linux-foundation.org>; Thu, 21 May 2020 07:28:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aJY0Ep267ouSAsUGL+ry/Av1nT7Mp2t1Mda3g0C6rV8=;
+ b=FpDavvqmhyH4TVpicJ5DzY7zQZsoMuzIrMNXmgE8gmzuiJO21+n4dcBsTqUKWLgS9U
+ JPuhtdzwLRQp/Ev48KcLWMiFgNr5j/IpYv5qH7HqqAeyVcwimI7EL0L0p/fpzD9HObuG
+ nDbu6X2nt0Ud3Ue2hrhuy0coZEfZbsV8D++7u5huuMy7NrNfv1d4ioZWnSEvvS14SRh7
+ emHV+Wk8FllyGlC/poviNGagE9to53QAWhXuNKSbfqUmlJOE15J1+AlXo6se+ti5sOTG
+ 8OFACe2YHqXk19jTeypQrb5GmoowUVZFULiC0iCI1SFerw8AF9YtNeeYb/q7cq2KmUr1
+ xkpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aJY0Ep267ouSAsUGL+ry/Av1nT7Mp2t1Mda3g0C6rV8=;
+ b=bKU7aHC48+Eg+4I0qU8vS04/pUEKK09RYkCi5c+7ak1vpy42q5VeV92/uBAX5x4wpY
+ LNUyvxBhEO15NKOU5GMXdtrw0sdGjp3NCjo4utNiJToV97vLwEWJ/mbqd/kgW0KOGRZI
+ Q6V3FEppmjMgiWDgAJngWImQ4a5uVMAaoUMPArGjKPUf5v7YI5nf8BioQgbMdtlgi2Xv
+ hzwiAlH0AGftxF2v6dU5HbJ2GjeNnrxFD6bkffVtZcgNT4eoQgG8bpJasVopELNLyOyz
+ sfo/jpVlAAWV2jNniIbDBpjIkOxW1U57UFmBoZ/niRnbsjck4Doj5QMSf6OYcIAy3qXv
+ f6Ng==
+X-Gm-Message-State: AOAM531C4JkAIn/eSfBmLo8rlwoVgMbjSJqSYuJjebTpxqJTwCrFOJuL
+ ru7F+k/fEoLY8xi/Y9mEsecAbjpiLlcaTpPtEm9B2Q==
+X-Google-Smtp-Source: ABdhPJxrgUvL9r2CtDZP+Dx+xHoFfqIlq1qblS0fwHc9+D/mKy8J+gNQB+Y3hIT2EVRIyQ3hiWL5XITfNJ94tr3Hynk=
+X-Received: by 2002:a37:797:: with SMTP id 145mr7147025qkh.8.1590071296446;
+ Thu, 21 May 2020 07:28:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0000000000007b211005a6187dc9@google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9627
- signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- mlxlogscore=803
- adultscore=0 phishscore=0 mlxscore=0 spamscore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2005210104
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9627
- signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
- lowpriorityscore=0 spamscore=0
- mlxlogscore=829 clxscore=1011 priorityscore=1501 cotscore=-2147483648
- impostorscore=0 bulkscore=0 adultscore=0 malwarescore=0 phishscore=0
- mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2004280000 definitions=main-2005210106
-Cc: nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
- roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
- syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
- horatiu.vultur@microchip.com, kuba@kernel.org, davem@davemloft.net
+References: <0000000000007b211005a6187dc9@google.com>
+ <20200521140803.GI30374@kadam>
+In-Reply-To: <20200521140803.GI30374@kadam>
+Date: Thu, 21 May 2020 16:28:05 +0200
+Message-ID: <CACT4Y+bzz-h5vNGH0rDMUiuGZVX01oXawXAPbjtnNHb1KVWSvg@mail.gmail.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Content-Type: text/plain; charset="UTF-8"
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org,
+ syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+ LKML <linux-kernel@vger.kernel.org>, horatiu.vultur@microchip.com,
+ syzbot <syzbot+9c6f0f1f8e32223df9a4@syzkaller.appspotmail.com>,
+ syzkaller <syzkaller@googlegroups.com>, kuba@kernel.org,
+ David Miller <davem@davemloft.net>
 Subject: Re: [Bridge] KASAN: slab-out-of-bounds Read in br_mrp_parse
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -104,30 +90,49 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Dmitry Vyukov via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Dmitry Vyukov <dvyukov@google.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, May 20, 2020 at 11:23:18AM -0700, syzbot wrote:
-> Hello,
-> 
-> syzbot found the following crash on:
-> 
-> HEAD commit:    dda18a5c selftests/bpf: Convert bpf_iter_test_kern{3, 4}.c..
-> git tree:       bpf-next
-                  ^^^^^^^^
+On Thu, May 21, 2020 at 4:08 PM Dan Carpenter <dan.carpenter@oracle.com> wrote:
+>
+> On Wed, May 20, 2020 at 11:23:18AM -0700, syzbot wrote:
+> > Hello,
+> >
+> > syzbot found the following crash on:
+> >
+> > HEAD commit:    dda18a5c selftests/bpf: Convert bpf_iter_test_kern{3, 4}.c..
+> > git tree:       bpf-next
+>                   ^^^^^^^^
+>
+> I can figure out what this is from reading Next/Trees but it would be
+> more useful if it were easier to script.
 
-I can figure out what this is from reading Next/Trees but it would be
-more useful if it were easier to script.
+Hi Dan,
 
-> console output: https://syzkaller.appspot.com/x/log.txt?x=10c4e63c100000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=668983fd3dd1087e
-> dashboard link: https://syzkaller.appspot.com/bug?extid=9c6f0f1f8e32223df9a4
-> compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17eaba3c100000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=128598f6100000
-> 
+Is there a canonical way to refer to a particular branch of a particular tree?
+From what I observed on mailing lists people seem to say "linux-next"
+or "upstream tree" and that seems to mean specific things that
+everybody understands.
 
-regards,
-dan carpenter
+What do you want to script? Note syzbot is not promising a specific
+stable API wrt these plain text emails. These are flattened into text
+format for human consumption and sent over unreliable media.
 
-
+> > console output: https://syzkaller.appspot.com/x/log.txt?x=10c4e63c100000
+> > kernel config:  https://syzkaller.appspot.com/x/.config?x=668983fd3dd1087e
+> > dashboard link: https://syzkaller.appspot.com/bug?extid=9c6f0f1f8e32223df9a4
+> > compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
+> > syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17eaba3c100000
+> > C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=128598f6100000
+> >
+>
+> regards,
+> dan carpenter
+>
+>
+> --
+> You received this message because you are subscribed to the Google Groups "syzkaller-bugs" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to syzkaller-bugs+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/syzkaller-bugs/20200521140803.GI30374%40kadam.
