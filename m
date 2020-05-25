@@ -1,87 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87831E0AAC
-	for <lists.bridge@lfdr.de>; Mon, 25 May 2020 11:33:30 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 137951E084B
+	for <lists.bridge@lfdr.de>; Mon, 25 May 2020 09:56:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id D63A7861F0;
-	Mon, 25 May 2020 09:33:28 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 3FEA287534;
+	Mon, 25 May 2020 07:56:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JrJaYQKibieW; Mon, 25 May 2020 09:33:28 +0000 (UTC)
+	with ESMTP id w6bBcECmGOpz; Mon, 25 May 2020 07:56:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 2F225861B2;
-	Mon, 25 May 2020 09:33:28 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id EBB7A8757E;
+	Mon, 25 May 2020 07:56:24 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 10FE7C0891;
-	Mon, 25 May 2020 09:33:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CE34DC016F;
+	Mon, 25 May 2020 07:56:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7CDC8C016F
- for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 09:33:26 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B72FCC016F
+ for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 07:56:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 786A387E4D
- for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 09:33:26 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id A70B587534
+ for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 07:56:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id rugzGEiT1gXY for <bridge@lists.linux-foundation.org>;
- Mon, 25 May 2020 09:33:23 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 3E5BE87E46
- for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 09:33:23 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id y17so8071476wrn.11
- for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 02:33:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=e8LU087JhCQmZTPzcRDUvpkp9wx3VT7SLtgrgSxNirE=;
- b=Avf++p7GjzWXbsom5IIKMsjrIT2NWfxRUCcz0t9E2X+owIr7NhKcDhNjZwLY2Xsai4
- i2zGx5T94A7jZNeFpHF7QY/2CWDO/3ZBoU6IX3soy51XaYqMBSSnqucZE+KFXygzKDsA
- feluyyuU7afsDf1A7N0VkWxm9CxktoAwWswDw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=e8LU087JhCQmZTPzcRDUvpkp9wx3VT7SLtgrgSxNirE=;
- b=ThSBJe8zIXoX14J2rNzudcS9QNZx5VnmtBTRT2XdVY0EybqIZabOoHdVYABhi0L6Af
- Wh/pqOI96GmSt65+a0gPIQnTgfu3C7WmBiQ66bLr/GZPAju5yJJFSyqU8iUqvw9k8ntB
- AhkELhfv7GrN36xtJYiH7s6ODT9xwzghV3UuBYrfPz/3I0qgJNyC3trcwYv/5gL8ulhA
- XXDDdykjx1q2iIqFzQwXw9G+hVTGhbKp6SqB12HA1DJG+ttJbMWPuuvtr0tXV/MDYSBT
- ZC5TeVKxQRQQf2AiOARVvllGWePeUbscy/mo7SE582xUGcri/w7Ihd2UTka7rIMxmmki
- RfFg==
-X-Gm-Message-State: AOAM533Hw7OUAV7dcXWnZ+yuvEEO/kLVKriTtGFgNOe3IHOjzTTiO1gl
- BDexnmCWH4MZpSjwfaYx4rTLCA==
-X-Google-Smtp-Source: ABdhPJyhXfTUVDMmF9+pUbBzM3VN1sv2lr3v3pq3bi5JJOeNg/uXQIF0NWiFionp9ryN3K84i24i/g==
-X-Received: by 2002:a5d:56c7:: with SMTP id m7mr14169824wrw.256.1590399201557; 
- Mon, 25 May 2020 02:33:21 -0700 (PDT)
-Received: from [192.168.0.109] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id p3sm12447448wru.95.2020.05.25.02.33.20
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 May 2020 02:33:20 -0700 (PDT)
-To: Horatiu Vultur <horatiu.vultur@microchip.com>, roopa@cumulusnetworks.com, 
- davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
- UNGLinuxDriver@microchip.com, bridge@lists.linux-foundation.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20200525112827.t4nf4lamz6g4g2c5@soft-dev3.localdomain>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <2176b58f-35f3-36c1-8ba7-d18649eb29f7@cumulusnetworks.com>
-Date: Mon, 25 May 2020 12:33:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ with ESMTP id OV2DKqTmRKKX for <bridge@lists.linux-foundation.org>;
+ Mon, 25 May 2020 07:56:22 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
+ [216.71.154.253])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 3705A87530
+ for <bridge@lists.linux-foundation.org>; Mon, 25 May 2020 07:56:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1590393381; x=1621929381;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gka3xhQHdVujI+DvQjAJqTOsOu9U8CaV+bHB/w8dE/o=;
+ b=YyIwB8za8r2vJdfhDQU+5CVvtDoAlCxV2w513h3UyP0FCQ4sDaFKI4EU
+ HyEJL7a+otopljhrXC3rp9D20UNtt48Ls26mB+hBvjk2mNlE6U2EgM16W
+ h+p5OgAvFGYTwJ+uuGuOUBPfP3yD9jXn2iY3LKmasUzlOYFBYINMOyHCE
+ 2vtk2VGlU+2gRQqnQwuNNTJxKFcPYzSBrv9DNhsDJexeJGb4YkgQ/ntlT
+ /KjNxduk89yYEGpQZpuWW3+uRYA5k3uxiD7rbaCVpsRRTsXDjIOvaGIzW
+ 0eTaQtUhyvIBut6jS9RG4njEx0VOgs6z2Y1NAByrCxODO3oGjHbaFU51X Q==;
+IronPort-SDR: Ku69RMxDc/Tw6URFoi4cr3b7iyBayER/a+CE1TVr4cboF+zCp4QXr0yIO0Pp2n7W9zFu10SaTX
+ VgWUNjMsFn5BPEnc7TiTexBUrXT76fvPrFq3lL7fds7XUsH3t+jaNq2vCtUa56eqflh7LogrE+
+ n7Kb9WRgi6JvSP1EyZA3OI5d1DogIajNEVhIchGkaJJXYdxtQn9SF7zT0O4hmE7vYwHfjSjnTN
+ Z/djyDiR90H/vR7J3EGgBpG3mgTx4aLk+TPb7NqXHyknlvpvJU40ColsgtH7HLxEJemQbS/Bdu
+ oNg=
+X-IronPort-AV: E=Sophos;i="5.73,432,1583218800"; d="scan'208";a="13408235"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 25 May 2020 00:56:20 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 25 May 2020 00:56:22 -0700
+Received: from soft-dev3.localdomain (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Mon, 25 May 2020 00:56:13 -0700
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: <nikolay@cumulusnetworks.com>, <roopa@cumulusnetworks.com>,
+ <davem@davemloft.net>, <kuba@kernel.org>, <andrew@lunn.ch>,
+ <UNGLinuxDriver@microchip.com>, <bridge@lists.linux-foundation.org>,
+ <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Date: Mon, 25 May 2020 09:55:41 +0000
+Message-ID: <20200525095541.46673-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20200525112827.t4nf4lamz6g4g2c5@soft-dev3.localdomain>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Bridge] MRP netlink interface
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Cc: syzbot+9c6f0f1f8e32223df9a4@syzkaller.appspotmail.com,
+ Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH] bridge: mrp: Fix out-of-bounds read in br_mrp_parse
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,80 +92,37 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 25/05/2020 14:28, Horatiu Vultur wrote:
-> Hi,
-> 
-> While I was working on adding support for MRA role to MRP, I noticed that I
-> might have some issues with the netlink interface, so it would be great if you
-> can give me an advice on how to continue.
-> 
-> First a node with MRA role can behave as a MRM(Manager) or as a
-> MRC(Client). The behaviour is decided by the priority of each node. So
-> to have this functionality I have to extend the MRP netlink interface
-> and this brings me to my issues.
-> 
-> My first approach was to extend the 'struct br_mrp_instance' with a field that
-> contains the priority of the node. But this breaks the backwards compatibility,
-> and then every time when I need to change something, I will break the backwards
-> compatibility. Is this a way to go forward?
-> 
-> Another approach is to restructure MRP netlink interface. What I was thinking to
-> keep the current attributes (IFLA_BRIDGE_MRP_INSTANCE,
-> IFLA_BRIDGE_MRP_PORT_STATE,...) but they will be nested attributes and each of
-> this attribute to contain the fields of the structures they represents.
-> For example:
-> [IFLA_AF_SPEC] = {
->     [IFLA_BRIDGE_FLAGS]
->     [IFLA_BRIDGE_MRP]
->         [IFLA_BRIDGE_MRP_INSTANCE]
->             [IFLA_BRIDGE_MRP_INSTANCE_RING_ID]
->             [IFLA_BRIDGE_MRP_INSTANCE_P_IFINDEX]
->             [IFLA_BRIDGE_MRP_INSTANCE_S_IFINDEX]
->         [IFLA_BRIDGE_MRP_RING_ROLE]
->             [IFLA_BRIDGE_MRP_RING_ROLE_RING_ID]
->             [IFLA_BRIDGE_MRP_RING_ROLE_ROLE]
->         ...
-> }
-> And then I can parse each field separately and then fill up the structure
-> (br_mrp_instance, br_mrp_port_role, ...) which will be used forward.
-> Then when this needs to be extended with the priority it would have the
-> following format:
-> [IFLA_AF_SPEC] = {
->     [IFLA_BRIDGE_FLAGS]
->     [IFLA_BRIDGE_MRP]
->         [IFLA_BRIDGE_MRP_INSTANCE]
->             [IFLA_BRIDGE_MRP_INSTANCE_RING_ID]
->             [IFLA_BRIDGE_MRP_INSTANCE_P_IFINDEX]
->             [IFLA_BRIDGE_MRP_INSTANCE_S_IFINDEX]
->             [IFLA_BRIDGE_MRP_INSTANCE_PRIO]
->         [IFLA_BRIDGE_MRP_RING_ROLE]
->             [IFLA_BRIDGE_MRP_RING_ROLE_RING_ID]
->             [IFLA_BRIDGE_MRP_RING_ROLE_ROLE]
->         ...
-> }
-> And also the br_mrp_instance will have a field called prio.
-> So now, if the userspace is not updated to have support for setting the prio
-> then the kernel will use a default value. Then if the userspace contains a field
-> that the kernel doesn't know about, then it would just ignore it.
-> So in this way every time when the netlink interface will be extended it would
-> be backwards compatible.
-> 
-> If it is not possible to break the compatibility then the safest way is to
-> just add more attributes under IFLA_BRIDGE_MRP but this would just complicate
-> the kernel and the userspace and it would make it much harder to be extended in
-> the future.
-> 
-> My personal choice would be the second approach, even if it breaks the backwards
-> compatibility. Because it is the easier to go forward and there are only 3
-> people who cloned the userspace application
-> (https://github.com/microchip-ung/mrp/graphs/traffic). And two of
-> these unique cloners is me and Allan.
-> 
-> So if you have any advice on how to go forward it would be great.
-> 
+The issue was reported by syzbot. When the function br_mrp_parse was
+called with a valid net_bridge_port, the net_bridge was an invalid
+pointer. Therefore the check br->stp_enabled could pass/fail
+depending where it was pointing in memory.
+The fix consists of setting the net_bridge pointer if the port is a
+valid pointer.
 
-IIRC this is still in net-next only, right? If so - now would be the time to change it.
-Once it goes into a release, we'll be stuck with workarounds. So I'd go for solution 2).
+Reported-by: syzbot+9c6f0f1f8e32223df9a4@syzkaller.appspotmail.com
+Fixes: 6536993371fa ("bridge: mrp: Integrate MRP into the bridge")
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+---
+ net/bridge/br_mrp_netlink.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-I haven't cloned it, but I do sync your user-space mrp repo to check against the patches. :)
+diff --git a/net/bridge/br_mrp_netlink.c b/net/bridge/br_mrp_netlink.c
+index 397e7f710772a..4a08a99519b04 100644
+--- a/net/bridge/br_mrp_netlink.c
++++ b/net/bridge/br_mrp_netlink.c
+@@ -27,6 +27,12 @@ int br_mrp_parse(struct net_bridge *br, struct net_bridge_port *p,
+ 	struct nlattr *tb[IFLA_BRIDGE_MRP_MAX + 1];
+ 	int err;
+ 
++	/* When this function is called for a port then the br pointer is
++	 * invalid, therefor set the br to point correctly
++	 */
++	if (p)
++		br = p->br;
++
+ 	if (br->stp_enabled != BR_NO_STP) {
+ 		NL_SET_ERR_MSG_MOD(extack, "MRP can't be enabled if STP is already enabled");
+ 		return -EINVAL;
+-- 
+2.26.2
 
