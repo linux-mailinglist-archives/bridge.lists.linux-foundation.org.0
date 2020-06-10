@@ -1,64 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F28C22CCE4
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:21:46 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 614C622CCE2
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:21:44 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 056AC8851E;
-	Fri, 24 Jul 2020 18:21:43 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id D8AF887E0A;
+	Fri, 24 Jul 2020 18:21:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Fiz0n-EZOTgX; Fri, 24 Jul 2020 18:21:42 +0000 (UTC)
+	with ESMTP id yQe7+Kkhgfkl; Fri, 24 Jul 2020 18:21:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 5356288489;
-	Fri, 24 Jul 2020 18:21:42 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 7326B87DA4;
+	Fri, 24 Jul 2020 18:21:41 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 40DBAC004C;
-	Fri, 24 Jul 2020 18:21:42 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 37EF8C004C;
+	Fri, 24 Jul 2020 18:21:41 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DEC30C016F
- for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 15:49:31 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 58709C016F
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 15:49:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id CE6EA8714A
- for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 15:49:31 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 40B4C871C7
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 15:49:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id eez8A7fW62Ct for <bridge@lists.linux-foundation.org>;
- Wed, 10 Jun 2020 15:49:31 +0000 (UTC)
+ with ESMTP id 188loxmLD9Uu for <bridge@lists.linux-foundation.org>;
+ Wed, 10 Jun 2020 15:49:27 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
- [209.85.210.195])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 67C4E86F8D
- for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 15:49:31 +0000 (UTC)
-Received: by mail-pf1-f195.google.com with SMTP id z63so343284pfb.1
- for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 08:49:31 -0700 (PDT)
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+ [209.85.214.196])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 52A5986F8D
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 15:49:27 +0000 (UTC)
+Received: by mail-pl1-f196.google.com with SMTP id t7so1115220plr.0
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Jun 2020 08:49:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=J9spO8sCjIOMs0wQgccVfIprXE/wzCnPTAA23dgMAdc=;
- b=Yw7a3oD0Xi77E4tNhB6TBvYugeodK7CGYxXRsjjYM8rwU6TEt3juiOimHhr0BQWES5
- fsP5M4VH7lU5InPSCBqOlEOGWkJzV6/4DRthMdztFFpWHMhRVMmAjjtgQ2nTMqWwwbBq
- /4WMbgajGM6TSJmA09XhPcmZovbSI7mlrKOj9tD+P0JdQJsBgqK13qm/VJmgJcACsM6c
- aWwAdLRzE34/7RPtKVgCekKPRfgp41jIVln8MAOGulohbosFuUVkaFco+q3nvAOjcesm
- s8uibI4GlVs04q95EcAKgudptEFmZ1CGCI18AH5yNdi6XTG+Y0BgQb4+j/z4qD9it73U
- AZ2Q==
-X-Gm-Message-State: AOAM530axgG0AA9p3DbuLOcAUZWNszRVx3LfREuh6HgIiCuMAmkuFkvi
- PCNL+0H8kOB2+Kn9Gnjnrxg=
-X-Google-Smtp-Source: ABdhPJyu1eX5pyEODFKXM1tUOb06KZbLUOW+sULR/svGLkAhoxImKT7+pXfTo+K5VKZEdMa5hV0cwg==
-X-Received: by 2002:a62:aa0a:: with SMTP id e10mr3428008pff.91.1591804170947; 
- Wed, 10 Jun 2020 08:49:30 -0700 (PDT)
-Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
- by smtp.gmail.com with ESMTPSA id c12sm242070pgm.73.2020.06.10.08.49.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=VaG7u6/oJsTeb5TEDlgcUeH6UZPnr3RsvPE6NVTbAOU=;
+ b=hWXMPRrq/SbFY+9QkTdjmFr4i5dkAjcRfqHIYOUp7kTSWopLPjo/SIr7XCI7TrVOQw
+ WjjWHy3mmIsd49uikI3aP6jlKfVcHmRY7vrnqhJx7VD7RLo4KzwO2pv3Uj080XbWjOBY
+ 9W9knkDuEqTqt8Dj5gXLmjVA1lL2LMemUzOtuNW/mQtWnpevjt2vMIWLo42JNK7lkuEb
+ ugUkqQGz5qQlwe+YgPIjufu06sqqM+guRkOfaqpvFk7EPF6jiMILYP3Q9NA0ClQ7pWIn
+ s739ERKIAvdKPK/JKtOpB3XBz9qCBM2qVBkkSDc5xnLEdFbui7316t3ea6JzY6HEmMy1
+ brxA==
+X-Gm-Message-State: AOAM533wXjVN2FrWzoPmH3eZrIa7O3UElFmX2hj2Dd6zNiYwcztuSM/2
+ m6UvGjsy8WFEMVDxCSPeJSY=
+X-Google-Smtp-Source: ABdhPJzZoTl6eBSN8rqRCZozE//xcl2A2KM4BNx2Ocdpgf10NDUQ83ejBj8RMkeBJS9LOY1t52eKiw==
+X-Received: by 2002:a17:90a:21a2:: with SMTP id
+ q31mr3700686pjc.230.1591804166854; 
  Wed, 10 Jun 2020 08:49:26 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+ by smtp.gmail.com with ESMTPSA id p31sm252812pgb.46.2020.06.10.08.49.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Jun 2020 08:49:25 -0700 (PDT)
 Received: by 42.do-not-panic.com (Postfix, from userid 1000)
- id 2C139403AB; Wed, 10 Jun 2020 15:49:25 +0000 (UTC)
+ id 3872940B24; Wed, 10 Jun 2020 15:49:25 +0000 (UTC)
 From: "Luis R. Rodriguez" <mcgrof@kernel.org>
 To: gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk,
  philipp.reisner@linbit.com, lars.ellenberg@linbit.com, axboe@kernel.dk,
@@ -66,9 +67,11 @@ To: gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk,
  nikolay@cumulusnetworks.com, davem@davemloft.net, kuba@kernel.org,
  dhowells@redhat.com, jarkko.sakkinen@linux.intel.com, jmorris@namei.org,
  serge@hallyn.com, christian.brauner@ubuntu.com
-Date: Wed, 10 Jun 2020 15:49:18 +0000
-Message-Id: <20200610154923.27510-1-mcgrof@kernel.org>
+Date: Wed, 10 Jun 2020 15:49:19 +0000
+Message-Id: <20200610154923.27510-2-mcgrof@kernel.org>
 X-Mailer: git-send-email 2.23.0.rc1
+In-Reply-To: <20200610154923.27510-1-mcgrof@kernel.org>
+References: <20200610154923.27510-1-mcgrof@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:37 +0000
@@ -77,8 +80,9 @@ Cc: linux-nfs@vger.kernel.org, chainsaw@gentoo.org, ravenexp@gmail.com,
  josh@joshtriplett.org, slyfox@gentoo.org, ast@kernel.org,
  linux-security-module@vger.kernel.org, keyrings@vger.kernel.org,
  Luis Chamberlain <mcgrof@kernel.org>, linux-fsdevel@vger.kernel.org,
- keescook@chromium.org
-Subject: [Bridge] [PATCH 0/5] kmod/umh: a few fixes
+ Tiezhu Yang <yangtiezhu@loongson.cn>, keescook@chromium.org
+Subject: [Bridge] [PATCH 1/5] selftests: kmod: Use variable NAME in
+	kmod_test_0001()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,40 +97,39 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Luis Chamberlain <mcgrof@kernel.org>
+From: Tiezhu Yang <yangtiezhu@loongson.cn>
 
-Tiezhu Yang had sent out a patch set with a slew of kmod selftest
-fixes, and one patch which modified kmod to return 254 when a module
-was not found. This opened up pandora's box about why that was being
-used for and low and behold its because when UMH_WAIT_PROC is used
-we call a kernel_wait4() call but have never unwrapped the error code.
-The commit log for that fix details the rationale for the approach
-taken. I'd appreciate some review on that, in particular nfs folks
-as it seems a case was never really hit before.
+Use the variable NAME instead of "\000" directly in kmod_test_0001().
 
-This goes boot tested, selftested with kmod, and 0-day gives its
-build blessings.
+Acked-by: Luis Chamberlain <mcgrof@kernel.org>
+Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
+Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+---
+ tools/testing/selftests/kmod/kmod.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Luis Chamberlain (2):
-  umh: fix processed error when UMH_WAIT_PROC is used
-  selftests: simplify kmod failure value
-
-Tiezhu Yang (3):
-  selftests: kmod: Use variable NAME in kmod_test_0001()
-  kmod: Remove redundant "be an" in the comment
-  test_kmod: Avoid potential double free in trigger_config_run_type()
-
- drivers/block/drbd/drbd_nl.c         | 20 +++++------
- fs/nfsd/nfs4recover.c                |  2 +-
- include/linux/sched/task.h           | 13 ++++++++
- kernel/kmod.c                        |  5 ++-
- kernel/umh.c                         |  4 +--
- lib/test_kmod.c                      |  2 +-
- net/bridge/br_stp_if.c               | 10 ++----
- security/keys/request_key.c          |  2 +-
- tools/testing/selftests/kmod/kmod.sh | 50 +++++++++++++++++++++++-----
- 9 files changed, 71 insertions(+), 37 deletions(-)
-
+diff --git a/tools/testing/selftests/kmod/kmod.sh b/tools/testing/selftests/kmod/kmod.sh
+index 3702dbcc90a7..da60c3bd4f23 100755
+--- a/tools/testing/selftests/kmod/kmod.sh
++++ b/tools/testing/selftests/kmod/kmod.sh
+@@ -341,7 +341,7 @@ kmod_test_0001_driver()
+ 
+ 	kmod_defaults_driver
+ 	config_num_threads 1
+-	printf '\000' >"$DIR"/config_test_driver
++	printf $NAME >"$DIR"/config_test_driver
+ 	config_trigger ${FUNCNAME[0]}
+ 	config_expect_result ${FUNCNAME[0]} MODULE_NOT_FOUND
+ }
+@@ -352,7 +352,7 @@ kmod_test_0001_fs()
+ 
+ 	kmod_defaults_fs
+ 	config_num_threads 1
+-	printf '\000' >"$DIR"/config_test_fs
++	printf $NAME >"$DIR"/config_test_fs
+ 	config_trigger ${FUNCNAME[0]}
+ 	config_expect_result ${FUNCNAME[0]} -EINVAL
+ }
 -- 
 2.26.2
 
