@@ -2,61 +2,71 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15B71EC7C7
-	for <lists.bridge@lfdr.de>; Wed,  3 Jun 2020 05:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C41E71FDA81
+	for <lists.bridge@lfdr.de>; Thu, 18 Jun 2020 02:43:56 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 42D39886A6;
-	Wed,  3 Jun 2020 03:27:28 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 5C3F688698;
+	Thu, 18 Jun 2020 00:43:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1kNpT-CJ-H9r; Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
+	with ESMTP id Rbr9mSGFC1hb; Thu, 18 Jun 2020 00:43:53 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 7F4EE88602;
-	Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id B4F1988661;
+	Thu, 18 Jun 2020 00:43:53 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6F0E6C016E;
-	Wed,  3 Jun 2020 03:27:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9C0ABC016E;
+	Thu, 18 Jun 2020 00:43:53 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A5E03C0859
- for <bridge@lists.linux-foundation.org>; Wed,  6 May 2020 06:17:13 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2F3C6C016E
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Jun 2020 00:43:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 95BEC87708
- for <bridge@lists.linux-foundation.org>; Wed,  6 May 2020 06:17:13 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 212C687ECA
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Jun 2020 00:43:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id fr+zlxG7eUDT for <bridge@lists.linux-foundation.org>;
- Wed,  6 May 2020 06:17:11 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by whitealder.osuosl.org (Postfix) with ESMTPS id B7596876FF
- for <bridge@lists.linux-foundation.org>; Wed,  6 May 2020 06:17:11 +0000 (UTC)
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id 2F845A04B3344AC12140;
- Wed,  6 May 2020 14:17:05 +0800 (CST)
-Received: from huawei.com (10.175.124.28) by DGGEMS408-HUB.china.huawei.com
- (10.3.19.208) with Microsoft SMTP Server id 14.3.487.0; Wed, 6 May 2020
- 14:16:55 +0800
-From: Jason Yan <yanaijie@huawei.com>
-To: <roopa@cumulusnetworks.com>, <nikolay@cumulusnetworks.com>,
- <davem@davemloft.net>, <kuba@kernel.org>,
- <bridge@lists.linux-foundation.org>, <netdev@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Date: Wed, 6 May 2020 14:16:16 +0800
-Message-ID: <20200506061616.18929-1-yanaijie@huawei.com>
-X-Mailer: git-send-email 2.21.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.175.124.28]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Wed, 03 Jun 2020 03:27:25 +0000
-Cc: Jason Yan <yanaijie@huawei.com>
-Subject: [Bridge] [PATCH net-next] net: bridge: return false in
-	br_mrp_enabled()
+ with ESMTP id KxyLn7tKA+ra for <bridge@lists.linux-foundation.org>;
+ Thu, 18 Jun 2020 00:43:51 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 9220587942
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Jun 2020 00:43:51 +0000 (UTC)
+Received: from X1 (nat-ab2241.sltdut.senawave.net [162.218.216.4])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 6B88521556;
+ Thu, 18 Jun 2020 00:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1592441031;
+ bh=z8URL52jsUeVV4acHgb8mhAwfXotlh0gswF4QwIowhc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=lFr7x6WrpgmRN4lzyjuvDZG/zGaopYG62aB1wPAszZtJjQPV9FdWelscdkKZ1qRgQ
+ AvtBQETgA+y3uFWv09ZMZ8o39Xuvl5i+wHRZRgNpcmzkR8W9OqNit+yo8ORkU4fGBb
+ M3YbM5M6BVVRc9kul9eNloay4TPH74oCLloXGYj4=
+Date: Wed, 17 Jun 2020 17:43:48 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: "Luis R. Rodriguez" <mcgrof@kernel.org>
+Message-Id: <20200617174348.70710c3ecb14005fb1b9ec39@linux-foundation.org>
+In-Reply-To: <20200610154923.27510-1-mcgrof@kernel.org>
+References: <20200610154923.27510-1-mcgrof@kernel.org>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: ast@kernel.org, jarkko.sakkinen@linux.intel.com,
+ linux-kernel@vger.kernel.org, dhowells@redhat.com, keyrings@vger.kernel.org,
+ christian.brauner@ubuntu.com, bridge@lists.linux-foundation.org,
+ jmorris@namei.org, kuba@kernel.org, serge@hallyn.com, keescook@chromium.org,
+ nikolay@cumulusnetworks.com, roopa@cumulusnetworks.com, josh@joshtriplett.org,
+ slyfox@gentoo.org, viro@zeniv.linux.org.uk, axboe@kernel.dk,
+ bfields@fieldses.org, linux-nfs@vger.kernel.org, chainsaw@gentoo.org,
+ ravenexp@gmail.com, gregkh@linuxfoundation.org, philipp.reisner@linbit.com,
+ linux-security-module@vger.kernel.org, chuck.lever@oracle.com,
+ linux-fsdevel@vger.kernel.org, lars.ellenberg@linbit.com, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH 0/5] kmod/umh: a few fixes
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -71,29 +81,32 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Fix the following coccicheck warning:
+On Wed, 10 Jun 2020 15:49:18 +0000 "Luis R. Rodriguez" <mcgrof@kernel.org> wrote:
 
-net/bridge/br_private.h:1334:8-9: WARNING: return of 0/1 in function
-'br_mrp_enabled' with return type bool
+> Tiezhu Yang had sent out a patch set with a slew of kmod selftest
+> fixes, and one patch which modified kmod to return 254 when a module
+> was not found. This opened up pandora's box about why that was being
+> used for and low and behold its because when UMH_WAIT_PROC is used
+> we call a kernel_wait4() call but have never unwrapped the error code.
+> The commit log for that fix details the rationale for the approach
+> taken. I'd appreciate some review on that, in particular nfs folks
+> as it seems a case was never really hit before.
+> 
+> This goes boot tested, selftested with kmod, and 0-day gives its
+> build blessings.
 
-Signed-off-by: Jason Yan <yanaijie@huawei.com>
----
- net/bridge/br_private.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Any thoughts on which kernel version(s) need some/all of these fixes?
 
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index c35647cb138a..78d3a951180d 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -1331,7 +1331,7 @@ static inline int br_mrp_process(struct net_bridge_port *p, struct sk_buff *skb)
- 
- static inline bool br_mrp_enabled(struct net_bridge *br)
- {
--	return 0;
-+	return false;
- }
- 
- static inline void br_mrp_port_del(struct net_bridge *br,
--- 
-2.21.1
+>  drivers/block/drbd/drbd_nl.c         | 20 +++++------
+>  fs/nfsd/nfs4recover.c                |  2 +-
+>  include/linux/sched/task.h           | 13 ++++++++
+>  kernel/kmod.c                        |  5 ++-
+>  kernel/umh.c                         |  4 +--
+>  lib/test_kmod.c                      |  2 +-
+>  net/bridge/br_stp_if.c               | 10 ++----
+>  security/keys/request_key.c          |  2 +-
+>  tools/testing/selftests/kmod/kmod.sh | 50 +++++++++++++++++++++++-----
+
+I'm not really sure who takes kmod changes - I'll grab these unless
+someone shouts at me.
 
