@@ -2,71 +2,80 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41E71FDA81
-	for <lists.bridge@lfdr.de>; Thu, 18 Jun 2020 02:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCB0B204D87
+	for <lists.bridge@lfdr.de>; Tue, 23 Jun 2020 11:08:42 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 5C3F688698;
-	Thu, 18 Jun 2020 00:43:54 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id BB333893BC;
+	Tue, 23 Jun 2020 09:08:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Rbr9mSGFC1hb; Thu, 18 Jun 2020 00:43:53 +0000 (UTC)
+	with ESMTP id 0ZP9xvi2xrCG; Tue, 23 Jun 2020 09:08:40 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id B4F1988661;
-	Thu, 18 Jun 2020 00:43:53 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 3F29989358;
+	Tue, 23 Jun 2020 09:08:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9C0ABC016E;
-	Thu, 18 Jun 2020 00:43:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 19BCFC0891;
+	Tue, 23 Jun 2020 09:08:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2F3C6C016E
- for <bridge@lists.linux-foundation.org>; Thu, 18 Jun 2020 00:43:52 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3F4E0C016F
+ for <bridge@lists.linux-foundation.org>; Tue, 23 Jun 2020 09:08:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 212C687ECA
- for <bridge@lists.linux-foundation.org>; Thu, 18 Jun 2020 00:43:52 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 2A0D687FAF
+ for <bridge@lists.linux-foundation.org>; Tue, 23 Jun 2020 09:08:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KxyLn7tKA+ra for <bridge@lists.linux-foundation.org>;
- Thu, 18 Jun 2020 00:43:51 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 9220587942
- for <bridge@lists.linux-foundation.org>; Thu, 18 Jun 2020 00:43:51 +0000 (UTC)
-Received: from X1 (nat-ab2241.sltdut.senawave.net [162.218.216.4])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6B88521556;
- Thu, 18 Jun 2020 00:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1592441031;
- bh=z8URL52jsUeVV4acHgb8mhAwfXotlh0gswF4QwIowhc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=lFr7x6WrpgmRN4lzyjuvDZG/zGaopYG62aB1wPAszZtJjQPV9FdWelscdkKZ1qRgQ
- AvtBQETgA+y3uFWv09ZMZ8o39Xuvl5i+wHRZRgNpcmzkR8W9OqNit+yo8ORkU4fGBb
- M3YbM5M6BVVRc9kul9eNloay4TPH74oCLloXGYj4=
-Date: Wed, 17 Jun 2020 17:43:48 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: "Luis R. Rodriguez" <mcgrof@kernel.org>
-Message-Id: <20200617174348.70710c3ecb14005fb1b9ec39@linux-foundation.org>
-In-Reply-To: <20200610154923.27510-1-mcgrof@kernel.org>
-References: <20200610154923.27510-1-mcgrof@kernel.org>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: ast@kernel.org, jarkko.sakkinen@linux.intel.com,
- linux-kernel@vger.kernel.org, dhowells@redhat.com, keyrings@vger.kernel.org,
- christian.brauner@ubuntu.com, bridge@lists.linux-foundation.org,
- jmorris@namei.org, kuba@kernel.org, serge@hallyn.com, keescook@chromium.org,
- nikolay@cumulusnetworks.com, roopa@cumulusnetworks.com, josh@joshtriplett.org,
- slyfox@gentoo.org, viro@zeniv.linux.org.uk, axboe@kernel.dk,
- bfields@fieldses.org, linux-nfs@vger.kernel.org, chainsaw@gentoo.org,
- ravenexp@gmail.com, gregkh@linuxfoundation.org, philipp.reisner@linbit.com,
- linux-security-module@vger.kernel.org, chuck.lever@oracle.com,
- linux-fsdevel@vger.kernel.org, lars.ellenberg@linbit.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH 0/5] kmod/umh: a few fixes
+ with ESMTP id cS5cSqnw0Dyo for <bridge@lists.linux-foundation.org>;
+ Tue, 23 Jun 2020 09:08:37 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
+ [68.232.149.84])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 75DC887E77
+ for <bridge@lists.linux-foundation.org>; Tue, 23 Jun 2020 09:08:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1592903317; x=1624439317;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Hf1oiWAZW47J1FDqvjaGVKeQoXmDU3F9JmfEwLpOK8A=;
+ b=mNMCpDFQ/ZlUK35Xj75Q6McXc5Aua3ghekcAFyjU4ujMco7N9BfjX21m
+ m57kg8sOQB+wuj69QVrRQt6TmSDA+PXNF7U763w06rlP32ZG7P/ZVTzRz
+ zHrD5YhZztOpvb3NhbEJeXJu2BJ3DPmsNCwHHA2GaEx7pZWpHgEEqEIwh
+ JvQqSvCCaYdsqpJ1lZUz9jGIx/+gv1qw7MeahAU7d4w1/WkQucZJFh0VI
+ AzJwoxrGIxdJsq/x8SoSeeh0Ptc1Gpo9F2V3hHS3TeujlbGzVsse6jwAN
+ c3LAndnisSKSM5t6PLkypZITWFuFby5xG16Srr4RciCwLysdK5EiaNGZN w==;
+IronPort-SDR: bAhNFfnu/8crGk787M99eNYA9w+l0xyHYdtsp5D4SrMsOMrq/6I365Ggvw21oPBRnpsk18eHbV
+ h7uaw5r7dckQA0mFLaG5GhkO5y+PPbGZI1mzvrxRPnficwBB/5ft8VT99ZeM47zoP6YlSoMP/A
+ iMvTosg9kA3WlDdRwzfe98tQSwhm1gJjg2ige+TVLOJdKw0AuPFiKeUTBmi22J0pxm9ksQYutN
+ N5OenKFSSdE5V4pcgKMbG8fxQPS9JbXfR/9L/cbYG6PckSB8CCrR8VlHd43k4eoRJwv9QJtZps
+ CaQ=
+X-IronPort-AV: E=Sophos;i="5.75,270,1589266800"; d="scan'208";a="79436702"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 23 Jun 2020 02:08:36 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 23 Jun 2020 02:08:25 -0700
+Received: from soft-dev3.localdomain (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 23 Jun 2020 02:08:34 -0700
+To: <nikolay@cumulusnetworks.com>, <roopa@cumulusnetworks.com>,
+ <davem@davemloft.net>, <kuba@kernel.org>, <linux-kernel@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>, <netdev@vger.kernel.org>,
+ <UNGLinuxDriver@microchip.com>
+Date: Tue, 23 Jun 2020 11:05:39 +0200
+Message-ID: <20200623090541.2964760-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net v2 0/2] bridge: mrp: Update MRP_PORT_ROLE
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -78,35 +87,29 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, 10 Jun 2020 15:49:18 +0000 "Luis R. Rodriguez" <mcgrof@kernel.org> wrote:
+This patch series does the following:
+- fixes the enum br_mrp_port_role_type. It removes the port role none(0x2)
+  because this is in conflict with the standard. The standard defines the
+  interconnect port role as value 0x2.
+- adds checks regarding current defined port roles: primary(0x0) and
+  secondary(0x1).
 
-> Tiezhu Yang had sent out a patch set with a slew of kmod selftest
-> fixes, and one patch which modified kmod to return 254 when a module
-> was not found. This opened up pandora's box about why that was being
-> used for and low and behold its because when UMH_WAIT_PROC is used
-> we call a kernel_wait4() call but have never unwrapped the error code.
-> The commit log for that fix details the rationale for the approach
-> taken. I'd appreciate some review on that, in particular nfs folks
-> as it seems a case was never really hit before.
-> 
-> This goes boot tested, selftested with kmod, and 0-day gives its
-> build blessings.
+v2:
+ - add the validation code when setting the port role.
 
-Any thoughts on which kernel version(s) need some/all of these fixes?
+Horatiu Vultur (2):
+  bridge: uapi: mrp: Fix MRP_PORT_ROLE
+  bridge: mrp: Validate when setting the port role
 
->  drivers/block/drbd/drbd_nl.c         | 20 +++++------
->  fs/nfsd/nfs4recover.c                |  2 +-
->  include/linux/sched/task.h           | 13 ++++++++
->  kernel/kmod.c                        |  5 ++-
->  kernel/umh.c                         |  4 +--
->  lib/test_kmod.c                      |  2 +-
->  net/bridge/br_stp_if.c               | 10 ++----
->  security/keys/request_key.c          |  2 +-
->  tools/testing/selftests/kmod/kmod.sh | 50 +++++++++++++++++++++++-----
+ include/uapi/linux/mrp_bridge.h |  1 -
+ net/bridge/br_mrp.c             | 10 ++++++++--
+ 2 files changed, 8 insertions(+), 3 deletions(-)
 
-I'm not really sure who takes kmod changes - I'll grab these unless
-someone shouts at me.
+-- 
+2.26.2
 
