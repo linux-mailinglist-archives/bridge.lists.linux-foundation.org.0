@@ -1,81 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B92A20721D
-	for <lists.bridge@lfdr.de>; Wed, 24 Jun 2020 13:32:04 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52670207750
+	for <lists.bridge@lfdr.de>; Wed, 24 Jun 2020 17:24:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id C5BC287E8E;
-	Wed, 24 Jun 2020 11:32:02 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id E707E20358;
+	Wed, 24 Jun 2020 15:24:22 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id m-RaE-naBZGg; Wed, 24 Jun 2020 11:32:02 +0000 (UTC)
+	with ESMTP id 0O-U1oJ33e0V; Wed, 24 Jun 2020 15:24:22 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 25C4F87D80;
-	Wed, 24 Jun 2020 11:32:02 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id A650A2034C;
+	Wed, 24 Jun 2020 15:24:22 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DCD73C016F;
-	Wed, 24 Jun 2020 11:32:01 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 82B02C016F;
+	Wed, 24 Jun 2020 15:24:22 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 23E7FC016F
- for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 11:32:00 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EA7A6C016F
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 15:24:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 08C0021FA8
- for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 11:32:00 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id D67D420346
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 15:24:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Qa-oy12E3aMG for <bridge@lists.linux-foundation.org>;
- Wed, 24 Jun 2020 11:31:59 +0000 (UTC)
+ with ESMTP id 5jL414TeOFLv for <bridge@lists.linux-foundation.org>;
+ Wed, 24 Jun 2020 15:24:20 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa5.microchip.iphmx.com (esa5.microchip.iphmx.com
- [216.71.150.166])
- by silver.osuosl.org (Postfix) with ESMTPS id 4821420381
- for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 11:31:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1592998320; x=1624534320;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ytChrvYAloZwmq/t2qRRQKdJIdRvD5ZigkU1TGR2Ylk=;
- b=ZrftBgW6ozx7zi3Ux+ru8fl+eNvNtoBNtq6iKsMOteqPTpTo5hi7xZlz
- vrqtcmyWJkCo5AUPfBzttRWII4A3S/FWub0jOvfrn9nPPpi8guqAuV7U9
- U6gJUgKI/QL3aEHu1Kz+LsnSeAWRepBkaLvYBQEE9La/zODGZiYs7fbUD
- Ke9rZcpv9M9zdU2sPmlr+F/YEpytfQ4pf4sPKj1aVtF7XBbhukQQkLZmW
- 94TWwVMHe6BJwEYd9EPQk9IjPJkHRdtGhA5k6ezxHmlwxbWJBr40dEYSQ
- W7g1Q+LtuQiEZDsSqtpCFlxhiWsmVWaDYl6e1rweivGcZeTmx1BcVYbJg A==;
-IronPort-SDR: Otnu5zaWQnGtJeKyFJ4oY4LrHRbzk1keJeICfFcy3n7QvBPhI2tkHpler6TjeFRsQFjTIuLjPC
- rkecIdjwTgPbC8cAWgWHGOXs6mw/g5SasaeFeB0YK4KvfLFJUHEGihqloZ65K7PL/lZxfIr4Fm
- 7bxyS1Tz1FAqbTSy9xla2EBe36cvR913P/g+auO53KwNyUsPmLK5fp5p9+7cLZTUyEh/rmkz0t
- pMhLUnLKC5RO9XsCiX/Gj6QjIjxUs4bdhOr9VTfq1BFJjJmRbYk6fflBU2r6/d4GLH6Kz7J1Bn
- sgM=
-X-IronPort-AV: E=Sophos;i="5.75,275,1589266800"; d="scan'208";a="80727156"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 24 Jun 2020 04:31:59 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 24 Jun 2020 04:31:57 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 24 Jun 2020 04:31:57 -0700
-Date: Wed, 24 Jun 2020 13:31:56 +0200
-To: David Miller <davem@davemloft.net>
-Message-ID: <20200624113156.hsutqewk4xntmkld@soft-dev3.localdomain>
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com
+ [209.85.218.65])
+ by silver.osuosl.org (Postfix) with ESMTPS id F32E12026D
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 15:24:19 +0000 (UTC)
+Received: by mail-ej1-f65.google.com with SMTP id w16so2870048ejj.5
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 08:24:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=D5fcBmctUqkWRaCAlEquaCo151xfdRO5uLvWNbrg/T4=;
+ b=lneLGurgH4ESLltEQrI6RKR+MKIH5cMowieW6nb3PawBpUTe8dVgXXy8oMVUK4D+zC
+ 61WQaa5yJ1WzosFIDyQOD1CeZNhfkijfHCaT6mJAdif+JAeN342vfOojjhY8ewmYPOzq
+ I4kosKQDArhuQ2/XphencidtJupidiJX+nZ5H6E7oaqCqRewZQ3U+4o3EzmxXdA3Rr7j
+ 4qmsbilXgqZ0HMl8Ur1ZL0mPzVIuxqRV1viDITxeKOkGQl11bsqz6AevPORWx6Bp15Vr
+ TjnOlBl9Mn2pzwKcOnHs6/3+0411yKC2rOwo5wP78mP9XfNzXPI6N131Rmc32t+nTZth
+ gmeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=D5fcBmctUqkWRaCAlEquaCo151xfdRO5uLvWNbrg/T4=;
+ b=av8liqnMX2W404GNk02w4B7SyeQePVBqVsR5+wV2LcUsKJsJccZXqFkp41DA9oUoGI
+ hH3SkgMAOD4O2aWZpVzsaUubdvSCELgwupQxF5fB7VRY0/G6dR/x34M3MUdtmMTYzPlC
+ efROQmyMGcYUOnj8rtMdrV0sjoIAgroDAz3rAe7tb7VemG0ikZSduE9+A4vur2ACrr3u
+ ErBoRNOxJ6DMrvLp6hR8aVIKOySkpZ6oCpjsoHghyygKi4whINjlQnbDKFRk2NEkjg/+
+ 3VpODcgFEsMZOJlFEtWv80ZVAtvYzKqtRujS9E9bN0tp76ca02+Wjo1eSGjt2WRJdjl6
+ LrVg==
+X-Gm-Message-State: AOAM533Bj30VL/xvNIMZW+5t2Djl+xuGduh9LYBcYnQCsXHhHALg6f/l
+ iZe7eJzYPbROKaAeVx+A/mb+aKfqWF/hJRp/pC4=
+X-Google-Smtp-Source: ABdhPJxXGFYEUDzodXY4S+pGgiGRko+o5hHsygS3MwblQ/K5dQVLFwuQYt/iX5NoNFt1e3/nk2D1FtPqKZ2S2whWJAI=
+X-Received: by 2002:a17:906:5949:: with SMTP id
+ g9mr7426231ejr.305.1593012258194; 
+ Wed, 24 Jun 2020 08:24:18 -0700 (PDT)
+MIME-Version: 1.0
 References: <20200623090541.2964760-1-horatiu.vultur@microchip.com>
  <20200623.143821.491798381160245817.davem@davemloft.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20200623.143821.491798381160245817.davem@davemloft.net>
-Cc: nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
- roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com, kuba@kernel.org
+ <20200624113156.hsutqewk4xntmkld@soft-dev3.localdomain>
+In-Reply-To: <20200624113156.hsutqewk4xntmkld@soft-dev3.localdomain>
+From: Vladimir Oltean <olteanv@gmail.com>
+Date: Wed, 24 Jun 2020 18:24:07 +0300
+Message-ID: <CA+h21hogZsJZUksYY66_=-qkdG3kDA+byfX0tV=C-80M6mfYMA@mail.gmail.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ netdev <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org, lkml <linux-kernel@vger.kernel.org>,
+ Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+ Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net v2 0/2] bridge: mrp: Update MRP_PORT_ROLE
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -88,34 +90,43 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The 06/23/2020 14:38, David Miller wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> From: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Date: Tue, 23 Jun 2020 11:05:39 +0200
-> 
-> > This patch series does the following:
-> > - fixes the enum br_mrp_port_role_type. It removes the port role none(0x2)
-> >   because this is in conflict with the standard. The standard defines the
-> >   interconnect port role as value 0x2.
-> > - adds checks regarding current defined port roles: primary(0x0) and
-> >   secondary(0x1).
+Hi Horatiu,
+
+On Wed, 24 Jun 2020 at 14:34, Horatiu Vultur
+<horatiu.vultur@microchip.com> wrote:
+>
+> The 06/23/2020 14:38, David Miller wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > >
-> > v2:
-> >  - add the validation code when setting the port role.
-> 
-> Series applied, thank you.
+> > From: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > Date: Tue, 23 Jun 2020 11:05:39 +0200
+> >
+> > > This patch series does the following:
+> > > - fixes the enum br_mrp_port_role_type. It removes the port role none(0x2)
+> > >   because this is in conflict with the standard. The standard defines the
+> > >   interconnect port role as value 0x2.
+> > > - adds checks regarding current defined port roles: primary(0x0) and
+> > >   secondary(0x1).
+> > >
+> > > v2:
+> > >  - add the validation code when setting the port role.
+> >
+> > Series applied, thank you.
+>
+> Thanks. Will these patches be applied also on net-next?
+> Because if I start now to add support for the interconnect port, these
+> patches are needed on net-next. Or do I need to add these patches to the
+> patch series for the interconnect port?
+> What is the correct way of doing this?
+>
+> --
+> /Horatiu
 
-Thanks. Will these patches be applied also on net-next?
-Because if I start now to add support for the interconnect port, these
-patches are needed on net-next. Or do I need to add these patches to the
-patch series for the interconnect port?
-What is the correct way of doing this?
+The "net" tree is merged weekly (or so) by David into "net-next". So,
+your patches should be available at the beginning of the next week.
 
--- 
-/Horatiu
+Cheers,
+-Vladimir
