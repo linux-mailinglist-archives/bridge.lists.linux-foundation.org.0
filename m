@@ -2,80 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B46022CCEC
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AEFE22CCEE
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:21:56 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 9316488A87;
-	Fri, 24 Jul 2020 18:21:53 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 62BFF88A96;
+	Fri, 24 Jul 2020 18:21:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id G15ih4Ai8VOd; Fri, 24 Jul 2020 18:21:48 +0000 (UTC)
+	with ESMTP id GQGZE0W4ho2x; Fri, 24 Jul 2020 18:21:48 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 5D07387E32;
+	by whitealder.osuosl.org (Postfix) with ESMTP id B6ADE87E3E;
 	Fri, 24 Jul 2020 18:21:44 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 452B9C004E;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9023CC0052;
 	Fri, 24 Jul 2020 18:21:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EAAA3C016F
- for <bridge@lists.linux-foundation.org>; Tue, 23 Jun 2020 15:09:03 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B46A2C016F
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 11:12:21 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id D582F26661
- for <bridge@lists.linux-foundation.org>; Tue, 23 Jun 2020 15:09:03 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id A33CE86CA5
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 11:12:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id QzOV46YWSZ2T for <bridge@lists.linux-foundation.org>;
- Tue, 23 Jun 2020 15:09:01 +0000 (UTC)
-X-Greylist: delayed 00:45:12 by SQLgrey-1.7.6
+ with ESMTP id YmUeaGnG5St6 for <bridge@lists.linux-foundation.org>;
+ Wed, 24 Jun 2020 11:12:20 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
  [148.163.156.1])
- by silver.osuosl.org (Postfix) with ESMTPS id A862726633
- for <bridge@lists.linux-foundation.org>; Tue, 23 Jun 2020 15:09:01 +0000 (UTC)
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id DDEBC86C47
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 11:12:20 +0000 (UTC)
+Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
  by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 05NE3oB4047055; Tue, 23 Jun 2020 10:23:31 -0400
+ 05OB1lOl169270; Wed, 24 Jun 2020 07:12:01 -0400
 Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 31tysrfphj-1
+ by mx0a-001b2d01.pphosted.com with ESMTP id 31ux06nd1s-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 23 Jun 2020 10:23:30 -0400
-Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 05NE4GUm048807;
- Tue, 23 Jun 2020 10:23:30 -0400
-Received: from ppma04ams.nl.ibm.com (63.31.33a9.ip4.static.sl-reverse.com
- [169.51.49.99])
- by mx0a-001b2d01.pphosted.com with ESMTP id 31tysrfpft-1
+ Wed, 24 Jun 2020 07:12:01 -0400
+Received: from m0098396.ppops.net (m0098396.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 05OB2abR172039;
+ Wed, 24 Jun 2020 07:12:00 -0400
+Received: from ppma06ams.nl.ibm.com (66.31.33a9.ip4.static.sl-reverse.com
+ [169.51.49.102])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 31ux06nd0m-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 23 Jun 2020 10:23:29 -0400
-Received: from pps.filterd (ppma04ams.nl.ibm.com [127.0.0.1])
- by ppma04ams.nl.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 05NEAVU6001564;
- Tue, 23 Jun 2020 14:23:26 GMT
+ Wed, 24 Jun 2020 07:12:00 -0400
+Received: from pps.filterd (ppma06ams.nl.ibm.com [127.0.0.1])
+ by ppma06ams.nl.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 05OB1RSU005458;
+ Wed, 24 Jun 2020 11:11:58 GMT
 Received: from b06cxnps4075.portsmouth.uk.ibm.com
  (d06relay12.portsmouth.uk.ibm.com [9.149.109.197])
- by ppma04ams.nl.ibm.com with ESMTP id 31uk4mg0rd-1
+ by ppma06ams.nl.ibm.com with ESMTP id 31uusjghbk-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 23 Jun 2020 14:23:26 +0000
+ Wed, 24 Jun 2020 11:11:58 +0000
 Received: from d06av24.portsmouth.uk.ibm.com (mk.ibm.com [9.149.105.60])
  by b06cxnps4075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 05NENONw14876672
+ 05OBBtSE1311036
  (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 23 Jun 2020 14:23:24 GMT
+ Wed, 24 Jun 2020 11:11:55 GMT
 Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 3C4AC42042;
- Tue, 23 Jun 2020 14:23:24 +0000 (GMT)
+ by IMSVA (Postfix) with ESMTP id BD52A42041;
+ Wed, 24 Jun 2020 11:11:55 +0000 (GMT)
 Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id AE55142057;
- Tue, 23 Jun 2020 14:23:22 +0000 (GMT)
-Received: from oc7455500831.ibm.com (unknown [9.145.187.217])
+ by IMSVA (Postfix) with ESMTP id 75B3F42052;
+ Wed, 24 Jun 2020 11:11:54 +0000 (GMT)
+Received: from oc7455500831.ibm.com (unknown [9.145.12.78])
  by d06av24.portsmouth.uk.ibm.com (Postfix) with ESMTP;
- Tue, 23 Jun 2020 14:23:22 +0000 (GMT)
+ Wed, 24 Jun 2020 11:11:54 +0000 (GMT)
 From: Christian Borntraeger <borntraeger@de.ibm.com>
 To: mcgrof@kernel.org
 References: <20200610154923.27510-5-mcgrof@kernel.org>
  <20200623141157.5409-1-borntraeger@de.ibm.com>
+ <b7d658b9-606a-feb1-61f9-b58e3420d711@de.ibm.com>
 Autocrypt: addr=borntraeger@de.ibm.com; prefer-encrypt=mutual; keydata=
  xsFNBE6cPPgBEAC2VpALY0UJjGmgAmavkL/iAdqul2/F9ONz42K6NrwmT+SI9CylKHIX+fdf
  J34pLNJDmDVEdeb+brtpwC9JEZOLVE0nb+SR83CsAINJYKG3V1b3Kfs0hydseYKsBYqJTN2j
@@ -119,25 +120,25 @@ Autocrypt: addr=borntraeger@de.ibm.com; prefer-encrypt=mutual; keydata=
  jaqYefx7yQ7FJXXETd2uVURiDeNEFhVZWb5CiBJM5c6qQMhmkS4VyT7/+raaEGgkEKEgHOWf
  ZDP8BHfXtszHqI3Fo1F4IKFo/AP8GOFFxMRgbvlAs8z/+rEEaQYjxYJqj08raw6P4LFBqozr
  nS4h0HDFPrrp1C2EMVYIQrMokWvlFZbCpsdYbBI=
-Message-ID: <b7d658b9-606a-feb1-61f9-b58e3420d711@de.ibm.com>
-Date: Tue, 23 Jun 2020 16:23:22 +0200
+Message-ID: <3118dc0d-a3af-9337-c897-2380062a8644@de.ibm.com>
+Date: Wed, 24 Jun 2020 13:11:54 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200623141157.5409-1-borntraeger@de.ibm.com>
+In-Reply-To: <b7d658b9-606a-feb1-61f9-b58e3420d711@de.ibm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 X-TM-AS-GCONF: 00
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216, 18.0.687
- definitions=2020-06-23_06:2020-06-23,
- 2020-06-23 signatures=0
+ definitions=2020-06-24_05:2020-06-24,
+ 2020-06-24 signatures=0
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 malwarescore=0
- mlxscore=0 bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 impostorscore=0 phishscore=0 mlxlogscore=878
- cotscore=-2147483648 suspectscore=1 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2004280000 definitions=main-2006230108
+ suspectscore=1 mlxscore=0
+ impostorscore=0 cotscore=-2147483648 mlxlogscore=840 bulkscore=0
+ lowpriorityscore=0 adultscore=0 malwarescore=0 phishscore=0 clxscore=1015
+ priorityscore=1501 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2004280000 definitions=main-2006240077
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:37 +0000
 Cc: ast@kernel.org, jarkko.sakkinen@linux.intel.com, philipp.reisner@linbit.com,
  dhowells@redhat.com, keyrings@vger.kernel.org, christian.brauner@ubuntu.com,
@@ -169,28 +170,34 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 
 
-On 23.06.20 16:11, Christian Borntraeger wrote:
-> Jens Markwardt reported a regression in the linux-next runs.  with "umh: fix
-> processed error when UMH_WAIT_PROC is used" (from linux-next) a linux bridge
-> with an KVM guests no longer activates :
+On 23.06.20 16:23, Christian Borntraeger wrote:
 > 
-> without patch
-> # ip addr show dev virbr1
-> 6: virbr1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
->     link/ether 52:54:00:1e:3f:c0 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.254.254/24 brd 192.168.254.255 scope global virbr1
->        valid_lft forever preferred_lft forever
 > 
-> with this patch the bridge stays DOWN with NO-CARRIER
+> On 23.06.20 16:11, Christian Borntraeger wrote:
+>> Jens Markwardt reported a regression in the linux-next runs.  with "umh: fix
+>> processed error when UMH_WAIT_PROC is used" (from linux-next) a linux bridge
+>> with an KVM guests no longer activates :
+>>
+>> without patch
+>> # ip addr show dev virbr1
+>> 6: virbr1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+>>     link/ether 52:54:00:1e:3f:c0 brd ff:ff:ff:ff:ff:ff
+>>     inet 192.168.254.254/24 brd 192.168.254.255 scope global virbr1
+>>        valid_lft forever preferred_lft forever
+>>
+>> with this patch the bridge stays DOWN with NO-CARRIER
+>>
+>> # ip addr show dev virbr1
+>> 6: virbr1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+>>     link/ether 52:54:00:1e:3f:c0 brd ff:ff:ff:ff:ff:ff
+>>     inet 192.168.254.254/24 brd 192.168.254.255 scope global virbr1
+>>        valid_lft forever preferred_lft forever
+>>
+>> This was bisected in linux-next. Reverting from linux-next also fixes the issue.
+>>
+>> Any idea?
 > 
-> # ip addr show dev virbr1
-> 6: virbr1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
->     link/ether 52:54:00:1e:3f:c0 brd ff:ff:ff:ff:ff:ff
->     inet 192.168.254.254/24 brd 192.168.254.255 scope global virbr1
->        valid_lft forever preferred_lft forever
-> 
-> This was bisected in linux-next. Reverting from linux-next also fixes the issue.
-> 
-> Any idea?
+> FWIW, s390 is big endian. Maybe some of the shifts inn the __KW* macros are wrong.
 
-FWIW, s390 is big endian. Maybe some of the shifts inn the __KW* macros are wrong.
+Does anyone have an idea why "umh: fix processed error when UMH_WAIT_PROC is used" breaks the
+linux-bridge on s390?
