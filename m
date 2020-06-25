@@ -1,78 +1,78 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868B122CCFB
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:06 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id C783A22CCF4
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 8A79588B2E;
-	Fri, 24 Jul 2020 18:22:03 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id A28488911B;
+	Fri, 24 Jul 2020 18:21:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id G5bAmmUN-pmr; Fri, 24 Jul 2020 18:22:00 +0000 (UTC)
+	with ESMTP id vpqy1e7RnFac; Fri, 24 Jul 2020 18:21:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id C508188632;
-	Fri, 24 Jul 2020 18:21:47 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 1F35588E9F;
+	Fri, 24 Jul 2020 18:21:48 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B60B5C004C;
-	Fri, 24 Jul 2020 18:21:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 045AEC004C;
+	Fri, 24 Jul 2020 18:21:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8F1B4C016F
- for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 18:38:37 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ABF32C016F
+ for <bridge@lists.linux-foundation.org>; Thu, 25 Jun 2020 13:27:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 7887C2044D
- for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 18:38:37 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id A0F0C887BE
+ for <bridge@lists.linux-foundation.org>; Thu, 25 Jun 2020 13:27:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JXicEHHerTYf for <bridge@lists.linux-foundation.org>;
- Wed, 24 Jun 2020 18:38:36 +0000 (UTC)
+ with ESMTP id q9hSEJEpvyTD for <bridge@lists.linux-foundation.org>;
+ Thu, 25 Jun 2020 13:27:08 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
  [148.163.158.5])
- by silver.osuosl.org (Postfix) with ESMTPS id D6C6920404
- for <bridge@lists.linux-foundation.org>; Wed, 24 Jun 2020 18:38:35 +0000 (UTC)
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 05OIWXBT040581; Wed, 24 Jun 2020 14:38:04 -0400
+ by hemlock.osuosl.org (Postfix) with ESMTPS id EE78688796
+ for <bridge@lists.linux-foundation.org>; Thu, 25 Jun 2020 13:27:07 +0000 (UTC)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+ by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+ 05PD1ooY136475; Thu, 25 Jun 2020 09:26:51 -0400
 Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 31uwyh3t80-1
+ by mx0b-001b2d01.pphosted.com with ESMTP id 31vtt34nfs-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 24 Jun 2020 14:38:04 -0400
-Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 05OIXIeF043584;
- Wed, 24 Jun 2020 14:38:03 -0400
+ Thu, 25 Jun 2020 09:26:51 -0400
+Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 05PD24dI137417;
+ Thu, 25 Jun 2020 09:26:49 -0400
 Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com
  [159.122.73.71])
- by mx0a-001b2d01.pphosted.com with ESMTP id 31uwyh3t6r-1
+ by mx0b-001b2d01.pphosted.com with ESMTP id 31vtt34neu-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 24 Jun 2020 14:38:02 -0400
+ Thu, 25 Jun 2020 09:26:49 -0400
 Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
- by ppma02fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 05OIa7Fm027253;
- Wed, 24 Jun 2020 18:38:00 GMT
-Received: from b06cxnps3074.portsmouth.uk.ibm.com
- (d06relay09.portsmouth.uk.ibm.com [9.149.109.194])
- by ppma02fra.de.ibm.com with ESMTP id 31uusk0f16-1
+ by ppma02fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 05PDPW1k011970;
+ Thu, 25 Jun 2020 13:26:47 GMT
+Received: from b06avi18626390.portsmouth.uk.ibm.com
+ (b06avi18626390.portsmouth.uk.ibm.com [9.149.26.192])
+ by ppma02fra.de.ibm.com with ESMTP id 31uusk0vwk-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 24 Jun 2020 18:37:59 +0000
-Received: from d06av23.portsmouth.uk.ibm.com (d06av23.portsmouth.uk.ibm.com
- [9.149.105.59])
- by b06cxnps3074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 05OIbvmj7012818
+ Thu, 25 Jun 2020 13:26:47 +0000
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com
+ (b06wcsmtp001.portsmouth.uk.ibm.com [9.149.105.160])
+ by b06avi18626390.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP
+ id 05PDPPVE56295860
  (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 24 Jun 2020 18:37:57 GMT
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 4E4EDA4051;
- Wed, 24 Jun 2020 18:37:57 +0000 (GMT)
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 105AAA4053;
- Wed, 24 Jun 2020 18:37:56 +0000 (GMT)
-Received: from oc7455500831.ibm.com (unknown [9.145.22.164])
- by d06av23.portsmouth.uk.ibm.com (Postfix) with ESMTP;
- Wed, 24 Jun 2020 18:37:55 +0000 (GMT)
+ Thu, 25 Jun 2020 13:25:26 GMT
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id D9D12A405F;
+ Thu, 25 Jun 2020 13:26:44 +0000 (GMT)
+Received: from b06wcsmtp001.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 888DDA4065;
+ Thu, 25 Jun 2020 13:26:43 +0000 (GMT)
+Received: from oc7455500831.ibm.com (unknown [9.145.23.225])
+ by b06wcsmtp001.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+ Thu, 25 Jun 2020 13:26:43 +0000 (GMT)
 From: Christian Borntraeger <borntraeger@de.ibm.com>
 To: Luis Chamberlain <mcgrof@kernel.org>
 References: <20200610154923.27510-5-mcgrof@kernel.org>
@@ -85,6 +85,7 @@ References: <20200610154923.27510-5-mcgrof@kernel.org>
  <ea41e2a9-61f7-aec1-79e5-7b08b6dd5119@de.ibm.com>
  <4e27098e-ac8d-98f0-3a9a-ea25242e24ec@de.ibm.com>
  <4d8fbcea-a892-3453-091f-d57c03f9aa90@de.ibm.com>
+ <1263e370-7cee-24d8-b98c-117bf7c90a83@de.ibm.com>
 Autocrypt: addr=borntraeger@de.ibm.com; prefer-encrypt=mutual; keydata=
  xsFNBE6cPPgBEAC2VpALY0UJjGmgAmavkL/iAdqul2/F9ONz42K6NrwmT+SI9CylKHIX+fdf
  J34pLNJDmDVEdeb+brtpwC9JEZOLVE0nb+SR83CsAINJYKG3V1b3Kfs0hydseYKsBYqJTN2j
@@ -128,25 +129,25 @@ Autocrypt: addr=borntraeger@de.ibm.com; prefer-encrypt=mutual; keydata=
  jaqYefx7yQ7FJXXETd2uVURiDeNEFhVZWb5CiBJM5c6qQMhmkS4VyT7/+raaEGgkEKEgHOWf
  ZDP8BHfXtszHqI3Fo1F4IKFo/AP8GOFFxMRgbvlAs8z/+rEEaQYjxYJqj08raw6P4LFBqozr
  nS4h0HDFPrrp1C2EMVYIQrMokWvlFZbCpsdYbBI=
-Message-ID: <1263e370-7cee-24d8-b98c-117bf7c90a83@de.ibm.com>
-Date: Wed, 24 Jun 2020 20:37:55 +0200
+Message-ID: <fd88506a-bde9-0e63-3473-6b15ed8dbaa2@de.ibm.com>
+Date: Thu, 25 Jun 2020 15:26:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <4d8fbcea-a892-3453-091f-d57c03f9aa90@de.ibm.com>
+In-Reply-To: <1263e370-7cee-24d8-b98c-117bf7c90a83@de.ibm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 X-TM-AS-GCONF: 00
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.216, 18.0.687
- definitions=2020-06-24_14:2020-06-24,
- 2020-06-24 signatures=0
+ definitions=2020-06-25_08:2020-06-25,
+ 2020-06-25 signatures=0
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- cotscore=-2147483648
- spamscore=0 phishscore=0 suspectscore=0 bulkscore=0 impostorscore=0
- mlxscore=0 mlxlogscore=999 lowpriorityscore=0 malwarescore=0 adultscore=0
+ malwarescore=0 bulkscore=0
+ adultscore=0 phishscore=0 suspectscore=0 mlxscore=0 mlxlogscore=999
+ lowpriorityscore=0 impostorscore=0 spamscore=0 cotscore=-2147483648
  clxscore=1015 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2004280000 definitions=main-2006240121
+ scancount=1 engine=8.12.0-2004280000 definitions=main-2006250080
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:37 +0000
 Cc: ast@kernel.org, jarkko.sakkinen@linux.intel.com, philipp.reisner@linbit.com,
  bfields@fieldses.org, keyrings@vger.kernel.org, christian.brauner@ubuntu.com,
@@ -179,29 +180,30 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 
 
-On 24.06.20 20:32, Christian Borntraeger wrote:
-[...]> 
-> So the translations look correct. But your change is actually a sematic change
-> if(ret) will only trigger if there is an error
-> if (KWIFEXITED(ret)) will always trigger when the process ends. So we will always overwrite -ECHILD
-> and we did not do it before. 
+On 24.06.20 20:37, Christian Borntraeger wrote:
 > 
+> 
+> On 24.06.20 20:32, Christian Borntraeger wrote:
+> [...]> 
+>> So the translations look correct. But your change is actually a sematic change
+>> if(ret) will only trigger if there is an error
+>> if (KWIFEXITED(ret)) will always trigger when the process ends. So we will always overwrite -ECHILD
+>> and we did not do it before. 
+>>
+> 
+> So the right fix is
+> 
+> diff --git a/kernel/umh.c b/kernel/umh.c
+> index f81e8698e36e..a3a3196e84d1 100644
+> --- a/kernel/umh.c
+> +++ b/kernel/umh.c
+> @@ -154,7 +154,7 @@ static void call_usermodehelper_exec_sync(struct subprocess_info *sub_info)
+>                  * the real error code is already in sub_info->retval or
+>                  * sub_info->retval is 0 anyway, so don't mess with it then.
+>                  */
+> -               if (KWIFEXITED(ret))
+> +               if (KWEXITSTATUS(ret))
+>                         sub_info->retval = KWEXITSTATUS(ret);
+>         }
 
-So the right fix is
-
-diff --git a/kernel/umh.c b/kernel/umh.c
-index f81e8698e36e..a3a3196e84d1 100644
---- a/kernel/umh.c
-+++ b/kernel/umh.c
-@@ -154,7 +154,7 @@ static void call_usermodehelper_exec_sync(struct subprocess_info *sub_info)
-                 * the real error code is already in sub_info->retval or
-                 * sub_info->retval is 0 anyway, so don't mess with it then.
-                 */
--               if (KWIFEXITED(ret))
-+               if (KWEXITSTATUS(ret))
-                        sub_info->retval = KWEXITSTATUS(ret);
-        }
- 
-
-
-I think.
+Ping. Shall I send this as a proper patch or are we merging this fixup in Andrews patch queue?
