@@ -1,63 +1,82 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B906320CC39
-	for <lists.bridge@lfdr.de>; Mon, 29 Jun 2020 05:44:45 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF9320F608
+	for <lists.bridge@lfdr.de>; Tue, 30 Jun 2020 15:45:47 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id E9F6188614;
-	Mon, 29 Jun 2020 03:44:43 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id A9E0E86F22;
+	Tue, 30 Jun 2020 13:45:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id wHK0Ml+Xt6Hr; Mon, 29 Jun 2020 03:44:43 +0000 (UTC)
+	with ESMTP id j6CMLVaSVxrc; Tue, 30 Jun 2020 13:45:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 895F68868A;
-	Mon, 29 Jun 2020 03:44:43 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 7333D86ACB;
+	Tue, 30 Jun 2020 13:45:44 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 60EBCC016E;
-	Mon, 29 Jun 2020 03:44:43 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 56F71C016E;
+	Tue, 30 Jun 2020 13:45:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 818C4C016E
- for <bridge@lists.linux-foundation.org>; Mon, 29 Jun 2020 03:44:41 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4EAB8C016E
+ for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 13:45:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 709F788614
- for <bridge@lists.linux-foundation.org>; Mon, 29 Jun 2020 03:44:41 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 3497B2156E
+ for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 13:45:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FAdQtV6RJ159 for <bridge@lists.linux-foundation.org>;
- Mon, 29 Jun 2020 03:44:39 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
- by whitealder.osuosl.org (Postfix) with ESMTPS id BD1CB88612
- for <bridge@lists.linux-foundation.org>; Mon, 29 Jun 2020 03:44:39 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
- (using TLSv1 with cipher AES256-SHA (256/256 bits))
- (Client did not present a certificate)
- (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id 7EDD5129A4D41;
- Sun, 28 Jun 2020 20:44:37 -0700 (PDT)
-Date: Sun, 28 Jun 2020 20:44:36 -0700 (PDT)
-Message-Id: <20200628.204436.799047852779320132.davem@davemloft.net>
-To: horatiu.vultur@microchip.com
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20200628134516.3767607-1-horatiu.vultur@microchip.com>
-References: <20200628134516.3767607-1-horatiu.vultur@microchip.com>
-X-Mailer: Mew version 6.8 on Emacs 26.3
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
- (shards.monkeyblade.net [149.20.54.216]);
- Sun, 28 Jun 2020 20:44:37 -0700 (PDT)
-Cc: lkp@intel.com, nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
- roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com, kuba@kernel.org
-Subject: Re: [Bridge] [PATCH net] bridge: mrp: Fix endian conversion and
- some other warnings
+ with ESMTP id vzSYrSnI3-wa for <bridge@lists.linux-foundation.org>;
+ Tue, 30 Jun 2020 13:45:40 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa4.microchip.iphmx.com (esa4.microchip.iphmx.com
+ [68.232.154.123])
+ by silver.osuosl.org (Postfix) with ESMTPS id B1A292035B
+ for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 13:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1593524740; x=1625060740;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DT8RPyRP9mmuQ6a31TkFhh6MXoc72CoyHoSonfX6oCE=;
+ b=xrZ0sg8i0PhCsg11vxAhZLUQE9CdRAp8Yt/9/fM+tvQ4ob32GhzdefqY
+ amfZK9Xi22mS4OpcyVoBl9dcvfcbuP8qlosrItIg/8mXdUZZZqb1iSF3U
+ 4zGUoLv3eGixV4p3bvdYdGiuLRnmW6PGsMIxzPWrkbYkvNc89IGGibYSS
+ EY1gDtZoOLT1bHBaVoBGD4Swg3ZzDXmpYW6hKAA+k/F0nJNjnlyYi8zY0
+ Cqh8T+CHRtl+xgcGw/foLKHRQolGfJPOJzW0HmfkyW7NkrisIoPTA6f1d
+ Iss23yQMNuJsTVaZYIngOL4EfuDnfh5lam8GQXarztX+MqEo5gMOAhPmQ Q==;
+IronPort-SDR: k278jIGgNuSItG6ZZMWkoL5B3lvaDH1hn94M2bDyspiat0WYQmNDp7nlHxWw1NM47bGAm3nnHu
+ q1rwsu8vqYenlV82/jNO6Dot6H+SdojwUHLup6McjCW48AlXmenFAOcnbUGM2yuQCR24REEuWR
+ HLoJ+KIdTZIx7KTBPCsk9443DHn2aajPxyx7mWleGMu+6L/5ln7BqVqKAp8LBFTLqqqkrGDF7F
+ uh3X2vyb+FyB25xMi61T/+3YVxZBZwO2qONRXZj1+PFBmYYoriIqVod/7q1ZSIDaSuCrmjNr7/
+ jxc=
+X-IronPort-AV: E=Sophos;i="5.75,297,1589266800"; d="scan'208";a="78274295"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 30 Jun 2020 06:45:39 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 30 Jun 2020 06:45:21 -0700
+Received: from soft-dev3.localdomain (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 30 Jun 2020 06:45:36 -0700
+To: <nikolay@cumulusnetworks.com>, <roopa@cumulusnetworks.com>,
+ <davem@davemloft.net>, <kuba@kernel.org>, <jiri@mellanox.com>,
+ <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>, <UNGLinuxDriver@microchip.com>
+Date: Tue, 30 Jun 2020 15:44:21 +0200
+Message-ID: <20200630134424.4114086-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net-next 0/3] bridge: mrp: Add support for getting
+	the status
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -69,33 +88,26 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-Date: Sun, 28 Jun 2020 15:45:16 +0200
+This patch series extends the MRP netlink interface to allow the userspace
+daemon to get the status of the MRP instances in the kernel.
 
-> The following sparse warnings are fixed:
-> net/bridge/br_mrp.c:106:18: warning: incorrect type in assignment (different base types)
-> net/bridge/br_mrp.c:106:18:    expected unsigned short [usertype]
-> net/bridge/br_mrp.c:106:18:    got restricted __be16 [usertype]
-> net/bridge/br_mrp.c:281:23: warning: incorrect type in argument 1 (different modifiers)
-> net/bridge/br_mrp.c:281:23:    expected struct list_head *entry
-> net/bridge/br_mrp.c:281:23:    got struct list_head [noderef] *
-> net/bridge/br_mrp.c:332:28: warning: incorrect type in argument 1 (different modifiers)
-> net/bridge/br_mrp.c:332:28:    expected struct list_head *new
-> net/bridge/br_mrp.c:332:28:    got struct list_head [noderef] *
-> net/bridge/br_mrp.c:332:40: warning: incorrect type in argument 2 (different modifiers)
-> net/bridge/br_mrp.c:332:40:    expected struct list_head *head
-> net/bridge/br_mrp.c:332:40:    got struct list_head [noderef] *
-> net/bridge/br_mrp.c:682:29: warning: incorrect type in argument 1 (different modifiers)
-> net/bridge/br_mrp.c:682:29:    expected struct list_head const *head
-> net/bridge/br_mrp.c:682:29:    got struct list_head [noderef] *
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Fixes: 2f1a11ae11d222 ("bridge: mrp: Add MRP interface.")
-> Fixes: 4b8d7d4c599182 ("bridge: mrp: Extend bridge interface")
-> Fixes: 9a9f26e8f7ea30 ("bridge: mrp: Connect MRP API with the switchdev API")
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+Horatiu Vultur (3):
+  bridge: uapi: mrp: Extend MRP attributes to get the status
+  bridge: mrp: Add br_mrp_fill_info
+  bridge: Extend br_fill_ifinfo to return MPR status
 
-Applied, thank you.
+ include/uapi/linux/if_bridge.h | 17 ++++++++++
+ include/uapi/linux/rtnetlink.h |  1 +
+ net/bridge/br_mrp_netlink.c    | 57 ++++++++++++++++++++++++++++++++++
+ net/bridge/br_netlink.c        | 29 ++++++++++++++++-
+ net/bridge/br_private.h        |  7 +++++
+ 5 files changed, 110 insertions(+), 1 deletion(-)
+
+-- 
+2.27.0
+
