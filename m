@@ -1,62 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C19020F92C
-	for <lists.bridge@lfdr.de>; Tue, 30 Jun 2020 18:12:50 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 153C220FBF6
+	for <lists.bridge@lfdr.de>; Tue, 30 Jun 2020 20:45:18 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id AA12E87315;
-	Tue, 30 Jun 2020 16:12:48 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id A30968852C;
+	Tue, 30 Jun 2020 18:45:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id X0C9aTY5IVz6; Tue, 30 Jun 2020 16:12:47 +0000 (UTC)
+	with ESMTP id Ucijok4gIIIf; Tue, 30 Jun 2020 18:45:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id B66C386AB2;
-	Tue, 30 Jun 2020 16:12:47 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 633A88851D;
+	Tue, 30 Jun 2020 18:45:15 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 968FFC016E;
-	Tue, 30 Jun 2020 16:12:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 51C23C08A6;
+	Tue, 30 Jun 2020 18:45:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 695ABC016E
- for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 16:12:46 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ABEE6C016E
+ for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 18:45:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 5811C8863B
- for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 16:12:46 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 91A1C87FCC
+ for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 18:45:13 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zhUlDNEotpLC for <bridge@lists.linux-foundation.org>;
- Tue, 30 Jun 2020 16:12:45 +0000 (UTC)
+ with ESMTP id R+wVcfoEx8tQ for <bridge@lists.linux-foundation.org>;
+ Tue, 30 Jun 2020 18:45:13 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 47BB2885ED
- for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 16:12:45 +0000 (UTC)
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
- [163.114.132.6])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C3C77206A1;
- Tue, 30 Jun 2020 16:12:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1593533565;
- bh=owmaLgZhLsBtFwWqdKpAtQq7cNhD5zxKybF7zSfyAVs=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=PxPvwaOJV4DgQE5vXhGqjfatDncv7xf5K7I9Ksimy5Dnifhpbmm0NVAim0a1Jp4VN
- rnNJRp5a3jN0PZ1fA4MBafFGAwEvS9zD0i8ee589axHp9si4zwB3lsT8JrTx9LQINI
- kNZT28DRdy7g3RhnVh2thCmYHJ0gXPQRcevWOKsM=
-Date: Tue, 30 Jun 2020 09:12:43 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Message-ID: <20200630091243.124869e2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20200630134424.4114086-3-horatiu.vultur@microchip.com>
+Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
+ [216.71.154.253])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 0317A87EE6
+ for <bridge@lists.linux-foundation.org>; Tue, 30 Jun 2020 18:45:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1593542712; x=1625078712;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=gVXFKwkoilJ+WRsAX2ilDSQvX1wsECjHxbakjfFTTiA=;
+ b=tGZFtzXvjzO9lbqNel/0gcYL4b4H+zhgg3c4Dnt4UZCgiT2VgKFm448F
+ RGSERHcKSG9aisUbyRWvhi6+ZI468HnjmvF3E1JgyUnRKbnINzecotvNV
+ EOBBooR4ItH4rowB2QvtgbYMkz1bcCy7xLMV0rO9Dwx6bqajdQKMh+b2L
+ XGqHl395ojo/leeoyk+9XOuQBtD9lSMsnJ6YUvx5asBl4v5OEnytjF3Ly
+ /K1wxhHF5Nwuo718zhvP0Sd9NUDSUzlw8FgyRuXM6Yzu76Txs66COEgHO
+ VOiE17X4BZkO/zmJrQmigt+KPJi1tfg+JJ9Rnk76+rs/yeSjqd6Ey8mcd Q==;
+IronPort-SDR: B2IzWVA38/w48UWB3itF4A+Rwr6HJm/1RLFOSZ1jh39DRujU3c63OwDplG43A2Tbp2nc5hoNrz
+ Q5KdOLy+yOLRAA4y0rrUYrDsk2evMj9CnJcr3+92gd9QLctf+O+80XTKTEiXCSq6hvhrqFw8ep
+ 6BkF3fRKu6/AGsvBMp7b1qD46yAVTV42KfDZEI657Qbg8LSn/k7C8lyVgszI6rwAjNcnzt0khD
+ 5HTDUhLIQENl3UyPtxLlx4dmMmgDUmFpeLIffoAg+i1Hm70/VWNsjhmjWEPtGkIxXMilVAzEkc
+ YQE=
+X-IronPort-AV: E=Sophos;i="5.75,298,1589266800"; d="scan'208";a="17608615"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 30 Jun 2020 11:45:11 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 30 Jun 2020 11:45:11 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Tue, 30 Jun 2020 11:45:11 -0700
+Date: Tue, 30 Jun 2020 20:45:09 +0200
+To: Jakub Kicinski <kuba@kernel.org>
+Message-ID: <20200630184509.oliwf3ui4gxno756@soft-dev3.localdomain>
 References: <20200630134424.4114086-1-horatiu.vultur@microchip.com>
  <20200630134424.4114086-3-horatiu.vultur@microchip.com>
+ <20200630091243.124869e2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20200630091243.124869e2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 Cc: nikolay@cumulusnetworks.com, netdev@vger.kernel.org,
  roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com, jiri@mellanox.com,
@@ -73,18 +90,30 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 30 Jun 2020 15:44:23 +0200 Horatiu Vultur wrote:
-> Add the function br_mrp_fill_info which populates the MRP attributes
-> regarding the status of each MRP instance.
+The 06/30/2020 09:12, Jakub Kicinski wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> On Tue, 30 Jun 2020 15:44:23 +0200 Horatiu Vultur wrote:
+> > Add the function br_mrp_fill_info which populates the MRP attributes
+> > regarding the status of each MRP instance.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> 
+> This adds warnings when built with W=1 C=1:
 
-This adds warnings when built with W=1 C=1:
+The warnings at line 316 will be fixed once net will be merged into
+net-next. But I need to fix the others.
 
-net/bridge/br_mrp_netlink.c:316:9: warning: dereference of noderef expression
-net/bridge/br_mrp_netlink.c:325:36: warning: dereference of noderef expression
-net/bridge/br_mrp_netlink.c:328:36: warning: dereference of noderef expression
-net/bridge/br_mrp_netlink.c:316:9: warning: dereference of noderef expression
+> 
+> net/bridge/br_mrp_netlink.c:316:9: warning: dereference of noderef expression
+> net/bridge/br_mrp_netlink.c:325:36: warning: dereference of noderef expression
+> net/bridge/br_mrp_netlink.c:328:36: warning: dereference of noderef expression
+> net/bridge/br_mrp_netlink.c:316:9: warning: dereference of noderef expression
+
+-- 
+/Horatiu
