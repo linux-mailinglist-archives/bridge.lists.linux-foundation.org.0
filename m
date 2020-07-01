@@ -1,83 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA74A22CD0C
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:18 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 882F722CD21
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:35 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id B979B8934D;
-	Fri, 24 Jul 2020 18:22:02 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 044E888C26;
+	Fri, 24 Jul 2020 18:22:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 2DRcxypu0ZFI; Fri, 24 Jul 2020 18:22:01 +0000 (UTC)
+	with ESMTP id A1UlOgi3nQRC; Fri, 24 Jul 2020 18:22:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 19EBD88E49;
+	by whitealder.osuosl.org (Postfix) with ESMTP id 5D04788AA6;
 	Fri, 24 Jul 2020 18:21:55 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CE591C004E;
-	Fri, 24 Jul 2020 18:21:54 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 47F8AC004E;
+	Fri, 24 Jul 2020 18:21:55 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6C6CBC0733
- for <bridge@lists.linux-foundation.org>; Wed,  1 Jul 2020 15:49:14 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 32073C0733
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Jul 2020 15:58:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 5A68B89511
- for <bridge@lists.linux-foundation.org>; Wed,  1 Jul 2020 15:49:14 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 20DD089089
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Jul 2020 15:58:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XCc8hHuckg8G for <bridge@lists.linux-foundation.org>;
- Wed,  1 Jul 2020 15:49:13 +0000 (UTC)
+ with ESMTP id e1UvFz7P1FaM for <bridge@lists.linux-foundation.org>;
+ Wed,  1 Jul 2020 15:58:22 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 9144789100
- for <bridge@lists.linux-foundation.org>; Wed,  1 Jul 2020 15:49:13 +0000 (UTC)
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 061FX9mZ020284; Wed, 1 Jul 2020 11:48:58 -0400
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 320s291fme-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Jul 2020 11:48:58 -0400
-Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 061FXok1025572;
- Wed, 1 Jul 2020 11:48:57 -0400
-Received: from ppma04ams.nl.ibm.com (63.31.33a9.ip4.static.sl-reverse.com
- [169.51.49.99])
- by mx0a-001b2d01.pphosted.com with ESMTP id 320s291fjg-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Jul 2020 11:48:56 -0400
-Received: from pps.filterd (ppma04ams.nl.ibm.com [127.0.0.1])
- by ppma04ams.nl.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 061Fdjku001997;
- Wed, 1 Jul 2020 15:48:53 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com
- (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
- by ppma04ams.nl.ibm.com with ESMTP id 31wwr8d3ph-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 01 Jul 2020 15:48:53 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com
- [9.149.105.58])
- by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 061Fmp1Q63373420
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 1 Jul 2020 15:48:51 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 209E74C058;
- Wed,  1 Jul 2020 15:48:51 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 717A84C04A;
- Wed,  1 Jul 2020 15:48:49 +0000 (GMT)
-Received: from oc7455500831.ibm.com (unknown [9.145.75.158])
- by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTP;
- Wed,  1 Jul 2020 15:48:49 +0000 (GMT)
-To: Luis Chamberlain <mcgrof@kernel.org>,
- Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
-References: <ea41e2a9-61f7-aec1-79e5-7b08b6dd5119@de.ibm.com>
- <4e27098e-ac8d-98f0-3a9a-ea25242e24ec@de.ibm.com>
- <4d8fbcea-a892-3453-091f-d57c03f9aa90@de.ibm.com>
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+ [209.85.214.196])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 8041189026
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Jul 2020 15:58:22 +0000 (UTC)
+Received: by mail-pl1-f196.google.com with SMTP id h4so3990468plt.9
+ for <bridge@lists.linux-foundation.org>; Wed, 01 Jul 2020 08:58:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=vhjTDAhbhu56LOxVyk2itTItRi0VSUk3vpRCYOsvLps=;
+ b=Yq2/tnocnaLTWyosypVdqlmmBgv/URFARbptkXbgs5fZyZKHZK2hud1PXlR6wy4Pkj
+ 6vW/qb8CNcVWA7Ej+t221Uo7p5Tr+c2qBK0DFwlukSLQddkbh8dyyuhVJsjdCzKFsElZ
+ 3m33W0QvH+PJ2x8cuCmFbvjTs0+096hEtYm8uachhHVLt2p5vax8S+vmSws6K9DU9bO6
+ 3Z48fN9Y4HZTiUGU12PvbiGMW24U3b2I1+iTkilQF2I+ngUZed7E9/1lPwWy1ElCLNP6
+ FGoTLXG40iPMe/PgNj8VqG/NRGhQn5le1sOjZPinaqNYL0HJEhWdT14gtomfDJA9OBq4
+ APrQ==
+X-Gm-Message-State: AOAM531kKlhHl94J4yxSRXobzq7+a9mh+xE4vD1963bIAOosWT1XkK92
+ NJoAmCDlVVAPW2QOF4uzvhY=
+X-Google-Smtp-Source: ABdhPJxvf5MuNk7GstFk4o8V8i6QVmoWUER1GnE9OdBRmndl8MWc4FrVkJpuazefUlO6cRHWSimmKg==
+X-Received: by 2002:a17:90b:3547:: with SMTP id
+ lt7mr2756806pjb.181.1593619102016; 
+ Wed, 01 Jul 2020 08:58:22 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+ by smtp.gmail.com with ESMTPSA id c2sm6046631pgk.77.2020.07.01.08.58.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 01 Jul 2020 08:58:20 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+ id 08F13403DC; Wed,  1 Jul 2020 15:58:20 +0000 (UTC)
+Date: Wed, 1 Jul 2020 15:58:19 +0000
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: Christian Borntraeger <borntraeger@de.ibm.com>
+Message-ID: <20200701155819.GU4332@42.do-not-panic.com>
+References: <4d8fbcea-a892-3453-091f-d57c03f9aa90@de.ibm.com>
  <1263e370-7cee-24d8-b98c-117bf7c90a83@de.ibm.com>
  <20200626025410.GJ4332@42.do-not-panic.com>
  <20200630175704.GO13911@42.do-not-panic.com>
@@ -86,71 +73,14 @@ References: <ea41e2a9-61f7-aec1-79e5-7b08b6dd5119@de.ibm.com>
  <20200701135324.GS4332@42.do-not-panic.com>
  <8d714a23-bac4-7631-e5fc-f97c20a46083@i-love.sakura.ne.jp>
  <20200701153859.GT4332@42.do-not-panic.com>
-From: Christian Borntraeger <borntraeger@de.ibm.com>
-Autocrypt: addr=borntraeger@de.ibm.com; prefer-encrypt=mutual; keydata=
- xsFNBE6cPPgBEAC2VpALY0UJjGmgAmavkL/iAdqul2/F9ONz42K6NrwmT+SI9CylKHIX+fdf
- J34pLNJDmDVEdeb+brtpwC9JEZOLVE0nb+SR83CsAINJYKG3V1b3Kfs0hydseYKsBYqJTN2j
- CmUXDYq9J7uOyQQ7TNVoQejmpp5ifR4EzwIFfmYDekxRVZDJygD0wL/EzUr8Je3/j548NLyL
- 4Uhv6CIPf3TY3/aLVKXdxz/ntbLgMcfZsDoHgDk3lY3r1iwbWwEM2+eYRdSZaR4VD+JRD7p8
- 0FBadNwWnBce1fmQp3EklodGi5y7TNZ/CKdJ+jRPAAnw7SINhSd7PhJMruDAJaUlbYaIm23A
- +82g+IGe4z9tRGQ9TAflezVMhT5J3ccu6cpIjjvwDlbxucSmtVi5VtPAMTLmfjYp7VY2Tgr+
- T92v7+V96jAfE3Zy2nq52e8RDdUo/F6faxcumdl+aLhhKLXgrozpoe2nL0Nyc2uqFjkjwXXI
- OBQiaqGeWtxeKJP+O8MIpjyGuHUGzvjNx5S/592TQO3phpT5IFWfMgbu4OreZ9yekDhf7Cvn
- /fkYsiLDz9W6Clihd/xlpm79+jlhm4E3xBPiQOPCZowmHjx57mXVAypOP2Eu+i2nyQrkapaY
- IdisDQfWPdNeHNOiPnPS3+GhVlPcqSJAIWnuO7Ofw1ZVOyg/jwARAQABzUNDaHJpc3RpYW4g
- Qm9ybnRyYWVnZXIgKDJuZCBJQk0gYWRkcmVzcykgPGJvcm50cmFlZ2VyQGxpbnV4LmlibS5j
- b20+wsF5BBMBAgAjBQJdP/hMAhsDBwsJCAcDAgEGFQgCCQoLBBYCAwECHgECF4AACgkQEXu8
- gLWmHHy/pA/+JHjpEnd01A0CCyfVnb5fmcOlQ0LdmoKWLWPvU840q65HycCBFTt6V62cDljB
- kXFFxMNA4y/2wqU0H5/CiL963y3gWIiJsZa4ent+KrHl5GK1nIgbbesfJyA7JqlB0w/E/SuY
- NRQwIWOo/uEvOgXnk/7+rtvBzNaPGoGiiV1LZzeaxBVWrqLtmdi1iulW/0X/AlQPuF9dD1Px
- hx+0mPjZ8ClLpdSp5d0yfpwgHtM1B7KMuQPQZGFKMXXTUd3ceBUGGczsgIMipZWJukqMJiJj
- QIMH0IN7XYErEnhf0GCxJ3xAn/J7iFpPFv8sFZTvukntJXSUssONnwiKuld6ttUaFhSuSoQg
- OFYR5v7pOfinM0FcScPKTkrRsB5iUvpdthLq5qgwdQjmyINt3cb+5aSvBX2nNN135oGOtlb5
- tf4dh00kUR8XFHRrFxXx4Dbaw4PKgV3QLIHKEENlqnthH5t0tahDygQPnSucuXbVQEcDZaL9
- WgJqlRAAj0pG8M6JNU5+2ftTFXoTcoIUbb0KTOibaO9zHVeGegwAvPLLNlKHiHXcgLX1tkjC
- DrvE2Z0e2/4q7wgZgn1kbvz7ZHQZB76OM2mjkFu7QNHlRJ2VXJA8tMXyTgBX6kq1cYMmd/Hl
- OhFrAU3QO1SjCsXA2CDk9MM1471mYB3CTXQuKzXckJnxHkHOwU0ETpw8+AEQAJjyNXvMQdJN
- t07BIPDtbAQk15FfB0hKuyZVs+0lsjPKBZCamAAexNRk11eVGXK/YrqwjChkk60rt3q5i42u
- PpNMO9aS8cLPOfVft89Y654Qd3Rs1WRFIQq9xLjdLfHh0i0jMq5Ty+aiddSXpZ7oU6E+ud+X
- Czs3k5RAnOdW6eV3+v10sUjEGiFNZwzN9Udd6PfKET0J70qjnpY3NuWn5Sp1ZEn6lkq2Zm+G
- 9G3FlBRVClT30OWeiRHCYB6e6j1x1u/rSU4JiNYjPwSJA8EPKnt1s/Eeq37qXXvk+9DYiHdT
- PcOa3aNCSbIygD3jyjkg6EV9ZLHibE2R/PMMid9FrqhKh/cwcYn9FrT0FE48/2IBW5mfDpAd
- YvpawQlRz3XJr2rYZJwMUm1y+49+1ZmDclaF3s9dcz2JvuywNq78z/VsUfGz4Sbxy4ShpNpG
- REojRcz/xOK+FqNuBk+HoWKw6OxgRzfNleDvScVmbY6cQQZfGx/T7xlgZjl5Mu/2z+ofeoxb
- vWWM1YCJAT91GFvj29Wvm8OAPN/+SJj8LQazd9uGzVMTz6lFjVtH7YkeW/NZrP6znAwv5P1a
- DdQfiB5F63AX++NlTiyA+GD/ggfRl68LheSskOcxDwgI5TqmaKtX1/8RkrLpnzO3evzkfJb1
- D5qh3wM1t7PZ+JWTluSX8W25ABEBAAHCwV8EGAECAAkFAk6cPPgCGwwACgkQEXu8gLWmHHz8
- 2w//VjRlX+tKF3szc0lQi4X0t+pf88uIsvR/a1GRZpppQbn1jgE44hgF559K6/yYemcvTR7r
- 6Xt7cjWGS4wfaR0+pkWV+2dbw8Xi4DI07/fN00NoVEpYUUnOnupBgychtVpxkGqsplJZQpng
- v6fauZtyEcUK3dLJH3TdVQDLbUcL4qZpzHbsuUnTWsmNmG4Vi0NsEt1xyd/Wuw+0kM/oFEH1
- 4BN6X9xZcG8GYUbVUd8+bmio8ao8m0tzo4pseDZFo4ncDmlFWU6hHnAVfkAs4tqA6/fl7RLN
- JuWBiOL/mP5B6HDQT9JsnaRdzqF73FnU2+WrZPjinHPLeE74istVgjbowvsgUqtzjPIG5pOj
- cAsKoR0M1womzJVRfYauWhYiW/KeECklci4TPBDNx7YhahSUlexfoftltJA8swRshNA/M90/
- i9zDo9ySSZHwsGxG06ZOH5/MzG6HpLja7g8NTgA0TD5YaFm/oOnsQVsf2DeAGPS2xNirmknD
- jaqYefx7yQ7FJXXETd2uVURiDeNEFhVZWb5CiBJM5c6qQMhmkS4VyT7/+raaEGgkEKEgHOWf
- ZDP8BHfXtszHqI3Fo1F4IKFo/AP8GOFFxMRgbvlAs8z/+rEEaQYjxYJqj08raw6P4LFBqozr
- nS4h0HDFPrrp1C2EMVYIQrMokWvlFZbCpsdYbBI=
-Message-ID: <f9f0f868-e511-990a-2a74-1806ac0cb7ac@de.ibm.com>
-Date: Wed, 1 Jul 2020 17:48:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+ <f9f0f868-e511-990a-2a74-1806ac0cb7ac@de.ibm.com>
 MIME-Version: 1.0
-In-Reply-To: <20200701153859.GT4332@42.do-not-panic.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-07-01_08:2020-07-01,
- 2020-07-01 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0
- phishscore=0 cotscore=-2147483648 priorityscore=1501 adultscore=0
- mlxscore=0 spamscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2004280000 definitions=main-2007010110
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f9f0f868-e511-990a-2a74-1806ac0cb7ac@de.ibm.com>
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:37 +0000
-Cc: ast@kernel.org, jarkko.sakkinen@linux.intel.com, philipp.reisner@linbit.com,
+Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>, ast@kernel.org,
+ jarkko.sakkinen@linux.intel.com, philipp.reisner@linbit.com,
  bfields@fieldses.org, keyrings@vger.kernel.org, christian.brauner@ubuntu.com,
  yangtiezhu@loongson.cn, linux-s390 <linux-s390@vger.kernel.org>,
  bridge@lists.linux-foundation.org, jmorris@namei.org,
@@ -179,44 +109,51 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-
-
-On 01.07.20 17:38, Luis Chamberlain wrote:
-> On Wed, Jul 01, 2020 at 11:08:57PM +0900, Tetsuo Handa wrote:
->> On 2020/07/01 22:53, Luis Chamberlain wrote:
->>>> Well, it is not br_stp_call_user() but br_stp_start() which is expecting
->>>> to set sub_info->retval for both KWIFEXITED() case and KWIFSIGNALED() case.
->>>> That is, sub_info->retval needs to carry raw value (i.e. without "umh: fix
->>>> processed error when UMH_WAIT_PROC is used" will be the correct behavior).
->>>
->>> br_stp_start() doesn't check for the raw value, it just checks for err
->>> or !err. So the patch, "umh: fix processed error when UMH_WAIT_PROC is
->>> used" propagates the correct error now.
->>
->> No. If "/sbin/bridge-stp virbr0 start" terminated due to e.g. SIGSEGV
->> (for example, by inserting "kill -SEGV $$" into right after "#!/bin/sh" line),
->> br_stp_start() needs to select BR_KERNEL_STP path. We can't assume that
->> /sbin/bridge-stp is always terminated by exit() syscall (and hence we can't
->> ignore KWIFSIGNALED() case in call_usermodehelper_exec_sync()).
+On Wed, Jul 01, 2020 at 05:48:48PM +0200, Christian Borntraeger wrote:
 > 
-> Ah, well that would be a different fix required, becuase again,
-> br_stp_start() does not untangle the correct error today really.
-> I also I think it would be odd odd that SIGSEGV or another signal 
-> is what was terminating Christian's bridge stp call, but let's
-> find out!
 > 
-> Note we pass 0 to the options to wait so the mistake here could indeed
-> be that we did not need KWIFSIGNALED(). I was afraid of this prospect...
-> as it other implications.
+> On 01.07.20 17:38, Luis Chamberlain wrote:
+> > On Wed, Jul 01, 2020 at 11:08:57PM +0900, Tetsuo Handa wrote:
+> >> On 2020/07/01 22:53, Luis Chamberlain wrote:
+> >>>> Well, it is not br_stp_call_user() but br_stp_start() which is expecting
+> >>>> to set sub_info->retval for both KWIFEXITED() case and KWIFSIGNALED() case.
+> >>>> That is, sub_info->retval needs to carry raw value (i.e. without "umh: fix
+> >>>> processed error when UMH_WAIT_PROC is used" will be the correct behavior).
+> >>>
+> >>> br_stp_start() doesn't check for the raw value, it just checks for err
+> >>> or !err. So the patch, "umh: fix processed error when UMH_WAIT_PROC is
+> >>> used" propagates the correct error now.
+> >>
+> >> No. If "/sbin/bridge-stp virbr0 start" terminated due to e.g. SIGSEGV
+> >> (for example, by inserting "kill -SEGV $$" into right after "#!/bin/sh" line),
+> >> br_stp_start() needs to select BR_KERNEL_STP path. We can't assume that
+> >> /sbin/bridge-stp is always terminated by exit() syscall (and hence we can't
+> >> ignore KWIFSIGNALED() case in call_usermodehelper_exec_sync()).
+> > 
+> > Ah, well that would be a different fix required, becuase again,
+> > br_stp_start() does not untangle the correct error today really.
+> > I also I think it would be odd odd that SIGSEGV or another signal 
+> > is what was terminating Christian's bridge stp call, but let's
+> > find out!
+> > 
+> > Note we pass 0 to the options to wait so the mistake here could indeed
+> > be that we did not need KWIFSIGNALED(). I was afraid of this prospect...
+> > as it other implications.
+> > 
+> > It means we either *open code* all callers, or we handle this in a
+> > unified way on the umh. And if we do handle this in a unified way, it
+> > then begs the question as to *what* do we pass for the signals case and
+> > continued case. Below we just pass the signal, and treat continued as
+> > OK, but treating continued as OK would also be a *new* change as well.
+> > 
+> > For instance (this goes just boot tested, but Christian if you can
+> > try this as well that would be appreciated):
 > 
-> It means we either *open code* all callers, or we handle this in a
-> unified way on the umh. And if we do handle this in a unified way, it
-> then begs the question as to *what* do we pass for the signals case and
-> continued case. Below we just pass the signal, and treat continued as
-> OK, but treating continued as OK would also be a *new* change as well.
 > 
-> For instance (this goes just boot tested, but Christian if you can
-> try this as well that would be appreciated):
+> Does not help, the bridge stays in DOWN state. 
 
+OK thanks for testing, that was fast! Does your code go through the
+STP kernel path or userpath? If it is taking the STP kernel path
+then this is not the real culprit to your issue then.
 
-Does not help, the bridge stays in DOWN state. 
+  Luis
