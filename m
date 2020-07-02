@@ -1,75 +1,75 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1796D211DD0
-	for <lists.bridge@lfdr.de>; Thu,  2 Jul 2020 10:13:33 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22F9211DD4
+	for <lists.bridge@lfdr.de>; Thu,  2 Jul 2020 10:13:42 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id B97E6888AA;
-	Thu,  2 Jul 2020 08:13:31 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 5D3748B277;
+	Thu,  2 Jul 2020 08:13:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id GvQaXs26EyG7; Thu,  2 Jul 2020 08:13:31 +0000 (UTC)
+	with ESMTP id hUUnneTWh+wF; Thu,  2 Jul 2020 08:13:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 4B5DF87D00;
-	Thu,  2 Jul 2020 08:13:31 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 8D2AB8B27F;
+	Thu,  2 Jul 2020 08:13:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2FFA3C08A2;
-	Thu,  2 Jul 2020 08:13:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6A3E9C0733;
+	Thu,  2 Jul 2020 08:13:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5BF89C0733
- for <bridge@lists.linux-foundation.org>; Thu,  2 Jul 2020 08:13:29 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6DCBCC0890
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Jul 2020 08:13:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 53090888AA
- for <bridge@lists.linux-foundation.org>; Thu,  2 Jul 2020 08:13:29 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 577DA26881
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Jul 2020 08:13:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 7yGHlQtbvYQ4 for <bridge@lists.linux-foundation.org>;
- Thu,  2 Jul 2020 08:13:28 +0000 (UTC)
+ with ESMTP id RmR3YK8cvjxb for <bridge@lists.linux-foundation.org>;
+ Thu,  2 Jul 2020 08:13:38 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa1.microchip.iphmx.com (esa1.microchip.iphmx.com
- [68.232.147.91])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id C4D9087D00
- for <bridge@lists.linux-foundation.org>; Thu,  2 Jul 2020 08:13:28 +0000 (UTC)
+Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
+ [68.232.149.84])
+ by silver.osuosl.org (Postfix) with ESMTPS id 5E13D26808
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Jul 2020 08:13:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1593677608; x=1625213608;
+ t=1593677618; x=1625213618;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CBHDKe17OWh23IN1qsZyil4P/7Q7BPKQEEmOkyRy9rQ=;
- b=FZ0xVg+pvG2T/Nq/eWd2htBFT8q1kjk7/vetd0Qgfk2sD/RuOZN/Jjme
- pZqK7QM0gWtxDf/iaFndrN5MjW/Qiz9Se1XoI8xG4AKWL6OwovocLEDgy
- jE5/piaGEJPab1DpC4hNb6Go/Qx+CjYpiYPbB0Mrhv9JI0ErNMSnHvETy
- bz33nM5RiiybgK6e2jw/ohAbMmGEIji5+4VlJxY8i5sfq7nQYaVLFnK1d
- PM7VHWe/VBroB7V486YHnnbpmi47me3gXxlhuvUuP9q7B3ssVqG3+kngj
- MxM1O32eJCg1jmK9u18fIDIn4UX9zemBH/12PI7aCOfGKvCJBzOWCjK5U A==;
-IronPort-SDR: iCNz0ocgxvEPGmUoWjFiMG5ckH7Zv0iEt/fdGMT2gJ0q4LyedEcqso0umQiZHXhLISZUTfhNLp
- D07rv8IZ/ijJGxoiQDj8xbs8wSsK31YjTMoPQ9HRLaXinbMhpU+UMpVgzrQIpyHENE9FVWJVzn
- wEbS86qynoUEvcJBOn7x4jwRe/z1ScBF/vrVSCjYV/Wlr2WY+6lRj2RvxElQvUAPw3yJCQfh3K
- x1NwH5O4TzbWDoAXKyikByjvGhvEeltr3psaT0rUunoGOnuB90MCKeXMHUuBNHufx7nFnDdjQ3
- Lmc=
-X-IronPort-AV: E=Sophos;i="5.75,303,1589266800"; d="scan'208";a="85966794"
+ bh=BL6dmHjTIatkptYTqN6do+i//9TqaErPS26wVkNOrWk=;
+ b=PFt2hlK40XjtXVLrV6t1XajMAAJtANFGWX8sCEaGjaBeXxj3w9Ebxdf7
+ z/zxJAxgENT/ZrB+V+O5ZXBvwW2GoZ67z75JDoLeWa++hgCv3EcnKtAa+
+ kjagdmqIVvHSntsS7mH/KtxpL/epcC492QZFbmWWgezjV4iibanVVvMaL
+ 9Wk7HEDF95qbJiyS3TBCW4048htsMyENUhhDL6jVJov9PmE6ceWCqxH/L
+ w3K0RV5PuuB346jz51I9gs2/ovpqVDpfHN2UJ7s1q93hgxv3R8fzEvUIM
+ 7Ef+2Ju8MHgx7kkJsR68PXGTb75KSxInrw6JF4UOBAW/MvQrsu+1qUSPG Q==;
+IronPort-SDR: JIEfNMWW1xZoF3Xx4NeeaAVj+JVt1pd8o5VLqI3jBWV7pdTaknxIySAj2/tmodyOMvigG9BR+L
+ HC+ZTXvaepLgV9tigK0rIGUL78Km1eOHZpE/tvhCjxX3Dih2SHjR/reZ/4AXLdZit7wZTT1M5T
+ WGWPeMxHvSPdEqyOdB+lkF3I8s/NxgROQlIeHC66YERJHl6Q+AC8KF/K5kftHM576/34s3w3c2
+ TvUuVmIXA+4AhT0jUt0RZCWRobDhNusLjo+HSRTW/B5McyrrEsETCJBr7lTTS5ACcv6KAl0YnS
+ +dk=
+X-IronPort-AV: E=Sophos;i="5.75,303,1589266800"; d="scan'208";a="80467659"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 02 Jul 2020 01:13:17 -0700
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 02 Jul 2020 01:13:20 -0700
 Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 2 Jul 2020 01:13:16 -0700
+ 15.1.1979.3; Thu, 2 Jul 2020 01:13:20 -0700
 Received: from soft-dev3.localdomain (10.10.115.15) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 2 Jul 2020 01:12:53 -0700
+ 15.1.1979.3 via Frontend Transport; Thu, 2 Jul 2020 01:12:56 -0700
 To: <nikolay@cumulusnetworks.com>, <roopa@cumulusnetworks.com>,
  <davem@davemloft.net>, <kuba@kernel.org>, <jiri@mellanox.com>,
  <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
  <bridge@lists.linux-foundation.org>, <UNGLinuxDriver@microchip.com>
-Date: Thu, 2 Jul 2020 10:13:05 +0200
-Message-ID: <20200702081307.933471-2-horatiu.vultur@microchip.com>
+Date: Thu, 2 Jul 2020 10:13:06 +0200
+Message-ID: <20200702081307.933471-3-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200702081307.933471-1-horatiu.vultur@microchip.com>
 References: <20200702081307.933471-1-horatiu.vultur@microchip.com>
@@ -77,8 +77,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next v3 1/3] bridge: uapi: mrp: Extend MRP
-	attributes to get the status
+Subject: [Bridge] [PATCH net-next v3 2/3] bridge: mrp: Add br_mrp_fill_info
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,51 +94,115 @@ Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add MRP attribute IFLA_BRIDGE_MRP_INFO to allow the userspace to get the
-current state of the MRP instances. This is a nested attribute that
-contains other attributes like, ring id, index of primary and secondary
-port, priority, ring state, ring role.
+Add the function br_mrp_fill_info which populates the MRP attributes
+regarding the status of each MRP instance.
 
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- include/uapi/linux/if_bridge.h | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ net/bridge/br_mrp_netlink.c | 64 +++++++++++++++++++++++++++++++++++++
+ net/bridge/br_private.h     |  7 ++++
+ 2 files changed, 71 insertions(+)
 
-diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index caa6914a3e53a..c114c1c2bd533 100644
---- a/include/uapi/linux/if_bridge.h
-+++ b/include/uapi/linux/if_bridge.h
-@@ -166,6 +166,7 @@ enum {
- 	IFLA_BRIDGE_MRP_RING_STATE,
- 	IFLA_BRIDGE_MRP_RING_ROLE,
- 	IFLA_BRIDGE_MRP_START_TEST,
-+	IFLA_BRIDGE_MRP_INFO,
- 	__IFLA_BRIDGE_MRP_MAX,
- };
+diff --git a/net/bridge/br_mrp_netlink.c b/net/bridge/br_mrp_netlink.c
+index 34b3a8776991f..c4f5c356811f3 100644
+--- a/net/bridge/br_mrp_netlink.c
++++ b/net/bridge/br_mrp_netlink.c
+@@ -304,6 +304,70 @@ int br_mrp_parse(struct net_bridge *br, struct net_bridge_port *p,
+ 	return 0;
+ }
  
-@@ -228,6 +229,22 @@ enum {
- 
- #define IFLA_BRIDGE_MRP_START_TEST_MAX (__IFLA_BRIDGE_MRP_START_TEST_MAX - 1)
- 
-+enum {
-+	IFLA_BRIDGE_MRP_INFO_UNSPEC,
-+	IFLA_BRIDGE_MRP_INFO_RING_ID,
-+	IFLA_BRIDGE_MRP_INFO_P_IFINDEX,
-+	IFLA_BRIDGE_MRP_INFO_S_IFINDEX,
-+	IFLA_BRIDGE_MRP_INFO_PRIO,
-+	IFLA_BRIDGE_MRP_INFO_RING_STATE,
-+	IFLA_BRIDGE_MRP_INFO_RING_ROLE,
-+	IFLA_BRIDGE_MRP_INFO_TEST_INTERVAL,
-+	IFLA_BRIDGE_MRP_INFO_TEST_MAX_MISS,
-+	IFLA_BRIDGE_MRP_INFO_TEST_MONITOR,
-+	__IFLA_BRIDGE_MRP_INFO_MAX,
-+};
++int br_mrp_fill_info(struct sk_buff *skb, struct net_bridge *br)
++{
++	struct nlattr *tb, *mrp_tb;
++	struct br_mrp *mrp;
 +
-+#define IFLA_BRIDGE_MRP_INFO_MAX (__IFLA_BRIDGE_MRP_INFO_MAX - 1)
++	mrp_tb = nla_nest_start_noflag(skb, IFLA_BRIDGE_MRP);
++	if (!mrp_tb)
++		return -EMSGSIZE;
 +
- struct br_mrp_instance {
- 	__u32 ring_id;
- 	__u32 p_ifindex;
++	list_for_each_entry_rcu(mrp, &br->mrp_list, list) {
++		struct net_bridge_port *p;
++
++		tb = nla_nest_start_noflag(skb, IFLA_BRIDGE_MRP_INFO);
++		if (!tb)
++			goto nla_info_failure;
++
++		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_RING_ID,
++				mrp->ring_id))
++			goto nla_put_failure;
++
++		p = rcu_dereference(mrp->p_port);
++		if (p && nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_P_IFINDEX,
++				     p->dev->ifindex))
++			goto nla_put_failure;
++
++		p = rcu_dereference(mrp->s_port);
++		if (p && nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_S_IFINDEX,
++				     p->dev->ifindex))
++			goto nla_put_failure;
++
++		if (nla_put_u16(skb, IFLA_BRIDGE_MRP_INFO_PRIO,
++				mrp->prio))
++			goto nla_put_failure;
++		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_RING_STATE,
++				mrp->ring_state))
++			goto nla_put_failure;
++		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_RING_ROLE,
++				mrp->ring_role))
++			goto nla_put_failure;
++		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_TEST_INTERVAL,
++				mrp->test_interval))
++			goto nla_put_failure;
++		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_TEST_MAX_MISS,
++				mrp->test_max_miss))
++			goto nla_put_failure;
++		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_TEST_MONITOR,
++				mrp->test_monitor))
++			goto nla_put_failure;
++
++		nla_nest_end(skb, tb);
++	}
++	nla_nest_end(skb, mrp_tb);
++
++	return 0;
++
++nla_put_failure:
++	nla_nest_cancel(skb, tb);
++
++nla_info_failure:
++	nla_nest_cancel(skb, mrp_tb);
++
++	return -EMSGSIZE;
++}
++
+ int br_mrp_port_open(struct net_device *dev, u8 loc)
+ {
+ 	struct net_bridge_port *p;
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index 6a7d8e218ae7e..65d2c163a24ab 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -1317,6 +1317,7 @@ int br_mrp_parse(struct net_bridge *br, struct net_bridge_port *p,
+ int br_mrp_process(struct net_bridge_port *p, struct sk_buff *skb);
+ bool br_mrp_enabled(struct net_bridge *br);
+ void br_mrp_port_del(struct net_bridge *br, struct net_bridge_port *p);
++int br_mrp_fill_info(struct sk_buff *skb, struct net_bridge *br);
+ #else
+ static inline int br_mrp_parse(struct net_bridge *br, struct net_bridge_port *p,
+ 			       struct nlattr *attr, int cmd,
+@@ -1339,6 +1340,12 @@ static inline void br_mrp_port_del(struct net_bridge *br,
+ 				   struct net_bridge_port *p)
+ {
+ }
++
++static inline int br_mrp_fill_info(struct sk_buff *skb, struct net_bridge *br)
++{
++	return 0;
++}
++
+ #endif
+ 
+ /* br_netlink.c */
 -- 
 2.27.0
 
