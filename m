@@ -1,87 +1,68 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DA8214E91
-	for <lists.bridge@lfdr.de>; Sun,  5 Jul 2020 20:38:32 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F628214ECB
+	for <lists.bridge@lfdr.de>; Sun,  5 Jul 2020 21:09:02 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 578F788198;
-	Sun,  5 Jul 2020 18:38:30 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id F2BA8227AA;
+	Sun,  5 Jul 2020 19:09:00 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id SetBEPsRodDr; Sun,  5 Jul 2020 18:38:29 +0000 (UTC)
+	with ESMTP id BSFzpajqqjsE; Sun,  5 Jul 2020 19:09:00 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 83FCA87FF1;
-	Sun,  5 Jul 2020 18:38:29 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 1B679226F5;
+	Sun,  5 Jul 2020 19:09:00 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 66CA0C016F;
-	Sun,  5 Jul 2020 18:38:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EDC61C016F;
+	Sun,  5 Jul 2020 19:08:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 53A7DC016F
- for <bridge@lists.linux-foundation.org>; Sun,  5 Jul 2020 18:38:28 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C9B80C016F
+ for <bridge@lists.linux-foundation.org>; Sun,  5 Jul 2020 19:08:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 3CB4A87267
- for <bridge@lists.linux-foundation.org>; Sun,  5 Jul 2020 18:38:28 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id AB399864EF
+ for <bridge@lists.linux-foundation.org>; Sun,  5 Jul 2020 19:08:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vbmSMR-mcRX0 for <bridge@lists.linux-foundation.org>;
- Sun,  5 Jul 2020 18:38:27 +0000 (UTC)
-X-Greylist: delayed 00:05:10 by SQLgrey-1.7.6
-Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
- [209.85.208.194])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 64FF887261
- for <bridge@lists.linux-foundation.org>; Sun,  5 Jul 2020 18:38:27 +0000 (UTC)
-Received: by mail-lj1-f194.google.com with SMTP id e4so42759302ljn.4
- for <bridge@lists.linux-foundation.org>; Sun, 05 Jul 2020 11:38:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=H0dBiMlIz57i5a6OQd6NNT0qs7e4FvnqEbY3KZH5hD8=;
- b=CdFIz0ffcFB5FT8t5IaEhDZyUUp01nVtQqvO1mpda5BxsFn2930XF2Z2oE2exxz4wn
- l7XKnvQC3uMablm/vg23TOUkkdnchyDUsIDZcmMkE88p5vjGI/eQhYjCk2qARTMEzSB7
- TGa0jTtLBjq/jNgaLRuSK9wALpCB3Y9hy0Dds=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=H0dBiMlIz57i5a6OQd6NNT0qs7e4FvnqEbY3KZH5hD8=;
- b=kc+zQWF9ZPi23G6scKAtIODkr/ZSXwH+9baqNqt4ZSh4Q/JTcXcNtMOqiFbTeBgCNr
- CV2xro9dwZ0saBweeFZmqKcm2bspoOQ07oGRJkZA+PhlXze2UEVswdMZFYdoQt76focf
- EuASTHk7A4sI+HHdhu2U3KTn3Cow9eH+gpnAbtI4sf4eqSo0+Obvncxg7tbr6qtBSFCy
- O1dGzAc9pneoIZl3UsahRPVJ4HSLmS/qqKAO7hUHqj/I+F3m+oiAUybaAfQQTfs9afIc
- Rl8jAb1ssv0xoXcOB4sLxq6Ist8puZX6Rjtx5OkWwrxl5I594yHssfDG3K9UWq+zsUmO
- xRjw==
-X-Gm-Message-State: AOAM5331Dv2fRUvgNBOdh7R7TTUd2VvfB9Cp7MLE76lNRUQYjqSd0hAM
- bg3O5lBb1aaZgMpqtLpyxVlRFRXGwJj0Pg==
-X-Google-Smtp-Source: ABdhPJw1YolUJEgQOjHxaMMgrtEFfdKzMndj+fP4DQxRb8lTkT+E4qELkvffnnn/b1BV5qIxiEI5+g==
-X-Received: by 2002:a50:fc88:: with SMTP id f8mr20587991edq.314.1593973995305; 
- Sun, 05 Jul 2020 11:33:15 -0700 (PDT)
-Received: from [192.168.0.109] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id u17sm14476477eje.74.2020.07.05.11.33.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 05 Jul 2020 11:33:14 -0700 (PDT)
-To: =?UTF-8?Q?Linus_L=c3=bcssing?= <linus.luessing@c0d3.blue>,
- netdev@vger.kernel.org
+ with ESMTP id aXE_0dYn2tWu for <bridge@lists.linux-foundation.org>;
+ Sun,  5 Jul 2020 19:08:56 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id D6D4685D6C
+ for <bridge@lists.linux-foundation.org>; Sun,  5 Jul 2020 19:08:55 +0000 (UTC)
+Date: Sun, 5 Jul 2020 21:08:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1593976134;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=8dlf83gnJimOcGLge0RE4YQ95UNZUa/xyinaF6hcyXc=;
+ b=ScLBZ4iErn0Ka4U7KqaaDg1VueVrFtp84H2/aG3f0uGS28X0BYcFs15LJj7RPuLZaanzu0
+ NdXnXkh+VwdYK3b8AMcCnswepuR+sCmZnuQ8F4RMio3BBUsaBTYDqmxzqSu9lqry/rohjL
+ 08AOQ10u1m45BPMcYdksNeTDAsBoEJjaY1czMLt+ybLjZp69Ux11tlhrJqsFvvlC3eqSiK
+ WXed3+Xo69XCNYJrlZNFWc+1ciwJJUmLRmcm/dfW+UgLdo0T/Js1ByFx/irHtd9h31Oy+E
+ Gt3ncm95HdhnC6w6HF5Up+nQANTiVneEN5G5FX+wVE/advm6FZqpJaNv4knCfw==
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <20200705190851.GC2648@otheros>
 References: <20200705182234.10257-1-linus.luessing@c0d3.blue>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <093beb97-87e8-e112-78ad-b3e4fe230cdb@cumulusnetworks.com>
-Date: Sun, 5 Jul 2020 21:33:13 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ <093beb97-87e8-e112-78ad-b3e4fe230cdb@cumulusnetworks.com>
 MIME-Version: 1.0
-In-Reply-To: <20200705182234.10257-1-linus.luessing@c0d3.blue>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Cc: Martin Weinelt <martin@linuxlounge.net>,
+In-Reply-To: <093beb97-87e8-e112-78ad-b3e4fe230cdb@cumulusnetworks.com>
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Cc: Martin Weinelt <martin@linuxlounge.net>, netdev@vger.kernel.org,
  Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
- "David S . Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, "David S . Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net] bridge: mcast: Fix MLD2 Report IPv6
  payload length check
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -98,55 +79,30 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 05/07/2020 21:22, Linus Lüssing wrote:
-> Commit e57f61858b7c ("net: bridge: mcast: fix stale nsrcs pointer in
-> igmp3/mld2 report handling") introduced a small bug which would potentially
-> lead to accepting an MLD2 Report with a broken IPv6 header payload length
-> field.
+On Sun, Jul 05, 2020 at 09:33:13PM +0300, Nikolay Aleksandrov wrote:
+> On 05/07/2020 21:22, Linus Lüssing wrote:
+> > Commit e57f61858b7c ("net: bridge: mcast: fix stale nsrcs pointer in
+> > igmp3/mld2 report handling") introduced a small bug which would potentially
+> > lead to accepting an MLD2 Report with a broken IPv6 header payload length
+> > field.
+> > 
+> > The check needs to take into account the 2 bytes for the "Number of
+> > Sources" field in the "Multicast Address Record" before reading it.
+> > And not the size of a pointer to this field.
+> > 
+> > Fixes: e57f61858b7c ("net: bridge: mcast: fix stale nsrcs pointer in igmp3/mld2 report handling")
+> > Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
+> > ---
+> >  net/bridge/br_multicast.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
 > 
-> The check needs to take into account the 2 bytes for the "Number of
-> Sources" field in the "Multicast Address Record" before reading it.
-> And not the size of a pointer to this field.
+> I'd rather be more concerned with it rejecting a valid report due to wrong size. The ptr
+> size would always be bigger. :)
 > 
-> Fixes: e57f61858b7c ("net: bridge: mcast: fix stale nsrcs pointer in igmp3/mld2 report handling")
-> Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
-> ---
->  net/bridge/br_multicast.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> Thanks!
+> Acked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 
-I'd rather be more concerned with it rejecting a valid report due to wrong size. The ptr
-size would always be bigger. :)
-
-Thanks!
-Acked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-
-> diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-> index 83490bf73a13..4c4a93abde68 100644
-> --- a/net/bridge/br_multicast.c
-> +++ b/net/bridge/br_multicast.c
-> @@ -1000,21 +1000,21 @@ static int br_ip6_multicast_mld2_report(struct net_bridge *br,
->  	num = ntohs(icmp6h->icmp6_dataun.un_data16[1]);
->  	len = skb_transport_offset(skb) + sizeof(*icmp6h);
->  
->  	for (i = 0; i < num; i++) {
->  		__be16 *_nsrcs, __nsrcs;
->  		u16 nsrcs;
->  
->  		nsrcs_offset = len + offsetof(struct mld2_grec, grec_nsrcs);
->  
->  		if (skb_transport_offset(skb) + ipv6_transport_len(skb) <
-> -		    nsrcs_offset + sizeof(_nsrcs))
-> +		    nsrcs_offset + sizeof(__nsrcs))
->  			return -EINVAL;
->  
->  		_nsrcs = skb_header_pointer(skb, nsrcs_offset,
->  					    sizeof(__nsrcs), &__nsrcs);
->  		if (!_nsrcs)
->  			return -EINVAL;
->  
->  		nsrcs = ntohs(*_nsrcs);
->  		grec_len = struct_size(grec, grec_src, nsrcs);
->  
-> 
-
+Aiy, you're right, it's the other way round. I'll update the
+commit message and send a v2 in a minute, with your Acked-by
+included.
