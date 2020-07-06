@@ -1,72 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE6421553B
-	for <lists.bridge@lfdr.de>; Mon,  6 Jul 2020 12:13:08 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D7A9215F4A
+	for <lists.bridge@lfdr.de>; Mon,  6 Jul 2020 21:26:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 1022A88771;
-	Mon,  6 Jul 2020 10:13:07 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 707EB86B22;
+	Mon,  6 Jul 2020 19:26:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Y54-xl0h47uF; Mon,  6 Jul 2020 10:13:06 +0000 (UTC)
+	with ESMTP id BIUd3qnFmrrD; Mon,  6 Jul 2020 19:26:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 1AA5388169;
-	Mon,  6 Jul 2020 10:13:06 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id DC3A886B08;
+	Mon,  6 Jul 2020 19:26:30 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 02B2EC08A9;
-	Mon,  6 Jul 2020 10:13:06 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id BFCD5C016F;
+	Mon,  6 Jul 2020 19:26:30 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 09B46C016F
- for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 10:13:05 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B4186C016F
+ for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 19:26:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id E638320522
- for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 10:13:04 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id A130F8815F
+ for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 19:26:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9d6-TCx3HYDS for <bridge@lists.linux-foundation.org>;
- Mon,  6 Jul 2020 10:13:04 +0000 (UTC)
+ with ESMTP id axNb864Kz9Ri for <bridge@lists.linux-foundation.org>;
+ Mon,  6 Jul 2020 19:26:28 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by silver.osuosl.org (Postfix) with ESMTPS id E23962038F
- for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 10:13:03 +0000 (UTC)
-Date: Mon, 6 Jul 2020 12:13:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1594030382;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=VO8lnjMo4pgk3nOOEXxhD7RoBNV9iIu75hV27TGyKhE=;
- b=TpRgwzLw9MoHEFRFLHo0xRSh2ZNhMEXuK52xxtnXcAQ4GIGdOC9My1Bs7jJEoc0QkjYzQW
- zjOlpSH2yDozco9TGuEHth44eouV07u0TXdW01w4mDpjcvHNecinNLvSuwnQOxOcUM+6Hz
- wQOqDi7eDQkwoT0/010fYlhlXNlzaHzlbQNVUmNREp1co02Dj90cnDy4Be43lw1tXLLLxv
- o8RMfIHlsljVJC5AqA18Xmpn/+PPtA5aDSSO9wvOQ+lZgPYsfXDwradxGORkd31Wz4nz5K
- hux7qNWF2cZmQtMMDltvAD2xMIP+tyCnoLyagnmoS2rsd1giyQxyf1RVTlMDHw==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20200706101300.GE2648@otheros>
-References: <20200705182234.10257-1-linus.luessing@c0d3.blue>
- <093beb97-87e8-e112-78ad-b3e4fe230cdb@cumulusnetworks.com>
- <20200705190851.GC2648@otheros>
- <4728ef5e-0036-7de6-8b6f-f29885d76473@cumulusnetworks.com>
- <20200705194915.GD2648@otheros>
- <15375380-b7ad-985c-6ad3-c86ece996cd0@cumulusnetworks.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <15375380-b7ad-985c-6ad3-c86ece996cd0@cumulusnetworks.com>
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Cc: Martin Weinelt <martin@linuxlounge.net>, netdev@vger.kernel.org,
- Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, "David S . Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net] bridge: mcast: Fix MLD2 Report IPv6
- payload length check
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 0C792871F0
+ for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 19:26:28 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 1A8B21277D626;
+ Mon,  6 Jul 2020 12:26:27 -0700 (PDT)
+Date: Mon, 06 Jul 2020 12:26:26 -0700 (PDT)
+Message-Id: <20200706.122626.2248567362397969247.davem@davemloft.net>
+To: horatiu.vultur@microchip.com
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20200706091842.3324565-2-horatiu.vultur@microchip.com>
+References: <20200706091842.3324565-1-horatiu.vultur@microchip.com>
+ <20200706091842.3324565-2-horatiu.vultur@microchip.com>
+X-Mailer: Mew version 6.8 on Emacs 26.3
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [149.20.54.216]);
+ Mon, 06 Jul 2020 12:26:27 -0700 (PDT)
+Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
+ nikolay@cumulusnetworks.com, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ UNGLinuxDriver@microchip.com, kuba@kernel.org
+Subject: Re: [Bridge] [PATCH net-next 01/12] switchdev: mrp: Extend
+ switchdev API for MRP Interconnect
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -81,35 +74,48 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, Jul 05, 2020 at 11:18:36PM +0300, Nikolay Aleksandrov wrote:
-> > > By the way, I can't verify at the moment, but I think we can drop that whole
-> > > hunk altogether since skb_header_pointer() is used and it will simply return
-> > > an error if there isn't enough data for nsrcs.
-> > > 
-> > 
-> > Hm, while unlikely, the IPv6 packet / header payload length might be
-> > shorter than the frame / skb size.
-> > 
-> > And even though it wouldn't crash reading over the IPv6 packet
-> > length, especially as skb_header_pointer() is used, I think we should
-> > still avoid reading over the size indicated by the IPv6 header payload
-> > length field, to stay protocol compliant.
-> > 
-> > Does that make sense?
-> > 
-> 
-> Sure, I just thought the ipv6_mc_may_pull() call after that includes those 2 bytes as well, so
-> we're covered. That is, it seems to be doing the same check with the full grec size included.
-> 
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+Date: Mon, 6 Jul 2020 11:18:31 +0200
 
-Ah, okay, that's what you mean! You're right, technically the
-ipv6_mc_may_pull() later would cover it, too. And it should work,
-even if nsrcs were outside of the IPv6 packet and had a bogus
-value. (I think.)
+> +/* SWITCHDEV_OBJ_ID_IN_TEST_MRP */
+> +struct switchdev_obj_in_test_mrp {
+> +	struct switchdev_obj obj;
+> +	/* The value is in us and a value of 0 represents to stop */
+> +	u32 interval;
+> +	u8 max_miss;
+> +	u32 in_id;
+> +	u32 period;
+> +};
+ ...
+> +#define SWITCHDEV_OBJ_IN_TEST_MRP(OBJ) \
+> +	container_of((OBJ), struct switchdev_obj_in_test_mrp, obj)
+> +
+> +/* SWICHDEV_OBJ_ID_IN_ROLE_MRP */
+> +struct switchdev_obj_in_role_mrp {
+> +	struct switchdev_obj obj;
+> +	u16 in_id;
+> +	u32 ring_id;
+> +	u8 in_role;
+> +	struct net_device *i_port;
+> +};
+ ...
+> +#define SWITCHDEV_OBJ_IN_ROLE_MRP(OBJ) \
+> +	container_of((OBJ), struct switchdev_obj_in_role_mrp, obj)
+> +
+> +struct switchdev_obj_in_state_mrp {
+> +	struct switchdev_obj obj;
+> +	u8 in_state;
+> +	u32 in_id;
+> +};
 
-My brain linearly parsing the parser code would probably get a bit
-confused initially, as it'd look like a bit like a bug. But the
-current check for nsrcs might look confusing, too (q.e.d.).
+Please arrange these structure members in a more optimal order so that
+the resulting object is denser.  For example, in switchdev_obj_in_role_mrp
+if you order it such that:
 
-So as you prefer, I'd be okay with both leaving that check for
-consistency or removing it for brevity.
+> +	u32 ring_id;
+> +	u16 in_id;
+> +	u8 in_role;
+
+You'll have less wasted space from padding.
+
+Use 'pahole' or similar tools to guide you.
