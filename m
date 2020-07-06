@@ -1,85 +1,72 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE8B321548D
-	for <lists.bridge@lfdr.de>; Mon,  6 Jul 2020 11:21:28 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE6421553B
+	for <lists.bridge@lfdr.de>; Mon,  6 Jul 2020 12:13:08 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 75C6B86FEC;
-	Mon,  6 Jul 2020 09:21:27 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 1022A88771;
+	Mon,  6 Jul 2020 10:13:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Tg8BYyQFTtUl; Mon,  6 Jul 2020 09:21:27 +0000 (UTC)
+	with ESMTP id Y54-xl0h47uF; Mon,  6 Jul 2020 10:13:06 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 0A8638705C;
-	Mon,  6 Jul 2020 09:21:27 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 1AA5388169;
+	Mon,  6 Jul 2020 10:13:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E6045C016F;
-	Mon,  6 Jul 2020 09:21:26 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 02B2EC08A9;
+	Mon,  6 Jul 2020 10:13:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8430CC016F
- for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 09:21:25 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 09B46C016F
+ for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 10:13:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 6DE9088476
- for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 09:21:25 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id E638320522
+ for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 10:13:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id bOeLziLYT2JQ for <bridge@lists.linux-foundation.org>;
- Mon,  6 Jul 2020 09:21:24 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
- [68.232.149.84])
- by hemlock.osuosl.org (Postfix) with ESMTPS id B2BA188493
- for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 09:21:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1594027284; x=1625563284;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BPXYksHE/6skyxwfmW3layVz9HGsj0QnR14maadzSj4=;
- b=17i4dR+pL3mN9MAnlCqgpOIoNQU+P1kyV2A1Tsq93PWI/VCMz34YoZ4O
- e64eb2ztMiP4hpR0AQwpa+a8rMdpKV7zcWnRonjeuYxvcJPdsLfy3xMrJ
- hTkBaKnQsZfx9yv8hEH5kFUtxj6O7GrfwW0G8HMfIUb9uSAcXmoHtTJ/A
- POedEumiUlnFp/cK9Zqnb6vkWT4TZWeUK5kU5GlLFIS7OxrgxWzutFzXL
- FD0hrXZH0ocXm9zWXbRM7p/Hli8Qioj0SGUpRRfcXc29/R4wlp/1vBgJu
- Ih4bh2HNyydYWhmQdYswE8uovF+40UF6J47gYT/+L2AMM0+8812ZItVxD Q==;
-IronPort-SDR: yY4w+FBj6poMMgW428qkyiSiVVEdGqDSmyudCNcvjMdwE7PHTtUsAn5uhVni8BHjOo7twGO/iS
- mCrNmYFzR2n110BvbvmyNGPyRDJ5ERFs/OgTNl6mmP4MWrRfINaZpI2X511P3RRM6TkSxz+D89
- uR+2jAu1xyqyKlRgF4IdVrbInCgtHtTwttJARbboRGy8M/VtyLdDt2xi2o3YCynLbcqbXlfnjD
- x/ExFcjafiqiPN3KRrLUlfBZjpwlS7uWh5dc2q5xelgirrvSlTwC/KWsUQfaPsOoC5exdSTdKV
- s+E=
-X-IronPort-AV: E=Sophos;i="5.75,318,1589266800"; d="scan'208";a="80784356"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 06 Jul 2020 02:21:23 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 6 Jul 2020 02:21:00 -0700
-Received: from soft-dev3.localdomain (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Mon, 6 Jul 2020 02:20:57 -0700
-To: <nikolay@cumulusnetworks.com>, <roopa@cumulusnetworks.com>,
- <davem@davemloft.net>, <kuba@kernel.org>, <jiri@resnulli.us>,
- <ivecera@redhat.com>, <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>,
- <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <bridge@lists.linux-foundation.org>
-Date: Mon, 6 Jul 2020 11:18:42 +0200
-Message-ID: <20200706091842.3324565-13-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200706091842.3324565-1-horatiu.vultur@microchip.com>
-References: <20200706091842.3324565-1-horatiu.vultur@microchip.com>
+ with ESMTP id 9d6-TCx3HYDS for <bridge@lists.linux-foundation.org>;
+ Mon,  6 Jul 2020 10:13:04 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
+ by silver.osuosl.org (Postfix) with ESMTPS id E23962038F
+ for <bridge@lists.linux-foundation.org>; Mon,  6 Jul 2020 10:13:03 +0000 (UTC)
+Date: Mon, 6 Jul 2020 12:13:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
+ t=1594030382;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=VO8lnjMo4pgk3nOOEXxhD7RoBNV9iIu75hV27TGyKhE=;
+ b=TpRgwzLw9MoHEFRFLHo0xRSh2ZNhMEXuK52xxtnXcAQ4GIGdOC9My1Bs7jJEoc0QkjYzQW
+ zjOlpSH2yDozco9TGuEHth44eouV07u0TXdW01w4mDpjcvHNecinNLvSuwnQOxOcUM+6Hz
+ wQOqDi7eDQkwoT0/010fYlhlXNlzaHzlbQNVUmNREp1co02Dj90cnDy4Be43lw1tXLLLxv
+ o8RMfIHlsljVJC5AqA18Xmpn/+PPtA5aDSSO9wvOQ+lZgPYsfXDwradxGORkd31Wz4nz5K
+ hux7qNWF2cZmQtMMDltvAD2xMIP+tyCnoLyagnmoS2rsd1giyQxyf1RVTlMDHw==
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <20200706101300.GE2648@otheros>
+References: <20200705182234.10257-1-linus.luessing@c0d3.blue>
+ <093beb97-87e8-e112-78ad-b3e4fe230cdb@cumulusnetworks.com>
+ <20200705190851.GC2648@otheros>
+ <4728ef5e-0036-7de6-8b6f-f29885d76473@cumulusnetworks.com>
+ <20200705194915.GD2648@otheros>
+ <15375380-b7ad-985c-6ad3-c86ece996cd0@cumulusnetworks.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next 12/12] net: bridge: Add port attribute
-	IFLA_BRPORT_MRP_IN_OPEN
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <15375380-b7ad-985c-6ad3-c86ece996cd0@cumulusnetworks.com>
+Authentication-Results: ORIGINATING;
+ auth=pass smtp.auth=linus.luessing@c0d3.blue
+ smtp.mailfrom=linus.luessing@c0d3.blue
+Cc: Martin Weinelt <martin@linuxlounge.net>, netdev@vger.kernel.org,
+ Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, "David S . Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net] bridge: mcast: Fix MLD2 Report IPv6
+ payload length check
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -91,67 +78,38 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This patch adds a new port attribute, IFLA_BRPORT_MRP_IN_OPEN, which
-allows to notify the userspace when the node lost the contiuity of
-MRP_InTest frames.
+On Sun, Jul 05, 2020 at 11:18:36PM +0300, Nikolay Aleksandrov wrote:
+> > > By the way, I can't verify at the moment, but I think we can drop that whole
+> > > hunk altogether since skb_header_pointer() is used and it will simply return
+> > > an error if there isn't enough data for nsrcs.
+> > > 
+> > 
+> > Hm, while unlikely, the IPv6 packet / header payload length might be
+> > shorter than the frame / skb size.
+> > 
+> > And even though it wouldn't crash reading over the IPv6 packet
+> > length, especially as skb_header_pointer() is used, I think we should
+> > still avoid reading over the size indicated by the IPv6 header payload
+> > length field, to stay protocol compliant.
+> > 
+> > Does that make sense?
+> > 
+> 
+> Sure, I just thought the ipv6_mc_may_pull() call after that includes those 2 bytes as well, so
+> we're covered. That is, it seems to be doing the same check with the full grec size included.
+> 
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- include/uapi/linux/if_link.h       | 1 +
- net/bridge/br_netlink.c            | 3 +++
- tools/include/uapi/linux/if_link.h | 1 +
- 3 files changed, 5 insertions(+)
+Ah, okay, that's what you mean! You're right, technically the
+ipv6_mc_may_pull() later would cover it, too. And it should work,
+even if nsrcs were outside of the IPv6 packet and had a bogus
+value. (I think.)
 
-diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
-index cc185a007ade8..26842ffd0501d 100644
---- a/include/uapi/linux/if_link.h
-+++ b/include/uapi/linux/if_link.h
-@@ -344,6 +344,7 @@ enum {
- 	IFLA_BRPORT_ISOLATED,
- 	IFLA_BRPORT_BACKUP_PORT,
- 	IFLA_BRPORT_MRP_RING_OPEN,
-+	IFLA_BRPORT_MRP_IN_OPEN,
- 	__IFLA_BRPORT_MAX
- };
- #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index c532fa65c9834..147d52596e174 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -152,6 +152,7 @@ static inline size_t br_port_info_size(void)
- #endif
- 		+ nla_total_size(sizeof(u16))	/* IFLA_BRPORT_GROUP_FWD_MASK */
- 		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_RING_OPEN */
-+		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_IN_OPEN */
- 		+ 0;
- }
- 
-@@ -216,6 +217,8 @@ static int br_port_fill_attrs(struct sk_buff *skb,
- 		       !!(p->flags & BR_NEIGH_SUPPRESS)) ||
- 	    nla_put_u8(skb, IFLA_BRPORT_MRP_RING_OPEN, !!(p->flags &
- 							  BR_MRP_LOST_CONT)) ||
-+	    nla_put_u8(skb, IFLA_BRPORT_MRP_IN_OPEN,
-+		       !!(p->flags & BR_MRP_LOST_IN_CONT)) ||
- 	    nla_put_u8(skb, IFLA_BRPORT_ISOLATED, !!(p->flags & BR_ISOLATED)))
- 		return -EMSGSIZE;
- 
-diff --git a/tools/include/uapi/linux/if_link.h b/tools/include/uapi/linux/if_link.h
-index cafedbbfefbe9..781e482dc499f 100644
---- a/tools/include/uapi/linux/if_link.h
-+++ b/tools/include/uapi/linux/if_link.h
-@@ -344,6 +344,7 @@ enum {
- 	IFLA_BRPORT_ISOLATED,
- 	IFLA_BRPORT_BACKUP_PORT,
- 	IFLA_BRPORT_MRP_RING_OPEN,
-+	IFLA_BRPORT_MRP_IN_OPEN,
- 	__IFLA_BRPORT_MAX
- };
- #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
--- 
-2.27.0
+My brain linearly parsing the parser code would probably get a bit
+confused initially, as it'd look like a bit like a bug. But the
+current check for nsrcs might look confusing, too (q.e.d.).
 
+So as you prefer, I'd be okay with both leaving that check for
+consistency or removing it for brevity.
