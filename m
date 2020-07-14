@@ -1,89 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90FD21F267
-	for <lists.bridge@lfdr.de>; Tue, 14 Jul 2020 15:24:39 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1A221F268
+	for <lists.bridge@lfdr.de>; Tue, 14 Jul 2020 15:25:04 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 70F4689049;
-	Tue, 14 Jul 2020 13:24:38 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 103188A796;
+	Tue, 14 Jul 2020 13:25:03 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id IpW5AovIx4it; Tue, 14 Jul 2020 13:24:38 +0000 (UTC)
+	with ESMTP id 1EXONu91vmjR; Tue, 14 Jul 2020 13:25:02 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 1068A89036;
-	Tue, 14 Jul 2020 13:24:38 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 59E898A78C;
+	Tue, 14 Jul 2020 13:25:02 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 05827C0733;
-	Tue, 14 Jul 2020 13:24:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4AA7CC0891;
+	Tue, 14 Jul 2020 13:25:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 325EDC0733
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 13:24:37 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BFEE2C0733
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 13:25:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 210208A4F6
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 13:24:37 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id BC4BD8A501
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 13:25:00 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id NFdeF3CO9v6b for <bridge@lists.linux-foundation.org>;
- Tue, 14 Jul 2020 13:24:36 +0000 (UTC)
+ with ESMTP id 9T-1z1QMn734 for <bridge@lists.linux-foundation.org>;
+ Tue, 14 Jul 2020 13:25:00 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
- [209.85.221.67])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 727A98A435
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 13:24:36 +0000 (UTC)
-Received: by mail-wr1-f67.google.com with SMTP id o11so21609811wrv.9
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 06:24:36 -0700 (PDT)
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
+ [209.85.221.66])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 060DC8A52A
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 13:25:00 +0000 (UTC)
+Received: by mail-wr1-f66.google.com with SMTP id f7so21589995wrw.1
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 06:24:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
  h=subject:to:references:from:message-id:date:user-agent:mime-version
  :in-reply-to:content-language:content-transfer-encoding;
- bh=2sXAyH2m1w6ieNvR8PlkbC1BL11rhRAw2ti7qH59UIk=;
- b=Kl2lrL3Abc1ANv3aD2FNLXwqQb4N0zaedWW+aDbDZbBcq+z8HoFtGrJhEQyeNVKJVW
- T1ts0UT2jqRDOVwPTO1wBEJvKRGWtU/gjBbV92tCCDrj5HgYjA7QGmlv5mEFVK3919ll
- rzQEzgwilHSVIiERhHPpxgdROpeCO2i9V1Qm0=
+ bh=Aj4QKKJojEodXlG0rvLUNxVoPZ5Fr2yPYro2NiVUoeE=;
+ b=ZCEEJ384Iu1DGQxnvlhX72M4mccDWl5ldcoVeiCEHr08wVI+D8Q5hSZH2B9pZ6bUcE
+ ue6vH3qGR35NPbHd13201SO7tYLiwSm+t3EwJNAmINb0vvzEh2KSOlIlqNoPF6YXfpW+
+ /C17pnz3hPkxbrQ96By5VAGCS0+66sxIVXvyM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=2sXAyH2m1w6ieNvR8PlkbC1BL11rhRAw2ti7qH59UIk=;
- b=gTJPA/DXzZMYCxG3mTtH075PhrMA3+vb5H5Pxv/ROAKAbjeD9S7zWPc5RumQ3jED1H
- zAgirn+YPrk9CQaMSiNGfbjsLy9mgBMGp0Oma0zouaMKfeRSJ3kyT3IPIXsFceLk+xSp
- c0DqDUmcldndBMlVpBbkHueBZqxs64z2ToZvg9Azj2Zu/AM6oQNZj6a0I7VJHnK9VA9T
- KkYkphsejhgv/2iD0FQvwjVZhOFjk5ysqwns8FyI+md47dN1An3xZ8IV+4PYmRQzlJ2M
- Uue+KI6JKl+FLQUK0/0oh1o1AMa2BT5uTaQmmiqeKA85wqvEP2Bva28hLUmxGLpf1mdQ
- aqSQ==
-X-Gm-Message-State: AOAM531qYV+wweYO8XRJq/o093PUR+KT2ZFq2W5tx/CN9jSH7EzSdzBy
- O50gPSaFMxyhvG4JXkAIbVR8M0Nfio7EBw==
-X-Google-Smtp-Source: ABdhPJwyV3o8PVnSWMM85wj0QBr9HZqOJ+FQSFUpgZleNIYi2CNzHvbFQy2EqHJQ/fw87gKc6/tWMg==
-X-Received: by 2002:adf:ff8d:: with SMTP id j13mr5353827wrr.11.1594733074655; 
- Tue, 14 Jul 2020 06:24:34 -0700 (PDT)
+ bh=Aj4QKKJojEodXlG0rvLUNxVoPZ5Fr2yPYro2NiVUoeE=;
+ b=IZb7kjlqIE7Tnv8/+zZBSlCZfeqlXyvnE2vc6MQQnwUqONfgPsf5akhXIe19FnG5yW
+ bOFKroa2PuGBPreUHquj25wFj1Prtq7C65BQ5qQFoPDjKgPKiMFQfB53DJT7ibf2gm0Y
+ 9BVDxwlB5YbWq96LrgZoAP4AjSfty5+bslYdrVZPrfXxzxjW4xW1LzIIqyY5LM+zALAW
+ mxygtphOSM1S+ke5qr1BoX7L8+DRqhc0ho5gYuFr35cyDGv+n0sAVleTBYPOEIXM2YDN
+ jw8nmiNChPmczLbcQtZK1GBhD/PHVhL10pxHYOd+RDLz7SZo7SdzMptGW0DsLZEDVLaV
+ p+mw==
+X-Gm-Message-State: AOAM531Kt8+RB/Ph/LAvN84cm2AaxwGT8mGGCj14De3C1or3Amrz3g4P
+ Eplbb+5apaVgY7nIp/+PTibSqqbDAxGsOQ==
+X-Google-Smtp-Source: ABdhPJxfYCnUzieYF2XQSYACq4ky+aYgmc2GjwcyD9wVgHGUQeJ272sYluyQFMzuOSGk8Mo5Hxhlvw==
+X-Received: by 2002:a5d:55ca:: with SMTP id i10mr2854011wrw.225.1594733098176; 
+ Tue, 14 Jul 2020 06:24:58 -0700 (PDT)
 Received: from [192.168.0.109] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id p4sm31152963wrx.63.2020.07.14.06.24.32
+ by smtp.gmail.com with ESMTPSA id t4sm4598552wmf.4.2020.07.14.06.24.56
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 14 Jul 2020 06:24:34 -0700 (PDT)
+ Tue, 14 Jul 2020 06:24:57 -0700 (PDT)
 To: Horatiu Vultur <horatiu.vultur@microchip.com>, roopa@cumulusnetworks.com, 
  davem@davemloft.net, kuba@kernel.org, jiri@resnulli.us, ivecera@redhat.com,
  andrew@lunn.ch, UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, bridge@lists.linux-foundation.org
 References: <20200714073458.1939574-1-horatiu.vultur@microchip.com>
- <20200714073458.1939574-11-horatiu.vultur@microchip.com>
+ <20200714073458.1939574-12-horatiu.vultur@microchip.com>
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <d30bc0f1-b64c-2bf1-fb0f-7ba1f190c4b9@cumulusnetworks.com>
-Date: Tue, 14 Jul 2020 16:24:32 +0300
+Message-ID: <dd1e615d-6390-e521-28d3-98f01308df42@cumulusnetworks.com>
+Date: Tue, 14 Jul 2020 16:24:56 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <20200714073458.1939574-11-horatiu.vultur@microchip.com>
+In-Reply-To: <20200714073458.1939574-12-horatiu.vultur@microchip.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Bridge] [PATCH net-next v4 10/12] bridge: uapi: mrp: Extend
- MRP_INFO attributes for interconnect status
+Subject: Re: [Bridge] [PATCH net-next v4 11/12] bridge: mrp: Extend
+	br_mrp_fill_info
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,33 +99,50 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 14/07/2020 10:34, Horatiu Vultur wrote:
-> Extend the existing MRP_INFO to return status of MRP interconnect. In
-> case there is no MRP interconnect on the node then the role will be
-> disabled so the other attributes can be ignored.
+> This patch extends the function br_mrp_fill_info to return also the
+> status for the interconnect ring.
 > 
 > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > ---
->  include/uapi/linux/if_bridge.h | 5 +++++
->  1 file changed, 5 insertions(+)
+>  net/bridge/br_mrp_netlink.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-> index d840a3e37a37c..c1227aecd38fd 100644
-> --- a/include/uapi/linux/if_bridge.h
-> +++ b/include/uapi/linux/if_bridge.h
-> @@ -243,6 +243,11 @@ enum {
->  	IFLA_BRIDGE_MRP_INFO_TEST_INTERVAL,
->  	IFLA_BRIDGE_MRP_INFO_TEST_MAX_MISS,
->  	IFLA_BRIDGE_MRP_INFO_TEST_MONITOR,
-> +	IFLA_BRIDGE_MRP_INFO_I_IFINDEX,
-> +	IFLA_BRIDGE_MRP_INFO_IN_STATE,
-> +	IFLA_BRIDGE_MRP_INFO_IN_ROLE,
-> +	IFLA_BRIDGE_MRP_INFO_IN_TEST_INTERVAL,
-> +	IFLA_BRIDGE_MRP_INFO_IN_TEST_MAX_MISS,
->  	__IFLA_BRIDGE_MRP_INFO_MAX,
->  };
+> diff --git a/net/bridge/br_mrp_netlink.c b/net/bridge/br_mrp_netlink.c
+> index a006e0771e8d3..2a2fdf3500c5b 100644
+> --- a/net/bridge/br_mrp_netlink.c
+> +++ b/net/bridge/br_mrp_netlink.c
+> @@ -474,6 +474,11 @@ int br_mrp_fill_info(struct sk_buff *skb, struct net_bridge *br)
+>  				     p->dev->ifindex))
+>  			goto nla_put_failure;
 >  
+> +		p = rcu_dereference(mrp->i_port);
+> +		if (p && nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_I_IFINDEX,
+> +				     p->dev->ifindex))
+> +			goto nla_put_failure;
+> +
+>  		if (nla_put_u16(skb, IFLA_BRIDGE_MRP_INFO_PRIO,
+>  				mrp->prio))
+>  			goto nla_put_failure;
+> @@ -493,6 +498,19 @@ int br_mrp_fill_info(struct sk_buff *skb, struct net_bridge *br)
+>  				mrp->test_monitor))
+>  			goto nla_put_failure;
+>  
+> +		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_IN_STATE,
+> +				mrp->in_state))
+> +			goto nla_put_failure;
+> +		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_IN_ROLE,
+> +				mrp->in_role))
+> +			goto nla_put_failure;
+> +		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_IN_TEST_INTERVAL,
+> +				mrp->in_test_interval))
+> +			goto nla_put_failure;
+> +		if (nla_put_u32(skb, IFLA_BRIDGE_MRP_INFO_IN_TEST_MAX_MISS,
+> +				mrp->in_test_max_miss))
+> +			goto nla_put_failure;
+> +
+>  		nla_nest_end(skb, tb);
+>  	}
+>  	nla_nest_end(skb, mrp_tb);
 > 
 
 Acked-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-
-
