@@ -1,64 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1573F21FECF
-	for <lists.bridge@lfdr.de>; Tue, 14 Jul 2020 22:47:09 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C76C2214B9
+	for <lists.bridge@lfdr.de>; Wed, 15 Jul 2020 20:53:25 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id B126589FE9;
-	Tue, 14 Jul 2020 20:47:07 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 931EC221B7;
+	Wed, 15 Jul 2020 18:53:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id baN83g96d--9; Tue, 14 Jul 2020 20:47:07 +0000 (UTC)
+	with ESMTP id DDxe7jq3mTsX; Wed, 15 Jul 2020 18:53:22 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 7637F89FE3;
-	Tue, 14 Jul 2020 20:47:07 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id CC818207A2;
+	Wed, 15 Jul 2020 18:53:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 578C8C0733;
-	Tue, 14 Jul 2020 20:47:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8E3E3C08A5;
+	Wed, 15 Jul 2020 18:53:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6BEAEC0733
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 20:47:05 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0072EC0733
+ for <bridge@lists.linux-foundation.org>; Wed, 15 Jul 2020 18:53:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 5B4BF89FB3
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 20:47:05 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id DDB798B40E
+ for <bridge@lists.linux-foundation.org>; Wed, 15 Jul 2020 18:53:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SsZd8PQOLq67 for <bridge@lists.linux-foundation.org>;
- Tue, 14 Jul 2020 20:47:03 +0000 (UTC)
+ with ESMTP id nd5PqrAk8AxH for <bridge@lists.linux-foundation.org>;
+ Wed, 15 Jul 2020 18:53:18 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 972F189F42
- for <bridge@lists.linux-foundation.org>; Tue, 14 Jul 2020 20:47:03 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
- (using TLSv1 with cipher AES256-SHA (256/256 bits))
- (Client did not present a certificate)
- (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id B547E15E2864E;
- Tue, 14 Jul 2020 13:47:01 -0700 (PDT)
-Date: Tue, 14 Jul 2020 13:47:00 -0700 (PDT)
-Message-Id: <20200714.134700.1165829004344819671.davem@davemloft.net>
-To: horatiu.vultur@microchip.com
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20200714073458.1939574-1-horatiu.vultur@microchip.com>
-References: <20200714073458.1939574-1-horatiu.vultur@microchip.com>
-X-Mailer: Mew version 6.8 on Emacs 26.3
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
- (shards.monkeyblade.net [149.20.54.216]);
- Tue, 14 Jul 2020 13:47:02 -0700 (PDT)
-Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
- nikolay@cumulusnetworks.com, netdev@vger.kernel.org, roopa@cumulusnetworks.com,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- UNGLinuxDriver@microchip.com, kuba@kernel.org
-Subject: Re: [Bridge] [PATCH net-next v4 00/12] bridge: mrp: Add support for
- interconnect ring
+Received: from mail.us.es (correo.us.es [193.147.175.20])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 148DC8B3E8
+ for <bridge@lists.linux-foundation.org>; Wed, 15 Jul 2020 18:53:17 +0000 (UTC)
+Received: from antivirus1-rhel7.int (unknown [192.168.2.11])
+ by mail.us.es (Postfix) with ESMTP id C6309DA3C8
+ for <bridge@lists.linux-foundation.org>; Wed, 15 Jul 2020 20:53:14 +0200 (CEST)
+Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
+ by antivirus1-rhel7.int (Postfix) with ESMTP id B709DDA78F
+ for <bridge@lists.linux-foundation.org>; Wed, 15 Jul 2020 20:53:14 +0200 (CEST)
+Received: by antivirus1-rhel7.int (Postfix, from userid 99)
+ id 96C73DA722; Wed, 15 Jul 2020 20:53:14 +0200 (CEST)
+Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
+ by antivirus1-rhel7.int (Postfix) with ESMTP id 70991DA78A;
+ Wed, 15 Jul 2020 20:53:12 +0200 (CEST)
+Received: from 192.168.1.97 (192.168.1.97)
+ by antivirus1-rhel7.int (F-Secure/fsigk_smtp/550/antivirus1-rhel7.int);
+ Wed, 15 Jul 2020 20:53:12 +0200 (CEST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/antivirus1-rhel7.int)
+Received: from us.es (unknown [90.77.255.23])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: 1984lsi)
+ by entrada.int (Postfix) with ESMTPSA id 3A91B4265A32;
+ Wed, 15 Jul 2020 20:53:12 +0200 (CEST)
+Date: Wed, 15 Jul 2020 20:53:11 +0200
+X-SMTPAUTHUS: auth mail.us.es
+From: Pablo Neira Ayuso <pablo@netfilter.org>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Message-ID: <20200715185311.GA19462@salvia>
+References: <20200708200939.GA32508@embeddedor>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200708200939.GA32508@embeddedor>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Virus-Scanned: ClamAV using ClamSMTP
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
+ Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH v2][next] netfilter: Use fallthrough
+	pseudo-keyword
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -73,11 +88,9 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-Date: Tue, 14 Jul 2020 09:34:46 +0200
+On Wed, Jul 08, 2020 at 03:09:39PM -0500, Gustavo A. R. Silva wrote:
+> Replace the existing /* fall through */ comments and its variants with
+> the new pseudo-keyword macro fallthrough[1]. Also, remove unnecessary
+> fall-through markings when it is the case.
 
-> This patch series extends existing MRP to add support for interconnect ring.
- ...
-
-Series applied, thank you.
-
+Applied, thanks.
