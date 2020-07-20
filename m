@@ -2,51 +2,51 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68FF322CD4A
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7079722CD44
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:14 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id B9DA888B69;
-	Fri, 24 Jul 2020 18:23:17 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 6739D88B6C;
+	Fri, 24 Jul 2020 18:23:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fOr6VnmjvZva; Fri, 24 Jul 2020 18:23:14 +0000 (UTC)
+	with ESMTP id U5Z8mauYYKWy; Fri, 24 Jul 2020 18:23:11 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 9272A885C7;
-	Fri, 24 Jul 2020 18:22:06 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id A799888B6B;
+	Fri, 24 Jul 2020 18:22:05 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 75E44C004E;
-	Fri, 24 Jul 2020 18:22:06 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7B5AEC004E;
+	Fri, 24 Jul 2020 18:22:05 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D7939C016F
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:18 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 52413C016F
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id B9DDC20495
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:18 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 3920E2049F
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id In1xjJr1ko7F for <bridge@lists.linux-foundation.org>;
+ with ESMTP id lmc6UruIzk5g for <bridge@lists.linux-foundation.org>;
  Mon, 20 Jul 2020 12:48:14 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by silver.osuosl.org (Postfix) with ESMTPS id 93B5620369
+ by silver.osuosl.org (Postfix) with ESMTPS id 93C4B2042B
  for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=NOaRlO8PH56EoeQ6wPKZ+NHx4xWBn4wtfdyd3UU7j5Q=; b=r3wFqS6HvDtdd0R6F6qyrxhLxQ
- 0UmwqQvsG/ORHCNVtcyBkrRyN8Jl7NMUK+kN9rgMr7dJqvgRbNpsmGad7MyMT0Cslsg7ne9Zs1UlE
- /RwPyLdiHDpNgBjCzw/HmZWsORXbrednhTKLDHU0qAnYKNBOOFKeNoZ82aOb0D1SeYW1aLzwzDOBP
- heWVXUEQRk3EcbcAs4HVrc9bFRGjDJl3iUtWA6BGC9ZrXLSjvOE0L6VJHRbQKC45uIe6QuMjN7Gk/
- O53gfIacoSmqnhrDUA7vy0qZZc0gL1aupHUgKPNVJamV2BJZVG7ttr+EMAYA95puN7nmqMY+irCXk
- KTg4Ltzw==;
+ bh=sgYWyMfm87Lwp87OiHiXBGeztL7pp9vtxgWCGygwlyQ=; b=ohlAv+VYwEBD8MZ2GI6LDCZyTj
+ +2dygLPuHwB4q01kC05RSq3Dr+sPFXczHgi0nOgfC+b4SmHYTZerQFRXvPa1y1h6Sb7yBJMpgPxPj
+ bIHqMKdY+yDXM0FeLNQFGLH3ZmDZd56XNZ3dvQL19CJPxySpKLErEfzKmf8uwwXZkotGjvEn82DsQ
+ Rlao5M7ezXGmItEie2BE4Bm1hJ+YyoD/PaGZSNZTz+x5KM+oXsP+ygCRk2ia3dvcXL43IdfFFl00j
+ Is5pnhTz2uV8XvZlYuMUCO8iRi6faULVlv2d0g7DJVpQ/ayBLUp13B2uyjGIPQdVR/lCd8rsoQmNG
+ KqzoRfXQ==;
 Received: from [2001:4bb8:105:4a81:2a8f:15b1:2c3:7be7] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jxVD0-0004Ww-Nu; Mon, 20 Jul 2020 12:47:55 +0000
+ id 1jxVD3-0004XQ-2H; Mon, 20 Jul 2020 12:47:58 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexei Starovoitov <ast@kernel.org>,
@@ -54,8 +54,8 @@ To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
  Eric Dumazet <edumazet@google.com>
-Date: Mon, 20 Jul 2020 14:47:18 +0200
-Message-Id: <20200720124737.118617-6-hch@lst.de>
+Date: Mon, 20 Jul 2020 14:47:19 +0200
+Message-Id: <20200720124737.118617-7-hch@lst.de>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200720124737.118617-1-hch@lst.de>
 References: <20200720124737.118617-1-hch@lst.de>
@@ -73,7 +73,7 @@ Cc: linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-hams@vger.kernel.org, bpf@vger.kernel.org,
  linux-wpan@vger.kernel.org, linux-afs@lists.infradead.org, mptcp@lists.01.org
-Subject: [Bridge] [PATCH 05/24] net: switch sock_setbindtodevice to sockptr_t
+Subject: [Bridge] [PATCH 06/24] net: switch sock_set_timeout to sockptr_t
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,41 +93,66 @@ pointer from bpf-cgroup.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- net/core/sock.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ net/core/sock.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
 diff --git a/net/core/sock.c b/net/core/sock.c
-index 91224709869389..bd20fc5cce0850 100644
+index bd20fc5cce0850..d45bb1c2c36abf 100644
 --- a/net/core/sock.c
 +++ b/net/core/sock.c
-@@ -608,8 +608,7 @@ int sock_bindtoindex(struct sock *sk, int ifindex, bool lock_sk)
+@@ -360,7 +360,8 @@ static int sock_get_timeout(long timeo, void *optval, bool old_timeval)
+ 	return sizeof(tv);
  }
- EXPORT_SYMBOL(sock_bindtoindex);
  
--static int sock_setbindtodevice(struct sock *sk, char __user *optval,
--				int optlen)
-+static int sock_setbindtodevice(struct sock *sk, sockptr_t optval, int optlen)
+-static int sock_set_timeout(long *timeo_p, char __user *optval, int optlen, bool old_timeval)
++static int sock_set_timeout(long *timeo_p, sockptr_t optval, int optlen,
++			    bool old_timeval)
  {
- 	int ret = -ENOPROTOOPT;
- #ifdef CONFIG_NETDEVICES
-@@ -631,7 +630,7 @@ static int sock_setbindtodevice(struct sock *sk, char __user *optval,
- 	memset(devname, 0, sizeof(devname));
+ 	struct __kernel_sock_timeval tv;
  
- 	ret = -EFAULT;
--	if (copy_from_user(devname, optval, optlen))
-+	if (copy_from_sockptr(devname, optval, optlen))
- 		goto out;
+@@ -370,7 +371,7 @@ static int sock_set_timeout(long *timeo_p, char __user *optval, int optlen, bool
+ 		if (optlen < sizeof(tv32))
+ 			return -EINVAL;
  
- 	index = 0;
-@@ -839,7 +838,7 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
- 	 */
+-		if (copy_from_user(&tv32, optval, sizeof(tv32)))
++		if (copy_from_sockptr(&tv32, optval, sizeof(tv32)))
+ 			return -EFAULT;
+ 		tv.tv_sec = tv32.tv_sec;
+ 		tv.tv_usec = tv32.tv_usec;
+@@ -379,14 +380,14 @@ static int sock_set_timeout(long *timeo_p, char __user *optval, int optlen, bool
  
- 	if (optname == SO_BINDTODEVICE)
--		return sock_setbindtodevice(sk, optval, optlen);
-+		return sock_setbindtodevice(sk, USER_SOCKPTR(optval), optlen);
+ 		if (optlen < sizeof(old_tv))
+ 			return -EINVAL;
+-		if (copy_from_user(&old_tv, optval, sizeof(old_tv)))
++		if (copy_from_sockptr(&old_tv, optval, sizeof(old_tv)))
+ 			return -EFAULT;
+ 		tv.tv_sec = old_tv.tv_sec;
+ 		tv.tv_usec = old_tv.tv_usec;
+ 	} else {
+ 		if (optlen < sizeof(tv))
+ 			return -EINVAL;
+-		if (copy_from_user(&tv, optval, sizeof(tv)))
++		if (copy_from_sockptr(&tv, optval, sizeof(tv)))
+ 			return -EFAULT;
+ 	}
+ 	if (tv.tv_usec < 0 || tv.tv_usec >= USEC_PER_SEC)
+@@ -1050,12 +1051,14 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
  
- 	if (optlen < sizeof(int))
- 		return -EINVAL;
+ 	case SO_RCVTIMEO_OLD:
+ 	case SO_RCVTIMEO_NEW:
+-		ret = sock_set_timeout(&sk->sk_rcvtimeo, optval, optlen, optname == SO_RCVTIMEO_OLD);
++		ret = sock_set_timeout(&sk->sk_rcvtimeo, USER_SOCKPTR(optval),
++				       optlen, optname == SO_RCVTIMEO_OLD);
+ 		break;
+ 
+ 	case SO_SNDTIMEO_OLD:
+ 	case SO_SNDTIMEO_NEW:
+-		ret = sock_set_timeout(&sk->sk_sndtimeo, optval, optlen, optname == SO_SNDTIMEO_OLD);
++		ret = sock_set_timeout(&sk->sk_sndtimeo, USER_SOCKPTR(optval),
++				       optlen, optname == SO_SNDTIMEO_OLD);
+ 		break;
+ 
+ 	case SO_ATTACH_FILTER: {
 -- 
 2.27.0
 
