@@ -2,66 +2,96 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10068225541
-	for <lists.bridge@lfdr.de>; Mon, 20 Jul 2020 03:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C92D7226FE8
+	for <lists.bridge@lfdr.de>; Mon, 20 Jul 2020 22:48:06 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 2740D85BCF;
-	Mon, 20 Jul 2020 01:17:07 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 6F956860C5;
+	Mon, 20 Jul 2020 20:48:05 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KPZctzXIMcSL; Mon, 20 Jul 2020 01:17:05 +0000 (UTC)
+	with ESMTP id B7cCY1SF229w; Mon, 20 Jul 2020 20:48:05 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 6E91F85BD1;
-	Mon, 20 Jul 2020 01:17:05 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id ED29B860C1;
+	Mon, 20 Jul 2020 20:48:04 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 53D73C016F;
-	Mon, 20 Jul 2020 01:17:05 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CE18CC1797;
+	Mon, 20 Jul 2020 20:48:04 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2020BC016F
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 01:17:04 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D127EC016F
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 20:48:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id F354085ADB
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 01:17:03 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id A616022268
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 20:48:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id NDAdpJifkuzW for <bridge@lists.linux-foundation.org>;
- Mon, 20 Jul 2020 01:17:02 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
- by whitealder.osuosl.org (Postfix) with ESMTPS id CE83585810
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 01:17:02 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
- (using TLSv1 with cipher AES256-SHA (256/256 bits))
- (Client did not present a certificate)
- (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id 1B85F1284AF6B;
- Sun, 19 Jul 2020 18:17:00 -0700 (PDT)
-Date: Sun, 19 Jul 2020 18:16:59 -0700 (PDT)
-Message-Id: <20200719.181659.1807927650741641565.davem@davemloft.net>
-To: hch@lst.de
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20200717062331.691152-1-hch@lst.de>
-References: <20200717062331.691152-1-hch@lst.de>
-X-Mailer: Mew version 6.8 on Emacs 26.3
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
- (shards.monkeyblade.net [149.20.54.216]);
- Sun, 19 Jul 2020 18:17:00 -0700 (PDT)
-Cc: linux-arch@vger.kernel.org, daniel@iogearbox.net, dccp@vger.kernel.org,
- yoshfuji@linux-ipv6.org, linux-kernel@vger.kernel.org,
- bridge@lists.linux-foundation.org, fw@strlen.de, ast@kernel.org,
- kadlec@netfilter.org, linux-bluetooth@vger.kernel.org,
- linux-sctp@vger.kernel.org, netfilter-devel@vger.kernel.org,
- mptcp@lists.01.org, 3chas3@gmail.com, netdev@vger.kernel.org,
- kuznet@ms2.inr.ac.ru, bpf@vger.kernel.org, linux-can@vger.kernel.org,
- linux-wpan@vger.kernel.org, pablo@netfilter.org
-Subject: Re: [Bridge] sockopt cleanups
+ with ESMTP id RN8Ebd1+J7vK for <bridge@lists.linux-foundation.org>;
+ Mon, 20 Jul 2020 20:48:01 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+ [209.85.214.196])
+ by silver.osuosl.org (Postfix) with ESMTPS id 844FF221FF
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 20:48:01 +0000 (UTC)
+Received: by mail-pl1-f196.google.com with SMTP id l6so9243372plt.7
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 13:48:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=W3gFxb9MTLvTnCe3A+iabUWXBAu7mA9HyhZHWgTOkUw=;
+ b=OGmrrLECo+9bEWcObjspsB7mZd1Knz6TplGXozOrISTfqD7/NX21SXnbWcSkV3fL4v
+ rTtVk5lWAA2Zu7uZ6u1mrfxhancqzyg3QAj3aPjlEycGVWZJlozkhUGEvXA8Lh3Zhd9y
+ MI2pFWCUVAw0qhoczi2fzDR5o+9jsXf0u50JS+cFIfuTYX6fdThXqy7BkTGCK/dg3wkY
+ mbds6x2z1GfwvAA0D5GwOBd9MLDFeCqWgb4tYptazoXAosQDHX7Ytsgw6xoiVQCij+q6
+ LhYcFToAHR8FWmsf1prWh4sudrDF50FXVoAgPYMNb7eWHKWg9zXFnQitJW8+uw6BZBn8
+ 8EhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=W3gFxb9MTLvTnCe3A+iabUWXBAu7mA9HyhZHWgTOkUw=;
+ b=ik9V0kpMOcRdtDVTfoAIei2DrLU3Pkli34QlmlB50pgVtVSuXT7aneERhfQ/TS5wcI
+ tYtGHl5hv2ko9ybSepcZCl7NDBjV0ySuppiwPuDxbXmH0HXBc3juAIlwiX73pODbByVl
+ XbjAxcjEVy6qfWlgL4QLFc9hZiFgRPrNZcqmyQUHSbsH3KIzmWXxwR9RjlfWYZ1+ozZh
+ hYjRaCF0on1CmkB23sCTLm086qisWF1YY8tWbf2xrQc9TX/tBGUXdlzqcWtyvWnOSh6i
+ RZ2teSeT5JvQipjksP8w0zE+6D0ECuhZw+paDkhRPmVLCNDz915fxu6ZZKuy36Y6h0Ug
+ XESA==
+X-Gm-Message-State: AOAM532YBxfsQSPm1JIiKu7/+sRnlU7RolSKMDHz55QMlRL9gNiW3Mfc
+ +HNyvkSoWVzxevW1qxVWUvg=
+X-Google-Smtp-Source: ABdhPJznKJm/ctwfQ0zEUlKph93VMIYlrMPvmwUzvON4KJd0PPoASWmZCQzIIZBDlRvR10ywRtQVEg==
+X-Received: by 2002:a17:902:a50d:: with SMTP id
+ s13mr19573067plq.149.1595278081037; 
+ Mon, 20 Jul 2020 13:48:01 -0700 (PDT)
+Received: from ast-mbp.dhcp.thefacebook.com ([2620:10d:c090:400::5:e3b])
+ by smtp.gmail.com with ESMTPSA id m31sm455776pjb.52.2020.07.20.13.47.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Jul 2020 13:47:59 -0700 (PDT)
+Date: Mon, 20 Jul 2020 13:47:56 -0700
+From: Alexei Starovoitov <alexei.starovoitov@gmail.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20200720204756.iengwcguikj2yrxt@ast-mbp.dhcp.thefacebook.com>
+References: <20200720124737.118617-1-hch@lst.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200720124737.118617-1-hch@lst.de>
+Cc: Alexei Starovoitov <ast@kernel.org>, linux-sctp@vger.kernel.org,
+ linux-afs@lists.infradead.org, linux-s390@vger.kernel.org,
+ rds-devel@oss.oracle.com, Daniel Borkmann <daniel@iogearbox.net>,
+ dccp@vger.kernel.org, bridge@lists.linux-foundation.org,
+ lvs-devel@vger.kernel.org, coreteam@netfilter.org, mptcp@lists.01.org,
+ Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, linux-can@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, linux-hams@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-x25@vger.kernel.org,
+ Eric Dumazet <edumazet@google.com>,
+ Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, netdev@vger.kernel.org,
+ linux-decnet-user@lists.sourceforge.net, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, bpf@vger.kernel.org, linux-wpan@vger.kernel.org,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] get rid of the address_space override in setsockopt
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -76,11 +106,28 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Christoph Hellwig <hch@lst.de>
-Date: Fri, 17 Jul 2020 08:23:09 +0200
+On Mon, Jul 20, 2020 at 02:47:13PM +0200, Christoph Hellwig wrote:
+> Hi Dave,
+> 
+> setsockopt is the last place in architecture-independ code that still
+> uses set_fs to force the uaccess routines to operate on kernel pointers.
+> 
+> This series adds a new sockptr_t type that can contained either a kernel
+> or user pointer, and which has accessors that do the right thing, and
+> then uses it for setsockopt, starting by refactoring some low-level
+> helpers and moving them over to it before finally doing the main
+> setsockopt method.
+> 
+> Note that I could not get the eBPF selftests to work, so this has been
+> tested with a testing patch that always copies the data first and passes
+> a kernel pointer.  This is something that works for most common sockopts
+> (and is something that the ePBF support relies on), but unfortunately
+> in various corner cases we either don't use the passed in length, or in
+> one case actually copy data back from setsockopt, so we unfortunately
+> can't just always do the copy in the highlevel code, which would have
+> been much nicer.
 
-> this series cleans up various lose ends in the sockopt code, most
-> importantly removing the compat_{get,set}sockopt infrastructure in favor
-> of just using in_compat_syscall() in the few places that care.
+could you rebase on bpf-next tree and we can route it this way then?
+we'll also test the whole thing before applying.
 
-Series applied to net-next, thanks.
+sounds like v2 is needed anyway to address Eric's addr space concern?
