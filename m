@@ -2,51 +2,51 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8DD022CD40
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68FF322CD4A
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:19 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 606FE87E76;
-	Fri, 24 Jul 2020 18:23:09 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id B9DA888B69;
+	Fri, 24 Jul 2020 18:23:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kQo27YJxHS9j; Fri, 24 Jul 2020 18:23:04 +0000 (UTC)
+	with ESMTP id fOr6VnmjvZva; Fri, 24 Jul 2020 18:23:14 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id B299488B26;
-	Fri, 24 Jul 2020 18:22:04 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 9272A885C7;
+	Fri, 24 Jul 2020 18:22:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8931AC004C;
-	Fri, 24 Jul 2020 18:22:04 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 75E44C004E;
+	Fri, 24 Jul 2020 18:22:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 09AB3C016F
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:16 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D7939C016F
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:18 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id E84BB87598
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:15 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id B9DDC20495
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Med0QoIELo0w for <bridge@lists.linux-foundation.org>;
+ with ESMTP id In1xjJr1ko7F for <bridge@lists.linux-foundation.org>;
  Mon, 20 Jul 2020 12:48:14 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 988C0875B7
+ by silver.osuosl.org (Postfix) with ESMTPS id 93B5620369
  for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 12:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=qqSXdt/0/kfIYmhxAmEpiFRzMh1TsKqQoMELThw3G/I=; b=Ri8VLRhEKVWjMNRsh2yUT4emOf
- P0lFd6B/MInuauhmUppRaPEzw+xKr6XUx6WvwDMMh/NpYwTIXe6n71llcDe5D034yUkVOJMgRZ7fE
- oYodq0FEjAIe16P8s1uZzQtrVelmOgzfm9QKf3ls5XzHPbpsURnLhMYphR1+d4ZSXJSspJijbjQ+2
- uoCZR6U+CnU3OhLHwnGxvwMvVRPbWYbRCZCzvAc+3EZy0qljIJfZPYF9RuiboWVvp2GQlI62qnWjg
- UmnNlPHh+sDoTHE4iUPtCkCKAZlMc8cgMmuX43OGc60EjnJ9a1S9bNgzrAzfIO/f+DhRWM5Ni3XIw
- JNzeulWQ==;
+ bh=NOaRlO8PH56EoeQ6wPKZ+NHx4xWBn4wtfdyd3UU7j5Q=; b=r3wFqS6HvDtdd0R6F6qyrxhLxQ
+ 0UmwqQvsG/ORHCNVtcyBkrRyN8Jl7NMUK+kN9rgMr7dJqvgRbNpsmGad7MyMT0Cslsg7ne9Zs1UlE
+ /RwPyLdiHDpNgBjCzw/HmZWsORXbrednhTKLDHU0qAnYKNBOOFKeNoZ82aOb0D1SeYW1aLzwzDOBP
+ heWVXUEQRk3EcbcAs4HVrc9bFRGjDJl3iUtWA6BGC9ZrXLSjvOE0L6VJHRbQKC45uIe6QuMjN7Gk/
+ O53gfIacoSmqnhrDUA7vy0qZZc0gL1aupHUgKPNVJamV2BJZVG7ttr+EMAYA95puN7nmqMY+irCXk
+ KTg4Ltzw==;
 Received: from [2001:4bb8:105:4a81:2a8f:15b1:2c3:7be7] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jxVCx-0004Wh-JK; Mon, 20 Jul 2020 12:47:53 +0000
+ id 1jxVD0-0004Ww-Nu; Mon, 20 Jul 2020 12:47:55 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexei Starovoitov <ast@kernel.org>,
@@ -54,8 +54,8 @@ To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
  Eric Dumazet <edumazet@google.com>
-Date: Mon, 20 Jul 2020 14:47:17 +0200
-Message-Id: <20200720124737.118617-5-hch@lst.de>
+Date: Mon, 20 Jul 2020 14:47:18 +0200
+Message-Id: <20200720124737.118617-6-hch@lst.de>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200720124737.118617-1-hch@lst.de>
 References: <20200720124737.118617-1-hch@lst.de>
@@ -73,8 +73,7 @@ Cc: linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-hams@vger.kernel.org, bpf@vger.kernel.org,
  linux-wpan@vger.kernel.org, linux-afs@lists.infradead.org, mptcp@lists.01.org
-Subject: [Bridge] [PATCH 04/24] net: switch copy_bpf_fprog_from_user to
-	sockptr_t
+Subject: [Bridge] [PATCH 05/24] net: switch sock_setbindtodevice to sockptr_t
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,108 +93,41 @@ pointer from bpf-cgroup.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- include/linux/filter.h | 3 ++-
- net/core/filter.c      | 6 +++---
- net/core/sock.c        | 6 ++++--
- net/packet/af_packet.c | 4 ++--
- 4 files changed, 11 insertions(+), 8 deletions(-)
+ net/core/sock.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/filter.h b/include/linux/filter.h
-index 4d049c8e1fbeaa..87954ef126df77 100644
---- a/include/linux/filter.h
-+++ b/include/linux/filter.h
-@@ -20,6 +20,7 @@
- #include <linux/kallsyms.h>
- #include <linux/if_vlan.h>
- #include <linux/vmalloc.h>
-+#include <linux/sockptr.h>
- #include <crypto/sha.h>
- 
- #include <net/sch_generic.h>
-@@ -1276,6 +1277,6 @@ struct bpf_sockopt_kern {
- 	s32		retval;
- };
- 
--int copy_bpf_fprog_from_user(struct sock_fprog *dst, void __user *src, int len);
-+int copy_bpf_fprog_from_user(struct sock_fprog *dst, sockptr_t src, int len);
- 
- #endif /* __LINUX_FILTER_H__ */
-diff --git a/net/core/filter.c b/net/core/filter.c
-index 2bf6624796d86f..4cc1d381a273fd 100644
---- a/net/core/filter.c
-+++ b/net/core/filter.c
-@@ -77,14 +77,14 @@
- #include <net/transp_v6.h>
- #include <linux/btf_ids.h>
- 
--int copy_bpf_fprog_from_user(struct sock_fprog *dst, void __user *src, int len)
-+int copy_bpf_fprog_from_user(struct sock_fprog *dst, sockptr_t src, int len)
- {
- 	if (in_compat_syscall()) {
- 		struct compat_sock_fprog f32;
- 
- 		if (len != sizeof(f32))
- 			return -EINVAL;
--		if (copy_from_user(&f32, src, sizeof(f32)))
-+		if (copy_from_sockptr(&f32, src, sizeof(f32)))
- 			return -EFAULT;
- 		memset(dst, 0, sizeof(*dst));
- 		dst->len = f32.len;
-@@ -92,7 +92,7 @@ int copy_bpf_fprog_from_user(struct sock_fprog *dst, void __user *src, int len)
- 	} else {
- 		if (len != sizeof(*dst))
- 			return -EINVAL;
--		if (copy_from_user(dst, src, sizeof(*dst)))
-+		if (copy_from_sockptr(dst, src, sizeof(*dst)))
- 			return -EFAULT;
- 	}
- 
 diff --git a/net/core/sock.c b/net/core/sock.c
-index d828bfe1c47dfa..91224709869389 100644
+index 91224709869389..bd20fc5cce0850 100644
 --- a/net/core/sock.c
 +++ b/net/core/sock.c
-@@ -1062,7 +1062,8 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
- 	case SO_ATTACH_FILTER: {
- 		struct sock_fprog fprog;
- 
--		ret = copy_bpf_fprog_from_user(&fprog, optval, optlen);
-+		ret = copy_bpf_fprog_from_user(&fprog, USER_SOCKPTR(optval),
-+					       optlen);
- 		if (!ret)
- 			ret = sk_attach_filter(&fprog, sk);
- 		break;
-@@ -1083,7 +1084,8 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
- 	case SO_ATTACH_REUSEPORT_CBPF: {
- 		struct sock_fprog fprog;
- 
--		ret = copy_bpf_fprog_from_user(&fprog, optval, optlen);
-+		ret = copy_bpf_fprog_from_user(&fprog, USER_SOCKPTR(optval),
-+					       optlen);
- 		if (!ret)
- 			ret = sk_reuseport_attach_filter(&fprog, sk);
- 		break;
-diff --git a/net/packet/af_packet.c b/net/packet/af_packet.c
-index c240fb5de3f014..d8d4f78f78e451 100644
---- a/net/packet/af_packet.c
-+++ b/net/packet/af_packet.c
-@@ -1536,7 +1536,7 @@ static void __fanout_set_data_bpf(struct packet_fanout *f, struct bpf_prog *new)
- 	}
+@@ -608,8 +608,7 @@ int sock_bindtoindex(struct sock *sk, int ifindex, bool lock_sk)
  }
+ EXPORT_SYMBOL(sock_bindtoindex);
  
--static int fanout_set_data_cbpf(struct packet_sock *po, char __user *data,
-+static int fanout_set_data_cbpf(struct packet_sock *po, sockptr_t data,
- 				unsigned int len)
+-static int sock_setbindtodevice(struct sock *sk, char __user *optval,
+-				int optlen)
++static int sock_setbindtodevice(struct sock *sk, sockptr_t optval, int optlen)
  {
- 	struct bpf_prog *new;
-@@ -1584,7 +1584,7 @@ static int fanout_set_data(struct packet_sock *po, char __user *data,
- {
- 	switch (po->fanout->type) {
- 	case PACKET_FANOUT_CBPF:
--		return fanout_set_data_cbpf(po, data, len);
-+		return fanout_set_data_cbpf(po, USER_SOCKPTR(data), len);
- 	case PACKET_FANOUT_EBPF:
- 		return fanout_set_data_ebpf(po, data, len);
- 	default:
+ 	int ret = -ENOPROTOOPT;
+ #ifdef CONFIG_NETDEVICES
+@@ -631,7 +630,7 @@ static int sock_setbindtodevice(struct sock *sk, char __user *optval,
+ 	memset(devname, 0, sizeof(devname));
+ 
+ 	ret = -EFAULT;
+-	if (copy_from_user(devname, optval, optlen))
++	if (copy_from_sockptr(devname, optval, optlen))
+ 		goto out;
+ 
+ 	index = 0;
+@@ -839,7 +838,7 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
+ 	 */
+ 
+ 	if (optname == SO_BINDTODEVICE)
+-		return sock_setbindtodevice(sk, optval, optlen);
++		return sock_setbindtodevice(sk, USER_SOCKPTR(optval), optlen);
+ 
+ 	if (optlen < sizeof(int))
+ 		return -EINVAL;
 -- 
 2.27.0
 
