@@ -1,63 +1,62 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A76C227CAE
-	for <lists.bridge@lfdr.de>; Tue, 21 Jul 2020 12:14:30 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06EF7227CE9
+	for <lists.bridge@lfdr.de>; Tue, 21 Jul 2020 12:27:09 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 3A58D892A1;
-	Tue, 21 Jul 2020 10:14:28 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id A055788D9A;
+	Tue, 21 Jul 2020 10:27:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kZwKYeT7jVaF; Tue, 21 Jul 2020 10:14:28 +0000 (UTC)
+	with ESMTP id j-O79rEUr2Aq; Tue, 21 Jul 2020 10:27:06 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id E918D892A4;
-	Tue, 21 Jul 2020 10:14:27 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 540BF88D8C;
+	Tue, 21 Jul 2020 10:27:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CB2B7C088E;
-	Tue, 21 Jul 2020 10:14:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 32264C016F;
+	Tue, 21 Jul 2020 10:27:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C93C7C016F
- for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 10:14:26 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E84BBC016F
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 10:27:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id B1E58892A1
- for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 10:14:26 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id D6C5A874EA
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 10:27:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id rTnb-f+taUq0 for <bridge@lists.linux-foundation.org>;
- Tue, 21 Jul 2020 10:14:26 +0000 (UTC)
+ with ESMTP id kiK6pHczt6fL for <bridge@lists.linux-foundation.org>;
+ Tue, 21 Jul 2020 10:27:04 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
- by hemlock.osuosl.org (Postfix) with ESMTPS id AA85889290
- for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 10:14:25 +0000 (UTC)
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id A2621874C5
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 10:27:03 +0000 (UTC)
 Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
  TLS) by relay.mimecast.com with ESMTP id
- uk-mta-138-nfvRhVVmO1WenzQxH6ebBA-1; Tue, 21 Jul 2020 11:14:21 +0100
-X-MC-Unique: nfvRhVVmO1WenzQxH6ebBA-1
+ uk-mta-165-VkETpnrTNNiCTn0jftGBVw-1; Tue, 21 Jul 2020 11:27:00 +0100
+X-MC-Unique: VkETpnrTNNiCTn0jftGBVw-1
 Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
  AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
- Server (TLS) id 15.0.1347.2; Tue, 21 Jul 2020 11:14:20 +0100
+ Server (TLS) id 15.0.1347.2; Tue, 21 Jul 2020 11:26:58 +0100
 Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
  AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
- Tue, 21 Jul 2020 11:14:20 +0100
+ Tue, 21 Jul 2020 11:26:58 +0100
 From: David Laight <David.Laight@ACULAB.COM>
 To: 'Christoph Hellwig' <hch@lst.de>, "David S. Miller" <davem@davemloft.net>, 
  Jakub Kicinski <kuba@kernel.org>, Alexei Starovoitov <ast@kernel.org>,
  "Daniel Borkmann" <daniel@iogearbox.net>, Alexey Kuznetsov
  <kuznet@ms2.inr.ac.ru>, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Eric
  Dumazet <edumazet@google.com>
-Thread-Topic: [PATCH 03/24] net: add a new sockptr_t type
-Thread-Index: AQHWXznVP/p0ivee+U2FmRNemPQri6kRzhiA
-Date: Tue, 21 Jul 2020 10:14:20 +0000
-Message-ID: <6727969f2f6e467fa2d43f9773cefa27@AcuMS.aculab.com>
+Thread-Topic: get rid of the address_space override in setsockopt
+Thread-Index: AQHWXznU7Ce8ImOXV0WGgKrMes+hhakR08Lg
+Date: Tue, 21 Jul 2020 10:26:58 +0000
+Message-ID: <ae6a743aaea3406596dbc89e332b6b3e@AcuMS.aculab.com>
 References: <20200720124737.118617-1-hch@lst.de>
- <20200720124737.118617-4-hch@lst.de>
-In-Reply-To: <20200720124737.118617-4-hch@lst.de>
+In-Reply-To: <20200720124737.118617-1-hch@lst.de>
 Accept-Language: en-GB, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -92,7 +91,7 @@ Cc: "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
  "linux-wpan@vger.kernel.org" <linux-wpan@vger.kernel.org>,
  "linux-afs@lists.infradead.org" <linux-afs@lists.infradead.org>,
  "mptcp@lists.01.org" <mptcp@lists.01.org>
-Subject: Re: [Bridge] [PATCH 03/24] net: add a new sockptr_t type
+Subject: Re: [Bridge] get rid of the address_space override in setsockopt
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -110,45 +109,24 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 From: Christoph Hellwig
 > Sent: 20 July 2020 13:47
 >=20
-> Add a uptr_t type that can hold a pointer to either a user or kernel
-> memory region, and simply helpers to copy to and from it.  For
-> architectures like x86 that have non-overlapping user and kernel
-> address space it just is a union and uses a TASK_SIZE check to
-> select the proper copy routine.  For architectures with overlapping
-> address spaces a flag to indicate the address space is used instead.
+> setsockopt is the last place in architecture-independ code that still
+> uses set_fs to force the uaccess routines to operate on kernel pointers.
 >=20
-...
-> +#else /* CONFIG_ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE */
-> +typedef struct {
-> +=09union {
-> +=09=09void=09=09*kernel;
-> +=09=09void __user=09*user;
-> +=09};
-> +=09bool=09=09is_kernel : 1;
-> +} sockptr_t;
+> This series adds a new sockptr_t type that can contained either a kernel
+> or user pointer, and which has accessors that do the right thing, and
+> then uses it for setsockopt, starting by refactoring some low-level
+> helpers and moving them over to it before finally doing the main
+> setsockopt method.
 
-If you need to do that you might as well make it a struct
-where either the kernel or user address is defined.
-Far safer for all architectures.
+Another 'gotcha' ...
 
-Indeed you could add the length (to save passing an
-extra parameter through the layers).
-
-The system call code could even copy the code into a
-kernel buffer (setting both pointers).
-So that code that didn't need to access beyond the end
-of the implied buffer (most of it) could just access the
-kernel buffer.
-
-For getsockopt() you'd need some way of supressing the
-'default' copy back of the user buffer.
-
-This would also allow some of the sctp getsockopt to
-read (usually 4 bytes) from the 'user' buffer without
-the wrapper code always having to read in the entire
-user buffer.
+On an least some architectures (possibly only m68k) IIRC all structures
+are actually passed by reference.
+(This used to be true for sparc - but it may have changed in the
+last 30 years.)
 
 =09David
+=20
 
 -
 Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
