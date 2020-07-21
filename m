@@ -1,63 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787C222CD09
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:17 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E86C22CD4D
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 205B487302;
-	Fri, 24 Jul 2020 18:22:16 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id C9CD78956F;
+	Fri, 24 Jul 2020 18:22:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id WQUwtryjYAuv; Fri, 24 Jul 2020 18:22:15 +0000 (UTC)
+	with ESMTP id LxFpzd5OG6wl; Fri, 24 Jul 2020 18:22:38 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 0D42C87315;
+	by hemlock.osuosl.org (Postfix) with ESMTP id 8F6DC89451;
 	Fri, 24 Jul 2020 18:22:15 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D722FC004C;
-	Fri, 24 Jul 2020 18:22:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6348BC0052;
+	Fri, 24 Jul 2020 18:22:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BEC81C016F
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 17:55:46 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A3FEFC016F
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 02:40:21 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id A69E42154B
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 17:55:46 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id A028386781
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 02:40:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id kAtAsQGBkc3P for <bridge@lists.linux-foundation.org>;
- Mon, 20 Jul 2020 17:55:45 +0000 (UTC)
+ with ESMTP id R_u3CBtl6D_V for <bridge@lists.linux-foundation.org>;
+ Tue, 21 Jul 2020 02:40:21 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by silver.osuosl.org (Postfix) with ESMTPS id CD8C9203ED
- for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 17:55:45 +0000 (UTC)
-Received: from gmail.com (unknown [104.132.1.76])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D81D920709;
- Mon, 20 Jul 2020 17:55:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1595267745;
- bh=gKIze89vWBzrFx6zTW6q8+6OGOi2eEHSp9M1U5xgK5Q=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=IVyIlrMN24MPKjy4d8SMWaW7uCiUcpLg3yjCC0C2S6ZfKpknKzmS2DwkqaZUR6kcj
- eH3tVcf8T0FWz3MgsFZPKw/95GZuUU1R6RXP6YgHYNC1Xrh1jm83A8jQXDelAkEKiB
- ufMchI7Ce61Y9ZnRUJK/bZ/+BU6OKViPemeOOMWQ=
-Date: Mon, 20 Jul 2020 10:55:43 -0700
-From: Eric Biggers <ebiggers@kernel.org>
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com
+ [209.85.218.66])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id BCA3E86745
+ for <bridge@lists.linux-foundation.org>; Tue, 21 Jul 2020 02:40:20 +0000 (UTC)
+Received: by mail-ej1-f66.google.com with SMTP id y10so20115245eje.1
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Jul 2020 19:40:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=uGJfiXXxVHM7zniHW3sl0xVltZ7h7OdT0FRQ5H6GgQM=;
+ b=OeoCW/0tbvMmfJG3/GXVxS0sf0NU1F3vv5ek0RwSeUB4oL3xBRF4212opG/Qca2oMt
+ w/LznXXPQ/9latRxVyAN7HoUeXaNxvpuCBnCtE8R4VgfJiFrlJWGUZ3AudCWWBSFASY5
+ rHitPZwk5CzwZGC9yY+cINRMFHfhNoff5Hs0bqMLp86BM3TNE6gCd0fujLU9Jp1gGqkn
+ fbgcZ3ejttQ6DUlGWTOX05MbhnYkq6NEeVjuv6BJvSSMm0lLza1F8vnXHY24yVrWhuUw
+ mE4fVqq6wL70udwjlBJkWv9YZBUUfIIT74p06ZRe0yu4iR7nwWtzJQYm2S7oIsa47DMh
+ Anhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=uGJfiXXxVHM7zniHW3sl0xVltZ7h7OdT0FRQ5H6GgQM=;
+ b=ctcs3xH7YaZIm8UQcfab62jtDPVyl81GifCmW+kujQxQ9oOdww8oDEZUkYQ1dnfA2C
+ m7Ea+b9NUdjr9ccg2DcMDXjpLQ+JVvjdqBED0IpCM8+Gv0Uy0u44AgU3Oc3p86WhVtxP
+ fCsBizUnaxqLj4i5kC+Ek/0KZDAL3/ZqTxgK3HJ5Chv6tSI3d65ETsYxU8gHHW1SKcQs
+ 9pV7Ax8etHk0IFSHRwO7O1REKOhhqH/bjU/fnfjMBAQHy/3YCTauUITiXhJi2pJ8MM8o
+ VjvfignX3Vn4IXdDo+5XZ2SGx+bKOVuuyriuTWvAQChzBXnxl54ibAOrEu9h7xrX8toJ
+ S2Ww==
+X-Gm-Message-State: AOAM532vtU3epgRfvpvr5IVxFnDbhNQkjjvqUWGAQQmo+VtphLKprklJ
+ ocCbR/tgW3J5CrpLmvogvCc=
+X-Google-Smtp-Source: ABdhPJxwHHfj4AzpvPUUwMsSPbeGFb02Lr8Q1E98GpxaDKbKNy5p2S/jP2546lXFLYroLU3vdKdQBA==
+X-Received: by 2002:a17:906:c41:: with SMTP id
+ t1mr23432470ejf.18.1595299219166; 
+ Mon, 20 Jul 2020 19:40:19 -0700 (PDT)
+Received: from ltop.local ([2a02:a03f:a7fb:e200:d978:aa6c:4528:f5b1])
+ by smtp.gmail.com with ESMTPSA id y22sm15676844ejj.67.2020.07.20.19.40.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Jul 2020 19:40:18 -0700 (PDT)
+Date: Tue, 21 Jul 2020 04:40:16 +0200
+From: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
 To: Christoph Hellwig <hch@lst.de>
-Message-ID: <20200720175543.GF1292162@gmail.com>
+Message-ID: <20200721024016.2talwdt5hjqvirr6@ltop.local>
 References: <20200720124737.118617-1-hch@lst.de>
- <20200720124737.118617-4-hch@lst.de>
- <20200720163748.GA1292162@gmail.com>
- <20200720174322.GA21785@lst.de>
+ <20200720124737.118617-3-hch@lst.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200720174322.GA21785@lst.de>
+In-Reply-To: <20200720124737.118617-3-hch@lst.de>
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:37 +0000
 Cc: Alexei Starovoitov <ast@kernel.org>, linux-sctp@vger.kernel.org,
  linux-afs@lists.infradead.org, linux-s390@vger.kernel.org,
@@ -73,7 +93,7 @@ Cc: Alexei Starovoitov <ast@kernel.org>, linux-sctp@vger.kernel.org,
  linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, bpf@vger.kernel.org, linux-wpan@vger.kernel.org,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH 03/24] net: add a new sockptr_t type
+Subject: Re: [Bridge] [PATCH 02/24] bpfilter: fix up a sparse annotation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -88,28 +108,28 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jul 20, 2020 at 07:43:22PM +0200, Christoph Hellwig wrote:
-> On Mon, Jul 20, 2020 at 09:37:48AM -0700, Eric Biggers wrote:
-> > How does this not introduce a massive security hole when
-> > CONFIG_ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE?
-> > 
-> > AFAICS, userspace can pass in a pointer >= TASK_SIZE,
-> > and this code makes it be treated as a kernel pointer.
+On Mon, Jul 20, 2020 at 02:47:15PM +0200, Christoph Hellwig wrote:
+> The __user doesn't make sense when casting to an integer type.
 > 
-> Yeah, we'll need to validate that before initializing the pointer.
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  net/bpfilter/bpfilter_kern.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> But thinking this a little further:  doesn't this mean any
-> set_fs(KERNEL_DS) that has other user pointers than the one it is
-> intended for has the same issue?  Pretty much all of these are gone
-> in mainline now, but in older stable kernels there might be some
-> interesting cases, especially in the compat ioctl handlers.
+> diff --git a/net/bpfilter/bpfilter_kern.c b/net/bpfilter/bpfilter_kern.c
+> index 977e9dad72ca4f..713b4b3d02005d 100644
+> --- a/net/bpfilter/bpfilter_kern.c
+> +++ b/net/bpfilter/bpfilter_kern.c
+> @@ -49,7 +49,7 @@ static int __bpfilter_process_sockopt(struct sock *sk, int optname,
+>  	req.is_set = is_set;
+>  	req.pid = current->pid;
+>  	req.cmd = optname;
+> -	req.addr = (long __force __user)optval;
+> +	req.addr = (__force long)optval;
 
-Yes.  I thought that eliminating that class of bug is one of the main
-motivations for your "remove set_fs" work.  See commit 128394eff343
-("sg_write()/bsg_write() is not fit to be called under KERNEL_DS") for a case
-where this type of bug was fixed.
+For casts to integers, even '__force' is not needed (since integers
+can't be dereferenced, the concept of address-space is meaningless
+for them, so it's never useful to warn when it's dropped and
+'__force' is thus not needed).
 
-Are you aware of any specific cases that weren't already fixed?  If there are
-any, they need to be urgently fixed.
-
-- Eric
+-- Luc
