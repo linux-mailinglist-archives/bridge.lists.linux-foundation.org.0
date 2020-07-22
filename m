@@ -1,52 +1,53 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18DD22CD0D
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:19 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5EC922CD59
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:37 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 39D16872F3;
-	Fri, 24 Jul 2020 18:22:18 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 0391C895CA;
+	Fri, 24 Jul 2020 18:22:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id UBEsiex2mKJp; Fri, 24 Jul 2020 18:22:17 +0000 (UTC)
+	with ESMTP id 8YqY1b9F-u0Y; Fri, 24 Jul 2020 18:22:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id A019987357;
+	by hemlock.osuosl.org (Postfix) with ESMTP id F2213894B9;
 	Fri, 24 Jul 2020 18:22:17 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8B388C004C;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D7C50C004C;
 	Fri, 24 Jul 2020 18:22:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6A13AC004C
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:00:47 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 02974C004C
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:01:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 5665B81AEE
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:00:47 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id F318287BB8
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:01:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id DDTe9R07qxjh for <bridge@lists.linux-foundation.org>;
- Wed, 22 Jul 2020 08:00:45 +0000 (UTC)
+ with ESMTP id mjRk+07cPQsM for <bridge@lists.linux-foundation.org>;
+ Wed, 22 Jul 2020 08:01:45 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 969F58810C
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:00:33 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 7646087B47
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:01:45 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id A465468B05; Wed, 22 Jul 2020 10:00:24 +0200 (CEST)
-Date: Wed, 22 Jul 2020 10:00:23 +0200
+ id 92E6A6736F; Wed, 22 Jul 2020 10:01:42 +0200 (CEST)
+Date: Wed, 22 Jul 2020 10:01:42 +0200
 From: 'Christoph Hellwig' <hch@lst.de>
 To: David Laight <David.Laight@ACULAB.COM>
-Message-ID: <20200722080023.GC26554@lst.de>
+Message-ID: <20200722080142.GA26841@lst.de>
 References: <20200720124737.118617-1-hch@lst.de>
  <20200720124737.118617-13-hch@lst.de>
  <f9493b4c514441b4b51bc7e4e75e8c40@AcuMS.aculab.com>
+ <20200722080023.GC26554@lst.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f9493b4c514441b4b51bc7e4e75e8c40@AcuMS.aculab.com>
+In-Reply-To: <20200722080023.GC26554@lst.de>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:36 +0000
 Cc: Alexei Starovoitov <ast@kernel.org>,
@@ -96,12 +97,15 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Jul 21, 2020 at 08:36:57AM +0000, David Laight wrote:
-> From: Christoph Hellwig
-> > Sent: 20 July 2020 13:47
-> > 
-> > This is mostly to prepare for cleaning up the callers, as bpfilter by
-> > design can't handle kernel pointers.
->                       ^^^ user ??
+On Wed, Jul 22, 2020 at 10:00:23AM +0200, 'Christoph Hellwig' wrote:
+> On Tue, Jul 21, 2020 at 08:36:57AM +0000, David Laight wrote:
+> > From: Christoph Hellwig
+> > > Sent: 20 July 2020 13:47
+> > > 
+> > > This is mostly to prepare for cleaning up the callers, as bpfilter by
+> > > design can't handle kernel pointers.
+> >                       ^^^ user ??
+> 
+> No, it can't handle user pointers. 
 
-No, it can't handle user pointers. 
+Err, I mean it can only handle user pointers.
