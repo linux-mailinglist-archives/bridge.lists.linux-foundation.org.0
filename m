@@ -1,53 +1,51 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EC922CD59
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:37 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B4122CD5F
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 0391C895CA;
-	Fri, 24 Jul 2020 18:22:45 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id BBD7587F65;
+	Fri, 24 Jul 2020 18:23:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8YqY1b9F-u0Y; Fri, 24 Jul 2020 18:22:44 +0000 (UTC)
+	with ESMTP id qxdMXf4O7cpp; Fri, 24 Jul 2020 18:23:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id F2213894B9;
-	Fri, 24 Jul 2020 18:22:17 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id AC84D88C03;
+	Fri, 24 Jul 2020 18:22:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D7C50C004C;
-	Fri, 24 Jul 2020 18:22:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2EECDC0052;
+	Fri, 24 Jul 2020 18:22:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 02974C004C
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:01:46 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6B31FC004C
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:06:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id F318287BB8
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:01:45 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 65DB088073
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:06:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mjRk+07cPQsM for <bridge@lists.linux-foundation.org>;
- Wed, 22 Jul 2020 08:01:45 +0000 (UTC)
+ with ESMTP id 2d9637-f9NG4 for <bridge@lists.linux-foundation.org>;
+ Wed, 22 Jul 2020 08:06:52 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 7646087B47
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:01:45 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTPS id D8B8B88071
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:06:51 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 92E6A6736F; Wed, 22 Jul 2020 10:01:42 +0200 (CEST)
-Date: Wed, 22 Jul 2020 10:01:42 +0200
+ id 2A1836736F; Wed, 22 Jul 2020 10:06:47 +0200 (CEST)
+Date: Wed, 22 Jul 2020 10:06:46 +0200
 From: 'Christoph Hellwig' <hch@lst.de>
 To: David Laight <David.Laight@ACULAB.COM>
-Message-ID: <20200722080142.GA26841@lst.de>
+Message-ID: <20200722080646.GA26864@lst.de>
 References: <20200720124737.118617-1-hch@lst.de>
- <20200720124737.118617-13-hch@lst.de>
- <f9493b4c514441b4b51bc7e4e75e8c40@AcuMS.aculab.com>
- <20200722080023.GC26554@lst.de>
+ <60c52e31e9f240718fcda0dd5c2faeca@AcuMS.aculab.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200722080023.GC26554@lst.de>
+In-Reply-To: <60c52e31e9f240718fcda0dd5c2faeca@AcuMS.aculab.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:36 +0000
 Cc: Alexei Starovoitov <ast@kernel.org>,
@@ -81,8 +79,7 @@ Cc: Alexei Starovoitov <ast@kernel.org>,
  "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
  "linux-wpan@vger.kernel.org" <linux-wpan@vger.kernel.org>,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH 12/24] bpfilter: switch bpfilter_ip_set_sockopt
- to sockptr_t
+Subject: Re: [Bridge] get rid of the address_space override in setsockopt
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,15 +94,21 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Jul 22, 2020 at 10:00:23AM +0200, 'Christoph Hellwig' wrote:
-> On Tue, Jul 21, 2020 at 08:36:57AM +0000, David Laight wrote:
-> > From: Christoph Hellwig
-> > > Sent: 20 July 2020 13:47
-> > > 
-> > > This is mostly to prepare for cleaning up the callers, as bpfilter by
-> > > design can't handle kernel pointers.
-> >                       ^^^ user ??
+On Tue, Jul 21, 2020 at 09:38:23AM +0000, David Laight wrote:
+> From: Christoph Hellwig
+> > Sent: 20 July 2020 13:47
+> >
+> > setsockopt is the last place in architecture-independ code that still
+> > uses set_fs to force the uaccess routines to operate on kernel pointers.
+> > 
+> > This series adds a new sockptr_t type that can contained either a kernel
+> > or user pointer, and which has accessors that do the right thing, and
+> > then uses it for setsockopt, starting by refactoring some low-level
+> > helpers and moving them over to it before finally doing the main
+> > setsockopt method.
 > 
-> No, it can't handle user pointers. 
+> Are you planning to make the equivalent change to getsockopt()?
 
-Err, I mean it can only handle user pointers.
+No.  Only setsockopt can be fed kernel addresses from bpf-cgroup.
+There is no point in complicating the read side interface when it
+doesn't have that problem.
