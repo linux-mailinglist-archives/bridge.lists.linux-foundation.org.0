@@ -1,51 +1,51 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B4122CD5F
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:45 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB6722CD5C
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:42 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id BBD7587F65;
-	Fri, 24 Jul 2020 18:23:43 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 79FBB894C5;
+	Fri, 24 Jul 2020 18:22:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id qxdMXf4O7cpp; Fri, 24 Jul 2020 18:23:39 +0000 (UTC)
+	with ESMTP id Yf2CbwSi2J3V; Fri, 24 Jul 2020 18:22:46 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id AC84D88C03;
-	Fri, 24 Jul 2020 18:22:21 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 9384F894D1;
+	Fri, 24 Jul 2020 18:22:18 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2EECDC0052;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 73DFEC004C;
 	Fri, 24 Jul 2020 18:22:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6B31FC004C
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:06:52 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7F1F0C004C
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:07:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 65DB088073
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:06:52 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 6E14F84FB0
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:07:29 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2d9637-f9NG4 for <bridge@lists.linux-foundation.org>;
- Wed, 22 Jul 2020 08:06:52 +0000 (UTC)
+ with ESMTP id tscdthhaSPeJ for <bridge@lists.linux-foundation.org>;
+ Wed, 22 Jul 2020 08:07:28 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by whitealder.osuosl.org (Postfix) with ESMTPS id D8B8B88071
- for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:06:51 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 21DDE84F2A
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Jul 2020 08:07:28 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 2A1836736F; Wed, 22 Jul 2020 10:06:47 +0200 (CEST)
-Date: Wed, 22 Jul 2020 10:06:46 +0200
+ id 2537A6736F; Wed, 22 Jul 2020 10:07:25 +0200 (CEST)
+Date: Wed, 22 Jul 2020 10:07:24 +0200
 From: 'Christoph Hellwig' <hch@lst.de>
 To: David Laight <David.Laight@ACULAB.COM>
-Message-ID: <20200722080646.GA26864@lst.de>
+Message-ID: <20200722080724.GB26864@lst.de>
 References: <20200720124737.118617-1-hch@lst.de>
- <60c52e31e9f240718fcda0dd5c2faeca@AcuMS.aculab.com>
+ <ae6a743aaea3406596dbc89e332b6b3e@AcuMS.aculab.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <60c52e31e9f240718fcda0dd5c2faeca@AcuMS.aculab.com>
+In-Reply-To: <ae6a743aaea3406596dbc89e332b6b3e@AcuMS.aculab.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Fri, 24 Jul 2020 18:21:36 +0000
 Cc: Alexei Starovoitov <ast@kernel.org>,
@@ -94,10 +94,10 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Jul 21, 2020 at 09:38:23AM +0000, David Laight wrote:
+On Tue, Jul 21, 2020 at 10:26:58AM +0000, David Laight wrote:
 > From: Christoph Hellwig
 > > Sent: 20 July 2020 13:47
-> >
+> > 
 > > setsockopt is the last place in architecture-independ code that still
 > > uses set_fs to force the uaccess routines to operate on kernel pointers.
 > > 
@@ -107,8 +107,12 @@ On Tue, Jul 21, 2020 at 09:38:23AM +0000, David Laight wrote:
 > > helpers and moving them over to it before finally doing the main
 > > setsockopt method.
 > 
-> Are you planning to make the equivalent change to getsockopt()?
+> Another 'gotcha' ...
+> 
+> On an least some architectures (possibly only m68k) IIRC all structures
+> are actually passed by reference.
+> (This used to be true for sparc - but it may have changed in the
+> last 30 years.)
 
-No.  Only setsockopt can be fed kernel addresses from bpf-cgroup.
-There is no point in complicating the read side interface when it
-doesn't have that problem.
+Tough luck for ABIs wit suboptimal calling conventions.  At least we can
+do the right thing for those that do not have the problem.
