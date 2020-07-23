@@ -1,52 +1,52 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB8BF22CD15
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:26 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 959C322CD60
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id F1CCD87384;
-	Fri, 24 Jul 2020 18:22:23 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 2E99989509;
+	Fri, 24 Jul 2020 18:22:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PCzvE8oA5kEu; Fri, 24 Jul 2020 18:22:23 +0000 (UTC)
+	with ESMTP id MU0Aa-jcpHqd; Fri, 24 Jul 2020 18:22:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 3E62487383;
-	Fri, 24 Jul 2020 18:22:23 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 712188936A;
+	Fri, 24 Jul 2020 18:22:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 21117C0053;
-	Fri, 24 Jul 2020 18:22:23 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4F7D2C0053;
+	Fri, 24 Jul 2020 18:22:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 05F9EC004C
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:44 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DC5B4C004C
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id F251A87612
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:43 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id C481424C10
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id yVS6jHBpWvga for <bridge@lists.linux-foundation.org>;
- Thu, 23 Jul 2020 06:09:42 +0000 (UTC)
+ with ESMTP id yrM5k+lzZFm7 for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Jul 2020 06:09:35 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id C0A6E8754B
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:33 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTPS id 19447265E8
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=gIo3u97zH0JSQ3GhoDfa3dDtIgYeQtsIRo6GTGYyy+8=; b=mnzygY2xIJOplQLdTA5DuEH0ik
- I+dSofdIWj5h6Q6sJXrxRQQH9lr8q8RznRktaWQgsjSk6tKhswT8dDrOuAKoDyVoNvpwziRMDygs5
- V4f5W2mIHJSUYcOuW1p5Ir6U67Prk8VRUBRy8hjQ53gk5FH2pKOrOAD/RP/H1dTADr2OmbTj+6npM
- 7vG9oWid8LWVlZMGnM3G1KLxrq+C33rTvftxBYoCfkRRZmUpij+cYvZefhDKfixG8mJiKhqsX7AnE
- al8lhKCsReWSNohktTvtZM7aCBVtmd7q9BjtTavU2c+SGMWI34+tsLChaRrBdfoinRvNTW8QTALA1
- h8FbOCKA==;
+ References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Type:Content-ID:Content-Description;
+ bh=F+BrwTbjEUImolj5beS1BIuUXc5PZLOrZP3HablW5rQ=; b=NzYZw+FjLfFD0JRnn0zvrsEGla
+ OpCplG7VAlrQMRrrAptI8HlY36sdp/bQUwvI85NfsYGTWTrzqd0OtBgyHoxTz2+6W4uOK8qfoaK9G
+ AabbZVEw0A3ckIbqpAejosSfpzclsHm09SqSs1MfIJjEQmvsARHc9VrCnCp93k6HJsEBs752xvDTq
+ MEkESJuAraQOrq+EuuSuMQcP8Zlgr0/Cs8uO9VzXB8m9ITyZkg+I7JTS0fyfLD0tWYXg7MBduKZDx
+ wLxCjFvBpb2yPtqLFfWnpDKDISyiVskkGGIO0oTHM7QMde4I1Zb4SAKuo6nf88HRBbYNA3r33TDOq
+ x96KWjLg==;
 Received: from [2001:4bb8:18c:2acc:91df:aae8:fa3b:de9c] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jyUPl-0003jb-F1; Thu, 23 Jul 2020 06:09:09 +0000
+ id 1jyUPm-0003jf-TZ; Thu, 23 Jul 2020 06:09:11 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexei Starovoitov <ast@kernel.org>,
@@ -54,9 +54,11 @@ To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
  Eric Dumazet <edumazet@google.com>
-Date: Thu, 23 Jul 2020 08:08:42 +0200
-Message-Id: <20200723060908.50081-1-hch@lst.de>
+Date: Thu, 23 Jul 2020 08:08:43 +0200
+Message-Id: <20200723060908.50081-2-hch@lst.de>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200723060908.50081-1-hch@lst.de>
+References: <20200723060908.50081-1-hch@lst.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
@@ -71,7 +73,7 @@ Cc: linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-hams@vger.kernel.org, bpf@vger.kernel.org,
  linux-wpan@vger.kernel.org, linux-afs@lists.infradead.org, mptcp@lists.01.org
-Subject: [Bridge] get rid of the address_space override in setsockopt v2
+Subject: [Bridge] [PATCH 01/26] bpfilter: fix up a sparse annotation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -86,118 +88,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Dave,
+The __user doesn't make sense when casting to an integer type, just
+switch to a uintptr_t cast which also removes the need for the __force.
 
-setsockopt is the last place in architecture-independ code that still
-uses set_fs to force the uaccess routines to operate on kernel pointers.
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+---
+ net/bpfilter/bpfilter_kern.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This series adds a new sockptr_t type that can contained either a kernel
-or user pointer, and which has accessors that do the right thing, and
-then uses it for setsockopt, starting by refactoring some low-level
-helpers and moving them over to it before finally doing the main
-setsockopt method.
+diff --git a/net/bpfilter/bpfilter_kern.c b/net/bpfilter/bpfilter_kern.c
+index 2c31e82cb953af..3bac5820062af1 100644
+--- a/net/bpfilter/bpfilter_kern.c
++++ b/net/bpfilter/bpfilter_kern.c
+@@ -44,7 +44,7 @@ static int __bpfilter_process_sockopt(struct sock *sk, int optname,
+ 	req.is_set = is_set;
+ 	req.pid = current->pid;
+ 	req.cmd = optname;
+-	req.addr = (long __force __user)optval;
++	req.addr = (uintptr_t)optval;
+ 	req.len = optlen;
+ 	if (!bpfilter_ops.info.tgid)
+ 		goto out;
+-- 
+2.27.0
 
-Note that apparently the eBPF selftests do not even cover this path, so
-the series has been tested with a testing patch that always copies the
-data first and passes a kernel pointer.  This is something that works for
-most common sockopts (and is something that the ePBF support relies on),
-but unfortunately in various corner cases we either don't use the passed
-in length, or in one case actually copy data back from setsockopt, or in
-case of bpfilter straight out do not work with kernel pointers at all.
-
-Against net-next/master.
-
-Changes since v1:
- - check that users don't pass in kernel addresses
- - more bpfilter cleanups
- - cosmetic mptcp tweak
-
-Diffstat:
- crypto/af_alg.c                           |    7 
- drivers/crypto/chelsio/chtls/chtls_main.c |   18 -
- drivers/isdn/mISDN/socket.c               |    4 
- include/linux/bpfilter.h                  |    6 
- include/linux/filter.h                    |    3 
- include/linux/mroute.h                    |    5 
- include/linux/mroute6.h                   |    8 
- include/linux/net.h                       |    4 
- include/linux/netfilter.h                 |    6 
- include/linux/netfilter/x_tables.h        |    4 
- include/linux/sockptr.h                   |  132 ++++++++++++
- include/net/inet_connection_sock.h        |    3 
- include/net/ip.h                          |    7 
- include/net/ipv6.h                        |    6 
- include/net/sctp/structs.h                |    2 
- include/net/sock.h                        |    7 
- include/net/tcp.h                         |    6 
- include/net/udp.h                         |    2 
- include/net/xfrm.h                        |    8 
- net/atm/common.c                          |    6 
- net/atm/common.h                          |    2 
- net/atm/pvc.c                             |    2 
- net/atm/svc.c                             |    6 
- net/ax25/af_ax25.c                        |    6 
- net/bluetooth/hci_sock.c                  |    8 
- net/bluetooth/l2cap_sock.c                |   22 +-
- net/bluetooth/rfcomm/sock.c               |   12 -
- net/bluetooth/sco.c                       |    6 
- net/bpfilter/bpfilter_kern.c              |   55 ++---
- net/bridge/netfilter/ebtables.c           |   46 +---
- net/caif/caif_socket.c                    |    8 
- net/can/j1939/socket.c                    |   12 -
- net/can/raw.c                             |   16 -
- net/core/filter.c                         |    6 
- net/core/sock.c                           |   36 +--
- net/dccp/dccp.h                           |    2 
- net/dccp/proto.c                          |   20 -
- net/decnet/af_decnet.c                    |   13 -
- net/ieee802154/socket.c                   |    6 
- net/ipv4/bpfilter/sockopt.c               |   16 -
- net/ipv4/ip_options.c                     |   43 +---
- net/ipv4/ip_sockglue.c                    |   66 +++---
- net/ipv4/ipmr.c                           |   14 -
- net/ipv4/netfilter/arp_tables.c           |   33 +--
- net/ipv4/netfilter/ip_tables.c            |   29 +-
- net/ipv4/raw.c                            |    8 
- net/ipv4/tcp.c                            |   30 +-
- net/ipv4/tcp_ipv4.c                       |    4 
- net/ipv4/udp.c                            |   11 -
- net/ipv4/udp_impl.h                       |    4 
- net/ipv6/ip6_flowlabel.c                  |  317 ++++++++++++++++--------------
- net/ipv6/ip6mr.c                          |   17 -
- net/ipv6/ipv6_sockglue.c                  |  203 +++++++++----------
- net/ipv6/netfilter/ip6_tables.c           |   28 +-
- net/ipv6/raw.c                            |   10 
- net/ipv6/tcp_ipv6.c                       |    4 
- net/ipv6/udp.c                            |    7 
- net/ipv6/udp_impl.h                       |    4 
- net/iucv/af_iucv.c                        |    4 
- net/kcm/kcmsock.c                         |    6 
- net/l2tp/l2tp_ppp.c                       |    4 
- net/llc/af_llc.c                          |    4 
- net/mptcp/protocol.c                      |    6 
- net/netfilter/ipvs/ip_vs_ctl.c            |    4 
- net/netfilter/nf_sockopt.c                |    2 
- net/netfilter/x_tables.c                  |   20 -
- net/netlink/af_netlink.c                  |    4 
- net/netrom/af_netrom.c                    |    4 
- net/nfc/llcp_sock.c                       |    6 
- net/packet/af_packet.c                    |   39 +--
- net/phonet/pep.c                          |    4 
- net/rds/af_rds.c                          |   30 +-
- net/rds/rdma.c                            |   14 -
- net/rds/rds.h                             |    6 
- net/rose/af_rose.c                        |    4 
- net/rxrpc/af_rxrpc.c                      |    8 
- net/rxrpc/ar-internal.h                   |    4 
- net/rxrpc/key.c                           |    9 
- net/sctp/socket.c                         |    4 
- net/smc/af_smc.c                          |    4 
- net/socket.c                              |   24 --
- net/tipc/socket.c                         |    8 
- net/tls/tls_main.c                        |   17 -
- net/vmw_vsock/af_vsock.c                  |    4 
- net/x25/af_x25.c                          |    4 
- net/xdp/xsk.c                             |    8 
- net/xfrm/xfrm_state.c                     |    6 
- 87 files changed, 894 insertions(+), 743 deletions(-)
