@@ -1,52 +1,52 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55AE522CD6D
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:24:10 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1E022CD4F
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 781AE896D2;
-	Fri, 24 Jul 2020 18:22:58 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 5A93724F06;
+	Fri, 24 Jul 2020 18:23:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RLulgJTgmaou; Fri, 24 Jul 2020 18:22:57 +0000 (UTC)
+	with ESMTP id VlPBKqGrzjRq; Fri, 24 Jul 2020 18:23:13 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 81EF58955E;
-	Fri, 24 Jul 2020 18:22:27 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id B51A825048;
+	Fri, 24 Jul 2020 18:22:42 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4F7E9C004F;
-	Fri, 24 Jul 2020 18:22:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 93CABC004C;
+	Fri, 24 Jul 2020 18:22:42 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 882F6C004C
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:52 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6DA46C004C
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 74B0A8986F
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:52 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 63796265BC
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XN7NWRHI84Pz for <bridge@lists.linux-foundation.org>;
- Thu, 23 Jul 2020 06:09:51 +0000 (UTC)
+ with ESMTP id Bj9bl9E64Hp7 for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Jul 2020 06:09:53 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by hemlock.osuosl.org (Postfix) with ESMTPS id BF7638986C
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:51 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTPS id 410B424C10
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=QlF9uAsII4M+JCuvUaS+q9mzPBlfDSxuvtjJe160dNk=; b=uZpwgVyKUu+sHnxI+GopWTiL6d
- DflWs0zNQjkIouFC0PpLfgVqeceaXeebrBT5Hvgv+9HSYM4TyCMCIZGNx0+eYeBh9Tk5DjZoJE2ro
- UJGhbM7n/58Y745F6R/Sl5/zL7mwtLqnrhlHyFj6SCbQnnMskl3ihsH7pO2q9RweF/QQgtU+/UtiD
- nZj8xRqnjHonqyiSEDEzjBQjJvsw20nWfWc6j5DF0O44Txm+ejF4IsqcMx+w2BErUSkUFBMz1LlXR
- 2i8tmMsDMWhw3zS9ExTIp/pb+BbFtV9/+PhOtPC2fO6cdMLW1zjwttIWVfyd6a0qDsrPXfM7heqhE
- v40/SZRw==;
+ bh=mHiWtESnfpmKOGnGR9J/VvKy447qDpvbyAZDADMp9hY=; b=Gi7Go2u+fkcKAHjWWVRHPnv63N
+ Y5wm/NGJ3YEIP3H54J9Y/ypxMj150A7NMUhmNveZRtZJ2pYVYRsZcmgKhuKhxVxC7Redsbb+O/81i
+ fGIlQ9tNAWdl1Hkfeec2Meb64han1DNgmxuwAULfzNG3E1PnD5gz87po+HuwjTdg6MQ4V5S64kIX1
+ XjSOF9i0AgfaeyNKUKwaUo7i9Of3zyl20novryBp7FE/7CQWJUWOhkuRXXwHIX/ieM/X8HDOQJicd
+ xfvPqnpZUvvRe7IhEIkxmwLayvXHLpSIjLSDPErKJIV6SzuPGnPxa5f+mzZafn/nkGGcW4k3MkZvM
+ w6+b9nNQ==;
 Received: from [2001:4bb8:18c:2acc:91df:aae8:fa3b:de9c] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jyUQC-0003nc-G6; Thu, 23 Jul 2020 06:09:36 +0000
+ id 1jyUQD-0003np-OJ; Thu, 23 Jul 2020 06:09:38 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexei Starovoitov <ast@kernel.org>,
@@ -54,8 +54,8 @@ To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
  Eric Dumazet <edumazet@google.com>
-Date: Thu, 23 Jul 2020 08:09:01 +0200
-Message-Id: <20200723060908.50081-20-hch@lst.de>
+Date: Thu, 23 Jul 2020 08:09:02 +0200
+Message-Id: <20200723060908.50081-21-hch@lst.de>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200723060908.50081-1-hch@lst.de>
 References: <20200723060908.50081-1-hch@lst.de>
@@ -73,8 +73,8 @@ Cc: linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-hams@vger.kernel.org, bpf@vger.kernel.org,
  linux-wpan@vger.kernel.org, linux-afs@lists.infradead.org, mptcp@lists.01.org
-Subject: [Bridge] [PATCH 19/26] net/ipv6: switch ipv6_flowlabel_opt to
-	sockptr_t
+Subject: [Bridge] [PATCH 20/26] net/ipv6: factor out a ipv6_set_opt_hdr
+	helper
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,105 +89,183 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Pass a sockptr_t to prepare for set_fs-less handling of the kernel
-pointer from bpf-cgroup.
-
-Note that the get case is pretty weird in that it actually copies data
-back to userspace from setsockopt.
+Factour out a helper to set the IPv6 option headers from
+do_ipv6_setsockopt.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- include/net/ipv6.h       |  2 +-
- net/ipv6/ip6_flowlabel.c | 16 +++++++++-------
- net/ipv6/ipv6_sockglue.c |  2 +-
- 3 files changed, 11 insertions(+), 9 deletions(-)
+ net/ipv6/ipv6_sockglue.c | 150 +++++++++++++++++++--------------------
+ 1 file changed, 75 insertions(+), 75 deletions(-)
 
-diff --git a/include/net/ipv6.h b/include/net/ipv6.h
-index 262fc88dbd7e2f..4c9d89b5d73268 100644
---- a/include/net/ipv6.h
-+++ b/include/net/ipv6.h
-@@ -406,7 +406,7 @@ struct ipv6_txoptions *fl6_merge_options(struct ipv6_txoptions *opt_space,
- 					 struct ip6_flowlabel *fl,
- 					 struct ipv6_txoptions *fopt);
- void fl6_free_socklist(struct sock *sk);
--int ipv6_flowlabel_opt(struct sock *sk, char __user *optval, int optlen);
-+int ipv6_flowlabel_opt(struct sock *sk, sockptr_t optval, int optlen);
- int ipv6_flowlabel_opt_get(struct sock *sk, struct in6_flowlabel_req *freq,
- 			   int flags);
- int ip6_flowlabel_init(void);
-diff --git a/net/ipv6/ip6_flowlabel.c b/net/ipv6/ip6_flowlabel.c
-index 27ee6de9beffc4..6b3c315f3d461a 100644
---- a/net/ipv6/ip6_flowlabel.c
-+++ b/net/ipv6/ip6_flowlabel.c
-@@ -371,7 +371,7 @@ static int fl6_renew(struct ip6_flowlabel *fl, unsigned long linger, unsigned lo
- 
- static struct ip6_flowlabel *
- fl_create(struct net *net, struct sock *sk, struct in6_flowlabel_req *freq,
--	  char __user *optval, int optlen, int *err_p)
-+	  sockptr_t optval, int optlen, int *err_p)
- {
- 	struct ip6_flowlabel *fl = NULL;
- 	int olen;
-@@ -401,7 +401,8 @@ fl_create(struct net *net, struct sock *sk, struct in6_flowlabel_req *freq,
- 		memset(fl->opt, 0, sizeof(*fl->opt));
- 		fl->opt->tot_len = sizeof(*fl->opt) + olen;
- 		err = -EFAULT;
--		if (copy_from_user(fl->opt+1, optval+CMSG_ALIGN(sizeof(*freq)), olen))
-+		sockptr_advance(optval, CMSG_ALIGN(sizeof(*freq)));
-+		if (copy_from_sockptr(fl->opt + 1, optval, olen))
- 			goto done;
- 
- 		msg.msg_controllen = olen;
-@@ -604,7 +605,7 @@ static int ipv6_flowlabel_renew(struct sock *sk, struct in6_flowlabel_req *freq)
- }
- 
- static int ipv6_flowlabel_get(struct sock *sk, struct in6_flowlabel_req *freq,
--		void __user *optval, int optlen)
-+		sockptr_t optval, int optlen)
- {
- 	struct ipv6_fl_socklist *sfl, *sfl1 = NULL;
- 	struct ip6_flowlabel *fl, *fl1 = NULL;
-@@ -702,8 +703,9 @@ static int ipv6_flowlabel_get(struct sock *sk, struct in6_flowlabel_req *freq,
- 		goto recheck;
- 
- 	if (!freq->flr_label) {
--		if (copy_to_user(&((struct in6_flowlabel_req __user *) optval)->flr_label,
--				 &fl->label, sizeof(fl->label))) {
-+		sockptr_advance(optval,
-+				offsetof(struct in6_flowlabel_req, flr_label));
-+		if (copy_to_sockptr(optval, &fl->label, sizeof(fl->label))) {
- 			/* Intentionally ignore fault. */
- 		}
- 	}
-@@ -716,13 +718,13 @@ static int ipv6_flowlabel_get(struct sock *sk, struct in6_flowlabel_req *freq,
- 	return err;
- }
- 
--int ipv6_flowlabel_opt(struct sock *sk, char __user *optval, int optlen)
-+int ipv6_flowlabel_opt(struct sock *sk, sockptr_t optval, int optlen)
- {
- 	struct in6_flowlabel_req freq;
- 
- 	if (optlen < sizeof(freq))
- 		return -EINVAL;
--	if (copy_from_user(&freq, optval, sizeof(freq)))
-+	if (copy_from_sockptr(&freq, optval, sizeof(freq)))
- 		return -EFAULT;
- 
- 	switch (freq.flr_action) {
 diff --git a/net/ipv6/ipv6_sockglue.c b/net/ipv6/ipv6_sockglue.c
-index 119dfaf5f4bb26..3897fb55372d38 100644
+index 3897fb55372d38..90442c8366dff2 100644
 --- a/net/ipv6/ipv6_sockglue.c
 +++ b/net/ipv6/ipv6_sockglue.c
-@@ -929,7 +929,7 @@ static int do_ipv6_setsockopt(struct sock *sk, int level, int optname,
- 		retv = 0;
+@@ -315,6 +315,80 @@ static int compat_ipv6_mcast_join_leave(struct sock *sk, int optname,
+ 	return ipv6_sock_mc_drop(sk, gr32.gr_interface, &psin6->sin6_addr);
+ }
+ 
++static int ipv6_set_opt_hdr(struct sock *sk, int optname, void __user *optval,
++		int optlen)
++{
++	struct ipv6_pinfo *np = inet6_sk(sk);
++	struct ipv6_opt_hdr *new = NULL;
++	struct net *net = sock_net(sk);
++	struct ipv6_txoptions *opt;
++	int err;
++
++	/* hop-by-hop / destination options are privileged option */
++	if (optname != IPV6_RTHDR && !ns_capable(net->user_ns, CAP_NET_RAW))
++		return -EPERM;
++
++	/* remove any sticky options header with a zero option
++	 * length, per RFC3542.
++	 */
++	if (optlen > 0) {
++		if (!optval)
++			return -EINVAL;
++		if (optlen < sizeof(struct ipv6_opt_hdr) ||
++		    optlen & 0x7 ||
++		    optlen > 8 * 255)
++			return -EINVAL;
++
++		new = memdup_user(optval, optlen);
++		if (IS_ERR(new))
++			return PTR_ERR(new);
++		if (unlikely(ipv6_optlen(new) > optlen)) {
++			kfree(new);
++			return -EINVAL;
++		}
++	}
++
++	opt = rcu_dereference_protected(np->opt, lockdep_sock_is_held(sk));
++	opt = ipv6_renew_options(sk, opt, optname, new);
++	kfree(new);
++	if (IS_ERR(opt))
++		return PTR_ERR(opt);
++
++	/* routing header option needs extra check */
++	err = -EINVAL;
++	if (optname == IPV6_RTHDR && opt && opt->srcrt) {
++		struct ipv6_rt_hdr *rthdr = opt->srcrt;
++		switch (rthdr->type) {
++#if IS_ENABLED(CONFIG_IPV6_MIP6)
++		case IPV6_SRCRT_TYPE_2:
++			if (rthdr->hdrlen != 2 || rthdr->segments_left != 1)
++				goto sticky_done;
++			break;
++#endif
++		case IPV6_SRCRT_TYPE_4:
++		{
++			struct ipv6_sr_hdr *srh =
++				(struct ipv6_sr_hdr *)opt->srcrt;
++
++			if (!seg6_validate_srh(srh, optlen, false))
++				goto sticky_done;
++			break;
++		}
++		default:
++			goto sticky_done;
++		}
++	}
++
++	err = 0;
++	opt = ipv6_update_options(sk, opt);
++sticky_done:
++	if (opt) {
++		atomic_sub(opt->tot_len, &sk->sk_omem_alloc);
++		txopt_put(opt);
++	}
++	return err;
++}
++
+ static int do_ipv6_setsockopt(struct sock *sk, int level, int optname,
+ 		    char __user *optval, unsigned int optlen)
+ {
+@@ -580,82 +654,8 @@ static int do_ipv6_setsockopt(struct sock *sk, int level, int optname,
+ 	case IPV6_RTHDRDSTOPTS:
+ 	case IPV6_RTHDR:
+ 	case IPV6_DSTOPTS:
+-	{
+-		struct ipv6_txoptions *opt;
+-		struct ipv6_opt_hdr *new = NULL;
+-
+-		/* hop-by-hop / destination options are privileged option */
+-		retv = -EPERM;
+-		if (optname != IPV6_RTHDR && !ns_capable(net->user_ns, CAP_NET_RAW))
+-			break;
+-
+-		/* remove any sticky options header with a zero option
+-		 * length, per RFC3542.
+-		 */
+-		if (optlen == 0)
+-			optval = NULL;
+-		else if (!optval)
+-			goto e_inval;
+-		else if (optlen < sizeof(struct ipv6_opt_hdr) ||
+-			 optlen & 0x7 || optlen > 8 * 255)
+-			goto e_inval;
+-		else {
+-			new = memdup_user(optval, optlen);
+-			if (IS_ERR(new)) {
+-				retv = PTR_ERR(new);
+-				break;
+-			}
+-			if (unlikely(ipv6_optlen(new) > optlen)) {
+-				kfree(new);
+-				goto e_inval;
+-			}
+-		}
+-
+-		opt = rcu_dereference_protected(np->opt,
+-						lockdep_sock_is_held(sk));
+-		opt = ipv6_renew_options(sk, opt, optname, new);
+-		kfree(new);
+-		if (IS_ERR(opt)) {
+-			retv = PTR_ERR(opt);
+-			break;
+-		}
+-
+-		/* routing header option needs extra check */
+-		retv = -EINVAL;
+-		if (optname == IPV6_RTHDR && opt && opt->srcrt) {
+-			struct ipv6_rt_hdr *rthdr = opt->srcrt;
+-			switch (rthdr->type) {
+-#if IS_ENABLED(CONFIG_IPV6_MIP6)
+-			case IPV6_SRCRT_TYPE_2:
+-				if (rthdr->hdrlen != 2 ||
+-				    rthdr->segments_left != 1)
+-					goto sticky_done;
+-
+-				break;
+-#endif
+-			case IPV6_SRCRT_TYPE_4:
+-			{
+-				struct ipv6_sr_hdr *srh = (struct ipv6_sr_hdr *)
+-							  opt->srcrt;
+-
+-				if (!seg6_validate_srh(srh, optlen, false))
+-					goto sticky_done;
+-				break;
+-			}
+-			default:
+-				goto sticky_done;
+-			}
+-		}
+-
+-		retv = 0;
+-		opt = ipv6_update_options(sk, opt);
+-sticky_done:
+-		if (opt) {
+-			atomic_sub(opt->tot_len, &sk->sk_omem_alloc);
+-			txopt_put(opt);
+-		}
++		retv = ipv6_set_opt_hdr(sk, optname, optval, optlen);
  		break;
- 	case IPV6_FLOWLABEL_MGR:
--		retv = ipv6_flowlabel_opt(sk, optval, optlen);
-+		retv = ipv6_flowlabel_opt(sk, USER_SOCKPTR(optval), optlen);
- 		break;
- 	case IPV6_IPSEC_POLICY:
- 	case IPV6_XFRM_POLICY:
+-	}
+ 
+ 	case IPV6_PKTINFO:
+ 	{
 -- 
 2.27.0
 
