@@ -1,52 +1,52 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDA822CD41
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:12 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id E759322CD1A
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 8C9F824C5E;
-	Fri, 24 Jul 2020 18:23:10 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 78ED087398;
+	Fri, 24 Jul 2020 18:22:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6hrCUmJn9EkI; Fri, 24 Jul 2020 18:23:01 +0000 (UTC)
+	with ESMTP id wi4CSDpr0FFV; Fri, 24 Jul 2020 18:22:26 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 828FB24F13;
-	Fri, 24 Jul 2020 18:22:24 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 087EC87399;
+	Fri, 24 Jul 2020 18:22:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4FD4DC004C;
-	Fri, 24 Jul 2020 18:22:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CFEC8C004C;
+	Fri, 24 Jul 2020 18:22:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 99DEBC004C
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:45 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EBC33C004C
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 83669875DF
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:45 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id D5A49851AD
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:48 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jksF-bCzUOEu for <bridge@lists.linux-foundation.org>;
- Thu, 23 Jul 2020 06:09:42 +0000 (UTC)
+ with ESMTP id wBTvYqTub5Lc for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Jul 2020 06:09:44 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id BE0BE8750F
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id C099487511
  for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=jnNftkdWuHutn0l5/V2Gz6Qvt1s8tXbdDMQLxkwuHBo=; b=AHWMVgl+gZI3ppeRUJG22CnuN2
- mXsqGUtHr7hHIshIeM0BR3FDFu7P8hUJdDKWEDjaeFBPFzHAKS1/J2NqqrgVWAiWy0PDBIJV6MaAk
- gPot77jPYt8McodlLqHe4rYj1xwXIh3dwL7d5dP2a47D69tnzjzBjxRqbyL4qtqPcLy6LsSPLTz8/
- YOabKmimQamGM4cxDNfekHWNUuwVnDebo84hbzn4arDbH1CmgtyNxmN2OFQxyAhRHpoT37cldfrc6
- Ax/DteamlOzerpb/bK5cMQkwL7vWGfqduGUdI9Ez5lzvt3eBZC1+o7Ayqr6UYOa2Jd5AGGDGAZ45S
- 4D3R2EfQ==;
+ bh=gCUb2KALoHVqEKu8rEH+C8lWt+ULTZIwW5IcTvAPZOE=; b=ATPIX3sYRFhC7WaiE9BzREZuc5
+ cG3sYs1eD725v8winTFEqlUitrKu3d6dcE2QNeb9tLQS/xlmm+Lwc0xkgmGNIgb7JCD4ezErd4DBn
+ 9p9aTwTzEYw6D+be9JrRR3QEczOkzAWwyArehyn1eSvNMr3ISxeuRa3IuGi295j1EfVowQZ2UjQ6Z
+ wd/YxGdW+I/jDCW8g89M+AqOLZGJjGXcpB6wuML4/ZE+SDzzAPZHP5kRGWH+QfxuKxtAkaxPtP+/f
+ DwmcusSufm/WG/k6lNStK4mo9aHpGpQgKtHqEHIsnJOzGYTQzluUkSiXxr4PmmMJafDnLDnRNxnsh
+ i+hp3mvg==;
 Received: from [2001:4bb8:18c:2acc:91df:aae8:fa3b:de9c] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jyUPo-0003jj-5f; Thu, 23 Jul 2020 06:09:12 +0000
+ id 1jyUPp-0003jz-GJ; Thu, 23 Jul 2020 06:09:13 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexei Starovoitov <ast@kernel.org>,
@@ -54,8 +54,8 @@ To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
  Eric Dumazet <edumazet@google.com>
-Date: Thu, 23 Jul 2020 08:08:44 +0200
-Message-Id: <20200723060908.50081-3-hch@lst.de>
+Date: Thu, 23 Jul 2020 08:08:45 +0200
+Message-Id: <20200723060908.50081-4-hch@lst.de>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200723060908.50081-1-hch@lst.de>
 References: <20200723060908.50081-1-hch@lst.de>
@@ -73,8 +73,7 @@ Cc: linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-hams@vger.kernel.org, bpf@vger.kernel.org,
  linux-wpan@vger.kernel.org, linux-afs@lists.infradead.org, mptcp@lists.01.org
-Subject: [Bridge] [PATCH 02/26] net/bpfilter: split
-	__bpfilter_process_sockopt
+Subject: [Bridge] [PATCH 03/26] bpfilter: reject kernel addresses
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,111 +88,30 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Split __bpfilter_process_sockopt into a low-level send request routine and
-the actual setsockopt hook to split the init time ping from the actual
-setsockopt processing.
+The bpfilter user mode helper processes the optval address using
+process_vm_readv.  Don't send it kernel addresses fed under
+set_fs(KERNEL_DS) as that won't work.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- net/bpfilter/bpfilter_kern.c | 51 +++++++++++++++++++-----------------
- 1 file changed, 27 insertions(+), 24 deletions(-)
+ net/bpfilter/bpfilter_kern.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/net/bpfilter/bpfilter_kern.c b/net/bpfilter/bpfilter_kern.c
-index 3bac5820062af1..78d561f2c54da7 100644
+index 78d561f2c54da7..00540457e5f4d3 100644
 --- a/net/bpfilter/bpfilter_kern.c
 +++ b/net/bpfilter/bpfilter_kern.c
-@@ -31,48 +31,51 @@ static void __stop_umh(void)
- 		shutdown_umh();
- }
- 
--static int __bpfilter_process_sockopt(struct sock *sk, int optname,
--				      char __user *optval,
--				      unsigned int optlen, bool is_set)
-+static int bpfilter_send_req(struct mbox_request *req)
- {
--	struct mbox_request req;
- 	struct mbox_reply reply;
- 	loff_t pos;
- 	ssize_t n;
--	int ret = -EFAULT;
- 
--	req.is_set = is_set;
--	req.pid = current->pid;
--	req.cmd = optname;
--	req.addr = (uintptr_t)optval;
--	req.len = optlen;
- 	if (!bpfilter_ops.info.tgid)
--		goto out;
+@@ -70,6 +70,10 @@ static int bpfilter_process_sockopt(struct sock *sk, int optname,
+ 		.addr		= (uintptr_t)optval,
+ 		.len		= optlen,
+ 	};
++	if (uaccess_kernel()) {
++		pr_err("kernel access not supported\n");
 +		return -EFAULT;
- 	pos = 0;
--	n = kernel_write(bpfilter_ops.info.pipe_to_umh, &req, sizeof(req),
-+	n = kernel_write(bpfilter_ops.info.pipe_to_umh, req, sizeof(*req),
- 			   &pos);
--	if (n != sizeof(req)) {
-+	if (n != sizeof(*req)) {
- 		pr_err("write fail %zd\n", n);
--		__stop_umh();
--		ret = -EFAULT;
--		goto out;
-+		goto stop;
- 	}
- 	pos = 0;
- 	n = kernel_read(bpfilter_ops.info.pipe_from_umh, &reply, sizeof(reply),
- 			&pos);
- 	if (n != sizeof(reply)) {
- 		pr_err("read fail %zd\n", n);
--		__stop_umh();
--		ret = -EFAULT;
--		goto out;
-+		goto stop;
- 	}
--	ret = reply.status;
--out:
--	return ret;
-+	return reply.status;
-+stop:
-+	__stop_umh();
-+	return -EFAULT;
-+}
-+
-+static int bpfilter_process_sockopt(struct sock *sk, int optname,
-+				    char __user *optval, unsigned int optlen,
-+				    bool is_set)
-+{
-+	struct mbox_request req = {
-+		.is_set		= is_set,
-+		.pid		= current->pid,
-+		.cmd		= optname,
-+		.addr		= (uintptr_t)optval,
-+		.len		= optlen,
-+	};
-+	return bpfilter_send_req(&req);
++	}
+ 	return bpfilter_send_req(&req);
  }
  
- static int start_umh(void)
- {
-+	struct mbox_request req = { .pid = current->pid };
- 	int err;
- 
- 	/* fork usermode process */
-@@ -82,7 +85,7 @@ static int start_umh(void)
- 	pr_info("Loaded bpfilter_umh pid %d\n", pid_nr(bpfilter_ops.info.tgid));
- 
- 	/* health check that usermode process started correctly */
--	if (__bpfilter_process_sockopt(NULL, 0, NULL, 0, 0) != 0) {
-+	if (bpfilter_send_req(&req) != 0) {
- 		shutdown_umh();
- 		return -EFAULT;
- 	}
-@@ -103,7 +106,7 @@ static int __init load_umh(void)
- 	mutex_lock(&bpfilter_ops.lock);
- 	err = start_umh();
- 	if (!err && IS_ENABLED(CONFIG_INET)) {
--		bpfilter_ops.sockopt = &__bpfilter_process_sockopt;
-+		bpfilter_ops.sockopt = &bpfilter_process_sockopt;
- 		bpfilter_ops.start = &start_umh;
- 	}
- 	mutex_unlock(&bpfilter_ops.lock);
 -- 
 2.27.0
 
