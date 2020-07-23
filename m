@@ -1,52 +1,52 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BA722CD12
-	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:22:25 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9CC22CD69
+	for <lists.bridge@lfdr.de>; Fri, 24 Jul 2020 20:23:59 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 1D51C87388;
-	Fri, 24 Jul 2020 18:22:22 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 8683689200;
+	Fri, 24 Jul 2020 18:22:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 7r0r97sL7rwJ; Fri, 24 Jul 2020 18:22:21 +0000 (UTC)
+	with ESMTP id 72dYDCyCYbSH; Fri, 24 Jul 2020 18:22:53 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7F64E87383;
-	Fri, 24 Jul 2020 18:22:21 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 9A539893B6;
+	Fri, 24 Jul 2020 18:22:23 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4E3EFC0053;
-	Fri, 24 Jul 2020 18:22:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8B322C004C;
+	Fri, 24 Jul 2020 18:22:23 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CF1BAC004C
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:36 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A7F28C004C
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id BA4BD265BC
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:36 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 925E387612
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:44 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uMQwlDc68-SE for <bridge@lists.linux-foundation.org>;
- Thu, 23 Jul 2020 06:09:36 +0000 (UTC)
+ with ESMTP id 06J5FIbhCcQ6 for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Jul 2020 06:09:42 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by silver.osuosl.org (Postfix) with ESMTPS id F386524C10
- for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:35 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id BE4AC875DF
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Jul 2020 06:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=VrJsDbKvFjfbSXAuB6qr8lwEWZVDG/rFKzbYqdXTQsw=; b=BP2oJ8tmQCVBRqYWPgYFfXA/Y8
- +UEX3HDqU2bE68GKhF4gxLgUh3K90E6HXjo3xxAu8f+fTE1u6uOwoflRlGluSprC0/tDh5CECAmXR
- ws4kYNpIyKMNwer1y8FRw1cD5icaCR8dVtbqxbspNg1AiGDVRQVlBv+UUby3a2Y1aglZB+CXzSwEN
- iNRgmgjn4qlBww0328UUAjaiq4EUtqFlaPlQspwfU+5HMPLcPYZNClmMAu25fdwhdHRVemjN0VGSo
- 5YIKCegLfUy/7d148BCjp248Ceg9Vjn8wg07F2omLkNve4wrisyahYpjR+3kjpLRDforAv1Kuolp0
- 9zjpLCpg==;
+ bh=AjKHhDGZLqL4OuQUXI3ghPRn4d0K9eK+41+WmsKDw4s=; b=CNu8wX7/4AaScPiP+yKasX/Nuq
+ 00LHKTXAD3IquBRcEMSnRF8bNgMD1cvHh+U+oC9aYlopzyBcHDT20XOh1UxeZFqfjZgeBbGvE1wB6
+ /V6nQUH0PdaU2g+5JOnd1u9l8C/s6uwbv4KhpIhdxBK8oLO0ZwY+sqyTh4ne0vagAIgh4N5VQBGx0
+ JHE6q8bbDMTkx2eOaxshkvfo9rjtP0ncEN/z4VwN6Hb6/0xYri2cf1nNOzgptOsfvtMuA7wmNkOac
+ QLJGCjm4BB8DbTIK1mpqQYiSCZNmMlsC+Vd1KrBSfphtSKPM32mRgHArgFrIC0MlfCF8txHO3F2DP
+ u7/I0W5g==;
 Received: from [2001:4bb8:18c:2acc:91df:aae8:fa3b:de9c] (helo=localhost)
  by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jyUPx-0003l6-Tv; Thu, 23 Jul 2020 06:09:22 +0000
+ id 1jyUPz-0003lF-6z; Thu, 23 Jul 2020 06:09:23 +0000
 From: Christoph Hellwig <hch@lst.de>
 To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexei Starovoitov <ast@kernel.org>,
@@ -54,8 +54,8 @@ To: "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
  Eric Dumazet <edumazet@google.com>
-Date: Thu, 23 Jul 2020 08:08:51 +0200
-Message-Id: <20200723060908.50081-10-hch@lst.de>
+Date: Thu, 23 Jul 2020 08:08:52 +0200
+Message-Id: <20200723060908.50081-11-hch@lst.de>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20200723060908.50081-1-hch@lst.de>
 References: <20200723060908.50081-1-hch@lst.de>
@@ -73,8 +73,8 @@ Cc: linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-hams@vger.kernel.org, bpf@vger.kernel.org,
  linux-wpan@vger.kernel.org, linux-afs@lists.infradead.org, mptcp@lists.01.org
-Subject: [Bridge] [PATCH 09/26] net/xfrm: switch xfrm_user_policy to
-	sockptr_t
+Subject: [Bridge] [PATCH 10/26] netfilter: remove the unused user argument
+	to do_update_counters
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,103 +89,45 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Pass a sockptr_t to prepare for set_fs-less handling of the kernel
-pointer from bpf-cgroup.
-
 Signed-off-by: Christoph Hellwig <hch@lst.de>
 ---
- include/net/xfrm.h       | 8 +++++---
- net/ipv4/ip_sockglue.c   | 3 ++-
- net/ipv6/ipv6_sockglue.c | 3 ++-
- net/xfrm/xfrm_state.c    | 6 +++---
- 4 files changed, 12 insertions(+), 8 deletions(-)
+ net/bridge/netfilter/ebtables.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/include/net/xfrm.h b/include/net/xfrm.h
-index f9e1fda82ddfc0..5e81868b574a73 100644
---- a/include/net/xfrm.h
-+++ b/include/net/xfrm.h
-@@ -15,6 +15,7 @@
- #include <linux/audit.h>
- #include <linux/slab.h>
- #include <linux/refcount.h>
-+#include <linux/sockptr.h>
+diff --git a/net/bridge/netfilter/ebtables.c b/net/bridge/netfilter/ebtables.c
+index fe13108af1f542..12f8929667bf43 100644
+--- a/net/bridge/netfilter/ebtables.c
++++ b/net/bridge/netfilter/ebtables.c
+@@ -1242,9 +1242,8 @@ void ebt_unregister_table(struct net *net, struct ebt_table *table,
  
- #include <net/sock.h>
- #include <net/dst.h>
-@@ -1609,10 +1610,11 @@ int xfrm6_find_1stfragopt(struct xfrm_state *x, struct sk_buff *skb,
- void xfrm6_local_rxpmtu(struct sk_buff *skb, u32 mtu);
- int xfrm4_udp_encap_rcv(struct sock *sk, struct sk_buff *skb);
- int xfrm6_udp_encap_rcv(struct sock *sk, struct sk_buff *skb);
--int xfrm_user_policy(struct sock *sk, int optname,
--		     u8 __user *optval, int optlen);
-+int xfrm_user_policy(struct sock *sk, int optname, sockptr_t optval,
-+		     int optlen);
- #else
--static inline int xfrm_user_policy(struct sock *sk, int optname, u8 __user *optval, int optlen)
-+static inline int xfrm_user_policy(struct sock *sk, int optname,
-+				   sockptr_t optval, int optlen)
+ /* userspace just supplied us with counters */
+ static int do_update_counters(struct net *net, const char *name,
+-				struct ebt_counter __user *counters,
+-				unsigned int num_counters,
+-				const void __user *user, unsigned int len)
++			      struct ebt_counter __user *counters,
++			      unsigned int num_counters, unsigned int len)
  {
-  	return -ENOPROTOOPT;
- }
-diff --git a/net/ipv4/ip_sockglue.c b/net/ipv4/ip_sockglue.c
-index a5ea02d7a183eb..da933f99b5d517 100644
---- a/net/ipv4/ip_sockglue.c
-+++ b/net/ipv4/ip_sockglue.c
-@@ -1322,7 +1322,8 @@ static int do_ip_setsockopt(struct sock *sk, int level,
- 		err = -EPERM;
- 		if (!ns_capable(sock_net(sk)->user_ns, CAP_NET_ADMIN))
- 			break;
--		err = xfrm_user_policy(sk, optname, optval, optlen);
-+		err = xfrm_user_policy(sk, optname, USER_SOCKPTR(optval),
-+				       optlen);
- 		break;
+ 	int i, ret;
+ 	struct ebt_counter *tmp;
+@@ -1299,7 +1298,7 @@ static int update_counters(struct net *net, const void __user *user,
+ 		return -EINVAL;
  
- 	case IP_TRANSPARENT:
-diff --git a/net/ipv6/ipv6_sockglue.c b/net/ipv6/ipv6_sockglue.c
-index add8f791229945..56a74707c61741 100644
---- a/net/ipv6/ipv6_sockglue.c
-+++ b/net/ipv6/ipv6_sockglue.c
-@@ -935,7 +935,8 @@ static int do_ipv6_setsockopt(struct sock *sk, int level, int optname,
- 		retv = -EPERM;
- 		if (!ns_capable(net->user_ns, CAP_NET_ADMIN))
- 			break;
--		retv = xfrm_user_policy(sk, optname, optval, optlen);
-+		retv = xfrm_user_policy(sk, optname, USER_SOCKPTR(optval),
-+					optlen);
- 		break;
- 
- 	case IPV6_ADDR_PREFERENCES:
-diff --git a/net/xfrm/xfrm_state.c b/net/xfrm/xfrm_state.c
-index 8be2d926acc21d..69520ad3d83bfb 100644
---- a/net/xfrm/xfrm_state.c
-+++ b/net/xfrm/xfrm_state.c
-@@ -2264,7 +2264,7 @@ static bool km_is_alive(const struct km_event *c)
- 	return is_alive;
+ 	return do_update_counters(net, hlp.name, hlp.counters,
+-				hlp.num_counters, user, len);
++				  hlp.num_counters, len);
  }
  
--int xfrm_user_policy(struct sock *sk, int optname, u8 __user *optval, int optlen)
-+int xfrm_user_policy(struct sock *sk, int optname, sockptr_t optval, int optlen)
- {
- 	int err;
- 	u8 *data;
-@@ -2274,7 +2274,7 @@ int xfrm_user_policy(struct sock *sk, int optname, u8 __user *optval, int optlen
- 	if (in_compat_syscall())
- 		return -EOPNOTSUPP;
+ static inline int ebt_obj_to_user(char __user *um, const char *_name,
+@@ -2231,7 +2230,7 @@ static int compat_update_counters(struct net *net, void __user *user,
+ 		return update_counters(net, user, len);
  
--	if (!optval && !optlen) {
-+	if (sockptr_is_null(optval) && !optlen) {
- 		xfrm_sk_policy_insert(sk, XFRM_POLICY_IN, NULL);
- 		xfrm_sk_policy_insert(sk, XFRM_POLICY_OUT, NULL);
- 		__sk_dst_reset(sk);
-@@ -2284,7 +2284,7 @@ int xfrm_user_policy(struct sock *sk, int optname, u8 __user *optval, int optlen
- 	if (optlen <= 0 || optlen > PAGE_SIZE)
- 		return -EMSGSIZE;
+ 	return do_update_counters(net, hlp.name, compat_ptr(hlp.counters),
+-					hlp.num_counters, user, len);
++				  hlp.num_counters, len);
+ }
  
--	data = memdup_user(optval, optlen);
-+	data = memdup_sockptr(optval, optlen);
- 	if (IS_ERR(data))
- 		return PTR_ERR(data);
- 
+ static int compat_do_ebt_get_ctl(struct sock *sk, int cmd,
 -- 
 2.27.0
 
