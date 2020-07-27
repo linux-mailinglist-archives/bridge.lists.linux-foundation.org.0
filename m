@@ -1,52 +1,51 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5142B22F478
-	for <lists.bridge@lfdr.de>; Mon, 27 Jul 2020 18:16:08 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7EC022F480
+	for <lists.bridge@lfdr.de>; Mon, 27 Jul 2020 18:16:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 7144E88281;
-	Mon, 27 Jul 2020 16:16:06 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 9782E8626D;
+	Mon, 27 Jul 2020 16:16:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Rq6hsPzkYfiG; Mon, 27 Jul 2020 16:16:04 +0000 (UTC)
+	with ESMTP id MRs8xhpmmE6O; Mon, 27 Jul 2020 16:16:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 555C38826E;
-	Mon, 27 Jul 2020 16:16:04 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 985EA86265;
+	Mon, 27 Jul 2020 16:16:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2D843C004D;
-	Mon, 27 Jul 2020 16:16:04 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7CC35C004D;
+	Mon, 27 Jul 2020 16:16:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 65FC8C004D
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 16:16:02 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 371D2C004D
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 16:16:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 54C078626D
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 16:16:02 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 266848626D
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 16:16:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PSaApkehiM9b for <bridge@lists.linux-foundation.org>;
- Mon, 27 Jul 2020 16:16:00 +0000 (UTC)
+ with ESMTP id brC6acByPMyD for <bridge@lists.linux-foundation.org>;
+ Mon, 27 Jul 2020 16:16:18 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 424E286265
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 16:16:00 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id E51C886265
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 16:16:17 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 4880068B05; Mon, 27 Jul 2020 18:15:55 +0200 (CEST)
-Date: Mon, 27 Jul 2020 18:15:55 +0200
+ id 3EEBF68C4E; Mon, 27 Jul 2020 18:16:15 +0200 (CEST)
+Date: Mon, 27 Jul 2020 18:16:15 +0200
 From: Christoph Hellwig <hch@lst.de>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <20200727161555.GA7817@lst.de>
+To: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Message-ID: <20200727161615.GB7817@lst.de>
 References: <20200723060908.50081-1-hch@lst.de>
- <20200723060908.50081-20-hch@lst.de> <20200727121505.GA1804864@shredder>
- <20200727130029.GA26393@lst.de> <20200727133331.GA1851348@shredder>
+ <20200723060908.50081-13-hch@lst.de> <20200727150310.GA1632472@zx2c4.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200727133331.GA1851348@shredder>
+In-Reply-To: <20200727150310.GA1632472@zx2c4.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 Cc: Alexei Starovoitov <ast@kernel.org>, linux-sctp@vger.kernel.org,
  Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org,
@@ -63,7 +62,7 @@ Cc: Alexei Starovoitov <ast@kernel.org>, linux-sctp@vger.kernel.org,
  linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, bpf@vger.kernel.org, linux-wpan@vger.kernel.org,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH 19/26] net/ipv6: switch ipv6_flowlabel_opt to
+Subject: Re: [Bridge] [PATCH 12/26] netfilter: switch nf_setsockopt to
 	sockptr_t
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -79,10 +78,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-I have to admit I didn't spot the difference between the good and the
-bad output even after trying hard..
-
-But can you try the patch below?
+Can you try the patch below?
 
 ---
 From cce2d2e1b43ecee5f4af7cf116808b74b330080f Mon Sep 17 00:00:00 2001
