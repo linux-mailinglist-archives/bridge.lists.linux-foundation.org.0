@@ -1,99 +1,103 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5156622F7C1
-	for <lists.bridge@lfdr.de>; Mon, 27 Jul 2020 20:31:21 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id A642A2304E8
+	for <lists.bridge@lfdr.de>; Tue, 28 Jul 2020 10:07:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 6BDB98648C;
-	Mon, 27 Jul 2020 18:31:19 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 1ACB688076;
+	Tue, 28 Jul 2020 08:07:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TJu0B-mDtE8e; Mon, 27 Jul 2020 18:31:18 +0000 (UTC)
+	with ESMTP id GjyHlYjdLUNJ; Tue, 28 Jul 2020 08:07:21 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id E210C86463;
-	Mon, 27 Jul 2020 18:31:18 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id F4129881A0;
+	Tue, 28 Jul 2020 08:07:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C2D9FC004D;
-	Mon, 27 Jul 2020 18:31:18 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D896EC004D;
+	Tue, 28 Jul 2020 08:07:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C0551C004D
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 18:31:16 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AAD17C004D
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 08:07:18 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 9DDA521514
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 18:31:16 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 97C1222DD3
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 08:07:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id N4t41crzkyZ1 for <bridge@lists.linux-foundation.org>;
- Mon, 27 Jul 2020 18:31:15 +0000 (UTC)
-X-Greylist: delayed 00:08:08 by SQLgrey-1.7.6
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by silver.osuosl.org (Postfix) with ESMTPS id C41DF2039B
- for <bridge@lists.linux-foundation.org>; Mon, 27 Jul 2020 18:31:15 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id D24DDE02;
- Mon, 27 Jul 2020 14:23:04 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Mon, 27 Jul 2020 14:23:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Afhna7
- 9fjG2N/ESpGlT1yod24pbovs9kG7jTtRp8uec=; b=pxd6lnhAQY6lq36Rw0t2Wr
- FNTj7Aqv7utLvfCSPVSKK7zYkP/Oi6k9NUUf7rFRtAgNJ4ISpkANzMes5KPdO5xP
- uQhBAs0exKeEZWKHlguK1wyxAhd7/2StnncNBaDA+r1X7J3jOA/5IUqtqukcS8Zy
- 6b1F7WsC7K7Gxls+h+LpTkFCZf/cBDkEzEii5uRHhbH0he4RqOm0VhtaaNhJ0ONh
- sA1OegTDCQaheFhFJspfeBf1dkuokHpdFLa9JDtSfErlJ23gF/vUAREvveiVNSbI
- s2U0p/YcHBpouuo2EToObgfipcm60uYWCoTDshKh/Ld62ZeuhBlR0923rp/WSgug
- ==
-X-ME-Sender: <xms:hhsfXw256bt5Qvmk7qwJktXsYXMYpGtJEPiP9Uh0o4S3z4J60JG_Ug>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedriedtgdduvdeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefkughoucfu
- tghhihhmmhgvlhcuoehiughoshgthhesihguohhstghhrdhorhhgqeenucggtffrrghtth
- gvrhhnpedtffekkeefudffveegueejffejhfetgfeuuefgvedtieehudeuueekhfduheel
- teenucfkphepjeelrddukedurddvrddujeelnecuvehluhhsthgvrhfuihiivgeptdenuc
- frrghrrghmpehmrghilhhfrhhomhepihguohhstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:hhsfX7GUtyQL-qzWlnNrDA6BRLNqA_sVqs6SkDPZ3OFYz2rLpuLPKA>
- <xmx:hhsfX46tTRqe9_4re0uj3hKI21pc6E5kOG5GBQ_4I2GbhCEFmzhFVQ>
- <xmx:hhsfX53ly2RhKyVXpSc-AP7Py8h3bUEfu3XyInk15A9EOdXPwhk-DQ>
- <xmx:iBsfX7VuEFOpnGbNFKVSKt3rokiDITnfnJBSqLDGQ8efu7Vwr-9kkM4RTJM>
-Received: from localhost (bzq-79-181-2-179.red.bezeqint.net [79.181.2.179])
- by mail.messagingengine.com (Postfix) with ESMTPA id BA5ED328005D;
- Mon, 27 Jul 2020 14:23:01 -0400 (EDT)
-Date: Mon, 27 Jul 2020 21:22:59 +0300
-From: Ido Schimmel <idosch@idosch.org>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <20200727182259.GA1931870@shredder>
+ with ESMTP id 7MkVHHEkhYge for <bridge@lists.linux-foundation.org>;
+ Tue, 28 Jul 2020 08:07:17 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
+ by silver.osuosl.org (Postfix) with ESMTPS id 05EE222008
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 08:07:16 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-122-o5x9Q9SyNzqkeSG6S-qBgw-1; Tue, 28 Jul 2020 09:07:12 +0100
+X-MC-Unique: o5x9Q9SyNzqkeSG6S-qBgw-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Tue, 28 Jul 2020 09:07:11 +0100
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Tue, 28 Jul 2020 09:07:11 +0100
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Christoph Hellwig' <hch@lst.de>, "Jason A. Donenfeld" <Jason@zx2c4.com>
+Thread-Topic: [PATCH 12/26] netfilter: switch nf_setsockopt to sockptr_t
+Thread-Index: AQHWZDJbUYsuJ1QOc0ujZBN9RDfEqKkcofVA
+Date: Tue, 28 Jul 2020 08:07:11 +0000
+Message-ID: <908ed73081cc42d58a5b01e0c97dbe47@AcuMS.aculab.com>
 References: <20200723060908.50081-1-hch@lst.de>
- <20200723060908.50081-20-hch@lst.de>
- <20200727121505.GA1804864@shredder> <20200727130029.GA26393@lst.de>
- <20200727133331.GA1851348@shredder> <20200727161555.GA7817@lst.de>
+ <20200723060908.50081-13-hch@lst.de> <20200727150310.GA1632472@zx2c4.com>
+ <20200727150601.GA3447@lst.de>
+ <CAHmME9ric=chLJayn7Erve7WBa+qCKn-+Gjri=zqydoY6623aA@mail.gmail.com>
+ <20200727162357.GA8022@lst.de>
+In-Reply-To: <20200727162357.GA8022@lst.de>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200727161555.GA7817@lst.de>
-Cc: Alexei Starovoitov <ast@kernel.org>, linux-sctp@vger.kernel.org,
- linux-afs@lists.infradead.org, linux-s390@vger.kernel.org,
- rds-devel@oss.oracle.com, Daniel Borkmann <daniel@iogearbox.net>,
- dccp@vger.kernel.org, bridge@lists.linux-foundation.org,
- lvs-devel@vger.kernel.org, coreteam@netfilter.org, mptcp@lists.01.org,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, linux-can@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, linux-hams@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, linux-x25@vger.kernel.org,
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Cc: Kernel Hardening <kernel-hardening@lists.openwall.com>,
+ Alexei Starovoitov <ast@kernel.org>,
+ "linux-sctp@vger.kernel.org" <linux-sctp@vger.kernel.org>,
+ "linux-afs@lists.infradead.org" <linux-afs@lists.infradead.org>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "rds-devel@oss.oracle.com" <rds-devel@oss.oracle.com>,
+ Daniel Borkmann <daniel@iogearbox.net>,
+ "dccp@vger.kernel.org" <dccp@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "lvs-devel@vger.kernel.org" <lvs-devel@vger.kernel.org>,
+ "coreteam@netfilter.org" <coreteam@netfilter.org>,
+ "mptcp@lists.01.org" <mptcp@lists.01.org>,
+ Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
+ "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>,
+ "linux-hams@vger.kernel.org" <linux-hams@vger.kernel.org>,
+ "tipc-discussion@lists.sourceforge.net"
+ <tipc-discussion@lists.sourceforge.net>,
+ "linux-x25@vger.kernel.org" <linux-x25@vger.kernel.org>,
  Eric Dumazet <edumazet@google.com>,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, netdev@vger.kernel.org,
- linux-decnet-user@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
- linux-crypto@vger.kernel.org, bpf@vger.kernel.org, linux-wpan@vger.kernel.org,
+ Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Netdev <netdev@vger.kernel.org>,
+ "linux-decnet-user@lists.sourceforge.net"
+ <linux-decnet-user@lists.sourceforge.net>, LKML <linux-kernel@vger.kernel.org>,
+ "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+ "netfilter-devel@vger.kernel.org" <netfilter-devel@vger.kernel.org>,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
+ "linux-wpan@vger.kernel.org" <linux-wpan@vger.kernel.org>,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH 19/26] net/ipv6: switch ipv6_flowlabel_opt to
+Subject: Re: [Bridge] [PATCH 12/26] netfilter: switch nf_setsockopt to
 	sockptr_t
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -109,26 +113,32 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jul 27, 2020 at 06:15:55PM +0200, Christoph Hellwig wrote:
-> I have to admit I didn't spot the difference between the good and the
-> bad output even after trying hard..
-> 
-> But can you try the patch below?
-> 
-> ---
-> From cce2d2e1b43ecee5f4af7cf116808b74b330080f Mon Sep 17 00:00:00 2001
-> From: Christoph Hellwig <hch@lst.de>
-> Date: Mon, 27 Jul 2020 17:42:27 +0200
-> Subject: net: remove sockptr_advance
-> 
-> sockptr_advance never properly worked.  Replace it with _offset variants
-> of copy_from_sockptr and copy_to_sockptr.
-> 
-> Fixes: ba423fdaa589 ("net: add a new sockptr_t type")
-> Reported-by: Jason A. Donenfeld <Jason@zx2c4.com>
-> Reported-by: Ido Schimmel <idosch@idosch.org>
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+From: Christoph Hellwig
+> Sent: 27 July 2020 17:24
+>=20
+> On Mon, Jul 27, 2020 at 06:16:32PM +0200, Jason A. Donenfeld wrote:
+> > Maybe sockptr_advance should have some safety checks and sometimes
+> > return -EFAULT? Or you should always use the implementation where
+> > being a kernel address is an explicit bit of sockptr_t, rather than
+> > being implicit?
+>=20
+> I already have a patch to use access_ok to check the whole range in
+> init_user_sockptr.
 
-Tested-by: Ido Schimmel <idosch@mellanox.com>
+That doesn't make (much) difference to the code paths that ignore
+the user-supplied length.
+OTOH doing the user/kernel check on the base address (not an
+incremented one) means that the correct copy function is always
+selected.
 
-Thanks!
+Perhaps the functions should all be passed a 'const sockptr_t'.
+The typedef could be made 'const' - requiring non-const items
+explicitly use the union/struct itself.
+
+=09David
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
+PT, UK
+Registration No: 1397386 (Wales)
+
