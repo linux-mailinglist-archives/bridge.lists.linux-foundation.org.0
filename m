@@ -1,79 +1,78 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284B1234A52
-	for <lists.bridge@lfdr.de>; Fri, 31 Jul 2020 19:38:44 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9EBB234A83
+	for <lists.bridge@lfdr.de>; Fri, 31 Jul 2020 19:51:36 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id BDFA9887B5;
-	Fri, 31 Jul 2020 17:38:41 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 515162377F;
+	Fri, 31 Jul 2020 17:51:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id wPMqOQ42u3PA; Fri, 31 Jul 2020 17:38:41 +0000 (UTC)
+	with ESMTP id ZR2kIu-huYmM; Fri, 31 Jul 2020 17:51:33 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 73D99887B0;
-	Fri, 31 Jul 2020 17:38:41 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id A033A2201C;
+	Fri, 31 Jul 2020 17:51:33 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 56E9BC004D;
-	Fri, 31 Jul 2020 17:38:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 78BBDC0864;
+	Fri, 31 Jul 2020 17:51:33 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 662EDC004D
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:38:39 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 09738C004D
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:51:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 5BE608878B
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:38:39 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id EC46887B2B
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:51:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JQ-Rs2h0Tr5T for <bridge@lists.linux-foundation.org>;
- Fri, 31 Jul 2020 17:38:38 +0000 (UTC)
+ with ESMTP id g0D62vNS2dxr for <bridge@lists.linux-foundation.org>;
+ Fri, 31 Jul 2020 17:51:29 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
- [209.85.208.65])
- by hemlock.osuosl.org (Postfix) with ESMTPS id F19BD88789
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:38:37 +0000 (UTC)
-Received: by mail-ed1-f65.google.com with SMTP id n2so22893229edr.5
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 10:38:37 -0700 (PDT)
+Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
+ [209.85.208.68])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id F178887918
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:51:28 +0000 (UTC)
+Received: by mail-ed1-f68.google.com with SMTP id o10so13227643edh.6
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 10:51:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
  h=subject:from:to:cc:references:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=EVbdnM3VWE8j0IwvbJMEc4diNGnNb/B1uyEmvQtSeCE=;
- b=Hnj4coJ1kihuonOox3v5ubtJyIKCGYcpnUSMN34Prm+Zx/o6YUVk+HXGTaTaU1h2Bf
- 0FyLpWhWQWOxGp3ML7sD1vIHO1ELDM8iC2r07cSKN+NZSQKUrbATt1QiNhbeegDW6eiT
- Ltbc/MskAF960te2RlFIxEnLrVoWRx2mYvaOk=
+ bh=6vpglymf7RZEUEiG4RD7M2kj01Hx6dnOmn6sHKExOCE=;
+ b=Fx4nuKm+HCsA2lOlyRmagx4942dMIaJA4RwSCJ8TSnPYEV1b7b+yU13MDO7NsLWcbO
+ 8ic5yHzO9Qeq7rAMyjW2kOO04tD+8GN2B3mNsBEKYrUFaI+9kpozJXESAUxPBOQ6He/A
+ 17apuv/dj4BiOpAZ16vVzo8NarMR10kiXxzFc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:from:to:cc:references:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=EVbdnM3VWE8j0IwvbJMEc4diNGnNb/B1uyEmvQtSeCE=;
- b=KJIgssBNlSDndwTchNv/Iej9LszTJy4jIBTbGnvcybDhaDzOFstOl6Zbb+XtaED2a/
- cZQZ0v+w6Rvf3YMZvLWF44kmYDfgigCSp59fvT6Qx6u8od5nu0TJ4TxI3/nWBqdhvuDm
- T8brQmDKQCiUa4MT36el3bR9rdCoWL5P34y85siIshgYQBhJO/az6/UDAkQm1J7f/DJS
- +jZYZMWaMUJAsFTnpDKG/fdzEvFXbFDvlJCp+f0cahsp09R4DQ0lh4eVwmvAElr6PinU
- w9mD1xyaOHzwlF4GGfstRpq7MIseAxs31/3QIDokAygme1PVDsBVigAKIZsaI6rSptBC
- s4EA==
-X-Gm-Message-State: AOAM531encU91vfzBsAjVZcNxEs6+s42L+nixvcxH0QYXXMz4bjZvjyu
- WMcNPfqi9C87DQ3EexGVXw7XTQ==
-X-Google-Smtp-Source: ABdhPJwwuic0MpECXVNB43X574zTf0G/mNEH5QgAY73b/KLLLetJSS6eMhzJRtnO+Dg/UZ3756Bd0A==
-X-Received: by 2002:a05:6402:12d0:: with SMTP id
- k16mr5013989edx.199.1596217116339; 
- Fri, 31 Jul 2020 10:38:36 -0700 (PDT)
+ bh=6vpglymf7RZEUEiG4RD7M2kj01Hx6dnOmn6sHKExOCE=;
+ b=r6sY7sUgMwobTg48x+SXdDcDp8SM6eaWALF9T89N058rTCyHVG3cB/E6OYorn43aeb
+ LyD7VRYHBEoMWBPKCnN3wh0LLAmqultsivzTDy6kAE55jol8crT7o+0BMfNdVLPE65+/
+ BGBgXUgP2nbNugjO78S2oBFTo6eSDoU7KYdbQiyweiQbBR5Yhcutk+qRxW7s8pdrPNl/
+ /kD1cmPVFFG7Sq9M9TD8iWcCI0Xo0qhFNbHOKJ7njt3MDcMwcPt2QBvchjNMzP6VRjX9
+ 95ifCJb/i7qwyQINfR73GkvAH+CoqQxhjouBWU3I9LbKS/xpATA5ABBg8MPGoFjCajIZ
+ HriA==
+X-Gm-Message-State: AOAM533lRenhYOjTp5u/y6+hpvLcoppS2Z2TOBkdARQufmSWp9/3qHQJ
+ hsyYJYETqddwRfre4QW4zjq8pQ==
+X-Google-Smtp-Source: ABdhPJyoTKCXqyvqcjbGIteUeTNk0NV2vPGXysE+SXgPbMEh9TeBm3XA0kgDFirpgYcElBHX0gbcYg==
+X-Received: by 2002:a50:f10c:: with SMTP id w12mr5033995edl.202.1596217887487; 
+ Fri, 31 Jul 2020 10:51:27 -0700 (PDT)
 Received: from [192.168.0.109] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id br25sm9740551ejb.25.2020.07.31.10.38.33
+ by smtp.gmail.com with ESMTPSA id i15sm2118797edu.54.2020.07.31.10.51.26
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 31 Jul 2020 10:38:33 -0700 (PDT)
+ Fri, 31 Jul 2020 10:51:26 -0700 (PDT)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 To: David Ahern <dsahern@gmail.com>, netdev@vger.kernel.org
 References: <20200731162616.345380-1-nikolay@cumulusnetworks.com>
  <07823615-29a8-9553-d56b-1beef55a07bc@gmail.com>
  <181931fb-dc60-7db6-60ac-b8ff1402efec@cumulusnetworks.com>
-Message-ID: <968147d8-616d-364f-cf03-55bb7b08a518@cumulusnetworks.com>
-Date: Fri, 31 Jul 2020 20:38:33 +0300
+Message-ID: <2bdc90a2-834f-941d-fea7-04e3c8924f7b@cumulusnetworks.com>
+Date: Fri, 31 Jul 2020 20:51:25 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
@@ -139,14 +138,17 @@ On 31/07/2020 20:37, Nikolay Aleksandrov wrote:
 > 
 > Virtually non-existent, we had a patch that turned that field into a 16 byte
 > field so that is really 2 8 byte stores. It is already cache hot, we could
-
-err, s/field/struct/
-
 > initialize each individual field separately as br_input does.
 > 
 > I don't want to waste flags on such thing, this makes it future-proof 
 > and I'll remove the individual field zeroing later which will alleviate
 > the cost further.
 > 
-> 
+
+Also note that we already do this on input for each packet since the
+struct was reduced to 16 bytes. It's the safest way since every different
+sub-part of the bridge uses some set of these private variables and
+we've had many similar bugs where they were used stale or unintentionally
+were not initialized for some path.
+
 
