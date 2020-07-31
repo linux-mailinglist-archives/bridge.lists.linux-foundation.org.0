@@ -1,77 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A70241202
-	for <lists.bridge@lfdr.de>; Mon, 10 Aug 2020 23:05:33 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD04724120C
+	for <lists.bridge@lfdr.de>; Mon, 10 Aug 2020 23:05:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 3151687D60;
-	Mon, 10 Aug 2020 21:05:29 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 58F2387897;
+	Mon, 10 Aug 2020 21:05:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 07Z-BUwn-yVW; Mon, 10 Aug 2020 21:05:27 +0000 (UTC)
+	with ESMTP id LZlZLHWd44Sc; Mon, 10 Aug 2020 21:05:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 7BF8687D75;
+	by whitealder.osuosl.org (Postfix) with ESMTP id B417787896;
 	Mon, 10 Aug 2020 21:05:27 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 550B8C0891;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A114AC004D;
 	Mon, 10 Aug 2020 21:05:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0A4DAC004D
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 11:57:37 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B669CC004D
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:48:30 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id E366186925
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 11:57:36 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 9D71520336
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:48:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id TAZQqmqdAMkv for <bridge@lists.linux-foundation.org>;
- Fri, 31 Jul 2020 11:57:35 +0000 (UTC)
+ with ESMTP id Azn4cH61Fwd1 for <bridge@lists.linux-foundation.org>;
+ Fri, 31 Jul 2020 17:48:29 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 7E222868C4
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 11:57:35 +0000 (UTC)
-IronPort-SDR: /ciFPDdHNj7CPMWG1jQtzKMQboWj8dEYUaXG0+SexdfEw32lvifOL7IBy0owPZw5nbi7ksBxWp
- VdZR1IJyWYEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9698"; a="150960445"
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="150960445"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2020 04:57:35 -0700
-IronPort-SDR: UV5QW84xK48nz9lwg8jlfgUhOqpgtAmFGH6RZt4+t7VUGSTXVddFB3X2WbiBEi6dQ1GAhukv6/
- ke6SHS4Qe82g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.75,418,1589266800"; d="scan'208";a="304922209"
-Received: from ranger.igk.intel.com ([10.102.21.164])
- by orsmga002.jf.intel.com with ESMTP; 31 Jul 2020 04:57:30 -0700
-Date: Fri, 31 Jul 2020 13:52:25 +0200
-From: Maciej Fijalkowski <maciej.fijalkowski@intel.com>
-To: Yoshiki Komachi <komachi.yoshiki@gmail.com>
-Message-ID: <20200731115225.GA5097@ranger.igk.intel.com>
-References: <1596170660-5582-1-git-send-email-komachi.yoshiki@gmail.com>
- <1596170660-5582-3-git-send-email-komachi.yoshiki@gmail.com>
+Received: from mail-yb1-f194.google.com (mail-yb1-f194.google.com
+ [209.85.219.194])
+ by silver.osuosl.org (Postfix) with ESMTPS id 8C44B20117
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:48:29 +0000 (UTC)
+Received: by mail-yb1-f194.google.com with SMTP id q16so14424171ybk.6
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 10:48:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7yuTOXkhnjtQaEm9idGZaO/zfXegMB7ywvDDyNQyj/I=;
+ b=Ia2KG8Dg+BQsHF7ZvXuqhVIIBXIEfPHODcfnL2p5ZboFoSn9gTATt5RC0apvua39Hk
+ HdaIBqspB9J4V0exyzKhHQoo5hJcRMKO3jb99ftPqkLACSyTaBO+vU3hGwvRVG0Mkg3O
+ XNcFh05JPS/txkOomOZQ0DqaK6erwgFsy2e5T1w2p562foq96lFZPfZ9oPSgHasLEuaS
+ wAJLELm7a5mQXCzR4L68bqSRsxxXFcnI8mDwBw+9vth3cnfOu27NHeT8vn775fzCw3ku
+ VajG0UgaXUiv0ntVgRB656n01g3b6EkUexByh7gvYQ6yz6rSP48rqTABWFwTKrPk0fBg
+ waoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7yuTOXkhnjtQaEm9idGZaO/zfXegMB7ywvDDyNQyj/I=;
+ b=hyNS4pkTedEv1NJFUc/06O8S58g1jIzE1C7/UyYt/QrFEPYzkYH4EG42rbanRmTy5h
+ EfDPMX+puM9O6kQlNJdXBmeGlLkIgIZCJVRZ9ni98kY4rhTqhYdwlS6NfDZeEK4wB4iI
+ ODeqS+uIHGl2WeluDmm6Gms6lSV8PRoF+lrZg2TsVHxQIMdujuew4F02jClsBRFK4YTW
+ bBd65TXUN3T5eDe7KZhVgzSlzlT53OobbozsG6GXa80imJqT1vhGaPSlhdEkUilTnQNE
+ 4Kug5TeZa6mXzPPvgHUdT9aAbF4xpyYE3/wTJgOktTU1Hz7ZXCchDjxWGwQJOSN89anX
+ 2kAQ==
+X-Gm-Message-State: AOAM5333RODjF2dUyX3mWsuo0pT2++quEhibOnb5yTYFP1lFGqDN1ZeG
+ 7gH4uWzZ4BUa6cbskF6dKeeeFrXUGMDa3KoRFPU=
+X-Google-Smtp-Source: ABdhPJxIKeLVgVoTxPWDwUwBAi6m9zUbpLSULVkwM/J75oOYyUrhoQQj2Ky9cRsM5qWbNAOu69NDamEetiIgIjzJLpo=
+X-Received: by 2002:a25:d84a:: with SMTP id p71mr8363157ybg.347.1596217708673; 
+ Fri, 31 Jul 2020 10:48:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1596170660-5582-3-git-send-email-komachi.yoshiki@gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <1596170660-5582-1-git-send-email-komachi.yoshiki@gmail.com>
+ <1596170660-5582-4-git-send-email-komachi.yoshiki@gmail.com>
+In-Reply-To: <1596170660-5582-4-git-send-email-komachi.yoshiki@gmail.com>
+From: Andrii Nakryiko <andrii.nakryiko@gmail.com>
+Date: Fri, 31 Jul 2020 10:48:18 -0700
+Message-ID: <CAEf4BzaRKhJqFmXJEQy5LOjKx9nkPgAKHa3cesvywy2qqg93YA@mail.gmail.com>
+To: Yoshiki Komachi <komachi.yoshiki@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 10 Aug 2020 21:05:23 +0000
 Cc: Song Liu <songliubraving@fb.com>, Jesper Dangaard Brouer <hawk@kernel.org>,
  Daniel Borkmann <daniel@iogearbox.net>,
- Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
- Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
- John Fastabend <john.fastabend@gmail.com>, Alexei Starovoitov <ast@kernel.org>,
- Martin KaFai Lau <kafai@fb.com>, David Ahern <dsahern@kernel.org>,
- Yonghong Song <yhs@fb.com>, KP Singh <kpsingh@chromium.org>,
- Jakub Kicinski <kuba@kernel.org>, bpf@vger.kernel.org,
- Andrii Nakryiko <andriin@fb.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [RFC PATCH bpf-next 2/3] bpf: Add helper to do
- forwarding lookups in kernel FDB table
+ Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ Networking <netdev@vger.kernel.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org, John Fastabend <john.fastabend@gmail.com>,
+ Alexei Starovoitov <ast@kernel.org>, Martin KaFai Lau <kafai@fb.com>,
+ David Ahern <dsahern@kernel.org>, Yonghong Song <yhs@fb.com>,
+ KP Singh <kpsingh@chromium.org>, Jakub Kicinski <kuba@kernel.org>,
+ bpf <bpf@vger.kernel.org>, Andrii Nakryiko <andriin@fb.com>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [RFC PATCH bpf-next 3/3] samples/bpf: Add a simple
+ bridge example accelerated with XDP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -86,75 +98,48 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Jul 31, 2020 at 01:44:19PM +0900, Yoshiki Komachi wrote:
-> This patch adds a new bpf helper to access FDB in the kernel tables
-> from XDP programs. The helper enables us to find the destination port
-> of master bridge in XDP layer with high speed. If an entry in the
-> tables is successfully found, egress device index will be returned.
-> 
-> In cases of failure, packets will be dropped or forwarded to upper
-> networking stack in the kernel by XDP programs. Multicast and broadcast
-> packets are currently not supported. Thus, these will need to be
-> passed to upper layer on the basis of XDP_PASS action.
-> 
-> The API uses destination MAC and VLAN ID as keys, so XDP programs
-> need to extract these from forwarded packets.
-> 
+On Thu, Jul 30, 2020 at 9:45 PM Yoshiki Komachi
+<komachi.yoshiki@gmail.com> wrote:
+>
+> This patch adds a simple example of XDP-based bridge with the new
+> bpf_fdb_lookup helper. This program simply forwards packets based
+> on the destination port given by FDB in the kernel. Note that both
+> vlan filtering and learning features are currently unsupported in
+> this example.
+>
+> There is another plan to recreate a userspace application
+> (xdp_bridge_user.c) as a daemon process, which helps to automate
+> not only detection of status changes in bridge port but also
+> handling vlan protocol updates.
+>
+> Note: David Ahern suggested a new bpf helper [1] to get master
+> vlan/bonding devices in XDP programs attached to their slaves
+> when the master vlan/bonding devices are bridge ports. If this
+> idea is accepted and the helper is introduced in the future, we
+> can handle interfaces slaved to vlan/bonding devices in this
+> sample by calling the suggested bpf helper (I guess it can get
+> vlan/bonding ifindex from their slave ifindex). Notice that we
+> don't need to change bpf_fdb_lookup() API to use such a feature,
+> but we just need to modify bpf programs like this sample.
+>
+> [1]: http://vger.kernel.org/lpc-networking2018.html#session-1
+>
 > Signed-off-by: Yoshiki Komachi <komachi.yoshiki@gmail.com>
 > ---
->  include/uapi/linux/bpf.h       | 28 +++++++++++++++++++++
->  net/core/filter.c              | 45 ++++++++++++++++++++++++++++++++++
->  scripts/bpf_helpers_doc.py     |  1 +
->  tools/include/uapi/linux/bpf.h | 28 +++++++++++++++++++++
->  4 files changed, 102 insertions(+)
-> 
+
+Have you tried using a BPF skeleton for this? It could have saved a
+bunch of mechanical code for your example. Also libbpf supports map
+pinning out of the box now, I wonder if it would just work in your
+case. Also it would be nice if you tried using BPF link-based approach
+for this example, to show how it can be used. Thanks!
+
+
+>  samples/bpf/Makefile          |   3 +
+>  samples/bpf/xdp_bridge_kern.c | 129 ++++++++++++++++++
+>  samples/bpf/xdp_bridge_user.c | 239 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 371 insertions(+)
+>  create mode 100644 samples/bpf/xdp_bridge_kern.c
+>  create mode 100644 samples/bpf/xdp_bridge_user.c
+>
 
 [...]
-
-> diff --git a/net/core/filter.c b/net/core/filter.c
-> index 654c346b7d91..68800d1b8cd5 100644
-> --- a/net/core/filter.c
-> +++ b/net/core/filter.c
-> @@ -45,6 +45,7 @@
->  #include <linux/filter.h>
->  #include <linux/ratelimit.h>
->  #include <linux/seccomp.h>
-> +#include <linux/if_bridge.h>
->  #include <linux/if_vlan.h>
->  #include <linux/bpf.h>
->  #include <linux/btf.h>
-> @@ -5084,6 +5085,46 @@ static const struct bpf_func_proto bpf_skb_fib_lookup_proto = {
->  	.arg4_type	= ARG_ANYTHING,
->  };
->  
-> +#if IS_ENABLED(CONFIG_BRIDGE)
-> +BPF_CALL_4(bpf_xdp_fdb_lookup, struct xdp_buff *, ctx,
-> +	   struct bpf_fdb_lookup *, params, int, plen, u32, flags)
-> +{
-> +	struct net_device *src, *dst;
-> +	struct net *net;
-> +
-> +	if (plen < sizeof(*params))
-> +		return -EINVAL;
-> +
-> +	net = dev_net(ctx->rxq->dev);
-> +
-> +	if (is_multicast_ether_addr(params->addr) ||
-> +	    is_broadcast_ether_addr(params->addr))
-> +		return BPF_FDB_LKUP_RET_NOENT;
-
-small nit: you could move that validation before dev_net() call.
-
-> +
-> +	src = dev_get_by_index_rcu(net, params->ifindex);
-> +	if (unlikely(!src))
-> +		return -ENODEV;
-> +
-> +	dst = br_fdb_find_port_xdp(src, params->addr, params->vlan_id);
-> +	if (dst) {
-> +		params->ifindex = dst->ifindex;
-> +		return BPF_FDB_LKUP_RET_SUCCESS;
-> +	}
-> +
-> +	return BPF_FDB_LKUP_RET_NOENT;
-> +}
