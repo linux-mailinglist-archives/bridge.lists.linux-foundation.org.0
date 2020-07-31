@@ -2,109 +2,95 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07389241207
+	by mail.lfdr.de (Postfix) with ESMTPS id D30C3241208
 	for <lists.bridge@lfdr.de>; Mon, 10 Aug 2020 23:05:37 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 99049877FA;
-	Mon, 10 Aug 2020 21:05:34 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id ADD058795E;
+	Mon, 10 Aug 2020 21:05:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id qEcMiJLEYOL9; Mon, 10 Aug 2020 21:05:29 +0000 (UTC)
+	with ESMTP id 6-dtFXEvfI1B; Mon, 10 Aug 2020 21:05:33 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 2AD978783B;
+	by whitealder.osuosl.org (Postfix) with ESMTP id 796EF87856;
 	Mon, 10 Aug 2020 21:05:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 15B4BC013C;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5912DC013C;
 	Mon, 10 Aug 2020 21:05:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C0AE7C004D
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 08:17:45 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2BA77C004D
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 04:44:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id AE5E585802
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 08:17:45 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 1459788668
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 04:44:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id H24zIMjbMFwa for <bridge@lists.linux-foundation.org>;
- Tue, 28 Jul 2020 08:17:44 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.zx2c4.com (mail.zx2c4.com [192.95.5.64])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 502088575A
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 08:17:44 +0000 (UTC)
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 4bc345be
- for <bridge@lists.linux-foundation.org>;
- Tue, 28 Jul 2020 07:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
- :references:in-reply-to:from:date:message-id:subject:to:cc
- :content-type; s=mail; bh=K4YAt33ilBR3hd1+7JojCPxtvSA=; b=nEjdWp
- cUQVj0KWRd87puFx0fk1HADPVt/5ckkL0vcSiVAoyePGSTncp+KafcroE0itJJAR
- hvCKOHIgNqwby+4I13HG5z9ibnxBmqHfVx+jKtrPfvHTnJrmPNg1WsagEKVyYT8s
- 0wLLBcv/NIyWIJ2xwHqa/F7Ekuot/H5qUld6hDSAXP06OIRI6q+V7cdk8Ye2E95N
- oE2iYHJELOZGqN2H10I58K4qjsUNSGzPFklfgHdPIOfnKUBe2eF7SiuhT2DW4gmx
- Zlh/4Lwi80eH4MYYZz1R0kvQtczs/XnszWGNGZW6geww/y9D6tsJ0FqJg7QkrUqh
- r9lHeJJo9aIu1+DA==
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id d69a1b62
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO)
- for <bridge@lists.linux-foundation.org>;
- Tue, 28 Jul 2020 07:54:16 +0000 (UTC)
-Received: by mail-io1-f48.google.com with SMTP id l1so19833803ioh.5
- for <bridge@lists.linux-foundation.org>; Tue, 28 Jul 2020 01:17:41 -0700 (PDT)
-X-Gm-Message-State: AOAM532Vjmh3mevCKTjNs3sK4u9DwhiaRpRxJ/EWOlSx9lOfBBUkwpDt
- 5QGkexvsDu4uKEIcQkT5G7mgTTdPJjHi7xHUbKo=
-X-Google-Smtp-Source: ABdhPJwruWEMSl6lI3SS18Iq/8cGmq7nVWSaRamLRaM9jzUJiajMF+UBN6XkUtAb0UlYhZIkk+zlhZ92oa7Pvf4Iz8s=
-X-Received: by 2002:a05:6638:250f:: with SMTP id
- v15mr8210865jat.75.1595924260418; 
- Tue, 28 Jul 2020 01:17:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200723060908.50081-1-hch@lst.de>
- <20200723060908.50081-13-hch@lst.de>
- <20200727150310.GA1632472@zx2c4.com> <20200727150601.GA3447@lst.de>
- <CAHmME9ric=chLJayn7Erve7WBa+qCKn-+Gjri=zqydoY6623aA@mail.gmail.com>
- <20200727162357.GA8022@lst.de>
- <908ed73081cc42d58a5b01e0c97dbe47@AcuMS.aculab.com>
-In-Reply-To: <908ed73081cc42d58a5b01e0c97dbe47@AcuMS.aculab.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Tue, 28 Jul 2020 10:17:28 +0200
-X-Gmail-Original-Message-ID: <CAHmME9pUbRmJq1Qcj10eENt15cuQHkiXJNKrUDmmC18n2mLKDA@mail.gmail.com>
-Message-ID: <CAHmME9pUbRmJq1Qcj10eENt15cuQHkiXJNKrUDmmC18n2mLKDA@mail.gmail.com>
-To: David Laight <David.Laight@aculab.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 10 Aug 2020 21:05:23 +0000
-Cc: Kernel Hardening <kernel-hardening@lists.openwall.com>,
+ with ESMTP id OuFxDPtEHsIJ for <bridge@lists.linux-foundation.org>;
+ Fri, 31 Jul 2020 04:44:48 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
+ [209.85.214.193])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 235BB88649
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 04:44:48 +0000 (UTC)
+Received: by mail-pl1-f193.google.com with SMTP id p1so16256239pls.4
+ for <bridge@lists.linux-foundation.org>; Thu, 30 Jul 2020 21:44:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0m2yM6Cpg0UMGl3JBQ2zB0c8Tu//2IzjG9Zoo6ooaqY=;
+ b=hhzBOePGn+ma9oANopuKPFKyVnWTCROJvTFIWKIg+Xqaq5kTw1qad0OqKUKO0yEBSA
+ XZtE3/VK2wQHKXopvsveJfyJMOmkUhUJHZ8rooShHKA3F9ArTAWFBJGQ1DZdI6j5V1Di
+ Vjt9QY7XhAXpFW67bTCgoR+SUQJ/ikmjbsN3pweNd3qEO+Xjm9IFyo9Lwl+63bMKbw3L
+ cSfs4kU+IifQyXiPn0C2XgvPqF2VTmco5iyGcfR8EOWetXpUYze9fuTzsVq1tM9iJNJv
+ Lv+pC9TKLh4/uJkCHXTDyWGmF72NLPsK2Er4s8Kc4+V7wi0WxOPulBF1EYC3O5U/UbxU
+ gjEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0m2yM6Cpg0UMGl3JBQ2zB0c8Tu//2IzjG9Zoo6ooaqY=;
+ b=cOQUP5869eLGmufd75/4y7uQYn73btEySgsxCEBWAq979Kr9M6rxULYKPb6v0n4SPt
+ 3XEFll2194ISfh4dpuG2dW78bBkQ74+bfS9JcAU7W3NzktgU0VaO7Cz5VI5zWK5Z2R6g
+ ncc/mJ8PfhVbSEGCSIfilOfsxuEQ06jo92jUv0jQRyOvgEBhXhA215Shix41h2TKw+RG
+ lp/lGKz01ywUfsdeCQIM5oJwXmqXI3dscHe4Rqu3bm2HCydwH68XeSljmK7ob7fwM7a7
+ YPxCrGjvkV7VK+PWgrLBE1Ak+F8FGv7UrxAL8DRIHkq2XKwMjCO1Cd39u+edIuX1wQNf
+ d5mQ==
+X-Gm-Message-State: AOAM532gs14EPupKDyVv1r66tiiMWnoUtwq+F3/xRx6TK9s74gT3U2/5
+ TMUrBhtXMefEb8YA1641LUY=
+X-Google-Smtp-Source: ABdhPJzn0klKnpGXg9duE13S4iK7KOxGO4DDrmWAptlpFD3w+ps0taZ72vn3pQDp97OPm1/XtgYSQg==
+X-Received: by 2002:a62:2ad6:: with SMTP id q205mr2063865pfq.316.1596170687650; 
+ Thu, 30 Jul 2020 21:44:47 -0700 (PDT)
+Received: from dali.ht.sfc.keio.ac.jp (dali.ht.sfc.keio.ac.jp. [133.27.170.2])
+ by smtp.gmail.com with ESMTPSA id
+ x6sm2329573pfd.53.2020.07.30.21.44.43
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 30 Jul 2020 21:44:47 -0700 (PDT)
+From: Yoshiki Komachi <komachi.yoshiki@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
  Alexei Starovoitov <ast@kernel.org>,
- "linux-sctp@vger.kernel.org" <linux-sctp@vger.kernel.org>,
- Christoph Hellwig <hch@lst.de>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "rds-devel@oss.oracle.com" <rds-devel@oss.oracle.com>,
  Daniel Borkmann <daniel@iogearbox.net>,
- "dccp@vger.kernel.org" <dccp@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "linux-afs@lists.infradead.org" <linux-afs@lists.infradead.org>,
- "lvs-devel@vger.kernel.org" <lvs-devel@vger.kernel.org>,
- "coreteam@netfilter.org" <coreteam@netfilter.org>,
- "mptcp@lists.01.org" <mptcp@lists.01.org>,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
- "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
- Jakub Kicinski <kuba@kernel.org>,
- "linux-hams@vger.kernel.org" <linux-hams@vger.kernel.org>,
- "tipc-discussion@lists.sourceforge.net"
- <tipc-discussion@lists.sourceforge.net>,
- "linux-x25@vger.kernel.org" <linux-x25@vger.kernel.org>,
- Eric Dumazet <edumazet@google.com>,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Netdev <netdev@vger.kernel.org>,
- "linux-decnet-user@lists.sourceforge.net"
- <linux-decnet-user@lists.sourceforge.net>, LKML <linux-kernel@vger.kernel.org>,
- "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
- "netfilter-devel@vger.kernel.org" <netfilter-devel@vger.kernel.org>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linux-wpan@vger.kernel.org" <linux-wpan@vger.kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH 12/26] netfilter: switch nf_setsockopt to
-	sockptr_t
+ Jesper Dangaard Brouer <hawk@kernel.org>,
+ John Fastabend <john.fastabend@gmail.com>,
+ Jakub Kicinski <kuba@kernel.org>, Martin KaFai Lau <kafai@fb.com>,
+ Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+ Andrii Nakryiko <andriin@fb.com>, KP Singh <kpsingh@chromium.org>,
+ Roopa Prabhu <roopa@cumulusnetworks.com>,
+ Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ David Ahern <dsahern@kernel.org>
+Date: Fri, 31 Jul 2020 13:44:17 +0900
+Message-Id: <1596170660-5582-1-git-send-email-komachi.yoshiki@gmail.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 10 Aug 2020 21:05:23 +0000
+Cc: netdev@vger.kernel.org, bpf@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Yoshiki Komachi <komachi.yoshiki@gmail.com>
+Subject: [Bridge] [RFC PATCH bpf-next 0/3] Add a new bpf helper for FDB
+	lookup
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -119,41 +105,46 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Jul 28, 2020 at 10:07 AM David Laight <David.Laight@aculab.com> wrote:
->
-> From: Christoph Hellwig
-> > Sent: 27 July 2020 17:24
-> >
-> > On Mon, Jul 27, 2020 at 06:16:32PM +0200, Jason A. Donenfeld wrote:
-> > > Maybe sockptr_advance should have some safety checks and sometimes
-> > > return -EFAULT? Or you should always use the implementation where
-> > > being a kernel address is an explicit bit of sockptr_t, rather than
-> > > being implicit?
-> >
-> > I already have a patch to use access_ok to check the whole range in
-> > init_user_sockptr.
->
-> That doesn't make (much) difference to the code paths that ignore
-> the user-supplied length.
-> OTOH doing the user/kernel check on the base address (not an
-> incremented one) means that the correct copy function is always
-> selected.
+This series adds a new bpf helper for doing FDB lookup in the kernel
+tables from XDP programs. This helps users to accelerate Linux bridge
+with XDP.
 
-Right, I had the same reaction in reading this, but actually, his code
-gets rid of the sockptr_advance stuff entirely and never mutates, so
-even though my point about attacking those pointers was missed, the
-code does the better thing now -- checking the base address and never
-mutating the pointer. So I think we're good.
+In the past, XDP generally required users to reimplement their own
+networking functionalities with specific manners of BPF programming
+by themselves, hindering its potential uses. IMO, bpf helpers to
+access networking stacks in kernel help to mitigate the programming
+costs because users reuse mature Linux networking feature more easily.
 
->
-> Perhaps the functions should all be passed a 'const sockptr_t'.
-> The typedef could be made 'const' - requiring non-const items
-> explicitly use the union/struct itself.
+The previous commit 87f5fc7e48dd ("bpf: Provide helper to do forwarding
+lookups in kernel FIB table") have already added a bpf helper for access
+FIB in the kernel tables from XDP programs. As a next step, this series
+introduces the API for FDB lookup. In the future, other bpf helpers for
+learning and VLAN filtering will also be required in order to realize
+fast XDP-based bridge although these are not included in this series.
 
-I was thinking the same, but just by making the pointers inside the
-struct const. However, making the whole struct const via the typedef
-is a much better idea. That'd probably require changing the signature
-of init_user_sockptr a bit, which would be fine, but indeed I think
-this would be a very positive change.
+Patch 1 adds new function for access FDB in the kernel tables via the
+new bpf helper.
 
-Jason
+Patch 2 adds the bpf helper and 3 adds a sample program.
+
+Yoshiki Komachi (3):
+  net/bridge: Add new function to access FDB from XDP programs
+  bpf: Add helper to do forwarding lookups in kernel FDB table
+  samples/bpf: Add a simple bridge example accelerated with XDP
+
+ include/linux/if_bridge.h      |  11 ++
+ include/uapi/linux/bpf.h       |  28 ++++
+ net/bridge/br_fdb.c            |  25 ++++
+ net/core/filter.c              |  45 +++++++
+ samples/bpf/Makefile           |   3 +
+ samples/bpf/xdp_bridge_kern.c  | 129 ++++++++++++++++++
+ samples/bpf/xdp_bridge_user.c  | 239 +++++++++++++++++++++++++++++++++
+ scripts/bpf_helpers_doc.py     |   1 +
+ tools/include/uapi/linux/bpf.h |  28 ++++
+ 9 files changed, 509 insertions(+)
+ create mode 100644 samples/bpf/xdp_bridge_kern.c
+ create mode 100644 samples/bpf/xdp_bridge_user.c
+
+-- 
+2.20.1 (Apple Git-117)
+
