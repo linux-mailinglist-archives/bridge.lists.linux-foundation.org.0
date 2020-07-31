@@ -1,101 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7EA234A00
-	for <lists.bridge@lfdr.de>; Fri, 31 Jul 2020 19:16:07 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27632234A3B
+	for <lists.bridge@lfdr.de>; Fri, 31 Jul 2020 19:27:14 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 7C94D88743;
-	Fri, 31 Jul 2020 17:16:05 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 573AD86BA1;
+	Fri, 31 Jul 2020 17:27:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yUJNKY9iD5MF; Fri, 31 Jul 2020 17:16:03 +0000 (UTC)
+	with ESMTP id 1FnhzyT5diV4; Fri, 31 Jul 2020 17:27:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 3EC6288744;
-	Fri, 31 Jul 2020 17:16:03 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id A925486B7A;
+	Fri, 31 Jul 2020 17:27:10 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 20FE9C004D;
-	Fri, 31 Jul 2020 17:16:03 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9839EC004D;
+	Fri, 31 Jul 2020 17:27:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BD6F6C004D
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:16:01 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A1FBDC004D
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:27:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id B8C1687EA2
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:16:01 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 938B68878B
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:27:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id DfE0H9-sUImP for <bridge@lists.linux-foundation.org>;
- Fri, 31 Jul 2020 17:15:24 +0000 (UTC)
+ with ESMTP id P0EkbGjD9G0V for <bridge@lists.linux-foundation.org>;
+ Fri, 31 Jul 2020 17:27:07 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-qv1-f65.google.com (mail-qv1-f65.google.com
- [209.85.219.65])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 7B21987E1D
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:15:24 +0000 (UTC)
-Received: by mail-qv1-f65.google.com with SMTP id x6so8618663qvr.8
- for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 10:15:24 -0700 (PDT)
+Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com
+ [209.85.222.195])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id CD50F88637
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 17:27:06 +0000 (UTC)
+Received: by mail-qk1-f195.google.com with SMTP id e13so29476086qkg.5
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Jul 2020 10:27:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=f/WAbEOG/tptLifB9LgbWD1+/CHIVuvFFHIVIWW5SbY=;
- b=kpw9UYVl+IwL1va1X+QsxMLUZdovpBIuRhu0so4e6ZXtvUMYHDmISR0yC6PQmchjr4
- 2Qe+el83U3tB8LkaWW+NhNDv+h9nRVCVVHH9eqG7eDcg8fErviCcMTYmKiFJ9ap42OXx
- GSmfDUyD0vyvV2POZnyJtUEa1kbwlQtYrFpRBll0K7vHj9k4e6pX0wsi0iQ3VgDp/kLp
- /9WhId3hAugDy9T5YQqOxMA5Fw0hEuPvCmGN0hO7G1wYpUUpsnCEYcdqWK69u0rqURhK
- DiuGofmhD/Mbpy8Ikm36/kdZ8GMIkzXbbbmQvLNu8oB4A+BcWeR3BtS5BzdP8w9ZmkVA
- /peA==
+ bh=dMAP5qZPgNkGYL/Es8e27wkRPcvMrbRpgL3nt2uv/U8=;
+ b=DQpUmHoSUZ9Cd93537ypZkM+1dvS3gvkMWCoz3Qx13NPmBpmH4L+gKmanA4eodPVK+
+ J04ciTphvC/32YS6/AsssAWJdCiJyeCIKz5NoES6FsgkNTeTMfBHwpqq/Y0st/RDULz1
+ s90EGRs+oMbXy9wM0GoUZ2naiDEY9gSop5clWt0kv0vvi10hVW8C4NrFvOqm1/nyfGwr
+ VqSlZFKNcLXmFmS3OPykN7Q7FfMF/aurchj96d1DyX+1/jlWq3xFkaX+jAweuOZ3N1oM
+ Ffdz2TlQJTZ6E/1rQ7Nne2iW8IWlgbGeezgGumjp1cbCy0+8cSqHHZTwHyvW2HGy+2Gh
+ Cg/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=f/WAbEOG/tptLifB9LgbWD1+/CHIVuvFFHIVIWW5SbY=;
- b=NoQyC/EjmHTWM5i+iW2xQdtkAFUDs9n3hT3kSqomV3fIunQ6QF2/nN58z7xlCIwHls
- q6zG3bTAWjKLy75mC5CyLsPh8EvhgfKpjIGSRf2EuuUatXuSaC03yR3d+/6g3N/qsDgi
- kRo4t4TZCYtxPQRol4alNa5HYny8c1kJqDgOg5ib5gmi38jZJihYYOE8lkkTybVAinlO
- pxYrJvnKdIcgRz4fRlZ9omgoAFcV1xVwrh6Lvg3Sukf7xGN8CtkjxgvCMvm0Lzvg7v67
- rtvhnxO7UTzgCVxsnTPTXgNlA/9jBNG+z8nQgjdNNc/d8dpgAU3gI82jZ8cKHIvBLWHD
- Wo9A==
-X-Gm-Message-State: AOAM533ESsme44oTLOVHW1oc5ipUBRZwTHgNsgl0ZNqTwZx5jOrSovuc
- E9SkEBf/80ZOhmruIySd1gw=
-X-Google-Smtp-Source: ABdhPJy3eLsIh2Na3H7aBZv2hHsVXSY7jYLRnC/yeaZDxYJoBQaUtvOMZap2R4HbBVt2V1QxHUMuIA==
-X-Received: by 2002:a05:6214:1742:: with SMTP id
- dc2mr5257973qvb.90.1596215723492; 
- Fri, 31 Jul 2020 10:15:23 -0700 (PDT)
+ bh=dMAP5qZPgNkGYL/Es8e27wkRPcvMrbRpgL3nt2uv/U8=;
+ b=ovD5GUWvr4kiE2/Xdz2+SWVQiI3VFqLqkmProaRTicZvk81RN/L7Z/zgusJYOEFli5
+ MYEg8NhqmmL8inB9Y7DKNC9ge7CuSeGEYdECMw0U6b7TIT8dY3tk5Vsg/Ad444rbAEBt
+ GQmlOIhuuYapk4HkuVzAL/9eVZFlVZsVeGep1CoV0ygjwqxTeQ+t6d85eGqkwxqo4qrg
+ o34jfuWTLwWN1ssdVawP84TEXSTtEjoXEWrIe1rHfoCoR/sU32Q7Yhoet6BJzUO7xOVo
+ i4dA75nL5Q3vEl1j2miF7fmWuKXQdEy+DI39N9l2siz8z9GzZdPNDiXJGWuyLy7czOZt
+ DWlg==
+X-Gm-Message-State: AOAM532cEzszw5zxEzbgDS+DaycURRvh+ogjYRdjH2f/zly9Dk5tnLjH
+ s5vInd+CNCRGzoLPfgUJ+wo=
+X-Google-Smtp-Source: ABdhPJyrJF8gZ+2Ot8N+3QMSrr1x/JQDSN2YszfLrZbeCASgiu2Qgge4RLDx9HCfx3o3FrCKIodRNg==
+X-Received: by 2002:a37:9b95:: with SMTP id d143mr4875785qke.272.1596216425945; 
+ Fri, 31 Jul 2020 10:27:05 -0700 (PDT)
 Received: from ?IPv6:2601:284:8202:10b0:c147:b41e:be5e:8b7a?
  ([2601:284:8202:10b0:c147:b41e:be5e:8b7a])
- by smtp.googlemail.com with ESMTPSA id x24sm10465749qtj.8.2020.07.31.10.15.20
+ by smtp.googlemail.com with ESMTPSA id 94sm9869305qtc.88.2020.07.31.10.27.04
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 31 Jul 2020 10:15:22 -0700 (PDT)
-To: Yoshiki Komachi <komachi.yoshiki@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Alexei Starovoitov
- <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- Martin KaFai Lau <kafai@fb.com>, Song Liu <songliubraving@fb.com>,
- Yonghong Song <yhs@fb.com>, Andrii Nakryiko <andriin@fb.com>,
- KP Singh <kpsingh@chromium.org>, Roopa Prabhu <roopa@cumulusnetworks.com>,
- Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
- David Ahern <dsahern@kernel.org>
-References: <1596170660-5582-1-git-send-email-komachi.yoshiki@gmail.com>
- <1596170660-5582-3-git-send-email-komachi.yoshiki@gmail.com>
+ Fri, 31 Jul 2020 10:27:05 -0700 (PDT)
+To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org
+References: <20200731162616.345380-1-nikolay@cumulusnetworks.com>
 From: David Ahern <dsahern@gmail.com>
-Message-ID: <5970d82b-3bb9-c78f-c53a-8a1c95a1fad7@gmail.com>
-Date: Fri, 31 Jul 2020 11:15:19 -0600
+Message-ID: <07823615-29a8-9553-d56b-1beef55a07bc@gmail.com>
+Date: Fri, 31 Jul 2020 11:27:03 -0600
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
  Gecko/20100101 Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <1596170660-5582-3-git-send-email-komachi.yoshiki@gmail.com>
+In-Reply-To: <20200731162616.345380-1-nikolay@cumulusnetworks.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bpf@vger.kernel.org,
- bridge@lists.linux-foundation.org
-Subject: Re: [Bridge] [RFC PATCH bpf-next 2/3] bpf: Add helper to do
- forwarding lookups in kernel FDB table
+Cc: roopa@cumulusnetworks.com, bridge@lists.linux-foundation.org,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net] net: bridge: clear bridge's private skb
+	space on xmit
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -110,44 +99,37 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 7/30/20 10:44 PM, Yoshiki Komachi wrote:
-> diff --git a/net/core/filter.c b/net/core/filter.c
-> index 654c346b7d91..68800d1b8cd5 100644
-> --- a/net/core/filter.c
-> +++ b/net/core/filter.c
-> @@ -5084,6 +5085,46 @@ static const struct bpf_func_proto bpf_skb_fib_lookup_proto = {
->  	.arg4_type	= ARG_ANYTHING,
->  };
+On 7/31/20 10:26 AM, Nikolay Aleksandrov wrote:
+> We need to clear all of the bridge private skb variables as they can be
+> stale due to the packet being recirculated through the stack and then
+> transmitted through the bridge device. Similar memset is already done on
+> bridge's input. We've seen cases where proxyarp_replied was 1 on routed
+> multicast packets transmitted through the bridge to ports with neigh
+> suppress which were getting dropped. Same thing can in theory happen with
+> the port isolation bit as well.
+> 
+> Fixes: 821f1b21cabb ("bridge: add new BR_NEIGH_SUPPRESS port flag to suppress arp and nd flood")
+> Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+> ---
+>  net/bridge/br_device.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
+> index 8c7b78f8bc23..9a2fb4aa1a10 100644
+> --- a/net/bridge/br_device.c
+> +++ b/net/bridge/br_device.c
+> @@ -36,6 +36,8 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
+>  	const unsigned char *dest;
+>  	u16 vid = 0;
 >  
-> +#if IS_ENABLED(CONFIG_BRIDGE)
-> +BPF_CALL_4(bpf_xdp_fdb_lookup, struct xdp_buff *, ctx,
-> +	   struct bpf_fdb_lookup *, params, int, plen, u32, flags)
-> +{
-> +	struct net_device *src, *dst;
-> +	struct net *net;
+> +	memset(skb->cb, 0, sizeof(struct br_input_skb_cb));
 > +
-> +	if (plen < sizeof(*params))
-> +		return -EINVAL;
+>  	rcu_read_lock();
+>  	nf_ops = rcu_dereference(nf_br_ops);
+>  	if (nf_ops && nf_ops->br_dev_xmit_hook(skb)) {
+> 
 
-I need to look at the details more closely, but on first reading 2
-things caught me eye:
-1. you need to make sure flags is 0 since there are no supported flags
-at the moment, and
+What's the performance hit of doing this on every packet?
 
-> +
-> +	net = dev_net(ctx->rxq->dev);
-> +
-> +	if (is_multicast_ether_addr(params->addr) ||
-> +	    is_broadcast_ether_addr(params->addr))
-> +		return BPF_FDB_LKUP_RET_NOENT;
-> +
-> +	src = dev_get_by_index_rcu(net, params->ifindex);
-> +	if (unlikely(!src))
-> +		return -ENODEV;
-> +
-> +	dst = br_fdb_find_port_xdp(src, params->addr, params->vlan_id);
-
-2. this needs to be done via netdev ops to avoid referencing bridge code
-which can be compiled as a module. I suspect the build robots will id
-this part soon.
-
+Can you just set a flag that tells the code to reset on recirculation?
+Seems like br_input_skb_cb has space for that.
