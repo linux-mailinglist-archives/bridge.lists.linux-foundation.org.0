@@ -1,88 +1,72 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8644524B88A
-	for <lists.bridge@lfdr.de>; Thu, 20 Aug 2020 13:23:24 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95BCA24E91C
+	for <lists.bridge@lfdr.de>; Sat, 22 Aug 2020 19:46:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id CAFEA85AB9;
-	Thu, 20 Aug 2020 11:23:22 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 9C5E7864B3;
+	Sat, 22 Aug 2020 17:45:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1Ru4enguTHWL; Thu, 20 Aug 2020 11:23:19 +0000 (UTC)
+	with ESMTP id TlaAuJCMT9YB; Sat, 22 Aug 2020 17:45:57 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 5701B88189;
-	Thu, 20 Aug 2020 11:23:19 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id BF3DE85BD3;
+	Sat, 22 Aug 2020 17:45:57 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 371CEC0051;
-	Thu, 20 Aug 2020 11:23:19 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 928C8C0051;
+	Sat, 22 Aug 2020 17:45:57 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 52750C0051
- for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 11:23:18 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ADBBAC004D
+ for <bridge@lists.linux-foundation.org>; Tue, 11 Aug 2020 17:30:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 24DF6220DF
- for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 11:23:18 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id C541687DEB
+ for <bridge@lists.linux-foundation.org>; Tue, 11 Aug 2020 17:30:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id f-6vdDPEvN-6 for <bridge@lists.linux-foundation.org>;
- Thu, 20 Aug 2020 11:23:17 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
- [209.85.221.67])
- by silver.osuosl.org (Postfix) with ESMTPS id 075F5220A9
- for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 11:23:16 +0000 (UTC)
-Received: by mail-wr1-f67.google.com with SMTP id 88so1672935wrh.3
- for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 04:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=U5n6SRT8Sjz1CPU13WE9d5LyTZiKHzyZjLgHZoxXOTE=;
- b=aqEEg19xOzHTc3ozUAXeqmBIsz/TxteAu/dHfpFyffdvzCI0suNWh4lVdHYbTteaQs
- OwOUuXvXjz7P5oYJiISCCLCsgVQFlym97GpZAeY9RzKEc20kmHFwcVWHGY86p2tu/3e4
- YURoEZWEfJlJorMoUduq5s3XoX4O5Fz2XxKfE=
+ with ESMTP id wXb6bD+32o1u for <bridge@lists.linux-foundation.org>;
+ Tue, 11 Aug 2020 17:30:25 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
+ [209.85.166.197])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 1BA3387C17
+ for <bridge@lists.linux-foundation.org>; Tue, 11 Aug 2020 17:30:25 +0000 (UTC)
+Received: by mail-il1-f197.google.com with SMTP id m82so10947466ilb.1
+ for <bridge@lists.linux-foundation.org>; Tue, 11 Aug 2020 10:30:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=U5n6SRT8Sjz1CPU13WE9d5LyTZiKHzyZjLgHZoxXOTE=;
- b=K3NFkRr1O/meiBXArC63TtmDlk/8etejapgvpCbPQRqjCyNrJi8O8NJwUfscyBPtu6
- +XXRLWuh/FgbLdlpQbM85OvkqrvLnI5BGlXUmW2L6PK0XZADuyLGNqqgBzb/SmgBC4AB
- EorQZwYcbAbyJlVow3E9w9KhXR1pMxxL9Nl/686dYZfYFBuPgBd2FBv1gK0cWthR/7vu
- oWbEOrDks+pfo8WrMjdeEm8/oDq+nKnfZDbJWoGmqTtlwThoilgI6c38/yIRm3KAba1p
- SX6lcuym6a34GcNL0rAcnUaKbdu3eYkRMVQy4UbRFKQ1pY6MZFB49ZqDyfjiLTeY3URi
- A54g==
-X-Gm-Message-State: AOAM531yin59BJVPUWtXWZicd4WVGstmFot0qG83kX1Zjmsc7RlXlvc6
- DsIwfw1a6DpIdkM5QgB/MgtI+Q==
-X-Google-Smtp-Source: ABdhPJwsPZzuqgFAlc6bqa3hO310FDoiF1csyrwZ7PXVpepe+lQQsB6yPf4bw0JUqp4EtOSSb0TOrQ==
-X-Received: by 2002:a5d:6345:: with SMTP id b5mr3010882wrw.204.1597922595213; 
- Thu, 20 Aug 2020 04:23:15 -0700 (PDT)
-Received: from [192.168.0.101] ([79.134.172.106])
- by smtp.googlemail.com with ESMTPSA id t25sm3478958wmj.18.2020.08.20.04.23.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Aug 2020 04:23:14 -0700 (PDT)
-To: Kurt Kanzenbach <kurt@linutronix.de>,
- Roopa Prabhu <roopa@cumulusnetworks.com>
-References: <20200820105737.5089-1-kurt@linutronix.de>
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <5affe98d-bb16-0744-5266-db708fb9dc16@cumulusnetworks.com>
-Date: Thu, 20 Aug 2020 14:23:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=wYPqHOKiPEiq4c/9oNHWGAHHdoSgKuM8jKVa9B1NydQ=;
+ b=hAP++X+6ENafzcpR8oYhOyRM3zRJGWLhCGCdMItUPZ/GOnK7dDAl8e6Wmym46z2tg5
+ dy5/uqXe06lq4D+NEJFxCV99DOk1kx7a0fBmLZbQiv5h7hQvMsU2F067MIRwO4daZmGP
+ 7//mQNzRrGmTcQtKY0w6cpycCCuCZnj5u3dwKMLOtBJRG3roWdWNIhWPmwFYbMVAmvaC
+ z4eFd0eX3lEPMwrIQXlfNaxYQVJXR27t47Can7yPMQ9J5pThCPc/oiLzQllMVsOpGGOX
+ /mgswumaL/6QazM3l3P7FKGBavJRQ5q5MWU4mNsDNJNRw3luIvWo5AFdZk0Mkm6F71r9
+ +iMg==
+X-Gm-Message-State: AOAM532SaLVFX+T4hXX+f24HwdlufHCEpS5JpQtpGcPGnXlMdfk3s86z
+ Xwo7qETz0kYMZgLidfzSBE1optdH9CuiN1gqbmajkQfm/R2o
+X-Google-Smtp-Source: ABdhPJzuvdFF/eryapjz18jWZQjX+uUKxP9iCExAkSrA73P+bYbzt9f9bRI9OkHK+KAxko2TkHzilohTdt46KpJnzPRoeZ3heg2X
 MIME-Version: 1.0
-In-Reply-To: <20200820105737.5089-1-kurt@linutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-Cc: Jakub Kicinski <kuba@kernel.org>, bridge@lists.linux-foundation.org,
- "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org
-Subject: Re: [Bridge] [RFC PATCH] net: bridge: Don't reset time stamps on
- SO_TXTIME enabled sockets
+X-Received: by 2002:a02:6d5d:: with SMTP id e29mr26421416jaf.139.1597167024410; 
+ Tue, 11 Aug 2020 10:30:24 -0700 (PDT)
+Date: Tue, 11 Aug 2020 10:30:24 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000023195505ac9d6d26@google.com>
+From: syzbot <syzbot+64d60892aaa4d4c34812@syzkaller.appspotmail.com>
+To: bridge@lists.linux-foundation.org, coreteam@netfilter.org, 
+ davem@davemloft.net, fw@strlen.de, kadlec@netfilter.org, kuba@kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ netfilter-devel@vger.kernel.org, nikolay@cumulusnetworks.com, 
+ pablo@netfilter.org, roopa@cumulusnetworks.com, 
+ syzkaller-bugs@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Sat, 22 Aug 2020 17:45:56 +0000
+Subject: [Bridge] KASAN: wild-memory-access Read in do_ebt_set_ctl
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,37 +81,71 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 8/20/20 1:57 PM, Kurt Kanzenbach wrote:
-> When using the ETF Qdisc in combination with a bridge and DSA, then all packets
-> gets dropped due to invalid time stamps. The setup looks like this:
-> 
-> Transmit path:
-> 
-> Application -> bridge (br0) -> DSA slave ports (lan0, lan1) -> ETF Qdisc
->              -> ethernet (eth0)
-> 
-> The user space application uses SO_TXTIME to attach a sending time stamp for
-> each packet using the corresponding interface. That time stamp is then attached
-> to the skb in the kernel. The first network device involved in the chain is the
-> bridge device. However, in br_forward_finish() the time stamp is reset to zero
-> unconditionally. Meaning when the skb arrives at the ETF Qdisc, it's dropped as
-> invalid because the time stamp is zero.
-> 
-> The reset of the time stamp in the bridge code is there for a good reason. See
-> commit 41d1c8839e5f ("net: clear skb->tstamp in bridge forwarding path")
-> Therefore, add a conditional for SO_TXTIME enabled sockets.
-> 
-> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
-> ---
->   net/bridge/br_forward.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> RFC, because I don't know if that's the correct way to solve that issue.
-> 
+Hello,
+
+syzbot found the following issue on:
+
+HEAD commit:    86cfccb6 Merge tag 'dlm-5.9' of git://git.kernel.org/pub/s..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=1419de8a900000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=bcf489e08c9b8c5e
+dashboard link: https://syzkaller.appspot.com/bug?extid=64d60892aaa4d4c34812
+compiler:       gcc (GCC) 10.1.0-syz 20200507
+userspace arch: i386
+
+Unfortunately, I don't have any reproducer for this issue yet.
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+64d60892aaa4d4c34812@syzkaller.appspotmail.com
+
+BUG: KASAN: wild-memory-access in memcpy include/linux/string.h:406 [inline]
+BUG: KASAN: wild-memory-access in copy_from_sockptr_offset include/linux/sockptr.h:71 [inline]
+BUG: KASAN: wild-memory-access in copy_from_sockptr include/linux/sockptr.h:77 [inline]
+BUG: KASAN: wild-memory-access in compat_update_counters net/bridge/netfilter/ebtables.c:2222 [inline]
+BUG: KASAN: wild-memory-access in do_ebt_set_ctl+0x2c0/0x53b net/bridge/netfilter/ebtables.c:2389
+Read of size 80 at addr 00000000ffffffff by task syz-executor.3/9621
+
+CPU: 1 PID: 9621 Comm: syz-executor.3 Not tainted 5.8.0-syzkaller #0
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.12.0-59-gc9ba5276e321-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0x18f/0x20d lib/dump_stack.c:118
+ __kasan_report mm/kasan/report.c:517 [inline]
+ kasan_report.cold+0x5/0x37 mm/kasan/report.c:530
+ check_memory_region_inline mm/kasan/generic.c:186 [inline]
+ check_memory_region+0x13d/0x180 mm/kasan/generic.c:192
+ memcpy+0x20/0x60 mm/kasan/common.c:105
+ memcpy include/linux/string.h:406 [inline]
+ copy_from_sockptr_offset include/linux/sockptr.h:71 [inline]
+ copy_from_sockptr include/linux/sockptr.h:77 [inline]
+ compat_update_counters net/bridge/netfilter/ebtables.c:2222 [inline]
+ do_ebt_set_ctl+0x2c0/0x53b net/bridge/netfilter/ebtables.c:2389
+ nf_setsockopt+0x6f/0xc0 net/netfilter/nf_sockopt.c:101
+ ip_setsockopt+0x54d/0x3c10 net/ipv4/ip_sockglue.c:1436
+ raw_setsockopt+0x205/0x250 net/ipv4/raw.c:856
+ __sys_setsockopt+0x2ad/0x6d0 net/socket.c:2138
+ __do_sys_setsockopt net/socket.c:2149 [inline]
+ __se_sys_setsockopt net/socket.c:2146 [inline]
+ __ia32_sys_setsockopt+0xb9/0x150 net/socket.c:2146
+ do_syscall_32_irqs_on arch/x86/entry/common.c:84 [inline]
+ __do_fast_syscall_32+0x57/0x80 arch/x86/entry/common.c:126
+ do_fast_syscall_32+0x2f/0x70 arch/x86/entry/common.c:149
+ entry_SYSENTER_compat_after_hwframe+0x4d/0x5c
+RIP: 0023:0xf7f19569
+Code: c4 01 10 03 03 74 c0 01 10 05 03 74 b8 01 10 06 03 74 b4 01 10 07 03 74 b0 01 10 08 03 74 d8 01 00 51 52 55 89 e5 0f 34 cd 80 <5d> 5a 59 c3 90 90 90 90 eb 0d 90 90 90 90 90 90 90 90 90 90 90 90
+RSP: 002b:00000000f55130bc EFLAGS: 00000296 ORIG_RAX: 000000000000016e
+RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 0000000000000000
+RDX: 0000000000000081 RSI: 00000000ffffffff RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+==================================================================
 
 
-The new conditionals will be for all forwarded packets, not only the ones that are transmitted through
-the bridge master device. If you'd like to do this please limit it to the bridge dev transmit.
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-Thanks,
-  Nik
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
