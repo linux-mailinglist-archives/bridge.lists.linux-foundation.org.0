@@ -1,62 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D7A24E921
-	for <lists.bridge@lfdr.de>; Sat, 22 Aug 2020 19:46:06 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0902824E924
+	for <lists.bridge@lfdr.de>; Sat, 22 Aug 2020 19:46:11 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id E81AE85BD3;
-	Sat, 22 Aug 2020 17:46:01 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 92CD8203E6;
+	Sat, 22 Aug 2020 17:46:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id F1pWO8FF5ZhK; Sat, 22 Aug 2020 17:46:00 +0000 (UTC)
+	with ESMTP id FSEovlKfZCzL; Sat, 22 Aug 2020 17:46:02 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 5638186481;
+	by silver.osuosl.org (Postfix) with ESMTP id 9C1F9203F9;
 	Sat, 22 Aug 2020 17:45:59 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 44922C0051;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7B475C0051;
 	Sat, 22 Aug 2020 17:45:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AEF8EC0051
- for <bridge@lists.linux-foundation.org>; Mon, 17 Aug 2020 14:51:54 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 727EAC07FF
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 10:57:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 9E7A187590
- for <bridge@lists.linux-foundation.org>; Mon, 17 Aug 2020 14:51:54 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 584DA87D2C
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 10:57:57 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id pKGJhoQ+1Saq for <bridge@lists.linux-foundation.org>;
- Mon, 17 Aug 2020 14:51:53 +0000 (UTC)
-X-Greylist: delayed 00:26:27 by SQLgrey-1.7.6
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [185.142.180.71])
- by hemlock.osuosl.org (Postfix) with ESMTPS id C53A787568
- for <bridge@lists.linux-foundation.org>; Mon, 17 Aug 2020 14:51:53 +0000 (UTC)
-Received: from local
- by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
- (Exim 4.93.0.4) (envelope-from <daniel@makrotopia.org>)
- id 1k7g4J-0003Pz-N0; Mon, 17 Aug 2020 16:25:03 +0200
-Date: Mon, 17 Aug 2020 15:24:38 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Sven Eckelmann <sven@narfation.org>
-Message-ID: <20200817142438.GB1299@makrotopia.org>
-References: <20200816202424.3526-1-linus.luessing@c0d3.blue>
- <87zh6t650b.fsf@miraculix.mork.no> <1830568.o5y0iYavLQ@sven-edge>
+ with ESMTP id 1otpYg56TXHk for <bridge@lists.linux-foundation.org>;
+ Thu, 20 Aug 2020 10:57:56 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 8DB8E87C50
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Aug 2020 10:57:56 +0000 (UTC)
+From: Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1597921073;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=YIkdj2DyvYAhQ7RBBwnYw5GJ1OBharqxpJPUklg5BVY=;
+ b=sQO1KRzu+ln6rYasVnJrj+dGujnRJIpdNi4SZQtH+HfrsqdMiTtzuNUcWd+pR2CoNW0rCB
+ QvrGeuIQTuBdDAri4DtyW05dShPyZxpGqXYOmdWOgyqTlOXsiQ4PfFMzlHg2b37lWXVyIs
+ OapnL0xcMSIt0iVPgXP2Tar+YU4CDjW+NqCgAtB+5mal2kxMNyCaWYNhOI2IdL5V7zEklv
+ sJHnoBnVnMUWxSXhSM4+KIt1vvM6hqgabUWoqTR0AaWapyjHuiOXFDCBhNNRzikKGcFG48
+ Xgwe7xDdmWD1SLEm7eDXKKN24d1L0Rqw4HCpQCz4PnEavoNCViZ0uXWguW7FsQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1597921073;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=YIkdj2DyvYAhQ7RBBwnYw5GJ1OBharqxpJPUklg5BVY=;
+ b=GLQ1GQMkBs9itAqx6i75aleyoPHKCFjC143w8bmpAZT8W4yQ72xQ2NT1XNirW4bEmSUexd
+ ea6Ua9vT7ucZ+ZDA==
+To: Roopa Prabhu <roopa@cumulusnetworks.com>,
+ Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Date: Thu, 20 Aug 2020 12:57:37 +0200
+Message-Id: <20200820105737.5089-1-kurt@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1830568.o5y0iYavLQ@sven-edge>
 X-Mailman-Approved-At: Sat, 22 Aug 2020 17:45:56 +0000
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, netdev@vger.kernel.org,
- Roopa Prabhu <roopa@cumulusnetworks.com>, bridge@lists.linux-foundation.org,
- gluon@luebeck.freifunk.net, openwrt-devel@lists.openwrt.org,
- "David S . Miller" <davem@davemloft.net>,
- =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>
-Subject: Re: [Bridge] [gluon] Re: [RFC PATCH net-next] bridge: Implement MLD
- Querier wake-up calls / Android bug workaround
+Cc: Kurt Kanzenbach <kurt@linutronix.de>, Jakub Kicinski <kuba@kernel.org>,
+ bridge@lists.linux-foundation.org, "David S. Miller" <davem@davemloft.net>,
+ netdev@vger.kernel.org
+Subject: [Bridge] [RFC PATCH] net: bridge: Don't reset time stamps on
+	SO_TXTIME enabled sockets
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -71,52 +80,60 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Aug 17, 2020 at 03:17:37PM +0200, Sven Eckelmann wrote:
-> On Monday, 17 August 2020 10:39:00 CEST Bjørn Mork wrote:
-> > Linus Lüssing <linus.luessing@c0d3.blue> writes:
-> [...]
-> > This is not a bug.  They are deliberately breaking IPv6 because they
-> > consider this a feature.  You should not try to work around such issues.
-> > It is a fight you cannot win.  Any workaround will only encourage them
-> > to come up with new ways to break IPv6.
-> 
-> Who are "they" and where is this information coming from? And what do they 
-> gain from breaking IPv6? Wouldn't it be easier for them just to disable IPv6 
-> than adding random looking bugs?
+When using the ETF Qdisc in combination with a bridge and DSA, then all packets
+gets dropped due to invalid time stamps. The setup looks like this:
 
-They are Google and they want IPv6 to be used in a way which exposes
-as much user data as possible to their servers (that's my guess).
-Every additional identifying bit is like gold for them (that's their
-business model).
-Hence they like SLAAC and addressing schemes which reflect the network
-topology and are enforcing that direction beyond good reason (that
-should be obvious[1] to everyone[2] by now[3], no matter what the
-reasons for that are).
-You may say, hey, SLAAC also allows me to use Privary Extension and I'm
-sure your browser will make use of that. But does the DNS resolver?
-And what about all those Google services running in background? I'm not
-sure all of them instruct the kernel to open every single socket using
-a privacy source address...
-Simply, when relying on SLAAC + Privary Extensions it's up to the
-(mobile) client to avoid being very easily tracked.
-When using DHCPv6 the situation is like it was for v4 (ok, it's still
-a bit worse because you can distinguish clients much better).
+Transmit path:
 
-As a work-around, I've been limiting source EUI-64 addresses from
-leaving my local network -- but that's surely not what everyone would
-want to make sure their local devices MAC addresses aren't leaked and
-also just breaking v6 in yet another way.
-I don't consider NAT66 an option and would like to avoid even
-connection-tracking on v6 as it was promissed :). Tethering should
-work using DHCPv6 prefix delegation imho rather than ND-proxy or
-NAT66 which are both quite a burden for the battery-powered device
-offering the tethering gateway (ie. each forwarded packet then needs
-CPU intervention, I can't see anything great about that).
+Application -> bridge (br0) -> DSA slave ports (lan0, lan1) -> ETF Qdisc
+            -> ethernet (eth0)
 
+The user space application uses SO_TXTIME to attach a sending time stamp for
+each packet using the corresponding interface. That time stamp is then attached
+to the skb in the kernel. The first network device involved in the chain is the
+bridge device. However, in br_forward_finish() the time stamp is reset to zero
+unconditionally. Meaning when the skb arrives at the ETF Qdisc, it's dropped as
+invalid because the time stamp is zero.
 
+The reset of the time stamp in the bridge code is there for a good reason. See
+commit 41d1c8839e5f ("net: clear skb->tstamp in bridge forwarding path")
+Therefore, add a conditional for SO_TXTIME enabled sockets.
 
-[1]: https://www.nullzero.co.uk/android-does-not-support-dhcpv6-and-google-wont-fix-that/
+Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+---
+ net/bridge/br_forward.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-[2]: https://www.techrepublic.com/article/androids-lack-of-dhcpv6-support-frustrates-enterprise-network-admins/
+RFC, because I don't know if that's the correct way to solve that issue.
 
-[3]: https://lostintransit.se/2020/05/22/its-2020-and-androids-ipv6-is-still-broken/
+diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+index 7629b63f6f30..e5f7e49ed91d 100644
+--- a/net/bridge/br_forward.c
++++ b/net/bridge/br_forward.c
+@@ -15,6 +15,7 @@
+ #include <linux/skbuff.h>
+ #include <linux/if_vlan.h>
+ #include <linux/netfilter_bridge.h>
++#include <net/sock.h>
+ #include "br_private.h"
+ 
+ /* Don't forward packets to originating port or forwarding disabled */
+@@ -61,7 +62,15 @@ EXPORT_SYMBOL_GPL(br_dev_queue_push_xmit);
+ 
+ int br_forward_finish(struct net *net, struct sock *sk, struct sk_buff *skb)
+ {
++	/* When applications provide time stamps for packets via SO_TXTIME
++	 * socket option, then don't reset it.
++	 */
++	if (skb->sk && sock_flag(skb->sk, SOCK_TXTIME))
++		goto finish;
++
+ 	skb->tstamp = 0;
++
++finish:
+ 	return NF_HOOK(NFPROTO_BRIDGE, NF_BR_POST_ROUTING,
+ 		       net, sk, skb, NULL, skb->dev,
+ 		       br_dev_queue_push_xmit);
+-- 
+2.20.1
+
