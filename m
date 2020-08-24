@@ -1,60 +1,60 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10D92502BC
-	for <lists.bridge@lfdr.de>; Mon, 24 Aug 2020 18:35:41 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC6C2502DC
+	for <lists.bridge@lfdr.de>; Mon, 24 Aug 2020 18:37:07 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id EAE878766A;
-	Mon, 24 Aug 2020 16:35:39 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 7BA2E87ED0;
+	Mon, 24 Aug 2020 16:37:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XnD2CehMto8H; Mon, 24 Aug 2020 16:35:39 +0000 (UTC)
+	with ESMTP id RLuYeacjWSPS; Mon, 24 Aug 2020 16:37:06 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 281F886FD1;
-	Mon, 24 Aug 2020 16:35:39 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 40B8387A5E;
+	Mon, 24 Aug 2020 16:37:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1BF64C089E;
-	Mon, 24 Aug 2020 16:35:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 36672C0051;
+	Mon, 24 Aug 2020 16:37:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 41509C0051
- for <bridge@lists.linux-foundation.org>; Mon, 24 Aug 2020 16:35:37 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 555CCC0051
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Aug 2020 16:37:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 2BD1E204BB
- for <bridge@lists.linux-foundation.org>; Mon, 24 Aug 2020 16:35:37 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 41D8E204BB
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Aug 2020 16:37:05 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cqT0pWqaECir for <bridge@lists.linux-foundation.org>;
- Mon, 24 Aug 2020 16:35:36 +0000 (UTC)
+ with ESMTP id r8h+CEnSRYoc for <bridge@lists.linux-foundation.org>;
+ Mon, 24 Aug 2020 16:37:05 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by silver.osuosl.org (Postfix) with ESMTPS id ED8D420485
- for <bridge@lists.linux-foundation.org>; Mon, 24 Aug 2020 16:35:35 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTPS id 2220C20485
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Aug 2020 16:37:05 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C43AB22C9F;
- Mon, 24 Aug 2020 16:35:34 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id F2A8723106;
+ Mon, 24 Aug 2020 16:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1598286935;
+ s=default; t=1598287025;
  bh=AJ5GY7sStFFpN4d2wp55vrmNmGGsqU3GnYKHqvcwtPA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=sKpni1Ml9ixnep3vr3QKbZ1Y7SBV5GvVJMKcX3qNAFh0ytnCt2YdAuSsiCcZGcB/V
- lDKlRaT4qwG1aOpnGcZkTCro7JmM77q1iJZs3xzBP5gRMm4cVC3Xzuqggwd72Xc7gT
- NpCa3x9Blddk6bwHKEJb9H0liSwFXf7cpahCWpP0=
+ b=mrUy5o8QBQZPLyA+LAz1WgIBD0MJHqFNm15B88n1GOc+79qlURWRWe9AnegbeP+CI
+ ntjSlEoqKaS1cbIs6XakTovcSm+Sw2DIvUBdem2LS95HLiJy7ZmV7uuTpSqT5mrLDy
+ XLs5/slftwviV2Nqfm9eCAbL2Qgkbo4OmNahYq9I=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon, 24 Aug 2020 12:34:23 -0400
-Message-Id: <20200824163504.605538-23-sashal@kernel.org>
+Date: Mon, 24 Aug 2020 12:36:01 -0400
+Message-Id: <20200824163634.606093-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200824163504.605538-1-sashal@kernel.org>
-References: <20200824163504.605538-1-sashal@kernel.org>
+In-Reply-To: <20200824163634.606093-1-sashal@kernel.org>
+References: <20200824163634.606093-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -63,7 +63,7 @@ Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org, Florian Westphal <fw@strlen.de>,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: [Bridge] [PATCH AUTOSEL 5.8 23/63] netfilter: avoid ipv6 ->
+Subject: [Bridge] [PATCH AUTOSEL 5.7 22/54] netfilter: avoid ipv6 ->
 	nf_defrag_ipv6 module dependency
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
