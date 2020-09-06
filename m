@@ -1,61 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB24425F08E
-	for <lists.bridge@lfdr.de>; Sun,  6 Sep 2020 23:01:43 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC77825F095
+	for <lists.bridge@lfdr.de>; Sun,  6 Sep 2020 23:15:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id D8E9D86FB2;
-	Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 4FAC285C52;
+	Sun,  6 Sep 2020 21:15:00 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id v0PF5XtS9umQ; Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
+	with ESMTP id PSaBeb6W0X1T; Sun,  6 Sep 2020 21:14:59 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 43CFF86F7D;
-	Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id BD30185C37;
+	Sun,  6 Sep 2020 21:14:59 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 30FEAC0051;
-	Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AD34FC0051;
+	Sun,  6 Sep 2020 21:14:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A77D4C0051
- for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EDC69C0051
+ for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:14:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 9A27C866CE
- for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id D599D86697
+ for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:14:57 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Cy+hzCS9bA-O for <bridge@lists.linux-foundation.org>;
- Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 41EED866B9
- for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
- [163.114.132.5])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id AE64420760;
- Sun,  6 Sep 2020 21:01:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599426098;
- bh=AUZ/2jkw3ge8yjc1a8PiX5fWdFUU6aD/oCLWbA0734k=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=LBKh9F2hTcvYB3ARX6ZwaseOZOrUrDgCqir96n5JHPs6agXDa0p2EiDiWxSrJYuyF
- Lj3jIvfilxO4MF9xETaFZAUDQsJ1p3BnIdHLRh/pLM45iPt+FvzsX+pMiARbpjhwwH
- Nm6FfYGakfqepkH52Ur0zq9ILJDmQT0j3+DkdYj8=
-Date: Sun, 6 Sep 2020 14:01:36 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20200906140136.77ae178d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20200905082410.2230253-7-nikolay@cumulusnetworks.com>
+ with ESMTP id QzmrUuyz3qS9 for <bridge@lists.linux-foundation.org>;
+ Sun,  6 Sep 2020 21:14:57 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
+ [209.85.128.68])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 0940486663
+ for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:14:56 +0000 (UTC)
+Received: by mail-wm1-f68.google.com with SMTP id z9so12075121wmk.1
+ for <bridge@lists.linux-foundation.org>; Sun, 06 Sep 2020 14:14:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cumulusnetworks.com; s=google;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=Jx/2AQJ19GgF5GMqfvKOGk4UBA5cUToV3mcDGBZKY0M=;
+ b=fhmW+fC2PmioUdyyeuNSunMjhlR4qJ2lZZGtlYKxTJR3KMU9Ujv6Lhc7LgQ4BBVHlG
+ NyZWuH8GlRz54X0DUGci+HlYmYOQif6XyoPJPiDDZx6/suJwWtNKVNcKjnG6aNJwMrKQ
+ 8VavQF54Sr+nIii/kNlkV2PW2OuMxlGb3cwWc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Jx/2AQJ19GgF5GMqfvKOGk4UBA5cUToV3mcDGBZKY0M=;
+ b=hMbAaqSEhIeVrReRrjUh6NF0gXTflw4hQWfva9tCRtbOTWjPLnG97FnQh1OMWVWVrj
+ G0G2szB5MTIHx3LYohFarEDMzoqgfvCqscpm7XZ5XVGZpTzZBimQGMsdB0MRjpca6K4q
+ XQuRPr0l9OvjNbJxqu8lMCnmb67Dak7nibdbLO3sXRbACTRghlGlvdDIWmWD7WKoQFN0
+ MMm6tiTL/fMa2Kjsxdn4Tb9gK60MF0K9VDkPuvTxHcpH4Qul5Spgt26ZCyLND/tYVJTg
+ n602KwkWgjhb+NHLPeEAwU6gLy7RYOfASUhEzdMWO2lhhng3u8h2Dkfx3OSH6x+EriDs
+ Zg+w==
+X-Gm-Message-State: AOAM530MDoNNg7fKr18h+r5RF+o/5RSiCFaiO6682HDplakGcgaFE4Py
+ FMSoZVkUktgeRJcvxrgYvIXF3g==
+X-Google-Smtp-Source: ABdhPJx6VgyIgp3B6hY9iDES8IcTXexiYYix88fGOdcqnAH3S7QJjVStQYozTReUd+eCBzWNryxveg==
+X-Received: by 2002:a1c:3886:: with SMTP id
+ f128mr17685983wma.121.1599426895517; 
+ Sun, 06 Sep 2020 14:14:55 -0700 (PDT)
+Received: from [192.168.0.112] (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+ by smtp.googlemail.com with ESMTPSA id
+ n124sm24149928wmn.29.2020.09.06.14.14.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 06 Sep 2020 14:14:54 -0700 (PDT)
+To: Jakub Kicinski <kuba@kernel.org>
 References: <20200905082410.2230253-1-nikolay@cumulusnetworks.com>
  <20200905082410.2230253-7-nikolay@cumulusnetworks.com>
+ <20200906140136.77ae178d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Message-ID: <4f8ec4f0-6311-3b18-c7c4-a3a49b8d94b4@cumulusnetworks.com>
+Date: Mon, 7 Sep 2020 00:14:51 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20200906140136.77ae178d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  davem@davemloft.net, roopa@nvidia.com
@@ -75,9 +100,13 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sat,  5 Sep 2020 11:24:01 +0300 Nikolay Aleksandrov wrote:
-> We need to be able to retransmit group-specific and group-and-source
-> specific queries. The new timer takes care of those.
+On 9/7/20 12:01 AM, Jakub Kicinski wrote:
+> On Sat,  5 Sep 2020 11:24:01 +0300 Nikolay Aleksandrov wrote:
+>> We need to be able to retransmit group-specific and group-and-source
+>> specific queries. The new timer takes care of those.
+> 
+> What guarantees that timer will not use pg after free? Do timer
+> callbacks hold the RCU read lock?
+> 
 
-What guarantees that timer will not use pg after free? Do timer
-callbacks hold the RCU read lock?
+See the last patch, it guarantees no entry timer will be used when it's freed.
