@@ -1,66 +1,66 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AEBB25F089
-	for <lists.bridge@lfdr.de>; Sun,  6 Sep 2020 22:56:17 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB24425F08E
+	for <lists.bridge@lfdr.de>; Sun,  6 Sep 2020 23:01:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 141A0866B9;
-	Sun,  6 Sep 2020 20:56:09 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id D8E9D86FB2;
+	Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Qg0Mghi-Q1yx; Sun,  6 Sep 2020 20:56:08 +0000 (UTC)
+	with ESMTP id v0PF5XtS9umQ; Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 83B2A866C3;
-	Sun,  6 Sep 2020 20:56:08 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 43CFF86F7D;
+	Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 665E3C0051;
-	Sun,  6 Sep 2020 20:56:08 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 30FEAC0051;
+	Sun,  6 Sep 2020 21:01:41 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A40B6C0051
- for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 20:56:07 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A77D4C0051
+ for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 8D46C854B4
- for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 20:56:07 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 9A27C866CE
+ for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dJuFxE6qwSV7 for <bridge@lists.linux-foundation.org>;
- Sun,  6 Sep 2020 20:56:07 +0000 (UTC)
+ with ESMTP id Cy+hzCS9bA-O for <bridge@lists.linux-foundation.org>;
+ Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 1B16B853FF
- for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 20:56:07 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 41EED866B9
+ for <bridge@lists.linux-foundation.org>; Sun,  6 Sep 2020 21:01:39 +0000 (UTC)
 Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
  [163.114.132.5])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 652B920C09;
- Sun,  6 Sep 2020 20:56:06 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id AE64420760;
+ Sun,  6 Sep 2020 21:01:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599425766;
- bh=YThGDUg5nFUL/+bjdVbPqJVWfsFNLrETXsYiWQzi5OY=;
+ s=default; t=1599426098;
+ bh=AUZ/2jkw3ge8yjc1a8PiX5fWdFUU6aD/oCLWbA0734k=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=fO6J4lmEt5iR8ZPfMlUXpIDsp+0Jl6zGRs+kynqyq2vIRj2CcXOrCVPLct1WUq0+3
- unNwwaTqrm7UesoZ+Xld0RlC88nisPq70+IMtppn1Z/AXym1N19He1UkRyCTui41i9
- BXcr03y7QyxNPVM74tQgDRXJIUFejBYyXCL+Go24=
-Date: Sun, 6 Sep 2020 13:56:04 -0700
+ b=LBKh9F2hTcvYB3ARX6ZwaseOZOrUrDgCqir96n5JHPs6agXDa0p2EiDiWxSrJYuyF
+ Lj3jIvfilxO4MF9xETaFZAUDQsJ1p3BnIdHLRh/pLM45iPt+FvzsX+pMiARbpjhwwH
+ Nm6FfYGakfqepkH52Ur0zq9ILJDmQT0j3+DkdYj8=
+Date: Sun, 6 Sep 2020 14:01:36 -0700
 From: Jakub Kicinski <kuba@kernel.org>
 To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20200906135604.4d47b7a8@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20200905082410.2230253-6-nikolay@cumulusnetworks.com>
+Message-ID: <20200906140136.77ae178d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20200905082410.2230253-7-nikolay@cumulusnetworks.com>
 References: <20200905082410.2230253-1-nikolay@cumulusnetworks.com>
- <20200905082410.2230253-6-nikolay@cumulusnetworks.com>
+ <20200905082410.2230253-7-nikolay@cumulusnetworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  davem@davemloft.net, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next v3 05/15] net: bridge: mcast: factor
- out port group del
+Subject: Re: [Bridge] [PATCH net-next v3 06/15] net: bridge: mcast: add
+ support for group query retransmit
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -75,71 +75,9 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sat,  5 Sep 2020 11:24:00 +0300 Nikolay Aleksandrov wrote:
-> @@ -843,24 +843,11 @@ static int __br_mdb_del(struct net_bridge *br, struct br_mdb_entry *entry)
->  		if (!p->port || p->port->dev->ifindex != entry->ifindex)
->  			continue;
->  
-> -		if (!hlist_empty(&p->src_list)) {
-> -			err = -EINVAL;
-> -			goto unlock;
-> -		}
-> -
->  		if (p->port->state == BR_STATE_DISABLED)
->  			goto unlock;
->  
-> -		__mdb_entry_fill_flags(entry, p->flags);
+On Sat,  5 Sep 2020 11:24:01 +0300 Nikolay Aleksandrov wrote:
+> We need to be able to retransmit group-specific and group-and-source
+> specific queries. The new timer takes care of those.
 
-Just from staring at the code it's unclear why the list_empty() check
-and this __mdb_entry_fill_flags() are removed as well.
-
-> -		rcu_assign_pointer(*pp, p->next);
-> -		hlist_del_init(&p->mglist);
-> -		del_timer(&p->timer);
-> -		kfree_rcu(p, rcu);
-> +		br_multicast_del_pg(mp, p, pp);
->  		err = 0;
-> -
-> -		if (!mp->ports && !mp->host_joined &&
-> -		    netif_running(br->dev))
-> -			mod_timer(&mp->timer, jiffies);
->  		break;
-
-
-> +void br_multicast_del_pg(struct net_bridge_mdb_entry *mp,
-> +			 struct net_bridge_port_group *pg,
-> +			 struct net_bridge_port_group __rcu **pp)
-> +{
-> +	struct net_bridge *br = pg->port->br;
-> +	struct net_bridge_group_src *ent;
-> +	struct hlist_node *tmp;
-> +
-> +	rcu_assign_pointer(*pp, pg->next);
-> +	hlist_del_init(&pg->mglist);
-> +	del_timer(&pg->timer);
-> +	hlist_for_each_entry_safe(ent, tmp, &pg->src_list, node)
-> +		br_multicast_del_group_src(ent);
-> +	br_mdb_notify(br->dev, pg->port, &pg->addr, RTM_DELMDB, pg->flags);
-> +	kfree_rcu(pg, rcu);
-> +
-> +	if (!mp->ports && !mp->host_joined && netif_running(br->dev))
-> +		mod_timer(&mp->timer, jiffies);
-> +}
-
-> @@ -1641,16 +1647,7 @@ br_multicast_leave_group(struct net_bridge *br,
->  			if (p->flags & MDB_PG_FLAGS_PERMANENT)
->  				break;
->  
-> -			rcu_assign_pointer(*pp, p->next);
-> -			hlist_del_init(&p->mglist);
-> -			del_timer(&p->timer);
-> -			kfree_rcu(p, rcu);
-> -			br_mdb_notify(br->dev, port, group, RTM_DELMDB,
-> -				      p->flags | MDB_PG_FLAGS_FAST_LEAVE);
-
-And here we'll loose MDB_PG_FLAGS_FAST_LEAVE potentially?
-
-> -			if (!mp->ports && !mp->host_joined &&
-> -			    netif_running(br->dev))
-> -				mod_timer(&mp->timer, jiffies);
-> +			br_multicast_del_pg(mp, p, pp);
+What guarantees that timer will not use pg after free? Do timer
+callbacks hold the RCU read lock?
