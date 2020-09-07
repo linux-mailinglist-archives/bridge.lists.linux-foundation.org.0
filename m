@@ -2,74 +2,74 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82D2825F703
-	for <lists.bridge@lfdr.de>; Mon,  7 Sep 2020 12:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9255225F706
+	for <lists.bridge@lfdr.de>; Mon,  7 Sep 2020 12:00:32 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 2E60085E93;
-	Mon,  7 Sep 2020 10:00:25 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 346E985EAF;
+	Mon,  7 Sep 2020 10:00:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EUYoGUq-iHvg; Mon,  7 Sep 2020 10:00:24 +0000 (UTC)
+	with ESMTP id 06TgkBZyxhwL; Mon,  7 Sep 2020 10:00:29 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 797F385E98;
-	Mon,  7 Sep 2020 10:00:24 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 3EC9385F08;
+	Mon,  7 Sep 2020 10:00:29 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6EBECC0859;
-	Mon,  7 Sep 2020 10:00:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1B9F4C0891;
+	Mon,  7 Sep 2020 10:00:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 32C42C0051
- for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 10:00:23 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 659CEC0859
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 10:00:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 1091F870DD
- for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 10:00:23 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 43A03204EB
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 10:00:27 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wzBuJf7qZhoN for <bridge@lists.linux-foundation.org>;
- Mon,  7 Sep 2020 10:00:22 +0000 (UTC)
+ with ESMTP id 4+tU4fZxhW6L for <bridge@lists.linux-foundation.org>;
+ Mon,  7 Sep 2020 10:00:23 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
- [209.85.128.66])
- by hemlock.osuosl.org (Postfix) with ESMTPS id B6C2A870B0
- for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 10:00:21 +0000 (UTC)
-Received: by mail-wm1-f66.google.com with SMTP id q9so13789927wmj.2
- for <bridge@lists.linux-foundation.org>; Mon, 07 Sep 2020 03:00:21 -0700 (PDT)
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+ [209.85.221.65])
+ by silver.osuosl.org (Postfix) with ESMTPS id 355BC204E7
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 10:00:23 +0000 (UTC)
+Received: by mail-wr1-f65.google.com with SMTP id a17so15121429wrn.6
+ for <bridge@lists.linux-foundation.org>; Mon, 07 Sep 2020 03:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cumulusnetworks.com; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=vqEdUvGt7LBf0nQeMC3kLUqNog7Ls/CSjniZJ10R3uk=;
- b=e26hm+66Jz1zbOIV6SpH8Wr38Gs237s4o1FZHl/FwL5OZUUW+UjGuPmApH2kqKwLnr
- 7QzwZOT+QQ1og0g166jiZR/nV9o1s2V0iOq02c0gfuEM3o2/mh8LBjdmlwmFXJUk2eiZ
- hq7xd7JbQ+YiR2LUOLbY4h/RPy6tDZLxteWbY=
+ bh=hT9vU1lKXpIUXAGJ5O2ZQpnKTxvjgUKuVdaVH35xDc4=;
+ b=Jm1ni1OvKfnoy3LID8MkqdbXAolRGKTQO1t3F1t+tJdaNUtsSndZFr/YjvNFukESiH
+ ONePuR8ewsfOZxP+Meflh1eGjS0e4fiu/mPERDCt91uui3vaH3XrJT2hQejhRYZ2gnnb
+ f9VPosaVHiRETbpG6UoW3wuKv9EX4bGEd/lPc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=vqEdUvGt7LBf0nQeMC3kLUqNog7Ls/CSjniZJ10R3uk=;
- b=ibI/U7uXEwDpWNtLWMPkAHeCMhqf0XU07rVyS9LTmv7c+3LLGJ0ONWJwgrHcevET5D
- kEg0TrhC9jlLH2Af1rZE4uoeaZc/foD4bwBW3L1sKUN7Nu1fwubjB7UMOeyUUgO6Un6T
- sLDdpJ3uh4fUjLK0FDoEEIsXx0u81d7lN6Ay1j49ToeNOX/BKWEOd0XCnXFIiaSCphna
- dvCFZrxSLHQOX6DTI4/PaI4vtcM0TS1Q22JYiaweslfjhQ75K9ORuWrV+qK4iTObvXZy
- sKqY2O2cEK+Rcds+CR4ptWaLxaDRUro+Vz7jzhQwrxrwbx+SQnTz7x61MomhZ8pI4I27
- ny4Q==
-X-Gm-Message-State: AOAM531OpsD7ZQbFHondgI/zzzrGkHarHBeHheyWFrdVp5xU9Gr8sMLd
- KSK56rC6nxvHsXqVPRTCsphE8w==
-X-Google-Smtp-Source: ABdhPJz8t6EVYcD67NS+RUcWaV0Sb8SkgEIaPa6pPPPF7h8w0hEmSppUvz8btIq6ccO4iSLvIT+hew==
-X-Received: by 2002:a7b:c00d:: with SMTP id c13mr19499163wmb.24.1599472820151; 
- Mon, 07 Sep 2020 03:00:20 -0700 (PDT)
+ bh=hT9vU1lKXpIUXAGJ5O2ZQpnKTxvjgUKuVdaVH35xDc4=;
+ b=RAFPdDf8qh3kFI3xvwWsshvR9IY/DrRpb7UlKaR0JTlx5p3n5wSNxqUrjt1IRRKmAk
+ Dss0qSj1bFrlm8CODrUiXfzpkC16Enk34Ebi0OD7Pb2hjVSDCirpMcmt0o7OMgSQ2f2t
+ 3LY3LgXKrGj3T3tiYJvnedZisJiD7ZS7Oh+y4ptbznJZiv7WQ6tVQ/5AfVKfd22O0Ybm
+ 9XsTNZUXUxTHbPEQYrfHJ0wdWYcqU1Zi24M5Up+KIqqLyfUNqXszGNnDU7P1uGpyN/Of
+ /2MH78/RO22/5mwsXolxiU4MjF5PZO4oEm+hPLybpEdjkpG5Gnc15sLZLSkpqDwW4HPG
+ kyDQ==
+X-Gm-Message-State: AOAM530HMU/PKM3FXKIerZpOYhq818PTvRuYnZD+Rv2BfeC/Q7gy/6sz
+ gHe4Mz+7rM9LwQYs1p45PGhbvA==
+X-Google-Smtp-Source: ABdhPJzXQg8KoKJzI9SeZC1K1FAGjbyqIhb107KXfYsCmlyw7SeIoZfS3eGAiGS9UTqWsboUOPBkDA==
+X-Received: by 2002:a5d:5583:: with SMTP id i3mr6169894wrv.119.1599472821729; 
+ Mon, 07 Sep 2020 03:00:21 -0700 (PDT)
 Received: from localhost.localdomain (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id 9sm6686289wmf.7.2020.09.07.03.00.18
+ by smtp.gmail.com with ESMTPSA id 9sm6686289wmf.7.2020.09.07.03.00.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Sep 2020 03:00:19 -0700 (PDT)
+ Mon, 07 Sep 2020 03:00:21 -0700 (PDT)
 From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 To: netdev@vger.kernel.org
-Date: Mon,  7 Sep 2020 12:56:10 +0300
-Message-Id: <20200907095619.11216-7-nikolay@cumulusnetworks.com>
+Date: Mon,  7 Sep 2020 12:56:11 +0300
+Message-Id: <20200907095619.11216-8-nikolay@cumulusnetworks.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200907095619.11216-1-nikolay@cumulusnetworks.com>
 References: <20200907095619.11216-1-nikolay@cumulusnetworks.com>
@@ -77,8 +77,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>, kuba@kernel.org,
  bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next v4 06/15] net: bridge: mcast: add support
-	for group query retransmit
+Subject: [Bridge] [PATCH net-next v4 07/15] net: bridge: mdb: push
+	notifications in __br_mdb_add/del
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,230 +93,104 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-We need to be able to retransmit group-specific and group-and-source
-specific queries. The new timer takes care of those.
-
-v3: add IPv6 support
+This change is in preparation for using the mdb port group entries when
+sending a notification, so their full state and additional attributes can
+be filled in.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 ---
- net/bridge/br_multicast.c | 73 +++++++++++++++++++++++++++++++++------
- net/bridge/br_private.h   |  8 +++++
- 2 files changed, 71 insertions(+), 10 deletions(-)
+ net/bridge/br_mdb.c | 20 ++++++++------------
+ 1 file changed, 8 insertions(+), 12 deletions(-)
 
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index cfb9533447c7..ab3ab75f954d 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -50,6 +50,7 @@ static void br_ip4_multicast_leave_group(struct net_bridge *br,
- 					 __be32 group,
- 					 __u16 vid,
- 					 const unsigned char *src);
-+static void br_multicast_port_group_rexmit(struct timer_list *t);
- 
- static void __del_port_router(struct net_bridge_port *p);
- #if IS_ENABLED(CONFIG_IPV6)
-@@ -184,6 +185,7 @@ void br_multicast_del_pg(struct net_bridge_mdb_entry *mp,
- 	rcu_assign_pointer(*pp, pg->next);
- 	hlist_del_init(&pg->mglist);
- 	del_timer(&pg->timer);
-+	del_timer(&pg->rexmit_timer);
- 	hlist_for_each_entry_safe(ent, tmp, &pg->src_list, node)
- 		br_multicast_del_group_src(ent);
- 	br_mdb_notify(br->dev, pg->port, &pg->addr, RTM_DELMDB, pg->flags);
-@@ -237,7 +239,8 @@ static struct sk_buff *br_ip4_multicast_alloc_query(struct net_bridge *br,
- 						    struct net_bridge_port_group *pg,
- 						    __be32 ip_dst, __be32 group,
- 						    bool with_srcs, bool over_lmqt,
--						    u8 sflag, u8 *igmp_type)
-+						    u8 sflag, u8 *igmp_type,
-+						    bool *need_rexmit)
- {
- 	struct net_bridge_port *p = pg ? pg->port : NULL;
- 	struct net_bridge_group_src *ent;
-@@ -352,6 +355,8 @@ static struct sk_buff *br_ip4_multicast_alloc_query(struct net_bridge *br,
- 			    ent->src_query_rexmit_cnt > 0) {
- 				ihv3->srcs[lmqt_srcs++] = ent->addr.u.ip4;
- 				ent->src_query_rexmit_cnt--;
-+				if (need_rexmit && ent->src_query_rexmit_cnt)
-+					*need_rexmit = true;
- 			}
- 		}
- 		if (WARN_ON(lmqt_srcs != ntohs(ihv3->nsrcs))) {
-@@ -380,7 +385,8 @@ static struct sk_buff *br_ip6_multicast_alloc_query(struct net_bridge *br,
- 						    const struct in6_addr *ip6_dst,
- 						    const struct in6_addr *group,
- 						    bool with_srcs, bool over_llqt,
--						    u8 sflag, u8 *igmp_type)
-+						    u8 sflag, u8 *igmp_type,
-+						    bool *need_rexmit)
- {
- 	struct net_bridge_port *p = pg ? pg->port : NULL;
- 	struct net_bridge_group_src *ent;
-@@ -510,6 +516,8 @@ static struct sk_buff *br_ip6_multicast_alloc_query(struct net_bridge *br,
- 			    ent->src_query_rexmit_cnt > 0) {
- 				mld2q->mld2q_srcs[llqt_srcs++] = ent->addr.u.ip6;
- 				ent->src_query_rexmit_cnt--;
-+				if (need_rexmit && ent->src_query_rexmit_cnt)
-+					*need_rexmit = true;
- 			}
- 		}
- 		if (WARN_ON(llqt_srcs != ntohs(mld2q->mld2q_nsrcs))) {
-@@ -540,7 +548,8 @@ static struct sk_buff *br_multicast_alloc_query(struct net_bridge *br,
- 						struct br_ip *ip_dst,
- 						struct br_ip *group,
- 						bool with_srcs, bool over_lmqt,
--						u8 sflag, u8 *igmp_type)
-+						u8 sflag, u8 *igmp_type,
-+						bool *need_rexmit)
- {
- 	__be32 ip4_dst;
- 
-@@ -550,7 +559,8 @@ static struct sk_buff *br_multicast_alloc_query(struct net_bridge *br,
- 		return br_ip4_multicast_alloc_query(br, pg,
- 						    ip4_dst, group->u.ip4,
- 						    with_srcs, over_lmqt,
--						    sflag, igmp_type);
-+						    sflag, igmp_type,
-+						    need_rexmit);
- #if IS_ENABLED(CONFIG_IPV6)
- 	case htons(ETH_P_IPV6): {
- 		struct in6_addr ip6_dst;
-@@ -564,7 +574,8 @@ static struct sk_buff *br_multicast_alloc_query(struct net_bridge *br,
- 		return br_ip6_multicast_alloc_query(br, pg,
- 						    &ip6_dst, &group->u.ip6,
- 						    with_srcs, over_lmqt,
--						    sflag, igmp_type);
-+						    sflag, igmp_type,
-+						    need_rexmit);
- 	}
- #endif
- 	}
-@@ -708,8 +719,9 @@ struct net_bridge_port_group *br_multicast_new_port_group(
- 	p->filter_mode = filter_mode;
- 	INIT_HLIST_HEAD(&p->src_list);
- 	rcu_assign_pointer(p->next, next);
--	hlist_add_head(&p->mglist, &port->mglist);
- 	timer_setup(&p->timer, br_multicast_port_group_expired, 0);
-+	timer_setup(&p->rexmit_timer, br_multicast_port_group_rexmit, 0);
-+	hlist_add_head(&p->mglist, &port->mglist);
- 
- 	if (src)
- 		memcpy(p->eth_addr, src, ETH_ALEN);
-@@ -943,7 +955,8 @@ static void __br_multicast_send_query(struct net_bridge *br,
- 				      struct br_ip *ip_dst,
- 				      struct br_ip *group,
- 				      bool with_srcs,
--				      u8 sflag)
-+				      u8 sflag,
-+				      bool *need_rexmit)
- {
- 	bool over_lmqt = !!sflag;
- 	struct sk_buff *skb;
-@@ -951,7 +964,8 @@ static void __br_multicast_send_query(struct net_bridge *br,
- 
- again_under_lmqt:
- 	skb = br_multicast_alloc_query(br, pg, ip_dst, group, with_srcs,
--				       over_lmqt, sflag, &igmp_type);
-+				       over_lmqt, sflag, &igmp_type,
-+				       need_rexmit);
- 	if (!skb)
- 		return;
- 
-@@ -1004,7 +1018,8 @@ static void br_multicast_send_query(struct net_bridge *br,
- 	if (!other_query || timer_pending(&other_query->timer))
- 		return;
- 
--	__br_multicast_send_query(br, port, NULL, NULL, &br_group, false, 0);
-+	__br_multicast_send_query(br, port, NULL, NULL, &br_group, false, 0,
-+				  NULL);
- 
- 	time = jiffies;
- 	time += own_query->startup_sent < br->multicast_startup_query_count ?
-@@ -1049,6 +1064,44 @@ static void br_ip6_multicast_port_query_expired(struct timer_list *t)
+diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+index 9dc12ce61018..24f6ccf98657 100644
+--- a/net/bridge/br_mdb.c
++++ b/net/bridge/br_mdb.c
+@@ -681,7 +681,7 @@ static int br_mdb_parse(struct sk_buff *skb, struct nlmsghdr *nlh,
  }
- #endif
  
-+static void br_multicast_port_group_rexmit(struct timer_list *t)
-+{
-+	struct net_bridge_port_group *pg = from_timer(pg, t, rexmit_timer);
-+	struct bridge_mcast_other_query *other_query = NULL;
-+	struct net_bridge *br = pg->port->br;
-+	bool need_rexmit = false;
-+
-+	spin_lock(&br->multicast_lock);
-+	if (!netif_running(br->dev) || hlist_unhashed(&pg->mglist) ||
-+	    !br_opt_get(br, BROPT_MULTICAST_ENABLED) ||
-+	    !br_opt_get(br, BROPT_MULTICAST_QUERIER))
-+		goto out;
-+
-+	if (pg->addr.proto == htons(ETH_P_IP))
-+		other_query = &br->ip4_other_query;
-+#if IS_ENABLED(CONFIG_IPV6)
-+	else
-+		other_query = &br->ip6_other_query;
-+#endif
-+
-+	if (!other_query || timer_pending(&other_query->timer))
-+		goto out;
-+
-+	if (pg->grp_query_rexmit_cnt) {
-+		pg->grp_query_rexmit_cnt--;
-+		__br_multicast_send_query(br, pg->port, pg, &pg->addr,
-+					  &pg->addr, false, 1, NULL);
-+	}
-+	__br_multicast_send_query(br, pg->port, pg, &pg->addr,
-+				  &pg->addr, true, 0, &need_rexmit);
-+
-+	if (pg->grp_query_rexmit_cnt || need_rexmit)
-+		mod_timer(&pg->rexmit_timer, jiffies +
-+					     br->multicast_last_member_interval);
-+out:
-+	spin_unlock(&br->multicast_lock);
-+}
-+
- static void br_mc_disabled_update(struct net_device *dev, bool value)
+ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
+-			    struct br_ip *group, unsigned char state)
++			    struct br_ip *group, struct br_mdb_entry *entry)
  {
- 	struct switchdev_attr attr = {
-@@ -1658,7 +1711,7 @@ br_multicast_leave_group(struct net_bridge *br,
+ 	struct net_bridge_mdb_entry *mp;
+ 	struct net_bridge_port_group *p;
+@@ -700,12 +700,13 @@ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
+ 	/* host join */
+ 	if (!port) {
+ 		/* don't allow any flags for host-joined groups */
+-		if (state)
++		if (entry->state)
+ 			return -EINVAL;
+ 		if (mp->host_joined)
+ 			return -EEXIST;
  
- 	if (br_opt_get(br, BROPT_MULTICAST_QUERIER)) {
- 		__br_multicast_send_query(br, port, NULL, NULL, &mp->addr,
--					  false, 0);
-+					  false, 0, NULL);
+ 		br_multicast_host_join(mp, false);
++		__br_mdb_notify(br->dev, NULL, entry, RTM_NEWMDB);
  
- 		time = jiffies + br->multicast_last_member_count *
- 				 br->multicast_last_member_interval;
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index e0632721b1ef..da8df273dd4a 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -240,10 +240,12 @@ struct net_bridge_port_group {
- 	unsigned char			eth_addr[ETH_ALEN] __aligned(2);
- 	unsigned char			flags;
- 	unsigned char			filter_mode;
-+	unsigned char			grp_query_rexmit_cnt;
+ 		return 0;
+ 	}
+@@ -719,13 +720,14 @@ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
+ 			break;
+ 	}
  
- 	struct hlist_head		src_list;
- 	unsigned int			src_ents;
- 	struct timer_list		timer;
-+	struct timer_list		rexmit_timer;
- 	struct hlist_node		mglist;
+-	p = br_multicast_new_port_group(port, group, *pp, state, NULL,
++	p = br_multicast_new_port_group(port, group, *pp, entry->state, NULL,
+ 					MCAST_EXCLUDE);
+ 	if (unlikely(!p))
+ 		return -ENOMEM;
+ 	rcu_assign_pointer(*pp, p);
+-	if (state == MDB_TEMPORARY)
++	if (entry->state == MDB_TEMPORARY)
+ 		mod_timer(&p->timer, now + br->multicast_membership_interval);
++	__br_mdb_notify(br->dev, port, entry, RTM_NEWMDB);
  
- 	struct rcu_head			rcu;
-@@ -868,6 +870,12 @@ static inline int br_multicast_igmp_type(const struct sk_buff *skb)
- {
- 	return BR_INPUT_SKB_CB(skb)->igmp;
+ 	return 0;
  }
-+
-+static inline unsigned long br_multicast_lmqt(const struct net_bridge *br)
-+{
-+	return br->multicast_last_member_interval *
-+	       br->multicast_last_member_count;
-+}
- #else
- static inline int br_multicast_rcv(struct net_bridge *br,
- 				   struct net_bridge_port *port,
+@@ -754,7 +756,7 @@ static int __br_mdb_add(struct net *net, struct net_bridge *br,
+ 	__mdb_entry_to_br_ip(entry, &ip);
+ 
+ 	spin_lock_bh(&br->multicast_lock);
+-	ret = br_mdb_add_group(br, p, &ip, entry->state);
++	ret = br_mdb_add_group(br, p, &ip, entry);
+ 	spin_unlock_bh(&br->multicast_lock);
+ 	return ret;
+ }
+@@ -799,12 +801,9 @@ static int br_mdb_add(struct sk_buff *skb, struct nlmsghdr *nlh,
+ 			err = __br_mdb_add(net, br, entry);
+ 			if (err)
+ 				break;
+-			__br_mdb_notify(dev, p, entry, RTM_NEWMDB);
+ 		}
+ 	} else {
+ 		err = __br_mdb_add(net, br, entry);
+-		if (!err)
+-			__br_mdb_notify(dev, p, entry, RTM_NEWMDB);
+ 	}
+ 
+ 	return err;
+@@ -832,6 +831,7 @@ static int __br_mdb_del(struct net_bridge *br, struct br_mdb_entry *entry)
+ 	if (entry->ifindex == mp->br->dev->ifindex && mp->host_joined) {
+ 		br_multicast_host_leave(mp, false);
+ 		err = 0;
++		__br_mdb_notify(br->dev, NULL, entry, RTM_DELMDB);
+ 		if (!mp->ports && netif_running(br->dev))
+ 			mod_timer(&mp->timer, jiffies);
+ 		goto unlock;
+@@ -894,13 +894,9 @@ static int br_mdb_del(struct sk_buff *skb, struct nlmsghdr *nlh,
+ 		list_for_each_entry(v, &vg->vlan_list, vlist) {
+ 			entry->vid = v->vid;
+ 			err = __br_mdb_del(br, entry);
+-			if (!err)
+-				__br_mdb_notify(dev, p, entry, RTM_DELMDB);
+ 		}
+ 	} else {
+ 		err = __br_mdb_del(br, entry);
+-		if (!err)
+-			__br_mdb_notify(dev, p, entry, RTM_DELMDB);
+ 	}
+ 
+ 	return err;
 -- 
 2.25.4
 
