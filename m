@@ -2,64 +2,76 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B092605AC
-	for <lists.bridge@lfdr.de>; Mon,  7 Sep 2020 22:27:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37180261052
+	for <lists.bridge@lfdr.de>; Tue,  8 Sep 2020 12:56:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 4B7D5221C6;
-	Mon,  7 Sep 2020 20:27:22 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id EFAA320378;
+	Tue,  8 Sep 2020 10:56:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hkoGbl+UTd8Y; Mon,  7 Sep 2020 20:27:22 +0000 (UTC)
+	with ESMTP id AYfhHbBsuf4v; Tue,  8 Sep 2020 10:56:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id EEFF820385;
-	Mon,  7 Sep 2020 20:27:21 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 0A2B3272DF;
+	Tue,  8 Sep 2020 10:56:25 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CE55AC0051;
-	Mon,  7 Sep 2020 20:27:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E0AD7C0052;
+	Tue,  8 Sep 2020 10:56:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CFBF2C0051
- for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 20:27:20 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DB0F5C0051
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 10:56:22 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id A03192042B
- for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 20:27:20 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id C2CE386895
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 10:56:22 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3mVpu16uAGL2 for <bridge@lists.linux-foundation.org>;
- Mon,  7 Sep 2020 20:27:19 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by silver.osuosl.org (Postfix) with ESMTPS id E3F7320385
- for <bridge@lists.linux-foundation.org>; Mon,  7 Sep 2020 20:27:19 +0000 (UTC)
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
- [163.114.132.7])
+ with ESMTP id peHzTdd7ySb4 for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Sep 2020 10:56:21 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.us.es (correo.us.es [193.147.175.20])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 762128688A
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 10:56:21 +0000 (UTC)
+Received: from antivirus1-rhel7.int (unknown [192.168.2.11])
+ by mail.us.es (Postfix) with ESMTP id 572C01C438F
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 12:56:18 +0200 (CEST)
+Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
+ by antivirus1-rhel7.int (Postfix) with ESMTP id 47004DA84F
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 12:56:18 +0200 (CEST)
+Received: by antivirus1-rhel7.int (Postfix, from userid 99)
+ id 27A72DA73D; Tue,  8 Sep 2020 12:56:18 +0200 (CEST)
+Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
+ by antivirus1-rhel7.int (Postfix) with ESMTP id 14E1CDA704;
+ Tue,  8 Sep 2020 12:56:16 +0200 (CEST)
+Received: from 192.168.1.97 (192.168.1.97)
+ by antivirus1-rhel7.int (F-Secure/fsigk_smtp/550/antivirus1-rhel7.int);
+ Tue, 08 Sep 2020 12:56:16 +0200 (CEST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/antivirus1-rhel7.int)
+Received: from us.es (unknown [90.77.255.23])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 27C7821556;
- Mon,  7 Sep 2020 20:27:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1599510439;
- bh=nKy/rzLAWRf54aoPo+PrRowJ1euqWN4cWkwUgQ9wVQU=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=MHqV1K+eSoZXTqutpE73tF/indnyd5zB18ZGfKs7+tzfjr14/eotE5g3WCzEHJcF0
- pcfwfRvNa7Kh5rBXqzIkFfD/T/Jg7oBaN25jbSle7WZ8sTbvNrGX797etkoN6WT3nZ
- wE/l6rELydzqdaicPGbkn+327KHu7QgufkcKb4Mg=
-Date: Mon, 7 Sep 2020 13:27:17 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-Message-ID: <20200907132717.5fdb04d9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20200907095619.11216-1-nikolay@cumulusnetworks.com>
-References: <20200907095619.11216-1-nikolay@cumulusnetworks.com>
+ (No client certificate requested) (Authenticated sender: 1984lsi)
+ by entrada.int (Postfix) with ESMTPSA id CB1814301DE1;
+ Tue,  8 Sep 2020 12:56:15 +0200 (CEST)
+Date: Tue, 8 Sep 2020 12:56:15 +0200
+X-SMTPAUTHUS: auth mail.us.es
+From: Pablo Neira Ayuso <pablo@netfilter.org>
+To: Wang Hai <wanghai38@huawei.com>
+Message-ID: <20200908105615.GA17880@salvia>
+References: <20200904125653.15170-1-wanghai38@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- davem@davemloft.net, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next v4 00/15] net: bridge: mcast: initial
- IGMPv3/MLDv2 support (part 1)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200904125653.15170-1-wanghai38@huawei.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Virus-Scanned: ClamAV using ClamSMTP
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org, fw@strlen.de,
+ linux-kernel@vger.kernel.org, kadlec@netfilter.org, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next] netfilter: ebt_stp: Remove unused
+ macro BPDU_TYPE_TCN
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -74,36 +86,8 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon,  7 Sep 2020 12:56:04 +0300 Nikolay Aleksandrov wrote:
-> Hi all,
-> This patch-set implements the control plane for initial IGMPv3/MLDv2
-> support which takes care of include/exclude sets and state transitions
-> based on the different report types.
-> Patch 01 arranges the structure better by moving the frequently used
-> fields together, patch 02 factors out the port group deletion code which is
-> used in a few places. Patches 03 and 04 add support for source lists and
-> group modes per port group which are dumped. Patch 05 adds support for
-> group-and-source specific queries required for IGMPv3/MLDv2. Then patch 06
-> adds support for group and group-and-source query retransmissions via a new
-> rexmit timer. Patches 07 and 08 make use of the already present mdb fill
-> functions when sending notifications so we can have the full mdb entries'
-> state filled in (with sources, mode etc). Patch 09 takes care of port group
-> expiration, it switches the group mode to include and deletes it if there
-> are no sources with active timers. Patches 10-13 are the core changes which
-> add support for IGMPv3/MLDv2 reports and handle the source list set
-> operations as per RFCs 3376 and 3810, all IGMPv3/MLDv2 report types with
-> their transitions should be supported after these patches. I've used RFCs
-> 3376, 3810 and FRR as a reference implementation. The source lists are
-> capped at 32 entries, we can remove that limitation at a later point which
-> would require a better data structure to hold them. IGMPv3 processing is
-> hidden behind the bridge's multicast_igmp_version option which must be set
-> to 3 in order to enable it. MLDv2 processing is hidden behind the bridge's
-> multicast_mld_version which must be set to 2 in order to enable it.
-> Patch 14 improves other querier processing a bit (more about this below).
-> And finally patch 15 transforms the src gc so it can be used with all mcast
-> objects since now we have multiple timers that can be running and we
-> need to make sure they have all finished before freeing the objects.
-> This is part 1, it only adds control plane support and doesn't change
-> the fast path. A following patch-set will take care of that.
+On Fri, Sep 04, 2020 at 08:56:53PM +0800, Wang Hai wrote:
+> BPDU_TYPE_TCN is never used after it was introduced.
+> So better to remove it.
 
-Applied thank you.
+Applied, thanks.
