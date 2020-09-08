@@ -1,77 +1,93 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37180261052
-	for <lists.bridge@lfdr.de>; Tue,  8 Sep 2020 12:56:29 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A3732610BB
+	for <lists.bridge@lfdr.de>; Tue,  8 Sep 2020 13:35:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id EFAA320378;
-	Tue,  8 Sep 2020 10:56:26 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id B2ED587297;
+	Tue,  8 Sep 2020 11:35:22 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id AYfhHbBsuf4v; Tue,  8 Sep 2020 10:56:25 +0000 (UTC)
+	with ESMTP id USzT-4yBiT5b; Tue,  8 Sep 2020 11:35:22 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 0A2B3272DF;
-	Tue,  8 Sep 2020 10:56:25 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 0447C87293;
+	Tue,  8 Sep 2020 11:35:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E0AD7C0052;
-	Tue,  8 Sep 2020 10:56:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DBE1CC0051;
+	Tue,  8 Sep 2020 11:35:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DB0F5C0051
- for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 10:56:22 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 53F19C0051
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 11:35:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id C2CE386895
- for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 10:56:22 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 36F9685A78
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 11:35:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id peHzTdd7ySb4 for <bridge@lists.linux-foundation.org>;
- Tue,  8 Sep 2020 10:56:21 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.us.es (correo.us.es [193.147.175.20])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 762128688A
- for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 10:56:21 +0000 (UTC)
-Received: from antivirus1-rhel7.int (unknown [192.168.2.11])
- by mail.us.es (Postfix) with ESMTP id 572C01C438F
- for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 12:56:18 +0200 (CEST)
-Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
- by antivirus1-rhel7.int (Postfix) with ESMTP id 47004DA84F
- for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 12:56:18 +0200 (CEST)
-Received: by antivirus1-rhel7.int (Postfix, from userid 99)
- id 27A72DA73D; Tue,  8 Sep 2020 12:56:18 +0200 (CEST)
-Received: from antivirus1-rhel7.int (localhost [127.0.0.1])
- by antivirus1-rhel7.int (Postfix) with ESMTP id 14E1CDA704;
- Tue,  8 Sep 2020 12:56:16 +0200 (CEST)
-Received: from 192.168.1.97 (192.168.1.97)
- by antivirus1-rhel7.int (F-Secure/fsigk_smtp/550/antivirus1-rhel7.int);
- Tue, 08 Sep 2020 12:56:16 +0200 (CEST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/antivirus1-rhel7.int)
-Received: from us.es (unknown [90.77.255.23])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: 1984lsi)
- by entrada.int (Postfix) with ESMTPSA id CB1814301DE1;
- Tue,  8 Sep 2020 12:56:15 +0200 (CEST)
-Date: Tue, 8 Sep 2020 12:56:15 +0200
-X-SMTPAUTHUS: auth mail.us.es
-From: Pablo Neira Ayuso <pablo@netfilter.org>
-To: Wang Hai <wanghai38@huawei.com>
-Message-ID: <20200908105615.GA17880@salvia>
-References: <20200904125653.15170-1-wanghai38@huawei.com>
+ with ESMTP id LkPUN4DwCPQm for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Sep 2020 11:35:19 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa1.microchip.iphmx.com (esa1.microchip.iphmx.com
+ [68.232.147.91])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id DC7FA85955
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Sep 2020 11:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1599564918; x=1631100918;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=F+j0JCQ1GOVdffMe15XLwWeslfZg0hQxxi1+nRfhBWA=;
+ b=b/9r8RliauG8ySi18QSglOorfIKFf4nyk3gCRwptURrH5rNKxpjx5RAC
+ iDNVjw+XRIpsRSaA/+XeWLQXNfbMnf/oi4w6EoMtsRlN8xB9eVq2Xs8J9
+ de8eWv+iLmnykEW5+ZtL9vqbjSvD88b4BEmTTa0iQ/qbAbsWQ62NeIf9T
+ Y+TAB39s7w05qRZ79m8EbqWTePVHBcYTYy+iLrGbzz5SFifKyxYt+G7Rz
+ /jcYzTxiT5qf097tIrxaJPdAd5C+aK1786duIuliPt5S0w+i/tnvIlWkv
+ PQdEPwMLNUwULR+vHNpNpIViJyuaede1YZ2QnXIMw7mXCXNyGf810t5sn Q==;
+IronPort-SDR: UJwLxQvuqzI6LGuw+ZcNKEC8YY1cbiWNN1jw9hkfPBc15ECt57fXIKNF87X+91CTWoeakQp5Y/
+ RkBY/39EGW9iU/VBjbvfE17VrReQ7tgOjNnmC41ElliW39jSfmKdW/eLhaBwhK6idhdfOTizZb
+ txxCGTlnKakYI5A9+OXP+TrSrj3PtV6QmP8kjBnY5GhbDIm4uAli/m+WH/hvEfV4Dzf00Ip7vW
+ QfKKx+xwVTvS2Fa2cnoLaAvS8UeGmGvAjcIcs7Ly8VkSRz9c7FEb+k/A5PDTZ32TvR7T2j/Fl5
+ xMI=
+X-IronPort-AV: E=Sophos;i="5.76,405,1592895600"; d="scan'208";a="94807242"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 08 Sep 2020 04:35:10 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 8 Sep 2020 04:34:51 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Tue, 8 Sep 2020 04:34:37 -0700
+Date: Tue, 8 Sep 2020 13:35:09 +0200
+To: Henrik Bjoernlund - M31679 <Henrik.Bjoernlund@microchip.com>
+Message-ID: <20200908113509.hvuknvmr54no2cy4@lx-anielsen.microsemi.net>
+References: <20200904091527.669109-1-henrik.bjoernlund@microchip.com>
+ <20200904154406.4fe55b9d@hermes.lan>
+ <20200906182129.274fimjyo7l52puj@soft-dev3.localdomain>
+ <b36a32dbf3b4b315fc4cbfdf06084b75a7c58729.camel@nvidia.com>
+ <BY5PR11MB3928DF9AC75B8AEC2FBD2256ED290@BY5PR11MB3928.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20200904125653.15170-1-wanghai38@huawei.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Virus-Scanned: ClamAV using ClamSMTP
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org, fw@strlen.de,
- linux-kernel@vger.kernel.org, kadlec@netfilter.org, coreteam@netfilter.org,
- netfilter-devel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next] netfilter: ebt_stp: Remove unused
- macro BPDU_TYPE_TCN
+In-Reply-To: <BY5PR11MB3928DF9AC75B8AEC2FBD2256ED290@BY5PR11MB3928.namprd11.prod.outlook.com>
+Cc: "idosch@mellanox.com" <idosch@mellanox.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>,
+ "jiri@mellanox.com" <jiri@mellanox.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ "kuba@kernel.org" <kuba@kernel.org>,
+ UNGLinuxDriver <UNGLinuxDriver@microchip.com>,
+ "davem@davemloft.net" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH RFC 0/7] net: bridge: cfm: Add support for
+ Connectivity Fault Management(CFM)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -83,11 +99,53 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: "Allan W. Nielsen via Bridge" <bridge@lists.linux-foundation.org>
+Reply-To: "Allan W. Nielsen" <allan.nielsen@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Sep 04, 2020 at 08:56:53PM +0800, Wang Hai wrote:
-> BPDU_TYPE_TCN is never used after it was introduced.
-> So better to remove it.
+Hi,
 
-Applied, thanks.
+On 08.09.2020 11:04, Henrik Bjoernlund - M31679 wrote:
+>>On Sun, 2020-09-06 at 20:21 +0200, Horatiu Vultur wrote:
+>>> The 09/04/2020 15:44, Stephen Hemminger wrote:
+>>> > On Fri, 4 Sep 2020 09:15:20 +0000 Henrik Bjoernlund
+>>> > <henrik.bjoernlund@microchip.com> wrote:
+>>Hi, I also had the same initial thought - this really doesn't seem to
+>>affect the bridge in any way, it's only collecting and transmitting
+>>information. I get that you'd like to use the bridge as a passthrough
+>>device to switchdev to program your hw, could you share what would be
+>>offloaded more specifically ?
+>Yes.
+>
+>The HW will offload the periodic sending of CCM frames, and the
+>reception.
+>
+>If CCM frames are not received as expected, it will raise an interrupt.
+>
+>This means that all the functionality provided in this series will be
+>offloaded to HW.
+>
+>The offloading is very important on our HW where we have a small CPU,
+>serving many ports, with a high frequency of CFM frames.
+>
+>The HW also support Link-Trace and Loop-back, which we may come back to
+>later.
+>
+>>All you do - snooping and blocking these packets can easily be done
+>>from user- space with the help of ebtables, but since we need to have
+>>a software implementation/fallback of anything being offloaded via
+>>switchdev we might need this after all, I'd just prefer to push as
+>>much as possible to user-space.
+In addition to Henriks comment, it is worth mentioning that we are
+trying to push as much of the functionallity to user-space (learnings
+from the MRP discussions).
+
+This is why there are currently no in-kernel users of the CCM-lose
+singnal. When a CCM-defect is happening the network typically needs to
+be re-configured. This we are trying to keep in user-space.
+
+>>I plan to review the individual patches tomorrow.
+Thanks.
+
+/Allan
