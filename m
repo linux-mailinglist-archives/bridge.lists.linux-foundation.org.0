@@ -1,62 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC996266A4B
-	for <lists.bridge@lfdr.de>; Fri, 11 Sep 2020 23:50:35 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id EAE7C878CB;
-	Fri, 11 Sep 2020 21:50:33 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id GZVP0XDdEpTM; Fri, 11 Sep 2020 21:50:32 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 47E3A878CA;
-	Fri, 11 Sep 2020 21:50:32 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 328BCC089E;
-	Fri, 11 Sep 2020 21:50:32 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C6527C0051
- for <bridge@lists.linux-foundation.org>; Fri, 11 Sep 2020 21:50:30 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2177726863E
+	for <lists.bridge@lfdr.de>; Mon, 14 Sep 2020 09:40:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id A816420412
- for <bridge@lists.linux-foundation.org>; Fri, 11 Sep 2020 21:50:30 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 4E3A5203D8;
+	Mon, 14 Sep 2020 07:40:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Ys-7nqNAzgGW; Mon, 14 Sep 2020 07:40:27 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by silver.osuosl.org (Postfix) with ESMTP id 2CB0720336;
+	Mon, 14 Sep 2020 07:40:27 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1EB3DC0859;
+	Mon, 14 Sep 2020 07:40:27 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ADC20C0859
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 07:40:25 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by hemlock.osuosl.org (Postfix) with ESMTP id A9DD687018
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 07:40:25 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ueWkP57yr2T6 for <bridge@lists.linux-foundation.org>;
- Fri, 11 Sep 2020 21:50:29 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
- by silver.osuosl.org (Postfix) with ESMTPS id BFD75203FB
- for <bridge@lists.linux-foundation.org>; Fri, 11 Sep 2020 21:50:28 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
- (using TLSv1 with cipher AES256-SHA (256/256 bits))
- (Client did not present a certificate)
- (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id 457041366B446;
- Fri, 11 Sep 2020 14:33:40 -0700 (PDT)
-Date: Fri, 11 Sep 2020 14:50:25 -0700 (PDT)
-Message-Id: <20200911.145025.2133088801719324101.davem@davemloft.net>
-To: idosch@idosch.org
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20200911132447.3158141-1-idosch@idosch.org>
-References: <20200911132447.3158141-1-idosch@idosch.org>
-X-Mailer: Mew version 6.8 on Emacs 27.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
- (shards.monkeyblade.net [2620:137:e000::1:9]);
- Fri, 11 Sep 2020 14:33:40 -0700 (PDT)
-Cc: netdev@vger.kernel.org, idosch@nvidia.com,
- bridge@lists.linux-foundation.org, nikolay@nvidia.com, jiri@nvidia.com,
- roopa@nvidia.com, kuba@kernel.org, mlxsw@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next] bridge: mcast: Fix incomplete MDB dump
+ with ESMTP id djMxE2KbK6mN for <bridge@lists.linux-foundation.org>;
+ Mon, 14 Sep 2020 07:40:24 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-oi1-f195.google.com (mail-oi1-f195.google.com
+ [209.85.167.195])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id B595C87004
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 07:40:24 +0000 (UTC)
+Received: by mail-oi1-f195.google.com with SMTP id x19so16893361oix.3
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 00:40:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9OcnKlqgAuX3lmvtPjQSY28ozZnq3T65wzBJcbrmz6o=;
+ b=HjtzRkCzJmG5Qgb75eWL1rDlMxN7eQKzSkcqydQMx4s7xCpmiZOTCQlGixxzMZ1ixq
+ MAQyOb18cMtOwLDc6JUVhhQvtYeJxpnrP6zMzLVBiKimhVIC6g58W53Pl1DSWEf78Eul
+ MQ1PqtpX9QKAKr0K7P9wLIa8uLtzj+Zsc0QwDWyD62L3z+KiIPaYwFz60sMHSuh9WHIH
+ iw9dLvS9rz8uKkGs+wPWiDAn6GTT/x30NZkw+ZBwP/ZVL4YzgFBgejZaEeeqdgVWDL2L
+ HG5Z7bku5iQzSWYm72x92bzAA0NMYcZdxVg/JxYIdvZ5MTeZ2t3fvW3goHpUMRnYB4tO
+ qWjw==
+X-Gm-Message-State: AOAM530cmUhqu8ZFUE3St/rMhL47TWm+2dNCnW3mXu3BK4wiR3GXJFHX
+ h9ttDfOkJneHoy9D9EfzjBV3SNN6IwXiT+8MXfU=
+X-Google-Smtp-Source: ABdhPJxXogF7NIvZqnQWeKTAcrQdTHdknQa9lnRLmhrjpxySJACyegBgSKyjuAW6Zz1mxStR+JFEXOpyVLi/baGaT9s=
+X-Received: by 2002:aca:52d6:: with SMTP id g205mr8014808oib.54.1600069223913; 
+ Mon, 14 Sep 2020 00:40:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAMuHMdUd4VtpOGr26KAmF22N32obNqQzq3tbcPxLJ7mxUtSyrg@mail.gmail.com>
+ <20200911.174400.306709791543819081.davem@davemloft.net>
+ <CAMuHMdW0agywTHr4bDO9f_xbQibCxDykdkcAmuRJQO90=E6-Zw@mail.gmail.com>
+ <20200912.183437.1205152743307947529.davem@davemloft.net>
+In-Reply-To: <20200912.183437.1205152743307947529.davem@davemloft.net>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 14 Sep 2020 09:40:12 +0200
+Message-ID: <CAMuHMdXGmKYKWtkFCV0WmYnY4Gn--Bbz-iSX76oc-UNNrzCMuw@mail.gmail.com>
+To: David Miller <davem@davemloft.net>
+Content-Type: text/plain; charset="UTF-8"
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ netdev <netdev@vger.kernel.org>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ bridge@lists.linux-foundation.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Gaku Inami <gaku.inami.xh@renesas.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [Bridge] [PATCH] Revert "net: linkwatch: add check for
+ netdevice being present to linkwatch_do_dev"
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -71,27 +88,62 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Ido Schimmel <idosch@idosch.org>
-Date: Fri, 11 Sep 2020 16:24:47 +0300
+Hi David,
 
-> From: Ido Schimmel <idosch@nvidia.com>
-> 
-> Each MDB entry is encoded in a nested netlink attribute called
-> 'MDBA_MDB_ENTRY'. In turn, this attribute contains another nested
-> attributed called 'MDBA_MDB_ENTRY_INFO', which encodes a single port
-> group entry within the MDB entry.
-> 
-> The cited commit added the ability to restart a dump from a specific
-> port group entry. However, on failure to add a port group entry to the
-> dump the entire MDB entry (stored in 'nest2') is removed, resulting in
-> missing port group entries.
-> 
-> Fix this by finalizing the MDB entry with the partial list of already
-> encoded port group entries.
-> 
-> Fixes: 5205e919c9f0 ("net: bridge: mcast: add support for src list and filter mode dumping")
-> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
-> Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> Reviewed-by: Jiri Pirko <jiri@nvidia.com>
+CC bridge
 
-Applied, thank you.
+On Sun, Sep 13, 2020 at 3:34 AM David Miller <davem@davemloft.net> wrote:
+> From: Geert Uytterhoeven <geert@linux-m68k.org>
+> Date: Sat, 12 Sep 2020 14:33:59 +0200
+>
+> > "dev" is not the bridge device, but the physical Ethernet interface, which
+> > may already be suspended during s2ram.
+>
+> Hmmm, ok.
+>
+> Looking more deeply NETDEV_CHANGE causes br_port_carrier_check() to run which
+> exits early if netif_running() is false, which is going to be true if
+> netif_device_present() is false:
+>
+>         *notified = false;
+>         if (!netif_running(br->dev))
+>                 return;
+>
+> The only other work the bridge notifier does is:
+>
+>         if (event != NETDEV_UNREGISTER)
+>                 br_vlan_port_event(p, event);
+>
+> and:
+>
+>         /* Events that may cause spanning tree to refresh */
+>         if (!notified && (event == NETDEV_CHANGEADDR || event == NETDEV_UP ||
+>                           event == NETDEV_CHANGE || event == NETDEV_DOWN))
+>                 br_ifinfo_notify(RTM_NEWLINK, NULL, p);
+>
+> So some vlan stuff, and emitting a netlink message to any available
+> listeners.
+>
+> Should we really do all of this for a device which is not even
+> present?
+>
+> This whole situation seems completely illogical.  The device is
+> useless, it logically has no link or other state that can be managed
+> or used, while it is not present.
+>
+> So all of these bridge operations should only happen when the device
+> transitions back to present again.
+
+Thanks for your analysis!
+I'd like to defer this to the bridge people (CC).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
