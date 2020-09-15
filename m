@@ -1,79 +1,82 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2177726863E
-	for <lists.bridge@lfdr.de>; Mon, 14 Sep 2020 09:40:33 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9AB26A7A0
+	for <lists.bridge@lfdr.de>; Tue, 15 Sep 2020 16:57:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 4E3A5203D8;
-	Mon, 14 Sep 2020 07:40:30 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id EAFDA863E0;
+	Tue, 15 Sep 2020 14:57:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Ys-7nqNAzgGW; Mon, 14 Sep 2020 07:40:27 +0000 (UTC)
+	with ESMTP id Fnixac3vI9bH; Tue, 15 Sep 2020 14:57:40 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 2CB0720336;
-	Mon, 14 Sep 2020 07:40:27 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 9AC6A86398;
+	Tue, 15 Sep 2020 14:57:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1EB3DC0859;
-	Mon, 14 Sep 2020 07:40:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8141CC0051;
+	Tue, 15 Sep 2020 14:57:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id ADC20C0859
- for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 07:40:25 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 61176C0051
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 14:57:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id A9DD687018
- for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 07:40:25 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 4F9728674A
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 14:57:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id djMxE2KbK6mN for <bridge@lists.linux-foundation.org>;
- Mon, 14 Sep 2020 07:40:24 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-oi1-f195.google.com (mail-oi1-f195.google.com
- [209.85.167.195])
- by hemlock.osuosl.org (Postfix) with ESMTPS id B595C87004
- for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 07:40:24 +0000 (UTC)
-Received: by mail-oi1-f195.google.com with SMTP id x19so16893361oix.3
- for <bridge@lists.linux-foundation.org>; Mon, 14 Sep 2020 00:40:24 -0700 (PDT)
+ with ESMTP id LocqIGsQaXzc for <bridge@lists.linux-foundation.org>;
+ Tue, 15 Sep 2020 14:57:38 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
+ [209.85.208.65])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id C65AB86746
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 14:57:37 +0000 (UTC)
+Received: by mail-ed1-f65.google.com with SMTP id i1so3384480edv.2
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 07:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cumulusnetworks.com; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=V0oVeorJEn639RUtHYFD9WKWaUEUtKz13YDNA91Zt1M=;
+ b=VNhG4zHEKDWxe/WBUk+BEg4hHxxdD4aw6BHfCqYM/7+u34DRHtu5P7rDWDKRF2SXSG
+ QMPOQmY3+CnpDK/dDjJuZUnqmSfll9zei2DQFzwzvr+/V1+KWrIKCMAGdVLEMCvjcrTW
+ AkNEB8uwQqlPiEDzKCsgb+uIg8h0PscZzoBhE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=9OcnKlqgAuX3lmvtPjQSY28ozZnq3T65wzBJcbrmz6o=;
- b=HjtzRkCzJmG5Qgb75eWL1rDlMxN7eQKzSkcqydQMx4s7xCpmiZOTCQlGixxzMZ1ixq
- MAQyOb18cMtOwLDc6JUVhhQvtYeJxpnrP6zMzLVBiKimhVIC6g58W53Pl1DSWEf78Eul
- MQ1PqtpX9QKAKr0K7P9wLIa8uLtzj+Zsc0QwDWyD62L3z+KiIPaYwFz60sMHSuh9WHIH
- iw9dLvS9rz8uKkGs+wPWiDAn6GTT/x30NZkw+ZBwP/ZVL4YzgFBgejZaEeeqdgVWDL2L
- HG5Z7bku5iQzSWYm72x92bzAA0NMYcZdxVg/JxYIdvZ5MTeZ2t3fvW3goHpUMRnYB4tO
- qWjw==
-X-Gm-Message-State: AOAM530cmUhqu8ZFUE3St/rMhL47TWm+2dNCnW3mXu3BK4wiR3GXJFHX
- h9ttDfOkJneHoy9D9EfzjBV3SNN6IwXiT+8MXfU=
-X-Google-Smtp-Source: ABdhPJxXogF7NIvZqnQWeKTAcrQdTHdknQa9lnRLmhrjpxySJACyegBgSKyjuAW6Zz1mxStR+JFEXOpyVLi/baGaT9s=
-X-Received: by 2002:aca:52d6:: with SMTP id g205mr8014808oib.54.1600069223913; 
- Mon, 14 Sep 2020 00:40:23 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=V0oVeorJEn639RUtHYFD9WKWaUEUtKz13YDNA91Zt1M=;
+ b=GSRNMR3DbgawsN2A1/JvRzXT7MyrD4rs/ZOxcKswY307S8JJlx5UDVS4PrYBRcDhyp
+ TTJhAkSrBVYviIpo6Xp6QES0S9fQU+g2wCAWtFaaoWjihSyExFG29NCgbXElh6ssXTM+
+ 6wTic6609YsZ3I+oaTkPssKAgD4oKuNHMlIDZok0sHViXQeZc3q0zSVDA2dIuuSnmtnk
+ 6H7h7GW9PdL9rFPGPcMfmDAFcLebBWntVjXahVVtew4zdOVmEY/dHZQ86JxHdokSd8zc
+ cIT17XqfGPe4uBlx09uE2DVZPvMvV4z/rjBRZk2Uijm5U1/89TasUdf8YnmOzkDEHJ5q
+ DosQ==
+X-Gm-Message-State: AOAM532oF6OQQTWOsrc8Mims8wzzkc3dY2w+5qYe+qYNbxyiRHxeySct
+ RoKot2Vzk0SE99NPEGHmv/eg1Q==
+X-Google-Smtp-Source: ABdhPJzAY2rvtPAX3p+iCT0TCc1/IqUnwzAOXGRCF1BXWWkr1TNlJe8m5QiOvSUrdBN9sQEQ4mxZfg==
+X-Received: by 2002:a50:fc87:: with SMTP id f7mr22614057edq.162.1600181856204; 
+ Tue, 15 Sep 2020 07:57:36 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id m14sm10255700ejn.8.2020.09.15.07.57.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Sep 2020 07:57:35 -0700 (PDT)
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+To: netdev@vger.kernel.org
+Date: Tue, 15 Sep 2020 17:57:24 +0300
+Message-Id: <20200915145724.2065042-1-nikolay@cumulusnetworks.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-References: <CAMuHMdUd4VtpOGr26KAmF22N32obNqQzq3tbcPxLJ7mxUtSyrg@mail.gmail.com>
- <20200911.174400.306709791543819081.davem@davemloft.net>
- <CAMuHMdW0agywTHr4bDO9f_xbQibCxDykdkcAmuRJQO90=E6-Zw@mail.gmail.com>
- <20200912.183437.1205152743307947529.davem@davemloft.net>
-In-Reply-To: <20200912.183437.1205152743307947529.davem@davemloft.net>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 14 Sep 2020 09:40:12 +0200
-Message-ID: <CAMuHMdXGmKYKWtkFCV0WmYnY4Gn--Bbz-iSX76oc-UNNrzCMuw@mail.gmail.com>
-To: David Miller <davem@davemloft.net>
-Content-Type: text/plain; charset="UTF-8"
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- netdev <netdev@vger.kernel.org>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- bridge@lists.linux-foundation.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Gaku Inami <gaku.inami.xh@renesas.com>,
- Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [Bridge] [PATCH] Revert "net: linkwatch: add check for
- netdevice being present to linkwatch_do_dev"
+Content-Transfer-Encoding: 8bit
+Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
+ bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
+Subject: [Bridge] [PATCH net-next] net: bridge: mcast: don't ignore return
+	value of __grp_src_toex_excl
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -88,62 +91,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi David,
+When we're handling TO_EXCLUDE report in EXCLUDE filter mode we should
+not ignore the return value of __grp_src_toex_excl() as we'll miss
+sending notifications about group changes.
 
-CC bridge
+Fixes: 5bf1e00b6849 ("net: bridge: mcast: support for IGMPV3/MLDv2 CHANGE_TO_INCLUDE/EXCLUDE report")
+Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+---
+ net/bridge/br_multicast.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Sun, Sep 13, 2020 at 3:34 AM David Miller <davem@davemloft.net> wrote:
-> From: Geert Uytterhoeven <geert@linux-m68k.org>
-> Date: Sat, 12 Sep 2020 14:33:59 +0200
->
-> > "dev" is not the bridge device, but the physical Ethernet interface, which
-> > may already be suspended during s2ram.
->
-> Hmmm, ok.
->
-> Looking more deeply NETDEV_CHANGE causes br_port_carrier_check() to run which
-> exits early if netif_running() is false, which is going to be true if
-> netif_device_present() is false:
->
->         *notified = false;
->         if (!netif_running(br->dev))
->                 return;
->
-> The only other work the bridge notifier does is:
->
->         if (event != NETDEV_UNREGISTER)
->                 br_vlan_port_event(p, event);
->
-> and:
->
->         /* Events that may cause spanning tree to refresh */
->         if (!notified && (event == NETDEV_CHANGEADDR || event == NETDEV_UP ||
->                           event == NETDEV_CHANGE || event == NETDEV_DOWN))
->                 br_ifinfo_notify(RTM_NEWLINK, NULL, p);
->
-> So some vlan stuff, and emitting a netlink message to any available
-> listeners.
->
-> Should we really do all of this for a device which is not even
-> present?
->
-> This whole situation seems completely illogical.  The device is
-> useless, it logically has no link or other state that can be managed
-> or used, while it is not present.
->
-> So all of these bridge operations should only happen when the device
-> transitions back to present again.
-
-Thanks for your analysis!
-I'd like to defer this to the bridge people (CC).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+index 33adf44ef7ec..e77f1e27caf7 100644
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -1710,7 +1710,7 @@ static bool br_multicast_toex(struct net_bridge_port_group *pg,
+ 		changed = true;
+ 		break;
+ 	case MCAST_EXCLUDE:
+-		__grp_src_toex_excl(pg, srcs, nsrcs, src_size);
++		changed = __grp_src_toex_excl(pg, srcs, nsrcs, src_size);
+ 		break;
+ 	}
+ 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
