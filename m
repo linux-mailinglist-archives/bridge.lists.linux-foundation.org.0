@@ -2,81 +2,60 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9AB26A7A0
-	for <lists.bridge@lfdr.de>; Tue, 15 Sep 2020 16:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3A2F26CFD8
+	for <lists.bridge@lfdr.de>; Thu, 17 Sep 2020 02:14:03 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id EAFDA863E0;
-	Tue, 15 Sep 2020 14:57:41 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 553D986D80;
+	Thu, 17 Sep 2020 00:14:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Fnixac3vI9bH; Tue, 15 Sep 2020 14:57:40 +0000 (UTC)
+	with ESMTP id foTcxLlqrUeV; Thu, 17 Sep 2020 00:14:00 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 9AC6A86398;
-	Tue, 15 Sep 2020 14:57:40 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 4044686F43;
+	Thu, 17 Sep 2020 00:14:00 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8141CC0051;
-	Tue, 15 Sep 2020 14:57:40 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1E0B5C0051;
+	Thu, 17 Sep 2020 00:14:00 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 61176C0051
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 14:57:39 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 22A60C0051
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Sep 2020 00:13:59 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 4F9728674A
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 14:57:39 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 11C8387560
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Sep 2020 00:13:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id LocqIGsQaXzc for <bridge@lists.linux-foundation.org>;
- Tue, 15 Sep 2020 14:57:38 +0000 (UTC)
+ with ESMTP id 4gmSlLewc9Rn for <bridge@lists.linux-foundation.org>;
+ Thu, 17 Sep 2020 00:13:57 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
- [209.85.208.65])
- by whitealder.osuosl.org (Postfix) with ESMTPS id C65AB86746
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 14:57:37 +0000 (UTC)
-Received: by mail-ed1-f65.google.com with SMTP id i1so3384480edv.2
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 07:57:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cumulusnetworks.com; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=V0oVeorJEn639RUtHYFD9WKWaUEUtKz13YDNA91Zt1M=;
- b=VNhG4zHEKDWxe/WBUk+BEg4hHxxdD4aw6BHfCqYM/7+u34DRHtu5P7rDWDKRF2SXSG
- QMPOQmY3+CnpDK/dDjJuZUnqmSfll9zei2DQFzwzvr+/V1+KWrIKCMAGdVLEMCvjcrTW
- AkNEB8uwQqlPiEDzKCsgb+uIg8h0PscZzoBhE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=V0oVeorJEn639RUtHYFD9WKWaUEUtKz13YDNA91Zt1M=;
- b=GSRNMR3DbgawsN2A1/JvRzXT7MyrD4rs/ZOxcKswY307S8JJlx5UDVS4PrYBRcDhyp
- TTJhAkSrBVYviIpo6Xp6QES0S9fQU+g2wCAWtFaaoWjihSyExFG29NCgbXElh6ssXTM+
- 6wTic6609YsZ3I+oaTkPssKAgD4oKuNHMlIDZok0sHViXQeZc3q0zSVDA2dIuuSnmtnk
- 6H7h7GW9PdL9rFPGPcMfmDAFcLebBWntVjXahVVtew4zdOVmEY/dHZQ86JxHdokSd8zc
- cIT17XqfGPe4uBlx09uE2DVZPvMvV4z/rjBRZk2Uijm5U1/89TasUdf8YnmOzkDEHJ5q
- DosQ==
-X-Gm-Message-State: AOAM532oF6OQQTWOsrc8Mims8wzzkc3dY2w+5qYe+qYNbxyiRHxeySct
- RoKot2Vzk0SE99NPEGHmv/eg1Q==
-X-Google-Smtp-Source: ABdhPJzAY2rvtPAX3p+iCT0TCc1/IqUnwzAOXGRCF1BXWWkr1TNlJe8m5QiOvSUrdBN9sQEQ4mxZfg==
-X-Received: by 2002:a50:fc87:: with SMTP id f7mr22614057edq.162.1600181856204; 
- Tue, 15 Sep 2020 07:57:36 -0700 (PDT)
-Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
- [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id m14sm10255700ejn.8.2020.09.15.07.57.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Sep 2020 07:57:35 -0700 (PDT)
-From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-To: netdev@vger.kernel.org
-Date: Tue, 15 Sep 2020 17:57:24 +0300
-Message-Id: <20200915145724.2065042-1-nikolay@cumulusnetworks.com>
-X-Mailer: git-send-email 2.25.4
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>,
- bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next] net: bridge: mcast: don't ignore return
-	value of __grp_src_toex_excl
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 9ADE287502
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Sep 2020 00:13:57 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 5D6FA13C70972;
+ Wed, 16 Sep 2020 16:57:09 -0700 (PDT)
+Date: Wed, 16 Sep 2020 17:13:55 -0700 (PDT)
+Message-Id: <20200916.171355.1205456391955745862.davem@davemloft.net>
+To: nikolay@cumulusnetworks.com
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20200915145724.2065042-1-nikolay@cumulusnetworks.com>
+References: <20200915145724.2065042-1-nikolay@cumulusnetworks.com>
+X-Mailer: Mew version 6.8 on Emacs 27.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [2620:137:e000::1:9]);
+ Wed, 16 Sep 2020 16:57:09 -0700 (PDT)
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next] net: bridge: mcast: don't ignore
+ return value of __grp_src_toex_excl
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -91,29 +70,14 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-When we're handling TO_EXCLUDE report in EXCLUDE filter mode we should
-not ignore the return value of __grp_src_toex_excl() as we'll miss
-sending notifications about group changes.
+From: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
+Date: Tue, 15 Sep 2020 17:57:24 +0300
 
-Fixes: 5bf1e00b6849 ("net: bridge: mcast: support for IGMPV3/MLDv2 CHANGE_TO_INCLUDE/EXCLUDE report")
-Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
----
- net/bridge/br_multicast.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> When we're handling TO_EXCLUDE report in EXCLUDE filter mode we should
+> not ignore the return value of __grp_src_toex_excl() as we'll miss
+> sending notifications about group changes.
+> 
+> Fixes: 5bf1e00b6849 ("net: bridge: mcast: support for IGMPV3/MLDv2 CHANGE_TO_INCLUDE/EXCLUDE report")
+> Signed-off-by: Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
 
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 33adf44ef7ec..e77f1e27caf7 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -1710,7 +1710,7 @@ static bool br_multicast_toex(struct net_bridge_port_group *pg,
- 		changed = true;
- 		break;
- 	case MCAST_EXCLUDE:
--		__grp_src_toex_excl(pg, srcs, nsrcs, src_size);
-+		changed = __grp_src_toex_excl(pg, srcs, nsrcs, src_size);
- 		break;
- 	}
- 
--- 
-2.25.4
-
+Applied, thank you.
