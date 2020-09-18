@@ -1,90 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02BB26E228
-	for <lists.bridge@lfdr.de>; Thu, 17 Sep 2020 19:20:18 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 521EB26F529
+	for <lists.bridge@lfdr.de>; Fri, 18 Sep 2020 06:35:53 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 2E81A2E1B4;
-	Thu, 17 Sep 2020 17:20:17 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 482DD86F8F;
+	Fri, 18 Sep 2020 04:35:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gJdT1ynrqf8P; Thu, 17 Sep 2020 17:20:14 +0000 (UTC)
+	with ESMTP id a-R5ZpSH06hY; Fri, 18 Sep 2020 04:35:50 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 38DE62E1BD;
-	Thu, 17 Sep 2020 17:19:35 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id A19A387297;
+	Fri, 18 Sep 2020 04:35:50 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 29569C0888;
-	Thu, 17 Sep 2020 17:19:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 83D86C0051;
+	Fri, 18 Sep 2020 04:35:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5635CC0051
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 10:27:13 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5D6CEC0051
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 04:35:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 2EEF5204DD
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 10:27:13 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 4003C86F8F
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 04:35:48 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PFckHQMC6Pub for <bridge@lists.linux-foundation.org>;
- Tue, 15 Sep 2020 10:27:12 +0000 (UTC)
+ with ESMTP id YimLEFEPVk-r for <bridge@lists.linux-foundation.org>;
+ Fri, 18 Sep 2020 04:35:47 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa1.microchip.iphmx.com (esa1.microchip.iphmx.com
- [68.232.147.91])
- by silver.osuosl.org (Postfix) with ESMTPS id F1082204C3
- for <bridge@lists.linux-foundation.org>; Tue, 15 Sep 2020 10:27:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1600165631; x=1631701631;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6pj42hcpmKOUyMQ9MhDbUOl6HOtbIojY8r2/GLfcYBk=;
- b=cAI6zxY48uUIZKfOkoAgTqTHMvUJuLOZgJIoeviH6e5s1RlOZ+L6TCaB
- eZlYrjHwsPb720R1E6Ha9XWnb6oxKOttBh4Mx4T18KzcBNJDkHH4knOIB
- ITEG/QIyHyl7gctWlLh1Z1LTT8BB/0uUlwpAIVvZUecu9bQCR72fWJsyV
- nNabZHNMLXfgkCQrt8Yv8IEMwq3oh4/mvfjPY41eDbxdptSnlE8dLijgB
- VePo863cuP1jg3TySt1IrTVCOLJ7P5m7wxMAUTycTQ9tQJljI5t1Zoj0Q
- 1k89KohnB1+WhGlMP35nXn06LZNPx8woPgkqXzRy9/40T9B77AKgnEt6j g==;
-IronPort-SDR: SeG2nD/GORJgPmYvGhclPsw+G8TXL3rsyaBt8PW20lW/8KhOAwcwu7c0eGtJj72zuL7UlA7vic
- ySqqbTGvBfI2fKz8lGViZBn4kK5p9XyK4r2BIii3Iz2GtNniC3dZSytzS9Vcjjgo/S7wMsI2e4
- FO7vUlsYEQNxoRf0xi0VOFr1dcb1zwL+IgMfbPMxZdkKVZ0J+U3caEcyKBBghp2SaOjNDAmV9O
- KxljA5ep7WrE3dRTvSEPUUcQByQQqZ00iKc0dcKAliua+/ybuR9seP2ngf/8cs+CmLDVuYurI8
- R7g=
-X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; d="scan'208";a="95789163"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 15 Sep 2020 03:26:58 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 15 Sep 2020 03:26:48 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Tue, 15 Sep 2020 03:26:48 -0700
-Date: Tue, 15 Sep 2020 10:24:22 +0000
-To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <20200915102422.ronvnumdu4lk3l4b@soft-test08>
-References: <20200904091527.669109-1-henrik.bjoernlund@microchip.com>
- <20200904091527.669109-7-henrik.bjoernlund@microchip.com>
- <cbb516e37457ef1875f99001ec72624c49ab51ed.camel@nvidia.com>
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 0DBD686F85
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 04:35:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Type:Content-ID:Content-Description;
+ bh=IuEQoXED3a1R2JhR0RJXE+dYfdFfK1ROSygKFuifAeU=; b=AWre/EoYMeFkLWe9v8Vc5zUU1D
+ zb+KiSBFpyivVhWI2oM+iS0ezDFO5UtcryC/1hcc2b9ueGoOrqZfh6KK0NdUZaN3UwhGihFt2bNWe
+ HUws8lkeVvWKTNMBQud5x5Ji4brQ8pHsCU/zn/e/aAxdy2In4F7i+Lnvq4i+/xTxEbWpdjkN6JWEP
+ v9H5OF2Zbc8jqFnnd96e1VsLY5dcBMl2f7fY76AlUI8AIp7fCC3GOMnf8zQNCRBmJHHMaubLjywca
+ 8G5RpH00cX4zl1nLytDk6ce81rAtluv7MVxlyWSsUF2Xyk+YhrWcaKHFwIugWz93nwkrzj/SNzIyI
+ iAWod5ow==;
+Received: from [2601:1c0:6280:3f0::19c2] (helo=smtpauth.infradead.org)
+ by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kJ87X-0003Ci-Pu; Fri, 18 Sep 2020 04:35:40 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: netdev@vger.kernel.org
+Date: Thu, 17 Sep 2020 21:35:21 -0700
+Message-Id: <20200918043521.17346-8-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200918043521.17346-1-rdunlap@infradead.org>
+References: <20200918043521.17346-1-rdunlap@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <cbb516e37457ef1875f99001ec72624c49ab51ed.camel@nvidia.com>
-X-Mailman-Approved-At: Thu, 17 Sep 2020 17:19:30 +0000
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
- "idosch@mellanox.com" <idosch@mellanox.com>,
- "jiri@mellanox.com" <jiri@mellanox.com>, Roopa Prabhu <roopa@nvidia.com>,
- "kuba@kernel.org" <kuba@kernel.org>,
- "horatiu.vultur@microchip.com" <horatiu.vultur@microchip.com>,
- "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH RFC 6/7] bridge: cfm: Netlink Notifications.
+Content-Transfer-Encoding: 8bit
+Cc: bridge@lists.linux-foundation.org, Randy Dunlap <rdunlap@infradead.org>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH 7/7 net-next] net: bridge: delete duplicated words
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,44 +71,41 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: "henrik.bjoernlund--- via Bridge" <bridge@lists.linux-foundation.org>
-Reply-To: "henrik.bjoernlund@microchip.com" <henrik.bjoernlund@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Thanks for the review. Comments below.
+Drop repeated words in net/bridge/.
 
-The 09/08/2020 13:54, Nikolay Aleksandrov wrote:
-> 
-> On Fri, 2020-09-04 at 09:15 +0000, Henrik Bjoernlund wrote:
-> > This is the implementation of Netlink notifications out of CFM.
-> >
-> > Notifications are initiated whenever a state change happens in CFM.
-> >
-> [snip]
-> > +     *count = 0;
-> > +
-> > +     rcu_read_lock();
-> > +     list_for_each_entry_rcu(mep, &br->mep_list, head)
-> > +             * count += 1;
-> 
-> please remove the extra space
-> 
-I have removed the extra space.
-This space was added to satify checkpatch as without this space it gives
-this error:
-CHECK: spaces preferred around that '*' (ctx:ExV)
-#136: FILE: net/bridge/br_cfm.c:883:
-+               *count += 1;
-                ^
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Roopa Prabhu <roopa@nvidia.com>
+Cc: Nikolay Aleksandrov <nikolay@nvidia.com>
+Cc: bridge@lists.linux-foundation.org
+---
+ net/bridge/br_ioctl.c |    2 +-
+ net/bridge/br_vlan.c  |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-> > +     rcu_read_unlock();
-> > +
-> > +     return 0;
-> > +}
-> > +
-> 
-> 
-
--- 
-/Henrik
+--- linux-next-20200917.orig/net/bridge/br_ioctl.c
++++ linux-next-20200917/net/bridge/br_ioctl.c
+@@ -103,7 +103,7 @@ static int add_del_if(struct net_bridge
+ 
+ /*
+  * Legacy ioctl's through SIOCDEVPRIVATE
+- * This interface is deprecated because it was too difficult to
++ * This interface is deprecated because it was too difficult
+  * to do the translation for 32/64bit ioctl compatibility.
+  */
+ static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
+--- linux-next-20200917.orig/net/bridge/br_vlan.c
++++ linux-next-20200917/net/bridge/br_vlan.c
+@@ -140,7 +140,7 @@ static int __vlan_vid_del(struct net_dev
+ 	return err == -EOPNOTSUPP ? 0 : err;
+ }
+ 
+-/* Returns a master vlan, if it didn't exist it gets created. In all cases a
++/* Returns a master vlan, if it didn't exist it gets created. In all cases
+  * a reference is taken to the master vlan before returning.
+  */
+ static struct net_bridge_vlan *
