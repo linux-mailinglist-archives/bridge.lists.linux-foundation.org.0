@@ -1,65 +1,66 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521EB26F529
-	for <lists.bridge@lfdr.de>; Fri, 18 Sep 2020 06:35:53 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AD9227087F
+	for <lists.bridge@lfdr.de>; Fri, 18 Sep 2020 23:47:30 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 482DD86F8F;
-	Fri, 18 Sep 2020 04:35:51 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 0839387859;
+	Fri, 18 Sep 2020 21:47:29 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id a-R5ZpSH06hY; Fri, 18 Sep 2020 04:35:50 +0000 (UTC)
+	with ESMTP id HAE-8Cs8j6IU; Fri, 18 Sep 2020 21:47:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id A19A387297;
-	Fri, 18 Sep 2020 04:35:50 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id BCCC18785C;
+	Fri, 18 Sep 2020 21:47:27 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 83D86C0051;
-	Fri, 18 Sep 2020 04:35:50 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9F40BC0051;
+	Fri, 18 Sep 2020 21:47:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5D6CEC0051
- for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 04:35:48 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B4746C0051
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 21:47:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 4003C86F8F
- for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 04:35:48 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 921AF87AFA
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 21:47:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id YimLEFEPVk-r for <bridge@lists.linux-foundation.org>;
- Fri, 18 Sep 2020 04:35:47 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 0DBD686F85
- for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 04:35:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=IuEQoXED3a1R2JhR0RJXE+dYfdFfK1ROSygKFuifAeU=; b=AWre/EoYMeFkLWe9v8Vc5zUU1D
- zb+KiSBFpyivVhWI2oM+iS0ezDFO5UtcryC/1hcc2b9ueGoOrqZfh6KK0NdUZaN3UwhGihFt2bNWe
- HUws8lkeVvWKTNMBQud5x5Ji4brQ8pHsCU/zn/e/aAxdy2In4F7i+Lnvq4i+/xTxEbWpdjkN6JWEP
- v9H5OF2Zbc8jqFnnd96e1VsLY5dcBMl2f7fY76AlUI8AIp7fCC3GOMnf8zQNCRBmJHHMaubLjywca
- 8G5RpH00cX4zl1nLytDk6ce81rAtluv7MVxlyWSsUF2Xyk+YhrWcaKHFwIugWz93nwkrzj/SNzIyI
- iAWod5ow==;
-Received: from [2601:1c0:6280:3f0::19c2] (helo=smtpauth.infradead.org)
- by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kJ87X-0003Ci-Pu; Fri, 18 Sep 2020 04:35:40 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: netdev@vger.kernel.org
-Date: Thu, 17 Sep 2020 21:35:21 -0700
-Message-Id: <20200918043521.17346-8-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200918043521.17346-1-rdunlap@infradead.org>
-References: <20200918043521.17346-1-rdunlap@infradead.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: bridge@lists.linux-foundation.org, Randy Dunlap <rdunlap@infradead.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH 7/7 net-next] net: bridge: delete duplicated words
+ with ESMTP id bVxpd4t6Nrce for <bridge@lists.linux-foundation.org>;
+ Fri, 18 Sep 2020 21:47:24 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [23.128.96.9])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id AA17387AEA
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Sep 2020 21:47:24 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 8857A15A01A79;
+ Fri, 18 Sep 2020 14:30:35 -0700 (PDT)
+Date: Fri, 18 Sep 2020 14:47:21 -0700 (PDT)
+Message-Id: <20200918.144721.348413288598834487.davem@davemloft.net>
+To: nikolay@nvidia.com
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <9ab2973de2c0fb32de7fbc4ae823a820cd48a769.camel@nvidia.com>
+References: <20200912.183437.1205152743307947529.davem@davemloft.net>
+ <CAMuHMdXGmKYKWtkFCV0WmYnY4Gn--Bbz-iSX76oc-UNNrzCMuw@mail.gmail.com>
+ <9ab2973de2c0fb32de7fbc4ae823a820cd48a769.camel@nvidia.com>
+X-Mailer: Mew version 6.8 on Emacs 27.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [2620:137:e000::1:9]);
+ Fri, 18 Sep 2020 14:30:36 -0700 (PDT)
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, netdev@vger.kernel.org,
+ yoshihiro.shimoda.uh@renesas.com, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, geert@linux-m68k.org, roopa@nvidia.com,
+ kuba@kernel.org, gaku.inami.xh@renesas.com, hkallweit1@gmail.com
+Subject: Re: [Bridge] [PATCH] Revert "net: linkwatch: add check for
+ netdevice being present to linkwatch_do_dev"
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -74,38 +75,28 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Drop repeated words in net/bridge/.
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Date: Fri, 18 Sep 2020 12:35:02 +0000
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Roopa Prabhu <roopa@nvidia.com>
-Cc: Nikolay Aleksandrov <nikolay@nvidia.com>
-Cc: bridge@lists.linux-foundation.org
----
- net/bridge/br_ioctl.c |    2 +-
- net/bridge/br_vlan.c  |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+> Thanks for the analysis, I don't see any issues with checking if the device
+> isn't present. It will have to go through some testing, but no obvious
+> objections/issues. Have you tried if it fixes your case?
+> I have briefly gone over drivers' use of net_device_detach(), mostly it's used
+> for suspends, but there are a few cases which use it on IO error or when a
+> device is actually detaching (VF detach). The vlan port event is for vlan
+> devices on top of the bridge when BROPT_VLAN_BRIDGE_BINDING is enabled and their
+> carrier is changed based on vlan participating ports' state.
 
---- linux-next-20200917.orig/net/bridge/br_ioctl.c
-+++ linux-next-20200917/net/bridge/br_ioctl.c
-@@ -103,7 +103,7 @@ static int add_del_if(struct net_bridge
- 
- /*
-  * Legacy ioctl's through SIOCDEVPRIVATE
-- * This interface is deprecated because it was too difficult to
-+ * This interface is deprecated because it was too difficult
-  * to do the translation for 32/64bit ioctl compatibility.
-  */
- static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
---- linux-next-20200917.orig/net/bridge/br_vlan.c
-+++ linux-next-20200917/net/bridge/br_vlan.c
-@@ -140,7 +140,7 @@ static int __vlan_vid_del(struct net_dev
- 	return err == -EOPNOTSUPP ? 0 : err;
- }
- 
--/* Returns a master vlan, if it didn't exist it gets created. In all cases a
-+/* Returns a master vlan, if it didn't exist it gets created. In all cases
-  * a reference is taken to the master vlan before returning.
-  */
- static struct net_bridge_vlan *
+There are two things to resolve:
+
+1) Why does the bridge need to get a change event for devices which have
+   not fully resumed yet?
+
+2) What kind of link state change is happening on devices which are not
+   currently fully resumed yet?
+
+Really this whole situation is still quite mysterious to me.
+
+If the driver (or the PHY library it is using, etc.) is emitting link
+state changes before it marks itself as "present", that's the real
+bug.
