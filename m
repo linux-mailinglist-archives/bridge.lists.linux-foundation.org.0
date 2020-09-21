@@ -1,87 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F49E27223E
-	for <lists.bridge@lfdr.de>; Mon, 21 Sep 2020 13:23:38 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id C21522725A3
+	for <lists.bridge@lfdr.de>; Mon, 21 Sep 2020 15:34:06 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id CFB3585552;
-	Mon, 21 Sep 2020 11:23:36 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 3B79D86741;
+	Mon, 21 Sep 2020 13:34:05 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kYBgIbbTbLBD; Mon, 21 Sep 2020 11:23:36 +0000 (UTC)
+	with ESMTP id mogn6JrA0+SW; Mon, 21 Sep 2020 13:34:04 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 550A485513;
-	Mon, 21 Sep 2020 11:23:36 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 6E91B8672F;
+	Mon, 21 Sep 2020 13:34:04 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3BF14C0893;
-	Mon, 21 Sep 2020 11:23:36 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 52392C0893;
+	Mon, 21 Sep 2020 13:34:04 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B9D1EC0051
- for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 11:23:34 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4C0B4C0051
+ for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 13:34:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id A851286887
- for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 11:23:34 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 2B38120346
+ for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 13:34:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id LKZ3gAnTlQjD for <bridge@lists.linux-foundation.org>;
- Mon, 21 Sep 2020 11:23:33 +0000 (UTC)
+ with ESMTP id Cp6Iv-cDUmvO for <bridge@lists.linux-foundation.org>;
+ Mon, 21 Sep 2020 13:34:00 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
- [209.85.208.65])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 4F87286758
- for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 11:23:33 +0000 (UTC)
-Received: by mail-ed1-f65.google.com with SMTP id e22so12382115edq.6
- for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 04:23:33 -0700 (PDT)
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+ [209.85.128.65])
+ by silver.osuosl.org (Postfix) with ESMTPS id 657DA2010D
+ for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 13:34:00 +0000 (UTC)
+Received: by mail-wm1-f65.google.com with SMTP id q9so12166673wmj.2
+ for <bridge@lists.linux-foundation.org>; Mon, 21 Sep 2020 06:34:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=W1k28u9m4opk3xAHXu3X6yCLygcG5WtwBqkfTVt8j0k=;
- b=xyGBhkOGELPKn//wEelqXKR2capv+rcr01F4odCptjBa5YW1aMl9K9f6t/0AE/wp2F
- H8mU9/tvQ/ES2Gn5EstZdkbKciKhK/oKiGIWUjX3LtKCma9GaXbvw+gfcBg+t5W49o1A
- JHjfV7vzht0dYR7MYq/zmlq1IYz/NJMcNp441j3HZy23AMNTTznaX74gHX3SCSMwFNrx
- Vaey+fwS46Ycelax5JgnPTb3YsMBtq1X2N9kPwkPkyiSHD7sLTOx++j4LpbTQLHkUFkn
- DB/tET4zDJ1tQGLh3sW/wGCKCaipL+70mXN5PY4rRkJKirCxLDGDKUw4OOZ6ERVM6Z6T
- X7yA==
+ h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=wPdlIs18KI5U0+lJGti5z8sy4m97lLcsvfJKYU71Zb4=;
+ b=TJTi4cNhDBklHXlnU2BhmlFoP17GtWhHnpSTpszs6yBgkG0PNYcRp92G+rh3wR2wMB
+ 6wTDZy/tUFdfXBpBkaVMoX0+xPQifCnlheP0zbjLbul6t11emSIvi2IFXuJgJUAuhYif
+ DAxKt1XmBh3zpBwP9Vf2PvxP8aeQJf1ut36EMeKkKcbRhmJdPrB9adJMPTFw0rloMKKB
+ YfWBswgn5hTnD9AM3KzR01u1zNONJ7HjbNyCcZ53ZfymCCnNWz0wzMirDCFBBS6O0t/5
+ q7YZA729DmydWYGDV4LZW24yTJdhFuMiH6b/9odBjqo7KtQvE/iDl2bNP+zunNrqsTpk
+ 8GWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=W1k28u9m4opk3xAHXu3X6yCLygcG5WtwBqkfTVt8j0k=;
- b=BOApV22yoGY41KUEuNj9YIHZjxwnd4+VwuKO+/RNU1N/ez+k4ZdgXSjonFjIR24S59
- irp+LnW8OjErrsmGOMguMtB9EPWphuSbF1xTdb/nUlkBZAU6govmnO6kiMsyIChz17/Z
- 0jGjya8lYrrR0GFRbvqB8Smo0kk3eDCno95oTIpigR7mo0hk2gJXsPBKGBdmbN/XgJ2l
- NkmD9kB3ezvwf2d7QGV67SSA2QElcSz2eEYjj1mzXcnNb9UKd9j0CdF+Q3U7npGevFNo
- h0NWFkswHkl1A4cd749KnUAHd9xK7waF3AyzoxjzSRBMe7CLiGIC/SPQZBhObsFgCeXA
- 3Chw==
-X-Gm-Message-State: AOAM5338JaR26dZ3Y4x1tb9LVNVyc/3mf3/IE97e3y+05N0Xq0Kt/kX2
- G6ebg7DqCJqur/DXeaKXeGmBsdIoUyuEOwGW7tshIA==
-X-Google-Smtp-Source: ABdhPJwcdLN2KgA8ISfNJtMrE9FRZfmoLfTdUJ1nxmQ+ZF48FONNG75fUXSJ8sUWvYqhodFwlbtEbg==
-X-Received: by 2002:adf:f492:: with SMTP id l18mr54104001wro.280.1600685786973; 
- Mon, 21 Sep 2020 03:56:26 -0700 (PDT)
-Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
- [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id s11sm19637727wrt.43.2020.09.21.03.56.26
+ h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
+ :in-reply-to:references:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=wPdlIs18KI5U0+lJGti5z8sy4m97lLcsvfJKYU71Zb4=;
+ b=MZNOFz+iD0heCudDqO9QCfsV/onO+uGFGPiMUodxSjQEWqdO9MrV21i2tkxkLhYoRH
+ GPXRxl2mtoa81DTZQlMpXzB4Z7UawFW8+XzfXYU5zH6Fn7Xc2pX4GtrxCBjBDbQBWCjB
+ hPxMgCjWHu5kABjcw3wT9tnsl4ZbP5eK8y23qMjIs7Wyzcqel0+RG9d+eps7ieoRfIjf
+ isXG/mSGCXlu1papSIxin7tALRuM852OX47aPiKEAB4sjYBffx8eSPOio7swJc/HfSVz
+ FR9Zb8eNraE42RSEjkf3yViCC93jYJFvk8+P9xlGMSsv7DPZ/+UpJyD5PURK2BLh+CQg
+ cycg==
+X-Gm-Message-State: AOAM530Ot6ys+kOySCndTpBA0kxiSPsHw4+JZrU2SV0GzX1uO7LM6oh0
+ PmzkyJJtAnD4prGbmHd3HCQBRw==
+X-Google-Smtp-Source: ABdhPJyOeMeACUunRhRyjQIarEzN5hQ5urTAIhwVTrIJKh+bb2lP9AAskI9HmHAzneGJWBAlNKrgOg==
+X-Received: by 2002:a7b:c925:: with SMTP id h5mr29570930wml.28.1600695238916; 
+ Mon, 21 Sep 2020 06:33:58 -0700 (PDT)
+Received: from debil (84-238-136-197.ip.btc-net.bg. [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id d18sm21301938wrm.10.2020.09.21.06.33.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Sep 2020 03:56:26 -0700 (PDT)
+ Mon, 21 Sep 2020 06:33:58 -0700 (PDT)
+Message-ID: <79bea5b909046ae1259481d172c2eb2a6c62aabb.camel@blackwall.org>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-To: netdev@vger.kernel.org
-Date: Mon, 21 Sep 2020 13:55:26 +0300
-Message-Id: <20200921105526.1056983-17-razor@blackwall.org>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200921105526.1056983-1-razor@blackwall.org>
-References: <20200921105526.1056983-1-razor@blackwall.org>
+To: kernel test robot <lkp@intel.com>, netdev@vger.kernel.org
+Date: Mon, 21 Sep 2020 16:33:56 +0300
+In-Reply-To: <202009212146.1IVUIG6Z%lkp@intel.com>
+References: <20200921105526.1056983-7-razor@blackwall.org>
+ <202009212146.1IVUIG6Z%lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, bridge@lists.linux-foundation.org,
- davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 16/16] net: bridge: mcast: when forwarding
-	handle filter mode and blocked flag
+Content-Transfer-Encoding: 7bit
+Cc: b.a.t.m.a.n@lists.open-mesh.org, kbuild-all@lists.01.org,
+ Marek Lindner <mareklindner@neomailbox.ch>,
+ Simon Wunderlich <sw@simonwunderlich.de>, bridge@lists.linux-foundation.org,
+ roopa@nvidia.com, davem@davemloft.net, Sven Eckelmann <sven@narfation.org>
+Subject: Re: [Bridge] [PATCH net-next 06/16] net: bridge: mcast: rename
+ br_ip's u member to dst
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,55 +97,45 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+Reply-To: razor@blackwall.org
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+On Mon, 2020-09-21 at 21:30 +0800, kernel test robot wrote:
+> Hi Nikolay,
+> 
+> I love your patch! Yet something to improve:
+> 
+> [auto build test ERROR on net-next/master]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Nikolay-Aleksandrov/net-bridge-mcast-IGMPv3-MLDv2-fast-path-part-2/20200921-185933
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 3cec0369905d086a56a7515f3449982403057599
+> config: riscv-allyesconfig (attached as .config)
+> compiler: riscv64-linux-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=riscv 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    net/batman-adv/multicast.c: In function 'batadv_mcast_mla_br_addr_cpy':
+> > > net/batman-adv/multicast.c:564:20: error: 'const struct br_ip' has no member named 'u'
+>      564 |   ip_eth_mc_map(src->u.ip4, dst);
+>          |                    ^~
+>    net/batman-adv/multicast.c:567:23: error: 'const struct br_ip' has no member named 'u'
+>      567 |   ipv6_eth_mc_map(&src->u.ip6, dst);
+>          |                       ^~
+> 
 
-We need to avoid forwarding to ports in MCAST_INCLUDE filter mode when the
-mdst entry is a *,G or when the port has the blocked flag.
+Hrm, I'm pretty sure I tested batman, but apparently I missed
+CONFIG_BATMAN_ADV_MCAST. I'll fix it up and send v2 after some
+time to give people the chance to comment on the rest of the set.
 
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
----
- net/bridge/br_forward.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+Thanks!
 
-diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index 4d12999e4576..e28ffadd1371 100644
---- a/net/bridge/br_forward.c
-+++ b/net/bridge/br_forward.c
-@@ -274,10 +274,19 @@ void br_multicast_flood(struct net_bridge_mdb_entry *mdst,
- 	struct net_bridge *br = netdev_priv(dev);
- 	struct net_bridge_port *prev = NULL;
- 	struct net_bridge_port_group *p;
-+	bool allow_mode_include = true;
- 	struct hlist_node *rp;
- 
- 	rp = rcu_dereference(hlist_first_rcu(&br->router_list));
--	p = mdst ? rcu_dereference(mdst->ports) : NULL;
-+	if (mdst) {
-+		p = rcu_dereference(mdst->ports);
-+		if (br_multicast_should_handle_mode(br, mdst->addr.proto) &&
-+		    br_multicast_is_star_g(&mdst->addr))
-+			allow_mode_include = false;
-+	} else {
-+		p = NULL;
-+	}
-+
- 	while (p || rp) {
- 		struct net_bridge_port *port, *lport, *rport;
- 
-@@ -292,6 +301,10 @@ void br_multicast_flood(struct net_bridge_mdb_entry *mdst,
- 						   local_orig);
- 				goto delivered;
- 			}
-+			if ((!allow_mode_include &&
-+			     p->filter_mode == MCAST_INCLUDE) ||
-+			    (p->flags & MDB_PG_FLAGS_BLOCKED))
-+				goto delivered;
- 		} else {
- 			port = rport;
- 		}
--- 
-2.25.4
 
