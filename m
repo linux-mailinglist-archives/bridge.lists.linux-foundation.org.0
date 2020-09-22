@@ -1,78 +1,78 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47637273BE4
-	for <lists.bridge@lfdr.de>; Tue, 22 Sep 2020 09:30:51 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5505C273BE8
+	for <lists.bridge@lfdr.de>; Tue, 22 Sep 2020 09:30:54 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7D6CD85B78;
-	Tue, 22 Sep 2020 07:30:49 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id C0C628725F;
+	Tue, 22 Sep 2020 07:30:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 3wr2xWdDIcuA; Tue, 22 Sep 2020 07:30:48 +0000 (UTC)
+	with ESMTP id M3tmiUIdz5uL; Tue, 22 Sep 2020 07:30:51 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id E136185BCD;
-	Tue, 22 Sep 2020 07:30:48 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 2F8798724D;
+	Tue, 22 Sep 2020 07:30:51 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D42ABC0051;
-	Tue, 22 Sep 2020 07:30:48 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 17DDFC0051;
+	Tue, 22 Sep 2020 07:30:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 63587C0051
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 07:30:47 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6096EC0889
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 07:30:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 54C0586382
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 07:30:47 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 3CD452001E
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 07:30:48 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id MFsCqMj9xkQc for <bridge@lists.linux-foundation.org>;
- Tue, 22 Sep 2020 07:30:46 +0000 (UTC)
+ with ESMTP id TxfPFmQrEaJV for <bridge@lists.linux-foundation.org>;
+ Tue, 22 Sep 2020 07:30:47 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
  [209.85.221.66])
- by whitealder.osuosl.org (Postfix) with ESMTPS id C2AB2847E6
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 07:30:45 +0000 (UTC)
-Received: by mail-wr1-f66.google.com with SMTP id k15so15831928wrn.10
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 00:30:45 -0700 (PDT)
+ by silver.osuosl.org (Postfix) with ESMTPS id DE1132045E
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 07:30:46 +0000 (UTC)
+Received: by mail-wr1-f66.google.com with SMTP id z1so15859843wrt.3
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 00:30:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=hUlbZThuj5etaf+babxSJzhQjwbLaOi/wOfX/kpZKzg=;
- b=sXqAL1VPVXSd8E62OpeZO+39n+bjtGih31vcfFNElGnYR86bWHAdxoIuKc/edMBRN+
- G4qvUyG0PmNXYiw+b6m29FfmShaDflGTlovFS+i2njyHz9eA0EgrtM25pDFpcpgBPkJq
- /w74rpH2CC5X185AjxuZYXbo4eOBQAU+b6Deyq6EjkeEL2H5Xpxs2LG7hWtBHrhX1Kb7
- wLV8mmZvC2Yjb4jZpIkMaj1ysEUSLjj8JHIwy05N5jm3nqlWhZ6NLgjtMnB31tDjghkv
- 5h4P5REgWG9oSGvfDCAyHpQKeo7AfhI+O17Hq5t070EvXaRL1LaYN+AoMCq3a/QiSOj2
- kLUA==
+ bh=HukKeZEePLGYcfWW3UN/WsRcjshJ3r821tIfQZy/ZXg=;
+ b=Jbqg/TzeW6oZ+xYGQtPbwLgQGMhh0EGojkRkGTbDxy5sSezp8mWN4Sm1QuOA1nVTCM
+ JWtmLXeostYtNuxCX6VT5E7PVGuqw+K9bmATarGTzQrAgUiEQ27lQqat0FefjrhRb+uw
+ WXtQPnPuVP79PHwD15gffT8ah0ji8zECaQx0Gt6Naw2IdLiqgG80URDeyRLdIsYuef9U
+ wSm7FNo6Hff6tHR0yB46n78K7doQPapRyhoL+41nAx1kUd7o31yOz13Tg+ZlaT9PmOSS
+ T+E5YRBwkr5qZipqb4ru93413QIb9NRewlGBzbEZUn3UGgMWxih3ULBwclNOIixG4Rwd
+ JB9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=hUlbZThuj5etaf+babxSJzhQjwbLaOi/wOfX/kpZKzg=;
- b=sv40vN30vuZWFmdfBV2k+3D1a80WjqncT6mwveolUTOmGyoG1ylgjAck4lLKFrHLBu
- Kz2a9nyeUWoJFkICsN1qsSSqfF9ga/6TFPJTCXCaLzTH/vWuoZSNW/zkNYN9Pka3CXli
- 7No7fyIjMS5ZVhHnc0OGnUBeac5UN0iTwDOsVr2+Fj1Oqs/Y90LvAcILLeSeOrabDzr6
- dvOlX5vRUV9Nt1EfskVSymcpUWyS56Q5xZ/regMLFx/s2w8NhcPPTKXAxEGhKeM2IMb4
- BmWLX5DOW1xumQvnDv2wHjSvmmUjupH4Z/I+dYPnZtvgzP8rd+SyvkK+gJ85YDujKrLt
- BFzg==
-X-Gm-Message-State: AOAM5331DzTPr1j3vaa4zFrji7HISK++5hcAKgQ3eUicYsCsRt14vEkw
- 0Ehzsa1fZJOr7tomdcB9M6CgdBrYEnURRZcIL+haWg==
-X-Google-Smtp-Source: ABdhPJxeoE/ykmZFUu76mKlOd65+t4QOciHLyHJzkmJkm7368FuV9BpkIew0BG/3qFHFM3MoGoYz/Q==
-X-Received: by 2002:adf:e289:: with SMTP id v9mr3786703wri.14.1600759844166;
- Tue, 22 Sep 2020 00:30:44 -0700 (PDT)
+ bh=HukKeZEePLGYcfWW3UN/WsRcjshJ3r821tIfQZy/ZXg=;
+ b=Jj0+X7R7fVyFx/5+R6sIFlKLhF0T3nlGWMURkkPNEKfNQvJkvOI2LhT/IFi09ySDwG
+ ZUYZ6gkU4yeReBC5eyuCfYVqM03o8FEvny7M52YOojAxpbRmcVpgFwowt1uPflySQ6V4
+ u7rm6LxE1Qn03CwZmRPcXKbS98t1hce3hm7AcH8c+tT4+Z75wdiZUzumkZDLJCutOIpn
+ 5cYTYG1+cvB/N1V+U92/aH08EvtvyvOKJZyMYzXDsSkj4F8ar+CN6X8W8VxYdqsrDwDH
+ WLo1HbaYcH60n6SXS0HFNxR3i4dOMyEWzzZDKCns2QXnYOm6iVe1YumxXORAsaUJyvvz
+ 7QxA==
+X-Gm-Message-State: AOAM531MbUZ5ST5xpUMQUIaE+UKmUbvvGi331if+fHVNqDqbdvmTQ+D6
+ EycwRDs/TLnRtr3ot98YH8AZJg==
+X-Google-Smtp-Source: ABdhPJxyMatLB50WF+Rl3C5Oj4OVbyMfYn3liqw/bnCH1IbLO7IwpgO7ximUBMcirMa7SoE9IwD4RQ==
+X-Received: by 2002:adf:e407:: with SMTP id g7mr3663164wrm.349.1600759845406; 
+ Tue, 22 Sep 2020 00:30:45 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id s26sm3258287wmh.44.2020.09.22.00.30.42
+ by smtp.gmail.com with ESMTPSA id s26sm3258287wmh.44.2020.09.22.00.30.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Sep 2020 00:30:43 -0700 (PDT)
+ Tue, 22 Sep 2020 00:30:44 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Tue, 22 Sep 2020 10:30:12 +0300
-Message-Id: <20200922073027.1196992-2-razor@blackwall.org>
+Date: Tue, 22 Sep 2020 10:30:13 +0300
+Message-Id: <20200922073027.1196992-3-razor@blackwall.org>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20200922073027.1196992-1-razor@blackwall.org>
 References: <20200922073027.1196992-1-razor@blackwall.org>
@@ -80,8 +80,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, bridge@lists.linux-foundation.org,
  davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next v2 01/16] net: bridge: mdb: use extack in
-	br_mdb_parse()
+Subject: [Bridge] [PATCH net-next v2 02/16] net: bridge: mdb: move all port
+	and bridge checks to br_mdb_add
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,144 +98,79 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-We can drop the pr_info() calls and just use extack to return a
-meaningful error to user-space when br_mdb_parse() fails.
+To avoid doing duplicate device checks and searches (the same were done
+in br_mdb_add and __br_mdb_add) pass the already found port to __br_mdb_add
+and pull the bridge's netif_running and enabled multicast checks to
+br_mdb_add. This would also simplify the future extack errors.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/br_mdb.c | 60 +++++++++++++++++++++++++++++----------------
- 1 file changed, 39 insertions(+), 21 deletions(-)
+ net/bridge/br_mdb.c | 24 +++++++-----------------
+ 1 file changed, 7 insertions(+), 17 deletions(-)
 
 diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index 00f1651a6aba..d4031f5554f7 100644
+index d4031f5554f7..92ab7369fee0 100644
 --- a/net/bridge/br_mdb.c
 +++ b/net/bridge/br_mdb.c
-@@ -629,33 +629,50 @@ void br_rtr_notify(struct net_device *dev, struct net_bridge_port *port,
- 	rtnl_set_sk_err(net, RTNLGRP_MDB, err);
+@@ -775,31 +775,18 @@ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
  }
  
--static bool is_valid_mdb_entry(struct br_mdb_entry *entry)
-+static bool is_valid_mdb_entry(struct br_mdb_entry *entry,
-+			       struct netlink_ext_ack *extack)
+ static int __br_mdb_add(struct net *net, struct net_bridge *br,
++			struct net_bridge_port *p,
+ 			struct br_mdb_entry *entry)
  {
--	if (entry->ifindex == 0)
-+	if (entry->ifindex == 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Zero entry ifindex is not allowed");
- 		return false;
-+	}
+ 	struct br_ip ip;
+-	struct net_device *dev;
+-	struct net_bridge_port *p = NULL;
+ 	int ret;
  
- 	if (entry->addr.proto == htons(ETH_P_IP)) {
--		if (!ipv4_is_multicast(entry->addr.u.ip4))
-+		if (!ipv4_is_multicast(entry->addr.u.ip4)) {
-+			NL_SET_ERR_MSG_MOD(extack, "IPv4 entry group address is not multicast");
- 			return false;
--		if (ipv4_is_local_multicast(entry->addr.u.ip4))
-+		}
-+		if (ipv4_is_local_multicast(entry->addr.u.ip4)) {
-+			NL_SET_ERR_MSG_MOD(extack, "IPv4 entry group address is local multicast");
- 			return false;
-+		}
- #if IS_ENABLED(CONFIG_IPV6)
- 	} else if (entry->addr.proto == htons(ETH_P_IPV6)) {
--		if (ipv6_addr_is_ll_all_nodes(&entry->addr.u.ip6))
-+		if (ipv6_addr_is_ll_all_nodes(&entry->addr.u.ip6)) {
-+			NL_SET_ERR_MSG_MOD(extack, "IPv6 entry group address is link-local all nodes");
- 			return false;
-+		}
- #endif
--	} else
-+	} else {
-+		NL_SET_ERR_MSG_MOD(extack, "Unknown entry protocol");
- 		return false;
--	if (entry->state != MDB_PERMANENT && entry->state != MDB_TEMPORARY)
-+	}
-+
-+	if (entry->state != MDB_PERMANENT && entry->state != MDB_TEMPORARY) {
-+		NL_SET_ERR_MSG_MOD(extack, "Unknown entry state");
- 		return false;
--	if (entry->vid >= VLAN_VID_MASK)
-+	}
-+	if (entry->vid >= VLAN_VID_MASK) {
-+		NL_SET_ERR_MSG_MOD(extack, "Invalid entry VLAN id");
- 		return false;
-+	}
- 
- 	return true;
- }
- 
- static int br_mdb_parse(struct sk_buff *skb, struct nlmsghdr *nlh,
--			struct net_device **pdev, struct br_mdb_entry **pentry)
-+			struct net_device **pdev, struct br_mdb_entry **pentry,
-+			struct netlink_ext_ack *extack)
- {
- 	struct net *net = sock_net(skb->sk);
- 	struct br_mdb_entry *entry;
-@@ -671,36 +688,37 @@ static int br_mdb_parse(struct sk_buff *skb, struct nlmsghdr *nlh,
- 
- 	bpm = nlmsg_data(nlh);
- 	if (bpm->ifindex == 0) {
--		pr_info("PF_BRIDGE: br_mdb_parse() with invalid ifindex\n");
-+		NL_SET_ERR_MSG_MOD(extack, "Invalid bridge ifindex");
- 		return -EINVAL;
- 	}
- 
- 	dev = __dev_get_by_index(net, bpm->ifindex);
- 	if (dev == NULL) {
--		pr_info("PF_BRIDGE: br_mdb_parse() with unknown ifindex\n");
-+		NL_SET_ERR_MSG_MOD(extack, "Bridge device doesn't exist");
- 		return -ENODEV;
- 	}
- 
- 	if (!(dev->priv_flags & IFF_EBRIDGE)) {
--		pr_info("PF_BRIDGE: br_mdb_parse() with non-bridge\n");
-+		NL_SET_ERR_MSG_MOD(extack, "Device is not a bridge");
- 		return -EOPNOTSUPP;
- 	}
- 
- 	*pdev = dev;
- 
--	if (!tb[MDBA_SET_ENTRY] ||
--	    nla_len(tb[MDBA_SET_ENTRY]) != sizeof(struct br_mdb_entry)) {
--		pr_info("PF_BRIDGE: br_mdb_parse() with invalid attr\n");
-+	if (!tb[MDBA_SET_ENTRY]) {
-+		NL_SET_ERR_MSG_MOD(extack, "Missing MDBA_SET_ENTRY attribute");
- 		return -EINVAL;
- 	}
+-	if (!netif_running(br->dev) || !br_opt_get(br, BROPT_MULTICAST_ENABLED))
+-		return -EINVAL;
 -
--	entry = nla_data(tb[MDBA_SET_ENTRY]);
--	if (!is_valid_mdb_entry(entry)) {
--		pr_info("PF_BRIDGE: br_mdb_parse() with invalid entry\n");
-+	if (nla_len(tb[MDBA_SET_ENTRY]) != sizeof(struct br_mdb_entry)) {
-+		NL_SET_ERR_MSG_MOD(extack, "Invalid MDBA_SET_ENTRY attribute length");
- 		return -EINVAL;
- 	}
+-	if (entry->ifindex != br->dev->ifindex) {
+-		dev = __dev_get_by_index(net, entry->ifindex);
+-		if (!dev)
+-			return -ENODEV;
+-
+-		p = br_port_get_rtnl(dev);
+-		if (!p || p->br != br || p->state == BR_STATE_DISABLED)
+-			return -EINVAL;
+-	}
+-
+ 	__mdb_entry_to_br_ip(entry, &ip);
  
-+	entry = nla_data(tb[MDBA_SET_ENTRY]);
-+	if (!is_valid_mdb_entry(entry, extack))
-+		return -EINVAL;
- 	*pentry = entry;
+ 	spin_lock_bh(&br->multicast_lock);
+ 	ret = br_mdb_add_group(br, p, &ip, entry);
+ 	spin_unlock_bh(&br->multicast_lock);
 +
- 	return 0;
+ 	return ret;
  }
  
-@@ -797,7 +815,7 @@ static int br_mdb_add(struct sk_buff *skb, struct nlmsghdr *nlh,
- 	struct net_bridge *br;
- 	int err;
+@@ -821,6 +808,9 @@ static int br_mdb_add(struct sk_buff *skb, struct nlmsghdr *nlh,
  
--	err = br_mdb_parse(skb, nlh, &dev, &entry);
-+	err = br_mdb_parse(skb, nlh, &dev, &entry, extack);
- 	if (err < 0)
- 		return err;
+ 	br = netdev_priv(dev);
  
-@@ -892,7 +910,7 @@ static int br_mdb_del(struct sk_buff *skb, struct nlmsghdr *nlh,
- 	struct net_bridge *br;
- 	int err;
++	if (!netif_running(br->dev) || !br_opt_get(br, BROPT_MULTICAST_ENABLED))
++		return -EINVAL;
++
+ 	if (entry->ifindex != br->dev->ifindex) {
+ 		pdev = __dev_get_by_index(net, entry->ifindex);
+ 		if (!pdev)
+@@ -840,12 +830,12 @@ static int br_mdb_add(struct sk_buff *skb, struct nlmsghdr *nlh,
+ 	if (br_vlan_enabled(br->dev) && vg && entry->vid == 0) {
+ 		list_for_each_entry(v, &vg->vlan_list, vlist) {
+ 			entry->vid = v->vid;
+-			err = __br_mdb_add(net, br, entry);
++			err = __br_mdb_add(net, br, p, entry);
+ 			if (err)
+ 				break;
+ 		}
+ 	} else {
+-		err = __br_mdb_add(net, br, entry);
++		err = __br_mdb_add(net, br, p, entry);
+ 	}
  
--	err = br_mdb_parse(skb, nlh, &dev, &entry);
-+	err = br_mdb_parse(skb, nlh, &dev, &entry, extack);
- 	if (err < 0)
- 		return err;
- 
+ 	return err;
 -- 
 2.25.4
 
