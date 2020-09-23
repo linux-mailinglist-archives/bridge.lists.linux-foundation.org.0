@@ -1,73 +1,147 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897412747DB
-	for <lists.bridge@lfdr.de>; Tue, 22 Sep 2020 19:55:26 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F6D275320
+	for <lists.bridge@lfdr.de>; Wed, 23 Sep 2020 10:21:03 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 2329E8545B;
-	Tue, 22 Sep 2020 17:55:25 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 616EC86730;
+	Wed, 23 Sep 2020 08:21:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id r9_sgfE2Cgvi; Tue, 22 Sep 2020 17:55:24 +0000 (UTC)
+	with ESMTP id x5Jf8xaD3eTX; Wed, 23 Sep 2020 08:21:02 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id BE1C685187;
-	Tue, 22 Sep 2020 17:55:24 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 2DD0A861A3;
+	Wed, 23 Sep 2020 08:21:02 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A1CC0C0859;
-	Tue, 22 Sep 2020 17:55:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0EDC3C0051;
+	Wed, 23 Sep 2020 08:21:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D03C5C0051
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 17:55:22 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 113CDC0051
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Sep 2020 08:21:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id CC20D850EA
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 17:55:22 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id F3D8586730
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Sep 2020 08:20:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id as9HKYE80KBA for <bridge@lists.linux-foundation.org>;
- Tue, 22 Sep 2020 17:55:22 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [138.201.29.205])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 05E0285085
- for <bridge@lists.linux-foundation.org>; Tue, 22 Sep 2020 17:55:22 +0000 (UTC)
-Date: Tue, 22 Sep 2020 19:55:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c0d3.blue; s=2018;
- t=1600797320;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=WAT+1Bo7DvbvxFHYUbGR9cD0AOeb3oC01HODpW8Xb6A=;
- b=TLH6Fo6N2Za+3cD+15QuafRAkWk1liFkrXfyRYyOW+pMMGuaZcKk6Dp87xpRdwtgnVt3fJ
- qUKOHmPhFMnT6IGE4Rp4jaci5CQ2gj7PuWdtd+wWovffdk0SjbdZxjuJbzPBvFwn0eKK5c
- fsyKQfsaGzU1rmrHayQmkepxiyY47kuxIUiI74zs8JEwpzNvGRKuVMS3fXjJ8O4/HqTSJy
- bOIKoP6/l0uGYeFK5gi6/uPCPwwifdOxKNGUiFjFBXlrOTJ5apNC29T8cv7EZYGS/lmpFh
- SNvqSqcnbb5mDlIfgBQWYYzbuvID+DGchz/fN/6o8cPYIwpMrWUX+VKS0bukzQ==
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: The list for a Better Approach To Mobile Ad-hoc Networking
- <b.a.t.m.a.n@lists.open-mesh.org>
-Message-ID: <20200922175519.GB10212@otheros>
-References: <20200922073027.1196992-1-razor@blackwall.org>
- <20200922073027.1196992-7-razor@blackwall.org>
- <20200922175119.GA10212@otheros>
+ with ESMTP id WZLLG7Dkm9+p for <bridge@lists.linux-foundation.org>;
+ Wed, 23 Sep 2020 08:20:59 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 5B66F861A3
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Sep 2020 08:20:59 +0000 (UTC)
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B5f6b053c0001>; Wed, 23 Sep 2020 01:20:12 -0700
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 23 Sep
+ 2020 08:20:54 +0000
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by HQMAIL109.nvidia.com (172.20.187.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Wed, 23 Sep 2020 08:20:54 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MBp6VdefvtGzYLnN0gjIHMqtvKQmU/tb2RJTvFX7QHVTQjgfAsA01t6FiKYkYCrHYe/e8ggb3vxoDTvusAk6T4Otb/ycCjXidUdmHC4sZFtRZQJRzNHjZQZGZe8rg6VdzqaSB2dwi1EsI4pqt5ViIa3f7i+EqglhN/YwL60V1ZAbVZnbotlFlTrslh+Dy5ImLiL9LP7G6PhFyXWsYFWl8mOqdW9moDs81Uxj6scbzpcsCQ1ierwSnwEJlSM2VYwSozLTmx4/7HYUZT07EqgntUZACaClzRrQnM4gRDA/3zZr1VzUJ5bAEVO+ykcF7qV31+Pa8op2djG6DuHJhvnUVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4KUuACMDD6PBH+dEKYhQbAwOejlM0Ktxx6YNK/MWDbo=;
+ b=HHRAqsuUbEukob2CxQ7piqIVGx5r6bIiIhfvq946ZD69cnWcBO1wqRddT8EWZnX6xXOw9r2BLjLcSdM3wVaYwyXQixOcWqRT8X5VUidcCDzqdOzIx4bOeY2TrWRAbr3ilPsnmZsrbYO0qJUqxt0x9mcjARtHPVRLkO3hBovl+D8wNdXVQfvPcg5Ms8haSQ8caqo2Zh3Ves05AJDPE2uE7wDueT+pyLh+BDrbRoOKoxMiV4szq0OB3+Wturb9nwFXkCtA/noEUOXmmr9JH4vNpv4UyIX50MaV87Q3DDjh+w9ruyRy+rxMYx8vpPMboNHBzshFkV4xQxS0aihLydATqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Received: from BYAPR12MB2823.namprd12.prod.outlook.com (2603:10b6:a03:96::33)
+ by BY5PR12MB4275.namprd12.prod.outlook.com (2603:10b6:a03:20a::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11; Wed, 23 Sep
+ 2020 08:20:52 +0000
+Received: from BYAPR12MB2823.namprd12.prod.outlook.com
+ ([fe80::7dd0:ad41:3d71:679b]) by BYAPR12MB2823.namprd12.prod.outlook.com
+ ([fe80::7dd0:ad41:3d71:679b%6]) with mapi id 15.20.3391.027; Wed, 23 Sep 2020
+ 08:20:52 +0000
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+To: "netdev@vger.kernel.org" <netdev@vger.kernel.org>, "lkp@intel.com"
+ <lkp@intel.com>
+Thread-Topic: [PATCH net-next v2 12/16] net: bridge: mcast: install S,G
+ entries automatically based on reports
+Thread-Index: AQHWkLJY7HGcSbvXrkyWm2Dfs8noZql14VYAgAACKoA=
+Date: Wed, 23 Sep 2020 08:20:52 +0000
+Message-ID: <e3e9fec1ac857512ee37c6bbc8f67fa047778484.camel@nvidia.com>
+References: <20200922073027.1196992-13-razor@blackwall.org>
+ <202009231635.WjfHleMK%lkp@intel.com>
+In-Reply-To: <202009231635.WjfHleMK%lkp@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+authentication-results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
+x-originating-ip: [84.238.136.197]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 473f164e-a953-4492-f6b7-08d85f99963c
+x-ms-traffictypediagnostic: BY5PR12MB4275:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BY5PR12MB4275E93CF4FA843F8A584118DF380@BY5PR12MB4275.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3968;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: L2UunSWO6RLDt2CWKvne/phomyyMMq+wpVz3xW+I6ld8O8HrLWqfoHH8+TqARTOrO5r7KcBxKvofsNLyN04ASbkjNkPTcBU3ZgWFeVf297yIgyaY0r5+8QCYcDJ2GSyh24YckVHqa3DjRhO+cmPCo4zAko0DNVerjf5/Vkj3zEn29dQFEepKH+Nm8ydL/wsoP4eUjycRsYPu/3o4cSbnhCKJxCH3TyvtvffIUcnNplWxgrHA+Nay6d/H5M0FeWRt0QgqpSVYlD3/8fMsypyRVjuHB5xnzNQOML9GZGfM5s1XSFI+fBP6x2WbPEbHRLHvCyn6/MNgEYZ1jsW8sZ11jKLwR7mRPe1L99yuqgIkU7vyNb2Nk5PIdyXOtqlFIpeNP21F+7AZ875MzjUBZX8xPqcAtX0Zy9sOWJX4Lwck08Dg5Z/7kzuu0D5RcBJynJTomK7vlus1Z2TEnaV+jzasGztowxNUfH1evdfcQg+fPasjJtqFZNQRZl3h8X7wLL6i
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB2823.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(366004)(396003)(376002)(136003)(346002)(966005)(5660300002)(3450700001)(478600001)(6512007)(36756003)(186003)(66446008)(64756008)(66556008)(66476007)(2616005)(8676002)(86362001)(76116006)(91956017)(6506007)(71200400001)(26005)(66946007)(2906002)(6486002)(8936002)(4326008)(54906003)(110136005)(316002)(83380400001)(142933001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: FsUgYL7Q92PJVDDIEJbTEYXY7lGcxrQQ87oD/44b7Uu/pEUkMrAxsm4Ybsb6XekObIs5jcXmYIKPPm161ufAjZYNA4CUzYTo6UaktIL5s4XU8S8YOCe5DwzI3f3jp0CH47vMtKVIEMANrCSis7IGR0ghd/xAvcUv97WgEkXxZRF2Z/jtVACk3R4PGwfHFuV0kRZbq0iZciYU+xfIl2pjKZOcBXKo/IYNd4WZEJsjZ6QuK7TzyLM4HDf+0k56rLk/v9tqoJlsYDcOGG/IEBJ2VtUaE2EtzKgE3RMph7s36GaArQO3Hg5N/Aqvo6WPIcOlLu1Kt66qHvz3gRl8tLIRAn17Jy4zv9Y/Xel+qHlpl+93tmIMLluCnQWGKX/wDOWOZ2Pz9pdg1qcO1lhXQWFwr4t860je+fC5QQmaB8FvMGcwFski3/rsns6o/yRvfYzcHsk+iXcQq6c1fSIjjGFrtXmbXr9W80luWypNvr6ROwvC+7Zav/TKflyAk8ldkJzewYLSnLptLHVHpjqxkacjnGFr99mjiP4+rr5COmXSRzAcCT+kibbpcLRBeQjQtNvlBY3g7SQaD5SlNZrsIRBXxhbhFfe5lqq6ubTjic6UIvlhdTekUBOOmO7trcxYB5jzzo7i7enA76PXTVrODm1rsA==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <332771DE6537A64D8F3A0CECE32C4953@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200922175119.GA10212@otheros>
-Authentication-Results: ORIGINATING;
- auth=pass smtp.auth=linus.luessing@c0d3.blue
- smtp.mailfrom=linus.luessing@c0d3.blue
-Cc: Marek Lindner <mareklindner@neomailbox.ch>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, Antonio Quartulli <a@unstable.cc>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, roopa@nvidia.com,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v2 06/16] net: bridge: mcast: rename
- br_ip's u member to dst
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2823.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 473f164e-a953-4492-f6b7-08d85f99963c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2020 08:20:52.6046 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WSTTUjJw46+kq2qAPCIi/BO+obE+A4nJR9829IS3rdpJRpGfDCWbCaqqixLaJG8TKDmHtjP1tVKwpEPMNjdwww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4275
+X-OriginatorOrg: Nvidia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1600849212; bh=4KUuACMDD6PBH+dEKYhQbAwOejlM0Ktxx6YNK/MWDbo=;
+ h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:From:To:
+ CC:Subject:Thread-Topic:Thread-Index:Date:Message-ID:References:
+ In-Reply-To:Reply-To:Accept-Language:Content-Language:
+ X-MS-Has-Attach:X-MS-TNEF-Correlator:user-agent:
+ authentication-results:x-originating-ip:x-ms-publictraffictype:
+ x-ms-office365-filtering-correlation-id:x-ms-traffictypediagnostic:
+ x-ms-exchange-transport-forked:x-microsoft-antispam-prvs:
+ x-ms-oob-tlc-oobclassifiers:x-ms-exchange-senderadcheck:
+ x-microsoft-antispam:x-microsoft-antispam-message-info:
+ x-forefront-antispam-report:x-ms-exchange-antispam-messagedata:
+ Content-Type:Content-ID:Content-Transfer-Encoding:MIME-Version:
+ X-MS-Exchange-CrossTenant-AuthAs:
+ X-MS-Exchange-CrossTenant-AuthSource:
+ X-MS-Exchange-CrossTenant-Network-Message-Id:
+ X-MS-Exchange-CrossTenant-originalarrivaltime:
+ X-MS-Exchange-CrossTenant-fromentityheader:
+ X-MS-Exchange-CrossTenant-id:X-MS-Exchange-CrossTenant-mailboxtype:
+ X-MS-Exchange-CrossTenant-userprincipalname:
+ X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+ b=mwx3Qmeg9Pq/UONgjxlfF1YFpiv0QOz2OmMPXwwGoaSRIHRnNk9s8YxnWHB3XhbD4
+ E1i+pyGIf0N/paeKw3O7GO5tZprBBzwguP2oEV4j9jkOFDrpQFpxmMXdIkkmZwJxvv
+ v9yLimDOLiGMQ1L+eb+vWrk8D9ZN95M2lsTsuoMqoSXmsznew/IiLo8+ZR8GwAVyXZ
+ yHc2ERN1FAsh7M/Uk4mU23qLOQ74uPLpMRtDAIZIKM2JD0HPlnejCJzcEE2v7O9rck
+ UiwbX+fczQXoqyAH/cZ5Lcm9Wt73hCyJgSD9fIRn8KLrbs21+v4CpDUV82jr2J3g2C
+ wnSel6YKGwokQ==
+Cc: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
+ "davem@davemloft.net" <davem@davemloft.net>, Roopa Prabhu <roopa@nvidia.com>
+Subject: Re: [Bridge] [PATCH net-next v2 12/16] net: bridge: mcast: install
+ S, G entries automatically based on reports
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,16 +153,28 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Sep 22, 2020 at 07:51:19PM +0200, Linus Lüssing wrote:
-> I don't see a "src" in br_ip in net-next/master at the moment. Or
-> is that supposed to be added with your IGMPv3 implementation in
-> the future?
-
-Ah, sorry, found the according patch (*) it in my other inbox.
-Nevermind.
-
-(*): [PATCH net-next v2 04/16] net: bridge: add src field to br_ip 
-https://patchwork.ozlabs.org/project/netdev/patch/20200922073027.1196992-5-razor@blackwall.org/
+T24gV2VkLCAyMDIwLTA5LTIzIGF0IDE2OjEzICswODAwLCBrZXJuZWwgdGVzdCByb2JvdCB3cm90
+ZToNCj4gSGkgTmlrb2xheSwNCj4gDQo+IEkgbG92ZSB5b3VyIHBhdGNoISBQZXJoYXBzIHNvbWV0
+aGluZyB0byBpbXByb3ZlOg0KPiANCj4gW2F1dG8gYnVpbGQgdGVzdCBXQVJOSU5HIG9uIG5ldC1u
+ZXh0L21hc3Rlcl0NCj4gDQo+IHVybDogICAgaHR0cHM6Ly9naXRodWIuY29tLzBkYXktY2kvbGlu
+dXgvY29tbWl0cy9OaWtvbGF5LUFsZWtzYW5kcm92L25ldC1icmlkZ2UtbWNhc3QtSUdNUHYzLU1M
+RHYyLWZhc3QtcGF0aC1wYXJ0LTIvMjAyMDA5MjItMTUzMzIxDQo+IGJhc2U6ICAgaHR0cHM6Ly9n
+aXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvZGF2ZW0vbmV0LW5leHQuZ2l0
+IDkyZWM4MDRmM2RiZjBkOTg2ZjhlMTA4NTBiZmZmMTRmMzE2ZDdhYWYNCj4gY29uZmlnOiBpMzg2
+LXJhbmRjb25maWctbTAyMS0yMDIwMDkyMyAoYXR0YWNoZWQgYXMgLmNvbmZpZykNCj4gY29tcGls
+ZXI6IGdjYy05IChEZWJpYW4gOS4zLjAtMTUpIDkuMy4wDQo+IA0KPiBJZiB5b3UgZml4IHRoZSBp
+c3N1ZSwga2luZGx5IGFkZCBmb2xsb3dpbmcgdGFnIGFzIGFwcHJvcHJpYXRlDQo+IFJlcG9ydGVk
+LWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4NCj4gDQo+IE5ldyBzbWF0Y2gg
+d2FybmluZ3M6DQo+IG5ldC9icmlkZ2UvYnJfbXVsdGljYXN0LmM6OTgwIF9fYnJfbXVsdGljYXN0
+X2FkZF9ncm91cCgpIGVycm9yOiBwb3RlbnRpYWwgbnVsbCBkZXJlZmVyZW5jZSAnbXAnLiAgKGJy
+X211bHRpY2FzdF9uZXdfZ3JvdXAgcmV0dXJucyBudWxsKQ0KPiANCj4gT2xkIHNtYXRjaCB3YXJu
+aW5nczoNCj4gaW5jbHVkZS9saW51eC91NjRfc3RhdHNfc3luYy5oOjEyOCB1NjRfc3RhdHNfdXBk
+YXRlX2JlZ2luKCkgd2Fybjogc3RhdGVtZW50IGhhcyBubyBlZmZlY3QgMzENCj4gDQoNClRoaXMg
+cmVwb3J0IGlzIHdyb25nLCBicl9tdWx0aWNhc3RfbmV3X2dyb3VwKCkgY2Fubm90IHJldHVybiBO
+VUxMLg0KSXQgYWx3YXlzIHJldHVybnMgRVJSX1BUUigpIG9mIHdoYXRldmVyIGVycm9yIGhhcHBl
+bmVkIGFuZCB0aGVyZQ0KaXMgYW4gSVNfRVJSKCkgY2hlY2sgYWZ0ZXJ3YXJkcy4NCg0KVGhhbmtz
+Lg0KDQo=
