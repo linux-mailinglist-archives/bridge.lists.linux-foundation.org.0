@@ -1,148 +1,73 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9FEF28725C
-	for <lists.bridge@lfdr.de>; Thu,  8 Oct 2020 12:18:17 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3012884DA
+	for <lists.bridge@lfdr.de>; Fri,  9 Oct 2020 10:05:49 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 72E0086C28;
-	Thu,  8 Oct 2020 10:18:16 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 8067F876F1;
+	Fri,  9 Oct 2020 08:05:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id mE1-v4MdXOM2; Thu,  8 Oct 2020 10:18:14 +0000 (UTC)
+	with ESMTP id Wr6HFZy4cFNH; Fri,  9 Oct 2020 08:05:42 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7061886C08;
-	Thu,  8 Oct 2020 10:18:14 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 79934876E5;
+	Fri,  9 Oct 2020 08:05:42 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 61F1EC0051;
-	Thu,  8 Oct 2020 10:18:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5C39AC0051;
+	Fri,  9 Oct 2020 08:05:42 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 14099C0051
- for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 10:18:13 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 56E51C0051
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 17:09:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 62F6D80A5F
- for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 10:18:12 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 3C1A4874E3
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 17:09:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4MADuzFBXYmQ for <bridge@lists.linux-foundation.org>;
- Thu,  8 Oct 2020 10:18:11 +0000 (UTC)
+ with ESMTP id 4wgH0bxKrp8E for <bridge@lists.linux-foundation.org>;
+ Thu,  8 Oct 2020 17:09:33 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
- [216.228.121.64])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 36DAF86D92
- for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 10:18:11 +0000 (UTC)
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5f7ee72a0002>; Thu, 08 Oct 2020 03:17:14 -0700
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 8 Oct
- 2020 10:18:10 +0000
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
- by HQMAIL101.nvidia.com (172.20.187.10) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3 via Frontend Transport; Thu, 8 Oct 2020 10:18:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NKg3UlXJBdgX7r02udMRDRshhTjhP08gXgmkrU5s18uBLPupZn7VYt7t87E/Do0v9tmrCJ1x88gBX/B4PJCwbBXrJIe9/tXttcQC1mIcuaDPJWdEmfjuWSubX7ZS6NtjZD7FNdKgT4aHInjwaga86gIDHlfIIYtmJeogqwWg+DLBGk0y9lWXI9CEOawz3RFnk8PCdqyhqZ1SPWkJDzfN7oHEff5hht+Qu9RoHZdsD/BngmYY9nYyCch3kNXBffZcW0ZHF3h8pqZ1IHGBYZmb5szf4ykirPujesfgdY13abRVp4asLKXb0Eo9eTbDCwjo/wfSumgF2Z5P+2F9aThIHQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v7QK+x48Nahz9E245zPp0yBfsIPiIH5jtK/dW+p4mzo=;
- b=OWo6LoLlyBr8fkjsvZyI+4leOl2CKbkCBm5WFCHYq9xdprYnRPEV/SRigyTBA+JTpngaGg4jkcTt6LOMc7Er9486PUs8HCsmP8euvbJ092XSh0M+p4GieIkUXmlFgO7ciQdpA0G0Jm7vOgggF0XuFX3BNzjcDIUANXVqDEUOTAlGsA62+sbKSutlofdAe6Ny0yL8bUBmpYSg62vmzkEWIBmEcnSZBFfyuCfrDiDgqH+pctG1sx/npYWrrykZivUcWcHWN0IpmNSyGJRg6PS/jGhWbx5DVmPD7b5Wg0O7irLGGbK7bQ7chiVj+TQZJjzm0d+qZn0K0kHMRSi7RsoQng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Received: from DM5PR1201MB0010.namprd12.prod.outlook.com (2603:10b6:3:e3::23)
- by DM6PR12MB3004.namprd12.prod.outlook.com (2603:10b6:5:11b::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3455.21; Thu, 8 Oct
- 2020 10:18:09 +0000
-Received: from DM5PR1201MB0010.namprd12.prod.outlook.com
- ([fe80::4517:3a8d:9dff:3b62]) by DM5PR1201MB0010.namprd12.prod.outlook.com
- ([fe80::4517:3a8d:9dff:3b62%9]) with mapi id 15.20.3455.024; Thu, 8 Oct 2020
- 10:18:09 +0000
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-To: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "henrik.bjoernlund@microchip.com" <henrik.bjoernlund@microchip.com>,
- "davem@davemloft.net" <davem@davemloft.net>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
- <netdev@vger.kernel.org>, "kuba@kernel.org" <kuba@kernel.org>,
- "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>, Roopa Prabhu
- <roopa@nvidia.com>
-Thread-Topic: [PATCH net] bridge: Netlink interface fix.
-Thread-Index: AQHWnKKpyTxrd+oPIUur9lgPN8/sf6mMOMkAgAFGlAA=
-Date: Thu, 8 Oct 2020 10:18:09 +0000
-Message-ID: <585c251204d3c09150e9fcb60f560c599567688a.camel@nvidia.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id A48F5874F5
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 17:09:33 +0000 (UTC)
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
+ [163.114.132.5])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9B03D21D7D;
+ Thu,  8 Oct 2020 17:09:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1602176973;
+ bh=l3Ku9JFIHQGNe0VmKNt0x5IrBgG8HLewr8rKBi37cFA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=us34OUj79l3vj0g6GntnxnAc/JnhYXjlKlCCHYk/D8Fd2wXCH29OoxZCm67gfIWKL
+ WRiTnSbVKDZLzK2S7saP5yoTLDfb/XgpWdjQNOdNRtnFRJbyAejW6z+Byp9KkCiBLo
+ KVp2ZFKKpDGKBhaxut9BgvTMpHBNQFbNDopTC8jA=
+Date: Thu, 8 Oct 2020 10:09:30 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <20201008100930.1e5fca41@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <585c251204d3c09150e9fcb60f560c599567688a.camel@nvidia.com>
 References: <20201007120700.2152699-1-henrik.bjoernlund@microchip.com>
  <32183f25a3d7ee8c148db42fbed9dd2a6e0a1f92.camel@nvidia.com>
-In-Reply-To: <32183f25a3d7ee8c148db42fbed9dd2a6e0a1f92.camel@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-authentication-results: lists.linux-foundation.org; dkim=none (message not
- signed) header.d=none;lists.linux-foundation.org; dmarc=none action=none
- header.from=nvidia.com;
-x-originating-ip: [84.238.136.197]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ec8a3db8-7b77-4e75-241d-08d86b7374a2
-x-ms-traffictypediagnostic: DM6PR12MB3004:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB3004D580F59A01F1B3FE38F0DF0B0@DM6PR12MB3004.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lTC2woOBFmGBtEcJ3gOVnTti5JuH8xwmjfq3bIqH/GTgH+FP7psLzHFlyEMe2gwjGZDgtiX+4zes4Wfq/3gIkBqwhYUmJe1X7KF6ilqvEMB2QHC01546u+Re4MIL0r0MiOHlefBoJERRj+iarMSTmgxf0gfEsnyJ5Us2NrCSRG3Su8j09euJ6BQo4HJFLZ0kO8ZMDyUz2zHOkT9mN1T3mWmC1YQ+yy8VUkvHsyjJ9/IglJdLu0u/qjHAEBKYinNPekSVsu/3HKIdLq6yx2AsTUKuPoaYn0QsAvSZwgz4N5TXb8+fx9NdFdIx7sCxyQ6m7rDg1PtItpD77NBO11PBEg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR1201MB0010.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(346002)(376002)(136003)(396003)(39860400002)(8676002)(2906002)(8936002)(6506007)(26005)(3450700001)(71200400001)(6636002)(6512007)(36756003)(186003)(5660300002)(86362001)(83380400001)(4326008)(64756008)(66556008)(2616005)(6486002)(66476007)(66946007)(66446008)(110136005)(316002)(91956017)(478600001)(76116006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: 2u4ZNxeK5sV6WUBhM3NE7eQZ3EZOAPGVTcLMNotgJzej8DTZDxhBiz7v3a76ePPMyswtSBcfE364tN/TlwGN+FiDoIYo6pnCfNRWNANpse4dQuLm5GlRF058Rvk6lo7gN3yPeEVhtLXI4QsCFrz1UvRMZVXAetZOvU06HLvxiQhYPVf4BI64LQoNwQ59ADCG70/HrGVZyDm3R0p9hEA7jXu+3JGWxFcNfNnnv/3vFQQe4eaFlnjvOjYt2RX0c8vddoRLkGWhszJ4QlURYsTWvzL187YQPWyDAwgRvGPPiTy6cEE3O69EV4j1/YOwjCQ80Z0bdwT0tvO7gquycfNMtXuxRLIs0ssbb1kTV7jt1o8bRh9vou6d2of7F49FA6f15d+U4zWb72GvgIb9S2WJS6gBgBFWZfFtwk2oMxRGjxeHs+/4uieFu9iHYYZukaRPwY9oBDuuAjBuIZjbUeCBZU4tpYAEF3xQro1+EnQ0aMPkT9Va1f2U2VuQ14TDu7UC7f30PBi0q6tS4xMjiKsBwdOh0DU10QzliqrjJP9K+4+iPIn9RohKm21XIdIUQHzkmDREDF+Vsspqys70jGMVTouOed4aRi5MRix1vmlSVNpgZSG6wyX82X8P4Y1qQ3bec5IzIREdBgnKiVJpmarM6A==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A6370466707DB64D8F28135E50738949@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ <585c251204d3c09150e9fcb60f560c599567688a.camel@nvidia.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR1201MB0010.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec8a3db8-7b77-4e75-241d-08d86b7374a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2020 10:18:09.3580 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IAY1haTGAlBCA3kG+w0TJQQYhWL5mNfrssxueAu7rHNYFfCIVfcAXhvnQ+rQecKePbz4q07PAlMenfMxyp1cvA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3004
-X-OriginatorOrg: Nvidia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1602152234; bh=v7QK+x48Nahz9E245zPp0yBfsIPiIH5jtK/dW+p4mzo=;
- h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:From:To:
- CC:Subject:Thread-Topic:Thread-Index:Date:Message-ID:References:
- In-Reply-To:Reply-To:Accept-Language:Content-Language:
- X-MS-Has-Attach:X-MS-TNEF-Correlator:user-agent:
- authentication-results:x-originating-ip:x-ms-publictraffictype:
- x-ms-office365-filtering-correlation-id:x-ms-traffictypediagnostic:
- x-ms-exchange-transport-forked:x-microsoft-antispam-prvs:
- x-ms-oob-tlc-oobclassifiers:x-ms-exchange-senderadcheck:
- x-microsoft-antispam:x-microsoft-antispam-message-info:
- x-forefront-antispam-report:x-ms-exchange-antispam-messagedata:
- Content-Type:Content-ID:Content-Transfer-Encoding:MIME-Version:
- X-MS-Exchange-CrossTenant-AuthAs:
- X-MS-Exchange-CrossTenant-AuthSource:
- X-MS-Exchange-CrossTenant-Network-Message-Id:
- X-MS-Exchange-CrossTenant-originalarrivaltime:
- X-MS-Exchange-CrossTenant-fromentityheader:
- X-MS-Exchange-CrossTenant-id:X-MS-Exchange-CrossTenant-mailboxtype:
- X-MS-Exchange-CrossTenant-userprincipalname:
- X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
- b=A4VKAk8H+SgDUJT0Ag1lSF++LbohS7xZBjsBpalvPjJ6Bg0yUOn+fD8Pm/YvC0sO0
- 7UcXsT7SEaf6xN3c/M3sYLJJQwOJEB/wo/ztmBDX2CTG9ouvm4hDzwDsLwuTZZGqWD
- NiodIHLhsCP53+Xw+1V6m1x/IVwrcSpNt0hF7lGAlw0B0u5Eqz/5C+IxpgyungGcfm
- FEpKabBuDCAgnAwsEqFlMm+hfCdzm4UnAcCi88hSfgZYsDIyIA7tA4WlinWdd2MUaQ
- ZqZg55VoEzzouZO2yPxr4i1evw0IzEiiaJChD/UJTMg+46u9k3RyfHJIcqP5G30OR+
- dOEetmiUAIbSg==
-Cc: "horatiu.vultur@microchip.com" <horatiu.vultur@microchip.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 09 Oct 2020 08:05:40 +0000
+Cc: "  <linux-kernel@vger.kernel.org>, "@osuosl.org,
+ "  <netdev@vger.kernel.org>, "@osuosl.org, netdev@vger.kernel.org,
+ " <horatiu.vultur@microchip.com>"@osuosl.org,
+ "bridge@lists.linux-foundation.org\" <bridge@lists.linux-foundation.org>,
+ "@osuosl.org, linux-kernel@vger.kernel.org, "  <davem@davemloft.net>,
+ "@osuosl.org, "  <henrik.bjoernlund@microchip.com>, "@osuosl.org,
+ "  <UNGLinuxDriver@microchip.com>, Roopa Prabhu <roopa@nvidia.com>,
+ "@osuosl.org, henrik.bjoernlund@microchip.com, UNGLinuxDriver@microchip.com,
+ horatiu.vultur@microchip.com, davem@davemloft.net
 Subject: Re: [Bridge] [PATCH net] bridge: Netlink interface fix.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -155,30 +80,37 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-T24gV2VkLCAyMDIwLTEwLTA3IGF0IDE0OjQ5ICswMDAwLCBOaWtvbGF5IEFsZWtzYW5kcm92IHdy
-b3RlOg0KPiBPbiBXZWQsIDIwMjAtMTAtMDcgYXQgMTI6MDcgKzAwMDAsIEhlbnJpayBCam9lcm5s
-dW5kIHdyb3RlOg0KPiA+IFRoaXMgY29tbWl0IGlzIGNvcnJlY3RpbmcgTkVUTElOSyBicl9maWxs
-X2lmaW5mbygpIHRvIGJlIGFibGUgdG8NCj4gPiBoYW5kbGUgJ2ZpbHRlcl9tYXNrJyB3aXRoIG11
-bHRpcGxlIGZsYWdzIGFzc2VydGVkLg0KPiA+IA0KPiA+IEZpeGVzOiAzNmE4ZThlMjY1NDIwICgi
-YnJpZGdlOiBFeHRlbmQgYnJfZmlsbF9pZmluZm8gdG8gcmV0dXJuIE1QUiBzdGF0dXMiKQ0KPiA+
-IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEhlbnJpayBCam9lcm5sdW5kIDxoZW5yaWsuYmpvZXJubHVu
-ZEBtaWNyb2NoaXAuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBIb3JhdGl1IFZ1bHR1ciA8aG9yYXRp
-dS52dWx0dXJAbWljcm9jaGlwLmNvbT4NCj4gPiBTdWdnZXN0ZWQtYnk6IE5pa29sYXkgQWxla3Nh
-bmRyb3YgPG5pa29sYXlAbnZpZGlhLmNvbT4NCj4gPiBUZXN0ZWQtYnk6IEhvcmF0aXUgVnVsdHVy
-IDxob3JhdGl1LnZ1bHR1ckBtaWNyb2NoaXAuY29tPg0KPiA+IC0tLQ0KPiA+ICBuZXQvYnJpZGdl
-L2JyX25ldGxpbmsuYyB8IDI2ICsrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tDQo+ID4gIDEgZmls
-ZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlvbnMoLSkNCj4gPiANCj4gDQo+
-IFRoZSBwYXRjaCBsb29rcyBnb29kLCBwbGVhc2UgZG9uJ3Qgc2VwYXJhdGUgdGhlIEZpeGVzIHRh
-ZyBmcm9tIHRoZSBvdGhlcnMuDQo+IEFja2VkLWJ5OiBOaWtvbGF5IEFsZWtzYW5kcm92IDxuaWtv
-bGF5QG52aWRpYS5jb20+DQo+IA0KDQpUQkgsIHRoaXMgZG9lcyBjaGFuZ2UgYSB1c2VyIGZhY2lu
-ZyBhcGkgKHRoZSBhdHRyaWJ1dGUgbmVzdGluZyksIGJ1dCBJIHRoaW5rDQppbiB0aGlzIGNhc2Ug
-aXQncyBhY2NlcHRhYmxlIGR1ZSB0byB0aGUgZm9ybWF0IGJlaW5nIHdyb25nIGFuZCBNUlAgYmVp
-bmcgbmV3LCBzbw0KSSBkb3VidCBhbnlvbmUgaXMgeWV0IGR1bXBpbmcgaXQgbWl4ZWQgd2l0aCB2
-bGFuIGZpbHRlcl9tYXNrIGFuZCBjaGVja2luZyBmb3INCnR3byBpZGVudGljYWwgYXR0cmlidXRl
-cywgaS5lLiBpbiB0aGUgb2xkL2Jyb2tlbiBjYXNlIHBhcnNpbmcgdGhlIGF0dHJpYnV0ZXMNCmlu
-dG8gYSB0YWJsZSB3b3VsZCBoaWRlIG9uZSBvZiB0aGVtIGFuZCB5b3UnZCBoYXZlIHRvIHdhbGsg
-b3ZlciBhbGwgYXR0cmlidXRlcw0KdG8gY2F0Y2ggdGhhdC4NCg0KDQo=
+On Thu, 8 Oct 2020 10:18:09 +0000 Nikolay Aleksandrov wrote:
+> On Wed, 2020-10-07 at 14:49 +0000, Nikolay Aleksandrov wrote:
+> > On Wed, 2020-10-07 at 12:07 +0000, Henrik Bjoernlund wrote:  
+> > > This commit is correcting NETLINK br_fill_ifinfo() to be able to
+> > > handle 'filter_mask' with multiple flags asserted.
+> > > 
+> > > Fixes: 36a8e8e265420 ("bridge: Extend br_fill_ifinfo to return MPR status")
+> > > 
+> > > Signed-off-by: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
+> > > Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > > Suggested-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+> > > Tested-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > > ---
+> > >  net/bridge/br_netlink.c | 26 +++++++++++---------------
+> > >  1 file changed, 11 insertions(+), 15 deletions(-)
+> > >   
+> > 
+> > The patch looks good, please don't separate the Fixes tag from the others.
+> > Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+> >   
+> 
+> TBH, this does change a user facing api (the attribute nesting), but I think
+> in this case it's acceptable due to the format being wrong and MRP being new, so
+> I doubt anyone is yet dumping it mixed with vlan filter_mask and checking for
+> two identical attributes, i.e. in the old/broken case parsing the attributes
+> into a table would hide one of them and you'd have to walk over all attributes
+> to catch that.
+
+To be clear - this changes the uAPI as far as 5.9-rcs are concerned. 
+So if this change was to hit 5.9 final there would be no uAPI breakage,
+right?
