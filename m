@@ -1,75 +1,75 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD156288B7C
-	for <lists.bridge@lfdr.de>; Fri,  9 Oct 2020 16:37:58 +0200 (CEST)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1DD288B81
+	for <lists.bridge@lfdr.de>; Fri,  9 Oct 2020 16:38:04 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 7037C87734;
-	Fri,  9 Oct 2020 14:37:57 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 8363C87752;
+	Fri,  9 Oct 2020 14:38:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id MbPZt+U-2Kt1; Fri,  9 Oct 2020 14:37:56 +0000 (UTC)
+	with ESMTP id sWol3Tjz5y9n; Fri,  9 Oct 2020 14:38:00 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id B10C287733;
-	Fri,  9 Oct 2020 14:37:56 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id E58088774C;
+	Fri,  9 Oct 2020 14:37:59 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9853CC016F;
-	Fri,  9 Oct 2020 14:37:56 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C7804C0051;
+	Fri,  9 Oct 2020 14:37:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2569AC0051
- for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:56 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5410BC0051
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 21C6F870B6
- for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:56 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 40B6E8772F
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ADv93gbsTK-4 for <bridge@lists.linux-foundation.org>;
- Fri,  9 Oct 2020 14:37:55 +0000 (UTC)
+ with ESMTP id nGJJ8cqyKmqs for <bridge@lists.linux-foundation.org>;
+ Fri,  9 Oct 2020 14:37:57 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
- [68.232.153.233])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 7E5D087046
- for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:55 +0000 (UTC)
+Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
+ [68.232.149.84])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 93DD887733
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1602254275; x=1633790275;
+ t=1602254277; x=1633790277;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FHI9pF1PqUVmJKyaV+8zX2DLW8NZ18t1BrTCAp6IIdc=;
- b=CNeE4sjn5o+SZxHN8hVitnyAA/fTfGmIjJa/vEvCWjch0Ag+iVWflQlx
- 1Fd7gbBDtDegrdwU6lld6AMoOdRWtrEuGSjpZ+eYj4EcR5m7S6HrIaQ+e
- KJlxsHycB4I0F3ksTfzLmw+oK/qhcpz+WeU4IsOcZCvFWElu4w6xb3mXC
- Kj1bDQRX6cOzHPWQ4rBHWFrwgu/VxN5lIAajajxO2M0iCpU1Z5s60Wydv
- X9n8Ocv6CcwuIEHFGrd55+5xrnBTy/BTCWDh3xI9F52jG6ny77v4HUuqA
- TXbfIT22dGAICvELapIfw8Lo+HjJV6jSvU+JmyqOQIYCpHVGRvHYwWBlr g==;
-IronPort-SDR: 8AlHh46+rmyDbHjYyZ+Unim1SLAZ+VLmaDDur5Pfw/8CsIqzNtO+2aR3SZdYYwZcOiz7obQ/vC
- R/FuOEN/XbEJeuxaGBGNe2NG3LRIN27IHW7KYXOYnITZW81r3xzY0UJ3C7H6D2ylH18QNaKYEY
- lGzGqAq7gUUqBuO/IYb7owLDu/4NWC8eZrHciO2VT5ryyIgLlub0ikXIZOsj3pCaOSrq2UN3KE
- L2LKu7P0VA7J4a3/pd9AM7c91xGVZSXKhX72rx6IcTH2aP8nHMRgFnsR/qKMvE9vN/YR7pF/0m
- 954=
-X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="94796531"
+ bh=R65Ti4HQOkTqVP6ETdhIqwWLL3lTi5K1nZtuHvKEhMQ=;
+ b=mtIGjlyMmjcwiwQIyapSjFW54yoYjlp5X85u7+PNHy9QFSaEv6HAdqO6
+ SZA+Rjhdls4sKX5gYFfUM59h44HMnhOGzZxstvc/DTzBAMYB3tNHOm3gt
+ bXguCVBwykJRWbUTtrJAphKDYLNZdsqKiEqwXWsMIseq+t13aPN4Bcnwo
+ c+yX4umJPUbYtn9fZzliH7DkQjgVhb9QLoGEPsqbWAOZ7WRbclUQpiFqG
+ cLt68owasqNuT0Cu5JQL+7Uld4avSNkZo8TenbVqecvFcVsSwJknLsWRX
+ Ybg4469oGl5GfMAzoPIfQYUiVH9+lgpS6xLC1ZomN+ooNzePLnygQ8ZbR g==;
+IronPort-SDR: qkBMJXICe6tTHPCs0pmOexIShTJvJsaWCjTMorHBd0s69E0GFSFgxraI7Fo4IF94YHXW6QUeic
+ jdUWoZITpOorPo9iReFRb8ES7j2eM78AaeritgTNTueIbE/EUrIAAxmsA+/fsKOSPvZfHvEZvV
+ ylhjTAX9PRjOad8r5OSJQq5e8WEEyyP0F6dC6UkA1I4rCWJugoHT2XKfSRpXrJESnPu0I0EZI2
+ GFYhsMpOSs4zmfYrSgO69eMoKk9qLTflFGlXRuRSebuRf5LA/m/mFqOa+cYQ6yZL+jYfwXOiJd
+ UFo=
+X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="92058323"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 09 Oct 2020 07:37:54 -0700
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 09 Oct 2020 07:37:56 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 9 Oct 2020 07:37:20 -0700
+ 15.1.1979.3; Fri, 9 Oct 2020 07:37:22 -0700
 Received: from soft-test08.microsemi.net (10.10.115.15) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Fri, 9 Oct 2020 07:37:51 -0700
+ 15.1.1979.3 via Frontend Transport; Fri, 9 Oct 2020 07:37:54 -0700
 To: <davem@davemloft.net>, <kuba@kernel.org>, <roopa@nvidia.com>,
  <nikolay@nvidia.com>, <jiri@mellanox.com>, <idosch@mellanox.com>,
  <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
  <bridge@lists.linux-foundation.org>, <UNGLinuxDriver@microchip.com>
-Date: Fri, 9 Oct 2020 14:35:22 +0000
-Message-ID: <20201009143530.2438738-3-henrik.bjoernlund@microchip.com>
+Date: Fri, 9 Oct 2020 14:35:23 +0000
+Message-ID: <20201009143530.2438738-4-henrik.bjoernlund@microchip.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201009143530.2438738-1-henrik.bjoernlund@microchip.com>
 References: <20201009143530.2438738-1-henrik.bjoernlund@microchip.com>
@@ -78,8 +78,8 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 Cc: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>,
  Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next v4 02/10] bridge: cfm: Add BRIDGE_CFM to
-	Kconfig.
+Subject: [Bridge] [PATCH net-next v4 03/10] bridge: uapi: cfm: Added
+	EtherType used by the CFM protocol.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,64 +96,28 @@ Reply-To: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This makes it possible to include or exclude the CFM
-protocol according to 802.1Q section 12.14.
+This EtherType is used by all CFM protocal frames transmitted
+according to 802.1Q section 12.14.
 
 Signed-off-by: Henrik Bjoernlund  <henrik.bjoernlund@microchip.com>
 Reviewed-by: Horatiu Vultur  <horatiu.vultur@microchip.com>
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/Kconfig      | 11 +++++++++++
- net/bridge/br_device.c  |  3 +++
- net/bridge/br_private.h |  3 +++
- 3 files changed, 17 insertions(+)
+ include/uapi/linux/if_ether.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/net/bridge/Kconfig b/net/bridge/Kconfig
-index 80879196560c..3c8ded7d3e84 100644
---- a/net/bridge/Kconfig
-+++ b/net/bridge/Kconfig
-@@ -73,3 +73,14 @@ config BRIDGE_MRP
- 	  Say N to exclude this support and reduce the binary size.
- 
- 	  If unsure, say N.
-+
-+config BRIDGE_CFM
-+	bool "CFM protocol"
-+	depends on BRIDGE
-+	help
-+	  If you say Y here, then the Ethernet bridge will be able to run CFM
-+	  protocol according to 802.1Q section 12.14
-+
-+	  Say N to exclude this support and reduce the binary size.
-+
-+	  If unsure, say N.
-diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
-index 206c4ba51cd2..2a3b316f32eb 100644
---- a/net/bridge/br_device.c
-+++ b/net/bridge/br_device.c
-@@ -476,6 +476,9 @@ void br_dev_setup(struct net_device *dev)
- 	INIT_HLIST_HEAD(&br->frame_type_list);
- #if IS_ENABLED(CONFIG_BRIDGE_MRP)
- 	INIT_LIST_HEAD(&br->mrp_list);
-+#endif
-+#if IS_ENABLED(CONFIG_BRIDGE_CFM)
-+	INIT_HLIST_HEAD(&br->mep_list);
- #endif
- 	spin_lock_init(&br->hash_lock);
- 
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 3e62ce2ef8a5..95c82fce9959 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -485,6 +485,9 @@ struct net_bridge {
- #if IS_ENABLED(CONFIG_BRIDGE_MRP)
- 	struct list_head		mrp_list;
- #endif
-+#if IS_ENABLED(CONFIG_BRIDGE_CFM)
-+	struct hlist_head		mep_list;
-+#endif
- };
- 
- struct br_input_skb_cb {
+diff --git a/include/uapi/linux/if_ether.h b/include/uapi/linux/if_ether.h
+index d6de2b167448..a0b637911d3c 100644
+--- a/include/uapi/linux/if_ether.h
++++ b/include/uapi/linux/if_ether.h
+@@ -99,6 +99,7 @@
+ #define ETH_P_1588	0x88F7		/* IEEE 1588 Timesync */
+ #define ETH_P_NCSI	0x88F8		/* NCSI protocol		*/
+ #define ETH_P_PRP	0x88FB		/* IEC 62439-3 PRP/HSRv0	*/
++#define ETH_P_CFM	0x8902		/* Connectivity Fault Management */
+ #define ETH_P_FCOE	0x8906		/* Fibre Channel over Ethernet  */
+ #define ETH_P_IBOE	0x8915		/* Infiniband over Ethernet	*/
+ #define ETH_P_TDLS	0x890D          /* TDLS */
 -- 
 2.28.0
 
