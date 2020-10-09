@@ -1,61 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3AFE2884D9
-	for <lists.bridge@lfdr.de>; Fri,  9 Oct 2020 10:05:45 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF2B288B7A
+	for <lists.bridge@lfdr.de>; Fri,  9 Oct 2020 16:37:55 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id A49598769A;
-	Fri,  9 Oct 2020 08:05:43 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 1C676870A1;
+	Fri,  9 Oct 2020 14:37:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ui8Nx4iaXU6m; Fri,  9 Oct 2020 08:05:42 +0000 (UTC)
+	with ESMTP id Wek0Q4JFxzSs; Fri,  9 Oct 2020 14:37:53 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id AE80387699;
-	Fri,  9 Oct 2020 08:05:42 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 4F56D87046;
+	Fri,  9 Oct 2020 14:37:53 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8D601C07FF;
-	Fri,  9 Oct 2020 08:05:42 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3885DC1AD6;
+	Fri,  9 Oct 2020 14:37:53 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EB9FEC0051
- for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 20:00:17 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6EB01C0051
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id D8A6E2E1B8
- for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 20:00:17 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 553FE8772A
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id U6LFSTF1mwmS for <bridge@lists.linux-foundation.org>;
- Thu,  8 Oct 2020 20:00:09 +0000 (UTC)
+ with ESMTP id Bi0i1FOyk08A for <bridge@lists.linux-foundation.org>;
+ Fri,  9 Oct 2020 14:37:50 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by silver.osuosl.org (Postfix) with ESMTPS id AD15B2E1B3
- for <bridge@lists.linux-foundation.org>; Thu,  8 Oct 2020 20:00:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1602187205;
- bh=1WhE5EzPegLl39at06cilTCOFsyWTja12hZlDpWb/d4=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=Ev69BPsUnGFThD4QuhjsMdaITkLXmaCxF1IF1nEtbtZ5WyP0MB4/DF23UujrfOZEb
- k2v9b6PnFSqsV+R6ZwBZswxvbCsO+YnCkhirg4GIo93a9y3C6Z7/rovZElPtaLdXEh
- fNDquAxg25EMer+Ql6/V8t3O+arZ7XN/drZBZbEE=
+Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
+ [68.232.149.84])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 3B75787729
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Oct 2020 14:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1602254270; x=1633790270;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8bDmiyTkvx37wDFtGUa7I31tickv4SjHCtinc1WW3qQ=;
+ b=bj8WreFjU3YaFi1y2HNk7CZKy23WeCzmwEeCDcekH3FmvJtydcvi+Nlt
+ PT3McBl5uOviIaTvfiz9C1ADG6jQzdfAYZQ99sxt0mcvgMMiNgogYXDse
+ AuA4vyYagfyJ5fa2Z13JQqLPvqDemqKMxmDS/OfoCZbd1NC1HmDr4sSG1
+ 2W1DjSkJLNFo4OXh/dqeEAyF45uG05I5B0KUntYNRD+nPBJXsI2j6Z0hC
+ j769VDOtHmx564DaxTwsd8nn3LKKLYdXYhUxJtmuQlSDSUD1M0qep0zhx
+ l/2dG/H8KJarE23Dgxlu5N3LEO/hOHj9Bpwyw9bk9mKSn6kN7QKljZoWl Q==;
+IronPort-SDR: 0rVodOGpszGsyOQS725oAxCUZh31/0lDpPRc+dHh8wLF67CWbKe3deH2xseYuY/hXFO8QkCMWP
+ NLOpMooFMQtXreUclNd+cz0X5C6pmr5WNU1BTQO/eZY3u0y1AaJTvxSQLSFFDDx0vEYJWcWN7I
+ 4laXnBjz2fl7ITEAi+lZ0j4K7r1x4OSQJ8Fr4dowsDhrxMsHfpzfVFMIKSmL9Fjps6f2kO/ZDB
+ l/cSllQNSXmeh08dOwS24gx/CNgIgkdP94uY0fzkaA21619jmovNJUu41Y0Etgd1eFUFxD+Up6
+ cpM=
+X-IronPort-AV: E=Sophos;i="5.77,355,1596524400"; d="scan'208";a="92058288"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 09 Oct 2020 07:37:49 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 9 Oct 2020 07:37:48 -0700
+Received: from soft-test08.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 9 Oct 2020 07:37:46 -0700
+To: <davem@davemloft.net>, <kuba@kernel.org>, <roopa@nvidia.com>,
+ <nikolay@nvidia.com>, <jiri@mellanox.com>, <idosch@mellanox.com>,
+ <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>, <UNGLinuxDriver@microchip.com>
+Date: Fri, 9 Oct 2020 14:35:20 +0000
+Message-ID: <20201009143530.2438738-1-henrik.bjoernlund@microchip.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <160218720516.8125.842220080436586129.git-patchwork-notify@kernel.org>
-Date: Thu, 08 Oct 2020 20:00:05 +0000
-References: <20201007120700.2152699-1-henrik.bjoernlund@microchip.com>
-In-Reply-To: <20201007120700.2152699-1-henrik.bjoernlund@microchip.com>
-To: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
-X-Mailman-Approved-At: Fri, 09 Oct 2020 08:05:40 +0000
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com, nikolay@nvidia.com,
- roopa@nvidia.com, kuba@kernel.org, horatiu.vultur@microchip.com,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net] bridge: Netlink interface fix.
+Cc: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net-next v4 00/10] net: bridge: cfm: Add support
+	for Connectivity Fault Management(CFM)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -67,33 +89,125 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Henrik Bjoernlund via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Connectivity Fault Management (CFM) is defined in 802.1Q section 12.14.
 
-This patch was applied to netdev/net.git (refs/heads/master):
+Connectivity Fault Management (CFM) comprises capabilities for detecting, verifying,
+and isolating connectivity failures in Virtual Bridged Networks.
+These capabilities can be used in networks operated by multiple independent organizations,
+each with restricted management access to each other’s equipment.
 
-On Wed, 7 Oct 2020 12:07:00 +0000 you wrote:
-> This commit is correcting NETLINK br_fill_ifinfo() to be able to
-> handle 'filter_mask' with multiple flags asserted.
-> 
-> Fixes: 36a8e8e265420 ("bridge: Extend br_fill_ifinfo to return MPR status")
-> 
-> Signed-off-by: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
-> Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Suggested-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> Tested-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> 
-> [...]
+CFM functions are partitioned as follows:
+    — Path discovery
+    — Fault detection
+    — Fault verification and isolation
+    — Fault notification
+    — Fault recovery
 
-Here is the summary with links:
-  - [net] bridge: Netlink interface fix.
-    https://git.kernel.org/netdev/net/c/b6c02ef54913
+The primary CFM protocol shims are called Maintenance Points (MPs).
+A MP can be either a MEP or a MHF.
+The MEP:
+    -It is the Maintenance association End Point
+     described in 802.1Q section 19.2.
+    -It is created on a specific level (1-7) and is assuring
+     that no CFM frames are passing through this MEP on lower levels.
+    -It initiates and terminates/validates CFM frames on its level.
+    -It can only exist on a port that is related to a bridge.
+The MHF:
+    -It is the Maintenance Domain Intermediate Point
+     (MIP) Half Function (MHF) described in 802.1Q section 19.3.
+    -It is created on a specific level (1-7).
+    -It is extracting/injecting certain CFM frame on this level.
+    -It can only exist on a port that is related to a bridge.
+    -Currently not supported.
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+There are defined the following CFM protocol functions:
+    -Continuity Check
+    -Loopback. Currently not supported.
+    -Linktrace. Currently not supported.
 
+This CFM component supports create/delete of MEP instances and configuration of
+the different CFM protocols. Also status information can be fetched and delivered
+through notification due to defect status change.
+
+The user interacts with CFM using the 'cfm' user space client program,
+the client talks with the kernel using netlink.
+
+Any notification emitted by CFM from the kernel can be monitored in user space
+by starting 'cfm_server' program.
+
+Currently this 'cfm' and 'cfm_server' programs are standalone placed in a cfm
+repository https://github.com/microchip-ung/cfm but it is considered to integrate
+this into 'iproute2'.
+
+v1 -> v2
+    Added the CFM switchdev interface and also added utilization by calling the
+    interface from the kernel CFM implementation trying to offload CFM functionality
+    to HW. This offload (CFM driver) is currently not implemented.
+    
+    Corrections based on RCF comments:
+        -The single CFM kernel implementation Patch is broken up into three patches.
+        -Changed the list of MEP instances from list_head to hlist_head.
+        -Removed unnecessary RCU list traversing.
+        -Solved RCU unlocking problem.
+        -Removed unnecessary comments.
+        -Added ASSERT_RTNL() where required.
+        -Shaping up on error messages.
+        -Correction NETLINK br_fill_ifinfo() to be able to handle 'filter_mask'
+         with multiple flags asserted.
+
+v2 -> v3
+    The switchdev definition and utilization has been removed as there was no
+    switchdev implementation.
+    Some compiling issues are fixed as Reported-by: kernel test robot <lkp@intel.com>.
+
+v3 -> v4
+    Fixed potential crash during hlist walk where elements are removed.
+    Giving all commits unique titles.
+    NETLINK implementation split into three commits.
+    Commit "bridge: cfm: Bridge port remove" is merged with
+    commit "bridge: cfm: Kernel space implementation of CFM. MEP create/delete."
+
+Reviewed-by: Horatiu Vultur  <horatiu.vultur@microchip.com>
+Signed-off-by: Henrik Bjoernlund  <henrik.bjoernlund@microchip.com>
+
+Henrik Bjoernlund (10):
+  net: bridge: extend the process of special frames
+  bridge: cfm: Add BRIDGE_CFM to Kconfig.
+  bridge: uapi: cfm: Added EtherType used by the CFM protocol.
+  bridge: cfm: Kernel space implementation of CFM. MEP create/delete.
+  bridge: cfm: Kernel space implementation of CFM. CCM frame TX added.
+  bridge: cfm: Kernel space implementation of CFM. CCM frame RX added.
+  bridge: cfm: Netlink SET configuration Interface.
+  bridge: cfm: Netlink GET configuration Interface.
+  bridge: cfm: Netlink GET status Interface.
+  bridge: cfm: Netlink Notifications.
+
+ include/uapi/linux/cfm_bridge.h |  70 +++
+ include/uapi/linux/if_bridge.h  | 125 +++++
+ include/uapi/linux/if_ether.h   |   1 +
+ include/uapi/linux/rtnetlink.h  |   2 +
+ net/bridge/Kconfig              |  11 +
+ net/bridge/Makefile             |   2 +
+ net/bridge/br_cfm.c             | 884 ++++++++++++++++++++++++++++++++
+ net/bridge/br_cfm_netlink.c     | 731 ++++++++++++++++++++++++++
+ net/bridge/br_device.c          |   4 +
+ net/bridge/br_if.c              |   1 +
+ net/bridge/br_input.c           |  33 +-
+ net/bridge/br_mrp.c             |  19 +-
+ net/bridge/br_netlink.c         | 115 ++++-
+ net/bridge/br_private.h         |  76 ++-
+ net/bridge/br_private_cfm.h     | 147 ++++++
+ 15 files changed, 2199 insertions(+), 22 deletions(-)
+ create mode 100644 include/uapi/linux/cfm_bridge.h
+ create mode 100644 net/bridge/br_cfm.c
+ create mode 100644 net/bridge/br_cfm_netlink.c
+ create mode 100644 net/bridge/br_private_cfm.h
+
+-- 
+2.28.0
 
