@@ -1,76 +1,76 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97E128B159
-	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 11:24:01 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D65128B167
+	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 11:24:14 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 6FDE5869A4;
-	Mon, 12 Oct 2020 09:23:59 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 27A4B2079A;
+	Mon, 12 Oct 2020 09:24:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hm6WCLAC-TJe; Mon, 12 Oct 2020 09:23:58 +0000 (UTC)
+	with ESMTP id 1gmTUVCgqkze; Mon, 12 Oct 2020 09:24:01 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id D352D8677D;
-	Mon, 12 Oct 2020 09:23:58 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 15E1720791;
+	Mon, 12 Oct 2020 09:23:59 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B3358C0051;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EEB50C0051;
 	Mon, 12 Oct 2020 09:23:58 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 12A87C0051
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 19:44:35 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 111F9C0051
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 19:44:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 0EBF687101
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 19:44:35 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 0A85E203FD
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 19:44:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HNmBqXJ6hZFe for <bridge@lists.linux-foundation.org>;
- Sun, 11 Oct 2020 19:44:34 +0000 (UTC)
+ with ESMTP id zotH7qJ9hxeZ for <bridge@lists.linux-foundation.org>;
+ Sun, 11 Oct 2020 19:44:35 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com
- [209.85.218.68])
- by hemlock.osuosl.org (Postfix) with ESMTPS id AFB25870E9
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 19:44:33 +0000 (UTC)
-Received: by mail-ej1-f68.google.com with SMTP id x7so10185104eje.8
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 12:44:33 -0700 (PDT)
+Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
+ [209.85.208.68])
+ by silver.osuosl.org (Postfix) with ESMTPS id 3559C2014B
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 19:44:35 +0000 (UTC)
+Received: by mail-ed1-f68.google.com with SMTP id v19so14719937edx.9
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 12:44:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:from:to:cc:references:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=GOIK3Hq+WKcGwLhTgVcjjfr06Gc4T0D1ld9TN3UCVLk=;
- b=ak9qyYGUS/U3E7+fqKubKrZLUjAKvhb5C7ccuV+XENvdJ6qznvZ2FmEuZsE04zT+Bb
- pgBBsU8+QXgI9zw+6dsTfR75KDCqVtJ2MvmuKgSpfqiX0nbQ+bRrtJiPhhwkKtzSybdY
- wcNaUW5gH5oQ84Jhoynwt0AwviYe/rMjqcytLiAPOJxWrH6wYYUIsM1Rfu/taPd1XF7h
- TbJbIjw8Z68xZLGS2UMDeCLXLamJ1VM2Earj8w6IyiwrZLdut+ATAyuT5b1o7Bujm4SK
- y5nPoaZLubDDb3DBoa+bkCTReCWgmr38aSNg7Y3PXXcBjvcNlqgn4aTnDgYoSJ19F2S4
- hwtg==
+ bh=pinXyNbLzNVPX/bjvrXpQvjJmZP5stTSjNwoOuOjf58=;
+ b=MdJ4QWv6yJuL/l2OhB7xzWNVy+zRUUOc2Zmq2r6kz69YmC7edeD8SQOWY5BcoLeUzX
+ ogwkOVKYgX4+0aXYCsA21Yq8sFWFV/uZizHm5EdW4jeYb3EGjA0DJzLY8lOlwC6uHMW8
+ htjV2C56x49koAQuXCDOYq5rteaudtGE/1A/EkXqsS3IZrZbvCKo5Ss1J92v1uV2inRv
+ 2eAuq2Lnzb2cMyumzcVEu0HNZYarGbEWVHwpeNgc14/xQ3jR2dp9sHRdackkJhiaKvji
+ vyxU1eXFLdpm3OBVokdaXHoxQAitkX2aUINFS4qr3ukUQ1AQ3+VtjoOJhb5DgxspDs43
+ vYkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:from:to:cc:references:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=GOIK3Hq+WKcGwLhTgVcjjfr06Gc4T0D1ld9TN3UCVLk=;
- b=CZZadePj2dbaBldhFQKc3ItZ28riRd7zi3j5ERWtbOuQqFiNJwaJKAi0SDI0VC4mYB
- cXOPVTPIP1XKQfjDigkZYW35xw/GCfaGu7kDlOZ02Rnn9Sjz5yRVDODQyfY5UGEDYLLH
- 2iy08Z5rCLv1fYyzlLD0RWe3s92rAtmm7Hev5msKDY/YBw5MSC8778vyZLAVD698K2ni
- pNu+MQJh3/I4OczG+KivGyefSFzPeLTaDy4CElFBRnTaXQHV6KCtsRyryczvAoHtjLME
- cIv4eHnJLkcsuPTB1CXiwI2YFnn0fqTYrYcyKFdb6qaV3vO0TvKW2g2h+2nu2Fd0vIIS
- t2gA==
-X-Gm-Message-State: AOAM531ohjKrstSP9IXYUSC/CDui22H673nUM1N9v0x05mHu0R0H9tBI
- z7B8ZWGtqUYlxsOhF3oGCYJXca2368qOag==
-X-Google-Smtp-Source: ABdhPJyAzc9Sk1A8caGl+hCGaIAJ01fKrSLPSH3KAJAeZ/TISr185eyHMYYLC4sIDCTQCQp5NYVRNA==
-X-Received: by 2002:a17:906:cd14:: with SMTP id
- oz20mr7328506ejb.7.1602445471848; 
- Sun, 11 Oct 2020 12:44:31 -0700 (PDT)
+ bh=pinXyNbLzNVPX/bjvrXpQvjJmZP5stTSjNwoOuOjf58=;
+ b=hdJhJzYV5DdTiyz1UNVAirZa7R5kbmA6bVT58w7yEt/uCcYTdCEOdhlWkFTk8xFlln
+ v4++xkpQVgt3cGhqvsJ4+bDkRqylARTqP+lH+7HFvrcpeXwRv5SwgpdR3X7KnqPMeCXJ
+ aSU67N5IM+qeeseER+6l3ELoF9ci5mKGjSqDHpm3DiZsLWfYsMddv+VE/y9ko1K3Nyqh
+ Pf0KpTagBwyDCngfBCUmC/FyfhDiW1I7Rdq7GChgjwsQ3RUY+59endZPqGCOaeA7xpnV
+ n/JAzhnSY20JGIXkoHZulod2g/y3jWiGg+y4+26dq9oAzB0jH5In6PdDDE96dinoNNPe
+ O+FQ==
+X-Gm-Message-State: AOAM531V1fRZoDAJNyWIeEP0ON+hsd6S5HGmUxUoigon+oTloj47LwQp
+ eJmgkM+eq51s3Yco3fc27emVxPHzR1FhPg==
+X-Google-Smtp-Source: ABdhPJxFHfj/MBXeetj477kxdURdC3Dlcz5g257iXuawEKZFoVAzZWuyj+HwYtf/AqICeqid3bPHBw==
+X-Received: by 2002:a05:6402:b0e:: with SMTP id
+ bm14mr10989272edb.259.1602445473344; 
+ Sun, 11 Oct 2020 12:44:33 -0700 (PDT)
 Received: from ?IPv6:2003:ea:8f00:6a00:51b7:bf4f:604:7d3d?
  (p200300ea8f006a0051b7bf4f06047d3d.dip0.t-ipconnect.de.
  [2003:ea:8f00:6a00:51b7:bf4f:604:7d3d])
- by smtp.googlemail.com with ESMTPSA id e4sm9728173edk.38.2020.10.11.12.44.30
+ by smtp.googlemail.com with ESMTPSA id a22sm9549717ejs.25.2020.10.11.12.44.32
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 11 Oct 2020 12:44:31 -0700 (PDT)
+ Sun, 11 Oct 2020 12:44:32 -0700 (PDT)
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>, Oliver Neukum
@@ -85,8 +85,8 @@ To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  <pshelar@ovn.org>, Steffen Klassert <steffen.klassert@secunet.com>,
  Herbert Xu <herbert@gondor.apana.org.au>
 References: <a46f539e-a54d-7e92-0372-cd96bb280729@gmail.com>
-Message-ID: <9cde03fe-d032-521d-2d34-34429d6d1a1c@gmail.com>
-Date: Sun, 11 Oct 2020 21:38:44 +0200
+Message-ID: <e24d4325-07c4-9015-e617-4cfa27777e91@gmail.com>
+Date: Sun, 11 Oct 2020 21:39:28 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.1
 MIME-Version: 1.0
@@ -100,8 +100,8 @@ Cc: linux-rdma@vger.kernel.org,
  Linux USB Mailing List <linux-usb@vger.kernel.org>,
  linux-wireless <linux-wireless@vger.kernel.org>,
  bridge@lists.linux-foundation.org
-Subject: [Bridge] [PATCH net-next 04/12] net: usb: qmi_wwan: use new
- function dev_fetch_sw_netstats
+Subject: [Bridge] [PATCH net-next 05/12] net: usbnet: use new function
+ dev_fetch_sw_netstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -120,17 +120,17 @@ Simplify the code by using new function dev_fetch_sw_netstats().
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/net/usb/qmi_wwan.c | 24 +-----------------------
+ drivers/net/usb/usbnet.c | 24 +-----------------------
  1 file changed, 1 insertion(+), 23 deletions(-)
 
-diff --git a/drivers/net/usb/qmi_wwan.c b/drivers/net/usb/qmi_wwan.c
-index 5ca1356b8..a322f5187 100644
---- a/drivers/net/usb/qmi_wwan.c
-+++ b/drivers/net/usb/qmi_wwan.c
-@@ -126,31 +126,9 @@ static void qmimux_get_stats64(struct net_device *net,
- 			       struct rtnl_link_stats64 *stats)
+diff --git a/drivers/net/usb/usbnet.c b/drivers/net/usb/usbnet.c
+index 963d260d1..6062dc278 100644
+--- a/drivers/net/usb/usbnet.c
++++ b/drivers/net/usb/usbnet.c
+@@ -983,31 +983,9 @@ EXPORT_SYMBOL_GPL(usbnet_set_link_ksettings);
+ void usbnet_get_stats64(struct net_device *net, struct rtnl_link_stats64 *stats)
  {
- 	struct qmimux_priv *priv = netdev_priv(net);
+ 	struct usbnet *dev = netdev_priv(net);
 -	unsigned int start;
 -	int cpu;
  
@@ -141,7 +141,7 @@ index 5ca1356b8..a322f5187 100644
 -		u64 rx_packets, rx_bytes;
 -		u64 tx_packets, tx_bytes;
 -
--		stats64 = per_cpu_ptr(priv->stats64, cpu);
+-		stats64 = per_cpu_ptr(dev->stats64, cpu);
 -
 -		do {
 -			start = u64_stats_fetch_begin_irq(&stats64->syncp);
@@ -156,10 +156,10 @@ index 5ca1356b8..a322f5187 100644
 -		stats->tx_packets += tx_packets;
 -		stats->tx_bytes += tx_bytes;
 -	}
-+	dev_fetch_sw_netstats(stats, priv->stats64);
++	dev_fetch_sw_netstats(stats, dev->stats64);
  }
+ EXPORT_SYMBOL_GPL(usbnet_get_stats64);
  
- static const struct net_device_ops qmimux_netdev_ops = {
 -- 
 2.28.0
 
