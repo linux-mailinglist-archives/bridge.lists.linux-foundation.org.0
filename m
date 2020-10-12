@@ -2,74 +2,74 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8798C28B174
-	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 11:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D9628B176
+	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 11:24:28 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 9E4FE2150A;
-	Mon, 12 Oct 2020 09:24:25 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 0869921503;
+	Mon, 12 Oct 2020 09:24:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id nAqwoCAUheEo; Mon, 12 Oct 2020 09:24:21 +0000 (UTC)
+	with ESMTP id pJNg-HMUjbEr; Mon, 12 Oct 2020 09:24:22 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id E531521507;
-	Mon, 12 Oct 2020 09:24:03 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 8544421511;
+	Mon, 12 Oct 2020 09:24:04 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CD7F0C0051;
-	Mon, 12 Oct 2020 09:24:03 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 67DE7C07FF;
+	Mon, 12 Oct 2020 09:24:04 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0FFE9C0051
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:21:57 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AEBA2C0051
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:21:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id ED40886951
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:21:56 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id A9C3985F53
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:21:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Coplvdw-I6yw for <bridge@lists.linux-foundation.org>;
- Mon, 12 Oct 2020 08:21:56 +0000 (UTC)
+ with ESMTP id cH-sQxu41jaI for <bridge@lists.linux-foundation.org>;
+ Mon, 12 Oct 2020 08:21:58 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
- [209.85.208.68])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 526C0869C5
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:21:56 +0000 (UTC)
-Received: by mail-ed1-f68.google.com with SMTP id o18so16001125edq.4
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 01:21:56 -0700 (PDT)
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
+ [209.85.208.65])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 02F4885F46
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:21:58 +0000 (UTC)
+Received: by mail-ed1-f65.google.com with SMTP id o18so16001201edq.4
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 01:21:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:from:to:cc:references:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=/FTD4WRUg6u2eGbYzuvRNRJ/sh1gmUaaKBFsN/NH+4I=;
- b=C3113bStM70NZuGM7RyowckACfab14LKWg7wWfVF/LN3gVgq92KWQoexxkqcaYsQXm
- S9+IQrNBQJWcncQPRDFnK9QzobnWFz6/JtU8SocMw+7dSpE6I4f0nVub/xf9cfsowJaT
- lE7n6ZQ9/gd82nLWmrQ3oIVm6iIFDGr3OMzdAgFx1XMuMONCdTGsKH53SxyEiTGbgnl5
- krmJtopY25J74lQSe8f4R3ihHlk5EuspuSF+G0TSkKhlCCRf8804X1ysZI4h47N94G5q
- vi6K7T1jrBWYfgWxCeNxF9ui1SbrovpET6KJdVeSH4Sb0Dyj3pF8LO/mrTrIKzKbH/cb
- S6jQ==
+ bh=m4bUmyI+LcL2kRpVckxE5LM+etyYjhNnBeXZhGHIk4E=;
+ b=lDYtJfWe8/DHmjC4qnf5MwRbdeN5hvaFN8hfqDPHJ+0ZfSsAgJJ/eXIwbH/bAiyviA
+ aryMIMTmub/a4wvpBSrINDW0mgGtW14oQkcmg7cHioMBNYxSeFVJEVppU4CZN/z3pgYi
+ yCFSGrnv7HyvCgvGS3/K6wNcJVNLfuuY8v8uzjSvqKU8yTWDfejU2Bd9+zFdG60zZczq
+ jBuK8KZCwLWlL18mrCzoRXzYxMqfYb9GBbaRMEFJXupAYO/QmQVPMGU2VtefsbCISeUd
+ mBdf8EcSNS2NDXdJN9FOMUgC0woGLf6i+BjyF8u1bEQoHHPT7PqN5ajYLcMBnPcAUc/e
+ zu1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:from:to:cc:references:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=/FTD4WRUg6u2eGbYzuvRNRJ/sh1gmUaaKBFsN/NH+4I=;
- b=SHS7S15gFC8ULlxGs9c9fXlkkzsMxN0tdayVNE6kIGQ4kPvRSTnNjZAFWhTzKaAH24
- b4g+M20UOyjLt4fTUjZDcbzDoM4gmF1utfRIZWKwMTFL7hytfP/mUf2Zx3WJHZu8Rpf3
- t7dyItN6ok0EOGa7qjR2xIii3VqdafEOmLlxYXd1cl/KTq+h0kYm/iHOSqCG8AizDxz2
- tk9zmiwhuamWepdRyt2kuQLQQPlnUX50PbnUeIdfHs///vvDLg+HrcuQojd6ryZ36BA+
- e4/4uzO9WLpSQLitn70+q1/FxacSvQZqXUyzDWdTLoCL1zdxPNacA3gO7qsmDiQoV+cJ
- MqAg==
-X-Gm-Message-State: AOAM533xMrwzPnWUpBQv1fTBUahr8RxGl+Iv9TXEMLZokDPoQ8v6gBkC
- uUWQWCGdaVDPd8h7y7N1+Vebr2YORh849Q==
-X-Google-Smtp-Source: ABdhPJyr91gOF2uqDYP3d2BgCowxK/xZ/ClenuzL/KGhJVInWE0z0tAUMA3MaJ4QILJikb+ZTAQeVg==
-X-Received: by 2002:a50:8745:: with SMTP id 5mr12629496edv.49.1602490914611;
- Mon, 12 Oct 2020 01:21:54 -0700 (PDT)
+ bh=m4bUmyI+LcL2kRpVckxE5LM+etyYjhNnBeXZhGHIk4E=;
+ b=J3brpkHzVs/XQ051UU7M0aekgVzdoQ2kwCNho/P5X38jfomAa1XZd3isIYAZC+Zl16
+ e3QzyZhek/6q3LTfU79mDgxyPNMFydcmKarDpVQxY1kNgFCaz05SvVrWgemZ76e+UAMt
+ lXd5+6hnj47u1T6iXB1PWomcHK21prhFq00GO7dkXfWk9aTU0MpjewptBeTZrcJ8i7ZZ
+ nSrFvWUF72ZEi9ed2Z7ySY59jNveB4cp82DEows0IC+BViffuAyVt+MIHUsVapkVInHA
+ 9xk36SfVX9EgsuRR9ngr0ODIU+qeGnULtSbEyCNIPxR96/WnAo1luCwbhLIlNl/h/uts
+ ZQNw==
+X-Gm-Message-State: AOAM5310365zXIIzsrmX8yECwV5KOxhiCSe06+4lSX0zix9Yg8D0cnLC
+ gylfzzP/HLZ3lRgQi/srWS1sHEfmEpA4VQ==
+X-Google-Smtp-Source: ABdhPJyxfMf7VORSSp5HyoFFzEneyPhPzS9WR/V/e17Yl+s28XgNVuSnVMDboRtDH0wsx5sophUXpw==
+X-Received: by 2002:a50:c05b:: with SMTP id u27mr12607356edd.290.1602490916179; 
+ Mon, 12 Oct 2020 01:21:56 -0700 (PDT)
 Received: from ?IPv6:2003:ea:8f00:6a00:f90c:2907:849f:701c?
  (p200300ea8f006a00f90c2907849f701c.dip0.t-ipconnect.de.
  [2003:ea:8f00:6a00:f90c:2907:849f:701c])
- by smtp.googlemail.com with ESMTPSA id do22sm9778504ejc.16.2020.10.12.01.21.53
+ by smtp.googlemail.com with ESMTPSA id j10sm10013041edy.97.2020.10.12.01.21.55
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 12 Oct 2020 01:21:54 -0700 (PDT)
+ Mon, 12 Oct 2020 01:21:55 -0700 (PDT)
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>, Oliver Neukum
@@ -84,8 +84,8 @@ To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  <pshelar@ovn.org>, Steffen Klassert <steffen.klassert@secunet.com>,
  Herbert Xu <herbert@gondor.apana.org.au>
 References: <d77b65de-1793-f808-66b5-aaa4e7c8a8f0@gmail.com>
-Message-ID: <050f9a83-b195-a3d6-edbd-91a59040be21@gmail.com>
-Date: Mon, 12 Oct 2020 10:17:07 +0200
+Message-ID: <93dda477-70ae-0ccf-71b4-bfebb66c9beb@gmail.com>
+Date: Mon, 12 Oct 2020 10:18:19 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.1
 MIME-Version: 1.0
@@ -99,7 +99,7 @@ Cc: linux-rdma@vger.kernel.org,
  Linux USB Mailing List <linux-usb@vger.kernel.org>,
  linux-wireless <linux-wireless@vger.kernel.org>,
  bridge@lists.linux-foundation.org
-Subject: [Bridge] [PATCH net-next v2 09/12] iptunnel: use new function
+Subject: [Bridge] [PATCH net-next v2 10/12] mac80211: use new function
  dev_fetch_sw_netstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -119,26 +119,25 @@ Simplify the code by using new function dev_fetch_sw_netstats().
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- net/ipv4/ip_tunnel_core.c | 23 +----------------------
+ net/mac80211/iface.c | 23 +----------------------
  1 file changed, 1 insertion(+), 22 deletions(-)
 
-diff --git a/net/ipv4/ip_tunnel_core.c b/net/ipv4/ip_tunnel_core.c
-index b2ea1a8c5..25f1caf5a 100644
---- a/net/ipv4/ip_tunnel_core.c
-+++ b/net/ipv4/ip_tunnel_core.c
-@@ -433,29 +433,8 @@ EXPORT_SYMBOL(skb_tunnel_check_pmtu);
- void ip_tunnel_get_stats64(struct net_device *dev,
- 			   struct rtnl_link_stats64 *tot)
+diff --git a/net/mac80211/iface.c b/net/mac80211/iface.c
+index 240862a74..1be775979 100644
+--- a/net/mac80211/iface.c
++++ b/net/mac80211/iface.c
+@@ -709,28 +709,7 @@ static u16 ieee80211_netdev_select_queue(struct net_device *dev,
+ static void
+ ieee80211_get_stats64(struct net_device *dev, struct rtnl_link_stats64 *stats)
  {
 -	int i;
 -
- 	netdev_stats_to_stats64(tot, &dev->stats);
--
 -	for_each_possible_cpu(i) {
--		const struct pcpu_sw_netstats *tstats =
--						   per_cpu_ptr(dev->tstats, i);
+-		const struct pcpu_sw_netstats *tstats;
 -		u64 rx_packets, rx_bytes, tx_packets, tx_bytes;
 -		unsigned int start;
+-
+-		tstats = per_cpu_ptr(dev->tstats, i);
 -
 -		do {
 -			start = u64_stats_fetch_begin_irq(&tstats->syncp);
@@ -148,15 +147,15 @@ index b2ea1a8c5..25f1caf5a 100644
 -			tx_bytes = tstats->tx_bytes;
 -		} while (u64_stats_fetch_retry_irq(&tstats->syncp, start));
 -
--		tot->rx_packets += rx_packets;
--		tot->tx_packets += tx_packets;
--		tot->rx_bytes   += rx_bytes;
--		tot->tx_bytes   += tx_bytes;
+-		stats->rx_packets += rx_packets;
+-		stats->tx_packets += tx_packets;
+-		stats->rx_bytes   += rx_bytes;
+-		stats->tx_bytes   += tx_bytes;
 -	}
-+	dev_fetch_sw_netstats(tot, dev->tstats);
++	dev_fetch_sw_netstats(stats, dev->tstats);
  }
- EXPORT_SYMBOL_GPL(ip_tunnel_get_stats64);
  
+ static const struct net_device_ops ieee80211_dataif_ops = {
 -- 
 2.28.0
 
