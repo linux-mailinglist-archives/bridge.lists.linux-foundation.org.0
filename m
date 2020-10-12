@@ -1,99 +1,104 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394DA28AED2
-	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 09:11:36 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA45428B169
+	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 11:24:15 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id B509F86FFD;
-	Mon, 12 Oct 2020 07:11:34 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id F414186101;
+	Mon, 12 Oct 2020 09:24:05 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QLCecSUa62+W; Mon, 12 Oct 2020 07:11:34 +0000 (UTC)
+	with ESMTP id gDkypRc3bzlL; Mon, 12 Oct 2020 09:24:04 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 2E3B385472;
-	Mon, 12 Oct 2020 07:11:34 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 8C3E286008;
+	Mon, 12 Oct 2020 09:24:01 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0B9E7C0051;
-	Mon, 12 Oct 2020 07:11:34 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 68E6DC1AD5;
+	Mon, 12 Oct 2020 09:24:01 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 29DBCC0051
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 07:11:32 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D7F2DC0051
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:00:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 0E06885A88
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 07:11:32 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id C5EF685F53
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:00:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Ud2qz4I4LCQZ for <bridge@lists.linux-foundation.org>;
- Mon, 12 Oct 2020 07:11:31 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from m42-4.mailgun.net (m42-4.mailgun.net [69.72.42.4])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id A564485868
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 07:11:26 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1602486691; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=JAOckvyZSGiRSyfXilzxRRUkdvcueb1oRO7CQ0IBXN0=;
- b=YcLTF1ZptYkPIexT5e2wfTHEN5cz0vL4TxeLTWvrRI33MWlNQqZe6hYNoGxTt/ZSgzu5JgyR
- TyztzQf/kcEd/wlfNrpIInBMGPQrakay/NeLlKP5cPxRlPhXYQMO3h7DmtV7ksB45tu1Qd5Z
- rjtRWo05o4k/T9gJHvz7n/s8X2M=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyIzNTQ4NSIsICJicmlkZ2VAbGlzdHMubGludXgtZm91bmRhdGlvbi5vcmciLCAiYmU5ZTRhIl0=
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 5f84017de9e942744c32f416 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 12 Oct 2020 07:10:53
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 74228C43385; Mon, 12 Oct 2020 07:10:52 +0000 (UTC)
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 44889C433CB;
- Mon, 12 Oct 2020 07:10:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 44889C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-References: <a46f539e-a54d-7e92-0372-cd96bb280729@gmail.com>
- <a4fa20e9-23bc-4f2f-cbe9-16d801ce3b20@gmail.com>
-Date: Mon, 12 Oct 2020 10:10:43 +0300
-In-Reply-To: <a4fa20e9-23bc-4f2f-cbe9-16d801ce3b20@gmail.com> (Heiner
- Kallweit's message of "Sun, 11 Oct 2020 21:40:10 +0200")
-Message-ID: <87sgajzzpo.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
-MIME-Version: 1.0
-Content-Type: text/plain
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Linux USB Mailing List <linux-usb@vger.kernel.org>,
- Steffen Klassert <steffen.klassert@secunet.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Sergey Matyukevich <geomatsi@gmail.com>, linux-rdma@vger.kernel.org,
- bridge@lists.linux-foundation.org, Pravin B Shelar <pshelar@ovn.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>,
- Igor Mitsyanko <imitsyanko@quantenna.com>,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
+ with ESMTP id GWuQeplldYBJ for <bridge@lists.linux-foundation.org>;
+ Mon, 12 Oct 2020 08:00:31 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com
+ [209.85.218.66])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id BD5E485F33
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 08:00:23 +0000 (UTC)
+Received: by mail-ej1-f66.google.com with SMTP id lw21so21902736ejb.6
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 01:00:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:subject:to:cc:message-id:date:user-agent:mime-version
+ :content-language:content-transfer-encoding;
+ bh=E6ZQVUiO2275Bcug8uUrW3WsykSr+byogH0GbMVRigw=;
+ b=GcDfopve+WPhIRwCJrdYk1/TfRko9i65Ilpv8HZL+ED4dQxCulnQnRZePaC64NPAr2
+ nmn49sDr6c5oTxnoaD2uTYlCVwQO8ZXYpcby1pF1D2C+klxUKxBdYIrvBNyVr+GmiuG8
+ 2bxGIzY8Kxom/n/9bHVET77PZ+zY76sAt0wT5b3JoLdHxzTW8+7RWqIDuoC4DkIKWI6m
+ 7HiNZNlq7bhlUSEqBASqo+IrjOTSLh2e3kzN+VzkPV5G32LDlCJJtFw4Om97uHa2w1yJ
+ VkNWhQdsIVRQDbB1ucSjpnk/Fp3cj2MWiyRP9+YPlG7kqDkXi/dXv8baEtjIGqojK2hg
+ 0+vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=E6ZQVUiO2275Bcug8uUrW3WsykSr+byogH0GbMVRigw=;
+ b=s9eap4i4Qr7GnezkdPk0eojTxgV4fAhGk16QpUsi11M/MeTejMlR7Cx5nEfNHm7wO8
+ NWU+lwwTCHYVf1P7raQKiHvNDGXGNH4ch1NhsD9+m+9AFjHH7HVwSOG+6AmaQ5CLfK5o
+ EhBFIf7CO4N+tbkhW3pyi9UthOrfQx7wEtjgYuGvq5e+LT7sXDwNAhjywA0xfGCK5lEe
+ /bnrQUmv31xhjLpJq1XRAL/a5uF2aP5+J+Gsjn0ExzteGLCdW9oF/Ti6JiX0ccK/FkAf
+ 4z+YseJJ6E1WWFG7jXAQnfPn1oVhjNhoIHyTs+Itun+LZbpuq7+WKrtVoLAeZ8jjPGFQ
+ BZjw==
+X-Gm-Message-State: AOAM531tyAdXblYQwMhSeNctmNfHkg+/sVtAJOsFU9Sb/g9WkOMZzxbw
+ tbFsfH2kHMC+atUQqAOZwzXpqe8tRJO9vQ==
+X-Google-Smtp-Source: ABdhPJyM1WPUyaOroCzCzAQo+bFOg9gN1cdZ7Fu41hYLugilC37gIB+LcI36H/p0IumpMavqB/LCXw==
+X-Received: by 2002:a17:907:4365:: with SMTP id
+ nd5mr27607240ejb.56.1602489621917; 
+ Mon, 12 Oct 2020 01:00:21 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f00:6a00:f90c:2907:849f:701c?
+ (p200300ea8f006a00f90c2907849f701c.dip0.t-ipconnect.de.
+ [2003:ea:8f00:6a00:f90c:2907:849f:701c])
+ by smtp.googlemail.com with ESMTPSA id r21sm10129690eda.3.2020.10.12.01.00.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 12 Oct 2020 01:00:21 -0700 (PDT)
+From: Heiner Kallweit <hkallweit1@gmail.com>
+To: David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>, Oliver Neukum
+ <oneukum@suse.com>, Igor Mitsyanko <imitsyanko@quantenna.com>,
+ Sergey Matyukevich <geomatsi@gmail.com>, Kalle Valo <kvalo@codeaurora.org>,
+ Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Andrew Lunn <andrew@lunn.ch>, Vivien Didelot <vivien.didelot@gmail.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
+ <olteanv@gmail.com>, Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
  Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
+ Johannes Berg <johannes@sipsolutions.net>, Pravin B Shelar
+ <pshelar@ovn.org>, Steffen Klassert <steffen.klassert@secunet.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>
+Message-ID: <d77b65de-1793-f808-66b5-aaa4e7c8a8f0@gmail.com>
+Date: Mon, 12 Oct 2020 10:00:11 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 12 Oct 2020 09:23:56 +0000
+Cc: linux-rdma@vger.kernel.org,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- Oliver Neukum <oneukum@suse.com>,
+ Linux USB Mailing List <linux-usb@vger.kernel.org>,
  linux-wireless <linux-wireless@vger.kernel.org>,
- Johannes Berg <johannes@sipsolutions.net>, Vladimir Oltean <olteanv@gmail.com>,
- David Miller <davem@davemloft.net>,
- =?utf-8?Q?Bj=C3=B8rn?= Mork <bjorn@mork.no>
-Subject: Re: [Bridge] [PATCH net-next 06/12] qtnfmac: use new function
-	dev_fetch_sw_netstats
+ bridge@lists.linux-foundation.org
+Subject: [Bridge] [PATCH net-next v2 00/12] net: add and use function
+ dev_fetch_sw_netstats for fetching pcpu_sw_netstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -108,17 +113,47 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
+In several places the same code is used to populate rtnl_link_stats64
+fields with data from pcpu_sw_netstats. Therefore factor out this code
+to a new function dev_fetch_sw_netstats().
 
-> Simplify the code by using new function dev_fetch_sw_netstats().
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+v2:
+- constify argument netstats
+- don't ignore netstats being NULL or an ERRPTR
+- switch to EXPORT_SYMBOL_GPL
 
-I assume this goes via net-next so:
+Heiner Kallweit (12):
+  net: core: add function dev_fetch_sw_netstats for fetching
+    pcpu_sw_netstats
+  IB/hfi1: use new function dev_fetch_sw_netstats
+  net: macsec: use new function dev_fetch_sw_netstats
+  net: usb: qmi_wwan: use new function dev_fetch_sw_netstats
+  net: usbnet: use new function dev_fetch_sw_netstats
+  qtnfmac: use new function dev_fetch_sw_netstats
+  net: bridge: use new function dev_fetch_sw_netstats
+  net: dsa: use new function dev_fetch_sw_netstats
+  iptunnel: use new function dev_fetch_sw_netstats
+  mac80211: use new function dev_fetch_sw_netstats
+  net: openvswitch: use new function dev_fetch_sw_netstats
+  xfrm: use new function dev_fetch_sw_netstats
 
-Acked-by: Kalle Valo <kvalo@codeaurora.org>
+ drivers/infiniband/hw/hfi1/ipoib_main.c       | 34 +------------------
+ drivers/net/macsec.c                          | 22 +-----------
+ drivers/net/usb/qmi_wwan.c                    | 24 +------------
+ drivers/net/usb/usbnet.c                      | 24 +------------
+ drivers/net/wireless/quantenna/qtnfmac/core.c | 27 +--------------
+ include/linux/netdevice.h                     |  2 ++
+ net/bridge/br_device.c                        | 21 +-----------
+ net/core/dev.c                                | 34 +++++++++++++++++++
+ net/dsa/slave.c                               | 21 +-----------
+ net/ipv4/ip_tunnel_core.c                     | 23 +------------
+ net/mac80211/iface.c                          | 23 +------------
+ net/openvswitch/vport-internal_dev.c          | 20 +----------
+ net/xfrm/xfrm_interface.c                     | 22 +-----------
+ 13 files changed, 47 insertions(+), 250 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.28.0
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+
