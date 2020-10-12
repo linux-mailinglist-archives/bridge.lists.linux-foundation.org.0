@@ -1,90 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E640728B5BF
-	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 15:15:14 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id AADAB290E5F
+	for <lists.bridge@lfdr.de>; Sat, 17 Oct 2020 02:44:35 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id A1E1D86102;
-	Mon, 12 Oct 2020 13:15:13 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id E20BC2E8EA;
+	Sat, 17 Oct 2020 00:44:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+X-Amavis-Alert: BAD HEADER SECTION, Non-encoded 8-bit data (char C3 hex): To:
+	Bj\303\270rn Mork <bjorn[...]
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id YEofV6HlKfx4; Mon, 12 Oct 2020 13:15:13 +0000 (UTC)
+	with ESMTP id BURPOLnI-v2a; Sat, 17 Oct 2020 00:44:29 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 437D086119;
-	Mon, 12 Oct 2020 13:15:13 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 3184D2E8E9;
+	Sat, 17 Oct 2020 00:44:27 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2A6C5C0051;
-	Mon, 12 Oct 2020 13:15:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 146A6C0051;
+	Sat, 17 Oct 2020 00:44:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A717EC0051
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 13:15:11 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2E178C0051
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 13:37:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 9B9EA214E6
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 13:15:11 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 21A0386999
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 13:37:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+X-Amavis-Alert: BAD HEADER SECTION, Non-encoded 8-bit data (char C3 hex): To:
+ Bj\303\270rn Mork <bjorn[...]
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nBixJxZVtXUE for <bridge@lists.linux-foundation.org>;
- Mon, 12 Oct 2020 13:15:10 +0000 (UTC)
+ with ESMTP id J7+qhlcfSaKl for <bridge@lists.linux-foundation.org>;
+ Mon, 12 Oct 2020 13:37:39 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa4.microchip.iphmx.com (esa4.microchip.iphmx.com
- [68.232.154.123])
- by silver.osuosl.org (Postfix) with ESMTPS id CE1D320C45
- for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 13:15:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1602508510; x=1634044510;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WbHem3m4Q3i89Pivd83Tm6CpRpEgWOJlMqGFw8xU/Kg=;
- b=gUyuvq1tWYWRvRZxJhzDV2JiqMD8IUhDmMaLn1H78M3tze8K6G6/6fKG
- 0Lxhpbd3ii3AL3Pfhx1RffWAaaN5rxfVxQO4GOLLfBjZ9fTY6oEOu+6U+
- 8KaZ9SMgwqYj2iEmWFweJ/sEGqagFUxFlp7M6mfxifKrMhse/z91TNnfl
- 9C65/+Yir2k7YPD2tmqpYhxA7S3s3V/c3KYGUGx50p2uWRwgGNOFrTzGo
- f3J9Phm3eYKx4MOWVSeLfB6so2/OXrF1Nox1GBKbT8/rYHxujad4GmYfq
- QWOCNUkaznMA3qqHgK2h50nhSZDQ9gWwHg5JE8HSjZserSTY4oWsgfrO7 Q==;
-IronPort-SDR: 2QmRD1kAxMGt5epuEPtKZ6+SMue+ESBgCZTzUgu+x3l00LBicP/QnEE2bVTuoDuQ0wxsis7/oj
- qhyfFREhoczmXFOSRl2sYjpqbfyZ05mpYiTyjVz7kH5Yx2RUWjVPt1mvclfBVK29xT2eTF1eW3
- KpHd0xjMhhzzmVrHvAguZOLm0dkX61a92M+RigBXb48pSDgLXRhYmk0DOZl2WFEdUmBr90g3hy
- AFaL9hJ7NF0fScOpGzP3YJ+2m3fN6o5Xkk7wzJilP4SY3TNM6VVrk2i3P0zbPyua2q4LMbxtTx
- uPE=
-X-IronPort-AV: E=Sophos;i="5.77,366,1596524400"; d="scan'208";a="89898620"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 12 Oct 2020 06:15:10 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 12 Oct 2020 06:15:09 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Mon, 12 Oct 2020 06:15:09 -0700
-Date: Mon, 12 Oct 2020 13:13:24 +0000
-To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <20201012131324.qlxqxfpamievgrkz@soft-test08>
-References: <20201009143530.2438738-1-henrik.bjoernlund@microchip.com>
- <20201009143530.2438738-3-henrik.bjoernlund@microchip.com>
- <f3e27f2363bf116ada0f352f263d6cbd051b6a87.camel@nvidia.com>
-MIME-Version: 1.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 92A61867D2
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 13:37:39 +0000 (UTC)
+Received: from localhost (lfbn-tou-1-1075-236.w90-76.abo.wanadoo.fr
+ [90.76.143.236])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 099DB20BED;
+ Mon, 12 Oct 2020 13:37:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1602509859;
+ bh=mvGEPH4UmSON2svJ1yiU7FBCC0Sgo3PEgLHn7hbXVBA=;
+ h=In-Reply-To:References:Subject:Cc:To:From:Date:From;
+ b=g1QxIh3VbJlOes9tKz95+xFrXF2XlCTXSAE7mkAFtJGXMJ0jWyq2TUiG6xGcP3I2p
+ 9EyHU8Q1RaunZXaJZqguVXrqSpEt0h3CVRlJ+3vgxn96Oa9on7L3ATCLIiPkoSVTSC
+ pkvlJocmhwy0YDPAMqz49epWC5gkR/hYpw4iEicE=
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <f3e27f2363bf116ada0f352f263d6cbd051b6a87.camel@nvidia.com>
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
- "idosch@mellanox.com" <idosch@mellanox.com>,
- "jiri@mellanox.com" <jiri@mellanox.com>, Roopa Prabhu <roopa@nvidia.com>,
- "kuba@kernel.org" <kuba@kernel.org>,
- "horatiu.vultur@microchip.com" <horatiu.vultur@microchip.com>,
- "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v4 02/10] bridge: cfm: Add BRIDGE_CFM
-	to Kconfig.
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <0d81e0f7-7784-42df-8e10-d0b77ca5b7ee@gmail.com>
+References: <d77b65de-1793-f808-66b5-aaa4e7c8a8f0@gmail.com>
+ <0d81e0f7-7784-42df-8e10-d0b77ca5b7ee@gmail.com>
+To: Bjørn Mork <bjorn@mork.no>, Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, Andrew Lunn <andrew@lunn.ch>, David Miller <davem@davemloft.net>, Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit <hkallweit1@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, Igor Mitsyanko <imitsyanko@quantenna.com>, Jakub Kicinski <kuba@kernel.org>, Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>, Nikolay Aleksandrov <nikolay@nvidia.com>, Oliver Neukum <oneukum@suse.com>, Pravin B Shelar <pshelar@ovn.org>, Roopa Prabhu <roopa@nvidia.com>, Sergey Matyukevich <geomatsi@gmail.com>, Steffen Klassert <steffen.klassert@secunet.com>, Vivien Didelot <vivien.didelot@gmail.com>, Vladimir Oltean <olteanv@gmail.com>
+From: Antoine Tenart <atenart@kernel.org>
+Message-ID: <160250985474.6233.14282398170315752864@surface>
+Date: Mon, 12 Oct 2020 15:37:34 +0200
+X-Mailman-Approved-At: Sat, 17 Oct 2020 00:44:26 +0000
+Cc: linux-rdma@vger.kernel.org,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ Linux USB Mailing List <linux-usb@vger.kernel.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ bridge@lists.linux-foundation.org
+Subject: Re: [Bridge] [PATCH net-next v2 03/12] net: macsec: use new
+	function dev_fetch_sw_netstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,31 +80,64 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: "henrik.bjoernlund--- via Bridge" <bridge@lists.linux-foundation.org>
-Reply-To: "henrik.bjoernlund@microchip.com" <henrik.bjoernlund@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Thanks for the review.
+Hello,
 
-The 10/09/2020 21:39, Nikolay Aleksandrov wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> On Fri, 2020-10-09 at 14:35 +0000, Henrik Bjoernlund wrote:
-> > This makes it possible to include or exclude the CFM
-> > protocol according to 802.1Q section 12.14.
-> >
-> > Signed-off-by: Henrik Bjoernlund  <henrik.bjoernlund@microchip.com>
-> > Reviewed-by: Horatiu Vultur  <horatiu.vultur@microchip.com>
-> > ---
-> >  net/bridge/Kconfig      | 11 +++++++++++
-> >  net/bridge/br_device.c  |  3 +++
-> >  net/bridge/br_private.h |  3 +++
-> >  3 files changed, 17 insertions(+)
-> >
-> 
-> Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
+Quoting Heiner Kallweit (2020-10-12 10:04:11)
+> Simplify the code by using new function dev_fetch_sw_netstats().
+>=20
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
--- 
-/Henrik
+Reviewed-by: Antoine Tenart <atenart@kernel.org>
+
+Thanks!
+Antoine
+
+> ---
+>  drivers/net/macsec.c | 22 +---------------------
+>  1 file changed, 1 insertion(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/net/macsec.c b/drivers/net/macsec.c
+> index 2b0c8f01d..11ca5fa90 100644
+> --- a/drivers/net/macsec.c
+> +++ b/drivers/net/macsec.c
+> @@ -3647,30 +3647,10 @@ static int macsec_change_mtu(struct net_device *d=
+ev, int new_mtu)
+>  static void macsec_get_stats64(struct net_device *dev,
+>                                struct rtnl_link_stats64 *s)
+>  {
+> -       int cpu;
+> -
+>         if (!dev->tstats)
+>                 return;
+> =20
+> -       for_each_possible_cpu(cpu) {
+> -               struct pcpu_sw_netstats *stats;
+> -               struct pcpu_sw_netstats tmp;
+> -               int start;
+> -
+> -               stats =3D per_cpu_ptr(dev->tstats, cpu);
+> -               do {
+> -                       start =3D u64_stats_fetch_begin_irq(&stats->syncp=
+);
+> -                       tmp.rx_packets =3D stats->rx_packets;
+> -                       tmp.rx_bytes   =3D stats->rx_bytes;
+> -                       tmp.tx_packets =3D stats->tx_packets;
+> -                       tmp.tx_bytes   =3D stats->tx_bytes;
+> -               } while (u64_stats_fetch_retry_irq(&stats->syncp, start));
+> -
+> -               s->rx_packets +=3D tmp.rx_packets;
+> -               s->rx_bytes   +=3D tmp.rx_bytes;
+> -               s->tx_packets +=3D tmp.tx_packets;
+> -               s->tx_bytes   +=3D tmp.tx_bytes;
+> -       }
+> +       dev_fetch_sw_netstats(s, dev->tstats);
+> =20
+>         s->rx_dropped =3D dev->stats.rx_dropped;
+>         s->tx_dropped =3D dev->stats.tx_dropped;
+> --=20
+> 2.28.0
+>=20
+>=20
