@@ -1,82 +1,106 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61E728AAF7
-	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 00:41:57 +0200 (CEST)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2F228AB86
+	for <lists.bridge@lfdr.de>; Mon, 12 Oct 2020 03:49:30 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id CF40F86912;
-	Sun, 11 Oct 2020 22:41:55 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id E886320452;
+	Mon, 12 Oct 2020 01:49:27 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id avL6l-hVE1Rl; Sun, 11 Oct 2020 22:41:55 +0000 (UTC)
+	with ESMTP id lwx92GKun+SG; Mon, 12 Oct 2020 01:49:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 9F292868E9;
-	Sun, 11 Oct 2020 22:41:55 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 85A20203FE;
+	Mon, 12 Oct 2020 01:49:25 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7C0A3C0895;
-	Sun, 11 Oct 2020 22:41:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6C903C0051;
+	Mon, 12 Oct 2020 01:49:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 68D49C0051
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 22:41:54 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3F413C0051
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 01:49:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 596AF86912
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 22:41:54 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 33AFB867F0
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 01:49:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id YdBVDBBN8zWy for <bridge@lists.linux-foundation.org>;
- Sun, 11 Oct 2020 22:41:53 +0000 (UTC)
+ with ESMTP id EdhSss-Vnm6y for <bridge@lists.linux-foundation.org>;
+ Mon, 12 Oct 2020 01:49:22 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id C2E39868E9
- for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 22:41:53 +0000 (UTC)
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
- [163.114.132.5])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7F8FB2074A;
- Sun, 11 Oct 2020 22:41:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1602456113;
- bh=KjfGjYsSnfWIwHrASEVqiRbvBtfZz9AkJ6pI70LmAbY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=DXXI2vnw0yJuPJ+UvqE/MJmockTPIdo7j2X4VD6cjbrAv9qt0TDpFCu4E2diTbvCa
- shuUVYDttC88i8EshqLCBbS7Pgnjatcg9oMtKR2Gt/ZosE3SnuV5Kkmq5YtSR7y6jw
- Db1nukMbgdyTCNrBWKddb4xAZNlStmyMTtVuHomM=
-Date: Sun, 11 Oct 2020 15:41:50 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <20201011154150.6cad3758@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <1f1dceab-bab0-ff9e-dae6-ed35be504a9c@gmail.com>
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+ [209.85.215.196])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 0D94686B42
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Oct 2020 01:49:22 +0000 (UTC)
+Received: by mail-pg1-f196.google.com with SMTP id l18so3686774pgg.0
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Oct 2020 18:49:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=rIbb0/SViFEAq3N3skmCoQu+YzgDQ+YxSiq/Tk6Jyjs=;
+ b=YatStj6JeisBAbir+YmU7Y5u3EZpGBGxbKaXAmw1CVHxTUc6NcIKpPqjbiRhurBwTi
+ 9+/cysSBOniaSGTCjhfXMLOFLQ1wQHQuw0bdIqd4Z92Hmkv4PL0lszVvOvrbEK8jdOkM
+ sA5idgF+CcK58S1mlBzS4oJwDDX/f16/4ock0VZbnFal3wyWoA5qrRNDCgtEhlIsPcBD
+ fksa9vLGqLi7PndXJtXuZSSbdTIf92YYTPLiTcG0/O/6uOE+/2R7TEDcX6qaOK7xBobz
+ /I2Q4ZfZKhD18n2wf2Qb8rrn+HxwwIF7YwWylf6De1dZ0XhJo6DjT1h2S1IhR99CK/au
+ cOpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=rIbb0/SViFEAq3N3skmCoQu+YzgDQ+YxSiq/Tk6Jyjs=;
+ b=Zh2UtTOmyYY1mpANveAjpo+LPcMfjgYBV8AkiW8VRxF59K4kQNcv5vla1C64VQs0LE
+ h+GjGUwvfhGa75RrrkAWnY1OXDwNPhhg2M0C6MyFRQPRl8WtIO52EK3eQJCIK4z1kNNb
+ 3slDZn05rmXDxDRfqaPl0E5od/7IY31nRgRdH0KaBE0HBKEZO8WXUCqSMdSnGwBCmoZ+
+ 2kf5tcLcJgKV6W4timwDOkCmZzSRyRS7ddqoPpt1hmcmZeCdCV7kmZDDiVF+j51DhYbS
+ zkjflW2CJa2kOZAU7TBv0wHgs6kl9CLHQmqBiiDrWiCk4XNuZ7gNk7L0D3yRgPbFErrl
+ 2v0Q==
+X-Gm-Message-State: AOAM532S+/awjH2OzyOW6ANDksVcCu7Rd7pjD4cOfnPbC2lu2mjE8tzc
+ WuMnDNdNgVeblqS+2fc2KKj2ym8W3O+J3w==
+X-Google-Smtp-Source: ABdhPJw4Pe7H9he+gRS6c+vGPBxNBkJ5eYwam9urDtnsK8QiQhWjspuehNW3K1oIiXedZsnV0pVyCw==
+X-Received: by 2002:a62:5bc2:0:b029:13e:d13d:a130 with SMTP id
+ p185-20020a625bc20000b029013ed13da130mr21501632pfb.24.1602467361220; 
+ Sun, 11 Oct 2020 18:49:21 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+ by smtp.gmail.com with ESMTPSA id
+ g3sm21133168pjl.6.2020.10.11.18.49.18
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 11 Oct 2020 18:49:20 -0700 (PDT)
+To: Heiner Kallweit <hkallweit1@gmail.com>, David Miller
+ <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>, Oliver Neukum
+ <oneukum@suse.com>, Igor Mitsyanko <imitsyanko@quantenna.com>,
+ Sergey Matyukevich <geomatsi@gmail.com>, Kalle Valo <kvalo@codeaurora.org>,
+ Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Andrew Lunn <andrew@lunn.ch>, Vivien Didelot <vivien.didelot@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, Alexey Kuznetsov
+ <kuznet@ms2.inr.ac.ru>, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
+ Johannes Berg <johannes@sipsolutions.net>, Pravin B Shelar
+ <pshelar@ovn.org>, Steffen Klassert <steffen.klassert@secunet.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>
 References: <a46f539e-a54d-7e92-0372-cd96bb280729@gmail.com>
- <20201011151030.05ad88dd@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <1f1dceab-bab0-ff9e-dae6-ed35be504a9c@gmail.com>
+ <4c7b9a8d-caa2-52dd-8973-10f4e2892dd6@gmail.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <44356f33-2191-c5a6-4c38-50c2934d16b0@gmail.com>
+Date: Sun, 11 Oct 2020 18:49:17 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.3.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <4c7b9a8d-caa2-52dd-8973-10f4e2892dd6@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Linux USB Mailing List <linux-usb@vger.kernel.org>,
- Steffen Klassert <steffen.klassert@secunet.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Sergey Matyukevich <geomatsi@gmail.com>, linux-rdma@vger.kernel.org,
- bridge@lists.linux-foundation.org, Pravin B Shelar <pshelar@ovn.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Igor Mitsyanko <imitsyanko@quantenna.com>, Kalle Valo <kvalo@codeaurora.org>,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
+Cc: linux-rdma@vger.kernel.org,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- Oliver Neukum <oneukum@suse.com>,
+ Linux USB Mailing List <linux-usb@vger.kernel.org>,
  linux-wireless <linux-wireless@vger.kernel.org>,
- Johannes Berg <johannes@sipsolutions.net>, Vladimir Oltean <olteanv@gmail.com>,
- David Miller <davem@davemloft.net>, =?UTF-8?B?QmrDuHJu?= Mork <bjorn@mork.no>
-Subject: Re: [Bridge] [PATCH net-next 00/12] net: add and use function
- dev_fetch_sw_netstats for fetching pcpu_sw_netstats
+ bridge@lists.linux-foundation.org
+Subject: Re: [Bridge] [PATCH net-next 08/12] net: dsa: use new function
+ dev_fetch_sw_netstats
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -91,22 +115,13 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, 12 Oct 2020 00:29:52 +0200 Heiner Kallweit wrote:
-> On 12.10.2020 00:10, Jakub Kicinski wrote:
-> > On Sun, 11 Oct 2020 21:34:58 +0200 Heiner Kallweit wrote:  
-> >> In several places the same code is used to populate rtnl_link_stats64
-> >> fields with data from pcpu_sw_netstats. Therefore factor out this code
-> >> to a new function dev_fetch_sw_netstats().  
-> > 
-> > FWIW probably fine to convert nfp_repr_get_host_stats64() as well, just
-> > take out the drop counter and make it a separate atomic. If you're up
-> > for that.
-> >   
-> Looking at nfp_repr_get_host_stats64() I'm not sure why the authors
-> decided to add a 64bit tx drop counter, struct net_device_stats has
-> an unsigned long tx_dropped counter already. And that the number of
-> dropped tx packets exceeds 32bit (on 32bit systems) seems not very
-> likely.
 
-struct net_device::stats? That's not per-cpu.
-Or do you mean struct net_device::tx_dropped? That'd work nicely.
+
+On 10/11/2020 12:41 PM, Heiner Kallweit wrote:
+> Simplify the code by using new function dev_fetch_sw_netstats().
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
