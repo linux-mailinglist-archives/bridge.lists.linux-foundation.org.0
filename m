@@ -1,62 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119E1290E5A
-	for <lists.bridge@lfdr.de>; Sat, 17 Oct 2020 02:44:30 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0CE28D9D1
+	for <lists.bridge@lfdr.de>; Wed, 14 Oct 2020 08:14:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 79B9E88A69;
-	Sat, 17 Oct 2020 00:44:28 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 0D13787D53;
+	Wed, 14 Oct 2020 06:14:00 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id m6xiAH5L7Ko7; Sat, 17 Oct 2020 00:44:27 +0000 (UTC)
+	with ESMTP id VWazvsE5e8mh; Wed, 14 Oct 2020 06:13:59 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 6715A88A38;
-	Sat, 17 Oct 2020 00:44:27 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 3BFA787D5D;
+	Wed, 14 Oct 2020 06:13:59 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 490DBC1AD6;
-	Sat, 17 Oct 2020 00:44:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1FA8FC0051;
+	Wed, 14 Oct 2020 06:13:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 67993C0051
- for <bridge@lists.linux-foundation.org>; Wed, 14 Oct 2020 05:42:55 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BE422C0051
+ for <bridge@lists.linux-foundation.org>; Wed, 14 Oct 2020 06:13:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 6277787B72
- for <bridge@lists.linux-foundation.org>; Wed, 14 Oct 2020 05:42:55 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id A44F7874FE
+ for <bridge@lists.linux-foundation.org>; Wed, 14 Oct 2020 06:13:57 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vnPYqmy7HXIz for <bridge@lists.linux-foundation.org>;
- Wed, 14 Oct 2020 05:42:55 +0000 (UTC)
+ with ESMTP id v-EspNAi1u_r for <bridge@lists.linux-foundation.org>;
+ Wed, 14 Oct 2020 06:13:57 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 0199F876AA
- for <bridge@lists.linux-foundation.org>; Wed, 14 Oct 2020 05:42:54 +0000 (UTC)
-Received: from localhost (unknown [213.57.247.131])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 936BB2177B;
- Wed, 14 Oct 2020 05:42:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1602654174;
- bh=w10HAUvHzI4K2dPPA6eBw0IIFtp11qCCa0wUzKaUmD8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=cKsoRdZk0/7P9W5KQIcB78oxj7gSK1YWQM+hrVcStVlKqV5euxdawGaIKjsJO+YUU
- /usInNdGonQCzHNv/4cuzYg3D1kAHdZbtEGHplDqaWK5j6M3yEug5qW6hLhVGcPu6C
- Ur12VOGAV45LDfAlhlt9kErfzTLPyFZ2XWjKnbEc=
-Date: Wed, 14 Oct 2020 08:42:50 +0300
-From: Leon Romanovsky <leon@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Message-ID: <20201014054250.GB6305@unreal>
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com
+ [209.85.218.68])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id D1190874FB
+ for <bridge@lists.linux-foundation.org>; Wed, 14 Oct 2020 06:13:56 +0000 (UTC)
+Received: by mail-ej1-f68.google.com with SMTP id u8so3164006ejg.1
+ for <bridge@lists.linux-foundation.org>; Tue, 13 Oct 2020 23:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=aeWyu0fhicZ35ndvB5G7CKdKzKpJv3Q8+/dMeny8r3E=;
+ b=ngUoDnD3ez3wPljEH7V6ZRJPxi6VyKPo3NxCEGkokrtq2QA/+s/lV/gHCbtL1ccOZM
+ y4RF2dEUkDYGhH4MNBxZg/1KDQafk1w8ITyco6/45YqH8gEgwjnp0z6zsFzKn4IOHj4s
+ SEgx35DPjNeiQzLyJktDf8AGW15iQC8AEp6CWP5YKxFjWBgY54Ck35nwJlqfo9PVt8+y
+ bOUQNnEc8FKh9al2GBvmeJd6AXmxiWSD5M3XIfYFKi7rr36blaxM8b/XEUh/rGL1Hk8R
+ zvF+ytnIvMGQMQUTRgQmPC6Nm15fiVz3SDDpT9DWCqkOjC2BvUYWeMwsgd6Mu48AXDAk
+ ln9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=aeWyu0fhicZ35ndvB5G7CKdKzKpJv3Q8+/dMeny8r3E=;
+ b=jyXxQIpwsKa6r32b1WH0JRUH3pEk6m4ESQi9A30ToYuzBJJleOz/wPCjt3pettv/8c
+ hJSZpaSVTk/GBtC9B8vZGCCNKZ6ZpT4xUpzeTLH0KZbU+d0vKwYm8an016htboyDE846
+ EWTxs/Ecs6hX2JtpZmXbnsrc+U9PKN9y1eAK+wTkhEAdTTWcPj2UdcRtwkUEVvykQGNc
+ 5CEC3wz/v2xWhEtl6qAiGFRSJS1YxopcFUADDbvGovrAcAZz2GJyn16x6iUn3AV+w0/J
+ uleWpInr5LKWYs7dRgcaHSm2pL3gK6iQo3iXV0lItsQ6as5Ie98557RBgoK6nwvr+Lmr
+ qxjg==
+X-Gm-Message-State: AOAM533mm4cZXcRKtiC6OHQ/RzTcGBveRMQi80jMBqhZqfL6kicywKWs
+ gUT3I6n3EK9C4POnHgoja3EpHqsNqZo=
+X-Google-Smtp-Source: ABdhPJyZIBVV6msuVArNaw4EDCFq2Apl0m8HnRD2XrtAzYoL6edLcNmhgdgke6mQaAV0e1pcOOmFPA==
+X-Received: by 2002:a17:907:2179:: with SMTP id
+ rl25mr3703878ejb.450.1602656034995; 
+ Tue, 13 Oct 2020 23:13:54 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f23:2800:e563:1e0d:2b0d:aba7?
+ (p200300ea8f232800e5631e0d2b0daba7.dip0.t-ipconnect.de.
+ [2003:ea:8f23:2800:e563:1e0d:2b0d:aba7])
+ by smtp.googlemail.com with ESMTPSA id oa19sm1016118ejb.95.2020.10.13.23.13.53
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 13 Oct 2020 23:13:54 -0700 (PDT)
+To: Leon Romanovsky <leon@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ David Miller <davem@davemloft.net>
 References: <d77b65de-1793-f808-66b5-aaa4e7c8a8f0@gmail.com>
  <20201013173951.25677bcc@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <20201014054250.GB6305@unreal>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <3be8fd19-1c7e-0e05-6039-e5404b2682b9@gmail.com>
+Date: Wed, 14 Oct 2020 08:13:47 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201013173951.25677bcc@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-X-Mailman-Approved-At: Sat, 17 Oct 2020 00:44:26 +0000
+In-Reply-To: <20201014054250.GB6305@unreal>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Linux USB Mailing List <linux-usb@vger.kernel.org>,
  Steffen Klassert <steffen.klassert@secunet.com>,
@@ -73,9 +102,7 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  Oliver Neukum <oneukum@suse.com>,
  linux-wireless <linux-wireless@vger.kernel.org>,
  Johannes Berg <johannes@sipsolutions.net>, Vladimir Oltean <olteanv@gmail.com>,
- David Miller <davem@davemloft.net>,
- =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
- Heiner Kallweit <hkallweit1@gmail.com>
+ =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>
 Subject: Re: [Bridge] [PATCH net-next v2 00/12] net: add and use function
  dev_fetch_sw_netstats for fetching pcpu_sw_netstats
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -92,26 +119,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Oct 13, 2020 at 05:39:51PM -0700, Jakub Kicinski wrote:
-> On Mon, 12 Oct 2020 10:00:11 +0200 Heiner Kallweit wrote:
-> > In several places the same code is used to populate rtnl_link_stats64
-> > fields with data from pcpu_sw_netstats. Therefore factor out this code
-> > to a new function dev_fetch_sw_netstats().
-> >
-> > v2:
-> > - constify argument netstats
-> > - don't ignore netstats being NULL or an ERRPTR
-> > - switch to EXPORT_SYMBOL_GPL
->
-> Applied, thank you!
+On 14.10.2020 07:42, Leon Romanovsky wrote:
+> On Tue, Oct 13, 2020 at 05:39:51PM -0700, Jakub Kicinski wrote:
+>> On Mon, 12 Oct 2020 10:00:11 +0200 Heiner Kallweit wrote:
+>>> In several places the same code is used to populate rtnl_link_stats64
+>>> fields with data from pcpu_sw_netstats. Therefore factor out this code
+>>> to a new function dev_fetch_sw_netstats().
+>>>
+>>> v2:
+>>> - constify argument netstats
+>>> - don't ignore netstats being NULL or an ERRPTR
+>>> - switch to EXPORT_SYMBOL_GPL
+>>
+>> Applied, thank you!
+> 
+> Jakub,
+> 
+> Is it possible to make sure that changelogs are not part of the commit
+> messages? We don't store previous revisions in the git repo, so it doesn't
+> give too much to anyone who is looking on git log later. The lore link
+> to the patch is more than enough.
+> 
+I remember that once I did it the usual way (changelog below the ---) David
+requested the changelog to be part of the commit message. So obviously he
+sees some benefit in doing so. 
 
-Jakub,
+> 44fa32f008ab ("net: add function dev_fetch_sw_netstats for fetching pcpu_sw_netstats")
+> 
+> Thanks
+> 
 
-Is it possible to make sure that changelogs are not part of the commit
-messages? We don't store previous revisions in the git repo, so it doesn't
-give too much to anyone who is looking on git log later. The lore link
-to the patch is more than enough.
-
-44fa32f008ab ("net: add function dev_fetch_sw_netstats for fetching pcpu_sw_netstats")
-
-Thanks
