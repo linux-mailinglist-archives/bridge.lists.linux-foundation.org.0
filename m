@@ -1,79 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCFF28F13B
-	for <lists.bridge@lfdr.de>; Thu, 15 Oct 2020 13:29:20 +0200 (CEST)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id A438E28F146
+	for <lists.bridge@lfdr.de>; Thu, 15 Oct 2020 13:30:07 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 07B15882CA;
-	Thu, 15 Oct 2020 11:29:19 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 5563B88310;
+	Thu, 15 Oct 2020 11:30:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 4J29eTnen601; Thu, 15 Oct 2020 11:29:18 +0000 (UTC)
+	with ESMTP id MR80-JEgRq72; Thu, 15 Oct 2020 11:30:05 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 97C4C882CD;
-	Thu, 15 Oct 2020 11:29:18 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id DC9BE8848A;
+	Thu, 15 Oct 2020 11:30:05 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 861C1C0051;
-	Thu, 15 Oct 2020 11:29:18 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CD8B0C0051;
+	Thu, 15 Oct 2020 11:30:05 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9C89BC0051
- for <bridge@lists.linux-foundation.org>; Thu, 15 Oct 2020 11:29:17 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9C931C0051
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Oct 2020 11:30:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 8BD2687F7D
- for <bridge@lists.linux-foundation.org>; Thu, 15 Oct 2020 11:29:17 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 89E9087F89
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Oct 2020 11:30:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CPrjhK53u3Z1 for <bridge@lists.linux-foundation.org>;
- Thu, 15 Oct 2020 11:29:17 +0000 (UTC)
+ with ESMTP id cz0+xLUUwwkS for <bridge@lists.linux-foundation.org>;
+ Thu, 15 Oct 2020 11:30:04 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from esa1.microchip.iphmx.com (esa1.microchip.iphmx.com
  [68.232.147.91])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 0CD8C87F5F
- for <bridge@lists.linux-foundation.org>; Thu, 15 Oct 2020 11:29:17 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTPS id E678C87F87
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Oct 2020 11:30:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1602761356; x=1634297356;
+ t=1602761403; x=1634297403;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=7EnMnyHDlxSioQWuwItYVnheB1FER3TeFm6RMS/adn4=;
- b=dAcjAu1Y97wQ9r7hbYoJ1/wITFVACk2+YQohuZVgZsnJySDYZQMlWR1I
- s5VmAqRGQuyTsxSI3pW8jQPb4oOyPSo9XbRDrUst2cgrX84x24A3jViXM
- H95mN3iaqmQ84cJhY0JA6+5t3aIWe5m2GnzHoeJ95cGKs5foM03a3WURJ
- ceOSJTqOoYw0PjA47DFswLKsWyBFaCbtLHFE2JFUl1gtcPIwHvrEmjYth
- nAvPyyNSTpif2zBONYRaTSAIl+pqygMbaSDsxqAwtVb00mqTyER6D7oTQ
- oKUREtsBDFr+6LL+xk5RuOyQJuBjf1UEhqUUW+BBsVP/u6hKS0TZwbABX w==;
-IronPort-SDR: rqczGmyF/adutI1bxyM8+BL3JcbEmb6ibjJcGJB1ctc1Umys+2Fx0drIfyLLIiC8trUzhBU4pr
- /YwuBwzCmSsLImr34UzFXMMBHy0jtIc+BJox0jZr+C1R5Zj4l2MGFRRlI7WceiwgPvUsU6mun6
- KQGwoGpG++QYtj+4fDOK9WsQKMdawCohy2YUc5j0geuAaCIpl3QscYdU8/5FmwnbdWt+7ZRFNd
- gQj/MuZn/dXpl3WJgxAReUAW9b0CxLMQLLqs9aJVW5lMuPFgZIH57RpBiLHZ214Q5E+O1TOOzs
- 0nA=
-X-IronPort-AV: E=Sophos;i="5.77,378,1596524400"; d="scan'208";a="99624569"
+ bh=KQhsyXAMn7AN17uLkcxZ/87dpZXLNz6fwDSYmoiJKHY=;
+ b=BxYqeTlg9l0jyp7RBGwaDf+9OoAIfJFlClWJ1Wg2cmfyvKxv8m17HG7Z
+ xUv1Ewg7QYALNiVyRJKAayh1glqShxTjgGYV1/9CeXsQOII++FTUcysNF
+ LiJgQLZmpaU5jjTsJh1K3dShMiBJSr0i2vUtXgHxZWxDdrbsDwoLCi5n/
+ siK4RJ+tR7W2u2Irjp5OI16PLH8Fg2pvBHbyAp+xrEH9d1A6wn8h+wx3D
+ sGQuYERSDbcIaeCON8Jd4wLMitBDe+YExDSU1VD9ShzMcHfRLP+91pWg7
+ R/YYQXX+L4dr5pMNIn1U1RYmezaNeCzAWKK6hLchN+q5RiaNrNJxvHkg1 g==;
+IronPort-SDR: aDj8Gtvpx8gfgHH52gA6xlunJ54HsZMenp7Qxyj78Y1Ihwbgrqz26jaXm/ttUkXYilL4wcHOjn
+ /LWNIMRoNIKiE5WFT8MqJGHggMvu6o5D8p/NfZiPde3O2UT2DrPu1SplcHrmnPlcTj09FcvR1s
+ R88XE0PjBfIf68MzzB94FqVDDlrEcG9JFK5lhk+CARpH2N4GoqPfp+kuHqzhGYencTyKtcPIA6
+ j3OFkoBWjrhjWc1rAvswKhQdfThWb1Q0Aym5Uhu6y0wDq0v69/2NxpqIuAdeRHDKPnJg/fh4tm
+ gl4=
+X-IronPort-AV: E=Sophos;i="5.77,378,1596524400"; d="scan'208";a="99624733"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 15 Oct 2020 04:29:16 -0700
+ 15 Oct 2020 04:30:03 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 15 Oct 2020 04:29:16 -0700
+ 15.1.1979.3; Thu, 15 Oct 2020 04:30:02 -0700
 Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
  (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 15 Oct 2020 04:29:15 -0700
-Date: Thu, 15 Oct 2020 11:27:35 +0000
+ Transport; Thu, 15 Oct 2020 04:30:02 -0700
+Date: Thu, 15 Oct 2020 11:28:22 +0000
 To: Jakub Kicinski <kuba@kernel.org>
-Message-ID: <20201015112735.fi2aauhyqt5ahlh2@soft-test08>
+Message-ID: <20201015112822.adfl5kpgffgzi3wg@soft-test08>
 References: <20201012140428.2549163-1-henrik.bjoernlund@microchip.com>
  <20201012140428.2549163-7-henrik.bjoernlund@microchip.com>
- <20201014162655.3cbc8664@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+ <20201014161610.46dd5785@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20201014162655.3cbc8664@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+In-Reply-To: <20201014161610.46dd5785@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
  idosch@mellanox.com, jiri@mellanox.com, nikolay@nvidia.com, roopa@nvidia.com,
@@ -100,29 +100,18 @@ Thanks for your review. Comments below.
 Regards
 Henrik
 
-The 10/14/2020 16:26, Jakub Kicinski wrote:
+The 10/14/2020 16:16, Jakub Kicinski wrote:
 > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
 > On Mon, 12 Oct 2020 14:04:24 +0000 Henrik Bjoernlund wrote:
-> > +     /* This CCM related status is based on the latest received CCM PDU. */
-> > +     u8 port_tlv_value; /* Port Status TLV value */
-> > +     u8 if_tlv_value; /* Interface Status TLV value */
-> > +
-> > +     /* CCM has not been received for 3.25 intervals */
-> > +     bool ccm_defect;
-> > +
-> > +     /* (RDI == 1) for last received CCM PDU */
-> > +     bool rdi;
-> > +
-> > +     /* Indications that a CCM PDU has been seen. */
-> > +     bool seen; /* CCM PDU received */
-> > +     bool tlv_seen; /* CCM PDU with TLV received */
-> > +     /* CCM PDU with unexpected sequence number received */
-> > +     bool seq_unexp_seen;
+> > +struct br_cfm_status_tlv {
+> > +     __u8 type;
+> > +     __be16 length;
+> > +     __u8 value;
+> > +};
 > 
-> Please consider using a u8 bitfield rather than a bunch of bools,
-> if any of this structures are expected to have many instances.
-> That'd save space.
+> This structure is unused (and likely not what you want, since it will
+> have 2 1 byte while unless you mark length as __packed).
 
 I have changed as requested.
 
