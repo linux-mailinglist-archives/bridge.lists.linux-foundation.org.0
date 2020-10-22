@@ -2,86 +2,90 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A544295237
-	for <lists.bridge@lfdr.de>; Wed, 21 Oct 2020 20:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46333296586
+	for <lists.bridge@lfdr.de>; Thu, 22 Oct 2020 21:52:34 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 529942F576;
-	Wed, 21 Oct 2020 18:30:13 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 97D16203CC;
+	Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HqDzXN2Uy34Z; Wed, 21 Oct 2020 18:30:10 +0000 (UTC)
+	with ESMTP id XNdTyVHSXOmd; Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 81BA22EA10;
-	Wed, 21 Oct 2020 09:19:58 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 3D91B20399;
+	Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6455DC0052;
-	Wed, 21 Oct 2020 09:19:58 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 20206C0051;
+	Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 38482C0052
- for <bridge@lists.linux-foundation.org>; Wed, 21 Oct 2020 09:19:56 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E619AC0051
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 19:52:30 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 1E414867BF
- for <bridge@lists.linux-foundation.org>; Wed, 21 Oct 2020 09:19:56 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id C6D9D20399
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 19:52:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wkKMcqvKDLMz for <bridge@lists.linux-foundation.org>;
- Wed, 21 Oct 2020 09:19:53 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
- [68.232.149.84])
- by whitealder.osuosl.org (Postfix) with ESMTPS id C2720866DE
- for <bridge@lists.linux-foundation.org>; Wed, 21 Oct 2020 09:19:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1603271940; x=1634807940;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=+rVpCXr52dnGbmc7Y9HfkgfgWTlzu8JQ4Bcf4/Mlfb4=;
- b=EHQxjPOqMffduTdpi4fZS5GVSs9nel9YEG8CNaVxtoSt57Y1gde1etJc
- vxndFgaFKcfyhcsc0Y7h4m+mlHwtpm671D8M19ESUJeEMlwQCOVlqr4+t
- +oS5aqIlB2CF/qWpAPZpmPidFA6Afw3qt6sL/w1Olfx+R4rr4hoSmkomS
- IDhXfN41oLxP119cT7mb1Z2dQ/JgG7dWBSbVds7nxWlLxg02fdp/EYkYp
- cbnkZXh7xUtGgxKGIqqqkcNVKEAsHXB5LINl6XNz6SQXRJ4M32yocEkfL
- kwHLJHat5AC/JU+PiTreIhHQhJcXvjVOpMUyVcVqUZyxSZTkIjkjW1FFP w==;
-IronPort-SDR: ifd+PM8WlqYDzsrG7H1uCjR08Q9aQWKZa34JgqBZuyNrHqiuXfx8QaadFSmhnks9/QiFDnGJMq
- fdVKydKlRSNg3ZslmwsLCUR7vRZtaI7EzPQJhAbFKpjnKge9rm1hgqGGIZ04L36Nk4xVx4Aa3Z
- /1zVm9SmCs6ckMiZ+r+9IzIUyWbQXcltDRnQ8OanlV7gPrWF/odULI+wBAskxjYpNFF292GTyU
- AvygR5gMmrYYdEou1wSeultoMHMyj6sbHaWxgc4V9sUnDXEQmr+TrAs0QTbQs7ZSaoBk/T6Ero
- DxI=
-X-IronPort-AV: E=Sophos;i="5.77,400,1596524400"; d="scan'208";a="93389639"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 21 Oct 2020 02:18:59 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 21 Oct 2020 02:18:58 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 21 Oct 2020 02:18:58 -0700
-Date: Wed, 21 Oct 2020 09:17:29 +0000
-To: Jakub Kicinski <kuba@kernel.org>
-Message-ID: <20201021091729.a6wlccjlin5muejt@soft-test08>
-References: <20201015115418.2711454-1-henrik.bjoernlund@microchip.com>
- <20201015115418.2711454-8-henrik.bjoernlund@microchip.com>
- <20201015103431.25d66c8b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <20201019085104.2hkz2za2o2juliab@soft-test08>
- <20201019092143.258cb256@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ with ESMTP id W9sYIG5jZf7L for <bridge@lists.linux-foundation.org>;
+ Thu, 22 Oct 2020 19:52:29 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
+ [209.85.214.194])
+ by silver.osuosl.org (Postfix) with ESMTPS id 9B16A20384
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 19:52:29 +0000 (UTC)
+Received: by mail-pl1-f194.google.com with SMTP id o9so1516098plx.10
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 12:52:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=3dm/6UU7gzYtewq70pBYmJhrFBt9p+uK9v/LY5XBQe8=;
+ b=WdHQm9X1Ao2rROrM/DL9Ob5ETV5dcmcxbbi05C5ioxMtbjEFPu3amCoERC6BHS5ppC
+ jUCpJ54iUYioZDSSbRWoRxCclHJU2JtZBbuzhQKlaoGfRi2P3C3aoYELYkdM3Ek82NIg
+ /ql2TOC/FiXWF3ne/NQAZ463k3oht0RbEiVAsKFptqY+29o7VcNwnZHW3zobc8msa2X1
+ zO5gOJQMcdg6oEVFJShVA7kglwRFhbHPbFKzO/ozeQPE39n/MLVVx9kgdzBxWcAPTbDC
+ +1ZEfeuMQ8ZS2WXFxUtATlwTjKv7PedQHfi0mdzi0cs+G6RgmmJ67hNItyrWmZIM4FVf
+ /Txw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=3dm/6UU7gzYtewq70pBYmJhrFBt9p+uK9v/LY5XBQe8=;
+ b=f2hT5SEATB5JZasJeU4CjQ+PXbUBPkgfbvJn+67YXYH0Y2ITfYMOBRZLrpPmO7QPnX
+ SrEhK8wvajupJQK8UFH2DSRQ65pzncnsuue1ga8gkqLKZJSmmzef8lIOk5tAUhVKvHDd
+ eIICfsW+5v1eChd97pWm3WPKRz2m0Q1lZcgtHquW8NC/dcdjdKcTN3vY1La/RPHlBC9H
+ EYa17loZ6nNivfzoh1Ij/nE/i6GVrSOBdknNcazsArD3q2ISm7MwoEOUE7ZDAqdEiT9/
+ ZvaWALOdQSV6Bt7/yMIUexNEkEQtu/PRI9D/JxRSkFRrWjhUjCDAFBy0HMEQ/0o7dlPy
+ WQdQ==
+X-Gm-Message-State: AOAM530DlAVji1E5zSUUCmMn2Zt4pG4E2lVTcLGwA2MeThhj08v6sSn+
+ nUu4J+fNG84bMjrc7WXhdgTMFg==
+X-Google-Smtp-Source: ABdhPJzjyClw+3ELYGBsJotUZeOWmDVypimCCUAzTRMpJKmazRpYQ3aDqmDvNYm9l9y12zeiB5Whew==
+X-Received: by 2002:a17:902:d697:b029:d6:48f:2974 with SMTP id
+ v23-20020a170902d697b02900d6048f2974mr3724561ply.30.1603396349196; 
+ Thu, 22 Oct 2020 12:52:29 -0700 (PDT)
+Received: from hermes.local (204-195-22-127.wavecable.com. [204.195.22.127])
+ by smtp.gmail.com with ESMTPSA id b6sm2981568pjq.42.2020.10.22.12.52.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 22 Oct 2020 12:52:28 -0700 (PDT)
+Date: Thu, 22 Oct 2020 12:52:20 -0700
+From: Stephen Hemminger <stephen@networkplumber.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Message-ID: <20201022125220.45c24b30@hermes.local>
+In-Reply-To: <20201017184526.2333840-1-vladimir.oltean@nxp.com>
+References: <20201017184526.2333840-1-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20201019092143.258cb256@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
- idosch@mellanox.com, jiri@mellanox.com, nikolay@nvidia.com, roopa@nvidia.com,
- Horatiu Vultur <horatiu.vultur@microchip.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v6 07/10] bridge: cfm: Netlink SET
- configuration Interface.
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: andrew@lunn.ch, David Ahern <dsahern@gmail.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ vivien.didelot@gmail.com, idosch@idosch.org, jiri@mellanox.com,
+ f.fainelli@gmail.com, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [RFC PATCH iproute2] bridge: add support for L2
+ multicast groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,38 +97,51 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Henrik Bjoernlund via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Thank you for the review. Comments below.
+On Sat, 17 Oct 2020 21:45:26 +0300
+Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
 
-The 10/19/2020 09:21, Jakub Kicinski wrote:> 
-> On Mon, 19 Oct 2020 08:51:04 +0000 Henrik Bjoernlund wrote:
-> > Thank you for the review. Comments below.
-> >
-> > The 10/15/2020 10:34, Jakub Kicinski wrote:
-> > >
-> > > On Thu, 15 Oct 2020 11:54:15 +0000 Henrik Bjoernlund wrote:
-> > > > +     [IFLA_BRIDGE_CFM_MEP_CONFIG_MDLEVEL]     = {
-> > > > +     .type = NLA_U32, .validation_type = NLA_VALIDATE_MAX, .max = 7 },
-> > >
-> > >         NLA_POLICY_MAX(NLA_U32, 7)
-> >
-> > I will change as requested.
-> >
-> > >
-> > > Also why did you keep the validation in the code in patch 4?
-> >
-> > In patch 4 there is no CFM NETLINK so I desided to keep the validation in the
-> > code until NETLINK was added that is now doing the check.
-> > I this a problem?
+> Extend the 'bridge mdb' command for the following syntax:
+> bridge mdb add dev br0 port swp0 grp 01:02:03:04:05:06 permanent
 > 
-> Nothing calls those functions until patch 7, so there's no need for
-> that code to be added.
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  bridge/mdb.c                   | 54 ++++++++++++++++++++++++++--------
+>  include/uapi/linux/if_bridge.h |  2 ++
+>  2 files changed, 43 insertions(+), 13 deletions(-)
+> 
+> diff --git a/bridge/mdb.c b/bridge/mdb.c
+> index 4cd7ca762b78..af160250928e 100644
+> --- a/bridge/mdb.c
+> +++ b/bridge/mdb.c
+> @@ -149,6 +149,7 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
+>  			    struct nlmsghdr *n, struct rtattr **tb)
+>  {
+>  	const void *grp, *src;
+> +	const char *addr;
+>  	SPRINT_BUF(abuf);
+>  	const char *dev;
+>  	int af;
+> @@ -156,9 +157,16 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
+>  	if (filter_vlan && e->vid != filter_vlan)
+>  		return;
+>  
+> -	af = e->addr.proto == htons(ETH_P_IP) ? AF_INET : AF_INET6;
+> -	grp = af == AF_INET ? (const void *)&e->addr.u.ip4 :
+> -			      (const void *)&e->addr.u.ip6;
+> +	if (!e->addr.proto) {
+> +		af = AF_PACKET;
+> +		grp = (const void *)&e->addr.u.mac_addr;
+> +	} else if (e->addr.proto == htons(ETH_P_IP)) {
+> +		af = AF_INET;
+> +		grp = (const void *)&e->addr.u.ip4;
+> +	} else {
+> +		af = AF_INET6;
+> +		grp = (const void *)&e->addr.u.ip6;
+> +	}
+>  	dev = ll_index_to_name(ifindex);
+>  
 
-I will change as requested.
-
--- 
-/Henrik
+In C casts of pointer to void are not necessary.
