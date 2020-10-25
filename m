@@ -1,91 +1,120 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46333296586
-	for <lists.bridge@lfdr.de>; Thu, 22 Oct 2020 21:52:34 +0200 (CEST)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB642980CC
+	for <lists.bridge@lfdr.de>; Sun, 25 Oct 2020 09:34:14 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 97D16203CC;
-	Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 7E31B86B34;
+	Sun, 25 Oct 2020 08:34:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XNdTyVHSXOmd; Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
+	with ESMTP id QZYgFvndDj7w; Sun, 25 Oct 2020 08:34:11 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 3D91B20399;
-	Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 5B38B86B20;
+	Sun, 25 Oct 2020 08:34:11 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 20206C0051;
-	Thu, 22 Oct 2020 19:52:32 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3B57CC0051;
+	Sun, 25 Oct 2020 08:34:11 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E619AC0051
- for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 19:52:30 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7299EC0051
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Oct 2020 08:34:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id C6D9D20399
- for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 19:52:30 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 600B586A8E
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Oct 2020 08:34:09 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id W9sYIG5jZf7L for <bridge@lists.linux-foundation.org>;
- Thu, 22 Oct 2020 19:52:29 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
- [209.85.214.194])
- by silver.osuosl.org (Postfix) with ESMTPS id 9B16A20384
- for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 19:52:29 +0000 (UTC)
-Received: by mail-pl1-f194.google.com with SMTP id o9so1516098plx.10
- for <bridge@lists.linux-foundation.org>; Thu, 22 Oct 2020 12:52:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=3dm/6UU7gzYtewq70pBYmJhrFBt9p+uK9v/LY5XBQe8=;
- b=WdHQm9X1Ao2rROrM/DL9Ob5ETV5dcmcxbbi05C5ioxMtbjEFPu3amCoERC6BHS5ppC
- jUCpJ54iUYioZDSSbRWoRxCclHJU2JtZBbuzhQKlaoGfRi2P3C3aoYELYkdM3Ek82NIg
- /ql2TOC/FiXWF3ne/NQAZ463k3oht0RbEiVAsKFptqY+29o7VcNwnZHW3zobc8msa2X1
- zO5gOJQMcdg6oEVFJShVA7kglwRFhbHPbFKzO/ozeQPE39n/MLVVx9kgdzBxWcAPTbDC
- +1ZEfeuMQ8ZS2WXFxUtATlwTjKv7PedQHfi0mdzi0cs+G6RgmmJ67hNItyrWmZIM4FVf
- /Txw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=3dm/6UU7gzYtewq70pBYmJhrFBt9p+uK9v/LY5XBQe8=;
- b=f2hT5SEATB5JZasJeU4CjQ+PXbUBPkgfbvJn+67YXYH0Y2ITfYMOBRZLrpPmO7QPnX
- SrEhK8wvajupJQK8UFH2DSRQ65pzncnsuue1ga8gkqLKZJSmmzef8lIOk5tAUhVKvHDd
- eIICfsW+5v1eChd97pWm3WPKRz2m0Q1lZcgtHquW8NC/dcdjdKcTN3vY1La/RPHlBC9H
- EYa17loZ6nNivfzoh1Ij/nE/i6GVrSOBdknNcazsArD3q2ISm7MwoEOUE7ZDAqdEiT9/
- ZvaWALOdQSV6Bt7/yMIUexNEkEQtu/PRI9D/JxRSkFRrWjhUjCDAFBy0HMEQ/0o7dlPy
- WQdQ==
-X-Gm-Message-State: AOAM530DlAVji1E5zSUUCmMn2Zt4pG4E2lVTcLGwA2MeThhj08v6sSn+
- nUu4J+fNG84bMjrc7WXhdgTMFg==
-X-Google-Smtp-Source: ABdhPJzjyClw+3ELYGBsJotUZeOWmDVypimCCUAzTRMpJKmazRpYQ3aDqmDvNYm9l9y12zeiB5Whew==
-X-Received: by 2002:a17:902:d697:b029:d6:48f:2974 with SMTP id
- v23-20020a170902d697b02900d6048f2974mr3724561ply.30.1603396349196; 
- Thu, 22 Oct 2020 12:52:29 -0700 (PDT)
-Received: from hermes.local (204-195-22-127.wavecable.com. [204.195.22.127])
- by smtp.gmail.com with ESMTPSA id b6sm2981568pjq.42.2020.10.22.12.52.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Oct 2020 12:52:28 -0700 (PDT)
-Date: Thu, 22 Oct 2020 12:52:20 -0700
-From: Stephen Hemminger <stephen@networkplumber.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Message-ID: <20201022125220.45c24b30@hermes.local>
-In-Reply-To: <20201017184526.2333840-1-vladimir.oltean@nxp.com>
-References: <20201017184526.2333840-1-vladimir.oltean@nxp.com>
+ with ESMTP id oyBFk1M+gMSJ for <bridge@lists.linux-foundation.org>;
+ Sun, 25 Oct 2020 08:34:08 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (mail-am6eur05on2081.outbound.protection.outlook.com [40.107.22.81])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id B288C86929
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Oct 2020 08:34:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ARNG7nEISsaifMmufJcoS1Q80jAPtzazdyPkZRNx8hskG/fet0WT3VGYVdvAwm7x+aHKArKvq6WYfWQfQRtFueoQVVIqphpeeMaYM3JSKSSdAn3arneV0Na08MhSP62nZahGisU7I4FVy7fO9X1HUSKy5e8YMDxEeXzo9Nd9IRlOHFnFU/a97R/fBi74P/xGcPhjwdh8HHH8IZhNrta+gjngx3OBPxNJR4CswrCjOvfycZCVpNbBCY7woQ79TEUYypQd+fAInbzzKJZyG/T9b8pXHvVoZT55DktX/wTt3NtTHOJThN84OCP7D78udxOPhWCg7nIICWPfGLVTaXHjoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ExT1E/vovGjsb2BsWR4V2OkMt2T0WQ4+w3CH5VGk3RQ=;
+ b=l8BldvycmeF7x7rWdl09HwdDfOTw3sFqk4NW1KTBB7kf/aroNtdc++T8jMOrTuqc32QJSnyu2EWhOz+JURY6j58ow9/odk1St38yJVsmq3AH56ozMbeSBX7fsL0ghxiqmrLx3o0W/S0NNzVvG/NhVcSfWby7vZEw/Oo0Oca/AEHT+cJBdvKj8UYJ/6KzZlMkLiZBvlKxg/hZtu45yiclYwECcfVS7tOGno5d96hddiI3fDbghmTz9/tr6tYzZQ36kkyHGBm6n8AFv9CEQmjHP/8KrmkQZosDkRtReoqVMjFyxFc2hmfLnfGFu+zsNXXsc2aGP9ZMpzj5LGEjbV4S+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ExT1E/vovGjsb2BsWR4V2OkMt2T0WQ4+w3CH5VGk3RQ=;
+ b=ExCPbwoFrf1q1AqHxsOIf1hue3NJlJRjXkHOk4UucqGFtDieZQcJQeqNQlZsCGoOghMbLm7FqIan8iLZMqLcu353MDVrQk135LvR8TY0zFuYvWLdN81eOg6t6ZUytzKfWJDXzWZ8YxsCoMNfqkJb79wWfZImmpmNun62VQUj2bA=
+Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
+ by VE1PR04MB7341.eurprd04.prod.outlook.com (2603:10a6:800:1a6::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Sun, 25 Oct
+ 2020 06:59:58 +0000
+Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
+ ([fe80::983b:73a7:cc93:e63d]) by VI1PR04MB5696.eurprd04.prod.outlook.com
+ ([fe80::983b:73a7:cc93:e63d%3]) with mapi id 15.20.3499.018; Sun, 25 Oct 2020
+ 06:59:58 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Nikolay Aleksandrov <nikolay@nvidia.com>
+Thread-Topic: [RFC PATCH] net: bridge: multicast: add support for L2 entries
+Thread-Index: AQHWpLUt1nu/YGQhyEC74ZUB+LFl9KmhzHqAgAYjAYA=
+Date: Sun, 25 Oct 2020 06:59:58 +0000
+Message-ID: <20201025065957.5736elloorffcdif@skbuf>
+References: <20201017184139.2331792-1-vladimir.oltean@nxp.com>
+ <98ac64d9b048278d2296f5b0ff3320c70ea13c72.camel@nvidia.com>
+In-Reply-To: <98ac64d9b048278d2296f5b0ff3320c70ea13c72.camel@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nvidia.com; dkim=none (message not signed)
+ header.d=none;nvidia.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [188.25.2.177]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 0da3ae2d-5769-4ece-3f04-08d878b39608
+x-ms-traffictypediagnostic: VE1PR04MB7341:
+x-microsoft-antispam-prvs: <VE1PR04MB734143AD48250C66E57F4DFCE0180@VE1PR04MB7341.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1303;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: XXu4kXExMInXeP7V7JxLzgjGvnDKC/hGEsXb9abGqwhbgGB54fPI9pl5W0WWr8q56IpVQz99Mdy44LYH7AtlvYD0YJguxeI2QYV7w1u7Li9FmCNzlYqPlSgTyK+hupk3++2vQ3OoT7iOoikdgXZIQSdrb4zVaCla76BOnzCjitZtl2xMMEdf8pJTZN6z7rMWV4Saepw1yBB5L3KqzC45lgP1Eh2a4k75gx4eUAzme5nHDSBo/1+8uS0kBG19CszvCWmVnMPQddS86huHL5iJOJiTaT6V0jk3UkmCuOSoMfcVuxuu58l1BAYrqq7MBGWVYdrNtUsmnM+6FexPX7I/Jw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5696.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(7916004)(376002)(136003)(366004)(346002)(396003)(39850400004)(86362001)(2906002)(478600001)(6486002)(83380400001)(8936002)(6916009)(26005)(8676002)(186003)(316002)(54906003)(33716001)(4326008)(71200400001)(4744005)(1076003)(6506007)(9686003)(66446008)(6512007)(64756008)(44832011)(66476007)(66946007)(66556008)(76116006)(7416002)(5660300002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: DDrC5q1xLWKf7Vva6pbVjser137/jEgyJGb2SwsPDANRh8bxoKyVxEqGhXbshpQJ/Z2bHRS2mp4jPwesOIChHtelsnG5+RNMdatHo3Bf8crJCxHkXZQCyFxntUUtj2+2+aXUMo45XDBH4F8eudy/1ypvNYLhQMvJ6bXUxMSoaAxAcXCosPjKrNGvsNjz5/o6MQTZmOdXYCmH0ufNJOCXub6AcPSutJTBSYdzryaOSunUcgJHD6wrpuP+TTV+alZwuTJb5hHsQ3/jPDEE/KwN+5wcUlObkLdNETOzBi7rFLa2W2Pmo+gTMgQJOlvEKcfebct0UTMD3NpjnXKaLKGfKVTkOoyF6GbVBSB+bqdmVr6eHLIQBK5sfroWSvFzmrUs9Rma/85c8IraB8l0ZJfEZgIAZta1bDjWPj9wbhU+ZJQFX7idXQtc3crphdDJ6Hao3WoODIWbJkdVWOSL+WgZrbL34Bc1bYwYFTVVWrPh09/j0R282S/jx/vLjAfWy5ZWkfY01/lziBOohCgnjrj2nYF5YylYAB2ck1F0KcbSHiemm1hLw5N5gdeAbgUWRnk8PCt4Dn/RxouU4uPlWxzpUvzLfxcdsMhRR2iNLOVMino73eq0W3juwrSEsgGwqi++wKk02IsJkaxNN3lMUV2+/g==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <E16C77FF765849479CDE86712DB1ACC8@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: andrew@lunn.ch, David Ahern <dsahern@gmail.com>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- vivien.didelot@gmail.com, idosch@idosch.org, jiri@mellanox.com,
- f.fainelli@gmail.com, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [RFC PATCH iproute2] bridge: add support for L2
- multicast groups
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0da3ae2d-5769-4ece-3f04-08d878b39608
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2020 06:59:58.3467 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8LgDo4lvMyi2JaQEOkUgma37m2C6I4gEJenmaORX9DoS4bIbll0O/U2x9EozTi/DTuwfcVd2AQ9DEM8TcpCt6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7341
+Cc: "andrew@lunn.ch" <andrew@lunn.ch>,
+ "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+ "idosch@idosch.org" <idosch@idosch.org>,
+ "jiri@mellanox.com" <jiri@mellanox.com>, Roopa Prabhu <roopa@nvidia.com>,
+ "kuba@kernel.org" <kuba@kernel.org>,
+ "davem@davemloft.net" <davem@davemloft.net>
+Subject: Re: [Bridge] [RFC PATCH] net: bridge: multicast: add support for L2
+	entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -100,48 +129,20 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sat, 17 Oct 2020 21:45:26 +0300
-Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+On Wed, Oct 21, 2020 at 09:17:07AM +0000, Nikolay Aleksandrov wrote:
+> > diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bri=
+dge.h
+> > index 4c687686aa8f..a25f6f9aa8c3 100644
+> > --- a/include/uapi/linux/if_bridge.h
+> > +++ b/include/uapi/linux/if_bridge.h
+> > @@ -520,12 +520,14 @@ struct br_mdb_entry {
+> >  #define MDB_FLAGS_FAST_LEAVE	(1 << 1)
+> >  #define MDB_FLAGS_STAR_EXCL	(1 << 2)
+> >  #define MDB_FLAGS_BLOCKED	(1 << 3)
+> > +#define MDB_FLAGS_L2		(1 << 5)
+>=20
+> I think this should be 4.
+>=20
 
-> Extend the 'bridge mdb' command for the following syntax:
-> bridge mdb add dev br0 port swp0 grp 01:02:03:04:05:06 permanent
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
->  bridge/mdb.c                   | 54 ++++++++++++++++++++++++++--------
->  include/uapi/linux/if_bridge.h |  2 ++
->  2 files changed, 43 insertions(+), 13 deletions(-)
-> 
-> diff --git a/bridge/mdb.c b/bridge/mdb.c
-> index 4cd7ca762b78..af160250928e 100644
-> --- a/bridge/mdb.c
-> +++ b/bridge/mdb.c
-> @@ -149,6 +149,7 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
->  			    struct nlmsghdr *n, struct rtattr **tb)
->  {
->  	const void *grp, *src;
-> +	const char *addr;
->  	SPRINT_BUF(abuf);
->  	const char *dev;
->  	int af;
-> @@ -156,9 +157,16 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
->  	if (filter_vlan && e->vid != filter_vlan)
->  		return;
->  
-> -	af = e->addr.proto == htons(ETH_P_IP) ? AF_INET : AF_INET6;
-> -	grp = af == AF_INET ? (const void *)&e->addr.u.ip4 :
-> -			      (const void *)&e->addr.u.ip6;
-> +	if (!e->addr.proto) {
-> +		af = AF_PACKET;
-> +		grp = (const void *)&e->addr.u.mac_addr;
-> +	} else if (e->addr.proto == htons(ETH_P_IP)) {
-> +		af = AF_INET;
-> +		grp = (const void *)&e->addr.u.ip4;
-> +	} else {
-> +		af = AF_INET6;
-> +		grp = (const void *)&e->addr.u.ip6;
-> +	}
->  	dev = ll_index_to_name(ifindex);
->  
-
-In C casts of pointer to void are not necessary.
+Shouldn't this be in sync with MDB_PG_FLAGS_L2 though? We also have
+MDB_PG_FLAGS_BLOCKED which is BIT(4).=
