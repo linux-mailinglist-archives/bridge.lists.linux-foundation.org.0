@@ -1,113 +1,83 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66872982BA
-	for <lists.bridge@lfdr.de>; Sun, 25 Oct 2020 18:21:43 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9654829A8A2
+	for <lists.bridge@lfdr.de>; Tue, 27 Oct 2020 11:04:23 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 49A1F86844;
-	Sun, 25 Oct 2020 17:21:41 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id E2DBC845C7;
+	Tue, 27 Oct 2020 10:04:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JjijWh41quzS; Sun, 25 Oct 2020 17:21:39 +0000 (UTC)
+	with ESMTP id SaJtucplhgLH; Tue, 27 Oct 2020 10:04:21 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 39CE886830;
-	Sun, 25 Oct 2020 17:21:39 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 1F711845D4;
+	Tue, 27 Oct 2020 10:04:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1B660C0051;
-	Sun, 25 Oct 2020 17:21:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 13625C0051;
+	Tue, 27 Oct 2020 10:04:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 735C6C0051
- for <bridge@lists.linux-foundation.org>; Sun, 25 Oct 2020 17:21:37 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6B4B1C0051
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Oct 2020 10:04:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 6707320357
- for <bridge@lists.linux-foundation.org>; Sun, 25 Oct 2020 17:21:37 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 58CEC20433
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Oct 2020 10:04:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CxzvToAaEk+Y for <bridge@lists.linux-foundation.org>;
- Sun, 25 Oct 2020 17:21:34 +0000 (UTC)
+ with ESMTP id 6oBXlw3jIFnd for <bridge@lists.linux-foundation.org>;
+ Tue, 27 Oct 2020 10:04:15 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com
- (mail-am6eur05on2088.outbound.protection.outlook.com [40.107.22.88])
- by silver.osuosl.org (Postfix) with ESMTPS id 6956F2034D
- for <bridge@lists.linux-foundation.org>; Sun, 25 Oct 2020 17:21:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i1fZC3qAk2js7p9jrvbQvGoAhdoiK9dX1P/z7FYGPxhb5GKZtAxLHAlzTlJVYI+IeJrAfmmndXSYzVPx9L33UuK/5efYWownXaakvg8XGjZhN6Q/ocXhAI/ExgQdyFNhalhUWh1Kh7Mn0brnetcLridu1o8qv6Gf4GvQwnJvk5oVpXhVdkLaGk+TPEP37U8TJYr5J7xnunQn5wJEjJh3YOhotaGawSYh7NI+QafrHhuj3mEfM73qa5fqbZSar/O9vofN1dFz0I1tZZTA5ZdgHLrwGZVRs6bGxpixCPdmV8wzSCQZjquCzO+rgSIiicEjthGO0qrsX5AurUa1AhvVpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y+fC4edRLLRbIiNwYjowNEAn+8A0dpMTRAxaGo9UI+A=;
- b=XiDKrxsyRE2cnastvlsFB8DT377TGZ4hbSKGJZqKh792zmty2LOxWA1Ck7bpvPikiHUh7zy5kn0KC6fMKmVZIkUWkDuK33K8NpZdkcdvt3OjUHnBDZ4mxn/lmLL6ZCkAQ31IL/7SUl3EgYX+1vysbqiGhX3wuu4wHqcF/N1ht3eSoe11ojgo/u+ZnAq8tAoRV0kQGyecJOXbxc5GJuY16ILwxTHXIuF5qFNH0k9fZdPg8pXgoNTutKKz8BoyJrSaHSPIEdu6Jlz/dOYZAhaCT6e3PKcjfBuMekB+rarLJai4rL3L3VqEwtqytPoQOtY9P923CJZxfeWp3GdxE6IWKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y+fC4edRLLRbIiNwYjowNEAn+8A0dpMTRAxaGo9UI+A=;
- b=dJearkqrv1aSg9qf7KOOjUN3tMmp8vqnyDo5Fcwgh/TWoGW84FeATxXnjF414XMSuwIueTWhTiTa7+NxZK3v4i5fzeuVjXtGjxZGwXEpjWomswHDt5KnqBjmcUhRheWpuPOmRiG1fZH6akA1Dseh2OrlQo+/rWAIOBc4uzJeK/U=
-Authentication-Results: nvidia.com; dkim=none (message not signed)
- header.d=none;nvidia.com; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
- by VI1PR0402MB2863.eurprd04.prod.outlook.com (2603:10a6:800:af::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.24; Sun, 25 Oct
- 2020 17:21:29 +0000
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::983b:73a7:cc93:e63d]) by VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::983b:73a7:cc93:e63d%3]) with mapi id 15.20.3499.018; Sun, 25 Oct 2020
- 17:21:29 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Sun, 25 Oct 2020 19:20:54 +0200
-Message-Id: <20201025172054.1158018-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [188.25.2.177]
-X-ClientProxiedBy: VI1P189CA0033.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:802:2a::46) To VI1PR04MB5696.eurprd04.prod.outlook.com
- (2603:10a6:803:e7::13)
+Received: from esa2.microchip.iphmx.com (esa2.microchip.iphmx.com
+ [68.232.149.84])
+ by silver.osuosl.org (Postfix) with ESMTPS id E98222001F
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Oct 2020 10:04:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1603793054; x=1635329054;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f7mhXRoSJu/byey8hhjFwfYfaY2ar+qTEyEgWFGPu/Q=;
+ b=nQDTzEjTb3vLNqeGv/qnuBOEAwdzwNWfjEePuOpCYmhabrwAvk6rb4+r
+ Dl8ckSXvFuPh5BxNX0ut/8evbGqGGnwmaa2u6CDZaU2PsqJn2FWh/2uhE
+ v9Cwj4a/Ii+Nei4SYWXKhXeKtUloch/ak7O64uUQosDjcqJgAKAD9y/zC
+ DXl0/T2q8rqdppB0UP/cNWSAP40I9Qk9hYvTbYqWYlc4vu9OPyNUeJ1UL
+ Ga7Q3mbrUdBEnoyCyQUSD7BjEr5CdT8u8nAB6Rj+3FcuG0e1Mbc/qd8N3
+ z5QzCjQYJ36L7Qi795TUiQkBpI/wSQFsh5zIystykPUofVs4KaJptVkGO A==;
+IronPort-SDR: PUYIE4ZtooF/uJtrbjxXbxMfeJ3rPDiZ2REo0l977m82l5OzxjF2f81e1Slph9cbAsEgOYDCGZ
+ 7sE+W+Q63vMnm4L8U2obdP79xFocnOc9Pf9GOUvcOrnJWTvtYqKTjc0khf7FggoQpyZ1LhdLLT
+ dClMFISxgWV/Tg79tWvsPGNxX+tfCeFVJyUT/QxbqXFLlx0KOqxE2IlAYB+aJzsOiAJST2Avqn
+ rUSd2rUQJG9froe9wTrlU4liw9ZcAXIiQCHZGiLzv4lTsc1XC6IIE1WGTvf/6nWrt1zF/PK0hu
+ UMY=
+X-IronPort-AV: E=Sophos;i="5.77,423,1596524400"; d="scan'208";a="94040326"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 27 Oct 2020 03:04:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 27 Oct 2020 03:04:13 -0700
+Received: from soft-test08.microsemi.net (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 27 Oct 2020 03:04:11 -0700
+To: <davem@davemloft.net>, <kuba@kernel.org>, <roopa@nvidia.com>,
+ <nikolay@nvidia.com>, <jiri@mellanox.com>, <idosch@mellanox.com>,
+ <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>, <UNGLinuxDriver@microchip.com>
+Date: Tue, 27 Oct 2020 10:02:41 +0000
+Message-ID: <20201027100251.3241719-1-henrik.bjoernlund@microchip.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (188.25.2.177) by
- VI1P189CA0033.EURP189.PROD.OUTLOOK.COM (2603:10a6:802:2a::46) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18 via Frontend Transport; Sun, 25 Oct 2020 17:21:28 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 672e6bee-8d26-460e-8b9d-08d8790a6900
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2863:
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB2863EF273854F55B9A858718E0180@VI1PR0402MB2863.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Kr8Q7CLO53Ua+R/Yd/q3DGPLD6F5C/WE9d73Ko1T9Zf9OZKTV9/dgT1jZdb+dt3E6VAqOhK6zaEfTsCudQas27d+F1nI4/x7m6IF37jG/wWAG59wziaMMpEIzt9Ltrea0CiNncahOIpmNS2Fvf+Q7Cw1/Qz4zHOLQt1CRY26z92eFiCeJ0/gE5QHLNbXjwrL4H4UN10xU3q/iwSY4EZ5mPjRAPlY2cV9/68nVwgBmYDYOLeSOpgYlCPmz8A6wwd0v8Q99LW3SxXvgGe5aKJrZr1dAgCgbo24nHFOK9gE/nOy4nk1OSOPkirXRD2K8/fsJJ4Cprm1C2LntiGHlkez7/EGECKcPLlfkFzBaCFfJ1clupwOktxlmOoedwFRC3nvAEysv1Rom+GbwkHfmtSCgZ6rHHXH6T6ENUE2c4bvIN4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5696.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39850400004)(376002)(396003)(366004)(1076003)(8676002)(316002)(26005)(66574015)(52116002)(66556008)(956004)(8936002)(66476007)(6486002)(16526019)(186003)(2616005)(66946007)(4326008)(6506007)(7416002)(5660300002)(44832011)(36756003)(478600001)(6666004)(2906002)(6512007)(83380400001)(86362001)(69590400008)(110136005)(309714004);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: nJJClQxTmqvgTJ5jIaRc2BJ1it/7X3NsrFYJwDi9rkBteT5QQbfR/QCS/x84CKBQGwKn6EjzHQB7eJO4JNFYVfVYsrvzk06CIiei9HXavqb4G5LKQXuJns1PnWZKdrXUVgXSBLR6UdorvgPqg9IRs06f7otGTyZESaFViV16mh4pn4m0FGLVVgzDdhuJEWOxz6WhyVNRf35zrJzxQnd/3pct5An5HmRZ7CJ0fGPYlRrE+3TbHEJX/vphPsRM9WKBG6ZWcJmMapc9DMEL18e5JNEEpt/EBZP1B8u1Th8KKBQhaPn9vG8+i+78Edrj6NEahr9ZTngQQ5NfDSAqkgg6MO9rJ238UT8JXF2FHIhTYas0dPG9WPDpnf1I65GTdMMCzhFKsOR2aXINcXF8+TmAR8iJsHn2n8on+bMuQxKvfYcXodKm2rxjqu4JvK87S3lMzOet6hsKZI6rzIy5OFaXVkxWAxmkaO+NrbnguImkt6kcsF7XcvQCjILR67FqpF5ZcfI1fvNa3fUCC4IIc4I71w8guiSz6+F44izOiAcONaY2MevNURFPdYwPqIjHaYqlBODVVHD1T98VTa80vt9xapjK9bbUjzPXj7weGb2fwmutlHpYEfbssvYSukdaHInGrVD3gSNiUXLYbaE5Yq2kxQ==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 672e6bee-8d26-460e-8b9d-08d8790a6900
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2020 17:21:29.4430 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4U+JbfKPeK4LViwPafLbcopf5zRZAjcIxvVhTnm5jVADJASiApHeu53u3JTEHGBvbfyBLXSP1Kp9onvxlO8b8g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2863
-Cc: andrew@lunn.ch, jiri@mellanox.com, f.fainelli@gmail.com,
- vivien.didelot@gmail.com, idosch@idosch.org
-Subject: [Bridge] [RFC PATCH v2] net: bridge: mcast: add support for raw L2
-	multicast groups
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Cc: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net-next v7 00/10] net: bridge: cfm: Add support
+	for Connectivity Fault Management(CFM)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -119,250 +89,153 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Henrik Bjoernlund via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Connectivity Fault Management (CFM) is defined in 802.1Q
+section 12.14.
 
-Extend the bridge multicast control and data path to configure routes
-for L2 (non-IP) multicast groups.
+Connectivity Fault Management (CFM) comprises capabilities for
+detecting, verifying, and isolating connectivity failures in Virtual
+Bridged Networks. These capabilities can be used in networks
+operated by multiple independent organizations, each with restricted
+management access to each other’s equipment.
 
-The uapi struct br_mdb_entry union u is extended with another variant,
-mac_addr, which does not change the structure size, and which is valid
-when the proto field is zero.
+CFM functions are partitioned as follows:
+    — Path discovery
+    — Fault detection
+    — Fault verification and isolation
+    — Fault notification
+    — Fault recovery
 
-To be compatible with the forwarding code that is already in place,
-which acts as an IGMP/MLD snooping bridge with querier capabilities, we
-need to declare that for L2 MDB entries (for which there exists no such
-thing as IGMP/MLD snooping/querying), that there is always a querier.
-Otherwise, these entries would be flooded to all bridge ports and not
-just to those that are members of the L2 multicast group.
+The primary CFM protocol shims are called Maintenance Points (MPs).
+A MP can be either a MEP or a MHF.
+The MEP:
+    -It is the Maintenance association End Point
+     described in 802.1Q section 19.2.
+    -It is created on a specific level (1-7) and is assuring
+     that no CFM frames are passing through this MEP on lower levels.
+    -It initiates and terminates/validates CFM frames on its level.
+    -It can only exist on a port that is related to a bridge.
+The MHF:
+    -It is the Maintenance Domain Intermediate Point
+     (MIP) Half Function (MHF) described in 802.1Q section 19.3.
+    -It is created on a specific level (1-7).
+    -It is extracting/injecting certain CFM frame on this level.
+    -It can only exist on a port that is related to a bridge.
+    -Currently not supported.
 
-Needless to say, only permanent L2 multicast groups can be installed on
-a bridge port.
+There are defined the following CFM protocol functions:
+    -Continuity Check
+    -Loopback. Currently not supported.
+    -Linktrace. Currently not supported.
 
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-Changes in v2:
-- Removed redundant MDB_FLAGS_L2 (we are simply signalling an L2 entry
-  through proto == 0)
-- Moved mac_addr inside union dst of struct br_ip.
-- Validation that L2 multicast address is indeed multicast
+This CFM component supports create/delete of MEP instances and
+configuration of the different CFM protocols. Also status information
+can be fetched and delivered through notification due to defect
+status change.
 
- include/linux/if_bridge.h      |  1 +
- include/uapi/linux/if_bridge.h |  1 +
- net/bridge/br_device.c         |  2 +-
- net/bridge/br_input.c          |  2 +-
- net/bridge/br_mdb.c            | 24 ++++++++++++++++++++++--
- net/bridge/br_multicast.c      | 13 +++++++++----
- net/bridge/br_private.h        | 10 ++++++++--
- 7 files changed, 43 insertions(+), 10 deletions(-)
+The user interacts with CFM using the 'cfm' user space client
+program, the client talks with the kernel using netlink.
 
-diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
-index 556caed00258..b979005ea39c 100644
---- a/include/linux/if_bridge.h
-+++ b/include/linux/if_bridge.h
-@@ -25,6 +25,7 @@ struct br_ip {
- #if IS_ENABLED(CONFIG_IPV6)
- 		struct in6_addr ip6;
- #endif
-+		unsigned char	mac_addr[ETH_ALEN];
- 	} dst;
- 	__be16		proto;
- 	__u16           vid;
-diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 4c687686aa8f..281777477616 100644
---- a/include/uapi/linux/if_bridge.h
-+++ b/include/uapi/linux/if_bridge.h
-@@ -526,6 +526,7 @@ struct br_mdb_entry {
- 		union {
- 			__be32	ip4;
- 			struct in6_addr ip6;
-+			unsigned char mac_addr[ETH_ALEN];
- 		} u;
- 		__be16		proto;
- 	} addr;
-diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
-index 6f742fee874a..06c28753b911 100644
---- a/net/bridge/br_device.c
-+++ b/net/bridge/br_device.c
-@@ -93,7 +93,7 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
- 
- 		mdst = br_mdb_get(br, skb, vid);
- 		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
--		    br_multicast_querier_exists(br, eth_hdr(skb)))
-+		    br_multicast_querier_exists(br, eth_hdr(skb), mdst))
- 			br_multicast_flood(mdst, skb, false, true);
- 		else
- 			br_flood(br, skb, BR_PKT_MULTICAST, false, true);
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 59a318b9f646..d31b5c18c6a1 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -134,7 +134,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 	case BR_PKT_MULTICAST:
- 		mdst = br_mdb_get(br, skb, vid);
- 		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
--		    br_multicast_querier_exists(br, eth_hdr(skb))) {
-+		    br_multicast_querier_exists(br, eth_hdr(skb), mdst)) {
- 			if ((mdst && mdst->host_joined) ||
- 			    br_multicast_is_router(br)) {
- 				local_rcv = true;
-diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index e15bab19a012..f4fe0d96769d 100644
---- a/net/bridge/br_mdb.c
-+++ b/net/bridge/br_mdb.c
-@@ -87,6 +87,8 @@ static void __mdb_entry_to_br_ip(struct br_mdb_entry *entry, struct br_ip *ip,
- 			ip->src.ip6 = nla_get_in6_addr(mdb_attrs[MDBE_ATTR_SOURCE]);
- 		break;
- #endif
-+	default:
-+		ether_addr_copy(ip->dst.mac_addr, entry->addr.u.mac_addr);
- 	}
- 
- }
-@@ -174,9 +176,11 @@ static int __mdb_fill_info(struct sk_buff *skb,
- 	if (mp->addr.proto == htons(ETH_P_IP))
- 		e.addr.u.ip4 = mp->addr.dst.ip4;
- #if IS_ENABLED(CONFIG_IPV6)
--	if (mp->addr.proto == htons(ETH_P_IPV6))
-+	else if (mp->addr.proto == htons(ETH_P_IPV6))
- 		e.addr.u.ip6 = mp->addr.dst.ip6;
- #endif
-+	else
-+		ether_addr_copy(e.addr.u.mac_addr, mp->addr.dst.mac_addr);
- 	e.addr.proto = mp->addr.proto;
- 	nest_ent = nla_nest_start_noflag(skb,
- 					 MDBA_MDB_ENTRY_INFO);
-@@ -210,6 +214,8 @@ static int __mdb_fill_info(struct sk_buff *skb,
- 		}
- 		break;
- #endif
-+	default:
-+		ether_addr_copy(e.addr.u.mac_addr, mp->addr.dst.mac_addr);
- 	}
- 	if (p) {
- 		if (nla_put_u8(skb, MDBA_MDB_EATTR_RTPROT, p->rt_protocol))
-@@ -562,9 +568,12 @@ void br_mdb_notify(struct net_device *dev,
- 		if (mp->addr.proto == htons(ETH_P_IP))
- 			ip_eth_mc_map(mp->addr.dst.ip4, mdb.addr);
- #if IS_ENABLED(CONFIG_IPV6)
--		else
-+		else if (mp->addr.proto == htons(ETH_P_IPV6))
- 			ipv6_eth_mc_map(&mp->addr.dst.ip6, mdb.addr);
- #endif
-+		else
-+			ether_addr_copy(mdb.addr, mp->addr.dst.mac_addr);
-+
- 		mdb.obj.orig_dev = pg->key.port->dev;
- 		switch (type) {
- 		case RTM_NEWMDB:
-@@ -693,6 +702,12 @@ static bool is_valid_mdb_entry(struct br_mdb_entry *entry,
- 			return false;
- 		}
- #endif
-+	} else if (entry->addr.proto == 0) {
-+		/* L2 mdb */
-+		if (!is_multicast_ether_addr(entry->addr.u.mac_addr)) {
-+			NL_SET_ERR_MSG_MOD(extack, "L2 entry group is not multicast");
-+			return false;
-+		}
- 	} else {
- 		NL_SET_ERR_MSG_MOD(extack, "Unknown entry protocol");
- 		return false;
-@@ -857,6 +872,11 @@ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
- 			return err;
- 	}
- 
-+	if (entry->state != MDB_PERMANENT && br_group_is_l2(&mp->addr)) {
-+		NL_SET_ERR_MSG_MOD(extack, "Only permanent L2 entries allowed");
-+		return -EINVAL;
-+	}
-+
- 	/* host join */
- 	if (!port) {
- 		if (mp->host_joined) {
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index eae898c3cff7..484820c223a3 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -179,7 +179,8 @@ struct net_bridge_mdb_entry *br_mdb_get(struct net_bridge *br,
- 		break;
- #endif
- 	default:
--		return NULL;
-+		ip.proto = 0;
-+		ether_addr_copy(ip.dst.mac_addr, eth_hdr(skb)->h_dest);
- 	}
- 
- 	return br_mdb_ip_get_rcu(br, &ip);
-@@ -1203,6 +1204,10 @@ void br_multicast_host_join(struct net_bridge_mdb_entry *mp, bool notify)
- 		if (notify)
- 			br_mdb_notify(mp->br->dev, mp, NULL, RTM_NEWMDB);
- 	}
-+
-+	if (br_group_is_l2(&mp->addr))
-+		return;
-+
- 	mod_timer(&mp->timer, jiffies + mp->br->multicast_membership_interval);
- }
- 
-@@ -1254,8 +1259,8 @@ __br_multicast_add_group(struct net_bridge *br,
- 			break;
- 	}
- 
--	p = br_multicast_new_port_group(port, group, *pp, 0, src, filter_mode,
--					RTPROT_KERNEL);
-+	p = br_multicast_new_port_group(port, group, *pp, 0, src,
-+					filter_mode, RTPROT_KERNEL);
- 	if (unlikely(!p)) {
- 		p = ERR_PTR(-ENOMEM);
- 		goto out;
-@@ -3690,7 +3695,7 @@ bool br_multicast_has_querier_anywhere(struct net_device *dev, int proto)
- 	memset(&eth, 0, sizeof(eth));
- 	eth.h_proto = htons(proto);
- 
--	ret = br_multicast_querier_exists(br, &eth);
-+	ret = br_multicast_querier_exists(br, &eth, NULL);
- 
- unlock:
- 	rcu_read_unlock();
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 345118e35c42..ea06e0d74815 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -840,6 +840,11 @@ void br_multicast_star_g_handle_mode(struct net_bridge_port_group *pg,
- void br_multicast_sg_add_exclude_ports(struct net_bridge_mdb_entry *star_mp,
- 				       struct net_bridge_port_group *sg);
- 
-+static inline bool br_group_is_l2(const struct br_ip *group)
-+{
-+	return group->proto == 0;
-+}
-+
- #define mlock_dereference(X, br) \
- 	rcu_dereference_protected(X, lockdep_is_held(&br->multicast_lock))
- 
-@@ -871,7 +876,8 @@ __br_multicast_querier_exists(struct net_bridge *br,
- }
- 
- static inline bool br_multicast_querier_exists(struct net_bridge *br,
--					       struct ethhdr *eth)
-+					       struct ethhdr *eth,
-+					       const struct net_bridge_mdb_entry *mdb)
- {
- 	switch (eth->h_proto) {
- 	case (htons(ETH_P_IP)):
-@@ -883,7 +889,7 @@ static inline bool br_multicast_querier_exists(struct net_bridge *br,
- 			&br->ip6_other_query, true);
- #endif
- 	default:
--		return false;
-+		return !!mdb && br_group_is_l2(&mdb->addr);
- 	}
- }
- 
+Any notification emitted by CFM from the kernel can be monitored in
+user space by starting 'cfm_server' program.
+
+Currently this 'cfm' and 'cfm_server' programs are standalone placed
+in a cfm repository https://github.com/microchip-ung/cfm but it is
+considered to integrate this into 'iproute2'.
+
+v1 -> v2
+    Added the CFM switchdev interface and also added utilization by
+    calling the interface from the kernel CFM implementation trying
+    to offload CFM functionality to HW. This offload (CFM driver) is
+    currently not implemented.
+    
+    Corrections based on RCF comments:
+        -The single CFM kernel implementation Patch is broken up into
+         three patches.
+        -Changed the list of MEP instances from list_head to
+         hlist_head.
+        -Removed unnecessary RCU list traversing.
+        -Solved RCU unlocking problem.
+        -Removed unnecessary comments.
+        -Added ASSERT_RTNL() where required.
+        -Shaping up on error messages.
+        -Correction NETLINK br_fill_ifinfo() to be able to handle
+         'filter_mask' with multiple flags asserted.
+
+v2 -> v3
+    -The switchdev definition and utilization has been removed as
+     there was no switchdev implementation.
+    -Some compiling issues are fixed as Reported-by:
+     kernel test robot <lkp@intel.com>.
+
+v3 -> v4
+    -Fixed potential crash during hlist walk where elements are
+     removed.
+    -Giving all commits unique titles.
+    -NETLINK implementation split into three commits.
+    -Commit "bridge: cfm: Bridge port remove" is merged with
+     commit "bridge: cfm: Kernel space implementation of CFM. MEP
+     create/delete."
+
+v4 -> v5
+    -Reordered members in struct net_bridge to bring member
+     frame_type_list to the first cache line.
+    -Helper functions nla_get_mac() and nla_get_maid() are removed.
+    -The NLA_POLICY_NESTED() macro is used to initialize the
+     br_cfm_policy array.
+    -Fixed reverse xmas tree.
+
+v5 -> v6
+    -Fixed that the SKB buffer was not freed during error handling return.
+    -Removed unused struct definition.
+    -Changed bool to u8 bitfields for space save.
+    -Utilizing the NETLINK policy validation feature.
+
+v6 -> v7
+    -Removed check of parameters in br_cfm_mep_config_set() and
+     br_cfm_cc_peer_mep_add() in first commit of MEP implementation
+     (Patch 4 out of 10)
+
+Reviewed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+Signed-off-by: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
+
+Henrik Bjoernlund (10):
+  net: bridge: extend the process of special frames
+  bridge: cfm: Add BRIDGE_CFM to Kconfig.
+  bridge: uapi: cfm: Added EtherType used by the CFM protocol.
+  bridge: cfm: Kernel space implementation of CFM. MEP create/delete.
+  bridge: cfm: Kernel space implementation of CFM. CCM frame TX added.
+  bridge: cfm: Kernel space implementation of CFM. CCM frame RX added.
+  bridge: cfm: Netlink SET configuration Interface.
+  bridge: cfm: Netlink GET configuration Interface.
+  bridge: cfm: Netlink GET status Interface.
+  bridge: cfm: Netlink Notifications.
+
+ include/uapi/linux/cfm_bridge.h |  64 +++
+ include/uapi/linux/if_bridge.h  | 125 +++++
+ include/uapi/linux/if_ether.h   |   1 +
+ include/uapi/linux/rtnetlink.h  |   2 +
+ net/bridge/Kconfig              |  11 +
+ net/bridge/Makefile             |   2 +
+ net/bridge/br_cfm.c             | 867 ++++++++++++++++++++++++++++++++
+ net/bridge/br_cfm_netlink.c     | 726 ++++++++++++++++++++++++++
+ net/bridge/br_device.c          |   4 +
+ net/bridge/br_if.c              |   1 +
+ net/bridge/br_input.c           |  33 +-
+ net/bridge/br_mrp.c             |  19 +-
+ net/bridge/br_netlink.c         | 115 ++++-
+ net/bridge/br_private.h         |  77 ++-
+ net/bridge/br_private_cfm.h     | 147 ++++++
+ 15 files changed, 2171 insertions(+), 23 deletions(-)
+ create mode 100644 include/uapi/linux/cfm_bridge.h
+ create mode 100644 net/bridge/br_cfm.c
+ create mode 100644 net/bridge/br_cfm_netlink.c
+ create mode 100644 net/bridge/br_private_cfm.h
+
 -- 
-2.25.1
+2.28.0
 
