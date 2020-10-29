@@ -1,113 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00FA229E030
-	for <lists.bridge@lfdr.de>; Thu, 29 Oct 2020 02:11:37 +0100 (CET)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A62A29F7F7
+	for <lists.bridge@lfdr.de>; Thu, 29 Oct 2020 23:28:53 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 171B08701B;
-	Thu, 29 Oct 2020 01:11:35 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 21EEE85CD0;
+	Thu, 29 Oct 2020 22:28:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6rRxKnsQ+FII; Thu, 29 Oct 2020 01:11:34 +0000 (UTC)
+	with ESMTP id SF7l2BCRUMBt; Thu, 29 Oct 2020 22:28:51 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id C4EA9870CF;
-	Thu, 29 Oct 2020 01:11:34 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 0AC8A85ADB;
+	Thu, 29 Oct 2020 22:28:51 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B2E01C0051;
-	Thu, 29 Oct 2020 01:11:34 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E0727C0051;
+	Thu, 29 Oct 2020 22:28:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 234EDC0051
- for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 01:11:33 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AC488C0051
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 22:28:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 0A546870CF
- for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 01:11:33 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 8ED4584AA7
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 22:28:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Hw9jp7HEtSZi for <bridge@lists.linux-foundation.org>;
- Thu, 29 Oct 2020 01:11:30 +0000 (UTC)
+ with ESMTP id G3oFfgOeC2jf for <bridge@lists.linux-foundation.org>;
+ Thu, 29 Oct 2020 22:28:48 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com
- (mail-am6eur05on2074.outbound.protection.outlook.com [40.107.22.74])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 227B58701B
- for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 01:11:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ku967qhQ0MkgLKAEx6iMezXhNChBvi9c2SUnQbUxMZLLUyF5N+dnV2kw/mK41sWdrg40q5jbRyUR7Jjc5sApcD044VerIrAcCWwG50+nDH5gPHWQMQY+ehY6YS2AhoDoQdfbIkiM2QlNMBcRFWjMEo5yneuh6CQnPGRbbKId27JLy6BTrSP9P01DXuwEkT8aSKvcPyMILdEanvVATw89a8OGikdFyF+gGOflZFZnBqeBacLPag74Y5rpOhqGiXCrf1qykEVPRd09Cr5D7FgcnsuKqZZLlO+O/vUFwJZ7o/s5mlXiqDaTGbp7FXAAA3hlYJO3vunzp03DKHaLQ7uJbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OKGQFYZllVtUsjzobfDfxKQ/cJPEzGTq+Bz9BnAlFQE=;
- b=g4KVmp6hWgLt+qb6n+KIIol+/d1uZeHFvbEWAjBgy0MTzVwIsSMrkY+d3j5WQNPqXBxO083SahuVDYTtDBCYomqFcYmqZmfBYBlXzFO62KvKD1AFmItKGliiJiL8l+wAnpAKdyg3ZAFwvx7rOGXx3ulICX8zyNeyYimz1cgLrC//FLYUs42Ko/MOdxx9iso6v4t6oKFG55KTm4hZBf+gZnomRYIeEcPwW/Y6IU2a7gxF0ldJ89U9OrHOvIvqdEkECpxV3es7TwA3Vls2P9YfER0Xmew/TN6QQzVQ9J/2WcGoYYlnddJ7IrG3feBeLqRCQxcXzvPkK4UHFLw6ThYwSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OKGQFYZllVtUsjzobfDfxKQ/cJPEzGTq+Bz9BnAlFQE=;
- b=QtJ5c+3mk9YHEp03rb5t8zxiYkcJe8wB7K1GQ0WVLXAvfdqLv1MZcaa4yLaU/uAZkOTjj/KXv0TLT1B5dll93T7Zh5a2zRYz+8QC0OW6wtrXSIaWXLxOke5LLWv9Vf1N/FNry5D0BxVtF4A1JCcm4gkiqMl1CQ6HmZ8owZe7KgI=
-Authentication-Results: nvidia.com; dkim=none (message not signed)
- header.d=none;nvidia.com; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
- by VI1PR04MB4687.eurprd04.prod.outlook.com (2603:10a6:803:72::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.25; Wed, 28 Oct
- 2020 23:38:40 +0000
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::983b:73a7:cc93:e63d]) by VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::983b:73a7:cc93:e63d%3]) with mapi id 15.20.3499.027; Wed, 28 Oct 2020
- 23:38:40 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+ [209.85.208.51])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 98DE8849D2
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 22:28:48 +0000 (UTC)
+Received: by mail-ed1-f51.google.com with SMTP id w25so4708599edx.2
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Oct 2020 15:28:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=RXMc5OSGpgSuMJ24cCnWO2LiNVxOAy2zAp+LUmQlsfc=;
+ b=lj6ynL4ahqFevPNd366kcEIifQfswQRS3HkifRdvYvebwHO07T6Fvzg8KJCyz0hFY5
+ FzskV9YvPFCc4Rzk4Oow+VoWKNIExu5l34uFGh/HQBimJfsADE8H6DAgKnsyM4et+2zF
+ rWDUcxU9W1c0qHMUYouZCXkZEtQHXwO53rGn/P5oIqtoah3F5ItqWfcXf4eKpmlXdowr
+ EU5RW8BrIg6gcYRIX7sN+OQqiNcljGuPGnOc47vk36tzJ1bNs2vJT8K31mDhvJ03dKZB
+ GmRV1fW/ZFBW+P8B0WUmQGa1NrMw4Z5zAtjKKkR5uSoX/t3sBF9w9uCyiRx6fdHPgXKV
+ gRtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=RXMc5OSGpgSuMJ24cCnWO2LiNVxOAy2zAp+LUmQlsfc=;
+ b=pF3ZzG01ym9O8JhAL4fku9QUugk27YSI6v4ydXA+e2K8tllYU4mq0weiNcJCBis4by
+ MnGXni8ot/XSS13jH7UJzv7qyi+ojkvGJBqYLoJNgcHm8e0eRHWPbiJuCOBjjnYco+ZM
+ uhANb3sM4d+x2e5eVneXadE7B/fwn99DlO1UazDHuTxXK4uCebUiTsE0d8nH7PmV1fdt
+ 7ZcXvfvAbB3OAea+7BP5l4tLH+RfFsaQzjee87gZlhQZpfEulcTccNvHXuukEm+Nt7Jx
+ LccLD0q/mQICkVQBiSi3P/JVdjyJG5B9o55Iw5GW/Rk6TfviQsKm4YVBemuJHY0uYXLW
+ Q9cQ==
+X-Gm-Message-State: AOAM532y13XToHCpz2hYM7Cbw1hZaHtqqeTKI1HvCmYOEgZbubkEnA8k
+ 293m4ysOFUzT7ynAC9IgMJM=
+X-Google-Smtp-Source: ABdhPJxMla1hQY3H5lpvyzRbQs8GPoKs4WJAe/tRW4FScgMjEHEPi0tXWBQovxfJ0xdUmvgh9DqrMw==
+X-Received: by 2002:aa7:c490:: with SMTP id m16mr6354399edq.298.1604010527112; 
+ Thu, 29 Oct 2020 15:28:47 -0700 (PDT)
+Received: from localhost.localdomain ([188.25.2.177])
+ by smtp.gmail.com with ESMTPSA id v6sm2154708ejj.112.2020.10.29.15.28.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Oct 2020 15:28:46 -0700 (PDT)
+From: Vladimir Oltean <olteanv@gmail.com>
+To: David Ahern <dsahern@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>,
  "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
  bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Date: Thu, 29 Oct 2020 01:38:31 +0200
-Message-Id: <20201028233831.610076-1-vladimir.oltean@nxp.com>
+Date: Fri, 30 Oct 2020 00:28:28 +0200
+Message-Id: <20201029222828.2149980-1-olteanv@gmail.com>
 X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [188.25.2.177]
-X-ClientProxiedBy: VI1P194CA0056.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:803:3c::45) To VI1PR04MB5696.eurprd04.prod.outlook.com
- (2603:10a6:803:e7::13)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (188.25.2.177) by
- VI1P194CA0056.EURP194.PROD.OUTLOOK.COM (2603:10a6:803:3c::45) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18 via Frontend Transport; Wed, 28 Oct 2020 23:38:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 1bc4da0c-b83d-4e16-38f9-08d87b9a9964
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4687:
-X-Microsoft-Antispam-PRVS: <VI1PR04MB46874F03670A3688F3E5D475E0170@VI1PR04MB4687.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WswSaFm8Cp3GjpBWJ7M02Y//IGaIflHfFOmoKLPvPpRcu2Tw0dqW+Wf5YG4DxF2RNQsfWywZAvWdGw/U8aU5fzzeLRwJJwAlA7b7607ZTST4+5rYHH4dggqlE+/hjEOpoxn+3yJ/n0jhM4eONRhUtzKphWtGz36Pn2yLxuxI3A0AetM3ZnF3iOwBO9M2eBJyFTR3uz6fZX4wfsMY2zgvn5t9HUCsDaCLuVkyvJW00Q+fUnFHPVL9VtdpgsZUzOz+2pyw9M0FrDNc5P/9Odsig+jcI8NEoBaqCaTfundtacLdsMmLPsFmqCBOi/ruZrrb4LuaPWUy5HHtkeI0x/LeJTAd3KIc3J0UTzzm5mA7t2+qUY/bTwXyaxJrlU7/DO3x4zDiVLHnahhVG1AgZ3joFaCfqYEoO2r6as/k1d4hUeE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5696.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(376002)(366004)(396003)(346002)(83380400001)(44832011)(186003)(2616005)(86362001)(316002)(1076003)(956004)(110136005)(6486002)(66556008)(52116002)(6512007)(69590400008)(36756003)(7416002)(6666004)(5660300002)(8676002)(26005)(478600001)(2906002)(66574015)(6506007)(8936002)(66946007)(4326008)(66476007)(16526019)(309714004);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: lnIkDf3Kc0VlPNgsagUmDglCn0r9LrUqk0G9XmGSAB2oHSTc7/gMuoqqYhPhj1bLd47wLu+++sfBimGkrp+hvvgj0skszunFjEwGlPMD7+5c568ibl9LCfw4WjOkUU1QVtRVuhtSWIRUOSFh6weEsxza1bsnuHvrF8oHaAy5lFxy4LEw2X7RfEEioUyLiwxMHBc8FvDiWcdbwbKuJqpHdlAlqCMYSdFqcqweHgqoa92sT5eM9XQDXP+auo/+/l+LffLKzkh+B0tVW2H4DaWPb9tViRpwtFksKaT0AVTkAt8/KXg/mkoNeiYHelfFTC2kFydmf+muWYLYsCG5mx35XbTtbtAWm84HMAkmX9/ARfpiBNM50nwo4JsxlwZMx2VNPlkEeBGDLYwKSe8XLCTeypQICtc+DyL6ZeKQbl8kzKrNygeQj6X9/1mCillUNkZiA/eWEp9DwAt7lXyfkewOC7gVUqh0tImX4WRyCraS+HwnyKtNLXaLS+krlWVxAuPfsRDe2dOh1Vq2CVOEddBDvKiUdqfcRNcxDpC6Wust9v23TLzanKKp0gvrOgXu7BjZubgeykVH8pvI22KtFi30XTL6G1ihasD4llLO6cmfPUTsIgkB1EvVa2j2JuqzXwl5SGGTISQWmGnJ+QNBg33vKA==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1bc4da0c-b83d-4e16-38f9-08d87b9a9964
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2020 23:38:40.3286 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bcY8BRQBQ1EzdGGS/WZU0tIVKY01zi/s7mpOUwBnFxZrIuxPv+R2BPWjnLRb5pn/+tBbyeSIvnhrBSzX5FVuZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4687
-Cc: andrew@lunn.ch, jiri@mellanox.com, f.fainelli@gmail.com,
- vivien.didelot@gmail.com, idosch@idosch.org
-Subject: [Bridge] [PATCH v4 net-next] net: bridge: mcast: add support for
-	raw L2 multicast groups
+Content-Transfer-Encoding: 8bit
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, idosch@idosch.org, jiri@mellanox.com,
+ vivien.didelot@gmail.com
+Subject: [Bridge] [PATCH v2 iproute2-next] bridge: add support for L2
+	multicast groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -122,64 +96,119 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Extend the bridge multicast control and data path to configure routes
-for L2 (non-IP) multicast groups.
+Extend the 'bridge mdb' command for the following syntax:
+bridge mdb add dev br0 port swp0 grp 01:02:03:04:05:06 permanent
 
-The uapi struct br_mdb_entry union u is extended with another variant,
-mac_addr, which does not change the structure size, and which is valid
-when the proto field is zero.
-
-To be compatible with the forwarding code that is already in place,
-which acts as an IGMP/MLD snooping bridge with querier capabilities, we
-need to declare that for L2 MDB entries (for which there exists no such
-thing as IGMP/MLD snooping/querying), that there is always a querier.
-Otherwise, these entries would be flooded to all bridge ports and not
-just to those that are members of the L2 multicast group.
-
-Needless to say, only permanent L2 multicast groups can be installed on
-a bridge port.
-
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
-Changes in v4:
-- Check for MDB group being permanent before calling br_multicast_new_group,
-  to avoid having empty groups that can't be deleted due to errors.
-
-Changes in v3:
-- Removed some noise in the diff.
-
 Changes in v2:
-- Removed redundant MDB_FLAGS_L2 (we are simply signalling an L2 entry
-  through proto == 0)
-- Moved mac_addr inside union dst of struct br_ip.
-- Validation that L2 multicast address is indeed multicast
+- Removed the const void casts.
+- Removed MDB_FLAGS_L2 from the UAPI to be in sync with the latest
+  kernel patch:
+  https://patchwork.ozlabs.org/project/netdev/patch/20201028233831.610076-1-vladimir.oltean@nxp.com/
 
- include/linux/if_bridge.h      |  1 +
+ bridge/mdb.c                   | 54 ++++++++++++++++++++++++++--------
  include/uapi/linux/if_bridge.h |  1 +
- net/bridge/br_device.c         |  2 +-
- net/bridge/br_input.c          |  2 +-
- net/bridge/br_mdb.c            | 24 ++++++++++++++++++++++--
- net/bridge/br_multicast.c      | 13 +++++++++----
- net/bridge/br_private.h        | 10 ++++++++--
- 7 files changed, 43 insertions(+), 10 deletions(-)
+ 2 files changed, 42 insertions(+), 13 deletions(-)
 
-diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
-index 556caed00258..b979005ea39c 100644
---- a/include/linux/if_bridge.h
-+++ b/include/linux/if_bridge.h
-@@ -25,6 +25,7 @@ struct br_ip {
- #if IS_ENABLED(CONFIG_IPV6)
- 		struct in6_addr ip6;
- #endif
-+		unsigned char	mac_addr[ETH_ALEN];
- 	} dst;
- 	__be16		proto;
- 	__u16           vid;
+diff --git a/bridge/mdb.c b/bridge/mdb.c
+index 4cd7ca762b78..f2723ab122d0 100644
+--- a/bridge/mdb.c
++++ b/bridge/mdb.c
+@@ -149,6 +149,7 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
+ 			    struct nlmsghdr *n, struct rtattr **tb)
+ {
+ 	const void *grp, *src;
++	const char *addr;
+ 	SPRINT_BUF(abuf);
+ 	const char *dev;
+ 	int af;
+@@ -156,9 +157,16 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
+ 	if (filter_vlan && e->vid != filter_vlan)
+ 		return;
+ 
+-	af = e->addr.proto == htons(ETH_P_IP) ? AF_INET : AF_INET6;
+-	grp = af == AF_INET ? (const void *)&e->addr.u.ip4 :
+-			      (const void *)&e->addr.u.ip6;
++	if (!e->addr.proto) {
++		af = AF_PACKET;
++		grp = &e->addr.u.mac_addr;
++	} else if (e->addr.proto == htons(ETH_P_IP)) {
++		af = AF_INET;
++		grp = &e->addr.u.ip4;
++	} else {
++		af = AF_INET6;
++		grp = &e->addr.u.ip6;
++	}
+ 	dev = ll_index_to_name(ifindex);
+ 
+ 	open_json_object(NULL);
+@@ -168,9 +176,14 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
+ 	print_string(PRINT_ANY, "port", " port %s",
+ 		     ll_index_to_name(e->ifindex));
+ 
++	if (af == AF_INET || af == AF_INET6)
++		addr = inet_ntop(af, grp, abuf, sizeof(abuf));
++	else
++		addr = ll_addr_n2a(grp, ETH_ALEN, 0, abuf, sizeof(abuf));
++
+ 	print_color_string(PRINT_ANY, ifa_family_color(af),
+-			    "grp", " grp %s",
+-			    inet_ntop(af, grp, abuf, sizeof(abuf)));
++			    "grp", " grp %s", addr);
++
+ 	if (tb && tb[MDBA_MDB_EATTR_SOURCE]) {
+ 		src = (const void *)RTA_DATA(tb[MDBA_MDB_EATTR_SOURCE]);
+ 		print_color_string(PRINT_ANY, ifa_family_color(af),
+@@ -440,6 +453,25 @@ static int mdb_show(int argc, char **argv)
+ 	return 0;
+ }
+ 
++static int mdb_parse_grp(const char *grp, struct br_mdb_entry *e)
++{
++	if (inet_pton(AF_INET, grp, &e->addr.u.ip4)) {
++		e->addr.proto = htons(ETH_P_IP);
++		return 0;
++	}
++	if (inet_pton(AF_INET6, grp, &e->addr.u.ip6)) {
++		e->addr.proto = htons(ETH_P_IPV6);
++		return 0;
++	}
++	if (ll_addr_a2n((char *)e->addr.u.mac_addr, sizeof(e->addr.u.mac_addr),
++			grp) == ETH_ALEN) {
++		e->addr.proto = 0;
++		return 0;
++	}
++
++	return -1;
++}
++
+ static int mdb_modify(int cmd, int flags, int argc, char **argv)
+ {
+ 	struct {
+@@ -497,14 +529,10 @@ static int mdb_modify(int cmd, int flags, int argc, char **argv)
+ 	if (!entry.ifindex)
+ 		return nodev(p);
+ 
+-	if (!inet_pton(AF_INET, grp, &entry.addr.u.ip4)) {
+-		if (!inet_pton(AF_INET6, grp, &entry.addr.u.ip6)) {
+-			fprintf(stderr, "Invalid address \"%s\"\n", grp);
+-			return -1;
+-		} else
+-			entry.addr.proto = htons(ETH_P_IPV6);
+-	} else
+-		entry.addr.proto = htons(ETH_P_IP);
++	if (mdb_parse_grp(grp, &entry)) {
++		fprintf(stderr, "Invalid address \"%s\"\n", grp);
++		return -1;
++	}
+ 
+ 	entry.vid = vid;
+ 	addattr_l(&req.n, sizeof(req), MDBA_SET_ENTRY, &entry, sizeof(entry));
 diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 4c687686aa8f..281777477616 100644
+index 69b99901fc5a..db41a5ff34af 100644
 --- a/include/uapi/linux/if_bridge.h
 +++ b/include/uapi/linux/if_bridge.h
 @@ -526,6 +526,7 @@ struct br_mdb_entry {
@@ -190,186 +219,6 @@ index 4c687686aa8f..281777477616 100644
  		} u;
  		__be16		proto;
  	} addr;
-diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
-index 6f742fee874a..06c28753b911 100644
---- a/net/bridge/br_device.c
-+++ b/net/bridge/br_device.c
-@@ -93,7 +93,7 @@ netdev_tx_t br_dev_xmit(struct sk_buff *skb, struct net_device *dev)
- 
- 		mdst = br_mdb_get(br, skb, vid);
- 		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
--		    br_multicast_querier_exists(br, eth_hdr(skb)))
-+		    br_multicast_querier_exists(br, eth_hdr(skb), mdst))
- 			br_multicast_flood(mdst, skb, false, true);
- 		else
- 			br_flood(br, skb, BR_PKT_MULTICAST, false, true);
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 59a318b9f646..d31b5c18c6a1 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -134,7 +134,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 	case BR_PKT_MULTICAST:
- 		mdst = br_mdb_get(br, skb, vid);
- 		if ((mdst || BR_INPUT_SKB_CB_MROUTERS_ONLY(skb)) &&
--		    br_multicast_querier_exists(br, eth_hdr(skb))) {
-+		    br_multicast_querier_exists(br, eth_hdr(skb), mdst)) {
- 			if ((mdst && mdst->host_joined) ||
- 			    br_multicast_is_router(br)) {
- 				local_rcv = true;
-diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index e15bab19a012..3c8863418d0b 100644
---- a/net/bridge/br_mdb.c
-+++ b/net/bridge/br_mdb.c
-@@ -87,6 +87,8 @@ static void __mdb_entry_to_br_ip(struct br_mdb_entry *entry, struct br_ip *ip,
- 			ip->src.ip6 = nla_get_in6_addr(mdb_attrs[MDBE_ATTR_SOURCE]);
- 		break;
- #endif
-+	default:
-+		ether_addr_copy(ip->dst.mac_addr, entry->addr.u.mac_addr);
- 	}
- 
- }
-@@ -174,9 +176,11 @@ static int __mdb_fill_info(struct sk_buff *skb,
- 	if (mp->addr.proto == htons(ETH_P_IP))
- 		e.addr.u.ip4 = mp->addr.dst.ip4;
- #if IS_ENABLED(CONFIG_IPV6)
--	if (mp->addr.proto == htons(ETH_P_IPV6))
-+	else if (mp->addr.proto == htons(ETH_P_IPV6))
- 		e.addr.u.ip6 = mp->addr.dst.ip6;
- #endif
-+	else
-+		ether_addr_copy(e.addr.u.mac_addr, mp->addr.dst.mac_addr);
- 	e.addr.proto = mp->addr.proto;
- 	nest_ent = nla_nest_start_noflag(skb,
- 					 MDBA_MDB_ENTRY_INFO);
-@@ -210,6 +214,8 @@ static int __mdb_fill_info(struct sk_buff *skb,
- 		}
- 		break;
- #endif
-+	default:
-+		ether_addr_copy(e.addr.u.mac_addr, mp->addr.dst.mac_addr);
- 	}
- 	if (p) {
- 		if (nla_put_u8(skb, MDBA_MDB_EATTR_RTPROT, p->rt_protocol))
-@@ -562,9 +568,12 @@ void br_mdb_notify(struct net_device *dev,
- 		if (mp->addr.proto == htons(ETH_P_IP))
- 			ip_eth_mc_map(mp->addr.dst.ip4, mdb.addr);
- #if IS_ENABLED(CONFIG_IPV6)
--		else
-+		else if (mp->addr.proto == htons(ETH_P_IPV6))
- 			ipv6_eth_mc_map(&mp->addr.dst.ip6, mdb.addr);
- #endif
-+		else
-+			ether_addr_copy(mdb.addr, mp->addr.dst.mac_addr);
-+
- 		mdb.obj.orig_dev = pg->key.port->dev;
- 		switch (type) {
- 		case RTM_NEWMDB:
-@@ -693,6 +702,12 @@ static bool is_valid_mdb_entry(struct br_mdb_entry *entry,
- 			return false;
- 		}
- #endif
-+	} else if (entry->addr.proto == 0) {
-+		/* L2 mdb */
-+		if (!is_multicast_ether_addr(entry->addr.u.mac_addr)) {
-+			NL_SET_ERR_MSG_MOD(extack, "L2 entry group is not multicast");
-+			return false;
-+		}
- 	} else {
- 		NL_SET_ERR_MSG_MOD(extack, "Unknown entry protocol");
- 		return false;
-@@ -849,6 +864,11 @@ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
- 		}
- 	}
- 
-+	if (br_group_is_l2(&group) && entry->state != MDB_PERMANENT) {
-+		NL_SET_ERR_MSG_MOD(extack, "Only permanent L2 entries allowed");
-+		return -EINVAL;
-+	}
-+
- 	mp = br_mdb_ip_get(br, &group);
- 	if (!mp) {
- 		mp = br_multicast_new_group(br, &group);
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index eae898c3cff7..484820c223a3 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -179,7 +179,8 @@ struct net_bridge_mdb_entry *br_mdb_get(struct net_bridge *br,
- 		break;
- #endif
- 	default:
--		return NULL;
-+		ip.proto = 0;
-+		ether_addr_copy(ip.dst.mac_addr, eth_hdr(skb)->h_dest);
- 	}
- 
- 	return br_mdb_ip_get_rcu(br, &ip);
-@@ -1203,6 +1204,10 @@ void br_multicast_host_join(struct net_bridge_mdb_entry *mp, bool notify)
- 		if (notify)
- 			br_mdb_notify(mp->br->dev, mp, NULL, RTM_NEWMDB);
- 	}
-+
-+	if (br_group_is_l2(&mp->addr))
-+		return;
-+
- 	mod_timer(&mp->timer, jiffies + mp->br->multicast_membership_interval);
- }
- 
-@@ -1254,8 +1259,8 @@ __br_multicast_add_group(struct net_bridge *br,
- 			break;
- 	}
- 
--	p = br_multicast_new_port_group(port, group, *pp, 0, src, filter_mode,
--					RTPROT_KERNEL);
-+	p = br_multicast_new_port_group(port, group, *pp, 0, src,
-+					filter_mode, RTPROT_KERNEL);
- 	if (unlikely(!p)) {
- 		p = ERR_PTR(-ENOMEM);
- 		goto out;
-@@ -3690,7 +3695,7 @@ bool br_multicast_has_querier_anywhere(struct net_device *dev, int proto)
- 	memset(&eth, 0, sizeof(eth));
- 	eth.h_proto = htons(proto);
- 
--	ret = br_multicast_querier_exists(br, &eth);
-+	ret = br_multicast_querier_exists(br, &eth, NULL);
- 
- unlock:
- 	rcu_read_unlock();
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 345118e35c42..ea06e0d74815 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -840,6 +840,11 @@ void br_multicast_star_g_handle_mode(struct net_bridge_port_group *pg,
- void br_multicast_sg_add_exclude_ports(struct net_bridge_mdb_entry *star_mp,
- 				       struct net_bridge_port_group *sg);
- 
-+static inline bool br_group_is_l2(const struct br_ip *group)
-+{
-+	return group->proto == 0;
-+}
-+
- #define mlock_dereference(X, br) \
- 	rcu_dereference_protected(X, lockdep_is_held(&br->multicast_lock))
- 
-@@ -871,7 +876,8 @@ __br_multicast_querier_exists(struct net_bridge *br,
- }
- 
- static inline bool br_multicast_querier_exists(struct net_bridge *br,
--					       struct ethhdr *eth)
-+					       struct ethhdr *eth,
-+					       const struct net_bridge_mdb_entry *mdb)
- {
- 	switch (eth->h_proto) {
- 	case (htons(ETH_P_IP)):
-@@ -883,7 +889,7 @@ static inline bool br_multicast_querier_exists(struct net_bridge *br,
- 			&br->ip6_other_query, true);
- #endif
- 	default:
--		return false;
-+		return !!mdb && br_group_is_l2(&mdb->addr);
- 	}
- }
- 
 -- 
 2.25.1
 
