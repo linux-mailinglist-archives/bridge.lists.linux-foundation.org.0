@@ -2,66 +2,64 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7013029FBCD
-	for <lists.bridge@lfdr.de>; Fri, 30 Oct 2020 03:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB36F2A0CDE
+	for <lists.bridge@lfdr.de>; Fri, 30 Oct 2020 18:53:12 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id BE8AB868C6;
-	Fri, 30 Oct 2020 02:58:09 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id F414D86759;
+	Fri, 30 Oct 2020 17:53:10 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id mIZfUzzOZ0ce; Fri, 30 Oct 2020 02:58:09 +0000 (UTC)
+	with ESMTP id jmF4eT7q4PVE; Fri, 30 Oct 2020 17:53:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 49D67868F9;
-	Fri, 30 Oct 2020 02:58:09 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 1CF0F8673E;
+	Fri, 30 Oct 2020 17:53:09 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 27D6EC0051;
-	Fri, 30 Oct 2020 02:58:09 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 06AE7C1AD5;
+	Fri, 30 Oct 2020 17:53:09 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 04EA1C0051
- for <bridge@lists.linux-foundation.org>; Fri, 30 Oct 2020 02:58:07 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2F0A2C0051
+ for <bridge@lists.linux-foundation.org>; Fri, 30 Oct 2020 17:53:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id E04C98742C
- for <bridge@lists.linux-foundation.org>; Fri, 30 Oct 2020 02:58:06 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 21C40872F9
+ for <bridge@lists.linux-foundation.org>; Fri, 30 Oct 2020 17:53:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id EYJfX4Z-Vv4L for <bridge@lists.linux-foundation.org>;
- Fri, 30 Oct 2020 02:58:06 +0000 (UTC)
+ with ESMTP id SEVizf4sUrrP for <bridge@lists.linux-foundation.org>;
+ Fri, 30 Oct 2020 17:53:07 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 880B18746B
- for <bridge@lists.linux-foundation.org>; Fri, 30 Oct 2020 02:58:06 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 92BB98730D
+ for <bridge@lists.linux-foundation.org>; Fri, 30 Oct 2020 17:53:07 +0000 (UTC)
 Received: from kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net (unknown
- [163.114.132.5])
+ [163.114.132.7])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 40FF4206ED;
- Fri, 30 Oct 2020 02:58:05 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id B7B0120724;
+ Fri, 30 Oct 2020 17:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1604026685;
- bh=bn3PwUQZ4HURowa7zUAdB3s9KM7KO4YoVStGZI5euac=;
+ s=default; t=1604080387;
+ bh=fiX1GZZW0VTWVzXnWU7zdBSZ50Wkkk7mejibE0CkdiY=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=tkx+Xas6CA/B6c7y7VPcYq0AsN9C19JIdifc4LzYM3Y6DaEPjvAZRqZzb8g0s7Li5
- P0x79d8V1qzWeqV+WoqmiGQjuIi0IKMA67NVa9f/wBEuOvfc9m31ZRlQAKqxpxSTyQ
- uBPOT4HwwnNHEb/+jsWmRBEIwusl7Hpi3Ieys0RI=
-Date: Thu, 29 Oct 2020 19:58:04 -0700
+ b=MVu0kaAvE2wNNEOpn24cdcrKUr7wR9hPCh8U/U1elyPWxSiwguHNQIvA7gsA7MqOP
+ 3catVGDL6ZN05N6NYGqCe+ts5RURK8jJsDIylSnD36zV3YWReaudQOs22edVXB7a+I
+ cXPRXnX16hvd3ESgDN9wYJrL3pZqzKSQPF7f/ktk=
+Date: Fri, 30 Oct 2020 10:53:05 -0700
 From: Jakub Kicinski <kuba@kernel.org>
-To: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
-Message-ID: <20201029195804.0fbbf0c1@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
-In-Reply-To: <20201027100251.3241719-1-henrik.bjoernlund@microchip.com>
-References: <20201027100251.3241719-1-henrik.bjoernlund@microchip.com>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <20201030105305.719eac75@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+In-Reply-To: <20201027185934.227040-1-razor@blackwall.org>
+References: <20201027185934.227040-1-razor@blackwall.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
- idosch@mellanox.com, jiri@mellanox.com, nikolay@nvidia.com, roopa@nvidia.com,
- Horatiu Vultur <horatiu.vultur@microchip.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v7 00/10] net: bridge: cfm: Add
- support for Connectivity Fault Management(CFM)
+ Nikolay Aleksandrov <nikolay@nvidia.com>, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next 00/16] selftests: net: bridge: add
+ tests for IGMPv3
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -76,14 +74,31 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 27 Oct 2020 10:02:41 +0000 Henrik Bjoernlund wrote:
-> Connectivity Fault Management (CFM) is defined in 802.1Q
-> section 12.14.
->=20
-> Connectivity Fault Management (CFM) comprises capabilities for
-> detecting, verifying, and isolating connectivity failures in Virtual
-> Bridged Networks. These capabilities can be used in networks
-> operated by multiple independent organizations, each with restricted
-> management access to each other=E2=80=99s equipment.
+On Tue, 27 Oct 2020 20:59:18 +0200 Nikolay Aleksandrov wrote:
+> This set adds tests for the bridge's new IGMPv3 support. The tests use
+> precooked packets which are sent via mausezahn and the resulting state
+> after each test is checked for proper X,Y sets, (*,G) source list, source
+> list entry timers, (S,G) existence and flags, packet forwarding and
+> blocking, exclude group expiration and (*,G) auto-add. The first 3 patches
+> prepare the existing IGMPv2 tests, then patch 4 adds new helpers which are
+> used throughout the rest of the v3 tests.
+> The following new tests are added:
+>  - base case: IGMPv3 report 239.10.10.10 is_include (A)
+>  - include -> allow report
+>  - include -> is_include report
+>  - include -> is_exclude report
+>  - include -> to_exclude report
+>  - exclude -> allow report
+>  - exclude -> is_include report
+>  - exclude -> is_exclude report
+>  - exclude -> to_exclude report
+>  - include -> block report
+>  - exclude -> block report
+>  - exclude timeout (move to include + entry deletion)
+>  - S,G port entry automatic add to a *,G,exclude port
+> 
+> The variable names and set notation are the same as per RFC 3376,
+> for more information check RFC 3376 sections 4.2.15 and 6.4.1.
+> MLDv2 tests will be added by a separate patch-set.
 
-Applied, thanks!
+Applied, thanks Nik!
