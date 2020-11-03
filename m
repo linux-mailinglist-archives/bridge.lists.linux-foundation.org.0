@@ -2,77 +2,77 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 703CD2A4CBC
-	for <lists.bridge@lfdr.de>; Tue,  3 Nov 2020 18:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E95022A4CBB
+	for <lists.bridge@lfdr.de>; Tue,  3 Nov 2020 18:24:35 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id C13F787467;
+	by hemlock.osuosl.org (Postfix) with ESMTP id 84B4787478;
 	Tue,  3 Nov 2020 17:24:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0doWJXZY0my7; Tue,  3 Nov 2020 17:24:34 +0000 (UTC)
+	with ESMTP id EQMSHp3tsCuB; Tue,  3 Nov 2020 17:24:34 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 19B1787466;
+	by hemlock.osuosl.org (Postfix) with ESMTP id 48A5E87467;
 	Tue,  3 Nov 2020 17:24:34 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F31F9C0051;
-	Tue,  3 Nov 2020 17:24:33 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3A337C0051;
+	Tue,  3 Nov 2020 17:24:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B055DC0051
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:32 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 05A7AC0051
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id A030586CEC
+ by hemlock.osuosl.org (Postfix) with ESMTP id E97E087462
  for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id C3mOwtUOCaIp for <bridge@lists.linux-foundation.org>;
- Tue,  3 Nov 2020 17:24:31 +0000 (UTC)
+ with ESMTP id YY-TmwFLqMzN for <bridge@lists.linux-foundation.org>;
+ Tue,  3 Nov 2020 17:24:32 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
- [209.85.128.68])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 3CC5A86CF9
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:31 +0000 (UTC)
-Received: by mail-wm1-f68.google.com with SMTP id h62so90960wme.3
- for <bridge@lists.linux-foundation.org>; Tue, 03 Nov 2020 09:24:31 -0800 (PST)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 306A187454
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:32 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id k18so79755wmj.5
+ for <bridge@lists.linux-foundation.org>; Tue, 03 Nov 2020 09:24:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=5omufXisHiGeceucrVlpU04whsxgLcRcTFbs2Kn5Krg=;
- b=PwZpr/Cg4gZJf7QDpiN8c3rht0+scf85e7FTrVdSxG1DxBtvGNn771zi2rtjHbQLjc
- jAAPWayS9osj34H+tRvUj5W/LJjOtzVGz7+NO5g3lS9cOedTFZxZR/nSmakaxIa+8g07
- k8GujvckHla5iZNh5hnB0vgf4AtOCKfyrJ6ZrmSMMzF3dCBkpylhOICfwcJjugXaRW/L
- 98GC5r6Q1yKiXB5dcjUSRDSNQ8V5SLcM7Saf2rSIxuP50PamOQlfWLw3TuysLZwCHczC
- n7LO7ErGEpfyY2hx+sa1hctfg4YL+vWtQrL2lOAxs2STUWGc6Kak0mxLqScLO+ekR4HP
- Cibw==
+ bh=bc4VDKLFfRtDvy2e5Zsnlq8PlNzZNU+VRXlP4XcvGWU=;
+ b=X4427bX6KLsZipwexz/bDyeMNMiQP7dxD1gBoGluxdYi4uUpRPahjavU8I2OPUbaLU
+ CYNGUaBqR7oEu0AEqgLZgAh4ONIL3jiT+pCEO/YaLn88SBrNNr07dMHFEDowxZtTUcDs
+ VmWswbOVWjzDaZmSaHhwUK+r5MFFv/n9AtV/dRWF+wnlEb8QRvM6GuEy6ZjMOf+UKqBX
+ VW+uhzXEijsYEvQ+U4HPtFcfjEOeQHAi39ArEGi88eZEQLxwT1gaNIYeFnfbhm4KHGUa
+ gT4AaKo38jLrPjdeGslVvnd56JcTXap7LpOvbh9GS8C6FhxfKWE/lqud+3nAF7Rg2Vdj
+ Qq/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=5omufXisHiGeceucrVlpU04whsxgLcRcTFbs2Kn5Krg=;
- b=czOZ709iBQ+k952YO+jBwHFsVlE8Fmu39TFi9J5vFa8IJP5N3fksq2OjM8f0JoqXgj
- ip4kHTSGC6v8lGRKuH0fckh94MwXFDb1RZGVgWe6efe9H0S/FN8RdqJvHciOkHc/5ooq
- 5H402eK7G8NW/AEwY+qvrovu8k8ukkc2HSsITidxnCGSNfxa5GmcdfS61odDTKsmWr9x
- tRs/YL0xGJRiJR6leaTDQe/PLFxRfQTRFhldX+C4vb8KhhDlvWzk6GMTgJordzLYv6CH
- XHhcBYPzOWguMs3Hd6BuFbwU/bku3dC+aUglWB4T9RFzkQAg4s4nfv9gJVws7fR4cIcb
- NY0A==
-X-Gm-Message-State: AOAM530EkWW68wxcFay3FV8AKlg4WWl7lJdl+3of3/J/USBNpNfKSvLj
- UTeRcll7Xt1lXDu/4OQej1KAsStElxU44nDa
-X-Google-Smtp-Source: ABdhPJw7YQqxc9h1LI4jJ/h8YilAjdO7Rc52iqX6kaQXnBVSruC7At7I/tgH9CKGpoR/qOZ8NvJQOw==
-X-Received: by 2002:a1c:2c2:: with SMTP id 185mr178744wmc.103.1604424269694;
- Tue, 03 Nov 2020 09:24:29 -0800 (PST)
+ bh=bc4VDKLFfRtDvy2e5Zsnlq8PlNzZNU+VRXlP4XcvGWU=;
+ b=C5r5xSMk7tsfJzuAWmly7roy6uC/j99jAJzjJMCAJNEPyIXSLlKwEo4gwbiVlp5ePy
+ FJMjLcDuSktGNbiyel7qrRmFpTU77TNeUozE46KMnim3lDlpYdujKLbcpdXMdOcuX20Z
+ 97g2dsJVB6AM8nIvhFC0BLJBuRAWbuOX0A9rIhl36CVtnLtA7euGem37u2Cf7pd9jJKK
+ KsQ3Nwg35u6KpJAaUYOujDhOMd9rOdzOai+dSSKMsfzttwQzYmWfjjon2ELFReSRp2zv
+ S0B2+cQGrWeVhrh1JvUGpFryvF8YHxJql5SX1vTR4m8uTb9Rpui0ypdcgy0KRqQdcZoY
+ oluA==
+X-Gm-Message-State: AOAM530DA+PzV6xpMoHyUFW+VCNr3OoYfInjwAnpBLkier/4q7wAwlcK
+ /hGcextC/wgqnHyDsIbkv+Meig==
+X-Google-Smtp-Source: ABdhPJxFu4be/8zPQYWMfSKDaM79AsTb/5bF87GhkTA9eWGRnR31eTjQ3S1PzIeG+yZKSzv0Kj9+nA==
+X-Received: by 2002:a1c:3846:: with SMTP id f67mr200371wma.33.1604424270730;
+ Tue, 03 Nov 2020 09:24:30 -0800 (PST)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id a128sm2650795wmf.5.2020.11.03.09.24.28
+ by smtp.gmail.com with ESMTPSA id a128sm2650795wmf.5.2020.11.03.09.24.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Nov 2020 09:24:29 -0800 (PST)
+ Tue, 03 Nov 2020 09:24:30 -0800 (PST)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Tue,  3 Nov 2020 19:24:08 +0200
-Message-Id: <20201103172412.1044840-13-razor@blackwall.org>
+Date: Tue,  3 Nov 2020 19:24:09 +0200
+Message-Id: <20201103172412.1044840-14-razor@blackwall.org>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20201103172412.1044840-1-razor@blackwall.org>
 References: <20201103172412.1044840-1-razor@blackwall.org>
@@ -80,8 +80,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: kuba@kernel.org, bridge@lists.linux-foundation.org,
  Nikolay Aleksandrov <nikolay@nvidia.com>, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 12/16] selftests: net: bridge: add test
-	for mldv2 exc -> to_exclude report
+Subject: [Bridge] [PATCH net-next 13/16] selftests: net: bridge: add test
+	for mldv2 inc -> block report
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -100,59 +100,68 @@ From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
 The test checks for the following case:
    Router State  Report Received  New Router State     Actions
-   EXCLUDE (X,Y)   TO_EX (A)      EXCLUDE (A-Y,Y*A)    (A-X-Y) =
-                                                            Filter Timer
-                                                       Delete (X-A)
-                                                       Delete (Y-A)
-                                                       Send Q(MA,A-Y)
-                                                       Filter Timer=MALI
+   INCLUDE (A)     BLOCK (B)      INCLUDE (A)          Send Q(MA,A*B)
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- .../selftests/net/forwarding/bridge_mld.sh    | 30 ++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
+ .../selftests/net/forwarding/bridge_mld.sh    | 37 ++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
 diff --git a/tools/testing/selftests/net/forwarding/bridge_mld.sh b/tools/testing/selftests/net/forwarding/bridge_mld.sh
-index 0f48c8da041b..024fa22fa3c2 100755
+index 024fa22fa3c2..a3c405b2fd6f 100755
 --- a/tools/testing/selftests/net/forwarding/bridge_mld.sh
 +++ b/tools/testing/selftests/net/forwarding/bridge_mld.sh
 @@ -3,7 +3,7 @@
  
  ALL_TESTS="mldv2include_test mldv2inc_allow_test mldv2inc_is_include_test mldv2inc_is_exclude_test \
  	   mldv2inc_to_exclude_test mldv2exc_allow_test mldv2exc_is_include_test \
--	   mldv2exc_is_exclude_test"
-+	   mldv2exc_is_exclude_test mldv2exc_to_exclude_test"
+-	   mldv2exc_is_exclude_test mldv2exc_to_exclude_test"
++	   mldv2exc_is_exclude_test mldv2exc_to_exclude_test mldv2inc_block_test"
  NUM_NETIFS=4
  CHECK_TC="yes"
  TEST_GROUP="ff02::cc"
-@@ -381,6 +381,34 @@ mldv2exc_is_exclude_test()
+@@ -54,6 +54,12 @@ MZPKT_TO_EXC="33:33:00:00:00:01:fe:54:00:04:5e:ba:86:dd:60:0a:2d:ae:00:54:00:01:
+ 00:00:00:8f:00:8b:8e:00:00:00:01:04:00:00:03:ff:02:00:00:00:00:00:00:00:00:00:00:00:00:00:cc:20:\
+ 01:0d:b8:00:01:00:00:00:00:00:00:00:00:00:01:20:01:0d:b8:00:01:00:00:00:00:00:00:00:00:00:20:20:\
+ 01:0d:b8:00:01:00:00:00:00:00:00:00:00:00:30"
++# MLDv2 block report: grp ff02::cc block 2001:db8:1::1,2001:db8:1::20,2001:db8:1::30
++MZPKT_BLOCK="33:33:00:00:00:01:fe:54:00:04:5e:ba:86:dd:60:0a:2d:ae:00:54:00:01:fe:80:00:00:00:00:\
++00:00:fc:54:00:ff:fe:04:5e:ba:ff:02:00:00:00:00:00:00:00:00:00:00:00:00:00:01:3a:00:05:02:00:00:\
++00:00:8f:00:89:8e:00:00:00:01:06:00:00:03:ff:02:00:00:00:00:00:00:00:00:00:00:00:00:00:cc:20:01:\
++0d:b8:00:01:00:00:00:00:00:00:00:00:00:01:20:01:0d:b8:00:01:00:00:00:00:00:00:00:00:00:20:20:01:\
++0d:b8:00:01:00:00:00:00:00:00:00:00:00:30"
+ 
+ source lib.sh
+ 
+@@ -409,6 +415,35 @@ mldv2exc_to_exclude_test()
  	mldv2cleanup $swp1
  }
  
-+mldv2exc_to_exclude_test()
++mldv2inc_block_test()
 +{
 +	RET=0
-+	local X=("2001:db8:1::1" "2001:db8:1::30")
-+	local Y=("2001:db8:1::20")
++	local X=("2001:db8:1::2" "2001:db8:1::3")
 +
-+	mldv2exclude_prepare $h1
++	mldv2include_prepare $h1
 +
-+	ip link set dev br0 type bridge mcast_last_member_interval 500
-+	check_err $? "Could not change mcast_last_member_interval to 5s"
-+
-+	$MZ $h1 -c 1 $MZPKT_TO_EXC -q
-+	sleep 1
-+	brmcast_check_sg_entries "to_exclude" "${X[@]}" "${Y[@]}"
++	$MZ $h1 -c 1 $MZPKT_BLOCK -q
++	# make sure the lowered timers have expired (by default 2 seconds)
++	sleep 3
++	brmcast_check_sg_entries "block" "${X[@]}"
 +
 +	brmcast_check_sg_state 0 "${X[@]}"
-+	brmcast_check_sg_state 1 "${Y[@]}"
 +
-+	brmcast_check_sg_fwding 1 "${X[@]}" 2001:db8:1::100
-+	brmcast_check_sg_fwding 0 "${Y[@]}"
++	bridge -j -d -s mdb show dev br0 \
++		| jq -e ".[].mdb[] | \
++			 select(.grp == \"$TEST_GROUP\" and \
++				.source_list != null and
++				.source_list[].address == \"2001:db8:1::1\")" &>/dev/null
++	check_fail $? "Wrong *,G entry source list, 2001:db8:1::1 entry still exists"
 +
-+	log_test "MLDv2 report $TEST_GROUP exclude -> to_exclude"
++	brmcast_check_sg_fwding 1 "${X[@]}"
++	brmcast_check_sg_fwding 0 2001:db8:1::100
 +
-+	ip link set dev br0 type bridge mcast_last_member_interval 100
++	log_test "MLDv2 report $TEST_GROUP include -> block"
 +
 +	mldv2cleanup $swp1
 +}
