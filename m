@@ -1,147 +1,85 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A6F2A4B5C
-	for <lists.bridge@lfdr.de>; Tue,  3 Nov 2020 17:26:38 +0100 (CET)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0123A2A4CAC
+	for <lists.bridge@lfdr.de>; Tue,  3 Nov 2020 18:24:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 0C0A386FBA;
-	Tue,  3 Nov 2020 16:26:36 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id C1399207A8;
+	Tue,  3 Nov 2020 17:24:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yycsVG6ndSY7; Tue,  3 Nov 2020 16:26:35 +0000 (UTC)
+	with ESMTP id BqhIWdG7bxeU; Tue,  3 Nov 2020 17:24:23 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 5A24586FAA;
-	Tue,  3 Nov 2020 16:26:35 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 4F0B92094C;
+	Tue,  3 Nov 2020 17:24:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3DCAEC0051;
-	Tue,  3 Nov 2020 16:26:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 29450C0051;
+	Tue,  3 Nov 2020 17:24:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C5563C0051
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 16:26:33 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BF6D4C0051
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id B0ED286C03
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 16:26:33 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id AE26386208
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9ezMjoCXCoH8 for <bridge@lists.linux-foundation.org>;
- Tue,  3 Nov 2020 16:26:32 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from nat-hk.nvidia.com (nat-hk.nvidia.com [203.18.50.4])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 8F36E86BF9
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 16:26:32 +0000 (UTC)
-Received: from HKMAIL101.nvidia.com (Not Verified[10.18.92.100]) by
- nat-hk.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5fa184b50000>; Wed, 04 Nov 2020 00:26:29 +0800
-Received: from HKMAIL103.nvidia.com (10.18.16.12) by HKMAIL101.nvidia.com
- (10.18.16.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 3 Nov
- 2020 16:26:29 +0000
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
- by HKMAIL103.nvidia.com (10.18.16.12) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3 via Frontend Transport; Tue, 3 Nov 2020 16:26:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aPDFVR1c41RSTJb4p9Im6hEFjb3QFOYbPbmMsQHgAAmwMjA2TjQjSI0ytEDziPxgf6Vdm/yDfoohV4ohux422i2PfLrydbhBrIBQBpNJk6Xacs5N4qDlBVJvppHz7nLOjpLIfi1DC1l63wnI9/ikD2hQG3pPlYEucNupCggp4lQws480gl/KEHnzC1FW5hZDqENTk4rKWAiqPVnkbfUGBeHvgEwWLAu3yr7a8RO4ddFdNOoGfsaYaKVjKIoaHHdGrJuKHIJRip8fIDYGtW4I3PvV5Y0CgbWzMfFatoUY2T02594W3X8ZpXZyurJznib59n6gRwNsOnWZac28WmeEug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e1tATsxgREHFZSoWYxz7YKJIHFSOswzbNqM3WpL7Fok=;
- b=XuAvpwpCIAY2KqApdJWYa+gtZCeuBy371d/uYvDsyrezFiTo8W283XKdiCZrX6TBp042A8bSWK09tm1MtFJFqtFiT3f/+MwDSFoS/6mZPrUiX2lMaUuxk6XgkJ9VfXWzRve2cP1+Oycz8BoabyJBKuJQGkmIB/ewHeoUsh2LxMzLy+6QG3iuORUiGQVmeMFPfureTYkikD0j7Not9jMFEJiF19y3bquLSjzHomGGj72TqleNXRx5WxEDtkw7yo7D33tRyAVURUv3nULSxkxG5CRifz+OJ98w7FIlp+fqZlpDPFLMLXJggs9NMc1DKEtn1lb1x6Cb4kXv08+riHCJwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Received: from DM5PR12MB1244.namprd12.prod.outlook.com (2603:10b6:3:73::15) by
- DM5PR1201MB2488.namprd12.prod.outlook.com (2603:10b6:3:e1::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18; Tue, 3 Nov 2020 16:26:26 +0000
-Received: from DM5PR12MB1244.namprd12.prod.outlook.com
- ([fe80::a164:31dd:cebe:4d49]) by DM5PR12MB1244.namprd12.prod.outlook.com
- ([fe80::a164:31dd:cebe:4d49%12]) with mapi id 15.20.3499.029; Tue, 3 Nov 2020
- 16:26:26 +0000
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-To: "menglong8.dong@gmail.com" <menglong8.dong@gmail.com>, Roopa Prabhu
- <roopa@nvidia.com>
-Thread-Topic: [PATCH] net: bridge: disable multicast while delete bridge
-Thread-Index: AQHWsSXrHRI1tvW7iUS7+/80e/6fF6m2mdgA
-Date: Tue, 3 Nov 2020 16:26:25 +0000
-Message-ID: <067c94269abed15f777ac078a216be314c935fd5.camel@nvidia.com>
-References: <20201102143828.5286-1-menglong8.dong@gmail.com>
-In-Reply-To: <20201102143828.5286-1-menglong8.dong@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nvidia.com;
-x-originating-ip: [84.238.136.197]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a3653253-377b-4282-0dcb-08d880153603
-x-ms-traffictypediagnostic: DM5PR1201MB2488:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR1201MB2488351A3A379C4DE106B698DF110@DM5PR1201MB2488.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1388;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: D9a/ktX2cIqRbf1XGWB0Vqbq8ml1INh1Q4vaNDY2v3ufZEdVJm+P4ibII6moX1/BS3z0xPi15IH6aOpSXtcGsSsqGn7at1mOZae2AfBW/+ZHoLxZAtiKIAzFdxLDPYmPpfuufPGcPZM6hkxv9ieT0qZ3nik0d2qwXDrOsZn8Wxgnty1FZMc50Wj0GmYKDdkiCHYauksg0LWkTYPqV1UfDHeStlmcms/ft/F4WUXXnTBuCr84Z6V3CuMYXHxiNnRWLrU3BFv2D3Btj05avUVcLeMBo1EwUgovkYr9ac3ZDRNcJ5MNHYzYSJx3TSp40TbQNswa85N3mir81nMespEYnQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1244.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(376002)(136003)(396003)(346002)(39860400002)(54906003)(316002)(110136005)(2906002)(478600001)(36756003)(26005)(5660300002)(186003)(71200400001)(2616005)(4326008)(3450700001)(6636002)(83380400001)(76116006)(6512007)(91956017)(66446008)(64756008)(66556008)(66946007)(8936002)(86362001)(66476007)(8676002)(6486002)(6506007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: oQczqZM6P9n53wO8+kALGlOXPCk63ZGECA3t02Rid4AOQNzOS/AnmVl1FkEq//anMtuI1qO9y5eUIuc7e0lNXtidGQHc6mjHB24mo+P64za3rxiplP7H0h03W/Q+7iglpLY5jCuJDIB6FKNikrPsrdDTU2FZMmTiMi5O6P6wcQGeDHx3zdCpq2JgKa31UI2utkcLW7gEBtH8ZjP3F7w3DqaaPL8c0EfDYxB7cWfCdsLjJIHkb603sNI0+AvH5oyaqXnj21NNswEgUywnwcUzr9tSKFe9hpmnkUsn0rpwaXueReq4LkidSbFyiC4OcZvThqBx/ylQCzXcCtFkchsm5Z9nueCg59TnMQsOtIEMfDTH73OAQPfPT69Hl7SPnoe7EKIIteBU18iJp51mdftiEGv+PfkdOgsiFs46AM/eQ+TSDc8h0+4iPLn9X/riLodi2YanzRvIHsyga1IXW2jqUaUB5LPudUGdDkNbwrBO4XnmQhb0VkbiHHu40U0CCuHsH6bMRG8Z+kidFzM4K30wyB4R6P7OWPGSQxYuXN9sgRk5fSao4l7x9/uPvO8I5aC/i60Vecaa/C/IsGoOjrTzBaDbW1tVUeuOYM9PuvZCO3G05aSEwSud21k454cPTZKhEauKxkTcdylhGIxVzjYFzg==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <680D0BE04AACBD4292520B4598C416B7@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ with ESMTP id J3xo5JDRGVqp for <bridge@lists.linux-foundation.org>;
+ Tue,  3 Nov 2020 17:24:18 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id B29C0861EE
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:18 +0000 (UTC)
+Received: by mail-wr1-f46.google.com with SMTP id w14so19339370wrs.9
+ for <bridge@lists.linux-foundation.org>; Tue, 03 Nov 2020 09:24:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=5waWch5DfbeJ99kzw2cUqjwTl2DYjMssW5khvUSgq2w=;
+ b=XX0MtFAeQlhIUtmtgoHO5iCXTIHz2Os0iBcD3sUghfWoSWX5C+SmEZvbZIjsOQgWZU
+ GHs84xYTQsCSqUydkOVg5lKP3dpLjrau2DIra76ANaYt9eljZYNqXxtuz0Mha340jQyL
+ 5cO2LIk06IH8kH8VnOMZghYz2B9VCKcnZ1eVGXpjnWnqt2TOEtll7CbXglZ1SQhVbsnD
+ V/+YaPY8oGugmGc4415yK2Bh+6OzWcV0iJuLIzgRx2nRReD075tdY3nTgRIMqjpsacZg
+ ZzqmSiHVGQHqQQmC2a5xf2H8e/9WQSwX0vJf3nEWRit7wbo4twwef+084Kv20VNXT/7O
+ Kmjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=5waWch5DfbeJ99kzw2cUqjwTl2DYjMssW5khvUSgq2w=;
+ b=qs+sXp2De4xApo/oWXaY8p8kXoHXonjz5KIGy12NNOSpNxRXcol4TC7bscNA3BtUkV
+ 6rucdiRiINw6pduNeUTyIZ7t0jJsTpTCsbRGmC0A1qluxEUoYgQdvwmbNSZY4JifnPPo
+ 5cFARfGxarQruM2bHLHvxYs/0P6EMKF4dCZxIziYt6T/1zr4qJDSezyP+wtFw0N/420y
+ 6a03IkjUVzZxGiCksimuqtgnAY3d0JU/P4tH8mx/EH8tQaJbPgVYqrCytJ+U1ARF2k18
+ Pfmke1kCNMl47LaOuijuSOXKdL9V/jVkmBm4Y4OqvGzkA2dhPe/9Kqoh4HFkLUm3CDqp
+ /r+w==
+X-Gm-Message-State: AOAM5327sCxVbOkkjDkyVXAkK+JS5KKAIFlbMNhrADObbejnemnD7WEZ
+ AkOAJSqP0Q87cGslB0xNEahpHw==
+X-Google-Smtp-Source: ABdhPJznn+N2QQIRpQ60Y58HrPFPLxs/vVEM4EdvO5ejGVW/FkQt+mUXKl61nWqavdx8oaZQuIHq4g==
+X-Received: by 2002:adf:e650:: with SMTP id b16mr28248837wrn.350.1604424257147; 
+ Tue, 03 Nov 2020 09:24:17 -0800 (PST)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id a128sm2650795wmf.5.2020.11.03.09.24.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 Nov 2020 09:24:16 -0800 (PST)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Tue,  3 Nov 2020 19:23:56 +0200
+Message-Id: <20201103172412.1044840-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1244.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3653253-377b-4282-0dcb-08d880153603
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2020 16:26:26.0384 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gp1RErNGirDjAl5U9+j77dj2QAlklUHSVd1F1yZWPEmZB8/p62EB2/riNfcY9BVdUe+7ErHolsicgbyI8ilpZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB2488
-X-OriginatorOrg: Nvidia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1604420789; bh=e1tATsxgREHFZSoWYxz7YKJIHFSOswzbNqM3WpL7Fok=;
- h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:From:To:
- CC:Subject:Thread-Topic:Thread-Index:Date:Message-ID:References:
- In-Reply-To:Reply-To:Accept-Language:Content-Language:
- X-MS-Has-Attach:X-MS-TNEF-Correlator:user-agent:
- authentication-results:x-originating-ip:x-ms-publictraffictype:
- x-ms-office365-filtering-correlation-id:x-ms-traffictypediagnostic:
- x-ms-exchange-transport-forked:x-microsoft-antispam-prvs:
- x-ms-oob-tlc-oobclassifiers:x-ms-exchange-senderadcheck:
- x-microsoft-antispam:x-microsoft-antispam-message-info:
- x-forefront-antispam-report:x-ms-exchange-antispam-messagedata:
- Content-Type:Content-ID:Content-Transfer-Encoding:MIME-Version:
- X-MS-Exchange-CrossTenant-AuthAs:
- X-MS-Exchange-CrossTenant-AuthSource:
- X-MS-Exchange-CrossTenant-Network-Message-Id:
- X-MS-Exchange-CrossTenant-originalarrivaltime:
- X-MS-Exchange-CrossTenant-fromentityheader:
- X-MS-Exchange-CrossTenant-id:X-MS-Exchange-CrossTenant-mailboxtype:
- X-MS-Exchange-CrossTenant-userprincipalname:
- X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
- b=T9fiDLVXHn+bSQ3JVHTmryS/wfQgRS0ZUDK94dzm46ygJIRNqh7l/FcOLuCQYtTq2
- PEuPkXTA4nucld7raOuMzpLS/afdanfTcgPSKwjm1OhdhptAONYlFWbnIGMILrvCZP
- EgpWD1wbLT754vuZd6iasLFx0xZhzaIJdTGUHhQ0JfqP64RL19a+SV16F6UVazzvyr
- EWcF4+VZuwVNLZ59U9FZtsxC9Wn0gKKILpzw+0VZ/LJio1FokANeUHOSV39/VDojj4
- MOII4K9/zOjX+VQWVwNlYYKKmqsSXojPqo7cn+0u4ZbV/3AQWMb8pyCbcgS7rc15Sj
- MCGP6mzSZg0Yw==
-Cc: "dong.menglong@zte.com.cn" <dong.menglong@zte.com.cn>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "kuba@kernel.org" <kuba@kernel.org>,
- "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH] net: bridge: disable multicast while delete
-	bridge
+Content-Transfer-Encoding: 8bit
+Cc: kuba@kernel.org, bridge@lists.linux-foundation.org,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, roopa@nvidia.com
+Subject: [Bridge] [PATCH net-next 00/16] selftests: net: bridge: add tests
+	for MLDv2
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -153,35 +91,66 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-T24gTW9uLCAyMDIwLTExLTAyIGF0IDIyOjM4ICswODAwLCBNZW5nbG9uZyBEb25nIHdyb3RlOg0K
-PiBGcm9tOiBNZW5nbG9uZyBEb25nIDxkb25nLm1lbmdsb25nQHp0ZS5jb20uY24+DQo+IA0KPiBU
-aGlzIGNvbW1pdCBzZWVtcyBtYWtlIG5vIHNlbnNlLCBhcyBicmlkZ2UgaXMgZGVzdHJveWVkIHdo
-ZW4NCj4gYnJfbXVsdGljYXN0X2Rldl9kZWwgaXMgY2FsbGVkLg0KPiANCj4gSW4gY29tbWl0IGIx
-YjlkMzY2MDI4Zg0KPiAoImJyaWRnZTogbW92ZSBicmlkZ2UgbXVsdGljYXN0IGNsZWFudXAgdG8g
-bmRvX3VuaW5pdCIpLCBYaW4gTG9uZw0KPiBmaXhlZCB0aGUgdXNlLWFmdGVyLWZyZWUgcGFuaWMg
-aW4gYnJfbXVsdGljYXN0X2dyb3VwX2V4cGlyZWQgYnkNCj4gbW92aW5nIGJyX211bHRpY2FzdF9k
-ZXZfZGVsIHRvIG5kb191bmluaXQuIEhvd2V2ZXIsIHRoYXQgcGF0Y2ggaXMNCj4gbm90IGFwcGxp
-ZWQgdG8gNC40LlgsIGFuZCB0aGUgYnVnIGV4aXN0cy4NCj4gDQo+IEZpeCB0aGF0IGJ1ZyBieSBk
-aXNhYmxpbmcgbXVsdGljYXN0IGluIGJyX211bHRpY2FzdF9kZXZfZGVsIGZvcg0KPiA0LjQuWCwg
-YW5kIHRoZXJlIGlzIG5vIGhhcm0gZm9yIG90aGVyIGJyYW5jaGVzLg0KPiANCj4gU2lnbmVkLW9m
-Zi1ieTogTWVuZ2xvbmcgRG9uZyA8ZG9uZy5tZW5nbG9uZ0B6dGUuY29tLmNuPg0KPiAtLS0NCj4g
-IG5ldC9icmlkZ2UvYnJfbXVsdGljYXN0LmMgfCAxICsNCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL25ldC9icmlkZ2UvYnJfbXVsdGljYXN0LmMg
-Yi9uZXQvYnJpZGdlL2JyX211bHRpY2FzdC5jDQo+IGluZGV4IGVhZTg5OGMzY2ZmNy4uOTk5MmZk
-ZmYyOTUxIDEwMDY0NA0KPiAtLS0gYS9uZXQvYnJpZGdlL2JyX211bHRpY2FzdC5jDQo+ICsrKyBi
-L25ldC9icmlkZ2UvYnJfbXVsdGljYXN0LmMNCj4gQEAgLTMzNjksNiArMzM2OSw3IEBAIHZvaWQg
-YnJfbXVsdGljYXN0X2Rldl9kZWwoc3RydWN0IG5ldF9icmlkZ2UgKmJyKQ0KPiAgCWhsaXN0X2Zv
-cl9lYWNoX2VudHJ5X3NhZmUobXAsIHRtcCwgJmJyLT5tZGJfbGlzdCwgbWRiX25vZGUpDQo+ICAJ
-CWJyX211bHRpY2FzdF9kZWxfbWRiX2VudHJ5KG1wKTsNCj4gIAlobGlzdF9tb3ZlX2xpc3QoJmJy
-LT5tY2FzdF9nY19saXN0LCAmZGVsZXRlZF9oZWFkKTsNCj4gKwlicl9vcHRfdG9nZ2xlKGJyLCBC
-Uk9QVF9NVUxUSUNBU1RfRU5BQkxFRCwgZmFsc2UpOw0KPiAgCXNwaW5fdW5sb2NrX2JoKCZici0+
-bXVsdGljYXN0X2xvY2spOw0KPiAgDQo+ICAJYnJfbXVsdGljYXN0X2djKCZkZWxldGVkX2hlYWQp
-Ow0KDQpUaGlzIGRvZXNuJ3QgbWFrZSBhbnkgc2Vuc2UuIEl0IGRvZXNuJ3QgZml4IGFueXRoaW5n
-Lg0KSWYgNC40IGhhcyBhIHByb2JsZW0gdGhlbiB0aGUgcmVsZXZhbnQgcGF0Y2hlcyBzaG91bGQg
-Z2V0IGJhY2twb3J0ZWQgdG8gaXQuDQpXZSBkb24ndCBhZGQgcmFuZG9tIGNoYW5nZXMgdG8gZml4
-IG9sZGVyIHJlbGVhc2VzLg0KDQpDaGVlcnMsDQogTmlrDQoNCk5hY2tlZC1ieTogTmlrb2xheSBB
-bGVrc2FuZHJvdiA8bmlrb2xheUBudmlkaWEuY29tPg0K
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+
+Hi,
+This is the second selftests patch-set for the new multicast functionality
+which adds tests for the bridge's MLDv2 support. The tests use full
+precooked packets which are sent via mausezahn and the resulting state
+after each test is checked for proper X,Y sets, (*,G) source list, source
+list entry timers, (S,G) existence and flags, packet forwarding and
+blocking, exclude group expiration and (*,G) auto-add. The first 3 patches
+factor out common functions which are used by IGMPv3 tests in lib.sh and
+add support for IPv6 test UDP packet, then patch 4 adds the first test with
+the initial MLDv2 setup.
+The following new tests are added:
+ - base case: MLDv2 report ff02::cc is_include
+ - include -> allow report
+ - include -> is_include report
+ - include -> is_exclude report
+ - include -> to_exclude report
+ - exclude -> allow report
+ - exclude -> is_include report
+ - exclude -> is_exclude report
+ - exclude -> to_exclude report
+ - include -> block report
+ - exclude -> block report
+ - exclude timeout (move to include + entry deletion)
+ - S,G port entry automatic add to a *,G,exclude port
+
+The variable names and set notation are the same as per RFC 3810,
+for more information check RFC 3810 sections 2.3 and 7.
+
+Thanks,
+ Nik
+
+Nikolay Aleksandrov (16):
+  selftests: net: bridge: factor out mcast_packet_test
+  selftests: net: lib: add support for IPv6 mcast packet test
+  selftests: net: bridge: factor out and rename sg state functions
+  selftests: net: bridge: add initial MLDv2 include test
+  selftests: net: bridge: add test for mldv2 inc -> allow report
+  selftests: net: bridge: add test for mldv2 inc -> is_include report
+  selftests: net: bridge: add test for mldv2 inc -> is_exclude report
+  selftests: net: bridge: add test for mldv2 inc -> to_exclude report
+  selftests: net: bridge: add test for mldv2 exc -> allow report
+  selftests: net: bridge: add test for mldv2 exc -> is_include report
+  selftests: net: bridge: add test for mldv2 exc -> is_exclude report
+  selftests: net: bridge: add test for mldv2 exc -> to_exclude report
+  selftests: net: bridge: add test for mldv2 inc -> block report
+  selftests: net: bridge: add test for mldv2 exc -> block report
+  selftests: net: bridge: add test for mldv2 exclude timeout
+  selftests: net: bridge: add test for mldv2 *,g auto-add
+
+ .../selftests/net/forwarding/bridge_igmp.sh   | 211 ++-----
+ .../selftests/net/forwarding/bridge_mld.sh    | 558 ++++++++++++++++++
+ tools/testing/selftests/net/forwarding/lib.sh | 107 ++++
+ 3 files changed, 721 insertions(+), 155 deletions(-)
+ create mode 100755 tools/testing/selftests/net/forwarding/bridge_mld.sh
+
+-- 
+2.25.4
+
