@@ -1,85 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0123A2A4CAC
-	for <lists.bridge@lfdr.de>; Tue,  3 Nov 2020 18:24:28 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2EB2A4CAB
+	for <lists.bridge@lfdr.de>; Tue,  3 Nov 2020 18:24:27 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id C1399207A8;
-	Tue,  3 Nov 2020 17:24:25 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 630E58744B;
+	Tue,  3 Nov 2020 17:24:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id BqhIWdG7bxeU; Tue,  3 Nov 2020 17:24:23 +0000 (UTC)
+	with ESMTP id gp3dqVa1Kazx; Tue,  3 Nov 2020 17:24:26 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 4F0B92094C;
-	Tue,  3 Nov 2020 17:24:21 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id AC42487450;
+	Tue,  3 Nov 2020 17:24:25 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 29450C0051;
-	Tue,  3 Nov 2020 17:24:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8CCE3C0051;
+	Tue,  3 Nov 2020 17:24:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BF6D4C0051
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:19 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AE3A7C0051
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id AE26386208
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:19 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id A289E2094D
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id J3xo5JDRGVqp for <bridge@lists.linux-foundation.org>;
- Tue,  3 Nov 2020 17:24:18 +0000 (UTC)
+ with ESMTP id LEyt6Hepj2KZ for <bridge@lists.linux-foundation.org>;
+ Tue,  3 Nov 2020 17:24:19 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id B29C0861EE
- for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:18 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id w14so19339370wrs.9
- for <bridge@lists.linux-foundation.org>; Tue, 03 Nov 2020 09:24:18 -0800 (PST)
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
+ [209.85.128.68])
+ by silver.osuosl.org (Postfix) with ESMTPS id AACD9207A8
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Nov 2020 17:24:19 +0000 (UTC)
+Received: by mail-wm1-f68.google.com with SMTP id v5so107130wmh.1
+ for <bridge@lists.linux-foundation.org>; Tue, 03 Nov 2020 09:24:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=5waWch5DfbeJ99kzw2cUqjwTl2DYjMssW5khvUSgq2w=;
- b=XX0MtFAeQlhIUtmtgoHO5iCXTIHz2Os0iBcD3sUghfWoSWX5C+SmEZvbZIjsOQgWZU
- GHs84xYTQsCSqUydkOVg5lKP3dpLjrau2DIra76ANaYt9eljZYNqXxtuz0Mha340jQyL
- 5cO2LIk06IH8kH8VnOMZghYz2B9VCKcnZ1eVGXpjnWnqt2TOEtll7CbXglZ1SQhVbsnD
- V/+YaPY8oGugmGc4415yK2Bh+6OzWcV0iJuLIzgRx2nRReD075tdY3nTgRIMqjpsacZg
- ZzqmSiHVGQHqQQmC2a5xf2H8e/9WQSwX0vJf3nEWRit7wbo4twwef+084Kv20VNXT/7O
- Kmjg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=xBm95jl2xW7HhQ7hwk4jZB0S0Y7wQfebO/eBHZqjNWo=;
+ b=MqzUiWrQhY5xpB2YoBUurz8HpgeL4rD0U/WPxFKSRrv83ZBc6jSVrCVdx8rk/Pq3CS
+ I8jdO2PTuajjv7UegAo7D6AnccQFOkWAOSDQ+SiLDG4OTFynJhx9izQO2/nbr1dQQBxE
+ 3yoq7NqaeFfhln1CNJOI067Zqmcpd0Vy8xWAtJ0jGRx/BywDQHiGY1jnPA1cfSpUaV7m
+ USgfyueHQ64pmPimxsOsz9h9IQYUzAOGDKAdXg+78ZOkiz++2HeXCnpf0C9Bb5z/Kleb
+ lfYzoLM8Wk3DAGSHOTUjMsEumGKT7h5t7r4GuBb8e30w0K4wUi78bmE6r9QASRUP5L+L
+ kvpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=5waWch5DfbeJ99kzw2cUqjwTl2DYjMssW5khvUSgq2w=;
- b=qs+sXp2De4xApo/oWXaY8p8kXoHXonjz5KIGy12NNOSpNxRXcol4TC7bscNA3BtUkV
- 6rucdiRiINw6pduNeUTyIZ7t0jJsTpTCsbRGmC0A1qluxEUoYgQdvwmbNSZY4JifnPPo
- 5cFARfGxarQruM2bHLHvxYs/0P6EMKF4dCZxIziYt6T/1zr4qJDSezyP+wtFw0N/420y
- 6a03IkjUVzZxGiCksimuqtgnAY3d0JU/P4tH8mx/EH8tQaJbPgVYqrCytJ+U1ARF2k18
- Pfmke1kCNMl47LaOuijuSOXKdL9V/jVkmBm4Y4OqvGzkA2dhPe/9Kqoh4HFkLUm3CDqp
- /r+w==
-X-Gm-Message-State: AOAM5327sCxVbOkkjDkyVXAkK+JS5KKAIFlbMNhrADObbejnemnD7WEZ
- AkOAJSqP0Q87cGslB0xNEahpHw==
-X-Google-Smtp-Source: ABdhPJznn+N2QQIRpQ60Y58HrPFPLxs/vVEM4EdvO5ejGVW/FkQt+mUXKl61nWqavdx8oaZQuIHq4g==
-X-Received: by 2002:adf:e650:: with SMTP id b16mr28248837wrn.350.1604424257147; 
- Tue, 03 Nov 2020 09:24:17 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=xBm95jl2xW7HhQ7hwk4jZB0S0Y7wQfebO/eBHZqjNWo=;
+ b=OQlTEV0Xt4qG5Gjw88eO7wkikWFqlRyyvBWn4CYTRPnQHn0vFzQthEUb64CjBb2hiZ
+ vYRESqRr/jc3xDlke23tUfFTJTMdfVBos85/NBpNVPbxmo18YOuoBDLwjHnk7VYOP6il
+ fHYQkds0c3q1WBSJ4BLHdZ6aJm/71d5CJuFyQvFtPKD7wd2/sXhPTMjFL5ioFbmBaNRl
+ Jv4LAZ2bt10t3jYpVi97+SdVt5kiDemfS5MOZF/4Auy4RP15NCy9QUhzylcS+ko74sDi
+ Tz/4PflPBAdSU5Bqx6fWXjb3TPo+GiTqms3km67iKX5u3NKt1LufKD98tgzbCb75JXt8
+ 2IGQ==
+X-Gm-Message-State: AOAM530H1z2Luzebw/Kl9TdE2Pkj3FRCkioWrOGx92tl7bv+lr8x7crw
+ 4mQ5vjaRcjThUREnnrb27K4M9Q==
+X-Google-Smtp-Source: ABdhPJwCmHQRlzOe8Sz/VWtIyaNseKz0zgnrUmtmbUdUByHCZrPtIFFD6fMCz/oy1M+X9RNK7nhj8A==
+X-Received: by 2002:a7b:cd92:: with SMTP id y18mr202822wmj.178.1604424258113; 
+ Tue, 03 Nov 2020 09:24:18 -0800 (PST)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id a128sm2650795wmf.5.2020.11.03.09.24.16
+ by smtp.gmail.com with ESMTPSA id a128sm2650795wmf.5.2020.11.03.09.24.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Nov 2020 09:24:16 -0800 (PST)
+ Tue, 03 Nov 2020 09:24:17 -0800 (PST)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Tue,  3 Nov 2020 19:23:56 +0200
-Message-Id: <20201103172412.1044840-1-razor@blackwall.org>
+Date: Tue,  3 Nov 2020 19:23:57 +0200
+Message-Id: <20201103172412.1044840-2-razor@blackwall.org>
 X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20201103172412.1044840-1-razor@blackwall.org>
+References: <20201103172412.1044840-1-razor@blackwall.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: kuba@kernel.org, bridge@lists.linux-foundation.org,
  Nikolay Aleksandrov <nikolay@nvidia.com>, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 00/16] selftests: net: bridge: add tests
-	for MLDv2
+Subject: [Bridge] [PATCH net-next 01/16] selftests: net: bridge: factor out
+	mcast_packet_test
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,61 +98,98 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Hi,
-This is the second selftests patch-set for the new multicast functionality
-which adds tests for the bridge's MLDv2 support. The tests use full
-precooked packets which are sent via mausezahn and the resulting state
-after each test is checked for proper X,Y sets, (*,G) source list, source
-list entry timers, (S,G) existence and flags, packet forwarding and
-blocking, exclude group expiration and (*,G) auto-add. The first 3 patches
-factor out common functions which are used by IGMPv3 tests in lib.sh and
-add support for IPv6 test UDP packet, then patch 4 adds the first test with
-the initial MLDv2 setup.
-The following new tests are added:
- - base case: MLDv2 report ff02::cc is_include
- - include -> allow report
- - include -> is_include report
- - include -> is_exclude report
- - include -> to_exclude report
- - exclude -> allow report
- - exclude -> is_include report
- - exclude -> is_exclude report
- - exclude -> to_exclude report
- - include -> block report
- - exclude -> block report
- - exclude timeout (move to include + entry deletion)
- - S,G port entry automatic add to a *,G,exclude port
+Factor out mcast_packet_test into lib.sh so it can be later extended and
+reused by MLDv2 tests.
 
-The variable names and set notation are the same as per RFC 3810,
-for more information check RFC 3810 sections 2.3 and 7.
+Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
+ .../selftests/net/forwarding/bridge_igmp.sh   | 32 -------------------
+ tools/testing/selftests/net/forwarding/lib.sh | 32 +++++++++++++++++++
+ 2 files changed, 32 insertions(+), 32 deletions(-)
 
-Thanks,
- Nik
-
-Nikolay Aleksandrov (16):
-  selftests: net: bridge: factor out mcast_packet_test
-  selftests: net: lib: add support for IPv6 mcast packet test
-  selftests: net: bridge: factor out and rename sg state functions
-  selftests: net: bridge: add initial MLDv2 include test
-  selftests: net: bridge: add test for mldv2 inc -> allow report
-  selftests: net: bridge: add test for mldv2 inc -> is_include report
-  selftests: net: bridge: add test for mldv2 inc -> is_exclude report
-  selftests: net: bridge: add test for mldv2 inc -> to_exclude report
-  selftests: net: bridge: add test for mldv2 exc -> allow report
-  selftests: net: bridge: add test for mldv2 exc -> is_include report
-  selftests: net: bridge: add test for mldv2 exc -> is_exclude report
-  selftests: net: bridge: add test for mldv2 exc -> to_exclude report
-  selftests: net: bridge: add test for mldv2 inc -> block report
-  selftests: net: bridge: add test for mldv2 exc -> block report
-  selftests: net: bridge: add test for mldv2 exclude timeout
-  selftests: net: bridge: add test for mldv2 *,g auto-add
-
- .../selftests/net/forwarding/bridge_igmp.sh   | 211 ++-----
- .../selftests/net/forwarding/bridge_mld.sh    | 558 ++++++++++++++++++
- tools/testing/selftests/net/forwarding/lib.sh | 107 ++++
- 3 files changed, 721 insertions(+), 155 deletions(-)
- create mode 100755 tools/testing/selftests/net/forwarding/bridge_mld.sh
-
+diff --git a/tools/testing/selftests/net/forwarding/bridge_igmp.sh b/tools/testing/selftests/net/forwarding/bridge_igmp.sh
+index 0e71abdd7a03..50a48ce16ba1 100755
+--- a/tools/testing/selftests/net/forwarding/bridge_igmp.sh
++++ b/tools/testing/selftests/net/forwarding/bridge_igmp.sh
+@@ -105,38 +105,6 @@ cleanup()
+ 	vrf_cleanup
+ }
+ 
+-# return 0 if the packet wasn't seen on host2_if or 1 if it was
+-mcast_packet_test()
+-{
+-	local mac=$1
+-	local src_ip=$2
+-	local ip=$3
+-	local host1_if=$4
+-	local host2_if=$5
+-	local seen=0
+-
+-	# Add an ACL on `host2_if` which will tell us whether the packet
+-	# was received by it or not.
+-	tc qdisc add dev $host2_if ingress
+-	tc filter add dev $host2_if ingress protocol ip pref 1 handle 101 \
+-		flower ip_proto udp dst_mac $mac action drop
+-
+-	$MZ $host1_if -c 1 -p 64 -b $mac -A $src_ip -B $ip -t udp "dp=4096,sp=2048" -q
+-	sleep 1
+-
+-	tc -j -s filter show dev $host2_if ingress \
+-		| jq -e ".[] | select(.options.handle == 101) \
+-		| select(.options.actions[0].stats.packets == 1)" &> /dev/null
+-	if [[ $? -eq 0 ]]; then
+-		seen=1
+-	fi
+-
+-	tc filter del dev $host2_if ingress protocol ip pref 1 handle 101 flower
+-	tc qdisc del dev $host2_if ingress
+-
+-	return $seen
+-}
+-
+ v2reportleave_test()
+ {
+ 	RET=0
+diff --git a/tools/testing/selftests/net/forwarding/lib.sh b/tools/testing/selftests/net/forwarding/lib.sh
+index 927f9ba49e08..bb3ccc6d2165 100644
+--- a/tools/testing/selftests/net/forwarding/lib.sh
++++ b/tools/testing/selftests/net/forwarding/lib.sh
+@@ -1270,3 +1270,35 @@ tcpdump_show()
+ {
+ 	tcpdump -e -n -r $capfile 2>&1
+ }
++
++# return 0 if the packet wasn't seen on host2_if or 1 if it was
++mcast_packet_test()
++{
++	local mac=$1
++	local src_ip=$2
++	local ip=$3
++	local host1_if=$4
++	local host2_if=$5
++	local seen=0
++
++	# Add an ACL on `host2_if` which will tell us whether the packet
++	# was received by it or not.
++	tc qdisc add dev $host2_if ingress
++	tc filter add dev $host2_if ingress protocol ip pref 1 handle 101 \
++		flower ip_proto udp dst_mac $mac action drop
++
++	$MZ $host1_if -c 1 -p 64 -b $mac -A $src_ip -B $ip -t udp "dp=4096,sp=2048" -q
++	sleep 1
++
++	tc -j -s filter show dev $host2_if ingress \
++		| jq -e ".[] | select(.options.handle == 101) \
++		| select(.options.actions[0].stats.packets == 1)" &> /dev/null
++	if [[ $? -eq 0 ]]; then
++		seen=1
++	fi
++
++	tc filter del dev $host2_if ingress protocol ip pref 1 handle 101 flower
++	tc qdisc del dev $host2_if ingress
++
++	return $seen
++}
 -- 
 2.25.4
 
