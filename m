@@ -1,89 +1,66 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789AB2AB6C4
-	for <lists.bridge@lfdr.de>; Mon,  9 Nov 2020 12:26:52 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6742ACA1B
+	for <lists.bridge@lfdr.de>; Tue, 10 Nov 2020 02:11:37 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 2188520517;
-	Mon,  9 Nov 2020 11:26:51 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id AE3C686FEC;
+	Tue, 10 Nov 2020 01:11:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EMQJ8wCvhVXF; Mon,  9 Nov 2020 11:26:50 +0000 (UTC)
+	with ESMTP id ZecLY7GZde8r; Tue, 10 Nov 2020 01:11:34 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 5AB4E20515;
-	Mon,  9 Nov 2020 11:26:50 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 245B986FE2;
+	Tue, 10 Nov 2020 01:11:34 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 39BCFC1AD6;
-	Mon,  9 Nov 2020 11:26:50 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0AD1DC1AD8;
+	Tue, 10 Nov 2020 01:11:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E954DC016F
- for <bridge@lists.linux-foundation.org>; Mon,  9 Nov 2020 11:26:48 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D2952C016F
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Nov 2020 01:11:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id D7F9187044
- for <bridge@lists.linux-foundation.org>; Mon,  9 Nov 2020 11:26:48 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id BC78786FE2
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Nov 2020 01:11:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id rYwrftQXnp5Y for <bridge@lists.linux-foundation.org>;
- Mon,  9 Nov 2020 11:26:48 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from m42-4.mailgun.net (m42-4.mailgun.net [69.72.42.4])
- by hemlock.osuosl.org (Postfix) with ESMTPS id E9332861A2
- for <bridge@lists.linux-foundation.org>; Mon,  9 Nov 2020 11:26:43 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1604921207; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=LXllegkU9Hqrn8ABy4ZLKOXWg3z4jJFDK0NqabfEc9c=;
- b=GAeZEjkcQ/myVWtCFhJ5Zg6dYn7slYdV1gxRDT5tDw0vCnTORfyYS7qHUucGJIibXRCr8rrq
- P/pLLk+RsAXhGS4UH1+RowQ0MSQSYA1ljlYsI03gCzj+T//DSW3aAfziAvKOp0cPoYcFTqNE
- j8BaGyy6x9Kgs72EbVNI+BWNLO0=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyIzNTQ4NSIsICJicmlkZ2VAbGlzdHMubGludXgtZm91bmRhdGlvbi5vcmciLCAiYmU5ZTRhIl0=
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 5fa9274282aad55dcbcc22d6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Nov 2020 11:25:54
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id E3E65C433C6; Mon,  9 Nov 2020 11:25:53 +0000 (UTC)
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 8792BC433C8;
- Mon,  9 Nov 2020 11:25:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8792BC433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: Arnd Bergmann <arnd@kernel.org>
-References: <20201106221743.3271965-1-arnd@kernel.org>
- <20201107160612.2909063a@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <87tuu05c23.fsf@tynnyri.adurom.net>
- <CAK8P3a3y5WxsibmTzvhv76G+rQ1Zjo_tW0UkXku0VnZdQa-__A@mail.gmail.com>
-Date: Mon, 09 Nov 2020 13:25:48 +0200
-In-Reply-To: <CAK8P3a3y5WxsibmTzvhv76G+rQ1Zjo_tW0UkXku0VnZdQa-__A@mail.gmail.com>
- (Arnd Bergmann's message of "Sun, 8 Nov 2020 12:42:49 +0100")
-Message-ID: <87imaeg4ar.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+ with ESMTP id lUcHeCo-KQuf for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Nov 2020 01:11:31 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 5D58E86FCA
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Nov 2020 01:11:31 +0000 (UTC)
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
+ [163.114.132.5])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 517DA206D8;
+ Tue, 10 Nov 2020 01:11:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1604970690;
+ bh=VIZZlsx0jAouiq3t1QoP1KOVqGLlr6W8TTq9SFQmF3M=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=ZDdpsC4f8aqGBsvCk04lvbv0d6EX6OwnUZQ8Kn2DH/eYK5s0qyuLyqh/40P72GSHj
+ gO0NKtOZBSE+OKHVkTt1hcu6PVLpjT418GiUss1boJKJbeEDnWiUS4IxsIZOA1W48X
+ DFJ4X+AOo3vhe5aICWqcYtc919Zb/8mpCVdi7sGE=
+Date: Mon, 9 Nov 2020 17:11:29 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Message-ID: <20201109171129.6b156947@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20201106215049.1448185-1-horatiu.vultur@microchip.com>
+References: <20201106215049.1448185-1-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Cc: Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
- Networking <netdev@vger.kernel.org>, bridge@lists.linux-foundation.org,
- linux-wireless <linux-wireless@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>, linux-hams@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, Johannes Berg <johannes@sipsolutions.net>,
- Christoph Hellwig <hch@lst.de>, Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [Bridge] [RFC net-next 00/28] ndo_ioctl rework
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next] bridge: mrp: Use hlist_head instead
+ of list_head for mrp
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,30 +75,11 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Arnd Bergmann <arnd@kernel.org> writes:
+On Fri, 6 Nov 2020 22:50:49 +0100 Horatiu Vultur wrote:
+> Replace list_head with hlist_head for MRP list under the bridge.
+> There is no need for a circular list when a linear list will work.
+> This will also decrease the size of 'struct net_bridge'.
+> 
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-> On Sun, Nov 8, 2020 at 12:21 PM Kalle Valo <kvalo@codeaurora.org> wrote:
->> Jakub Kicinski <kuba@kernel.org> writes:
->>
->> So I don't know what to do. Should we try adding a warning like below? :)
->>
->>   "This ancient driver will be removed from the kernel in 2022, but if
->>    it still works send report to <...@...> to avoid the removal."
->>
->> How do other subsystems handle ancient drivers?
->
-> A good way to get everyone's attention would be to collect as many
-> drivers as possible that are almost certainly unused and move them to
-> drivers/staging/ with a warning like the above, as I just did for
-> drivers/wimax. That would make it to the usual news outlets
-> and lead to the remaining users (if any) noticing it so they can then
-> ask for the drivers to be moved back -- or decide it's time to let go
-> if the hardware can easily be replaced.
-
-I like that. I think we first should make a list of drivers which we
-suspect are either unused or not working anymore.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Applied, thanks!
