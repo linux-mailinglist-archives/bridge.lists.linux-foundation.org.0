@@ -2,72 +2,72 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496302C20AA
-	for <lists.bridge@lfdr.de>; Tue, 24 Nov 2020 10:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC232C20AD
+	for <lists.bridge@lfdr.de>; Tue, 24 Nov 2020 10:05:36 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 585D72107A;
-	Tue, 24 Nov 2020 09:05:29 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 15E3521080;
+	Tue, 24 Nov 2020 09:05:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id e3PdOT1jSTwS; Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
+	with ESMTP id MiyivQiuSJ20; Tue, 24 Nov 2020 09:05:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 6B2A8204D1;
+	by silver.osuosl.org (Postfix) with ESMTP id B5C65204E1;
 	Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4C689C0052;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A4538C0052;
 	Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AA03EC0052;
- Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 187FCC0052;
+ Sun, 22 Nov 2020 19:54:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 9CA93870C4;
- Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 0366E85F56;
+ Sun, 22 Nov 2020 19:54:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id yi1Rr1yyIPHu; Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
+ with ESMTP id SRXR5TD61o8V; Sun, 22 Nov 2020 19:54:00 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
  [96.44.175.130])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 3746887097;
- Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 2E0B385F33;
+ Sun, 22 Nov 2020 19:54:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by bedivere.hansenpartnership.com (Postfix) with ESMTP id 96EF41280181;
- Sun, 22 Nov 2020 11:12:34 -0800 (PST)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 5AE091280408;
+ Sun, 22 Nov 2020 11:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1606072354;
- bh=RkMkP78xnGMXpQYwW6B64FZnxQgTZZOXvlSf0xxLQvs=;
+ d=hansenpartnership.com; s=20151216; t=1606074839;
+ bh=VEGy54rcLCho40R+6JbprsRZooc9e7x1ylV8+ruCN0g=;
  h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=cqs+SSmhVi1ZEA6KYpGlCOCKLLv9H3tmiNoTpcFF7F+1vb1QgbekNgnLlgvfKOfrE
- OZFKROCwJ+4Dh9AKsWr2ZhTbG6lfWTbk5QBrrreOMOUbINEmr9+ncDNzytUg1VYukU
- VtKrfA4fWPJSjG94bNM6AxKG7W4waC4yzJNdPcng=
+ b=Xy60wiIzsyTeElUeeJd3QYsiHNZfzmGET/Nzo9eZo2OJxmb5EOyvszf5Q8Et12YN3
+ QzMj8C6lMBcV0iKMn2xQmIYhyRP6O8RGeJWdk6ZnR1Mz2fkvBJLWRT04tHjc221TnA
+ rtTRX0GCrDoOkJiVFq/y98T9XhefjbMkzX0sdCSc=
 Received: from bedivere.hansenpartnership.com ([127.0.0.1])
  by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
  port 10024)
- with ESMTP id T_J7YGNeXPBb; Sun, 22 Nov 2020 11:12:34 -0800 (PST)
+ with ESMTP id KaMwHtHCHbnw; Sun, 22 Nov 2020 11:53:59 -0800 (PST)
 Received: from jarvis.int.hansenpartnership.com (unknown
  [IPv6:2601:600:8280:66d1::527])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id D7CFF128010B;
- Sun, 22 Nov 2020 11:12:30 -0800 (PST)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id D0B171280404;
+ Sun, 22 Nov 2020 11:53:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1606072354;
- bh=RkMkP78xnGMXpQYwW6B64FZnxQgTZZOXvlSf0xxLQvs=;
+ d=hansenpartnership.com; s=20151216; t=1606074839;
+ bh=VEGy54rcLCho40R+6JbprsRZooc9e7x1ylV8+ruCN0g=;
  h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=cqs+SSmhVi1ZEA6KYpGlCOCKLLv9H3tmiNoTpcFF7F+1vb1QgbekNgnLlgvfKOfrE
- OZFKROCwJ+4Dh9AKsWr2ZhTbG6lfWTbk5QBrrreOMOUbINEmr9+ncDNzytUg1VYukU
- VtKrfA4fWPJSjG94bNM6AxKG7W4waC4yzJNdPcng=
-Message-ID: <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
+ b=Xy60wiIzsyTeElUeeJd3QYsiHNZfzmGET/Nzo9eZo2OJxmb5EOyvszf5Q8Et12YN3
+ QzMj8C6lMBcV0iKMn2xQmIYhyRP6O8RGeJWdk6ZnR1Mz2fkvBJLWRT04tHjc221TnA
+ rtTRX0GCrDoOkJiVFq/y98T9XhefjbMkzX0sdCSc=
+Message-ID: <dbd2cb703ed9eefa7dde9281ea26ab0f7acc8afe.camel@HansenPartnership.com>
 From: James Bottomley <James.Bottomley@HansenPartnership.com>
 To: Joe Perches <joe@perches.com>, Kees Cook <keescook@chromium.org>, Jakub
  Kicinski <kuba@kernel.org>
-Date: Sun, 22 Nov 2020 11:12:30 -0800
-In-Reply-To: <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
+Date: Sun, 22 Nov 2020 11:53:55 -0800
+In-Reply-To: <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
 References: <cover.1605896059.git.gustavoars@kernel.org>
  <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
  <202011201129.B13FDB3C@keescook>
@@ -75,6 +75,8 @@ References: <cover.1605896059.git.gustavoars@kernel.org>
  <202011220816.8B6591A@keescook>
  <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
  <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
+ <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
+ <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
@@ -133,16 +135,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, 2020-11-22 at 10:25 -0800, Joe Perches wrote:
-> On Sun, 2020-11-22 at 10:21 -0800, James Bottomley wrote:
-> > Please tell me our reward for all this effort isn't a single
-> > missing error print.
+On Sun, 2020-11-22 at 11:22 -0800, Joe Perches wrote:
+> On Sun, 2020-11-22 at 11:12 -0800, James Bottomley wrote:
+> > On Sun, 2020-11-22 at 10:25 -0800, Joe Perches wrote:
+> > > On Sun, 2020-11-22 at 10:21 -0800, James Bottomley wrote:
+> > > > Please tell me our reward for all this effort isn't a single
+> > > > missing error print.
+> > > 
+> > > There were quite literally dozens of logical defects found
+> > > by the fallthrough additions.  Very few were logging only.
+> > 
+> > So can you give us the best examples (or indeed all of them if
+> > someone is keeping score)?  hopefully this isn't a US election
+> > situation ...
 > 
-> There were quite literally dozens of logical defects found
-> by the fallthrough additions.  Very few were logging only.
+> Gustavo?  Are you running for congress now?
+> 
+> https://lwn.net/Articles/794944/
 
-So can you give us the best examples (or indeed all of them if someone
-is keeping score)?  hopefully this isn't a US election situation ...
+That's 21 reported fixes of which about 50% seem to produce no change
+in code behaviour at all, a quarter seem to have no user visible effect
+with the remaining quarter producing unexpected errors on obscure
+configuration parameters, which is why no-one really noticed them
+before.
 
 James
 
