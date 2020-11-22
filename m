@@ -1,77 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 058AD2C20A9
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496302C20AA
 	for <lists.bridge@lfdr.de>; Tue, 24 Nov 2020 10:05:32 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 98F4586F81;
-	Tue, 24 Nov 2020 09:05:27 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 585D72107A;
+	Tue, 24 Nov 2020 09:05:29 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 17bF1tE-d7Gy; Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
+	with ESMTP id e3PdOT1jSTwS; Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 179E187182;
+	by silver.osuosl.org (Postfix) with ESMTP id 6B2A8204D1;
 	Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DC40DC0052;
-	Tue, 24 Nov 2020 09:05:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4C689C0052;
+	Tue, 24 Nov 2020 09:05:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7E8F3C0052;
- Sun, 22 Nov 2020 18:22:07 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AA03EC0052;
+ Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 6831785CDB;
- Sun, 22 Nov 2020 18:22:07 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 9CA93870C4;
+ Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id iAe9DE+qjY8R; Sun, 22 Nov 2020 18:22:05 +0000 (UTC)
+ with ESMTP id yi1Rr1yyIPHu; Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
  [96.44.175.130])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 60B9785CE6;
- Sun, 22 Nov 2020 18:22:05 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 3746887097;
+ Sun, 22 Nov 2020 19:12:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by bedivere.hansenpartnership.com (Postfix) with ESMTP id 5BB5B128028F;
- Sun, 22 Nov 2020 10:22:04 -0800 (PST)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 96EF41280181;
+ Sun, 22 Nov 2020 11:12:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1606069324;
- bh=h3sTlT+FA6NHXH38/foFLBJi59858PUlbpLzv2N/tQY=;
+ d=hansenpartnership.com; s=20151216; t=1606072354;
+ bh=RkMkP78xnGMXpQYwW6B64FZnxQgTZZOXvlSf0xxLQvs=;
  h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=rW4pDHaLDXSFZXr6Cvxz8pUU95XYbgWiZrc9VupyznX2uzr45WZkkmPcoVv7UQLC7
- fsMPdBOfQk9ceeuIggpWHLoyVFttsPe9E/go/w8zBhamKaY37ALEH+1JPMFR7KYHwj
- pjW3T1Eqz9YAkW2FP12UvIfqAj7a03n4eq2U3CyI=
+ b=cqs+SSmhVi1ZEA6KYpGlCOCKLLv9H3tmiNoTpcFF7F+1vb1QgbekNgnLlgvfKOfrE
+ OZFKROCwJ+4Dh9AKsWr2ZhTbG6lfWTbk5QBrrreOMOUbINEmr9+ncDNzytUg1VYukU
+ VtKrfA4fWPJSjG94bNM6AxKG7W4waC4yzJNdPcng=
 Received: from bedivere.hansenpartnership.com ([127.0.0.1])
  by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
  port 10024)
- with ESMTP id nGXBdIQjsZJa; Sun, 22 Nov 2020 10:22:04 -0800 (PST)
+ with ESMTP id T_J7YGNeXPBb; Sun, 22 Nov 2020 11:12:34 -0800 (PST)
 Received: from jarvis.int.hansenpartnership.com (unknown
  [IPv6:2601:600:8280:66d1::527])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id DB46B1280287;
- Sun, 22 Nov 2020 10:22:00 -0800 (PST)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id D7CFF128010B;
+ Sun, 22 Nov 2020 11:12:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=hansenpartnership.com; s=20151216; t=1606069324;
- bh=h3sTlT+FA6NHXH38/foFLBJi59858PUlbpLzv2N/tQY=;
+ d=hansenpartnership.com; s=20151216; t=1606072354;
+ bh=RkMkP78xnGMXpQYwW6B64FZnxQgTZZOXvlSf0xxLQvs=;
  h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
- b=rW4pDHaLDXSFZXr6Cvxz8pUU95XYbgWiZrc9VupyznX2uzr45WZkkmPcoVv7UQLC7
- fsMPdBOfQk9ceeuIggpWHLoyVFttsPe9E/go/w8zBhamKaY37ALEH+1JPMFR7KYHwj
- pjW3T1Eqz9YAkW2FP12UvIfqAj7a03n4eq2U3CyI=
-Message-ID: <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ b=cqs+SSmhVi1ZEA6KYpGlCOCKLLv9H3tmiNoTpcFF7F+1vb1QgbekNgnLlgvfKOfrE
+ OZFKROCwJ+4Dh9AKsWr2ZhTbG6lfWTbk5QBrrreOMOUbINEmr9+ncDNzytUg1VYukU
+ VtKrfA4fWPJSjG94bNM6AxKG7W4waC4yzJNdPcng=
+Message-ID: <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
 From: James Bottomley <James.Bottomley@HansenPartnership.com>
-To: Kees Cook <keescook@chromium.org>, Jakub Kicinski <kuba@kernel.org>
-Date: Sun, 22 Nov 2020 10:21:59 -0800
-In-Reply-To: <202011220816.8B6591A@keescook>
+To: Joe Perches <joe@perches.com>, Kees Cook <keescook@chromium.org>, Jakub
+ Kicinski <kuba@kernel.org>
+Date: Sun, 22 Nov 2020 11:12:30 -0800
+In-Reply-To: <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
 References: <cover.1605896059.git.gustavoars@kernel.org>
  <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
  <202011201129.B13FDB3C@keescook>
  <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
  <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
@@ -113,8 +116,8 @@ Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
  linux-renesas-soc@vger.kernel.org, linux-sctp@vger.kernel.org,
  linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
  linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
- Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
- target-devel@vger.kernel.org, linux-hardening@vger.kernel.org
+ linux-integrity@vger.kernel.org, target-devel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
 Subject: Re: [Bridge] [PATCH 000/141] Fix fall-through warnings for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -130,61 +133,16 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, 2020-11-22 at 08:17 -0800, Kees Cook wrote:
-> On Fri, Nov 20, 2020 at 11:51:42AM -0800, Jakub Kicinski wrote:
-> > On Fri, 20 Nov 2020 11:30:40 -0800 Kees Cook wrote:
-> > > On Fri, Nov 20, 2020 at 10:53:44AM -0800, Jakub Kicinski wrote:
-> > > > On Fri, 20 Nov 2020 12:21:39 -0600 Gustavo A. R. Silva wrote:  
-> > > > > This series aims to fix almost all remaining fall-through
-> > > > > warnings in order to enable -Wimplicit-fallthrough for Clang.
-> > > > > 
-> > > > > In preparation to enable -Wimplicit-fallthrough for Clang,
-> > > > > explicitly add multiple break/goto/return/fallthrough
-> > > > > statements instead of just letting the code fall through to
-> > > > > the next case.
-> > > > > 
-> > > > > Notice that in order to enable -Wimplicit-fallthrough for
-> > > > > Clang, this change[1] is meant to be reverted at some point.
-> > > > > So, this patch helps to move in that direction.
-> > > > > 
-> > > > > Something important to mention is that there is currently a
-> > > > > discrepancy between GCC and Clang when dealing with switch
-> > > > > fall-through to empty case statements or to cases that only
-> > > > > contain a break/continue/return statement[2][3][4].  
-> > > > 
-> > > > Are we sure we want to make this change? Was it discussed
-> > > > before?
-> > > > 
-> > > > Are there any bugs Clangs puritanical definition of fallthrough
-> > > > helped find?
-> > > > 
-> > > > IMVHO compiler warnings are supposed to warn about issues that
-> > > > could be bugs. Falling through to default: break; can hardly be
-> > > > a bug?!  
-> > > 
-> > > It's certainly a place where the intent is not always clear. I
-> > > think this makes all the cases unambiguous, and doesn't impact
-> > > the machine code, since the compiler will happily optimize away
-> > > any behavioral redundancy.
-> > 
-> > If none of the 140 patches here fix a real bug, and there is no
-> > change to machine code then it sounds to me like a W=2 kind of a
-> > warning.
+On Sun, 2020-11-22 at 10:25 -0800, Joe Perches wrote:
+> On Sun, 2020-11-22 at 10:21 -0800, James Bottomley wrote:
+> > Please tell me our reward for all this effort isn't a single
+> > missing error print.
 > 
-> FWIW, this series has found at least one bug so far:
-> https://lore.kernel.org/lkml/CAFCwf11izHF=g1mGry1fE5kvFFFrxzhPSM6qKAO8gxSp=Kr_CQ@mail.gmail.com/
+> There were quite literally dozens of logical defects found
+> by the fallthrough additions.  Very few were logging only.
 
-
-Well, it's a problem in an error leg, sure, but it's not a really
-compelling reason for a 141 patch series, is it?  All that fixing this
-error will do is get the driver to print "oh dear there's a problem"
-under four more conditions than it previously did.
-
-We've been at this for three years now with nearly a thousand patches,
-firstly marking all the fall throughs with /* fall through */ and later
-changing it to fallthrough.  At some point we do have to ask if the
-effort is commensurate with the protection afforded.  Please tell me
-our reward for all this effort isn't a single missing error print.
+So can you give us the best examples (or indeed all of them if someone
+is keeping score)?  hopefully this isn't a US election situation ...
 
 James
 
