@@ -1,149 +1,122 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BE82C0D32
-	for <lists.bridge@lfdr.de>; Mon, 23 Nov 2020 15:26:09 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82332C1060
+	for <lists.bridge@lfdr.de>; Mon, 23 Nov 2020 17:38:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 16EF885DE1;
-	Mon, 23 Nov 2020 14:26:08 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id A5A4D86F88;
+	Mon, 23 Nov 2020 16:38:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id twVIWM9eME_X; Mon, 23 Nov 2020 14:26:07 +0000 (UTC)
+	with ESMTP id HQvvqTn7ffq6; Mon, 23 Nov 2020 16:38:26 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 64CC685DDB;
-	Mon, 23 Nov 2020 14:26:07 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 52A64864CF;
+	Mon, 23 Nov 2020 16:38:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 401BCC163C;
-	Mon, 23 Nov 2020 14:26:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2D4F3C0052;
+	Mon, 23 Nov 2020 16:38:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 05618C0052
- for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 14:26:06 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6BABAC0052;
+ Mon, 23 Nov 2020 16:38:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 002978664B
- for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 14:26:05 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 6662D854AF;
+ Mon, 23 Nov 2020 16:38:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id yECKOgWw12dc for <bridge@lists.linux-foundation.org>;
- Mon, 23 Nov 2020 14:26:05 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 3F765865D4
- for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 14:26:05 +0000 (UTC)
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5fbbc67f0000>; Mon, 23 Nov 2020 06:26:07 -0800
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Nov
- 2020 14:26:04 +0000
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.43) by
- HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server
- (TLS) id
- 15.0.1473.3 via Frontend Transport; Mon, 23 Nov 2020 14:26:04 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S/WKIejlMVzn6qRT54ZzZhRFdPmX8JaJr0wydAgEi8MbRUts232ngrOyqEi2z+9LTqWC66/Y6Tsbl9O+AvGkghtxtm9s4Zugzp5k4hHGQlfwC8dAArPzaziq6lo0eOYRv1yy7oF86u/Pa2UYjou+OVYzsIYkZi2w+nWsrbv3WLUyxhqoUhuaNPM2l0W6t4cEv/lv24Sa6UGS/0trLwXliWA6NM2pU/nSzZDV0fU9lgonHX3p8q+wALHvb+P9RvyqlE/JPlOdqKeNlTChJHc87xEo0ZdWy5+4/6bDbNNfU+8YnH76p9kcZJBQ682T3010SaTKMxirL1ZO+/ohLyDxrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t9g/+ANM13Dd7AFIX9QFifJ0Zzs7LGDlOOCaCxD+FV0=;
- b=agcJVg9HYvQuuU/XOUDejSKChySrJiJgVTzDjzjtuS32Jz8jsvqBAU4x5BGwP+dUJXV1LzLm0xqC+H4HDY+g83HS/oferuINcPGp59eTIYY6YU3eSi/F0yA8yp6E4hH6iQKTSK11MgxCFXFGjYMyzJHopGCUuGqHunAfqs/gw4S+sTQwgm/A02FRJCmnYtGY/yT8z3q6Jf8wwoTgCDQhwCG7B6onEmLs8o2SoDcZHH/OVi/XzpzzCzQe9IzPziR41NIn2nL8ACu6tXOVOrVDZ0KbsvGaQW1E4XunlfxfMMqobxkIY9skTAyLeYBUQJ2O+D+xJ8F2SM3IeYogIPDgGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
-Received: from DM5PR12MB1356.namprd12.prod.outlook.com (2603:10b6:3:74::18) by
- DM6PR12MB2780.namprd12.prod.outlook.com (2603:10b6:5:4e::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.24; Mon, 23 Nov 2020 14:26:02 +0000
-Received: from DM5PR12MB1356.namprd12.prod.outlook.com
- ([fe80::3cc2:a2d6:2919:6a5a]) by DM5PR12MB1356.namprd12.prod.outlook.com
- ([fe80::3cc2:a2d6:2919:6a5a%6]) with mapi id 15.20.3589.028; Mon, 23 Nov 2020
- 14:26:02 +0000
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-References: <20201123111401.136952-1-horatiu.vultur@microchip.com>
- <5ffa6f9f-d1f3-adc7-ddb8-e8107ea78da5@nvidia.com>
- <20201123123132.uxvec6uwuegioc25@soft-dev3.localdomain>
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <13cef7c2-cacc-2c24-c0d5-e462b0e3b4df@nvidia.com>
-Date: Mon, 23 Nov 2020 16:25:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
-In-Reply-To: <20201123123132.uxvec6uwuegioc25@soft-dev3.localdomain>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [213.179.129.39]
-X-ClientProxiedBy: ZR0P278CA0097.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:23::12) To DM5PR12MB1356.namprd12.prod.outlook.com
- (2603:10b6:3:74::18)
+ with ESMTP id PpkdNURUdH2g; Mon, 23 Nov 2020 16:38:23 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from smtprelay.hostedemail.com (smtprelay0178.hostedemail.com
+ [216.40.44.178])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 1779E8544C;
+ Mon, 23 Nov 2020 16:38:23 +0000 (UTC)
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
+ [10.5.19.251])
+ by smtpgrave03.hostedemail.com (Postfix) with ESMTP id 23A811801EE81;
+ Mon, 23 Nov 2020 16:32:56 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay07.hostedemail.com (Postfix) with ESMTP id A722B181D3025;
+ Mon, 23 Nov 2020 16:32:53 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
+ RULES_HIT:41:355:379:599:960:967:973:988:989:1260:1263:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1535:1541:1593:1594:1711:1730:1747:1777:1792:2393:2525:2565:2682:2685:2740:2828:2859:2912:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3353:3622:3653:3865:3866:3867:3868:3870:3871:3872:3873:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:5007:6119:6742:6743:7903:9025:9388:10004:10400:10848:10946:11026:11232:11658:11914:12043:12049:12297:12438:12663:12740:12760:12895:13069:13161:13172:13229:13311:13357:13439:13972:14096:14097:14181:14659:14721:14764:21080:21451:21627:21781:21788:21809:21990:30034:30041:30054:30060:30091,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:1, LUA_SUMMARY:none
+X-HE-Tag: can43_5c1502d27366
+X-Filterd-Recvd-Size: 5503
+Received: from XPS-9350.home (unknown [47.151.128.180])
+ (Authenticated sender: joe@perches.com)
+ by omf03.hostedemail.com (Postfix) with ESMTPA;
+ Mon, 23 Nov 2020 16:32:42 +0000 (UTC)
+Message-ID: <32dc7423124b51da4e144e931bf099a368ab50a8.camel@perches.com>
+From: Joe Perches <joe@perches.com>
+To: James Bottomley <James.Bottomley@HansenPartnership.com>, Miguel Ojeda
+ <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 23 Nov 2020 08:32:41 -0800
+In-Reply-To: <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
+ <1c7d7fde126bc0acf825766de64bf2f9b888f216.camel@HansenPartnership.com>
+ <CANiq72m22Jb5_+62NnwX8xds2iUdWDMAqD8PZw9cuxdHd95W0A@mail.gmail.com>
+ <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.21.241.83] (213.179.129.39) by
- ZR0P278CA0097.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:23::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Mon, 23 Nov 2020 14:25:59 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3813e70c-1516-4d61-e7d6-08d88fbbb450
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2780:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2780596C3CC698F3B72BB49ADFFC0@DM6PR12MB2780.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s8jkgl4VllEkMsSNjj7PPoOq3h+z2lHm5B8HDbwmbh7eomFaDzKj1bGXqwGDkpkRFr4OjmsWSgnHVJoxiZeggKjmDrUGQbNH0QTFebMHaH/WfBnIfduyiQoqtSzPs2mAywtv92h/4FTIqqhu5L0Jnd0HiOEOadWXRkClV1k3fQPanB4KujYyBRhnZhu8KQBhhiRoU4o/dEEZrXS0YlXWCJN0K9c5L2tgYntE3Za9bRiz54hGePfMIR/dfWZxYDJpyT9hUi2Lzo67fnLBHaNuvrUqLn6/2l/yoivm1292Wec+ExilDQECX3SrIEQ2Dv3+rrhVRajw7zv7vYgJQmo0Rlb5IJX2CN3gVKHUCxO2KVzMwQ6vJIk+sUMFBD5YdEbt
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1356.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(396003)(39860400002)(346002)(136003)(376002)(2906002)(36756003)(186003)(4326008)(8936002)(53546011)(6486002)(16526019)(8676002)(316002)(26005)(2616005)(16576012)(83380400001)(956004)(478600001)(66946007)(66556008)(31686004)(66476007)(86362001)(6916009)(31696002)(6666004)(5660300002)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: mkG2EisYR0Iq9A1LywM9ov2xoXuAANw140exRXeThMqBuT/PFMw5rC0aPRtZGcHIrhlcGh3pYKqjUq4BWbsY8FBdrK9pP4w6F+zQczI2W7S80e/EreyAhiLZ1wpMJP6Aik+iNK6vj5vRtYdyTMXS4iGAzmYmXPbgcwV2r/TLLsPhCERaQaNaPV8TtG12wKpGBovs/MmWEqOJnngefNrA8+QRUEn/7Y9qNGVlhtmAqD9ifSvJzthw+WOUFQLSpZL5IpH5ptZDMZj9UL7gFXgL6He7npGBALIkgJcoOTV6wPwdUv0Ds5leZoWvuvZlw+gn1efeeBSbkTmb635BhzGLG/wEiHofw/+Rmr4El2uRXI3FiDQIrKgTenmwZpaS3uRZwO3Tg6XAx9aQN6+f6bv8bWb3Hs5LpCmEGBhQ6eVhezDLro5HITxB108302Ekpt7hk1zQqb6PoRMXb9BIu0PNoapza+I58X5GAPr18r7nuj19LdILaPZ5o7hoY2jrECzp1xRBL1D5gX4V9JIXDQSOIWGhKrcAoWiDmvjxIBjmhvoHyaEmjDgFHHiFh3OWZTVea/inXPNSBMdEfZqCY+SszSGj4RdZDuOKQC+KEoOykqRiVpXy02r5+LUxAKujVmsI2hfQ+uRC0jUdZGqI5QOPEA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3813e70c-1516-4d61-e7d6-08d88fbbb450
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1356.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2020 14:26:02.4270 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jehMCAmls/u7QPXXoTQU80mTwxZ9GV9W+16Av4kzfnRVJqFlB4w/iC/SyQ81bYSQxVMS7SLQhjFM7uzzBGf0sw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2780
-X-OriginatorOrg: Nvidia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1606141567; bh=t9g/+ANM13Dd7AFIX9QFifJ0Zzs7LGDlOOCaCxD+FV0=;
- h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
- Authentication-Results:Subject:To:CC:References:From:Message-ID:
- Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
- Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
- MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
- X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
- X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
- X-Microsoft-Antispam-PRVS:X-MS-Oob-TLC-OOBClassifiers:
- X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
- X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
- X-MS-Exchange-AntiSpam-MessageData:
- X-MS-Exchange-CrossTenant-Network-Message-Id:
- X-MS-Exchange-CrossTenant-AuthSource:
- X-MS-Exchange-CrossTenant-AuthAs:
- X-MS-Exchange-CrossTenant-OriginalArrivalTime:
- X-MS-Exchange-CrossTenant-FromEntityHeader:
- X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
- X-MS-Exchange-CrossTenant-UserPrincipalName:
- X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
- b=qQjRRjhlQrPEVOY/mUe281ZY7gCs/AXrR1dQ8dm3D8r9EZcUvJios4qoImVIVp79e
- Vl/9BywJKUd57Ug1BfGyVuFxIErXg+RUO/WIuAsnEUuneEwHOg310MqxSpp2VNYZ5h
- sbqeiUv4CJw4FYRMtHAoVbT6E03MgoyFdltTwAFi9ySzs2XYTuZvkCD3IpWVRuzgoD
- TQ305FTCh8Sn//ndkTogQzdNEG3ODpIGRQs5+TR+axdc4x1LGPMQimOP5Odum9ARnp
- TxSL+zFNpuT6asiKEgE3iJk6pj3+NraslDAfbk0CTmLb7oS7QWgAuismJtaD7ACamB
- hf9PFQqA0U33g==
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, roopa@nvidia.com, kuba@kernel.org,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next] bridge: mrp: Implement LC mode for MRP
+Content-Transfer-Encoding: 7bit
+Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
+ dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
+ samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
+ linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
+ GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
+ Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-renesas-soc@vger.kernel.org, linux-sctp@vger.kernel.org,
+ linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ patches@opensource.cirrus.com, linux-integrity@vger.kernel.org,
+ target-devel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [Bridge] [PATCH 000/141] Fix fall-through warnings for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -158,85 +131,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 23/11/2020 14:31, Horatiu Vultur wrote:
-> The 11/23/2020 14:13, Nikolay Aleksandrov wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 23/11/2020 13:14, Horatiu Vultur wrote:
->>> Extend MRP to support LC mode(link check) for the interconnect port.
->>> This applies only to the interconnect ring.
->>>
->>> Opposite to RC mode(ring check) the LC mode is using CFM frames to
->>> detect when the link goes up or down and based on that the userspace
->>> will need to react.
->>> One advantage of the LC mode over RC mode is that there will be fewer
->>> frames in the normal rings. Because RC mode generates InTest on all
->>> ports while LC mode sends CFM frame only on the interconnect port.
->>>
->>> All 4 nodes part of the interconnect ring needs to have the same mode.
->>> And it is not possible to have running LC and RC mode at the same time
->>> on a node.
->>>
->>> Whenever the MIM starts it needs to detect the status of the other 3
->>> nodes in the interconnect ring so it would send a frame called
->>> InLinkStatus, on which the clients needs to reply with their link
->>> status.
->>>
->>> This patch adds the frame header for the frame InLinkStatus and
->>> extends existing rules on how to forward this frame.
->>>
->>> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
->>> ---
->>>  include/uapi/linux/mrp_bridge.h |  7 +++++++
->>>  net/bridge/br_mrp.c             | 18 +++++++++++++++---
->>>  2 files changed, 22 insertions(+), 3 deletions(-)
->>>
->>
->> Hi Horatiu,
->> The patch looks good overall, just one question below.
+On Mon, 2020-11-23 at 07:58 -0800, James Bottomley wrote:
+> We're also complaining about the inability to recruit maintainers:
 > 
-> Hi Nik,
+> https://www.theregister.com/2020/06/30/hard_to_find_linux_maintainers_says_torvalds/
 > 
-> Thanks for taking time to review the patch.
+> And burn out:
 > 
->>
->>> diff --git a/include/uapi/linux/mrp_bridge.h b/include/uapi/linux/mrp_bridge.h
->>> index 6aeb13ef0b1e..450f6941a5a1 100644
->>> --- a/include/uapi/linux/mrp_bridge.h
->>> +++ b/include/uapi/linux/mrp_bridge.h
->>> @@ -61,6 +61,7 @@ enum br_mrp_tlv_header_type {
->>>       BR_MRP_TLV_HEADER_IN_TOPO = 0x7,
->>>       BR_MRP_TLV_HEADER_IN_LINK_DOWN = 0x8,
->>>       BR_MRP_TLV_HEADER_IN_LINK_UP = 0x9,
->>> +     BR_MRP_TLV_HEADER_IN_LINK_STATUS = 0xa,
->>>       BR_MRP_TLV_HEADER_OPTION = 0x7f,
->>>  };
->>>
->>> @@ -156,4 +157,10 @@ struct br_mrp_in_link_hdr {
->>>       __be16 interval;
->>>  };
->>>
->>> +struct br_mrp_in_link_status_hdr {
->>> +     __u8 sa[ETH_ALEN];
->>> +     __be16 port_role;
->>> +     __be16 id;
->>> +};
->>> +
->>
->> I didn't see this struct used anywhere, am I missing anything?
-> 
-> Yes, you are right, the struct is not used any. But I put it there as I
-> put the other frame types for MRP.
-> 
+> http://antirez.com/news/129
 
-I see, we don't usually add unused code. The patch is fine as-is and since
-this is already the case for other MRP parts I'm not strictly against it, so:
+https://www.wired.com/story/open-source-coders-few-tired/
 
-Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+> What I'm actually trying to articulate is a way of measuring value of
+> the patch vs cost ... it has nothing really to do with who foots the
+> actual bill.
 
-If Jakub decides to adhere to that rule you can keep my acked-by and just remove
-the struct for v2.
+It's unclear how to measure value in consistency.
 
-Thanks,
- Nik
+But one way that costs can be reduced is by automation and _not_
+involving maintainers when the patch itself is provably correct.
+
+> One thesis I'm actually starting to formulate is that this continual
+> devaluing of maintainers is why we have so much difficulty keeping and
+> recruiting them.
+
+The linux kernel has something like 1500 different maintainers listed
+in the MAINTAINERS file.  That's not a trivial number.
+
+$ git grep '^M:' MAINTAINERS | sort | uniq -c | wc -l
+1543
+$ git grep '^M:' MAINTAINERS| cut -f1 -d'<' | sort | uniq -c | wc -l
+1446
+
+I think the question you are asking is about trust and how it
+effects development.
+
+And back to that wired story, the actual number of what you might
+be considering to be maintainers is likely less than 10% of the
+listed numbers above.
+
 
