@@ -1,115 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id B23402BC964
-	for <lists.bridge@lfdr.de>; Sun, 22 Nov 2020 21:53:47 +0100 (CET)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E13A2C03DF
+	for <lists.bridge@lfdr.de>; Mon, 23 Nov 2020 12:14:42 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id E79A585F89;
-	Sun, 22 Nov 2020 20:53:45 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 1263320009;
+	Mon, 23 Nov 2020 11:14:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id OyCAuDWRHt2G; Sun, 22 Nov 2020 20:53:45 +0000 (UTC)
+	with ESMTP id k+XiENCcIkub; Mon, 23 Nov 2020 11:14:38 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 5FB9585F31;
-	Sun, 22 Nov 2020 20:53:45 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 9C88220467;
+	Mon, 23 Nov 2020 11:14:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3B993C1D9F;
-	Sun, 22 Nov 2020 20:53:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7A988C1DA2;
+	Mon, 23 Nov 2020 11:14:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 617E5C0052;
- Sun, 22 Nov 2020 20:53:44 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 92CFBC0052
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 11:14:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 52DFC843BB;
- Sun, 22 Nov 2020 20:53:44 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 7720981C39
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 11:14:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id GskoWi9KbF7U; Sun, 22 Nov 2020 20:53:41 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from smtprelay.hostedemail.com (smtprelay0242.hostedemail.com
- [216.40.44.242])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 589DD84363;
- Sun, 22 Nov 2020 20:53:41 +0000 (UTC)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
- [10.5.19.251])
- by smtpgrave05.hostedemail.com (Postfix) with ESMTP id D2E4B1801AB6F;
- Sun, 22 Nov 2020 18:25:51 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay06.hostedemail.com (Postfix) with ESMTP id 883C21800AEAD;
- Sun, 22 Nov 2020 18:25:49 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1537:1561:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2828:3138:3139:3140:3141:3142:3622:3865:3866:4321:5007:6742:6743:10004:10400:10848:11232:11658:11914:12297:12740:12760:12895:13019:13069:13161:13229:13311:13357:13439:14659:21080:21450:21627:30054:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: stamp54_4305a342735e
-X-Filterd-Recvd-Size: 3841
-Received: from XPS-9350.home (unknown [47.151.128.180])
- (Authenticated sender: joe@perches.com)
- by omf09.hostedemail.com (Postfix) with ESMTPA;
- Sun, 22 Nov 2020 18:25:38 +0000 (UTC)
-Message-ID: <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: James Bottomley <James.Bottomley@HansenPartnership.com>, Kees Cook
- <keescook@chromium.org>, Jakub Kicinski <kuba@kernel.org>
-Date: Sun, 22 Nov 2020 10:25:37 -0800
-In-Reply-To: <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011220816.8B6591A@keescook>
- <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.38.1-1 
+ with ESMTP id l8MGPMKp1wjR for <bridge@lists.linux-foundation.org>;
+ Mon, 23 Nov 2020 11:14:34 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from esa6.microchip.iphmx.com (esa6.microchip.iphmx.com
+ [216.71.154.253])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 15D92811F3
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 11:14:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1606130073; x=1637666073;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=knfos+BqzH4dlo+fODl7yedIW3k3ViBBu3PBL+ng7bw=;
+ b=icvnS7hDhYJpHyv068QBwcQlFzNvZlQy8TLtVKiyfeV2de0i3lhIk0Bx
+ j3kL9UM8Q5rQjVtR0eQJR/xwqHxMzOtl92kLcRPyj/qoK7+n8riEHjY5f
+ 90jDVmF+Mm7eLEz8LVlYBxXCp3lE8G5fMgmoGJ7Q+cHtD/OhfNBIxmGiQ
+ GQ2LXgTVvZw/E+vAIW4peFtfD96ZdW2fPJDfRSfMxqjFAqG/yofvw8QaP
+ lQdh36iaSKSo+R2xc/NBAPYvxjbYq7ZlHeG3oRf1uII1tux65uQc382yW
+ 3Xr7FHDQF7Yt+mhEhY1XVD3CBdzUI6TsE3m9/ntm+rZTZNrZbHXo1ZN+7 w==;
+IronPort-SDR: /eekxxeuBa1IVo708k88MVQpPGekvM5vyIxrHB/2lJDG7EfQO3s0J2iEAItQ4wo/j30G4I1D0k
+ 2e7ojic+9xaY/Ou0wQufhDYf+rKec+4AisKMhDDq9hCT5bLGT5ibdB5MCIK9ATXsUJBENZ1iGl
+ pl5i1elFijIHxFGIKxWl1yX3W6I4Y5xAuUBMvVQuIWnRUhf8JWMzYRYrmmLscs8LZZO43OW7DL
+ +R8yzlIVorszjHvUNFJ/P2+3Xj59iO50ESoXE6lduo+R36ResBSXW4iVoSo6C0hiPlviFY4wun
+ pl4=
+X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; d="scan'208";a="34683043"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 23 Nov 2020 04:14:32 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 23 Nov 2020 04:14:32 -0700
+Received: from soft-dev3.localdomain (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 23 Nov 2020 04:14:30 -0700
+To: <nikolay@nvidia.com>, <roopa@nvidia.com>, <davem@davemloft.net>,
+ <kuba@kernel.org>, <linux-kernel@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>, <netdev@vger.kernel.org>
+Date: Mon, 23 Nov 2020 12:14:01 +0100
+Message-ID: <20201123111401.136952-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
- dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
- GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
- samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
- linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
- usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
- oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
- linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
- linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
- virtualization@lists.linux-foundation.org,
- linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
- x86@kernel.org, linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
- linux-mm@kvack.org, netdev@vger.kernel.org,
- linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-renesas-soc@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
- linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
- linux-integrity@vger.kernel.org, target-devel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: Re: [Bridge] [PATCH 000/141] Fix fall-through warnings for Clang
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net-next] bridge: mrp: Implement LC mode for MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -121,15 +86,106 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, 2020-11-22 at 10:21 -0800, James Bottomley wrote:
-> Please tell me
-> our reward for all this effort isn't a single missing error print.
+Extend MRP to support LC mode(link check) for the interconnect port.
+This applies only to the interconnect ring.
 
-There were quite literally dozens of logical defects found
-by the fallthrough additions.  Very few were logging only.
+Opposite to RC mode(ring check) the LC mode is using CFM frames to
+detect when the link goes up or down and based on that the userspace
+will need to react.
+One advantage of the LC mode over RC mode is that there will be fewer
+frames in the normal rings. Because RC mode generates InTest on all
+ports while LC mode sends CFM frame only on the interconnect port.
 
+All 4 nodes part of the interconnect ring needs to have the same mode.
+And it is not possible to have running LC and RC mode at the same time
+on a node.
 
+Whenever the MIM starts it needs to detect the status of the other 3
+nodes in the interconnect ring so it would send a frame called
+InLinkStatus, on which the clients needs to reply with their link
+status.
+
+This patch adds the frame header for the frame InLinkStatus and
+extends existing rules on how to forward this frame.
+
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+---
+ include/uapi/linux/mrp_bridge.h |  7 +++++++
+ net/bridge/br_mrp.c             | 18 +++++++++++++++---
+ 2 files changed, 22 insertions(+), 3 deletions(-)
+
+diff --git a/include/uapi/linux/mrp_bridge.h b/include/uapi/linux/mrp_bridge.h
+index 6aeb13ef0b1e..450f6941a5a1 100644
+--- a/include/uapi/linux/mrp_bridge.h
++++ b/include/uapi/linux/mrp_bridge.h
+@@ -61,6 +61,7 @@ enum br_mrp_tlv_header_type {
+ 	BR_MRP_TLV_HEADER_IN_TOPO = 0x7,
+ 	BR_MRP_TLV_HEADER_IN_LINK_DOWN = 0x8,
+ 	BR_MRP_TLV_HEADER_IN_LINK_UP = 0x9,
++	BR_MRP_TLV_HEADER_IN_LINK_STATUS = 0xa,
+ 	BR_MRP_TLV_HEADER_OPTION = 0x7f,
+ };
+ 
+@@ -156,4 +157,10 @@ struct br_mrp_in_link_hdr {
+ 	__be16 interval;
+ };
+ 
++struct br_mrp_in_link_status_hdr {
++	__u8 sa[ETH_ALEN];
++	__be16 port_role;
++	__be16 id;
++};
++
+ #endif
+diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
+index bb12fbf9aaf2..cec2c4e4561d 100644
+--- a/net/bridge/br_mrp.c
++++ b/net/bridge/br_mrp.c
+@@ -858,7 +858,8 @@ static bool br_mrp_in_frame(struct sk_buff *skb)
+ 	if (hdr->type == BR_MRP_TLV_HEADER_IN_TEST ||
+ 	    hdr->type == BR_MRP_TLV_HEADER_IN_TOPO ||
+ 	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_DOWN ||
+-	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_UP)
++	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_UP ||
++	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_STATUS)
+ 		return true;
+ 
+ 	return false;
+@@ -1126,9 +1127,9 @@ static int br_mrp_rcv(struct net_bridge_port *p,
+ 						goto no_forward;
+ 				}
+ 			} else {
+-				/* MIM should forward IntLinkChange and
++				/* MIM should forward IntLinkChange/Status and
+ 				 * IntTopoChange between ring ports but MIM
+-				 * should not forward IntLinkChange and
++				 * should not forward IntLinkChange/Status and
+ 				 * IntTopoChange if the frame was received at
+ 				 * the interconnect port
+ 				 */
+@@ -1155,6 +1156,17 @@ static int br_mrp_rcv(struct net_bridge_port *p,
+ 			     in_type == BR_MRP_TLV_HEADER_IN_LINK_DOWN))
+ 				goto forward;
+ 
++			/* MIC should forward IntLinkStatus frames only to
++			 * interconnect port if it was received on a ring port.
++			 * If it is received on interconnect port then, it
++			 * should be forward on both ring ports
++			 */
++			if (br_mrp_is_ring_port(p_port, s_port, p) &&
++			    in_type == BR_MRP_TLV_HEADER_IN_LINK_STATUS) {
++				p_dst = NULL;
++				s_dst = NULL;
++			}
++
+ 			/* Should forward the InTopo frames only between the
+ 			 * ring ports
+ 			 */
+-- 
+2.27.0
 
