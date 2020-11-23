@@ -2,143 +2,80 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE692C053F
-	for <lists.bridge@lfdr.de>; Mon, 23 Nov 2020 13:13:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CD22C05C5
+	for <lists.bridge@lfdr.de>; Mon, 23 Nov 2020 13:31:45 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 5A574204A6;
-	Mon, 23 Nov 2020 12:13:23 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 918DB204E0;
+	Mon, 23 Nov 2020 12:31:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rSRhQQNxdYE1; Mon, 23 Nov 2020 12:13:22 +0000 (UTC)
+	with ESMTP id ItUqWjao7Bb3; Mon, 23 Nov 2020 12:31:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id CF5C4203C9;
-	Mon, 23 Nov 2020 12:13:21 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 7F96F204BE;
+	Mon, 23 Nov 2020 12:31:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A38BCC0052;
-	Mon, 23 Nov 2020 12:13:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 35237C1DA2;
+	Mon, 23 Nov 2020 12:31:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D6E0AC0052
- for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 12:13:19 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 42FA3C0052
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 12:31:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id C4FBF86742
- for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 12:13:19 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 2D7A286F8D
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 12:31:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uswhWduvJyH9 for <bridge@lists.linux-foundation.org>;
- Mon, 23 Nov 2020 12:13:19 +0000 (UTC)
+ with ESMTP id 37uZ4DVxfI-c for <bridge@lists.linux-foundation.org>;
+ Mon, 23 Nov 2020 12:31:34 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 232C98672F
- for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 12:13:18 +0000 (UTC)
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5fbba7610001>; Mon, 23 Nov 2020 04:13:21 -0800
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Nov
- 2020 12:13:18 +0000
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
- by HQMAIL111.nvidia.com (172.20.187.18) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3 via Frontend Transport; Mon, 23 Nov 2020 12:13:18 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iR7qCahJrzN78ALzjLkfRAQBFhfunIdORVUGPjJw1C5OytJH6elSrj+cS9r4MQftljVA7nLsfByYmjYcseJqunjmiBJbPM6Hg8qiDYL0+syhNMnysSyT/DA50IQGf/BYoEi0YbPcQtF5Sa2uvJYNKk1PuuDPTpcx4gEqEL/fJJoxfBWRi3BvidrH50Cb+/FERWH7iEsWtUQox7IQbcqczROKjUF41PGubyr14roDwLv/BJrIhm+MVQ5QIPElJW29Y4Ee+rqgNGdCkbACK6otZRfvjTUPADUecnXr3ZnPy26X1QByFhCBgqVmHFx8EvRPjZHQ9uF6zycF5USiBIR3ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=assKlTHGSrMuc15JBKOkXkeURugvWW/FhSKlrr55HI0=;
- b=czRFiKhw0ZRtZ5PrbOYCgst/3foAY56LEvr3SDSJRqNT3Qx2+S7IFUP7mMN95B1DDnF7NuNbVWeyjG8y0ARBpDSFhNOsLXERADTcXslnRv/JWXesELkM159ZA1nx2hBqPZp/WxIB7C7UrydQC1exhaPZJI4cqEnWQBPMHZY6RNRWUMXsXviZlQsjpKi3f/nGd45BT5JLb27v6n+mlghjzNoXn0hj7y2LbHXaVhY81VXgPHGI5JCGy14pQ7OV7pjtbJpFniqknbL2T2GhUp34LFXmIFcSLacmp7nV+7pFlteUHNJbsT5xQTPjQlYWqo9kkOlQASHA13u2dNoDznFQyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
-Received: from DM5PR12MB1356.namprd12.prod.outlook.com (2603:10b6:3:74::18) by
- DM6PR12MB4436.namprd12.prod.outlook.com (2603:10b6:5:2a3::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.22; Mon, 23 Nov 2020 12:13:17 +0000
-Received: from DM5PR12MB1356.namprd12.prod.outlook.com
- ([fe80::3cc2:a2d6:2919:6a5a]) by DM5PR12MB1356.namprd12.prod.outlook.com
- ([fe80::3cc2:a2d6:2919:6a5a%6]) with mapi id 15.20.3589.028; Mon, 23 Nov 2020
- 12:13:17 +0000
-To: Horatiu Vultur <horatiu.vultur@microchip.com>, <roopa@nvidia.com>,
- <davem@davemloft.net>, <kuba@kernel.org>, <linux-kernel@vger.kernel.org>,
- <bridge@lists.linux-foundation.org>, <netdev@vger.kernel.org>
+Received: from esa3.microchip.iphmx.com (esa3.microchip.iphmx.com
+ [68.232.153.233])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 439C886F87
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Nov 2020 12:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1606134694; x=1637670694;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=OLdDCWuWqpqn05lwFSC/SLaom41YK6TRggAoCaO8jHE=;
+ b=J4s6z1RxZu/QoKnwPuDlrtQCL/MMM85GTk/aVSyQGZo90hEjcmXiYtb/
+ EyjLAQb1hjbOaVzLuCd73eXNHRRmCvueDiOaElHSr5jWT9st73DQ4/J4C
+ AWzqFLRIuze1uKukEiVWyVjeRQq8V2Yl2l7307iTBqLYRepw+rh1kJ3fb
+ 2P+hTfeocXFoej8+3UAvcZWX2Z2/HKBhjBCIk1UOuqzG9QgZ3m9ZAM6FR
+ C+Mh8qjNQS5eo6s3SAT5ejotqAS4fPC0ktSqICZJeFl9pAgZ/hJ3v8Jhn
+ n0C1heOqbGhDR/YbPs+/C0lcfoAtlAbEieWtuXJ0pTN80Wex9aIvQHDmh Q==;
+IronPort-SDR: W1ICdDpcMDhkKJbW/LJNxdyht0qv+Lb3C6KtSDBZLXpFLT5xBuHnhmD4lq485Rt0Z8bJnQdpli
+ RSCSJ7P2D8Y/0zYBA/aMtlRuwcs+qM9I+SLo6IwcJ5gJd2KCASjnVvZzfNE96V97CzGOO/jbl8
+ h5RdhB+MNoEsa1/+7C3Xwg1GxEEtRM435BScIL0xb5SZcRUHksP5W2kHN4VEFCHXztnTIY/0m+
+ hi8lXsaEthvgNR+mP9C9tnRgdDRMkO6Tei3RahQcyfrQ5Lsl4Pb9Uu3j7zBqqJKsElrkp+SXUx
+ lJ8=
+X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; d="scan'208";a="100056419"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 23 Nov 2020 05:31:33 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 23 Nov 2020 05:31:33 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Mon, 23 Nov 2020 05:31:32 -0700
+Date: Mon, 23 Nov 2020 13:31:32 +0100
+To: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <20201123123132.uxvec6uwuegioc25@soft-dev3.localdomain>
 References: <20201123111401.136952-1-horatiu.vultur@microchip.com>
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <5ffa6f9f-d1f3-adc7-ddb8-e8107ea78da5@nvidia.com>
-Date: Mon, 23 Nov 2020 14:13:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
-In-Reply-To: <20201123111401.136952-1-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [213.179.129.39]
-X-ClientProxiedBy: ZRAP278CA0013.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:10::23) To DM5PR12MB1356.namprd12.prod.outlook.com
- (2603:10b6:3:74::18)
+ <5ffa6f9f-d1f3-adc7-ddb8-e8107ea78da5@nvidia.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.21.241.83] (213.179.129.39) by
- ZRAP278CA0013.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:10::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Mon, 23 Nov 2020 12:13:14 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d05dda96-d0d4-446c-0906-08d88fa928e7
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4436:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB44363EBFF8DFFA5A282E2F6ADFFC0@DM6PR12MB4436.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:972;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WD6C6xmgnI5Av3D+Y/skvIsItQaQ8ilXVGfhFJgBE3c1sof3tzsX4eNuwUDp5cY7jWGO5f5EMXTcNpPLZs1lNx7+/7eJhWQ/4NGU//mGvi20boqT2khYKwhSVZ2jPZ3gX0IRNKmv9iaZToLTsO3UD+2xT+x5JA6gjKGCjbCLIwQbfuAnMp/E33s8/EtFg6I5SMpvj+77vWrNjDRiUACfKyg+AOaOW6QyDvhDtAsTOSAiuDKKvrndjeVwqQqJoTIBwRFh2bosH7zQ5EV93WKbP2g7wAed9d/ke4XE9UyMpmDwL/xfzWZWbDDfUb/ZzA650pkVKB1+aMbkguRMsqW2tlO9IAiMEXAkcqpzv8A+zbSn5fywAnUU0Oac5j4OD1pa
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1356.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(346002)(39860400002)(396003)(376002)(66946007)(66556008)(5660300002)(86362001)(66476007)(83380400001)(8936002)(31696002)(36756003)(478600001)(956004)(6666004)(2616005)(16576012)(186003)(16526019)(316002)(2906002)(6486002)(31686004)(26005)(53546011)(8676002)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: DlmLXfXq3p3GyR5ll7cMvO1IsjWrzK+Y0QhpzliArKoS+WcxcnzCW8hyoR0Obeied9wYqaArrVPT/O41pBuGg/gcZeN8lQ7V7HetzyWTQ0vkzdq6fXlSr0Wj8rOvNaijll8NS3T4KNvwYD1DP68akiyq9cPf4akg9GUfe179euMsY4u9q9x4VhzwOgt+/X6/Oc33qXfQuUMFZVXpN/XRaF73O2IicBjEg+0hTg0MT3C9gM7Z1zaKzqvHOrXsSOG3cW+1dD3ShFsIzrJl6kOH96NsO0N9kRK1641ta96aV5Hoa7+HkuU1LGjlpvLn1y3Q3jUv3IPi7voYFT1RtvSi9SNt6me6nauVF4iu+ofoEKoKj/6mxv3iwTT8/C0GBIFbWotfNq5UmOucaWTFDEedXtMGRzV4OjtT56hbXkDykU2UMqqMt75LGsxLgz4uJurT4tJGnFI+UkmSCIWgk3+8AuMvCay8Ja3eKBJezKwgzhmjek58d5ogAjv1IyW00RN5F6TYvt7wgroGiQtFrR3C6rni0WE4J9KwHBTkWjPUM87HF7+NlHFHBuYZdoRVtDc/3RtNpG9IL6+mr14NZNtrflIs7SzXKe3iAkI3nVJpKKwlHDTyz+mzLWtwrtV6snKHvrAIV5kSOCovxYgJKyPWfQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d05dda96-d0d4-446c-0906-08d88fa928e7
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1356.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2020 12:13:17.2839 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OJjV5jg2+zvIwQC9HuBZwezPHmgM7dcr7PMLZhNp8uWEx7FM3HQtn+78zjjjR4tJk2wX9fVeQU1GmU5II1HbGg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4436
-X-OriginatorOrg: Nvidia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1606133601; bh=assKlTHGSrMuc15JBKOkXkeURugvWW/FhSKlrr55HI0=;
- h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
- Authentication-Results:Subject:To:References:From:Message-ID:Date:
- User-Agent:In-Reply-To:Content-Type:Content-Language:
- Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
- MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
- X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
- X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
- X-Microsoft-Antispam-PRVS:X-MS-Oob-TLC-OOBClassifiers:
- X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
- X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
- X-MS-Exchange-AntiSpam-MessageData:
- X-MS-Exchange-CrossTenant-Network-Message-Id:
- X-MS-Exchange-CrossTenant-AuthSource:
- X-MS-Exchange-CrossTenant-AuthAs:
- X-MS-Exchange-CrossTenant-OriginalArrivalTime:
- X-MS-Exchange-CrossTenant-FromEntityHeader:
- X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
- X-MS-Exchange-CrossTenant-UserPrincipalName:
- X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
- b=LBw+6vMdxI8YyetXwWJu2rZw5XN9kU0lX3nRDIMBXx3UKAaO78ZUJlRC7YbYWdur6
- bIJg0SDNxScmwXLGXGEuBnsa/JS7e0XFU0i2ijbKhFtPe8rEro0jb87blzMw0BILsB
- BtQv2VRCRlM5prk5asgxYy/TijYlTCUZPGqCNLfx2mwQ1k85oeiwwM8JTnV5lyTfq2
- Uef0pe+kmTzYbfFtDfWaKTcxck+6Pn7bm+KbanPqxxlHyOan0TTh1dz+t46c3tUeOZ
- S1o7G+cpS6FubhmTQuJXWWk2P5FR92BpImiOSGJsZLGwxfdzcqUYMfwgZ3cpSNuSp2
- M4veRyj3HE6JQ==
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <5ffa6f9f-d1f3-adc7-ddb8-e8107ea78da5@nvidia.com>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, roopa@nvidia.com, kuba@kernel.org,
+ davem@davemloft.net
 Subject: Re: [Bridge] [PATCH net-next] bridge: mrp: Implement LC mode for MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -151,114 +88,131 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 23/11/2020 13:14, Horatiu Vultur wrote:
-> Extend MRP to support LC mode(link check) for the interconnect port.
-> This applies only to the interconnect ring.
+The 11/23/2020 14:13, Nikolay Aleksandrov wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
-> Opposite to RC mode(ring check) the LC mode is using CFM frames to
-> detect when the link goes up or down and based on that the userspace
-> will need to react.
-> One advantage of the LC mode over RC mode is that there will be fewer
-> frames in the normal rings. Because RC mode generates InTest on all
-> ports while LC mode sends CFM frame only on the interconnect port.
+> On 23/11/2020 13:14, Horatiu Vultur wrote:
+> > Extend MRP to support LC mode(link check) for the interconnect port.
+> > This applies only to the interconnect ring.
+> >
+> > Opposite to RC mode(ring check) the LC mode is using CFM frames to
+> > detect when the link goes up or down and based on that the userspace
+> > will need to react.
+> > One advantage of the LC mode over RC mode is that there will be fewer
+> > frames in the normal rings. Because RC mode generates InTest on all
+> > ports while LC mode sends CFM frame only on the interconnect port.
+> >
+> > All 4 nodes part of the interconnect ring needs to have the same mode.
+> > And it is not possible to have running LC and RC mode at the same time
+> > on a node.
+> >
+> > Whenever the MIM starts it needs to detect the status of the other 3
+> > nodes in the interconnect ring so it would send a frame called
+> > InLinkStatus, on which the clients needs to reply with their link
+> > status.
+> >
+> > This patch adds the frame header for the frame InLinkStatus and
+> > extends existing rules on how to forward this frame.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  include/uapi/linux/mrp_bridge.h |  7 +++++++
+> >  net/bridge/br_mrp.c             | 18 +++++++++++++++---
+> >  2 files changed, 22 insertions(+), 3 deletions(-)
+> >
 > 
-> All 4 nodes part of the interconnect ring needs to have the same mode.
-> And it is not possible to have running LC and RC mode at the same time
-> on a node.
+> Hi Horatiu,
+> The patch looks good overall, just one question below.
+
+Hi Nik,
+
+Thanks for taking time to review the patch.
+
 > 
-> Whenever the MIM starts it needs to detect the status of the other 3
-> nodes in the interconnect ring so it would send a frame called
-> InLinkStatus, on which the clients needs to reply with their link
-> status.
+> > diff --git a/include/uapi/linux/mrp_bridge.h b/include/uapi/linux/mrp_bridge.h
+> > index 6aeb13ef0b1e..450f6941a5a1 100644
+> > --- a/include/uapi/linux/mrp_bridge.h
+> > +++ b/include/uapi/linux/mrp_bridge.h
+> > @@ -61,6 +61,7 @@ enum br_mrp_tlv_header_type {
+> >       BR_MRP_TLV_HEADER_IN_TOPO = 0x7,
+> >       BR_MRP_TLV_HEADER_IN_LINK_DOWN = 0x8,
+> >       BR_MRP_TLV_HEADER_IN_LINK_UP = 0x9,
+> > +     BR_MRP_TLV_HEADER_IN_LINK_STATUS = 0xa,
+> >       BR_MRP_TLV_HEADER_OPTION = 0x7f,
+> >  };
+> >
+> > @@ -156,4 +157,10 @@ struct br_mrp_in_link_hdr {
+> >       __be16 interval;
+> >  };
+> >
+> > +struct br_mrp_in_link_status_hdr {
+> > +     __u8 sa[ETH_ALEN];
+> > +     __be16 port_role;
+> > +     __be16 id;
+> > +};
+> > +
 > 
-> This patch adds the frame header for the frame InLinkStatus and
-> extends existing rules on how to forward this frame.
+> I didn't see this struct used anywhere, am I missing anything?
+
+Yes, you are right, the struct is not used any. But I put it there as I
+put the other frame types for MRP.
+
 > 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  include/uapi/linux/mrp_bridge.h |  7 +++++++
->  net/bridge/br_mrp.c             | 18 +++++++++++++++---
->  2 files changed, 22 insertions(+), 3 deletions(-)
+> Cheers,
+>  Nik
+> 
+> >  #endif
+> > diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
+> > index bb12fbf9aaf2..cec2c4e4561d 100644
+> > --- a/net/bridge/br_mrp.c
+> > +++ b/net/bridge/br_mrp.c
+> > @@ -858,7 +858,8 @@ static bool br_mrp_in_frame(struct sk_buff *skb)
+> >       if (hdr->type == BR_MRP_TLV_HEADER_IN_TEST ||
+> >           hdr->type == BR_MRP_TLV_HEADER_IN_TOPO ||
+> >           hdr->type == BR_MRP_TLV_HEADER_IN_LINK_DOWN ||
+> > -         hdr->type == BR_MRP_TLV_HEADER_IN_LINK_UP)
+> > +         hdr->type == BR_MRP_TLV_HEADER_IN_LINK_UP ||
+> > +         hdr->type == BR_MRP_TLV_HEADER_IN_LINK_STATUS)
+> >               return true;
+> >
+> >       return false;
+> > @@ -1126,9 +1127,9 @@ static int br_mrp_rcv(struct net_bridge_port *p,
+> >                                               goto no_forward;
+> >                               }
+> >                       } else {
+> > -                             /* MIM should forward IntLinkChange and
+> > +                             /* MIM should forward IntLinkChange/Status and
+> >                                * IntTopoChange between ring ports but MIM
+> > -                              * should not forward IntLinkChange and
+> > +                              * should not forward IntLinkChange/Status and
+> >                                * IntTopoChange if the frame was received at
+> >                                * the interconnect port
+> >                                */
+> > @@ -1155,6 +1156,17 @@ static int br_mrp_rcv(struct net_bridge_port *p,
+> >                            in_type == BR_MRP_TLV_HEADER_IN_LINK_DOWN))
+> >                               goto forward;
+> >
+> > +                     /* MIC should forward IntLinkStatus frames only to
+> > +                      * interconnect port if it was received on a ring port.
+> > +                      * If it is received on interconnect port then, it
+> > +                      * should be forward on both ring ports
+> > +                      */
+> > +                     if (br_mrp_is_ring_port(p_port, s_port, p) &&
+> > +                         in_type == BR_MRP_TLV_HEADER_IN_LINK_STATUS) {
+> > +                             p_dst = NULL;
+> > +                             s_dst = NULL;
+> > +                     }
+> > +
+> >                       /* Should forward the InTopo frames only between the
+> >                        * ring ports
+> >                        */
+> >
 > 
 
-Hi Horatiu,
-The patch looks good overall, just one question below.
-
-> diff --git a/include/uapi/linux/mrp_bridge.h b/include/uapi/linux/mrp_bridge.h
-> index 6aeb13ef0b1e..450f6941a5a1 100644
-> --- a/include/uapi/linux/mrp_bridge.h
-> +++ b/include/uapi/linux/mrp_bridge.h
-> @@ -61,6 +61,7 @@ enum br_mrp_tlv_header_type {
->  	BR_MRP_TLV_HEADER_IN_TOPO = 0x7,
->  	BR_MRP_TLV_HEADER_IN_LINK_DOWN = 0x8,
->  	BR_MRP_TLV_HEADER_IN_LINK_UP = 0x9,
-> +	BR_MRP_TLV_HEADER_IN_LINK_STATUS = 0xa,
->  	BR_MRP_TLV_HEADER_OPTION = 0x7f,
->  };
->  
-> @@ -156,4 +157,10 @@ struct br_mrp_in_link_hdr {
->  	__be16 interval;
->  };
->  
-> +struct br_mrp_in_link_status_hdr {
-> +	__u8 sa[ETH_ALEN];
-> +	__be16 port_role;
-> +	__be16 id;
-> +};
-> +
-
-I didn't see this struct used anywhere, am I missing anything?
-
-Cheers,
- Nik
-
->  #endif
-> diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
-> index bb12fbf9aaf2..cec2c4e4561d 100644
-> --- a/net/bridge/br_mrp.c
-> +++ b/net/bridge/br_mrp.c
-> @@ -858,7 +858,8 @@ static bool br_mrp_in_frame(struct sk_buff *skb)
->  	if (hdr->type == BR_MRP_TLV_HEADER_IN_TEST ||
->  	    hdr->type == BR_MRP_TLV_HEADER_IN_TOPO ||
->  	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_DOWN ||
-> -	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_UP)
-> +	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_UP ||
-> +	    hdr->type == BR_MRP_TLV_HEADER_IN_LINK_STATUS)
->  		return true;
->  
->  	return false;
-> @@ -1126,9 +1127,9 @@ static int br_mrp_rcv(struct net_bridge_port *p,
->  						goto no_forward;
->  				}
->  			} else {
-> -				/* MIM should forward IntLinkChange and
-> +				/* MIM should forward IntLinkChange/Status and
->  				 * IntTopoChange between ring ports but MIM
-> -				 * should not forward IntLinkChange and
-> +				 * should not forward IntLinkChange/Status and
->  				 * IntTopoChange if the frame was received at
->  				 * the interconnect port
->  				 */
-> @@ -1155,6 +1156,17 @@ static int br_mrp_rcv(struct net_bridge_port *p,
->  			     in_type == BR_MRP_TLV_HEADER_IN_LINK_DOWN))
->  				goto forward;
->  
-> +			/* MIC should forward IntLinkStatus frames only to
-> +			 * interconnect port if it was received on a ring port.
-> +			 * If it is received on interconnect port then, it
-> +			 * should be forward on both ring ports
-> +			 */
-> +			if (br_mrp_is_ring_port(p_port, s_port, p) &&
-> +			    in_type == BR_MRP_TLV_HEADER_IN_LINK_STATUS) {
-> +				p_dst = NULL;
-> +				s_dst = NULL;
-> +			}
-> +
->  			/* Should forward the InTopo frames only between the
->  			 * ring ports
->  			 */
-> 
-
+-- 
+/Horatiu
