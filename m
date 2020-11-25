@@ -2,53 +2,68 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id D95A02C6F21
-	for <lists.bridge@lfdr.de>; Sat, 28 Nov 2020 06:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB0D2C6F1C
+	for <lists.bridge@lfdr.de>; Sat, 28 Nov 2020 06:35:53 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id E01DC20412;
-	Sat, 28 Nov 2020 05:36:57 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id C054C20390;
+	Sat, 28 Nov 2020 05:35:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rEHhcvRurMeh; Sat, 28 Nov 2020 05:36:55 +0000 (UTC)
+	with ESMTP id Q0J7ZsEcRbuS; Sat, 28 Nov 2020 05:35:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 20BFD2040C;
-	Sat, 28 Nov 2020 05:36:55 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id E7DFA20354;
+	Sat, 28 Nov 2020 05:35:48 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 09561C0052;
-	Sat, 28 Nov 2020 05:36:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C48CBC1D9F;
+	Sat, 28 Nov 2020 05:35:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 41FCAC0052;
- Wed, 25 Nov 2020 09:09:48 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 41811C0052;
+ Wed, 25 Nov 2020 10:37:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 3C3D386D4C;
- Wed, 25 Nov 2020 09:09:48 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 2739486BB5;
+ Wed, 25 Nov 2020 10:37:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SSaV3qgz3WEe; Wed, 25 Nov 2020 09:09:46 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 78F2F86D19;
- Wed, 25 Nov 2020 09:09:46 +0000 (UTC)
-Received: by gofer.mess.org (Postfix, from userid 1000)
- id C2D44C63FB; Wed, 25 Nov 2020 09:01:14 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mess.org; s=2020;
- t=1606294874; bh=KH9dzgywMXfGPGDwmO8Qm6o//zr8KQDL4nO6EawRuDY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=SJYLrwiKZrmMRjkeBYo7cqsbs6xljPuQypU3vE6W0mhxhiBNmXN2bqL5RV07d2awA
- Wb5Oa7L0TiIxfU/vxoLt2vFycI3gN8Kh1qdOF59uK2dEnqITAnDV+wsiQw/exDF78D
- hoTz22IC76edW7bl4Xm8hYrqoRAlLOCNTSbizDTKI7x8BBnutJW03OyPsTxurVqfdC
- T9t8y4uSMzXA9L5TYoAbkkzEdR07qHfBTYdhaiYGGYuE1E1bdzLhtRTU2iYu251NBa
- zqIr2827TZMk9I1fNh/951tgkmCQWewUCt5nrmXnkgqHhLp9nxDE6gWAGCUXG6XCXv
- 3mw8Hv064saVQ==
-Date: Wed, 25 Nov 2020 09:01:14 +0000
-From: Sean Young <sean@mess.org>
-To: James Bottomley <James.Bottomley@HansenPartnership.com>
-Message-ID: <20201125090114.GA24274@gofer.mess.org>
+ with ESMTP id uSCakFr9wxAe; Wed, 25 Nov 2020 10:37:29 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+ [209.85.214.196])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 37F6486BB2;
+ Wed, 25 Nov 2020 10:37:29 +0000 (UTC)
+Received: by mail-pl1-f196.google.com with SMTP id 5so898557plj.8;
+ Wed, 25 Nov 2020 02:37:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=lG3+Uwz8lZti6FSb8xjGyaQfdt5OwV03xvf6+L3ZqWc=;
+ b=YCtEdyPA4vCzWZsMjIt3djSgR9gg7vMRhn3I5LT7lEmWHdT3b/jEkR0QdduouORJ7k
+ kiuUl5RijkS3EJmc3PIdIbhuWrYEtLAccN+wdoprBDsU56ruoUGszfH1Sxvuy4WXIhMK
+ 0dDt7R//JtRYOU1+gQ96Rpa2FinP3O1pFccTMutbPTGjvqTac0chojMQO8cZdySzLIim
+ HHsTKo91pUaUTwyxPnWizwDASocTC+n+eyDdN/HKPn9pe4V2vLDA/DOFrCcWbsrVXkvE
+ 5CsjPeXzCB0gF8EvrEVdW+qQjVnUcViOyjSAD57xy0gbwLs+FCHLejwxIxOdH/xJHiTG
+ +NRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=lG3+Uwz8lZti6FSb8xjGyaQfdt5OwV03xvf6+L3ZqWc=;
+ b=HXmOY+TH7umB4F25SmPLPMZbIOnkLbQVXkmo2aXnu3upPP1uw7X+jQ9OutSbCukWDH
+ rEWOYi9qNw3KWq+TJhgoK9ht+kSrmBhhOsw+k/JC/GNzncaA3hdf1HKQMHomnBoJXWov
+ tDycMA57ltvKoGc98TYyjDlEbRFupQ9/Dk+92MlAaXnS7KvSArgjMQwOKlmJFr2qwkQ3
+ jEe0kQSvyhJgcVc0S2tmw1jU7DaBAvPM0fJWnfJKlg5g4WYfxcyFj416KYt430VX84xH
+ LwBbY9pUy/c2AluXFNa/arDDM245wJ/TKxktZ7EXiVgOfcu4ioIXvoTdmAG7hsw23T0g
+ kWZw==
+X-Gm-Message-State: AOAM532FbO/w8kyoJEovJal526bvXZTQV0McVKagSn1z30dkQXMjZtde
+ KXQnCGprAB/V9Z0qIuD77k2JcnS8GxPWYwTtsxo=
+X-Google-Smtp-Source: ABdhPJzEY8ebPN4xZ4jf0ZFVw9i65L6qlCom+E751HZA34/qY3SkadUuuLf2HukIG4qONDPWI5feIsM1VQGLuSbFYSc=
+X-Received: by 2002:a17:902:ead2:b029:da:2596:198e with SMTP id
+ p18-20020a170902ead2b02900da2596198emr1937529pld.21.1606300648824; Wed, 25
+ Nov 2020 02:37:28 -0800 (PST)
+MIME-Version: 1.0
 References: <cover.1605896059.git.gustavoars@kernel.org>
  <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
  <202011201129.B13FDB3C@keescook>
@@ -59,38 +74,50 @@ References: <cover.1605896059.git.gustavoars@kernel.org>
  <1c7d7fde126bc0acf825766de64bf2f9b888f216.camel@HansenPartnership.com>
  <CANiq72m22Jb5_+62NnwX8xds2iUdWDMAqD8PZw9cuxdHd95W0A@mail.gmail.com>
  <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Approved-At: Sat, 28 Nov 2020 05:36:53 +0000
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel <linux-kernel@vger.kernel.org>,
+ <CANiq72k5tpDoDPmJ0ZWc1DGqm+81Gi-uEENAtvEs9v3SZcx6_Q@mail.gmail.com>
+ <4993259d01a0064f8bb22770503490f9252f3659.camel@HansenPartnership.com>
+In-Reply-To: <4993259d01a0064f8bb22770503490f9252f3659.camel@HansenPartnership.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 25 Nov 2020 12:38:17 +0200
+Message-ID: <CAHp75VfaewwkLsrht95Q7DaxFk7JpQjwx0KQ7Jvh5f7DUbZkRA@mail.gmail.com>
+To: James Bottomley <James.Bottomley@hansenpartnership.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Sat, 28 Nov 2020 05:35:47 +0000
+Cc: ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+ linux-atm-general@lists.sourceforge.net, reiserfs-devel@vger.kernel.org,
+ linux-iio <linux-iio@vger.kernel.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
  Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
- dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ device-mapper development <dm-devel@redhat.com>, keyrings@vger.kernel.org,
+ "open list:MEMORY TECHNOLOGY..." <linux-mtd@lists.infradead.org>,
  GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
  samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
  linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
  usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+ linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ linux-scsi <linux-scsi@vger.kernel.org>,
+ "open list:HFI1 DRIVER" <linux-rdma@vger.kernel.org>,
  oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ linux-security-module <linux-security-module@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ cluster-devel@redhat.com, ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-input <linux-input@vger.kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>,
  Ext4 Developers List <linux-ext4@vger.kernel.org>,
  Linux Media Mailing List <linux-media@vger.kernel.org>,
  Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>,
  linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ linux-block@vger.kernel.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ op-tee@lists.trustedfirmware.org,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
  xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
  linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
  virtualization@lists.linux-foundation.org,
@@ -98,16 +125,16 @@ Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
  linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
  GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
  Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
- linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc <linux-mmc@vger.kernel.org>,
  "Gustavo A. R. Silva" <gustavoars@kernel.org>,
  "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-renesas-soc@vger.kernel.org,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
  Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, linux-sctp@vger.kernel.org,
- linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ USB <linux-usb@vger.kernel.org>, netfilter-devel@vger.kernel.org,
  Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
  patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org, target-devel@vger.kernel.org,
- linux-hardening@vger.kernel.org
+ linux-integrity <linux-integrity@vger.kernel.org>,
+ target-devel <target-devel@vger.kernel.org>, linux-hardening@vger.kernel.org
 Subject: Re: [Bridge] [PATCH 000/141] Fix fall-through warnings for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -123,47 +150,30 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Nov 23, 2020 at 07:58:06AM -0800, James Bottomley wrote:
-> On Mon, 2020-11-23 at 15:19 +0100, Miguel Ojeda wrote:
-> > On Sun, Nov 22, 2020 at 11:36 PM James Bottomley
+On Mon, Nov 23, 2020 at 10:39 PM James Bottomley
+<James.Bottomley@hansenpartnership.com> wrote:
+> On Mon, 2020-11-23 at 19:56 +0100, Miguel Ojeda wrote:
+> > On Mon, Nov 23, 2020 at 4:58 PM James Bottomley
 > > <James.Bottomley@hansenpartnership.com> wrote:
-> > > It's not about the risk of the changes it's about the cost of
-> > > implementing them.  Even if you discount the producer time (which
-> > > someone gets to pay for, and if I were the engineering manager, I'd
-> > > be unhappy about), the review/merge/rework time is pretty
-> > > significant in exchange for six minor bug fixes.  Fine, when a new
-> > > compiler warning comes along it's certainly reasonable to see if we
-> > > can benefit from it and the fact that the compiler people think
-> > > it's worthwhile is enough evidence to assume this initially.  But
-> > > at some point you have to ask whether that assumption is supported
-> > > by the evidence we've accumulated over the time we've been using
-> > > it.  And if the evidence doesn't support it perhaps it is time to
-> > > stop the experiment.
-> > 
-> > Maintainers routinely review 1-line trivial patches, not to mention
-> > internal API changes, etc.
-> 
-> We're also complaining about the inability to recruit maintainers:
-> 
-> https://www.theregister.com/2020/06/30/hard_to_find_linux_maintainers_says_torvalds/
-> 
-> And burn out:
-> 
-> http://antirez.com/news/129
-> 
-> The whole crux of your argument seems to be maintainers' time isn't
-> important so we should accept all trivial patches ... I'm pushing back
-> on that assumption in two places, firstly the valulessness of the time
-> and secondly that all trivial patches are valuable.
 
-You're assuming burn out or recruitment problems is due to patch workload
-or too many "trivial" patches.
+...
 
-In my experience, "other maintainers" is by far the biggest cause of
-burn out for my kernel maintenance work.
+> > But if we do the math, for an author, at even 1 minute per line
+> > change and assuming nothing can be automated at all, it would take 1
+> > month of work. For maintainers, a couple of trivial lines is noise
+> > compared to many other patches.
+>
+> So you think a one line patch should take one minute to produce ... I
+> really don't think that's grounded in reality.  I suppose a one line
+> patch only takes a minute to merge with b4 if no-one reviews or tests
+> it, but that's not really desirable.
 
-Certainly arguing with a maintainer about some obviously-correct patch
-series must be a good example of this.
+In my practice most of the one line patches were either to fix or to
+introduce quite interesting issues.
+1 minute is 2-3 orders less than usually needed for such patches.
+That's why I don't like churn produced by people who often even didn't
+compile their useful contributions.
 
-
-Sean
+-- 
+With Best Regards,
+Andy Shevchenko
