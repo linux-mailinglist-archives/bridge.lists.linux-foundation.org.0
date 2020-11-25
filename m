@@ -1,69 +1,48 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53FA2C4A5D
-	for <lists.bridge@lfdr.de>; Wed, 25 Nov 2020 23:09:52 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 6FAF38772F;
-	Wed, 25 Nov 2020 22:09:51 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id U2LvBXIiT5VG; Wed, 25 Nov 2020 22:09:51 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id F059B8772D;
-	Wed, 25 Nov 2020 22:09:50 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D5536C0052;
-	Wed, 25 Nov 2020 22:09:50 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D8F10C0052
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 22:09:49 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 621C12C4B6B
+	for <lists.bridge@lfdr.de>; Thu, 26 Nov 2020 00:22:04 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id C75E5870D6
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 22:09:49 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 12C60870DC;
+	Wed, 25 Nov 2020 23:22:03 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id tDCAuJEAeVmF; Wed, 25 Nov 2020 23:22:02 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 7D82586FFF;
+	Wed, 25 Nov 2020 23:22:02 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5BF87C1D9F;
+	Wed, 25 Nov 2020 23:22:02 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 14A5EC0052;
+ Wed, 25 Nov 2020 23:22:00 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by whitealder.osuosl.org (Postfix) with ESMTP id EF00D8750B;
+ Wed, 25 Nov 2020 23:21:59 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jqsd1mUSA5Qd for <bridge@lists.linux-foundation.org>;
- Wed, 25 Nov 2020 22:09:47 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
- [209.85.214.193])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 62D34870DA
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 22:09:41 +0000 (UTC)
-Received: by mail-pl1-f193.google.com with SMTP id v21so78295plo.12
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 14:09:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/ob3FEJdYP5qhdHPeLajEb6PUDm9frxLF1mdXzRdH3M=;
- b=L3KZpP3LXxZlW/DP5AmTnD4MuZ72/rcy+coOeUVeCNTiwrWtzoVQx/hBMoKUsqDMm0
- Foet9vcyJsJZ2PSgueU+Q+MvDj0KUWyeWX5guwBWRMdbnXZ08cX56htqXhsZrxHUuRIn
- vYFnIpmbgrasg1vSD5AH5hKwOy9NejMhVovtjBrzY+2P0ug3w3+5RlYsOk03C83VD9da
- OdGtf9c6uotPHdYcmuyOqbnF5k3fP8Yo6l5eFDVR7n6m5okfFX1oHlXNOB3u6UsnrVGE
- wa6MluYkHn1XOYZTDyrE2KQmcun7Qe6vVmhaYurLDnZVMQG/lFJsGakXcuEY3+Obie2U
- RVfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/ob3FEJdYP5qhdHPeLajEb6PUDm9frxLF1mdXzRdH3M=;
- b=hPAFL0u13Ma4lXnpHkC0IvqXvc9ctiB9EJxO/YAjSK13axFqiDBuK/z4knbhNeXsOL
- DvJj7XAy5zZTbGRjY8ADPnGn5uZsIW1kmO2AujwPV+ltXH8xS5DVwzvR3gWzRiodK6B/
- 8gBltRPZJg8rbY9cPSQ9a6nP4dOWkCa94tVbYUcRywIuOVcxxrx2zErDO8ViHBdw8KwG
- /dWLcICs2jkdkEwxDe8iw0WxXzTMYl1MLGaszNh4vtgqPT6r2JnFuTzaYXJZkPMF6RfU
- SipleCUbkp8wIWKgwbaNa4/SXTr0YIDYJYHOO5u0PgPKmsnBT0FOTy3gSCEsTJsDZEkZ
- oriA==
-X-Gm-Message-State: AOAM531IHVs85G96eesWlFtrxyJnXCNaItLhREzLkffpoxsiUUrDlVZW
- F0K4FvExzvp9LL2Noqi8rghZ/vHGkwJw+Suz5NcP4A==
-X-Google-Smtp-Source: ABdhPJz8lLt/1COGEMpWkFDfyIK6h7HwbxIAa+xtHaAqLUfnjsVh22wexUgkVgdtXLczfRnuDI51yr8PXCWqKuZKul4=
-X-Received: by 2002:a17:902:c14a:b029:d8:dc05:d7ef with SMTP id
- 10-20020a170902c14ab02900d8dc05d7efmr4885886plj.83.1606342180784; Wed, 25 Nov
- 2020 14:09:40 -0800 (PST)
-MIME-Version: 1.0
+ with ESMTP id h6hG77OWx3TC; Wed, 25 Nov 2020 23:21:59 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from kvm5.telegraphics.com.au (kvm5.telegraphics.com.au
+ [98.124.60.144])
+ by whitealder.osuosl.org (Postfix) with ESMTP id 1E0F8874EC;
+ Wed, 25 Nov 2020 23:21:59 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by kvm5.telegraphics.com.au (Postfix) with ESMTP id 414EA2A490;
+ Wed, 25 Nov 2020 18:21:54 -0500 (EST)
+Date: Thu, 26 Nov 2020 10:21:54 +1100 (AEDT)
+From: Finn Thain <fthain@telegraphics.com.au>
+To: Nick Desaulniers <ndesaulniers@google.com>
+In-Reply-To: <CAKwvOdna5Zj_O=sB7Q0jHZX0BJSaakX=ZyftwQ_3=L3-ZB54XQ@mail.gmail.com>
+Message-ID: <alpine.LNX.2.23.453.2011260918510.6@nippy.intranet>
 References: <202011201129.B13FDB3C@keescook>
  <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
  <202011220816.8B6591A@keescook>
@@ -78,11 +57,9 @@ References: <202011201129.B13FDB3C@keescook>
  <a841536fe65bb33f1c72ce2455a6eb47a0107565.camel@HansenPartnership.com>
  <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
  <alpine.LNX.2.23.453.2011260750300.6@nippy.intranet>
-In-Reply-To: <alpine.LNX.2.23.453.2011260750300.6@nippy.intranet>
-Date: Wed, 25 Nov 2020 14:09:29 -0800
-Message-ID: <CAKwvOdna5Zj_O=sB7Q0jHZX0BJSaakX=ZyftwQ_3=L3-ZB54XQ@mail.gmail.com>
-To: Finn Thain <fthain@telegraphics.com.au>
-Content-Type: text/plain; charset="UTF-8"
+ <CAKwvOdna5Zj_O=sB7Q0jHZX0BJSaakX=ZyftwQ_3=L3-ZB54XQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Cc: alsa-devel@alsa-project.org, bridge@lists.linux-foundation.org,
  target-devel@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
  linux-iio@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
@@ -130,7 +107,7 @@ Cc: alsa-devel@alsa-project.org, bridge@lists.linux-foundation.org,
  Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
  linux-nfs@vger.kernel.org, linux-hardening@vger.kernel.org
 Subject: Re: [Bridge] [Intel-wired-lan] [PATCH 000/141] Fix fall-through
-	warnings for Clang
+ warnings for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -142,38 +119,43 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Nick Desaulniers via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Nick Desaulniers <ndesaulniers@google.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Nov 25, 2020 at 1:33 PM Finn Thain <fthain@telegraphics.com.au> wrote:
->
-> Or do you think that a codebase can somehow satisfy multiple checkers and
-> their divergent interpretations of the language spec?
+On Wed, 25 Nov 2020, Nick Desaulniers wrote:
 
-Have we found any cases yet that are divergent? I don't think so.  It
-sounds to me like GCC's cases it warns for is a subset of Clang's.
-Having additional coverage with Clang then should ensure coverage for
-both.
-
-> > This is not a shiny new warning; it's already on for GCC and has existed
-> > in both compilers for multiple releases.
+> On Wed, Nov 25, 2020 at 1:33 PM Finn Thain <fthain@telegraphics.com.au> 
+> wrote:
 > >
->
-> Perhaps you're referring to the compiler feature that lead to the
-> ill-fated, tree-wide /* fallthrough */ patch series.
->
-> When the ink dries on the C23 language spec and the implementations figure
-> out how to interpret it then sure, enforce the warning for new code -- the
-> cost/benefit analysis is straight forward. However, the case for patching
-> existing mature code is another story.
+> > Or do you think that a codebase can somehow satisfy multiple checkers 
+> > and their divergent interpretations of the language spec?
+> 
+> Have we found any cases yet that are divergent? I don't think so.
 
-I don't think we need to wait for the ink to dry on the C23 language
-spec to understand that implicit fallthrough is an obvious defect of
-the C language.  While the kernel is a mature codebase, it's not
-immune to bugs.  And its maturity has yet to slow its rapid pace of
-development.
--- 
-Thanks,
-~Nick Desaulniers
+There are many implementations, so I think you are guaranteed to find more 
+divergence if you look. That's because the spec is full of language like 
+this: "implementations are encouraged not to emit a diagnostic" and 
+"implementations are encouraged to issue a diagnostic".
+
+Some implementations will decide to not emit (under the premise that vast 
+amounts of existing code would have to get patched until the compiler goes 
+quiet) whereas other implementations will decide to emit (under the 
+premise that the author is doing the checking and not the janitor or the 
+packager).
+
+> It sounds to me like GCC's cases it warns for is a subset of Clang's. 
+> Having additional coverage with Clang then should ensure coverage for 
+> both.
+> 
+
+If that claim were true, the solution would be simple. (It's not.)
+
+For the benefit of projects that enable -Werror and projects that 
+nominated gcc as their preferred compiler, clang would simply need a flag 
+to enable conformance with gcc by suppressing those additional warnings 
+that clang would normally produce.
+
+This simple solution is, of course, completely unworkable, since it would 
+force clang to copy some portion of gcc's logic (rewritten under LLVM's 
+unique license) and then to track future changes to that portion of gcc 
+indefinitely.
