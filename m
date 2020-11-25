@@ -1,131 +1,121 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2FA2C4275
-	for <lists.bridge@lfdr.de>; Wed, 25 Nov 2020 15:52:54 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2552C44DA
+	for <lists.bridge@lfdr.de>; Wed, 25 Nov 2020 17:24:19 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 6B2B5870B1;
-	Wed, 25 Nov 2020 14:52:52 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 4AB5B876BC;
+	Wed, 25 Nov 2020 16:24:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yKcqkXSL1M4d; Wed, 25 Nov 2020 14:52:52 +0000 (UTC)
+	with ESMTP id CM3f0DcJYEYd; Wed, 25 Nov 2020 16:24:16 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 05F39870B8;
-	Wed, 25 Nov 2020 14:52:52 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 69753876B3;
+	Wed, 25 Nov 2020 16:24:16 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DC38CC0052;
-	Wed, 25 Nov 2020 14:52:51 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4D34BC0052;
+	Wed, 25 Nov 2020 16:24:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B6D93C0052
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 14:52:50 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E4D4EC0052;
+ Wed, 25 Nov 2020 16:24:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id B09DB870AC
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 14:52:50 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id C20B42E18B;
+ Wed, 25 Nov 2020 16:24:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id sphg3fTIKoxc for <bridge@lists.linux-foundation.org>;
- Wed, 25 Nov 2020 14:52:48 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (mail-vi1eur05on2068.outbound.protection.outlook.com [40.107.21.68])
- by whitealder.osuosl.org (Postfix) with ESMTPS id C56C9870B1
- for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 14:52:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HgOL16yGKnEZiiWI70oxulo28mCHi2SPmCwnabY7GkEsckBETaUYlo74vMyM6qGXkzsejoG5Y9RpENP2rvFQWNzhbbzWBq0HtS+CBpE0aUzmKXEa8c5RhsayFpLqQdziv7Ev48lN27lvUN6zsP8GODU+KOt/qbUsavAzK1XhACt4HqjHrvIiRPTuQ/vKu0cY2WguC5SpcZwPq7qGvP0rCc5TghI9l7eKLC+FP+FOEsVVChKPevYeuubGbO8dQ5LKNK4I9sEOQ62QrkeOVZQeRPaXkZtqTlEIjUVBYXNv1JXdAAf1FIdPQOXV+QC8BO8Pwhadbd24cvYCOYKMtWnd/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZEYeE04XSSyB8Pa/l5qZbweShqnDyFelr/81qnQIwuo=;
- b=BS4LGPmGXkBbD63GVm7mEFsfAE8wOjvTbzXdGyc2rn0OSaWl/hWb58AEf5fMRYaKn/o5MiG8EjdBhbtbUiNHWV/LLBV2DcwE04X4MP6PvR3tCtBT2oDtojWcrwgGaN6lwiAlVC4tQQRYxkgpesjg9uZiDIl0PE0bpukDVvTHJy2q0UF8i2gaiYwGAa+shtB5rvSL3Vh2SzA/CMaQcKh8fDUQkHziGhn7WXFldEOhK5kPVEKbjq3vh5tLmQS2yvG73MyC5614/CZQqrYqoU2zbkthPVC9BFeI32Pzy8HRe3esTMl+XzlEwQ/Qn9/Xt4EM/zGrAj8oqz3Aj7e8ZDvdnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZEYeE04XSSyB8Pa/l5qZbweShqnDyFelr/81qnQIwuo=;
- b=Rz1s6bx6WwEYmDv6sodZRRt7wsdJ4KKg/31JhE7wx6PanAr8xeP6mGFMT5f8CXPo9NDfuuSUZAO9KRmbJrWJyFyVvzlOVUErg43RJLYVINLCKYE3X3YTqNIbWffdm+tUz9sZosbc0I8OFWfEEfOGdOB0/5hpiVK4AafgzEgIBrM=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
- by VI1PR04MB5296.eurprd04.prod.outlook.com (2603:10a6:803:55::26)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.30; Wed, 25 Nov
- 2020 14:36:52 +0000
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::2dd6:8dc:2da7:ad84]) by VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::2dd6:8dc:2da7:ad84%5]) with mapi id 15.20.3589.030; Wed, 25 Nov 2020
- 14:36:52 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: David Ahern <dsahern@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>, bridge@lists.linux-foundation.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Wed, 25 Nov 2020 16:36:39 +0200
-Message-Id: <20201125143639.3587854-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [188.25.2.120]
-X-ClientProxiedBy: AM4PR0302CA0027.eurprd03.prod.outlook.com
- (2603:10a6:205:2::40) To VI1PR04MB5696.eurprd04.prod.outlook.com
- (2603:10a6:803:e7::13)
+ with ESMTP id 3bSofywQZYVx; Wed, 25 Nov 2020 16:24:11 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by silver.osuosl.org (Postfix) with ESMTPS id 44CD92E0FE;
+ Wed, 25 Nov 2020 16:24:11 +0000 (UTC)
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
+ [163.114.132.4])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 867952067C;
+ Wed, 25 Nov 2020 16:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1606321450;
+ bh=GZ2k+AA6ahSTxK1Lb66nxQ5QpMsxQMwUtXM6UrJuD5k=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=o0jPLXU5vRd5gkErOG+l7hZeBdnc0mPNkdd6O5DWsXDAKIVZ2C96zG0tcOWSvOOEW
+ +aPDAqgCVL2k+j5MKH8XxKfk9jsHh44ZvIyml45/mV5SL7Kf2RcLQB8xCvtxafIM4N
+ usaGZavY91klVUpIE9ogGjcSBu1B0MRmyXV9nrIc=
+Date: Wed, 25 Nov 2020 08:24:05 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Nick Desaulniers <ndesaulniers@google.com>
+Message-ID: <20201125082405.1d8c23dc@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
+References: <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
+ <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
+ <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
+ <dbd2cb703ed9eefa7dde9281ea26ab0f7acc8afe.camel@HansenPartnership.com>
+ <20201123130348.GA3119@embeddedor>
+ <8f5611bb015e044fa1c0a48147293923c2d904e4.camel@HansenPartnership.com>
+ <202011241327.BB28F12F6@keescook>
+ <a841536fe65bb33f1c72ce2455a6eb47a0107565.camel@HansenPartnership.com>
+ <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (188.25.2.120) by
- AM4PR0302CA0027.eurprd03.prod.outlook.com (2603:10a6:205:2::40) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.22 via Frontend
- Transport; Wed, 25 Nov 2020 14:36:50 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 7f79cd0c-a985-4a99-2a58-08d8914f8c90
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5296:
-X-Microsoft-Antispam-PRVS: <VI1PR04MB52962E1E2003991FA0A9B23BE0FA0@VI1PR04MB5296.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zl8Yudenp38KgWJ9nMy5XW8CzxRcuRyRYV23IiyKMLSdZJbhZfQ33zz+7IXtGLBX3xpfajhY6oR8nEzyBKzvAmbqL0Ae46UzOwiHwy6/HJ4NNA/dTswZkC/ywT61pc43v8Sk/8TLJ8G47dhu7XdqlHMz9mXD6rqZDFLE9SrFRBI9x2Lwjj9PHwQtQLOB9z8s9w1yZUOLIOrk0blR2Jot72y6thxkTfNA8JCY6HRrA4C/SyVAakiOKRrgjBrfle9y7QUm/mTnWJrZuqblCeMIqgMZUAAaz84jLxQ3jWtxNYEpUWMpI5SmtN/Tuv5Whj/P3+bDOSKpIvUy89IQgtcrzUr9vBfQm3BaC0SupocH/SdiDmI8oxWUY1nk56xXi2w4L4XoaprfAJC4QiFSQpyYjrNu2mfRjl64ZFfzoFmEbc7hgqmY6deR2lle1yvVT2IbnniLKJpUT/TkD0zcH7bKxA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5696.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(39860400002)(366004)(136003)(376002)(346002)(8676002)(8936002)(44832011)(69590400008)(2906002)(186003)(16526019)(7416002)(956004)(2616005)(26005)(6506007)(52116002)(83380400001)(6512007)(316002)(110136005)(6486002)(36756003)(86362001)(66946007)(66476007)(4326008)(66556008)(478600001)(1076003)(5660300002)(966005)(6666004);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?fvAoPWrTC6zbjuHLLf3DZdQAIKHRUk6pAj4ofBmDPrHElI4CqdrAl+JROSYa?=
- =?us-ascii?Q?a/mSLEKmGQcL5HR4aK4qEl/caAhEEcqkEXiCeuSJvwVJnCeXCLxGbp4Tjpa5?=
- =?us-ascii?Q?aRTLtiOXb4kJLgVU1c8ronfGRwg0PObXIwc5U5clDxpU33P9Swv74gLYw0u4?=
- =?us-ascii?Q?KEGRj4f2RVOLz9F1BtI2oTv8QTTBU6gLK0PT4+Qz1LT2OPE5CyW3jzNcUZOs?=
- =?us-ascii?Q?hiljL+pCLrj2l2vzYtzUnwrAhr6uwdxqmigqHi/GlEk74o0U0rSJjKWDJlVW?=
- =?us-ascii?Q?0nDMNYTB7dn4lqrGANWqd9jplJkhF6HAOCMNcRwab0WhMjczAEASm6A9MxfU?=
- =?us-ascii?Q?VeqZeqJytME2mp4BHMIaEv+5FPQIfZrjjB5ZhU2GtV5pITnxqOaFXs/qK0Zk?=
- =?us-ascii?Q?rxG2fVDlz0Nlt6B8N33ICsrQ9BuGCr1uwLNzdkG1g49sdwHku9lSm8n2WV+O?=
- =?us-ascii?Q?/lEfhTB4tzbfvmWXkmgNpevNuCltfLhO6b6l0x8WKDN0KJ0+b38H9z7dtyy7?=
- =?us-ascii?Q?lUnL7xT5Hg2aSc4Zai+n3Bm0N9hs7srEqBzFb7qMnnU3UODSwQf6atIWSmvA?=
- =?us-ascii?Q?uxqC9G4/yLcEMhWaGJ+PfUEupzkv77tzJtvZsay/fLWS4vdu52Pot6kDpohB?=
- =?us-ascii?Q?LfK6xE0DKK0LZNQYMdhO8ZVWQHrlSp1bie6YSYHUGK23W/nM4X2VeueY1DWD?=
- =?us-ascii?Q?+0sNBUZEr2Bwxkh5BjmmogaaIugUlbwNEvdmWUh3GhRdwAjPc36O99IXBs4m?=
- =?us-ascii?Q?HXqNFlBG4dK0nwiqSb/GnS75/2zRstKZ7qydXuRFh9Vi67BzyuO48ahawotZ?=
- =?us-ascii?Q?jFPI2sBIM74bLdsFlTMM83RWXReLu7y0yHNLbLc1hsXDppLniH0vF2t5C3l6?=
- =?us-ascii?Q?8trRGGna+87gGEgI7hNBSPiqqSoIsCPizc0CnDTKPRF/GO1L1mubmiqqkYSB?=
- =?us-ascii?Q?6mRuCfqDtqApEBK3k6/t24roS56YSpKnDx+vXhFfe5eoR2ZYojcR4XEKsqmf?=
- =?us-ascii?Q?eZee?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f79cd0c-a985-4a99-2a58-08d8914f8c90
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2020 14:36:52.1946 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tYtjyJ3PKTg3yPXeOWuJqQT6X3LTANQJmhLKDiR/zL5GcJkhmjfD+PLYxYyHiGO2s0rbIbVde4nj4Mj8kF1Zsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5296
-Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us, idosch@idosch.org,
- Jakub Kicinski <kuba@kernel.org>, vivien.didelot@gmail.com
-Subject: [Bridge] [PATCH v3 iproute2] bridge: add support for L2 multicast
-	groups
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: alsa-devel@alsa-project.org, bridge@lists.linux-foundation.org,
+ linux-iio@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
+ "open list:HARDWARE RANDOM NUMBER GENERATOR CORE\"
+ <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
+ linux-integrity@vger.kernel.org, target-devel@vger.kernel.org,
+ linux-hardening@vger.kernel.org,
+ Jonathan Cameron  <Jonathan.Cameron@huawei.com>,
+ Greg KH <gregkh@linuxfoundation.org>"@osuosl.org, linux-fbdev@vger.kernel.org,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>,
+ linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
+ wcn36xx@lists.infradead.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
+ linux-scsi@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, oss-drivers@netronome.com,
+ linux-atm-general@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ usb-storage@lists.one-eyed-alien.net, linux-mmc@vger.kernel.org,
+ coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
+ linux-input@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ xen-devel@lists.xenproject.org, linux-ext4@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, netfilter-devel@vger.kernel.org,
+ linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ selinux@vger.kernel.org, linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
+ reiserfs-devel@vger.kernel.org, linux-geode@lists.infradead.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ nouveau@lists.freedesktop.org, linux-hams@vger.kernel.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-can@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-watchdog@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, samba-technical@lists.samba.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ linux-security-module@vger.kernel.org, linux-usb@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, Joe Perches <joe@perches.com>,
+ linux-nfs@vger.kernel.org
+Subject: Re: [Bridge] [Intel-wired-lan] [PATCH 000/141] Fix fall-through
+ warnings for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -140,160 +130,47 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Extend the 'bridge mdb' command for the following syntax:
-bridge mdb add dev br0 port swp0 grp 01:02:03:04:05:06 permanent
+On Wed, 25 Nov 2020 04:24:27 -0800 Nick Desaulniers wrote:
+> I even agree that most of the churn comes from
+> 
+> case 0:
+>   ++x;
+> default:
+>   break;
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-Changes in v3:
-- Using rt_addr_n2a_r instead of inet_ntop/ll_addr_n2a directly.
-- Updated the bridge manpage.
+And just to spell it out,
 
-Changes in v2:
-- Removed the const void casts.
-- Removed MDB_FLAGS_L2 from the UAPI to be in sync with the latest
-  kernel patch:
-  https://patchwork.ozlabs.org/project/netdev/patch/20201028233831.610076-1-vladimir.oltean@nxp.com/
+case ENUM_VALUE1:
+	bla();
+	break;
+case ENUM_VALUE2:
+	bla();
+default:
+	break;
 
- bridge/mdb.c                   | 54 ++++++++++++++++++++++++++--------
- include/uapi/linux/if_bridge.h |  1 +
- man/man8/bridge.8              |  8 ++---
- 3 files changed, 46 insertions(+), 17 deletions(-)
+is a fairly idiomatic way of indicating that not all values of the enum
+are expected to be handled by the switch statement. 
 
-diff --git a/bridge/mdb.c b/bridge/mdb.c
-index 4cd7ca762b78..ef89258bc5c3 100644
---- a/bridge/mdb.c
-+++ b/bridge/mdb.c
-@@ -149,6 +149,7 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
- 			    struct nlmsghdr *n, struct rtattr **tb)
- {
- 	const void *grp, *src;
-+	const char *addr;
- 	SPRINT_BUF(abuf);
- 	const char *dev;
- 	int af;
-@@ -156,9 +157,16 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
- 	if (filter_vlan && e->vid != filter_vlan)
- 		return;
- 
--	af = e->addr.proto == htons(ETH_P_IP) ? AF_INET : AF_INET6;
--	grp = af == AF_INET ? (const void *)&e->addr.u.ip4 :
--			      (const void *)&e->addr.u.ip6;
-+	if (!e->addr.proto) {
-+		af = AF_PACKET;
-+		grp = &e->addr.u.mac_addr;
-+	} else if (e->addr.proto == htons(ETH_P_IP)) {
-+		af = AF_INET;
-+		grp = &e->addr.u.ip4;
-+	} else {
-+		af = AF_INET6;
-+		grp = &e->addr.u.ip6;
-+	}
- 	dev = ll_index_to_name(ifindex);
- 
- 	open_json_object(NULL);
-@@ -168,9 +176,14 @@ static void print_mdb_entry(FILE *f, int ifindex, const struct br_mdb_entry *e,
- 	print_string(PRINT_ANY, "port", " port %s",
- 		     ll_index_to_name(e->ifindex));
- 
-+	/* The ETH_ALEN argument is ignored for all cases but AF_PACKET */
-+	addr = rt_addr_n2a_r(af, ETH_ALEN, grp, abuf, sizeof(abuf));
-+	if (!addr)
-+		return;
-+
- 	print_color_string(PRINT_ANY, ifa_family_color(af),
--			    "grp", " grp %s",
--			    inet_ntop(af, grp, abuf, sizeof(abuf)));
-+			    "grp", " grp %s", addr);
-+
- 	if (tb && tb[MDBA_MDB_EATTR_SOURCE]) {
- 		src = (const void *)RTA_DATA(tb[MDBA_MDB_EATTR_SOURCE]);
- 		print_color_string(PRINT_ANY, ifa_family_color(af),
-@@ -440,6 +453,25 @@ static int mdb_show(int argc, char **argv)
- 	return 0;
- }
- 
-+static int mdb_parse_grp(const char *grp, struct br_mdb_entry *e)
-+{
-+	if (inet_pton(AF_INET, grp, &e->addr.u.ip4)) {
-+		e->addr.proto = htons(ETH_P_IP);
-+		return 0;
-+	}
-+	if (inet_pton(AF_INET6, grp, &e->addr.u.ip6)) {
-+		e->addr.proto = htons(ETH_P_IPV6);
-+		return 0;
-+	}
-+	if (ll_addr_a2n((char *)e->addr.u.mac_addr, sizeof(e->addr.u.mac_addr),
-+			grp) == ETH_ALEN) {
-+		e->addr.proto = 0;
-+		return 0;
-+	}
-+
-+	return -1;
-+}
-+
- static int mdb_modify(int cmd, int flags, int argc, char **argv)
- {
- 	struct {
-@@ -497,14 +529,10 @@ static int mdb_modify(int cmd, int flags, int argc, char **argv)
- 	if (!entry.ifindex)
- 		return nodev(p);
- 
--	if (!inet_pton(AF_INET, grp, &entry.addr.u.ip4)) {
--		if (!inet_pton(AF_INET6, grp, &entry.addr.u.ip6)) {
--			fprintf(stderr, "Invalid address \"%s\"\n", grp);
--			return -1;
--		} else
--			entry.addr.proto = htons(ETH_P_IPV6);
--	} else
--		entry.addr.proto = htons(ETH_P_IP);
-+	if (mdb_parse_grp(grp, &entry)) {
-+		fprintf(stderr, "Invalid address \"%s\"\n", grp);
-+		return -1;
-+	}
- 
- 	entry.vid = vid;
- 	addattr_l(&req.n, sizeof(req), MDBA_SET_ENTRY, &entry, sizeof(entry));
-diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 69b99901fc5a..db41a5ff34af 100644
---- a/include/uapi/linux/if_bridge.h
-+++ b/include/uapi/linux/if_bridge.h
-@@ -526,6 +526,7 @@ struct br_mdb_entry {
- 		union {
- 			__be32	ip4;
- 			struct in6_addr ip6;
-+			unsigned char mac_addr[ETH_ALEN];
- 		} u;
- 		__be16		proto;
- 	} addr;
-diff --git a/man/man8/bridge.8 b/man/man8/bridge.8
-index 84b9b70c7dea..b3414ae31faf 100644
---- a/man/man8/bridge.8
-+++ b/man/man8/bridge.8
-@@ -665,7 +665,7 @@ the bridge to which this address is associated.
- .SH bridge mdb - multicast group database management
- 
- .B mdb
--objects contain known IP multicast group addresses on a link.
-+objects contain known IP or L2 multicast group addresses on a link.
- 
- .P
- The corresponding commands display mdb entries, add new entries,
-@@ -685,11 +685,11 @@ the port whose link is known to have members of this multicast group.
- 
- .TP
- .BI grp " GROUP"
--the IP multicast group address whose members reside on the link connected to
--the port.
-+the multicast group address (IPv4, IPv6 or L2 multicast) whose members reside
-+on the link connected to the port.
- 
- .B permanent
--- the mdb entry is permanent
-+- the mdb entry is permanent. Optional for IPv4 and IPv6, mandatory for L2.
- .sp
- 
- .B temp
--- 
-2.25.1
+I really hope the Clang folks are reasonable and merge your patch.
 
+> If trivial patches are adding too much to your workload, consider
+> training a co-maintainer or asking for help from one of your reviewers
+> whom you trust.  I don't doubt it's hard to find maintainers, but
+> existing maintainers should go out of their way to entrust
+> co-maintainers especially when they find their workload becomes too
+> high.  And reviewing/picking up trivial patches is probably a great
+> way to get started.  If we allow too much knowledge of any one
+> subsystem to collect with one maintainer, what happens when that
+> maintainer leaves the community (which, given a finite lifespan, is an
+> inevitability)?
+
+The burn out point is about enjoying your work and feeling that it
+matters. It really doesn't make much difference if you're doing
+something you don't like for 12 hours every day or only in shifts with
+another maintainer. You'll dislike it either way.
+
+Applying a real patch set and then getting a few follow ups the next day
+for trivial coding things like fallthrough missing or static missing,
+just because I didn't have the full range of compilers to check with
+before applying makes me feel pretty shitty, like I'm not doing a good
+job. YMMV.
