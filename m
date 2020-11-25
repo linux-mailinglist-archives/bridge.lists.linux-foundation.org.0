@@ -1,111 +1,66 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679322C49F7
-	for <lists.bridge@lfdr.de>; Wed, 25 Nov 2020 22:33:37 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46DB52C49FA
+	for <lists.bridge@lfdr.de>; Wed, 25 Nov 2020 22:34:51 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id CDEEB876FB;
-	Wed, 25 Nov 2020 21:33:33 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id F186786F6A;
+	Wed, 25 Nov 2020 21:34:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 3us-O+oTi-0e; Wed, 25 Nov 2020 21:33:33 +0000 (UTC)
+	with ESMTP id LrHNGI9V_atY; Wed, 25 Nov 2020 21:34:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 1A5AF876F8;
-	Wed, 25 Nov 2020 21:33:33 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 757E086982;
+	Wed, 25 Nov 2020 21:34:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DB24FC163C;
-	Wed, 25 Nov 2020 21:33:32 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 62CE8C1D9F;
+	Wed, 25 Nov 2020 21:34:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 13B8DC0052;
- Wed, 25 Nov 2020 21:33:32 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9FC9FC0052
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 21:34:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id C6CCE876F7;
- Wed, 25 Nov 2020 21:33:31 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 9A6C6876F7
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 21:34:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id QX9APKRNHB01; Wed, 25 Nov 2020 21:33:30 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from kvm5.telegraphics.com.au (kvm5.telegraphics.com.au
- [98.124.60.144])
- by hemlock.osuosl.org (Postfix) with ESMTP id 31C18876E5;
- Wed, 25 Nov 2020 21:33:30 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by kvm5.telegraphics.com.au (Postfix) with ESMTP id 9789F29FB0;
- Wed, 25 Nov 2020 16:33:24 -0500 (EST)
-Date: Thu, 26 Nov 2020 08:33:24 +1100 (AEDT)
-From: Finn Thain <fthain@telegraphics.com.au>
-To: Nick Desaulniers <ndesaulniers@google.com>
-In-Reply-To: <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
-Message-ID: <alpine.LNX.2.23.453.2011260750300.6@nippy.intranet>
-References: <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011220816.8B6591A@keescook>
- <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
- <ca071decb87cc7e905411423c05a48f9fd2f58d7.camel@perches.com>
- <0147972a72bc13f3629de8a32dee6f1f308994b5.camel@HansenPartnership.com>
- <d8d1e9add08cdd4158405e77762d4946037208f8.camel@perches.com>
- <dbd2cb703ed9eefa7dde9281ea26ab0f7acc8afe.camel@HansenPartnership.com>
- <20201123130348.GA3119@embeddedor>
- <8f5611bb015e044fa1c0a48147293923c2d904e4.camel@HansenPartnership.com>
- <202011241327.BB28F12F6@keescook>
- <a841536fe65bb33f1c72ce2455a6eb47a0107565.camel@HansenPartnership.com>
- <CAKwvOdkGBn7nuWTAqrORMeN1G+w3YwBfCqqaRD2nwvoAXKi=Aw@mail.gmail.com>
+ with ESMTP id GYWz08ibuFW8 for <bridge@lists.linux-foundation.org>;
+ Wed, 25 Nov 2020 21:34:46 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 656B4876E5
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Nov 2020 21:34:46 +0000 (UTC)
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown
+ [163.114.132.4])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8FA06206E0;
+ Wed, 25 Nov 2020 21:34:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1606340086;
+ bh=3lVrLTTsCdkal7E8HZY0NZKVZlVawWDZoX8smDNr+OU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=itRkywL78OBNGH52rhDRkPoFkhM3SRjKqcUj37jk1l+Ecdj83u88Pt4/wAxr0+wq6
+ hu4Ps/mY1fYVxNvdzw8GiZgYjq4BngFEhtGk9scnsLM7qmAfjQ6Je3pNpYd8RrAaVz
+ es3lIG3e/2qvKxpWP7vEm848nIIQvEGFFMCZM5LM=
+Date: Wed, 25 Nov 2020 13:34:44 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Message-ID: <20201125133444.22f09660@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20201124082525.273820-1-horatiu.vultur@microchip.com>
+References: <20201124082525.273820-1-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
-Cc: alsa-devel@alsa-project.org, bridge@lists.linux-foundation.org,
- target-devel@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
- linux-iio@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-fbdev@vger.kernel.org,
- dri-devel <dri-devel@lists.freedesktop.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
- linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
- wcn36xx@lists.infradead.org, linux-i3c@lists.infradead.org,
- linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
- drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
- linux-scsi@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-rdma@vger.kernel.org, oss-drivers@netronome.com,
- linux-atm-general@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- usb-storage@lists.one-eyed-alien.net, linux-mmc@vger.kernel.org,
- coreteam@netfilter.org, intel-wired-lan@lists.osuosl.org,
- linux-input@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, linux-ext4@vger.kernel.org,
- virtualization@lists.linux-foundation.org, netfilter-devel@vger.kernel.org,
- linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
- selinux@vger.kernel.org, linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- intel-gfx@lists.freedesktop.org, linux-sctp@vger.kernel.org,
- reiserfs-devel@vger.kernel.org, linux-geode@lists.infradead.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, Nathan Chancellor <natechancellor@gmail.com>,
- linux-can@vger.kernel.org, Linux ARM <linux-arm-kernel@lists.infradead.org>,
- linux-hwmon@vger.kernel.org,
- "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-watchdog@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
- Linux Memory Management List <linux-mm@kvack.org>,
- Network Development <netdev@vger.kernel.org>,
- linux-decnet-user@lists.sourceforge.net, samba-technical@lists.samba.org,
- LKML <linux-kernel@vger.kernel.org>,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-security-module@vger.kernel.org, linux-usb@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net,
- "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
- <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
- Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
- linux-nfs@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [Bridge] [Intel-wired-lan] [PATCH 000/141] Fix fall-through
- warnings for Clang
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next v2] bridge: mrp: Implement LC mode for
+	MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -120,27 +75,30 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, 25 Nov 2020, Nick Desaulniers wrote:
-
-> So developers and distributions using Clang can't have 
-> -Wimplicit-fallthrough enabled because GCC is less strict (which has 
-> been shown in this thread to lead to bugs)?  We'd like to have nice 
-> things too, you know.
+On Tue, 24 Nov 2020 09:25:25 +0100 Horatiu Vultur wrote:
+> Extend MRP to support LC mode(link check) for the interconnect port.
+> This applies only to the interconnect ring.
 > 
-
-Apparently the GCC developers don't want you to have "nice things" either. 
-Do you think that the kernel should drop gcc in favour of clang?
-Or do you think that a codebase can somehow satisfy multiple checkers and 
-their divergent interpretations of the language spec?
-
-> This is not a shiny new warning; it's already on for GCC and has existed 
-> in both compilers for multiple releases.
+> Opposite to RC mode(ring check) the LC mode is using CFM frames to
+> detect when the link goes up or down and based on that the userspace
+> will need to react.
+> One advantage of the LC mode over RC mode is that there will be fewer
+> frames in the normal rings. Because RC mode generates InTest on all
+> ports while LC mode sends CFM frame only on the interconnect port.
 > 
+> All 4 nodes part of the interconnect ring needs to have the same mode.
+> And it is not possible to have running LC and RC mode at the same time
+> on a node.
+> 
+> Whenever the MIM starts it needs to detect the status of the other 3
+> nodes in the interconnect ring so it would send a frame called
+> InLinkStatus, on which the clients needs to reply with their link
+> status.
+> 
+> This patch adds InLinkStatus frame type and extends existing rules on
+> how to forward this frame.
+> 
+> Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-Perhaps you're referring to the compiler feature that lead to the 
-ill-fated, tree-wide /* fallthrough */ patch series.
-
-When the ink dries on the C23 language spec and the implementations figure 
-out how to interpret it then sure, enforce the warning for new code -- the 
-cost/benefit analysis is straight forward. However, the case for patching 
-existing mature code is another story.
+Applied, thanks!
