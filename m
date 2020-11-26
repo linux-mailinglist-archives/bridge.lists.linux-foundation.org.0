@@ -1,48 +1,48 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 621C12C4B6B
-	for <lists.bridge@lfdr.de>; Thu, 26 Nov 2020 00:22:04 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299252C4C0B
+	for <lists.bridge@lfdr.de>; Thu, 26 Nov 2020 01:30:49 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 12C60870DC;
-	Wed, 25 Nov 2020 23:22:03 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 362FC87753;
+	Thu, 26 Nov 2020 00:30:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id tDCAuJEAeVmF; Wed, 25 Nov 2020 23:22:02 +0000 (UTC)
+	with ESMTP id w2rSMlqgDxKk; Thu, 26 Nov 2020 00:30:47 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7D82586FFF;
-	Wed, 25 Nov 2020 23:22:02 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id E2E668774D;
+	Thu, 26 Nov 2020 00:30:46 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5BF87C1D9F;
-	Wed, 25 Nov 2020 23:22:02 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C9252C0052;
+	Thu, 26 Nov 2020 00:30:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 14A5EC0052;
- Wed, 25 Nov 2020 23:22:00 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7FD76C0052;
+ Thu, 26 Nov 2020 00:30:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id EF00D8750B;
- Wed, 25 Nov 2020 23:21:59 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 61CC62E1CC;
+ Thu, 26 Nov 2020 00:30:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id h6hG77OWx3TC; Wed, 25 Nov 2020 23:21:59 +0000 (UTC)
+ with ESMTP id KFI+7RAsPwb1; Thu, 26 Nov 2020 00:30:41 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
 Received: from kvm5.telegraphics.com.au (kvm5.telegraphics.com.au
  [98.124.60.144])
- by whitealder.osuosl.org (Postfix) with ESMTP id 1E0F8874EC;
- Wed, 25 Nov 2020 23:21:59 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 7896B2E1C9;
+ Thu, 26 Nov 2020 00:30:41 +0000 (UTC)
 Received: from localhost (localhost.localdomain [127.0.0.1])
- by kvm5.telegraphics.com.au (Postfix) with ESMTP id 414EA2A490;
- Wed, 25 Nov 2020 18:21:54 -0500 (EST)
-Date: Thu, 26 Nov 2020 10:21:54 +1100 (AEDT)
+ by kvm5.telegraphics.com.au (Postfix) with ESMTP id 742A42A495;
+ Wed, 25 Nov 2020 19:30:37 -0500 (EST)
+Date: Thu, 26 Nov 2020 11:30:36 +1100 (AEDT)
 From: Finn Thain <fthain@telegraphics.com.au>
 To: Nick Desaulniers <ndesaulniers@google.com>
 In-Reply-To: <CAKwvOdna5Zj_O=sB7Q0jHZX0BJSaakX=ZyftwQ_3=L3-ZB54XQ@mail.gmail.com>
-Message-ID: <alpine.LNX.2.23.453.2011260918510.6@nippy.intranet>
+Message-ID: <alpine.LNX.2.23.453.2011261031290.6@nippy.intranet>
 References: <202011201129.B13FDB3C@keescook>
  <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
  <202011220816.8B6591A@keescook>
@@ -122,40 +122,51 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+
+
 On Wed, 25 Nov 2020, Nick Desaulniers wrote:
 
-> On Wed, Nov 25, 2020 at 1:33 PM Finn Thain <fthain@telegraphics.com.au> 
-> wrote:
+> On Wed, Nov 25, 2020 at 1:33 PM Finn Thain <fthain@telegraphics.com.au> wrote:
 > >
 > > Or do you think that a codebase can somehow satisfy multiple checkers 
 > > and their divergent interpretations of the language spec?
 > 
-> Have we found any cases yet that are divergent? I don't think so.
+> Have we found any cases yet that are divergent? I don't think so. 
 
-There are many implementations, so I think you are guaranteed to find more 
-divergence if you look. That's because the spec is full of language like 
-this: "implementations are encouraged not to emit a diagnostic" and 
-"implementations are encouraged to issue a diagnostic".
+You mean, aside from -Wimplicit-fallthrough? I'm glad you asked. How about 
+-Wincompatible-pointer-types and -Wframe-larger-than?
 
-Some implementations will decide to not emit (under the premise that vast 
-amounts of existing code would have to get patched until the compiler goes 
-quiet) whereas other implementations will decide to emit (under the 
-premise that the author is doing the checking and not the janitor or the 
-packager).
+All of the following files have been affected by divergent diagnostics 
+produced by clang and gcc.
 
-> It sounds to me like GCC's cases it warns for is a subset of Clang's. 
-> Having additional coverage with Clang then should ensure coverage for 
-> both.
-> 
+arch/arm64/include/asm/neon-intrinsics.h
+arch/powerpc/xmon/Makefile
+drivers/gpu/drm/i915/Makefile
+drivers/gpu/drm/i915/i915_utils.h
+drivers/staging/media/atomisp/pci/atomisp_subdev.c
+fs/ext4/super.c
+include/trace/events/qla.h
+net/mac80211/rate.c
+tools/lib/string.c
+tools/perf/util/setup.py
+tools/scripts/Makefile.include
 
-If that claim were true, the solution would be simple. (It's not.)
+And if I searched for 'smatch' or 'coverity' instead of 'clang' I'd 
+probably find more divergence.
 
-For the benefit of projects that enable -Werror and projects that 
-nominated gcc as their preferred compiler, clang would simply need a flag 
-to enable conformance with gcc by suppressing those additional warnings 
-that clang would normally produce.
+Here are some of the relevant commits.
 
-This simple solution is, of course, completely unworkable, since it would 
-force clang to copy some portion of gcc's logic (rewritten under LLVM's 
-unique license) and then to track future changes to that portion of gcc 
-indefinitely.
+0738c8b5915c7eaf1e6007b441008e8f3b460443
+9c87156cce5a63735d1218f0096a65c50a7a32aa
+babaab2f473817f173a2d08e410c25abf5ed0f6b
+065e5e559555e2f100bc95792a8ef1b609bbe130
+93f56de259376d7e4fff2b2d104082e1fa66e237
+6c4798d3f08b81c2c52936b10e0fa872590c96ae
+b7a313d84e853049062011d78cb04b6decd12f5c
+093b75ef5995ea35d7f6bdb6c7b32a42a1999813
+
+And before you object, "but -Wconstant-logical-operand is a clang-only 
+warning! it can't be divergent with gcc!", consider that the special cases 
+added to deal with clang-only warnings have to be removed when gcc catches 
+up, which is more churn. Now multiply that by the number of checkers you 
+care about.
