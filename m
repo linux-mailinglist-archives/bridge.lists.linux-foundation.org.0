@@ -1,160 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8BB2C6F20
-	for <lists.bridge@lfdr.de>; Sat, 28 Nov 2020 06:36:59 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3066C2C7938
+	for <lists.bridge@lfdr.de>; Sun, 29 Nov 2020 14:01:03 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id C2C622043F;
-	Sat, 28 Nov 2020 05:36:57 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id C93828638F;
+	Sun, 29 Nov 2020 13:01:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XlLAQKiFzk0J; Sat, 28 Nov 2020 05:36:55 +0000 (UTC)
+	with ESMTP id GH46W9zQLU3R; Sun, 29 Nov 2020 13:01:01 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 6C47920416;
-	Sat, 28 Nov 2020 05:36:55 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 3E93686456;
+	Sun, 29 Nov 2020 13:01:01 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5436FC0052;
-	Sat, 28 Nov 2020 05:36:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2294CC0859;
+	Sun, 29 Nov 2020 13:01:01 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7963CC0052
- for <bridge@lists.linux-foundation.org>; Thu, 26 Nov 2020 16:18:39 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 987E8C0052
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 13:00:59 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 6677886489
- for <bridge@lists.linux-foundation.org>; Thu, 26 Nov 2020 16:18:39 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id C055120770
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 13:00:57 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cSLz36RdPrI4 for <bridge@lists.linux-foundation.org>;
- Thu, 26 Nov 2020 16:18:36 +0000 (UTC)
+ with ESMTP id 0DAF36LvWSfQ for <bridge@lists.linux-foundation.org>;
+ Sun, 29 Nov 2020 13:00:54 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 90F6987813
- for <bridge@lists.linux-foundation.org>; Thu, 26 Nov 2020 16:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1606407515;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=IL7sPB68gF1YeWIUFuBJ//YIBDjI3bDL6qHHKubt/Z0=;
- b=R8KqzDp6KWKLBbg2Z/g5MYTGPZpASAZJUdFfIuTcqGoawHZgFEb6dpTDkluGkjpbJreiWU
- vvScJ9EtJZHyeykKAa13Ejr6vjnw38ENjHUtStINvbCXsoIo6bNCk7Gshdd4mwYKDLNLTV
- SwBW+2Vg6iMZuMX5tqYmm9AgVsVuK3I=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-221-qrNoappXOUG6HD8SIdABvg-1; Thu, 26 Nov 2020 11:18:25 -0500
-X-MC-Unique: qrNoappXOUG6HD8SIdABvg-1
-Received: by mail-qv1-f70.google.com with SMTP id q6so1491557qvr.21
- for <bridge@lists.linux-foundation.org>; Thu, 26 Nov 2020 08:18:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IL7sPB68gF1YeWIUFuBJ//YIBDjI3bDL6qHHKubt/Z0=;
- b=S8+4ahOKNVNQb7abINku6Q1r2I1544WMAMjWvs5qN5UJYKll31TYZ3F/akJeQpe4EM
- OhsKkDaizJF+drf1xq4NgOGZDJMotwauAj8JSpGdvFAwWaNVbbg1Wkgg8crhryuUsZ5V
- c33PAM4rrS2sXFdKL5W9mCug93vFAcEAwYBBOIx3rElldR8AZhk5ZEGb6KhJa8lqnNVY
- VQ3Y2Rfu6wF6k+amknKZChOXqGoE1577y39W8tnu1eMXnB/XQVK6JcYwz4e4BwV98lQF
- GhIknCSIxAh9eFMLjyvm5w+6nqVuMV1FhGq5R126U1Appop+ehg+r4dvjTM/bRupxl7u
- e4Jg==
-X-Gm-Message-State: AOAM530fG34XC9YqVXtv30QDc0E16ejI8RdtofK6NorpFnd3ik3oYAEP
- A28mcudpaxD1iTjk1dQ+McDYRMqAFuZ2s/fdnGTS3w5roIoGLo4jbftiBxNMpPi5YDJNZMBC7Nb
- 9HMvJCSAjeLENbTMGu3ODH+BThu6bIapCS7oNf/jJ6kO8Khg=
-X-Received: by 2002:a37:ac8:: with SMTP id 191mr3793946qkk.381.1606407504816; 
- Thu, 26 Nov 2020 08:18:24 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzCU4CKAolN2PpaYdMoKCHma/+NC3lHjkQkQkRPTWC20j3rANbYTTy+FG9V7n634RRlgf0kcsxPjR4LO+NB5fA=
-X-Received: by 2002:a37:ac8:: with SMTP id 191mr3793888qkk.381.1606407504531; 
- Thu, 26 Nov 2020 08:18:24 -0800 (PST)
+Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
+ [66.111.4.221])
+ by silver.osuosl.org (Postfix) with ESMTPS id F17AC204D3
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 13:00:53 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 8140758051A;
+ Sun, 29 Nov 2020 07:54:40 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute3.internal (MEProxy); Sun, 29 Nov 2020 07:54:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=JWvE4wkdTHgXND6Y4
+ bjPsbiWmIMG3ggvyGEu9Fq8aWI=; b=mi1BAUBb2QpKhInOgWPOSFHzvFCiJqYGC
+ qbJMVarRepEk5V9ansX6hKbMXL1PsT2qtJI69kiPrfKf2K4HeAO6f/F+ulhvAyJ4
+ EeHFYttDKYEr2rQVxjYXR14/nYB7ybcyLavALnAyA3Sw/ra0MqJQO7yLbEX6VIli
+ HjMhdO0+mAZDnfgEg3L07pLBoCXzBI8oa79ISmv2MCBbaJdCzzH7KACooBxzz/tR
+ UppIAECK7BBzmpdFZxWoVEFlOdL6PEtiY3ZokiECl3EeBRejRgHVsKyh4c7ItnqG
+ J9Zlw/tGrngbC8VHbPBegWpfnrggGdOGRxJ6t++DnAAwsmaO6jjcg==
+X-ME-Sender: <xms:EJrDXz9vQLxvb1P2VsfMKmXQIaP6EUZvoY9CP0Z-oJYGDdJic6Lnyw>
+ <xme:EJrDX_sTbIMpsTldC1ySUGsYxlXYBhWzSBzyjVTsPUmIzwPu77UJMezYAi_vbIlDj
+ bxQsSjRaZViIo8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudehkedggeeiucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+ dttdenucfhrhhomhepkfguohcuufgthhhimhhmvghluceoihguohhstghhsehiughoshgt
+ hhdrohhrgheqnecuggftrfgrthhtvghrnhepteevgefhvefggfffkeeuffeuvdfhueehhe
+ etffeikeegheevfedvgeelvdffudfhnecukfhppeekgedrvddvledrudehgedrudegjeen
+ ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehiughosh
+ gthhesihguohhstghhrdhorhhg
+X-ME-Proxy: <xmx:EJrDXxBcvBvfBoNAXgEH7tRl50E80ngJB0C9g7lApZvCvxs-ERNajw>
+ <xmx:EJrDX_f-jA3T67PROoMYwCjpp2b_s2kjsTt1ZeyqwIX4vnyMEEyuHg>
+ <xmx:EJrDX4M9Euw8MiNvXIkkUlOaGwllAEBlLqTJD4c9_Qr-3crNQ88v1Q>
+ <xmx:EJrDX3rLy8-kx3DOyx0rG3tOPbQMjYzj63cWKFi6NpzGMG9MlsmbMg>
+Received: from shredder.lan (igld-84-229-154-147.inter.net.il [84.229.154.147])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 278683064AB2;
+ Sun, 29 Nov 2020 07:54:38 -0500 (EST)
+From: Ido Schimmel <idosch@idosch.org>
+To: netdev@vger.kernel.org,
+	bridge@lists.linux-foundation.org
+Date: Sun, 29 Nov 2020 14:53:58 +0200
+Message-Id: <20201129125407.1391557-1-idosch@idosch.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011220816.8B6591A@keescook>
- <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
- <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
- <1c7d7fde126bc0acf825766de64bf2f9b888f216.camel@HansenPartnership.com>
- <CANiq72m22Jb5_+62NnwX8xds2iUdWDMAqD8PZw9cuxdHd95W0A@mail.gmail.com>
- <fc45750b6d0277c401015b7aa11e16cd15f32ab2.camel@HansenPartnership.com>
- <CANiq72k5tpDoDPmJ0ZWc1DGqm+81Gi-uEENAtvEs9v3SZcx6_Q@mail.gmail.com>
- <4993259d01a0064f8bb22770503490f9252f3659.camel@HansenPartnership.com>
- <CANiq72kqO=bYMJnFS2uYRpgWATJ=uXxZuNUsTXT+3aLtrpnzvQ@mail.gmail.com>
- <44005bde-f6d4-5eaa-39b8-1a5efeedb2d3@gmail.com>
- <CANiq72nobq=ptWK-qWxU91JHqkKhMcRtJNnw2XJd5-vSJWZd8Q@mail.gmail.com>
- <CAMuHMdV5kOakvZJMWLxbpigFPS+Xuw6DVYsWCWZy7wGsv3idcw@mail.gmail.com>
-In-Reply-To: <CAMuHMdV5kOakvZJMWLxbpigFPS+Xuw6DVYsWCWZy7wGsv3idcw@mail.gmail.com>
-From: Karol Herbst <kherbst@redhat.com>
-Date: Thu, 26 Nov 2020 17:18:13 +0100
-Message-ID: <CACO55tsBj3gLECoMWtViDitd7fVTnW+Cp0LVmqYkR=QFBJkEmQ@mail.gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=kherbst@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sat, 28 Nov 2020 05:36:53 +0000
-Cc: ALSA Development Mailing List <alsa-devel@alsa-project.org>,
- linux-atm-general@lists.sourceforge.net, linux-iio@vger.kernel.org,
- linux-wireless <linux-wireless@vger.kernel.org>,
- Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org,
- James Bottomley <James.Bottomley@hansenpartnership.com>,
- linux-ide@vger.kernel.org, dm-devel@redhat.com,
- target-devel <target-devel@vger.kernel.org>,
- MTD Maling List <linux-mtd@lists.infradead.org>,
- GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
- linux-i3c@lists.infradead.org, linux1394-devel@lists.sourceforge.net,
- "open list:NFS, SUNRPC, AND..." <linux-nfs@vger.kernel.org>,
- linux-afs@lists.infradead.org, usb-storage@lists.one-eyed-alien.net,
- Lars Ellenberg <drbd-dev@lists.linbit.com>,
- driverdevel <devel@driverdev.osuosl.org>, linux-cifs@vger.kernel.org,
- rds-devel@oss.oracle.com, scsi <linux-scsi@vger.kernel.org>,
- Edward Cree <ecree.xilinx@gmail.com>, linux-rdma <linux-rdma@vger.kernel.org>,
- oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-input <linux-input@vger.kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- reiserfs-devel@vger.kernel.org, linux-geode@lists.infradead.org,
- linux-block@vger.kernel.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- samba-technical@lists.samba.org, xen-devel@lists.xenproject.org,
- Nouveau Dev <nouveau@lists.freedesktop.org>, linux-hams@vger.kernel.org,
- ceph-devel <ceph-devel@vger.kernel.org>, linux-can@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
- Nick Desaulniers <ndesaulniers@google.com>,
- Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
- GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
- Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
- linux-decnet-user@lists.sourceforge.net,
- Linux MMC List <linux-mmc@vger.kernel.org>, linux-sctp@vger.kernel.org,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Nathan Chancellor <natechancellor@gmail.com>,
- Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
- linux-security-module <linux-security-module@vger.kernel.org>,
- keyrings@vger.kernel.org, NetFilter <netfilter-devel@vger.kernel.org>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-integrity <linux-integrity@vger.kernel.org>,
- USB list <linux-usb@vger.kernel.org>,
- "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
- linux-hardening@vger.kernel.org
-Subject: Re: [Bridge] [PATCH 000/141] Fix fall-through warnings for Clang
+Content-Transfer-Encoding: 8bit
+Cc: ivecera@redhat.com, petrm@nvidia.com, amcohen@nvidia.com,
+ danieller@nvidia.com, mlxsw@nvidia.com, Ido Schimmel <idosch@nvidia.com>,
+ jiri@nvidia.com, nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org,
+ davem@davemloft.net
+Subject: [Bridge] [PATCH net-next 0/9] mlxsw: Add support for 802.1ad
+	bridging
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -169,61 +96,81 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Nov 26, 2020 at 4:28 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Miguel,
->
-> On Thu, Nov 26, 2020 at 3:54 PM Miguel Ojeda
-> <miguel.ojeda.sandonis@gmail.com> wrote:
-> > On Wed, Nov 25, 2020 at 11:44 PM Edward Cree <ecree.xilinx@gmail.com> wrote:
-> > > To make the intent clear, you have to first be certain that you
-> > >  understand the intent; otherwise by adding either a break or a
-> > >  fallthrough to suppress the warning you are just destroying the
-> > >  information that "the intent of this code is unknown".
-> >
-> > If you don't know what the intent of your own code is, then you
-> > *already* have a problem in your hands.
->
-> The maintainer is not necessarily the owner/author of the code, and
-> thus may not know the intent of the code.
->
-> > > or does it flag up code
-> > >  that can be mindlessly "fixed" (in which case the warning is
-> > >  worthless)?  Proponents in this thread seem to be trying to
-> > >  have it both ways.
-> >
-> > A warning is not worthless just because you can mindlessly fix it.
-> > There are many counterexamples, e.g. many
-> > checkpatch/lint/lang-format/indentation warnings, functional ones like
-> > the `if (a = b)` warning...
->
-> BTW, you cannot mindlessly fix the latter, as you cannot know if
-> "(a == b)" or "((a = b))" was intended, without understanding the code
-> (and the (possibly unavailable) data sheet, and the hardware, ...).
->
+From: Ido Schimmel <idosch@nvidia.com>
 
-to allow assignments in if statements was clearly a mistake and if you
-need outside information to understand the code, your code is the
-issue already.
+802.1ad, also known as QinQ, is an extension to the 802.1q standard,
+which is concerned with passing possibly 802.1q-tagged packets through
+another VLAN-like tunnel. The format of 802.1ad tag is the same as
+802.1q, except it uses the EtherType of 0x88a8, unlike 802.1q's 0x8100.
 
-> P.S. So far I've stayed out of this thread, as I like it if the compiler
->      flags possible mistakes.  After all I was the one fixing new
->      "may be used uninitialized" warnings thrown up by gcc-4.1, until
->      (a bit later than) support for that compiler was removed...
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->
+Currently, mlxsw supports bridging with VLAN-unaware (802.1d) bridges
+and with VLAN-aware bridges whose VLAN protocol is 802.1q. This set adds
+support for VLAN-aware bridges whose VLAN protocol is 802.1ad.
+
+From mlxsw perspective, 802.1ad support entails two main changes:
+
+1. Ports member in an 802.1ad bridge need to be configured to classify
+802.1ad packets as tagged and all other packets as untagged
+
+2. When pushing a VLAN at ingress (PVID), its EtherType needs to be
+0x88a8 instead of 802.1q's 0x8100
+
+The rest stays the same as with 802.1q bridges.
+
+A follow-up patch set will add support for QinQ with VXLAN, also known
+as QinVNI. Currently, linking of a VXLAN netdev to an 802.1ad bridge is
+vetoed and an error is returned to user space.
+
+Patch set overview:
+
+Patches #1-#2 add the registers required to configure the two changes
+described above.
+
+Patch #3 changes the device to only treat 802.1q packets as tagged by
+default, as opposed to both 802.1q and 802.1ad packets. This is more
+inline with the behavior supported by the driver.
+
+Patch #4 adds the ability to configure the EtherType when pushing a PVID
+at ingress.
+
+Patch #5 performs small refactoring to allow for code re-use in the next
+patch.
+
+Patch #6 adds support for 802.1ad bridging and allows mlxsw ports and
+their uppers to join such a bridge.
+
+Patch #7 changes the bridge driver to notify about changes to its VLAN
+protocol, so that these could be vetoed by mlxsw in the next patch.
+
+Patches #8-#9 teach mlxsw to veto unsupported 802.1ad configurations and
+add a corresponding selftest to make sure such configurations are indeed
+vetoed.
+
+Amit Cohen (6):
+  mlxsw: reg: Add Switch Port VLAN Classification Register
+  mlxsw: reg: Add et_vlan field to SPVID register
+  mlxsw: spectrum: Only treat 802.1q packets as tagged packets
+  mlxsw: Make EtherType configurable when pushing VLAN at ingress
+  mlxsw: spectrum_switchdev: Create common functions for VLAN-aware
+    bridge
+  mlxsw: spectrum_switchdev: Add support of QinQ traffic
+
+Danielle Ratson (3):
+  bridge: switchdev: Notify about VLAN protocol changes
+  mlxsw: Add QinQ configuration vetoes
+  selftests: forwarding: Add QinQ veto testing
+
+ drivers/net/ethernet/mellanox/mlxsw/reg.h     | 114 ++++++-
+ .../net/ethernet/mellanox/mlxsw/spectrum.c    | 111 ++++++-
+ .../net/ethernet/mellanox/mlxsw/spectrum.h    |   7 +-
+ .../ethernet/mellanox/mlxsw/spectrum_router.c |   9 +
+ .../mellanox/mlxsw/spectrum_switchdev.c       | 123 +++++++-
+ include/net/switchdev.h                       |   2 +
+ net/bridge/br_vlan.c                          |  16 +-
+ .../drivers/net/mlxsw/q_in_q_veto.sh          | 296 ++++++++++++++++++
+ 8 files changed, 657 insertions(+), 21 deletions(-)
+ create mode 100755 tools/testing/selftests/drivers/net/mlxsw/q_in_q_veto.sh
+
+-- 
+2.28.0
 
