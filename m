@@ -1,90 +1,93 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215D62C793B
-	for <lists.bridge@lfdr.de>; Sun, 29 Nov 2020 14:06:04 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3612C7B40
+	for <lists.bridge@lfdr.de>; Sun, 29 Nov 2020 21:59:07 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 530B587694;
-	Sun, 29 Nov 2020 13:05:59 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id BA5F287294;
+	Sun, 29 Nov 2020 20:59:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id oJGHZEoRbqXi; Sun, 29 Nov 2020 13:05:58 +0000 (UTC)
+	with ESMTP id WRydrQyjbhGJ; Sun, 29 Nov 2020 20:59:02 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 93ECA876EB;
-	Sun, 29 Nov 2020 13:05:57 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 9A23B8728A;
+	Sun, 29 Nov 2020 20:59:02 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 61DBEC0052;
-	Sun, 29 Nov 2020 13:05:57 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 70C06C0052;
+	Sun, 29 Nov 2020 20:59:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C2120C0052
- for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 13:05:55 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8C707C0052
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 20:59:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id B92B9876C9
- for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 13:05:55 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 7003A862C1
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 20:59:00 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RiHn55f8Uyzn for <bridge@lists.linux-foundation.org>;
- Sun, 29 Nov 2020 13:05:54 +0000 (UTC)
+ with ESMTP id 0sXlZok9ZcHJ for <bridge@lists.linux-foundation.org>;
+ Sun, 29 Nov 2020 20:58:58 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
- [66.111.4.221])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 80AA887694
- for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 13:05:54 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id ECC3D5806EE;
- Sun, 29 Nov 2020 07:54:59 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute3.internal (MEProxy); Sun, 29 Nov 2020 07:54:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:date:from
- :in-reply-to:message-id:mime-version:references:subject:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; bh=+1rM72rUS1RwxEMSKX+3Qq9La+Y4Jk9RXUti7lKs6eY=; b=KokFreLG
- NFnDksRq3ZCXH6eIIZ1QEUz3kOVegoUCk4jh9jlTrMXvJmfcH3RQ+9OkJgjAxrCL
- 6mQfB9WPSUIo+tCxHCKTI5vrneayOiWt0IVVeBOfk1WMATwle18Dul0ndNqqrulK
- uKqV6LjEbcrb9xs4RHN1Ig5DjTa63TulpFqvZpbqjrqgj4MTsayfG8TBmwm/UIew
- zSPqNKBPnud6jdYbchAYWh78UGYFBNSbQnPwgWsyE2cnPNYP7HrGJG90lrzgATRu
- BjxemdChsP2iG8VHy8B4vIw2Q2vPhev+YBCW0ypM3325uq+KtlO6gzupTIqzXM42
- 8Pmord64zwQZbA==
-X-ME-Sender: <xms:I5rDX8-iWaJtMO2yWDuKfcroWJZTk_MN4XK6tqfIVKzLTkdjUpVmQA>
- <xme:I5rDX0toOon9-h-wZNVS8XcPmNdphInq3ce1-erpjmUwfZrjTWrlkmV-h2YKS7v3h
- WAq_whkdd_fy5U>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudehkedggeeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
- dtredttdenucfhrhhomhepkfguohcuufgthhhimhhmvghluceoihguohhstghhsehiugho
- shgthhdrohhrgheqnecuggftrfgrthhtvghrnhepudetieevffffveelkeeljeffkefhke
- ehgfdtffethfelvdejgffghefgveejkefhnecukfhppeekgedrvddvledrudehgedrudeg
- jeenucevlhhushhtvghrufhiiigvpeeinecurfgrrhgrmhepmhgrihhlfhhrohhmpehiug
- hoshgthhesihguohhstghhrdhorhhg
-X-ME-Proxy: <xmx:I5rDXyAiFg5yAFuOCzHDyoIkMnjQu4MsO-xgMEYXob5a1k0elOG2UQ>
- <xmx:I5rDX8ezeFziFIdg4pAt-Le52qb8o0UFituzhvRz8BmqgcVk2fdVpQ>
- <xmx:I5rDXxMaoVrxKLvm3cd4pqlOBBZ-ip-bhAX-79WSeYfIsA9TvTx7Xw>
- <xmx:I5rDX0pUTp9qxpGN0-7WIhfDvH8u8lX9T55Y6DvHTQ0T5ipiFOlJ2g>
-Received: from shredder.lan (igld-84-229-154-147.inter.net.il [84.229.154.147])
- by mail.messagingengine.com (Postfix) with ESMTPA id D08FC3064AAA;
- Sun, 29 Nov 2020 07:54:57 -0500 (EST)
-From: Ido Schimmel <idosch@idosch.org>
-To: netdev@vger.kernel.org,
-	bridge@lists.linux-foundation.org
-Date: Sun, 29 Nov 2020 14:54:07 +0200
-Message-Id: <20201129125407.1391557-10-idosch@idosch.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201129125407.1391557-1-idosch@idosch.org>
-References: <20201129125407.1391557-1-idosch@idosch.org>
+Received: from mail-io1-f65.google.com (mail-io1-f65.google.com
+ [209.85.166.65])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 804C786102
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 20:58:58 +0000 (UTC)
+Received: by mail-io1-f65.google.com with SMTP id q137so6174473iod.9
+ for <bridge@lists.linux-foundation.org>; Sun, 29 Nov 2020 12:58:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=JSHVC83f9zQxL2ofrrqfIzwQKPtC6+odZmbyX4hFo0Q=;
+ b=Aw2v6owuj3vvapFlLLv+r6JrXHf/uZvq6rsxgA25XH6VSNSj1BaIA9hg+9N1iWLUbm
+ OqkJEc7OVpmNMAAT83FNmceMbsTrYCj/S674rq37GQFrqz+n9XWlwAeWaUmYkMt4LMo3
+ 0O+JBNVJFGnKvSsA6Myvux8hluxcCuCynKNO15dOyKWQA/TPY3LF3u+/8uA1ARqJ/nMP
+ K9Yp4I51Nt2gUmUf24Tgh1DxNCn72cke81Be7TiI4ucDlyXvWUMP/EeY/sCbDEt12jLT
+ Pqd1pklpVQCscPw1gXz2u6ziqU3W84pWkY1Cj6fZoLPE02oOjzNtU04mGNxuQSMcR5j6
+ 7Ykg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=JSHVC83f9zQxL2ofrrqfIzwQKPtC6+odZmbyX4hFo0Q=;
+ b=ZaHLC3ux3f34c9+zKXYrygVVbkL/E6clDW7Lo+VAic3qF1HmtxgrgyXoa1lm5UripN
+ AFlzBpZCsp9/X64PN5jObN0lBZRbLj6J6omz+cKiMVR1kleP7V6WagNcjEQEV6LxKWnp
+ FEswvZUEWgnWAFTzr1zaVZwVQP9zMGi/SVXHmuYv//qTZzKZ9uNyZVX0XNkTOuaospOz
+ Gib1Q/fJiVFZVWPvBrEpdK9S0CFyTDVKzepvJeugLlE+5FUBUi7+Z5E7gt4M9cgmh8Jn
+ 0eBeeogfYEjKMv3n47woZxDgtUQ8q7akFnEnlnqGoN+Omzbjn4HkBsGuw48G7UW2gsXG
+ pacA==
+X-Gm-Message-State: AOAM530J0K20dRy2k4jTaZST1DnTD5PNAqCaUTsemBT156DA/8vUMDhq
+ QCCjMMOa8tXOq+lGijDQbAo=
+X-Google-Smtp-Source: ABdhPJxyXAEYjokf9NPONgKHW9p9mIJEGrj0AzUfPYIZmDE/YiXq1KnzKtX6gpvnAVTZBiQK8MfIZA==
+X-Received: by 2002:a5d:939a:: with SMTP id c26mr334702iol.63.1606683537789;
+ Sun, 29 Nov 2020 12:58:57 -0800 (PST)
+Received: from Davids-MacBook-Pro.local
+ ([2601:282:800:dc80:4896:3e20:e1a7:6425])
+ by smtp.googlemail.com with ESMTPSA id x23sm7276273ioh.28.2020.11.29.12.58.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 29 Nov 2020 12:58:57 -0800 (PST)
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, Roopa Prabhu
+ <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>, bridge@lists.linux-foundation.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201125143639.3587854-1-vladimir.oltean@nxp.com>
+From: David Ahern <dsahern@gmail.com>
+Message-ID: <5b4172c8-33a2-49d8-fd9f-17174242a384@gmail.com>
+Date: Sun, 29 Nov 2020 13:58:56 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:78.0)
+ Gecko/20100101 Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: ivecera@redhat.com, petrm@nvidia.com, amcohen@nvidia.com,
- danieller@nvidia.com, mlxsw@nvidia.com, Ido Schimmel <idosch@nvidia.com>,
- jiri@nvidia.com, nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org,
- davem@davemloft.net
-Subject: [Bridge] [PATCH net-next 9/9] selftests: forwarding: Add QinQ veto
-	testing
+In-Reply-To: <20201125143639.3587854-1-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us, idosch@idosch.org,
+ Jakub Kicinski <kuba@kernel.org>, vivien.didelot@gmail.com
+Subject: Re: [Bridge] [PATCH v3 iproute2] bridge: add support for L2
+	multicast groups
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,337 +102,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Danielle Ratson <danieller@nvidia.com>
+On 11/25/20 7:36 AM, Vladimir Oltean wrote:
+> Extend the 'bridge mdb' command for the following syntax:
+> bridge mdb add dev br0 port swp0 grp 01:02:03:04:05:06 permanent
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+> Changes in v3:
+> - Using rt_addr_n2a_r instead of inet_ntop/ll_addr_n2a directly.
+> - Updated the bridge manpage.
+> 
+> Changes in v2:
+> - Removed the const void casts.
+> - Removed MDB_FLAGS_L2 from the UAPI to be in sync with the latest
+>   kernel patch:
+>   https://patchwork.ozlabs.org/project/netdev/patch/20201028233831.610076-1-vladimir.oltean@nxp.com/
+> 
+>  bridge/mdb.c                   | 54 ++++++++++++++++++++++++++--------
+>  include/uapi/linux/if_bridge.h |  1 +
+>  man/man8/bridge.8              |  8 ++---
+>  3 files changed, 46 insertions(+), 17 deletions(-)
+> 
 
-Test that each veto that was added in the previous patch, is indeed
-vetoed.
-
-$ ./q_in_q_veto.sh
-
-TEST: create 802.1ad vlan upper on top of a front panel             [ OK ]
-TEST: create 802.1ad vlan upper on top of a bridge port             [ OK ]
-TEST: create 802.1ad vlan upper on top of a lag                     [ OK ]
-TEST: create 802.1ad vlan upper on top 802.1q bridge                [ OK ]
-TEST: create 802.1ad vlan upper on top 802.1ad bridge               [ OK ]
-TEST: create 802.1q vlan upper on top 802.1ad bridge                [ OK ]
-TEST: create vlan upper on top of front panel enslaved to 802.1ad bridge
-[ OK ]
-TEST: create vlan upper on top of lag enslaved to 802.1ad bridge    [ OK ]
-TEST: enslave front panel with vlan upper to 802.1ad bridge         [ OK ]
-TEST: enslave lag with vlan upper to 802.1ad bridge                 [ OK ]
-TEST: IP address addition to 802.1ad bridge                         [ OK ]
-TEST: switch bridge protocol                                        [ OK ]
-
-Signed-off-by: Danielle Ratson <danieller@nvidia.com>
-Reviewed-by: Petr Machata <petrm@nvidia.com>
-Signed-off-by: Ido Schimmel <idosch@nvidia.com>
----
- .../drivers/net/mlxsw/q_in_q_veto.sh          | 296 ++++++++++++++++++
- 1 file changed, 296 insertions(+)
- create mode 100755 tools/testing/selftests/drivers/net/mlxsw/q_in_q_veto.sh
-
-diff --git a/tools/testing/selftests/drivers/net/mlxsw/q_in_q_veto.sh b/tools/testing/selftests/drivers/net/mlxsw/q_in_q_veto.sh
-new file mode 100755
-index 000000000000..7edaed8eb86a
---- /dev/null
-+++ b/tools/testing/selftests/drivers/net/mlxsw/q_in_q_veto.sh
-@@ -0,0 +1,296 @@
-+#!/bin/bash
-+# SPDX-License-Identifier: GPL-2.0
-+
-+lib_dir=$(dirname $0)/../../../net/forwarding
-+
-+ALL_TESTS="
-+	create_8021ad_vlan_upper_on_top_front_panel_port
-+	create_8021ad_vlan_upper_on_top_bridge_port
-+	create_8021ad_vlan_upper_on_top_lag
-+	create_8021ad_vlan_upper_on_top_bridge
-+	create_8021ad_vlan_upper_on_top_8021ad_bridge
-+	create_vlan_upper_on_top_8021ad_bridge
-+	create_vlan_upper_on_top_front_panel_enslaved_to_8021ad_bridge
-+	create_vlan_upper_on_top_lag_enslaved_to_8021ad_bridge
-+	enslave_front_panel_with_vlan_upper_to_8021ad_bridge
-+	enslave_lag_with_vlan_upper_to_8021ad_bridge
-+	add_ip_address_to_8021ad_bridge
-+	switch_bridge_protocol_from_8021q_to_8021ad
-+"
-+NUM_NETIFS=2
-+source $lib_dir/lib.sh
-+
-+setup_prepare()
-+{
-+	swp1=${NETIFS[p1]}
-+	swp2=${NETIFS[p2]}
-+
-+	ip link set dev $swp1 up
-+	ip link set dev $swp2 up
-+
-+	sleep 10
-+}
-+
-+cleanup()
-+{
-+	pre_cleanup
-+
-+	ip link set dev $swp2 down
-+	ip link set dev $swp1 down
-+}
-+
-+create_vlan_upper_on_top_of_bridge()
-+{
-+	RET=0
-+
-+	local bridge_proto=$1; shift
-+	local netdev_proto=$1; shift
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol $bridge_proto vlan_default_pvid 0 mcast_snooping 0
-+
-+	ip link set dev br0 up
-+	ip link set dev $swp1 master br0
-+
-+	ip link add name br0.100 link br0 type vlan \
-+		protocol $netdev_proto id 100 2>/dev/null
-+	check_fail $? "$netdev_proto vlan upper creation on top of an $bridge_proto bridge not rejected"
-+
-+	ip link add name br0.100 link br0 type vlan \
-+		protocol $netdev_proto id 100 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "$netdev_proto vlan upper creation on top of an $bridge_proto bridge rejected without extack"
-+
-+	log_test "create $netdev_proto vlan upper on top $bridge_proto bridge"
-+
-+	ip link del dev br0
-+}
-+
-+create_8021ad_vlan_upper_on_top_front_panel_port()
-+{
-+	RET=0
-+
-+	ip link add name $swp1.100 link $swp1 type vlan \
-+		protocol 802.1ad id 100 2>/dev/null
-+	check_fail $? "802.1ad vlan upper creation on top of a front panel not rejected"
-+
-+	ip link add name $swp1.100 link $swp1 type vlan \
-+		protocol 802.1ad id 100 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "802.1ad vlan upper creation on top of a front panel rejected without extack"
-+
-+	log_test "create 802.1ad vlan upper on top of a front panel"
-+}
-+
-+create_8021ad_vlan_upper_on_top_bridge_port()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_default_pvid 0 mcast_snooping 0
-+
-+	ip link set dev $swp1 master br0
-+	ip link set dev br0 up
-+
-+	ip link add name $swp1.100 link $swp1 type vlan \
-+		protocol 802.1ad id 100 2>/dev/null
-+	check_fail $? "802.1ad vlan upper creation on top of a bridge port not rejected"
-+
-+	ip link add name $swp1.100 link $swp1 type vlan \
-+		protocol 802.1ad id 100 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "802.1ad vlan upper creation on top of a bridge port rejected without extack"
-+
-+	log_test "create 802.1ad vlan upper on top of a bridge port"
-+
-+	ip link del dev br0
-+}
-+
-+create_8021ad_vlan_upper_on_top_lag()
-+{
-+	RET=0
-+
-+	ip link add name bond1 type bond mode 802.3ad
-+	ip link set dev $swp1 down
-+	ip link set dev $swp1 master bond1
-+
-+	ip link add name bond1.100 link bond1 type vlan \
-+		protocol 802.1ad id 100 2>/dev/null
-+	check_fail $? "802.1ad vlan upper creation on top of a lag not rejected"
-+
-+	ip link add name bond1.100 link bond1 type vlan \
-+		protocol 802.1ad id 100 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "802.1ad vlan upper creation on top of a lag rejected without extack"
-+
-+	log_test "create 802.1ad vlan upper on top of a lag"
-+
-+	ip link del dev bond1
-+}
-+
-+create_8021ad_vlan_upper_on_top_bridge()
-+{
-+	RET=0
-+
-+	create_vlan_upper_on_top_of_bridge "802.1q" "802.1ad"
-+}
-+
-+create_8021ad_vlan_upper_on_top_8021ad_bridge()
-+{
-+	RET=0
-+
-+	create_vlan_upper_on_top_of_bridge "802.1ad" "802.1ad"
-+}
-+
-+create_vlan_upper_on_top_8021ad_bridge()
-+{
-+	RET=0
-+
-+	create_vlan_upper_on_top_of_bridge "802.1ad" "802.1q"
-+}
-+
-+create_vlan_upper_on_top_front_panel_enslaved_to_8021ad_bridge()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol 802.1ad vlan_default_pvid 0 mcast_snooping 0
-+	ip link set dev br0 up
-+
-+	ip link set dev $swp1 master br0
-+
-+	ip link add name $swp1.100 link $swp1 type vlan id 100 2>/dev/null
-+	check_fail $? "vlan upper creation on top of front panel enslaved to 802.1ad bridge not rejected"
-+
-+	ip link add name $swp1.100 link $swp1 type vlan id 100 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "vlan upper creation on top of front panel enslaved to 802.1ad bridge rejected without extack"
-+
-+	log_test "create vlan upper on top of front panel enslaved to 802.1ad bridge"
-+
-+	ip link del dev br0
-+}
-+
-+create_vlan_upper_on_top_lag_enslaved_to_8021ad_bridge()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol 802.1ad vlan_default_pvid 0 mcast_snooping 0
-+	ip link set dev br0 up
-+
-+	ip link add name bond1 type bond mode 802.3ad
-+	ip link set dev $swp1 down
-+	ip link set dev $swp1 master bond1
-+	ip link set dev bond1 master br0
-+
-+	ip link add name bond1.100 link bond1 type vlan id 100 2>/dev/null
-+	check_fail $? "vlan upper creation on top of lag enslaved to 802.1ad bridge not rejected"
-+
-+	ip link add name bond1.100 link bond1 type vlan id 100 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "vlan upper creation on top of lag enslaved to 802.1ad bridge rejected without extack"
-+
-+	log_test "create vlan upper on top of lag enslaved to 802.1ad bridge"
-+
-+	ip link del dev bond1
-+	ip link del dev br0
-+}
-+
-+enslave_front_panel_with_vlan_upper_to_8021ad_bridge()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol 802.1ad vlan_default_pvid 0 mcast_snooping 0
-+	ip link set dev br0 up
-+
-+	ip link add name $swp1.100 link $swp1 type vlan id 100
-+
-+	ip link set dev $swp1 master br0 2>/dev/null
-+	check_fail $? "front panel with vlan upper enslavemnt to 802.1ad bridge not rejected"
-+
-+	ip link set dev $swp1 master br0 2>&1 >/dev/null | grep -q mlxsw_spectrum
-+	check_err $? "front panel with vlan upper enslavemnt to 802.1ad bridge rejected without extack"
-+
-+	log_test "enslave front panel with vlan upper to 802.1ad bridge"
-+
-+	ip link del dev $swp1.100
-+	ip link del dev br0
-+}
-+
-+enslave_lag_with_vlan_upper_to_8021ad_bridge()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol 802.1ad vlan_default_pvid 0 mcast_snooping 0
-+	ip link set dev br0 up
-+
-+	ip link add name bond1 type bond mode 802.3ad
-+	ip link set dev $swp1 down
-+	ip link set dev $swp1 master bond1
-+	ip link add name bond1.100 link bond1 type vlan id 100
-+
-+	ip link set dev bond1 master br0 2>/dev/null
-+	check_fail $? "lag with vlan upper enslavemnt to 802.1ad bridge not rejected"
-+
-+	ip link set dev bond1 master br0 2>&1 >/dev/null \
-+		| grep -q mlxsw_spectrum
-+	check_err $? "lag with vlan upper enslavemnt to 802.1ad bridge rejected without extack"
-+
-+	log_test "enslave lag with vlan upper to 802.1ad bridge"
-+
-+	ip link del dev bond1
-+	ip link del dev br0
-+}
-+
-+
-+add_ip_address_to_8021ad_bridge()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol 802.1ad vlan_default_pvid 0 mcast_snooping 0
-+
-+	ip link set dev br0 up
-+	ip link set dev $swp1 master br0
-+
-+	ip addr add dev br0 192.0.2.17/28 2>/dev/null
-+	check_fail $? "IP address addition to 802.1ad bridge not rejected"
-+
-+	ip addr add dev br0 192.0.2.17/28 2>&1 >/dev/null | grep -q mlxsw_spectrum
-+	check_err $? "IP address addition to 802.1ad bridge rejected without extack"
-+
-+	log_test "IP address addition to 802.1ad bridge"
-+
-+	ip link del dev br0
-+}
-+
-+switch_bridge_protocol_from_8021q_to_8021ad()
-+{
-+	RET=0
-+
-+	ip link add dev br0 type bridge vlan_filtering 1 \
-+		vlan_protocol 802.1ad vlan_default_pvid 0 mcast_snooping 0
-+
-+	ip link set dev br0 up
-+	ip link set dev $swp1 master br0
-+
-+	ip link set dev br0 type bridge vlan_protocol 802.1q 2>/dev/null
-+	check_fail $? "switching bridge protocol from 802.1q to 802.1ad not rejected"
-+
-+	log_test "switch bridge protocol"
-+
-+	ip link del dev br0
-+}
-+
-+
-+trap cleanup EXIT
-+
-+setup_prepare
-+setup_wait
-+
-+tests_run
-+
-+exit $EXIT_STATUS
--- 
-2.28.0
+applied to iproute2-next
 
