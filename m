@@ -1,80 +1,100 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5046D2C8870
-	for <lists.bridge@lfdr.de>; Mon, 30 Nov 2020 16:43:32 +0100 (CET)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0728B2C9903
+	for <lists.bridge@lfdr.de>; Tue,  1 Dec 2020 09:21:36 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id CF4FE228E7;
-	Mon, 30 Nov 2020 15:43:29 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id A5481881C3;
+	Tue,  1 Dec 2020 08:21:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hoEr09c4GQaJ; Mon, 30 Nov 2020 15:43:28 +0000 (UTC)
+	with ESMTP id DitI3PVpci1G; Tue,  1 Dec 2020 08:21:33 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 56870228D1;
-	Mon, 30 Nov 2020 15:43:28 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id C2AD4881C4;
+	Tue,  1 Dec 2020 08:21:33 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4562DC0052;
-	Mon, 30 Nov 2020 15:43:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A7878C1D9F;
+	Tue,  1 Dec 2020 08:21:33 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 595F8C0052
- for <bridge@lists.linux-foundation.org>; Mon, 30 Nov 2020 15:43:27 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8CED3C0859;
+ Tue,  1 Dec 2020 08:21:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 3FEB887256
- for <bridge@lists.linux-foundation.org>; Mon, 30 Nov 2020 15:43:27 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 6DD7A203E6;
+ Tue,  1 Dec 2020 08:21:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KWqz97LJKiGU for <bridge@lists.linux-foundation.org>;
- Mon, 30 Nov 2020 15:43:26 +0000 (UTC)
+ with ESMTP id Ij1L3sSTf4MG; Tue,  1 Dec 2020 08:21:25 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 776A887170
- for <bridge@lists.linux-foundation.org>; Mon, 30 Nov 2020 15:43:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1606751005;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=pc3sTfbXJOVt6vCEe9FHldGHV1UK5SFz3XNDNv2grKc=;
- b=iMqNJRfp8EQRXerxZCOZvWuuTwzSr8J5keA/OfbvRTB+wQbr1rxyQaSepDFrN0uYT+lNsM
- IXkyVrfdgszjcoXoLf86M3OFJZ2gsFeIS482aFaGo8jx4/2wGxOF/a2IJ08jLWWCWsmCvR
- rNXBuW/tzaL3IRWMwk1KodNB8X0Qoqw=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-358-FYIPvKtJOLi8Kdje2lC_UA-1; Mon, 30 Nov 2020 10:43:19 -0500
-X-MC-Unique: FYIPvKtJOLi8Kdje2lC_UA-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by silver.osuosl.org (Postfix) with ESMTPS id 1ADC5228EC;
+ Tue,  1 Dec 2020 08:21:25 +0000 (UTC)
+Received: from embeddedor (187-162-31-110.static.axtel.net [187.162.31.110])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8A4A5185E481;
- Mon, 30 Nov 2020 15:43:17 +0000 (UTC)
-Received: from ceranb (unknown [10.40.196.32])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 922286086F;
- Mon, 30 Nov 2020 15:43:14 +0000 (UTC)
-Date: Mon, 30 Nov 2020 16:43:13 +0100
-From: Ivan Vecera <ivecera@redhat.com>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <20201130164313.535b6efa@ceranb>
-In-Reply-To: <20201129125407.1391557-8-idosch@idosch.org>
-References: <20201129125407.1391557-1-idosch@idosch.org>
- <20201129125407.1391557-8-idosch@idosch.org>
+ by mail.kernel.org (Postfix) with ESMTPSA id 94ECB20659;
+ Tue,  1 Dec 2020 08:21:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1606810884;
+ bh=xHTFstOj6O/KMLPWIJ9livXkeh5E3cNJZoMEX1ICbl0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=0ugfFVtmDEFz3qweRxNJGIbdlhHbJEbe+SPrGbc9I44gM+O6I2rVgrcZagGiPQlJe
+ qDa/e9cJY/n7rREFFqWQI6CYR7sTmaWJfiub5J4ReXH3L76qQfPF0XWoTZ+/KCqBa1
+ 43uSa/AsDxhQJOFTJrlenu8ULt+S2HlexiyIiZjk=
+Date: Tue, 1 Dec 2020 02:20:47 -0600
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: "Martin K. Petersen" <martin.petersen@oracle.com>
+Message-ID: <20201201082047.GA11832@embeddedor>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <yq1h7p6gjkk.fsf@ca-mkp.ca.oracle.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Cc: petrm@nvidia.com, amcohen@nvidia.com, danieller@nvidia.com,
- netdev@vger.kernel.org, Ido Schimmel <idosch@nvidia.com>,
- bridge@lists.linux-foundation.org, mlxsw@nvidia.com, nikolay@nvidia.com,
- jiri@nvidia.com, roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 7/9] bridge: switchdev: Notify about
- VLAN protocol changes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <yq1h7p6gjkk.fsf@ca-mkp.ca.oracle.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ linux-iio@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
+ dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
+ samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ usb-storage@lists.one-eyed-alien.net, target-devel@vger.kernel.org,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
+ linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
+ linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, drbd-dev@tron.linbit.com,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ x86@kernel.org, linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
+ Kees Cook <keescook@chromium.org>, linux-mm@kvack.org, netdev@vger.kernel.org,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
+ linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [Bridge] [PATCH 000/141] Fix fall-through warnings for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,95 +109,17 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, 29 Nov 2020 14:54:05 +0200
-Ido Schimmel <idosch@idosch.org> wrote:
+On Tue, Dec 01, 2020 at 12:52:27AM -0500, Martin K. Petersen wrote:
+> 
+> Gustavo,
+> 
+> > This series aims to fix almost all remaining fall-through warnings in
+> > order to enable -Wimplicit-fallthrough for Clang.
+> 
+> Applied 20-22,54,120-124 to 5.11/scsi-staging, thanks.
 
-> From: Danielle Ratson <danieller@nvidia.com>
-> 
-> Drivers that support bridge offload need to be notified about changes to
-> the bridge's VLAN protocol so that they could react accordingly and
-> potentially veto the change.
-> 
-> Add a new switchdev attribute to communicate the change to drivers.
-> 
-> Signed-off-by: Danielle Ratson <danieller@nvidia.com>
-> Reviewed-by: Petr Machata <petrm@nvidia.com>
-> Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
-> ---
->  include/net/switchdev.h |  2 ++
->  net/bridge/br_vlan.c    | 16 ++++++++++++++--
->  2 files changed, 16 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/net/switchdev.h b/include/net/switchdev.h
-> index 53e8b4994296..99cd538d6519 100644
-> --- a/include/net/switchdev.h
-> +++ b/include/net/switchdev.h
-> @@ -38,6 +38,7 @@ enum switchdev_attr_id {
->  	SWITCHDEV_ATTR_ID_PORT_MROUTER,
->  	SWITCHDEV_ATTR_ID_BRIDGE_AGEING_TIME,
->  	SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING,
-> +	SWITCHDEV_ATTR_ID_BRIDGE_VLAN_PROTOCOL,
->  	SWITCHDEV_ATTR_ID_BRIDGE_MC_DISABLED,
->  	SWITCHDEV_ATTR_ID_BRIDGE_MROUTER,
->  #if IS_ENABLED(CONFIG_BRIDGE_MRP)
-> @@ -58,6 +59,7 @@ struct switchdev_attr {
->  		bool mrouter;				/* PORT_MROUTER */
->  		clock_t ageing_time;			/* BRIDGE_AGEING_TIME */
->  		bool vlan_filtering;			/* BRIDGE_VLAN_FILTERING */
-> +		u16 vlan_protocol;			/* BRIDGE_VLAN_PROTOCOL */
->  		bool mc_disabled;			/* MC_DISABLED */
->  #if IS_ENABLED(CONFIG_BRIDGE_MRP)
->  		u8 mrp_port_state;			/* MRP_PORT_STATE */
-> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-> index 11f54a7c0d1d..d07008678d32 100644
-> --- a/net/bridge/br_vlan.c
-> +++ b/net/bridge/br_vlan.c
-> @@ -854,15 +854,25 @@ EXPORT_SYMBOL_GPL(br_vlan_get_proto);
->  
->  int __br_vlan_set_proto(struct net_bridge *br, __be16 proto)
->  {
-> +	struct switchdev_attr attr = {
-> +		.orig_dev = br->dev,
-> +		.id = SWITCHDEV_ATTR_ID_BRIDGE_VLAN_PROTOCOL,
-> +		.flags = SWITCHDEV_F_SKIP_EOPNOTSUPP,
-> +		.u.vlan_protocol = ntohs(proto),
-> +	};
->  	int err = 0;
->  	struct net_bridge_port *p;
->  	struct net_bridge_vlan *vlan;
->  	struct net_bridge_vlan_group *vg;
-> -	__be16 oldproto;
-> +	__be16 oldproto = br->vlan_proto;
->  
->  	if (br->vlan_proto == proto)
->  		return 0;
->  
-> +	err = switchdev_port_attr_set(br->dev, &attr);
-> +	if (err && err != -EOPNOTSUPP)
-> +		return err;
-> +
->  	/* Add VLANs for the new proto to the device filter. */
->  	list_for_each_entry(p, &br->port_list, list) {
->  		vg = nbp_vlan_group(p);
-> @@ -873,7 +883,6 @@ int __br_vlan_set_proto(struct net_bridge *br, __be16 proto)
->  		}
->  	}
->  
-> -	oldproto = br->vlan_proto;
->  	br->vlan_proto = proto;
->  
->  	recalculate_group_addr(br);
-> @@ -889,6 +898,9 @@ int __br_vlan_set_proto(struct net_bridge *br, __be16 proto)
->  	return 0;
->  
->  err_filt:
-> +	attr.u.vlan_protocol = ntohs(oldproto);
-> +	switchdev_port_attr_set(br->dev, &attr);
-> +
->  	list_for_each_entry_continue_reverse(vlan, &vg->vlan_list, vlist)
->  		vlan_vid_del(p->dev, proto, vlan->vid);
->  
+Awesome! :)
 
-Reviewed-by: Ivan Vecera <ivecera@redhat.com>
-
+Thanks, Martin.
+--
+Gustavo
