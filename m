@@ -1,142 +1,63 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD3B2D8E40
-	for <lists.bridge@lfdr.de>; Sun, 13 Dec 2020 16:24:57 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03DDC2DA642
+	for <lists.bridge@lfdr.de>; Tue, 15 Dec 2020 03:32:51 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id B0E4E20438;
-	Sun, 13 Dec 2020 15:24:54 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 57A7F86142;
+	Tue, 15 Dec 2020 02:32:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id C0hi3eE38dOv; Sun, 13 Dec 2020 15:24:54 +0000 (UTC)
+	with ESMTP id eAV-aHR-DpAs; Tue, 15 Dec 2020 02:32:48 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 36A632042E;
-	Sun, 13 Dec 2020 15:24:54 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 3B4B8869EA;
+	Tue, 15 Dec 2020 02:32:48 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 25376C013B;
-	Sun, 13 Dec 2020 15:24:54 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 11C4CC1D9F;
+	Tue, 15 Dec 2020 02:32:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E4E45C013B
- for <bridge@lists.linux-foundation.org>; Sun, 13 Dec 2020 15:24:52 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 39EF3C013B
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Dec 2020 02:32:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id B30742042E
- for <bridge@lists.linux-foundation.org>; Sun, 13 Dec 2020 15:24:52 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 1F3DC874D4
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Dec 2020 02:32:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SpPh1GFpGvFP for <bridge@lists.linux-foundation.org>;
- Sun, 13 Dec 2020 15:24:50 +0000 (UTC)
-X-Greylist: delayed 01:28:48 by SQLgrey-1.7.6
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com
- (mail-eopbgr10042.outbound.protection.outlook.com [40.107.1.42])
- by silver.osuosl.org (Postfix) with ESMTPS id 014BA20402
- for <bridge@lists.linux-foundation.org>; Sun, 13 Dec 2020 15:24:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sxqpm3nsoSHJitp4zFA54BsOHrme+CaxfDUgpHmohIZWsfVHIymcQ6Jt0lh15xV84y9MfdKl3aBc6LFMN3jkuyxQlnPTmkzVZqBarQWlSyQN3NhSYTNGsTxK48mQo1jtTzU4Kz88tKlqc26c9V77iTSPyXWBXOLfsUwunQnqgGetSqvAuerBg8YAUJIL/kFQm7AJJGBKwXEUpRZWCBbPEgTOZZ8fhkLYbPKp66V0x4ovQnYaq695ULmF/YN0JuH5QaaSwjkSRUFVteKRIpzeUBnG4meQp3hxzUwL8uyzX8PHn70hywSmehOGl+S3t+5iGGL9A3GD/8BjS4SEuD21VA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=glUNLV58+8I+VGyntUpvxg8EqGk4oNpIuhBgucx9tSc=;
- b=XFm53RR1LVmYLQ7Nx0UA7r8o/VbN5dB3HPVTzpUFsDs4xqgRx7dwq0R+q7NQCJh/F2nl9oJ0nYYk0XIocEc8Boep0y18YI0yUTLTFxxN7S9YFqHl9CSkRqv1CoP/smbZJ9y8A6bdZNDkZcLM49q0iHxOrYO3b0RkeGR/cNCDB1p0lj44el/CoXNibEV6J5RgOYtzp5YRtdzYPkpYN7Xl9vW4LNjtiQyPvVT7HWwcnj4gkb3NT8S7Fq5ILlZRH4qCAecJmnKowditEFuFL9MwNyDRqD2t/wmcu5invB0NkxoLpWUmQ0To2NQg8qCByLFWSncYdMfD6kbWROTRLyCpZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=glUNLV58+8I+VGyntUpvxg8EqGk4oNpIuhBgucx9tSc=;
- b=afsJ1YYd6wftxP03OKI2rfGKavXWuuCimBmIRXDykby6jW2Z/lJxdSpgB2XQD3MbLrTrFtC6Ap29FJFEysTdwYPppFhnaW7xoUqwESpF3tkDpns16OXxbFYXATNkPeyJyqeD8HaxeoK7QNeMFZ77k/oeqh/utWFFtSXzIVhqgRc=
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
- by VI1PR04MB5695.eurprd04.prod.outlook.com (2603:10a6:803:e9::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.17; Sun, 13 Dec
- 2020 15:08:42 +0000
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::2dd6:8dc:2da7:ad84]) by VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::2dd6:8dc:2da7:ad84%5]) with mapi id 15.20.3654.020; Sun, 13 Dec 2020
- 15:08:42 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Ido Schimmel <idosch@idosch.org>
-Thread-Topic: [PATCH v3 net-next 1/7] net: bridge: notify switchdev of
- disappearance of old FDB entry upon migration
-Thread-Index: AQHW0VlPMeocR3LBl0GZDisbPfFCdan1HVyAgAADoIA=
-Date: Sun, 13 Dec 2020 15:08:42 +0000
-Message-ID: <20201213150841.ctp2njznfqvikj7x@skbuf>
-References: <20201213140710.1198050-1-vladimir.oltean@nxp.com>
- <20201213140710.1198050-2-vladimir.oltean@nxp.com>
- <20201213145543.GA2539586@shredder.lan>
-In-Reply-To: <20201213145543.GA2539586@shredder.lan>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: idosch.org; dkim=none (message not signed)
- header.d=none;idosch.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [188.25.2.120]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: fcfcd307-e6e9-4773-c247-08d89f78fa94
-x-ms-traffictypediagnostic: VI1PR04MB5695:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB569518F952BE13FBDA39E873E0C80@VI1PR04MB5695.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uD24Ia6LXLwEPEQuNJ+fzKE+P79hKCdcnhS3ZTdkTA1W712w4eePxaq+/J8X7hvcvJ5hTUe2YXTFFqBbR3nrXKZ0GHYKsQsZ+cgTr+Hvn8Tf+hSaLdMIwXIiPU4i2he1Ilru32JcAW4ctK1HcBSGqa2uJlxt1zQQHd64vpKkXO6OsUnPViNRTMVyct588vIBvzjI2zVrghgrHGZoPpfXQ+Hg+j6leVBZAMOaRa0ukpsJQsPTrCpWPx69PfWVMyCu2xUwQ9acqkHwQ6tcgSwIemjIsoWFSD0fxebZjb2+mNIgn0Xg3NSl3fmdYQg24Um4d7ACOk82S6r+814isxaKoA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5696.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(136003)(376002)(366004)(396003)(346002)(39850400004)(6916009)(66476007)(66946007)(8936002)(6506007)(66556008)(83380400001)(64756008)(8676002)(66446008)(5660300002)(478600001)(4326008)(71200400001)(7416002)(44832011)(76116006)(9686003)(6512007)(54906003)(316002)(1076003)(2906002)(33716001)(86362001)(186003)(26005)(6486002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?98DBou6enkOG2PqOI9dOFYP0OhiKaMOkMh4o8JM7oQEMzKPCHm+xKz/bOG+v?=
- =?us-ascii?Q?+SCi/xM94prIDoriBkjuVg5SXlDN9GTePKcQVvalyqBvAKVCMdg6r/yhS2WI?=
- =?us-ascii?Q?aM7cyyGY2D4XTe83+3ehvIZZkcT4KELt1QYd+r4q7aMcl0ILQw8chCRJhzrD?=
- =?us-ascii?Q?YxkPKldo7gdrlw9c2QFgzVmXoj4AoDrlYX0WJhhZdyOr6rIUKMk7cJZA4Trh?=
- =?us-ascii?Q?EQ8dxMeVS/TnWRzlZr8vICGlAy2oeMrp+ZjRBf1i1roGbdjPNKW1u6xpyLlB?=
- =?us-ascii?Q?SsIGetH4Ixw70/k7MAKKzTFLzdZpR+8Z+JBPWUbvDaXNwx1y9D+bQszi0qXo?=
- =?us-ascii?Q?8zSLotnsTa+ds5IIzkRbNxu4o6NBRPjsOlJudZkwUJfSq1A54s0Nq3B5gR/o?=
- =?us-ascii?Q?BPmE3ZQ1CbQXNGExqxZkgESUxKBY0LIaLzfmZEiRYwV+mgt2lZ37HlomOaU7?=
- =?us-ascii?Q?H2GWgZg1y7pZdbOPXAX57jORZqot89hKrRSfw+9+zeFU1T3r2D9TxFp2e+pH?=
- =?us-ascii?Q?7PiAAQixBrDOXJ/VJDPm0PfF5oe8AswC6QQ/dOAjnzD6vzjgPKKSUMPZ1Z54?=
- =?us-ascii?Q?PYsMtS8QYuQpfPzo2Ga4skuQX4xtB19kq2UJUQ2/Srolx4RNmoXe1C6kYfBS?=
- =?us-ascii?Q?7GasPFtC9h6oiupvO28U2d9HqtmsTB2NeUjzCR8KYHgtg8virS1lrSvdvHUX?=
- =?us-ascii?Q?eFOzmRLAYtZuC/D6zVIzlRdynVJVb5gOmBzlfAZIHNPuNcEk3SBwu0rkvMzR?=
- =?us-ascii?Q?JLaq+Pj8n7a/+AVF9ZriSWYP3XEeBW2q2xnK63VUfPyH2f30LsAH5CZNLJWy?=
- =?us-ascii?Q?c4jEs3WIPBCJc8Pdz5MkWcacuYfKxCLzenq5udTn+VM6EbJxKB7rOpDfu24Q?=
- =?us-ascii?Q?q4iMp7UkMMFy/jxPQASV5cVcISajxFfEP574K+JWYTvUYQa95uQZmtJbP1cK?=
- =?us-ascii?Q?wUbYjA17JTFWR72+nZwCj2oo8gaA0nAwftEbg3gDFefwbQlZLS9q2GdXkjDi?=
- =?us-ascii?Q?94jB?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <7C8AF35377E370438D117AF298DF8512@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ with ESMTP id DmBuGHkz3h6H for <bridge@lists.linux-foundation.org>;
+ Tue, 15 Dec 2020 02:32:45 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 81D228725E
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Dec 2020 02:32:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1607999565;
+ bh=WYSwvgrlDpQVIIDoaLii3hzyMGUXaw29yrS/HV62spw=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=UZnv4UZ2yINMawrYcI650sixxc7fh+r4xlhZ7p5Xuuz7u8ZXTlKowaes8XCCHAeSp
+ 0wdof3vABQeaoW42Cb3oaWAUUpmERYYcXzChOfHymbYDL/ho4IdX1wCdgR/SUFP2+5
+ YXMfDl+O4q6dhzGzJ0JmHBgAIJG5o1zY41ASWvG2CGolJ65ikDWMf5sIK2bvh6hG97
+ I6GTV1ECISIKctHWpnRBtEtCQZjcQJSkUi+zpOqfKa0rF0B4n7ygGSqzFMFY0tLMyh
+ xV/J5i5T+X5YVMPIc9rUCCqPSrBdvfLvjON7rjtnlc9dkUIVMQohdHs96BgisGhiGD
+ RUpbrSCBtceXQ==
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcfcd307-e6e9-4773-c247-08d89f78fa94
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2020 15:08:42.0640 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LLkos3T/WZK+HCCwpds91veXoED6OVg4MneCuanBVbZmzROpiPpVrgzlzGzqgslpe9NDnWKLZicN6dUehgcwAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5695
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Jiri Pirko <jiri@resnulli.us>, Alexandra Winter <wintera@linux.ibm.com>,
- Russell King - ARM Linux admin <linux@armlinux.org.uk>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "David S. Miller" <davem@davemloft.net>, DENG Qingfang <dqfext@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Marek Behun <marek.behun@nic.cz>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
- Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [PATCH v3 net-next 1/7] net: bridge: notify switchdev
- of disappearance of old FDB entry upon migration
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <160799956512.31445.17200550488514446402.git-patchwork-notify@kernel.org>
+Date: Tue, 15 Dec 2020 02:32:45 +0000
+References: <20201211122921.40386-1-wanghai38@huawei.com>
+In-Reply-To: <20201211122921.40386-1-wanghai38@huawei.com>
+To: Wang Hai <wanghai38@huawei.com>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v2] net: bridge: Fix a warning when del bridge
+	sysfs
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -151,49 +72,48 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Ido,
+Hello:
 
-On Sun, Dec 13, 2020 at 04:55:43PM +0200, Ido Schimmel wrote:
-> > As far as the switchdev driver is concerned, all that it needs to ensur=
-e
-> > is that traffic between Station A and Station B is not forever broken.
-> > If it does nothing, then the stale rule to send frames for Station B
-> > towards the control interface remains in place. But Station B is no
-> > longer reachable via the control interface, but via a port that can
-> > offload the bridge port learning attribute. It's just that the port is
-> > prevented from learning this address, since the rule overrides FDB
-> > updates. So the rule needs to go. The question is via what mechanism.
->=20
-> Can you please clarify why the FDB replacement notification is not
-> enough?
+This patch was applied to netdev/net-next.git (refs/heads/master):
 
-I didn't say it is not enough. I said it is a whole lot harder to track
-from the listener side.
+On Fri, 11 Dec 2020 20:29:21 +0800 you wrote:
+> I got a warining report:
+> 
+> br_sysfs_addbr: can't create group bridge4/bridge
+> ------------[ cut here ]------------
+> sysfs group 'bridge' not found for kobject 'bridge4'
+> WARNING: CPU: 2 PID: 9004 at fs/sysfs/group.c:279 sysfs_remove_group fs/sysfs/group.c:279 [inline]
+> WARNING: CPU: 2 PID: 9004 at fs/sysfs/group.c:279 sysfs_remove_group+0x153/0x1b0 fs/sysfs/group.c:270
+> Modules linked in: iptable_nat
+> ...
+> Call Trace:
+>   br_dev_delete+0x112/0x190 net/bridge/br_if.c:384
+>   br_dev_newlink net/bridge/br_netlink.c:1381 [inline]
+>   br_dev_newlink+0xdb/0x100 net/bridge/br_netlink.c:1362
+>   __rtnl_newlink+0xe11/0x13f0 net/core/rtnetlink.c:3441
+>   rtnl_newlink+0x64/0xa0 net/core/rtnetlink.c:3500
+>   rtnetlink_rcv_msg+0x385/0x980 net/core/rtnetlink.c:5562
+>   netlink_rcv_skb+0x134/0x3d0 net/netlink/af_netlink.c:2494
+>   netlink_unicast_kernel net/netlink/af_netlink.c:1304 [inline]
+>   netlink_unicast+0x4a0/0x6a0 net/netlink/af_netlink.c:1330
+>   netlink_sendmsg+0x793/0xc80 net/netlink/af_netlink.c:1919
+>   sock_sendmsg_nosec net/socket.c:651 [inline]
+>   sock_sendmsg+0x139/0x170 net/socket.c:671
+>   ____sys_sendmsg+0x658/0x7d0 net/socket.c:2353
+>   ___sys_sendmsg+0xf8/0x170 net/socket.c:2407
+>   __sys_sendmsg+0xd3/0x190 net/socket.c:2440
+>   do_syscall_64+0x33/0x40 arch/x86/entry/common.c:46
+>   entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> 
+> [...]
 
-> Is it because the hardware you are working with manages MACs to
-> CPU in a separate table from its FDB table? I assume that's why you
-> refer to it as a "rule" instead of FDB entry? How common is this with
-> DSA switches?
+Here is the summary with links:
+  - [v2] net: bridge: Fix a warning when del bridge sysfs
+    https://git.kernel.org/netdev/net-next/c/989a1db06eb1
 
-With DSA switches it's just more generic to use a static FDB entry as
-the address trapping rule. But since FDB entries are global across the
-switch and not really per source port, understandably other mechanisms
-such as an ACL entry could be used just as well. And an ACL is what
-other drivers (like drivers/staging/fsl-dpaa2/ethsw/) would use for this
-purpose (of course, the code is not there yet; it's still in staging,
-there are other issues to resolve first).
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-The mechanism does really not matter though, as long as it's "strong"
-and not "weak" (i.e. the entry cannot be overridden by hardware address
-learning on the front panel ports). So when the bridge gets any clue
-that the L2 routing information is no longer up to date, the very least
-we must do is we must delete this trapping rule to give the hardware a
-chance to learn again. Where the address is migrated to is really not as
-important as the fact that it migrated in the first place. [ ok, then
-there's the case where it migrates from a foreign interface to another
-foreign interface. For that scenario, we would delete the trapping rule
-and then reinstall it, which is not ideal but also not incorrect. ]
 
-> Reviewed-by: Ido Schimmel <idosch@nvidia.com>
-
-Thanks.=
