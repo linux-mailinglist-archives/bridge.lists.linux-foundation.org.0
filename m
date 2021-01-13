@@ -1,86 +1,58 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5DD62F5B8B
-	for <lists.bridge@lfdr.de>; Thu, 14 Jan 2021 08:51:18 +0100 (CET)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3C02F5F51
+	for <lists.bridge@lfdr.de>; Thu, 14 Jan 2021 11:55:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 5681D86A73;
-	Thu, 14 Jan 2021 07:51:17 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 43BEA20463;
+	Thu, 14 Jan 2021 10:55:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6wlLnOH5CmdU; Thu, 14 Jan 2021 07:51:16 +0000 (UTC)
+	with ESMTP id NOg+pzHHJkSO; Thu, 14 Jan 2021 10:55:24 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id B3F3586A63;
-	Thu, 14 Jan 2021 07:51:16 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 5F73D20416;
+	Thu, 14 Jan 2021 10:55:24 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 97092C013A;
-	Thu, 14 Jan 2021 07:51:16 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 20940C013A;
+	Thu, 14 Jan 2021 10:55:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8F23FC013A
- for <bridge@lists.linux-foundation.org>; Thu, 14 Jan 2021 07:51:15 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BE400C013A
+ for <bridge@lists.linux-foundation.org>; Wed, 13 Jan 2021 09:41:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 752C186229
- for <bridge@lists.linux-foundation.org>; Thu, 14 Jan 2021 07:51:15 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id AB2E586258
+ for <bridge@lists.linux-foundation.org>; Wed, 13 Jan 2021 09:41:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jbjexo1PAgl1 for <bridge@lists.linux-foundation.org>;
- Thu, 14 Jan 2021 07:51:14 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
- [209.85.215.196])
- by hemlock.osuosl.org (Postfix) with ESMTPS id D212686190
- for <bridge@lists.linux-foundation.org>; Thu, 14 Jan 2021 07:51:14 +0000 (UTC)
-Received: by mail-pg1-f196.google.com with SMTP id z21so3226458pgj.4
- for <bridge@lists.linux-foundation.org>; Wed, 13 Jan 2021 23:51:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OdOYvLKaoSgVaZejaz21ew2EF1idBOpu4EgqrpcWnb4=;
- b=HhFwKGeoVFs0hdiatK077VZ4s6B/4MfW+deARy0QD5c0MMKl0X5NPTMoCcLxWesLJC
- I82426ijG3cvoS8mdIRVftoXwhuY3Y8KXn/RyuJwbDxoPEPJUrIuWClOqR5UbdRBAsh8
- qEJb/5kRlgSwWvXrb2dxwBDUrWwvv1zsKaXhZMMiCMhnJAwdAbOCiWELAwwhMCixvmf0
- aEe9IazlXyWoyDnTEAs9Wu0Cj9lPhhLG3dhJYDMjN73AmFDc07y9JtgkiL2CxGV3Q3Or
- W3AxWOJISUIpirdvnk1uzrWMGsNybumRuJekmfPoqe2a1dwIoGZ58tiTYaTivfLL4wd4
- ZQpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OdOYvLKaoSgVaZejaz21ew2EF1idBOpu4EgqrpcWnb4=;
- b=HniJbBb7v0mW/OVSp9uR8uwIl8DMY1KiaXBln5dyEdbSYQ3cWvjMjtjmHwQX3asmQY
- GWTy8ZugpTbAJJV57DW+AJwzAd/DrZIzLEn78q+3jUP6KNT6jPPYFGn2+v61pMsSFdhZ
- ejMjaWmdKVO7tjGPw9dMpe91aBNE64PneINDNJqvRuhO0xstkI7VE8QCAMAiOpu1+hbH
- 38oXLdEtvFf2CvPtK5ilvSisA+RZyKoQ+eDlx3HnbNLD7b1MwnvSbiqKHJBuscKRgOD5
- PiPm9pCUUcuCt7xRK3lXtAVsX08zxZASAD1fg3Pgg0LH+ev41kqIbmtm7jXT2Vye/U4s
- zkXQ==
-X-Gm-Message-State: AOAM533pnPHTNwrjpAmdJLJwpZDj16gn7x9G6oi7OG7Ikd3qA4GB474B
- r8bawIesK08c6oCGHiUyk44=
-X-Google-Smtp-Source: ABdhPJwhk4WiAxKANeqB8opOzwRSzVUBxjOzi0j9376A1upXh4ljMis4eZ81VDG064gXEq1FIkUrPw==
-X-Received: by 2002:aa7:8708:0:b029:19e:924:345a with SMTP id
- b8-20020aa787080000b029019e0924345amr6328401pfo.54.1610610674530; 
- Wed, 13 Jan 2021 23:51:14 -0800 (PST)
-Received: from localhost.localdomain ([178.236.46.205])
- by smtp.gmail.com with ESMTPSA id p8sm4580160pjo.21.2021.01.13.23.51.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Jan 2021 23:51:13 -0800 (PST)
-From: menglong8.dong@gmail.com
-X-Google-Original-From: dong.menglong@zte.com.cn
-To: kuba@kernel.org
-Date: Wed, 13 Jan 2021 23:51:01 -0800
-Message-Id: <20210114075101.6501-1-dong.menglong@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Menglong Dong <dong.menglong@zte.com.cn>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- nikolay@nvidia.com, roopa@nvidia.com, davem@davemloft.net
-Subject: [Bridge] [PATCH net-next] net: bridge: use eth_type_vlan in
-	br_dev_queue_push_xmit
+ with ESMTP id 0Ql41bwkcbX3 for <bridge@lists.linux-foundation.org>;
+ Wed, 13 Jan 2021 09:41:40 +0000 (UTC)
+X-Greylist: delayed 00:05:03 by SQLgrey-1.7.6
+Received: from out30-45.freemail.mail.aliyun.com
+ (out30-45.freemail.mail.aliyun.com [115.124.30.45])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 1A800861A2
+ for <bridge@lists.linux-foundation.org>; Wed, 13 Jan 2021 09:41:39 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R831e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04400;
+ MF=abaci-bugfix@linux.alibaba.com; NM=1; PH=DS; RN=8; SR=0;
+ TI=SMTPD_---0ULc.cMI_1610530588; 
+Received: from
+ j63c13417.sqa.eu95.tbsite.net(mailfrom:abaci-bugfix@linux.alibaba.com
+ fp:SMTPD_---0ULc.cMI_1610530588) by smtp.aliyun-inc.com(127.0.0.1);
+ Wed, 13 Jan 2021 17:36:32 +0800
+From: Jiapeng Zhong <abaci-bugfix@linux.alibaba.com>
+To: roopa@nvidia.com
+Date: Wed, 13 Jan 2021 17:36:24 +0800
+Message-Id: <1610530584-48554-1-git-send-email-abaci-bugfix@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Mailman-Approved-At: Thu, 14 Jan 2021 10:55:23 +0000
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Jiapeng Zhong <abaci-bugfix@linux.alibaba.com>,
+ nikolay@nvidia.com, kuba@kernel.org, davem@davemloft.net
+Subject: [Bridge] [PATCH] net/bridge: Fix inconsistent format argument types
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,30 +67,85 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Menglong Dong <dong.menglong@zte.com.cn>
+Fix the following warnings:
 
-Replace the check for ETH_P_8021Q and ETH_P_8021AD in
-br_dev_queue_push_xmit with eth_type_vlan.
+net/bridge/br_sysfs_br.c(833): warning: %u in format string (no. 1)
+requires 'unsigned int' but the argument type is 'signed int'.
+net/bridge/br_sysfs_br.c(817): warning: %u in format string (no. 1)
+requires 'unsigned int' but the argument type is 'signed int'.
+net/bridge/br_sysfs_br.c(261): warning: %ld in format string (no. 1)
+requires 'long' but the argument type is 'unsigned long'.
+net/bridge/br_sysfs_br.c(253): warning: %ld in format string (no. 1)
+requires 'long' but the argument type is 'unsigned long'.
+net/bridge/br_sysfs_br.c(244): warning: %ld in format string (no. 1)
+requires 'long' but the argument type is 'unsigned long'.
+net/bridge/br_sysfs_br.c(236): warning: %ld in format string (no. 1)
+requires 'long' but the argument type is 'unsigned long'.
 
-Signed-off-by: Menglong Dong <dong.menglong@zte.com.cn>
+Signed-off-by: Jiapeng Zhong <abaci-bugfix@linux.alibaba.com>
+Reported-by: Abaci Robot<abaci@linux.alibaba.com>
 ---
- net/bridge/br_forward.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ net/bridge/br_sysfs_br.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index e28ffadd1371..6e9b049ae521 100644
---- a/net/bridge/br_forward.c
-+++ b/net/bridge/br_forward.c
-@@ -39,8 +39,7 @@ int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb
- 	br_drop_fake_rtable(skb);
+diff --git a/net/bridge/br_sysfs_br.c b/net/bridge/br_sysfs_br.c
+index 7db06e3..7512921 100644
+--- a/net/bridge/br_sysfs_br.c
++++ b/net/bridge/br_sysfs_br.c
+@@ -233,7 +233,7 @@ static ssize_t hello_timer_show(struct device *d,
+ 				struct device_attribute *attr, char *buf)
+ {
+ 	struct net_bridge *br = to_bridge(d);
+-	return sprintf(buf, "%ld\n", br_timer_value(&br->hello_timer));
++	return sprintf(buf, "%lu\n", br_timer_value(&br->hello_timer));
+ }
+ static DEVICE_ATTR_RO(hello_timer);
  
- 	if (skb->ip_summed == CHECKSUM_PARTIAL &&
--	    (skb->protocol == htons(ETH_P_8021Q) ||
--	     skb->protocol == htons(ETH_P_8021AD))) {
-+	    eth_type_vlan(skb->protocol)) {
- 		int depth;
+@@ -241,7 +241,7 @@ static ssize_t tcn_timer_show(struct device *d, struct device_attribute *attr,
+ 			      char *buf)
+ {
+ 	struct net_bridge *br = to_bridge(d);
+-	return sprintf(buf, "%ld\n", br_timer_value(&br->tcn_timer));
++	return sprintf(buf, "%lu\n", br_timer_value(&br->tcn_timer));
+ }
+ static DEVICE_ATTR_RO(tcn_timer);
  
- 		if (!__vlan_get_protocol(skb, skb->protocol, &depth))
+@@ -250,7 +250,7 @@ static ssize_t topology_change_timer_show(struct device *d,
+ 					  char *buf)
+ {
+ 	struct net_bridge *br = to_bridge(d);
+-	return sprintf(buf, "%ld\n", br_timer_value(&br->topology_change_timer));
++	return sprintf(buf, "%lu\n", br_timer_value(&br->topology_change_timer));
+ }
+ static DEVICE_ATTR_RO(topology_change_timer);
+ 
+@@ -258,7 +258,7 @@ static ssize_t gc_timer_show(struct device *d, struct device_attribute *attr,
+ 			     char *buf)
+ {
+ 	struct net_bridge *br = to_bridge(d);
+-	return sprintf(buf, "%ld\n", br_timer_value(&br->gc_work.timer));
++	return sprintf(buf, "%lu\n", br_timer_value(&br->gc_work.timer));
+ }
+ static DEVICE_ATTR_RO(gc_timer);
+ 
+@@ -814,7 +814,7 @@ static ssize_t vlan_stats_enabled_show(struct device *d,
+ 				       char *buf)
+ {
+ 	struct net_bridge *br = to_bridge(d);
+-	return sprintf(buf, "%u\n", br_opt_get(br, BROPT_VLAN_STATS_ENABLED));
++	return sprintf(buf, "%d\n", br_opt_get(br, BROPT_VLAN_STATS_ENABLED));
+ }
+ 
+ static ssize_t vlan_stats_enabled_store(struct device *d,
+@@ -830,7 +830,7 @@ static ssize_t vlan_stats_per_port_show(struct device *d,
+ 					char *buf)
+ {
+ 	struct net_bridge *br = to_bridge(d);
+-	return sprintf(buf, "%u\n", br_opt_get(br, BROPT_VLAN_STATS_PER_PORT));
++	return sprintf(buf, "%d\n", br_opt_get(br, BROPT_VLAN_STATS_PER_PORT));
+ }
+ 
+ static ssize_t vlan_stats_per_port_store(struct device *d,
 -- 
-2.25.1
+1.8.3.1
 
