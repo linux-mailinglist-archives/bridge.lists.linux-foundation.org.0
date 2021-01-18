@@ -1,89 +1,131 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22E0301804
-	for <lists.bridge@lfdr.de>; Sat, 23 Jan 2021 20:23:17 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 916C0301805
+	for <lists.bridge@lfdr.de>; Sat, 23 Jan 2021 20:23:18 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 2DD808740B;
-	Sat, 23 Jan 2021 19:23:16 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id BBCF186BA8;
+	Sat, 23 Jan 2021 19:23:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kFRYov8ot15v; Sat, 23 Jan 2021 19:23:14 +0000 (UTC)
+	with ESMTP id 5QvFZAiMmaqO; Sat, 23 Jan 2021 19:23:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 7744A87366;
+	by fraxinus.osuosl.org (Postfix) with ESMTP id AE8BE86BE2;
 	Sat, 23 Jan 2021 19:23:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4A597C1E6F;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 90E8AC013A;
 	Sat, 23 Jan 2021 19:23:14 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2E409C013A
- for <bridge@lists.linux-foundation.org>; Sat, 16 Jan 2021 15:39:29 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E93D2C013A
+ for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 20:48:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 1A4392014A
- for <bridge@lists.linux-foundation.org>; Sat, 16 Jan 2021 15:39:29 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id D7CDD86F73
+ for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 20:48:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ww-Ak7Cvf0ym for <bridge@lists.linux-foundation.org>;
- Sat, 16 Jan 2021 15:39:27 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by silver.osuosl.org (Postfix) with ESMTPS id 5BA7220131
- for <bridge@lists.linux-foundation.org>; Sat, 16 Jan 2021 15:39:27 +0000 (UTC)
-Received: by mail-lj1-f177.google.com with SMTP id e7so13613285ljg.10
- for <bridge@lists.linux-foundation.org>; Sat, 16 Jan 2021 07:39:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:subject:in-reply-to:references:date:message-id:mime-version;
- bh=z4leNzWR0o9Do22EpCpfCpRtm41HhzuAfaYRCquNCR0=;
- b=MCsW6wEKTxnKAuSRQO8c9OUoSTbZEBU5HojfvG84uvdpK1ANEYTa542H6s1mjmnJHn
- q9ervHHEO0uI6GLw8vV2XJq40dLAaPQO37MRMXJ5fYhoVQlZ9ZRM2O2lLj+wYeUaCNzz
- +QgiJ7DiPKuqFUOkkPNyPdKncBRC4gNPpxDqsEYT+hTS+h97HF/HNWZS8eq4nsaXk3DQ
- VzJlHjCOA2g9zalXA8yuqZRfqPndj7f9lMg1obaho6juf4TjgkbSt57qTSycTQFJjQf8
- yfAD3zCXL3vKLBPpxttr1ENT46a/sX4ObuMlXolAvBzTIEOZRqmt+Y4llaicDp+2k2fi
- DTcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=z4leNzWR0o9Do22EpCpfCpRtm41HhzuAfaYRCquNCR0=;
- b=qKJ9JDO9nf8EXDE1prJ+y1YYLRm+ADASfH6VThg6b7+k1vGx6enPcM9nX9W9Abyw0a
- nEHLneRNb7f5Ph7gtL3Ie9NiCc/oysf9oQxDOTNYRZtCh4ulItjV1TGfZLB4mTBnKrCr
- d9RrLmn74TLR2Isa/pEc+f4SWE9R9Wbv/vFWyerPxuQ2Ohs02wPjQ66sLCKiEp+Y4TwI
- NcblOMdcZjRUcy7KToNL1PFnQ4TEViNnWh+/OqZS5XjGOLQ+C9U6/ejZFywK7rw58lKw
- XG7ghG+MY/I9kygACDYgLWTDRDep9R2AdmLSwZaluPoSpt6aG/nv9Ie6GTiGwz2zlHP0
- kHUQ==
-X-Gm-Message-State: AOAM532vKoaFqPS4/hQT7TWTF16cVJPal9RUPe9nUNh6tSMg0j5v/1Lv
- xxkpehlHk1hFbnj40Y+aN7eOx33MUKl2i+RC
-X-Google-Smtp-Source: ABdhPJxx1xzvcIFNiwWt0AzCy5JT5eeXxNuv9NvuyRx9/+Douelol9Omv6JDLentiHIJzcM7QBwS0w==
-X-Received: by 2002:a05:651c:1304:: with SMTP id
- u4mr7847774lja.146.1610811565188; 
- Sat, 16 Jan 2021 07:39:25 -0800 (PST)
-Received: from luthien (h-82-196-111-206.NA.cust.bahnhof.se. [82.196.111.206])
- by smtp.gmail.com with ESMTPSA id
- g27sm1142499ljl.82.2021.01.16.07.39.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 16 Jan 2021 07:39:24 -0800 (PST)
-From: Joachim Wiberg <troglobit@gmail.com>
-To: Nikolay Aleksandrov <nikolay@nvidia.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, davem@davemloft.net,
- kuba@kernel.org, roopa@nvidia.com, allan.nielsen@microchip.com,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- bridge@lists.linux-foundation.org
-In-Reply-To: <32bf6a72-6aff-5e36-fb02-333f3c450f49@nvidia.com>
-References: <20210112135903.3730765-1-horatiu.vultur@microchip.com>
- <32bf6a72-6aff-5e36-fb02-333f3c450f49@nvidia.com>
-Date: Sat, 16 Jan 2021 16:39:24 +0100
-Message-ID: <8735z0zyab.fsf@gmail.com>
-MIME-Version: 1.0
+ with ESMTP id eRYkUx-ntlD4 for <bridge@lists.linux-foundation.org>;
+ Mon, 18 Jan 2021 20:48:34 +0000 (UTC)
+X-Greylist: delayed 02:34:56 by SQLgrey-1.7.6
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com
+ (mail-eopbgr40120.outbound.protection.outlook.com [40.107.4.120])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id D873786F6B
+ for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 20:48:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XJ/UBNLHUqNk0MZ00hk6yrayZrkoAPhrKIu73/ZCFRlUjRDVVzOpDgKbZjYoJSka9LkI3bGwnYrzUSl0f6rHA8Xx/e5xlaYptFI99W649tazEm6SX77UUrBuIlTTA0rc4KuAhY4OpR/zt3vDt+ZCaVJdqsSDab1bgtAIauUcA5By2UxBIeYyfriyZEoRjPgpr/VeYiZoVAmqbFRby6FybmaSEIvnoIqwfDa8EwBQkvTRpTkgf9ynyJ10qcexVVSpo0FE2a3KIvi9kjTD6k+Xwm5nfG86HphehXwpuAir03ZKqMALpE5cFkF/dwrQoCync7xvl3cAJaEgNCWTVFygog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zpkkFwXLIHzY8BlZXKg3oBEANHhM8BBvDNZNHRVaxXY=;
+ b=JEzR20RthaGVeZL2QfjRT+dBLF68JZ/+H8dMzfFF8gqKSsX8soVEsU1EOzAlSLHKG0f3+SSJL8mLS+2l2rnpThiAI8sY5ogpZpPQOxcBnkX6WGdOd+U+hKs7PeIjl0JaoRIu7IS9ldtgWEDM4OZ0thXCeTD9gFtuNFDMIU2tWP3MuAf3c7ae7/RRG6N/FQe8G+osJYZ1vnnu9HCnq1PbmCtgLF6UPuA0C2zRLYiMBUnmIcoXVRihU+OCQp0Pd7wEgHrYoz9GSqCIMWbFIuigCs/Visd0VRegizwOa1Gxf4lM1k8MRenxKYPPQNERvnGajqTxJM9BfLC/4kfFv3bxbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
+ dkim=pass header.d=prevas.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zpkkFwXLIHzY8BlZXKg3oBEANHhM8BBvDNZNHRVaxXY=;
+ b=jQZqn3Pc242n/taN0tkL7gv9y/rmMRAa+phNukEx8mJfK58Gwm0I/DZPWZsPf/c+wERmjZNELSYu4M9l3NdGq33LI7c6M1AsKTJ0tGeNSWXfq7v62VUdWtZPubRw6OFmRS7avmTgIIrfLx/CDLBJApMfsLQAHGYOBSQMlP7szg0=
+Authentication-Results: nvidia.com; dkim=none (message not signed)
+ header.d=none;nvidia.com; dmarc=none action=none header.from=prevas.dk;
+Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:3f::10)
+ by AM8PR10MB4771.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:360::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Mon, 18 Jan
+ 2021 18:13:33 +0000
+Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9068:c899:48f:a8e3]) by AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9068:c899:48f:a8e3%6]) with mapi id 15.20.3763.014; Mon, 18 Jan 2021
+ 18:13:33 +0000
+To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
+Date: Mon, 18 Jan 2021 19:13:19 +0100
+Message-Id: <20210118181319.25419-1-rasmus.villemoes@prevas.dk>
+X-Mailer: git-send-email 2.23.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [5.186.115.188]
+X-ClientProxiedBy: BEXP281CA0010.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10::20)
+ To AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:3f::10)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from prevas-ravi.prevas.se (5.186.115.188) by
+ BEXP281CA0010.DEUP281.PROD.OUTLOOK.COM (2603:10a6:b10::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3784.6 via Frontend Transport; Mon, 18 Jan 2021 18:13:33 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d7b2a03e-5a13-4d11-bdde-08d8bbdcc464
+X-MS-TrafficTypeDiagnostic: AM8PR10MB4771:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM8PR10MB477168758ADC68C35101744693A40@AM8PR10MB4771.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: g/aRrHUKjrLsUaM2UOwoZsUc1f6Vvxrsf01aH+NGsEmeSpgsu/4PNW0HjC3loeZ9uW8khwk29xwibrD0lChL3Ly2Y3nDtVMAm/9c2cLyTA+022PbIbx396mXlDl8WP2nHnphPNlRxDEoyOM+bjdzcwl/FgbXkhgxB40Oc9Ej5waHRAbEaCdIcUtGYrGvR1z4FCQv5n3M5Cf04l+McepzBEcOZ9xj7n6mRhzPCIbvZvD6cmmN9303XfpK+tfwRUXGb8yckZbbxABNTFAueP+QTKyStJ6IQ3jx7qsiqUEQH7mbWFMfpUyCj0Cs2EKOQsBVSEGFwBlxSly4T2jjwLlhO73wRTNR+y16Ib4YAhzhp4xolNUDtgto7uD1wRvhqat9sIQGffC3BD2UL07bz67+cQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(136003)(376002)(396003)(39840400004)(366004)(346002)(6506007)(2906002)(86362001)(4326008)(66946007)(52116002)(478600001)(66476007)(8676002)(5660300002)(36756003)(6512007)(54906003)(316002)(66556008)(956004)(1076003)(83380400001)(6666004)(26005)(8976002)(8936002)(16526019)(186003)(7416002)(6486002)(2616005)(44832011)(110136005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?VF1utG8N2cvubkVvNSunpl2plwdRqzSd5EqEysT7O0ruCmBRZ9llAcIr/ar8?=
+ =?us-ascii?Q?dPi69NEC3/SJlgPfcOhlkhU7MPU1TgoPdxBSfYvXRoYYAMj9pl0xvqdxo5At?=
+ =?us-ascii?Q?XpEaO4lkWr37UIe37i7ytWUim9xiK/HBvgXbr+RZ834F1bjs4Oe1ztOdz76a?=
+ =?us-ascii?Q?8qiwoDXDKyMFt82ElJFyMLTJFiG32Fag0RkKHtzENMNPdSvSxs6tvO3i2v2a?=
+ =?us-ascii?Q?wxW3w5AaMA5LmwlP7tX7qx5dJ/LHFKgliFuJDxVyGOZFgJDn5q8aGWJXPCBQ?=
+ =?us-ascii?Q?ZDdRKiFd6p+tVd0VimVH1JdyOrarmEGrpxC8kYE2SOptN9yMkuTqyP4fe51t?=
+ =?us-ascii?Q?TyoSE0YrIfqVGOBP7/2HQOnczAihB6P5RYAt/jEfwNXUJLcaLGuDYQNME5KX?=
+ =?us-ascii?Q?4CLsN92Daj/sRWHBzF/aBKb+c25/xMM/ZshhkM4AZXmipOV3TP24dxJF+doE?=
+ =?us-ascii?Q?ohZHEfIn1IyBCQ+3wI3htQQ9vGkzicJqzwJsI7UddpVOUCJ0Inl9VCaEWy8v?=
+ =?us-ascii?Q?X55vEO/60Iy2ToZ51I56x4NnLT4blKYhlpVInOskYAuEeYoJMHTNMwXgBBUC?=
+ =?us-ascii?Q?0xYqAIT533DGzwKLf5lmv+ToUhsn/JG+FfHP4GmqpfumwXwBpkRhu8MvYLmJ?=
+ =?us-ascii?Q?NivdIodoqxHgtLzy9+G52M/6oe/xDIKVNiE58kcCvroIz5Q/EpD6mklJ6TuJ?=
+ =?us-ascii?Q?a4KhX1BEqp6sPoZLEcblTLiHVSjxeuFockxzSWGXdpvyfbf78vIFhhiKrtv7?=
+ =?us-ascii?Q?4D1/mwimwMRgp4b/o6zIg7n9azmIGNH8d4AwnUgAz0B9f4jPwkUhpHptKku7?=
+ =?us-ascii?Q?PEzPRlqTC42nwA8uW4Mpx6CEsvX/WcRN3H3bshUUhePA+RDUEJs6uUm6j7lp?=
+ =?us-ascii?Q?0GcqSC2d4fdy9dbBOifyo5D82IQk7es8SV/kneUBvScvOEiL/a5QtvvaIk2w?=
+ =?us-ascii?Q?5fHuMr8l6C/K0d020QpmD8CQfq0B9Am5eTDWiu79dk9nyUM5AsAjadZB2pH8?=
+ =?us-ascii?Q?pfqW?=
+X-OriginatorOrg: prevas.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7b2a03e-5a13-4d11-bdde-08d8bbdcc464
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2021 18:13:33.6550 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Mnb4nWRo58Ey5lhZA+f82/mmQeEkomFWShx47CHcgWzt8sQQDVfmduTg2d80znUJg0u99nJ6uzL59D0G0SyWJzX2IPkQsG2alJZprfQFgks=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR10MB4771
 X-Mailman-Approved-At: Sat, 23 Jan 2021 19:23:12 +0000
-Subject: Re: [Bridge] [RFC PATCH v2] net: bridge: igmp: Extend IGMP query to
-	be per vlan
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net] net: mrp: use stp state as substitute for
+	unimplemented mrp state
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,53 +137,57 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Rasmus Villemoes via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Jan 13, 2021 at 14:15, Nikolay Aleksandrov <nikolay@nvidia.com> wrote:
-> On 12/01/2021 15:59, Horatiu Vultur wrote:
->> Based on the comments of the previous version, we started to work on a
->> new version, so it would be possible to enable/disable queries per vlan.
->> [snip]
->> We were wondering if this what you had in mind when you proposed to have
->> this per vlan? Or we are completely off? Or we should fix some of the
->> issues that I mentioned, before you can see more clearly the direction?
-> No, unfortunately not even close. We already have per-port per-vlan and global per-vlan
-> contexts which are also linked together for each vlan, those must be used for any vlan
-> configuration and state. The problem is that you'd have to mix igmp and vlan code and
-> those two live under two different kconfig options, and worse rely on different locks, so
-> extra care must be taken.
-> [snip]
-> If you don't need this asap, I'll probably get to it in two months
-> after EHT and the new bridge flush api, even we are still carrying an out-of-tree patch
-> for this which someone (not from cumulus) tried to upstream a few years back, but it also has
-> wrong design in general. :)
+When using MRP with hardware that does understand the concept of
+blocked or forwarding ports, but not the full MRP offload, we
+currently fail to tell the hardware what state it should put the port
+in when the ring is closed - resulting in a ring of forwarding ports
+and all the trouble that comes with that.
 
-Hi,
+Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+---
 
-very interesting thread this!  I believe I may be the one who posted the
-patch[1] a few years ago, and I fully agree with Nik here.  We developed
-the basic concepts further at Westermo, but it's been really difficult
-to get it stable.
+I don't really understand why SWITCHDEV_ATTR_ID_MRP_PORT_STATE even
+has to exist seperately from SWITCHDEV_ATTR_ID_PORT_STP_STATE, and
+it's hard to tell what the difference might be since no kernel code
+implements the former.
 
-We have discussed at length at work if an IGMP snooping implementation
-really belongs in the bridge, or if it's better suited as a user space
-daemon?  Similar to what was decided for RSTP/MSTP support, i.e., the
-bridge only has STP and RSTP/MSTP is handled by mstpd[2].
+ net/bridge/br_mrp_switchdev.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Most of what's required for a user space implementation is available,
-but it would've been nice if a single AF_PACKET socket on br0 could be
-used to catch what brport (ifindex) a query or report comes in on.  As
-it is now that information is lost/replaced with the ifindex of br0.
-And then there's the issue of detecting and forwarding to a multicast
-routing daemon on top of br0.  That br0 is not a brport in the MDB, or
-that host_joined cannot be set/seen with iproute2 is quite limiting.
-These issues can of course be addressed, but are they of interest to
-the community at large?
+diff --git a/net/bridge/br_mrp_switchdev.c b/net/bridge/br_mrp_switchdev.c
+index ed547e03ace1..8a1c7953e57a 100644
+--- a/net/bridge/br_mrp_switchdev.c
++++ b/net/bridge/br_mrp_switchdev.c
+@@ -180,6 +180,24 @@ int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
+ 	int err;
+ 
+ 	err = switchdev_port_attr_set(p->dev, &attr);
++	if (err == -EOPNOTSUPP) {
++		attr.id = SWITCHDEV_ATTR_ID_PORT_STP_STATE;
++		switch (state) {
++		case BR_MRP_PORT_STATE_DISABLED:
++		case BR_MRP_PORT_STATE_NOT_CONNECTED:
++			attr.u.stp_state = BR_STATE_DISABLED;
++			break;
++		case BR_MRP_PORT_STATE_BLOCKED:
++			attr.u.stp_state = BR_STATE_BLOCKING;
++			break;
++		case BR_MRP_PORT_STATE_FORWARDING:
++			attr.u.stp_state = BR_STATE_FORWARDING;
++			break;
++		default:
++			return err;
++		};
++		err = switchdev_port_attr_set(p->dev, &attr);
++	}
+ 	if (err && err != -EOPNOTSUPP)
+ 		br_warn(p->br, "error setting offload MRP state on port %u(%s)\n",
+ 			(unsigned int)p->port_no, p->dev->name);
+-- 
+2.23.0
 
-
-Best regards
- /Joachim
-
-[1]: https://lore.kernel.org/netdev/20180418120713.GA10742@troglobit/
-[2]: https://github.com/mstpd/mstpd
