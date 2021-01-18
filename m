@@ -2,79 +2,130 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id E83D02FA965
-	for <lists.bridge@lfdr.de>; Mon, 18 Jan 2021 19:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBDC2FAA7A
+	for <lists.bridge@lfdr.de>; Mon, 18 Jan 2021 20:46:47 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 8078F20424;
-	Mon, 18 Jan 2021 18:56:24 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 9058F20423;
+	Mon, 18 Jan 2021 19:46:44 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id VHFcJOCctldo; Mon, 18 Jan 2021 18:56:23 +0000 (UTC)
+	with ESMTP id IUJiF+LgrpDG; Mon, 18 Jan 2021 19:46:43 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 4E1382037B;
-	Mon, 18 Jan 2021 18:56:23 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 591132046B;
+	Mon, 18 Jan 2021 19:46:43 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2A02BC013A;
-	Mon, 18 Jan 2021 18:56:23 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 390D6C013A;
+	Mon, 18 Jan 2021 19:46:43 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 577EBC013A
- for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 18:56:22 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id CB386C013A
+ for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 19:46:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 4F915863CC
- for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 18:56:22 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id B6842866D6
+ for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 19:46:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RCjMGbIUfhUI for <bridge@lists.linux-foundation.org>;
- Mon, 18 Jan 2021 18:56:21 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
- [68.232.154.123])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 3A714863BE
- for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 18:56:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1610996181; x=1642532181;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8xW+Ib1Q2UKnK0aGyXk2bqJxeinADOf0EJFfNV6Zz5k=;
- b=oIBun8mzbJNgcejTsG+VJY8WnDkmApMmJZbq+8iuZihzKnaed0dTXqG2
- Hr/Kk4F7p2AZb6IJYG1g4un7xIwzUaLaDlpEqOM6vEVfoUcnDMMoVzJ3p
- 4o1H6JFTpk3fOCrda1PvJWNu2gCWdQBDkXhRFHR6NfdQZrYFATvZY1czg
- laW7Tr3TIuWUQGlYvzbGav6Yz6oHUtmNcQciE1b1i9278JjEDONoWDnmw
- 6DhG2zAqsQkkGs8ECRIUji9nTWMTOPtfOPcpX7Rk1AH8tjpFFwhPGnb1E
- VFZLaTiccUw2fhHAO/IbX4Ep/tW2d+xWxpOF5utZEWuOaab9c+FMoZjJ7 g==;
-IronPort-SDR: zkf4OhDYE5w4kAjlcSrjPOGaOeF3hskz86dXFAwfhAZReZa2lk5TRBnT7px5h33ot4wlz2bZxR
- d07l6EZYUMrhRNlu04pf9s99OzRPpGWwvV0ClKIIPu9DLPGRl6j6MjBNh3no1/lj2/L+x+DOVd
- GFuml9uCHTZW0NUHsg8hB99Mcyc97EDlFGI5E6w55eN+8meQccpPsrMMgbkEfkjPuaIhB4w0QF
- kNNTStimmQAIMQZgEdkbSV56zOIP1kCqoo6Pl63aa2KKP02DfraobMB//llKw2UZlwPLlVkNmB
- 9Dw=
-X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; d="scan'208";a="40840029"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 18 Jan 2021 11:56:20 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 18 Jan 2021 11:56:19 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Mon, 18 Jan 2021 11:56:19 -0700
-Date: Mon, 18 Jan 2021 19:56:18 +0100
-To: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Message-ID: <20210118185618.75h45rjf6qqberic@soft-dev3.localdomain>
+ with ESMTP id 1A3OayWKB3OK for <bridge@lists.linux-foundation.org>;
+ Mon, 18 Jan 2021 19:46:38 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (mail-eopbgr60070.outbound.protection.outlook.com [40.107.6.70])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id BA34B866D4
+ for <bridge@lists.linux-foundation.org>; Mon, 18 Jan 2021 19:46:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i4pymAaveC1T9RFUNgDQvd1TJ3LqgdMB2xgs/4tUf9mDj+Yj1hQNfQpBzB0FecnycwjjBZZ7EImFR4xyMMBSut2YfmsQ92ju0efaXSwQPBl5bfLGi1IIJn736FEQiOmI2SNfZ/CB/Ns4bdvDGV12/OP5eZeZt88wibbTq7cS0DfVtPZCCUoow9aR6QTPUaeOGfSw1u2DJTMeu4W5YcNA405pzA3aChsM/gvkSp5ys1u7S4+2QGpVXUQHlStoJcbJLxHzDyflxLAt48yXop5JXqVPSbO19etihJy9Ye37CW+MP73AIcjL7Tx04So+SzjtR9WrXFIXUeb3APM27JoOvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=huQKRyF+cPxGTnM5qH6yP4lujS2G2fERkw+bjRcbVXo=;
+ b=YGr3TS257v08egw6XYAr9QU9DKBakOXQZgrFcDl/O8okjXbfrdbQhFususULHkKoCY5J8GlarijgVGMptBjYKbXnHWYyIlKVNpSL4d1Ed0RLHmPdFKcI7iqVJZ3+IXqSzfJYD+huM7gYDcVKsojzuS2Vt8w0hx0vwbW8xGOHHtKcipgWhuRcjKaTZrEBvgiQhc/Gtanga56oFQedP31sU5RlmWzyPEpVr2rB4Ap6UU2eR0GPKiWCMgy7K/OJEfHIy5c1MGs0VZx66mjdKFUDvcQlBEOmszJyTD8iR7duIId7x/SQjJTbwBSijhw7pyXUhvLfYZd0/4GHhjrim6o3LA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=huQKRyF+cPxGTnM5qH6yP4lujS2G2fERkw+bjRcbVXo=;
+ b=YQuBD4UMfHDULURXoRJEleZJNqv465Vjw3Ct12e+/HLln0wQ69QYFbX2wwLmhrQYYHb+O4Nf5mherSQ0uhmKd1QY84UKLGt/Wdd+LM6uxmPQQ8JQOJKdHaayg36ORUDMSXNWB3U1ciaggxa/+7l3oo2k+f/s1DL53Vjdm3KAgB8=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR04MB5296.eurprd04.prod.outlook.com (2603:10a6:803:55::26)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9; Mon, 18 Jan
+ 2021 19:46:33 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::2c43:e9c9:db64:fa57]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::2c43:e9c9:db64:fa57%5]) with mapi id 15.20.3763.013; Mon, 18 Jan 2021
+ 19:46:33 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Thread-Topic: [PATCH net] net: mrp: use stp state as substitute for
+ unimplemented mrp state
+Thread-Index: AQHW7cWjvIuaHRmLXUOsoJYbcslYzqotu6kAgAAOCQA=
+Date: Mon, 18 Jan 2021 19:46:33 +0000
+Message-ID: <20210118194632.zn5yucjfibguemjq@skbuf>
 References: <20210118181319.25419-1-rasmus.villemoes@prevas.dk>
+ <20210118185618.75h45rjf6qqberic@soft-dev3.localdomain>
+In-Reply-To: <20210118185618.75h45rjf6qqberic@soft-dev3.localdomain>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: microchip.com; dkim=none (message not signed)
+ header.d=none;microchip.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [5.12.227.87]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 72c17b8f-4109-4a9c-78b1-08d8bbe9c258
+x-ms-traffictypediagnostic: VI1PR04MB5296:
+x-microsoft-antispam-prvs: <VI1PR04MB529607A41DE8662381AD22CDE0A40@VI1PR04MB5296.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gcmBt8r4A9ih7haeRZ2vQmvb/ZcAakfFPLuNnCZ1Y9V7aHFkGdgOS3eamcf9BasV1jpBUK2G772aZ9g8zsJ7cEfmVS7Kdr8ONOVq4OCNWmum2dLXnlEHIMRBJHGwRVPO6n+iBnM7nJDXrqEe2+F/2GR0iL6Rp2Hy1Vv5BYAxeQ96caY/+oTeW3yDh8whRL5DzS8dGLuHr4UhxEnPj+NXIQnUCDg3aJio7OquVjOl80hvTuTT1l4sc3nZ21cZeA5W1lbQPzYBIXhgDPyPBDrm4AOEoV0ObOkrm8QvXNxReI29vZMQKxjNBQ/tF5rJdQCQowT4Q+SC/LHrBhwsVMLSMrPmOLuKI2bXpzHeHqy9dQ9HWPCFNdADw0HqCPwG2TjjcGSs1kmKLZ0SOi6yiQzQUA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(7916004)(4636009)(366004)(376002)(346002)(396003)(39860400002)(136003)(316002)(1076003)(54906003)(6916009)(6486002)(186003)(4744005)(66446008)(76116006)(66476007)(64756008)(66556008)(2906002)(66946007)(86362001)(8936002)(71200400001)(8676002)(4326008)(44832011)(33716001)(478600001)(6512007)(5660300002)(6506007)(26005)(9686003)(7416002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ZyPyGK+Vh7FMigdhLr0Kt+RRkXn8nWjr+l/T0fQ6Ee1tV2zD4FNYk4dY06n5?=
+ =?us-ascii?Q?AqSGTjaQyMkV0BoHxPXfUZ3S7Q1u1/UItVJMfFW9DPa6Em5V+LANBRFcqi+9?=
+ =?us-ascii?Q?3QGllsghFdwhNnZeqtZwnae/Im15otT5m2pfuTzKvdflrQz8rLUOb4iLkJyX?=
+ =?us-ascii?Q?QlSTtO+woPmjtVaNR/TLH8P/dxLqOyUVk8SmD7pMBiaqGmnhwqwMBWK3q+30?=
+ =?us-ascii?Q?LjEATxzRQffXG+XeGIx/6+gzoPrvqRPqtYQ2usAut4BvIMjHWgLregt8v546?=
+ =?us-ascii?Q?Tss3vP2+ZmxKqItpqPhDD4hxsfI74n0sLvD2apl0jzCs4WbcZi+uXr53fOy6?=
+ =?us-ascii?Q?K4DK7qrFKO5+2G2FM1POcSjSqdfvbIMniINY+4c3nR/NE3saCfRCheaEo3A6?=
+ =?us-ascii?Q?R1dYOF6tQHy9FZcqmOy46tE+kNj9jKMO8XQrOm2CTN6EN50iLXrbqrjYmxK7?=
+ =?us-ascii?Q?79ZLFAJCGUMvZvuhqtUKTrMAGPfUwaaiuYJwRhM4/bL9uwNkxiYzC1W9pwMK?=
+ =?us-ascii?Q?K6RgRjMOVxB8aRwBExZOr5CRxTbMqR2byPtlqa5C9ioSDW8yUrCBrT79Zzcd?=
+ =?us-ascii?Q?RIpH1v6oy3kaOqu7WtxrM4CXCcbghLcWhEze9m/EehjS2QUxEhh5WzmcUTyY?=
+ =?us-ascii?Q?wi5j8wjXsTA33FstvJCiSuSeWyCF6zlbBeWxaCyHXyKJApyTF2PPD/UN1BCs?=
+ =?us-ascii?Q?WpLr6L8LpZn1Whv6L7q7ivY+aF0aqa5xNQkf2mfdWDk40SXU2gAL7Je0m18+?=
+ =?us-ascii?Q?Y780+eXsjXnv1xE1L0OeluoIPl+Rg/HMEaGTVBEp4bHrSz8FKclThN27f1mJ?=
+ =?us-ascii?Q?J3MbsQyunq0TjVuFqPA7z2sJK0nRD9XNbvlEX+QGaG1999V18CF7cW+PEvEI?=
+ =?us-ascii?Q?bRo3W5GeB2u7+mYhaRSza728n478ppLej6wAIk+Za0kKL9JJQPwX5zFsUtrT?=
+ =?us-ascii?Q?e8fo4JME8ORIRnhhtc8zI3dV3OAH5e3M0hB0bI49m2Ru42CN0G0/t5rAg5sv?=
+ =?us-ascii?Q?JbOE?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <B34DD5F0C5F73846BE43860E1285F4DC@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20210118181319.25419-1-rasmus.villemoes@prevas.dk>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72c17b8f-4109-4a9c-78b1-08d8bbe9c258
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jan 2021 19:46:33.3848 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hiR/cSvG+zy5ttBk+5o2oKDCFf1lx9ARy5/GcWbZNRYG52zbVEFFO0j7rceXfJ4+gKT0AV0VD0N6veEqNB/fWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5296
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net] net: mrp: use stp state as substitute for
@@ -90,76 +141,19 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The 01/18/2021 19:13, Rasmus Villemoes wrote:
-> 
+On Mon, Jan 18, 2021 at 07:56:18PM +0100, Horatiu Vultur wrote:
+> The reason was to stay away from STP, because you can't run these two
+> protocols at the same time. Even though in SW, we reuse port's state.
+> In our driver(which is not upstreamed), we currently implement
+> SWITCHDEV_ATTR_ID_MRP_PORT_STATE and just call the
+> SWITCHDEV_ATTR_ID_PORT_STP_STATE.
 
-Hi Rasmus,
+And isn't Rasmus's approach reasonable, in that it allows unmodified
+switchdev drivers to offload MRP port states without creating
+unnecessary code churn?
 
-> When using MRP with hardware that does understand the concept of
-> blocked or forwarding ports, but not the full MRP offload, we
-> currently fail to tell the hardware what state it should put the port
-> in when the ring is closed - resulting in a ring of forwarding ports
-> and all the trouble that comes with that.
-
-But why don't you implement the SWITCHDEV_ATTR_ID_MRP_PORT_STATE in your
-driver? if already the HW understands the concept of block or forwarding?
-
-> 
-> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-> ---
-> 
-> I don't really understand why SWITCHDEV_ATTR_ID_MRP_PORT_STATE even
-> has to exist seperately from SWITCHDEV_ATTR_ID_PORT_STP_STATE, and
-> it's hard to tell what the difference might be since no kernel code
-> implements the former.
-
-The reason was to stay away from STP, because you can't run these two
-protocols at the same time. Even though in SW, we reuse port's state.
-In our driver(which is not upstreamed), we currently implement
-SWITCHDEV_ATTR_ID_MRP_PORT_STATE and just call the
-SWITCHDEV_ATTR_ID_PORT_STP_STATE.
-
-> 
->  net/bridge/br_mrp_switchdev.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/net/bridge/br_mrp_switchdev.c b/net/bridge/br_mrp_switchdev.c
-> index ed547e03ace1..8a1c7953e57a 100644
-> --- a/net/bridge/br_mrp_switchdev.c
-> +++ b/net/bridge/br_mrp_switchdev.c
-> @@ -180,6 +180,24 @@ int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
->         int err;
-> 
->         err = switchdev_port_attr_set(p->dev, &attr);
-> +       if (err == -EOPNOTSUPP) {
-> +               attr.id = SWITCHDEV_ATTR_ID_PORT_STP_STATE;
-> +               switch (state) {
-> +               case BR_MRP_PORT_STATE_DISABLED:
-> +               case BR_MRP_PORT_STATE_NOT_CONNECTED:
-> +                       attr.u.stp_state = BR_STATE_DISABLED;
-> +                       break;
-> +               case BR_MRP_PORT_STATE_BLOCKED:
-> +                       attr.u.stp_state = BR_STATE_BLOCKING;
-> +                       break;
-> +               case BR_MRP_PORT_STATE_FORWARDING:
-> +                       attr.u.stp_state = BR_STATE_FORWARDING;
-> +                       break;
-> +               default:
-> +                       return err;
-> +               };
-> +               err = switchdev_port_attr_set(p->dev, &attr);
-> +       }
->         if (err && err != -EOPNOTSUPP)
->                 br_warn(p->br, "error setting offload MRP state on port %u(%s)\n",
->                         (unsigned int)p->port_no, p->dev->name);
-> --
-> 2.23.0
-> 
-
--- 
-/Horatiu
+Also, if it has no in-kernel users, why does it even exist as a
+switchdev attribute?=
