@@ -1,79 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22F72FD3B3
-	for <lists.bridge@lfdr.de>; Wed, 20 Jan 2021 16:18:55 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586F42FD3DC
+	for <lists.bridge@lfdr.de>; Wed, 20 Jan 2021 16:23:55 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 47AE487146;
-	Wed, 20 Jan 2021 15:18:54 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 88CFA8604A;
+	Wed, 20 Jan 2021 15:23:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id X+lgKAm2N5px; Wed, 20 Jan 2021 15:18:54 +0000 (UTC)
+	with ESMTP id ldg1__YT_5X0; Wed, 20 Jan 2021 15:23:50 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 1248387151;
-	Wed, 20 Jan 2021 15:18:54 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id AA21E85FEF;
+	Wed, 20 Jan 2021 15:23:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EA8D8C013A;
-	Wed, 20 Jan 2021 15:18:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8C1FCC1DA7;
+	Wed, 20 Jan 2021 15:23:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AB90CC013A
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 15:18:50 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EA2D2C013A
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 15:23:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 9A36C87134
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 15:18:50 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id D518485CD5
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 15:23:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8ttV6gOQiLsZ for <bridge@lists.linux-foundation.org>;
- Wed, 20 Jan 2021 15:18:47 +0000 (UTC)
+ with ESMTP id hn0Iy8lM5a84 for <bridge@lists.linux-foundation.org>;
+ Wed, 20 Jan 2021 15:23:44 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
- [209.85.218.41])
- by hemlock.osuosl.org (Postfix) with ESMTPS id E5E5087143
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 15:18:46 +0000 (UTC)
-Received: by mail-ej1-f41.google.com with SMTP id g12so34049750ejf.8
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 07:18:46 -0800 (PST)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
+ [209.85.167.48])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 45EA385CA8
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 15:23:44 +0000 (UTC)
+Received: by mail-lf1-f48.google.com with SMTP id h7so5363593lfc.6
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 07:23:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=OjWISbPB8HC46NGN9v+RAYWTAaENcUvF2CdBvQ4rsYE=;
- b=McFH6yJcgZ67BI5GI0pAosMG9GYjI2slMPWrfwnFstoKHhPVMA7ZF+9VhSm3+1xisa
- VQ1TrEn43SnUafmN7ZvHdxgMOVnmqPX50Qas380Gkx1SE4P03u10bOakEM4RNVD0lEJO
- lj25X/gH7uLTVbfYT02IdwNVP92euMRh7XwS+QxxpAAiTqNtK+4aJSJ6F87+L61BkROf
- u8ZST3vwNgFTKCqkOcSxL9yyxFfsPEQteT2Z3KPsXXJWxtt5z9ByczcZggApyPcageKH
- YgpvvT1WL5M3doDL+jaRvYqD1UMyNNTFxuMyHtMrh3NS5cNlbTP+FlO0IbJSaDlC9NFs
- DeYw==
+ bh=Qa2CnxrmfdpWhxwQfNcz/QRx0LAMcqvtJo3oWicVNSc=;
+ b=zXXHq7R/yS26GFBFwlhLMCwY2QJ6QfAT6vp6c8h2+sA2NkO70FVxe2VxT/KvT2isvj
+ xt5l/rUzNzrkKVk2HYgFBCuvJtQBc4LDSrClvDckfvV4yoYSctMTYDdIieyJFMOQT3Su
+ 4wK/6NQUapdz4d4tnn6aS7B5CdnJqIiDJzT4x4Y7Y7UDAabstt2pI4pNXF0/kqZOF6d4
+ mpdFcAS6dIgX/twCCcqUX0jTQGMbJmQXQU1AbySYTjJGutXLgzffldqQLJffQiPYUIX1
+ FK9CD5YMEJuZMIrBCtysDcHxhN5rGV4m1NRexk63viIvBj4OMVN9bh2lPl8vYzxyBbBP
+ mE+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=OjWISbPB8HC46NGN9v+RAYWTAaENcUvF2CdBvQ4rsYE=;
- b=loK11uDV2rQMLQLXB6QAWgZNOV+/xhv1bqSLiHwzXK2yeTwo9/K4wBOJJ8abGNPQmU
- aWA0yXV7lYNF8IUBsdyXowPs22r4Pq/GXkjqctq7+UlGg5f+S2cLdqGYHgMBQd3yhNyW
- IAlargKY8555M05+G7ClCG4ntsFUiWFCVJwTv5JgLKmcDDSlqRhEGuIrYcyMNjant74L
- w4L3jxWN/B9s8UwIS+7BxCKVtr9XoN7EYUiWG7iLVgPjV8A0JjoMIUgTlpkDS30iPId5
- rfspaWblyZMKtAsx4Jjueufe++/tCBpQSHe/FLDyTzAR5IrY7i2PcYAv7iC0jS9nqgZc
- IQHg==
-X-Gm-Message-State: AOAM532BHkPlBIoDEacZqFUj6Prmxk0xDFnM2r5jhRmMMYEbVpiTnOGu
- 9HLG+pdxiGk6K9ryis3B37qYhJHC1IloqtnHSI8=
-X-Google-Smtp-Source: ABdhPJwTMO19YXxcpfZt6A+C0TPq4gxRVH3CZ2Ehdw2kok2UAPY8zwPXaqZ7Cr7zaxcaFj5Ytk8kgQ==
-X-Received: by 2002:a17:906:803:: with SMTP id
- e3mr6214019ejd.346.1611154393673; 
- Wed, 20 Jan 2021 06:53:13 -0800 (PST)
+ bh=Qa2CnxrmfdpWhxwQfNcz/QRx0LAMcqvtJo3oWicVNSc=;
+ b=mWruWEz5w2QFWXpP9kHnCkUinEhIns/tx7IZTjcy0DN4+nLgvpoYh1eRjkFQxgC02m
+ SqqL/Lae/ElnBBR+L+aWmqXqmq4tx+z9GZguhL4DSAvqKm2TKAABJmIlR3DTQhqldpff
+ JT+/XkASDg98gExIlb7yRzny9ckEjFnoX3LVDVnJ+Jwl7lkPXKI8wa3a/WI3KOyTRk9/
+ fS/Im7nzmufXi+QMDMIN6GlkSMS+ek/mqtdJR6V5PRpa5pRW3nTUhnlaxORfMqCOBTpG
+ s1wsWAe0oUyWtfVGVqFIzXVz8T8Q+RQ5AZCi5vEse88801ooVvnG058FYoKXDZsXtNxc
+ By+Q==
+X-Gm-Message-State: AOAM5339MkXfKl9eH0OcorqmfFTTjtHitQcVmx3Y4UxypymOB+fMbwJE
+ M4+x+X9Gzwl/zYyuYDgzADDKqQlkqVZOsj4S3Xo=
+X-Google-Smtp-Source: ABdhPJxmT9ZM1e1S1IYSplPXmd+BQLBx7gybs5NRVmo4HVJ+nYOnaVqmzhxnzTBMFduMMwOvD9GCVQ==
+X-Received: by 2002:a17:906:6b91:: with SMTP id
+ l17mr6029683ejr.171.1611154395907; 
+ Wed, 20 Jan 2021 06:53:15 -0800 (PST)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id x17sm1239349edq.77.2021.01.20.06.53.12
+ by smtp.gmail.com with ESMTPSA id x17sm1239349edq.77.2021.01.20.06.53.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Jan 2021 06:53:12 -0800 (PST)
+ Wed, 20 Jan 2021 06:53:15 -0800 (PST)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Wed, 20 Jan 2021 16:51:58 +0200
-Message-Id: <20210120145203.1109140-10-razor@blackwall.org>
+Date: Wed, 20 Jan 2021 16:52:00 +0200
+Message-Id: <20210120145203.1109140-12-razor@blackwall.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210120145203.1109140-1-razor@blackwall.org>
 References: <20210120145203.1109140-1-razor@blackwall.org>
@@ -81,8 +81,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, kuba@kernel.org,
  bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 09/14] net: bridge: multicast: add EHT
-	allow/block handling
+Subject: [Bridge] [PATCH net-next 11/14] net: bridge: multicast: optimize
+	TO_INCLUDE EHT timeouts
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,483 +99,64 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Add support for IGMPv3/MLDv2 allow/block EHT handling. Similar to how
-the reports are processed we have 2 cases when the group is in include
-or exclude mode, these are processed as follows:
- - group include
-  - allow: create missing entries
-  - block: remove existing matching entries and remove the corresponding
-    S,G entries if there are no more set host entries, then possibly
-    delete the whole group if there are no more S,G entries
-
- - group exclude
-  - allow
-    - host include: create missing entries
-    - host exclude: remove existing matching entries and remove the
-      corresponding S,G entries if there are no more set host entries
-  - block
-    - host include: remove existing matching entries and remove the
-      corresponding S,G entries if there are no more set host entries,
-      then possibly delete the whole group if there are no more S,G entries
-    - host exclude: create missing entries
+This is an optimization specifically for TO_INCLUDE which sends queries
+for the older entries and thus lowers the S,G timers to LMQT. If we have
+the following situation for a group in either include or exclude mode:
+ - host A was interested in srcs X and Y, but is timing out
+ - host B sends TO_INCLUDE src Z, the bridge lowers X and Y's timeouts
+   to LMQT
+ - host B sends BLOCK src Z after LMQT time has passed
+ => since host B is the last host we can delete the group, but if we
+    still have host A's EHT entries for X and Y (i.e. if they weren't
+    lowered to LMQT previously) then we'll have to wait another LMQT
+    time before deleting the group, with this optimization we can
+    directly remove it regardless of the group mode as there are no more
+    interested hosts
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/br_multicast.c         |  43 +++--
- net/bridge/br_multicast_eht.c     | 252 ++++++++++++++++++++++++++++++
- net/bridge/br_private.h           |   3 +
- net/bridge/br_private_mcast_eht.h |   6 +
- 4 files changed, 290 insertions(+), 14 deletions(-)
+ net/bridge/br_multicast_eht.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index ac363b104239..3b8c5d1d0c55 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -560,7 +560,7 @@ static void br_multicast_destroy_group_src(struct net_bridge_mcast_gc *gc)
- 	kfree_rcu(src, rcu);
- }
- 
--static void br_multicast_del_group_src(struct net_bridge_group_src *src)
-+void br_multicast_del_group_src(struct net_bridge_group_src *src)
- {
- 	struct net_bridge *br = src->pg->key.port->br;
- 
-@@ -1092,7 +1092,7 @@ static void br_multicast_group_src_expired(struct timer_list *t)
- 	spin_unlock(&br->multicast_lock);
- }
- 
--static struct net_bridge_group_src *
-+struct net_bridge_group_src *
- br_multicast_find_group_src(struct net_bridge_port_group *pg, struct br_ip *ip)
- {
- 	struct net_bridge_group_src *ent;
-@@ -1804,7 +1804,8 @@ static void __grp_send_query_and_rexmit(struct net_bridge_port_group *pg)
-  * EXCLUDE (X,Y)  ALLOW (A)     EXCLUDE (X+A,Y-A)        (A)=GMI
-  */
- static bool br_multicast_isinc_allow(struct net_bridge_port_group *pg, void *h_addr,
--				     void *srcs, u32 nsrcs, size_t addr_size)
-+				     void *srcs, u32 nsrcs, size_t addr_size,
-+				     int grec_type)
- {
- 	struct net_bridge *br = pg->key.port->br;
- 	struct net_bridge_group_src *ent;
-@@ -1828,6 +1829,9 @@ static bool br_multicast_isinc_allow(struct net_bridge_port_group *pg, void *h_a
- 			__grp_src_mod_timer(ent, now + br_multicast_gmi(br));
- 	}
- 
-+	if (br_multicast_eht_handle(pg, h_addr, srcs, nsrcs, addr_size, grec_type))
-+		changed = true;
-+
- 	return changed;
- }
- 
-@@ -2140,7 +2144,7 @@ static bool br_multicast_toex(struct net_bridge_port_group *pg, void *h_addr,
-  * INCLUDE (A)    BLOCK (B)     INCLUDE (A)              Send Q(G,A*B)
-  */
- static bool __grp_src_block_incl(struct net_bridge_port_group *pg, void *h_addr,
--				 void *srcs, u32 nsrcs, size_t addr_size)
-+				 void *srcs, u32 nsrcs, size_t addr_size, int grec_type)
- {
- 	struct net_bridge_group_src *ent;
- 	u32 src_idx, to_send = 0;
-@@ -2161,6 +2165,9 @@ static bool __grp_src_block_incl(struct net_bridge_port_group *pg, void *h_addr,
- 		}
- 	}
- 
-+	if (br_multicast_eht_handle(pg, h_addr, srcs, nsrcs, addr_size, grec_type))
-+		changed = true;
-+
- 	if (to_send)
- 		__grp_src_query_marked_and_rexmit(pg);
- 
-@@ -2180,7 +2187,7 @@ static bool __grp_src_block_incl(struct net_bridge_port_group *pg, void *h_addr,
-  *                                                       Send Q(G,A-Y)
-  */
- static bool __grp_src_block_excl(struct net_bridge_port_group *pg, void *h_addr,
--				 void *srcs, u32 nsrcs, size_t addr_size)
-+				 void *srcs, u32 nsrcs, size_t addr_size, int grec_type)
- {
- 	struct net_bridge_group_src *ent;
- 	u32 src_idx, to_send = 0;
-@@ -2208,6 +2215,9 @@ static bool __grp_src_block_excl(struct net_bridge_port_group *pg, void *h_addr,
- 		}
- 	}
- 
-+	if (br_multicast_eht_handle(pg, h_addr, srcs, nsrcs, addr_size, grec_type))
-+		changed = true;
-+
- 	if (to_send)
- 		__grp_src_query_marked_and_rexmit(pg);
- 
-@@ -2215,16 +2225,18 @@ static bool __grp_src_block_excl(struct net_bridge_port_group *pg, void *h_addr,
- }
- 
- static bool br_multicast_block(struct net_bridge_port_group *pg, void *h_addr,
--			       void *srcs, u32 nsrcs, size_t addr_size)
-+			       void *srcs, u32 nsrcs, size_t addr_size, int grec_type)
- {
- 	bool changed = false;
- 
- 	switch (pg->filter_mode) {
- 	case MCAST_INCLUDE:
--		changed = __grp_src_block_incl(pg, h_addr, srcs, nsrcs, addr_size);
-+		changed = __grp_src_block_incl(pg, h_addr, srcs, nsrcs, addr_size,
-+					       grec_type);
- 		break;
- 	case MCAST_EXCLUDE:
--		changed = __grp_src_block_excl(pg, h_addr, srcs, nsrcs, addr_size);
-+		changed = __grp_src_block_excl(pg, h_addr, srcs, nsrcs, addr_size,
-+					       grec_type);
- 		break;
- 	}
- 
-@@ -2327,11 +2339,11 @@ static int br_ip4_multicast_igmp3_report(struct net_bridge *br,
- 		switch (type) {
- 		case IGMPV3_ALLOW_NEW_SOURCES:
- 			changed = br_multicast_isinc_allow(pg, h_addr, grec->grec_src,
--							   nsrcs, sizeof(__be32));
-+							   nsrcs, sizeof(__be32), type);
- 			break;
- 		case IGMPV3_MODE_IS_INCLUDE:
- 			changed = br_multicast_isinc_allow(pg, h_addr, grec->grec_src,
--							   nsrcs, sizeof(__be32));
-+							   nsrcs, sizeof(__be32), type);
- 			break;
- 		case IGMPV3_MODE_IS_EXCLUDE:
- 			changed = br_multicast_isexc(pg, h_addr, grec->grec_src,
-@@ -2347,7 +2359,7 @@ static int br_ip4_multicast_igmp3_report(struct net_bridge *br,
- 			break;
- 		case IGMPV3_BLOCK_OLD_SOURCES:
- 			changed = br_multicast_block(pg, h_addr, grec->grec_src,
--						     nsrcs, sizeof(__be32));
-+						     nsrcs, sizeof(__be32), type);
- 			break;
- 		}
- 		if (changed)
-@@ -2455,12 +2467,14 @@ static int br_ip6_multicast_mld2_report(struct net_bridge *br,
- 		case MLD2_ALLOW_NEW_SOURCES:
- 			changed = br_multicast_isinc_allow(pg, h_addr,
- 							   grec->grec_src, nsrcs,
--							   sizeof(struct in6_addr));
-+							   sizeof(struct in6_addr),
-+							   grec->grec_type);
- 			break;
- 		case MLD2_MODE_IS_INCLUDE:
- 			changed = br_multicast_isinc_allow(pg, h_addr,
- 							   grec->grec_src, nsrcs,
--							   sizeof(struct in6_addr));
-+							   sizeof(struct in6_addr),
-+							   grec->grec_type);
- 			break;
- 		case MLD2_MODE_IS_EXCLUDE:
- 			changed = br_multicast_isexc(pg, h_addr,
-@@ -2480,7 +2494,8 @@ static int br_ip6_multicast_mld2_report(struct net_bridge *br,
- 		case MLD2_BLOCK_OLD_SOURCES:
- 			changed = br_multicast_block(pg, h_addr,
- 						     grec->grec_src, nsrcs,
--						     sizeof(struct in6_addr));
-+						     sizeof(struct in6_addr),
-+						     grec->grec_type);
- 			break;
- 		}
- 		if (changed)
 diff --git a/net/bridge/br_multicast_eht.c b/net/bridge/br_multicast_eht.c
-index 409fced7eae2..43f60388df16 100644
+index 861ae63f4a1c..fee3060d0495 100644
 --- a/net/bridge/br_multicast_eht.c
 +++ b/net/bridge/br_multicast_eht.c
-@@ -366,6 +366,21 @@ __eht_lookup_create_set(struct net_bridge_port_group *pg,
- 	return eht_set;
- }
+@@ -656,6 +656,8 @@ static bool __eht_inc_exc(struct net_bridge_port_group *pg,
+ 	}
+ 	/* we can be missing sets only if we've deleted some entries */
+ 	if (flush_entries) {
++		struct net_bridge *br = pg->key.port->br;
++		struct net_bridge_group_eht_set *eht_set;
+ 		struct net_bridge_group_src *src_ent;
+ 		struct hlist_node *tmp;
  
-+static void br_multicast_ip_src_to_eht_addr(const struct br_ip *src,
-+					    union net_bridge_eht_addr *dest)
-+{
-+	switch (src->proto) {
-+	case htons(ETH_P_IP):
-+		dest->ip4 = src->src.ip4;
-+		break;
-+#if IS_ENABLED(CONFIG_IPV6)
-+	case htons(ETH_P_IPV6):
-+		memcpy(&dest->ip6, &src->src.ip6, sizeof(struct in6_addr));
-+		break;
-+#endif
-+	}
-+}
-+
- static void br_multicast_create_eht_set_entry(struct net_bridge_port_group *pg,
- 					      union net_bridge_eht_addr *src_addr,
- 					      union net_bridge_eht_addr *h_addr,
-@@ -451,3 +466,240 @@ static void br_multicast_del_eht_host(struct net_bridge_port_group *pg,
- 					       &set_h->eht_set->src_addr,
- 					       &set_h->h_addr);
- }
-+
-+static void __eht_allow_incl(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     size_t addr_size)
-+{
-+	union net_bridge_eht_addr eht_src_addr;
-+	u32 src_idx;
-+
-+	memset(&eht_src_addr, 0, sizeof(eht_src_addr));
-+	for (src_idx = 0; src_idx < nsrcs; src_idx++) {
-+		memcpy(&eht_src_addr, srcs + (src_idx * addr_size), addr_size);
-+		br_multicast_create_eht_set_entry(pg, &eht_src_addr, h_addr,
-+						  MCAST_INCLUDE,
-+						  false);
-+	}
-+}
-+
-+static bool __eht_allow_excl(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     size_t addr_size)
-+{
-+	bool changed = false, host_excl = false;
-+	union net_bridge_eht_addr eht_src_addr;
-+	struct net_bridge_group_src *src_ent;
-+	struct br_ip src_ip;
-+	u32 src_idx;
-+
-+	host_excl = !!(br_multicast_eht_host_filter_mode(pg, h_addr) == MCAST_EXCLUDE);
-+	memset(&eht_src_addr, 0, sizeof(eht_src_addr));
-+	for (src_idx = 0; src_idx < nsrcs; src_idx++) {
-+		memcpy(&eht_src_addr, srcs + (src_idx * addr_size), addr_size);
-+		if (!host_excl) {
-+			br_multicast_create_eht_set_entry(pg, &eht_src_addr, h_addr,
-+							  MCAST_INCLUDE,
-+							  false);
-+		} else {
-+			if (!br_multicast_del_eht_set_entry(pg, &eht_src_addr,
-+							    h_addr))
+@@ -667,6 +669,25 @@ static bool __eht_inc_exc(struct net_bridge_port_group *pg,
+ 				changed = true;
+ 				continue;
+ 			}
++			/* this is an optimization for TO_INCLUDE where we lower
++			 * the set's timeout to LMQT to catch timeout hosts:
++			 * - host A (timing out): set entries X, Y
++			 * - host B: set entry Z (new from current TO_INCLUDE)
++			 *           sends BLOCK Z after LMQT but host A's EHT
++			 *           entries still exist (unless lowered to LMQT
++			 *           so they can timeout with the S,Gs)
++			 * => we wait another LMQT, when we can just delete the
++			 *    group immediately
++			 */
++			if (!(src_ent->flags & BR_SGRP_F_SEND) ||
++			    filter_mode != MCAST_INCLUDE ||
++			    !to_report)
 +				continue;
-+			memcpy(&src_ip, srcs + (src_idx * addr_size), addr_size);
-+			src_ent = br_multicast_find_group_src(pg, &src_ip);
-+			if (!src_ent)
++			eht_set = br_multicast_eht_set_lookup(pg,
++							      &eht_src_addr);
++			if (!eht_set)
 +				continue;
-+			br_multicast_del_group_src(src_ent);
-+			changed = true;
-+		}
-+	}
-+
-+	return changed;
-+}
-+
-+static bool br_multicast_eht_allow(struct net_bridge_port_group *pg,
-+				   union net_bridge_eht_addr *h_addr,
-+				   void *srcs,
-+				   u32 nsrcs,
-+				   size_t addr_size)
-+{
-+	bool changed = false;
-+
-+	switch (br_multicast_eht_host_filter_mode(pg, h_addr)) {
-+	case MCAST_INCLUDE:
-+		__eht_allow_incl(pg, h_addr, srcs, nsrcs, addr_size);
-+		break;
-+	case MCAST_EXCLUDE:
-+		changed = __eht_allow_excl(pg, h_addr, srcs, nsrcs, addr_size);
-+		break;
-+	}
-+
-+	return changed;
-+}
-+
-+static bool __eht_block_incl(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     size_t addr_size)
-+{
-+	union net_bridge_eht_addr eht_src_addr;
-+	struct net_bridge_group_src *src_ent;
-+	bool changed = false;
-+	struct br_ip src_ip;
-+	u32 src_idx;
-+
-+	memset(&eht_src_addr, 0, sizeof(eht_src_addr));
-+	memset(&src_ip, 0, sizeof(src_ip));
-+	src_ip.proto = pg->key.addr.proto;
-+	for (src_idx = 0; src_idx < nsrcs; src_idx++) {
-+		memcpy(&eht_src_addr, srcs + (src_idx * addr_size), addr_size);
-+		if (!br_multicast_del_eht_set_entry(pg, &eht_src_addr, h_addr))
-+			continue;
-+		memcpy(&src_ip, srcs + (src_idx * addr_size), addr_size);
-+		src_ent = br_multicast_find_group_src(pg, &src_ip);
-+		if (!src_ent)
-+			continue;
-+		br_multicast_del_group_src(src_ent);
-+		changed = true;
-+	}
-+
-+	return changed;
-+}
-+
-+static bool __eht_block_excl(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     size_t addr_size)
-+{
-+	bool changed = false, host_excl = false;
-+	union net_bridge_eht_addr eht_src_addr;
-+	struct net_bridge_group_src *src_ent;
-+	struct br_ip src_ip;
-+	u32 src_idx;
-+
-+	host_excl = !!(br_multicast_eht_host_filter_mode(pg, h_addr) == MCAST_EXCLUDE);
-+	memset(&eht_src_addr, 0, sizeof(eht_src_addr));
-+	memset(&src_ip, 0, sizeof(src_ip));
-+	src_ip.proto = pg->key.addr.proto;
-+	for (src_idx = 0; src_idx < nsrcs; src_idx++) {
-+		memcpy(&eht_src_addr, srcs + (src_idx * addr_size), addr_size);
-+		if (host_excl) {
-+			br_multicast_create_eht_set_entry(pg, &eht_src_addr, h_addr,
-+							  MCAST_EXCLUDE,
-+							  false);
-+		} else {
-+			if (!br_multicast_del_eht_set_entry(pg, &eht_src_addr,
-+							    h_addr))
-+				continue;
-+			memcpy(&src_ip, srcs + (src_idx * addr_size), addr_size);
-+			src_ent = br_multicast_find_group_src(pg, &src_ip);
-+			if (!src_ent)
-+				continue;
-+			br_multicast_del_group_src(src_ent);
-+			changed = true;
-+		}
-+	}
-+
-+	return changed;
-+}
-+
-+static bool br_multicast_eht_block(struct net_bridge_port_group *pg,
-+				   union net_bridge_eht_addr *h_addr,
-+				   void *srcs,
-+				   u32 nsrcs,
-+				   size_t addr_size)
-+{
-+	bool changed = false;
-+
-+	switch (br_multicast_eht_host_filter_mode(pg, h_addr)) {
-+	case MCAST_INCLUDE:
-+		changed = __eht_block_incl(pg, h_addr, srcs, nsrcs, addr_size);
-+		break;
-+	case MCAST_EXCLUDE:
-+		changed = __eht_block_excl(pg, h_addr, srcs, nsrcs, addr_size);
-+		break;
-+	}
-+
-+	return changed;
-+}
-+
-+static bool __eht_ip4_handle(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     int grec_type)
-+{
-+	bool changed = false;
-+
-+	switch (grec_type) {
-+	case IGMPV3_ALLOW_NEW_SOURCES:
-+		br_multicast_eht_allow(pg, h_addr, srcs, nsrcs, sizeof(__be32));
-+		break;
-+	case IGMPV3_BLOCK_OLD_SOURCES:
-+		changed = br_multicast_eht_block(pg, h_addr, srcs, nsrcs,
-+						 sizeof(__be32));
-+		break;
-+	}
-+
-+	return changed;
-+}
-+
-+#if IS_ENABLED(CONFIG_IPV6)
-+static bool __eht_ip6_handle(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     int grec_type)
-+{
-+	bool changed = false;
-+
-+	switch (grec_type) {
-+	case MLD2_ALLOW_NEW_SOURCES:
-+		br_multicast_eht_allow(pg, h_addr, srcs, nsrcs,
-+				       sizeof(struct in6_addr));
-+		break;
-+	case MLD2_BLOCK_OLD_SOURCES:
-+		changed = br_multicast_eht_block(pg, h_addr, srcs, nsrcs,
-+						 sizeof(struct in6_addr));
-+		break;
-+	}
-+
-+	return changed;
-+}
-+#endif
-+
-+/* true means an entry was deleted */
-+bool br_multicast_eht_handle(struct net_bridge_port_group *pg,
-+			     void *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     size_t addr_size,
-+			     int grec_type)
-+{
-+	bool eht_enabled = !!(pg->key.port->flags & BR_MULTICAST_FAST_LEAVE);
-+	union net_bridge_eht_addr eht_host_addr;
-+	bool changed = false;
-+
-+	if (!eht_enabled)
-+		goto out;
-+
-+	memset(&eht_host_addr, 0, sizeof(eht_host_addr));
-+	memcpy(&eht_host_addr, h_addr, addr_size);
-+	if (addr_size == sizeof(__be32))
-+		changed = __eht_ip4_handle(pg, &eht_host_addr, srcs, nsrcs,
-+					   grec_type);
-+#if IS_ENABLED(CONFIG_IPV6)
-+	else
-+		changed = __eht_ip6_handle(pg, &eht_host_addr, srcs, nsrcs,
-+					   grec_type);
-+#endif
-+
-+out:
-+	return changed;
-+}
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 0bf4c544a5da..cad967690e9f 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -848,6 +848,9 @@ void br_multicast_star_g_handle_mode(struct net_bridge_port_group *pg,
- 				     u8 filter_mode);
- void br_multicast_sg_add_exclude_ports(struct net_bridge_mdb_entry *star_mp,
- 				       struct net_bridge_port_group *sg);
-+struct net_bridge_group_src *
-+br_multicast_find_group_src(struct net_bridge_port_group *pg, struct br_ip *ip);
-+void br_multicast_del_group_src(struct net_bridge_group_src *src);
++			mod_timer(&eht_set->timer, jiffies + br_multicast_lmqt(br));
+ 		}
+ 	}
  
- static inline bool br_group_is_l2(const struct br_ip *group)
- {
-diff --git a/net/bridge/br_private_mcast_eht.h b/net/bridge/br_private_mcast_eht.h
-index bba507c9acb0..92933822301d 100644
---- a/net/bridge/br_private_mcast_eht.h
-+++ b/net/bridge/br_private_mcast_eht.h
-@@ -48,5 +48,11 @@ struct net_bridge_group_eht_set {
- };
- 
- void br_multicast_eht_clean_sets(struct net_bridge_port_group *pg);
-+bool br_multicast_eht_handle(struct net_bridge_port_group *pg,
-+			     void *h_addr,
-+			     void *srcs,
-+			     u32 nsrcs,
-+			     size_t addr_size,
-+			     int grec_type);
- 
- #endif /* _BR_PRIVATE_MCAST_EHT_H_ */
 -- 
 2.29.2
 
