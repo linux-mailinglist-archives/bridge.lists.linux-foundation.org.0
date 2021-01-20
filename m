@@ -2,78 +2,77 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FC42FD34B
-	for <lists.bridge@lfdr.de>; Wed, 20 Jan 2021 15:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF9D02FD352
+	for <lists.bridge@lfdr.de>; Wed, 20 Jan 2021 15:59:38 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 9704B87120;
-	Wed, 20 Jan 2021 14:58:45 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id A876287137;
+	Wed, 20 Jan 2021 14:59:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zhACScxfHgFj; Wed, 20 Jan 2021 14:58:45 +0000 (UTC)
+	with ESMTP id m2pTxYjE5ucL; Wed, 20 Jan 2021 14:59:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id DD74D87128;
-	Wed, 20 Jan 2021 14:58:44 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 7A8CA87134;
+	Wed, 20 Jan 2021 14:59:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B0A6BC1DA7;
-	Wed, 20 Jan 2021 14:58:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 62CF1C013A;
+	Wed, 20 Jan 2021 14:59:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3F841C013A
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 14:58:43 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8FD8DC013A
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 14:59:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 30D34204F9
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 14:58:43 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id 8AF8A87136
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 14:59:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id I9AHBgzQrxt7 for <bridge@lists.linux-foundation.org>;
- Wed, 20 Jan 2021 14:58:41 +0000 (UTC)
-X-Greylist: delayed 00:05:34 by SQLgrey-1.7.6
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by silver.osuosl.org (Postfix) with ESMTPS id B48B6203E1
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 14:58:40 +0000 (UTC)
-Received: by mail-lj1-f171.google.com with SMTP id p13so26475445ljg.2
- for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 06:58:40 -0800 (PST)
+ with ESMTP id nEsF06qeBClG for <bridge@lists.linux-foundation.org>;
+ Wed, 20 Jan 2021 14:59:35 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 2FA5A87134
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 14:59:35 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id j3so6718094ljb.9
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Jan 2021 06:59:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=RUfnxg7JDBFIwuUWLAhYbWYF3RttZk+VcieI3V+L2Fs=;
- b=gQ3nLuW4o4Eol9q5Pt15/DWuygHTU0A8Sdpm0AWwEy8iyn8a573G0TADPMcTJSCIzg
- EVxuFKmS9z3D+djEw2u++NT9/IA3+R/TcpL/jwWifrOjrihNZdWxR5fMANOPZ0ytmet/
- Qne0DHiIJuBWCqeQVP8VAdUvVMh+V/2Ca8dWxmDWjTIbiGq3Yy7SK2KxkciFuezAj723
- I177XCVmiM6dqnBP5lz+QexxHHHjFrquHeQ8wqwh3V2im49zYExsdWeLb9KiEyY35ef/
- OOAyHDLAL+e9gzJqQAiX8fi8WMnay4zIv2HoH3ykoR5WxnG/XDjKaaX9qSaR39iLvnET
- nPMA==
+ bh=gg8z2NwJXfCcKyNuHBmp1yVt9kpkPZxpVptW7e/c73k=;
+ b=LQCezO/53d4qHt8Qef8pYEbfXnDeBexmoDh7iIdrLyZ0FRnppFo3FHZnROVPDyN3ol
+ 8nsgzEEk5fI/lFyLIC/0rdUaOXk4NVOyxNXDj2bFXrgaBfRAmdOA9S08zEFwo75PHNVe
+ LZnKz1EBAceQYRbrmuww3Jk6DQsQa6quB6R2FuVqkTbjKc08Uc+6VpMx5qzFiZlYMLYV
+ rUMIvZamJasa4T++qGNx7qNABuZQzLpsEABdd4zqG9XtuBVyvIhOgjFoJU8sp7ZdPaVH
+ Ps/Prl3hupiCzDSVX7gleK56Q56Pdzg6g9mKKMpKkIKitdVH2owhx9kmsK0Z3LSrWadv
+ mrgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=RUfnxg7JDBFIwuUWLAhYbWYF3RttZk+VcieI3V+L2Fs=;
- b=NhWdvH/Pz5VMPK3DFRpjihy0iGeBt3Wzv3pqkiN3M0CJKNPiCBfP47tdv6vDaWtHaN
- pVhrrd+4M0uFhmflektSEwHOF3wLIlBtat84P7yZnLa32GiuSGOGCJQ7gN7xEBkXpgMJ
- ZX+UHwmAqD/2+7acMgeZ7VN8tEXGUE7mP62661rRdeuk1uj9bGJ4WK3GrjiwH7Pk2POL
- p5X70PcAMhMbkQurxniTQ3XuKTZ+MCkDJVKtOXIv1UMzS5rz9+bC1ptiOv6llPh5W5sw
- QNJL8DDDfzN6d2NxaYDbhaabVMKGZK8zJFigxac0lHmyrk/MIqAyXMUaOz0nfa5SpSLM
- TqvQ==
-X-Gm-Message-State: AOAM532eZ3J0iJMXEFiLyU2emZtEyyPN2opJKNoBzuCXHYrdPWZuL7N4
- Uavg8joT3c2HolYr6k2msQsWS63sD3ZF267VCX0=
-X-Google-Smtp-Source: ABdhPJzrFNidycGyTV9SBshPnSCIi+GJPPottSUkGSiy905eX1YTowz09tt0n0YOuTM1kcAlDXniwQ==
-X-Received: by 2002:a17:906:c954:: with SMTP id
- fw20mr4228893ejb.342.1611154389683; 
- Wed, 20 Jan 2021 06:53:09 -0800 (PST)
+ bh=gg8z2NwJXfCcKyNuHBmp1yVt9kpkPZxpVptW7e/c73k=;
+ b=RZGGsLj0m2y5/Lk+7goV/3i0cENElHoKZg8KYyge1OPbMECIs/9YatezHNuOtgmGeC
+ N9s8+0hHw9N9R+/yhBTFSz2xN+AjUh2cMZE3bzQDy7gyiZ6YNmxvsNeBb74d5uaFvG2A
+ RjyVgI1xZBekwzz3vGLUJ2mcv13jw4oZ2/ndpwKk9OQaHLSndaYmenPsQiUvUMADjIBI
+ seP+Rp5tkxwSAzAfH2xfwrHK6FNgds9p57MW9uOyxO0lsE9q5wnN7I2axxZdP0UeNPLy
+ n2wgyJfPWC0naOfihTRCOLWDEP1N6R8y2i1p2WpMXrNJZsXko/Kyw6M4mdkxUDsPAmVW
+ Irkg==
+X-Gm-Message-State: AOAM530dcI33lyJ4XM/m8BnArbhjGcIiRd7YP4HBQdYOfPF1MaFsFBmn
+ waCEynBm9OEeZ6XRF5O5OnFYSgLdjkIlcZRlbGs=
+X-Google-Smtp-Source: ABdhPJzhVzJgrjPeposQKBtN4TkzTJWeb62NyvhxJKozOVeT4jKdbtHm7DDIRfaBntVwr8L1kZKGEQ==
+X-Received: by 2002:aa7:d88e:: with SMTP id u14mr7449901edq.72.1611154390829; 
+ Wed, 20 Jan 2021 06:53:10 -0800 (PST)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id x17sm1239349edq.77.2021.01.20.06.53.08
+ by smtp.gmail.com with ESMTPSA id x17sm1239349edq.77.2021.01.20.06.53.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Jan 2021 06:53:08 -0800 (PST)
+ Wed, 20 Jan 2021 06:53:10 -0800 (PST)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Wed, 20 Jan 2021 16:51:55 +0200
-Message-Id: <20210120145203.1109140-7-razor@blackwall.org>
+Date: Wed, 20 Jan 2021 16:51:56 +0200
+Message-Id: <20210120145203.1109140-8-razor@blackwall.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210120145203.1109140-1-razor@blackwall.org>
 References: <20210120145203.1109140-1-razor@blackwall.org>
@@ -81,8 +80,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, kuba@kernel.org,
  bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 06/14] net: bridge: multicast: add EHT
-	host handling functions
+Subject: [Bridge] [PATCH net-next 07/14] net: bridge: multicast: add EHT
+	source set handling functions
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,97 +98,101 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Add functions to create, destroy and lookup an EHT host. These are
-per-host entries contained in the eht_host_tree in net_bridge_port_group
-which are used to store a list of all sources (S,G) entries joined for that
-group by each host, the host's current filter mode and total number of
-joined entries.
-No functional changes yet, these would be used in later patches.
+Add EHT source set and set-entry create, delete and lookup functions.
+These allow to manipulate source sets which contain their own host sets
+with entries which joined that S,G. We're limiting the maximum number of
+tracked S,G entries per host to PG_SRC_ENT_LIMIT (currently 32) which is
+the current maximum of S,G entries for a group. There's a per-set timer
+which will be used to destroy the whole set later.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/Makefile           |   2 +-
- net/bridge/br_multicast.c     |   1 +
- net/bridge/br_multicast_eht.c | 115 ++++++++++++++++++++++++++++++++++
- 3 files changed, 117 insertions(+), 1 deletion(-)
- create mode 100644 net/bridge/br_multicast_eht.c
+ net/bridge/br_multicast.c         |   2 +
+ net/bridge/br_multicast_eht.c     | 321 ++++++++++++++++++++++++++++++
+ net/bridge/br_private_mcast_eht.h |   2 +
+ 3 files changed, 325 insertions(+)
 
-diff --git a/net/bridge/Makefile b/net/bridge/Makefile
-index 4702702a74d3..7fb9a021873b 100644
---- a/net/bridge/Makefile
-+++ b/net/bridge/Makefile
-@@ -18,7 +18,7 @@ br_netfilter-y := br_netfilter_hooks.o
- br_netfilter-$(subst m,y,$(CONFIG_IPV6)) += br_netfilter_ipv6.o
- obj-$(CONFIG_BRIDGE_NETFILTER) += br_netfilter.o
- 
--bridge-$(CONFIG_BRIDGE_IGMP_SNOOPING) += br_multicast.o br_mdb.o
-+bridge-$(CONFIG_BRIDGE_IGMP_SNOOPING) += br_multicast.o br_mdb.o br_multicast_eht.o
- 
- bridge-$(CONFIG_BRIDGE_VLAN_FILTERING) += br_vlan.o br_vlan_tunnel.o br_vlan_options.o
- 
 diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 3aaa6adbff82..dc6e879dc840 100644
+index dc6e879dc840..ac363b104239 100644
 --- a/net/bridge/br_multicast.c
 +++ b/net/bridge/br_multicast.c
-@@ -1173,6 +1173,7 @@ struct net_bridge_port_group *br_multicast_new_port_group(
- 	p->flags = flags;
+@@ -594,6 +594,7 @@ void br_multicast_del_pg(struct net_bridge_mdb_entry *mp,
+ 
+ 	rcu_assign_pointer(*pp, pg->next);
+ 	hlist_del_init(&pg->mglist);
++	br_multicast_eht_clean_sets(pg);
+ 	hlist_for_each_entry_safe(ent, tmp, &pg->src_list, node)
+ 		br_multicast_del_group_src(ent);
+ 	br_mdb_notify(br->dev, mp, pg, RTM_DELMDB);
+@@ -1174,6 +1175,7 @@ struct net_bridge_port_group *br_multicast_new_port_group(
  	p->filter_mode = filter_mode;
  	p->rt_protocol = rt_protocol;
-+	p->eht_host_tree = RB_ROOT;
+ 	p->eht_host_tree = RB_ROOT;
++	p->eht_set_tree = RB_ROOT;
  	p->mcast_gc.destroy = br_multicast_destroy_port_group;
  	INIT_HLIST_HEAD(&p->src_list);
  
 diff --git a/net/bridge/br_multicast_eht.c b/net/bridge/br_multicast_eht.c
-new file mode 100644
-index 000000000000..5cebca45e72c
---- /dev/null
+index 5cebca45e72c..f4bbf2dc9fc8 100644
+--- a/net/bridge/br_multicast_eht.c
 +++ b/net/bridge/br_multicast_eht.c
-@@ -0,0 +1,115 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright (c) 2020, Nikolay Aleksandrov <nikolay@nvidia.com>
-+#include <linux/err.h>
-+#include <linux/export.h>
-+#include <linux/if_ether.h>
-+#include <linux/igmp.h>
-+#include <linux/in.h>
-+#include <linux/jhash.h>
-+#include <linux/kernel.h>
-+#include <linux/log2.h>
-+#include <linux/netdevice.h>
-+#include <linux/netfilter_bridge.h>
-+#include <linux/random.h>
-+#include <linux/rculist.h>
-+#include <linux/skbuff.h>
-+#include <linux/slab.h>
-+#include <linux/timer.h>
-+#include <linux/inetdevice.h>
-+#include <linux/mroute.h>
-+#include <net/ip.h>
-+#include <net/switchdev.h>
-+#if IS_ENABLED(CONFIG_IPV6)
-+#include <linux/icmpv6.h>
-+#include <net/ipv6.h>
-+#include <net/mld.h>
-+#include <net/ip6_checksum.h>
-+#include <net/addrconf.h>
-+#endif
+@@ -30,6 +30,15 @@
+ #include "br_private.h"
+ #include "br_private_mcast_eht.h"
+ 
++static bool br_multicast_del_eht_set_entry(struct net_bridge_port_group *pg,
++					   union net_bridge_eht_addr *src_addr,
++					   union net_bridge_eht_addr *h_addr);
++static void br_multicast_create_eht_set_entry(struct net_bridge_port_group *pg,
++					      union net_bridge_eht_addr *src_addr,
++					      union net_bridge_eht_addr *h_addr,
++					      int filter_mode,
++					      bool allow_zero_src);
 +
-+#include "br_private.h"
-+#include "br_private_mcast_eht.h"
-+
-+static struct net_bridge_group_eht_host *
-+br_multicast_eht_host_lookup(struct net_bridge_port_group *pg,
-+			     union net_bridge_eht_addr *h_addr)
+ static struct net_bridge_group_eht_host *
+ br_multicast_eht_host_lookup(struct net_bridge_port_group *pg,
+ 			     union net_bridge_eht_addr *h_addr)
+@@ -66,6 +75,54 @@ static int br_multicast_eht_host_filter_mode(struct net_bridge_port_group *pg,
+ 	return eht_host->filter_mode;
+ }
+ 
++static struct net_bridge_group_eht_set_entry *
++br_multicast_eht_set_entry_lookup(struct net_bridge_group_eht_set *eht_set,
++				  union net_bridge_eht_addr *h_addr)
 +{
-+	struct rb_node *node = pg->eht_host_tree.rb_node;
++	struct rb_node *node = eht_set->entry_tree.rb_node;
 +
 +	while (node) {
-+		struct net_bridge_group_eht_host *this;
++		struct net_bridge_group_eht_set_entry *this;
 +		int result;
 +
-+		this = rb_entry(node, struct net_bridge_group_eht_host,
++	this = rb_entry(node, struct net_bridge_group_eht_set_entry,
++			rb_node);
++	result = memcmp(h_addr, &this->h_addr, sizeof(*h_addr));
++	if (result < 0)
++		node = node->rb_left;
++	else if (result > 0)
++		node = node->rb_right;
++	else
++		return this;
++	}
++
++	return NULL;
++}
++
++static struct net_bridge_group_eht_set *
++br_multicast_eht_set_lookup(struct net_bridge_port_group *pg,
++			    union net_bridge_eht_addr *src_addr)
++{
++	struct rb_node *node = pg->eht_set_tree.rb_node;
++
++	while (node) {
++		struct net_bridge_group_eht_set *this;
++		int result;
++
++		this = rb_entry(node, struct net_bridge_group_eht_set,
 +				rb_node);
-+		result = memcmp(h_addr, &this->h_addr, sizeof(*h_addr));
++		result = memcmp(src_addr, &this->src_addr, sizeof(*src_addr));
 +		if (result < 0)
 +			node = node->rb_left;
 +		else if (result > 0)
@@ -201,42 +204,139 @@ index 000000000000..5cebca45e72c
 +	return NULL;
 +}
 +
-+static int br_multicast_eht_host_filter_mode(struct net_bridge_port_group *pg,
-+					     union net_bridge_eht_addr *h_addr)
+ static void __eht_destroy_host(struct net_bridge_group_eht_host *eht_host)
+ {
+ 	WARN_ON(!hlist_empty(&eht_host->set_entries));
+@@ -75,6 +132,107 @@ static void __eht_destroy_host(struct net_bridge_group_eht_host *eht_host)
+ 	kfree(eht_host);
+ }
+ 
++static void br_multicast_destroy_eht_set_entry(struct net_bridge_mcast_gc *gc)
 +{
-+	struct net_bridge_group_eht_host *eht_host;
++	struct net_bridge_group_eht_set_entry *set_h;
 +
-+	eht_host = br_multicast_eht_host_lookup(pg, h_addr);
-+	if (!eht_host)
-+		return MCAST_INCLUDE;
++	set_h = container_of(gc, struct net_bridge_group_eht_set_entry, mcast_gc);
++	WARN_ON(!RB_EMPTY_NODE(&set_h->rb_node));
 +
-+	return eht_host->filter_mode;
++	del_timer_sync(&set_h->timer);
++	kfree(set_h);
 +}
 +
-+static void __eht_destroy_host(struct net_bridge_group_eht_host *eht_host)
++static void br_multicast_destroy_eht_set(struct net_bridge_mcast_gc *gc)
 +{
-+	WARN_ON(!hlist_empty(&eht_host->set_entries));
++	struct net_bridge_group_eht_set *eht_set;
 +
-+	rb_erase(&eht_host->rb_node, &eht_host->pg->eht_host_tree);
-+	RB_CLEAR_NODE(&eht_host->rb_node);
-+	kfree(eht_host);
++	eht_set = container_of(gc, struct net_bridge_group_eht_set, mcast_gc);
++	WARN_ON(!RB_EMPTY_NODE(&eht_set->rb_node));
++	WARN_ON(!RB_EMPTY_ROOT(&eht_set->entry_tree));
++
++	del_timer_sync(&eht_set->timer);
++	kfree(eht_set);
 +}
 +
-+static struct net_bridge_group_eht_host *
-+__eht_lookup_create_host(struct net_bridge_port_group *pg,
-+			 union net_bridge_eht_addr *h_addr,
-+			 unsigned char filter_mode)
++static void __eht_del_set_entry(struct net_bridge_group_eht_set_entry *set_h)
 +{
-+	struct rb_node **link = &pg->eht_host_tree.rb_node, *parent = NULL;
-+	struct net_bridge_group_eht_host *eht_host;
++	struct net_bridge_group_eht_host *eht_host = set_h->h_parent;
++	union net_bridge_eht_addr zero_addr;
++
++	rb_erase(&set_h->rb_node, &set_h->eht_set->entry_tree);
++	RB_CLEAR_NODE(&set_h->rb_node);
++	hlist_del_init(&set_h->host_list);
++	memset(&zero_addr, 0, sizeof(zero_addr));
++	if (memcmp(&set_h->h_addr, &zero_addr, sizeof(zero_addr)))
++		eht_host->num_entries--;
++	hlist_add_head(&set_h->mcast_gc.gc_node, &set_h->br->mcast_gc_list);
++	queue_work(system_long_wq, &set_h->br->mcast_gc_work);
++
++	if (hlist_empty(&eht_host->set_entries))
++		__eht_destroy_host(eht_host);
++}
++
++static void br_multicast_del_eht_set(struct net_bridge_group_eht_set *eht_set)
++{
++	struct net_bridge_group_eht_set_entry *set_h;
++	struct rb_node *node;
++
++	while ((node = rb_first(&eht_set->entry_tree))) {
++		set_h = rb_entry(node, struct net_bridge_group_eht_set_entry,
++				 rb_node);
++		__eht_del_set_entry(set_h);
++	}
++
++	rb_erase(&eht_set->rb_node, &eht_set->pg->eht_set_tree);
++	RB_CLEAR_NODE(&eht_set->rb_node);
++	hlist_add_head(&eht_set->mcast_gc.gc_node, &eht_set->br->mcast_gc_list);
++	queue_work(system_long_wq, &eht_set->br->mcast_gc_work);
++}
++
++void br_multicast_eht_clean_sets(struct net_bridge_port_group *pg)
++{
++	struct net_bridge_group_eht_set *eht_set;
++	struct rb_node *node;
++
++	while ((node = rb_first(&pg->eht_set_tree))) {
++		eht_set = rb_entry(node, struct net_bridge_group_eht_set,
++				   rb_node);
++		br_multicast_del_eht_set(eht_set);
++	}
++}
++
++static void br_multicast_eht_set_entry_expired(struct timer_list *t)
++{
++	struct net_bridge_group_eht_set_entry *set_h = from_timer(set_h, t, timer);
++	struct net_bridge *br = set_h->br;
++
++	spin_lock(&br->multicast_lock);
++	if (RB_EMPTY_NODE(&set_h->rb_node) || timer_pending(&set_h->timer))
++		goto out;
++
++	br_multicast_del_eht_set_entry(set_h->eht_set->pg,
++				       &set_h->eht_set->src_addr,
++				       &set_h->h_addr);
++out:
++	spin_unlock(&br->multicast_lock);
++}
++
++static void br_multicast_eht_set_expired(struct timer_list *t)
++{
++	struct net_bridge_group_eht_set *eht_set = from_timer(eht_set, t,
++							      timer);
++	struct net_bridge *br = eht_set->br;
++
++	spin_lock(&br->multicast_lock);
++	if (RB_EMPTY_NODE(&eht_set->rb_node) || timer_pending(&eht_set->timer))
++		goto out;
++
++	br_multicast_del_eht_set(eht_set);
++out:
++	spin_unlock(&br->multicast_lock);
++}
++
+ static struct net_bridge_group_eht_host *
+ __eht_lookup_create_host(struct net_bridge_port_group *pg,
+ 			 union net_bridge_eht_addr *h_addr,
+@@ -113,3 +271,166 @@ __eht_lookup_create_host(struct net_bridge_port_group *pg,
+ 
+ 	return eht_host;
+ }
++
++static struct net_bridge_group_eht_set_entry *
++__eht_lookup_create_set_entry(struct net_bridge *br,
++			      struct net_bridge_group_eht_set *eht_set,
++			      struct net_bridge_group_eht_host *eht_host,
++			      bool allow_zero_src)
++{
++	struct rb_node **link = &eht_set->entry_tree.rb_node, *parent = NULL;
++	struct net_bridge_group_eht_set_entry *set_h;
 +
 +	while (*link) {
-+		struct net_bridge_group_eht_host *this;
++		struct net_bridge_group_eht_set_entry *this;
 +		int result;
 +
-+		this = rb_entry(*link, struct net_bridge_group_eht_host,
++		this = rb_entry(*link, struct net_bridge_group_eht_set_entry,
 +				rb_node);
-+		result = memcmp(h_addr, &this->h_addr, sizeof(*h_addr));
++		result = memcmp(&eht_host->h_addr, &this->h_addr,
++				sizeof(union net_bridge_eht_addr));
 +		parent = *link;
 +		if (result < 0)
 +			link = &((*link)->rb_left);
@@ -246,20 +346,153 @@ index 000000000000..5cebca45e72c
 +			return this;
 +	}
 +
-+	eht_host = kzalloc(sizeof(*eht_host), GFP_ATOMIC);
-+	if (!eht_host)
++	/* always allow auto-created zero entry */
++	if (!allow_zero_src && eht_host->num_entries >= PG_SRC_ENT_LIMIT)
 +		return NULL;
 +
-+	memcpy(&eht_host->h_addr, h_addr, sizeof(*h_addr));
-+	INIT_HLIST_HEAD(&eht_host->set_entries);
-+	eht_host->pg = pg;
-+	eht_host->filter_mode = filter_mode;
++	set_h = kzalloc(sizeof(*set_h), GFP_ATOMIC);
++	if (!set_h)
++		return NULL;
 +
-+	rb_link_node(&eht_host->rb_node, parent, link);
-+	rb_insert_color(&eht_host->rb_node, &pg->eht_host_tree);
++	memcpy(&set_h->h_addr, &eht_host->h_addr,
++	       sizeof(union net_bridge_eht_addr));
++	set_h->mcast_gc.destroy = br_multicast_destroy_eht_set_entry;
++	set_h->eht_set = eht_set;
++	set_h->h_parent = eht_host;
++	set_h->br = br;
++	timer_setup(&set_h->timer, br_multicast_eht_set_entry_expired, 0);
 +
-+	return eht_host;
++	hlist_add_head(&set_h->host_list, &eht_host->set_entries);
++	rb_link_node(&set_h->rb_node, parent, link);
++	rb_insert_color(&set_h->rb_node, &eht_set->entry_tree);
++	/* we must not count the auto-created zero entry otherwise we won't be
++	 * able to track the full list of PG_SRC_ENT_LIMIT entries
++	 */
++	if (!allow_zero_src)
++		eht_host->num_entries++;
++
++	return set_h;
 +}
++
++static struct net_bridge_group_eht_set *
++__eht_lookup_create_set(struct net_bridge_port_group *pg,
++			union net_bridge_eht_addr *src_addr)
++{
++	struct rb_node **link = &pg->eht_set_tree.rb_node, *parent = NULL;
++	struct net_bridge_group_eht_set *eht_set;
++
++	while (*link) {
++		struct net_bridge_group_eht_set *this;
++		int result;
++
++		this = rb_entry(*link, struct net_bridge_group_eht_set,
++				rb_node);
++		result = memcmp(src_addr, &this->src_addr, sizeof(*src_addr));
++		parent = *link;
++		if (result < 0)
++			link = &((*link)->rb_left);
++		else if (result > 0)
++			link = &((*link)->rb_right);
++		else
++			return this;
++	}
++
++	eht_set = kzalloc(sizeof(*eht_set), GFP_ATOMIC);
++	if (!eht_set)
++		return NULL;
++
++	memcpy(&eht_set->src_addr, src_addr, sizeof(*src_addr));
++	eht_set->mcast_gc.destroy = br_multicast_destroy_eht_set;
++	eht_set->pg = pg;
++	eht_set->br = pg->key.port->br;
++	eht_set->entry_tree = RB_ROOT;
++	timer_setup(&eht_set->timer, br_multicast_eht_set_expired, 0);
++
++	rb_link_node(&eht_set->rb_node, parent, link);
++	rb_insert_color(&eht_set->rb_node, &pg->eht_set_tree);
++
++	return eht_set;
++}
++
++static void br_multicast_create_eht_set_entry(struct net_bridge_port_group *pg,
++					      union net_bridge_eht_addr *src_addr,
++					      union net_bridge_eht_addr *h_addr,
++					      int filter_mode,
++					      bool allow_zero_src)
++{
++	struct net_bridge_group_eht_set_entry *set_h;
++	struct net_bridge_group_eht_host *eht_host;
++	struct net_bridge *br = pg->key.port->br;
++	struct net_bridge_group_eht_set *eht_set;
++	union net_bridge_eht_addr zero_addr;
++
++	memset(&zero_addr, 0, sizeof(zero_addr));
++	if (!allow_zero_src && !memcmp(src_addr, &zero_addr, sizeof(zero_addr)))
++		return;
++
++	eht_set = __eht_lookup_create_set(pg, src_addr);
++	if (!eht_set)
++		return;
++
++	eht_host = __eht_lookup_create_host(pg, h_addr, filter_mode);
++	if (!eht_host)
++		goto fail_host;
++
++	set_h = __eht_lookup_create_set_entry(br, eht_set, eht_host,
++					      allow_zero_src);
++	if (!set_h)
++		goto fail_set_entry;
++
++	mod_timer(&set_h->timer, jiffies + br_multicast_gmi(br));
++	mod_timer(&eht_set->timer, jiffies + br_multicast_gmi(br));
++
++	return;
++
++fail_set_entry:
++	if (hlist_empty(&eht_host->set_entries))
++		__eht_destroy_host(eht_host);
++fail_host:
++	if (RB_EMPTY_ROOT(&eht_set->entry_tree))
++		br_multicast_del_eht_set(eht_set);
++}
++
++static bool br_multicast_del_eht_set_entry(struct net_bridge_port_group *pg,
++					   union net_bridge_eht_addr *src_addr,
++					   union net_bridge_eht_addr *h_addr)
++{
++	struct net_bridge_group_eht_set_entry *set_h;
++	struct net_bridge_group_eht_set *eht_set;
++	bool set_deleted = false;
++
++	eht_set = br_multicast_eht_set_lookup(pg, src_addr);
++	if (!eht_set)
++		goto out;
++
++	set_h = br_multicast_eht_set_entry_lookup(eht_set, h_addr);
++	if (!set_h)
++		goto out;
++
++	__eht_del_set_entry(set_h);
++
++	if (RB_EMPTY_ROOT(&eht_set->entry_tree)) {
++		br_multicast_del_eht_set(eht_set);
++		set_deleted = true;
++	}
++
++out:
++	return set_deleted;
++}
+diff --git a/net/bridge/br_private_mcast_eht.h b/net/bridge/br_private_mcast_eht.h
+index 0c9c4267969d..bba507c9acb0 100644
+--- a/net/bridge/br_private_mcast_eht.h
++++ b/net/bridge/br_private_mcast_eht.h
+@@ -47,4 +47,6 @@ struct net_bridge_group_eht_set {
+ 	struct net_bridge_mcast_gc	mcast_gc;
+ };
+ 
++void br_multicast_eht_clean_sets(struct net_bridge_port_group *pg);
++
+ #endif /* _BR_PRIVATE_MCAST_EHT_H_ */
 -- 
 2.29.2
 
