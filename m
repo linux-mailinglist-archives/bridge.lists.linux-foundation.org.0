@@ -1,88 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8E0303916
-	for <lists.bridge@lfdr.de>; Tue, 26 Jan 2021 10:35:52 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DBE9303E9B
+	for <lists.bridge@lfdr.de>; Tue, 26 Jan 2021 14:26:19 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 771A187031;
-	Tue, 26 Jan 2021 09:35:50 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 2A0A685593;
+	Tue, 26 Jan 2021 13:26:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 2AIhvRFROl5G; Tue, 26 Jan 2021 09:35:47 +0000 (UTC)
+	with ESMTP id A1QyrV3w56jB; Tue, 26 Jan 2021 13:26:17 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 6607B87036;
-	Tue, 26 Jan 2021 09:35:47 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 936D4855BE;
+	Tue, 26 Jan 2021 13:26:17 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4A47DC013A;
-	Tue, 26 Jan 2021 09:35:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6BC0BC013A;
+	Tue, 26 Jan 2021 13:26:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 62E9DC013A
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:35:46 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 38C81C013A
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 13:26:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 5F9718531B
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:35:46 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 3456D85593
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 13:26:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cGVZErqPg6bR for <bridge@lists.linux-foundation.org>;
- Tue, 26 Jan 2021 09:35:42 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 3A55D85313
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:35:42 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id l9so22023029ejx.3
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 01:35:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=/9oKJRET+rTzrcjG/jyq5WHy2uMZXFPAtq3j3T3h+pU=;
- b=mUbZLvCjC/Cl1s0/bRkdvd3VjRwd8N3BIVZn2UFQhOsqUCcU1P+VdwI3cIWsoJ4Cam
- oV502BLmVphqzA+UjBv0xtnRaZdha4XBq7nrhq9CCwVUewn3+0zAGCeRFzt6tBi4pomR
- Y6uyfrcqozcg49iJJI1BY4UnV050AIYnxkrT82tmJj1I0f7CQ0BGMxal/yzB90RxuszI
- oOOS0ALoqnY0+YLePLq8v3/ttAQTjT3XASUxYcniU7Og6YYj9rhsKjONKUfg5YnDAT4V
- zpNZ45oqPvjW7cB7mvevPQIbZFcJpBg1n93AMTleJ7kzAvnnZDFMpq1ppCVhJrdio0SA
- BEgg==
+ with ESMTP id z8tyB5iseKFz for <bridge@lists.linux-foundation.org>;
+ Tue, 26 Jan 2021 13:26:14 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
+ [209.85.210.172])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 77B6185585
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 13:26:14 +0000 (UTC)
+Received: by mail-pf1-f172.google.com with SMTP id j12so10392177pfj.12
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 05:26:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=X8M8LJ/VjAQ/QapUe2kEh2T61Txfu0mjI6Ncwvji/q0=;
+ b=NAd9v4IEaNHvQGiKMzECVbgNGDt+yNVjxAhFfBUcd9K6egu+MaCLgVRO9ZquBsNd1A
+ fgNWeruQa4oD5LhHnTfK/GR2qICzvBkHyQ6cuhknYnu5lWRYWWWRlC/2Yqy5zxSIyuQk
+ t7ujVIgCCANOYikVPH/gOCPuabbQlDFsoU1Fg8b/73Vt675HvSyp2qctB05vCmIYxQ3l
+ /ctguYfJg4oXdHdTN0MelJxCXRyz5EC1sEpVMYIg49I8DMEwP+gfK1abMfbTQNUfExA2
+ pgtHxupCpltSSSbF2IwHRVvoWdF/uzQbnNO+FEnV/RNjUaQOy+9TsJBQb9Ano5NF4S7U
+ JaCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=/9oKJRET+rTzrcjG/jyq5WHy2uMZXFPAtq3j3T3h+pU=;
- b=VwU1NWkWEWJ9YRWzVYQI8nPuDuI17xkzJgzOCn1oGAvZ6kfGjVtL0xsMSaZZgvzkZe
- E5pLEDuIGpY89Vj5XbDTDJShZFbBbFRr4+2d54PWeKuVNBm5PtH+onhn2W6qr4x2bfdp
- L1uTZ/JIlmUYUAGpKoSfxet8nJhwV8aXQnF+7pt02v85n37ZlbMpC2roiiIVriSnh08Q
- xj9Q3aE9serQYKY8h3CRDzjiy5gLopzLtP8Cd2A3KtZ5Y/Rp4R1MR22/8Ezastw4u1k+
- SPt9bseS/k3NQzWlpjgyYWO9Mm3etS1jyN8eEbdZ2Uj8Dpgxfazqk06ejMkLFNkrrjce
- 7RXA==
-X-Gm-Message-State: AOAM531FbUYbKcXj+PSyxU1Cl19PJtcbmkZwbSr6AIDMGmR6vkUFK/Ap
- tiUyEvYJysZsTmHYoLlc0ShSHA==
-X-Google-Smtp-Source: ABdhPJx3jFVAVYD3ahrcQvBjz7P3QsEDlIVPrtASyvmtY2B0Ye3gPdRQXhNP31SnfpCCog1fLL/GVQ==
-X-Received: by 2002:a17:906:a106:: with SMTP id
- t6mr2968386ejy.63.1611653740684; 
- Tue, 26 Jan 2021 01:35:40 -0800 (PST)
-Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
- [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id u2sm9512360ejb.65.2021.01.26.01.35.39
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=X8M8LJ/VjAQ/QapUe2kEh2T61Txfu0mjI6Ncwvji/q0=;
+ b=mhNYIrOXd81p7Q+VX3KTYqFA/WupTjCqZ2H8Jwul6tG01DjfqGEgt9IHQyTMMw0HAV
+ iZfFMZ6+0etwHvSDWP5D9527QnOSeagqUZOG27issf+xUE6eijknaRlJORQ2sEdD84Kg
+ qpp01VD8ol+Q/cEM/MaRvUwKDruF4MXOJuJtQcfn/pYylDSdqklCxkLcpEzBGxwBUhge
+ 6WwX1suYw5ZWlICmqOymoUxqOYp7aEY0yZyvaE31chdfwaVh5KDFV2RBu9nOrQY/KgWt
+ ja6CnrAeDb4/5IcLyRIUlgW5JXP6cLN+DfrFZS60GIaEfhRLv72Qgkrl0d/aMEmR8n1/
+ /lmg==
+X-Gm-Message-State: AOAM530decouiQSKFJS4Q0c9atGpjpFUr19rFPkBwXdFBvSeVBZ9TN6g
+ Y5kBwyzUNDEN5Cr9+6+ekms=
+X-Google-Smtp-Source: ABdhPJw1+E/WjUvVREAAdiEFP+LHxnbmvflWdTyQmmC8C01ZBnscYvCpovXfCuG3JROrnXN3p8BT9w==
+X-Received: by 2002:a62:1b47:0:b029:1ba:7a85:cdff with SMTP id
+ b68-20020a621b470000b02901ba7a85cdffmr5240910pfb.22.1611667574078; 
+ Tue, 26 Jan 2021 05:26:14 -0800 (PST)
+Received: from Leo-laptop-t470s ([209.132.188.80])
+ by smtp.gmail.com with ESMTPSA id x26sm12870575pfi.176.2021.01.26.05.26.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Jan 2021 01:35:40 -0800 (PST)
-From: Nikolay Aleksandrov <razor@blackwall.org>
-To: netdev@vger.kernel.org
-Date: Tue, 26 Jan 2021 11:35:33 +0200
-Message-Id: <20210126093533.441338-3-razor@blackwall.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210126093533.441338-1-razor@blackwall.org>
-References: <20210126093533.441338-1-razor@blackwall.org>
+ Tue, 26 Jan 2021 05:26:13 -0800 (PST)
+Date: Tue, 26 Jan 2021 21:25:26 +0800
+From: Hangbin Liu <liuhangbin@gmail.com>
+To: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <20210126132448.GN1421720@Leo-laptop-t470s>
+References: <20210126040949.3130937-1-liuhangbin@gmail.com>
+ <8a34f089-204f-aeb1-afc7-26ccc06419eb@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, kuba@kernel.org,
- bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next v2 2/2] net: bridge: multicast: make
-	tracked EHT hosts limit configurable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8a34f089-204f-aeb1-afc7-26ccc06419eb@nvidia.com>
+Cc: Ivan Vecera <ivecera@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ Jarod Wilson <jarod@redhat.com>, Roopa Prabhu <roopa@nvidia.com>,
+ "David S . Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next] bridge: Propagate NETDEV_NOTIFY_PEERS
+	notifier
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,201 +98,63 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+On Tue, Jan 26, 2021 at 09:40:13AM +0200, Nikolay Aleksandrov wrote:
+> On 26/01/2021 06:09, Hangbin Liu wrote:
+> > After adding bridge as upper layer of bond/team, we usually clean up the
+> > IP address on bond/team and set it on bridge. When there is a failover,
+> > bond/team will not send gratuitous ARP since it has no IP address.
+> > Then the down layer(e.g. VM tap dev) of bridge will not able to receive
+> > this notification.
+> > 
+> > Make bridge to be able to handle NETDEV_NOTIFY_PEERS notifier.
+> > 
+> > Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
+> > ---
+> >  net/bridge/br.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/net/bridge/br.c b/net/bridge/br.c
+> > index ef743f94254d..b6a0921bb498 100644
+> > --- a/net/bridge/br.c
+> > +++ b/net/bridge/br.c
+> > @@ -125,6 +125,7 @@ static int br_device_event(struct notifier_block *unused, unsigned long event, v
+> >  		/* Forbid underlying device to change its type. */
+> >  		return NOTIFY_BAD;
+> >  
+> > +	case NETDEV_NOTIFY_PEERS:
+> >  	case NETDEV_RESEND_IGMP:
+> >  		/* Propagate to master device */
+> >  		call_netdevice_notifiers(event, br->dev);
+> > 
+> 
+> I'm not convinced this should be done by the bridge, setups usually have multiple ports
+> which may have link change events and these events are unrelated, i.e. we shouldn't generate
+> a gratuitous arp for all every time, there might be many different devices present. We have
+> setups with hundreds of ports which are mixed types of devices.
+> That seems inefficient, redundant and can potentially cause problems.
 
-Add two new port attributes which make EHT hosts limit configurable and
-export the current number of tracked EHT hosts:
- - IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT: configure/retrieve current limit
- - IFLA_BRPORT_MCAST_EHT_HOSTS_CNT: current number of tracked hosts
-Setting IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT to 0 is currently not allowed.
+Hi Nikolay,
 
-Note that we have to increase RTNL_SLAVE_MAX_TYPE to 38 minimum, I've
-increased it to 40 to have space for two more future entries.
+Thanks for the reply. There are a few reasons I think the bridge should
+handle NETDEV_NOTIFY_PEERS:
 
-v2: move br_multicast_eht_set_hosts_limit() to br_multicast_eht.c,
-    no functional change
+1. Only a few devices will call NETDEV_NOTIFY_PEERS notifier: bond, team,
+   virtio, xen, 6lowpan. There should have no much notification message.
+2. When set bond/team's upper layer to bridge. The bridge's mac will be the
+   same with bond/team. So when the bond/team's mac changed, the bridge's mac
+   will also change. So bridge should send a GARP to notify other's that it's
+   mac has changed.
+3. There already has NETDEV_RESEND_IGMP handling in bridge, which is also
+   generated by bond/team and netdev_notify_peers(). So why there is IGMP
+   but no ARP?
+4. If bridge doesn't have IP address, it will omit GARP sending. So having
+   or not having IP address on bridge doesn't matters.
+4. I don't see why how many ports affect the bridge sending GARP.
 
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
----
- include/uapi/linux/if_link.h      |  2 ++
- net/bridge/br_multicast_eht.c     | 15 +++++++++++++++
- net/bridge/br_netlink.c           | 19 ++++++++++++++++++-
- net/bridge/br_private_mcast_eht.h |  2 ++
- net/bridge/br_sysfs_if.c          | 26 ++++++++++++++++++++++++++
- net/core/rtnetlink.c              |  2 +-
- 6 files changed, 64 insertions(+), 2 deletions(-)
+Please correct me if I missed something.
 
-diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
-index 2bd0d8bbcdb2..eb8018c3a737 100644
---- a/include/uapi/linux/if_link.h
-+++ b/include/uapi/linux/if_link.h
-@@ -525,6 +525,8 @@ enum {
- 	IFLA_BRPORT_BACKUP_PORT,
- 	IFLA_BRPORT_MRP_RING_OPEN,
- 	IFLA_BRPORT_MRP_IN_OPEN,
-+	IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
-+	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
- 	__IFLA_BRPORT_MAX
- };
- #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
-diff --git a/net/bridge/br_multicast_eht.c b/net/bridge/br_multicast_eht.c
-index 445768c8495f..fea38b9a7268 100644
---- a/net/bridge/br_multicast_eht.c
-+++ b/net/bridge/br_multicast_eht.c
-@@ -861,3 +861,18 @@ bool br_multicast_eht_handle(struct net_bridge_port_group *pg,
- out:
- 	return changed;
- }
-+
-+int br_multicast_eht_set_hosts_limit(struct net_bridge_port *p,
-+				     u32 eht_hosts_limit)
-+{
-+	struct net_bridge *br = p->br;
-+
-+	if (!eht_hosts_limit)
-+		return -EINVAL;
-+
-+	spin_lock_bh(&br->multicast_lock);
-+	p->multicast_eht_hosts_limit = eht_hosts_limit;
-+	spin_unlock_bh(&br->multicast_lock);
-+
-+	return 0;
-+}
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index 762f273802cd..bd3962da345a 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -18,6 +18,7 @@
- #include "br_private_stp.h"
- #include "br_private_cfm.h"
- #include "br_private_tunnel.h"
-+#include "br_private_mcast_eht.h"
- 
- static int __get_num_vlan_infos(struct net_bridge_vlan_group *vg,
- 				u32 filter_mask)
-@@ -199,6 +200,8 @@ static inline size_t br_port_info_size(void)
- 		+ nla_total_size(sizeof(u16))	/* IFLA_BRPORT_GROUP_FWD_MASK */
- 		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_RING_OPEN */
- 		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_IN_OPEN */
-+		+ nla_total_size(sizeof(u32))	/* IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT */
-+		+ nla_total_size(sizeof(u32))	/* IFLA_BRPORT_MCAST_EHT_HOSTS_CNT */
- 		+ 0;
- }
- 
-@@ -283,7 +286,11 @@ static int br_port_fill_attrs(struct sk_buff *skb,
- 
- #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
- 	if (nla_put_u8(skb, IFLA_BRPORT_MULTICAST_ROUTER,
--		       p->multicast_router))
-+		       p->multicast_router) ||
-+	    nla_put_u32(skb, IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
-+			p->multicast_eht_hosts_limit) ||
-+	    nla_put_u32(skb, IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
-+			p->multicast_eht_hosts_cnt))
- 		return -EMSGSIZE;
- #endif
- 
-@@ -820,6 +827,7 @@ static const struct nla_policy br_port_policy[IFLA_BRPORT_MAX + 1] = {
- 	[IFLA_BRPORT_NEIGH_SUPPRESS] = { .type = NLA_U8 },
- 	[IFLA_BRPORT_ISOLATED]	= { .type = NLA_U8 },
- 	[IFLA_BRPORT_BACKUP_PORT] = { .type = NLA_U32 },
-+	[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT] = { .type = NLA_U32 },
- };
- 
- /* Change the state of the port and notify spanning tree */
-@@ -955,6 +963,15 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
- 		if (err)
- 			return err;
- 	}
-+
-+	if (tb[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT]) {
-+		u32 hlimit;
-+
-+		hlimit = nla_get_u32(tb[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT]);
-+		err = br_multicast_eht_set_hosts_limit(p, hlimit);
-+		if (err)
-+			return err;
-+	}
- #endif
- 
- 	if (tb[IFLA_BRPORT_GROUP_FWD_MASK]) {
-diff --git a/net/bridge/br_private_mcast_eht.h b/net/bridge/br_private_mcast_eht.h
-index b2c8d988721f..f89049f4892c 100644
---- a/net/bridge/br_private_mcast_eht.h
-+++ b/net/bridge/br_private_mcast_eht.h
-@@ -57,6 +57,8 @@ bool br_multicast_eht_handle(struct net_bridge_port_group *pg,
- 			     u32 nsrcs,
- 			     size_t addr_size,
- 			     int grec_type);
-+int br_multicast_eht_set_hosts_limit(struct net_bridge_port *p,
-+				     u32 eht_hosts_limit);
- 
- static inline bool
- br_multicast_eht_should_del_pg(const struct net_bridge_port_group *pg)
-diff --git a/net/bridge/br_sysfs_if.c b/net/bridge/br_sysfs_if.c
-index 7a59cdddd3ce..b66305fae26b 100644
---- a/net/bridge/br_sysfs_if.c
-+++ b/net/bridge/br_sysfs_if.c
-@@ -16,6 +16,7 @@
- #include <linux/sched/signal.h>
- 
- #include "br_private.h"
-+#include "br_private_mcast_eht.h"
- 
- struct brport_attribute {
- 	struct attribute	attr;
-@@ -245,6 +246,29 @@ static int store_multicast_router(struct net_bridge_port *p,
- static BRPORT_ATTR(multicast_router, 0644, show_multicast_router,
- 		   store_multicast_router);
- 
-+static ssize_t show_multicast_eht_hosts_limit(struct net_bridge_port *p,
-+					      char *buf)
-+{
-+	return sprintf(buf, "%u\n", p->multicast_eht_hosts_limit);
-+}
-+
-+static int store_multicast_eht_hosts_limit(struct net_bridge_port *p,
-+					   unsigned long v)
-+{
-+	return br_multicast_eht_set_hosts_limit(p, v);
-+}
-+static BRPORT_ATTR(multicast_eht_hosts_limit, 0644,
-+		   show_multicast_eht_hosts_limit,
-+		   store_multicast_eht_hosts_limit);
-+
-+static ssize_t show_multicast_eht_hosts_cnt(struct net_bridge_port *p,
-+					    char *buf)
-+{
-+	return sprintf(buf, "%u\n", p->multicast_eht_hosts_cnt);
-+}
-+static BRPORT_ATTR(multicast_eht_hosts_cnt, 0444, show_multicast_eht_hosts_cnt,
-+		   NULL);
-+
- BRPORT_ATTR_FLAG(multicast_fast_leave, BR_MULTICAST_FAST_LEAVE);
- BRPORT_ATTR_FLAG(multicast_to_unicast, BR_MULTICAST_TO_UNICAST);
- #endif
-@@ -274,6 +298,8 @@ static const struct brport_attribute *brport_attrs[] = {
- 	&brport_attr_multicast_router,
- 	&brport_attr_multicast_fast_leave,
- 	&brport_attr_multicast_to_unicast,
-+	&brport_attr_multicast_eht_hosts_limit,
-+	&brport_attr_multicast_eht_hosts_cnt,
- #endif
- 	&brport_attr_proxyarp,
- 	&brport_attr_proxyarp_wifi,
-diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
-index 3d6ab194d0f5..c313aaf2bce1 100644
---- a/net/core/rtnetlink.c
-+++ b/net/core/rtnetlink.c
-@@ -55,7 +55,7 @@
- #include <net/net_namespace.h>
- 
- #define RTNL_MAX_TYPE		50
--#define RTNL_SLAVE_MAX_TYPE	36
-+#define RTNL_SLAVE_MAX_TYPE	40
- 
- struct rtnl_link {
- 	rtnl_doit_func		doit;
--- 
-2.29.2
+> Also it seems this was proposed few years back: https://lkml.org/lkml/2018/1/6/135
 
+Thanks for this link, cc Stephen for this discuss.
+
+Hangbin
