@@ -2,78 +2,78 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1163038D2
-	for <lists.bridge@lfdr.de>; Tue, 26 Jan 2021 10:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00ADB3038D3
+	for <lists.bridge@lfdr.de>; Tue, 26 Jan 2021 10:21:53 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id C1F70854CC;
-	Tue, 26 Jan 2021 09:21:49 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 7E12F85450;
+	Tue, 26 Jan 2021 09:21:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id b8Rxxs8qDTO7; Tue, 26 Jan 2021 09:21:47 +0000 (UTC)
+	with ESMTP id dj7NTt_RjvCc; Tue, 26 Jan 2021 09:21:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 072978545B;
-	Tue, 26 Jan 2021 09:21:47 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 70128854C2;
+	Tue, 26 Jan 2021 09:21:48 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C69B7C013A;
-	Tue, 26 Jan 2021 09:21:46 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 553E8C013A;
+	Tue, 26 Jan 2021 09:21:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id ABEA5C013A
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:21:45 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 14C22C013A
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:21:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 913FA86750
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:21:45 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 0236385450
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:21:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PBI-qsMwvk-l for <bridge@lists.linux-foundation.org>;
- Tue, 26 Jan 2021 09:21:44 +0000 (UTC)
+ with ESMTP id 97MVsHcE7KSZ for <bridge@lists.linux-foundation.org>;
+ Tue, 26 Jan 2021 09:21:45 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by whitealder.osuosl.org (Postfix) with ESMTPS id DD1758672B
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:21:43 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id w1so21916299ejf.11
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 01:21:43 -0800 (PST)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 5DA2C8545B
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 09:21:44 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id bl23so1350013ejb.5
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 01:21:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=sGsRWy51vjzAAtKfm5HLV3fNy1Jk4kk0SKHg2lCkGU0=;
- b=kEQWCDjvtuvjd6M8uTc5wfk2OWNPfWOQWCw4t4QXxwV+1HKuEyOOygdrIiUJj7ZaG8
- DtpHDKIfc6Ed0Ja/hgmsAnbYN3+xUgJLkak7o3RaiE01cWEt2mFG9Cihnl8uAVCA11sg
- chj+cFOr/6HWmh/CN9XEKytrz78Qxf0cZoUHsui4KebU/WRjVga4arv0t24VGE/Zg+Ld
- 8CyzxMp1O3Jsg/c5vgMPjgygNLDAjocF1AiNsyxzsIHVI0PtWVhB4vyUe8W1iGhC0iiG
- XxzwfSqSWB+NiILCUrcEI+wzprgfG8x2Ezxj9M5Wa4tMd93bTJLzDVOsdacsUpik3Wrh
- gV4Q==
+ bh=SuR1iWSnWTqH0nrAv2mw90IusiF91+bmYioErH616vU=;
+ b=ZC7+TCTiGqiDMFSkasL7GbsdZU9sdNBRe5WUoo5T/5icNI1nkmJ8lbN7AiAJFzd289
+ C2WP/1T0maOBwqEezckfB2X0Wq52l5FIsoNWoiAy/CnI5OTLfO0bE6M40bbfE1YDZH2U
+ x3G04DmNpMwbXoD9PIDRXWQoVnkERDLkB5gj/zifQaeZyVn8snlTpEk/T2cuT0Zgg9Or
+ JwgzLqr2acBTM9vflfYXN+asaYMviNEs6PHD8V67+5KZ5LvtsYHei6Hzx4O9Ly4/8tXz
+ 6TIEJ7aZWEWKQ40RbzMSnWgcin9tWSO6dRJz/Q0OnttJbtO/oxpuZybfX1YtqPHwUwJk
+ Ttag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=sGsRWy51vjzAAtKfm5HLV3fNy1Jk4kk0SKHg2lCkGU0=;
- b=Q5JHxyb6KZIb3xRdSe360zIEQSntehCHMQvSrBtnL3uNNW1ywlosgaoLgnzUKz30gO
- x4tEo2zFCYn93Wu/oce5wA1tLNiOHtlNEepGfr999TH0iAUue4dTZdDURFQIGLKPD1Hv
- w2rkiHuXsZeEw4BDVKa66Vsz1tstwn2hF8wdFYi+Iqc073OdaYY63df5wxs5eDEK7Osz
- +gsowsFq7zOctyOCYoTzB8+ffMI2b58XVILjmDH/3ZBKrN9EdEyxUP5+CNQk25YG8sQq
- 2q91U99TbmBpTe4TNO/MjgLrkppV2VTJA/XcvMAKIOkAwwfYKUIUgih04DdwGcVKr4Ch
- 60jQ==
-X-Gm-Message-State: AOAM533CShvF87/smSDFuH3FxOzyG6HYBdYAsvDASOG2QUKBZq/odmA9
- oxhNhhO7N+s9BvapznsDMCdgOA==
-X-Google-Smtp-Source: ABdhPJxYIseleUFfmKMPaq69mCvipzFuQAEQrH/dAkzanMN6LbsQvb3S2MNMGNOGN7m4lIdVaOM2MA==
-X-Received: by 2002:a17:906:9616:: with SMTP id
- s22mr2939199ejx.270.1611652902032; 
- Tue, 26 Jan 2021 01:21:42 -0800 (PST)
+ bh=SuR1iWSnWTqH0nrAv2mw90IusiF91+bmYioErH616vU=;
+ b=Lyo58H3zmwT3OCUvG0VX3surWNg7C0fnyfwKh7rtumqZQfqYgYkglbw+apgJC+FQaL
+ IRi09zk0l9ssaNwfd+rybFNko+ZSF8t/4K4QzGXZSlzLQVk6ITWqIXsi1DaeqymVpVdT
+ k+ginSqXziiYEsB3U+JQ2aebphtprxgwjEAyFlEZq100Ahy5DzN1yIfsP0EdQXH4vFZp
+ yAhllLjlhp0WX3HhT+zhulG58NKT0+j5GeyVbawqmvcSEBwVM0mMROHtyZNXVeRbmXna
+ /Pza4Vdw5ZqlY3NZyMn1HiKsG5qcbfa1cCK3DNOhkEZDkfcN+lBiMOKTGYdB3k//Oeyf
+ SNJw==
+X-Gm-Message-State: AOAM531P9rxAiMmEO5J0tEixlT4kxuSrWgrqQ4XbHZjB0wCse2D/my1O
+ rDhvIqD/BomJp+csZILlk/eo6w==
+X-Google-Smtp-Source: ABdhPJxxeqVumyG9mvvtOqJYsp/nlu9I7Cg19BL+e9eectO+/msUE+fbSKB7fdKIWrfJQ8znzq7qeA==
+X-Received: by 2002:a17:906:5e45:: with SMTP id
+ b5mr2914984eju.69.1611652903179; 
+ Tue, 26 Jan 2021 01:21:43 -0800 (PST)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id u9sm1195274edv.32.2021.01.26.01.21.40
+ by smtp.gmail.com with ESMTPSA id u9sm1195274edv.32.2021.01.26.01.21.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Jan 2021 01:21:41 -0800 (PST)
+ Tue, 26 Jan 2021 01:21:42 -0800 (PST)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Tue, 26 Jan 2021 11:21:31 +0200
-Message-Id: <20210126092132.407355-2-razor@blackwall.org>
+Date: Tue, 26 Jan 2021 11:21:32 +0200
+Message-Id: <20210126092132.407355-3-razor@blackwall.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210126092132.407355-1-razor@blackwall.org>
 References: <20210126092132.407355-1-razor@blackwall.org>
@@ -81,8 +81,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, kuba@kernel.org,
  bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 1/2] net: bridge: multicast: add per-port
-	EHT hosts limit
+Subject: [Bridge] [PATCH net-next 2/2] net: bridge: multicast: make tracked
+	EHT hosts limit configurable
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,122 +99,196 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Add a default limit of 512 for number of tracked EHT hosts per-port.
+Add two new port attributes which make EHT hosts limit configurable and
+export the current number of tracked EHT hosts:
+ - IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT: configure/retrieve current limit
+ - IFLA_BRPORT_MCAST_EHT_HOSTS_CNT: current number of tracked hosts
+Setting IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT to 0 is currently not allowed.
+
+Note that we have to increase RTNL_SLAVE_MAX_TYPE to 38 minimum, I've
+increased it to 40 to have space for two more future entries.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/br_multicast.c         |  1 +
- net/bridge/br_multicast_eht.c     |  7 +++++++
- net/bridge/br_private.h           |  2 ++
- net/bridge/br_private_mcast_eht.h | 26 ++++++++++++++++++++++++++
- 4 files changed, 36 insertions(+)
+ include/uapi/linux/if_link.h      |  2 ++
+ net/bridge/br_multicast.c         | 15 +++++++++++++++
+ net/bridge/br_netlink.c           | 19 ++++++++++++++++++-
+ net/bridge/br_private_mcast_eht.h |  2 ++
+ net/bridge/br_sysfs_if.c          | 26 ++++++++++++++++++++++++++
+ net/core/rtnetlink.c              |  2 +-
+ 6 files changed, 64 insertions(+), 2 deletions(-)
 
+diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+index 2bd0d8bbcdb2..eb8018c3a737 100644
+--- a/include/uapi/linux/if_link.h
++++ b/include/uapi/linux/if_link.h
+@@ -525,6 +525,8 @@ enum {
+ 	IFLA_BRPORT_BACKUP_PORT,
+ 	IFLA_BRPORT_MRP_RING_OPEN,
+ 	IFLA_BRPORT_MRP_IN_OPEN,
++	IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
++	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
+ 	__IFLA_BRPORT_MAX
+ };
+ #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
 diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index df5db6a58e95..8c0029f415ea 100644
+index 8c0029f415ea..907cfd85f05b 100644
 --- a/net/bridge/br_multicast.c
 +++ b/net/bridge/br_multicast.c
-@@ -1608,6 +1608,7 @@ static void br_mc_disabled_update(struct net_device *dev, bool value)
- int br_multicast_add_port(struct net_bridge_port *port)
- {
- 	port->multicast_router = MDB_RTR_TYPE_TEMP_QUERY;
-+	port->multicast_eht_hosts_limit = BR_MCAST_DEFAULT_EHT_HOSTS_LIMIT;
- 
- 	timer_setup(&port->multicast_router_timer,
- 		    br_multicast_router_expired, 0);
-diff --git a/net/bridge/br_multicast_eht.c b/net/bridge/br_multicast_eht.c
-index ff9b3ba37cab..445768c8495f 100644
---- a/net/bridge/br_multicast_eht.c
-+++ b/net/bridge/br_multicast_eht.c
-@@ -127,6 +127,8 @@ static void __eht_destroy_host(struct net_bridge_group_eht_host *eht_host)
- {
- 	WARN_ON(!hlist_empty(&eht_host->set_entries));
- 
-+	br_multicast_eht_hosts_dec(eht_host->pg);
+@@ -4024,3 +4024,18 @@ void br_mdb_hash_fini(struct net_bridge *br)
+ 	rhashtable_destroy(&br->sg_port_tbl);
+ 	rhashtable_destroy(&br->mdb_hash_tbl);
+ }
 +
- 	rb_erase(&eht_host->rb_node, &eht_host->pg->eht_host_tree);
- 	RB_CLEAR_NODE(&eht_host->rb_node);
- 	kfree(eht_host);
-@@ -257,6 +259,9 @@ __eht_lookup_create_host(struct net_bridge_port_group *pg,
- 			return this;
- 	}
- 
-+	if (br_multicast_eht_hosts_over_limit(pg))
-+		return NULL;
++int br_multicast_eht_set_hosts_limit(struct net_bridge_port *p,
++				     u32 eht_hosts_limit)
++{
++	struct net_bridge *br = p->br;
 +
- 	eht_host = kzalloc(sizeof(*eht_host), GFP_ATOMIC);
- 	if (!eht_host)
- 		return NULL;
-@@ -269,6 +274,8 @@ __eht_lookup_create_host(struct net_bridge_port_group *pg,
- 	rb_link_node(&eht_host->rb_node, parent, link);
- 	rb_insert_color(&eht_host->rb_node, &pg->eht_host_tree);
- 
-+	br_multicast_eht_hosts_inc(pg);
++	if (!eht_hosts_limit)
++		return -EINVAL;
 +
- 	return eht_host;
++	spin_lock_bh(&br->multicast_lock);
++	p->multicast_eht_hosts_limit = eht_hosts_limit;
++	spin_unlock_bh(&br->multicast_lock);
++
++	return 0;
++}
+diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+index 762f273802cd..bd3962da345a 100644
+--- a/net/bridge/br_netlink.c
++++ b/net/bridge/br_netlink.c
+@@ -18,6 +18,7 @@
+ #include "br_private_stp.h"
+ #include "br_private_cfm.h"
+ #include "br_private_tunnel.h"
++#include "br_private_mcast_eht.h"
+ 
+ static int __get_num_vlan_infos(struct net_bridge_vlan_group *vg,
+ 				u32 filter_mask)
+@@ -199,6 +200,8 @@ static inline size_t br_port_info_size(void)
+ 		+ nla_total_size(sizeof(u16))	/* IFLA_BRPORT_GROUP_FWD_MASK */
+ 		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_RING_OPEN */
+ 		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_IN_OPEN */
++		+ nla_total_size(sizeof(u32))	/* IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT */
++		+ nla_total_size(sizeof(u32))	/* IFLA_BRPORT_MCAST_EHT_HOSTS_CNT */
+ 		+ 0;
  }
  
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 0e26ba623006..d242ba668e47 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -310,6 +310,8 @@ struct net_bridge_port {
- #if IS_ENABLED(CONFIG_IPV6)
- 	struct bridge_mcast_own_query	ip6_own_query;
- #endif /* IS_ENABLED(CONFIG_IPV6) */
-+	u32				multicast_eht_hosts_limit;
-+	u32				multicast_eht_hosts_cnt;
- 	unsigned char			multicast_router;
- 	struct bridge_mcast_stats	__percpu *mcast_stats;
- 	struct timer_list		multicast_router_timer;
-diff --git a/net/bridge/br_private_mcast_eht.h b/net/bridge/br_private_mcast_eht.h
-index 9daffa3ad8d5..b2c8d988721f 100644
---- a/net/bridge/br_private_mcast_eht.h
-+++ b/net/bridge/br_private_mcast_eht.h
-@@ -4,6 +4,8 @@
- #ifndef _BR_PRIVATE_MCAST_EHT_H_
- #define _BR_PRIVATE_MCAST_EHT_H_
+@@ -283,7 +286,11 @@ static int br_port_fill_attrs(struct sk_buff *skb,
  
-+#define BR_MCAST_DEFAULT_EHT_HOSTS_LIMIT 512
-+
- union net_bridge_eht_addr {
- 	__be32				ip4;
- #if IS_ENABLED(CONFIG_IPV6)
-@@ -47,6 +49,7 @@ struct net_bridge_group_eht_set {
- 	struct net_bridge_mcast_gc	mcast_gc;
+ #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
+ 	if (nla_put_u8(skb, IFLA_BRPORT_MULTICAST_ROUTER,
+-		       p->multicast_router))
++		       p->multicast_router) ||
++	    nla_put_u32(skb, IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
++			p->multicast_eht_hosts_limit) ||
++	    nla_put_u32(skb, IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
++			p->multicast_eht_hosts_cnt))
+ 		return -EMSGSIZE;
+ #endif
+ 
+@@ -820,6 +827,7 @@ static const struct nla_policy br_port_policy[IFLA_BRPORT_MAX + 1] = {
+ 	[IFLA_BRPORT_NEIGH_SUPPRESS] = { .type = NLA_U8 },
+ 	[IFLA_BRPORT_ISOLATED]	= { .type = NLA_U8 },
+ 	[IFLA_BRPORT_BACKUP_PORT] = { .type = NLA_U32 },
++	[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT] = { .type = NLA_U32 },
  };
  
-+#ifdef CONFIG_BRIDGE_IGMP_SNOOPING
- void br_multicast_eht_clean_sets(struct net_bridge_port_group *pg);
- bool br_multicast_eht_handle(struct net_bridge_port_group *pg,
- 			     void *h_addr,
-@@ -62,4 +65,27 @@ br_multicast_eht_should_del_pg(const struct net_bridge_port_group *pg)
- 		  RB_EMPTY_ROOT(&pg->eht_host_tree));
- }
+ /* Change the state of the port and notify spanning tree */
+@@ -955,6 +963,15 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
+ 		if (err)
+ 			return err;
+ 	}
++
++	if (tb[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT]) {
++		u32 hlimit;
++
++		hlimit = nla_get_u32(tb[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT]);
++		err = br_multicast_eht_set_hosts_limit(p, hlimit);
++		if (err)
++			return err;
++	}
+ #endif
  
-+static inline bool
-+br_multicast_eht_hosts_over_limit(const struct net_bridge_port_group *pg)
+ 	if (tb[IFLA_BRPORT_GROUP_FWD_MASK]) {
+diff --git a/net/bridge/br_private_mcast_eht.h b/net/bridge/br_private_mcast_eht.h
+index b2c8d988721f..f89049f4892c 100644
+--- a/net/bridge/br_private_mcast_eht.h
++++ b/net/bridge/br_private_mcast_eht.h
+@@ -57,6 +57,8 @@ bool br_multicast_eht_handle(struct net_bridge_port_group *pg,
+ 			     u32 nsrcs,
+ 			     size_t addr_size,
+ 			     int grec_type);
++int br_multicast_eht_set_hosts_limit(struct net_bridge_port *p,
++				     u32 eht_hosts_limit);
+ 
+ static inline bool
+ br_multicast_eht_should_del_pg(const struct net_bridge_port_group *pg)
+diff --git a/net/bridge/br_sysfs_if.c b/net/bridge/br_sysfs_if.c
+index 7a59cdddd3ce..b66305fae26b 100644
+--- a/net/bridge/br_sysfs_if.c
++++ b/net/bridge/br_sysfs_if.c
+@@ -16,6 +16,7 @@
+ #include <linux/sched/signal.h>
+ 
+ #include "br_private.h"
++#include "br_private_mcast_eht.h"
+ 
+ struct brport_attribute {
+ 	struct attribute	attr;
+@@ -245,6 +246,29 @@ static int store_multicast_router(struct net_bridge_port *p,
+ static BRPORT_ATTR(multicast_router, 0644, show_multicast_router,
+ 		   store_multicast_router);
+ 
++static ssize_t show_multicast_eht_hosts_limit(struct net_bridge_port *p,
++					      char *buf)
 +{
-+	const struct net_bridge_port *p = pg->key.port;
-+
-+	return !!(p->multicast_eht_hosts_cnt >= p->multicast_eht_hosts_limit);
++	return sprintf(buf, "%u\n", p->multicast_eht_hosts_limit);
 +}
 +
-+static inline void br_multicast_eht_hosts_inc(struct net_bridge_port_group *pg)
++static int store_multicast_eht_hosts_limit(struct net_bridge_port *p,
++					   unsigned long v)
 +{
-+	struct net_bridge_port *p = pg->key.port;
-+
-+	p->multicast_eht_hosts_cnt++;
++	return br_multicast_eht_set_hosts_limit(p, v);
 +}
++static BRPORT_ATTR(multicast_eht_hosts_limit, 0644,
++		   show_multicast_eht_hosts_limit,
++		   store_multicast_eht_hosts_limit);
 +
-+static inline void br_multicast_eht_hosts_dec(struct net_bridge_port_group *pg)
++static ssize_t show_multicast_eht_hosts_cnt(struct net_bridge_port *p,
++					    char *buf)
 +{
-+	struct net_bridge_port *p = pg->key.port;
-+
-+	p->multicast_eht_hosts_cnt--;
++	return sprintf(buf, "%u\n", p->multicast_eht_hosts_cnt);
 +}
-+#endif /* CONFIG_BRIDGE_IGMP_SNOOPING */
++static BRPORT_ATTR(multicast_eht_hosts_cnt, 0444, show_multicast_eht_hosts_cnt,
++		   NULL);
 +
- #endif /* _BR_PRIVATE_MCAST_EHT_H_ */
+ BRPORT_ATTR_FLAG(multicast_fast_leave, BR_MULTICAST_FAST_LEAVE);
+ BRPORT_ATTR_FLAG(multicast_to_unicast, BR_MULTICAST_TO_UNICAST);
+ #endif
+@@ -274,6 +298,8 @@ static const struct brport_attribute *brport_attrs[] = {
+ 	&brport_attr_multicast_router,
+ 	&brport_attr_multicast_fast_leave,
+ 	&brport_attr_multicast_to_unicast,
++	&brport_attr_multicast_eht_hosts_limit,
++	&brport_attr_multicast_eht_hosts_cnt,
+ #endif
+ 	&brport_attr_proxyarp,
+ 	&brport_attr_proxyarp_wifi,
+diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+index 3d6ab194d0f5..c313aaf2bce1 100644
+--- a/net/core/rtnetlink.c
++++ b/net/core/rtnetlink.c
+@@ -55,7 +55,7 @@
+ #include <net/net_namespace.h>
+ 
+ #define RTNL_MAX_TYPE		50
+-#define RTNL_SLAVE_MAX_TYPE	36
++#define RTNL_SLAVE_MAX_TYPE	40
+ 
+ struct rtnl_link {
+ 	rtnl_doit_func		doit;
 -- 
 2.29.2
 
