@@ -2,146 +2,145 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FF60303F6E
-	for <lists.bridge@lfdr.de>; Tue, 26 Jan 2021 14:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4183D3040FD
+	for <lists.bridge@lfdr.de>; Tue, 26 Jan 2021 15:55:39 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 6BF6985118;
-	Tue, 26 Jan 2021 13:56:59 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id E7036849A3;
+	Tue, 26 Jan 2021 14:55:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id VDux8MtWHS3S; Tue, 26 Jan 2021 13:56:58 +0000 (UTC)
+	with ESMTP id 0y0IhLob_tKN; Tue, 26 Jan 2021 14:55:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id C2202850D6;
-	Tue, 26 Jan 2021 13:56:58 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 2332B8496B;
+	Tue, 26 Jan 2021 14:55:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A6539C013A;
-	Tue, 26 Jan 2021 13:56:58 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EE380C1DA7;
+	Tue, 26 Jan 2021 14:55:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 59078C013A
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 13:56:56 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D100CC013A
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 14:55:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 3A2A186734
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 13:56:56 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id B66F686757
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 14:55:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KffJ-xP0Hv1K for <bridge@lists.linux-foundation.org>;
- Tue, 26 Jan 2021 13:56:54 +0000 (UTC)
+ with ESMTP id aY4MDQ-3TGr4 for <bridge@lists.linux-foundation.org>;
+ Tue, 26 Jan 2021 14:55:33 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
- [216.228.121.65])
- by whitealder.osuosl.org (Postfix) with ESMTPS id A047F86673
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 13:56:54 +0000 (UTC)
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id B59998657C
+ for <bridge@lists.linux-foundation.org>; Tue, 26 Jan 2021 14:55:33 +0000 (UTC)
 Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B60101fa60000>; Tue, 26 Jan 2021 05:56:54 -0800
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 Jan
- 2021 13:56:53 +0000
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.36.53) by
- HQMAIL109.nvidia.com (172.20.187.15) with Microsoft SMTP Server
- (TLS) id
- 15.0.1473.3 via Frontend Transport; Tue, 26 Jan 2021 13:56:53 +0000
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B60102d650001>; Tue, 26 Jan 2021 06:55:33 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 Jan
+ 2021 14:55:32 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by HQMAIL109.nvidia.com (172.20.187.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Tue, 26 Jan 2021 14:55:32 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oVK+wKepkJF7QB1E1txfwjzuUoW4CCEUfn8hB1hXe8Y4y4k/ydO7uIVi9TJ8j5010q0xVkFRRXfL72G4D7ZxFDEjCm7MdawhLFAw0rPl0PvvmZXSrWC0HlEHvyATzOFn9ZVSpGctxl4XlIJc0EpMkltKwGx3PhvCKsKq8176h5/JUYB2apWm+m6h42YYC7cs97PmEaMM4uuCNYxuYbuIVXJ3mFFlIYndlvK4yvJimSn4Wtgg4VHJ2wdQVmoEW3p03VP9fXFChvHO1v6UqYG5PZfZD77ZR4k1eLtfa1yfz/meII1Q2q4HwSAPBH3Fc7gxo8qHtGoUQ920CTYinLZaTQ==
+ b=WWbhZ392FC90FNl1U1pf2tAalCjeTShI0M+TXVWoLaUXoPq4d89e3vSL1LUywirRXk4Zn7h2bpHyseY/KRqosti8t6boJdK0OuvHatKVDQnY45B1IGhtMY6OqqwUJUP16fFg/JzkLYPHfmmoKAJ0mjRJJDRT/Ju+qJRiyfoWbaGHCupXyLQSvV4zVjc/AvTvWoNGAh5/IuVzBfx5HPEnIR8QDIuCBn7tQScPIhDAaeGyxIuvYrQoVXPpQVVysYtDsgI32qz3f/oAaN9STcOHluycXu98UQQZZp0ZGYSi5UAFbG+B14x3qXqXFREmNeyzpn3/AIk8TqO+ywkTwgD+sw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LmRkg/WIddBCdFnNCf1NVTZcwbWeq/78kglAUSRUJPo=;
- b=l3cyOjHqjuXv+Vl43oAPJ9q/S9NMKGnmEdZdOhNMG8Yk3ocz5L8gQyNc2y/dzIl9RNsgRCVQPVAxRgFxYgxidZHGJZW2p1PHJDuqHxMAkX4rL1/9iK/QAglvpAundgjlpz5ic0eROPgEuhTt9QAJlsXa8+Gnv4JV4yDo3AFAcDqGhKyYg/rYuOSU57grB5x5BlyBgHx8hIFMtRvUTXw9N/dDucaF1J+NyGGJlc28dLnYmqUoQq6PHJJDLHOfx52ARPYT/lW+JvtuF7vUNvpP1s7rXCF6DxRLAlq6c7u7nbn/Y/vEujexBOQrU64RjYQ37LTAAr17PMwMRaHQqqzbQg==
+ bh=KflSjyZ+yvItKXatpnNsU1KAA8P6q58PX6s9V8DkcfA=;
+ b=OJMeeLnpiYfrLvUxeTiDneWJJKyDnt5RdRUXT/i4kl7Hqd8eT46S6HGaaWAHz2UnDSr7liDAYJIx0U2oWXJ1jgTut9JUuLRKJcXAJffSWOWJZ8aAcPYRr0BlmiXqfRU69K/tQbQB2eq+dwOtctjqprpt8XLoZVd655+9x4tjDJ3nYt3yyJCNPyLWrbq+xCQhh8NaM/uKiKdv/xikt2S8YrRzFcDxKByn/pZcuVVxHB+ju51MJd3x0Hxl3RR6REvQJASdUCrfkHwhwfNwSwG6dDNcbhnWgwmOvKr6cny7EsMPDUI4z1FM/T1pnPjPPc/0L46m5c/HmC9y9pTnpZIHbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
-Authentication-Results: networkplumber.org; dkim=none (message not signed)
- header.d=none;networkplumber.org; dmarc=none action=none
- header.from=nvidia.com;
+Authentication-Results: idosch.org; dkim=none (message not signed)
+ header.d=none;idosch.org; dmarc=none action=none header.from=nvidia.com;
 Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
- by DM6PR12MB4878.namprd12.prod.outlook.com (2603:10b6:5:1b8::24) with
+ by DM6PR12MB2953.namprd12.prod.outlook.com (2603:10b6:5:189::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12; Tue, 26 Jan
- 2021 13:56:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.15; Tue, 26 Jan
+ 2021 14:55:31 +0000
 Received: from DM6PR12MB4403.namprd12.prod.outlook.com
  ([fe80::edba:d7b5:bd18:5704]) by DM6PR12MB4403.namprd12.prod.outlook.com
  ([fe80::edba:d7b5:bd18:5704%4]) with mapi id 15.20.3805.016; Tue, 26 Jan 2021
- 13:56:52 +0000
+ 14:55:31 +0000
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 To: Hangbin Liu <liuhangbin@gmail.com>
 References: <20210126040949.3130937-1-liuhangbin@gmail.com>
  <8a34f089-204f-aeb1-afc7-26ccc06419eb@nvidia.com>
  <20210126132448.GN1421720@Leo-laptop-t470s>
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <90df4fe6-fcc5-f59a-c89c-6f596443af4d@nvidia.com>
-Date: Tue, 26 Jan 2021 15:56:44 +0200
+ <90df4fe6-fcc5-f59a-c89c-6f596443af4d@nvidia.com>
+Message-ID: <0b5741b6-48c0-0c34-aed8-257f3e203ac5@nvidia.com>
+Date: Tue, 26 Jan 2021 16:55:22 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.0
-In-Reply-To: <20210126132448.GN1421720@Leo-laptop-t470s>
+In-Reply-To: <90df4fe6-fcc5-f59a-c89c-6f596443af4d@nvidia.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [213.179.129.39]
-X-ClientProxiedBy: ZR0P278CA0120.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:20::17) To DM6PR12MB4403.namprd12.prod.outlook.com
+X-ClientProxiedBy: ZRAP278CA0010.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:10::20) To DM6PR12MB4403.namprd12.prod.outlook.com
  (2603:10b6:5:2ab::24)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from [10.21.240.129] (213.179.129.39) by
- ZR0P278CA0120.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:20::17) with Microsoft
+ ZRAP278CA0010.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:10::20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.12 via Frontend Transport; Tue, 26 Jan 2021 13:56:49 +0000
+ 15.20.3784.11 via Frontend Transport; Tue, 26 Jan 2021 14:55:28 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 30e904fc-eb44-49dd-0feb-08d8c2023b97
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4878:
+X-MS-Office365-Filtering-Correlation-Id: 61d4c603-6464-48b9-cb94-08d8c20a6d17
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2953:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB48789DD260C11385A248A26ADFBC9@DM6PR12MB4878.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB29537BAF217999F80ED313FBDFBC9@DM6PR12MB2953.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AyX3L7Lo4cqt//Uqz6T2NlN3alTTtVZlTcqVZqTVrge8ir7Kyj958lVM1YGHzMY/2oQLwRv8YRTGno07IrtV+6h65coVg8hhySrG9LbjVO6QRXFphHFtYLlLh40F5pjvpTZy+f5y78l1MVhOt4QfodoU+tSV9aRzseRJerjZpQbbkBx8DZ49Fg232RFv8MbWS9s5lMQ2R371bPjKjwPiKUIdW6+YvOQ/fJHP1zKKkiL1HHy2Dweg5ArNXBApIjDfaQEb2d9yQCbVq82HA+xa7Lz6xSLbAfvauwrKb0oJZTKo1tqJTQJvz/SZyrBTjWh/kONqlrV6je6mFOpPUQsozmfxflhYg+7yLXdPnUg77N4YyVbJdprLz2NgHCgwAk1/0uMvYC3jXfkG/gbXG3cCwgG9W/Q0clA2APQxT/UCAa4cNb5R89BoArlqnteDccmmRbwZdM/r/1JMpwnI16goUeqF25DCA6pAUB5sgDew95kLCpm+yN7/52rbFdO38ADCZ7BC2LKAy/GLVOtMmSmkWyRxjo/7kJ7j0ubp/3vcn4KJEPa2dgcEsGgEPQhOemon
+X-Microsoft-Antispam-Message-Info: 3f/0wfUrTZPDPU4uSPcq9yAcJEY9K/zzCY2txQMMMHo8Li3vco51I3ZBno464zsOIm6l/RUHkdPg90yKk26Lzjq1AdcgHMOcRHJeLjNMoo+YcD2USfGcb0+48XBts8SpRuDc2glEXypZmPYta++j1nj3epcisUMInegcvqn3gUax1UVkWp/36ByTvD7vYAVCa/mxlE+sKhHmrMbp+RkSF4vAJpeafRdlIqveWzwxL4P+UF4YULMVwN7PdaCImYs+MieChmXFqTEvLLcDbsJc9qNO+AXbCICjqoNx6bNS95UFDVCRPiElk2fnaalR/SB9esCEczOUM80f/HV6jeMrLidm98klsRsf9RRkMbvP8y2mlib2Z0AMMPqbp+X8cQBfoE4IyNuWypDEhMwCT52iIobFmaSTVikPA5BQXhj69rhLjHyjFVB5iAco0fRACyfxhEtWzDJQ4UrH4UgIgEEKQgqB9LCkyrBlrO+h0hBxwcWFKgliK6ojbtI4UA+flUU4G2RMiL88xjs8nlrpbrZ50v+bA6FOBWApJSxRrs7dV5iqKuFxRpISKGyIjZhFGmYQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(366004)(346002)(136003)(39860400002)(396003)(966005)(83380400001)(53546011)(31686004)(66946007)(2906002)(6666004)(186003)(86362001)(54906003)(26005)(36756003)(31696002)(16526019)(6486002)(8936002)(956004)(66476007)(66556008)(8676002)(6916009)(316002)(16576012)(478600001)(4326008)(5660300002)(2616005)(43740500002)(45980500001);
+ SFS:(4636009)(376002)(366004)(136003)(396003)(346002)(39860400002)(6486002)(316002)(53546011)(31686004)(186003)(8936002)(5660300002)(6916009)(966005)(83380400001)(6666004)(31696002)(4326008)(8676002)(2906002)(26005)(478600001)(2616005)(956004)(54906003)(16576012)(16526019)(66946007)(36756003)(66556008)(86362001)(66476007)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?bGVHTGd3Rkx3K0JoM2VyK2V3aXFJeXY4Mzg4Ym5WVi84L3dZbEF5NHhiT2ZQ?=
- =?utf-8?B?RENtYitFQ1NWbVNWT0tOV2ZzSThkRGp4Q1ZqM2gvbkYrYWNNTmhQK2hwdDg0?=
- =?utf-8?B?YnF6SEd2aTUyd0grQ3lkMGtlaW9Rc0xiMUVTVVYzT2VvbEhmR0IrUlY1ZmNk?=
- =?utf-8?B?MnVWUFVzWUxqcGowSGc2N3lucG0rNk9sOFFFMERCbG1aSHlwUlRGZ1UxLzZY?=
- =?utf-8?B?c0JmVHdPOW1sUTlUM0xtNjVMdFNnVkNvZHhFS0RrTEdxOEtBQ2krc3MvUEpG?=
- =?utf-8?B?a2tNdzRuMCtSdnpCSXprOGFZQUwwaHlXUmJ2eE94YU5qalhZbHJBM2VaRzU3?=
- =?utf-8?B?WDlSWmFxTy9nb2RtcnhUdFkzMmN3ckVmbzl6RVRLYnllL2RvZHVrK2M3Q1FN?=
- =?utf-8?B?TEMxRzdRRFVGbUI2MXM3WmZIdWdqN0tyWFEwYWdFRFVxeWw1dG1uVUVRdUVl?=
- =?utf-8?B?aGhPc1hpOGtNZ0N5OXN0MXNVRXRyZWZtMHZ6QjlROE8wTTRnRGZsdmRQM0R4?=
- =?utf-8?B?MjhHSUkrcEprdlI0K1FJUFRabmFvcFUwUHRmclcwS0FiektreThqZzFGenhO?=
- =?utf-8?B?VFlkcjJQcnpxZm9QakpwS09iSzVkajF5djdWRlRxODVJREtsSW1BemJjWTIz?=
- =?utf-8?B?YUlUZUluS3pKYXRUUXYvdVRRWlVsYW9qYjZkNEZudTMzOTAyL2tEaDZubFdu?=
- =?utf-8?B?UVJRaHFiVGp3WEhpdDRrSUZXalBwR05LRXZYTnVlQ0RRVnFnMFpBVyt6akVR?=
- =?utf-8?B?amxLVVQ3TjRSNUdxelJSdEF6K25BNTRaWlF0QW5xaEZuVVJMUWRIWXZxMmZi?=
- =?utf-8?B?NTU3cEdRNWpHeVhaSnFLNlQ5WGRiUWl1dnZQdVZVeW13UzRaZ2t6OFM4UDFN?=
- =?utf-8?B?QUtJVERhYmxrREl3am16NWxtcnVqNmRXMHFSRURtaHZsYzdXVkpKVTRVUUd1?=
- =?utf-8?B?UFA5cytocEEvN1hCWkc0c2lGMmJMbzBiM1J0M3NIRWdnRW5GVTYzNTA3Y25M?=
- =?utf-8?B?RXQ3SE9xVGl4SS9QdkFkajFpZFN5NHFSbnl2UkYvWkJNTnBnNWZRbG14Vzll?=
- =?utf-8?B?K2pvOWlhenpnK1FldTlCd0pKR1ZSVEYvRWo5MFdFZmtFUkZHd0lieDE3WnV5?=
- =?utf-8?B?UElweXVOM1M2U1NkZ0F0V2JBVXlNWHdLOG93aTkzOTF3bDRtVStiUmkrTkRU?=
- =?utf-8?B?M3VjYnZrczU4UEhPY25JV2lpQjM0cWZrVU1tWWpYTmEzcVFJMU1TTTZQNFgv?=
- =?utf-8?B?UVQyT09JbXRJb05FMk5BRXhSNklGOGhGRkV3RUZzQW1GNURlS0tWeFFGbit3?=
- =?utf-8?B?UW1qRWJQTWlQOWxWT294QWFqZmxLRUlEUXdYdDFqQWZZMmpWaW40WXdyM21j?=
- =?utf-8?B?YkY2NG9rME02dUhJTnB5czNlZEFITU9maElEczE4Q3NKSmR0NlhyaW11RmNp?=
- =?utf-8?Q?GI8/lINc?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30e904fc-eb44-49dd-0feb-08d8c2023b97
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?UE9QNHJtQXBHUHhvWGxncVdEbWZXbWN1ZE1pTE9ETkI0NnZ5NlZmYlpJekRw?=
+ =?utf-8?B?czhJRHp1citnNTZoQW1jRjg5d3pLZHdLL0hYZU9qbExEQlN4cVlmcHdZcFdH?=
+ =?utf-8?B?djRJdDZHMjFHNXo1eFVpMWplbzFkSVB5d21Bb0dTaWFhSk56RDVROGJ1Y0xY?=
+ =?utf-8?B?cVBYSnFsREliUlcvYm9hL3VJNlZWR1lwZUVSVXd2R3lyeXJxYXFqR2d3UFBt?=
+ =?utf-8?B?L0hvcDlkNXcxOTN3R2pXQWx3bzFSRjFqRUJCckVmc0hZNkg3alBXcE1xT2tj?=
+ =?utf-8?B?MHVESUhQMllIQVVuVU0rYWMzbTRFK0NQM2hMVWxSMlpudCt2M2pSd0hGT2Ir?=
+ =?utf-8?B?aWpmbHkvaFZETlBkSjlDM3I2R1lQOEU2dVBuZ3pqbU1XSHdoTy96NGl3MDRQ?=
+ =?utf-8?B?a0FzOTFuUWw3enhwNVFoVUVDYmRGVXdHSDNCK3RkT0ROdk5FdXNIcXlIeDQ4?=
+ =?utf-8?B?eEk0bHZyeUxzc2NFNWNJckF0VTNRcXNVQXJRL0RDVDlxYWwrMWE1bkNkeE04?=
+ =?utf-8?B?MDFpR055MElNUXZFNVdwdVBqclVuWTQ4YUpLVWdGV2ZFZEQrNFE2bURNb2Qv?=
+ =?utf-8?B?RHFqR2l2Z2NqWWpQczJRL3V2a1QvU3RseFlXUFBmNHMzV3NEenlIeGF1WnZS?=
+ =?utf-8?B?QUg0MVNid0dLclJJWDdydlFRZXUrTDZsNlhQYTJzWXUvcTJpWTl4QlRkd05v?=
+ =?utf-8?B?S2ZFVzRzSGdEdUtHWkVTY1Y1TFVUWnlXWHhqL1JBVmlXaGplTFpCKzlFRVha?=
+ =?utf-8?B?aVp6NXFPTi9SRXF0RWNtNEI0eCtPMjUrQ3kwbjdKcE10WHJzc2IzUFhhRUFw?=
+ =?utf-8?B?QVprbjh2dWY3eWpveCtQUnNrK25Jd0FxQkZuMkFheVJxbDhwWk9NY3JFeXVV?=
+ =?utf-8?B?TytpSXp4OVdVRk9RSXgvY1BWMjA5RWRpRGEyQWFERGk4YWtpeDFIQms2S2xP?=
+ =?utf-8?B?MVpBL1JmU3UxT1pmTEptVXNHL0FOeW1SajFUYmVhR1FlNStlcEJEUVcvbHlu?=
+ =?utf-8?B?THhyVEpIQ0R1VzVuUFN2VG93MksyOHVyeFlPd0dwcytKWEZMR3dlQlB2V1lq?=
+ =?utf-8?B?RlVPaFJJQnpQT01PT1BycGhFVUhHcDJxVjVCcUJxTTVLUGdYNnd1RHFVYmZX?=
+ =?utf-8?B?ZXhiMGF4TjYvSFIvelJxdlFqYUFuZmhhSHQwYjY4WnQ4d1pnbUU3Uk13SG9n?=
+ =?utf-8?B?RmFxY2hxc3luSnlkMVdOdStFczIydWJZeGtDVjVQRXBhZmRvTGJSOGZXbGxC?=
+ =?utf-8?B?WEttTmJVWE8wSFpwNjUzM20zRTJJbVk1NVFjWUJnMWxseDJIbzRzbUhDYkMr?=
+ =?utf-8?B?WW5NbHZiMjRaZnNBOHMxSkxSdEZCSU1GYUZaU2J2V0VtRTFXbGM4OTYwTHZP?=
+ =?utf-8?B?clFudEFXWkgwTmR2SEVCVUdodjFPa1QrY2JPVjdaSDdaN1NrWERON0lPam9T?=
+ =?utf-8?Q?hdSTGnnY?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61d4c603-6464-48b9-cb94-08d8c20a6d17
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 13:56:52.0086 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 14:55:31.0146 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OMng0QsszNqDHpHqVWeJUNw1AHAvrYiRrQ58VI0A2dTLTWVaH8DFT7N2/HJIJfYO2dIvndHR8Exb9WbhWI3F+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4878
+X-MS-Exchange-CrossTenant-UserPrincipalName: OibClAgcnB2q3zk79e4jQuEhH/2klplQcDw0K5CoGmp+1UPsdrzlk18V9rEvgLs3zxKhG+qFPlJcJJ6K573ggw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2953
 X-OriginatorOrg: Nvidia.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1611669414; bh=LmRkg/WIddBCdFnNCf1NVTZcwbWeq/78kglAUSRUJPo=;
+ t=1611672933; bh=KflSjyZ+yvItKXatpnNsU1KAA8P6q58PX6s9V8DkcfA=;
  h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
- Authentication-Results:Subject:To:CC:References:From:Message-ID:
+ Authentication-Results:Subject:From:To:CC:References:Message-ID:
  Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
  Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
  MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
@@ -159,16 +158,16 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
  X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
  X-MS-Exchange-CrossTenant-UserPrincipalName:
  X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
- b=RU8g/HZZ0AKVQwUyd1qki/dM9IQdzh8pSgO9gkKWXbLliQ6jyv7BhXPru+dW9hp0x
- BKD+LQ7Cgvmys2P7wM4wVsn3AJYkPgn02sBeXY5lMcidjSLWVS2Kr8ewuUSdTKZjJv
- ajmM7mlNZmkqZMGE/nYVA8sVy1w0Rec8VEFliaUafs34LfRsn8oNsX5Uce3b5aJLFu
- W7YQIQvXpfGutEC0W7d01rn3AVp1kVtRQcJcKdj5/25SR0jVHFkZsqsbxKOWUFONJW
- JO+fqh7DBv91HV6HvZjUi/zaGuU55XHEXbnGDtUSHwL6aVRFX4ZuoUyabCpUaSEV0c
- 1imuL5DFLadpw==
+ b=AtjZ/cjg7+e3oH0oaYudtGxY2VCkJf7aQtSc6Q6O0lOBXyNTv0HhO4velZVUuaV/M
+ WNeqc8GozBrboGYdA8WFMGxKfCiLMMAo9uFkPf6d8knTbk28G4bwpdMTrj5HyWf1XB
+ V3e9ouxhldA8hwF+auk177SbHF4ifzFjW2BRuMB/iToEQ+3k4ZuwC2PeNPxCysZKzV
+ 4pBHXPNjtqyamW8C1doVZWN7SiaI8GoeKEaMjePNccefdKMfV0cPQNiSWhJriOCuy0
+ BJzGXm3cabNUQGptrhZZD4mkXGwdaQkx/eHrEhwLr8/PfbfE1Hg+3fAdWa9CuU55Y8
+ p6r/rvZWCw3Fw==
 Cc: Ivan Vecera <ivecera@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
  netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Jarod Wilson <jarod@redhat.com>, Roopa Prabhu <roopa@nvidia.com>, "David S .
- Miller" <davem@davemloft.net>
+ Jarod Wilson <jarod@redhat.com>, Ido Schimmel <idosch@idosch.org>,
+ Roopa Prabhu <roopa@nvidia.com>, "David S . Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net-next] bridge: Propagate NETDEV_NOTIFY_PEERS
 	notifier
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -185,92 +184,109 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 26/01/2021 15:25, Hangbin Liu wrote:
-> On Tue, Jan 26, 2021 at 09:40:13AM +0200, Nikolay Aleksandrov wrote:
->> On 26/01/2021 06:09, Hangbin Liu wrote:
->>> After adding bridge as upper layer of bond/team, we usually clean up the
->>> IP address on bond/team and set it on bridge. When there is a failover,
->>> bond/team will not send gratuitous ARP since it has no IP address.
->>> Then the down layer(e.g. VM tap dev) of bridge will not able to receive
->>> this notification.
+On 26/01/2021 15:56, Nikolay Aleksandrov wrote:
+> On 26/01/2021 15:25, Hangbin Liu wrote:
+>> On Tue, Jan 26, 2021 at 09:40:13AM +0200, Nikolay Aleksandrov wrote:
+>>> On 26/01/2021 06:09, Hangbin Liu wrote:
+>>>> After adding bridge as upper layer of bond/team, we usually clean up the
+>>>> IP address on bond/team and set it on bridge. When there is a failover,
+>>>> bond/team will not send gratuitous ARP since it has no IP address.
+>>>> Then the down layer(e.g. VM tap dev) of bridge will not able to receive
+>>>> this notification.
+>>>>
+>>>> Make bridge to be able to handle NETDEV_NOTIFY_PEERS notifier.
+>>>>
+>>>> Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
+>>>> ---
+>>>>  net/bridge/br.c | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/net/bridge/br.c b/net/bridge/br.c
+>>>> index ef743f94254d..b6a0921bb498 100644
+>>>> --- a/net/bridge/br.c
+>>>> +++ b/net/bridge/br.c
+>>>> @@ -125,6 +125,7 @@ static int br_device_event(struct notifier_block *unused, unsigned long event, v
+>>>>  		/* Forbid underlying device to change its type. */
+>>>>  		return NOTIFY_BAD;
+>>>>  
+>>>> +	case NETDEV_NOTIFY_PEERS:
+>>>>  	case NETDEV_RESEND_IGMP:
+>>>>  		/* Propagate to master device */
+>>>>  		call_netdevice_notifiers(event, br->dev);
+>>>>
 >>>
->>> Make bridge to be able to handle NETDEV_NOTIFY_PEERS notifier.
->>>
->>> Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
->>> ---
->>>  net/bridge/br.c | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/net/bridge/br.c b/net/bridge/br.c
->>> index ef743f94254d..b6a0921bb498 100644
->>> --- a/net/bridge/br.c
->>> +++ b/net/bridge/br.c
->>> @@ -125,6 +125,7 @@ static int br_device_event(struct notifier_block *unused, unsigned long event, v
->>>  		/* Forbid underlying device to change its type. */
->>>  		return NOTIFY_BAD;
->>>  
->>> +	case NETDEV_NOTIFY_PEERS:
->>>  	case NETDEV_RESEND_IGMP:
->>>  		/* Propagate to master device */
->>>  		call_netdevice_notifiers(event, br->dev);
->>>
+>>> I'm not convinced this should be done by the bridge, setups usually have multiple ports
+>>> which may have link change events and these events are unrelated, i.e. we shouldn't generate
+>>> a gratuitous arp for all every time, there might be many different devices present. We have
+>>> setups with hundreds of ports which are mixed types of devices.
+>>> That seems inefficient, redundant and can potentially cause problems.
 >>
->> I'm not convinced this should be done by the bridge, setups usually have multiple ports
->> which may have link change events and these events are unrelated, i.e. we shouldn't generate
->> a gratuitous arp for all every time, there might be many different devices present. We have
->> setups with hundreds of ports which are mixed types of devices.
->> That seems inefficient, redundant and can potentially cause problems.
+>> Hi Nikolay,
+>>
+>> Thanks for the reply. There are a few reasons I think the bridge should
+>> handle NETDEV_NOTIFY_PEERS:
+>>
+>> 1. Only a few devices will call NETDEV_NOTIFY_PEERS notifier: bond, team,
+>>    virtio, xen, 6lowpan. There should have no much notification message.
 > 
-> Hi Nikolay,
-> 
-> Thanks for the reply. There are a few reasons I think the bridge should
-> handle NETDEV_NOTIFY_PEERS:
-> 
-> 1. Only a few devices will call NETDEV_NOTIFY_PEERS notifier: bond, team,
->    virtio, xen, 6lowpan. There should have no much notification message.
-
-You can't send a broadcast to all ports because 1 bond's link status has changed.
-That makes no sense, the GARP needs to be sent only on that bond. The bond devices
-are heavily used with bridge setups, and in general the bridge is considered a switch
-device, it shouldn't be broadcasting GARPs to all ports when one changes link state.
-
-> 2. When set bond/team's upper layer to bridge. The bridge's mac will be the
->    same with bond/team. So when the bond/team's mac changed, the bridge's mac
->    will also change. So bridge should send a GARP to notify other's that it's
->    mac has changed.
-
-That is not true, the mac doesn't need to be the same at all. And in many
-situations isn't.
-
-> 3. There already has NETDEV_RESEND_IGMP handling in bridge, which is also
->    generated by bond/team and netdev_notify_peers(). So why there is IGMP
->    but no ARP?
-
-Apples and oranges..
-
-> 4. If bridge doesn't have IP address, it will omit GARP sending. So having
->    or not having IP address on bridge doesn't matters.
-> 4. I don't see why how many ports affect the bridge sending GARP.
-
-Bridge broadcasts are notoriously slow, they consider every port. We've seen glean
-traffic take up 100% CPU with only 10k pps. I have patches that fix the situation for
-*some* cases (i.e. where not all ports need to be considered), but in general you can't
-optimize it much, so it's best to avoid sending them altogether.
-Just imagine having a hundred SVIs on top of the bridge, that would lead to number if SVIs
-multipled by the number of ports broadcast packets for each link flap of some bond/team port.
-Same thing happens if there are macvlans on top, we have setups with thousands of virtual devices
-and this will just kill them, if it was at all correct behaviour then we might look for a solution
-but it is not in general. GARPs must be confined only to the bond ports which changed state, and
-not broadcast to all every time.
-
-> 
-> Please correct me if I missed something.
-> 
->> Also it seems this was proposed few years back: https://lkml.org/lkml/2018/1/6/135
-> 
-> Thanks for this link, cc Stephen for this discuss.
-> 
-> Hangbin
+> You can't send a broadcast to all ports because 1 bond's link status has changed.
+> That makes no sense, the GARP needs to be sent only on that bond. The bond devices
+> are heavily used with bridge setups, and in general the bridge is considered a switch
+> device, it shouldn't be broadcasting GARPs to all ports when one changes link state.
 > 
 
+Scratch the last sentence, I guess you're talking about when the bond's mac causes
+the bridge to change mac address by br_stp_recalculate_bridge_id(). I was wondering
+at first why would you need to send garp, but in fact, as Ido mentioned privately,
+it is already handled correctly, but you need to have set arp_notify sysctl.
+Then if the bridge's mac changes because of the bond flapping a NETDEV_NOTIFY_PEERS will be
+generated. Check:
+devinet.c inetdev_event() -> case NETDEV_CHANGEADDR
+
+Alternatively you can always set the bridge mac address manually and then it won't be
+changed by such events.
+
+>> 2. When set bond/team's upper layer to bridge. The bridge's mac will be the
+>>    same with bond/team. So when the bond/team's mac changed, the bridge's mac
+>>    will also change. So bridge should send a GARP to notify other's that it's
+>>    mac has changed.
+> 
+> That is not true, the mac doesn't need to be the same at all. And in many
+> situations isn't.
+> 
+>> 3. There already has NETDEV_RESEND_IGMP handling in bridge, which is also
+>>    generated by bond/team and netdev_notify_peers(). So why there is IGMP
+>>    but no ARP?
+> 
+> Apples and oranges..
+> 
+>> 4. If bridge doesn't have IP address, it will omit GARP sending. So having
+>>    or not having IP address on bridge doesn't matters.
+>> 4. I don't see why how many ports affect the bridge sending GARP.
+> 
+> Bridge broadcasts are notoriously slow, they consider every port. We've seen glean
+> traffic take up 100% CPU with only 10k pps. I have patches that fix the situation for
+> *some* cases (i.e. where not all ports need to be considered), but in general you can't
+> optimize it much, so it's best to avoid sending them altogether.
+> Just imagine having a hundred SVIs on top of the bridge, that would lead to number if SVIs
+> multipled by the number of ports broadcast packets for each link flap of some bond/team port.
+> Same thing happens if there are macvlans on top, we have setups with thousands of virtual devices
+> and this will just kill them, if it was at all correct behaviour then we might look for a solution
+> but it is not in general. GARPs must be confined only to the bond ports which changed state, and
+> not broadcast to all every time.
+
+Again scratch the last part, I misunderstood why you need garps at first.
+
+> 
+>>
+>> Please correct me if I missed something.
+>>
+>>> Also it seems this was proposed few years back: https://lkml.org/lkml/2018/1/6/135
+>>
+>> Thanks for this link, cc Stephen for this discuss.
+>>
+>> Hangbin
+>>
+> 
+> 
 
