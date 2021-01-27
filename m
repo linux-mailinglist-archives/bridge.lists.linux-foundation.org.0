@@ -1,75 +1,75 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FBAB30656B
-	for <lists.bridge@lfdr.de>; Wed, 27 Jan 2021 21:54:13 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD60F30656C
+	for <lists.bridge@lfdr.de>; Wed, 27 Jan 2021 21:54:14 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id AE6AE87379;
-	Wed, 27 Jan 2021 20:54:11 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 9B0E0862FB;
+	Wed, 27 Jan 2021 20:54:13 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8O8ntZXrLHcZ; Wed, 27 Jan 2021 20:54:10 +0000 (UTC)
+	with ESMTP id WW10omcOs9hd; Wed, 27 Jan 2021 20:54:12 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 9FFFC8737A;
-	Wed, 27 Jan 2021 20:54:10 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id E625E862C1;
+	Wed, 27 Jan 2021 20:54:12 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 84A05C013A;
-	Wed, 27 Jan 2021 20:54:10 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CE98EC0FA7;
+	Wed, 27 Jan 2021 20:54:12 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 868E7C013A
- for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 20:54:09 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 70B50C013A
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 20:54:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 387E586277
- for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 20:54:09 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 6A8218629C
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 20:54:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CspVfxl3Iu7q for <bridge@lists.linux-foundation.org>;
- Wed, 27 Jan 2021 20:54:08 +0000 (UTC)
+ with ESMTP id Vua4viutGUkU for <bridge@lists.linux-foundation.org>;
+ Wed, 27 Jan 2021 20:54:10 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
  [68.232.153.233])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 05B6C84456
- for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 20:54:07 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 8CD7285F51
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 20:54:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1611780847; x=1643316847;
+ t=1611780850; x=1643316850;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T0HrEE1cC4riKci4S2bD/LUtEMpp9hvfssr4U4/6vgA=;
- b=afPRe+RDhZQerlopPQ14iRzi8UxjVQ9bZ5TZcT6jePzahRomBI6JSLOS
- RFyH2nDv5nokGleZE4cyb0puFNuYUUlGQov7KSm/9qpX5/1Go5/pkqYAj
- relfCEU+NXAq08Wd6NsGKs7ncK5jj/4FUnX985gkGxbs/g72tspRA2wri
- NrAiQLI2V32ecweQ6bhi/OwuLZmhmoIeal560lBf1jzv17ZORylHQ//UA
- h+4bZN+J4uJwCyE1wgWcMEW7J2E1OeeLENWfN9Ta89Lur2BmARCT7QHA3
- iIFIIOFUmKBUWfG7MYahuH4DLSIPpF1Ck339pmX7sqC1S52i+K3QePvH2 A==;
-IronPort-SDR: IdUGRO1KgZQ9uTj/dQImMURowiiYlTjpbfCJ7SuIYxzKm/OtfwHKdFkGZvndQr5iehz36gJwN8
- dAYpNC3I79EozqRQyS+eB2yV7h+DIq5pIln4JLjTyZUU1VoZyqITMeU4d7YFa3vofFjknC6ZqT
- TJ/vT7ko+GWf3ar4sEBk1dE6KQC9t8590yFqcgY6dsqelKtDta4/DlfQTMfRPfwej+CCSM9om3
- nJ36jWz/qqyrI1jcpnOZO2p6zyTGfqDpbPctGK4vFLVZF6aLimou6wMEGFUXQmzlXkZU+pqj5I
- 2WM=
-X-IronPort-AV: E=Sophos;i="5.79,380,1602572400"; d="scan'208";a="107543319"
+ bh=lqPm3w8R6W+6/EKBHQZN4ymXoXRvTekFol5Yx69SaXk=;
+ b=qxclmrfoucp9w/pLnvzkq5uURkvUvnaSpiA0rkGTKOgYFlbtBXeIeZHN
+ /rPfW17/RnQd0WrUJW1L4J6EqnhycFW+jrOXLk5XvoAK3MOwmLy5HBluB
+ UbY+umRRWwPRzfXAFGuAbtQVGOJRfXNYhTWCynlVflbNfFFKRLh1UAOxz
+ AZ5x/HIAcWctPFDvteJ6RPRLEOZKOO8etBhQSh3LAUW50R92ndizfpWYE
+ 9OiONUy3F13732+sM1x/l1HnavVqwaecHPH+NJ5LK8EfAUMf3Yxv9idgJ
+ LBIxD9bGdXetEIyzs6bJU7COyx0GXT8x9w+Jh0f730sUgkCsKlA1mPiE3 Q==;
+IronPort-SDR: C8SDGbPGgqNkojSPzdsNfQMQm8AhjxlmUil+dXh4t/XISN3NlGvfo0fNpJiZjxUUHS9qJQyUFK
+ 7dI7/s5BODfkD35MtRhvavOx9agc6p1YbVreDjMVQ+buXCZUgJyApsXwkn/q++FtuWa2zybz9m
+ LIIGx3IkqZ01NOxEiKHNnzl8GMcrqEdn9Q5KgCg+cUOtZ4i9w7QZJ0HWyzlAnBH9bzaxEOAj2C
+ p3HGNxFfMcW56HOjnl0lG9s5xPLNJQeR519LFXp6Dxpp2XK5vykhIyHD3PTb/cRywKapGByWfy
+ 32E=
+X-IronPort-AV: E=Sophos;i="5.79,380,1602572400"; d="scan'208";a="107543338"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 27 Jan 2021 13:54:06 -0700
+ 27 Jan 2021 13:54:09 -0700
 Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 27 Jan 2021 13:54:06 -0700
+ 15.1.1979.3; Wed, 27 Jan 2021 13:54:09 -0700
 Received: from soft-dev3.localdomain (10.10.115.15) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 27 Jan 2021 13:54:04 -0700
+ 15.1.1979.3 via Frontend Transport; Wed, 27 Jan 2021 13:54:07 -0700
 To: <jiri@resnulli.us>, <ivecera@redhat.com>, <davem@davemloft.net>,
  <kuba@kernel.org>, <roopa@nvidia.com>, <nikolay@nvidia.com>,
  <rasmus.villemoes@prevas.dk>, <andrew@lunn.ch>, <netdev@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>, <bridge@lists.linux-foundation.org>
-Date: Wed, 27 Jan 2021 21:52:40 +0100
-Message-ID: <20210127205241.2864728-4-horatiu.vultur@microchip.com>
+Date: Wed, 27 Jan 2021 21:52:41 +0100
+Message-ID: <20210127205241.2864728-5-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210127205241.2864728-1-horatiu.vultur@microchip.com>
 References: <20210127205241.2864728-1-horatiu.vultur@microchip.com>
@@ -77,8 +77,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next v2 3/4] bridge: mrp: Extend
-	br_mrp_switchdev to detect better the errors
+Subject: [Bridge] [PATCH net-next v2 4/4] bridge: mrp: Update br_mrp to use
+	new return values of br_mrp_switchdev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,365 +95,135 @@ Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This patch extends the br_mrp_switchdev functions to be able to have a
-better understanding what cause the issue and if the SW needs to be used
-as a backup.
-
-There are the following cases:
-- when the code is compiled without CONFIG_NET_SWITCHDEV. In this case
-  return success so the SW can continue with the protocol. Depending
-  on the function, it returns 0 or BR_MRP_SW.
-- when code is compiled with CONFIG_NET_SWITCHDEV and the driver doesn't
-  implement any MRP callbacks. In this case the HW can't run MRP so it
-  just returns -EOPNOTSUPP. So the SW will stop further to configure the
-  node.
-- when code is compiled with CONFIG_NET_SWITCHDEV and the driver fully
-  supports any MRP functionality. In this case the SW doesn't need to do
-  anything. The functions will return 0 or BR_MRP_HW.
-- when code is compiled with CONFIG_NET_SWITCHDEV and the HW can't run
-  completely the protocol but it can help the SW to run it. For
-  example, the HW can't support completely MRM role(can't detect when it
-  stops receiving MRP Test frames) but it can redirect these frames to
-  CPU. In this case it is possible to have a SW fallback. The SW will
-  try initially to call the driver with sw_backup set to false, meaning
-  that the HW should implement completely the role. If the driver returns
-  -EOPNOTSUPP, the SW will try again with sw_backup set to false,
-  meaning that the SW will detect when it stops receiving the frames but
-  it needs HW support to redirect the frames to CPU. In case the driver
-  returns 0 then the SW will continue to configure the node accordingly.
+Check the return values of the br_mrp_switchdev function.
+In case of:
+- BR_MRP_NONE, return the error to userspace,
+- BR_MRP_SW, continue with SW implementation,
+- BR_MRP_HW, continue without SW implementation,
 
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- net/bridge/br_mrp_switchdev.c | 171 +++++++++++++++++++++-------------
- net/bridge/br_private_mrp.h   |  24 +++--
- 2 files changed, 118 insertions(+), 77 deletions(-)
+ net/bridge/br_mrp.c | 43 +++++++++++++++++++++++++++----------------
+ 1 file changed, 27 insertions(+), 16 deletions(-)
 
-diff --git a/net/bridge/br_mrp_switchdev.c b/net/bridge/br_mrp_switchdev.c
-index ed547e03ace1..ffd844e9be6b 100644
---- a/net/bridge/br_mrp_switchdev.c
-+++ b/net/bridge/br_mrp_switchdev.c
-@@ -4,6 +4,30 @@
- 
- #include "br_private_mrp.h"
- 
-+static enum br_mrp_hw_support
-+br_mrp_switchdev_port_obj(struct net_bridge *br,
-+			  const struct switchdev_obj *obj, bool add)
-+{
-+	int err;
-+
-+	if (add)
-+		err = switchdev_port_obj_add(br->dev, obj, NULL);
-+	else
-+		err = switchdev_port_obj_del(br->dev, obj);
-+
-+	/* In case of success just return and notify the SW that doesn't need
-+	 * to do anything
-+	 */
-+	if (!err)
-+		return BR_MRP_HW;
-+
-+	if (err != -EOPNOTSUPP)
-+		return BR_MRP_NONE;
-+
-+	/* Continue with SW backup */
-+	return BR_MRP_SW;
-+}
-+
- int br_mrp_switchdev_add(struct net_bridge *br, struct br_mrp *mrp)
+diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
+index fc0a98874bfc..faa4ccb20f0a 100644
+--- a/net/bridge/br_mrp.c
++++ b/net/bridge/br_mrp.c
+@@ -636,7 +636,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
+ 			 struct br_mrp_ring_role *role)
  {
- 	struct switchdev_obj_mrp mrp_obj = {
-@@ -14,14 +38,11 @@ int br_mrp_switchdev_add(struct net_bridge *br, struct br_mrp *mrp)
- 		.ring_id = mrp->ring_id,
- 		.prio = mrp->prio,
- 	};
+ 	struct br_mrp *mrp = br_mrp_find_id(br, role->ring_id);
 -	int err;
- 
--	err = switchdev_port_obj_add(br->dev, &mrp_obj.obj, NULL);
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return 0;
- 
--	if (err && err != -EOPNOTSUPP)
--		return err;
--
--	return 0;
-+	return switchdev_port_obj_add(br->dev, &mrp_obj.obj, NULL);
- }
- 
- int br_mrp_switchdev_del(struct net_bridge *br, struct br_mrp *mrp)
-@@ -33,40 +54,54 @@ int br_mrp_switchdev_del(struct net_bridge *br, struct br_mrp *mrp)
- 		.s_port = NULL,
- 		.ring_id = mrp->ring_id,
- 	};
--	int err;
--
--	err = switchdev_port_obj_del(br->dev, &mrp_obj.obj);
- 
--	if (err && err != -EOPNOTSUPP)
--		return err;
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return 0;
- 
--	return 0;
-+	return switchdev_port_obj_del(br->dev, &mrp_obj.obj);
- }
- 
--int br_mrp_switchdev_set_ring_role(struct net_bridge *br,
--				   struct br_mrp *mrp,
--				   enum br_mrp_ring_role_type role)
-+enum br_mrp_hw_support
-+br_mrp_switchdev_set_ring_role(struct net_bridge *br, struct br_mrp *mrp,
-+			       enum br_mrp_ring_role_type role)
- {
- 	struct switchdev_obj_ring_role_mrp mrp_role = {
- 		.obj.orig_dev = br->dev,
- 		.obj.id = SWITCHDEV_OBJ_ID_RING_ROLE_MRP,
- 		.ring_role = role,
- 		.ring_id = mrp->ring_id,
-+		.sw_backup = false,
- 	};
 +	enum br_mrp_hw_support support;
- 	int err;
  
--	if (role == BR_MRP_RING_ROLE_DISABLED)
--		err = switchdev_port_obj_del(br->dev, &mrp_role.obj);
--	else
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return BR_MRP_SW;
-+
-+	support = br_mrp_switchdev_port_obj(br, &mrp_role.obj,
-+					    role != BR_MRP_RING_ROLE_DISABLED);
-+	if (support != BR_MRP_SW)
-+		return support;
-+
-+	/* If the driver can't configure to run completely the protocol in HW,
-+	 * then try again to configure the HW so the SW can run the protocol.
-+	 */
-+	mrp_role.sw_backup = true;
-+	if (role != BR_MRP_RING_ROLE_DISABLED)
- 		err = switchdev_port_obj_add(br->dev, &mrp_role.obj, NULL);
-+	else
-+		err = switchdev_port_obj_del(br->dev, &mrp_role.obj);
+ 	if (!mrp)
+ 		return -EINVAL;
+@@ -644,9 +644,9 @@ int br_mrp_set_ring_role(struct net_bridge *br,
+ 	mrp->ring_role = role->ring_role;
  
--	return err;
-+	if (!err)
-+		return BR_MRP_SW;
-+
-+	return BR_MRP_NONE;
- }
- 
--int br_mrp_switchdev_send_ring_test(struct net_bridge *br,
--				    struct br_mrp *mrp, u32 interval,
--				    u8 max_miss, u32 period,
--				    bool monitor)
-+enum br_mrp_hw_support
-+br_mrp_switchdev_send_ring_test(struct net_bridge *br, struct br_mrp *mrp,
-+				u32 interval, u8 max_miss, u32 period,
-+				bool monitor)
- {
- 	struct switchdev_obj_ring_test_mrp test = {
- 		.obj.orig_dev = br->dev,
-@@ -77,14 +112,11 @@ int br_mrp_switchdev_send_ring_test(struct net_bridge *br,
- 		.period = period,
- 		.monitor = monitor,
- 	};
--	int err;
- 
--	if (interval == 0)
--		err = switchdev_port_obj_del(br->dev, &test.obj);
--	else
--		err = switchdev_port_obj_add(br->dev, &test.obj, NULL);
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return BR_MRP_SW;
- 
--	return err;
-+	return br_mrp_switchdev_port_obj(br, &test.obj, interval != 0);
- }
- 
- int br_mrp_switchdev_set_ring_state(struct net_bridge *br,
-@@ -97,19 +129,17 @@ int br_mrp_switchdev_set_ring_state(struct net_bridge *br,
- 		.ring_state = state,
- 		.ring_id = mrp->ring_id,
- 	};
--	int err;
--
--	err = switchdev_port_obj_add(br->dev, &mrp_state.obj, NULL);
- 
+ 	/* If there is an error just bailed out */
+-	err = br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
 -	if (err && err != -EOPNOTSUPP)
 -		return err;
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return 0;
++	support = br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
++	if (support == BR_MRP_NONE)
++		return -EOPNOTSUPP;
  
--	return 0;
-+	return switchdev_port_obj_add(br->dev, &mrp_state.obj, NULL);
+ 	/* Now detect if the HW actually applied the role or not. If the HW
+ 	 * applied the role it means that the SW will not to do those operations
+@@ -654,7 +654,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
+ 	 * SW when ring is open, but if the is not pushed to the HW the SW will
+ 	 * need to detect when the ring is open
+ 	 */
+-	mrp->ring_role_offloaded = err == -EOPNOTSUPP ? 0 : 1;
++	mrp->ring_role_offloaded = support == BR_MRP_SW ? 0 : 1;
+ 
+ 	return 0;
  }
- 
--int br_mrp_switchdev_set_in_role(struct net_bridge *br, struct br_mrp *mrp,
--				 u16 in_id, u32 ring_id,
--				 enum br_mrp_in_role_type role)
-+enum br_mrp_hw_support
-+br_mrp_switchdev_set_in_role(struct net_bridge *br, struct br_mrp *mrp,
-+			     u16 in_id, u32 ring_id,
-+			     enum br_mrp_in_role_type role)
+@@ -667,6 +667,7 @@ int br_mrp_start_test(struct net_bridge *br,
+ 		      struct br_mrp_start_test *test)
  {
- 	struct switchdev_obj_in_role_mrp mrp_role = {
- 		.obj.orig_dev = br->dev,
-@@ -118,15 +148,32 @@ int br_mrp_switchdev_set_in_role(struct net_bridge *br, struct br_mrp *mrp,
- 		.in_id = mrp->in_id,
- 		.ring_id = mrp->ring_id,
- 		.i_port = rtnl_dereference(mrp->i_port)->dev,
-+		.sw_backup = false,
- 	};
+ 	struct br_mrp *mrp = br_mrp_find_id(br, test->ring_id);
 +	enum br_mrp_hw_support support;
- 	int err;
  
--	if (role == BR_MRP_IN_ROLE_DISABLED)
--		err = switchdev_port_obj_del(br->dev, &mrp_role.obj);
--	else
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return BR_MRP_SW;
+ 	if (!mrp)
+ 		return -EINVAL;
+@@ -674,9 +675,13 @@ int br_mrp_start_test(struct net_bridge *br,
+ 	/* Try to push it to the HW and if it fails then continue with SW
+ 	 * implementation and if that also fails then return error.
+ 	 */
+-	if (!br_mrp_switchdev_send_ring_test(br, mrp, test->interval,
+-					     test->max_miss, test->period,
+-					     test->monitor))
++	support = br_mrp_switchdev_send_ring_test(br, mrp, test->interval,
++						  test->max_miss, test->period,
++						  test->monitor);
++	if (support == BR_MRP_NONE)
++		return -EOPNOTSUPP;
 +
-+	support = br_mrp_switchdev_port_obj(br, &mrp_role.obj,
-+					    role != BR_MRP_IN_ROLE_DISABLED);
-+	if (support != BR_MRP_NONE)
-+		return support;
-+
-+	/* If the driver can't configure to run completely the protocol in HW,
-+	 * then try again to configure the HW so the SW can run the protocol.
-+	 */
-+	mrp_role.sw_backup = true;
-+	if (role != BR_MRP_IN_ROLE_DISABLED)
- 		err = switchdev_port_obj_add(br->dev, &mrp_role.obj, NULL);
-+	else
-+		err = switchdev_port_obj_del(br->dev, &mrp_role.obj);
-+
-+	if (!err)
-+		return BR_MRP_SW;
++	if (support == BR_MRP_HW)
+ 		return 0;
  
--	return err;
-+	return BR_MRP_NONE;
- }
- 
- int br_mrp_switchdev_set_in_state(struct net_bridge *br, struct br_mrp *mrp,
-@@ -138,18 +185,16 @@ int br_mrp_switchdev_set_in_state(struct net_bridge *br, struct br_mrp *mrp,
- 		.in_state = state,
- 		.in_id = mrp->in_id,
- 	};
--	int err;
--
--	err = switchdev_port_obj_add(br->dev, &mrp_state.obj, NULL);
- 
--	if (err && err != -EOPNOTSUPP)
--		return err;
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return 0;
- 
--	return 0;
-+	return switchdev_port_obj_add(br->dev, &mrp_state.obj, NULL);
- }
- 
--int br_mrp_switchdev_send_in_test(struct net_bridge *br, struct br_mrp *mrp,
--				  u32 interval, u8 max_miss, u32 period)
-+enum br_mrp_hw_support
-+br_mrp_switchdev_send_in_test(struct net_bridge *br, struct br_mrp *mrp,
-+			      u32 interval, u8 max_miss, u32 period)
+ 	mrp->test_interval = test->interval;
+@@ -718,8 +723,8 @@ int br_mrp_set_in_state(struct net_bridge *br, struct br_mrp_in_state *state)
+ int br_mrp_set_in_role(struct net_bridge *br, struct br_mrp_in_role *role)
  {
- 	struct switchdev_obj_in_test_mrp test = {
- 		.obj.orig_dev = br->dev,
-@@ -159,14 +204,11 @@ int br_mrp_switchdev_send_in_test(struct net_bridge *br, struct br_mrp *mrp,
- 		.in_id = mrp->in_id,
- 		.period = period,
- 	};
+ 	struct br_mrp *mrp = br_mrp_find_id(br, role->ring_id);
++	enum br_mrp_hw_support support;
+ 	struct net_bridge_port *p;
 -	int err;
  
--	if (interval == 0)
--		err = switchdev_port_obj_del(br->dev, &test.obj);
--	else
--		err = switchdev_port_obj_add(br->dev, &test.obj, NULL);
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return BR_MRP_SW;
+ 	if (!mrp)
+ 		return -EINVAL;
+@@ -777,10 +782,10 @@ int br_mrp_set_in_role(struct net_bridge *br, struct br_mrp_in_role *role)
+ 	mrp->in_id = role->in_id;
  
--	return err;
-+	return br_mrp_switchdev_port_obj(br, &test.obj, interval != 0);
- }
- 
- int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
-@@ -177,14 +219,11 @@ int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
- 		.id = SWITCHDEV_ATTR_ID_MRP_PORT_STATE,
- 		.u.mrp_port_state = state,
- 	};
--	int err;
- 
--	err = switchdev_port_attr_set(p->dev, &attr);
--	if (err && err != -EOPNOTSUPP)
--		br_warn(p->br, "error setting offload MRP state on port %u(%s)\n",
--			(unsigned int)p->port_no, p->dev->name);
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return 0;
- 
--	return err;
-+	return switchdev_port_attr_set(p->dev, &attr);
- }
- 
- int br_mrp_port_switchdev_set_role(struct net_bridge_port *p,
-@@ -195,11 +234,9 @@ int br_mrp_port_switchdev_set_role(struct net_bridge_port *p,
- 		.id = SWITCHDEV_ATTR_ID_MRP_PORT_ROLE,
- 		.u.mrp_port_role = role,
- 	};
--	int err;
- 
--	err = switchdev_port_attr_set(p->dev, &attr);
+ 	/* If there is an error just bailed out */
+-	err = br_mrp_switchdev_set_in_role(br, mrp, role->in_id,
+-					   role->ring_id, role->in_role);
 -	if (err && err != -EOPNOTSUPP)
 -		return err;
-+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
-+		return 0;
++	support = br_mrp_switchdev_set_in_role(br, mrp, role->in_id,
++					       role->ring_id, role->in_role);
++	if (support == BR_MRP_NONE)
++		return -EOPNOTSUPP;
  
--	return 0;
-+	return switchdev_port_attr_set(p->dev, &attr);
+ 	/* Now detect if the HW actually applied the role or not. If the HW
+ 	 * applied the role it means that the SW will not to do those operations
+@@ -788,7 +793,7 @@ int br_mrp_set_in_role(struct net_bridge *br, struct br_mrp_in_role *role)
+ 	 * SW when interconnect ring is open, but if the is not pushed to the HW
+ 	 * the SW will need to detect when the interconnect ring is open.
+ 	 */
+-	mrp->in_role_offloaded = err == -EOPNOTSUPP ? 0 : 1;
++	mrp->in_role_offloaded = support == BR_MRP_SW ? 0 : 1;
+ 
+ 	return 0;
  }
-diff --git a/net/bridge/br_private_mrp.h b/net/bridge/br_private_mrp.h
-index 31e666ae6955..e941dad398cf 100644
---- a/net/bridge/br_private_mrp.h
-+++ b/net/bridge/br_private_mrp.h
-@@ -79,24 +79,28 @@ int br_mrp_start_in_test(struct net_bridge *br,
- /* br_mrp_switchdev.c */
- int br_mrp_switchdev_add(struct net_bridge *br, struct br_mrp *mrp);
- int br_mrp_switchdev_del(struct net_bridge *br, struct br_mrp *mrp);
--int br_mrp_switchdev_set_ring_role(struct net_bridge *br, struct br_mrp *mrp,
--				   enum br_mrp_ring_role_type role);
-+enum br_mrp_hw_support
-+br_mrp_switchdev_set_ring_role(struct net_bridge *br, struct br_mrp *mrp,
-+			       enum br_mrp_ring_role_type role);
- int br_mrp_switchdev_set_ring_state(struct net_bridge *br, struct br_mrp *mrp,
- 				    enum br_mrp_ring_state_type state);
--int br_mrp_switchdev_send_ring_test(struct net_bridge *br, struct br_mrp *mrp,
--				    u32 interval, u8 max_miss, u32 period,
--				    bool monitor);
-+enum br_mrp_hw_support
-+br_mrp_switchdev_send_ring_test(struct net_bridge *br, struct br_mrp *mrp,
-+				u32 interval, u8 max_miss, u32 period,
-+				bool monitor);
- int br_mrp_port_switchdev_set_state(struct net_bridge_port *p,
- 				    enum br_mrp_port_state_type state);
- int br_mrp_port_switchdev_set_role(struct net_bridge_port *p,
- 				   enum br_mrp_port_role_type role);
--int br_mrp_switchdev_set_in_role(struct net_bridge *br, struct br_mrp *mrp,
--				 u16 in_id, u32 ring_id,
--				 enum br_mrp_in_role_type role);
-+enum br_mrp_hw_support
-+br_mrp_switchdev_set_in_role(struct net_bridge *br, struct br_mrp *mrp,
-+			     u16 in_id, u32 ring_id,
-+			     enum br_mrp_in_role_type role);
- int br_mrp_switchdev_set_in_state(struct net_bridge *br, struct br_mrp *mrp,
- 				  enum br_mrp_in_state_type state);
--int br_mrp_switchdev_send_in_test(struct net_bridge *br, struct br_mrp *mrp,
--				  u32 interval, u8 max_miss, u32 period);
-+enum br_mrp_hw_support
-+br_mrp_switchdev_send_in_test(struct net_bridge *br, struct br_mrp *mrp,
-+			      u32 interval, u8 max_miss, u32 period);
+@@ -801,6 +806,7 @@ int br_mrp_start_in_test(struct net_bridge *br,
+ 			 struct br_mrp_start_in_test *in_test)
+ {
+ 	struct br_mrp *mrp = br_mrp_find_in_id(br, in_test->in_id);
++	enum br_mrp_hw_support support;
  
- /* br_mrp_netlink.c  */
- int br_mrp_ring_port_open(struct net_device *dev, u8 loc);
+ 	if (!mrp)
+ 		return -EINVAL;
+@@ -811,8 +817,13 @@ int br_mrp_start_in_test(struct net_bridge *br,
+ 	/* Try to push it to the HW and if it fails then continue with SW
+ 	 * implementation and if that also fails then return error.
+ 	 */
+-	if (!br_mrp_switchdev_send_in_test(br, mrp, in_test->interval,
+-					   in_test->max_miss, in_test->period))
++	support =  br_mrp_switchdev_send_in_test(br, mrp, in_test->interval,
++						 in_test->max_miss,
++						 in_test->period);
++	if (support == BR_MRP_NONE)
++		return -EOPNOTSUPP;
++
++	if (support == BR_MRP_HW)
+ 		return 0;
+ 
+ 	mrp->in_test_interval = in_test->interval;
 -- 
 2.27.0
 
