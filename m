@@ -2,93 +2,173 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6718306B99
-	for <lists.bridge@lfdr.de>; Thu, 28 Jan 2021 04:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBD8307255
+	for <lists.bridge@lfdr.de>; Thu, 28 Jan 2021 10:12:51 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id A792686216;
-	Thu, 28 Jan 2021 03:27:42 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id AF2A6864D1;
+	Thu, 28 Jan 2021 09:12:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id s_gEtriGB-jv; Thu, 28 Jan 2021 03:27:42 +0000 (UTC)
+	with ESMTP id pqzVWjk-PE4j; Thu, 28 Jan 2021 09:12:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 3DC58862C7;
-	Thu, 28 Jan 2021 03:27:42 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 2F76C86287;
+	Thu, 28 Jan 2021 09:12:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 20FC0C013A;
-	Thu, 28 Jan 2021 03:27:42 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F28ECC013A;
+	Thu, 28 Jan 2021 09:12:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E0B2EC013A
- for <bridge@lists.linux-foundation.org>; Thu, 28 Jan 2021 03:27:40 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DEE8EC013A
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Jan 2021 09:12:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id CEEFD872EC
- for <bridge@lists.linux-foundation.org>; Thu, 28 Jan 2021 03:27:40 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id C4093864DF
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Jan 2021 09:12:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id QjLNTLucb96j for <bridge@lists.linux-foundation.org>;
- Thu, 28 Jan 2021 03:27:40 +0000 (UTC)
+ with ESMTP id iEsy23K2fJjv for <bridge@lists.linux-foundation.org>;
+ Thu, 28 Jan 2021 09:12:43 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
- [209.85.216.51])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 21EEB87287
- for <bridge@lists.linux-foundation.org>; Thu, 28 Jan 2021 03:27:40 +0000 (UTC)
-Received: by mail-pj1-f51.google.com with SMTP id e9so3451209pjj.0
- for <bridge@lists.linux-foundation.org>; Wed, 27 Jan 2021 19:27:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=PiWPUkYWirALNH3srwHMZyB8M+2z39u4PPSrRrniMj0=;
- b=X9Cz6XO/3EAt6MSawZAW8HJBYaEM3CpAF7LwXY/bUY7Xq5iE5bCtpKvVE81jnuRH6M
- YmF5wPFW0p3/cAq0kieYeXBKrHtHbWKU0VTuR8d1Ao39E4XAWb6defdNh7J81/3kuhdG
- lK8Lor1+q+VO4qcGqmPMVTbEOSj8lXw+t1ueLMTbkt3XWgmCVKSpjxLZS/x4fgccUokQ
- 9qLVfvH+SlkxIU7EeJX0u0UvUVVZPMgVK6/pG0DhwOu0VryYdKhJE+dKl61nknpqywQm
- lTh8cBJm5bnEvfwAVQm92rwQjjxs3ObZD6n8sQpzQ+/VhovFNLwA0hJLkZ2itcWv7Hm1
- UpOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=PiWPUkYWirALNH3srwHMZyB8M+2z39u4PPSrRrniMj0=;
- b=AMGjIhgeYiK/3ns2wiOqkFeVHAnSvBzNsSYuSvwzrFvMS6HuMEqj2YYY3XKJklOYXw
- cbgk9po4lhnCZgziMZDbncZY9wc5GbObRCI6i+wPM2Vq9RKtVMzvQfRKEhcLURHBoC5N
- 9bZPW+L7pIRkjw2kK8Fs8TTfyttXkA6f1BdGLzbSOcoccLoj8+laawms/dDoFOk1KsGl
- U4EaA+y+EjOiGEmIl69hr31fOUWkox231BCqi7LUaj+TCusa8ZDD6NKBkg2ebT+py60M
- Spdmlu5A5tU/QupPZgcf4lcR+ZiyVsIau5qU7bthK2NZLWDqpBNr8naboCj130rPnEyF
- 5jUw==
-X-Gm-Message-State: AOAM533epv5q+n4DqitvqRE0ql9GRkFZgv/LOpsrTCSXYf2tHk9EorkV
- hGbjpQQ+kMAejBL+zqvtev8=
-X-Google-Smtp-Source: ABdhPJw/2W00ba/U40TWiTwq5ieSy7TnZb5SweiEtrwYu2If1gLuoX+oapeK0QxA+1JjGtn3QPUicw==
-X-Received: by 2002:a17:902:12c:b029:e1:aac:e6f4 with SMTP id
- 41-20020a170902012cb02900e10aace6f4mr4312055plb.26.1611804459784; 
- Wed, 27 Jan 2021 19:27:39 -0800 (PST)
-Received: from Leo-laptop-t470s ([209.132.188.80])
- by smtp.gmail.com with ESMTPSA id s21sm3329751pjz.13.2021.01.27.19.27.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 Jan 2021 19:27:38 -0800 (PST)
-Date: Thu, 28 Jan 2021 11:27:26 +0800
-From: Hangbin Liu <liuhangbin@gmail.com>
-To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <20210128032726.GP1421720@Leo-laptop-t470s>
-References: <20210126040949.3130937-1-liuhangbin@gmail.com>
- <8a34f089-204f-aeb1-afc7-26ccc06419eb@nvidia.com>
- <20210126132448.GN1421720@Leo-laptop-t470s>
- <90df4fe6-fcc5-f59a-c89c-6f596443af4d@nvidia.com>
- <0b5741b6-48c0-0c34-aed8-257f3e203ac5@nvidia.com>
- <20210127041521.GO1421720@Leo-laptop-t470s>
- <e22d0eea-4236-5916-cc42-532a3dfcc9dd@nvidia.com>
+Received: from hqnvemgate26.nvidia.com (hqnvemgate26.nvidia.com
+ [216.228.121.65])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id E24D986BC5
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Jan 2021 09:12:43 +0000 (UTC)
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B6012800b0001>; Thu, 28 Jan 2021 01:12:43 -0800
+Received: from HKMAIL104.nvidia.com (10.18.16.13) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 28 Jan
+ 2021 09:12:42 +0000
+Received: from HKMAIL104.nvidia.com (10.18.16.13) by HKMAIL104.nvidia.com
+ (10.18.16.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 28 Jan
+ 2021 09:12:40 +0000
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by HKMAIL104.nvidia.com (10.18.16.13) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Thu, 28 Jan 2021 09:12:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GS3TtnRqGiGIfBPCos1/+VJ7mlw+Hmmj0IJj9hq11LEK2nRE0APZJ92dnM/1fr1WLTL9DaLF96Q23BHoaxoU6d8zU0RR6M/isIjAUEPfJfqw7nWNL3hnA2Uu8NvWQeMmDFPUyCvebKBXkW2/cawZQxqEGM3Cd4xiuR1jLXBGM/B1K1JisjBvi4rQZzz2hJ1MiAnJ89jgLWOyzpK7UdODecacDwhlI0OHXFBsEe8pLiVUoZyTGgeJ/Mae2m0pxwm9WYVAuz+Er7J7CMlR8l0yEWDQxPzkQKnrBfZbBzxsFYketKZVGya4o3zuW0wTo7Gex8Ekys4S8GnC61w7DqUb9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6434+fx3NeTTQzriDT1tL1g4EM7i187MlZg28mNBPeE=;
+ b=IkphNmc/s++vi3wSFrDkK+VEloVwMAbt5KeeP+GcM24nZE5tPw2g0EkM7BRQK7hvdcAj4hkNpxp+OYzIuONPho1uu608w2vuTMMYa3cvxiuJltRz00ONg2qhifafrRu+lG+h2gycCadQsTDDwwTglmUX6tduDOTMVOWE30m6b/6aofdRSw2XRTc5yVTK0jvaMRt9i8HYDOeSraD0xRyBu/N/6oIsZTUqai4g2/QzfYGvq0szCbDPQH2aQFskeDqABptaPUnOjHUQfE+jf5RuH/ZEezRFGNnLGOx9yGusdqxdQQCRlEv6B47VJHGzJNX7QLiREiuPhLo2owfWjSefFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Authentication-Results: davemloft.net; dkim=none (message not signed)
+ header.d=none;davemloft.net; dmarc=none action=none header.from=nvidia.com;
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
+ by DM6PR12MB3052.namprd12.prod.outlook.com (2603:10b6:5:11e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.15; Thu, 28 Jan
+ 2021 09:12:38 +0000
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::edba:d7b5:bd18:5704]) by DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::edba:d7b5:bd18:5704%4]) with mapi id 15.20.3805.018; Thu, 28 Jan 2021
+ 09:12:38 +0000
+To: Jakub Kicinski <kuba@kernel.org>, Nikolay Aleksandrov <razor@blackwall.org>
+References: <20210126093533.441338-1-razor@blackwall.org>
+ <20210127174226.4d29f454@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <046fad19-2f44-21d2-82b9-feb1fd62b068@nvidia.com>
+Date: Thu, 28 Jan 2021 11:12:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
+In-Reply-To: <20210127174226.4d29f454@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: ZR0P278CA0079.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:22::12) To DM6PR12MB4403.namprd12.prod.outlook.com
+ (2603:10b6:5:2ab::24)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e22d0eea-4236-5916-cc42-532a3dfcc9dd@nvidia.com>
-Cc: Ivan Vecera <ivecera@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
- netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Jarod Wilson <jarod@redhat.com>, Ido Schimmel <idosch@idosch.org>,
- Roopa Prabhu <roopa@nvidia.com>, "David S . Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next] bridge: Propagate NETDEV_NOTIFY_PEERS
-	notifier
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.241.50] (213.179.129.39) by
+ ZR0P278CA0079.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:22::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3805.18 via Frontend Transport; Thu, 28 Jan 2021 09:12:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5a797acd-239c-4674-68ae-08d8c36cdb5e
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3052:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3052A8410554A51FFE415004DFBA9@DM6PR12MB3052.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: I2IgscDDd97HKvqo4SGprysOzHcbkvNnVZnCAhmwSYnzimmWbRrnGEe4wUngSgHgHQ1HfFsmwANdvUJLtZS1MWeFX257VJi2GgeypKyYkmngAzAY0WdYOR9psDGAO1a3x+DECFqIdn5tgNnobybC79ClnYI/iSH133ZHVmou+HkARJHfPyCtnWnH+nGKm+PQk2sWxwONsaLmthNCV4ywLo1hVKJII3uULtcdhfk4bgau7GkvrdOKuGOX771WhiiQPWyI2hbzMRLT31425NesWOLQZDx2NM1c1DCI/7KTOMNHzncNFiEeJ+4GiTLC8LlWQdDPODqPxounW6Q6mbCCUdoemNjT+mvR0L5R96PwmaxDqMGnXdn3Bv5qDTE9XicA6Xy1a9+8IpL4HMTpMkzwVWQ6RxzEMlW3i9L5+bprOtWlhgb2lXINTs9y0OHFeGJVRgBfr84OYPugC8ybtirpnwZ1xC9cUbzTmafAAh589YlOgOqr2djccso6KqBWsrvBZVor0x7OMq6dgMLn0DZNge0ER2zeD9YHPQ1+eMt6n5pCx1KmQpoIIdbL3Ym5/FPYoD4LJoucz7aRrZAj0a+85uWbQqTpqNDxHHCmNvEKH6Y=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(376002)(136003)(366004)(346002)(396003)(31686004)(31696002)(53546011)(2616005)(66476007)(6666004)(83380400001)(8936002)(36756003)(16526019)(5660300002)(26005)(4326008)(8676002)(66556008)(316002)(478600001)(66946007)(2906002)(6486002)(956004)(86362001)(186003)(16576012)(110136005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?SGRad2hNbWtHSGhXSDUzZ0JvU25xanV5UGhwNW9QZ1BYeVpLTE50c1BPZWxw?=
+ =?utf-8?B?aVFwK1RTVmUzdDFGcTNQMzVXSno3N2Y5SHl0dUxzQ3Qya2hjbDhsVHN2RzR4?=
+ =?utf-8?B?cTRNMXRkNmpMajBnY01vaTFKeTNCUmpXTnQ0VUYyYUtSUTF4K1I2dC9BajFl?=
+ =?utf-8?B?bWlKa01uNzFhT244ZUxvbk42N2hJYjVVVlFrazc3eWtqckhOWVQzQkhIdDJY?=
+ =?utf-8?B?a0E3MEdYOFBZZGhobUlqeUxad2xUL21qWS82bHJlUnNkdm1BOG96UG5pRmJw?=
+ =?utf-8?B?SjBmR0xYWFhadE9RaHoxRWd3OHhDYzBTbVVhdk50RlFFRlpkdnFQenlSU2c5?=
+ =?utf-8?B?SWxkdnZLMU16eDU1QkwzU2ZVVnNxTnR6TmVUNzJRMkhva0F2RXloeHZHN0JZ?=
+ =?utf-8?B?YStnTnlUTmRoMURITGdUZzQxM0cyQ2xVQmxFUjlNVkRDNjFKYk9JT2h2TDVG?=
+ =?utf-8?B?TnZQMHM0N1Y0OUwrcUdWa2tpZUNSeHQ5Y3J6MmJjdko3UjBkbFlRN3c3WEdB?=
+ =?utf-8?B?d2tDVU90N0MrWDRyYXlYMjNwbW5zRjhzZHJWZEl3QnViRTUxdis5MllLOHRn?=
+ =?utf-8?B?d0RGZXZKZUFlNDRqWjNwcXdXT1VSeEY5T0s0djBvcVF2ZVN5TWM5TVFaOFI5?=
+ =?utf-8?B?YkxLYlVJZ3EzdERRU2dYZDFMRW5tYlc5Q2ZkUm5RSEJDVWRuSC9sRzQ5ai9N?=
+ =?utf-8?B?L3hhaGY5cVYyVzBCbDZycitOWHN6U3pKaTNnblFRSUNNN2dpY253S1Rkazk5?=
+ =?utf-8?B?Y0gxYUVveW9RZzFOQW4za0dIVFlFZmVXZ1ozS0RrbnZJNm1jdlZpb0tHWUpp?=
+ =?utf-8?B?Nk5Ta0ZuRFd3N2VudUhYSUJYNlBqKy84WHlUUnNqYTAzNjA3YlpDdFlXSGZY?=
+ =?utf-8?B?Rnk1d1I1OStqby9VSWhGS2xPUTRpODUwakdPR1l0alRyMzNwQnhkR0kyR1ZY?=
+ =?utf-8?B?SWtKeGtTZUhIcXU5Q1JhUHpmQmgwRnE4ak1PZU83Y0Z0MTJVenlqVk1yWllT?=
+ =?utf-8?B?aFhCNFNVd3lmWUo1c3NBaHQxZGRjREthSW5aTE9LUXc3bXhZR1JibFZtL3VU?=
+ =?utf-8?B?RkY0Y3huQURJUXdubjVRTXFPdzVWR3NIM3dxUTdvNmVibmhPd0MvYVplYnZ1?=
+ =?utf-8?B?ZGhFRncwSkdXRW9UK2NyL0hvTEtSWFB6QzgrK25sQWR0NHJWS1EzNllwalNC?=
+ =?utf-8?B?aVJCc3htQ29hL2cydHBDL3MzaXoxSkdhblVhY1dFQkR1cGN3VFFLMXJQTzRP?=
+ =?utf-8?B?VitCUkQwSlVlVlRvaThPbmhuYzF4Nm1LRTBDWE1HbHluMHZVWDJXMnV3Yndi?=
+ =?utf-8?B?cHhGWjUzVmtqRFhUNkhUYmlxYVF5Ymxpdnl6d1VjKzFWWmgveml6YW5ESTZT?=
+ =?utf-8?B?cDJLdXN4dkw3dVdwZEJydDI3aG0ydlBocWZsZ1RGT0JoSUt1UGNwRFBHSkZD?=
+ =?utf-8?Q?EnjGyhtu?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a797acd-239c-4674-68ae-08d8c36cdb5e
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2021 09:12:37.9974 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9YpQs+/K50LfhtU4csPUIseT5lWQvP6RvXJzDpcpvYm7SuPm9GS34QIWZkqLvmBq00zgVoEEfhnk/b1xm1mxfQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3052
+X-OriginatorOrg: Nvidia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1611825163; bh=6434+fx3NeTTQzriDT1tL1g4EM7i187MlZg28mNBPeE=;
+ h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
+ Authentication-Results:Subject:To:CC:References:From:Message-ID:
+ Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
+ Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
+ MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
+ X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
+ X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
+ X-Microsoft-Antispam-PRVS:X-MS-Oob-TLC-OOBClassifiers:
+ X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
+ X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
+ X-MS-Exchange-AntiSpam-MessageData:
+ X-MS-Exchange-CrossTenant-Network-Message-Id:
+ X-MS-Exchange-CrossTenant-AuthSource:
+ X-MS-Exchange-CrossTenant-AuthAs:
+ X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+ X-MS-Exchange-CrossTenant-FromEntityHeader:
+ X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+ X-MS-Exchange-CrossTenant-UserPrincipalName:
+ X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+ b=YnZStjHaf+6bzVPdmJA4QAEgq+srZgxy98AjqLhZU4UtWyYpBSj/mvo1UNkzeCFR0
+ 68FcXw+3rTHfwkoMTjdbDrbFYtPyN4g+/HDJa+4t8vcTn/FK/I4SfuF5aIbgnCutIR
+ KSfQIHHcQ9fMlYcnzVbyNsqsbfOuSP5u5rDdxWr37ktzlUCsFNt0r8zCJurAsgwznG
+ NtAPhUiflMbciWQMm6jY5F2zalC1Nc6EW7k3N/NgIEZC0zgXvxZ47jI/8zXv74+fSz
+ aqDIaLRYxYn1KbtPDf1ayfq1vk5cYvo+gra/dRpWZ7gC0Z8m/5Z30RhQJqtY882Ccn
+ XU2uge+M1FDsQ==
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ davem@davemloft.net, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next v2 0/2] net: bridge: multicast:
+ per-port EHT hosts limit
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -103,35 +183,36 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Jan 27, 2021 at 11:43:30AM +0200, Nikolay Aleksandrov wrote:
-> > For IGMP, although you said they are different. In my understanding, when
-> > bridge mac changed, we need to re-join multicast group, while a gratuitous
-> > ARP is also needed. I couldn't find a reason why IGMP message is OK but GARP
-> > is not.
-> > 
+On 28/01/2021 03:42, Jakub Kicinski wrote:
+> On Tue, 26 Jan 2021 11:35:31 +0200 Nikolay Aleksandrov wrote:
+>> From: Nikolay Aleksandrov <nikolay@nvidia.com>
+>>
+>> Hi,
+>> This set adds a simple configurable per-port EHT tracked hosts limit.
+>> Patch 01 adds a default limit of 512 tracked hosts per-port, since the EHT
+>> changes are still only in net-next that shouldn't be a problem. Then
+>> patch 02 adds the ability to configure and retrieve the hosts limit
+>> and to retrieve the current number of tracked hosts per port.
+>> Let's be on the safe side and limit the number of tracked hosts by
+>> default while allowing the user to increase that limit if needed.
 > 
-> I think that's needed more because of port changing rather than mac changing.
-> Switches need to be updated if the port has changed, all of that is already handled
-> correctly by the bond. And I also meant that mcast is handled very differently in
-> the bridge, usually you'd have snooping enabled.
+> Applied, thanks!
 > 
-> The patch below isn't correct and will actually break some cases when bonding
-> flaps ports and propagates NETDEV_RESEND_IGMP with a bridge on top.
+> I'm curious that you add those per-port sysfs files, is this a matter
+> of policy for the bridge? Seems a bit like a waste of memory at this
+> point.
+> 
 
-Hi Nikolay,
+Indeed, that's how historically new port and bridge options are added.
+They're all exposed via sysfs. I wonder if we should just draw the line
+and continue with netlink-only attributes. Perhaps we should add a comment
+about it for anyone adding new ones.
 
-I'm little curious. bond/team device will resend IGMP as their MAC address changed.
+Since this is in net-next I can send a follow up to drop the sysfs part
+and another to add that comment.
 
-- bond_resend_igmp_join_requests_delayed()
-  - call_netdevice_notifiers(NETDEV_RESEND_IGMP, bond->dev);
-- team_mcast_rejoin_work()
-  - call_netdevice_notifiers(NETDEV_RESEND_IGMP, team->dev);
+WDYT?
 
-What's the purpose that bridge resend IGMP if it's mac address not changed?
+Cheers,
+ Nik
 
-I mean, when there is a bridge on top of bond/team, when bond/team flap ports,
-bond/team will re-send IGMP and bridge just need to forward it. bridge doesn't
-need to re-send the IGMP itself if it's MAC address not changed.
-
-Thanks
-Hangbin
