@@ -1,141 +1,177 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3A930C2F3
-	for <lists.bridge@lfdr.de>; Tue,  2 Feb 2021 16:08:24 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 170DC20433;
-	Tue,  2 Feb 2021 15:08:23 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JlRe2ZfFI03n; Tue,  2 Feb 2021 15:08:21 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id BC5C120341;
-	Tue,  2 Feb 2021 15:08:21 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A3E82C013A;
-	Tue,  2 Feb 2021 15:08:21 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C22C1C013A
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 15:08:19 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C9830C11E
+	for <lists.bridge@lfdr.de>; Tue,  2 Feb 2021 15:16:27 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id B0F0685A76
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 15:08:19 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 8942885B3D;
+	Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Mche_mjIgPgc; Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 19B8785B09;
+	Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 09BCCC013A;
+	Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D4D3CC013A
+ for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by whitealder.osuosl.org (Postfix) with ESMTP id B965785F96
+ for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xYwNCwoKIK7q for <bridge@lists.linux-foundation.org>;
- Tue,  2 Feb 2021 15:08:15 +0000 (UTC)
-X-Greylist: delayed 00:32:48 by SQLgrey-1.7.6
-Received: from gateway20.websitewelcome.com (gateway20.websitewelcome.com
- [192.185.4.169])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id F332F85BD0
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 15:08:12 +0000 (UTC)
-Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
- by gateway20.websitewelcome.com (Postfix) with ESMTP id 23AE4400C4F17
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 08:00:35 -0600 (CST)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id 6wLDlOJ6PDT646wLDlGZTI; Tue, 02 Feb 2021 08:07:39 -0600
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=nOm3cT2EI0nT8+C3V1J7uHhdzivtBVpP5E91dQPGljo=; b=z3Btq0dUhw3yVPSTkGqN5Qi5Vv
- LbPaFSlB+OSKkji0pd3h7Vb4TtTZnlIalSuG9KOXrEFMTdpB+0wfbMVaKKMOT54IqaB2GovYNhw+m
- cLVL2zif0TVZIbKkel8HUhngO8V2ISm0t6+/9THOvT/sOxE4hmy8w4mIaCibPj7qbREN0MrhN4JB9
- 52KcsLqN+vZ1HztFvGNROUzwiKsK7dx5CLSJ8jae71DgtAUqKDfdcGKLvPXTKpEzNUChmPuFUXKTD
- WryOTjlut3IdJ+zvx6jJvWiOTqTIf9Au27TaTWKVuSo9A/nhzL9Ra2Bzb+BaUTV6qG3V4iknO1JW3
- hR9YtGhA==;
-Received: from 187-162-31-110.static.axtel.net ([187.162.31.110]:37630
- helo=[192.168.15.8])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <gustavo@embeddedor.com>)
- id 1l6wLD-001RKf-9s; Tue, 02 Feb 2021 08:07:39 -0600
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
+ with ESMTP id irO1Le9PInSx for <bridge@lists.linux-foundation.org>;
+ Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 34AA685BBD
+ for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B60195eb60000>; Tue, 02 Feb 2021 06:16:22 -0800
+Received: from HKMAIL104.nvidia.com (10.18.16.13) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
+ 2021 14:16:21 +0000
+Received: from HKMAIL102.nvidia.com (10.18.16.11) by HKMAIL104.nvidia.com
+ (10.18.16.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
+ 2021 14:16:19 +0000
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.103)
+ by HKMAIL102.nvidia.com (10.18.16.11) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Tue, 2 Feb 2021 14:16:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K02h0+/QlBH2C+y6URZbvNIVaL8MCthBnfAvPRXD8ujv3XNv9JVgTi3auap2UM9FmIE3uArQTpPXwU4V5CyQgMqP9XFhppLiNgE1SJ/0Av4lSw70x2+12WmLoUZq9xu1kYeFwR1Xue+jjXLzyXrgJiFqyDJ1By09TCKWUj8k5OoB/VBJuGwdLr1LwSbRVdRjTUrl1aJOzolfDfWvL8w2OiJHhVK3HBws3VqdBmcz16u1AmV/PR1dzgR0Xv/ouaYE3NFFQt2XyhyLg2kBR5aJ9Fc4e+OaFlqNZtMK/2OvdFSfwJNpJR66ywiR+AybLd4n4DqM0qn8YRe8FWWWQ1Lk6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JsL7qfg+zKynB5Z7OSyECdPUdFbLmsetrFPFxTBwbOU=;
+ b=WlZeIMFLkdQcPEyA7/29M9CxFbGTg5144ti8KlbStpwCtshg8vhlmo5gGMQ4p9VTkoBu+ABRaixTsXhD3hqbGYgMsYWtFLvzm1TVexAU8FSEUsnPykpdXK75+c7LjDbNGq5H08bPDyuwgJTNfGL09VKsNnVpLfGMzIXVywFcekU0hDD6puOAqtQObsUNEHVg24X77dZ0WoFzRQTXUfDvvm9jI17YMskCvur+WZqUz4P/iRHkdc+mdYRR1Nh08jzOEPeh+gkoIcoMOyZfD+STdIwTZi7J5xsmQ3fHdjO302X4vaR1nKdt2V+9AUMpJjrmboDqsyIv7X/D3mAo3H2zdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
+ by DM5PR12MB1292.namprd12.prod.outlook.com (2603:10b6:3:73::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3805.24; Tue, 2 Feb 2021 14:16:17 +0000
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::edba:d7b5:bd18:5704]) by DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::edba:d7b5:bd18:5704%4]) with mapi id 15.20.3805.028; Tue, 2 Feb 2021
+ 14:16:17 +0000
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>, Roopa Prabhu
+ <roopa@nvidia.com>, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski
+ <kuba@kernel.org>
 References: <cover.1605896059.git.gustavoars@kernel.org>
  <44b2e50d345f1319071a53fb191ac0a0cf3fcf37.1605896060.git.gustavoars@kernel.org>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Autocrypt: addr=gustavo@embeddedor.com; keydata=
- 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
- VtSixD1uOgytAP7RWS474w==
-Message-ID: <456cb178-5a6a-ab3b-3cc9-16ca84b5a251@embeddedor.com>
-Date: Tue, 2 Feb 2021 08:07:38 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <143dd4a9-b0b7-36a6-ee33-0b5cb024c1e6@nvidia.com>
+Date: Tue, 2 Feb 2021 16:16:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 In-Reply-To: <44b2e50d345f1319071a53fb191ac0a0cf3fcf37.1605896060.git.gustavoars@kernel.org>
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.linux-foundation.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 187.162.31.110
-X-Source-L: No
-X-Exim-ID: 1l6wLD-001RKf-9s
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 187-162-31-110.static.axtel.net ([192.168.15.8])
- [187.162.31.110]:37630
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 44
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: GVAP278CA0001.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:710:20::11) To DM6PR12MB4403.namprd12.prod.outlook.com
+ (2603:10b6:5:2ab::24)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.240.157] (213.179.129.39) by
+ GVAP278CA0001.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:20::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3805.16 via Frontend Transport; Tue, 2 Feb 2021 14:16:14 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: aa8eb566-773c-4b78-7806-08d8c7851aee
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1292:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB12926F7E8FF3D5F2A9C3FBE7DFB59@DM5PR12MB1292.namprd12.prod.outlook.com>
+X-Header: ProcessedBy-CMR-outbound
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vN7Y1w/sAd0xWrNkp/JAY40yRr4Kighl8AaoOZtuTLBOjo6GNRwLE3Cxf9dpsVjfsqfdI51R4tw6s1gBpoPPRQCrpH3h3iR9Z1MZtrF1c/Kr0+3UrSWzmDi7ltj4+2LlMUAt5x3VMcn0YBI4gywEL/dLE+YRejmNGkMFBpTSFkiz7FlEBomHmZ02A/9X6hoPtHCNtOJz6nm7L/Zygb5zOpEVJzOgiYA45aOmCQINFvUDvc+cdEJqkBPUyHsZuUsfkK59RA47qlgOCGhdYxISKIT7+Vlc6OAwf9gypoRA3IeNRwJvBJVRaDEhbWto2PKvFRnkIyHnRHQ84qgAh5erROo1FcfFL6Cv+RKa1MBGd7XVs842pZaJNKsOTgsd/cYlj5Zsk/1XBDpt4Kv+EnZYVVh64OP8JaZzhEr1GJiC7aZlvKFy4+54kLRIBF6lc7k0W/+CvqRDArxVyT662DS2ElqTMbZl+GckJ/di3rjtbRSmns8vUCFo/RM91aG+j7qobKaRENyaISdCxVSWqm/Q25gzrNGmYndoHnZhXLSOjKMJ9afk6t4T8usBrsd/1d6niXzWI8eDyvRc6ejx/utyeIPStwGUreGj3Pdy7uP95tgad+7NMdC0219sHB2mFIJe64BDTY9gPfF4tXdRtLJP3Ujc0+GGKuhjIrvIA3Ixos/e3PwjzLNSH6Io9FBpHz0Y
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(39860400002)(396003)(376002)(136003)(366004)(110136005)(86362001)(2906002)(53546011)(6486002)(66946007)(8936002)(83380400001)(478600001)(2616005)(4744005)(66476007)(16576012)(6666004)(316002)(16526019)(956004)(66556008)(26005)(186003)(966005)(4326008)(31696002)(31686004)(5660300002)(36756003)(8676002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?MXk5TDhBQUZKbHR4YWJFVVhYUkpOSjE4Tlp4MVVUbnFCeGxiSFNUdGpPNlUv?=
+ =?utf-8?B?Y3lFOVd4dmwzVlJmam1MTFlmWFlieHhNQ01BYzhUVTBZYjlRcEdRa2dUL1FY?=
+ =?utf-8?B?SlBITTZCTXBsSU5qQ0hLaTB1elQrVDZ5QnJqSVlyRkNtejFJUDVSRjZLRmha?=
+ =?utf-8?B?T0dML0lVS05pZytXeC9iYzdtTEw3TDhXanFmRVZQcnhyTkN4VHdRRjhQbmZV?=
+ =?utf-8?B?OEROYUhqMzdBS2dmUzdCbWJOSkJVa1B4ejlYQ0NWNnRHakNPOEYvZDBJalVh?=
+ =?utf-8?B?ZmJkRkVGdTlzaThpUVgzL3JyNGtjUTJvNCtEU0lManBxU2YyTCtxUGV5Tlgy?=
+ =?utf-8?B?ZTdleXBCR0JPUVJmd2FjOFZEQlB5RGt5a2hXTmY5ZmR0dFpGV0RqSTk4RXY1?=
+ =?utf-8?B?NWVkUzBIc0MxUUM3WjRWMTZHOTQ0RzNFeGpYZTZpVUhLbVdIUDVmaWNxMmpN?=
+ =?utf-8?B?M3krMnZINEgzd2N1Ny9tam8vcWJodGM3TVlKRytVSm5JZStheUQ2QzRMeE9i?=
+ =?utf-8?B?Tm1PVEtJQmI1dmNyQkU1WFpmWkRxczhtU1QvVVNSSnEyeHQrcWRZbFhZY1hq?=
+ =?utf-8?B?dk42N3dqY1dJaXN5OVZsck9KNzZLNmNYSTlqdXhWSGpTR0dRTWo4enViOEc2?=
+ =?utf-8?B?czMySU1jK2pScm9aZmN2ZmQrVy9FRUpMRHBjM1hYbUFUMTd0L05LR0hNQTht?=
+ =?utf-8?B?bFZqZUNQNGZGd2pMN1R2QVlUN2UvL0dZMHBoSE91OGdwVk9JVVFLZjliaCsy?=
+ =?utf-8?B?NHAzVkpocDE4WGpxWTlTZ0trQ1dSMUh2eHdTbVdCbENWUDFtQWZsMGo5VFR3?=
+ =?utf-8?B?V2phb2dYalFlNi9EOC9IWGh1ckRZNklnWUF1clBlWlh3c3gxV1FXNTcxaUk5?=
+ =?utf-8?B?dXhrN3o1Tkk3aGVLMzdvVWpSVU1Gc3U4YlIxQU9xdGsrZE1sQ2JKUnJxZGNC?=
+ =?utf-8?B?eDBnd3N0bENpVnJKVXlGRjZkKzFsSWE0eHovWUd6SWJ6ZFZoVTNjSFFybHZo?=
+ =?utf-8?B?RHEzV1RyK09haEdvZnVwWFgvMCtGZzM5cFBqUEZCN0ljNEFWS0Y0bmFtMUps?=
+ =?utf-8?B?Qyt6d05rVHVhWnNGRnRSb3ZPU2J5c29OamE0QUE4MkFHYnk2RkJrUVVDZ1ZB?=
+ =?utf-8?B?MkwxSTYxYzBwUmxYU1k2M3R5MHN5akRzUlNPL0JQZUJsRnNtd2J6UkxRTHEx?=
+ =?utf-8?B?NkpCQTFRMHJ0VGRoVHlIc21YcG5Ic01GdEo3SkFyWERVaXBCN2RhbWlsWVhH?=
+ =?utf-8?B?NkI5MDMxQVIxRVBkQzRob0prSDY5NlZyeFBEK3pLNXpwRWlhSkRhb2t5OTkw?=
+ =?utf-8?B?NUJXMFM5T1ZMZGxLN1R2OVRvYlQvcXo5UFJlTjM4RERsUlg5dTY4Zitsczli?=
+ =?utf-8?B?TWk2NFFSVytzaGFGemxpRXVjRTF2OWVZSTFvS3BOZHpYTVd1SEt1M0dmZDdk?=
+ =?utf-8?B?eWdubXRUOUI5WVZFK0lrOVc3OFp4VkpPY1pFNVhXYnU1Qnh1ZHkrc0JYQUhu?=
+ =?utf-8?B?WlRlZE02RjFDdEg4SkRDanI4bFhWa0hXSE9Ib0xyV2RoWUJXR1I3NUxDLzZC?=
+ =?utf-8?B?WSt6V0pxc2dKb2k2a2RRMWNiaGYvY0dhaVBNWkF1TWh0WnJSUy9uMFFBeWw3?=
+ =?utf-8?B?MW5rUHlDRjR2WmFZWnFxMVZmS1lUdmVMVzkxSGNvWE9jazNaVnBIYnNiZUht?=
+ =?utf-8?B?UHlGRWVZNys2UHpLcTEvODJRMnR1ejIxbmhCTVZaSkZ0MnVXbnRtZnVHQ0li?=
+ =?utf-8?Q?bpr2x5sxl41U02dLOw3SsO4+aKFCefUIb/9ryeD?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa8eb566-773c-4b78-7806-08d8c7851aee
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2021 14:16:17.1748 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: abj8RM5kRWDPmVaVrKyQ+JLzpLtkTt8qn0s/npCaT3yI4pZkjIAxRX0uULmTWL+KwCzJPI2pSa8kPXwKcKkOww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1292
+X-OriginatorOrg: Nvidia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1612275382; bh=JsL7qfg+zKynB5Z7OSyECdPUdFbLmsetrFPFxTBwbOU=;
+ h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
+ Authentication-Results:Subject:To:CC:References:From:Message-ID:
+ Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
+ Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
+ MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
+ X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
+ X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
+ X-Microsoft-Antispam-PRVS:X-Header:X-MS-Oob-TLC-OOBClassifiers:
+ X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
+ X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
+ X-MS-Exchange-AntiSpam-MessageData:
+ X-MS-Exchange-CrossTenant-Network-Message-Id:
+ X-MS-Exchange-CrossTenant-AuthSource:
+ X-MS-Exchange-CrossTenant-AuthAs:
+ X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+ X-MS-Exchange-CrossTenant-FromEntityHeader:
+ X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+ X-MS-Exchange-CrossTenant-UserPrincipalName:
+ X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+ b=osREM9QiAR6Zy07bBDJYEdibzkxFUz/TZIhJNFQCyygvZ77yeuSnbMgu/APf14/W6
+ 8ZEVEDU9/bn6YriIVWf/ZeC7kYX9uf/ScDWf7bB9Zk9mkmHuM0AtS/O94sMYYzmeTk
+ Rh1Zwrx15O7Qgd2eUHFtjbOcLT+J75nk0UrTkh2xhdMWuw18wVnKavzE1FD/sWgTM3
+ V/sqB//G67azEHgJreq8ur9S88emD7VscZXO26CmXU2zmT2J//gYOEmFo+IwFBakiX
+ HcPYF4M5TLOGAD5mYJj5d+zVdIMqYGKL3YrfEl/SsuyohL1bhGqRtUsNvgUTW3dXHw
+ AxpCkKGmX53/Q==
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
 Subject: Re: [Bridge] [PATCH 106/141] net: bridge: Fix fall-through warnings
@@ -154,15 +190,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi all,
-
-Who can take this? :)
-
-Thanks
---
-Gustavo
-
-On 11/20/20 12:37, Gustavo A. R. Silva wrote:
+On 20/11/2020 20:37, Gustavo A. R. Silva wrote:
 > In preparation to enable -Wimplicit-fallthrough for Clang, fix a warning
 > by explicitly adding a break statement instead of letting the code fall
 > through to the next case.
@@ -186,3 +214,9 @@ On 11/20/20 12:37, Gustavo A. R. Silva wrote:
 >  		break;
 >  	}
 > 
+
+Somehow this hasn't hit my inbox, good thing I just got the reply and saw the
+patch. Anyway, thanks!
+
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+
