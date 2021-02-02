@@ -2,180 +2,68 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C9830C11E
-	for <lists.bridge@lfdr.de>; Tue,  2 Feb 2021 15:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0EC30CC2B
+	for <lists.bridge@lfdr.de>; Tue,  2 Feb 2021 20:50:40 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 8942885B3D;
-	Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id CDE0785F72;
+	Tue,  2 Feb 2021 19:50:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Mche_mjIgPgc; Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+	with ESMTP id i21WFDUyAoz5; Tue,  2 Feb 2021 19:50:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 19B8785B09;
-	Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id DE5C485F69;
+	Tue,  2 Feb 2021 19:50:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 09BCCC013A;
-	Tue,  2 Feb 2021 14:16:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CE713C1DA8;
+	Tue,  2 Feb 2021 19:50:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D4D3CC013A
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 87CA6C013A
+ for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 19:50:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id B965785F96
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 6E76C85F67
+ for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 19:50:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id irO1Le9PInSx for <bridge@lists.linux-foundation.org>;
- Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
+ with ESMTP id WRm_7PkBk9QC for <bridge@lists.linux-foundation.org>;
+ Tue,  2 Feb 2021 19:50:34 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
- [216.228.121.64])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 34AA685BBD
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 14:16:23 +0000 (UTC)
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B60195eb60000>; Tue, 02 Feb 2021 06:16:22 -0800
-Received: from HKMAIL104.nvidia.com (10.18.16.13) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
- 2021 14:16:21 +0000
-Received: from HKMAIL102.nvidia.com (10.18.16.11) by HKMAIL104.nvidia.com
- (10.18.16.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 2 Feb
- 2021 14:16:19 +0000
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.103)
- by HKMAIL102.nvidia.com (10.18.16.11) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3 via Frontend Transport; Tue, 2 Feb 2021 14:16:18 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K02h0+/QlBH2C+y6URZbvNIVaL8MCthBnfAvPRXD8ujv3XNv9JVgTi3auap2UM9FmIE3uArQTpPXwU4V5CyQgMqP9XFhppLiNgE1SJ/0Av4lSw70x2+12WmLoUZq9xu1kYeFwR1Xue+jjXLzyXrgJiFqyDJ1By09TCKWUj8k5OoB/VBJuGwdLr1LwSbRVdRjTUrl1aJOzolfDfWvL8w2OiJHhVK3HBws3VqdBmcz16u1AmV/PR1dzgR0Xv/ouaYE3NFFQt2XyhyLg2kBR5aJ9Fc4e+OaFlqNZtMK/2OvdFSfwJNpJR66ywiR+AybLd4n4DqM0qn8YRe8FWWWQ1Lk6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JsL7qfg+zKynB5Z7OSyECdPUdFbLmsetrFPFxTBwbOU=;
- b=WlZeIMFLkdQcPEyA7/29M9CxFbGTg5144ti8KlbStpwCtshg8vhlmo5gGMQ4p9VTkoBu+ABRaixTsXhD3hqbGYgMsYWtFLvzm1TVexAU8FSEUsnPykpdXK75+c7LjDbNGq5H08bPDyuwgJTNfGL09VKsNnVpLfGMzIXVywFcekU0hDD6puOAqtQObsUNEHVg24X77dZ0WoFzRQTXUfDvvm9jI17YMskCvur+WZqUz4P/iRHkdc+mdYRR1Nh08jzOEPeh+gkoIcoMOyZfD+STdIwTZi7J5xsmQ3fHdjO302X4vaR1nKdt2V+9AUMpJjrmboDqsyIv7X/D3mAo3H2zdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
-Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
- by DM5PR12MB1292.namprd12.prod.outlook.com (2603:10b6:3:73::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3805.24; Tue, 2 Feb 2021 14:16:17 +0000
-Received: from DM6PR12MB4403.namprd12.prod.outlook.com
- ([fe80::edba:d7b5:bd18:5704]) by DM6PR12MB4403.namprd12.prod.outlook.com
- ([fe80::edba:d7b5:bd18:5704%4]) with mapi id 15.20.3805.028; Tue, 2 Feb 2021
- 14:16:17 +0000
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>, Roopa Prabhu
- <roopa@nvidia.com>, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski
- <kuba@kernel.org>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <44b2e50d345f1319071a53fb191ac0a0cf3fcf37.1605896060.git.gustavoars@kernel.org>
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <143dd4a9-b0b7-36a6-ee33-0b5cb024c1e6@nvidia.com>
-Date: Tue, 2 Feb 2021 16:16:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
-In-Reply-To: <44b2e50d345f1319071a53fb191ac0a0cf3fcf37.1605896060.git.gustavoars@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [213.179.129.39]
-X-ClientProxiedBy: GVAP278CA0001.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:710:20::11) To DM6PR12MB4403.namprd12.prod.outlook.com
- (2603:10b6:5:2ab::24)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 5213485F60
+ for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 19:50:34 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 76CB464E43;
+ Tue,  2 Feb 2021 19:50:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1612295433;
+ bh=/jebZP6tgM1BgzsuzazAlaJBzv6xqKN0Lbg6lsAaKDY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Cs7ihMFc3JyRXVrrWtZZ/cVFGe+sXlhMDew6LwyD1Es1XRUwG2s6Syeb3aZ47biL0
+ zbP+0dV1DBD5eOkfQZSSGIUck/5einjE8A2kPnHuWWOchPVy/DZ9G4OckfI7ZcW5N1
+ Ft2st+jNHIo5UDS2zqqOzCihkv3Q3fghbsz0JIAq0sArKl+v4aSEpCiM4AvWw5e3bE
+ 7IIJ7YsYpn2NNurd9dT2rgz5rX89l93qyNoauUW0sIRXxPaMUAAJJPipNPWoSAKfUV
+ BarBSVsVQGqXnMwjqNHuvkdW+9ooOivsYPlKGsyMkSKeOOozK0OIOPztvh+aZ24+7R
+ UmjmkFbyELzAw==
+Date: Tue, 2 Feb 2021 11:50:32 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Message-ID: <20210202115032.6affffdc@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <9143d15f-c41d-f0ab-7be0-32d797820384@prevas.dk>
+References: <20210127205241.2864728-1-horatiu.vultur@microchip.com>
+ <20210129190114.3f5b6b44@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <9143d15f-c41d-f0ab-7be0-32d797820384@prevas.dk>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.21.240.157] (213.179.129.39) by
- GVAP278CA0001.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:20::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3805.16 via Frontend Transport; Tue, 2 Feb 2021 14:16:14 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: aa8eb566-773c-4b78-7806-08d8c7851aee
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1292:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB12926F7E8FF3D5F2A9C3FBE7DFB59@DM5PR12MB1292.namprd12.prod.outlook.com>
-X-Header: ProcessedBy-CMR-outbound
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vN7Y1w/sAd0xWrNkp/JAY40yRr4Kighl8AaoOZtuTLBOjo6GNRwLE3Cxf9dpsVjfsqfdI51R4tw6s1gBpoPPRQCrpH3h3iR9Z1MZtrF1c/Kr0+3UrSWzmDi7ltj4+2LlMUAt5x3VMcn0YBI4gywEL/dLE+YRejmNGkMFBpTSFkiz7FlEBomHmZ02A/9X6hoPtHCNtOJz6nm7L/Zygb5zOpEVJzOgiYA45aOmCQINFvUDvc+cdEJqkBPUyHsZuUsfkK59RA47qlgOCGhdYxISKIT7+Vlc6OAwf9gypoRA3IeNRwJvBJVRaDEhbWto2PKvFRnkIyHnRHQ84qgAh5erROo1FcfFL6Cv+RKa1MBGd7XVs842pZaJNKsOTgsd/cYlj5Zsk/1XBDpt4Kv+EnZYVVh64OP8JaZzhEr1GJiC7aZlvKFy4+54kLRIBF6lc7k0W/+CvqRDArxVyT662DS2ElqTMbZl+GckJ/di3rjtbRSmns8vUCFo/RM91aG+j7qobKaRENyaISdCxVSWqm/Q25gzrNGmYndoHnZhXLSOjKMJ9afk6t4T8usBrsd/1d6niXzWI8eDyvRc6ejx/utyeIPStwGUreGj3Pdy7uP95tgad+7NMdC0219sHB2mFIJe64BDTY9gPfF4tXdRtLJP3Ujc0+GGKuhjIrvIA3Ixos/e3PwjzLNSH6Io9FBpHz0Y
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(396003)(376002)(136003)(366004)(110136005)(86362001)(2906002)(53546011)(6486002)(66946007)(8936002)(83380400001)(478600001)(2616005)(4744005)(66476007)(16576012)(6666004)(316002)(16526019)(956004)(66556008)(26005)(186003)(966005)(4326008)(31696002)(31686004)(5660300002)(36756003)(8676002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?MXk5TDhBQUZKbHR4YWJFVVhYUkpOSjE4Tlp4MVVUbnFCeGxiSFNUdGpPNlUv?=
- =?utf-8?B?Y3lFOVd4dmwzVlJmam1MTFlmWFlieHhNQ01BYzhUVTBZYjlRcEdRa2dUL1FY?=
- =?utf-8?B?SlBITTZCTXBsSU5qQ0hLaTB1elQrVDZ5QnJqSVlyRkNtejFJUDVSRjZLRmha?=
- =?utf-8?B?T0dML0lVS05pZytXeC9iYzdtTEw3TDhXanFmRVZQcnhyTkN4VHdRRjhQbmZV?=
- =?utf-8?B?OEROYUhqMzdBS2dmUzdCbWJOSkJVa1B4ejlYQ0NWNnRHakNPOEYvZDBJalVh?=
- =?utf-8?B?ZmJkRkVGdTlzaThpUVgzL3JyNGtjUTJvNCtEU0lManBxU2YyTCtxUGV5Tlgy?=
- =?utf-8?B?ZTdleXBCR0JPUVJmd2FjOFZEQlB5RGt5a2hXTmY5ZmR0dFpGV0RqSTk4RXY1?=
- =?utf-8?B?NWVkUzBIc0MxUUM3WjRWMTZHOTQ0RzNFeGpYZTZpVUhLbVdIUDVmaWNxMmpN?=
- =?utf-8?B?M3krMnZINEgzd2N1Ny9tam8vcWJodGM3TVlKRytVSm5JZStheUQ2QzRMeE9i?=
- =?utf-8?B?Tm1PVEtJQmI1dmNyQkU1WFpmWkRxczhtU1QvVVNSSnEyeHQrcWRZbFhZY1hq?=
- =?utf-8?B?dk42N3dqY1dJaXN5OVZsck9KNzZLNmNYSTlqdXhWSGpTR0dRTWo4enViOEc2?=
- =?utf-8?B?czMySU1jK2pScm9aZmN2ZmQrVy9FRUpMRHBjM1hYbUFUMTd0L05LR0hNQTht?=
- =?utf-8?B?bFZqZUNQNGZGd2pMN1R2QVlUN2UvL0dZMHBoSE91OGdwVk9JVVFLZjliaCsy?=
- =?utf-8?B?NHAzVkpocDE4WGpxWTlTZ0trQ1dSMUh2eHdTbVdCbENWUDFtQWZsMGo5VFR3?=
- =?utf-8?B?V2phb2dYalFlNi9EOC9IWGh1ckRZNklnWUF1clBlWlh3c3gxV1FXNTcxaUk5?=
- =?utf-8?B?dXhrN3o1Tkk3aGVLMzdvVWpSVU1Gc3U4YlIxQU9xdGsrZE1sQ2JKUnJxZGNC?=
- =?utf-8?B?eDBnd3N0bENpVnJKVXlGRjZkKzFsSWE0eHovWUd6SWJ6ZFZoVTNjSFFybHZo?=
- =?utf-8?B?RHEzV1RyK09haEdvZnVwWFgvMCtGZzM5cFBqUEZCN0ljNEFWS0Y0bmFtMUps?=
- =?utf-8?B?Qyt6d05rVHVhWnNGRnRSb3ZPU2J5c29OamE0QUE4MkFHYnk2RkJrUVVDZ1ZB?=
- =?utf-8?B?MkwxSTYxYzBwUmxYU1k2M3R5MHN5akRzUlNPL0JQZUJsRnNtd2J6UkxRTHEx?=
- =?utf-8?B?NkpCQTFRMHJ0VGRoVHlIc21YcG5Ic01GdEo3SkFyWERVaXBCN2RhbWlsWVhH?=
- =?utf-8?B?NkI5MDMxQVIxRVBkQzRob0prSDY5NlZyeFBEK3pLNXpwRWlhSkRhb2t5OTkw?=
- =?utf-8?B?NUJXMFM5T1ZMZGxLN1R2OVRvYlQvcXo5UFJlTjM4RERsUlg5dTY4Zitsczli?=
- =?utf-8?B?TWk2NFFSVytzaGFGemxpRXVjRTF2OWVZSTFvS3BOZHpYTVd1SEt1M0dmZDdk?=
- =?utf-8?B?eWdubXRUOUI5WVZFK0lrOVc3OFp4VkpPY1pFNVhXYnU1Qnh1ZHkrc0JYQUhu?=
- =?utf-8?B?WlRlZE02RjFDdEg4SkRDanI4bFhWa0hXSE9Ib0xyV2RoWUJXR1I3NUxDLzZC?=
- =?utf-8?B?WSt6V0pxc2dKb2k2a2RRMWNiaGYvY0dhaVBNWkF1TWh0WnJSUy9uMFFBeWw3?=
- =?utf-8?B?MW5rUHlDRjR2WmFZWnFxMVZmS1lUdmVMVzkxSGNvWE9jazNaVnBIYnNiZUht?=
- =?utf-8?B?UHlGRWVZNys2UHpLcTEvODJRMnR1ejIxbmhCTVZaSkZ0MnVXbnRtZnVHQ0li?=
- =?utf-8?Q?bpr2x5sxl41U02dLOw3SsO4+aKFCefUIb/9ryeD?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa8eb566-773c-4b78-7806-08d8c7851aee
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2021 14:16:17.1748 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: abj8RM5kRWDPmVaVrKyQ+JLzpLtkTt8qn0s/npCaT3yI4pZkjIAxRX0uULmTWL+KwCzJPI2pSa8kPXwKcKkOww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1292
-X-OriginatorOrg: Nvidia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1612275382; bh=JsL7qfg+zKynB5Z7OSyECdPUdFbLmsetrFPFxTBwbOU=;
- h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
- Authentication-Results:Subject:To:CC:References:From:Message-ID:
- Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
- Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
- MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
- X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
- X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
- X-Microsoft-Antispam-PRVS:X-Header:X-MS-Oob-TLC-OOBClassifiers:
- X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
- X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
- X-MS-Exchange-AntiSpam-MessageData:
- X-MS-Exchange-CrossTenant-Network-Message-Id:
- X-MS-Exchange-CrossTenant-AuthSource:
- X-MS-Exchange-CrossTenant-AuthAs:
- X-MS-Exchange-CrossTenant-OriginalArrivalTime:
- X-MS-Exchange-CrossTenant-FromEntityHeader:
- X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
- X-MS-Exchange-CrossTenant-UserPrincipalName:
- X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
- b=osREM9QiAR6Zy07bBDJYEdibzkxFUz/TZIhJNFQCyygvZ77yeuSnbMgu/APf14/W6
- 8ZEVEDU9/bn6YriIVWf/ZeC7kYX9uf/ScDWf7bB9Zk9mkmHuM0AtS/O94sMYYzmeTk
- Rh1Zwrx15O7Qgd2eUHFtjbOcLT+J75nk0UrTkh2xhdMWuw18wVnKavzE1FD/sWgTM3
- V/sqB//G67azEHgJreq8ur9S88emD7VscZXO26CmXU2zmT2J//gYOEmFo+IwFBakiX
- HcPYF4M5TLOGAD5mYJj5d+zVdIMqYGKL3YrfEl/SsuyohL1bhGqRtUsNvgUTW3dXHw
- AxpCkKGmX53/Q==
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [Bridge] [PATCH 106/141] net: bridge: Fix fall-through warnings
-	for Clang
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Horatiu Vultur <horatiu.vultur@microchip.com>,
+ netdev@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next v2 0/4] bridge: mrp: Extend
+	br_mrp_switchdev_*
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -190,33 +78,26 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 20/11/2020 20:37, Gustavo A. R. Silva wrote:
-> In preparation to enable -Wimplicit-fallthrough for Clang, fix a warning
-> by explicitly adding a break statement instead of letting the code fall
-> through to the next case.
+On Tue, 2 Feb 2021 08:40:02 +0100 Rasmus Villemoes wrote:
+> On 30/01/2021 04.01, Jakub Kicinski wrote:
+> > On Wed, 27 Jan 2021 21:52:37 +0100 Horatiu Vultur wrote:  
+> >> This patch series extends MRP switchdev to allow the SW to have a better
+> >> understanding if the HW can implement the MRP functionality or it needs
+> >> to help the HW to run it. There are 3 cases:  
 > 
-> Link: https://github.com/KSPP/linux/issues/115
-> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-> ---
->  net/bridge/br_input.c | 1 +
->  1 file changed, 1 insertion(+)
+> >> v2:
+> >>  - fix typos in comments and in commit messages
+> >>  - remove some of the comments
+> >>  - move repeated code in helper function
+> >>  - fix issue when deleting a node when sw_backup was true  
+> > 
+> > Folks who were involved in previous MRP conversations - does this look
+> > good to you? Anyone planning to test?
 > 
-> diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-> index 59a318b9f646..8db219d979c5 100644
-> --- a/net/bridge/br_input.c
-> +++ b/net/bridge/br_input.c
-> @@ -148,6 +148,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
->  		break;
->  	case BR_PKT_UNICAST:
->  		dst = br_fdb_find_rcu(br, eth_hdr(skb)->h_dest, vid);
-> +		break;
->  	default:
->  		break;
->  	}
-> 
+> I am planning to test these, but it's unlikely I'll get around to it
+> this week unfortunately.
 
-Somehow this hasn't hit my inbox, good thing I just got the reply and saw the
-patch. Anyway, thanks!
-
-Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-
+Horatiu are you okay with deferring the series until Rasmus validates?
+Given none of this HW is upstream now (AFAIU) this is an awkward set 
+to handle. Having a confirmation from Rasmus would make us a little bit
+more comfortable.
