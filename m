@@ -1,71 +1,69 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B4A30CD4A
-	for <lists.bridge@lfdr.de>; Tue,  2 Feb 2021 21:49:40 +0100 (CET)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD8F311F95
+	for <lists.bridge@lfdr.de>; Sat,  6 Feb 2021 20:20:13 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 1C7638690D;
-	Tue,  2 Feb 2021 20:49:39 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 5B66C20444;
+	Sat,  6 Feb 2021 19:20:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QWuVBC9BNmq4; Tue,  2 Feb 2021 20:49:38 +0000 (UTC)
+	with ESMTP id Pny7WI+OQVc2; Sat,  6 Feb 2021 19:20:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id DE3AA868F0;
-	Tue,  2 Feb 2021 20:49:38 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 6B57D20134;
+	Sat,  6 Feb 2021 19:20:10 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C347EC013A;
-	Tue,  2 Feb 2021 20:49:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 44982C013A;
+	Sat,  6 Feb 2021 19:20:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 75D27C013A
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 20:49:37 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 09EE4C013A
+ for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 19:20:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 5BAD98690D
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 20:49:37 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id E0B60871C7
+ for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 19:20:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id OSwAObVatYKX for <bridge@lists.linux-foundation.org>;
- Tue,  2 Feb 2021 20:49:36 +0000 (UTC)
+ with ESMTP id 6Mmq9u5nVKrV for <bridge@lists.linux-foundation.org>;
+ Sat,  6 Feb 2021 19:20:08 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by whitealder.osuosl.org (Postfix) with ESMTPS id EB1EB868F0
- for <bridge@lists.linux-foundation.org>; Tue,  2 Feb 2021 20:49:36 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E4D3C64F61;
- Tue,  2 Feb 2021 20:49:35 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTPS id F1810871C4
+ for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 19:20:07 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id 9960864E3D;
+ Sat,  6 Feb 2021 19:20:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1612298976;
- bh=TxCiK9MFWxmE+ojs+vuVEd7RHvf0a7ydvFCMKQDzY4w=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=gvHI9GG2gYhFGStNFewc6yQADNDHMES2D9l+feHm/lpAZ+6lZ6cYnt/HZW5XK+pqL
- u+UaAzp+dC6s23XTl8Z5+yoAfPybddjxP59FEGKhg5g+vDaz9IBtSM0WeHu1GEOTYM
- ATLZZAkAeE52s39GG/rH04OaKCp5bGK3Tpfyz9DA2m5b+X4Z8AAPigVW2ZxqkBIhTE
- w0An+ydB4Zdkl4eleFz4aCuWPGDobIKuABPQ+eIQdFzTL+iV4Q7QmFCjqgnMX70Tbe
- byyJaA6fzUZZDd2sTEqciqOkBdTwc0Ozl/fk5HD6ZViNZ1Fa35NY9VTxp7rq9QDrfA
- yAvko/bpQWEog==
-Date: Tue, 2 Feb 2021 12:49:34 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Message-ID: <20210202124934.65c90df9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210202200649.mc7vpgltoqxf2oni@soft-dev3.localdomain>
-References: <20210127205241.2864728-1-horatiu.vultur@microchip.com>
- <20210129190114.3f5b6b44@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <9143d15f-c41d-f0ab-7be0-32d797820384@prevas.dk>
- <20210202115032.6affffdc@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <20210202200649.mc7vpgltoqxf2oni@soft-dev3.localdomain>
+ s=k20201202; t=1612639207;
+ bh=u1BblPePjhJQTsycYUkPaPZatIscwKyFrxJfewifmPk=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=BBqGiL9blir2gKU75wX4Sl+3Id4+jl3DaXp/p3miPWUloZixSOBQfIHS1972yLAXt
+ Xw7fjiNYpcOXo/LamP3n3ezEgwfmiWOIHiDcvOPvbbiG/+xULUL/m4NlbOYfT/ZIJ5
+ n0NrDN3nZK6xr/FfjiSc1bgqYgAitRXE3/O5cTNU8Tz+YpjlNMX/NWnDg8CwYCQgPn
+ Q3sSB/xPs0p8qghF5efrn/0FT0Pjzd5DCsmsc/amT9r41C8pyMCB9IxAcrD7a7as4p
+ 4dXq1l7nD44tjUfsV6j0sgL+fXSF2WXM0YGkONjnC5tXlSeYjnSUKr0/m67OWXka8v
+ RwQ4EvBMmsTjg==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 8FA9160978;
+ Sat,  6 Feb 2021 19:20:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: ivecera@redhat.com, andrew@lunn.ch, jiri@resnulli.us,
- Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, nikolay@nvidia.com,
- roopa@nvidia.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v2 0/4] bridge: mrp: Extend
-	br_mrp_switchdev_*
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161263920758.23851.8609271343151413337.git-patchwork-notify@kernel.org>
+Date: Sat, 06 Feb 2021 19:20:07 +0000
+References: <20210204070549.83636-1-vulab@iscas.ac.cn>
+In-Reply-To: <20210204070549.83636-1-vulab@iscas.ac.cn>
+To: Xu Wang <vulab@iscas.ac.cn>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH] net: bridge: mcast: Use ERR_CAST instead of
+ ERR_PTR(PTR_ERR())
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -80,22 +78,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 2 Feb 2021 21:06:49 +0100 Horatiu Vultur wrote:
-> The 02/02/2021 11:50, Jakub Kicinski wrote:
-> > On Tue, 2 Feb 2021 08:40:02 +0100 Rasmus Villemoes wrote:  
-> > > I am planning to test these, but it's unlikely I'll get around to it
-> > > this week unfortunately.  
-> > 
-> > Horatiu are you okay with deferring the series until Rasmus validates?
-> > Given none of this HW is upstream now (AFAIU) this is an awkward set
-> > to handle. Having a confirmation from Rasmus would make us a little bit
-> > more comfortable.  
-> 
-> It is perfectly fine for me to wait for Rasmus to validate this series.
-> Also I have started to have a look how to implement the switchdev calls
-> for Ocelot driver. I might have something by the end of the week, but
-> lets see.
+Hello:
 
-Great, thanks! Please repost once we got the confirmation.
+This patch was applied to netdev/net-next.git (refs/heads/master):
+
+On Thu,  4 Feb 2021 07:05:49 +0000 you wrote:
+> Use ERR_CAST inlined function instead of ERR_PTR(PTR_ERR(...)).
+> 
+> net/bridge/br_multicast.c:1246:9-16: WARNING: ERR_CAST can be used with mp
+> Generated by: scripts/coccinelle/api/err_cast.cocci
+> 
+> Signed-off-by: Xu Wang <vulab@iscas.ac.cn>
+> 
+> [...]
+
+Here is the summary with links:
+  - net: bridge: mcast: Use ERR_CAST instead of ERR_PTR(PTR_ERR())
+    https://git.kernel.org/netdev/net-next/c/1697291dae7c
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
