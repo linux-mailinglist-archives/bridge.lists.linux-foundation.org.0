@@ -2,68 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CD8F311F95
-	for <lists.bridge@lfdr.de>; Sat,  6 Feb 2021 20:20:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E54E4312030
+	for <lists.bridge@lfdr.de>; Sat,  6 Feb 2021 22:49:54 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 5B66C20444;
-	Sat,  6 Feb 2021 19:20:11 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 49B32204AC;
+	Sat,  6 Feb 2021 21:49:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Pny7WI+OQVc2; Sat,  6 Feb 2021 19:20:10 +0000 (UTC)
+	with ESMTP id xG6Iy7REp0oD; Sat,  6 Feb 2021 21:49:52 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id 6B57D20134;
-	Sat,  6 Feb 2021 19:20:10 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id E2EB6204A7;
+	Sat,  6 Feb 2021 21:49:51 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 44982C013A;
-	Sat,  6 Feb 2021 19:20:10 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C1A79C013A;
+	Sat,  6 Feb 2021 21:49:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 09EE4C013A
- for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 19:20:09 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C2E8AC013A
+ for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 21:49:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id E0B60871C7
- for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 19:20:08 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id A926A204AC
+ for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 21:49:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 6Mmq9u5nVKrV for <bridge@lists.linux-foundation.org>;
- Sat,  6 Feb 2021 19:20:08 +0000 (UTC)
+ with ESMTP id PyllCzRSd3pv for <bridge@lists.linux-foundation.org>;
+ Sat,  6 Feb 2021 21:49:45 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by hemlock.osuosl.org (Postfix) with ESMTPS id F1810871C4
- for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 19:20:07 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 9960864E3D;
- Sat,  6 Feb 2021 19:20:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1612639207;
- bh=u1BblPePjhJQTsycYUkPaPZatIscwKyFrxJfewifmPk=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=BBqGiL9blir2gKU75wX4Sl+3Id4+jl3DaXp/p3miPWUloZixSOBQfIHS1972yLAXt
- Xw7fjiNYpcOXo/LamP3n3ezEgwfmiWOIHiDcvOPvbbiG/+xULUL/m4NlbOYfT/ZIJ5
- n0NrDN3nZK6xr/FfjiSc1bgqYgAitRXE3/O5cTNU8Tz+YpjlNMX/NWnDg8CwYCQgPn
- Q3sSB/xPs0p8qghF5efrn/0FT0Pjzd5DCsmsc/amT9r41C8pyMCB9IxAcrD7a7as4p
- 4dXq1l7nD44tjUfsV6j0sgL+fXSF2WXM0YGkONjnC5tXlSeYjnSUKr0/m67OWXka8v
- RwQ4EvBMmsTjg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 8FA9160978;
- Sat,  6 Feb 2021 19:20:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
+ [68.232.154.123])
+ by silver.osuosl.org (Postfix) with ESMTPS id 62A57204A7
+ for <bridge@lists.linux-foundation.org>; Sat,  6 Feb 2021 21:49:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1612648185; x=1644184185;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yLgapeK5FwV5IDNMOCWuPlVIbCFeQL0vs9X/eGhKGDw=;
+ b=yT/k3nnFIaQMXkjb+ImaJBY7xPG5U5jS4cK3VXZ5cqY8a2GXv3jY/ZAI
+ AGkEX4gzPWSgJtob41WGST+Z5wV/8/DDyFH4NqbHEMz3Y7DiPl0nMNVBX
+ rJzxklvR62tJqCudFhvFqE2EfoCj/P7kIEqrnXsHxLyAg7Yh08ftzivWO
+ j1q0IbNQpX5rcs76jgNZKDgJHq4+GBALtB9mJn1CmKiSVfrJ9615A3ACy
+ Lz8/uuLLVbEy1NgikV+XdvtB38JgXDhbcYs4Nh7dk0eawJ49sKZpJxnWz
+ XUQsQW8NWpM/C01WECWdr8aCrIS3eAO81PzeYo/YY0v5vG8N34jBJbVeY Q==;
+IronPort-SDR: YmJ/oDt3+SBNYBAY6gWeJNWLicpAhR7vZUZflDiYzRewKDMrtz2XW+aLleG+9xkL9276Sg8g6e
+ asul7v0x3QbSUdF8q2R1P33Qgn0Un0r+2NY40MI2XnM+uXjtNYyQR95WVAPGoV+HPWJtAeSR0G
+ g9W/9aTncmRKBqp1LjPLCfUsEcRvhC5VrS66CX2aSbEeE6Vi3MhM4IuC1CK6hkk6KqzSSVUjFJ
+ tgfSQ9QTi6fYFRzwL9sUmSJkmAIQAAanGBvqzGbMWfTZbPzj0VDuzZevfzJPA64IlVzGwYRuKX
+ 37w=
+X-IronPort-AV: E=Sophos;i="5.81,158,1610434800"; d="scan'208";a="102871012"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 06 Feb 2021 14:49:44 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Sat, 6 Feb 2021 14:49:43 -0700
+Received: from soft-dev3.localdomain (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Sat, 6 Feb 2021 14:49:41 -0700
+To: <jiri@resnulli.us>, <ivecera@redhat.com>, <davem@davemloft.net>,
+ <kuba@kernel.org>, <roopa@nvidia.com>, <nikolay@nvidia.com>,
+ <rasmus.villemoes@prevas.dk>, <netdev@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <bridge@lists.linux-foundation.org>
+Date: Sat, 6 Feb 2021 22:47:32 +0100
+Message-ID: <20210206214734.1577849-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161263920758.23851.8609271343151413337.git-patchwork-notify@kernel.org>
-Date: Sat, 06 Feb 2021 19:20:07 +0000
-References: <20210204070549.83636-1-vulab@iscas.ac.cn>
-In-Reply-To: <20210204070549.83636-1-vulab@iscas.ac.cn>
-To: Xu Wang <vulab@iscas.ac.cn>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH] net: bridge: mcast: Use ERR_CAST instead of
- ERR_PTR(PTR_ERR())
+Content-Type: text/plain
+Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [Bridge] [PATCH net 0/2] bridge: mrp: Fix
+	br_mrp_port_switchdev_set_state
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -75,30 +88,29 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Based on the discussion here[1], there was a problem with the function
+br_mrp_port_switchdev_set_state. The problem was that it was called
+both with BR_STATE* and BR_MRP_PORT_STATE* types. This patch series
+fixes this issue and removes SWITCHDEV_ATTR_ID_MRP_PORT_STAT because
+is not used anymore.
 
-This patch was applied to netdev/net-next.git (refs/heads/master):
+[1] https://www.spinics.net/lists/netdev/msg714816.html
 
-On Thu,  4 Feb 2021 07:05:49 +0000 you wrote:
-> Use ERR_CAST inlined function instead of ERR_PTR(PTR_ERR(...)).
-> 
-> net/bridge/br_multicast.c:1246:9-16: WARNING: ERR_CAST can be used with mp
-> Generated by: scripts/coccinelle/api/err_cast.cocci
-> 
-> Signed-off-by: Xu Wang <vulab@iscas.ac.cn>
-> 
-> [...]
+Horatiu Vultur (2):
+  bridge: mrp: Fix the usage of br_mrp_port_switchdev_set_state
+  switchdev: mrp: Remove SWITCHDEV_ATTR_ID_MRP_PORT_STAT
 
-Here is the summary with links:
-  - net: bridge: mcast: Use ERR_CAST instead of ERR_PTR(PTR_ERR())
-    https://git.kernel.org/netdev/net-next/c/1697291dae7c
+ include/net/switchdev.h       | 2 --
+ net/bridge/br_mrp.c           | 9 ++++++---
+ net/bridge/br_mrp_switchdev.c | 7 +++----
+ net/bridge/br_private_mrp.h   | 3 +--
+ 4 files changed, 10 insertions(+), 11 deletions(-)
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+-- 
+2.27.0
 
