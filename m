@@ -1,88 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713A3312744
-	for <lists.bridge@lfdr.de>; Sun,  7 Feb 2021 20:47:51 +0100 (CET)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA1F312827
+	for <lists.bridge@lfdr.de>; Mon,  8 Feb 2021 00:23:09 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id C93F48682B;
-	Sun,  7 Feb 2021 19:47:49 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 8572886FD5;
+	Sun,  7 Feb 2021 23:23:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uOn-bswUOKda; Sun,  7 Feb 2021 19:47:49 +0000 (UTC)
+	with ESMTP id MKgsMHocfqq1; Sun,  7 Feb 2021 23:23:07 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 2AA4086816;
-	Sun,  7 Feb 2021 19:47:49 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id E2B4586A9B;
+	Sun,  7 Feb 2021 23:23:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 088DDC013A;
-	Sun,  7 Feb 2021 19:47:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CC337C013A;
+	Sun,  7 Feb 2021 23:23:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CC280C013A
- for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 19:47:47 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 884A8C013A
+ for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 23:23:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id B35E485643
- for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 19:47:47 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 4F3072038D
+ for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 23:23:05 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id y9k_cO9yjbuE for <bridge@lists.linux-foundation.org>;
- Sun,  7 Feb 2021 19:47:47 +0000 (UTC)
+ with ESMTP id gmRX2fYAdM-D for <bridge@lists.linux-foundation.org>;
+ Sun,  7 Feb 2021 23:23:04 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
- [209.85.208.49])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id C7A638562A
- for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 19:47:46 +0000 (UTC)
-Received: by mail-ed1-f49.google.com with SMTP id c6so15780344ede.0
- for <bridge@lists.linux-foundation.org>; Sun, 07 Feb 2021 11:47:46 -0800 (PST)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by silver.osuosl.org (Postfix) with ESMTPS id E027120387
+ for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 23:23:03 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id b9so21732640ejy.12
+ for <bridge@lists.linux-foundation.org>; Sun, 07 Feb 2021 15:23:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=c9WOOXaljgWkUz7GKIj1bERwrld5Mm5ktuTMXSqIFb4=;
- b=BwFg/RhK8pd6whM6m4oSg1lq+EeRNAviO+SgvZhFXQPCabtNQj9jmAEuVepKXkAEPZ
- UQlDxjx2rJQZdbWMtO2wpXgVsYhx/Ne5QRigmvZklC3yUfKvatqVwHBsYFwQ8el1NnLU
- KXO84ZvEP/RR/XpOmhN5EI6YT340d5nz0+Z6xRd/8ExVpiSDly8wJ23ktXYPa4vUWpum
- mBnJvdAltVr5eFEv93bblL6yWWdeHbE7AYoWqJP3AHZMsFFk62fpws99BRnclIj3+EAf
- 9Cn/HNuqeyL86jBFG+mGSQTkDfY9mRcVyQKRNoWLObHRxMRmgOlbkpzZOkiZmxGxpSGs
- VqhQ==
+ bh=qdOLN8iSy3qRTlCt7W2Tkt/uKoMbxQxcelWIFl4Tv0c=;
+ b=Byzf7Ch6lxgMByroVpIyGbVWj+WES57XvUbGEWPQ2MDz1xZYNGbPNk9g/UBuyfdJZ0
+ 370tyntgVPLxpitPW7poWT9XkCvYie4tVQJvYCzW2etWEZn3SzhHcC3YkOc9tMrGVrF4
+ C0oDi+3KPIy9x8XBuEYc3IGodXUknCADmCP7cKJTD9L3VMdJdGyd7DL6tXh5gdT4BC6I
+ lfh5i28iucwGR6Tf5WYOiVW7P/zSvHTyzFeK+VME2GVttYIqHK31T+1nVE4FAzBbKKxQ
+ IQuDdIcAeQ3vnKwNdl2INdVhnREjtNSwTEaiPdPTMUJDmsr15U1xyiMNUTkKn4TBRL7u
+ 0kWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=c9WOOXaljgWkUz7GKIj1bERwrld5Mm5ktuTMXSqIFb4=;
- b=tNn6przVrNHegDQJ2YwKMxQ2zvLt3/Chn+HmXmU/xJfJcjR03K2Lezgst6UqNWR9BM
- moC+AANehKLfZpyTxiMmBu6UYvAdkDEWBJQAxWgxsmXYpWrNviIN1GBIywgWYLuKqdn+
- 55Qlsu94/AZcoJbcWQmEyLmNZ21PFWHWOKZN+bTBRbnaVDzElDEI1PFi8cpSQmrWey6l
- +g8eKdRzv4UvicgJF6tuhaL+0rbPYxP/uu+PHqtSS01inViIgMEDFL37wIoR3IObNm/5
- yoUYA7osFdBhciWwjy1y3GX2ge5fPfNhUv/IqKB/1g6aQOHKz0jUmScrXe7wfA99ocqa
- lnkg==
-X-Gm-Message-State: AOAM533c6UMsR9X8ZY4jWac9G/wREr0d5NL+hKuhV5tr5kTNXqggD7Xr
- fAEiW4CvXGmcE4602dSYCu4=
-X-Google-Smtp-Source: ABdhPJzjdZDTKi7uQxM8xft5Bg0nWZfqvOXyPuoEXtWjObw0ylJC/lPAPsiJtAfTBiBOLXqXy3SLjg==
-X-Received: by 2002:a05:6402:151:: with SMTP id
- s17mr13474918edu.107.1612727265224; 
- Sun, 07 Feb 2021 11:47:45 -0800 (PST)
+ bh=qdOLN8iSy3qRTlCt7W2Tkt/uKoMbxQxcelWIFl4Tv0c=;
+ b=V8SylPq7eri1pHil31Jr1cVQE1rW7PHSTCjNSD+JiAf+YYTkO6xDG8rUEZtU1hWrqu
+ GaczPfh5ExgUarsQn2MleVfSsyiVtEM74nGAV2E4SmLAvc9nC7Uzo1YVn47MuMJMemN7
+ 6gEnh0UbgMg6A6KEAmDoARSqVQpydcCChLbdT+cCLN1sHlqzaz6kVD2YUbmdUmrTNdtX
+ 8hsOZmgitchC1jN6+4P3YMFuqOGLb3/W/JPwn9dM6hpDe+/8VOjZZ2MoJdctRkuJq8AU
+ RrNYeHiEypIQpZ/EnGOe2wcuGsTf0GEkef7rRdL6HKkyzTJzg02+J3Ji7TFbLXHAvLP8
+ aNTg==
+X-Gm-Message-State: AOAM532jFujdbd5/ARgOKPNntfuVNu+S/D0jESoasohBUqrZAymLZAFd
+ N6O/YB2k6NlE+naOnCcg9KI=
+X-Google-Smtp-Source: ABdhPJxusXpCCs970jULRWNwmy+cIDjL8TtVTjsnERTVMudprC/skPz9sZt48aM94CVE/awhDDaZHQ==
+X-Received: by 2002:a17:906:7687:: with SMTP id
+ o7mr14362406ejm.209.1612740182250; 
+ Sun, 07 Feb 2021 15:23:02 -0800 (PST)
 Received: from localhost.localdomain (5-12-227-87.residential.rdsnet.ro.
  [5.12.227.87])
- by smtp.gmail.com with ESMTPSA id t3sm7991648eds.89.2021.02.07.11.47.43
+ by smtp.gmail.com with ESMTPSA id u21sm7540016ejj.120.2021.02.07.15.23.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 07 Feb 2021 11:47:44 -0800 (PST)
+ Sun, 07 Feb 2021 15:23:01 -0800 (PST)
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Date: Sun,  7 Feb 2021 21:47:33 +0200
-Message-Id: <20210207194733.1811529-1-olteanv@gmail.com>
+Date: Mon,  8 Feb 2021 01:21:32 +0200
+Message-Id: <20210207232141.2142678-1-olteanv@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Jiri Pirko <jiri@resnulli.us>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Ido Schimmel <idosch@idosch.org>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net] net: bridge: use switchdev for port flags set
-	through sysfs too
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ Vadym Kochan <vkochan@marvell.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
+ linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+ Taras Chornyi <tchornyi@marvell.com>, Ido Schimmel <idosch@idosch.org>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
+Subject: [Bridge] [PATCH net-next 0/9] Cleanup in brport flags switchdev
+	offload for DSA
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,48 +105,47 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Looking through patchwork I don't see that there was any consensus to
-use switchdev notifiers only in case of netlink provided port flags but
-not sysfs (as a sort of deprecation, punishment or anything like that),
-so we should probably keep the user interface consistent in terms of
-functionality.
+The initial goal of this series was to have better support for
+standalone ports mode and multiple bridges on the Ocelot/Felix DSA
+driver. Proper support for standalone mode requires disabling address
+learning, which in turn requires interaction with the switchdev notifier,
+which is actually where most of the patches are.
 
-http://patchwork.ozlabs.org/project/netdev/patch/20170605092043.3523-3-jiri@resnulli.us/
-http://patchwork.ozlabs.org/project/netdev/patch/20170608064428.4785-3-jiri@resnulli.us/
+Vladimir Oltean (9):
+  net: bridge: don't print in br_switchdev_set_port_flag
+  net: bridge: offload initial and final port flags through switchdev
+  net: dsa: stop setting initial and final brport flags
+  net: dsa: kill .port_egress_floods overengineering
+  net: squash switchdev attributes PRE_BRIDGE_FLAGS and BRIDGE_FLAGS
+  net: bridge: stop treating EOPNOTSUPP as special in
+    br_switchdev_set_port_flag
+  net: mscc: ocelot: use separate flooding PGID for broadcast
+  net: mscc: ocelot: offload bridge port flags to device
+  net: mscc: ocelot: support multiple bridges
 
-Fixes: 3922285d96e7 ("net: bridge: Add support for offloading port attributes")
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- net/bridge/br_sysfs_if.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/net/dsa/b53/b53_common.c              |  18 ++-
+ drivers/net/dsa/mv88e6xxx/chip.c              |  19 ++-
+ drivers/net/dsa/ocelot/felix.c                |   9 ++
+ .../marvell/prestera/prestera_switchdev.c     |  16 +--
+ .../mellanox/mlxsw/spectrum_switchdev.c       |  28 ++--
+ drivers/net/ethernet/mscc/ocelot.c            | 135 +++++++++++++-----
+ drivers/net/ethernet/mscc/ocelot_net.c        |   4 +
+ drivers/net/ethernet/mscc/ocelot_vsc7514.c    |   2 +-
+ drivers/net/ethernet/rocker/rocker_main.c     |  24 +---
+ drivers/net/ethernet/ti/cpsw_switchdev.c      |  20 +--
+ drivers/staging/fsl-dpaa2/ethsw/ethsw.c       |  22 +--
+ include/net/dsa.h                             |   6 +-
+ include/net/switchdev.h                       |   8 +-
+ include/soc/mscc/ocelot.h                     |  26 ++--
+ net/bridge/br_if.c                            |  24 +++-
+ net/bridge/br_netlink.c                       |  67 +++++----
+ net/bridge/br_private.h                       |   8 +-
+ net/bridge/br_switchdev.c                     |  35 ++---
+ net/dsa/dsa_priv.h                            |   4 +-
+ net/dsa/port.c                                |  40 ++----
+ net/dsa/slave.c                               |   3 -
+ 21 files changed, 285 insertions(+), 233 deletions(-)
 
-diff --git a/net/bridge/br_sysfs_if.c b/net/bridge/br_sysfs_if.c
-index 96ff63cde1be..5aea9427ffe1 100644
---- a/net/bridge/br_sysfs_if.c
-+++ b/net/bridge/br_sysfs_if.c
-@@ -59,9 +59,8 @@ static BRPORT_ATTR(_name, 0644,					\
- static int store_flag(struct net_bridge_port *p, unsigned long v,
- 		      unsigned long mask)
- {
--	unsigned long flags;
--
--	flags = p->flags;
-+	unsigned long flags = p->flags;
-+	int err;
- 
- 	if (v)
- 		flags |= mask;
-@@ -69,6 +68,10 @@ static int store_flag(struct net_bridge_port *p, unsigned long v,
- 		flags &= ~mask;
- 
- 	if (flags != p->flags) {
-+		err = br_switchdev_set_port_flag(p, flags, mask);
-+		if (err)
-+			return err;
-+
- 		p->flags = flags;
- 		br_port_flags_change(p, mask);
- 	}
 -- 
 2.25.1
 
