@@ -2,95 +2,179 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3921312830
-	for <lists.bridge@lfdr.de>; Mon,  8 Feb 2021 00:23:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6D6313041
+	for <lists.bridge@lfdr.de>; Mon,  8 Feb 2021 12:11:48 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by silver.osuosl.org (Postfix) with ESMTP id 49C0520468;
-	Sun,  7 Feb 2021 23:23:23 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id 9CFB92049E;
+	Mon,  8 Feb 2021 11:11:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from silver.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8EQq5+9QEkaE; Sun,  7 Feb 2021 23:23:22 +0000 (UTC)
+	with ESMTP id gHbrRvsLMJw3; Mon,  8 Feb 2021 11:11:45 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by silver.osuosl.org (Postfix) with ESMTP id B52E5204AD;
-	Sun,  7 Feb 2021 23:23:22 +0000 (UTC)
+	by silver.osuosl.org (Postfix) with ESMTP id ECBB520457;
+	Mon,  8 Feb 2021 11:11:44 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A9E66C013A;
-	Sun,  7 Feb 2021 23:23:22 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D4C4FC013A;
+	Mon,  8 Feb 2021 11:11:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 263ADC013A
- for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 23:23:21 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EA911C013A
+ for <bridge@lists.linux-foundation.org>; Mon,  8 Feb 2021 11:11:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by silver.osuosl.org (Postfix) with ESMTP id 123F82038D
- for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 23:23:21 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id D4AE0868D8
+ for <bridge@lists.linux-foundation.org>; Mon,  8 Feb 2021 11:11:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from silver.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HRKcPhD+gwIJ for <bridge@lists.linux-foundation.org>;
- Sun,  7 Feb 2021 23:23:19 +0000 (UTC)
+ with ESMTP id JHQqF5LZobvy for <bridge@lists.linux-foundation.org>;
+ Mon,  8 Feb 2021 11:11:43 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by silver.osuosl.org (Postfix) with ESMTPS id 74C49204FC
- for <bridge@lists.linux-foundation.org>; Sun,  7 Feb 2021 23:23:19 +0000 (UTC)
-Received: by mail-ed1-f43.google.com with SMTP id l12so16117992edt.3
- for <bridge@lists.linux-foundation.org>; Sun, 07 Feb 2021 15:23:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=sMuPubZ45bqcqp7F8mYy1wbLZt7y2eQbAhZhBI5pduQ=;
- b=E6IkE+EEEAbE0TKB4FhAcQL0fn5pBQkSvkaQTo99WVLWEKXka6frrJqeOmlHcibsdn
- XWVJEIkNFXdVUNJhmXJESmEh5zkOij/Hc51cAFOxLXDLA3vr77Zx+9pYcGZ0XE/vtAaH
- cIcWfRxImTW5gQRljjrEsMqRNCxWOKm/xx+MFtP0J/On7hizsAlpEL819U5Kj/v7p/rz
- 0kLjGK03xzWh5O0Zt/1A0rSsejT3hNQivdSC9IytGlklNW4ekVkxil4pK//jCsre5evU
- XhnQs5WnfbRHEHOXVwrWE92kijxc7D7sOj82FbM0v1BZFZN0Kouwp5EwOdKHmXGQrnSd
- 3nQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=sMuPubZ45bqcqp7F8mYy1wbLZt7y2eQbAhZhBI5pduQ=;
- b=Qxm7XRu/p1uEtoRh+8ZIR3bX36tKsh7URAxX052c4T3dbaMRiUM1PWYOfTDQExe9bA
- wSkqQWOwYHR8sqhx5LXEhwkUB5PxBsoCAKRtF7mGkAdz0GNlXOy5Rqa4Aa1FyKA5ix8r
- gWroxQJ4wvYSUiNna99br0sUlhp0MLOltGOTsV9KonUsHDaStTLU3vuz1TMGnIojrW3x
- BcBsEBgQTxNcB32HFp6J3EcgKo+1uRv+5TC9qDjqVNei0xbffUrp7Kz5u3iApPVQOlkj
- MZtSNppSrv2BeknHAImbz+Zi/GVJWfOLaIxmKPUusFqUfFukANq8VCEWtFZhuVQEv3zD
- sHGQ==
-X-Gm-Message-State: AOAM533yJ8xIPpjD3DSczFHIOJDw3/g7r8TgrbPmfNzhAYsNuHB8AWkJ
- lKxbhkZ8YHEuVhinLae7GjE=
-X-Google-Smtp-Source: ABdhPJxx8zCBbcCYDSH7IkOVT3WhlPRqi+moQ4NwndkfmHp5byWVOD/6TBrjVf3FAdSJBzDWV15ZXw==
-X-Received: by 2002:a05:6402:4391:: with SMTP id
- o17mr14733767edc.196.1612740197806; 
- Sun, 07 Feb 2021 15:23:17 -0800 (PST)
-Received: from localhost.localdomain (5-12-227-87.residential.rdsnet.ro.
- [5.12.227.87])
- by smtp.gmail.com with ESMTPSA id u21sm7540016ejj.120.2021.02.07.15.23.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 07 Feb 2021 15:23:17 -0800 (PST)
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Date: Mon,  8 Feb 2021 01:21:41 +0200
-Message-Id: <20210207232141.2142678-10-olteanv@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210207232141.2142678-1-olteanv@gmail.com>
-References: <20210207232141.2142678-1-olteanv@gmail.com>
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 32836868C6
+ for <bridge@lists.linux-foundation.org>; Mon,  8 Feb 2021 11:11:43 +0000 (UTC)
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B60211c6e0000>; Mon, 08 Feb 2021 03:11:42 -0800
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 8 Feb
+ 2021 11:11:42 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.176)
+ by HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Mon, 8 Feb 2021 11:11:42 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SUu/yQ+mjAGPELst8EC0i+rvUQknowxxkeNEkQTofHGWP3UDbHt01ctfA/OhCxij5n+EnPSKq81ZjiN/oCQzNKym7g5Tt0/T2JAzH0/0IXiZ9wKrL2H0OvfrlwA6wut5v4JbzavoqcCKQF34oXnn8BJOIxAzrWcWhigkwIXTnNp3h4nlzlsGUWt2B+p7zziBeIITz2OO5u0ZMExCDFl/GzNb9EqaV8/wxWR74Mi0K730rTCbw2xyofdBTFoNSffRKC2Diw/FHDXXdldYXvakL46DGMsktZ8C3cpFe6k1Y52rCCHsG22sj9YiN2Xq7f7uCp/rXbREJ1xtVmQVafNvfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=54eFnTmaGhhT3f7XgVqe3P7OVXl69xXA7g9t9Ic2PyI=;
+ b=Q/5o3+4RLAKmOwgTvSdgqzryW5OuyKgOOhGA2bg4GaivMHeSqo9VGl/zJwyUWtQM1N8mKsd2f1HcyiYKQJwIrQXw/PQKrYucfKDU4+NriIIzLiiArzIFS54Pg/Fu50c9p2NnTyzCO5AWW9wh0HmXu5b3W5uQc7y6fS8dbBwZ8BhadEPKetkFRwn9f8gdNJ+TzTmddbTn3i2al24Jsvn5GZFVV+KjY+15RBjXv+ufpmvsRSWMfQAtEOS0GF0IVK1tudqlzkAbrWalmd9OIWN9iw+ebn34x31hHi88zkTSwjCaR7URiE4QMAqoDCl2CN5WFM1hQ7ESbGAaprXjwqU7SA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Authentication-Results: idosch.org; dkim=none (message not signed)
+ header.d=none;idosch.org; dmarc=none action=none header.from=nvidia.com;
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
+ by DM6PR12MB3244.namprd12.prod.outlook.com (2603:10b6:5:18c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.23; Mon, 8 Feb
+ 2021 11:11:41 +0000
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::5c42:cbe:fe28:3a9b]) by DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::5c42:cbe:fe28:3a9b%5]) with mapi id 15.20.3825.030; Mon, 8 Feb 2021
+ 11:11:40 +0000
+To: Vladimir Oltean <olteanv@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+References: <20210207194733.1811529-1-olteanv@gmail.com>
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <3d1758eb-1aa0-1272-4183-27b14524127f@nvidia.com>
+Date: Mon, 8 Feb 2021 13:11:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
+In-Reply-To: <20210207194733.1811529-1-olteanv@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: ZR0P278CA0023.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:1c::10) To DM6PR12MB4403.namprd12.prod.outlook.com
+ (2603:10b6:5:2ab::24)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Vadym Kochan <vkochan@marvell.com>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
- linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
- Taras Chornyi <tchornyi@marvell.com>, Ido Schimmel <idosch@idosch.org>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net-next 9/9] net: mscc: ocelot: support multiple
-	bridges
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.241.121] (213.179.129.39) by
+ ZR0P278CA0023.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1c::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3825.17 via Frontend Transport; Mon, 8 Feb 2021 11:11:37 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 091d9564-3e41-4605-496c-08d8cc224f55
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3244:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3244C924EC8410E0A968E872DF8F9@DM6PR12MB3244.namprd12.prod.outlook.com>
+X-Header: ProcessedBy-CMR-outbound
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DcTqp3J4GBs8KDGeiMJrrPXVLA7h9k/QQ5LWrKL/r/1432Hb1Tu8BuUbA7nLSc9/pj6sxP+ZihrNXJ65A8rTxGBXuaMzV4xkhsowYXhANSSNn4ffvc15TfAPxbzAeyVLN9SYMFA+wSuhV7DLkFqjnt4mLdFCaxOM48YfANmzWpJ+1JYiZgVmdapT0Aod3Z+uxHQeo0tb1RpPkVtPZ/WKlKahcXiWV1W1uF+690Pkm2dZEyHtwI+LqyC9HFDIBkTuTSYtpMLlIuqQ+7uVudpltGIpDzBU993R5Y7eNqG/uIS4ErTFYWQcSzg8zl5rbOSBfd5YD2eAyjieur0XUiM0bRRuBoalYnqWE+brmOZBlHWQx2+skx+1ThLR0rY1QdyDgmJI15bEoWZ+B3Lg67mgU92F/aMMEXUZDl83w86c7nuc5ZgI/CEeXF1FGdXVs4psU/Hf9Jmnp0K8XqilZeWTCF7GGzzSc58bYFCDjQ1AepzluuKJ5oFdD1D+J+zIUtHrT+Rj7LjSV0M241wIUKPXK0mw3EdQhleFXnPN6maSiHQ49OhBiTCIX6dMsoKAxFLj3ZKYI3hSGjZ4cFnoRZhlCIx5hnEFXSRZ3IpuJzxiDGQfpOVvDWH9Z9yHgdRKFuYZMpOa0LaZF9+YdN3XopGMtFq43ZIv5g86Rw7MNCrfd/feeU2gdz9ZoTtD1/mMuF4I
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(39860400002)(346002)(366004)(376002)(478600001)(956004)(966005)(2616005)(16526019)(4326008)(5660300002)(8936002)(31696002)(36756003)(6666004)(66946007)(8676002)(54906003)(110136005)(31686004)(2906002)(86362001)(66556008)(7416002)(66476007)(186003)(26005)(83380400001)(53546011)(316002)(16576012)(6486002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?OGMyQXk1b1hvYWVENVNISThtVTMvT1JJaWp3RHhkK0Zab2s0QXJTZmxuVnJP?=
+ =?utf-8?B?YjUyVCthZTg2cFdOdmlRbGdZZXA4SHJ3QXFiS0Y5K0NHWE9xY1J4ZjhPNVJu?=
+ =?utf-8?B?aEtxZVNQZGpZMmZNZTVDUG44K3FzaUFRRmF1bCtnTm9YaXJuL3NEVldNTU16?=
+ =?utf-8?B?TG1ObE9INXRUdytDUWp6MkVad0hwWlVVZWVpL0lTYlFMNUNqL3J5RGtMNUxL?=
+ =?utf-8?B?UU9HWi9zby9PMGZNclFJcTZlZmFHR3pkTklFK3lRaFVHYzZnRnVYZXVCUVp4?=
+ =?utf-8?B?YVZ2SlNSdER5Q05VcFRHMEZaZSt5VmFhcGc2aDd5eDBlaFlEVFpqelVKMWJz?=
+ =?utf-8?B?ckoraFRESUlSRXArTkg0eFIwaldTcERTL2NmV0dCbDZVek1uaXlQZERVbkh3?=
+ =?utf-8?B?OFNFbzlGSmZjT1lybXIvaE4zZEdxVWNKanA4a2t5U0JEb0o0TS9XRFRZWUZt?=
+ =?utf-8?B?Q2NSSkF2TjRqRy9rNVpqMGVPeG94VDNxaHM0NlllbmdLbFdmSUhHcHhYRk1M?=
+ =?utf-8?B?cjVrQWZPNXVPK3dtNFMrYWlDRlBiLzBubktDN1dHTlZDb1hQd0hRZXJ6S1dk?=
+ =?utf-8?B?cXpIdlpFNlNSMXU0bTY5R0phQmcvN3hPUzkvaHVLbk04L09mVEduRHU2Q1pH?=
+ =?utf-8?B?RHRzRElKSkNGMGhUUld6TTNram5HWUNKbm16V1Z3b0tzOU9nNUFIRVRpR21s?=
+ =?utf-8?B?aUtWV29LQStjZnRBTUI3WFRUWWRxZFo3NXpaMVRvMHAwSUZVRGs2M003SWVT?=
+ =?utf-8?B?QjJncWl1SUtLUW5JTnNIOHNyNGlJenExcEduNFdwV1Rpdit1NFZrUTBkb2Vx?=
+ =?utf-8?B?Zy9UR1lVZzd3VU9XbXVsNk8yeXZMS2VvbWVXb3JGZDdseUtyYmZBNFkweHNZ?=
+ =?utf-8?B?ZXQ5Qm9tRU4rWUI0S0NWZVhHTzN2THFzaVRDdXJLMnk4cjJhc0tBL0M1K1Ra?=
+ =?utf-8?B?QnUzaXZvbHROcnRycjNZVVArRGZKaEsxZnJBa2dTRDcvZFdLRm81Qm9GYWtG?=
+ =?utf-8?B?UzNjMVZ5eFF1cGlOOURPYWJoTlVIMnJYd2VXOGdmMHhhaW1QRXhVdThrUkR2?=
+ =?utf-8?B?L0kzNDhUZWJEUFdjS1BHbnFYYjE4ZWVydC9qL01sRTBpQlVxbWdpSlVVQXNh?=
+ =?utf-8?B?TWwxcTNsUXkyZ1dKR1hrLzVSU3dXNFVRN0pmT3MvbXhxZnhxeVR4VXpBbW0w?=
+ =?utf-8?B?STNjUVJuZTI0M0Vuano0TkJhUFNrbGYyYzhRQWVFRFVjbndCSXRXaFlxN0kw?=
+ =?utf-8?B?dTQ0WXBkdE1NY2tKZWlaVHR5U1o1MmxQRWZaK0tPTS9WK3lkTUpFNXJjbzA5?=
+ =?utf-8?B?ak5HNnk3Y3dKY2t0V2lLVitJSzhmQ3NIY01qMkVMbnR3azd6RCs3ZEt4UnhT?=
+ =?utf-8?B?QW4yTHF0TDJZZTlMK3Q2ME55Z0lYOTlBUjBSbHp0MW84dTFYSXZzYkFIUHdT?=
+ =?utf-8?B?RVVIWlRvWE10dmZhR0ROc1JzekNnN0hST1daUThHbGtsaXV2bUxjRUxPaTVi?=
+ =?utf-8?B?bWxOU09YVkxXVkZCSVhBTzVtQ1BNZHVOczNEMExHY2ZsV0ZHMWp0R0Z3eUZI?=
+ =?utf-8?B?cHlmYzhHOTR3WEdxdy96WC9SSWJXMlZ0ZmZndGd2YWUrdzc2UHg2MjFOWmxU?=
+ =?utf-8?B?SEZNSzY5Mm1sVGJqS292S3pJbG04Rk9iQVZFWHZZRGN5MzZPMVlqcHdOVUFw?=
+ =?utf-8?B?TUZmdGV2bE95Z01IMUFqdmZQRlRiN2ZLcnBJeC8rdWhieFN5dnVzd0M1Z2hh?=
+ =?utf-8?Q?PPwH2QgDiWcDy4Wk0HqR0IWtO7ke3STez1Y1IQ3?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 091d9564-3e41-4605-496c-08d8cc224f55
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2021 11:11:40.6750 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qh1ed/7gocYHaoGF1QSMTp+m/mDxIl/DfY7qP7WEFFvQ5tDK/wLPuATxiyjbDT343lEhIZ7V7hHSwbsDxpHz4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3244
+X-OriginatorOrg: Nvidia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1612782702; bh=54eFnTmaGhhT3f7XgVqe3P7OVXl69xXA7g9t9Ic2PyI=;
+ h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
+ Authentication-Results:Subject:To:CC:References:From:Message-ID:
+ Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
+ Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
+ MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
+ X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
+ X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
+ X-Microsoft-Antispam-PRVS:X-Header:X-MS-Oob-TLC-OOBClassifiers:
+ X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
+ X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
+ X-MS-Exchange-AntiSpam-MessageData:
+ X-MS-Exchange-CrossTenant-Network-Message-Id:
+ X-MS-Exchange-CrossTenant-AuthSource:
+ X-MS-Exchange-CrossTenant-AuthAs:
+ X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+ X-MS-Exchange-CrossTenant-FromEntityHeader:
+ X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+ X-MS-Exchange-CrossTenant-UserPrincipalName:
+ X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+ b=sIAMF3UbE+Ye18EOVZ4r/gWZCDu+GAzjoLu+m1VjvNdxPJx1eF3hlovaWXwuTzen8
+ P1Uvwq4BpsyM6gsAG2+jKYcbrnB3EpXbzNZStXuMHr4BFq4Wp6XxBIFcyQ5KDuiALs
+ a8mYfZKn3tABOVDg6m3wR9qOmRFK1o9CBl8UL0kdOXK2pIcze7CaDDMlixvGs+6ZrC
+ Xku+sT02Du7T/G4rJgraXypJxQDkQmis1yEyXI2XXerGEHUdtm2UEs6EKrGKCEwpnF
+ LnTfYHqsmciTfW4qsVE9USw9w86ooB/81ftBqxeoKdr5q18IIfUi/DTunXVpEgT7GT
+ XhGD2IA/Pi7pw==
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Jiri Pirko <jiri@resnulli.us>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Ido Schimmel <idosch@idosch.org>, Roopa Prabhu <roopa@nvidia.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [Bridge] [PATCH net] net: bridge: use switchdev for port flags
+ set through sysfs too
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,183 +189,51 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On 07/02/2021 21:47, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> Looking through patchwork I don't see that there was any consensus to
+> use switchdev notifiers only in case of netlink provided port flags but
+> not sysfs (as a sort of deprecation, punishment or anything like that),
+> so we should probably keep the user interface consistent in terms of
+> functionality.
+> 
+> http://patchwork.ozlabs.org/project/netdev/patch/20170605092043.3523-3-jiri@resnulli.us/
+> http://patchwork.ozlabs.org/project/netdev/patch/20170608064428.4785-3-jiri@resnulli.us/
+> 
+> Fixes: 3922285d96e7 ("net: bridge: Add support for offloading port attributes")
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  net/bridge/br_sysfs_if.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/net/bridge/br_sysfs_if.c b/net/bridge/br_sysfs_if.c
+> index 96ff63cde1be..5aea9427ffe1 100644
+> --- a/net/bridge/br_sysfs_if.c
+> +++ b/net/bridge/br_sysfs_if.c
+> @@ -59,9 +59,8 @@ static BRPORT_ATTR(_name, 0644,					\
+>  static int store_flag(struct net_bridge_port *p, unsigned long v,
+>  		      unsigned long mask)
+>  {
+> -	unsigned long flags;
+> -
+> -	flags = p->flags;
+> +	unsigned long flags = p->flags;
+> +	int err;
+>  
+>  	if (v)
+>  		flags |= mask;
+> @@ -69,6 +68,10 @@ static int store_flag(struct net_bridge_port *p, unsigned long v,
+>  		flags &= ~mask;
+>  
+>  	if (flags != p->flags) {
+> +		err = br_switchdev_set_port_flag(p, flags, mask);
+> +		if (err)
+> +			return err;
+> +
+>  		p->flags = flags;
+>  		br_port_flags_change(p, mask);
+>  	}
+> 
 
-The ocelot switches are a bit odd in that they do not have an STP state
-to put the ports into. Instead, the forwarding configuration is delayed
-from the typical port_bridge_join into stp_state_set, when the port enters
-the BR_STATE_FORWARDING state.
-
-I can only guess that the implementation of this quirk is the reason that
-led to the simplification of the driver such that only one bridge could
-be offloaded at a time.
-
-We can simplify the data structures somewhat, and introduce a per-port
-bridge device pointer and STP state, similar to how the LAG offload
-works now (there we have a per-port bonding device pointer and TX
-enabled state). This allows offloading multiple bridges with relative
-ease, while still keeping in place the quirk to delay the programming of
-the PGIDs.
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- drivers/net/ethernet/mscc/ocelot.c         | 69 +++++++++++-----------
- drivers/net/ethernet/mscc/ocelot_vsc7514.c |  2 +-
- include/soc/mscc/ocelot.h                  |  7 +--
- 3 files changed, 38 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/net/ethernet/mscc/ocelot.c b/drivers/net/ethernet/mscc/ocelot.c
-index c8bfc2f9534a..6f2967376210 100644
---- a/drivers/net/ethernet/mscc/ocelot.c
-+++ b/drivers/net/ethernet/mscc/ocelot.c
-@@ -912,6 +912,26 @@ static u32 ocelot_get_bond_mask(struct ocelot *ocelot, struct net_device *bond,
- 	return mask;
- }
- 
-+static u32 ocelot_get_bridge_fwd_mask(struct ocelot *ocelot,
-+				      struct net_device *bridge)
-+{
-+	u32 mask = 0;
-+	int port;
-+
-+	for (port = 0; port < ocelot->num_phys_ports; port++) {
-+		struct ocelot_port *ocelot_port = ocelot->ports[port];
-+
-+		if (!ocelot_port)
-+			continue;
-+
-+		if (ocelot_port->stp_state == BR_STATE_FORWARDING &&
-+		    ocelot_port->bridge == bridge)
-+			mask |= BIT(port);
-+	}
-+
-+	return mask;
-+}
-+
- static u32 ocelot_get_dsa_8021q_cpu_mask(struct ocelot *ocelot)
- {
- 	u32 mask = 0;
-@@ -961,10 +981,12 @@ void ocelot_apply_bridge_fwd_mask(struct ocelot *ocelot)
- 			 */
- 			mask = GENMASK(ocelot->num_phys_ports - 1, 0);
- 			mask &= ~cpu_fwd_mask;
--		} else if (ocelot->bridge_fwd_mask & BIT(port)) {
-+		} else if (ocelot_port->bridge) {
-+			struct net_device *bridge = ocelot_port->bridge;
- 			struct net_device *bond = ocelot_port->bond;
- 
--			mask = ocelot->bridge_fwd_mask & ~BIT(port);
-+			mask = ocelot_get_bridge_fwd_mask(ocelot, bridge);
-+			mask &= ~BIT(port);
- 			if (bond) {
- 				mask &= ~ocelot_get_bond_mask(ocelot, bond,
- 							      false);
-@@ -985,29 +1007,16 @@ EXPORT_SYMBOL(ocelot_apply_bridge_fwd_mask);
- void ocelot_bridge_stp_state_set(struct ocelot *ocelot, int port, u8 state)
- {
- 	struct ocelot_port *ocelot_port = ocelot->ports[port];
--	u32 port_cfg;
--
--	if (!(BIT(port) & ocelot->bridge_mask))
--		return;
-+	u32 learn_ena = 0;
- 
--	port_cfg = ocelot_read_gix(ocelot, ANA_PORT_PORT_CFG, port);
-+	ocelot_port->stp_state = state;
- 
--	switch (state) {
--	case BR_STATE_FORWARDING:
--		ocelot->bridge_fwd_mask |= BIT(port);
--		fallthrough;
--	case BR_STATE_LEARNING:
--		if (ocelot_port->brport_flags & BR_LEARNING)
--			port_cfg |= ANA_PORT_PORT_CFG_LEARN_ENA;
--		break;
--
--	default:
--		port_cfg &= ~ANA_PORT_PORT_CFG_LEARN_ENA;
--		ocelot->bridge_fwd_mask &= ~BIT(port);
--		break;
--	}
-+	if ((state == BR_STATE_LEARNING || state == BR_STATE_FORWARDING) &&
-+	    ocelot_port->brport_flags & BR_LEARNING)
-+		learn_ena = ANA_PORT_PORT_CFG_LEARN_ENA;
- 
--	ocelot_write_gix(ocelot, port_cfg, ANA_PORT_PORT_CFG, port);
-+	ocelot_rmw_gix(ocelot, learn_ena, ANA_PORT_PORT_CFG_LEARN_ENA,
-+		       ANA_PORT_PORT_CFG, port);
- 
- 	ocelot_apply_bridge_fwd_mask(ocelot);
- }
-@@ -1237,16 +1246,9 @@ EXPORT_SYMBOL(ocelot_port_mdb_del);
- int ocelot_port_bridge_join(struct ocelot *ocelot, int port,
- 			    struct net_device *bridge)
- {
--	if (!ocelot->bridge_mask) {
--		ocelot->hw_bridge_dev = bridge;
--	} else {
--		if (ocelot->hw_bridge_dev != bridge)
--			/* This is adding the port to a second bridge, this is
--			 * unsupported */
--			return -ENODEV;
--	}
-+	struct ocelot_port *ocelot_port = ocelot->ports[port];
- 
--	ocelot->bridge_mask |= BIT(port);
-+	ocelot_port->bridge = bridge;
- 
- 	return 0;
- }
-@@ -1259,10 +1261,7 @@ int ocelot_port_bridge_leave(struct ocelot *ocelot, int port,
- 	struct ocelot_vlan pvid = {0}, native_vlan = {0};
- 	int ret;
- 
--	ocelot->bridge_mask &= ~BIT(port);
--
--	if (!ocelot->bridge_mask)
--		ocelot->hw_bridge_dev = NULL;
-+	ocelot_port->bridge = NULL;
- 
- 	ret = ocelot_port_vlan_filtering(ocelot, port, false);
- 	if (ret)
-diff --git a/drivers/net/ethernet/mscc/ocelot_vsc7514.c b/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-index 6b6eb92149ba..c366d96fc945 100644
---- a/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-+++ b/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-@@ -694,7 +694,7 @@ static irqreturn_t ocelot_xtr_irq_handler(int irq, void *arg)
- 		/* Everything we see on an interface that is in the HW bridge
- 		 * has already been forwarded.
- 		 */
--		if (ocelot->bridge_mask & BIT(info.port))
-+		if (ocelot_port->bridge)
- 			skb->offload_fwd_mark = 1;
- 
- 		skb->protocol = eth_type_trans(skb, dev);
-diff --git a/include/soc/mscc/ocelot.h b/include/soc/mscc/ocelot.h
-index d8b4b1d3be15..333300b14a97 100644
---- a/include/soc/mscc/ocelot.h
-+++ b/include/soc/mscc/ocelot.h
-@@ -617,6 +617,9 @@ struct ocelot_port {
- 
- 	struct net_device		*bond;
- 	bool				lag_tx_active;
-+
-+	struct net_device		*bridge;
-+	u8				stp_state;
- };
- 
- struct ocelot {
-@@ -636,10 +639,6 @@ struct ocelot {
- 	int				num_frame_refs;
- 	int				num_mact_rows;
- 
--	struct net_device		*hw_bridge_dev;
--	u16				bridge_mask;
--	u16				bridge_fwd_mask;
--
- 	struct ocelot_port		**ports;
- 
- 	u8				base_mac[ETH_ALEN];
--- 
-2.25.1
-
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
