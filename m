@@ -1,103 +1,150 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359773159B7
-	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 23:52:12 +0100 (CET)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083E7316173
+	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 09:49:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id BFFA06F662
-	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 22:52:10 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id A66448588C;
+	Wed, 10 Feb 2021 08:49:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hj0IRrfUB3fZ for <lists.bridge@lfdr.de>;
-	Tue,  9 Feb 2021 22:52:10 +0000 (UTC)
-Received: by smtp3.osuosl.org (Postfix, from userid 1001)
-	id 076EA6F676; Tue,  9 Feb 2021 22:52:10 +0000 (UTC)
+Received: from whitealder.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 220QIH5qMAli; Wed, 10 Feb 2021 08:49:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9458E6F4A4;
-	Tue,  9 Feb 2021 22:51:59 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 71690856ED;
+	Wed, 10 Feb 2021 08:49:25 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 68B06C013A;
-	Tue,  9 Feb 2021 22:51:59 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5E56FC013A;
+	Wed, 10 Feb 2021 08:49:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E4343C013A
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 22:51:57 +0000 (UTC)
+Received: from silver.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7BBA6C013A
+ for <bridge@lists.linux-foundation.org>; Mon,  8 Feb 2021 19:37:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id DFC9986197
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 22:51:57 +0000 (UTC)
+ by silver.osuosl.org (Postfix) with ESMTP id 6113A214EC
+ for <bridge@lists.linux-foundation.org>; Mon,  8 Feb 2021 19:37:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from silver.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id h-Z2btS6FX-r for <bridge@lists.linux-foundation.org>;
- Tue,  9 Feb 2021 22:51:57 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id D1F8185FE6
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 22:51:56 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id y9so287449ejp.10
- for <bridge@lists.linux-foundation.org>; Tue, 09 Feb 2021 14:51:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=iIyWAOeW0XMcNsoXJ5PtY4MXLZl7m47B6NixrVZ9rLY=;
- b=QROU2sHT54xgG1rdVX7quLFP4mqoeCSQs0ThOZCX6uDYptZlkgvUpc/Ua16G2M3IIm
- 9mdHcpY1TXWxExmULswJGhiblC8SQfzMkYkQWF7ZxVuKSJDzUDqNFvOVkcO2XvDg0nMw
- zyw4YLRSyDlGbE7wjuhFx4axkFNewJj6fX0wX7TpARXuhuN///jUgZHAwBtuwEI3Y65B
- d5T936dLuKJtlPkWBCd6BhOwJkMtcntkYBmGdvPtuNWqxRJaXc/Fgmk0GIujYiNrIz7e
- S3vWVSpw8FHphgotzxypXVcocDnAfs7N90I/G+oBQS1UgiBE62ZsmoWY0TKQpUgtxwO1
- lLmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=iIyWAOeW0XMcNsoXJ5PtY4MXLZl7m47B6NixrVZ9rLY=;
- b=sfSyC9gViI/BjQnWggU71AuAf8iaSFizAowvNDnZL9LIVHfhVe4jW3LiBcl6wEVE43
- +1D26Sc7pIm864xlwWjkbUzYJIJIX7QSYJNUyrQuuEdN6OZIXO2ZnXZId0aJJavxcBDf
- OwUJg1Av88oak+tcPlbFg05TjwcG0fBwZlfbOHx1iJ5uTDWe4G/CfY5V9d8nwM9EusGF
- M9AX6IFHjHfOk8Ciz8yk7lLWvF+JvWwMx02OEYolclkRIMBqxArxHbZxd2FDHXzAPUVw
- 90z77/bnx7xSyCsqLm+kFGapRAtgT/LfK1h/N3T0tzm+WATeKcTFF/BaqaRPIqIrvacq
- eQEw==
-X-Gm-Message-State: AOAM530/5JTbgyIVnyotF+gRFvHgb22f6F/5Rqx2cEO2BDfQ+MLV0lOi
- EUk62Wq9wYGlpbjkzqKRAMM=
-X-Google-Smtp-Source: ABdhPJxnm/2Oy51X5r9okPXZbs0ExERqCkzNQ+8h7ASZynbjNBPmsOzitXLwMBz6MvIjMoUAhAwnvQ==
-X-Received: by 2002:a17:906:560b:: with SMTP id
- f11mr25703142ejq.162.1612911115421; 
- Tue, 09 Feb 2021 14:51:55 -0800 (PST)
-Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
- by smtp.gmail.com with ESMTPSA id ga5sm63174ejb.114.2021.02.09.14.51.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Feb 2021 14:51:54 -0800 (PST)
-Date: Wed, 10 Feb 2021 00:51:53 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <20210209225153.j7u6zwnpdgskvr2v@skbuf>
-References: <20210209151936.97382-1-olteanv@gmail.com>
- <20210209151936.97382-5-olteanv@gmail.com>
- <20210209185100.GA266253@shredder.lan>
- <20210209202045.obayorcud4fg2qqb@skbuf>
- <20210209220124.GA271860@shredder.lan>
+ with ESMTP id uMlsFE7GmKbv for <bridge@lists.linux-foundation.org>;
+ Mon,  8 Feb 2021 19:37:15 +0000 (UTC)
+X-Greylist: delayed 02:00:23 by SQLgrey-1.7.6
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (mail-eopbgr60063.outbound.protection.outlook.com [40.107.6.63])
+ by silver.osuosl.org (Postfix) with ESMTPS id E903820BF9
+ for <bridge@lists.linux-foundation.org>; Mon,  8 Feb 2021 19:37:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lBvod/9gXoQY7tEAkkanvr947Xg8u6IgEzBmQyZUsWH4QAdPxT0AvBrjPnM+4txhPJsutNXBwz86RzCsfreJMSFUoqk6c0Rr2/X+p+plifkQrtT8rE0jZCoGl3o6Gg/hFLMlR/0ztIxRB3r+t/UeeC1SlzBNJbap5Rl4RZUmhxngnkrN519jwkSSqOnIDrkuokddYg9Kry8YDqbzqynkxDtabP2+GIBinmTDjl0g7Pi3fn9XTba7DdCJMsMihalVGkOKa2zzaqorEq9FE8suQOxTdb8VAz3J/Zd/fNNEu3YxZPFIu/ilw2aSt5gvY+CjIbBOJ6qqf9/bt/HWlc2Fig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=exkoNkB4sKnYOGWCAq/KbIKLo3oZIEKBU8fvAi6+BCY=;
+ b=E3duo/rDAm2kHgfG9474gn6w94KBJybv5DL6AgdcV+JhPlIIbWl4cqTOyr6F55Ebut1/QnRe/dGF0H0RdntEEgP5G98xWaUwWy+u927hRDC5tZynziu4VIo7w4eyi0AqiOhnNwM1vQqwVTuj9OEnZr/oIfBoiOHqMBJ0K3TXXQqKaz0DQjwC+YNCArLnd9QRs2+1IM36ZTXcdRsTZvbmAIswaH0vOZYyVtPerbp/g2fXlwWFW8CeP0HVs0iSTyIz906kTtX/N6xkq59eio04HShpPFMXyz01RmBrw/2XWNnYCAivC/dt+HKIadyMMdR+2pmGj07MiDakxNMPAsyqZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=exkoNkB4sKnYOGWCAq/KbIKLo3oZIEKBU8fvAi6+BCY=;
+ b=ZcosWDECG0AWYnXOaSvHD4PxxeWXgN7gqd1wwfQRufp1aFxSWN75mNao95M5cSDsdZr/A1QPvcOhxFYzxEnu//YNSEgFZ46eUwsbReUVbVgK/1vzDJCcRzmmodTLm47tnV1r5HZcxvs0Lspb9oDoccDQWtEiriYKi0rSj7Zvu94=
+Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
+ (2603:10a6:803:16::14) by VI1PR0402MB3326.eurprd04.prod.outlook.com
+ (2603:10a6:803:8::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.21; Mon, 8 Feb
+ 2021 16:04:20 +0000
+Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
+ ([fe80::b0d0:3a81:c999:e88]) by VI1PR0402MB3871.eurprd04.prod.outlook.com
+ ([fe80::b0d0:3a81:c999:e88%3]) with mapi id 15.20.3825.030; Mon, 8 Feb 2021
+ 16:04:20 +0000
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+Thread-Topic: [PATCH net-next 5/9] net: squash switchdev attributes
+ PRE_BRIDGE_FLAGS and BRIDGE_FLAGS
+Thread-Index: AQHW/ag09t/cx1zZKkyxRCLhvjkPzapObMsA
+Date: Mon, 8 Feb 2021 16:04:20 +0000
+Message-ID: <20210208160418.pen47yf3xhtzuwkb@skbuf>
+References: <20210207232141.2142678-1-olteanv@gmail.com>
+ <20210207232141.2142678-6-olteanv@gmail.com>
+In-Reply-To: <20210207232141.2142678-6-olteanv@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [5.12.227.87]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: ae0942a4-3a6d-4c9c-0c85-08d8cc4b31ee
+x-ms-traffictypediagnostic: VI1PR0402MB3326:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0402MB3326DAB80FDBE4550D2F60C2E08F9@VI1PR0402MB3326.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /15fAKReoxUjXEUIeOCRJGJvOOpKY7yxjgaf61YS3nW/XbjLc4EVrGcwMd2xM88dgXG/aOCGHzdXTuXfaf50CtE92xzT7fqyexL5hage24uOTfkCDhWPVtryT5M2dEqshOTkUe2yYplg12xn7QDPOjEoPM1eI/wrSMkts0bpPwt21vj/wKnU4i/0jgp+TrrBSMFsRz4l6qQhPViJSPweUYeBDnpnomVtHsXjfE38XgRDszYOWZYgh5qpTaCbvBOLH2e4vpC3OVAdefpPgqCqUkDpT+lYJ9W+Zs/PNdOElYDpg2DOFgCfopBVn9M5M4gQ8UfnRgdJE6Rh5/lNcpUZnV85RjFFRdBn0QyZfuFCqFJuXHkLYIHqVUmCkgib5M+7ZAYdK9dALxqMDcgvRmIAbSDKUZopTzKZKPt70ea8ZrOUSO3G3/B29cBEMZvUBoAZH/NxHiwtSIuhZDgR7Kt4dcu5dhw2Oq3m08cgGdWhSvARJgcGo/srAeqpxAXh5UyIN1/5//Kh8v25lXizT48M0Q==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR0402MB3871.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(7916004)(396003)(346002)(366004)(376002)(136003)(39860400002)(91956017)(6486002)(64756008)(66946007)(7416002)(186003)(33716001)(5660300002)(71200400001)(316002)(6916009)(66556008)(54906003)(1076003)(8676002)(76116006)(4326008)(86362001)(6512007)(8936002)(66476007)(44832011)(478600001)(2906002)(9686003)(6506007)(83380400001)(66446008)(26005);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?Ypv+LbwzSC35YeoKC4O5eWroDCIJcipEmwOGnbSdm/ii5qQT0D/388qPAakm?=
+ =?us-ascii?Q?yZZ75Rli3+fcZTnPrbZMDsgaZ/nauigzZSh5hBzNovShhgjZ/1XCF7bhWkPs?=
+ =?us-ascii?Q?FMG6ggI/5+aJGppGidYSx8L7QXLj3JAHNr/0FpKwdPIpo/2NZsZOYdhZsfAy?=
+ =?us-ascii?Q?0ViBAd6QDM6t/hlIpOfXyg1pWLNXiIVRCav2pOS7RJosVxwiU44aOGIDYMSO?=
+ =?us-ascii?Q?GWVvC7wNtiqDiwEnv8Z77E0eLOVKSUnsxMDBUwMi6/zXFyw7RhhTvl0BFCvy?=
+ =?us-ascii?Q?/jW46OM7op6S4Y0KS/BiKDu/M1ZkwyHGuY4sOXkIpj83YQhrXxRHfoOUtcjT?=
+ =?us-ascii?Q?qZxIX5tWDd/hp+zfNrdQxt7vCAo2GtxOCO9UW4ynUYOwk7jFp4OizcRSNNlN?=
+ =?us-ascii?Q?l+eIO6KXr7qlkDclaUtNK2kBsQS3dE3f2WRQW8/C9RNlcLCr77JDRLL2baKM?=
+ =?us-ascii?Q?BzxbMiIt+/3i+KDHYCF2lvBN6KQPQxJDD1tlrWOSCHkdBH/Rg5DOU+c4gWRA?=
+ =?us-ascii?Q?svNl+ITEQwdHgmjEZqLuwolTCF/8+504SOdym+Zt0RI9Q3eJg40791lR1U5K?=
+ =?us-ascii?Q?+09Z0QyUmg4dNcukLyyOhju/WmWyGtdD25nm63nVarS5NL3d/nA4ReHsNPKj?=
+ =?us-ascii?Q?Yjnp0WKRsRzj8SqC/9HfSBrGzeuPIZa/Ru/usQsY4Iw+eL8ztZaMiHjrmlA5?=
+ =?us-ascii?Q?vtudk91C9mEsBWO03YD+ucwhshfd8f9XnUQOpLXvNw/3h8lASaYCxH05yNW6?=
+ =?us-ascii?Q?ku8vJYemoF17AHNBj7RPyWviGqTyFkUvwW9PUFZO+krBwG0HVy9+9LwM4P+d?=
+ =?us-ascii?Q?YxfWf9SOcAkq7FfUkFJEDmyP8L5kXR7CM/Man1qc1a8AaUnW7pePl1jE29C1?=
+ =?us-ascii?Q?5TijXJSSVO+SRaI1vIy1ck04h2dXzraKZND4+X8NdCjjLzewxofVBZvxgdJa?=
+ =?us-ascii?Q?RLYaGn9mm0hXOm2cOft9U861ZzfSB69cGZ+Q6yKJbA8a8EvlhDLoRrlhtFVG?=
+ =?us-ascii?Q?HW4NYcfz/8q1IkyZT7/0EU4Y6PvxlQqcNSHJLQhGRpMY9ZrgLAOz4jxD8niW?=
+ =?us-ascii?Q?GUO59Ek1+xF0SVZ5CZOsdaatNWvbeIy+q+7Vj1dBhxX0Tp5FsAU/5xEyff4w?=
+ =?us-ascii?Q?AaIkpbqdxkmDXpFG6BMAl8GcE/kqdjDrDiqv3bgMiEEFTHfOQdw8BF92pRG/?=
+ =?us-ascii?Q?ajuFxp45EwrLpPzVYvyPKkuGSUWf9ZdXVyrGhhkOsGKv/JZ7U7qL0DDrJLpN?=
+ =?us-ascii?Q?Rt0rHRDtHXvp+EIDvFXXPMZURI8N9VbBK5B5ItcaCYeBtCi7EVErBXj33sau?=
+ =?us-ascii?Q?PdHlge5+cB6BsJxIcs5Hgeey?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <EBBD033502BAE849A5733453869BC577@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210209220124.GA271860@shredder.lan>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3871.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae0942a4-3a6d-4c9c-0c85-08d8cc4b31ee
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2021 16:04:20.4093 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PjuF+LhwS14xExlxmO6YIlouOWRnQfdrqXoihsN69VHtFvKvN0QE51zxpnph8j/7ce+QEppmKltZsuTpEROtAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3326
+X-Mailman-Approved-At: Wed, 10 Feb 2021 08:49:23 +0000
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Vadym Kochan <vkochan@marvell.com>, linux-omap@vger.kernel.org,
- netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Ioana Ciornei <ioana.ciornei@nxp.com>, linux-kernel@vger.kernel.org,
+ Vadym Kochan <vkochan@marvell.com>,
+ "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Vivien Didelot <vivien.didelot@gmail.com>,
- Taras Chornyi <tchornyi@marvell.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Taras Chornyi <tchornyi@marvell.com>, Ido Schimmel <idosch@idosch.org>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
  Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, UNGLinuxDriver@microchip.com,
+ Jakub Kicinski <kuba@kernel.org>,
+ "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH v2 net-next 04/11] net: bridge: offload initial
- and final port flags through switchdev
+Subject: Re: [Bridge] [PATCH net-next 5/9] net: squash switchdev attributes
+ PRE_BRIDGE_FLAGS and BRIDGE_FLAGS
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -112,61 +159,110 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Feb 10, 2021 at 12:01:24AM +0200, Ido Schimmel wrote:
-> On Tue, Feb 09, 2021 at 10:20:45PM +0200, Vladimir Oltean wrote:
-> > On Tue, Feb 09, 2021 at 08:51:00PM +0200, Ido Schimmel wrote:
-> > > On Tue, Feb 09, 2021 at 05:19:29PM +0200, Vladimir Oltean wrote:
-> > > > So switchdev drivers operating in standalone mode should disable address
-> > > > learning. As a matter of practicality, we can reduce code duplication in
-> > > > drivers by having the bridge notify through switchdev of the initial and
-> > > > final brport flags. Then, drivers can simply start up hardcoded for no
-> > > > address learning (similar to how they already start up hardcoded for no
-> > > > forwarding), then they only need to listen for
-> > > > SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS and their job is basically done, no
-> > > > need for special cases when the port joins or leaves the bridge etc.
-> > >
-> > > How are you handling the case where a port leaves a LAG that is linked
-> > > to a bridge? In this case the port becomes a standalone port, but will
-> > > not get this notification.
-> >
-> > Apparently the answer to that question is "I delete the code that makes
-> > this use case work", how smart of me. Thanks.
->
-> Not sure how you expect to interpret this.
+On Mon, Feb 08, 2021 at 01:21:37AM +0200, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+>=20
+> There does not appear to be any strong reason why
+> br_switchdev_set_port_flag issues a separate notification for checking
+> the supported brport flags rather than just attempting to apply them and
+> propagating the error if that fails.
+>=20
+> However, there is a reason why this switchdev API is counterproductive
+> for a driver writer, and that is because although br_switchdev_set_port_f=
+lag
+> gets passed a "flags" and a "mask", those are passed piecemeal to the
+> driver, so while the PRE_BRIDGE_FLAGS listener knows what changed
+> because it has the "mask", the BRIDGE_FLAGS listener doesn't, because it
+> only has the final value. This means that "edge detection" needs to be
+> done by each individual BRIDGE_FLAGS listener by XOR-ing the old and the
+> new flags, which in turn means that copying the flags into a driver
+> private variable is strictly necessary.
+>=20
+> This can be solved by passing the "flags" and the "value" together into
+> a single switchdev attribute, and it also reduces some boilerplate in
+> the drivers that offload this.
+>=20
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  drivers/net/dsa/b53/b53_common.c              | 16 ++++-------
+>  drivers/net/dsa/mv88e6xxx/chip.c              | 17 ++++-------
+>  .../marvell/prestera/prestera_switchdev.c     | 16 +++++------
+>  .../mellanox/mlxsw/spectrum_switchdev.c       | 28 ++++++-------------
+>  drivers/net/ethernet/rocker/rocker_main.c     | 24 +++-------------
+>  drivers/net/ethernet/ti/cpsw_switchdev.c      | 20 ++++---------
+>  drivers/staging/fsl-dpaa2/ethsw/ethsw.c       | 22 ++++-----------
+>  include/net/dsa.h                             |  4 +--
+>  include/net/switchdev.h                       |  8 ++++--
+>  net/bridge/br_switchdev.c                     | 19 ++++---------
+>  net/dsa/dsa_priv.h                            |  4 +--
+>  net/dsa/port.c                                | 15 ++--------
+>  net/dsa/slave.c                               |  3 --
+>  13 files changed, 58 insertions(+), 138 deletions(-)
+>=20
 
-Next patch (05/11) deletes that explicit notification from dsa_port_bridge_leave,
-function which is called from dsa_port_lag_leave too, apparently with good reason.
+(..)
 
-> > Unless you have any idea how I could move the logic into the bridge, I
-> > guess I'm stuck with DSA and all the other switchdev drivers having this
-> > forest of corner cases to deal with. At least I can add a comment so I'm
-> > not tempted to delete it next time.
->
-> There are too many moving pieces with stacked devices. It is not only
-> LAG/bridge. In L3 you have VRFs, SVIs, macvlans etc. It might be better
-> to gracefully / explicitly not handle a case rather than pretending to
-> handle it correctly with complex / buggy code.
->
-> For example, you should refuse to be enslaved to a LAG that already has
-> upper devices such as a bridge. You are probably not handling this
-> correctly / at all. This is easy. Just a call to
-> netdev_has_any_upper_dev().
+> --- a/drivers/staging/fsl-dpaa2/ethsw/ethsw.c
+> +++ b/drivers/staging/fsl-dpaa2/ethsw/ethsw.c
+> @@ -908,28 +908,22 @@ static int dpaa2_switch_port_attr_stp_state_set(str=
+uct net_device *netdev,
+>  	return dpaa2_switch_port_set_stp_state(port_priv, state);
+>  }
+> =20
+> -static int dpaa2_switch_port_attr_br_flags_pre_set(struct net_device *ne=
+tdev,
+> -						   unsigned long flags)
+> -{
+> -	if (flags & ~(BR_LEARNING | BR_FLOOD))
+> -		return -EINVAL;
+> -
+> -	return 0;
+> -}
+> -
+>  static int dpaa2_switch_port_attr_br_flags_set(struct net_device *netdev=
+,
+> -					       unsigned long flags)
+> +					       struct switchdev_brport_flags val)
+>  {
+>  	struct ethsw_port_priv *port_priv =3D netdev_priv(netdev);
+>  	int err =3D 0;
+> =20
+> +	if (val.mask & ~(BR_LEARNING | BR_FLOOD))
+> +		return -EINVAL;
+> +
+>  	/* Learning is enabled per switch */
+>  	err =3D dpaa2_switch_set_learning(port_priv->ethsw_data,
+> -					!!(flags & BR_LEARNING));
+> +					!!(val.flags & BR_LEARNING));
+>  	if (err)
+>  		goto exit;
+> =20
+> -	err =3D dpaa2_switch_port_set_flood(port_priv, !!(flags & BR_FLOOD));
+> +	err =3D dpaa2_switch_port_set_flood(port_priv, !!(val.flags & BR_FLOOD)=
+);
 
-Correct, good point, in particular this means that joining a bridged LAG
-will not get me any notifications of that LAG's CHANGEUPPER because that
-was consumed a long time ago. An equally valid approach seems to be to
-check for netdev_master_upper_dev_get_rcu in dsa_port_lag_join, and call
-dsa_port_bridge_join on the upper if that is present.
 
-> The reverse, during unlinking, would be to refuse unlinking if the upper
-> has uppers of its own. netdev_upper_dev_unlink() needs to learn to
-> return an error and callers such as team/bond need to learn to handle
-> it, but it seems patchable.
+Could you also check the mask to see if the flag needs to be actually chang=
+ed?
 
-Again, this was treated prior to my deletion in this series and not by
-erroring out, I just really didn't think it through.
+> --- a/include/net/dsa.h
+> +++ b/include/net/dsa.h
+> @@ -621,10 +621,8 @@ struct dsa_switch_ops {
+>  	void	(*port_stp_state_set)(struct dsa_switch *ds, int port,
+>  				      u8 state);
+>  	void	(*port_fast_age)(struct dsa_switch *ds, int port);
+> -	int	(*port_pre_bridge_flags)(struct dsa_switch *ds, int port,
+> -					 unsigned long mask);
+>  	int	(*port_bridge_flags)(struct dsa_switch *ds, int port,
+> -				     unsigned long flags);
+> +				     struct switchdev_brport_flags val);
+>  	int	(*port_set_mrouter)(struct dsa_switch *ds, int port,
+>  				    bool mrouter);
+> =20
 
-So you're saying that if we impose that all switchdev drivers restrict
-the house of cards to be constructed from the bottom up, and destructed
-from the top down, then the notification of bridge port flags can stay
-in the bridge layer?
+In the previous patch you add the .port_pre_bridge_flags()
+dsa_switch_ops only to remove it here. Couldn't these two patches be in
+reverse order so that there is no need to actually add the callback in
+the first place?
+
+Ioana=
