@@ -1,79 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E453157A6
-	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 21:24:26 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 1495187262;
-	Tue,  9 Feb 2021 20:24:25 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id s5M6FoO5IpSS; Tue,  9 Feb 2021 20:24:23 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id B56F487264;
-	Tue,  9 Feb 2021 20:24:23 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 944EBC0174;
-	Tue,  9 Feb 2021 20:24:23 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 28CAAC013A
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:24:22 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 615073157AA
+	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 21:24:56 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 1D3D86F4BE
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:24:22 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id E5E936F693
+	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 20:24:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Nn2_kEWTnPBU for <bridge@lists.linux-foundation.org>;
- Tue,  9 Feb 2021 20:24:21 +0000 (UTC)
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id riyUbvh0UbZo for <lists.bridge@lfdr.de>;
+	Tue,  9 Feb 2021 20:24:54 +0000 (UTC)
 Received: by smtp3.osuosl.org (Postfix, from userid 1001)
- id 4C4186F5C4; Tue,  9 Feb 2021 20:24:21 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+	id 3E9826F6AA; Tue,  9 Feb 2021 20:24:54 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTP id 040276F67B;
+	Tue,  9 Feb 2021 20:24:26 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D0324C1834;
+	Tue,  9 Feb 2021 20:24:26 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 508FEC013A
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:24:25 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by hemlock.osuosl.org (Postfix) with ESMTP id 4BF1B87264
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:24:25 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from hemlock.osuosl.org ([127.0.0.1])
+ by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id deRi-B4sJdZZ for <bridge@lists.linux-foundation.org>;
+ Tue,  9 Feb 2021 20:24:23 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
- [68.232.154.123])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1D51A6F4BE
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:24:20 +0000 (UTC)
+ [68.232.153.233])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id AFA9087263
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:24:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1612902260; x=1644438260;
+ t=1612902263; x=1644438263;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IhUdd2jlbfwy16e6uNnfyIi6STcN4Cush5DPbsaIFTY=;
- b=GZ2zAO/50GsTLSEgGWsPIeJkx9UddsXqcr1IOBRd5KleRKVlbc6GWTvP
- KcKMyG98U8R+7sQLJtrFUHA9VH2YZrDdImXhDUkfIVheL0xrTa4W9y0OZ
- lhiQNb0YJgVVAirDrDBJF9pzpB9xdNpZ3ChLbI9eqIoW39A4gzakkFWnR
- f3VpEF2Lsv/6lCrvTW/1gqcXGI7OEM8Ae8ef5QZgfszu/fGfMMXQXoz9z
- /JD9masAN5uwafqld9diTkogav1lYwDaggC4MLrTgPjWXYjuke62yjnSF
- i1d8d/HXONX28G8CITyaufpymQFiOJ+v3pMkzG6kgNxdpt2C3SJQTeBiu A==;
-IronPort-SDR: O/2fqCzSvt06FAhn1bRmmaudCFo6rtgtKGyugMyzBemGzVfnpoQIZPn+WHQfDJ2Rsu4OJ2PMf6
- ILStXzz4o7pMsZSUv2LqqpG58GSMHSom9P/mDU40qQL0R887zeMey0TtZBH+DDqBmGdf8hJCeS
- r1j1R61aFGcA6hnpS8mKmxlODOpVqoYSOI0JjftaD8UPrI/2REd1ehIGQOKHMIcawzk2VuT0dj
- KXy1QEOWVoS8Ao9ysEal2HXBk+AI46q6RYmaXFe99K9P6+blPDQ3ZAIv/VLi7g0JLisYdyrrEO
- a7Y=
-X-IronPort-AV: E=Sophos;i="5.81,166,1610434800"; d="scan'208";a="106029120"
+ bh=EHLVPvUVJez21AH8PebxAXBSYM5AvLzTmtWmafYTWPs=;
+ b=YwYcsCaQVyflmkG8UJZeWem+5G+C9IYXwYCXFN9/jIOQvY6t5n7OLVEg
+ i3M+FMtCMTv0bbUqNs9MJRo9STlMXAmICFk4uwvsucO7NETwheNHr/red
+ pjXXMzxhm2MzFAhgHWAkHFo3UCOyrf1W9TcdqgeKn87anFZFzpZio6XeJ
+ P7JW7grTFta9rcbLyTtzPKJMJpXV/XxaiDVRP2oBWcX2sZZC7UYBeke7m
+ 2/qXgcgQeKC/3Er0nBgdzjZlLkyXbTdOzmJbgujtXL8qyJB0LmUF7lJgg
+ GRPlhnnt6UhNYMAt5sHgZgxRhp5TCYzyi9p93vaH2cljtLCIJ9zrqUu7z g==;
+IronPort-SDR: Oju202nIkkMU8pXEVI3BqXqb0RWdKUozUz5kt4tNCAFAd0J2XSBaRxcWdKWH6AIB6QwXo7p9nv
+ IJ2b8Be5yRgZ1p+wxko5mTvhyuQ77QULLOgBSBS68lvPt0/A8/hjG0n0h2O/sRRGfgmb3Zf6oU
+ r/VaFOWSeknhPem7dgzrcZnFNmE1llE6xEu+IVmhmFF/Zo2Nwj5jU37uuCuzJJYYh/elcGLQek
+ JpqCTXTRK1/s4ywwO74fK8t7RGCOq5dV6TCnW04ZpJckOEG7fpbyc9NT6NAv5KvcuZs+Xw7Sk4
+ G+Y=
+X-IronPort-AV: E=Sophos;i="5.81,166,1610434800"; d="scan'208";a="114457590"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 09 Feb 2021 13:24:19 -0700
+ by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 09 Feb 2021 13:24:22 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 9 Feb 2021 13:24:19 -0700
+ 15.1.1979.3; Tue, 9 Feb 2021 13:24:22 -0700
 Received: from soft-dev3.localdomain (10.10.115.15) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 9 Feb 2021 13:24:16 -0700
+ 15.1.1979.3 via Frontend Transport; Tue, 9 Feb 2021 13:24:19 -0700
 To: <jiri@resnulli.us>, <ivecera@redhat.com>, <davem@davemloft.net>,
  <kuba@kernel.org>, <roopa@nvidia.com>, <nikolay@nvidia.com>,
  <rasmus.villemoes@prevas.dk>, <andrew@lunn.ch>, <vladimir.oltean@nxp.com>,
  <claudiu.manoil@nxp.com>, <alexandre.belloni@bootlin.com>,
  <UNGLinuxDriver@microchip.com>, <netdev@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>, <bridge@lists.linux-foundation.org>
-Date: Tue, 9 Feb 2021 21:21:08 +0100
-Message-ID: <20210209202112.2545325-2-horatiu.vultur@microchip.com>
+Date: Tue, 9 Feb 2021 21:21:09 +0100
+Message-ID: <20210209202112.2545325-3-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210209202112.2545325-1-horatiu.vultur@microchip.com>
 References: <20210209202112.2545325-1-horatiu.vultur@microchip.com>
@@ -81,8 +82,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [Bridge] [PATCH net-next v3 1/5] switchdev: mrp: Extend
-	ring_role_mrp and in_role_mrp
+Subject: [Bridge] [PATCH net-next v3 2/5] bridge: mrp: Add 'enum
+	br_mrp_hw_support'
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,43 +100,40 @@ Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add the member sw_backup to the structures switchdev_obj_ring_role_mrp
-and switchdev_obj_in_role_mrp. In this way the SW can call the driver in
-2 ways, once when sw_backup is set to false, meaning that the driver
-should implement this completely in HW. And if that is not supported the
-SW will call again but with sw_backup set to true, meaning that the
-HW should help or allow the SW to run the protocol.
-
-For example when role is MRM, if the HW can't detect when it stops
-receiving MRP Test frames but it can trap these frames to CPU, then it
-needs to return -EOPNOTSUPP when sw_backup is false and return 0 when
-sw_backup is true.
+Add the enum br_mrp_hw_support that is used by the br_mrp_switchdev
+functions to allow the SW to detect the cases where HW can't implement
+the functionality or when SW is used as a backup.
 
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- include/net/switchdev.h | 2 ++
- 1 file changed, 2 insertions(+)
+ net/bridge/br_private_mrp.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/include/net/switchdev.h b/include/net/switchdev.h
-index 6dcfc4c51a6e..067f259279e1 100644
---- a/include/net/switchdev.h
-+++ b/include/net/switchdev.h
-@@ -130,6 +130,7 @@ struct switchdev_obj_ring_role_mrp {
- 	struct switchdev_obj obj;
- 	u8 ring_role;
- 	u32 ring_id;
-+	u8 sw_backup;
+diff --git a/net/bridge/br_private_mrp.h b/net/bridge/br_private_mrp.h
+index 32a48e5418da..a94017f86cda 100644
+--- a/net/bridge/br_private_mrp.h
++++ b/net/bridge/br_private_mrp.h
+@@ -46,6 +46,20 @@ struct br_mrp {
+ 	struct rcu_head			rcu;
  };
  
- #define SWITCHDEV_OBJ_RING_ROLE_MRP(OBJ) \
-@@ -164,6 +165,7 @@ struct switchdev_obj_in_role_mrp {
- 	u32 ring_id;
- 	u16 in_id;
- 	u8 in_role;
-+	u8 sw_backup;
- };
- 
- #define SWITCHDEV_OBJ_IN_ROLE_MRP(OBJ) \
++/* This type is returned by br_mrp_switchdev functions that allow to have a SW
++ * backup in case the HW can't implement completely the protocol.
++ * BR_MRP_NONE - means the HW can't run at all the protocol, so the SW stops
++ *               configuring the node anymore.
++ * BR_MRP_SW - the HW can help the SW to run the protocol, by redirecting MRP
++ *             frames to CPU.
++ * BR_MRP_HW - the HW can implement completely the protocol.
++ */
++enum br_mrp_hw_support {
++	BR_MRP_NONE,
++	BR_MRP_SW,
++	BR_MRP_HW,
++};
++
+ /* br_mrp.c */
+ int br_mrp_add(struct net_bridge *br, struct br_mrp_instance *instance);
+ int br_mrp_del(struct net_bridge *br, struct br_mrp_instance *instance);
 -- 
 2.27.0
 
