@@ -2,82 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74D631528B
-	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 16:20:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8526931552A
+	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 18:36:41 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 6246A85F71;
-	Tue,  9 Feb 2021 15:20:12 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 2ABC4858D4;
+	Tue,  9 Feb 2021 17:36:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uM9tl_jBF_c1; Tue,  9 Feb 2021 15:20:10 +0000 (UTC)
+	with ESMTP id 8JcODljggbfc; Tue,  9 Feb 2021 17:36:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7B4BF85FD4;
-	Tue,  9 Feb 2021 15:20:10 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id AB1D88551F;
+	Tue,  9 Feb 2021 17:36:39 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6238EC013A;
-	Tue,  9 Feb 2021 15:20:10 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8F0F5C1834;
+	Tue,  9 Feb 2021 17:36:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9E45CC013A
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 15:20:08 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 81106C013A
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 17:36:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 8E13786B9F
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 15:20:08 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 6842886B0B
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 17:36:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id pRKa91mi2yFZ for <bridge@lists.linux-foundation.org>;
- Tue,  9 Feb 2021 15:20:05 +0000 (UTC)
+ with ESMTP id 83FxemuL0QDQ for <bridge@lists.linux-foundation.org>;
+ Tue,  9 Feb 2021 17:36:36 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 32C3F86B9A
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 15:20:05 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id sa23so32292676ejb.0
- for <bridge@lists.linux-foundation.org>; Tue, 09 Feb 2021 07:20:05 -0800 (PST)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 1061B869C3
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 17:36:36 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id s3so24873819edi.7
+ for <bridge@lists.linux-foundation.org>; Tue, 09 Feb 2021 09:36:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=33/uyGIN3FY3+rBdv4FUVUP8dhmUMuazcIsOv+i6Gos=;
- b=Jze5auyHPDoC6rfV73gY30Hp1USjjzyfk4eUjoUSm/ZtmJUo0//B9gg5YM1xmx4SGA
- m94yMWYIaoLHQTuURAvVTDpiYHPvDU77il0aNvTjxzRWzpLI3MLnPLZQ49Dn6FDU1YMO
- WCid8yzpagqm6Y7xzh0cHgqLG8Ql5cImK1tQemFDvTKZDl+e9Sk7XVRbfd0+5tuSAy/p
- evF3lWgG/HM/6d/Wdq8YDdLeGNrSErN5MGA0MjwtHrP+Hnljy04hYROZEUD7slwsoc0q
- 4LVZ2xKfV1sdpKkuFDA16wmfRF40pE0B8XEdTIEommbKbT94DQTO6GYAR1r0cixMb4mO
- xJMA==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=3IKSUC2PbMBLcmAxJNHDlsNxrnoGLUkLdRWIm40sEpc=;
+ b=LGw97nE1cdPwc3VbbdI7b3jcHyQ5rDSJXCpydItAPA5Duy7SnDry4v7J4PxhT0geS6
+ Q4VfKF0h844R3hVgCo54tdyExYyz5Mey9SqemYKef05Yhwl4eX8VZhJCjjGd2Xa90O01
+ PnHKbpH7BtHXyaPZdZzcY8cS02pRNsKUyPv6GdpdSnLDmd10xlE6NysARS0+T9Q2KY8d
+ x+HvCxriBjgv2a78wFPePpW0sqjFfX106VbA50dcMre5AA483PPmKFWlhW2zJyqeYOF0
+ C+PC6bAZ12wwNYmvAyxSoUAZXPDe8phSMQd5gPunsSFUMFjEqG1rYCstOM4qG53nb86p
+ roMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=33/uyGIN3FY3+rBdv4FUVUP8dhmUMuazcIsOv+i6Gos=;
- b=PLAiJ9AfX9v7UrkweYnq0vXYfAv/TvmvQzQT432dvMw/adneQmY/FV0CL3Ipr85pch
- 7ww/lRxFJQjwzslAFNlkpqC4B3Y2byRwwV6zRdz0+4UYNPhPuVnvGKbGesRSQyMFaES2
- X43et/xCGCWuNHi6K7J59zWcE6OCXueXpFtUzJnDKR8utWrQwskcu46nqKYfMZtT/1Iq
- EPYcbTRxwhGskBsZL+VOzHnTYVJ9yf9fFBkHU73/bzEigmpoNvVgzTZyHbAnxJj5UWOJ
- 6OlMZqDcWNmG/NWzI6s2aJdWpJDg8xHDruqvv+QMpyRwSZQoZrFgFOfJTfA0c9/5dV2j
- FKag==
-X-Gm-Message-State: AOAM530a4ltuSd82ToHd0j3HX7DxEmoSrSHG/5cXs3lGbJdnmuSlpoG4
- HNiP/mh3hl9irC6wqljQ9Aw=
-X-Google-Smtp-Source: ABdhPJwHMb8dV//9wzvmRBUxMtLkeULCNCUPZ7qXpiVjPoOKJDet9k5bhYqeP5+XbWGve9rt9ntjYg==
-X-Received: by 2002:a17:906:364b:: with SMTP id
- r11mr22773043ejb.447.1612884003462; 
- Tue, 09 Feb 2021 07:20:03 -0800 (PST)
-Received: from localhost.localdomain (5-12-227-87.residential.rdsnet.ro.
- [5.12.227.87])
- by smtp.gmail.com with ESMTPSA id q2sm11686108edv.93.2021.02.09.07.20.00
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=3IKSUC2PbMBLcmAxJNHDlsNxrnoGLUkLdRWIm40sEpc=;
+ b=sC1TZpaeZg3eSfQ9lxyN1k3okScvgABUDkz6fKV18C/8+d/S9CYV0uEvh53BSoDcdn
+ cP0x4+0AspHYzRiyRB4GwJ0VLOLkVmSgCLIR6waXtpMndn+MEalj5QG0jMo7461ShFdM
+ H+24M5Uqfkle0XtZohYlOka7Gfx7+1Z9Lm0J8IvzuaH09oAxpu1JiJJWKywWnRFJkYiG
+ gk6bsSnSHY9A85gKUQFpXm+6i4kbgnqem0VUaxU7ciTTMEq8PZsyxH0LnorXH1QWhnjf
+ B8u6DnUC+2h6C1Vu342iA/b4ZVtM7C37ih8/cUw7HF9GZ836Nolqk4Z0L7ANbBjpnfXB
+ 77FQ==
+X-Gm-Message-State: AOAM532tBgfpFZPs3CWGohvDCw/VWZrFGmFnZMG/pJ5qZDq4PMbLTHD/
+ N9E+sbyJSMjvXQMAZsK8iRE=
+X-Google-Smtp-Source: ABdhPJzwBwXcr3FNir+11tzCbCmVt5tv5onkeBPfFP5BzJvTttLymfdZC3IkFLRtUk/UOK6Q6I7vng==
+X-Received: by 2002:aa7:c58e:: with SMTP id g14mr24696022edq.318.1612892194600; 
+ Tue, 09 Feb 2021 09:36:34 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+ by smtp.gmail.com with ESMTPSA id z16sm6721317ejd.102.2021.02.09.09.36.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Feb 2021 07:20:01 -0800 (PST)
+ Tue, 09 Feb 2021 09:36:33 -0800 (PST)
+Date: Tue, 9 Feb 2021 19:36:31 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Date: Tue,  9 Feb 2021 17:19:33 +0200
-Message-Id: <20210209151936.97382-9-olteanv@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210209151936.97382-1-olteanv@gmail.com>
+Message-ID: <20210209173631.c75cdjxphwzipeg5@skbuf>
 References: <20210209151936.97382-1-olteanv@gmail.com>
+ <20210209151936.97382-4-olteanv@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210209151936.97382-4-olteanv@gmail.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
@@ -89,8 +88,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH v2 net-next 08/11] net: bridge: put
-	SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS on the blocking call chain
+Subject: Re: [Bridge] [PATCH v2 net-next 03/11] net: bridge: don't print in
+ br_switchdev_set_port_flag
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,38 +104,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Tue, Feb 09, 2021 at 05:19:28PM +0200, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+>
+> Currently br_switchdev_set_port_flag has two options for error handling
+> and neither is good:
+> - The driver returns -EOPNOTSUPP in PRE_BRIDGE_FLAGS if it doesn't
+>   support offloading that flag, and this gets silently ignored and
+>   converted to an errno of 0. Nobody does this.
+> - The driver returns some other error code, like -EINVAL, in
+>   PRE_BRIDGE_FLAGS, and br_switchdev_set_port_flag shouts loudly.
+>
+> The problem is that we'd like to offload some port flags during bridge
+> join and leave, but also not have the bridge shout at us if those fail.
+> But on the other hand we'd like the user to know that we can't offload
+> something when they set that through netlink. And since we can't have
+> the driver return -EOPNOTSUPP or -EINVAL depending on whether it's
+> called by the user or internally by the bridge, let's just add an extack
+> argument to br_switchdev_set_port_flag and propagate it to its callers.
+> Then, when we need offloading to really fail silently, this can simply
+> be passed a NULL argument.
+>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
 
-Now that br_switchdev_set_port_flag is never called from under br->lock,
-it runs in sleepable context.
-
-All switchdev drivers handle SWITCHDEV_PORT_ATTR_SET as both blocking
-and atomic, so no changes are needed on that front.
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-Changes in v2:
-Patch is new.
-
- net/bridge/br_switchdev.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-index bc63b10b2e67..3b152f2cd9b5 100644
---- a/net/bridge/br_switchdev.c
-+++ b/net/bridge/br_switchdev.c
-@@ -79,9 +79,8 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 	attr.u.brport_flags.val = flags;
- 	attr.u.brport_flags.mask = mask;
- 
--	/* We run from atomic context here */
--	err = call_switchdev_notifiers(SWITCHDEV_PORT_ATTR_SET, p->dev,
--				       &info.info, extack);
-+	err = call_switchdev_blocking_notifiers(SWITCHDEV_PORT_ATTR_SET, p->dev,
-+						&info.info, extack);
- 	err = notifier_to_errno(err);
- 	if (err == -EOPNOTSUPP)
- 		return 0;
--- 
-2.25.1
-
+The build fails because since I started working on v2 and until I sent
+it, Jakub merged net into net-next which contained this fix:
+https://patchwork.kernel.org/project/netdevbpf/patch/20210207194733.1811529-1-olteanv@gmail.com/
+for which I couldn't change prototype due to it missing in net-next.
+I think I would like to rather wait to gather some feedback first before
+respinning v3, if possible.
