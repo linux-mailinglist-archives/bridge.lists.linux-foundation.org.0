@@ -2,137 +2,95 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C06B314C7D
-	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 11:10:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB4D315287
+	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 16:19:57 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id A100385025;
-	Tue,  9 Feb 2021 10:10:03 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 58E3B85F5E;
+	Tue,  9 Feb 2021 15:19:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id J4McTFhPB7nc; Tue,  9 Feb 2021 10:10:02 +0000 (UTC)
+	with ESMTP id r9hgTnZ0Z-Rf; Tue,  9 Feb 2021 15:19:55 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 7618385B73;
-	Tue,  9 Feb 2021 10:09:52 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 76C6685F46;
+	Tue,  9 Feb 2021 15:19:55 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3CC29C1834;
-	Tue,  9 Feb 2021 10:09:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5172AC013A;
+	Tue,  9 Feb 2021 15:19:55 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D11ACC013A
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 10:09:50 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D19AAC013A
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 15:19:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id BED86871C4
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 10:09:50 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id C343786B90
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 15:19:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vmRM9niNLVO9 for <bridge@lists.linux-foundation.org>;
- Tue,  9 Feb 2021 10:09:49 +0000 (UTC)
-X-Greylist: delayed 01:59:42 by SQLgrey-1.7.6
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (mail-vi1eur05on2102.outbound.protection.outlook.com [40.107.21.102])
- by hemlock.osuosl.org (Postfix) with ESMTPS id BE73A87182
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 10:09:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m8PtBvI5xACUIEebx+tTUuKvNgytAAX9dkhUFABcGlAahJszfNb7GKbinBbeWrpYPj6bYi5H8iDP/0njW+hMv39GPWbKEcbjwwwLBV8dtKErkcj0QpdqOlig8trzRljg/icmDe7Pw4z8XxdDvJBRLsubVtO4wE3vakTpSqRnUHsjAoZ4Ds9w50mt9Qo2SGw/RVcsW1UkJg8PnzZltWcKekUHjbKR232xa8K5rPPkSVcdZEXVj18PF7eDLyxs1qryDrH2oijt1kN/h7Lx9GLOyzNSy8FJs2f+2Knkh8m6NAp1/jyeeg/CxfdpEBGnWP6UAyWSMo14QWrg5gzaeg8ntw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LfEcprzb9pmLbsZ71aA6Z4Mf+YdFEouclDmvmJT40Fs=;
- b=IX0HRn/FAUR0R1sGu0/rnTB2+OR/g0tGWr7To1F3vQMaqap6XAUhyRDgmRV7M9cqcpm8SKX6Afes/glSCiP8OJniVs7Ox0LI8DNO/EC94I14P/qiBbRIU0vrba6X8HsGvnilEcFKZdPPMVwEYpQ/J5/eAGx6A6pHalt+DMK/Y8RVYEEeZPr1ECewOha4NT7YYstUJ1LQIM924hVa8IjZmLu9A8Pl+mlBWbvdTT/KwdFbta3o/+GpEdPuidnOTp2NwZu30czW0ILrwvo3w/iP5YBiy07Hgp8auHp9OmMw5Au44Abn9UOnjKHRjW7EXBimPZDfwqcoPmHNjQiKYkhzKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
- dkim=pass header.d=prevas.dk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LfEcprzb9pmLbsZ71aA6Z4Mf+YdFEouclDmvmJT40Fs=;
- b=DojVcqPNf5t2wp7nPn/jR3YL6wDEaTSdR7ou0W2k12OWdtcXLpILLauTzrmJCnwHIbU77bUbLKLGfVXQ9gjkgBfyIH4fOpY4joPa64vZAO1DI1RFjVw4tiAukNuw0tLKnKy6mSMm+yJhuTE9rEcXRIAUrXCqplLyRQefM55nSDI=
-Authentication-Results: lists.linux-foundation.org; dkim=none (message not
- signed) header.d=none;lists.linux-foundation.org; dmarc=none action=none
- header.from=prevas.dk;
-Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:3f::10)
- by AM0PR10MB3009.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:160::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19; Tue, 9 Feb
- 2021 07:38:09 +0000
-Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::58b2:6a2a:b8f9:bc1a]) by AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::58b2:6a2a:b8f9:bc1a%3]) with mapi id 15.20.3846.025; Tue, 9 Feb 2021
- 07:38:09 +0000
-To: Horatiu Vultur <horatiu.vultur@microchip.com>, jiri@resnulli.us,
- ivecera@redhat.com, davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com,
- nikolay@nvidia.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- bridge@lists.linux-foundation.org
-References: <20210206214734.1577849-1-horatiu.vultur@microchip.com>
- <20210206214734.1577849-3-horatiu.vultur@microchip.com>
-Message-ID: <9fe710dc-79c3-6161-6bfa-917239d4eba9@prevas.dk>
-Date: Tue, 9 Feb 2021 08:38:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20210206214734.1577849-3-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [5.186.115.188]
-X-ClientProxiedBy: AM5PR0601CA0074.eurprd06.prod.outlook.com
- (2603:10a6:206::39) To AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:3f::10)
+ with ESMTP id 2zm0H91qss2h for <bridge@lists.linux-foundation.org>;
+ Tue,  9 Feb 2021 15:19:52 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 6A26D86B80
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 15:19:52 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id w2so32156775ejk.13
+ for <bridge@lists.linux-foundation.org>; Tue, 09 Feb 2021 07:19:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=JZuvpaxw4BnzPyO0xlmmBjHMG6Y20oqe4rr17OH0RoI=;
+ b=IQC4M9bKuAjm0sORNwVj/LgFkP/rOwA11Hkk6OLlVQkoui3IvWcs8ydgoQgfAbzIj7
+ sSpOwVGJ+2tSnYGf/9vjrDhSJekf+l5DAz1eNOQoEOoCfigLOhVLrnmDkIV+A38PaCrQ
+ rTPlyAdxFT3iQmA95aDQxihBfj9YUaBuIdUv0OlgCPWGSMu4nNpu6DclaNMxgZzzw4at
+ 8TpVuB90BCsPfVbwBwH7TRIJc88F4TuJs3/IQoTolRPsi5Z6YuOFEsnR6THxVPKwb4Ba
+ nFbekA79mL3wUWFeQtmOK+hmkk5u5/0Q42Y1t6QQqGw/T4BUONvK2lUsXisanTwaxUo3
+ 31Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=JZuvpaxw4BnzPyO0xlmmBjHMG6Y20oqe4rr17OH0RoI=;
+ b=M1O1jRUhy7DIRSk1R8WjqhSsGx1aus1O4iEvzCifsEX+wPgca/hb9Egq7r9QvjJOwd
+ AEcjCmQiJOzfnl/Cz/ohgcCjhyba2skIZad6gVFez77CkmU7DHsrNNZ20N7uPJnw2cB9
+ 0kK8fQytmul9tNHpMfT14oN8Z+B+JLlX4gHXbO0nq40Gly7jlU5uanUiGdnUVU0FJDg+
+ xS8aVGGH5hoo8ljGINc5Amw4IFaSB6kIu4GZp8aplvC3H0zxATYymnTKvbLiuAE3GyPC
+ l1VoojwiDJtlAw64engJAzpM23eLnhn67kG+dWX3YmPE3GPE1bgOsf4lhBK+I+FgNYzE
+ 5Fng==
+X-Gm-Message-State: AOAM533Cp+g754ev5etVHoBFAPCTNPLJ4ct/isHfq//2AqzkviL3pPs9
+ iDLIpvJ+9qnInwtfLQmm6XU=
+X-Google-Smtp-Source: ABdhPJwPbD++/+I1yN8fN6BxS/Lj47ibw7R7dNwQZXmfM9cimWhibyoMUJ/pb3LPd6JMXd9dNpa7qw==
+X-Received: by 2002:a17:906:7d4d:: with SMTP id
+ l13mr22404984ejp.107.1612883990797; 
+ Tue, 09 Feb 2021 07:19:50 -0800 (PST)
+Received: from localhost.localdomain (5-12-227-87.residential.rdsnet.ro.
+ [5.12.227.87])
+ by smtp.gmail.com with ESMTPSA id q2sm11686108edv.93.2021.02.09.07.19.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Feb 2021 07:19:49 -0800 (PST)
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Date: Tue,  9 Feb 2021 17:19:27 +0200
+Message-Id: <20210209151936.97382-3-olteanv@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210209151936.97382-1-olteanv@gmail.com>
+References: <20210209151936.97382-1-olteanv@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.149] (5.186.115.188) by
- AM5PR0601CA0074.eurprd06.prod.outlook.com (2603:10a6:206::39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3825.19 via Frontend Transport; Tue, 9 Feb 2021 07:38:09 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ced7d05-35ae-49bb-660d-08d8cccda5ca
-X-MS-TrafficTypeDiagnostic: AM0PR10MB3009:
-X-Microsoft-Antispam-PRVS: <AM0PR10MB3009DC4CE91959EB43101F07938E9@AM0PR10MB3009.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1247;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HWyG9CEs+plaVRIWz0gO0+1OvZAYno2zcd3ofxI0P3hCrgJNQkr93jqNwv5xBcigRX3DZYiyDklDqiFgZFW3grjzbGnRyNgR2qi46yF4faqQ/8s5pw5oPlm061JICcQTKpAkobe/IO7L/nca9/WP7HtI7TEMq/IjH8oHRkH4jMRiDyUvInIuQIXh63W9p0nRubQb8jNfENpDJqo2ql2tFh61FydJERDf7FPk0pM02NINBFusfZEnhUgyLalsGQ6MjEQqtCkP1cNzvokGJNmXYIPqmC6wuJWeMzRa6u4kfhAWnyy2SFqmZ1keX0l+uV8kWidDmafEOlnEBsPKSvkHkxl2tsAEasqMJFxxQzllq1PKL6bcV2YdidHxOwecZC//88MLNjJ40IzuAHT4A4AWoHqtPBplNWFjYKimyVfP2fqBqphMWKDypvcI7LWBGnK6JIX3tPNE8mrSKSDnQSE5UUsPukeO9oRlV2nyyO9vuT96mCCBFe4GVRWZU4v2fKAefKsK8aMOIZ/BfXcmTzovrdk4WNcLJSGb/vpebFii5gNo2GxkI8TG+R/o8nsg6HECR/dC+cLzN7YBqaMW7tBLA6ZHSRLL4PN0QBzdAkh+b4bD7/9/JrLuYpWvAvMcuQfd
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(376002)(346002)(366004)(396003)(136003)(39840400004)(478600001)(7416002)(316002)(186003)(16526019)(2616005)(16576012)(2906002)(8676002)(6486002)(66946007)(31686004)(66556008)(66476007)(36756003)(44832011)(86362001)(52116002)(5660300002)(8936002)(4744005)(8976002)(921005)(26005)(31696002)(956004)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData: =?Windows-1252?Q?PsV5DrbRQfUsfoC+IdRFlBjazWhwruBjVZ3S0PahTCKGzNkAAu1VFDCR?=
- =?Windows-1252?Q?feU2HZXQeAXwWLSEqoB+xzTmdLHSkM5dJjLQBmEpcLXLVcOgqjmeOLBN?=
- =?Windows-1252?Q?kTpWuz/Xl+qaDNXK+UajZFpMuGq5NduqWTmApM6RIpnB0a2Of2CC7BnD?=
- =?Windows-1252?Q?JMdiWDECROr+uGdY8E9ogfYx0aJVfYewhA9L6R8MkunXKTaqapFvUI0A?=
- =?Windows-1252?Q?rEGcojxLH6u0WTR/OzMXw0vZA7zug1LiRfVVk8Rrya9181Lo5hrqx9S7?=
- =?Windows-1252?Q?b/BOTZ4n/DI84LsFmSsS5XmstLV0eWRCXtSY2d6ATX+zLexZVNV+hzOa?=
- =?Windows-1252?Q?yRCQsfbHJgysr3JRK0JbOVupQL/+y755YQtg89d9o36Q4TvjRr8Hyl6H?=
- =?Windows-1252?Q?ZMw91sVV2Eb+8JfMl5+MukzJ+WvbC+qJGqX+AVTf2/GSLpR/scyQ4ceN?=
- =?Windows-1252?Q?pEbwAaiXHUSME7geswedi7aiLDULPyyvXEE1RmzyyhOXQ+6ArrZLAPLF?=
- =?Windows-1252?Q?hvwy3R0AhHG4f3OWqSRS3R6gbKQcsqqnN6ZsM0yW+hLOtGUjGksEnCiG?=
- =?Windows-1252?Q?jwmqTUTYaD9hmbSBai+C5/DVt6X06SsAgb4n/+/huiRTW63SCWBT6FXq?=
- =?Windows-1252?Q?Kh4gQpzIFuMDw1KREnoK/EsGf9XP7vfVmN7R/dgPoeRSGQRJ+NQfypvD?=
- =?Windows-1252?Q?O8zuUc1zl6Nazvkv5b9zKOqudKQdlqPfdePxZhUwRCOyb+nhMqKHy4xk?=
- =?Windows-1252?Q?5q2f6SREpRMnKII6vSx8tg/3MKlQLqy1cege96dTeOwrprhdoXwCsJCz?=
- =?Windows-1252?Q?LisGnlRnSV0ngyOEeP3aeKYbhMRJoUUM9y1KHALf+Dcn/XB4KUbaL9ik?=
- =?Windows-1252?Q?rHw45Kw4BEG3ttZjGhiGIu16uBiyY/WknU90pHaNDEbqL+0GmOkt+yXf?=
- =?Windows-1252?Q?biSK4uMsoatzY/YLwnhoL06c9cyTDnMxmYcbGsniAI4krbvCncyOewki?=
- =?Windows-1252?Q?au2+E/ycGdFvS25dGTLPQXfGOk9wn7t50tZKma3DU1gBzjcoI3dlZY6V?=
- =?Windows-1252?Q?cHMJiR6cp9RCMYLAR+A1vfRw3X0JQ3MN3bNzybtTsHSlhw8lEAb8ryVM?=
- =?Windows-1252?Q?GpyMnVN0/lO0MCN64TDwvvBKB6k9td0mramXeFd+1IsXzcT/0x5CbOd4?=
- =?Windows-1252?Q?0E2uRigk+Bnafvb9mwKR2zZ/hKS2i/mFt8+kSzR4hLHmP9Ej5IcPGF1y?=
- =?Windows-1252?Q?7mbh7y5q6tWH7lzIEMgkMNS1+BsLxCsudVM3XiIZcy2Ba7SsqwEnRvzD?=
- =?Windows-1252?Q?zvkVhuNFxmivpxurB2zU7CCflgO0i3ftomXTTQv2SKcvRxTemULP5apf?=
- =?Windows-1252?Q?jF1qz/8gHrvWXYwPgfYU5uAM0EiHebMs7EwFWBYVdggMTO9M4z2Qtcvq?=
-X-OriginatorOrg: prevas.dk
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ced7d05-35ae-49bb-660d-08d8cccda5ca
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2021 07:38:09.5921 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7VWCR1OEnEZA3v+tHc2nCoI7NhM2uGwRR0N6y947lzhKP+xKzBnm2xhyZgo7u7lNmT2ByS4FJwwhmq2kQ2nEFCFI3EoLe0mTGw8WcCQavOo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3009
-Subject: Re: [Bridge] [PATCH net 2/2] switchdev: mrp: Remove
- SWITCHDEV_ATTR_ID_MRP_PORT_STAT
+Content-Transfer-Encoding: 8bit
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ Vadym Kochan <vkochan@marvell.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
+ linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+ Taras Chornyi <tchornyi@marvell.com>, Ido Schimmel <idosch@idosch.org>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
+Subject: [Bridge] [PATCH v2 net-next 02/11] net: bridge: offload all port
+	flags at once in br_setport
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -144,17 +102,315 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Rasmus Villemoes via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 06/02/2021 22.47, Horatiu Vultur wrote:
-> Now that MRP started to use also SWITCHDEV_ATTR_ID_PORT_STP_STATE to
-> notify HW, then SWITCHDEV_ATTR_ID_MRP_PORT_STAT is not used anywhere
-> else, therefore we can remove it.
-> 
-> Fixes: c284b545900830 ("switchdev: mrp: Extend switchdev API to offload MRP")
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Acked-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+The br_switchdev_set_port_flag function uses the atomic notifier call
+chain because br_setport runs in an atomic section (under br->lock).
+This is because port flag changes need to be synchronized with the data
+path. But actually the switchdev notifier doesn't need that, only
+br_set_port_flag does. So we can collect all the port flag changes and
+only emit the notification at the end, then revert the changes if the
+switchdev notification failed.
+
+There's also the other aspect: if for example this command:
+
+ip link set swp0 type bridge_slave flood off mcast_flood off learning off
+
+succeeded at configuring BR_FLOOD and BR_MCAST_FLOOD but not at
+BR_LEARNING, there would be no attempt to revert the partial state in
+any way. Arguably, if the user changes more than one flag through the
+same netlink command, this one _should_ be all or nothing, which means
+it should be passed through switchdev as all or nothing.
+
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+Changes in v2:
+Patch is new.
+
+ net/bridge/br_netlink.c   | 155 +++++++++++++++-----------------------
+ net/bridge/br_switchdev.c |   7 +-
+ 2 files changed, 66 insertions(+), 96 deletions(-)
+
+diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+index bd3962da345a..2c110bcbc6d0 100644
+--- a/net/bridge/br_netlink.c
++++ b/net/bridge/br_netlink.c
+@@ -853,103 +853,82 @@ static int br_set_port_state(struct net_bridge_port *p, u8 state)
+ }
+ 
+ /* Set/clear or port flags based on attribute */
+-static int br_set_port_flag(struct net_bridge_port *p, struct nlattr *tb[],
+-			    int attrtype, unsigned long mask)
++static void br_set_port_flag(struct net_bridge_port *p, struct nlattr *tb[],
++			     int attrtype, unsigned long mask)
+ {
+-	unsigned long flags;
+-	int err;
+-
+ 	if (!tb[attrtype])
+-		return 0;
++		return;
+ 
+ 	if (nla_get_u8(tb[attrtype]))
+-		flags = p->flags | mask;
++		p->flags |= mask;
+ 	else
+-		flags = p->flags & ~mask;
+-
+-	err = br_switchdev_set_port_flag(p, flags, mask);
+-	if (err)
+-		return err;
+-
+-	p->flags = flags;
+-	return 0;
++		p->flags &= ~mask;
+ }
+ 
+ /* Process bridge protocol info on port */
+ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
+ {
+-	unsigned long old_flags = p->flags;
+-	bool br_vlan_tunnel_old = false;
++	unsigned long old_flags, changed_mask;
++	bool br_vlan_tunnel_old;
+ 	int err;
+ 
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_MODE, BR_HAIRPIN_MODE);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_GUARD, BR_BPDU_GUARD);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_FAST_LEAVE, BR_MULTICAST_FAST_LEAVE);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_PROTECT, BR_ROOT_BLOCK);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_LEARNING, BR_LEARNING);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_UNICAST_FLOOD, BR_FLOOD);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_MCAST_FLOOD, BR_MCAST_FLOOD);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_MCAST_TO_UCAST, BR_MULTICAST_TO_UNICAST);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_BCAST_FLOOD, BR_BCAST_FLOOD);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_PROXYARP, BR_PROXYARP);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_PROXYARP_WIFI, BR_PROXYARP_WIFI);
+-	if (err)
++	spin_lock_bh(&p->br->lock);
++
++	old_flags = p->flags;
++	br_vlan_tunnel_old = (old_flags & BR_VLAN_TUNNEL) ? true : false;
++
++	br_set_port_flag(p, tb, IFLA_BRPORT_MODE, BR_HAIRPIN_MODE);
++	br_set_port_flag(p, tb, IFLA_BRPORT_GUARD, BR_BPDU_GUARD);
++	br_set_port_flag(p, tb, IFLA_BRPORT_FAST_LEAVE,
++			 BR_MULTICAST_FAST_LEAVE);
++	br_set_port_flag(p, tb, IFLA_BRPORT_PROTECT, BR_ROOT_BLOCK);
++	br_set_port_flag(p, tb, IFLA_BRPORT_LEARNING, BR_LEARNING);
++	br_set_port_flag(p, tb, IFLA_BRPORT_UNICAST_FLOOD, BR_FLOOD);
++	br_set_port_flag(p, tb, IFLA_BRPORT_MCAST_FLOOD, BR_MCAST_FLOOD);
++	br_set_port_flag(p, tb, IFLA_BRPORT_MCAST_TO_UCAST,
++			 BR_MULTICAST_TO_UNICAST);
++	br_set_port_flag(p, tb, IFLA_BRPORT_BCAST_FLOOD, BR_BCAST_FLOOD);
++	br_set_port_flag(p, tb, IFLA_BRPORT_PROXYARP, BR_PROXYARP);
++	br_set_port_flag(p, tb, IFLA_BRPORT_PROXYARP_WIFI, BR_PROXYARP_WIFI);
++	br_set_port_flag(p, tb, IFLA_BRPORT_VLAN_TUNNEL, BR_VLAN_TUNNEL);
++	br_set_port_flag(p, tb, IFLA_BRPORT_NEIGH_SUPPRESS, BR_NEIGH_SUPPRESS);
++	br_set_port_flag(p, tb, IFLA_BRPORT_ISOLATED, BR_ISOLATED);
++
++	changed_mask = old_flags ^ p->flags;
++
++	spin_unlock_bh(&p->br->lock);
++
++	err = br_switchdev_set_port_flag(p, p->flags, changed_mask);
++	if (err) {
++		spin_lock_bh(&p->br->lock);
++		p->flags = old_flags;
++		spin_unlock_bh(&p->br->lock);
+ 		return err;
++	}
+ 
+-	br_vlan_tunnel_old = (p->flags & BR_VLAN_TUNNEL) ? true : false;
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_VLAN_TUNNEL, BR_VLAN_TUNNEL);
+-	if (err)
+-		return err;
++	spin_lock_bh(&p->br->lock);
+ 
+ 	if (br_vlan_tunnel_old && !(p->flags & BR_VLAN_TUNNEL))
+ 		nbp_vlan_tunnel_info_flush(p);
+ 
++	br_port_flags_change(p, changed_mask);
++
+ 	if (tb[IFLA_BRPORT_COST]) {
+ 		err = br_stp_set_path_cost(p, nla_get_u32(tb[IFLA_BRPORT_COST]));
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ 
+ 	if (tb[IFLA_BRPORT_PRIORITY]) {
+ 		err = br_stp_set_port_priority(p, nla_get_u16(tb[IFLA_BRPORT_PRIORITY]));
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ 
+ 	if (tb[IFLA_BRPORT_STATE]) {
+ 		err = br_set_port_state(p, nla_get_u8(tb[IFLA_BRPORT_STATE]));
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ 
+ 	if (tb[IFLA_BRPORT_FLUSH])
+@@ -961,7 +940,7 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
+ 
+ 		err = br_multicast_set_port_router(p, mcast_router);
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ 
+ 	if (tb[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT]) {
+@@ -970,27 +949,20 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
+ 		hlimit = nla_get_u32(tb[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT]);
+ 		err = br_multicast_eht_set_hosts_limit(p, hlimit);
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ #endif
+ 
+ 	if (tb[IFLA_BRPORT_GROUP_FWD_MASK]) {
+ 		u16 fwd_mask = nla_get_u16(tb[IFLA_BRPORT_GROUP_FWD_MASK]);
+ 
+-		if (fwd_mask & BR_GROUPFWD_MACPAUSE)
+-			return -EINVAL;
++		if (fwd_mask & BR_GROUPFWD_MACPAUSE) {
++			err = -EINVAL;
++			goto out;
++		}
+ 		p->group_fwd_mask = fwd_mask;
+ 	}
+ 
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_NEIGH_SUPPRESS,
+-			       BR_NEIGH_SUPPRESS);
+-	if (err)
+-		return err;
+-
+-	err = br_set_port_flag(p, tb, IFLA_BRPORT_ISOLATED, BR_ISOLATED);
+-	if (err)
+-		return err;
+-
+ 	if (tb[IFLA_BRPORT_BACKUP_PORT]) {
+ 		struct net_device *backup_dev = NULL;
+ 		u32 backup_ifindex;
+@@ -999,17 +971,21 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
+ 		if (backup_ifindex) {
+ 			backup_dev = __dev_get_by_index(dev_net(p->dev),
+ 							backup_ifindex);
+-			if (!backup_dev)
+-				return -ENOENT;
++			if (!backup_dev) {
++				err = -ENOENT;
++				goto out;
++			}
+ 		}
+ 
+ 		err = nbp_backup_change(p, backup_dev);
+ 		if (err)
+-			return err;
++			goto out;
+ 	}
+ 
+-	br_port_flags_change(p, old_flags ^ p->flags);
+-	return 0;
++out:
++	spin_unlock_bh(&p->br->lock);
++
++	return err;
+ }
+ 
+ /* Change state and parameters on port. */
+@@ -1045,9 +1021,7 @@ int br_setlink(struct net_device *dev, struct nlmsghdr *nlh, u16 flags,
+ 			if (err)
+ 				return err;
+ 
+-			spin_lock_bh(&p->br->lock);
+ 			err = br_setport(p, tb);
+-			spin_unlock_bh(&p->br->lock);
+ 		} else {
+ 			/* Binary compatibility with old RSTP */
+ 			if (nla_len(protinfo) < sizeof(u8))
+@@ -1134,17 +1108,10 @@ static int br_port_slave_changelink(struct net_device *brdev,
+ 				    struct nlattr *data[],
+ 				    struct netlink_ext_ack *extack)
+ {
+-	struct net_bridge *br = netdev_priv(brdev);
+-	int ret;
+-
+ 	if (!data)
+ 		return 0;
+ 
+-	spin_lock_bh(&br->lock);
+-	ret = br_setport(br_port_get_rtnl(dev), data);
+-	spin_unlock_bh(&br->lock);
+-
+-	return ret;
++	return br_setport(br_port_get_rtnl(dev), data);
+ }
+ 
+ static int br_port_fill_slave_info(struct sk_buff *skb,
+diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+index a9c23ef83443..c004ade25ac0 100644
+--- a/net/bridge/br_switchdev.c
++++ b/net/bridge/br_switchdev.c
+@@ -65,16 +65,19 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
+ 	struct switchdev_attr attr = {
+ 		.orig_dev = p->dev,
+ 		.id = SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS,
+-		.u.brport_flags = mask,
+ 	};
+ 	struct switchdev_notifier_port_attr_info info = {
+ 		.attr = &attr,
+ 	};
+ 	int err;
+ 
+-	if (mask & ~BR_PORT_FLAGS_HW_OFFLOAD)
++	flags &= BR_PORT_FLAGS_HW_OFFLOAD;
++	mask &= BR_PORT_FLAGS_HW_OFFLOAD;
++	if (!mask)
+ 		return 0;
+ 
++	attr.u.brport_flags = mask;
++
+ 	/* We run from atomic context here */
+ 	err = call_switchdev_notifiers(SWITCHDEV_PORT_ATTR_SET, p->dev,
+ 				       &info.info, NULL);
+-- 
+2.25.1
+
