@@ -2,85 +2,82 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD67315650
-	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 19:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2C431579C
+	for <lists.bridge@lfdr.de>; Tue,  9 Feb 2021 21:20:54 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id EE49486A84;
-	Tue,  9 Feb 2021 18:51:11 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 110C486C58;
+	Tue,  9 Feb 2021 20:20:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Y-L9Wn2KmA0n; Tue,  9 Feb 2021 18:51:11 +0000 (UTC)
+	with ESMTP id xZGE7MfLKvMI; Tue,  9 Feb 2021 20:20:52 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 6592686A24;
-	Tue,  9 Feb 2021 18:51:11 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id D3B8886BDB;
+	Tue,  9 Feb 2021 20:20:52 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4705BC013A;
-	Tue,  9 Feb 2021 18:51:11 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6D6B8C0174;
+	Tue,  9 Feb 2021 20:20:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BB291C013A
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 18:51:09 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 832A7C013A
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:20:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id A7C8D6F4A4
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 18:51:09 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 71DE886B43
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:20:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wSAn6MfJOxhU for <bridge@lists.linux-foundation.org>;
- Tue,  9 Feb 2021 18:51:09 +0000 (UTC)
-Received: by smtp3.osuosl.org (Postfix, from userid 1001)
- id 0DBF86F537; Tue,  9 Feb 2021 18:51:09 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 9A61D6F52B
- for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 18:51:07 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 367E9580310;
- Tue,  9 Feb 2021 13:51:05 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Tue, 09 Feb 2021 13:51:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=yab2wm
- v6Wl9fFfxmQTboj1nEHw/37YL9zHWD6ZhbdHM=; b=P0a7X4kL8bJqhrpJAdamOb
- 0i6LxuNNnMztcel+ytRDNDsFLepneY8Mc49QE2m5Oq3DDNuWFKlK91QevpYZisuk
- bxFkIPG7d6P/1VjyJTk5d0wc+C2rnks+fgDdpwdvAxursDr6q737F46MxruiQaQe
- 22LMoTBRphwNt1OMxmYqrxsTN7MpjwchyykWnBdp6n9elWxZEmPdIG/3do6WhNm+
- w8wSQf7B30l3gSjfGii4RMAYxskNMXYmHcmrRQ7GV5gk6XkJM8fxcD1//oazn1cD
- on5Ie7fcdjFQEdJf21BlVmCBBoPPR0aKWzQ6I6xkKjso9CQtyLn2qJ/JNJryh+Xw
- ==
-X-ME-Sender: <xms:l9kiYIfHN2hy2xkT2FeE25HMEi992P6W0bHF2p1pUbxXExR0SRhCSg>
- <xme:l9kiYPlRYgfP_cbAqh7FhsFXTHAzjAZ_Tt7MPV6_i5F7ULpO5A88inmz_I6040R2j
- q7obSz-6TAHbTA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrheehgdduudekucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefkughoucfu
- tghhihhmmhgvlhcuoehiughoshgthhesihguohhstghhrdhorhhgqeenucggtffrrghtth
- gvrhhnpedtffekkeefudffveegueejffejhfetgfeuuefgvedtieehudeuueekhfduheel
- teenucfkphepkeegrddvvdelrdduheefrdeggeenucevlhhushhtvghrufhiiigvpedtne
- curfgrrhgrmhepmhgrihhlfhhrohhmpehiughoshgthhesihguohhstghhrdhorhhg
-X-ME-Proxy: <xmx:l9kiYJuDOxXHFzFe1ftwzAAhS7eJzjpsaDOLJoZNP0krzvJeWwEH1Q>
- <xmx:l9kiYN_diuJkA3BqFCbzEbPzdWcOCdLUMfi9fqNjwBjOFR1nXS_MDA>
- <xmx:l9kiYDP8q6mB6vcKZaEZaxUjrjJbHs_VRdzF8HfrB0Avovsfcj14Wg>
- <xmx:mdkiYM2ojVv5HkVRTpkgQfRG9NBN2hpnutWKXlDO9KErLSs5EVp-hw>
-Received: from localhost (igld-84-229-153-44.inter.net.il [84.229.153.44])
- by mail.messagingengine.com (Postfix) with ESMTPA id BD09C24005C;
- Tue,  9 Feb 2021 13:51:02 -0500 (EST)
-Date: Tue, 9 Feb 2021 20:51:00 +0200
-From: Ido Schimmel <idosch@idosch.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Message-ID: <20210209185100.GA266253@shredder.lan>
+Received: from whitealder.osuosl.org ([127.0.0.1])
+ by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id M0x1vDxS09Ts for <bridge@lists.linux-foundation.org>;
+ Tue,  9 Feb 2021 20:20:50 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
+ [209.85.208.54])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id DE04886B42
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Feb 2021 20:20:49 +0000 (UTC)
+Received: by mail-ed1-f54.google.com with SMTP id g10so25629582eds.2
+ for <bridge@lists.linux-foundation.org>; Tue, 09 Feb 2021 12:20:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=OJBJZoWtqasITVYW+Sh00YF0phZ4lq1R3a/gcaU0ls4=;
+ b=o/AxlQl0i/wUD4989dM3BQ9Gi/UH+Je6cbHNhA84lwvzRqeUwuhW4S4haRyZI0GgPd
+ Ej/r7H/wM6R3hOXnDtJJF14SNOLs40Wvo4qGFTwwD4QlpUsFij206pVp+GJb4kxAsY3F
+ z65T8HrcYQbcL8vFhr2HcbobpEEWPUvqncsAmlpky62S2x5+q3vCbm2JTJId8ZDe3J8n
+ VrW5z3qLoSpLdUyM43J9QjBj6MqZJ7WdU6UztgN2EideHqQQZevsC6BV7EoRN6w051Hr
+ G2lyfCoI3UgEmrYW+DhPm9tOlmz3duWY6/FQFMvZd6sjKzVuJ0rn7BFROqc83Ob/Wvtd
+ hRVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=OJBJZoWtqasITVYW+Sh00YF0phZ4lq1R3a/gcaU0ls4=;
+ b=rAFdT5MvAucjLuq3Q8Ia/Gve20zftcwTOg9PVcD6OYylFV4vJXbFxRJrTlgrX1U2zZ
+ 5RX3wQiSA3/toistMMHLnV/Zx8tdJ17UiZI0sGrH0Bg8RW2CaJDocSRbUREoXt0Vz6Ww
+ arEN45GjVl2rJ/LWZDBaawvg3KUxrMsKFzq2BbEtyiv7+KIAheMcXfeTq3nfDGC9hWWq
+ Q5R8kGf2FPjDjIBjAvyWaFuBvP1rPe86GY70u78RMCWYZ9Q/i0ITCHqYbZ1NxG9c3aZA
+ p+ls9m4a5ShT1ieXJoaX947jqcGHvaTYxauign257FB5lXjwHrlw/VCXk8jGlr1b9ZK9
+ 4lTQ==
+X-Gm-Message-State: AOAM532vOl/izC3xNLYxjd9JiuG7FbPQiHuaQwMQW9R2kQVmgKM1y6mU
+ TwhegCeJuOUag56kDITQKZ0=
+X-Google-Smtp-Source: ABdhPJwJtHUiJJW8tLUk73YO+ec8lbnMpR7egGqbTCfnV7RroIzrPKEhDhjC2bnmohYOtx/S8OFm6A==
+X-Received: by 2002:a50:cd8c:: with SMTP id p12mr25052831edi.114.1612902048344; 
+ Tue, 09 Feb 2021 12:20:48 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+ by smtp.gmail.com with ESMTPSA id q14sm12228756edw.52.2021.02.09.12.20.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Feb 2021 12:20:47 -0800 (PST)
+Date: Tue, 9 Feb 2021 22:20:45 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Ido Schimmel <idosch@idosch.org>
+Message-ID: <20210209202045.obayorcud4fg2qqb@skbuf>
 References: <20210209151936.97382-1-olteanv@gmail.com>
  <20210209151936.97382-5-olteanv@gmail.com>
+ <20210209185100.GA266253@shredder.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210209151936.97382-5-olteanv@gmail.com>
+In-Reply-To: <20210209185100.GA266253@shredder.lan>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
@@ -109,16 +106,25 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Feb 09, 2021 at 05:19:29PM +0200, Vladimir Oltean wrote:
-> So switchdev drivers operating in standalone mode should disable address
-> learning. As a matter of practicality, we can reduce code duplication in
-> drivers by having the bridge notify through switchdev of the initial and
-> final brport flags. Then, drivers can simply start up hardcoded for no
-> address learning (similar to how they already start up hardcoded for no
-> forwarding), then they only need to listen for
-> SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS and their job is basically done, no
-> need for special cases when the port joins or leaves the bridge etc.
+On Tue, Feb 09, 2021 at 08:51:00PM +0200, Ido Schimmel wrote:
+> On Tue, Feb 09, 2021 at 05:19:29PM +0200, Vladimir Oltean wrote:
+> > So switchdev drivers operating in standalone mode should disable address
+> > learning. As a matter of practicality, we can reduce code duplication in
+> > drivers by having the bridge notify through switchdev of the initial and
+> > final brport flags. Then, drivers can simply start up hardcoded for no
+> > address learning (similar to how they already start up hardcoded for no
+> > forwarding), then they only need to listen for
+> > SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS and their job is basically done, no
+> > need for special cases when the port joins or leaves the bridge etc.
+> 
+> How are you handling the case where a port leaves a LAG that is linked
+> to a bridge? In this case the port becomes a standalone port, but will
+> not get this notification.
 
-How are you handling the case where a port leaves a LAG that is linked
-to a bridge? In this case the port becomes a standalone port, but will
-not get this notification.
+Apparently the answer to that question is "I delete the code that makes
+this use case work", how smart of me. Thanks.
+
+Unless you have any idea how I could move the logic into the bridge, I
+guess I'm stuck with DSA and all the other switchdev drivers having this
+forest of corner cases to deal with. At least I can add a comment so I'm
+not tempted to delete it next time.
