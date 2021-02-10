@@ -1,147 +1,189 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8E6A3163E1
-	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 11:33:26 +0100 (CET)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C0C3163DD
+	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 11:32:18 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 57E768727D;
-	Wed, 10 Feb 2021 10:33:25 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 0B57A866A3;
+	Wed, 10 Feb 2021 10:32:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t8TZgcZLIyaq; Wed, 10 Feb 2021 10:33:24 +0000 (UTC)
+	with ESMTP id EO1qh7gETbJ0; Wed, 10 Feb 2021 10:32:16 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 4178B87264;
-	Wed, 10 Feb 2021 10:33:24 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id BC27786693;
+	Wed, 10 Feb 2021 10:32:16 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 073A7C0174;
-	Wed, 10 Feb 2021 10:33:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 985D0C013A;
+	Wed, 10 Feb 2021 10:32:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1DA26C0174
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 10:33:22 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7CE0AC013A
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 10:32:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 0A6C56F4DC
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 10:33:22 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id 6ECD486693
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 10:32:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ByGPU2qLzjsk for <bridge@lists.linux-foundation.org>;
- Wed, 10 Feb 2021 10:33:20 +0000 (UTC)
-Received: by smtp3.osuosl.org (Postfix, from userid 1001)
- id 923A06F617; Wed, 10 Feb 2021 10:33:20 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com
- (mail-am6eur05on2087.outbound.protection.outlook.com [40.107.22.87])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 4F3BD6F4DC
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 10:33:18 +0000 (UTC)
+Received: from whitealder.osuosl.org ([127.0.0.1])
+ by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id hIHpu-c5P9+e for <bridge@lists.linux-foundation.org>;
+ Wed, 10 Feb 2021 10:32:13 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from hqnvemgate25.nvidia.com (hqnvemgate25.nvidia.com
+ [216.228.121.64])
+ by whitealder.osuosl.org (Postfix) with ESMTPS id B58F886256
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 10:32:13 +0000 (UTC)
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
+ hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+ id <B6023b62d0000>; Wed, 10 Feb 2021 02:32:13 -0800
+Received: from HKMAIL101.nvidia.com (10.18.16.10) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 10 Feb
+ 2021 10:32:12 +0000
+Received: from HKMAIL103.nvidia.com (10.18.16.12) by HKMAIL101.nvidia.com
+ (10.18.16.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 10 Feb
+ 2021 10:31:55 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.172)
+ by HKMAIL103.nvidia.com (10.18.16.12) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Wed, 10 Feb 2021 10:31:55 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h3KfUygKdo/W8oH6ZnUgIAoYGqcD3LDvLkrYimKsnwf0WGmNR5vmJOIFSQ2zodCbNzyCYM3hcbqNAipA/824vX/P7DFn0CZdwKXtJ+vQqJumBtBqOKt3R1w5fghvv9Em1U/JxZLJgBtpX1DviFRkldRS3GaBpUj/qh0pTIfhRn6ivlS/ZNmWPWQFnS18xhOSGC73urj8ZB8G/SlH1Q93J53LKS8bWUC6S7y5tE2b0vDmnQY+38mRGLwZPan0So+isZwthTUjxvsf0WtRnhKkNidv1je4a/gPcCpl4PCIJGpLwdIOSnVZpKrTuxy0+3wV+k/WPZNgkNBzX/LhJb3b9Q==
+ b=TK7FN2f3HMtfG6CGPXsHOlYLq3FtZ/AMdDBR3otXPl477KB5+AXwp25qU9SYDB+Bmh9AqqZacO8bbvlk7bkj13a+nLA+zzSVLqCf1Kc5hsuF1y6JhUIk6y/w4xgdZhsECas5Vve066BAdEZcxY5noD9W9fD+yejTaCvDYSC1JRZ1oDUyqDNGBWLxwDuxdmvevIRRxNiTC+HzEzS+7MiFprLfE4nwW+A8VXd318GsDQX93TDKPbEpYTN/h7ggUKQkxaa0VsAQ2q3nT1J19hGedAfF6hxNhUAk8xliCzbSx6uADFFeDjzSywI5kgpvcXP4zP0p0XfV0gCGvAxrpAvS6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AQqkwuGhjNFmZNNnJKe3Hlp7DMCDgZNrDutJq2Gi424=;
- b=CtaeB6/VgYMBzBeQ9+lbA/T2cdED5/C/TqUcbuhbOpFwMWD28qIQxj6rglQ5uNFf0a4e+9qqF2dVTpGkLGR2NdYJL085LZtP/wsEPpVQXy5kU7Z3+9FIj7DzAyz51wjGE974jMLhTLwex715OE6tM8FJ+f1jjIkNOJzGYevVlUk1zlV5lURC+JK/jnzGfI93F+yMUd8fJTfap1QLzHtpSsENapYiObAJO41+yguzK5TGJcYO7F6e0+Fv5ln7Kmxhd6zivNMKcdmMMGreU67RwW8jlhS+7Rw3qWENkA/wLg88IcdlxU2rwKYxBdqO81c+h71iMAu74NeFY1gEDZvezw==
+ bh=KLTHAFomU+Mg/TCDgh9di6anHsIucD8bjG1LXW1Y+8Q=;
+ b=DYubxz64qUHW6/WE7bWTc0O3/bj9k5STctflES84KP7BOEErHZPrt3NrEHZfr2qbDmqSzEBJYyExin88pPdTQJnMME+SVefqV1LIX+Ich0D2c44xkv0o8FibwG1GRZOtZa/rg7kSrOFFZ3jk43vO+8LaDhd6cXrF49FnL8IUdClltIkiLrEiLLeiEYAdVMxJ804gbTSC+OyxCz/6TAPQtC4nuMVFufDCKMe5EkaKlyKWcg6K0O0QYz9tksPRPPCc81CEBlskLTcf7Dufu48tAvnsA+Ispq+no9v2ZIfeT2S4vnzRnmS8GQqLNK4i+wdwomosUQKeeW008t7nKCHsNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AQqkwuGhjNFmZNNnJKe3Hlp7DMCDgZNrDutJq2Gi424=;
- b=UG4QyeqINyGvXpUwzhuQTDeMKsVy+VCPWugyat1TRq/COotvpxYmpx5EjkFOhobfl9LN76T/BIlcHxk3MWkrME1IIaBj40haZkwyAxJcMYRTzBFO6OMdFea9JqaSt4jHQtRJjIDj3kAUDKGx/ZiIATczEHe/Xizknkmmw5PWhVQ=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB3965.eurprd04.prod.outlook.com (2603:10a6:803:3e::29)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17; Wed, 10 Feb
- 2021 10:18:03 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::3df3:2eba:51bb:58d7]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::3df3:2eba:51bb:58d7%7]) with mapi id 15.20.3825.030; Wed, 10 Feb 2021
- 10:18:03 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Thread-Topic: [PATCH net-next v3 5/5] net: mscc: ocelot: Add support for MRP
-Thread-Index: AQHW/yGZdqaCj30jN0m/BawIxR2lh6pRLcMA
-Date: Wed, 10 Feb 2021 10:18:03 +0000
-Message-ID: <20210210101802.6ztf6c3ifldfa5fw@skbuf>
-References: <20210209202112.2545325-1-horatiu.vultur@microchip.com>
- <20210209202112.2545325-6-horatiu.vultur@microchip.com>
-In-Reply-To: <20210209202112.2545325-6-horatiu.vultur@microchip.com>
-Accept-Language: en-US
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
+ by DM6PR12MB3049.namprd12.prod.outlook.com (2603:10b6:5:11d::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.30; Wed, 10 Feb
+ 2021 10:31:52 +0000
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::5c42:cbe:fe28:3a9b]) by DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::5c42:cbe:fe28:3a9b%5]) with mapi id 15.20.3846.027; Wed, 10 Feb 2021
+ 10:31:52 +0000
+To: Vladimir Oltean <olteanv@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+References: <20210210091445.741269-1-olteanv@gmail.com>
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <a8e9284b-f0a6-0343-175d-8c323371ef8d@nvidia.com>
+Date: Wed, 10 Feb 2021 12:31:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
+In-Reply-To: <20210210091445.741269-1-olteanv@gmail.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: microchip.com; dkim=none (message not signed)
- header.d=none;microchip.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [5.12.227.87]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 963e63e8-1ac6-4a50-8695-08d8cdad268b
-x-ms-traffictypediagnostic: VI1PR04MB3965:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB3965FF3E663D9180E03A9972E08D9@VI1PR04MB3965.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2733;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1YnUtedK3HGxcAMQ2zCJQ0fY7BByjbTLTUOc3MXGaf8kE6Sw52LDSmZS1FS3OQdLiYlzasLDe9Q4enInpMVFZksJXRQBaG1koxGTI54GjZsm92rx6iMEyYV2ZUmiDW1Bm5VBN/PcMm2XhFmaZlMOJ61LxLObaWLqCuaCLQ4TbVRWWuaDv3spSs5aVulMo59ppYo5lDtV9rJ92TjvTYBGq9IZM4yrSMhFR8F9nA/91H5luVvTWxghTmL/efWBVvE1APtfqZTd2KGzjJiwohxNIBCZc+NHr9RZ1Ee3HB/6l9rhf6oEz4gKJ5eAR6g9icjY7d0sKD4uixisJSsfcSn7JXpnoGAqHNm3SEqSirqRV5IUFHHVan2bcOwutCJu2ZE5qB+7kxn8v6VRRxP99KXxdnfk1c3Sbz52AJIrhT9rWelJz08l35ny2X79gKqAo6bKdTNwD/hcx19Aa2/2PiXn5GubZYXaI/GqU/yHDJQsxC9w+neFAdwnNnYplcT+2IXJ/oBp32IKGJhQmp9/1fKqBA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(346002)(39860400002)(366004)(376002)(136003)(396003)(44832011)(8936002)(7416002)(54906003)(186003)(2906002)(76116006)(66446008)(6486002)(6512007)(478600001)(83380400001)(33716001)(9686003)(6916009)(6506007)(5660300002)(71200400001)(1076003)(66556008)(64756008)(86362001)(66946007)(66476007)(8676002)(26005)(316002)(4326008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?7D7FRo/bE4HBZ/V2jBerlrQ760xo/AVNJ9wTcsPbtggdJYPso4k8eUHjxVor?=
- =?us-ascii?Q?ShW5W4pyy45BmZenvHffHR6y9WPis3TWI9gbgPFJFt117F2NiwAZfHrciK84?=
- =?us-ascii?Q?tV6t+KhEtQ88LilbAZICMk3dd+QxiPvc837sgWgq5ZDqTCNwRfk8jh1hxZ06?=
- =?us-ascii?Q?Hapd6lsQZw8hEdqACJHjb6c9RkkytXj/YtKQi/WIVJZlIh5HFdbqVnb0zZxf?=
- =?us-ascii?Q?p0VRkyOUW6NQRiApe3V0Eq4LEEHx8p8SRY0TmY+4pqgndYt45Lt4vxl6gUSq?=
- =?us-ascii?Q?WvOmFHThHqiJe2CERp/1BcGpB3iAa3OWMF5VGptSi/6GkbgWcCLqGg96I1tz?=
- =?us-ascii?Q?y0YDBGGm+wQ83tx9abo89gct5gHndqNtPrTBseD5HcWM1MhbBlPXnmhLEjtJ?=
- =?us-ascii?Q?2DG0UEE9udnQzfIXi1iXei+ItOKNPsIoy6abcPKVpyf3j4sfTN9kRGP62m1t?=
- =?us-ascii?Q?Yq/eB10seEiFL+jCEbHa6zzEKGE2shIJcsE7PqQEtSOLx6kl5PZ+o9Df+w7O?=
- =?us-ascii?Q?yjh2BzxBnl1f4WE/JGNSBILfOgzlhqzY8wrfn56jUmVg8/oRo+ssFMA/t92V?=
- =?us-ascii?Q?SjJVNO9/rj2hwuHqM3DYzHbM0mu3/28i7GoVncWVSHgizr5q5DbmO4ybbtC4?=
- =?us-ascii?Q?2VPnq91jvV+xQNqiBGqe0Qb+eakiVUncElZ7Yq78aGDCU7vRed632E4cdr/f?=
- =?us-ascii?Q?+XwnTVV7QSIY9ksVykW6TafgyoMgRjZ+brNwZz4JgK2Ijq4FzABIm5KG7Yjv?=
- =?us-ascii?Q?2YA/n/fWgyYSGkE1nNFerleiczoHBeFq5yDTKSzJGLsxgcbj3teUbc8z26E6?=
- =?us-ascii?Q?XzC2Bxz+67gXdeB/k/q/R0JnN12DFHAbsFAkZVdxr3BSDBv6xPtPZYoTEzXv?=
- =?us-ascii?Q?tb8lHt9V20cIloM0EEtrAd/sxCoe8dr1HuPPSBbAYI3vTnFcLW6PpR+1cMai?=
- =?us-ascii?Q?W/4jJNfA5hSEx+67yIcwO/B/bADEJSvEiABSZQHDcd7ThjY+gwbVTb8bdUy2?=
- =?us-ascii?Q?hJqv6R7pi1f+N/kvgzp6o848rq7VT/r4O/tPZvgxKkFXdXA31VEVKXy4/as3?=
- =?us-ascii?Q?Z7WJMDPvrDZQY5HqBRfrWbQt6d0jhaWCkfE8V5wmhllbj7wpQ57VuvhASuuu?=
- =?us-ascii?Q?dg6iGMgDVfAzDE2hBCPcZW8LtOXwSTgB0WRPoQTeNMyKzUgwi4Tfp/zQvn1V?=
- =?us-ascii?Q?fB6zotaNZn3YBmBrMK0+3PDgh/27u7X0eVrSb4Yhyg0aseByUgFZjDCs4kEb?=
- =?us-ascii?Q?A5IheZH3FrSD8C32JJf4pwETQwg76s7qwHaEERHBW8t3BD2r+jCWHvNPzd77?=
- =?us-ascii?Q?sduEPYNP3idOcqpYbybCCfbo?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <9683A36585C0A94F9DB267C3DCA6B783@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: ZR0P278CA0007.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:16::17) To DM6PR12MB4403.namprd12.prod.outlook.com
+ (2603:10b6:5:2ab::24)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.241.121] (213.179.129.39) by
+ ZR0P278CA0007.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:16::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3846.25 via Frontend Transport; Wed, 10 Feb 2021 10:31:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 06f2a207-adc7-43a9-eb6a-08d8cdaf14c4
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3049:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3049A1FA949091080F20D2C1DF8D9@DM6PR12MB3049.namprd12.prod.outlook.com>
+X-Header: ProcessedBy-CMR-outbound
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PZf8tE39hFXxjqU3xXxwg5XZH2jGClf49umcZ2joh0zbpXn2rzX4lT+nnFImORmoltO6AS/z+60mv908S3EHTd7IH/SS8F/Ht4Kd9MC8FF8Jy/SOpss8BW2vJ8ja+08Yf0cAxQCxFdF+cTvRQ3EU7iNQCMeCVLVGQixA8CyI53RzfGsETjjO+HP93qf6Cpeom5vsH+mHJbd3QxdY5YaELdPHYZaOF7W52xNkBRlo966iSwz5NOfCt7RXdU3Fd5kbjUxFEzLUZdCq29geu/9qUT1HCeixVJlWbUDDf4MgMsrcayVyVsSLw/egkHJPCrboH+cEm841xkd6V2iu+v9Wag5NGptE3kLgvdOSI/nrXrk47AMXA4wcQnK1Geh7IayN4TK+IUbZnNyX2JGqeFWBq5Zujzy8EDl9hM3Vt5blOaTOUmi0LELaUP7xvmJE4BQFMCv4nt/4O0PMtITDNYBx7NiRqzdq13xEWvcLLFto7jISX50yJrvmv2q2ue1TgeATUKpFmGzANFuxaVIZEoB2wrp/Dya9tGMxS5c8ds8090b36To+MpHHWJWgjsIvYOg+SbvFAG07RbIZYZLUYOvohrzn6iT73+Lz6AVFdYL83QY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(376002)(39860400002)(366004)(346002)(16526019)(6666004)(8936002)(53546011)(66556008)(26005)(83380400001)(36756003)(478600001)(316002)(186003)(956004)(31696002)(86362001)(54906003)(7416002)(4326008)(8676002)(6486002)(16576012)(66946007)(31686004)(2616005)(5660300002)(110136005)(66476007)(2906002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?aG45dzNES0FhbUl6Q2ZOK0FJL2ErcGxUVlF3RmM2MlFsMDUyVXlEeVZWOURZ?=
+ =?utf-8?B?RVJ2UGtHcDRFUWtDQ29EamR1cFprUTNQMnJHdHQ0bnVjVC9RWG13RjZnOWRT?=
+ =?utf-8?B?Q3JxVzN0Q3k4NmdoTVNnbTdIcjZrM1VLOWdJN3BURXhGZ3pCWkM4QTJ6R0lJ?=
+ =?utf-8?B?ZHZDRVZadXpNYTJHZ2JGZ0c2UHdYUVdLeHI3aERYN1JiMVRUQ3BaT0lTTGpZ?=
+ =?utf-8?B?WW5YOHlkQmc4MVE2b0lreTRlQWlsUkFQS2ZOODdETk5QZ2pqUTJ4ZHdRc3A2?=
+ =?utf-8?B?WEJENE1OcEhFbUQ1Q2lDSGwzK0E1dE15RWdjL2hRcHc2MXgrQjYzZVVPRTJO?=
+ =?utf-8?B?NE1KV21MVHc4SVhvR01xa2FBT0xqQnphSFpHb0I3KzVWOGhOUnF3ZlY2a3RG?=
+ =?utf-8?B?Yllhc1grcHhCVGZDR0JZeVBvNXlRREtxN2lRU3kvRFJoME1EY292OFY0V2xl?=
+ =?utf-8?B?QlRHSU9JWFZJRkhPVndBbUhEdFVpWE52dW01azNzcmlkZEhJdHVYOVEzR0Vv?=
+ =?utf-8?B?bmwyOVZpTzdkWnpLSmRQemNWaXlNa1FRUXFMWTRTU2F0SE8vcGZXTHNNb3Zm?=
+ =?utf-8?B?NnE5YXRrNXd2VCtFemt1LzZxaStXUlZIS0VDRE1wU0Q2Z2RPa256ZDA5UUp6?=
+ =?utf-8?B?MnlWd0FCeTB0WlArb2Q0c1EwRGlrYlFXbHRvdk9IWGM2aldiNTJUeWtwdWV3?=
+ =?utf-8?B?ZEkrVDM0Y21hSWRvMGFrSVQzNXBBY1FjMDFPWkNyc3hDTmtiNTA0NS9JMitU?=
+ =?utf-8?B?dmFLTmU0cUpMTS9LQ29Dbld1Z1czMGxxWnViS1I2NzNrOWgrZlk0N0JJWndV?=
+ =?utf-8?B?OTQwN09lVGExMWh1NGhRSUNyRGFRcTI5Q0lVMjhINWhWd3R1aHZyczZhN2VU?=
+ =?utf-8?B?N3JFbUJsTlhkb1hCZlYrSnVDcDNkeDlHeGF0OFN4dnEzaHZUK1FoTlFEZjN6?=
+ =?utf-8?B?WVF4UXRiTS9SQVZtQ214QkRDajZQWEtmbHpPTkdHMW1teGVFN2l5RkJQMUNh?=
+ =?utf-8?B?RDREVGdhdE0xR3FjZWZ0bFp4eGVCeGxVZ1Z3VHI2NlR4aXNDNnJ2dGd3WVpz?=
+ =?utf-8?B?T3hQL2tsanJwaVJhRzdUTTBuSmE4ZHpxNmE1VUhGaWc5UndmNDVZNEJ6TGtP?=
+ =?utf-8?B?cnAzVGFXeGJETDNaMEZFaU9RWGZVcHp0bTlhaXA4QS9ONmJ0UzJlN3dDRGsz?=
+ =?utf-8?B?dUR0YWkzVW83WElCYUlOQjFKMlduM1JHaHhUVVZXRzhFNXVROVhuVVlhVDdD?=
+ =?utf-8?B?Y1VJaHRWek5Od2J1VzBLclZuMXZERHVtMzM1bWVxZjBYS2NFMUlrT0xiZEoz?=
+ =?utf-8?B?d004UEl4TTFvamJENnE0RENRRzlQNUlQT3VZUVhOOWFBcXNMTnlxb20yRURx?=
+ =?utf-8?B?MTBjQ09pSDB1Y1VYNzQ0ckRsdk5GSW1RTjltdEZiOFVJSGdsZGZvYXM0L3g2?=
+ =?utf-8?B?UmprMEllWTJLWC9HbWtIbkJyUWttaDMvN1pnNGs5bzRWbDlpR2Urbm1oQ0Nt?=
+ =?utf-8?B?eHQ3VmRQY2JnUGRSTUxhV29nQy9TRVhmWms0dStwckdORndXdHZyK1ZiYTZ4?=
+ =?utf-8?B?c1VTSk1UeUV2UjhMQitWbTNLMFIrZk5BNnFpc2UzeGh1ZkpDaGNkR3gxTmYv?=
+ =?utf-8?B?TTZNU1h4NXlmb2x2azA2eEFmeDV1ZmZLRFFtWnJlWGR6NTJ6QW1hWFZNVk1T?=
+ =?utf-8?B?dDcycUQ3TkRwRkM1akpXN2ovaVRDdmRwTWdmNFgxekNlQTlidHp5YVRXNVlx?=
+ =?utf-8?Q?tQ6hSfr0sv2Iq0YqG82LL0jDLtlyeUgoPmeoRyr?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06f2a207-adc7-43a9-eb6a-08d8cdaf14c4
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 963e63e8-1ac6-4a50-8695-08d8cdad268b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2021 10:18:03.1730 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 43MM40FnS1pMm0Pm4QgOs5IiC5Z/D6QXJkX9QnJhxsSGL0tg8PPdtixJoqEzMYJ7io3XoNvUxHQqn9Quw+tvEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3965
-Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
- "andrew@lunn.ch" <andrew@lunn.ch>,
- "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
- "jiri@resnulli.us" <jiri@resnulli.us>,
- "rasmus.villemoes@prevas.dk" <rasmus.villemoes@prevas.dk>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2021 10:31:52.5450 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SI5eUvanbAbY8TXqk4QlJxoZXEw7SiQuwC4Y4Ug5mLGnOSWa9sn/Fjc2ZldtphO/toRQXIG+d4WMX3D8EyoBGg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3049
+X-OriginatorOrg: Nvidia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+ t=1612953133; bh=KLTHAFomU+Mg/TCDgh9di6anHsIucD8bjG1LXW1Y+8Q=;
+ h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:
+ Authentication-Results:Subject:To:CC:References:From:Message-ID:
+ Date:User-Agent:In-Reply-To:Content-Type:Content-Language:
+ Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
+ MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
+ X-MS-PublicTrafficType:X-MS-Office365-Filtering-Correlation-Id:
+ X-MS-TrafficTypeDiagnostic:X-MS-Exchange-Transport-Forked:
+ X-Microsoft-Antispam-PRVS:X-Header:X-MS-Oob-TLC-OOBClassifiers:
+ X-MS-Exchange-SenderADCheck:X-Microsoft-Antispam:
+ X-Microsoft-Antispam-Message-Info:X-Forefront-Antispam-Report:
+ X-MS-Exchange-AntiSpam-MessageData:
+ X-MS-Exchange-CrossTenant-Network-Message-Id:
+ X-MS-Exchange-CrossTenant-AuthSource:
+ X-MS-Exchange-CrossTenant-AuthAs:
+ X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+ X-MS-Exchange-CrossTenant-FromEntityHeader:
+ X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+ X-MS-Exchange-CrossTenant-UserPrincipalName:
+ X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+ b=RvWsLAc1VzBgLcTIAoBLNt0HOG/go2uVVHpIePMQJoaELyh6cfswvVWyT3NqVfoCB
+ Xzs8Idkrxkx1YKOALISdTKCu/uXoM20DUkvNeKQP0T/SrkE6zv9FiEdgSe6WpP5Yax
+ YxHuUY84z/z9V4QDr542VHU2/iGfLjs1sda9xgJuzMOCRaa5B2vsjJzmCzlgX/t+ed
+ wFA9TfkublGR0+91HtvaICjJwBJ82ocm50aoJoOPDPqV1BzRXMl7CZSbYVd0ZDGCZX
+ OffFkyJF69+JCvpzvWROgHkxMtV92bNQnaqwKp65WAuahWT34St0MsTya3GaWY+8eM
+ ww9dM/udbZikA==
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Alexandre
+ Belloni <alexandre.belloni@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ Vadym Kochan <vkochan@marvell.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
+ linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+ Taras Chornyi <tchornyi@marvell.com>, Ido Schimmel <idosch@idosch.org>,
  Claudiu Manoil <claudiu.manoil@nxp.com>,
- "nikolay@nvidia.com" <nikolay@nvidia.com>,
- "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
- "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v3 5/5] net: mscc: ocelot: Add support
-	for MRP
+ Grygorii Strashko <grygorii.strashko@ti.com>, Roopa
+ Prabhu <roopa@nvidia.com>, linux-omap@vger.kernel.org,
+ Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [Bridge] [PATCH v3 net-next 00/11] Cleanup in brport flags
+ switchdev offload for DSA
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -156,272 +198,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Would you mind adding the switchdev MRP support for the DSA driver too,
-and move the code to the common ocelot library? I would like to give it
-a run. I think that's only fair, since I have to keep in sync the
-vsc7514 driver too for features that get added through DSA :)
+On 10/02/2021 11:14, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> The initial goal of this series was to have better support for
+> standalone ports mode and multiple bridges on the DSA drivers like
+> ocelot/felix and sja1105. Proper support for standalone mode requires
+> disabling address learning, which in turn requires interaction with the
+> switchdev notifier, which is actually where most of the patches are.
+> 
+> I also noticed that most of the drivers are actually talking either to
+> firmware or SPI/MDIO connected devices from the brport flags switchdev
+> attribute handler, so it makes sense to actually make it sleepable
+> instead of atomic.
+> 
 
-On Tue, Feb 09, 2021 at 09:21:12PM +0100, Horatiu Vultur wrote:
-> Add basic support for MRP. The HW will just trap all MRP frames on the
-> ring ports to CPU and allow the SW to process them. In this way it is
-> possible to for this node to behave both as MRM and MRC.
->=20
-> Current limitations are:
-> - it doesn't support Interconnect roles.
-> - it supports only a single ring.
-> - the HW should be able to do forwarding of MRP Test frames so the SW
->   will not need to do this. So it would be able to have the role MRC
->   without SW support.
->=20
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  drivers/net/ethernet/mscc/ocelot_net.c     | 154 +++++++++++++++++++++
->  drivers/net/ethernet/mscc/ocelot_vsc7514.c |   6 +
->  include/soc/mscc/ocelot.h                  |   6 +
->  3 files changed, 166 insertions(+)
->=20
-> diff --git a/drivers/net/ethernet/mscc/ocelot_net.c b/drivers/net/etherne=
-t/mscc/ocelot_net.c
-> index 8f12fa45b1b5..65971403e823 100644
-> --- a/drivers/net/ethernet/mscc/ocelot_net.c
-> +++ b/drivers/net/ethernet/mscc/ocelot_net.c
-> @@ -9,7 +9,10 @@
->   */
-> =20
->  #include <linux/if_bridge.h>
-> +#include <linux/mrp_bridge.h>
->  #include <net/pkt_cls.h>
-> +#include <soc/mscc/ocelot_vcap.h>
-> +#include <uapi/linux/mrp_bridge.h>
->  #include "ocelot.h"
->  #include "ocelot_vcap.h"
-> =20
-> @@ -1069,6 +1072,139 @@ static int ocelot_port_obj_del_mdb(struct net_dev=
-ice *dev,
->  	return ocelot_port_mdb_del(ocelot, port, mdb);
->  }
-> =20
-> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
-> +static int ocelot_mrp_del_vcap(struct ocelot *ocelot, int port)
-> +{
-> +	struct ocelot_vcap_block *block_vcap_is2;
-> +	struct ocelot_vcap_filter *filter;
-> +
-> +	block_vcap_is2 =3D &ocelot->block[VCAP_IS2];
-> +	filter =3D ocelot_vcap_block_find_filter_by_id(block_vcap_is2, port,
-> +						     false);
-> +	if (!filter)
-> +		return 0;
-> +
-> +	return ocelot_vcap_filter_del(ocelot, filter);
-> +}
-> +
-> +static int ocelot_add_mrp(struct net_device *dev,
-> +			  const struct switchdev_obj_mrp *mrp)
-> +{
-> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
-> +	struct ocelot_port *ocelot_port =3D &priv->port;
-> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
-> +
-> +	if (mrp->p_port !=3D dev && mrp->s_port !=3D dev)
-> +		return 0;
-> +
-> +	if (ocelot->mrp_ring_id !=3D 0 &&
-> +	    ocelot->mrp_s_port &&
-> +	    ocelot->mrp_p_port)
-> +		return -EINVAL;
-> +
-> +	if (mrp->p_port =3D=3D dev)
-> +		ocelot->mrp_p_port =3D dev;
-> +
-> +	if (mrp->s_port =3D=3D dev)
-> +		ocelot->mrp_s_port =3D dev;
-> +
-> +	ocelot->mrp_ring_id =3D mrp->ring_id;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ocelot_del_mrp(struct net_device *dev,
-> +			  const struct switchdev_obj_mrp *mrp)
-> +{
-> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
-> +	struct ocelot_port *ocelot_port =3D &priv->port;
-> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
-> +
-> +	if (ocelot->mrp_p_port !=3D dev && ocelot->mrp_s_port !=3D dev)
-> +		return 0;
-> +
-> +	if (ocelot->mrp_ring_id =3D=3D 0 &&
-> +	    !ocelot->mrp_s_port &&
-> +	    !ocelot->mrp_p_port)
-> +		return -EINVAL;
-> +
-> +	if (ocelot_mrp_del_vcap(ocelot, priv->chip_port))
-> +		return -EINVAL;
-> +
-> +	if (ocelot->mrp_p_port =3D=3D dev)
-> +		ocelot->mrp_p_port =3D NULL;
-> +
-> +	if (ocelot->mrp_s_port =3D=3D dev)
-> +		ocelot->mrp_s_port =3D NULL;
-> +
-> +	ocelot->mrp_ring_id =3D 0;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ocelot_add_ring_role(struct net_device *dev,
-> +				const struct switchdev_obj_ring_role_mrp *mrp)
-> +{
-> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
-> +	struct ocelot_port *ocelot_port =3D &priv->port;
-> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
-> +	struct ocelot_vcap_filter *filter;
-> +	int err;
-> +
-> +	if (ocelot->mrp_ring_id !=3D mrp->ring_id)
-> +		return -EINVAL;
-> +
-> +	if (!mrp->sw_backup)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (ocelot->mrp_p_port !=3D dev && ocelot->mrp_s_port !=3D dev)
-> +		return 0;
-> +
-> +	filter =3D kzalloc(sizeof(*filter), GFP_KERNEL);
-> +	if (!filter)
-> +		return -ENOMEM;
-> +
-> +	filter->key_type =3D OCELOT_VCAP_KEY_ETYPE;
-> +	filter->prio =3D 1;
-> +	filter->id.cookie =3D priv->chip_port;
-> +	filter->id.tc_offload =3D false;
-> +	filter->block_id =3D VCAP_IS2;
-> +	filter->type =3D OCELOT_VCAP_FILTER_OFFLOAD;
-> +	filter->ingress_port_mask =3D BIT(priv->chip_port);
-> +	*(__be16 *)filter->key.etype.etype.value =3D htons(ETH_P_MRP);
-> +	*(__be16 *)filter->key.etype.etype.mask =3D htons(0xffff);
-> +	filter->action.mask_mode =3D OCELOT_MASK_MODE_PERMIT_DENY;
-> +	filter->action.port_mask =3D 0x0;
-> +	filter->action.cpu_copy_ena =3D true;
-> +	filter->action.cpu_qu_num =3D 0;
-> +
-> +	err =3D ocelot_vcap_filter_add(ocelot, filter, NULL);
-> +	if (err)
-> +		kfree(filter);
-> +
-> +	return err;
-> +}
-> +
-> +static int ocelot_del_ring_role(struct net_device *dev,
-> +				const struct switchdev_obj_ring_role_mrp *mrp)
-> +{
-> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
-> +	struct ocelot_port *ocelot_port =3D &priv->port;
-> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
-> +
-> +	if (ocelot->mrp_ring_id !=3D mrp->ring_id)
-> +		return -EINVAL;
-> +
-> +	if (!mrp->sw_backup)
-> +		return -EOPNOTSUPP;
-> +
-> +	if (ocelot->mrp_p_port !=3D dev && ocelot->mrp_s_port !=3D dev)
-> +		return 0;
-> +
-> +	return ocelot_mrp_del_vcap(ocelot, priv->chip_port);
-> +}
-> +#endif
-> +
+Hi Vladimir,
+Let's take a step back for a moment and discuss the bridge unlock/lock sequences
+that come with this set. I'd really like to avoid those as they're a recipe
+for future problems. The only good way to achieve that currently is to keep
+the PRE_FLAGS call and do that in unsleepable context but move the FLAGS call
+after the flags have been changed (if they have changed obviously). That would
+make the code read much easier since we'll have all our lock/unlock sequences
+in the same code blocks and won't play games to get sleepable context.
+Please let's think and work in that direction, rather than having:
++	spin_lock_bh(&p->br->lock);
++	if (err) {
++		netdev_err(p->dev, "%s\n", extack._msg);
++		return err;
+ 	}
++
 
-Would it make sense for this chunk of conditionally compiled code to
-stay in a separate file like ocelot_mrp.c?
+which immediately looks like a bug even though after some code checking we can
+verify it's ok. WDYT?
 
->  static int ocelot_port_obj_add(struct net_device *dev,
->  			       const struct switchdev_obj *obj,
->  			       struct netlink_ext_ack *extack)
-> @@ -1083,6 +1219,15 @@ static int ocelot_port_obj_add(struct net_device *=
-dev,
->  	case SWITCHDEV_OBJ_ID_PORT_MDB:
->  		ret =3D ocelot_port_obj_add_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
->  		break;
-> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
-> +	case SWITCHDEV_OBJ_ID_MRP:
-> +		ret =3D ocelot_add_mrp(dev, SWITCHDEV_OBJ_MRP(obj));
-> +		break;
-> +	case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
-> +		ret =3D ocelot_add_ring_role(dev,
-> +					   SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
-> +		break;
-> +#endif
+I plan to get rid of most of the br->lock since it's been abused for a very long
+time because it's essentially STP lock, but people have started using it for other
+things and I plan to fix that when I get more time.
 
-I'm not really sure why SWITCHDEV_OBJ_ID_MRP is conditionally defined.
-If you look at SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING, that isn't
-conditionally defined, even though it depends on CONFIG_BRIDGE_VLAN_FILTERI=
-NG
-at runtime.
-
->  	default:
->  		return -EOPNOTSUPP;
->  	}
-> @@ -1103,6 +1248,15 @@ static int ocelot_port_obj_del(struct net_device *=
-dev,
->  	case SWITCHDEV_OBJ_ID_PORT_MDB:
->  		ret =3D ocelot_port_obj_del_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
->  		break;
-> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
-> +	case SWITCHDEV_OBJ_ID_MRP:
-> +		ret =3D ocelot_del_mrp(dev, SWITCHDEV_OBJ_MRP(obj));
-> +		break;
-> +	case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
-> +		ret =3D ocelot_del_ring_role(dev,
-> +					   SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
-> +		break;
-> +#endif
->  	default:
->  		return -EOPNOTSUPP;
->  	}
-> diff --git a/drivers/net/ethernet/mscc/ocelot_vsc7514.c b/drivers/net/eth=
-ernet/mscc/ocelot_vsc7514.c
-> index 6b6eb92149ba..96a9c9f98060 100644
-> --- a/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-> +++ b/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-> @@ -698,6 +698,12 @@ static irqreturn_t ocelot_xtr_irq_handler(int irq, v=
-oid *arg)
->  			skb->offload_fwd_mark =3D 1;
-> =20
->  		skb->protocol =3D eth_type_trans(skb, dev);
-> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
-> +		if (skb->protocol =3D=3D ntohs(ETH_P_MRP) &&
-> +		    (priv->dev =3D=3D ocelot->mrp_p_port ||
-> +		     priv->dev =3D=3D ocelot->mrp_s_port))
-> +			skb->offload_fwd_mark =3D 0;
-> +#endif
-
-I wonder if you could just reserve a certain CPUQ for trapped traffic,
-and just generically check for that, instead of MRP port roles?
-
->  		if (!skb_defer_rx_timestamp(skb))
->  			netif_rx(skb);
->  		dev->stats.rx_bytes +=3D len;
-> diff --git a/include/soc/mscc/ocelot.h b/include/soc/mscc/ocelot.h
-> index d0d48e9620fb..d95c019ad84e 100644
-> --- a/include/soc/mscc/ocelot.h
-> +++ b/include/soc/mscc/ocelot.h
-> @@ -682,6 +682,12 @@ struct ocelot {
->  	/* Protects the PTP clock */
->  	spinlock_t			ptp_clock_lock;
->  	struct ptp_pin_desc		ptp_pins[OCELOT_PTP_PINS_NUM];
-> +
-> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
-> +	u16				mrp_ring_id;
-> +	struct net_device		*mrp_p_port;
-> +	struct net_device		*mrp_s_port;
-> +#endif
->  };
-> =20
->  struct ocelot_policer {
-> --=20
-> 2.27.0
-> =
+Thanks,
+ Nik
