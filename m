@@ -1,105 +1,98 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17723166AB
-	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 13:29:47 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED0493166B1
+	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 13:31:13 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id E6E66872BE;
-	Wed, 10 Feb 2021 12:29:45 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 6A3086F676
+	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 12:31:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id W1Gf5ZAkXB5q; Wed, 10 Feb 2021 12:29:45 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ycJdpfLo5r40 for <lists.bridge@lfdr.de>;
+	Wed, 10 Feb 2021 12:31:05 +0000 (UTC)
+Received: by smtp3.osuosl.org (Postfix, from userid 1001)
+	id 1CBC96F668; Wed, 10 Feb 2021 12:31:05 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 11031872B9;
-	Wed, 10 Feb 2021 12:29:45 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 837456F51A;
+	Wed, 10 Feb 2021 12:30:47 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F3B36C013A;
-	Wed, 10 Feb 2021 12:29:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 49E07C013A;
+	Wed, 10 Feb 2021 12:30:47 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AFA60C013A
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:29:43 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B214EC013A
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:30:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 9B7786ED1C
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:29:43 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 9FCB46ED1C
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:30:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id g-rWpqYqkkfL for <bridge@lists.linux-foundation.org>;
- Wed, 10 Feb 2021 12:29:42 +0000 (UTC)
+ with ESMTP id kBXMfSUc41S8 for <bridge@lists.linux-foundation.org>;
+ Wed, 10 Feb 2021 12:30:45 +0000 (UTC)
 Received: by smtp3.osuosl.org (Postfix, from userid 1001)
- id 9B9306F51A; Wed, 10 Feb 2021 12:29:42 +0000 (UTC)
+ id 532DC6F51A; Wed, 10 Feb 2021 12:30:45 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
- [209.85.218.47])
- by smtp3.osuosl.org (Postfix) with ESMTPS id D324F6ED1C
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:29:40 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id sa23so3865943ejb.0
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 04:29:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=5Hbh4L5GtmNyFLcCwr1R0/cbGfN1e449n2ask6rOo3Q=;
- b=oClcknaww5YdjnuILv3G7H2TKY6LrWE2JQvfLR3Z1zkSYmBXXIhwOHgeqlUJJmkZ5e
- ZeNVX0Xe0tZKgJrYfGkhfAlJxywjrcteL6+nmzkZfdUkmsPbp/SnkSn+VOiUZN5lsZa4
- yRjesRuv363hfZwLNzBolLLrqUQbeDi1B8Uf8IPy121CwK7YISckSmhPgb9q2kc2CVPv
- jyM0pC3qsiYtJCaBiu9fp0J+xrzCKCSkhNnEJlF+hBF6z5Qf7M4AViv64lrEtJlI82Pc
- BB+U2RYfrueJ2sxf1qnd/CiDD/tbgXs9K6QqqSAoy1Cr9NY+cT6zPBmOB4xyxD6RD9H9
- eIFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=5Hbh4L5GtmNyFLcCwr1R0/cbGfN1e449n2ask6rOo3Q=;
- b=fgwGLnie2ZsMcOHPRjr+FB6ZkBtsgD5SJSA+QKKLG4ZdV//p76cv+33/hn6ckmn4V6
- LToGZFg575m087q8Hovh6ZMQ+VaqMUEQqJ94AZPB84/jokQvpRa/x8gk4xsKooAC9mS9
- r5Dx0uLbGhOGpEkwNzdKEPdbtK+x64+AECMwocMalQQMo5mdF9OkwkE4PwohPpQFdsX6
- xsUE/cWCu93Xk1Q9CmUzzzvkXu1piwP9gohU0wDAA8W4dIbNRcqGmg4ygjuIUx8VTF+A
- VbBYcgGvdjU2uJLPaHBQuugxbLmN4AB1v52yqoWHbbfGhG+UECM9xivR48rKmp/e47oz
- izRQ==
-X-Gm-Message-State: AOAM533VRuVYd2gj8Al1TFcVKtU7apg5tkeUbzUvPRT7WTgAbm2YD7Su
- MX+oNTEhd4kFMd9zV08AdK4=
-X-Google-Smtp-Source: ABdhPJxJfZ5XUvTNiEHeS8oTGzuZXIK42iRl/juX3fzLEuTrFUeDQZ32NnkY4JCymM2XRbN3d57weA==
-X-Received: by 2002:a17:907:ea3:: with SMTP id
- ho35mr2694287ejc.396.1612960178950; 
- Wed, 10 Feb 2021 04:29:38 -0800 (PST)
-Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
- by smtp.gmail.com with ESMTPSA id kz4sm1051619ejc.38.2021.02.10.04.29.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Feb 2021 04:29:38 -0800 (PST)
-Date: Wed, 10 Feb 2021 14:29:36 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <20210210122936.rpvdh7ksjfh2ee6b@skbuf>
-References: <20210210091445.741269-1-olteanv@gmail.com>
- <a8e9284b-f0a6-0343-175d-8c323371ef8d@nvidia.com>
- <20210210104549.ga3lgjafn5x3htwj@skbuf>
- <a58e9615-036c-0431-4ea6-004af4988b27@nvidia.com>
- <20210210110125.rw6fvjtsqmmuglcg@skbuf>
- <90b255e6-efd2-b234-7bfc-4285331e56b1@nvidia.com>
- <20210210120106.g7blqje3wq4j5l6j@skbuf>
- <20210210122105.GA294287@shredder.lan>
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
+ [68.232.154.123])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 5679F6ED1C
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:30:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1612960243; x=1644496243;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=SO7PnQcQJ3brzaSnIG7oy+PGOYQzMMkRO1glIKCB4Gw=;
+ b=0CHORc0gv2/DgIX/E8pf56ZlVhWKHlI3+2atkONshfT+jZ+r/sB0JYb4
+ WCluQ1yht+vmm2IoLiI/wpGwHoxWNaSYrU4CeYBq9c73ROnMZItmFTmEI
+ AcMk9xEmI4pI3Yl2sxJcwdUjfHx2VTyu38P+6Bm/YHF0OQAQSL8Ew1h4u
+ aAB7r7nUgJO/p5q5JMdJUwTS01t3gPnPOM+Pr3Gj9o0ggDLTWZyM4Zrve
+ 728YQ0aVvMAu0OsOI6XIy8shO6LzcwYZTgbaC0K3EFDfFzQgf7KtCvTbw
+ FrwvtdfgUgs1LL3u4AbSa2l9mTS0uZZJk9YlZAKwhmQ2NHQjs4CFIAgjt Q==;
+IronPort-SDR: 6awY9cD4rgba1abvf2itvrwQML2cIf5BZBu+KG+tBpErpkVEaw03otQmSf1Htdl5UoARRa7/Hf
+ x4q9N9xv5vatJz5rlTG6tM2wLybi15gQYKJsEb+7GkIDD96xVUK3Fvp73GNY2E4KcKkxPrV5NM
+ OIlV+j6WhfYL1PpQafG9EVE1fMyPOnd9OWrhqMxVrEKJHexX+BgSDKyNAIh4Pvef951Qjy7EHZ
+ yCDPvp9Hqb3F0PvUjC2X2GuNlsBoVrSv8zwvoqaFQs62W2tW5sxcgDRKbj7rNfFnVvD01Jumcr
+ R94=
+X-IronPort-AV: E=Sophos;i="5.81,168,1610434800"; d="scan'208";a="43621032"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 10 Feb 2021 05:30:41 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 10 Feb 2021 05:30:41 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Wed, 10 Feb 2021 05:30:41 -0700
+Date: Wed, 10 Feb 2021 13:30:40 +0100
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Message-ID: <20210210123040.rz2whrtx35s6gbv5@soft-dev3.localdomain>
+References: <20210209202112.2545325-1-horatiu.vultur@microchip.com>
+ <20210209202112.2545325-6-horatiu.vultur@microchip.com>
+ <20210210101802.6ztf6c3ifldfa5fw@skbuf>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20210210122105.GA294287@shredder.lan>
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Vadym Kochan <vkochan@marvell.com>, linux-omap@vger.kernel.org,
- netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Ioana Ciornei <ioana.ciornei@nxp.com>, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Taras Chornyi <tchornyi@marvell.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, UNGLinuxDriver@microchip.com,
- Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v3 net-next 00/11] Cleanup in brport flags
- switchdev offload for DSA
+In-Reply-To: <20210210101802.6ztf6c3ifldfa5fw@skbuf>
+Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
+ "andrew@lunn.ch" <andrew@lunn.ch>,
+ "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+ "jiri@resnulli.us" <jiri@resnulli.us>,
+ "rasmus.villemoes@prevas.dk" <rasmus.villemoes@prevas.dk>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>, Claudiu
+ Manoil <claudiu.manoil@nxp.com>, "nikolay@nvidia.com" <nikolay@nvidia.com>,
+ "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
+ "davem@davemloft.net" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next v3 5/5] net: mscc: ocelot: Add support
+	for MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,107 +104,293 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Feb 10, 2021 at 02:21:05PM +0200, Ido Schimmel wrote:
-> On Wed, Feb 10, 2021 at 02:01:06PM +0200, Vladimir Oltean wrote:
-> > On Wed, Feb 10, 2021 at 01:05:57PM +0200, Nikolay Aleksandrov wrote:
-> > > On 10/02/2021 13:01, Vladimir Oltean wrote:
-> > > > On Wed, Feb 10, 2021 at 12:52:33PM +0200, Nikolay Aleksandrov wrote:
-> > > >> On 10/02/2021 12:45, Vladimir Oltean wrote:
-> > > >>> Hi Nikolay,
-> > > >>>
-> > > >>> On Wed, Feb 10, 2021 at 12:31:43PM +0200, Nikolay Aleksandrov wrote:
-> > > >>>> Hi Vladimir,
-> > > >>>> Let's take a step back for a moment and discuss the bridge unlock/lock sequences
-> > > >>>> that come with this set. I'd really like to avoid those as they're a recipe
-> > > >>>> for future problems. The only good way to achieve that currently is to keep
-> > > >>>> the PRE_FLAGS call and do that in unsleepable context but move the FLAGS call
-> > > >>>> after the flags have been changed (if they have changed obviously). That would
-> > > >>>> make the code read much easier since we'll have all our lock/unlock sequences
-> > > >>>> in the same code blocks and won't play games to get sleepable context.
-> > > >>>> Please let's think and work in that direction, rather than having:
-> > > >>>> +	spin_lock_bh(&p->br->lock);
-> > > >>>> +	if (err) {
-> > > >>>> +		netdev_err(p->dev, "%s\n", extack._msg);
-> > > >>>> +		return err;
-> > > >>>>  	}
-> > > >>>> +
-> > > >>>>
-> > > >>>> which immediately looks like a bug even though after some code checking we can
-> > > >>>> verify it's ok. WDYT?
-> > > >>>>
-> > > >>>> I plan to get rid of most of the br->lock since it's been abused for a very long
-> > > >>>> time because it's essentially STP lock, but people have started using it for other
-> > > >>>> things and I plan to fix that when I get more time.
-> > > >>>
-> > > >>> This won't make the sysfs codepath any nicer, will it?
-> > > >>>
-> > > >>
-> > > >> Currently we'll have to live with a hack that checks if the flags have changed. I agree
-> > > >> it won't be pretty, but we won't have to unlock and lock again in the middle of the
-> > > >> called function and we'll have all our locking in the same place, easier to verify and
-> > > >> later easier to remove. Once I get rid of most of the br->lock usage we can revisit
-> > > >> the drop of PRE_FLAGS if it's a problem. The alternative is to change the flags, then
-> > > >> send the switchdev notification outside of the lock and revert the flags if it doesn't
-> > > >> go through which doesn't sound much better.
-> > > >> I'm open to any other suggestions, but definitely would like to avoid playing locking games.
-> > > >> Even if it means casing out flag setting from all other store_ functions for sysfs.
-> > > >
-> > > > By casing out flag settings you mean something like this?
-> > > >
-> > > >
-> > > > #define BRPORT_ATTR(_name, _mode, _show, _store)		\
-> > > > const struct brport_attribute brport_attr_##_name = { 	        \
-> > > > 	.attr = {.name = __stringify(_name), 			\
-> > > > 		 .mode = _mode },				\
-> > > > 	.show	= _show,					\
-> > > > 	.store_unlocked	= _store,				\
-> > > > };
-> > > >
-> > > > #define BRPORT_ATTR_FLAG(_name, _mask)				\
-> > > > static ssize_t show_##_name(struct net_bridge_port *p, char *buf) \
-> > > > {								\
-> > > > 	return sprintf(buf, "%d\n", !!(p->flags & _mask));	\
-> > > > }								\
-> > > > static int store_##_name(struct net_bridge_port *p, unsigned long v) \
-> > > > {								\
-> > > > 	return store_flag(p, v, _mask);				\
-> > > > }								\
-> > > > static BRPORT_ATTR(_name, 0644,					\
-> > > > 		   show_##_name, store_##_name)
-> > > >
-> > > > static ssize_t brport_store(struct kobject *kobj,
-> > > > 			    struct attribute *attr,
-> > > > 			    const char *buf, size_t count)
-> > > > {
-> > > > 	...
-> > > >
-> > > > 	} else if (brport_attr->store_unlocked) {
-> > > > 		val = simple_strtoul(buf, &endp, 0);
-> > > > 		if (endp == buf)
-> > > > 			goto out_unlock;
-> > > > 		ret = brport_attr->store_unlocked(p, val);
-> > > > 	}
-> > > >
-> > >
-> > > Yes, this can work but will need a bit more changes because of br_port_flags_change().
-> > > Then the netlink side can be modeled in a similar way.
-> > 
-> > What I just don't understand is how others can get away with doing
-> > sleepable work in atomic context but I can't make the notifier blocking
-> > by dropping a spinlock which isn't needed there, because it looks ugly :D
+The 02/10/2021 10:18, Vladimir Oltean wrote:
+
+Hi Vladimir,
+
 > 
-> Can you please point to the bug? I'm not following
+> Would you mind adding the switchdev MRP support for the DSA driver too,
+> and move the code to the common ocelot library? I would like to give it
+> a run. I think that's only fair, since I have to keep in sync the
+> vsc7514 driver too for features that get added through DSA :)
 
-For example, mlxsw eventually calls mlxsw_sp_fid_flood_set from the
-SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS handling data path, and this
-function allocates memory with GFP_KERNEL.
+That is totally fair. I will do it in the next version :)
 
-Another example is prestera which eventually calls prestera_fw_send_req
-which takes a mutex_lock.
+> 
+> On Tue, Feb 09, 2021 at 09:21:12PM +0100, Horatiu Vultur wrote:
+> > Add basic support for MRP. The HW will just trap all MRP frames on the
+> > ring ports to CPU and allow the SW to process them. In this way it is
+> > possible to for this node to behave both as MRM and MRC.
+> >
+> > Current limitations are:
+> > - it doesn't support Interconnect roles.
+> > - it supports only a single ring.
+> > - the HW should be able to do forwarding of MRP Test frames so the SW
+> >   will not need to do this. So it would be able to have the role MRC
+> >   without SW support.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  drivers/net/ethernet/mscc/ocelot_net.c     | 154 +++++++++++++++++++++
+> >  drivers/net/ethernet/mscc/ocelot_vsc7514.c |   6 +
+> >  include/soc/mscc/ocelot.h                  |   6 +
+> >  3 files changed, 166 insertions(+)
+> >
+> > diff --git a/drivers/net/ethernet/mscc/ocelot_net.c b/drivers/net/ethernet/mscc/ocelot_net.c
+> > index 8f12fa45b1b5..65971403e823 100644
+> > --- a/drivers/net/ethernet/mscc/ocelot_net.c
+> > +++ b/drivers/net/ethernet/mscc/ocelot_net.c
+> > @@ -9,7 +9,10 @@
+> >   */
+> >
+> >  #include <linux/if_bridge.h>
+> > +#include <linux/mrp_bridge.h>
+> >  #include <net/pkt_cls.h>
+> > +#include <soc/mscc/ocelot_vcap.h>
+> > +#include <uapi/linux/mrp_bridge.h>
+> >  #include "ocelot.h"
+> >  #include "ocelot_vcap.h"
+> >
+> > @@ -1069,6 +1072,139 @@ static int ocelot_port_obj_del_mdb(struct net_device *dev,
+> >       return ocelot_port_mdb_del(ocelot, port, mdb);
+> >  }
+> >
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +static int ocelot_mrp_del_vcap(struct ocelot *ocelot, int port)
+> > +{
+> > +     struct ocelot_vcap_block *block_vcap_is2;
+> > +     struct ocelot_vcap_filter *filter;
+> > +
+> > +     block_vcap_is2 = &ocelot->block[VCAP_IS2];
+> > +     filter = ocelot_vcap_block_find_filter_by_id(block_vcap_is2, port,
+> > +                                                  false);
+> > +     if (!filter)
+> > +             return 0;
+> > +
+> > +     return ocelot_vcap_filter_del(ocelot, filter);
+> > +}
+> > +
+> > +static int ocelot_add_mrp(struct net_device *dev,
+> > +                       const struct switchdev_obj_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +
+> > +     if (mrp->p_port != dev && mrp->s_port != dev)
+> > +             return 0;
+> > +
+> > +     if (ocelot->mrp_ring_id != 0 &&
+> > +         ocelot->mrp_s_port &&
+> > +         ocelot->mrp_p_port)
+> > +             return -EINVAL;
+> > +
+> > +     if (mrp->p_port == dev)
+> > +             ocelot->mrp_p_port = dev;
+> > +
+> > +     if (mrp->s_port == dev)
+> > +             ocelot->mrp_s_port = dev;
+> > +
+> > +     ocelot->mrp_ring_id = mrp->ring_id;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ocelot_del_mrp(struct net_device *dev,
+> > +                       const struct switchdev_obj_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +
+> > +     if (ocelot->mrp_p_port != dev && ocelot->mrp_s_port != dev)
+> > +             return 0;
+> > +
+> > +     if (ocelot->mrp_ring_id == 0 &&
+> > +         !ocelot->mrp_s_port &&
+> > +         !ocelot->mrp_p_port)
+> > +             return -EINVAL;
+> > +
+> > +     if (ocelot_mrp_del_vcap(ocelot, priv->chip_port))
+> > +             return -EINVAL;
+> > +
+> > +     if (ocelot->mrp_p_port == dev)
+> > +             ocelot->mrp_p_port = NULL;
+> > +
+> > +     if (ocelot->mrp_s_port == dev)
+> > +             ocelot->mrp_s_port = NULL;
+> > +
+> > +     ocelot->mrp_ring_id = 0;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ocelot_add_ring_role(struct net_device *dev,
+> > +                             const struct switchdev_obj_ring_role_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +     struct ocelot_vcap_filter *filter;
+> > +     int err;
+> > +
+> > +     if (ocelot->mrp_ring_id != mrp->ring_id)
+> > +             return -EINVAL;
+> > +
+> > +     if (!mrp->sw_backup)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     if (ocelot->mrp_p_port != dev && ocelot->mrp_s_port != dev)
+> > +             return 0;
+> > +
+> > +     filter = kzalloc(sizeof(*filter), GFP_KERNEL);
+> > +     if (!filter)
+> > +             return -ENOMEM;
+> > +
+> > +     filter->key_type = OCELOT_VCAP_KEY_ETYPE;
+> > +     filter->prio = 1;
+> > +     filter->id.cookie = priv->chip_port;
+> > +     filter->id.tc_offload = false;
+> > +     filter->block_id = VCAP_IS2;
+> > +     filter->type = OCELOT_VCAP_FILTER_OFFLOAD;
+> > +     filter->ingress_port_mask = BIT(priv->chip_port);
+> > +     *(__be16 *)filter->key.etype.etype.value = htons(ETH_P_MRP);
+> > +     *(__be16 *)filter->key.etype.etype.mask = htons(0xffff);
+> > +     filter->action.mask_mode = OCELOT_MASK_MODE_PERMIT_DENY;
+> > +     filter->action.port_mask = 0x0;
+> > +     filter->action.cpu_copy_ena = true;
+> > +     filter->action.cpu_qu_num = 0;
+> > +
+> > +     err = ocelot_vcap_filter_add(ocelot, filter, NULL);
+> > +     if (err)
+> > +             kfree(filter);
+> > +
+> > +     return err;
+> > +}
+> > +
+> > +static int ocelot_del_ring_role(struct net_device *dev,
+> > +                             const struct switchdev_obj_ring_role_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +
+> > +     if (ocelot->mrp_ring_id != mrp->ring_id)
+> > +             return -EINVAL;
+> > +
+> > +     if (!mrp->sw_backup)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     if (ocelot->mrp_p_port != dev && ocelot->mrp_s_port != dev)
+> > +             return 0;
+> > +
+> > +     return ocelot_mrp_del_vcap(ocelot, priv->chip_port);
+> > +}
+> > +#endif
+> > +
+> 
+> Would it make sense for this chunk of conditionally compiled code to
+> stay in a separate file like ocelot_mrp.c?
 
-Yet another example are mv88e6xxx and b53 which use MDIO and SPI
-from their .port_egress_floods implementation, buses which have
-might_sleep() in them.
+Also initially I was thinking to add this code in a different file but I
+was not sure. But I will do that in the next version.
+
+> 
+> >  static int ocelot_port_obj_add(struct net_device *dev,
+> >                              const struct switchdev_obj *obj,
+> >                              struct netlink_ext_ack *extack)
+> > @@ -1083,6 +1219,15 @@ static int ocelot_port_obj_add(struct net_device *dev,
+> >       case SWITCHDEV_OBJ_ID_PORT_MDB:
+> >               ret = ocelot_port_obj_add_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
+> >               break;
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +     case SWITCHDEV_OBJ_ID_MRP:
+> > +             ret = ocelot_add_mrp(dev, SWITCHDEV_OBJ_MRP(obj));
+> > +             break;
+> > +     case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
+> > +             ret = ocelot_add_ring_role(dev,
+> > +                                        SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
+> > +             break;
+> > +#endif
+> 
+> I'm not really sure why SWITCHDEV_OBJ_ID_MRP is conditionally defined.
+> If you look at SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING, that isn't
+> conditionally defined, even though it depends on CONFIG_BRIDGE_VLAN_FILTERING
+> at runtime.
+
+Then should I just create another patch for removing this? To be honest
+I also prefer that SWITCHDEV_OBJ_ID_MRP will not be conditionally
+defined.
+
+> 
+> >       default:
+> >               return -EOPNOTSUPP;
+> >       }
+> > @@ -1103,6 +1248,15 @@ static int ocelot_port_obj_del(struct net_device *dev,
+> >       case SWITCHDEV_OBJ_ID_PORT_MDB:
+> >               ret = ocelot_port_obj_del_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
+> >               break;
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +     case SWITCHDEV_OBJ_ID_MRP:
+> > +             ret = ocelot_del_mrp(dev, SWITCHDEV_OBJ_MRP(obj));
+> > +             break;
+> > +     case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
+> > +             ret = ocelot_del_ring_role(dev,
+> > +                                        SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
+> > +             break;
+> > +#endif
+> >       default:
+> >               return -EOPNOTSUPP;
+> >       }
+> > diff --git a/drivers/net/ethernet/mscc/ocelot_vsc7514.c b/drivers/net/ethernet/mscc/ocelot_vsc7514.c
+> > index 6b6eb92149ba..96a9c9f98060 100644
+> > --- a/drivers/net/ethernet/mscc/ocelot_vsc7514.c
+> > +++ b/drivers/net/ethernet/mscc/ocelot_vsc7514.c
+> > @@ -698,6 +698,12 @@ static irqreturn_t ocelot_xtr_irq_handler(int irq, void *arg)
+> >                       skb->offload_fwd_mark = 1;
+> >
+> >               skb->protocol = eth_type_trans(skb, dev);
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +             if (skb->protocol == ntohs(ETH_P_MRP) &&
+> > +                 (priv->dev == ocelot->mrp_p_port ||
+> > +                  priv->dev == ocelot->mrp_s_port))
+> > +                     skb->offload_fwd_mark = 0;
+> > +#endif
+> 
+> I wonder if you could just reserve a certain CPUQ for trapped traffic,
+> and just generically check for that, instead of MRP port roles?
+
+That is a good idea, I would try to have a look.
+
+> 
+> >               if (!skb_defer_rx_timestamp(skb))
+> >                       netif_rx(skb);
+> >               dev->stats.rx_bytes += len;
+> > diff --git a/include/soc/mscc/ocelot.h b/include/soc/mscc/ocelot.h
+> > index d0d48e9620fb..d95c019ad84e 100644
+> > --- a/include/soc/mscc/ocelot.h
+> > +++ b/include/soc/mscc/ocelot.h
+> > @@ -682,6 +682,12 @@ struct ocelot {
+> >       /* Protects the PTP clock */
+> >       spinlock_t                      ptp_clock_lock;
+> >       struct ptp_pin_desc             ptp_pins[OCELOT_PTP_PINS_NUM];
+> > +
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +     u16                             mrp_ring_id;
+> > +     struct net_device               *mrp_p_port;
+> > +     struct net_device               *mrp_s_port;
+> > +#endif
+> >  };
+> >
+> >  struct ocelot_policer {
+> > --
+> > 2.27.0
+> >
+
+-- 
+/Horatiu
