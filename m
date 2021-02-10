@@ -2,105 +2,103 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE02F316746
-	for <lists.bridge@lfdr.de>; Wed, 10 Feb 2021 13:59:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 864B8317444
+	for <lists.bridge@lfdr.de>; Thu, 11 Feb 2021 00:24:03 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 5DB98864CB;
-	Wed, 10 Feb 2021 12:59:35 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 3E60F86A65;
+	Wed, 10 Feb 2021 23:24:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 15VES2O7bnD2; Wed, 10 Feb 2021 12:59:34 +0000 (UTC)
+	with ESMTP id cLyk+OSCn0oJ; Wed, 10 Feb 2021 23:24:00 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 25EBC864C5;
-	Wed, 10 Feb 2021 12:59:34 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 8C47586B68;
+	Wed, 10 Feb 2021 23:24:00 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 154A8C013A;
-	Wed, 10 Feb 2021 12:59:34 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 69AC3C013A;
+	Wed, 10 Feb 2021 23:24:00 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D98E6C013A
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:59:32 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9E93BC013A
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 23:23:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id C2E2A87292
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:59:32 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 838826F5B6
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 23:23:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
- by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RFUZoJknNEdF for <bridge@lists.linux-foundation.org>;
- Wed, 10 Feb 2021 12:59:31 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
- [66.111.4.221])
- by hemlock.osuosl.org (Postfix) with ESMTPS id DE74486DE2
- for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 12:59:31 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id 0B54D580356;
- Wed, 10 Feb 2021 07:59:30 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute3.internal (MEProxy); Wed, 10 Feb 2021 07:59:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=1B/sKQ
- jlwEtwpk2UdHGgq7mXlzq0dYqdXHdjMHRt2+k=; b=ewA68Ps9HP4jaIXNHCJuE/
- CUff6LhOMsg2TPN9CLD1rvABjM3I6ricpFlYmEdcfXD0at5Hc722W1RX8u6GLLOY
- 7g1ur8flzEp9HPPi0fd54GGgs9NyYkMnE5NKybnYBa/mSzU0eXd4RF5DZbcaaSbm
- gRP78YpFxcACO/wTWlt0D4vUE2dEiSEKM2tHUBttzoSCWFdRO9PCCxa8uFdlICmX
- abgfYTrBADmpChKymSYgbeRhUZTgTRmrrQfjKNgqYwg80ZJdQ08iMGdw1/Tj2ASq
- XCCp9a5Y4zXqZeBspdMH0k0pYhKkxZIQCRBeztMI+mkIylvKFt3yxYXPK7cp0lZw
- ==
-X-ME-Sender: <xms:r9gjYMehOkfcj8t8teb8blIOi10_4ko7u5a02N0nAd-78dHbiPAVrw>
- <xme:r9gjYOPHuf6O5uuy1OZL9ykI2XWvc-C9Ay1Ojj1OosxTdAxnFhTT1Japx3V3lgCH2
- mcZVv5FAqyeJmc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrheejgdegjecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcuufgt
- hhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrthhtvg
- hrnheptdffkeekfeduffevgeeujeffjefhtefgueeugfevtdeiheduueeukefhudehleet
- necukfhppeekgedrvddvledrudehfedrgeegnecuvehluhhsthgvrhfuihiivgeptdenuc
- frrghrrghmpehmrghilhhfrhhomhepihguohhstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:r9gjYNhlVHWH2-NZapw36EG67GtrzSQk8T_5YiHDCbxSJ3z1k_245A>
- <xmx:r9gjYB_ZckBsv7R-XPnEXtmYJ2OYps_2L1p7JWqSVuS3YtJO_Xq6Og>
- <xmx:r9gjYIsQ0OaHS5frQv3POxhBkDcmusgmXehTEEry6mIqafMhJ0N8FA>
- <xmx:stgjYIRtTqGUB2CzokbvCmVX9dzunG4H49xy4UMn7UTHtrwn8ZfAnA>
-Received: from localhost (igld-84-229-153-44.inter.net.il [84.229.153.44])
- by mail.messagingengine.com (Postfix) with ESMTPA id 96E57108005B;
- Wed, 10 Feb 2021 07:59:26 -0500 (EST)
-Date: Wed, 10 Feb 2021 14:59:23 +0200
-From: Ido Schimmel <idosch@idosch.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Message-ID: <20210210125923.GA296172@shredder.lan>
-References: <a8e9284b-f0a6-0343-175d-8c323371ef8d@nvidia.com>
- <20210210104549.ga3lgjafn5x3htwj@skbuf>
- <a58e9615-036c-0431-4ea6-004af4988b27@nvidia.com>
- <20210210110125.rw6fvjtsqmmuglcg@skbuf>
- <90b255e6-efd2-b234-7bfc-4285331e56b1@nvidia.com>
- <20210210120106.g7blqje3wq4j5l6j@skbuf>
- <20210210122105.GA294287@shredder.lan>
- <20210210122936.rpvdh7ksjfh2ee6b@skbuf>
- <20210210123823.GA294900@shredder.lan>
- <20210210125501.f6lbfv5y5zj4qrmi@skbuf>
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id t3AYdCBM-fqx for <bridge@lists.linux-foundation.org>;
+ Wed, 10 Feb 2021 23:23:57 +0000 (UTC)
+Received: by smtp3.osuosl.org (Postfix, from userid 1001)
+ id 9C3086F5DE; Wed, 10 Feb 2021 23:23:57 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 27AB56F5B6
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 23:23:56 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id b9so7100508ejy.12
+ for <bridge@lists.linux-foundation.org>; Wed, 10 Feb 2021 15:23:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=LVyB6aVFegjh/BB39Z/3gEanq6lvT/mhc2gjTlbR304=;
+ b=Ltsi8EvdBtQvRjoANMJcwrISpAFLvmJ2C8VxRcxriJbvaZ1H9uMjsHWcx4k1KVwIp0
+ bEprsSTU/icuARDSY1rU06I6BedOoXhuhcIgJh6jxcQt9ggsbMK3SyzdhcxnWfOWN9gT
+ E5PYWDallpyZg5bnCqT7zgXoUxWsagtNa206F8EEFkBmsPO6KcpFz/zIWRjDEVcWBl3U
+ m0CKh8UMubbkzKQ1GFQajoSPGu94+hVxEvlymy59SIYbcYLFwtM3w4Yu7fAPflkJsmfG
+ LbzrxtfSEmjjRz3SHakXq/z1GCjoceNkpUvScCPt/IKE/L2FAZmjSB2HX9PO1F40u57g
+ evTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=LVyB6aVFegjh/BB39Z/3gEanq6lvT/mhc2gjTlbR304=;
+ b=EcvcDX4fhi2kDGyEioXQQoxOpbsuzXENZV/4EkpoDTy91zXIdI/6r4wrHh8H8Go/uy
+ UCA03vzHqSi6ZPgy/kmQcKh/yvhQDpNZzM0Bc/z35d9zWZVEXizVS2cG4BKdMqGhkmX2
+ I62yxPyTIeI1VAkJHIG2uDpReSB+0+d6Fu7CRyWSkLFR+xq/TE0ZmkHkIijNV8yz2BAn
+ RIwMD9xNPUAUM6BGfvYu0x2r1SdF/iofLA/2vARUaX5fEL3Lj6C1iLTSABRlNvJFksfH
+ YFQ32cTS7c2SxH9NW6h+SLf8BV9W2JuZQxyxbNn78Vkg8rr5fooqnjBz78B3PHPae0Yj
+ OE0w==
+X-Gm-Message-State: AOAM531mFFPYejhcF9lwqfoxSzFDfKHk8MaWP4/yfYXHNolR91zYtuyE
+ LDAzU861w9hd4J6JaWurB6o=
+X-Google-Smtp-Source: ABdhPJzF0KSQ9DdcnciBemPnpUA2B28QOBhea1HzTO3oC0toBtKbhjUBAWV9/atUFBeQfPDx+7VJVA==
+X-Received: by 2002:a17:906:8519:: with SMTP id
+ i25mr5508356ejx.106.1612999434425; 
+ Wed, 10 Feb 2021 15:23:54 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+ by smtp.gmail.com with ESMTPSA id w18sm2263806edt.8.2021.02.10.15.23.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Feb 2021 15:23:53 -0800 (PST)
+Date: Thu, 11 Feb 2021 01:23:52 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Ido Schimmel <idosch@idosch.org>
+Message-ID: <20210210232352.m7nqzvs2g4i74rx4@skbuf>
+References: <20210209151936.97382-1-olteanv@gmail.com>
+ <20210209151936.97382-5-olteanv@gmail.com>
+ <20210209185100.GA266253@shredder.lan>
+ <20210209202045.obayorcud4fg2qqb@skbuf>
+ <20210209220124.GA271860@shredder.lan>
+ <20210209225153.j7u6zwnpdgskvr2v@skbuf>
+ <20210210105949.GB287766@shredder.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210210125501.f6lbfv5y5zj4qrmi@skbuf>
+In-Reply-To: <20210210105949.GB287766@shredder.lan>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Vadym Kochan <vkochan@marvell.com>, linux-omap@vger.kernel.org,
  netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  Ioana Ciornei <ioana.ciornei@nxp.com>, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Taras Chornyi <tchornyi@marvell.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Taras Chornyi <tchornyi@marvell.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
  Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, UNGLinuxDriver@microchip.com,
- Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v3 net-next 00/11] Cleanup in brport flags
- switchdev offload for DSA
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH v2 net-next 04/11] net: bridge: offload initial
+ and final port flags through switchdev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -115,135 +113,28 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Feb 10, 2021 at 02:55:01PM +0200, Vladimir Oltean wrote:
-> On Wed, Feb 10, 2021 at 02:38:23PM +0200, Ido Schimmel wrote:
-> > On Wed, Feb 10, 2021 at 02:29:36PM +0200, Vladimir Oltean wrote:
-> > > On Wed, Feb 10, 2021 at 02:21:05PM +0200, Ido Schimmel wrote:
-> > > > On Wed, Feb 10, 2021 at 02:01:06PM +0200, Vladimir Oltean wrote:
-> > > > > On Wed, Feb 10, 2021 at 01:05:57PM +0200, Nikolay Aleksandrov wrote:
-> > > > > > On 10/02/2021 13:01, Vladimir Oltean wrote:
-> > > > > > > On Wed, Feb 10, 2021 at 12:52:33PM +0200, Nikolay Aleksandrov wrote:
-> > > > > > >> On 10/02/2021 12:45, Vladimir Oltean wrote:
-> > > > > > >>> Hi Nikolay,
-> > > > > > >>>
-> > > > > > >>> On Wed, Feb 10, 2021 at 12:31:43PM +0200, Nikolay Aleksandrov wrote:
-> > > > > > >>>> Hi Vladimir,
-> > > > > > >>>> Let's take a step back for a moment and discuss the bridge unlock/lock sequences
-> > > > > > >>>> that come with this set. I'd really like to avoid those as they're a recipe
-> > > > > > >>>> for future problems. The only good way to achieve that currently is to keep
-> > > > > > >>>> the PRE_FLAGS call and do that in unsleepable context but move the FLAGS call
-> > > > > > >>>> after the flags have been changed (if they have changed obviously). That would
-> > > > > > >>>> make the code read much easier since we'll have all our lock/unlock sequences
-> > > > > > >>>> in the same code blocks and won't play games to get sleepable context.
-> > > > > > >>>> Please let's think and work in that direction, rather than having:
-> > > > > > >>>> +	spin_lock_bh(&p->br->lock);
-> > > > > > >>>> +	if (err) {
-> > > > > > >>>> +		netdev_err(p->dev, "%s\n", extack._msg);
-> > > > > > >>>> +		return err;
-> > > > > > >>>>  	}
-> > > > > > >>>> +
-> > > > > > >>>>
-> > > > > > >>>> which immediately looks like a bug even though after some code checking we can
-> > > > > > >>>> verify it's ok. WDYT?
-> > > > > > >>>>
-> > > > > > >>>> I plan to get rid of most of the br->lock since it's been abused for a very long
-> > > > > > >>>> time because it's essentially STP lock, but people have started using it for other
-> > > > > > >>>> things and I plan to fix that when I get more time.
-> > > > > > >>>
-> > > > > > >>> This won't make the sysfs codepath any nicer, will it?
-> > > > > > >>>
-> > > > > > >>
-> > > > > > >> Currently we'll have to live with a hack that checks if the flags have changed. I agree
-> > > > > > >> it won't be pretty, but we won't have to unlock and lock again in the middle of the
-> > > > > > >> called function and we'll have all our locking in the same place, easier to verify and
-> > > > > > >> later easier to remove. Once I get rid of most of the br->lock usage we can revisit
-> > > > > > >> the drop of PRE_FLAGS if it's a problem. The alternative is to change the flags, then
-> > > > > > >> send the switchdev notification outside of the lock and revert the flags if it doesn't
-> > > > > > >> go through which doesn't sound much better.
-> > > > > > >> I'm open to any other suggestions, but definitely would like to avoid playing locking games.
-> > > > > > >> Even if it means casing out flag setting from all other store_ functions for sysfs.
-> > > > > > >
-> > > > > > > By casing out flag settings you mean something like this?
-> > > > > > >
-> > > > > > >
-> > > > > > > #define BRPORT_ATTR(_name, _mode, _show, _store)		\
-> > > > > > > const struct brport_attribute brport_attr_##_name = { 	        \
-> > > > > > > 	.attr = {.name = __stringify(_name), 			\
-> > > > > > > 		 .mode = _mode },				\
-> > > > > > > 	.show	= _show,					\
-> > > > > > > 	.store_unlocked	= _store,				\
-> > > > > > > };
-> > > > > > >
-> > > > > > > #define BRPORT_ATTR_FLAG(_name, _mask)				\
-> > > > > > > static ssize_t show_##_name(struct net_bridge_port *p, char *buf) \
-> > > > > > > {								\
-> > > > > > > 	return sprintf(buf, "%d\n", !!(p->flags & _mask));	\
-> > > > > > > }								\
-> > > > > > > static int store_##_name(struct net_bridge_port *p, unsigned long v) \
-> > > > > > > {								\
-> > > > > > > 	return store_flag(p, v, _mask);				\
-> > > > > > > }								\
-> > > > > > > static BRPORT_ATTR(_name, 0644,					\
-> > > > > > > 		   show_##_name, store_##_name)
-> > > > > > >
-> > > > > > > static ssize_t brport_store(struct kobject *kobj,
-> > > > > > > 			    struct attribute *attr,
-> > > > > > > 			    const char *buf, size_t count)
-> > > > > > > {
-> > > > > > > 	...
-> > > > > > >
-> > > > > > > 	} else if (brport_attr->store_unlocked) {
-> > > > > > > 		val = simple_strtoul(buf, &endp, 0);
-> > > > > > > 		if (endp == buf)
-> > > > > > > 			goto out_unlock;
-> > > > > > > 		ret = brport_attr->store_unlocked(p, val);
-> > > > > > > 	}
-> > > > > > >
-> > > > > >
-> > > > > > Yes, this can work but will need a bit more changes because of br_port_flags_change().
-> > > > > > Then the netlink side can be modeled in a similar way.
-> > > > >
-> > > > > What I just don't understand is how others can get away with doing
-> > > > > sleepable work in atomic context but I can't make the notifier blocking
-> > > > > by dropping a spinlock which isn't needed there, because it looks ugly :D
-> > > >
-> > > > Can you please point to the bug? I'm not following
-> > >
-> > > For example, mlxsw eventually calls mlxsw_sp_fid_flood_set from the
-> > > SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS handling data path, and this
-> > > function allocates memory with GFP_KERNEL.
-> > >
-> > > Another example is prestera which eventually calls prestera_fw_send_req
-> > > which takes a mutex_lock.
-> > >
-> > > Yet another example are mv88e6xxx and b53 which use MDIO and SPI
-> > > from their .port_egress_floods implementation, buses which have
-> > > might_sleep() in them.
+On Wed, Feb 10, 2021 at 12:59:49PM +0200, Ido Schimmel wrote:
+> > > The reverse, during unlinking, would be to refuse unlinking if the upper
+> > > has uppers of its own. netdev_upper_dev_unlink() needs to learn to
+> > > return an error and callers such as team/bond need to learn to handle
+> > > it, but it seems patchable.
 > >
-> > Right, but see the code:
+> > Again, this was treated prior to my deletion in this series and not by
+> > erroring out, I just really didn't think it through.
 > >
-> > ```
-> > 	attr.id = SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS;
-> > 	attr.flags = SWITCHDEV_F_DEFER;
-> > 	attr.u.brport_flags = flags;
-> >
-> > 	err = switchdev_port_attr_set(p->dev, &attr);
-> > ```
-> >
-> > And check how SWITCHDEV_F_DEFER is used.
-> >
-> > We can squash SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS and
-> > SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS into one blocking notification
-> > by reducing the scope of the bridge lock like Nik suggested. Currently
-> > it's just blindly taken around br_setport().
-> 
-> Okay, so the deferred attr_set propagates just a possible ENOMEM from
-> the deferred work enqueue, not the actual failure if that occurred.
-> 
-> I can leave alone the piece that sends two notifications for now, but I
-> would still need to deliver the full struct switchdev_brport_flags with
-> both the flags and the mask to both the PRE_BRIDGE_FLAGS and the
-> BRIDGE_FLAGS, because I need to deliver an extack from the sja1105 driver
-> that BR_FLOOD should always have the same value as BR_MCAST_FLOOD.
+> > So you're saying that if we impose that all switchdev drivers restrict
+> > the house of cards to be constructed from the bottom up, and destructed
+> > from the top down, then the notification of bridge port flags can stay
+> > in the bridge layer?
+>
+> I actually don't think it's a good idea to have this in the bridge in
+> any case. I understand that it makes sense for some devices where
+> learning, flooding, etc are port attributes, but in other devices these
+> can be {port,vlan} attributes and then you need to take care of them
+> when a vlan is added / deleted and not only when a port is removed from
+> the bridge. So for such devices this really won't save anything. I would
+> thus leave it to the lower levels to decide.
 
-OK
+Just for my understanding, how are per-{port,vlan} attributes such as
+learning and flooding managed by the Linux bridge? How can I disable
+flooding only in a certain VLAN?
