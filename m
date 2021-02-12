@@ -1,84 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815CE31A445
-	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 19:10:44 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2E831A44F
+	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 19:12:55 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 301BC87446;
-	Fri, 12 Feb 2021 18:10:43 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id EDB426F8A0
+	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 18:12:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8k+iAhHhRA5Q; Fri, 12 Feb 2021 18:10:42 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id YEDxxZEju4bq for <lists.bridge@lfdr.de>;
+	Fri, 12 Feb 2021 18:12:52 +0000 (UTC)
+Received: by smtp3.osuosl.org (Postfix, from userid 1001)
+	id CBD7F6F7A9; Fri, 12 Feb 2021 18:12:52 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id ABD218746E;
-	Fri, 12 Feb 2021 18:10:42 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 24C406F5F2;
+	Fri, 12 Feb 2021 18:12:42 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 918B2C013A;
-	Fri, 12 Feb 2021 18:10:42 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 002D2C013A;
+	Fri, 12 Feb 2021 18:12:41 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E5625C013A
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 18:10:41 +0000 (UTC)
+Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 06D86C013A
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 18:12:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id CF31587012
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 18:10:41 +0000 (UTC)
+ by hemlock.osuosl.org (Postfix) with ESMTP id E463F8764D
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 18:12:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from hemlock.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Xe3mBvU8AWDr for <bridge@lists.linux-foundation.org>;
- Fri, 12 Feb 2021 18:10:41 +0000 (UTC)
+ with ESMTP id cABaCzjGpN0Y for <bridge@lists.linux-foundation.org>;
+ Fri, 12 Feb 2021 18:12:40 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 3B5AC86FF8
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 18:10:41 +0000 (UTC)
-Received: by mail-pf1-f177.google.com with SMTP id w18so6287704pfu.9
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 10:10:41 -0800 (PST)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
+ [209.85.215.174])
+ by hemlock.osuosl.org (Postfix) with ESMTPS id 53C9287645
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 18:12:40 +0000 (UTC)
+Received: by mail-pg1-f174.google.com with SMTP id z21so184816pgj.4
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 10:12:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=bytmtoINOEdkBtL4V2XAs15+q8GmAS7yZKBoJvhkgLk=;
- b=akE2ozj4n+Syf78UgJqCInvzuDDz+8VmFwiwu0NVDiPEtd9yuZancJkUYDsXQzYUbp
- ObndXxrSoodxkK60wJ6CouUlchzBZ3QP8k4bGVwfdMaQGNShPX5gMyLHokdta2A9EPEP
- DEApGNbbS247uAc79ayPDzMVwo1pC/QOSoxC2xFMT3tSTWuPrGkZqDtrKvfi0c+4YG1v
- kKxdMB4aFm280e4uW/KM2G4eO3f0iQkqyTYgX5pdNZKGS+IqNofZo2HkZD+KsnCZs9kZ
- RaHYXbRaeC1CMggg6p0Lw0mzj7wAvEO/tfwHENqV3oJSpWqbcOcPesH9LsuuO+2V3Sd2
- SRuQ==
+ bh=DYSCyXslW7JpprNOrHc5FjADncBRkdDqs3PWphAwNEU=;
+ b=rSedlesAGjgO7MengPEN38iUKrRFhSnQ9IDS57b7dEzmhPwvLXpm4PNrLLqaLDDWGS
+ t/bek5mE5JocEFy2hDyqKsNBZ2HCm7vdjEUWKHIkuEsfjaug3X2zFKE1z1uQX7BgqDh9
+ TSyV16NxdPZkBIWcjgFH5a5pqLm/LVbULSIs3cD9oaqMfL0gLc3nh/2+2SkAcg7N4tdW
+ 3vh3jyeQaCtNfInJMcufkK6qZ7z9DHhAYOU60lj9P30xtEjbMkwnQrvpm/CC/LvpzAKW
+ IrOHNxRFtakhbjWHauelHwN6T50yg5AWQ8CaK2dr7uBQQRjCJ5qLIF9QvzigTgkd0QlS
+ o6Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=bytmtoINOEdkBtL4V2XAs15+q8GmAS7yZKBoJvhkgLk=;
- b=QLz5Pn8PwxNrI9Zo7POq0GQKOLHDC2RsYAsUQp0C7VFk3wi9n/quI4c0n5ZzuXBJCk
- oOJTkYCfrP5Vh3vu2LRY0GZGNPSW+FdcxQqjtFJFshlY/EPEn8Z1ALFfri4Z9mdCQ/Wb
- DOHGX3/wxZrDdniERxA0fyZBPr4pU/5dFCA9Gz8ycs2y98lSIT0l39Vozo38STKGm9CL
- daB/spXxhYpfTWnRoiUAC0yzTq4FNPIXRKypjbLVtnahhW33IkrH1nEQoXxauZYratNo
- tDaiRBQJQ5+WpjgMRS7h2FJFWv+Vm6l/Yfdo1QNK/ayxgy6ms1Qy1hqCBtKgvjJtyrFz
- IMLA==
-X-Gm-Message-State: AOAM532QasWJVpcBcr64vSVHzug9XDwGTtZpy4L5zmBmMbstQDIWZjut
- 8pUWXwQ9l+9Tqfg8z4RkrA0=
-X-Google-Smtp-Source: ABdhPJz/Ti9d44Rv75w/tdspUxsn1D7i/I0j1GsylUmhWNr5eKXVF+yfHYMhqeLr+UkmhJ5ihnkcTQ==
-X-Received: by 2002:a63:4e09:: with SMTP id c9mr4365562pgb.107.1613153440776; 
- Fri, 12 Feb 2021 10:10:40 -0800 (PST)
+ bh=DYSCyXslW7JpprNOrHc5FjADncBRkdDqs3PWphAwNEU=;
+ b=mjeChRBdf8/a//vluD9X/dVIuRA5ya925e3O5xhl+jNwlImE0fvbCw3NvJTLKev84Z
+ IJA5RBSptJzgFpMvG7ObXK4jI9SlBsZu9gJ8GpGKuonMHGRIFhZCO5gcKtBWDmpVzEhk
+ Z4w5YSE7YWtjYrsJPs886xHdxICO3au1xRWSwqP8dv6fIhKYNynP1PpXEWC/swKrZIBr
+ 9FHWNHpmlnaN/NVgCASJO4EdUsXNO1+MXy9ykjLrU5uunZHmhrJxEWvBBhhtYUUL2wYb
+ hxu0YvRUQhH0Aevp7af6/flX8sS6cKzHpdf85t8JnL/0JSxUeC7givB2CiFhE4RH5cXt
+ UcFw==
+X-Gm-Message-State: AOAM533ghilPevg21E6a8PMC4pRMlfSeio11aJEcq0uHaElMd4Vt9TBN
+ ZmIenXXm0dz7nj+57Hi2BXA=
+X-Google-Smtp-Source: ABdhPJwoYsp4Sp8t8amuimKE7kIoREpqi1nx3kEihL4zIPUsG3WNrKMB+WDhg+WkOwjCceHdCPg41w==
+X-Received: by 2002:a63:4084:: with SMTP id n126mr4349051pga.80.1613153559952; 
+ Fri, 12 Feb 2021 10:12:39 -0800 (PST)
 Received: from [10.230.29.30] ([192.19.223.252])
- by smtp.gmail.com with ESMTPSA id e15sm11325899pgr.81.2021.02.12.10.10.37
+ by smtp.gmail.com with ESMTPSA id e185sm10042337pfe.117.2021.02.12.10.12.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 12 Feb 2021 10:10:40 -0800 (PST)
+ Fri, 12 Feb 2021 10:12:39 -0800 (PST)
 To: Vladimir Oltean <olteanv@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
  "David S. Miller" <davem@davemloft.net>
 References: <20210212151600.3357121-1-olteanv@gmail.com>
- <20210212151600.3357121-6-olteanv@gmail.com>
+ <20210212151600.3357121-8-olteanv@gmail.com>
 From: Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <9a1efd0d-9930-cbc7-5450-ffb47a0034e4@gmail.com>
-Date: Fri, 12 Feb 2021 10:10:37 -0800
+Message-ID: <05a93c4b-2180-afea-d077-3b1c91312b41@gmail.com>
+Date: Fri, 12 Feb 2021 10:12:34 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210212151600.3357121-6-olteanv@gmail.com>
+In-Reply-To: <20210212151600.3357121-8-olteanv@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -92,8 +95,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Ido Schimmel <idosch@idosch.org>, Claudiu Manoil <claudiu.manoil@nxp.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v5 net-next 05/10] net: switchdev: pass flags
- and mask to both {PRE_, }BRIDGE_FLAGS attributes
+Subject: Re: [Bridge] [PATCH v5 net-next 07/10] net: dsa: felix: restore
+ multicast flood to CPU when NPI tagger reinitializes
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -113,23 +116,13 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 On 2/12/2021 7:15 AM, Vladimir Oltean wrote:
 > From: Vladimir Oltean <vladimir.oltean@nxp.com>
 > 
-> This switchdev attribute offers a counterproductive API for a driver
-> writer, because although br_switchdev_set_port_flag gets passed a
-> "flags" and a "mask", those are passed piecemeal to the driver, so while
-> the PRE_BRIDGE_FLAGS listener knows what changed because it has the
-> "mask", the BRIDGE_FLAGS listener doesn't, because it only has the final
-> value. But certain drivers can offload only certain combinations of
-> settings, like for example they cannot change unicast flooding
-> independently of multicast flooding - they must be both on or both off.
-> The way the information is passed to switchdev makes drivers not
-> expressive enough, and unable to reject this request ahead of time, in
-> the PRE_BRIDGE_FLAGS notifier, so they are forced to reject it during
-> the deferred BRIDGE_FLAGS attribute, where the rejection is currently
-> ignored.
+> ocelot_init sets up PGID_MC to include the CPU port module, and that is
+> fine, but the ocelot-8021q tagger removes the CPU port module from the
+> unknown multicast replicator. So after a transition from the default
+> ocelot tagger towards ocelot-8021q and then again towards ocelot,
+> multicast flooding towards the CPU port module will be disabled.
 > 
-> This patch also changes drivers to make use of the "mask" field for edge
-> detection when possible.
-> 
+> Fixes: e21268efbe26 ("net: dsa: felix: perform switch setup for tag_8021q")
 > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
