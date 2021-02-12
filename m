@@ -2,77 +2,77 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D0131A14D
-	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 16:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D4131A14E
+	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 16:16:22 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 59A9686FFC;
-	Fri, 12 Feb 2021 15:16:18 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 5750987351;
+	Fri, 12 Feb 2021 15:16:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from hemlock.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 5R0nGsw2wZmD; Fri, 12 Feb 2021 15:16:18 +0000 (UTC)
+	with ESMTP id Gt5qb8EZ0FWU; Fri, 12 Feb 2021 15:16:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by hemlock.osuosl.org (Postfix) with ESMTP id 17F5887322;
-	Fri, 12 Feb 2021 15:16:18 +0000 (UTC)
+	by hemlock.osuosl.org (Postfix) with ESMTP id 56810873EF;
+	Fri, 12 Feb 2021 15:16:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E29BBC013A;
-	Fri, 12 Feb 2021 15:16:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 35A58C013A;
+	Fri, 12 Feb 2021 15:16:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 491ADC013A
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 15:16:16 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EC45CC0891
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 15:16:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 271DD87265
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 15:16:16 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id C13C286D37
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 15:16:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Qeue2bt+Ix7E for <bridge@lists.linux-foundation.org>;
- Fri, 12 Feb 2021 15:16:15 +0000 (UTC)
+ with ESMTP id H_bWbrX9wfe7 for <bridge@lists.linux-foundation.org>;
+ Fri, 12 Feb 2021 15:16:16 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by hemlock.osuosl.org (Postfix) with ESMTPS id D0108870DC
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 15:16:14 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id a9so16244312ejr.2
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 07:16:14 -0800 (PST)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 5450386BAE
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 15:16:16 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id y26so3443479eju.13
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 07:16:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=v4AqKvOUM91B1bpyqKK0tQChu7IxeMQFeQvvQB4mTI0=;
- b=iSsJn2yN+adrSEbbjnjvwhkMS9X7pbY9ogfwuyPLmNGMErCiQ9HDYpkZGkACZWeRWh
- xNrfJXoM/DYR3C9SbZOaQB5hVi2J2wfe/FXbacIElXKBEjFvnHGDeVfpxpqFF7lna+N2
- Od3MdAXRoYrOOLK/Jt2ZrPBPCG23yBMz1LWUcG30Gr/AZmq90YMwTE/66tSht7nX/Pth
- k744RRhrRVx8L975dggkJnMHTqyJDdAhtYeVzws96S7rBS0LUIMIVTS3tk2U3r/lKuCV
- zXeTeFazhl/T80mchimyHbi6ZVPINkf+tIYS2hWXWqHu6zI+Mnc7HWX3a6K0prRDfAgN
- nQXQ==
+ bh=3txk3xzuaJ+luXWZVWBUlXIhxgR9+690DPw6ux/lwb4=;
+ b=SAmMq4yYxfpPC2vCJkMrc9KnpLTTPktTIn/W2GRELoK84+vCpMSng2nd/0KJ872EgL
+ DUigC7Ex19jWXuHQdlrCjYQnqqXaTn32p4CEPo90PTz3oYOr23Hf8/H2yazHJ917p1OK
+ PPiWvl3eIENuZhkpVXXlg0XEeQgXLERZvUOIndxSdnV0EdeDIXECxiTU4/v82bSwaE4N
+ jUxaJnSiqa6VTnFZpZzSIjMx47xy+ZcAa3FdTpXyEVhuvWZCiKqAJLxBW82hmoiTqIai
+ FRbSr2PeALPvhsuHbfUWzFNByVyQ9K5vjaaYxtRo1LjwwBBjq+ae+3kgXwaaQCtPwSGk
+ Dmyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=v4AqKvOUM91B1bpyqKK0tQChu7IxeMQFeQvvQB4mTI0=;
- b=aHxgGToSoSg2gDKIkO4FefHIuUCChyOHU2l656vCYadqVrIH/aS0Yefmh1KjnD3/lw
- GkKaKZMHkBLGu1IKZS8glaqu54rUooKrjGzIwOWOcOqdLGU/G+hMQy9g2ViJhfI4BBNU
- pvdDXx37bPaDY16nzj6x7kyvlyCPkKWkAgWv4S0BmdhOXANR4s+Njta9x1QRLRZUUVrp
- OOenRGSNIYayOR5UWNWMVunCbBnRaka9esAqz4gT9Ycvcus0BaFGcXZVoUdjczLDHobh
- 6kG+CUK6LpQPqvNOV9uB3rJxymsdZhDi0+4RZ911tLom3jF4S9xSH7Tvg3u1cUOhRgLS
- WAWQ==
-X-Gm-Message-State: AOAM531OKrDWlMv0BX7vCWOwuJ/fE49ob0eUBPKH2uxns0n1K92q46zN
- S6fNFI3pqtAiklLq9mx72Ds=
-X-Google-Smtp-Source: ABdhPJzkNglZztUwJlj67b6IY0EIW/Xwc96L7DNYcMIYJl1hGTVfx+MlFEPdSW5VtVVGWUy2rWOp5A==
-X-Received: by 2002:a17:906:4897:: with SMTP id
- v23mr2530257ejq.21.1613142973352; 
- Fri, 12 Feb 2021 07:16:13 -0800 (PST)
+ bh=3txk3xzuaJ+luXWZVWBUlXIhxgR9+690DPw6ux/lwb4=;
+ b=sFwMIgRChZ8INwR82VarH4FwHyAw2Id6L2Nd+tLlsJDcDo1NaOkB9eDARdXokIGJXx
+ tIqb/laR4HGN7lFrzCzf42uCojH0/zvYGw9s8RIRhhBoTJMSP4/DUv/2wE9Xpm8KuW6k
+ r1kenIdKrmnNg4oraASmy/vii49z0ZVa4C3bWT4YAhJXqYMmAXBlRCikP8vCWRnoOimS
+ fM2CgNINwk9Dox35JJmFM31op1sbqnqso4kSS9Dqo4AJCfrseTRkx+6e30hDWk3WoXma
+ DQ9TbW1XRG+J9/FZigJP+NJOJrtVqGkKFVyDB6sbC8bjZQkMkgzkiqlwBaTbvzKV2EBL
+ aSEQ==
+X-Gm-Message-State: AOAM533uYtOkfrHEBLx6EbeMH25O69I2znm92Ln2T3QZSPIXNQVjFHPr
+ Rk2k4KEcJj65i5vZWZ3oKRU=
+X-Google-Smtp-Source: ABdhPJzkVczuOmaW3fpNoup+Al6snwdDJs3c7fOUYtx5bEaFBiZ4R5Q/CAwAKIcewHJ9t9fXp1huAA==
+X-Received: by 2002:a17:906:86cf:: with SMTP id
+ j15mr3454069ejy.194.1613142974845; 
+ Fri, 12 Feb 2021 07:16:14 -0800 (PST)
 Received: from localhost.localdomain (5-12-227-87.residential.rdsnet.ro.
  [5.12.227.87])
- by smtp.gmail.com with ESMTPSA id z19sm6515456edr.69.2021.02.12.07.16.11
+ by smtp.gmail.com with ESMTPSA id z19sm6515456edr.69.2021.02.12.07.16.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Feb 2021 07:16:12 -0800 (PST)
+ Fri, 12 Feb 2021 07:16:14 -0800 (PST)
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Date: Fri, 12 Feb 2021 17:15:53 +0200
-Message-Id: <20210212151600.3357121-4-olteanv@gmail.com>
+Date: Fri, 12 Feb 2021 17:15:54 +0200
+Message-Id: <20210212151600.3357121-5-olteanv@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210212151600.3357121-1-olteanv@gmail.com>
 References: <20210212151600.3357121-1-olteanv@gmail.com>
@@ -89,8 +89,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH v5 net-next 03/10] net: bridge: don't print in
-	br_switchdev_set_port_flag
+Subject: [Bridge] [PATCH v5 net-next 04/10] net: dsa: configure better
+	brport flags when ports leave the bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,169 +107,155 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-For the netlink interface, propagate errors through extack rather than
-simply printing them to the console. For the sysfs interface, we still
-print to the console, but at least that's one layer higher than in
-switchdev, which also allows us to silently ignore the offloading of
-flags if that is ever needed in the future.
+For a DSA switch port operating in standalone mode, address learning
+doesn't make much sense since that is a bridge function. In fact,
+address learning even breaks setups such as this one:
+
+   +---------------------------------------------+
+   |                                             |
+   | +-------------------+                       |
+   | |        br0        |    send      receive  |
+   | +--------+-+--------+ +--------+ +--------+ |
+   | |        | |        | |        | |        | |
+   | |  swp0  | |  swp1  | |  swp2  | |  swp3  | |
+   | |        | |        | |        | |        | |
+   +-+--------+-+--------+-+--------+-+--------+-+
+          |         ^           |          ^
+          |         |           |          |
+          |         +-----------+          |
+          |                                |
+          +--------------------------------+
+
+because if the switch has a single FDB (can offload a single bridge)
+then source address learning on swp3 can "steal" the source MAC address
+of swp2 from br0's FDB, because learning frames coming from swp2 will be
+done twice: first on the swp1 ingress port, second on the swp3 ingress
+port. So the hardware FDB will become out of sync with the software
+bridge, and when swp2 tries to send one more packet towards swp1, the
+ASIC will attempt to short-circuit the forwarding path and send it
+directly to swp3 (since that's the last port it learned that address on),
+which it obviously can't, because swp3 operates in standalone mode.
+
+So DSA drivers operating in standalone mode should still configure a
+list of bridge port flags even when they are standalone. Currently DSA
+attempts to call dsa_port_bridge_flags with 0, which disables egress
+flooding of unknown unicast and multicast, something which doesn't make
+much sense. For the switches that implement .port_egress_floods - b53
+and mv88e6xxx, it probably doesn't matter too much either, since they
+can possibly inject traffic from the CPU into a standalone port,
+regardless of MAC DA, even if egress flooding is turned off for that
+port, but certainly not all DSA switches can do that - sja1105, for
+example, can't. So it makes sense to use a better common default there,
+such as "flood everything".
+
+It should also be noted that what DSA calls "dsa_port_bridge_flags()"
+is a degenerate name for just calling .port_egress_floods(), since
+nothing else is implemented - not learning, in particular. But disabling
+address learning, something that this driver is also coding up for, will
+be supported by individual drivers once .port_egress_floods is replaced
+with a more generic .port_bridge_flags.
+
+Previous attempts to code up this logic have been in the common bridge
+layer, but as pointed out by Ido Schimmel, there are corner cases that
+are missed when doing that:
+https://patchwork.kernel.org/project/netdevbpf/patch/20210209151936.97382-5-olteanv@gmail.com/
+
+So, at least for now, let's leave DSA in charge of setting port flags
+before and after the bridge join and leave.
 
 Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 ---
 Changes in v5:
 None.
 
 Changes in v4:
-- Adjust the commit message now that we aren't notifying initial and
-  final port flags from the bridge any longer.
+None.
 
 Changes in v3:
-- Deal with the br_switchdev_set_port_flag call from sysfs too.
+Patch is new, logically it was moved from the bridge layer to the DSA
+layer.
 
-Changes in v2:
-- br_set_port_flag now returns void, so no extack there.
-- don't overwrite extack in br_switchdev_set_port_flag if already
-  populated.
+ net/dsa/port.c | 45 ++++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 38 insertions(+), 7 deletions(-)
 
- net/bridge/br_netlink.c   |  9 +++++----
- net/bridge/br_private.h   |  6 ++++--
- net/bridge/br_switchdev.c | 13 +++++++------
- net/bridge/br_sysfs_if.c  |  7 +++++--
- 4 files changed, 21 insertions(+), 14 deletions(-)
-
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index bf469f824944..7b513c5d347f 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -866,7 +866,8 @@ static void br_set_port_flag(struct net_bridge_port *p, struct nlattr *tb[],
+diff --git a/net/dsa/port.c b/net/dsa/port.c
+index b93bda463026..1f877bf21bb4 100644
+--- a/net/dsa/port.c
++++ b/net/dsa/port.c
+@@ -122,6 +122,27 @@ void dsa_port_disable(struct dsa_port *dp)
+ 	rtnl_unlock();
  }
  
- /* Process bridge protocol info on port */
--static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
-+static int br_setport(struct net_bridge_port *p, struct nlattr *tb[],
-+		      struct netlink_ext_ack *extack)
++static void dsa_port_change_brport_flags(struct dsa_port *dp,
++					 bool bridge_offload)
++{
++	unsigned long mask, flags;
++	int flag, err;
++
++	mask = BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD;
++	if (bridge_offload)
++		flags = mask;
++	else
++		flags = mask & ~BR_LEARNING;
++
++	for_each_set_bit(flag, &mask, 32) {
++		err = dsa_port_pre_bridge_flags(dp, BIT(flag));
++		if (err)
++			continue;
++
++		dsa_port_bridge_flags(dp, flags & BIT(flag));
++	}
++}
++
+ int dsa_port_bridge_join(struct dsa_port *dp, struct net_device *br)
  {
- 	unsigned long old_flags, changed_mask;
- 	bool br_vlan_tunnel_old;
-@@ -894,7 +895,7 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[])
- 
- 	changed_mask = old_flags ^ p->flags;
- 
--	err = br_switchdev_set_port_flag(p, p->flags, changed_mask);
-+	err = br_switchdev_set_port_flag(p, p->flags, changed_mask, extack);
- 	if (err) {
- 		p->flags = old_flags;
- 		return err;
-@@ -1007,7 +1008,7 @@ int br_setlink(struct net_device *dev, struct nlmsghdr *nlh, u16 flags,
- 				return err;
- 
- 			spin_lock_bh(&p->br->lock);
--			err = br_setport(p, tb);
-+			err = br_setport(p, tb, extack);
- 			spin_unlock_bh(&p->br->lock);
- 		} else {
- 			/* Binary compatibility with old RSTP */
-@@ -1102,7 +1103,7 @@ static int br_port_slave_changelink(struct net_device *brdev,
- 		return 0;
- 
- 	spin_lock_bh(&br->lock);
--	ret = br_setport(br_port_get_rtnl(dev), data);
-+	ret = br_setport(br_port_get_rtnl(dev), data, extack);
- 	spin_unlock_bh(&br->lock);
- 
- 	return ret;
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index d242ba668e47..a1639d41188b 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -1575,7 +1575,8 @@ bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
- 				  const struct sk_buff *skb);
- int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 			       unsigned long flags,
--			       unsigned long mask);
-+			       unsigned long mask,
-+			       struct netlink_ext_ack *extack);
- void br_switchdev_fdb_notify(const struct net_bridge_fdb_entry *fdb,
- 			     int type);
- int br_switchdev_port_vlan_add(struct net_device *dev, u16 vid, u16 flags,
-@@ -1605,7 +1606,8 @@ static inline bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
- 
- static inline int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 					     unsigned long flags,
--					     unsigned long mask)
-+					     unsigned long mask,
-+					     struct netlink_ext_ack *extack)
- {
- 	return 0;
- }
-diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-index 6a9db6aa5c04..bb21dd35ae85 100644
---- a/net/bridge/br_switchdev.c
-+++ b/net/bridge/br_switchdev.c
-@@ -60,7 +60,8 @@ bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
- 
- int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 			       unsigned long flags,
--			       unsigned long mask)
-+			       unsigned long mask,
-+			       struct netlink_ext_ack *extack)
- {
- 	struct switchdev_attr attr = {
- 		.orig_dev = p->dev,
-@@ -79,14 +80,15 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 
- 	/* We run from atomic context here */
- 	err = call_switchdev_notifiers(SWITCHDEV_PORT_ATTR_SET, p->dev,
--				       &info.info, NULL);
-+				       &info.info, extack);
- 	err = notifier_to_errno(err);
- 	if (err == -EOPNOTSUPP)
- 		return 0;
- 
- 	if (err) {
--		br_warn(p->br, "bridge flag offload is not supported %u(%s)\n",
--			(unsigned int)p->port_no, p->dev->name);
-+		if (extack && !extack->_msg)
-+			NL_SET_ERR_MSG_MOD(extack,
-+					   "bridge flag offload is not supported");
- 		return -EOPNOTSUPP;
- 	}
- 
-@@ -96,8 +98,7 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 
- 	err = switchdev_port_attr_set(p->dev, &attr);
- 	if (err) {
--		br_warn(p->br, "error setting offload flag on port %u(%s)\n",
--			(unsigned int)p->port_no, p->dev->name);
-+		NL_SET_ERR_MSG_MOD(extack, "error setting offload flag on port");
- 		return err;
- 	}
- 
-diff --git a/net/bridge/br_sysfs_if.c b/net/bridge/br_sysfs_if.c
-index 5aea9427ffe1..72e92376eef1 100644
---- a/net/bridge/br_sysfs_if.c
-+++ b/net/bridge/br_sysfs_if.c
-@@ -59,6 +59,7 @@ static BRPORT_ATTR(_name, 0644,					\
- static int store_flag(struct net_bridge_port *p, unsigned long v,
- 		      unsigned long mask)
- {
-+	struct netlink_ext_ack extack = {0};
- 	unsigned long flags = p->flags;
+ 	struct dsa_notifier_bridge_info info = {
+@@ -132,10 +153,10 @@ int dsa_port_bridge_join(struct dsa_port *dp, struct net_device *br)
+ 	};
  	int err;
  
-@@ -68,9 +69,11 @@ static int store_flag(struct net_bridge_port *p, unsigned long v,
- 		flags &= ~mask;
+-	/* Set the flooding mode before joining the port in the switch */
+-	err = dsa_port_bridge_flags(dp, BR_FLOOD | BR_MCAST_FLOOD);
+-	if (err)
+-		return err;
++	/* Notify the port driver to set its configurable flags in a way that
++	 * matches the initial settings of a bridge port.
++	 */
++	dsa_port_change_brport_flags(dp, true);
  
- 	if (flags != p->flags) {
--		err = br_switchdev_set_port_flag(p, flags, mask);
--		if (err)
-+		err = br_switchdev_set_port_flag(p, flags, mask, &extack);
-+		if (err) {
-+			netdev_err(p->dev, "%s\n", extack._msg);
- 			return err;
-+		}
+ 	/* Here the interface is already bridged. Reflect the current
+ 	 * configuration so that drivers can program their chips accordingly.
+@@ -146,7 +167,7 @@ int dsa_port_bridge_join(struct dsa_port *dp, struct net_device *br)
  
- 		p->flags = flags;
- 		br_port_flags_change(p, mask);
+ 	/* The bridging is rolled back on error */
+ 	if (err) {
+-		dsa_port_bridge_flags(dp, 0);
++		dsa_port_change_brport_flags(dp, false);
+ 		dp->bridge_dev = NULL;
+ 	}
+ 
+@@ -172,8 +193,18 @@ void dsa_port_bridge_leave(struct dsa_port *dp, struct net_device *br)
+ 	if (err)
+ 		pr_err("DSA: failed to notify DSA_NOTIFIER_BRIDGE_LEAVE\n");
+ 
+-	/* Port is leaving the bridge, disable flooding */
+-	dsa_port_bridge_flags(dp, 0);
++	/* Configure the port for standalone mode (no address learning,
++	 * flood everything).
++	 * The bridge only emits SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS events
++	 * when the user requests it through netlink or sysfs, but not
++	 * automatically at port join or leave, so we need to handle resetting
++	 * the brport flags ourselves. But we even prefer it that way, because
++	 * otherwise, some setups might never get the notification they need,
++	 * for example, when a port leaves a LAG that offloads the bridge,
++	 * it becomes standalone, but as far as the bridge is concerned, no
++	 * port ever left.
++	 */
++	dsa_port_change_brport_flags(dp, false);
+ 
+ 	/* Port left the bridge, put in BR_STATE_DISABLED by the bridge layer,
+ 	 * so allow it to be in BR_STATE_FORWARDING to be kept functional
 -- 
 2.25.1
 
