@@ -2,8 +2,8 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 427483197BA
-	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 02:06:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDB13197B7
+	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 02:06:06 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
 	by hemlock.osuosl.org (Postfix) with ESMTP id 978B687605;
 	Fri, 12 Feb 2021 01:06:04 +0000 (UTC)
