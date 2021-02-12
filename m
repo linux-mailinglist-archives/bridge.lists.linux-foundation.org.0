@@ -2,98 +2,97 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418BD3198AB
-	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 04:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E415F319B3F
+	for <lists.bridge@lfdr.de>; Fri, 12 Feb 2021 09:36:16 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id C8A0286DEE;
-	Fri, 12 Feb 2021 03:20:40 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 9F77686DAF;
+	Fri, 12 Feb 2021 08:36:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fh32I5ngkSN7; Fri, 12 Feb 2021 03:20:39 +0000 (UTC)
+	with ESMTP id bAej-mckvBae; Fri, 12 Feb 2021 08:36:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 93B1086DE5;
-	Fri, 12 Feb 2021 03:20:39 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 46D9B86427;
+	Fri, 12 Feb 2021 08:36:15 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 765E4C013A;
-	Fri, 12 Feb 2021 03:20:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1F387C013A;
+	Fri, 12 Feb 2021 08:36:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0710AC013A
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 03:20:38 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4D44FC013A
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 08:36:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 0234087382
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 03:20:38 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 3809B6E56C
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 08:36:13 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
- by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9Lh0iH6y7dFb for <bridge@lists.linux-foundation.org>;
- Fri, 12 Feb 2021 03:20:37 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by whitealder.osuosl.org (Postfix) with ESMTPS id 5F27D87359
- for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 03:20:37 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id r2so1986429plr.10
- for <bridge@lists.linux-foundation.org>; Thu, 11 Feb 2021 19:20:37 -0800 (PST)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 4WwEQyNba2_C for <bridge@lists.linux-foundation.org>;
+ Fri, 12 Feb 2021 08:36:12 +0000 (UTC)
+Received: by smtp3.osuosl.org (Postfix, from userid 1001)
+ id 8B4226F486; Fri, 12 Feb 2021 08:36:12 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 0A9966E56C
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 08:36:10 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id jt13so1627326ejb.0
+ for <bridge@lists.linux-foundation.org>; Fri, 12 Feb 2021 00:36:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=KX9BczQ7HP081Zb6fQayQzqKfWFTa3oP2nKnpxD0UUU=;
- b=dobcntpA4hP7ES4I7J3tbO+Dq/F2O2WJKrVGbRVjnR+nJkpwvHXlG5hFMOfyDKoLj6
- bQ51oQqQRYgJW+y00/jFsqUqSc+dYvdqM2Al1jDQxxYhv7mxHDb/OOaHiVpie75VlH/j
- giYQvWVZx9vsnBCC0g8f96MRmsPPJ+X4JIUCxvbg0RkTR/7CGjsSdU4U4ChmzspeFt3t
- BbebdtgH31J6iTgcWIzke6pj4RT3+x57OPpJxCLi3NDZ3LEEHJ3m5YN7FFK8aull5xiW
- ugo241axW1+tn5MHnPbI4ti49BIoNxgCa9c36t3P0naug02hrgeyS0sKSWiav0rAYfTR
- qFBA==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=ezkeluSd4BagWsILaf5/hUzcBicqZlpvmIkdsGSPDRo=;
+ b=at4BigjysdRTlvmAHpGvKMJOJyedyTJmIQVo3VlJXyd8c55IC1lqPE1agEyURsnTix
+ A/8NnmTmCO4a+Hh8fSs+cSQnMEtM3iviPtUHmSpf10z2YyJQdxYuzrG07CwK9GkXoZ9V
+ uB/0W8OLbrh3RjKaHWLIDBaNz/v2YBUINgodO3/Vy6Qz2eFoQ9+CKU1OBhahM20tESVG
+ GF74+8TVi1J71NzdSiTR+C3ksWnL6DYbx9oJkTZoae4bSsAdkYhnnM29ghemS2SNdsT9
+ //7MzaTi5ht9BMOnTiIqt59NH3ez7SXUkX+nwwei/hxh3ieT7B4ABZHND5N3lgRZLLH6
+ xj1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=KX9BczQ7HP081Zb6fQayQzqKfWFTa3oP2nKnpxD0UUU=;
- b=B3gnsGVf8rZA5YqefY2zIXQ8co47zCl81oqOPWkvdI5HD2SDTLEBjjm1QiXliAUd61
- iRuBNA+O4Hv20f59VcXKprXNkO6blxfeM9jAVKrGKdDEbV8QviWG63p7nDXJrnfHG46o
- uwKOCJ0NRKghHyNXf51/dwMEjFtD7ko1MOrvk+bA9Oa+wGeGNiOflnlVVylMimKuBQN7
- nz4e7SZMg2VlF5wlksoz0Mj6SKRcE1tzNHqs49AFzHR2ZQQm6hWjAvsTue30XWLc/ADd
- IkdMnnyUlUHFA4PkWlDV6tImAPB2k3yMGziFfIRaIDJVqs3De3B1O0Pmrw+gH0j2i2O0
- GHiw==
-X-Gm-Message-State: AOAM532+VhEMb0chPZdr9QXGthXnvFvsPbzTOuhRRVkGsyT3lhpJznMd
- 6NxY551kWGh1RDaOmBuLszQ=
-X-Google-Smtp-Source: ABdhPJzNneNORHrgdUQm8rKm5aRrrnkJf1b/jkUvfdeWboyI7AvVfit3Z4uc9I9P3zJ8TNUQY+bymQ==
-X-Received: by 2002:a17:90a:da01:: with SMTP id e1mr910471pjv.22.1613100036860; 
- Thu, 11 Feb 2021 19:20:36 -0800 (PST)
-Received: from [10.230.29.30] ([192.19.223.252])
- by smtp.gmail.com with ESMTPSA id u20sm6701624pjy.36.2021.02.11.19.20.34
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 11 Feb 2021 19:20:36 -0800 (PST)
-To: Vladimir Oltean <olteanv@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ezkeluSd4BagWsILaf5/hUzcBicqZlpvmIkdsGSPDRo=;
+ b=CbiFVW0V62pzuN3grcNJlEzPwm/ofwCQaHQzeunJxRh7Rma+dfdHH1sQhZ6zBIv1oJ
+ 3jeNzCjvErj7RUoAiTLxNi1rILnyDR5C+3LNp2wjWYh8VBC8FFAS7QlcD1K5esWvqNEO
+ OVSRhfCrVlg4uvGQesvFUM0bDW3YF8parFCk0hGzE3AQsUl49qaOH4XVAGxpdASmUStF
+ e5UD9gNW9lljDaTu28v5AIe7JydftkN1vpXKNdyyNFxT+GKvDZzImffEuUv15/8j+CbS
+ OGxctsAhKXJwkT7MPTInPc7/EiCJJ/jn9JG/d7TjrerRQS3s24hVooXrjq1fawgyFodF
+ 1oeA==
+X-Gm-Message-State: AOAM532EdLGJRvWohraDiWsdGcbUsdGlDfqPzRHFgcQRUb7po0WLfSZ9
+ 6Xia9TrVxv+bKkTcvJtxMLA=
+X-Google-Smtp-Source: ABdhPJy/HltcIda+pT8wJyJl+7I+N7SBnqR6xSW2Hl3W57Qa0EfEmJya9dDHfQXYJgqT5EQ5FAtrsw==
+X-Received: by 2002:a17:906:2993:: with SMTP id
+ x19mr1840796eje.409.1613118968909; 
+ Fri, 12 Feb 2021 00:36:08 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+ by smtp.gmail.com with ESMTPSA id m10sm5688975edi.54.2021.02.12.00.36.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 Feb 2021 00:36:08 -0800 (PST)
+Date: Fri, 12 Feb 2021 10:36:06 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Message-ID: <20210212083606.by43rrib65uuxxlu@skbuf>
 References: <20210212010531.2722925-1-olteanv@gmail.com>
- <20210212010531.2722925-2-olteanv@gmail.com>
-From: Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <c559a6fc-b436-fc6f-7226-76490033d94c@gmail.com>
-Date: Thu, 11 Feb 2021 19:20:33 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.1
+ <20210212010531.2722925-7-olteanv@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210212010531.2722925-2-olteanv@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210212010531.2722925-7-olteanv@gmail.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>, Jiri Pirko <jiri@resnulli.us>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Vadym Kochan <vkochan@marvell.com>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
  Taras Chornyi <tchornyi@marvell.com>, Ido Schimmel <idosch@idosch.org>,
  Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  linux-omap@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v4 net-next 1/9] net: switchdev: propagate
- extack to port attributes
+Subject: Re: [Bridge] [PATCH v4 net-next 6/9] net: dsa: act as ass
+ passthrough for bridge port flags
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -108,17 +107,13 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-
-
-On 2/11/2021 5:05 PM, Vladimir Oltean wrote:
+On Fri, Feb 12, 2021 at 03:05:28AM +0200, Vladimir Oltean wrote:
 > From: Vladimir Oltean <vladimir.oltean@nxp.com>
 > 
-> When a struct switchdev_attr is notified through switchdev, there is no
-> way to report informational messages, unlike for struct switchdev_obj.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+> There are multiple ways in which a PORT_BRIDGE_FLAGS attribute can be
+> expressed by the bridge through switchdev, and not all of them can be
+> emulated by DSA mid-layer API at the same time.
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Oops, odd typo in the commit title. I only remember something was not
+right, I had noticed the "as" word was missing so I added it, but I
+apparently did not notice why it was missing...
