@@ -1,136 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id C884A31DD39
-	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 17:23:48 +0100 (CET)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB2A31DD21
+	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 17:18:55 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 347B36F613
-	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 16:23:47 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id CC30D85585;
+	Wed, 17 Feb 2021 16:18:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id n4cTDB7g0ktc for <lists.bridge@lfdr.de>;
-	Wed, 17 Feb 2021 16:23:45 +0000 (UTC)
-Received: by smtp3.osuosl.org (Postfix, from userid 1001)
-	id 904F76F617; Wed, 17 Feb 2021 16:23:45 +0000 (UTC)
+Received: from fraxinus.osuosl.org ([127.0.0.1])
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id B9kPOe0V--Wd; Wed, 17 Feb 2021 16:18:53 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTP id D83236F555;
-	Wed, 17 Feb 2021 16:23:35 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 2798B85643;
+	Wed, 17 Feb 2021 16:18:53 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id ABCF3C013A;
-	Wed, 17 Feb 2021 16:23:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F3E31C1DA9;
+	Wed, 17 Feb 2021 16:18:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 144F4C013A
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:23:34 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4AA5FC013A
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:18:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by whitealder.osuosl.org (Postfix) with ESMTP id 0350B86BA5
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:23:34 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id 3942585585
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:18:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id X7e+LbnhzgwM for <bridge@lists.linux-foundation.org>;
- Wed, 17 Feb 2021 16:23:33 +0000 (UTC)
+ with ESMTP id acS_aKCrdIDu for <bridge@lists.linux-foundation.org>;
+ Wed, 17 Feb 2021 16:18:50 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com
- (mail-eopbgr60063.outbound.protection.outlook.com [40.107.6.63])
- by whitealder.osuosl.org (Postfix) with ESMTPS id D935186429
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:23:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fZzjLsvUVFj6b2k9Jtj7C/JYNrceH53sVtwKYWb7tGCRrY2XAhgvcE4qEr1ctbYX6wGCDqmSw/CFiqdcin0JvMFvlXeSJ8+E7MDROovBlEufEOV4SIj4mcIZzgUyorA9bWNBa4Ih2RWlDlIIXI0ZxoRKNjDiamwBII2Kn/TiYo/eSoV2ciQAMiQY3IlhTFAFndPfBTetwKiFA5+oMTg4tz4aTV4w1s67KM0SkEAJTNzEusx9hG9p0YjkcS1KL06beK1BTqJTBglV9oeBTjyei+sUFikV+C2aJmlFThJI6u13WU+lfLr3FU9nC2ZbcZ/6WsXTXNXk5mJobWeYFFyk3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+NZFWy5C/cLP0yScKVt0E73oPievWM8F0hNc0HEWYSA=;
- b=QnRKH2lfMzpCyGLDkoYkYKIojCLotjKzqb+gjAg3lwa3py9RI37kT+yCLcINedUQjgVc/x469tZp/AOgWLWnfVWYVjdvZBsRrQ6cPRZulxS5LfQBCn9wvTRDUG06CZa2nswaAr8rxPxVdft96iCSkNoBegp6jvEXokd/4ifrUpOR7qzWaOoeiBxW7OmBtRWK+N2mB9AXALTpnp9a6+N1PNQVv9Fsfw3dcQf3QVC+uhBh4cC4cUzb4syk15MYtDzMB+hDz9d9t9rjXCvvGyINBkw/5j9bCk+O3Dqcm03yN9v9VxnTLAm/ROR/V9Qn6LWAhelHcYezH1UAUFrST07qLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+NZFWy5C/cLP0yScKVt0E73oPievWM8F0hNc0HEWYSA=;
- b=Xb2oHDslRXZCGux2n+qhNlXicC+X5bCBv2H4Hvxw8XkKn5Z4qitso6Zo2OWUExh61Hf+5KQSq/o4zpEUu43Pl4uOkCJD7kxP6uSU3zcFDELCapS2unk4k5X3RXwknDfM58PN0JXlr2cKl6XJxk4JNyXyRoO/fZxRFJzDYbKrgCo=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB6942.eurprd04.prod.outlook.com (2603:10a6:803:136::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.29; Wed, 17 Feb
- 2021 16:09:24 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::3df3:2eba:51bb:58d7]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::3df3:2eba:51bb:58d7%7]) with mapi id 15.20.3846.042; Wed, 17 Feb 2021
- 16:09:24 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Thread-Topic: [PATCH net-next v4 2/8] switchdev: mrp: Extend ring_role_mrp and
- in_role_mrp
-Thread-Index: AQHXBKy9eGp+yjutnkaeTLTu5mS83apcJ5yAgABalICAAAL5gA==
-Date: Wed, 17 Feb 2021 16:09:23 +0000
-Message-ID: <20210217160923.fimumxafloc6276i@skbuf>
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
+ [68.232.154.123])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 7181D854DB
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:18:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+ t=1613578730; x=1645114730;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Cs4BA7FTmjYzHJsFq1qDXA+grIoaOTs9jb/eR7cncrc=;
+ b=EZ14kR3rjvYRt1242CdfpIjaakRelewHHAfJPsUSXAQkybJoQYxmb5pF
+ Nt3nj1rKZhZo2re86ysA9nbw6QMjkXYbB1FUo8ZEOyrCwL9pWK+7EHeh0
+ ezwRN5zRwlcJBo9OLLXzDyaiTJ0ZXSilFzDcjLgdx3956XLOqI4hSF/f8
+ CRl45vcqCmKUAu295ljC7lRJQGlT6n+nCJGQXwJSJj/3QfY6/dBl7Vwas
+ pN/54CaRGp0biX8UwlFAyjIfS7J5DUCq3bld6qVmTjnG6IPEmK7+IBk5s
+ Ikw3pJyLAK0NyBwsQf/Xxem42lf6TfHu+zsVk3IuH0vkc466jsodP4DVi g==;
+IronPort-SDR: KIECLvx6Y04Xxp7Nx/aNJRKTcHeDcZNBNyXo5IgQYH4Hn4tWRG4cbKD37H0G+Yp8jLBJSZaqhR
+ 2Q6KC24saFrgKMR029tvuX+MX3AGPUg0d30jI5sZywy71oHRdtljd6qBeHB4qOJbHPXMa99JGX
+ VqjrorV51nLn5t8Tw8fU3DT/cmCx24i2IXHuGZz5bVgEs9qOVaViqeOjisWffPcr/ekeLmofFN
+ MUN8iGwJPTpzWbSpz/JnujVrw/guujmRrg11TZZSE70YtWUmontJMRs0ALp/MXvV14X83+Ohug
+ WEo=
+X-IronPort-AV: E=Sophos;i="5.81,184,1610434800"; d="scan'208";a="106969729"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 17 Feb 2021 09:18:48 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 17 Feb 2021 09:18:48 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Wed, 17 Feb 2021 09:18:48 -0700
+Date: Wed, 17 Feb 2021 17:18:47 +0100
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Message-ID: <20210217161847.6ntm52kqk7ygata7@soft-dev3.localdomain>
 References: <20210216214205.32385-1-horatiu.vultur@microchip.com>
- <20210216214205.32385-3-horatiu.vultur@microchip.com>
- <20210217103433.bilnuo2tfvgvjmxy@skbuf>
- <20210217155845.oegbmsnxykkqc6um@soft-dev3.localdomain>
-In-Reply-To: <20210217155845.oegbmsnxykkqc6um@soft-dev3.localdomain>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: microchip.com; dkim=none (message not signed)
- header.d=none;microchip.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [188.25.217.13]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: fe81a1fd-d947-4012-a783-08d8d35e6493
-x-ms-traffictypediagnostic: VI1PR04MB6942:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB694207F3FFB103E5AD1E4865E0869@VI1PR04MB6942.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:883;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lUWNkstOqZ6BDPU0/HNEIvFZ4r6IwxtJ/wnAoWkGnBjE2AXu22VZzEU+Cuglw8KVJT/BJIr9BJBHgptLKRXxoMNExGdHKG96m+PuGShH/BoWYMikfJlY1pMov7jcCAL8uc9TCMYyzMlz6iQGLWLxpK/wvJSmcx6AqFXRqqksw2TEJdP6+LqQ07rf1ftOjcSn7vy8M1oePMda/xkxBvDr94kBI4UM2vtZNm6/RITNIRP+B5JspQFMYYz22wISiaapAmlvSmp20XULkg0v//tGniD9XETVCw/fFr664bM5cRIoRSM2yk3pXJ0x72hiXMvY1JMRFPtbdT3BzxdcMJ3LlT4ycUQCIOmBe30luPV5zXLs3XePJZEh6reenMJ3d4BPQs8nSQLGKdTIW/uscGnzS98PhKsZCa5zOn9DnZkYcH8ewrQErq0HAlPguEPbKp0pPjabUQH++U8NxVtST68At8U8hNa3S5TSoBJCqNG53U0PZUNvRDe7Hsww5ewEVgWz
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(7916004)(39860400002)(136003)(366004)(346002)(396003)(376002)(316002)(64756008)(6506007)(478600001)(66446008)(66946007)(76116006)(1076003)(66556008)(91956017)(54906003)(33716001)(9686003)(44832011)(66476007)(71200400001)(6512007)(6916009)(5660300002)(8676002)(186003)(8936002)(26005)(4744005)(7416002)(86362001)(4326008)(6486002)(2906002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?pzEVxEVWY/uvc3dnYUi29RRgbRWNs72mldzVzbtHbKmq+7884NWLJ64RoUy7?=
- =?us-ascii?Q?4PFSXMfOdfGwFyx0RfEeDKq5KAbuITIpiMzdGlZsMaRQ0t//2jKIFHpdLns3?=
- =?us-ascii?Q?wvIYmeScWItZjdzYgyXMefyceea6X6BLHobGX6WdgeAOzNwQHtvt/KQWY2UD?=
- =?us-ascii?Q?IG2NgCYueQ6p4CdB4Qcg4cnKxAMh3KVlbI76aaNnTsT5E6aUmbdQ0vBERQm4?=
- =?us-ascii?Q?0F2DdUtRrSDVHo/Ne4DmWR7wNFnCVC7/gzw08Uj7GJlCVEkdYBWtcDqxpeQy?=
- =?us-ascii?Q?aVrJPnh/iI6l/RkdqfZ3d1yVKVXZdZNtg7Xrn/toXiAY+KUpHDNcURwy85ob?=
- =?us-ascii?Q?xqn1CWhYEo7MaqFe841ZykhStqQtkAwRp+J7oG543Jla5eB0jK1DoNPjOIcw?=
- =?us-ascii?Q?9rvvJ94+jlT43NkfgaSku9jA+tm9FEADcWlqi7+zd9ATY/V96GM+d5on4pWJ?=
- =?us-ascii?Q?RndYHHdx2jupu7ys6AmkipdsLeToPfaO5S3Oa0u1/8En5eESHvhv6ZKz6hp3?=
- =?us-ascii?Q?qT7Gv3CMgI2F5Z8t1nn+xhzxanJOhwnNQAnxW+xLxvDeNldG6ADoyOnR4dqF?=
- =?us-ascii?Q?6s/8AiN7ZKhAwUeLvBZC3lGlDk1DhxQtz7kpibUFWU62SSZ2sF602PQY4TJF?=
- =?us-ascii?Q?xN280Of9treg5SNe0THRz8m444z9Z8HdfbeG8Vq1qrTyP9DOeiyVYGXza0Hz?=
- =?us-ascii?Q?TOlna4rlR5ohc9Lxd1/rX+Srsv6Oc8RmFmivn1A0cI/A7qhKdzFMn4q1dn9H?=
- =?us-ascii?Q?tffGruUR5J+mbYit0z8zfyrGdKhLxz8NFVWC2Q6jCBA+ftPivCG3bIWQ3GHa?=
- =?us-ascii?Q?qdiaDc6HhSN7hlR29zFgKSXsEAdMbOKQRU/t+Pbbs4Z6WmnjBDcHyMp9cKVx?=
- =?us-ascii?Q?3fTDo6EDUIaTZnL8MVljEYPihtfOSDcJXxdZGswW1ThmTd0Mtu/BIZM7ntIv?=
- =?us-ascii?Q?qFQDh5mnY5xMzPKJAeZONKLkpKM1QwbsFNYrkuMD+vpBcCrXdp/bd43Fe3TK?=
- =?us-ascii?Q?hiCouJQHS+jwsx5qoFZdCp4j7EYCyMJ2UgJbSBzGkxrgHKVNUCkRQXxgIuU6?=
- =?us-ascii?Q?G/coXhLJ7l6diZnOo63haRUy9YR58b8pJlpRtGsvHmcnVTGYppTK/DeZOZuG?=
- =?us-ascii?Q?ys/OLxMCvyZ21JwNQ8EKo78VU+X/m7dPcDz7yBIM6HqRPYvhPZ6mM3029eyy?=
- =?us-ascii?Q?0jm2PTsr2hhKq6XR7XK0SZDsV/3p/QhYsbZsw6A84+wWk0LREWTHaRWRRKJk?=
- =?us-ascii?Q?k29fec60t2OF3hT9Jy02iXqcyZe/bloTKB4UNIhkJLw/wPe8cGcSo+B1GiPQ?=
- =?us-ascii?Q?JtB/6Iv4n28I9x8yh8v2I7+J89/gDR6rr23rVdZVM3/c0Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <722080CF38BD8340897DAF4CA059A370@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ <20210216214205.32385-6-horatiu.vultur@microchip.com>
+ <20210217105951.5nyfclvf6e2p2nkf@skbuf>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe81a1fd-d947-4012-a783-08d8d35e6493
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2021 16:09:23.9430 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: y62K4bBMtxrK6rfL1wtBLs/Y2g057PygdzWphd9+8YzANxdO4c1vDNFUqGz1yNB0flHkLo5QwOMP/Q06cNw1Pw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6942
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20210217105951.5nyfclvf6e2p2nkf@skbuf>
 Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "andrew@lunn.ch" <andrew@lunn.ch>,
  "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
@@ -146,8 +89,8 @@ Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "nikolay@nvidia.com" <nikolay@nvidia.com>,
  "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
  "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v4 2/8] switchdev: mrp: Extend
- ring_role_mrp and in_role_mrp
+Subject: Re: [Bridge] [PATCH net-next v4 5/8] bridge: mrp: Update br_mrp to
+ use new return values of br_mrp_switchdev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -159,24 +102,58 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Horatiu Vultur via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Feb 17, 2021 at 04:58:45PM +0100, Horatiu Vultur wrote:
-> > If a driver implements full MRP offload for a ring/interconnect
-> > manager/automanager, should it return -EOPNOTSUPP when sw_backup=3Dfals=
-e?
->=20
-> In that case it should return 0.
-> So if the driver can:
-> - fully support MRP, when sw_backup =3D false, return 0. Then end of stor=
-y.
-> - partially support MRP, when sw_backup =3D false, return -EOPNOTSUPP,
->                          when sw_backup =3D true, return 0.
-> - no support at all, return -EOPNOTSUPP.
+The 02/17/2021 10:59, Vladimir Oltean wrote:
+> 
+> On Tue, Feb 16, 2021 at 10:42:02PM +0100, Horatiu Vultur wrote:
+> > diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
+> > index 01c67ed727a9..12487f6fe9b4 100644
+> > --- a/net/bridge/br_mrp.c
+> > +++ b/net/bridge/br_mrp.c
+> > @@ -639,7 +639,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
+> >                        struct br_mrp_ring_role *role)
+> >  {
+> >       struct br_mrp *mrp = br_mrp_find_id(br, role->ring_id);
+> > -     int err;
+> > +     enum br_mrp_hw_support support;
+> >
+> >       if (!mrp)
+> >               return -EINVAL;
+> > @@ -647,9 +647,9 @@ int br_mrp_set_ring_role(struct net_bridge *br,
+> >       mrp->ring_role = role->ring_role;
+> >
+> >       /* If there is an error just bailed out */
+> > -     err = br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
+> > -     if (err && err != -EOPNOTSUPP)
+> > -             return err;
+> > +     support = br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
+> > +     if (support == BR_MRP_NONE)
+> > +             return -EOPNOTSUPP;
+> 
+> It is broken to update the return type and value of a function in one
+> patch, and check for the updated return value in another patch.
+> 
 
-Damn, I asked the wrong question.
-I meant to ask about what it should return when sw_backup=3Dtrue.
-But you answered anyway that if it returns 0 when sw_backup=3Dfalse, it
-can simply not deal with the case where sw_backup=3Dtrue, because that is
-never supposed to happen.=
+Yes, I will be more careful next time. I have tried to compile between
+the patches and I have not see any issues here so I though that
+everything is good.
+
+> >
+> >       /* Now detect if the HW actually applied the role or not. If the HW
+> >        * applied the role it means that the SW will not to do those operations
+> > @@ -657,7 +657,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
+> >        * SW when ring is open, but if the is not pushed to the HW the SW will
+> >        * need to detect when the ring is open
+> >        */
+> > -     mrp->ring_role_offloaded = err == -EOPNOTSUPP ? 0 : 1;
+> > +     mrp->ring_role_offloaded = support == BR_MRP_SW ? 0 : 1;
+> >
+> >       return 0;
+> >  }
+
+-- 
+/Horatiu
