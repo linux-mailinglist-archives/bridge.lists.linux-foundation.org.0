@@ -1,73 +1,75 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017E631D7B3
-	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 11:51:02 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 3617F8699F;
-	Wed, 17 Feb 2021 10:51:00 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from whitealder.osuosl.org ([127.0.0.1])
-	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LYBc8rRP9NTb; Wed, 17 Feb 2021 10:50:59 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 0958786845;
-	Wed, 17 Feb 2021 10:50:59 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DAFB0C1DA9;
-	Wed, 17 Feb 2021 10:50:58 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C14A1C013A
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 10:50:56 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EFB31D800
+	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 12:12:42 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id B304A85FC6
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 10:50:56 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id AB0F385FE6;
+	Wed, 17 Feb 2021 11:12:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
- by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id o5SLsrRhELyw for <bridge@lists.linux-foundation.org>;
- Wed, 17 Feb 2021 10:50:56 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (mail-db8eur05on2069.outbound.protection.outlook.com [40.107.20.69])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 0DBB085FC1
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 10:50:27 +0000 (UTC)
+	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id kTONnnpWrsHf; Wed, 17 Feb 2021 11:12:40 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 18C7285CA8;
+	Wed, 17 Feb 2021 11:12:40 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 02D2EC013A;
+	Wed, 17 Feb 2021 11:12:40 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 917C9C013A
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:12:38 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp3.osuosl.org (Postfix) with ESMTP id 682F26E7C0
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:12:38 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id x-4xrSM_HFnr for <bridge@lists.linux-foundation.org>;
+ Wed, 17 Feb 2021 11:12:37 +0000 (UTC)
+Received: by smtp3.osuosl.org (Postfix, from userid 1001)
+ id 5F9A36F4B8; Wed, 17 Feb 2021 11:12:37 +0000 (UTC)
+X-Greylist: delayed 00:14:55 by SQLgrey-1.8.0
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr70070.outbound.protection.outlook.com [40.107.7.70])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 2444A6E7C0
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:12:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eBaJ9BCPcZ6PUr1C2kzCg/LfGUaqAr40g5vbvBerKeNU/LtbU+2BkDc4GrrrMlNcwl/LdS6cayuVFCD7aUjqnLhhJZiVaI2vf4srkud63e5i2gU5v7HiyuAovcZ+bbTGz5NgOVavXwzJiXjS9kPyaJLAOa7/cJja1jMMuP41eFdu9r17BH7lyeQMQ+rAh/4iiS4vtaos0aEbEP2k8u0A6RtXuIBt9EoIxD9Jy5VSeEy8+rMp9Aoq6LWpMAXVLPaEd5CDBMvR1D4F3/6v6LH0m6f1+Nx3xGKuZUNRCvLyvxeKczec/xrPFFqL+UjTo23Jf4ukjOCSa9vxiJpZJ4ETsA==
+ b=ZrPqfNWhs1uaLuRaAU/N2L5pj7nKBER5WLyyJZjzg6Kvg6tTpr8mchsRB996vX9FwX+F2r1iQ5KmAHckxk5sAwQcJNBizx1YijtR1fGcQM37/RQlgOPohTNnI53L99ajIPCn/6PRUACaUkMkRKVodXUuKl2R7A1m1oJn1TYpWwYHpL5GW3yNf0Zw+baLGcSPnMXKO9lWLaumFWVopcIPWlDz7jJoFDCqjgqdjOgeS4l9uGUlUGKPSpB8ZLIdeUg9FlTQj6CBnK6zwANKjtrrgJ6dlbN/MGywKuoaDFjt4CcAlHDyhCSj5KxcGNDo4CNjcZZlvksHuiC+zfWcYILaLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YgYq+W/f18gklNVQ6Bb3hF2UicLJIt0+ZfKeoXIr6YQ=;
- b=M7Vp/Yy9VrTJvczE/VeU1tF3Wt76I6vgwwQRJvdPJsnLfYTF2hdZylDSEZBmniwZYV2yNQd1AnKRya3enwXObLtuJUPbFZuOA9kzukoEUo0SB+ukMDicC/kxPld/atWl9QGirl99w3iW6TuhIJXv4x1jrslu6+SxXy8FGMnjwW8nUUpZv1DRDDAiUcdITb7bL3TW4sItcnpIrBe60YwOoU9BAveXzEwU72nBMD+fRrpGBVQXiklpvoVk13XMw/dSRjMZqIP5IWW9eez1xmKqbOUFSo3HMhcOZt38yDTSLHKPHLH8eZ/r3+FdhUTsvgemuuNbk7tbay98taLrepXZlg==
+ bh=6KLMQTuObJSA9QIMaMCef6bB2Ga2f3nOrogAh5nYxOM=;
+ b=TJTiFRM27QKmnm6m6IjZFcgyogA/ACIfD02zC6y6QMLyodIhkMkV1IkqpwSfkZWmIAFeorgUVLOQCfY3LR2pGNZQ2PEweTb+URK5I46qWm0Xz/xvQSrlcOEFVHhFef7W9S6T5Yzwu48jC54Y/X4yIytVTe01h1Zl6dpSx9QaPTdd/CDpsYWk63bDJczbHJLkuTsVlY/0Tr0IeGC2upuMyNuxtJVGixW6UaBQ1x/BNSWpnvuD+li7xLi36O53Ho3RNv3kBmOJiLhykxrLeJsRUQQdB0RXLFrIlooKpaNPYKoOf2aDNQAl1F7IqeWbDRZUxvsakUlYnval2ZQlHoCh5A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YgYq+W/f18gklNVQ6Bb3hF2UicLJIt0+ZfKeoXIr6YQ=;
- b=bZkedfRa+VjHRFa/gG/aHP2jPyiGhwj6LDlBUuanSuzR40gWZEJMn3RcimO7SU+pN91kQoVee+CdBi4hl2xn/M/7yxVZy9ZrCZj9EwVTbF3JcPRcP5Ar4csOnL1aoH7c0DUsubJl85w2hFeNOyIObYjUlA6K6Q/dgi7jo1wJR1s=
+ bh=6KLMQTuObJSA9QIMaMCef6bB2Ga2f3nOrogAh5nYxOM=;
+ b=dNBdZ9B0nRtd9SVbr3QYMwf+MipFUcG+jwb0P1EHfugoBDzfO0CfQO1rUbdJ+8uWpvFh+pzibm2poQbnc2DNe3PIaCMCxoRwo15hCmajSwpMbVcgfEZo3cLOFrkYLdJianeqGYa2PNd9EULKmM+GRZPEt43rRbZH4VJcvSZOpiY=
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0401MB2685.eurprd04.prod.outlook.com (2603:10a6:800:58::21)
+ by VI1PR04MB7104.eurprd04.prod.outlook.com (2603:10a6:800:126::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.34; Wed, 17 Feb
- 2021 10:34:35 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.27; Wed, 17 Feb
+ 2021 10:56:26 +0000
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::3df3:2eba:51bb:58d7]) by VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::3df3:2eba:51bb:58d7%7]) with mapi id 15.20.3846.042; Wed, 17 Feb 2021
- 10:34:35 +0000
+ 10:56:26 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Thread-Topic: [PATCH net-next v4 2/8] switchdev: mrp: Extend ring_role_mrp and
- in_role_mrp
-Thread-Index: AQHXBKy9eGp+yjutnkaeTLTu5mS83apcJ5yA
-Date: Wed, 17 Feb 2021 10:34:35 +0000
-Message-ID: <20210217103433.bilnuo2tfvgvjmxy@skbuf>
+Thread-Topic: [PATCH net-next v4 4/8] bridge: mrp: Extend br_mrp_switchdev to
+ detect better the errors
+Thread-Index: AQHXBKzNjMFI2d//q0iFlfLbm7atSqpcLbcA
+Date: Wed, 17 Feb 2021 10:56:25 +0000
+Message-ID: <20210217105624.aehyxw3tfs5uycdl@skbuf>
 References: <20210216214205.32385-1-horatiu.vultur@microchip.com>
- <20210216214205.32385-3-horatiu.vultur@microchip.com>
-In-Reply-To: <20210216214205.32385-3-horatiu.vultur@microchip.com>
+ <20210216214205.32385-5-horatiu.vultur@microchip.com>
+In-Reply-To: <20210216214205.32385-5-horatiu.vultur@microchip.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -77,55 +79,55 @@ authentication-results: microchip.com; dkim=none (message not signed)
 x-originating-ip: [5.12.227.87]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 93e66119-a137-4e1b-142a-08d8d32f9ea7
-x-ms-traffictypediagnostic: VI1PR0401MB2685:
+x-ms-office365-filtering-correlation-id: f3633561-c326-4b50-e296-08d8d332abfb
+x-ms-traffictypediagnostic: VI1PR04MB7104:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0401MB2685C6A0CD21C1E8E66AAE07E0869@VI1PR0401MB2685.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <VI1PR04MB7104DED91946A12CA467B058E0869@VI1PR04MB7104.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4125;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wyQ+ap8qeGXRBe9+04FF3tr0W5Zg1lcCPByW3zvRQajmYWfQQwS2qhrg1bULJJrgS1o2WUBxWn8BErvsyPYT4uXw+pNasXwOigecRSYrfJ0jqi4qTGW6EKp6g/Q77NHqDN3R4TQHxYJrhZ3lhddzu42U/khGXAUciGqhn7zY2+8/3+iZ6UENn2YikEig4QLtXlyNUdxSkP9KRyJnbeERFT5FM27zK82h9dr4JQDPYBqOxZA68ZCGqe9bi4LovZLoqOrgnMBrRdpvdE+G/EaaEONwC7w8M3HbbVeQAH97r2QZQavQwFR9ISOwTtwBeEJ4zINz1YVKDL+G15Lsj9tChmUEfZFdr+F4vv9KwsjzO6rgLBUsJrveZG8Y/apMdPOE95IybAygZwL7muFU2hyYj8CIKmqVEmGM6EUbMI+rPTMQloWaklAth3rQFZkptd5205WIilhqSzk3W5u1ai5E3FNN7jHnunqXeWxnr7nXK4S9tH8OuiqtCsFrlofLWm7NZgMaP0XpUi8ILG8hmzBU1g==
+x-microsoft-antispam-message-info: uw8507N7jTiIL4s6MgLdVaj3PXN9QYNMSPuMlSYPNDa5xIsQQI/IwgziilZPSysGC0ZbsiUm303H2x2hVdnpxupz/8DMMFISL3O/FBm/2jxibO2/St2fO/m4OyekUu36rSb1FgMMVs8XBahikaZkDVABnl6WEbEatuLoYWpxW0hDJUuxsYWIEdvIZge3IL/S600EITOMqmnMakAVS9WMOzzHlxSqIBtMYkWBKaZFQJIB8dnwbl49rwSb8qyH7DUjl6wBLqxhgXaYHKbPEKWs9Y1oWjSFVLRT+G82xEMBWXTxIxOBntGyf3JDhSvxJcv6O5e5JXol979+0TEWRWxFEOux/7yb0/+FB//371ZL/uS72Owf6aq/t4BjZR5XuYxscAPlrOxMfulcf82XPN093e+pQkQKDo77I3t1TD1BqfTRDs9fYBV7mXkq/JEMdfmpYYbSOB2YPHHToV9XksFSLB3OAjgE1QdTDu402B9v+Ip7mbl/9FNlc2/FbFDeaxuYtn06FPmYbu9VxWFFeuKzSw==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(136003)(39860400002)(366004)(346002)(376002)(396003)(33716001)(1076003)(66946007)(83380400001)(91956017)(66476007)(6512007)(8936002)(8676002)(478600001)(66556008)(76116006)(64756008)(66446008)(186003)(9686003)(5660300002)(26005)(44832011)(71200400001)(54906003)(6486002)(7416002)(6506007)(316002)(2906002)(4326008)(86362001)(6916009);
+ SFS:(7916004)(4636009)(39860400002)(346002)(376002)(136003)(396003)(366004)(26005)(4326008)(186003)(6506007)(44832011)(83380400001)(8676002)(91956017)(54906003)(6486002)(478600001)(6916009)(66946007)(6512007)(71200400001)(66446008)(33716001)(7416002)(64756008)(86362001)(8936002)(1076003)(316002)(66476007)(9686003)(66556008)(5660300002)(76116006)(2906002);
  DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ybtClpW9UcY6t+nAtU8oIs4HzBxmU6QW876scBhfFz/LC9OQ5D/+DfqJo/mx?=
- =?us-ascii?Q?sqzueUfNtAasGEcvqTKN5CSBLQXbs4ZRFxUft51Hn3COvwcmiu3Nsphmz1xN?=
- =?us-ascii?Q?6o8xWu2iw7200HP0rWZEyyxHI47NMJowhUxQNevdDuTzYQEUIsh/7vX5cBUt?=
- =?us-ascii?Q?7BBSHIALNnAyZYLyGLVYqJ6XRmDcQU3K9z3BiNNuRVJaLwQvEzMdwJA7sOZW?=
- =?us-ascii?Q?Xa3QK0VSUxqnvP2c5oiRVWka24ZDuDyDXFIaOlMmQSznEZETU2ubQhhFHCws?=
- =?us-ascii?Q?/wXmzBJ8s7anTggV59ukqtKSEEFOg+muH2O1cls/iOReCcjxLorz1AT2FOoo?=
- =?us-ascii?Q?fxgBBc+jk6l+rHMl4rboC9G9O5HfPy9rJ7pY8sE/Rvv4kUY8PZlnaZjLM58I?=
- =?us-ascii?Q?4yeg97TsD1JG3T835e3PmKPTurXLTgKskrszWR+wwtwCfrzzYfKrQXx9huRL?=
- =?us-ascii?Q?gWd5njO2CcYJYWmWKuCabY/o4VayOhStavD8LpGtDYH+GIPQyREvoM3tskCW?=
- =?us-ascii?Q?dOncTAgXbyalZot9f+UPndW+odyVED1qeG0Kvz0ZIgl/SWnDvYGmnqEvod4a?=
- =?us-ascii?Q?0/aXZRHt2Ga/mreOnhGIG2887cZtbSbVIaO4aersS+dN8rzMIaCxpNvPVl+F?=
- =?us-ascii?Q?Fo2gQA97V4IJm5mrPDZjJmvJFWCtuwsBG7Dcuc2eat9AyJjfzy3omKmfWiJi?=
- =?us-ascii?Q?y0Y5b65n5JNK422iOdo4GTh9qKWHqJe9dskLvDXxLWOht4naRzBA3PzvDeN7?=
- =?us-ascii?Q?w392M+87OB+08fixZXg+UxtR4PQW6ZV+PsbkObrmO1cyF7PMsx3Jx/7oaUuu?=
- =?us-ascii?Q?M7D0jdA3CH43bdL2jOiZ05ZglzWm29cMxSIzmJq1mtSIBFMOqsApZ8eEOOOL?=
- =?us-ascii?Q?VPOIPKJ/90jToLMrHaon3l5656I9Y0oLbmJQqjBKLrimYm0DDsPTyt6VwM1s?=
- =?us-ascii?Q?Vh6hXiCtv640UO2+b63gPDWByzlqvpjQDQ3jary2ig+TmHnlRfRwBgj7hL9Y?=
- =?us-ascii?Q?kqUTXjRSqt+cHU1ZFK/N8IIJloLNbnGnLjaeAUmWBrL++RejGi6GR9fcDP3W?=
- =?us-ascii?Q?IkfMUYbq7/RsyPlVJ21m+o4WTPqOGlnD0UioD5gLshP8QbOuHzGUANoa15vc?=
- =?us-ascii?Q?W92Ef09LYetLRFtykqrb8X7YSaaRfLMLzg5ngEODWaka286Dn0QItLbiElqA?=
- =?us-ascii?Q?IJJpjluhB8lsgV/FJnO+jfqR4fD1KQiNe0BerJHCNqzWwQYMwadqfarBcoJR?=
- =?us-ascii?Q?D2cU7+xbS86nc9jgdzcSoZpP8SyXpQcULD6+m7VcPXBP/fDcY1PJ/VVT+kff?=
- =?us-ascii?Q?lwS7z0unahUdbcyXPbI81X6Y?=
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?GxcbmOdz9MV9/YZ0OxArxzgFYiOZM9H+CjhrgxbOr5rWVn3eNUtsy1MzVDTF?=
+ =?us-ascii?Q?ahr9wlYrFkdCyk35KS3SbuSHnGGzicKeQK6n605+HZePK/gf1ag0wTSuTpAV?=
+ =?us-ascii?Q?5+rNVDC0cU1XwbTrenWhYTzR2DihQR18BBBQ8yyvBbIuVkujBsFHRyztiGo7?=
+ =?us-ascii?Q?wxkt9KBRWXaRNPLX4PVzQCmjp5PcvMSUeQpmQ2Tx2Oeoia0B2PY4+HImuVpu?=
+ =?us-ascii?Q?WiqHlKoWukmuSFsdetI7saUn5JVAhm/kFFLvzQs6Iel9/bZUWblS6E+RhE3w?=
+ =?us-ascii?Q?Rk5JypUxPS/I/9N61milGOhfK6AElP8NOcF2kuqvE6nkKAWcxCZ/jyhdaGJB?=
+ =?us-ascii?Q?pxUrU8nYMJhsrJgXirEZRsDj8LUyc9CPoD+/BNu8xRZnkuUtpND61C/rwoJ3?=
+ =?us-ascii?Q?8NPUOTX+af/MnAN00ei4qCW6+JlyTxSU9uTKu6pEHS/NWOwt7NcLMWWnWLp5?=
+ =?us-ascii?Q?037QbqRK6SQodOUKjGBzwEMRYhCBwqkLMno57OoHuCvgTupiNUKoPEk9gqXY?=
+ =?us-ascii?Q?Y/TsFsRHLOwyRs6qPKm2OpACfiPV+/ZcsvIftk1K57T4S0t4CA/wJh8p/zDi?=
+ =?us-ascii?Q?RvPHf2mWMBY15UjXmJAlurbPHd/NdoM9EGvTv7dIaNAPZBxgbrng4dbcutKG?=
+ =?us-ascii?Q?W+tWe1BwCoHR5wf5PO3LiUDd1H0QQ1k+Gh95l9ldFhVArL71gpjWV5VD9wNw?=
+ =?us-ascii?Q?3m8pZ43KmRSNERAJTVjGvn4h553XA/wbZQFO7Ldzn+ywT9tyMCHmT67sZo52?=
+ =?us-ascii?Q?GYZVark8KAsJVK1xDUx9/pGNP4D3mt6/mY6U1GPwb5N8ekz/X7ZdqPHqdOom?=
+ =?us-ascii?Q?XzWu9SH+u+jSrgRhPYb2458463lXK1vmg0plMi/56TkeNUtWnSYidoia3H9W?=
+ =?us-ascii?Q?LojGF17JWgpmGGf1pxBBkTSkOm1Tjey1FEqF5kfpSSt6aRQAq9zFHNEwvYcT?=
+ =?us-ascii?Q?VcMcx3w8hRujlq8ppYcaO4V6wqg0npU40K50LrLQfwYRPSMC1FVRxJ5OeetX?=
+ =?us-ascii?Q?/9J+6xCzuAaFXXSF80LAiDVaPiKfhb2N3k8Ymq7toezTLAk1hyj/eQTe4Xsl?=
+ =?us-ascii?Q?Aysp5Wc0+gpwNNjNDGytKyk9j5gwFTE9GRc4GgyGY+JNJtuw1J48OwF9EWBB?=
+ =?us-ascii?Q?qfBSIsPtzLBxugcG5uxsUlLEudPkMH/fnIg+FJJcGK6CA+466t3Mb1reMfq+?=
+ =?us-ascii?Q?Nx4DMOjMZ1l0b9WBI71sVongB5NW9cr/lHTPbY1/PmSgTqdmk7R3JczGNril?=
+ =?us-ascii?Q?+zxO8yli7rnOg2v15eqh/65WwjIEeaaYR7DuG+x8kIBNLJnCi8Nga23BerrN?=
+ =?us-ascii?Q?0NrUhfCybS5gwvQLqBDyQ5yC?=
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <CFC55FEA90267D4AA2BEFAB1247F9073@eurprd04.prod.outlook.com>
+Content-ID: <3B1C35D6AD07A842808B7267A18006C1@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93e66119-a137-4e1b-142a-08d8d32f9ea7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2021 10:34:35.0889 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3633561-c326-4b50-e296-08d8d332abfb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2021 10:56:25.8862 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ODDt1TgyUOMRJ5IaJVD1vWRz+/BJpqC9g1EJk+icpwf4ex89gpQXcl4xTb76sNigFB9wri7iJztTvvUJIDcSOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2685
+X-MS-Exchange-CrossTenant-userprincipalname: EhCEI5CBqsO/XGni1F1AzkuQpVp8/uO4uZFscp+789hYKPr0NCMn04nH0um/ah58oMRO6HADFBc7DY/BF2cjHw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7104
 Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "andrew@lunn.ch" <andrew@lunn.ch>,
  "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
@@ -141,8 +143,8 @@ Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "nikolay@nvidia.com" <nikolay@nvidia.com>,
  "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
  "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v4 2/8] switchdev: mrp: Extend
- ring_role_mrp and in_role_mrp
+Subject: Re: [Bridge] [PATCH net-next v4 4/8] bridge: mrp: Extend
+ br_mrp_switchdev to detect better the errors
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -157,50 +159,77 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Feb 16, 2021 at 10:41:59PM +0100, Horatiu Vultur wrote:
-> Add the member sw_backup to the structures switchdev_obj_ring_role_mrp
-> and switchdev_obj_in_role_mrp. In this way the SW can call the driver in
-> 2 ways, once when sw_backup is set to false, meaning that the driver
-> should implement this completely in HW. And if that is not supported the
-> SW will call again but with sw_backup set to true, meaning that the
-> HW should help or allow the SW to run the protocol.
+On Tue, Feb 16, 2021 at 10:42:01PM +0100, Horatiu Vultur wrote:
+> This patch extends the br_mrp_switchdev functions to be able to have a
+> better understanding what cause the issue and if the SW needs to be used
+> as a backup.
 >=20
-> For example when role is MRM, if the HW can't detect when it stops
-> receiving MRP Test frames but it can trap these frames to CPU, then it
-> needs to return -EOPNOTSUPP when sw_backup is false and return 0 when
-> sw_backup is true.
+> There are the following cases:
+> - when the code is compiled without CONFIG_NET_SWITCHDEV. In this case
+>   return success so the SW can continue with the protocol. Depending
+>   on the function, it returns 0 or BR_MRP_SW.
+> - when code is compiled with CONFIG_NET_SWITCHDEV and the driver doesn't
+>   implement any MRP callbacks. In this case the HW can't run MRP so it
+>   just returns -EOPNOTSUPP. So the SW will stop further to configure the
+>   node.
+> - when code is compiled with CONFIG_NET_SWITCHDEV and the driver fully
+>   supports any MRP functionality. In this case the SW doesn't need to do
+>   anything. The functions will return 0 or BR_MRP_HW.
+> - when code is compiled with CONFIG_NET_SWITCHDEV and the HW can't run
+>   completely the protocol but it can help the SW to run it. For
+>   example, the HW can't support completely MRM role(can't detect when it
+>   stops receiving MRP Test frames) but it can redirect these frames to
+>   CPU. In this case it is possible to have a SW fallback. The SW will
+>   try initially to call the driver with sw_backup set to false, meaning
+>   that the HW should implement completely the role. If the driver returns
+>   -EOPNOTSUPP, the SW will try again with sw_backup set to false,
+>   meaning that the SW will detect when it stops receiving the frames but
+>   it needs HW support to redirect the frames to CPU. In case the driver
+>   returns 0 then the SW will continue to configure the node accordingly.
 >=20
 > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > ---
->  include/net/switchdev.h | 2 ++
->  1 file changed, 2 insertions(+)
+>  net/bridge/br_mrp_switchdev.c | 171 +++++++++++++++++++++-------------
+>  net/bridge/br_private_mrp.h   |  24 +++--
+>  2 files changed, 118 insertions(+), 77 deletions(-)
 >=20
-> diff --git a/include/net/switchdev.h b/include/net/switchdev.h
-> index 465362d9d063..b7fc7d0f54e2 100644
-> --- a/include/net/switchdev.h
-> +++ b/include/net/switchdev.h
-> @@ -127,6 +127,7 @@ struct switchdev_obj_ring_role_mrp {
->  	struct switchdev_obj obj;
->  	u8 ring_role;
->  	u32 ring_id;
-> +	u8 sw_backup;
->  };
+> diff --git a/net/bridge/br_mrp_switchdev.c b/net/bridge/br_mrp_switchdev.=
+c
+> index 3c9a4abcf4ee..cb54b324fa8c 100644
+> --- a/net/bridge/br_mrp_switchdev.c
+> +++ b/net/bridge/br_mrp_switchdev.c
+> @@ -4,6 +4,30 @@
 > =20
->  #define SWITCHDEV_OBJ_RING_ROLE_MRP(OBJ) \
-> @@ -161,6 +162,7 @@ struct switchdev_obj_in_role_mrp {
->  	u32 ring_id;
->  	u16 in_id;
->  	u8 in_role;
-> +	u8 sw_backup;
-
-What was wrong with 'bool'?
-
->  };
+>  #include "br_private_mrp.h"
 > =20
->  #define SWITCHDEV_OBJ_IN_ROLE_MRP(OBJ) \
-> --=20
-> 2.27.0
->=20
+> +static enum br_mrp_hw_support
+> +br_mrp_switchdev_port_obj(struct net_bridge *br,
+> +			  const struct switchdev_obj *obj, bool add)
+> +{
+> +	int err;
+> +
 
-If a driver implements full MRP offload for a ring/interconnect
-manager/automanager, should it return -EOPNOTSUPP when sw_backup=3Dfalse?=
+Looks like you could have added this check here and simplified all the
+callers:
+
+	if (!IS_ENABLED(CONFIG_NET_SWITCHDEV))
+		return BR_MRP_SW;
+
+> +	if (add)
+> +		err =3D switchdev_port_obj_add(br->dev, obj, NULL);
+> +	else
+> +		err =3D switchdev_port_obj_del(br->dev, obj);
+> +
+> +	/* In case of success just return and notify the SW that doesn't need
+> +	 * to do anything
+> +	 */
+> +	if (!err)
+> +		return BR_MRP_HW;
+> +
+> +	if (err !=3D -EOPNOTSUPP)
+> +		return BR_MRP_NONE;
+> +
+> +	/* Continue with SW backup */
+> +	return BR_MRP_SW;
+> +}
+> +=
