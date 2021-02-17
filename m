@@ -2,72 +2,71 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD81731D805
-	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 12:14:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0308B31D804
+	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 12:14:26 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by whitealder.osuosl.org (Postfix) with ESMTP id 7606586B63;
-	Wed, 17 Feb 2021 11:14:32 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id 5D3A1866F0;
+	Wed, 17 Feb 2021 11:14:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from whitealder.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TqU+Pab6eDmp; Wed, 17 Feb 2021 11:14:31 +0000 (UTC)
+	with ESMTP id Hhn3FzJPlmYM; Wed, 17 Feb 2021 11:14:21 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by whitealder.osuosl.org (Postfix) with ESMTP id E545786C6D;
-	Wed, 17 Feb 2021 11:14:31 +0000 (UTC)
+	by whitealder.osuosl.org (Postfix) with ESMTP id ACDEA86B63;
+	Wed, 17 Feb 2021 11:14:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CAA1BC0174;
-	Wed, 17 Feb 2021 11:14:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7B0C0C1DA9;
+	Wed, 17 Feb 2021 11:14:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from hemlock.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 27CFCC0174
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:14:30 +0000 (UTC)
+Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B5638C013A
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:14:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by hemlock.osuosl.org (Postfix) with ESMTP id 23C1587242
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:14:30 +0000 (UTC)
+ by fraxinus.osuosl.org (Postfix) with ESMTP id A26BF84961
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:14:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from hemlock.osuosl.org ([127.0.0.1])
+Received: from fraxinus.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id U-rGN1oQG4Zi for <bridge@lists.linux-foundation.org>;
- Wed, 17 Feb 2021 11:14:29 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com
- (mail-am6eur05on2077.outbound.protection.outlook.com [40.107.22.77])
- by hemlock.osuosl.org (Postfix) with ESMTPS id 9F79187243
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:14:28 +0000 (UTC)
+ with ESMTP id xpBSJK0VVA8D for <bridge@lists.linux-foundation.org>;
+ Wed, 17 Feb 2021 11:14:17 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr70043.outbound.protection.outlook.com [40.107.7.43])
+ by fraxinus.osuosl.org (Postfix) with ESMTPS id 8226484475
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 11:14:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XmJeWBg2Cw4Azwyuuq1PUB4J6oDuvpzeQCAwVz44QNh5TeJIYovidIPGAIWsZFK3DohGgpJYXf8JKJCPQ/bgwY0ckQ11oRYGnli+374D8RqahJrcDkH/1IGGvQCwkYjOv68MpvFiJAg3a41WabqUnBJq3khatiYiba9/ny+d2848EdHhkouiaO2fjXCvP0b+uDfvdJWSTsZL8Si6Ub4UYcpPipaseXjQEf/LiOoRX1wc6OLhmIcg16SVKSrpXCdZ/VDg2KBVqepPNM/e4VPXgbu0s73yyvdaj30Q079A+FsIEtZTGurOAoQ8PKB+XtvTTlF4ctDzG3aZRCd+0YpQ8Q==
+ b=FKH1kFD3U9UFuXjp1nrrCwy1GxUsOJKpmej0qgeaYR9pr191UFvBiuTriSCwInzv2qAl+GKK+oAm0F6RaektU7rYXhiJ/PCSFVUpzQsg7LJDeT5+2wHHrQcn5atgeXJt//DEC7WdPBkDNSKne6X/PaM3knPG+IL3SP/EUUP1VRSkqHpJuv07PLO1xPEMM+hW8ARqt43K95uCU5rNe30Q2KbG6VY/VTAaZQTKP4wfyD7RwZxkxaNZf8oWSMhbGFXF9L5C92c1c4/79orVFdGIqcM7V8k1Z98oY5Q8C43XA9VuiHgfk1ZTpjU+D3VLY68/79NXJ+EwUi45q/nLWfd+NQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z8ojTnqodtnJGj9tpT7QuxC+KIVhGhgUQB0KDBTVJcM=;
- b=ISGm64wcV0OELl3daD5l1upMbWmup0mK78U5QelKEjGcMMFsEqcF2AmQ166AQC/aOAiaO8nADZXz/fg2rq7xDWkMGhMdepxB+TI19j1lKwCNGSquY7lU3XunDwqYTkwNGXO4rQi8fMporpIIK/vYICNYuUCVdnI7NoGhVPhHBNbGY0LwZ/CnZFm7dDIoovFszs7UOJzx/5mxeLk0vCCIUhnvIRxKU/tnmA2q0dZWeAtz50hGPURypjwbH4gm0/1+RukksqK0f42n3B2j50C0ePzmX9yCWiXGMGqBviJ2YVMbyA44EnJPCQf68gDgWOK1ZIfiZ4T2QXVAODhwR8BLGg==
+ bh=U78dloJtPyfgGT/aDmLOkmbROcBEVj9Xn9DKVkF4mVI=;
+ b=RkfJThs1pP0l9LmEEp0IovPzuUqAvuR+LJrfxKrJgPa89Q9FQ+m93nIkuTElk2B5JjcuzaioKVF1h5/yjvsn/JvuRB3gja3BenXQ1leh4DdlR4YrF+b8NnxkBwDyMXQwg+t0sojowcI+iAQS3pwOXEu89xwFN1Ls91NHeEiDmX5rGzOn84h3sAPLOp8RN7MRazV1ihMZv3pZvzOkGXWefevfpxPyl1I3wBWenHAdbukGU0POPeTK3F/rPW/ofGOOvnOVbNJ3T/M5Nat4Kiucy/x6+dAkxjIKjAPwriTVbjpFhft4PD+YWUNLSCPpROJmgA3yu7amz1awDvIP941xLw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z8ojTnqodtnJGj9tpT7QuxC+KIVhGhgUQB0KDBTVJcM=;
- b=Bsp9Cy7jjt3n3gxSjf85Cjnb3+Hd7DhPoqxFmxeskjhmBtKg4zi2q8JEwaDw/OK2lpgnrFZ+oNmyyE53CNFoWlKa9xbBGnn2zOIVve0b45dD/mcO+9est1xiASELN1GZ0Y21vb42oB+espoefT+MgevWrowO/Mc1tOcA4FD602o=
+ bh=U78dloJtPyfgGT/aDmLOkmbROcBEVj9Xn9DKVkF4mVI=;
+ b=smuYRyPnKlznneDrsdY+70MAZGu3oXpWplfZyDJklILKMeXrq2nayo3LFDx7X/DNw258n4lRqBOTFOwU8ng6UtDcMX+SMkzg2SCoJ0yc2P+pwYH8kJFfE6GEnKWdtFSXcOfv7Lj7qLJ2MM8kFGy5s3D63iyvnXibPuIbofN75XM=
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0402MB3616.eurprd04.prod.outlook.com (2603:10a6:803:8::13)
+ by VI1PR04MB6942.eurprd04.prod.outlook.com (2603:10a6:803:136::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17; Wed, 17 Feb
- 2021 10:59:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.29; Wed, 17 Feb
+ 2021 11:14:12 +0000
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::3df3:2eba:51bb:58d7]) by VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::3df3:2eba:51bb:58d7%7]) with mapi id 15.20.3846.042; Wed, 17 Feb 2021
- 10:59:52 +0000
+ 11:14:12 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Thread-Topic: [PATCH net-next v4 5/8] bridge: mrp: Update br_mrp to use new
- return values of br_mrp_switchdev
-Thread-Index: AQHXBKzIpNFdzzkilUKmoPsYhJWnlapcLq2A
-Date: Wed, 17 Feb 2021 10:59:51 +0000
-Message-ID: <20210217105951.5nyfclvf6e2p2nkf@skbuf>
+Thread-Topic: [PATCH net-next v4 6/8] net: mscc: ocelot: Add support for MRP
+Thread-Index: AQHXBKzGJ1Wg4iFy80u6LZWFFkYv5KpcMq+A
+Date: Wed, 17 Feb 2021 11:14:12 +0000
+Message-ID: <20210217111411.plsod67qdzb5ybpm@skbuf>
 References: <20210216214205.32385-1-horatiu.vultur@microchip.com>
- <20210216214205.32385-6-horatiu.vultur@microchip.com>
-In-Reply-To: <20210216214205.32385-6-horatiu.vultur@microchip.com>
+ <20210216214205.32385-7-horatiu.vultur@microchip.com>
+In-Reply-To: <20210216214205.32385-7-horatiu.vultur@microchip.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -77,55 +76,55 @@ authentication-results: microchip.com; dkim=none (message not signed)
 x-originating-ip: [5.12.227.87]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: fbdb015a-cf81-4cc4-be92-08d8d33326d1
-x-ms-traffictypediagnostic: VI1PR0402MB3616:
+x-ms-office365-filtering-correlation-id: f2d2efa8-74ad-4996-8f0d-08d8d33527b2
+x-ms-traffictypediagnostic: VI1PR04MB6942:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0402MB3616039C952845B6CE51B5E6E0869@VI1PR0402MB3616.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <VI1PR04MB6942067A4AEEB0183C22B4AAE0869@VI1PR04MB6942.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1122;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FScPFxL+FvDvNeHlHN+DOp0NlPkmJ9BKoZJKj+UX0lW866u9FM+BRhTM1cx+YfC8GqiN/YIRN8vaoMbbPU1R5HsghWkspg8g/mJ+zl31ptZ1UeQ+FvduvSBdnxjOl9DX5paDW3P1ul1hyAo3NUHfsKgp1r0lX39QA/ukH064zUzLYspq4+v9N81hOhRGUJLRwi1I6svyuMuENaZPxiqb8LRlu8Fg8jV8gk9tumER6QTCoLS7vTnuDbns4zhjQHc14GjUVyRVXaOl2Sae9a57nfXAeETSFKzqAqCSwD3DPTjZ2IFb0wbfFPNRkL2amMwebKbN1nKqQWbjRtEcR/8ipDN/0AJGZ2SYFQu+FXRoZvC6IQ8NQqZnkYljr0hn62H9CCqGVeQonEbfHytRdquNUtViu0AYE3wTZSYnoMNauSDwdpM8r/TRhLCB8q+PTEwvhHO5RSSDgI7n309MuqlJxMLnpF34pcte0tMKCeghfp6AiVj0Jg8+oHXwkiMzeAkkzo8YIebkGfQa3YXs9k0BHw==
+x-microsoft-antispam-message-info: za6MjXhseL6c4NVxaPPhnE6QFw1xwjgkcYizGHFG7rcVipyF/Tyg7hGDeibwa2Co1778l487I3555XjkReSNwH4k5Vyg7QwAFFICpcuVgs2EgaVt6ycZvYOzYcJBnFR4X2h55lG0IPXoX23OcD8i4Ea8WnG5NAHqL81qbBFo3k5tBw4v7gnmZDEsp3GYvDWPbJ9JTKnmRqbsphMjy9BT5jHFGgTY4NVWQwReJ5gkeeFYjJ0cRsoa2y6FHEEvpNQ/awYVRz+sD/tNJ1C8IApirrK0lSK4TgamJ6XxOxrY8pZxL4JKabGGQntU0i3Rr770xWSuIySZDUhoiJdtpzNwSxxXUbb3x736R//MiPFYrvvoHkVFzVd9S/Iqkn4cy/XXsR5B2s130v0VlFACZy7C+0qII00THRdbFwOWMqgTYcnPSHf0ZCLC1JbyqMVfJSQyI8tR0MVgTWcF29Cau5X769DTWGYCJs9uWQ8DCuKtd9A102F1cGhs506lF3u0PSPmNO1tGWUfo2ua5DUc00QLYg==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(346002)(39860400002)(366004)(396003)(376002)(136003)(54906003)(478600001)(76116006)(8936002)(7416002)(9686003)(64756008)(15650500001)(6506007)(91956017)(66946007)(2906002)(83380400001)(71200400001)(8676002)(186003)(1076003)(26005)(6916009)(4326008)(66556008)(6512007)(5660300002)(86362001)(33716001)(316002)(44832011)(66446008)(66476007)(6486002);
+ SFS:(7916004)(4636009)(136003)(376002)(366004)(396003)(346002)(39860400002)(66446008)(76116006)(316002)(64756008)(91956017)(6506007)(478600001)(66946007)(33716001)(1076003)(66556008)(54906003)(9686003)(44832011)(66476007)(71200400001)(6512007)(83380400001)(6486002)(30864003)(186003)(5660300002)(8676002)(8936002)(26005)(6916009)(7416002)(86362001)(4326008)(2906002);
  DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?LoERQDYPKJn74+8R5bp3J3Pqbf6z3scGIk0iRRoMrfKhTkYmzlKGcY2i+ihI?=
- =?us-ascii?Q?S0T61EU76f4jGC9Me5S44PjX7RrNliyUu8IdZ2x6hZXVm0tQwxrFWctUN03A?=
- =?us-ascii?Q?GrmqxkyXi5IiwbLH4WdLWr0eFwOovvdFUvsWMlma5OnuewCbg8mFjFN4AkdL?=
- =?us-ascii?Q?CJN0ng7DudFa8KLX/XM6VLqS8whUKk3ivwaOPQqROAvZafnqk1litHZMFZiG?=
- =?us-ascii?Q?YglKOtU2AAIHoy8qWfmwZ3NTF+tXyRO86H0Wer+Vz3XflhHfaYDDQEMUt+92?=
- =?us-ascii?Q?gDToobFcbRHAGPaNMf8S6mM2STthvYja9PjtJpsyw+84DbkQpHC/fBokl+DP?=
- =?us-ascii?Q?scciJccrWIk3KbYw57gP0d5CvXuUPE5Yaj0qnteJNYhqPMo9xmXIZFT0Gtld?=
- =?us-ascii?Q?P9gLU6DOHVEFbxuWaNS/XYOB0Frq3ieC6rhgN2wsXWcWFBe6cFkgWQe98FWX?=
- =?us-ascii?Q?zckCmMeDhPPt7lZG2U3xOJZ8O6Hw+f67DP0Mq8pHTT5NNkZKdMwd2dtHrHZm?=
- =?us-ascii?Q?xslhvCFTTpw+wtg5BloINWmhfotC1hb+BJNgcciAa5Hz/Xk35SkzEWAFoV1/?=
- =?us-ascii?Q?4wE4LoJDvH+iZKd3xZMzKTh1LE8e4ujKK80iTlzMNca9IOEJDnD5hxTbxYkp?=
- =?us-ascii?Q?HRPVlRYO+gEAWq9ACNIhxkJL+RqUgyYRn+vckeASCTJPJUQejiHG9wmeLiOn?=
- =?us-ascii?Q?c5MOO8j9QudAtyZoIxe5nOnd3QSigPC01Evgp+miVNWo9wnZUN6h9cyiq/6T?=
- =?us-ascii?Q?CfRW4DYQ5MZelHt18xbfgIq594mXZDSxE+k/4NyqyCTZ5PvHMaUXNBJYcUfz?=
- =?us-ascii?Q?y2q1+d23AwRjnhHkb4ZOrxTykLvgrDuEDauBXy+CfW4XHHSHm30tE39A2q/M?=
- =?us-ascii?Q?ZMemXSGMOZ7nGUwy1Hx4P/nFZN6VN16vV8n/K7TsXb77OF91pJqooTbyrsw3?=
- =?us-ascii?Q?IIparDjlxcQH1pMHgewCJIEpjoMIWc/8KdM+fMhCNwBHqSQaOeecNpHYT3Qg?=
- =?us-ascii?Q?j+UznmVYbnBm8FORtmY5FzzclzUc+FOxH/Ce06jmmegC6nrytch2ikLrz6AM?=
- =?us-ascii?Q?Qj5yYcKPiivb3Xub4KhpAaWLgVLMRk5EytnB05YkUgzsGtHeOY66pZPKTZNs?=
- =?us-ascii?Q?EzRZzh+Ucf15AfmCHpAYCgI1UYHk7TtrGz3JnR4EgpDSJD25iAU5RPgsCmjE?=
- =?us-ascii?Q?9coG7rVV5xTqEydfWdIZRs1Lqq281pqOSGvMxplCLZqveIZgcgLu661MDBoQ?=
- =?us-ascii?Q?DpGDL7d/WkF9lp42NVtgkGVxb/vdj/iGQROJnZ+wsdgSn2XwwdS7j+cVnYQr?=
- =?us-ascii?Q?S6qkMeYf3xWL+vJIoadpzqdr?=
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?CWvTGMvy6Ulfl9v443rAsk+ke6LdrRj/VNMQcU6NhJj195iKOrRswn0rF2+5?=
+ =?us-ascii?Q?3k6SsHQ7cNeFRDbpUYj13Uz2iYdRHdh/nAAM9AHI5EcGTX1xWeVJiUX0R5FC?=
+ =?us-ascii?Q?ZKxq5DI8Lypt121L3H8VtVGUXi6kQgKBMaemDpgL17SQ9Ot1V9dQSgphV2rB?=
+ =?us-ascii?Q?1GCyKA0ZiqF93/yVqAyP3Au3HNBncrGV8GgryE8Iad5WGVMBfRXhIiGP2rDE?=
+ =?us-ascii?Q?b4oh6vcx0s0rCorBhU0p5u55cIv1kDHIVmN8CtukqffdrWsHo7yIyM5LbKSq?=
+ =?us-ascii?Q?REJekGWyUSEmhSRFc5ebsCMwTUeDOB1BcswOmEcsLUnEQPHn3c5o+CCzAJIe?=
+ =?us-ascii?Q?FlYM6ZVkYg8Mts9lajuJ1Y1MJBFZc5bkLyoNFpxXavSP9uabAL43hRmKXV0Q?=
+ =?us-ascii?Q?TgKIhmDZz2+eARY3XcQXUghNxYiIvPCI/MpRFhJyPOFlzRD1TyD6Cpu+tCjN?=
+ =?us-ascii?Q?CmPV7F1IFwFa3Ao1HRZecHClhnjtTXSgGMzLxO5SOtmhA49hryTd76jR94ZC?=
+ =?us-ascii?Q?ZBxg5cPELGcZS8gsnMuRzDj8Rv5NQQXq2css3SrM7u1WKsnzxIYAXwvgMCnV?=
+ =?us-ascii?Q?6+X/5skcK38cGrAnNSjN4GbH597LBznxuD/kJjKIdP6hQ3dEH8sPd3h9AbsO?=
+ =?us-ascii?Q?JxeVeZ9EEOo1NHC2fFmz0aiBIIwnnWPPB9T8L+lNiSa68QjLcKjwyRHC+8GM?=
+ =?us-ascii?Q?Uf6inq9PYeBed8W2YUvIGbrI44wlU/lVTGYpAa3vZak/1vIOZTAaYwZvTukv?=
+ =?us-ascii?Q?7JcMJ0ZJ3loCfRr5NRp9AvwTikYcF9zYgG4dc6izzrlifoFy9NGsGexAvjye?=
+ =?us-ascii?Q?wAjlYnSFNxk69+SSM5stYZbPe3G3Dd9gzhrOVecMD2+m7CuhDKVLqiUic4U0?=
+ =?us-ascii?Q?yaIODeUqc4NF6ZpjO2jrBuYkWoO8LSViFaqFUCbYhvLlKOTTSmOAFuRXNHUl?=
+ =?us-ascii?Q?dI4CuXFj+j9i7pCMJkFcY6ckqA+2a7X3OuHYRC670grQaqfs1GldwlDEDJGt?=
+ =?us-ascii?Q?UBuI0nGjzCdMtTMnrCj15EB5dpOIseiLXAcVP30zdnaKWpkwFPGIkO2c3vp4?=
+ =?us-ascii?Q?lL76IWX9H9vhdV0Rn+gsYiAK0/AE79PLohdUz9K3U5i+tq503u++PAoV5nL3?=
+ =?us-ascii?Q?Vk3eUlpiq7TtGROKgTpH68K2Bp7TrZAet5343eSUf5Sa0isZpBV/rNH3NAlj?=
+ =?us-ascii?Q?QiW4PL0Qv0vb0xIcXJ2I6Z9BAR70I7r+sdzfgsEwHQ2ay16GfwyNXCyslEE4?=
+ =?us-ascii?Q?4SyDXsAzR3UUPcloZCI4aaZarRzWbWX1zAe8V8OpdOu1LJAQxvpF4DNg4O15?=
+ =?us-ascii?Q?PT5kdUGVPbW5/14mzyo/epu1?=
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <7FC3E7294BB39C4C8F6B740EB1077ABE@eurprd04.prod.outlook.com>
+Content-ID: <5B1B2842074C6940ACBAEE144DEED300@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbdb015a-cf81-4cc4-be92-08d8d33326d1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2021 10:59:52.0118 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2d2efa8-74ad-4996-8f0d-08d8d33527b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2021 11:14:12.4076 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: L79TfGRLW6mreVFM2i6XhlYG3clCbA51uahKUFFTRx/Q0d5wEFdbLM4BDRCvqOSX0T71H2zoAhj+nSnTNCmtCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3616
+X-MS-Exchange-CrossTenant-userprincipalname: D9HchOMGLq1OLdIWrKhPcU89Mtx5oypG33KCcUFRz2SkR2OQtcZj3TbQvefaL4UMhxZ7VvoPK8SEuOOAnlEy9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6942
 Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "andrew@lunn.ch" <andrew@lunn.ch>,
  "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
@@ -141,8 +140,8 @@ Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "nikolay@nvidia.com" <nikolay@nvidia.com>,
  "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
  "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v4 5/8] bridge: mrp: Update br_mrp to
- use new return values of br_mrp_switchdev
+Subject: Re: [Bridge] [PATCH net-next v4 6/8] net: mscc: ocelot: Add support
+	for MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -157,44 +156,426 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Feb 16, 2021 at 10:42:02PM +0100, Horatiu Vultur wrote:
-> diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
-> index 01c67ed727a9..12487f6fe9b4 100644
-> --- a/net/bridge/br_mrp.c
-> +++ b/net/bridge/br_mrp.c
-> @@ -639,7 +639,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
->  			 struct br_mrp_ring_role *role)
+On Tue, Feb 16, 2021 at 10:42:03PM +0100, Horatiu Vultur wrote:
+> Add basic support for MRP. The HW will just trap all MRP frames on the
+> ring ports to CPU and allow the SW to process them. In this way it is
+> possible to for this node to behave both as MRM and MRC.
+>=20
+> Current limitations are:
+> - it doesn't support Interconnect roles.
+> - it supports only a single ring.
+> - the HW should be able to do forwarding of MRP Test frames so the SW
+>   will not need to do this. So it would be able to have the role MRC
+>   without SW support.
+>=20
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  drivers/net/ethernet/mscc/Makefile     |   1 +
+>  drivers/net/ethernet/mscc/ocelot.c     |  10 +-
+>  drivers/net/ethernet/mscc/ocelot_mrp.c | 175 +++++++++++++++++++++++++
+>  drivers/net/ethernet/mscc/ocelot_net.c |  60 +++++++++
+>  include/linux/dsa/ocelot.h             |   5 +
+>  include/soc/mscc/ocelot.h              |  45 +++++++
+>  6 files changed, 295 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/net/ethernet/mscc/ocelot_mrp.c
+>=20
+> diff --git a/drivers/net/ethernet/mscc/Makefile b/drivers/net/ethernet/ms=
+cc/Makefile
+> index 346bba2730ad..722c27694b21 100644
+> --- a/drivers/net/ethernet/mscc/Makefile
+> +++ b/drivers/net/ethernet/mscc/Makefile
+> @@ -8,6 +8,7 @@ mscc_ocelot_switch_lib-y :=3D \
+>  	ocelot_flower.o \
+>  	ocelot_ptp.o \
+>  	ocelot_devlink.o
+> +mscc_ocelot_switch_lib-$(CONFIG_BRIDGE_MRP) +=3D ocelot_mrp.o
+>  obj-$(CONFIG_MSCC_OCELOT_SWITCH) +=3D mscc_ocelot.o
+>  mscc_ocelot-y :=3D \
+>  	ocelot_vsc7514.o \
+> diff --git a/drivers/net/ethernet/mscc/ocelot.c b/drivers/net/ethernet/ms=
+cc/ocelot.c
+> index 5d13087c85d6..46e5c9136bac 100644
+> --- a/drivers/net/ethernet/mscc/ocelot.c
+> +++ b/drivers/net/ethernet/mscc/ocelot.c
+> @@ -687,7 +687,7 @@ static int ocelot_xtr_poll_xfh(struct ocelot *ocelot,=
+ int grp, u32 *xfh)
+>  int ocelot_xtr_poll_frame(struct ocelot *ocelot, int grp, struct sk_buff=
+ **nskb)
 >  {
->  	struct br_mrp *mrp =3D br_mrp_find_id(br, role->ring_id);
-> -	int err;
-> +	enum br_mrp_hw_support support;
+>  	struct skb_shared_hwtstamps *shhwtstamps;
+> -	u64 tod_in_ns, full_ts_in_ns;
+> +	u64 tod_in_ns, full_ts_in_ns, cpuq;
+>  	u64 timestamp, src_port, len;
+>  	u32 xfh[OCELOT_TAG_LEN / 4];
+>  	struct net_device *dev;
+> @@ -704,6 +704,7 @@ int ocelot_xtr_poll_frame(struct ocelot *ocelot, int =
+grp, struct sk_buff **nskb)
+>  	ocelot_xfh_get_src_port(xfh, &src_port);
+>  	ocelot_xfh_get_len(xfh, &len);
+>  	ocelot_xfh_get_rew_val(xfh, &timestamp);
+> +	ocelot_xfh_get_cpuq(xfh, &cpuq);
 > =20
->  	if (!mrp)
+>  	if (WARN_ON(src_port >=3D ocelot->num_phys_ports))
 >  		return -EINVAL;
-> @@ -647,9 +647,9 @@ int br_mrp_set_ring_role(struct net_bridge *br,
->  	mrp->ring_role =3D role->ring_role;
+> @@ -770,6 +771,13 @@ int ocelot_xtr_poll_frame(struct ocelot *ocelot, int=
+ grp, struct sk_buff **nskb)
+>  		skb->offload_fwd_mark =3D 1;
 > =20
->  	/* If there is an error just bailed out */
-> -	err =3D br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
-> -	if (err && err !=3D -EOPNOTSUPP)
-> -		return err;
-> +	support =3D br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
-> +	if (support =3D=3D BR_MRP_NONE)
-> +		return -EOPNOTSUPP;
+>  	skb->protocol =3D eth_type_trans(skb, dev);
+> +
+> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> +	if (skb->protocol =3D=3D cpu_to_be16(ETH_P_MRP) &&
+> +	    cpuq & BIT(OCELOT_MRP_CPUQ))
+> +		skb->offload_fwd_mark =3D 0;
+> +#endif
 
-It is broken to update the return type and value of a function in one
-patch, and check for the updated return value in another patch.
+Same comment as in DSA, it sounds simpler to me to just do:
 
-> =20
->  	/* Now detect if the HW actually applied the role or not. If the HW
->  	 * applied the role it means that the SW will not to do those operation=
-s
-> @@ -657,7 +657,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
->  	 * SW when ring is open, but if the is not pushed to the HW the SW will
->  	 * need to detect when the ring is open
->  	 */
-> -	mrp->ring_role_offloaded =3D err =3D=3D -EOPNOTSUPP ? 0 : 1;
-> +	mrp->ring_role_offloaded =3D support =3D=3D BR_MRP_SW ? 0 : 1;
+	if ((ocelot->bridge_mask & BIT(src_port)) &&
+	    !(cpuq & BIT(OCELOT_MRP_CPUQ)))
+		skb->offload_fwd_mark =3D 1;
+
+When we add support for more packet traps, this check will be more
+amortized anyway.
+
+> +
+>  	*nskb =3D skb;
 > =20
 >  	return 0;
->  }=
+> diff --git a/drivers/net/ethernet/mscc/ocelot_mrp.c b/drivers/net/etherne=
+t/mscc/ocelot_mrp.c
+> new file mode 100644
+> index 000000000000..683da320bfd8
+> --- /dev/null
+> +++ b/drivers/net/ethernet/mscc/ocelot_mrp.c
+> @@ -0,0 +1,175 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/* Microsemi Ocelot Switch driver
+> + *
+> + * This contains glue logic between the switchdev driver operations and =
+the
+> + * mscc_ocelot_switch_lib.
+
+Wrong, this _is_ part of the mscc_ocelot_switch_lib. Which is also the
+reason why some of the code below will not work.
+
+> + *
+> + * Copyright (c) 2017, 2019 Microsemi Corporation
+> + * Copyright 2020-2021 NXP Semiconductors
+> + */
+> +
+> +#include <linux/if_bridge.h>
+> +#include <linux/mrp_bridge.h>
+> +#include <soc/mscc/ocelot_vcap.h>
+> +#include <uapi/linux/mrp_bridge.h>
+> +#include "ocelot.h"
+> +#include "ocelot_vcap.h"
+> +
+> +static int ocelot_mrp_del_vcap(struct ocelot *ocelot, int port)
+> +{
+> +	struct ocelot_vcap_block *block_vcap_is2;
+> +	struct ocelot_vcap_filter *filter;
+> +
+> +	block_vcap_is2 =3D &ocelot->block[VCAP_IS2];
+> +	filter =3D ocelot_vcap_block_find_filter_by_id(block_vcap_is2, port,
+> +						     false);
+> +	if (!filter)
+> +		return 0;
+> +
+> +	return ocelot_vcap_filter_del(ocelot, filter);
+> +}
+> +
+> +int ocelot_mrp_add(struct ocelot *ocelot, int port,
+> +		   const struct switchdev_obj_mrp *mrp)
+> +{
+> +	struct ocelot_port *ocelot_port =3D ocelot->ports[port];
+> +	struct ocelot_port_private *priv;
+> +	struct net_device *dev;
+> +
+> +	if (!ocelot_port)
+> +		return -EOPNOTSUPP;
+> +
+> +	priv =3D container_of(ocelot_port, struct ocelot_port_private, port);
+> +	dev =3D priv->dev;
+
+No, no, no.
+The struct net_device registered by DSA uses a netdev_priv of
+struct dsa_slave_priv. You can't just go ahead and assume that the
+caller of this function uses struct ocelot_port_private.
+
+Please go to struct ocelot_port and add:
+	bool is_mrp_primary;
+	bool is_mrp_secondary;
+
+and replace the checks for a net_device with bools.
+
+> +
+> +	if (mrp->p_port !=3D dev && mrp->s_port !=3D dev)
+> +		return 0;
+> +
+> +	if (ocelot->mrp_ring_id !=3D 0 &&
+> +	    ocelot->mrp_s_port &&
+> +	    ocelot->mrp_p_port)
+> +		return -EINVAL;
+> +
+> +	if (mrp->p_port =3D=3D dev)
+> +		ocelot->mrp_p_port =3D dev;
+> +
+> +	if (mrp->s_port =3D=3D dev)
+> +		ocelot->mrp_s_port =3D dev;
+> +
+> +	ocelot->mrp_ring_id =3D mrp->ring_id;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ocelot_mrp_add);
+> +
+> +int ocelot_mrp_del(struct ocelot *ocelot, int port,
+> +		   const struct switchdev_obj_mrp *mrp)
+> +{
+> +	struct ocelot_port *ocelot_port =3D ocelot->ports[port];
+> +	struct ocelot_port_private *priv;
+> +	struct net_device *dev;
+> +
+> +	if (!ocelot_port)
+> +		return -EOPNOTSUPP;
+> +
+> +	priv =3D container_of(ocelot_port, struct ocelot_port_private, port);
+> +	dev =3D priv->dev;
+> +
+> +	if (ocelot->mrp_p_port !=3D dev && ocelot->mrp_s_port !=3D dev)
+> +		return 0;
+> +
+> +	if (ocelot->mrp_ring_id =3D=3D 0 &&
+> +	    !ocelot->mrp_s_port &&
+> +	    !ocelot->mrp_p_port)
+> +		return -EINVAL;
+> +
+> +	if (ocelot_mrp_del_vcap(ocelot, priv->chip_port))
+> +		return -EINVAL;
+> +
+> +	if (ocelot->mrp_p_port =3D=3D dev)
+> +		ocelot->mrp_p_port =3D NULL;
+> +
+> +	if (ocelot->mrp_s_port =3D=3D dev)
+> +		ocelot->mrp_s_port =3D NULL;
+> +
+> +	ocelot->mrp_ring_id =3D 0;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(ocelot_mrp_del);
+> +
+> +int ocelot_mrp_add_ring_role(struct ocelot *ocelot, int port,
+> +			     const struct switchdev_obj_ring_role_mrp *mrp)
+> +{
+> +	struct ocelot_port *ocelot_port =3D ocelot->ports[port];
+> +	struct ocelot_vcap_filter *filter;
+> +	struct ocelot_port_private *priv;
+> +	struct net_device *dev;
+> +	int err;
+> +
+> +	if (!ocelot_port)
+> +		return -EOPNOTSUPP;
+> +
+> +	priv =3D container_of(ocelot_port, struct ocelot_port_private, port);
+> +	dev =3D priv->dev;
+> +
+> +	if (ocelot->mrp_ring_id !=3D mrp->ring_id)
+> +		return -EINVAL;
+> +
+> +	if (!mrp->sw_backup)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (ocelot->mrp_p_port !=3D dev && ocelot->mrp_s_port !=3D dev)
+> +		return 0;
+> +
+> +	filter =3D kzalloc(sizeof(*filter), GFP_ATOMIC);
+> +	if (!filter)
+> +		return -ENOMEM;
+> +
+> +	filter->key_type =3D OCELOT_VCAP_KEY_ETYPE;
+> +	filter->prio =3D 1;
+> +	filter->id.cookie =3D priv->chip_port;
+
+You have "port" already. This is also wrong for the reason I stated above:
+no "priv" in the common library.
+
+> +	filter->id.tc_offload =3D false;
+> +	filter->block_id =3D VCAP_IS2;
+> +	filter->type =3D OCELOT_VCAP_FILTER_OFFLOAD;
+> +	filter->ingress_port_mask =3D BIT(priv->chip_port);
+> +	*(__be16 *)filter->key.etype.etype.value =3D htons(ETH_P_MRP);
+> +	*(__be16 *)filter->key.etype.etype.mask =3D htons(0xffff);
+> +	filter->action.mask_mode =3D OCELOT_MASK_MODE_PERMIT_DENY;
+> +	filter->action.port_mask =3D 0x0;
+> +	filter->action.cpu_copy_ena =3D true;
+> +	filter->action.cpu_qu_num =3D OCELOT_MRP_CPUQ;
+> +
+> +	err =3D ocelot_vcap_filter_add(ocelot, filter, NULL);
+> +	if (err)
+> +		kfree(filter);
+> +
+> +	return err;
+> +}
+> +EXPORT_SYMBOL(ocelot_mrp_add_ring_role);
+> +
+> +int ocelot_mrp_del_ring_role(struct ocelot *ocelot, int port,
+> +			     const struct switchdev_obj_ring_role_mrp *mrp)
+> +{
+> +	struct ocelot_port *ocelot_port =3D ocelot->ports[port];
+> +	struct ocelot_port_private *priv;
+> +	struct net_device *dev;
+> +
+> +	if (!ocelot_port)
+> +		return -EOPNOTSUPP;
+> +
+> +	priv =3D container_of(ocelot_port, struct ocelot_port_private, port);
+> +	dev =3D priv->dev;
+> +
+> +	if (ocelot->mrp_ring_id !=3D mrp->ring_id)
+> +		return -EINVAL;
+> +
+> +	if (!mrp->sw_backup)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (ocelot->mrp_p_port !=3D dev && ocelot->mrp_s_port !=3D dev)
+> +		return 0;
+> +
+> +	return ocelot_mrp_del_vcap(ocelot, priv->chip_port);
+> +}
+> +EXPORT_SYMBOL(ocelot_mrp_del_ring_role);
+> diff --git a/drivers/net/ethernet/mscc/ocelot_net.c b/drivers/net/etherne=
+t/mscc/ocelot_net.c
+> index 6518262532f0..12cb6867a2d0 100644
+> --- a/drivers/net/ethernet/mscc/ocelot_net.c
+> +++ b/drivers/net/ethernet/mscc/ocelot_net.c
+> @@ -1010,6 +1010,52 @@ static int ocelot_port_obj_del_mdb(struct net_devi=
+ce *dev,
+>  	return ocelot_port_mdb_del(ocelot, port, mdb);
+>  }
+> =20
+> +static int ocelot_port_obj_mrp_add(struct net_device *dev,
+> +				   const struct switchdev_obj_mrp *mrp)
+> +{
+> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
+> +	struct ocelot_port *ocelot_port =3D &priv->port;
+> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
+> +	int port =3D priv->chip_port;
+> +
+> +	return ocelot_mrp_add(ocelot, port, mrp);
+> +}
+> +
+> +static int ocelot_port_obj_mrp_del(struct net_device *dev,
+> +				   const struct switchdev_obj_mrp *mrp)
+> +{
+> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
+> +	struct ocelot_port *ocelot_port =3D &priv->port;
+> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
+> +	int port =3D priv->chip_port;
+> +
+> +	return ocelot_mrp_del(ocelot, port, mrp);
+> +}
+> +
+> +static int
+> +ocelot_port_obj_mrp_add_ring_role(struct net_device *dev,
+> +				  const struct switchdev_obj_ring_role_mrp *mrp)
+> +{
+> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
+> +	struct ocelot_port *ocelot_port =3D &priv->port;
+> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
+> +	int port =3D priv->chip_port;
+> +
+> +	return ocelot_mrp_add_ring_role(ocelot, port, mrp);
+> +}
+> +
+> +static int
+> +ocelot_port_obj_mrp_del_ring_role(struct net_device *dev,
+> +				  const struct switchdev_obj_ring_role_mrp *mrp)
+> +{
+> +	struct ocelot_port_private *priv =3D netdev_priv(dev);
+> +	struct ocelot_port *ocelot_port =3D &priv->port;
+> +	struct ocelot *ocelot =3D ocelot_port->ocelot;
+> +	int port =3D priv->chip_port;
+> +
+> +	return ocelot_mrp_del_ring_role(ocelot, port, mrp);
+> +}
+> +
+>  static int ocelot_port_obj_add(struct net_device *dev,
+>  			       const struct switchdev_obj *obj,
+>  			       struct netlink_ext_ack *extack)
+> @@ -1024,6 +1070,13 @@ static int ocelot_port_obj_add(struct net_device *=
+dev,
+>  	case SWITCHDEV_OBJ_ID_PORT_MDB:
+>  		ret =3D ocelot_port_obj_add_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
+>  		break;
+> +	case SWITCHDEV_OBJ_ID_MRP:
+> +		ret =3D ocelot_port_obj_mrp_add(dev, SWITCHDEV_OBJ_MRP(obj));
+> +		break;
+> +	case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
+> +		ret =3D ocelot_port_obj_mrp_add_ring_role(dev,
+> +							SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
+> +		break;
+>  	default:
+>  		return -EOPNOTSUPP;
+>  	}
+> @@ -1044,6 +1097,13 @@ static int ocelot_port_obj_del(struct net_device *=
+dev,
+>  	case SWITCHDEV_OBJ_ID_PORT_MDB:
+>  		ret =3D ocelot_port_obj_del_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
+>  		break;
+> +	case SWITCHDEV_OBJ_ID_MRP:
+> +		ret =3D ocelot_port_obj_mrp_del(dev, SWITCHDEV_OBJ_MRP(obj));
+> +		break;
+> +	case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
+> +		ret =3D ocelot_port_obj_mrp_del_ring_role(dev,
+> +							SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
+> +		break;
+>  	default:
+>  		return -EOPNOTSUPP;
+>  	}
+> diff --git a/include/linux/dsa/ocelot.h b/include/linux/dsa/ocelot.h
+> index c6bc45ae5e03..4265f328681a 100644
+> --- a/include/linux/dsa/ocelot.h
+> +++ b/include/linux/dsa/ocelot.h
+> @@ -160,6 +160,11 @@ static inline void ocelot_xfh_get_src_port(void *ext=
+raction, u64 *src_port)
+>  	packing(extraction, src_port, 46, 43, OCELOT_TAG_LEN, UNPACK, 0);
+>  }
+> =20
+> +static inline void ocelot_xfh_get_cpuq(void *extraction, u64 *cpuq)
+> +{
+> +	packing(extraction, cpuq, 28, 20, OCELOT_TAG_LEN, UNPACK, 0);
+> +}
+> +
+>  static inline void ocelot_xfh_get_qos_class(void *extraction, u64 *qos_c=
+lass)
+>  {
+>  	packing(extraction, qos_class, 19, 17, OCELOT_TAG_LEN, UNPACK, 0);
+> diff --git a/include/soc/mscc/ocelot.h b/include/soc/mscc/ocelot.h
+> index 1f2d90976564..425ff29d9389 100644
+> --- a/include/soc/mscc/ocelot.h
+> +++ b/include/soc/mscc/ocelot.h
+> @@ -112,6 +112,8 @@
+>  #define REG_RESERVED_ADDR		0xffffffff
+>  #define REG_RESERVED(reg)		REG(reg, REG_RESERVED_ADDR)
+> =20
+> +#define OCELOT_MRP_CPUQ			7
+> +
+>  enum ocelot_target {
+>  	ANA =3D 1,
+>  	QS,
+> @@ -677,6 +679,12 @@ struct ocelot {
+>  	/* Protects the PTP clock */
+>  	spinlock_t			ptp_clock_lock;
+>  	struct ptp_pin_desc		ptp_pins[OCELOT_PTP_PINS_NUM];
+> +
+> +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> +	u16				mrp_ring_id;
+> +	struct net_device		*mrp_p_port;
+> +	struct net_device		*mrp_s_port;
+> +#endif
+
+I'd rather have this without the ifdeffery, doesn't seem too expensive
+to justify compiling it out. We have a 4K array of VLANs in struct
+ocelot, for god's sake.=
