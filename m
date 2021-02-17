@@ -2,78 +2,78 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB2A31DD21
-	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 17:18:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1501831DD48
+	for <lists.bridge@lfdr.de>; Wed, 17 Feb 2021 17:26:43 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id CC30D85585;
-	Wed, 17 Feb 2021 16:18:53 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 5483185F5F;
+	Wed, 17 Feb 2021 16:26:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from fraxinus.osuosl.org ([127.0.0.1])
 	by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id B9kPOe0V--Wd; Wed, 17 Feb 2021 16:18:53 +0000 (UTC)
+	with ESMTP id mK-jV7V-myOR; Wed, 17 Feb 2021 16:26:40 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by fraxinus.osuosl.org (Postfix) with ESMTP id 2798B85643;
-	Wed, 17 Feb 2021 16:18:53 +0000 (UTC)
+	by fraxinus.osuosl.org (Postfix) with ESMTP id 34D608484B;
+	Wed, 17 Feb 2021 16:26:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F3E31C1DA9;
-	Wed, 17 Feb 2021 16:18:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 12FACC1DA9;
+	Wed, 17 Feb 2021 16:26:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from fraxinus.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4AA5FC013A
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:18:51 +0000 (UTC)
+Received: from whitealder.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ED930C013A
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:26:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by fraxinus.osuosl.org (Postfix) with ESMTP id 3942585585
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:18:51 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTP id DA0B18677B
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:26:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from fraxinus.osuosl.org ([127.0.0.1])
+Received: from whitealder.osuosl.org ([127.0.0.1])
  by localhost (.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id acS_aKCrdIDu for <bridge@lists.linux-foundation.org>;
- Wed, 17 Feb 2021 16:18:50 +0000 (UTC)
+ with ESMTP id SrMNCsQFzP3M for <bridge@lists.linux-foundation.org>;
+ Wed, 17 Feb 2021 16:26:37 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
  [68.232.154.123])
- by fraxinus.osuosl.org (Postfix) with ESMTPS id 7181D854DB
- for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:18:50 +0000 (UTC)
+ by whitealder.osuosl.org (Postfix) with ESMTPS id 20E07860CE
+ for <bridge@lists.linux-foundation.org>; Wed, 17 Feb 2021 16:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1613578730; x=1645114730;
+ t=1613579196; x=1645115196;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Cs4BA7FTmjYzHJsFq1qDXA+grIoaOTs9jb/eR7cncrc=;
- b=EZ14kR3rjvYRt1242CdfpIjaakRelewHHAfJPsUSXAQkybJoQYxmb5pF
- Nt3nj1rKZhZo2re86ysA9nbw6QMjkXYbB1FUo8ZEOyrCwL9pWK+7EHeh0
- ezwRN5zRwlcJBo9OLLXzDyaiTJ0ZXSilFzDcjLgdx3956XLOqI4hSF/f8
- CRl45vcqCmKUAu295ljC7lRJQGlT6n+nCJGQXwJSJj/3QfY6/dBl7Vwas
- pN/54CaRGp0biX8UwlFAyjIfS7J5DUCq3bld6qVmTjnG6IPEmK7+IBk5s
- Ikw3pJyLAK0NyBwsQf/Xxem42lf6TfHu+zsVk3IuH0vkc466jsodP4DVi g==;
-IronPort-SDR: KIECLvx6Y04Xxp7Nx/aNJRKTcHeDcZNBNyXo5IgQYH4Hn4tWRG4cbKD37H0G+Yp8jLBJSZaqhR
- 2Q6KC24saFrgKMR029tvuX+MX3AGPUg0d30jI5sZywy71oHRdtljd6qBeHB4qOJbHPXMa99JGX
- VqjrorV51nLn5t8Tw8fU3DT/cmCx24i2IXHuGZz5bVgEs9qOVaViqeOjisWffPcr/ekeLmofFN
- MUN8iGwJPTpzWbSpz/JnujVrw/guujmRrg11TZZSE70YtWUmontJMRs0ALp/MXvV14X83+Ohug
- WEo=
-X-IronPort-AV: E=Sophos;i="5.81,184,1610434800"; d="scan'208";a="106969729"
+ bh=WWWl9nm99DtxQeUAk+aM9D9jAqCvHgBA7BfwU7mUjY0=;
+ b=f5lQNHesWI7o0iBW9lwpCNkIML5UuaX4xwlBgUAgozTQ3ceMQdx/6S0+
+ XDJqXOWVziv6j4oNBWfVq7elNtn5NCY6bGqnaLZfyo2Ntms749VELn9ch
+ TWt1WEF6Hfcs/Uglvt1pjeW/XjkLgNx0g8HH+iechnEvLAQeauHBF2GPF
+ 8xsuFwL3VyS43zLMra5L7QFszZ0aQfG77Xv12RjgEn99CcVmuJv+H7RCh
+ NJqqc1VkxeTTJdI/OPwaZYKC2MX+f5h0J7pcFe9HIaFi151nLAuiWRFPh
+ 6YInofxSJFWk4OG087lW7Lca8tC94wHqGUz4c56R/Vlujqk31HgWOCf3K Q==;
+IronPort-SDR: U+HnFyCxcxE5Ob60Nuu8ASQ8qnQL+0jFz3khAFRw4xVcg2KmKPxXCWayan7pb1CD7Z0zWMtMri
+ 1UmKFvkWLRw1INaCT8pBF0rZhCVOZV0Gk5qmHXyHptjyLT4Em8ABJy8VFbSjhE7ru/pTl/4zNS
+ PRSA7uo0eZ85VeG5OmGOkF+iEHkUzEKzuWIfHHCK5OyYWSJg5DcBltNL0GofuS4aLO105CjPOW
+ W1w8avln62/K4gmW8vaCAzfFRT5HHU5HRBI7EHjcEhwSOPO2l9k9QZZPa6mVnJhLpszVd9rraf
+ aeM=
+X-IronPort-AV: E=Sophos;i="5.81,184,1610434800"; d="scan'208";a="44474054"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 17 Feb 2021 09:18:48 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 17 Feb 2021 09:25:53 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 17 Feb 2021 09:18:48 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 17 Feb 2021 09:18:48 -0700
-Date: Wed, 17 Feb 2021 17:18:47 +0100
+ 15.1.1979.3; Wed, 17 Feb 2021 09:25:53 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Wed, 17 Feb 2021 09:25:53 -0700
+Date: Wed, 17 Feb 2021 17:25:52 +0100
 To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Message-ID: <20210217161847.6ntm52kqk7ygata7@soft-dev3.localdomain>
+Message-ID: <20210217162552.3q4k73udf4x4kpbr@soft-dev3.localdomain>
 References: <20210216214205.32385-1-horatiu.vultur@microchip.com>
- <20210216214205.32385-6-horatiu.vultur@microchip.com>
- <20210217105951.5nyfclvf6e2p2nkf@skbuf>
+ <20210216214205.32385-7-horatiu.vultur@microchip.com>
+ <20210217111411.plsod67qdzb5ybpm@skbuf>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20210217105951.5nyfclvf6e2p2nkf@skbuf>
+In-Reply-To: <20210217111411.plsod67qdzb5ybpm@skbuf>
 Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "andrew@lunn.ch" <andrew@lunn.ch>,
  "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
@@ -89,8 +89,8 @@ Cc: "ivecera@redhat.com" <ivecera@redhat.com>,
  "nikolay@nvidia.com" <nikolay@nvidia.com>,
  "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
  "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v4 5/8] bridge: mrp: Update br_mrp to
- use new return values of br_mrp_switchdev
+Subject: Re: [Bridge] [PATCH net-next v4 6/8] net: mscc: ocelot: Add support
+	for MRP
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,53 +107,433 @@ Reply-To: Horatiu Vultur <horatiu.vultur@microchip.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The 02/17/2021 10:59, Vladimir Oltean wrote:
+The 02/17/2021 11:14, Vladimir Oltean wrote:
 > 
-> On Tue, Feb 16, 2021 at 10:42:02PM +0100, Horatiu Vultur wrote:
-> > diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
-> > index 01c67ed727a9..12487f6fe9b4 100644
-> > --- a/net/bridge/br_mrp.c
-> > +++ b/net/bridge/br_mrp.c
-> > @@ -639,7 +639,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
-> >                        struct br_mrp_ring_role *role)
+> On Tue, Feb 16, 2021 at 10:42:03PM +0100, Horatiu Vultur wrote:
+> > Add basic support for MRP. The HW will just trap all MRP frames on the
+> > ring ports to CPU and allow the SW to process them. In this way it is
+> > possible to for this node to behave both as MRM and MRC.
+> >
+> > Current limitations are:
+> > - it doesn't support Interconnect roles.
+> > - it supports only a single ring.
+> > - the HW should be able to do forwarding of MRP Test frames so the SW
+> >   will not need to do this. So it would be able to have the role MRC
+> >   without SW support.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  drivers/net/ethernet/mscc/Makefile     |   1 +
+> >  drivers/net/ethernet/mscc/ocelot.c     |  10 +-
+> >  drivers/net/ethernet/mscc/ocelot_mrp.c | 175 +++++++++++++++++++++++++
+> >  drivers/net/ethernet/mscc/ocelot_net.c |  60 +++++++++
+> >  include/linux/dsa/ocelot.h             |   5 +
+> >  include/soc/mscc/ocelot.h              |  45 +++++++
+> >  6 files changed, 295 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/net/ethernet/mscc/ocelot_mrp.c
+> >
+> > diff --git a/drivers/net/ethernet/mscc/Makefile b/drivers/net/ethernet/mscc/Makefile
+> > index 346bba2730ad..722c27694b21 100644
+> > --- a/drivers/net/ethernet/mscc/Makefile
+> > +++ b/drivers/net/ethernet/mscc/Makefile
+> > @@ -8,6 +8,7 @@ mscc_ocelot_switch_lib-y := \
+> >       ocelot_flower.o \
+> >       ocelot_ptp.o \
+> >       ocelot_devlink.o
+> > +mscc_ocelot_switch_lib-$(CONFIG_BRIDGE_MRP) += ocelot_mrp.o
+> >  obj-$(CONFIG_MSCC_OCELOT_SWITCH) += mscc_ocelot.o
+> >  mscc_ocelot-y := \
+> >       ocelot_vsc7514.o \
+> > diff --git a/drivers/net/ethernet/mscc/ocelot.c b/drivers/net/ethernet/mscc/ocelot.c
+> > index 5d13087c85d6..46e5c9136bac 100644
+> > --- a/drivers/net/ethernet/mscc/ocelot.c
+> > +++ b/drivers/net/ethernet/mscc/ocelot.c
+> > @@ -687,7 +687,7 @@ static int ocelot_xtr_poll_xfh(struct ocelot *ocelot, int grp, u32 *xfh)
+> >  int ocelot_xtr_poll_frame(struct ocelot *ocelot, int grp, struct sk_buff **nskb)
 > >  {
-> >       struct br_mrp *mrp = br_mrp_find_id(br, role->ring_id);
-> > -     int err;
-> > +     enum br_mrp_hw_support support;
+> >       struct skb_shared_hwtstamps *shhwtstamps;
+> > -     u64 tod_in_ns, full_ts_in_ns;
+> > +     u64 tod_in_ns, full_ts_in_ns, cpuq;
+> >       u64 timestamp, src_port, len;
+> >       u32 xfh[OCELOT_TAG_LEN / 4];
+> >       struct net_device *dev;
+> > @@ -704,6 +704,7 @@ int ocelot_xtr_poll_frame(struct ocelot *ocelot, int grp, struct sk_buff **nskb)
+> >       ocelot_xfh_get_src_port(xfh, &src_port);
+> >       ocelot_xfh_get_len(xfh, &len);
+> >       ocelot_xfh_get_rew_val(xfh, &timestamp);
+> > +     ocelot_xfh_get_cpuq(xfh, &cpuq);
 > >
-> >       if (!mrp)
+> >       if (WARN_ON(src_port >= ocelot->num_phys_ports))
 > >               return -EINVAL;
-> > @@ -647,9 +647,9 @@ int br_mrp_set_ring_role(struct net_bridge *br,
-> >       mrp->ring_role = role->ring_role;
+> > @@ -770,6 +771,13 @@ int ocelot_xtr_poll_frame(struct ocelot *ocelot, int grp, struct sk_buff **nskb)
+> >               skb->offload_fwd_mark = 1;
 > >
-> >       /* If there is an error just bailed out */
-> > -     err = br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
-> > -     if (err && err != -EOPNOTSUPP)
-> > -             return err;
-> > +     support = br_mrp_switchdev_set_ring_role(br, mrp, role->ring_role);
-> > +     if (support == BR_MRP_NONE)
-> > +             return -EOPNOTSUPP;
-> 
-> It is broken to update the return type and value of a function in one
-> patch, and check for the updated return value in another patch.
-> 
+> >       skb->protocol = eth_type_trans(skb, dev);
+> > +
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +     if (skb->protocol == cpu_to_be16(ETH_P_MRP) &&
+> > +         cpuq & BIT(OCELOT_MRP_CPUQ))
+> > +             skb->offload_fwd_mark = 0;
+> > +#endif
 
-Yes, I will be more careful next time. I have tried to compile between
-the patches and I have not see any issues here so I though that
-everything is good.
+Hi Vladimir,
 
-> >
-> >       /* Now detect if the HW actually applied the role or not. If the HW
-> >        * applied the role it means that the SW will not to do those operations
-> > @@ -657,7 +657,7 @@ int br_mrp_set_ring_role(struct net_bridge *br,
-> >        * SW when ring is open, but if the is not pushed to the HW the SW will
-> >        * need to detect when the ring is open
-> >        */
-> > -     mrp->ring_role_offloaded = err == -EOPNOTSUPP ? 0 : 1;
-> > +     mrp->ring_role_offloaded = support == BR_MRP_SW ? 0 : 1;
+> 
+> Same comment as in DSA, it sounds simpler to me to just do:
+> 
+>         if ((ocelot->bridge_mask & BIT(src_port)) &&
+>             !(cpuq & BIT(OCELOT_MRP_CPUQ)))
+>                 skb->offload_fwd_mark = 1;
+> 
+> When we add support for more packet traps, this check will be more
+> amortized anyway.
+
+Yes that looks simpler. But actually I think we can remove this once we
+will do the forwarding of the frames in HW. And of course the same will
+apply also for DSA driver.
+
+> 
+> > +
+> >       *nskb = skb;
 > >
 > >       return 0;
+> > diff --git a/drivers/net/ethernet/mscc/ocelot_mrp.c b/drivers/net/ethernet/mscc/ocelot_mrp.c
+> > new file mode 100644
+> > index 000000000000..683da320bfd8
+> > --- /dev/null
+> > +++ b/drivers/net/ethernet/mscc/ocelot_mrp.c
+> > @@ -0,0 +1,175 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/* Microsemi Ocelot Switch driver
+> > + *
+> > + * This contains glue logic between the switchdev driver operations and the
+> > + * mscc_ocelot_switch_lib.
+> 
+> Wrong, this _is_ part of the mscc_ocelot_switch_lib. Which is also the
+> reason why some of the code below will not work.
+
+Yes, this was the result of copy - paste.
+
+> 
+> > + *
+> > + * Copyright (c) 2017, 2019 Microsemi Corporation
+> > + * Copyright 2020-2021 NXP Semiconductors
+> > + */
+> > +
+> > +#include <linux/if_bridge.h>
+> > +#include <linux/mrp_bridge.h>
+> > +#include <soc/mscc/ocelot_vcap.h>
+> > +#include <uapi/linux/mrp_bridge.h>
+> > +#include "ocelot.h"
+> > +#include "ocelot_vcap.h"
+> > +
+> > +static int ocelot_mrp_del_vcap(struct ocelot *ocelot, int port)
+> > +{
+> > +     struct ocelot_vcap_block *block_vcap_is2;
+> > +     struct ocelot_vcap_filter *filter;
+> > +
+> > +     block_vcap_is2 = &ocelot->block[VCAP_IS2];
+> > +     filter = ocelot_vcap_block_find_filter_by_id(block_vcap_is2, port,
+> > +                                                  false);
+> > +     if (!filter)
+> > +             return 0;
+> > +
+> > +     return ocelot_vcap_filter_del(ocelot, filter);
+> > +}
+> > +
+> > +int ocelot_mrp_add(struct ocelot *ocelot, int port,
+> > +                const struct switchdev_obj_mrp *mrp)
+> > +{
+> > +     struct ocelot_port *ocelot_port = ocelot->ports[port];
+> > +     struct ocelot_port_private *priv;
+> > +     struct net_device *dev;
+> > +
+> > +     if (!ocelot_port)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     priv = container_of(ocelot_port, struct ocelot_port_private, port);
+> > +     dev = priv->dev;
+> 
+> No, no, no.
+> The struct net_device registered by DSA uses a netdev_priv of
+> struct dsa_slave_priv. You can't just go ahead and assume that the
+> caller of this function uses struct ocelot_port_private.
+> 
+> Please go to struct ocelot_port and add:
+>         bool is_mrp_primary;
+>         bool is_mrp_secondary;
+> 
+> and replace the checks for a net_device with bools.
+
+My bad. I will create a new patch with your suggestion.
+
+> 
+> > +
+> > +     if (mrp->p_port != dev && mrp->s_port != dev)
+> > +             return 0;
+> > +
+> > +     if (ocelot->mrp_ring_id != 0 &&
+> > +         ocelot->mrp_s_port &&
+> > +         ocelot->mrp_p_port)
+> > +             return -EINVAL;
+> > +
+> > +     if (mrp->p_port == dev)
+> > +             ocelot->mrp_p_port = dev;
+> > +
+> > +     if (mrp->s_port == dev)
+> > +             ocelot->mrp_s_port = dev;
+> > +
+> > +     ocelot->mrp_ring_id = mrp->ring_id;
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(ocelot_mrp_add);
+> > +
+> > +int ocelot_mrp_del(struct ocelot *ocelot, int port,
+> > +                const struct switchdev_obj_mrp *mrp)
+> > +{
+> > +     struct ocelot_port *ocelot_port = ocelot->ports[port];
+> > +     struct ocelot_port_private *priv;
+> > +     struct net_device *dev;
+> > +
+> > +     if (!ocelot_port)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     priv = container_of(ocelot_port, struct ocelot_port_private, port);
+> > +     dev = priv->dev;
+> > +
+> > +     if (ocelot->mrp_p_port != dev && ocelot->mrp_s_port != dev)
+> > +             return 0;
+> > +
+> > +     if (ocelot->mrp_ring_id == 0 &&
+> > +         !ocelot->mrp_s_port &&
+> > +         !ocelot->mrp_p_port)
+> > +             return -EINVAL;
+> > +
+> > +     if (ocelot_mrp_del_vcap(ocelot, priv->chip_port))
+> > +             return -EINVAL;
+> > +
+> > +     if (ocelot->mrp_p_port == dev)
+> > +             ocelot->mrp_p_port = NULL;
+> > +
+> > +     if (ocelot->mrp_s_port == dev)
+> > +             ocelot->mrp_s_port = NULL;
+> > +
+> > +     ocelot->mrp_ring_id = 0;
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(ocelot_mrp_del);
+> > +
+> > +int ocelot_mrp_add_ring_role(struct ocelot *ocelot, int port,
+> > +                          const struct switchdev_obj_ring_role_mrp *mrp)
+> > +{
+> > +     struct ocelot_port *ocelot_port = ocelot->ports[port];
+> > +     struct ocelot_vcap_filter *filter;
+> > +     struct ocelot_port_private *priv;
+> > +     struct net_device *dev;
+> > +     int err;
+> > +
+> > +     if (!ocelot_port)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     priv = container_of(ocelot_port, struct ocelot_port_private, port);
+> > +     dev = priv->dev;
+> > +
+> > +     if (ocelot->mrp_ring_id != mrp->ring_id)
+> > +             return -EINVAL;
+> > +
+> > +     if (!mrp->sw_backup)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     if (ocelot->mrp_p_port != dev && ocelot->mrp_s_port != dev)
+> > +             return 0;
+> > +
+> > +     filter = kzalloc(sizeof(*filter), GFP_ATOMIC);
+> > +     if (!filter)
+> > +             return -ENOMEM;
+> > +
+> > +     filter->key_type = OCELOT_VCAP_KEY_ETYPE;
+> > +     filter->prio = 1;
+> > +     filter->id.cookie = priv->chip_port;
+> 
+> You have "port" already. This is also wrong for the reason I stated above:
+> no "priv" in the common library.
+> 
+> > +     filter->id.tc_offload = false;
+> > +     filter->block_id = VCAP_IS2;
+> > +     filter->type = OCELOT_VCAP_FILTER_OFFLOAD;
+> > +     filter->ingress_port_mask = BIT(priv->chip_port);
+> > +     *(__be16 *)filter->key.etype.etype.value = htons(ETH_P_MRP);
+> > +     *(__be16 *)filter->key.etype.etype.mask = htons(0xffff);
+> > +     filter->action.mask_mode = OCELOT_MASK_MODE_PERMIT_DENY;
+> > +     filter->action.port_mask = 0x0;
+> > +     filter->action.cpu_copy_ena = true;
+> > +     filter->action.cpu_qu_num = OCELOT_MRP_CPUQ;
+> > +
+> > +     err = ocelot_vcap_filter_add(ocelot, filter, NULL);
+> > +     if (err)
+> > +             kfree(filter);
+> > +
+> > +     return err;
+> > +}
+> > +EXPORT_SYMBOL(ocelot_mrp_add_ring_role);
+> > +
+> > +int ocelot_mrp_del_ring_role(struct ocelot *ocelot, int port,
+> > +                          const struct switchdev_obj_ring_role_mrp *mrp)
+> > +{
+> > +     struct ocelot_port *ocelot_port = ocelot->ports[port];
+> > +     struct ocelot_port_private *priv;
+> > +     struct net_device *dev;
+> > +
+> > +     if (!ocelot_port)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     priv = container_of(ocelot_port, struct ocelot_port_private, port);
+> > +     dev = priv->dev;
+> > +
+> > +     if (ocelot->mrp_ring_id != mrp->ring_id)
+> > +             return -EINVAL;
+> > +
+> > +     if (!mrp->sw_backup)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     if (ocelot->mrp_p_port != dev && ocelot->mrp_s_port != dev)
+> > +             return 0;
+> > +
+> > +     return ocelot_mrp_del_vcap(ocelot, priv->chip_port);
+> > +}
+> > +EXPORT_SYMBOL(ocelot_mrp_del_ring_role);
+> > diff --git a/drivers/net/ethernet/mscc/ocelot_net.c b/drivers/net/ethernet/mscc/ocelot_net.c
+> > index 6518262532f0..12cb6867a2d0 100644
+> > --- a/drivers/net/ethernet/mscc/ocelot_net.c
+> > +++ b/drivers/net/ethernet/mscc/ocelot_net.c
+> > @@ -1010,6 +1010,52 @@ static int ocelot_port_obj_del_mdb(struct net_device *dev,
+> >       return ocelot_port_mdb_del(ocelot, port, mdb);
 > >  }
+> >
+> > +static int ocelot_port_obj_mrp_add(struct net_device *dev,
+> > +                                const struct switchdev_obj_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +     int port = priv->chip_port;
+> > +
+> > +     return ocelot_mrp_add(ocelot, port, mrp);
+> > +}
+> > +
+> > +static int ocelot_port_obj_mrp_del(struct net_device *dev,
+> > +                                const struct switchdev_obj_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +     int port = priv->chip_port;
+> > +
+> > +     return ocelot_mrp_del(ocelot, port, mrp);
+> > +}
+> > +
+> > +static int
+> > +ocelot_port_obj_mrp_add_ring_role(struct net_device *dev,
+> > +                               const struct switchdev_obj_ring_role_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +     int port = priv->chip_port;
+> > +
+> > +     return ocelot_mrp_add_ring_role(ocelot, port, mrp);
+> > +}
+> > +
+> > +static int
+> > +ocelot_port_obj_mrp_del_ring_role(struct net_device *dev,
+> > +                               const struct switchdev_obj_ring_role_mrp *mrp)
+> > +{
+> > +     struct ocelot_port_private *priv = netdev_priv(dev);
+> > +     struct ocelot_port *ocelot_port = &priv->port;
+> > +     struct ocelot *ocelot = ocelot_port->ocelot;
+> > +     int port = priv->chip_port;
+> > +
+> > +     return ocelot_mrp_del_ring_role(ocelot, port, mrp);
+> > +}
+> > +
+> >  static int ocelot_port_obj_add(struct net_device *dev,
+> >                              const struct switchdev_obj *obj,
+> >                              struct netlink_ext_ack *extack)
+> > @@ -1024,6 +1070,13 @@ static int ocelot_port_obj_add(struct net_device *dev,
+> >       case SWITCHDEV_OBJ_ID_PORT_MDB:
+> >               ret = ocelot_port_obj_add_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
+> >               break;
+> > +     case SWITCHDEV_OBJ_ID_MRP:
+> > +             ret = ocelot_port_obj_mrp_add(dev, SWITCHDEV_OBJ_MRP(obj));
+> > +             break;
+> > +     case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
+> > +             ret = ocelot_port_obj_mrp_add_ring_role(dev,
+> > +                                                     SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
+> > +             break;
+> >       default:
+> >               return -EOPNOTSUPP;
+> >       }
+> > @@ -1044,6 +1097,13 @@ static int ocelot_port_obj_del(struct net_device *dev,
+> >       case SWITCHDEV_OBJ_ID_PORT_MDB:
+> >               ret = ocelot_port_obj_del_mdb(dev, SWITCHDEV_OBJ_PORT_MDB(obj));
+> >               break;
+> > +     case SWITCHDEV_OBJ_ID_MRP:
+> > +             ret = ocelot_port_obj_mrp_del(dev, SWITCHDEV_OBJ_MRP(obj));
+> > +             break;
+> > +     case SWITCHDEV_OBJ_ID_RING_ROLE_MRP:
+> > +             ret = ocelot_port_obj_mrp_del_ring_role(dev,
+> > +                                                     SWITCHDEV_OBJ_RING_ROLE_MRP(obj));
+> > +             break;
+> >       default:
+> >               return -EOPNOTSUPP;
+> >       }
+> > diff --git a/include/linux/dsa/ocelot.h b/include/linux/dsa/ocelot.h
+> > index c6bc45ae5e03..4265f328681a 100644
+> > --- a/include/linux/dsa/ocelot.h
+> > +++ b/include/linux/dsa/ocelot.h
+> > @@ -160,6 +160,11 @@ static inline void ocelot_xfh_get_src_port(void *extraction, u64 *src_port)
+> >       packing(extraction, src_port, 46, 43, OCELOT_TAG_LEN, UNPACK, 0);
+> >  }
+> >
+> > +static inline void ocelot_xfh_get_cpuq(void *extraction, u64 *cpuq)
+> > +{
+> > +     packing(extraction, cpuq, 28, 20, OCELOT_TAG_LEN, UNPACK, 0);
+> > +}
+> > +
+> >  static inline void ocelot_xfh_get_qos_class(void *extraction, u64 *qos_class)
+> >  {
+> >       packing(extraction, qos_class, 19, 17, OCELOT_TAG_LEN, UNPACK, 0);
+> > diff --git a/include/soc/mscc/ocelot.h b/include/soc/mscc/ocelot.h
+> > index 1f2d90976564..425ff29d9389 100644
+> > --- a/include/soc/mscc/ocelot.h
+> > +++ b/include/soc/mscc/ocelot.h
+> > @@ -112,6 +112,8 @@
+> >  #define REG_RESERVED_ADDR            0xffffffff
+> >  #define REG_RESERVED(reg)            REG(reg, REG_RESERVED_ADDR)
+> >
+> > +#define OCELOT_MRP_CPUQ                      7
+> > +
+> >  enum ocelot_target {
+> >       ANA = 1,
+> >       QS,
+> > @@ -677,6 +679,12 @@ struct ocelot {
+> >       /* Protects the PTP clock */
+> >       spinlock_t                      ptp_clock_lock;
+> >       struct ptp_pin_desc             ptp_pins[OCELOT_PTP_PINS_NUM];
+> > +
+> > +#if IS_ENABLED(CONFIG_BRIDGE_MRP)
+> > +     u16                             mrp_ring_id;
+> > +     struct net_device               *mrp_p_port;
+> > +     struct net_device               *mrp_s_port;
+> > +#endif
+> 
+> I'd rather have this without the ifdeffery, doesn't seem too expensive
+> to justify compiling it out. We have a 4K array of VLANs in struct
+> ocelot, for god's sake.
+
+I will update this in the next patch.
 
 -- 
 /Horatiu
