@@ -1,85 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9373432DA5D
-	for <lists.bridge@lfdr.de>; Thu,  4 Mar 2021 20:27:33 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FEDB32DD72
+	for <lists.bridge@lfdr.de>; Thu,  4 Mar 2021 23:56:22 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id E477684380;
-	Thu,  4 Mar 2021 19:27:31 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 47F3A6F5A3;
+	Thu,  4 Mar 2021 22:56:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vE8wTKAMcY3S; Thu,  4 Mar 2021 19:27:31 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 975F18430B;
-	Thu,  4 Mar 2021 19:27:30 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZcgXIcxv-2nN; Thu,  4 Mar 2021 22:56:19 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTP id A45876F988;
+	Thu,  4 Mar 2021 22:56:18 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 63DC3C0012;
-	Thu,  4 Mar 2021 19:27:30 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 68854C0012;
+	Thu,  4 Mar 2021 22:56:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 54980C0001
- for <bridge@lists.linux-foundation.org>; Thu,  4 Mar 2021 19:27:29 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D05D9C0001
+ for <bridge@lists.linux-foundation.org>; Thu,  4 Mar 2021 22:56:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 40AFB43286
- for <bridge@lists.linux-foundation.org>; Thu,  4 Mar 2021 19:27:29 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id B21FA43207
+ for <bridge@lists.linux-foundation.org>; Thu,  4 Mar 2021 22:56:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key)
- header.d=networkplumber-org.20150623.gappssmtp.com
+ dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uSLyZeT83wuV for <bridge@lists.linux-foundation.org>;
- Thu,  4 Mar 2021 19:27:28 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com
- [IPv6:2607:f8b0:4864:20::42a])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 849AE43285
- for <bridge@lists.linux-foundation.org>; Thu,  4 Mar 2021 19:27:28 +0000 (UTC)
-Received: by mail-pf1-x42a.google.com with SMTP id q20so19667446pfu.8
- for <bridge@lists.linux-foundation.org>; Thu, 04 Mar 2021 11:27:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=networkplumber-org.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:mime-version
- :content-transfer-encoding;
- bh=2xQkEOsdGwG+u+CFWHs2eb6pdZOOXhDpLU358vUysAY=;
- b=cibd0BXvekrWeRL7XEmAJ2rp5GBMqsbXiuGfvojavs69YFWqTvYXWd6u4gsSsBQn0X
- hshjVGPwA/pd89Xpu8MosA9FqOqedFuJfzebUhtk6AdRpb1MmYFhdkFKAGBPFEneF0Cn
- gIG/5TkBIFmY82N0IfSxsv9syOxK4cgMyouhTSPg/9/uT+4qMySSVLJjnM+g2eNHb2Ny
- 2mwUEvM3UU8xZd2HQHUMAygwAozClXLzrpmFMAQMk3fJiWAY2qC492MxukbaS7bj2EMk
- yvdjvcJDyNdNZFFka/XGVaOrgzkn0mLSLtleXQv7e60+TR+Z2fxpuvOuBxys26AoGYm8
- K+FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-transfer-encoding;
- bh=2xQkEOsdGwG+u+CFWHs2eb6pdZOOXhDpLU358vUysAY=;
- b=GpoIFGA47p7I4OFKuLFH8aA/ayAmTESkusFikvorknq6VFUDNv5FfqyZwY4jAbSUbY
- cBycNjgdWcwd3enn9+kRMGUEIWuiQA1eLXp/TsF6LzfsVL91g4OrV5kN+YpymIFHiBHb
- 0l8SIfgS5CVX4REZ5dfyE9E0QGtEISZkLIQMfvG0y/KqWRvC7lVRmsQ3qrYuTAhiD62H
- RvuJHGjIJndA524gX28Mk4GIsMWwpjT/bLnQ7QCBonT9P8izIokhbNQel/1X+Ljk0ATj
- B9r/B+GbRi758Cnj8f3BU33AQQTl0yF0qr0ADVyceIf8DMynZ2G0Y8wmqbNTkGTOEeqk
- SbQg==
-X-Gm-Message-State: AOAM532hF90StlJzfCO174e8xZR6iRpK4eYlCB7DLQMXq9Ag9q43AmWJ
- lgbmFpgAbvGjWod8lh4f7RFOIw81ogioqQ==
-X-Google-Smtp-Source: ABdhPJyMTzFNz5SqWebXQnpNR1W+OjS/3GuwgF49leYIwFDLReBtY+Sz76ywmtfuLjehwUDaNXTm3A==
-X-Received: by 2002:a63:d118:: with SMTP id k24mr4539897pgg.420.1614879290507; 
- Thu, 04 Mar 2021 09:34:50 -0800 (PST)
-Received: from hermes.local (76-14-218-44.or.wavecable.com. [76.14.218.44])
- by smtp.gmail.com with ESMTPSA id g6sm48971pfi.15.2021.03.04.09.34.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Mar 2021 09:34:50 -0800 (PST)
-Date: Thu, 4 Mar 2021 09:34:46 -0800
-From: Stephen Hemminger <stephen@networkplumber.org>
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <20210304093446.356ba862@hermes.local>
+ with ESMTP id j1b3M4dq-xms for <bridge@lists.linux-foundation.org>;
+ Thu,  4 Mar 2021 22:56:15 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id E8CA5400CC
+ for <bridge@lists.linux-foundation.org>; Thu,  4 Mar 2021 22:56:15 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A2D9F64FF1;
+ Thu,  4 Mar 2021 22:56:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1614898574;
+ bh=TqV0c+qFdMK17XDBnAl5PwNX6LR+uIj0XIxFtvKZG9g=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=qGxF/T+ME1pGAXWjTTgXhZ6KIUh+eScYjYGJMgJgfrfbpQqDtO0K+7gpdHpOKi2AJ
+ Yvkpf0eaP3HnBIZPig1PlDEalYqpiyGtweNaG0MIo3ulwAg39FK5NbuYLNzFWenz6N
+ wdmw4fTvYof24vnqjUrwbaqhkfA6yS4kP0z9yDbAq61KObcVQwq1xrP5f/ibcTjERx
+ xFYLTqiZefWafGDeuNi+pPuCXQRTex8cmbsClkTc+lU1Un2CSOMt1FBD3q5zHG6eij
+ XQKEKWn2duNhrJ1E7YKqJsteG759HE0xsiLBgMmD+to11EHiZAQVX83jwUAF2zwpZB
+ oCkyY9dY6w36A==
+Date: Thu, 4 Mar 2021 16:56:11 -0600
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Joerg Reuter <jreuter@yaina.de>, Ralf Baechle <ralf@linux-mips.org>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
+Message-ID: <20210304225611.GF105908@embeddedor>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <44b2e50d345f1319071a53fb191ac0a0cf3fcf37.1605896060.git.gustavoars@kernel.org>
+ <143dd4a9-b0b7-36a6-ee33-0b5cb024c1e6@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org
-Subject: [Bridge] Minor update to bridge-utils
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <143dd4a9-b0b7-36a6-ee33-0b5cb024c1e6@nvidia.com>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH 106/141] net: bridge: Fix fall-through warnings
+	for Clang
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,19 +80,42 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Small changes to bridge-utils to address some minor issues.
+Hi all,
 
-1. The default branch is main not master
+It's been more than 3 months; who can take this, please? :)
 
-2. Fixed some compiler warnings because Gcc 10 and Clang now
-   do checks for string overflow.
+Thanks
+--
+Gustavo
 
-3. Made a backup repository mirror at github.
-
-4. Fixed version string printed
-
-This is not a required update, none of these are important
-or critical to users.
-
-Do not intend to do any new features or serious fixes to
-bridge-utils; all users should convert to iproute2/bridge command.
+On Tue, Feb 02, 2021 at 04:16:07PM +0200, Nikolay Aleksandrov wrote:
+> On 20/11/2020 20:37, Gustavo A. R. Silva wrote:
+> > In preparation to enable -Wimplicit-fallthrough for Clang, fix a warning
+> > by explicitly adding a break statement instead of letting the code fall
+> > through to the next case.
+> > 
+> > Link: https://github.com/KSPP/linux/issues/115
+> > Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+> > ---
+> >  net/bridge/br_input.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+> > index 59a318b9f646..8db219d979c5 100644
+> > --- a/net/bridge/br_input.c
+> > +++ b/net/bridge/br_input.c
+> > @@ -148,6 +148,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+> >  		break;
+> >  	case BR_PKT_UNICAST:
+> >  		dst = br_fdb_find_rcu(br, eth_hdr(skb)->h_dest, vid);
+> > +		break;
+> >  	default:
+> >  		break;
+> >  	}
+> > 
+> 
+> Somehow this hasn't hit my inbox, good thing I just got the reply and saw the
+> patch. Anyway, thanks!
+> 
+> Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+> 
