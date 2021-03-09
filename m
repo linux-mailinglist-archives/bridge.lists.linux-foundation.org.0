@@ -1,66 +1,59 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153D432E317
-	for <lists.bridge@lfdr.de>; Fri,  5 Mar 2021 08:40:48 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB803323D9
+	for <lists.bridge@lfdr.de>; Tue,  9 Mar 2021 12:24:03 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 73C3284339;
-	Fri,  5 Mar 2021 07:40:46 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 63613600D4;
+	Tue,  9 Mar 2021 11:24:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ycVvA_AWkFcy; Fri,  5 Mar 2021 07:40:45 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id basjucVqfHus; Tue,  9 Mar 2021 11:24:00 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTP id CD4EA844DE;
-	Fri,  5 Mar 2021 07:40:44 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 155C1605C9;
+	Tue,  9 Mar 2021 11:24:00 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 95738C0010;
-	Fri,  5 Mar 2021 07:40:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D141EC0012;
+	Tue,  9 Mar 2021 11:23:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 26F2AC0001
- for <bridge@lists.linux-foundation.org>; Fri,  5 Mar 2021 07:40:43 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D3BAFC0001
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Mar 2021 11:23:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 0DB466F510
- for <bridge@lists.linux-foundation.org>; Fri,  5 Mar 2021 07:40:43 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id C2907605C9
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Mar 2021 11:23:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id DSN_uGrXuPdg for <bridge@lists.linux-foundation.org>;
- Fri,  5 Mar 2021 07:40:42 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 487DB6F506
- for <bridge@lists.linux-foundation.org>; Fri,  5 Mar 2021 07:40:42 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7D15764FFD;
- Fri,  5 Mar 2021 07:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1614930041;
- bh=TMB+VspMfpQaDgELNuFuzkz3wGytJH9MpU0ojKUhGRA=;
- h=Date:From:To:Cc:Subject:From;
- b=FX7kxcoCvRHixXWJCJ1unVen3UYt+5Ruvv+O4A6SbEbJVfo2f8eaSlKGjpUnzldtF
- /4NDv9HiMNdDwY1zfUfUfGqJeXsk0l9wK5aaV64IM2eAV5pTjLXXNkBj3/6m3D6rM0
- R0X1sNGSwS0pvHRVk/jxTv4XxGBkMZesB+O5aFazEbC9xG7h5lLJFcMk+y48pug4kH
- utTF86JxH6WK/N1/60TsXJra+OAHPb+QP4yZIWDlP9Fv7qhalkXpB5CIJgvTV0sr/D
- AVoacwLB136wKYqkyno53ZLntkReXxgzGysn8mwIcYsUBcU4rHmDJr9Sg7w5LH5hP5
- c1zOXEA/rHV/Q==
-Date: Fri, 5 Mar 2021 01:40:38 -0600
-From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
-Message-ID: <20210305074038.GA122888@embeddedor>
+ with ESMTP id ZDKVkR1_h5TM for <bridge@lists.linux-foundation.org>;
+ Tue,  9 Mar 2021 11:23:58 +0000 (UTC)
+X-Greylist: delayed 00:22:24 by SQLgrey-1.8.0
+Received: from Chamillionaire.breakpoint.cc (Chamillionaire.breakpoint.cc
+ [IPv6:2a0a:51c0:0:12e:520::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 1EF82600D4
+ for <bridge@lists.linux-foundation.org>; Tue,  9 Mar 2021 11:23:57 +0000 (UTC)
+Received: from fw by Chamillionaire.breakpoint.cc with local (Exim 4.92)
+ (envelope-from <fw@strlen.de>)
+ id 1lJa77-0005Oy-1Q; Tue, 09 Mar 2021 12:01:21 +0100
+Date: Tue, 9 Mar 2021 12:01:21 +0100
+From: Florian Westphal <fw@strlen.de>
+To: Jia-Ju Bai <baijiaju1990@gmail.com>
+Message-ID: <20210309110121.GD10808@breakpoint.cc>
+References: <20210309022854.17904-1-baijiaju1990@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: [Bridge] [PATCH][next] net: bridge: Fix fall-through warnings for
-	Clang
+In-Reply-To: <20210309022854.17904-1-baijiaju1990@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org, fw@strlen.de,
+ linux-kernel@vger.kernel.org, kadlec@netfilter.org, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, davem@davemloft.net, pablo@netfilter.org
+Subject: Re: [Bridge] [PATCH] net: bridge: fix error return code of
+ do_update_counters()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -75,29 +68,15 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-In preparation to enable -Wimplicit-fallthrough for Clang, fix a warning
-by explicitly adding a break statement instead of letting the code fall
-through to the next case.
+Jia-Ju Bai <baijiaju1990@gmail.com> wrote:
+> When find_table_lock() returns NULL to t, no error return code of
+> do_update_counters() is assigned.
 
-Link: https://github.com/KSPP/linux/issues/115
-Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
----
- net/bridge/br_input.c | 1 +
- 1 file changed, 1 insertion(+)
+Its -ENOENT.
 
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 222285d9dae2..8875e953ac53 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -144,6 +144,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 		break;
- 	case BR_PKT_UNICAST:
- 		dst = br_fdb_find_rcu(br, eth_hdr(skb)->h_dest, vid);
-+		break;
- 	default:
- 		break;
- 	}
--- 
-2.27.0
+>  	t = find_table_lock(net, name, &ret, &ebt_mutex);
+                                       ^^^^^
 
+ret is passed to find_table_lock, which passes it to
+find_inlist_lock_noload() which will set *ret = -ENOENT
+for NULL case.
