@@ -1,70 +1,63 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C3233E0FE
-	for <lists.bridge@lfdr.de>; Tue, 16 Mar 2021 23:00:19 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251F7340076
+	for <lists.bridge@lfdr.de>; Thu, 18 Mar 2021 08:54:10 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 3B79F431D8;
-	Tue, 16 Mar 2021 22:00:17 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id D9928430A0;
+	Thu, 18 Mar 2021 07:54:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JqAN5fTa2PR2; Tue, 16 Mar 2021 22:00:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTP id ADC14431D6;
-	Tue, 16 Mar 2021 22:00:15 +0000 (UTC)
+	with ESMTP id RbXUkJ883_oE; Thu, 18 Mar 2021 07:54:07 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTP id 7E7034309E;
+	Thu, 18 Mar 2021 07:54:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7E3EAC0010;
-	Tue, 16 Mar 2021 22:00:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3CDEDC0011;
+	Thu, 18 Mar 2021 07:54:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BB077C000A
- for <bridge@lists.linux-foundation.org>; Tue, 16 Mar 2021 22:00:13 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5B318C0001
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Mar 2021 07:54:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 9C41F60604
- for <bridge@lists.linux-foundation.org>; Tue, 16 Mar 2021 22:00:13 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 3D0EA4309A
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Mar 2021 07:54:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id l91EdKXUKath for <bridge@lists.linux-foundation.org>;
- Tue, 16 Mar 2021 22:00:12 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp3.osuosl.org (Postfix) with ESMTPS id EC173605FD
- for <bridge@lists.linux-foundation.org>; Tue, 16 Mar 2021 22:00:12 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 8916364F80;
- Tue, 16 Mar 2021 22:00:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1615932008;
- bh=dlBQQyI1j3pwN3CF6A6vVYRFLIMHHnkb3VOr9qpV3qs=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=LCD/XLrRtuj2GXQhkMi4DO5IRg68owDwT/yL388Vo6Pd8ML3/0zO1WZjxd7g4Mel6
- tmDqh4Z60bpdWGHDwRvDBTmmOsAfYpQUtb2+I6wPTzE8P8ev1rAFg5hPE4P9Kr6rud
- alPlpObOIR3U4Vqey3P6y3bHjWkf1HqYfXmqG84AG2YRrTYmxFPhukXC8co4Szws6I
- w3Vjkfu0iFsSPNM3SJXNLubzWV6r4mBWb6X3PPJOW2025VlkNAbX7cYA4a2tZsfjRR
- f08sgOgaLaey7UGshibmfbf7V2L0pkibGhmNFjyc3FoJCobj14u91t6Hw3x+vR5il7
- VvwT/RFXs+keQ==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 7A13660A60;
- Tue, 16 Mar 2021 22:00:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 8VCDPHm8a3ZK for <bridge@lists.linux-foundation.org>;
+ Thu, 18 Mar 2021 07:54:02 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from mr024msb.fastweb.it (mr024msb.fastweb.it [85.18.95.100])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id EA52841566
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Mar 2021 07:54:01 +0000 (UTC)
+Received-SPF: pass (mr024msb.fastweb.it: domain assyoma.it designates
+ 93.63.55.57 as permitted sender) identity=mailfrom;
+ receiver=mr024msb.fastweb.it; client-ip=93.63.55.57;
+ envelope-from=g.danti@assyoma.it; helo=plutone.assyoma.it;
+X-RazorGate-Vade: gggruggvucftvghtrhhoucdtuddrgeduledrudefhedgudduudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfhtefuvfghgfeupdfqfgfvnecuuegrihhlohhuthemuceftddtnecunecujfgurhepggffhffvufgfkfigtgfgsehtjehjtddtredvnecuhfhrohhmpefiihhonhgrthgrnhcuffgrnhhtihcuoehgrdgurghnthhisegrshhshihomhgrrdhitheqnecuggftrfgrthhtvghrnhepleduheefjedtvefghfefheefueefgeekteefjeevveffvedvvdehveejgedtveevnecuffhomhgrihhnpegrshhshihomhgrrdhithenucfkphepleefrdeifedrheehrdehjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopehplhhuthhonhgvrdgrshhshihomhgrrdhithdpihhnvghtpeelfedrieefrdehhedrheejpdhmrghilhhfrhhomhepghdruggrnhhtihesrghsshihohhmrgdrihhtpdhrtghpthhtohepsghrihgughgvsehlihhsthhsrdhlihhnuhigqdhfohhunhgurghtihhonhdrohhrgh
+X-RazorGate-Vade-Verdict: clean 0
+X-RazorGate-Vade-Classification: clean
+Received: from plutone.assyoma.it (93.63.55.57) by mr024msb.fastweb.it
+ (5.8.710) id 605300FF00007CEF for bridge@lists.linux-foundation.org;
+ Thu, 18 Mar 2021 08:53:58 +0100
+Received: from webmail.assyoma.it (localhost [IPv6:::1])
+ by plutone.assyoma.it (Postfix) with ESMTPA id 307B5C0A9108
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Mar 2021 08:53:58 +0100 (CET)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161593200849.27352.15966391219237051428.git-patchwork-notify@kernel.org>
-Date: Tue, 16 Mar 2021 22:00:08 +0000
-References: <20210315171342.232809-1-razor@blackwall.org>
-In-Reply-To: <20210315171342.232809-1-razor@blackwall.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v2 0/2] net: bridge: mcast: simplify
- allow/block EHT code
+Date: Thu, 18 Mar 2021 08:53:58 +0100
+From: Gionatan Danti <g.danti@assyoma.it>
+To: bridge@lists.linux-foundation.org
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <ca6f3aa9149a74e9990a335b6046f133@assyoma.it>
+X-Sender: g.danti@assyoma.it
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: [Bridge] Extract untagged traffic from bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,31 +72,38 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Hi list,
+I have a question regarding the use of bridges with vlans.
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Suppose I have a lanbr which bridges together eth0 and various virtual 
+interfaces. Putting aside bridge vlan filtering, any interface connected 
+to the bridge will see both untagged and tagged traffic.
 
-On Mon, 15 Mar 2021 19:13:40 +0200 you wrote:
-> From: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> Hi,
-> The set does two minor cleanups of the EHT allow/block handling code:
-> patch 01 removes code which is unreachable (it was used in initial EHT
-> versions, but isn't anymore) and prepares the allow/block functions to be
-> factored out. Patch 02 factors out common allow/block handling code.
-> There are no functional changes.
-> 
-> [...]
+To only see the tagged traffic portion of specific vlan I can simple 
+create a bridge vlan interface (eg: lanbr.10) and use that virtual 
+interface as a member of another bridge. In other words:
+eth0 -> lanbr -> lanbr.10 -> vlan10br
 
-Here is the summary with links:
-  - [net-next,v2,1/2] net: bridge: mcast: remove unreachable EHT code
-    https://git.kernel.org/netdev/net-next/c/6aa2c371c729
-  - [net-next,v2,2/2] net: bridge: mcast: factor out common allow/block EHT handling
-    https://git.kernel.org/netdev/net-next/c/e09cf582059e
+Now, I wonder if it is possible to extract *only* the untagged traffic 
+from the lanbr bridge. Something similar to that:
+eth0 -> lanbr -> lanbr.untagged -> untbr
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Full disclosure: a virtual machine bridged on lanbr will see both tagged 
+and untagged traffic. This is fine for, say, a virtual firewall with a 
+trunk interface. However, I do not want any other VM residing on the 
+untagged bridge to see tagged traffic. So I need to confine these 
+machines to see only untagged packet.
 
+One possible approach would be to use ebtables to drop 802.1q tagged 
+packets on lanbr unless they are for a specific virtual machine 
+interface (and it seems to work well), but I wonder if the same can be 
+obtained without calling ebtables into the mix.
 
+Regards.
+
+-- 
+Danti Gionatan
+Supporto Tecnico
+Assyoma S.r.l. - www.assyoma.it
+email: g.danti@assyoma.it - info@assyoma.it
+GPG public key ID: FF5F32A8
