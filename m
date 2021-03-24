@@ -1,89 +1,147 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC70D347D33
-	for <lists.bridge@lfdr.de>; Wed, 24 Mar 2021 17:02:38 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8DB83480EF
+	for <lists.bridge@lfdr.de>; Wed, 24 Mar 2021 19:50:59 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id D36F260AFA;
-	Wed, 24 Mar 2021 16:02:36 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id E47C784820;
+	Wed, 24 Mar 2021 18:50:57 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FdrHTWtbg2Oj; Wed, 24 Mar 2021 16:02:36 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 7813C60AF6;
-	Wed, 24 Mar 2021 16:02:35 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7KKvklBIoWr2; Wed, 24 Mar 2021 18:50:57 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTP id 63FDB847F9;
+	Wed, 24 Mar 2021 18:50:56 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 383A1C0012;
-	Wed, 24 Mar 2021 16:02:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 24081C0012;
+	Wed, 24 Mar 2021 18:50:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BBAC1C000A
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 16:02:33 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0F643C000A
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 18:50:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id A95A740130
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 16:02:33 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id DCB214014E
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 18:50:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
+ dkim=pass (2048-bit key) header.d=nvidia.com
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id G8iRmJi5Bn7c for <bridge@lists.linux-foundation.org>;
- Wed, 24 Mar 2021 16:02:33 +0000 (UTC)
+ with ESMTP id uOCxB_debwMT for <bridge@lists.linux-foundation.org>;
+ Wed, 24 Mar 2021 18:50:52 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by smtp2.osuosl.org (Postfix) with ESMTPS id E0E914011B
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 16:02:32 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id u9so33750765ejj.7
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 09:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=p0h1I2tU40MVEe/iq0GPb6BvRGF0+jimshHBcD8Y96o=;
- b=UYxL1aPIIPS7dZJFvNFh6Gi7rWcPCnq0LT08QW+F6/HZXq6mbwF8gr9DEQ2z8ZgO7r
- dZ31Oe2JgNLZIf9KX+4S0UvQ7V8y9v2n7/jYvHfNHjm2k15HIuaVceJG3qkJg1EqLtPB
- LkJ96zui76hJkuznZNalH0tvK4QFSp9k7YTqifqDGJAnCze1bamfgvt+N2oHMM8ldjPu
- Ibf1rMbmngk1Gbhy79F6gTXVORnLsE2VieIu639CP+HpZeC19nu8SkRsMO9cIKc/fXhr
- HaXgNOl1e9UXZKneUfj9dHbbQG9e7QOTVv8j6soU7b+hOIsDZOXsCYmgAqip8RCJmcy3
- ZAGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=p0h1I2tU40MVEe/iq0GPb6BvRGF0+jimshHBcD8Y96o=;
- b=Nh1MxZzkbsAYtoTdUzVQ9nB86HJ67vWPtqZUGlrF/6EOhVax6DFGe+4YyDiWfPV/iS
- +rbYOCRht+inZG0YCBfBmJfQSzPh4JWy8Q18hIgua9QQWZ3u5eHA8CcnWBJLaFZl3Di6
- KHlbnENFnoSU/xaWgoQ+pnd1V5pDJQU4k6icdkmmOiv48wVVbxMpMo81dMOkKBksv6s4
- Nb/YBYBirIsNXZpVXk+Q6pr+pts8msCnspSHI7WQ3zuv93xPJDfa8IQKlyHD4dXntARp
- i1aedwKU79xR6oCSqYLG0thFDaVDQmeMmfCA+AFeltAWiL4V+s1gy8rFoDepCk4B8VnF
- OeIQ==
-X-Gm-Message-State: AOAM531otn9yRiGG+2G5gXW1cqn2WrwisHkWK9JSeSKYw9kZCw2NKMAc
- DzUKb8RC3e8qKKOIEzgwAsU=
-X-Google-Smtp-Source: ABdhPJwpUavXt4EHnTzT+ae8zvQSOiy4MHaEHtHWR/X63xNd+NtmzaX78oG8X3nz4lj7OuTgsBJ6zQ==
-X-Received: by 2002:a17:906:9888:: with SMTP id
- zc8mr4575571ejb.310.1616601750960; 
- Wed, 24 Mar 2021 09:02:30 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
- by smtp.gmail.com with ESMTPSA id si7sm1131470ejb.84.2021.03.24.09.02.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Mar 2021 09:02:30 -0700 (PDT)
-Date: Wed, 24 Mar 2021 18:02:29 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Colin King <colin.king@canonical.com>
-Message-ID: <20210324160229.cyzepir5fnfnfeox@skbuf>
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam04on0622.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe4c::622])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 7D05B400D3
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 18:50:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DWmJXhfgem22y1UlSAcPfsE1UuQCDcoQseG0/hcQVcm9zkaULaAbSbIRMbacNRui9zBZze/RJ2hDdVVevF3BexweA+D3NNX+UgcAIH6OaWUe1wkCukO7NMRKRBoyMsFXBlX//nXVUZDZaWd+gQ8uq+wHqA/wX5Kia15faQqEULJ17NAB9GObeZTW7EuHfkM5uF89oQTb+yPaHA5U0hJMQAKfB0uArajscxCsaZUKW5zN6t0jWgg+20Q6swGx9KKH5OK6wzc0qv7wFAR2odi4wozXA0KIxPTJHGsVNmx+EgHNlyXDLsbyt31cXN5csGQ4ZT6llpoYrKAkC690/a5BpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MK89RJtp8YZiyl9VQsSyxLdwQRMKymm3CVtjYw8/0v0=;
+ b=hrXD5ufeu8SRSlECSb5PkACG1/hjfhtpPUgqGoXmu0Ollb5MzYxWg330MnOdthnlVYQ3VpS4xPhFB+blQnvSe2SBTIKhF2bZNUQenIX0qrRH/32+3j6+9BI0D800ZobQca1Wpv6hg7sqJTHE75qmtDVymmFTIcglypWvLP2Ple23uow1Iekcc0gawgg0LbO85PmWu9K4dzChqXzBHb2MJFLGudjyN4DshdCQ8UJQzdBCMJ5VhXm2zG/plUFtj+9HRoUqanuona0xmd5YrEFFPrbRScEwrZ9Q+8TkGaYuZvx9EWWfg9dZtz2h7pdcxGIjT4vley7FqRmWE4I6BO6g7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MK89RJtp8YZiyl9VQsSyxLdwQRMKymm3CVtjYw8/0v0=;
+ b=cc6RsBOmBfo1Lrkgwurx6qoujvWHnQeISzEJMq8BcLBeWcM7KlfMOxGJE4PIK861ZdzANMKDkjibbsY+e2OieXiNJCoAhGtaoDFDDtkguiomT5vEN7eceTGh4cgpKa7OZ4uQzHo7aCqXBKvNmKH8tRFVY6boorrsA0ulfSJOhwzvZWY0VoKfzSlYk0ELlVnXWQUidtowMVknUMWgZULnfHrulYWvTDGo/vdpkSe1ExSxyDoyUWZlUc2M4OsB+ThklfDZtpmbQTCkkyOL5pf4O5CeQ9mlSKa6m7ZJMMDUSI3tNl8ooMfWGeD5GpGHEN2QwxYiZUlS4Oz6ABaBq+LB1A==
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none; vger.kernel.org; dmarc=none action=none header.from=nvidia.com; 
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com (2603:10b6:5:2ab::24)
+ by DM6PR12MB3882.namprd12.prod.outlook.com (2603:10b6:5:149::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.24; Wed, 24 Mar
+ 2021 18:50:50 +0000
+Received: from DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::5c42:cbe:fe28:3a9b]) by DM6PR12MB4403.namprd12.prod.outlook.com
+ ([fe80::5c42:cbe:fe28:3a9b%4]) with mapi id 15.20.3977.025; Wed, 24 Mar 2021
+ 18:50:50 +0000
+To: Colin King <colin.king@canonical.com>, Roopa Prabhu <roopa@nvidia.com>,
+ "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ bridge@lists.linux-foundation.org, netdev@vger.kernel.org
 References: <20210324150950.253698-1-colin.king@canonical.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <db4c13bf-e32a-d59a-a491-9a81ca292e59@nvidia.com>
+Date: Wed, 24 Mar 2021 20:50:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 In-Reply-To: <20210324150950.253698-1-colin.king@canonical.com>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>,
- bridge@lists.linux-foundation.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, "David S . Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: ZR0P278CA0094.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:23::9) To DM6PR12MB4403.namprd12.prod.outlook.com
+ (2603:10b6:5:2ab::24)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.241.2] (213.179.129.39) by
+ ZR0P278CA0094.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:23::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3977.25 via Frontend Transport; Wed, 24 Mar 2021 18:50:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: eec80100-1976-47b9-d1a0-08d8eef5be68
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3882:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3882DF3EF4FFFF403044C836DF639@DM6PR12MB3882.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hjDz7ONUnxSntuz72YanwJLU9Pu2wNqErNV9RO367Ix4KObZR6BlTxXpJHr1SEqO2Y5owRMzNLCf0r2dAdOhLLwytUtqqHmXy8hdpMev+mmXYgUIl0Hce5x4464RyS40lXoRjC+IVaX7vn34ek4SAIIXSMFv8hB53KLCNyviSua4ZgyPG5mvAj9gi2m9zbFeXaFCanabERLRBwjeA9NzSt0EsLEWa7JA8CJX7N9ewi/dVR2y2Eb+BHd+c/05Y4N+UYvYHnopciuFJe2wUvDMqfEv40+QNqB13gDT12RLb5zdb9grelU6eMEH7CIulbuY9wq5PJLOqS36dvRoGykhwFOPLCrQefhy25n5OBndyEySQ0VkeyAFMsgbW1ODuKShnIFvjgJ7OQfawGcyctOmkFUqZ5BIRcoOEtHq9LkBD/SVL0N/eT/BZPQBgZDqxPbTdcY/HwsEiNNDbs+WD/c5sGP0DcOMB/+o0rprMmFr4c8VI4wV7p52CnWTRERxq5MeA687QeDUwOanBNhxykZYtHyMujM/krWxdtq7G7tIMn77/nPfDpZHPmkdAazLuhDwf3EfoWEF9pHnyX5KGu4U/fQOFqq0lfZIZQY524TlmWvZQl7ctSy8tiCvSX7jjmJ/xauSk6iA56yrZvTzOV7emIk3IFf29398Af5uCPZIWlkIDg8mvdM7Hv38fHXZfASUhU4hHCz8ktAoNcFNHut6uZo+4fT5rcljEHY3RZdMqXM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4403.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(39860400002)(346002)(366004)(396003)(136003)(8676002)(478600001)(53546011)(38100700001)(26005)(186003)(16576012)(6666004)(16526019)(316002)(36756003)(6486002)(956004)(5660300002)(8936002)(4326008)(2616005)(66556008)(2906002)(66946007)(83380400001)(86362001)(31696002)(110136005)(66476007)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?VjdxamJQNEUvczJjZHRDN05sSDlwNGE3QkRWTjF4N0ZST2VOTVVQaWtneUM5?=
+ =?utf-8?B?TWNQblVmWlhMU2hRYjNWOGxwS2JNSVZSL2ZVSjlsdGQreTBFZGZvSzNtTEFF?=
+ =?utf-8?B?QVBTSXR3UU00VTdEdzZJQlB5WGpNWkFhYzFwOVRrZUZ2N3I2c3gvdms3QU5U?=
+ =?utf-8?B?V21lTC9FSFU5dG4xWmdWWStwR0h1V1N4TWRFQWRQZ0pHVW85NzVWMmIrNWd4?=
+ =?utf-8?B?RUNrM0M1K2FjNUg5MDRYN0hTblFybGloWTdLcVBybWx3Z0RuUzk4YzViQ1Fi?=
+ =?utf-8?B?WnpXRWJaRHNDeHB4aWVUSmc4TjQwemtKRzhkMTFURzRTeXRETXRrckVWU2Fv?=
+ =?utf-8?B?a2E1TEljZVI2cVo4eDFZa0F5VXdWY1o3VjBXTys0ZmlYcXJTS25aU0VZQmh3?=
+ =?utf-8?B?Y0RRWWQ3WHZXbm9INTlFVStEM3NpV1owS3lxQ2JqR01BYzdJSk1tZGlUZEFU?=
+ =?utf-8?B?eHRiSlZ4VDRuTExKNEEwZCt2aHRXU3FUY0UrNzNpRFhNME1kYUgxekJVMzEz?=
+ =?utf-8?B?ek8wSmpBQXpIdExVMTNhTk1VMjFzeGVMbUcvMFY4QkFoM2hqejBpVllaQ0J4?=
+ =?utf-8?B?Wnd5WDlGY0FLWHVYYXY2RUNuWlZCOEM1ajdyZk9FN1A5eVZIbzdmWkw5V3Nk?=
+ =?utf-8?B?TFhKbzZNeXBxV3ZoeVZRT2FTSTBVWTVNSTZCNjUvOGRmSTM2UkZ6dEJQblZl?=
+ =?utf-8?B?Mmp5cDVXZ0x6T2hkN2wvZGU5cm00ZVhoaHNBVWVRK2MzdHIzdVpadWhBUlpR?=
+ =?utf-8?B?OVlmY2gwQjhpeGZ1MDRRMm5ML1NWTlJRQkN2R3pMK1BrR2lvRTY2d2FyTllX?=
+ =?utf-8?B?Vy9RL094OXhpYk5rdVBNVHlocGlzbnFXTU9pYWQ4TTlqenNjaitoK3hjK1RY?=
+ =?utf-8?B?WEh0Y3JiTkJNNGMwQ2lWVTVTZW5zcm44Zmp5NzN3NUd2d2VydWpHdkc4dWNW?=
+ =?utf-8?B?MGp6bUlmUmNUQkVZWFBZdFpCZ2NHcW9SeDNJbWhDNUJyeUN5TDczZU1YemJn?=
+ =?utf-8?B?aWthRDhtSTB2ZGJyTUMwd3gyZlRoVGJZSUt1bWhncVdWa1lNcERSdkFKa1RF?=
+ =?utf-8?B?M281bkJ0U2RuYVNPWjl0YzNrSHJCY1hDRThSOFVrNU55UHdUNmRxWWZLdHh1?=
+ =?utf-8?B?TXJGVU5pcVFTT3lhalJBOW5vazFRMWx1dzBpRjlKcW91YmN4cXFQUGpnejZZ?=
+ =?utf-8?B?UnVUK1VUNWFXNHEraHo4SWhGUXJCdVlaWjc3MFFkbkFJK1FpYWFNQzdzNjhv?=
+ =?utf-8?B?UEZJellUaExhK3VBKzV4dElGTzBUaCtwVFd3VklUd1Evb3ZJWEE2ek1PKzlp?=
+ =?utf-8?B?MnZrYWUvSWpwNGUxMDhwWUU2TjlFSVVpV1ZQekhSUzNYSzBWbi80RzVEemRR?=
+ =?utf-8?B?YVNWczdJWXdxY0dpWE8vdnR1M2h4WGorakZ0RG5ORzBLL2JFOXBNU1ZzVlFI?=
+ =?utf-8?B?YllyWDFPaDdHc2piT3VYNk9Bbk96UTZnRFZ5VDZ4NTVlY0xXYktpZzdxcndu?=
+ =?utf-8?B?L29mVUMrVlFidjh0Y0JwUjgwa0NhZitwWUpZdFVMaEQ3eUhZT1BxVTVhZ09h?=
+ =?utf-8?B?bWtvZWlKaE9VdVY0d3ZJem0rTXNzc3ZINzFhRGdBbGpnVWNybFRwN2R6dXhL?=
+ =?utf-8?B?RG1KMlFOWC9vVndYZ015ald6NkxCVG9rMTFqZG95a1FvaFBtVlluYldzbnV3?=
+ =?utf-8?B?cmE0MlhIY1R4ekhhaW45TlNNZ2JwcmZCcktDcnhVeVdjcEFseHJEWDU1cU1Y?=
+ =?utf-8?Q?ctKXih5CvYh/utT85IXIFenrUZn7GFyEOgBWvfq?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eec80100-1976-47b9-d1a0-08d8eef5be68
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4403.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2021 18:50:50.3516 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MkbEEjjg+5YGKd/4vNz9nrtjam/XfG0OMYME+nJBa/fYcrO592YGYzaA3IwRP0NriAW+vLMBQezJH4R+oCbAMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3882
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [Bridge] [PATCH][next] net: bridge: Fix missing return
  assignment from br_vlan_replay_one call
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -100,7 +158,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Mar 24, 2021 at 03:09:50PM +0000, Colin King wrote:
+On 24/03/2021 17:09, Colin King wrote:
 > From: Colin Ian King <colin.king@canonical.com>
 > 
 > The call to br_vlan_replay_one is returning an error return value but
@@ -112,5 +170,24 @@ On Wed, Mar 24, 2021 at 03:09:50PM +0000, Colin King wrote:
 > Fixes: 22f67cdfae6a ("net: bridge: add helper to replay VLANs installed on port")
 > Signed-off-by: Colin Ian King <colin.king@canonical.com>
 > ---
+>  net/bridge/br_vlan.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+> index ca8daccff217..7422691230b1 100644
+> --- a/net/bridge/br_vlan.c
+> +++ b/net/bridge/br_vlan.c
+> @@ -1815,7 +1815,7 @@ int br_vlan_replay(struct net_device *br_dev, struct net_device *dev,
+>  		if (!br_vlan_should_use(v))
+>  			continue;
+>  
+> -		br_vlan_replay_one(nb, dev, &vlan, extack);
+> +		err = br_vlan_replay_one(nb, dev, &vlan, extack);
+>  		if (err)
+>  			return err;
+>  	}
+> 
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Thanks,
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+
