@@ -1,72 +1,72 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C07A34820E
-	for <lists.bridge@lfdr.de>; Wed, 24 Mar 2021 20:40:16 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D5434822A
+	for <lists.bridge@lfdr.de>; Wed, 24 Mar 2021 20:50:16 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id C8AD483FEE;
-	Wed, 24 Mar 2021 19:40:14 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 1176C4015D;
+	Wed, 24 Mar 2021 19:50:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fGZswmux-Qtu; Wed, 24 Mar 2021 19:40:14 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id k7sBOyE4Fjuc; Wed, 24 Mar 2021 19:50:12 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 495F583FE6;
-	Wed, 24 Mar 2021 19:40:13 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 8FD71400D3;
+	Wed, 24 Mar 2021 19:50:11 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 08F74C0012;
-	Wed, 24 Mar 2021 19:40:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4E486C0012;
+	Wed, 24 Mar 2021 19:50:11 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 57027C000A
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:40:11 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1EEAEC000A
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:50:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 3E39540157
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:40:11 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id DFBA9606EE
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:50:09 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id rdabPNe_IIjc for <bridge@lists.linux-foundation.org>;
- Wed, 24 Mar 2021 19:40:10 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 0y0G2o2s8eaW for <bridge@lists.linux-foundation.org>;
+ Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 5212D400D3
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:40:10 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id E43CA61A27;
- Wed, 24 Mar 2021 19:40:08 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id D09BA6069D
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id 3CD2261A21;
+ Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1616614808;
- bh=KLYENuOcXI14xb4rj4Fs42f+fX8Y8nzzaYL3MtEcvmE=;
+ s=k20201202; t=1616615408;
+ bh=jWlbCW3ZvY9ep7+jRAH9k7cY3rs1dnmpwgoeOz00z3w=;
  h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=H65ORv819BZRboWNPrL9tqsKb7Uip7DzXHRDOPOK+zFOiZWt4GZxJMeiEb10cbiYq
- lTDs9KhUE8w3e9xBy7dlizlmCyJIQptiXRsazQeuaW+Om89Sy388MgJrjTJv7OTieo
- ZPuZBvgT+xvxEPkSlJmAO1vN8XqeYVXDz9/uSz/iz7pyr4QiFIAgebGDP4kL6RS9ia
- n2+WoDzSzOf1mUGS1O5PCce4OzyWLSyBMsozRBCpvkY7zxu7rGRm70kpgbi3pQ0bEp
- wLQCUlBCrkR7kTNXv0fQsrU39V/EE0MPjG1wuo7CRp07D+75i5gOUbQpegepnUdsnw
- U+bmpP9ub07dg==
+ b=XvWZJy4NHh8YmWYB8PAjHxyx49VVepw96KB0QiUqOhGfsgQCMCMHass0aSITxUnDL
+ zqONfHDu2Rh9xt9iydwQhFVQFV2qFsC/RsE5JCuhuJud+kSv43icaaSJ8WV36rNDBB
+ u6w5SeXpFQp4y6w/sWCgjN4Amn6DM0dkE9NRG25pygwhWBIbKJ+rQZYP0KjhAUPYlp
+ /tcnv+aGplz62JyEtRGuJDU53WmGky+Z5BbgHOcExhGOSdU4BzICJbSEzoAPfTf/zz
+ l5OkSCqmE5EvKhJHjeDDzITvjfUFKYqW1jOkeGZ1mFnhR3yb6GfRtc3PWxATBmMJpt
+ 2iaqc+kkiH6Bw==
 Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
  [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id DDDC960A3E;
- Wed, 24 Mar 2021 19:40:08 +0000 (UTC)
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 2AC6260A6A;
+ Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161661480890.20893.12247357786552976282.git-patchwork-notify@kernel.org>
-Date: Wed, 24 Mar 2021 19:40:08 +0000
-References: <20210323083347.1474883-1-horatiu.vultur@microchip.com>
-In-Reply-To: <20210323083347.1474883-1-horatiu.vultur@microchip.com>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc: alexandre.belloni@bootlin.com, vladimir.oltean@nxp.com,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- UNGLinuxDriver@microchip.com, claudiu.manoil@nxp.com, netdev@vger.kernel.org,
- nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/2] bridge: mrp: Disable roles before
-	deleting
+Message-Id: <161661540817.24400.14095983696664158789.git-patchwork-notify@kernel.org>
+Date: Wed, 24 Mar 2021 19:50:08 +0000
+References: <20210324150950.253698-1-colin.king@canonical.com>
+In-Reply-To: <20210324150950.253698-1-colin.king@canonical.com>
+To: Colin King <colin.king@canonical.com>
+Cc: vladimir.oltean@nxp.com, bridge@lists.linux-foundation.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH][next] net: bridge: Fix missing return
+ assignment from br_vlan_replay_one call
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -83,24 +83,21 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 Hello:
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+This patch was applied to netdev/net-next.git (refs/heads/master):
 
-On Tue, 23 Mar 2021 09:33:45 +0100 you wrote:
-> The first patch in this series make sures that the driver is notified
-> that the role is disabled before the MRP instance is deleted. The
-> second patch uses this so it can simplify the driver.
+On Wed, 24 Mar 2021 15:09:50 +0000 you wrote:
+> From: Colin Ian King <colin.king@canonical.com>
 > 
-> Horatiu Vultur (2):
->   bridge: mrp: Disable roles before deleting the MRP instance
->   net: ocelot: Simplify MRP deletion
+> The call to br_vlan_replay_one is returning an error return value but
+> this is not being assigned to err and the following check on err is
+> currently always false because err was initialized to zero. Fix this
+> by assigning err.
 > 
 > [...]
 
 Here is the summary with links:
-  - [net-next,1/2] bridge: mrp: Disable roles before deleting the MRP instance
-    https://git.kernel.org/netdev/net-next/c/b3cb91b97c04
-  - [net-next,2/2] net: ocelot: Simplify MRP deletion
-    https://git.kernel.org/netdev/net-next/c/5b7c0c32c904
+  - [next] net: bridge: Fix missing return assignment from br_vlan_replay_one call
+    https://git.kernel.org/netdev/net-next/c/ad248f7761eb
 
 You are awesome, thank you!
 --
