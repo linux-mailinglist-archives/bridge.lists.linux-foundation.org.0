@@ -1,72 +1,53 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D5434822A
-	for <lists.bridge@lfdr.de>; Wed, 24 Mar 2021 20:50:16 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6379E355D4A
+	for <lists.bridge@lfdr.de>; Tue,  6 Apr 2021 22:56:23 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 1176C4015D;
-	Wed, 24 Mar 2021 19:50:15 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 2A9344019B;
+	Tue,  6 Apr 2021 20:56:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id k7sBOyE4Fjuc; Wed, 24 Mar 2021 19:50:12 +0000 (UTC)
+	with ESMTP id 5StTkxGhdQ9L; Tue,  6 Apr 2021 20:56:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 8FD71400D3;
-	Wed, 24 Mar 2021 19:50:11 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id A359B4054C;
+	Tue,  6 Apr 2021 20:56:19 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4E486C0012;
-	Wed, 24 Mar 2021 19:50:11 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B2204C0012;
+	Tue,  6 Apr 2021 20:56:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1EEAEC000A
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:50:10 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 706D3C000A
+ for <bridge@lists.linux-foundation.org>; Tue,  6 Apr 2021 20:56:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id DFBA9606EE
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:50:09 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 4948D605D8
+ for <bridge@lists.linux-foundation.org>; Tue,  6 Apr 2021 20:56:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 0y0G2o2s8eaW for <bridge@lists.linux-foundation.org>;
- Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp3.osuosl.org (Postfix) with ESMTPS id D09BA6069D
- for <bridge@lists.linux-foundation.org>; Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 3CD2261A21;
- Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1616615408;
- bh=jWlbCW3ZvY9ep7+jRAH9k7cY3rs1dnmpwgoeOz00z3w=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=XvWZJy4NHh8YmWYB8PAjHxyx49VVepw96KB0QiUqOhGfsgQCMCMHass0aSITxUnDL
- zqONfHDu2Rh9xt9iydwQhFVQFV2qFsC/RsE5JCuhuJud+kSv43icaaSJ8WV36rNDBB
- u6w5SeXpFQp4y6w/sWCgjN4Amn6DM0dkE9NRG25pygwhWBIbKJ+rQZYP0KjhAUPYlp
- /tcnv+aGplz62JyEtRGuJDU53WmGky+Z5BbgHOcExhGOSdU4BzICJbSEzoAPfTf/zz
- l5OkSCqmE5EvKhJHjeDDzITvjfUFKYqW1jOkeGZ1mFnhR3yb6GfRtc3PWxATBmMJpt
- 2iaqc+kkiH6Bw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 2AC6260A6A;
- Wed, 24 Mar 2021 19:50:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ with ESMTP id lx4wJgZQgHpJ for <bridge@lists.linux-foundation.org>;
+ Tue,  6 Apr 2021 20:56:14 +0000 (UTC)
+X-Greylist: delayed 00:06:21 by SQLgrey-1.8.0
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 19DE76001E
+ for <bridge@lists.linux-foundation.org>; Tue,  6 Apr 2021 20:56:13 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 3688D3E95C; Tue,  6 Apr 2021 22:49:47 +0200 (CEST)
+Date: Tue, 6 Apr 2021 22:49:44 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: bridge@lists.linux-foundation.org
+Message-ID: <20210406204944.GH2742@otheros>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161661540817.24400.14095983696664158789.git-patchwork-notify@kernel.org>
-Date: Wed, 24 Mar 2021 19:50:08 +0000
-References: <20210324150950.253698-1-colin.king@canonical.com>
-In-Reply-To: <20210324150950.253698-1-colin.king@canonical.com>
-To: Colin King <colin.king@canonical.com>
-Cc: vladimir.oltean@nxp.com, bridge@lists.linux-foundation.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH][next] net: bridge: Fix missing return
- assignment from br_vlan_replay_one call
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Last-TLS-Session-Version: TLSv1.2
+Cc: b.a.t.m.a.n@lists.open-mesh.org
+Subject: [Bridge] IPv4/IPv6 separation in bridge code for multicast routers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -81,27 +62,54 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Hi,
 
-This patch was applied to netdev/net-next.git (refs/heads/master):
+I wanted to add the remaining pieces for batman-adv to support
+IPv4 multicast groups in bridged setups, next to the IPv6 support
+already in place. For which we'd need MRD support. So once more
+I'd tap into the bridge for this information from batman-adv.
 
-On Wed, 24 Mar 2021 15:09:50 +0000 you wrote:
-> From: Colin Ian King <colin.king@canonical.com>
-> 
-> The call to br_vlan_replay_one is returning an error return value but
-> this is not being assigned to err and the following check on err is
-> currently always false because err was initialized to zero. Fix this
-> by assigning err.
-> 
-> [...]
+Then I realized again that the bridge keeps track of the
+IGMP/MLD querier per protocol family but not for the multicast
+router ports. For the latter we only have one list right now. For
+batman-adv we have the multicast router flags and logic already
+separate though.
 
-Here is the summary with links:
-  - [next] net: bridge: Fix missing return assignment from br_vlan_replay_one call
-    https://git.kernel.org/netdev/net-next/c/ad248f7761eb
+I started separating the router list for IPv4 and IPv6 in the
+bridge, but it seems there are already external users for the
+protocol family unaware router list right now: netlink and switchdev.
+Now I'm wondering:
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+A) For netlink:
+
+Would it be fine to just add a MDBA_ROUTER_PATTR_FAMILY with
+either the value PF_INET or PF_INET6? The downside would be that
+a userspace application which does not know this new attribute
+yet would potentially see or list a duplicate.
+
+Another option would be to add two separate attributes:
+MDBA_ROUTER_PATTR_{INET,INET6}. Which looks a bit more clumsy and
+and inflexible to me. But would have a better compatiblity when
+userspace requests a router ports dump. For events there'd still
+be the same issue of duplicates though, as IPv4 and IPv6 routers
+might appear or disappear asynchronously.
+
+B) For switchdev:
+
+I'm not that familiar with switchdev. Should it generally be
+possible to separate the protocol family here? Or would it be
+better to add a few more lines to the bridge code to
+only call switchdev_port_attr_set() when transitioning between
+v4-rtr, v6-rtr: (off, off) <=> (on, on) | (on, off) | (off, on)?
+At least for a start, maybe?
+
+C)
+
+Or am I missing something in the MRD RFC (RFC4286) which implies
+that a Multicast router Advertisement should be interpreted
+across protocol families?
 
 
+Any ideas what might be the best way to tackle this?
+
+Regards, Linus
