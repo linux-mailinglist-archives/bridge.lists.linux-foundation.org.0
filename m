@@ -1,46 +1,45 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B6036A81F
-	for <lists.bridge@lfdr.de>; Sun, 25 Apr 2021 17:58:12 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1244B36A83A
+	for <lists.bridge@lfdr.de>; Sun, 25 Apr 2021 18:06:53 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 6CD0C6063A;
-	Sun, 25 Apr 2021 15:58:10 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 24D266064C;
+	Sun, 25 Apr 2021 16:06:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 4ztAcP87DPJ8; Sun, 25 Apr 2021 15:58:09 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTP id CC0896063F;
-	Sun, 25 Apr 2021 15:58:08 +0000 (UTC)
+	with ESMTP id v6szvmACO_co; Sun, 25 Apr 2021 16:06:50 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTP id 816166069C;
+	Sun, 25 Apr 2021 16:06:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6BB2AC000B;
-	Sun, 25 Apr 2021 15:58:08 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 35688C001C;
+	Sun, 25 Apr 2021 16:06:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8E4DAC000B
- for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 15:58:07 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E9DB3C000B
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 16:06:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 7015A4032B
- for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 15:58:07 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id CB91F6064C
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 16:06:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 6i-TzVifYJEt for <bridge@lists.linux-foundation.org>;
- Sun, 25 Apr 2021 15:58:06 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:c2c:665b::1])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 6D51C404EB
- for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 15:58:06 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Z448dN7tqeAt for <bridge@lists.linux-foundation.org>;
+ Sun, 25 Apr 2021 16:06:46 +0000 (UTC)
+X-Greylist: delayed 00:05:03 by SQLgrey-1.8.0
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id A51FB605B3
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 16:06:46 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 3B5813EBF7; Sun, 25 Apr 2021 17:58:03 +0200 (CEST)
+ with ESMTPSA id 123483EBF7; Sun, 25 Apr 2021 18:01:37 +0200 (CEST)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: netdev@vger.kernel.org
-Date: Sun, 25 Apr 2021 17:57:31 +0200
-Message-Id: <20210425155732.8561-1-linus.luessing@c0d3.blue>
+Date: Sun, 25 Apr 2021 18:00:48 +0200
+Message-Id: <20210425160050.8732-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
