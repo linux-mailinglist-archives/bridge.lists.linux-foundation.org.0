@@ -1,86 +1,55 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 278D435E60C
-	for <lists.bridge@lfdr.de>; Tue, 13 Apr 2021 20:12:23 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA42536A7F6
+	for <lists.bridge@lfdr.de>; Sun, 25 Apr 2021 17:28:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 5E7C26074C;
-	Tue, 13 Apr 2021 18:12:21 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id D589783A7C;
+	Sun, 25 Apr 2021 15:28:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id te1dTKT9NP5S; Tue, 13 Apr 2021 18:12:20 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1gWBf5GEugpa; Sun, 25 Apr 2021 15:28:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTP id AE4E3606EA;
-	Tue, 13 Apr 2021 18:12:19 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 2CE6A830DE;
+	Sun, 25 Apr 2021 15:28:36 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7C6C5C0012;
-	Tue, 13 Apr 2021 18:12:19 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DBF5EC001C;
+	Sun, 25 Apr 2021 15:28:35 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C5E4BC000A
- for <bridge@lists.linux-foundation.org>; Tue, 13 Apr 2021 18:12:17 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DFC67C000B
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 15:28:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 9D60A404BB
- for <bridge@lists.linux-foundation.org>; Tue, 13 Apr 2021 18:12:17 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id C5339605EC
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 15:28:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=google.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id P7xtxfXuZVCb for <bridge@lists.linux-foundation.org>;
- Tue, 13 Apr 2021 18:12:16 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com
- [IPv6:2607:f8b0:4864:20::f31])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 4BE9D40476
- for <bridge@lists.linux-foundation.org>; Tue, 13 Apr 2021 18:12:16 +0000 (UTC)
-Received: by mail-qv1-xf31.google.com with SMTP id j3so8538165qvs.1
- for <bridge@lists.linux-foundation.org>; Tue, 13 Apr 2021 11:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=J8WTSsefZFW62T22lrlwArgXymqZlxvKILjzLWwjgyM=;
- b=NeRrPp3a6n+7xCPvFIEAmJzlaYcK6H2Ep2acNBn2vO1lIoqyEkSFQZPyk844XLkUcC
- CSJ4wdBUDzbf52DdcpLNnQGRK48SbUStn+UP8xsMDxcSeTFIgnZcN2MUl5BnoMKG9LQh
- CRwrNuvqMypoArtY1NI2wEIBJjHMfzn/dEGYOtIVpVNSxQJfLvcXs/TniO/IVJSNSyhv
- byjFIQyzbMN8CJA8WU/zWKL6p05/5EtXDY5NGxWsaT1OECgCIU7I48szlTUHA/rFdAHr
- aVYht9tuKFMGOF6RKe+TsNrsN+bWZdKi44ptjqa39t4suR13LqINKXw2P70leVxBb/BX
- 7xGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=J8WTSsefZFW62T22lrlwArgXymqZlxvKILjzLWwjgyM=;
- b=B2tA14Baxf8CAWRIFpjsVIbm3c33vp0UYeiODNGmtDJrxm5kHON3JZMaUyqTF4z2DK
- ZY6h+iPQXN/T5e+ny3YNeKC6/ZagpIm7GCwaNCJPu+BgQDgOuwlvVYSnJ/0l0L+SUwpm
- nUOVSbLO6OhbSlkoD2ePtrgkOuXCqNlrQZfCtXGv6pRhVP8MEw5iUg6Kxo0ovN2jqt/+
- ISn49Vt7fBNfBrs18OsIvHor9Se/VB1O7YtLSYpFDEyxLWtGJq62eHV2roUyRC9/MKfO
- TGYZfhJ8FRQcEdCC813gKPWRmv4pJICVXveKUI5K5XrnJ3wMCLyQYa2KXYzIK28gMMjc
- 04vA==
-X-Gm-Message-State: AOAM5305i1Jz4Xah3+8OQWh5rmv8uDXG+AjLIHGSnveu3aufP3uPpowI
- bY/wZ2n5kN/pEFCHTMY1ly3MLXtt0X4n3x7xY+P1IQ==
-X-Google-Smtp-Source: ABdhPJweJY/IhHFwcUYvXY9MEhVrrzrSZgJDFZPiTnwI0l+K32/ZohkHIF4ruWRCWlpbp9BjsCSuH+U2BMYtiLDb+SE=
-X-Received: by 2002:a05:6214:20e8:: with SMTP id
- 8mr33453976qvk.13.1618337534807; 
- Tue, 13 Apr 2021 11:12:14 -0700 (PDT)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id gRVjXpIrdMJW for <bridge@lists.linux-foundation.org>;
+ Sun, 25 Apr 2021 15:28:33 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.aperture-lab.de (mail.aperture-lab.de
+ [IPv6:2a01:4f8:c2c:665b::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 58D0C600CA
+ for <bridge@lists.linux-foundation.org>; Sun, 25 Apr 2021 15:28:33 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 1DAAD3EB2E; Sun, 25 Apr 2021 17:28:28 +0200 (CEST)
+From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: netdev@vger.kernel.org
+Date: Sun, 25 Apr 2021 17:27:35 +0200
+Message-Id: <20210425152736.8421-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
-References: <00000000000028104905bf0822ce@google.com>
-In-Reply-To: <00000000000028104905bf0822ce@google.com>
-Date: Tue, 13 Apr 2021 20:12:03 +0200
-Message-ID: <CACT4Y+ZN6ue+qH_5AJ9nFmOaAnAw7tv-TdXxHyJ_TirnChURcw@mail.gmail.com>
-To: syzbot <syzbot+b221933e5f9ad5b0e2fd@syzkaller.appspotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Cc: netdev <netdev@vger.kernel.org>, bridge@lists.linux-foundation.org,
- Florian Westphal <fw@strlen.de>, LKML <linux-kernel@vger.kernel.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>,
- syzkaller-bugs <syzkaller-bugs@googlegroups.com>, coreteam@netfilter.org,
- NetFilter <netfilter-devel@vger.kernel.org>, nikolay@nvidia.com,
- roopa@nvidia.com, Jakub Kicinski <kuba@kernel.org>,
- David Miller <davem@davemloft.net>, Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: Re: [Bridge] [syzbot] WARNING: suspicious RCU usage in
-	find_inlist_lock
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.2
+Cc: bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S . Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH net] net: bridge: mcast: fix broken length + header
+	check for MRDv6 Adv.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -92,85 +61,167 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Dmitry Vyukov via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Dmitry Vyukov <dvyukov@google.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sat, Apr 3, 2021 at 4:22 AM syzbot
-<syzbot+b221933e5f9ad5b0e2fd@syzkaller.appspotmail.com> wrote:
->
-> Hello,
->
-> syzbot found the following issue on:
->
-> HEAD commit:    1e43c377 Merge tag 'xtensa-20210329' of git://github.com/j..
-> git tree:       upstream
-> console output: https://syzkaller.appspot.com/x/log.txt?x=114cdd4ad00000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=78ef1d159159890
-> dashboard link: https://syzkaller.appspot.com/bug?extid=b221933e5f9ad5b0e2fd
->
-> Unfortunately, I don't have any reproducer for this issue yet.
->
-> IMPORTANT: if you fix the issue, please add the following tag to the commit:
-> Reported-by: syzbot+b221933e5f9ad5b0e2fd@syzkaller.appspotmail.com
+The IPv6 Multicast Router Advertisements parsing has the following two
+issues:
 
-#syz dup: WARNING: suspicious RCU usage in getname_flags
+For one thing, ICMPv6 MRD Advertisements are smaller than ICMPv6 MLD
+messages (ICMPv6 MRD Adv.: 8 bytes vs. ICMPv6 MLDv1/2: >= 24 bytes,
+assuming MLDv2 Reports with at least one multicast address entry).
+When ipv6_mc_check_mld_msg() tries to parse an Multicast Router
+Advertisement its MLD length check will fail - and it will wrongly
+return -EINVAL, even if we have a valid MRD Advertisement. With the
+returned -EINVAL the bridge code will assume a broken packet and will
+wrongly discard it, potentially leading to multicast packet loss towards
+multicast routers.
 
-> =============================
-> WARNING: suspicious RCU usage
-> 5.12.0-rc5-syzkaller #0 Not tainted
-> -----------------------------
-> kernel/sched/core.c:8294 Illegal context switch in RCU-sched read-side critical section!
->
-> other info that might help us debug this:
->
->
-> rcu_scheduler_active = 2, debug_locks = 0
-> no locks held by syz-executor.1/8425.
->
-> stack backtrace:
-> CPU: 1 PID: 8425 Comm: syz-executor.1 Not tainted 5.12.0-rc5-syzkaller #0
-> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-> Call Trace:
->  __dump_stack lib/dump_stack.c:79 [inline]
->  dump_stack+0x141/0x1d7 lib/dump_stack.c:120
->  ___might_sleep+0x266/0x2c0 kernel/sched/core.c:8294
->  __mutex_lock_common kernel/locking/mutex.c:928 [inline]
->  __mutex_lock+0xa9/0x1120 kernel/locking/mutex.c:1096
->  find_inlist_lock_noload net/bridge/netfilter/ebtables.c:316 [inline]
->  find_inlist_lock.constprop.0+0x26/0x220 net/bridge/netfilter/ebtables.c:330
->  find_table_lock net/bridge/netfilter/ebtables.c:339 [inline]
->  do_ebt_get_ctl+0x208/0x790 net/bridge/netfilter/ebtables.c:2329
->  nf_getsockopt+0x72/0xd0 net/netfilter/nf_sockopt.c:116
->  ip_getsockopt net/ipv4/ip_sockglue.c:1777 [inline]
->  ip_getsockopt+0x164/0x1c0 net/ipv4/ip_sockglue.c:1756
->  tcp_getsockopt+0x86/0xd0 net/ipv4/tcp.c:4239
->  __sys_getsockopt+0x21f/0x5f0 net/socket.c:2161
->  __do_sys_getsockopt net/socket.c:2176 [inline]
->  __se_sys_getsockopt net/socket.c:2173 [inline]
->  __x64_sys_getsockopt+0xba/0x150 net/socket.c:2173
->  do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
->  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> RIP: 0033:0x467a6a
-> Code: 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 49 89 ca b8 37 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
-> RSP: 002b:00007ffe660d82f8 EFLAGS: 00000202 ORIG_RAX: 0000000000000037
-> RAX: ffffffffffffffda RBX: 00000000005401a0 RCX: 0000000000467a6a
-> RDX: 0000000000000081 RSI: 0000000000000000 RDI: 0000000000000003
-> RBP: 0000000000000000 R08: 00007ffe660d831c R09: 00007ffe660d83a0
-> R10: 00007ffe660d8320 R11: 0000000000000202 R12: 0000000000000003
-> R13: 00007ffe660d8320 R14: 0000000000540128 R15: 00007ffe660d831c
->
->
-> ---
-> This report is generated by a bot. It may contain errors.
-> See https://goo.gl/tpsmEJ for more information about syzbot.
-> syzbot engineers can be reached at syzkaller@googlegroups.com.
->
-> syzbot will keep track of this issue. See:
-> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
->
-> --
-> You received this message because you are subscribed to the Google Groups "syzkaller-bugs" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to syzkaller-bugs+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit https://groups.google.com/d/msgid/syzkaller-bugs/00000000000028104905bf0822ce%40google.com.
+The second issue is the MRD header parsing in
+br_ip6_multicast_mrd_rcv(): It wrongly checks for an ICMPv6 header
+immediately after the IPv6 header (IPv6 next header type). However
+according to RFC4286, section 2 all MRD messages contain a Router Alert
+option (just like MLD). So instead there is an IPv6 Hop-by-Hop option
+for the Router Alert between the IPv6 and ICMPv6 header, again leading
+to the bridge wrongly discarding Multicast Router Advertisements.
+
+To fix these two issues, introduce a new return value -ENODATA to
+ipv6_mc_check_mld() to indicate a valid ICMPv6 packet with a hop-by-hop
+option which is not an MLD but potentially an MRD packet. This also
+simplifies further parsing in the bridge code, as ipv6_mc_check_mld()
+already fully checks the ICMPv6 header and hop-by-hop option.
+
+These issues were found and fixed with the help of the mrdisc tool
+(https://github.com/troglobit/mrdisc).
+
+Fixes: 4b3087c7e37f ("bridge: Snoop Multicast Router Advertisements")
+Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
+---
+ include/net/addrconf.h    |  1 -
+ net/bridge/br_multicast.c | 33 ++++++++-------------------------
+ net/ipv6/mcast_snoop.c    | 12 +++++++-----
+ 3 files changed, 15 insertions(+), 31 deletions(-)
+
+diff --git a/include/net/addrconf.h b/include/net/addrconf.h
+index 18f783dcd55f..78ea3e332688 100644
+--- a/include/net/addrconf.h
++++ b/include/net/addrconf.h
+@@ -233,7 +233,6 @@ void ipv6_mc_unmap(struct inet6_dev *idev);
+ void ipv6_mc_remap(struct inet6_dev *idev);
+ void ipv6_mc_init_dev(struct inet6_dev *idev);
+ void ipv6_mc_destroy_dev(struct inet6_dev *idev);
+-int ipv6_mc_check_icmpv6(struct sk_buff *skb);
+ int ipv6_mc_check_mld(struct sk_buff *skb);
+ void addrconf_dad_failure(struct sk_buff *skb, struct inet6_ifaddr *ifp);
+ 
+diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+index 9d265447d654..229309d7b4ff 100644
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -3152,25 +3152,14 @@ static int br_multicast_ipv4_rcv(struct net_bridge *br,
+ }
+ 
+ #if IS_ENABLED(CONFIG_IPV6)
+-static int br_ip6_multicast_mrd_rcv(struct net_bridge *br,
+-				    struct net_bridge_port *port,
+-				    struct sk_buff *skb)
++static void br_ip6_multicast_mrd_rcv(struct net_bridge *br,
++				     struct net_bridge_port *port,
++				     struct sk_buff *skb)
+ {
+-	int ret;
+-
+-	if (ipv6_hdr(skb)->nexthdr != IPPROTO_ICMPV6)
+-		return -ENOMSG;
+-
+-	ret = ipv6_mc_check_icmpv6(skb);
+-	if (ret < 0)
+-		return ret;
+-
+ 	if (icmp6_hdr(skb)->icmp6_type != ICMPV6_MRDISC_ADV)
+-		return -ENOMSG;
++		return;
+ 
+ 	br_multicast_mark_router(br, port);
+-
+-	return 0;
+ }
+ 
+ static int br_multicast_ipv6_rcv(struct net_bridge *br,
+@@ -3184,18 +3173,12 @@ static int br_multicast_ipv6_rcv(struct net_bridge *br,
+ 
+ 	err = ipv6_mc_check_mld(skb);
+ 
+-	if (err == -ENOMSG) {
++	if (err == -ENOMSG || err == -ENODATA) {
+ 		if (!ipv6_addr_is_ll_all_nodes(&ipv6_hdr(skb)->daddr))
+ 			BR_INPUT_SKB_CB(skb)->mrouters_only = 1;
+-
+-		if (ipv6_addr_is_all_snoopers(&ipv6_hdr(skb)->daddr)) {
+-			err = br_ip6_multicast_mrd_rcv(br, port, skb);
+-
+-			if (err < 0 && err != -ENOMSG) {
+-				br_multicast_err_count(br, port, skb->protocol);
+-				return err;
+-			}
+-		}
++		if (err == -ENODATA &&
++		    ipv6_addr_is_all_snoopers(&ipv6_hdr(skb)->daddr))
++			br_ip6_multicast_mrd_rcv(br, port, skb);
+ 
+ 		return 0;
+ 	} else if (err < 0) {
+diff --git a/net/ipv6/mcast_snoop.c b/net/ipv6/mcast_snoop.c
+index d3d6b6a66e5f..04d5fcdfa6e0 100644
+--- a/net/ipv6/mcast_snoop.c
++++ b/net/ipv6/mcast_snoop.c
+@@ -109,7 +109,7 @@ static int ipv6_mc_check_mld_msg(struct sk_buff *skb)
+ 	struct mld_msg *mld;
+ 
+ 	if (!ipv6_mc_may_pull(skb, len))
+-		return -EINVAL;
++		return -ENODATA;
+ 
+ 	mld = (struct mld_msg *)skb_transport_header(skb);
+ 
+@@ -122,7 +122,7 @@ static int ipv6_mc_check_mld_msg(struct sk_buff *skb)
+ 	case ICMPV6_MGM_QUERY:
+ 		return ipv6_mc_check_mld_query(skb);
+ 	default:
+-		return -ENOMSG;
++		return -ENODATA;
+ 	}
+ }
+ 
+@@ -131,7 +131,7 @@ static inline __sum16 ipv6_mc_validate_checksum(struct sk_buff *skb)
+ 	return skb_checksum_validate(skb, IPPROTO_ICMPV6, ip6_compute_pseudo);
+ }
+ 
+-int ipv6_mc_check_icmpv6(struct sk_buff *skb)
++static int ipv6_mc_check_icmpv6(struct sk_buff *skb)
+ {
+ 	unsigned int len = skb_transport_offset(skb) + sizeof(struct icmp6hdr);
+ 	unsigned int transport_len = ipv6_transport_len(skb);
+@@ -150,7 +150,6 @@ int ipv6_mc_check_icmpv6(struct sk_buff *skb)
+ 
+ 	return 0;
+ }
+-EXPORT_SYMBOL(ipv6_mc_check_icmpv6);
+ 
+ /**
+  * ipv6_mc_check_mld - checks whether this is a sane MLD packet
+@@ -161,7 +160,10 @@ EXPORT_SYMBOL(ipv6_mc_check_icmpv6);
+  *
+  * -EINVAL: A broken packet was detected, i.e. it violates some internet
+  *  standard
+- * -ENOMSG: IP header validation succeeded but it is not an MLD packet.
++ * -ENOMSG: IP header validation succeeded but it is not an ICMPv6 packet
++ *  with a hop-by-hop option.
++ * -ENODATA: IP+ICMPv6 header with hop-by-hop option validation succeeded
++ *  but it is not an MLD packet.
+  * -ENOMEM: A memory allocation failure happened.
+  *
+  * Caller needs to set the skb network header and free any returned skb if it
+-- 
+2.31.0
+
