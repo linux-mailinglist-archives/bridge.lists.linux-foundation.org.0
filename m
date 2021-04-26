@@ -1,97 +1,92 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A0A36C098
-	for <lists.bridge@lfdr.de>; Tue, 27 Apr 2021 10:08:37 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D44236C09F
+	for <lists.bridge@lfdr.de>; Tue, 27 Apr 2021 10:08:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8D04E405C8;
-	Tue, 27 Apr 2021 08:08:31 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 5B06283C48;
+	Tue, 27 Apr 2021 08:08:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id xp6RJiUecHgt; Tue, 27 Apr 2021 08:08:30 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XBQi_bCqakyN; Tue, 27 Apr 2021 08:08:31 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 995CB405BA;
-	Tue, 27 Apr 2021 08:08:29 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 9E6FF83C56;
+	Tue, 27 Apr 2021 08:08:30 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9BBC0C0025;
-	Tue, 27 Apr 2021 08:08:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id BF63FC002F;
+	Tue, 27 Apr 2021 08:08:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 25782C000B
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:24:39 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D73D7C000F
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 1285340342
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:24:39 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id B44BA402E3
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id tq9BYiKyhxqR for <bridge@lists.linux-foundation.org>;
- Mon, 26 Apr 2021 15:24:38 +0000 (UTC)
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key)
+ header.d=waldekranz-com.20150623.gappssmtp.com
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id VnxZtc-AccEJ for <bridge@lists.linux-foundation.org>;
+ Mon, 26 Apr 2021 17:04:50 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 12F4C4036D
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:24:37 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id e2so24801090plh.8
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 08:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-language:content-transfer-encoding;
- bh=q0T9jbT9J+TwSihAcCr3HGKEWP12uQgYZvS3pdHVqZo=;
- b=d4UWmkkRHMFKP3kmi5OF+3tUt2yHNzgDLOlWEj7T2XOeHCDvRyd8JHq8AbUrzST7FX
- Z8REYPJxb+n6Y62qo4mLz7ghuRtgyF70jkT3Sk6yeZNd9gfP+9XX8OLicZQxJRxk8SD6
- JUbVsWMhMqlEsuOnprSxi4DZG6/esyvBE5KAdH6S0u/qJRtrV7TopyYavmlaqkXt2tI3
- pEZnblHvFjEbRq7nugYy2HTtuOOJkZp8wvIiReVoodNkAGi1nqYMqrdBueMMRFG/GO1I
- a6xbjZyddbFIB8y5BzfquAN2EF/uLQSVQuaONjZE0DOQJOV1v5nI0jPvVGxNQTpv9mVy
- 7Dug==
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
+ [IPv6:2a00:1450:4864:20::136])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id AF986402DF
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:50 +0000 (UTC)
+Received: by mail-lf1-x136.google.com with SMTP id z13so8346309lft.1
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 10:04:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version:organization
+ :content-transfer-encoding;
+ bh=Jr2O6QSEtOHevsAE5YFTt/YIC0swEXg9oy1TkL8tb2c=;
+ b=hZ4E5qrh/uXKwSwpGYAAoXNvtrcOSEQkNHGC5DdEFD1Cz5iepVBfYUgYKfqrKGPHqm
+ V7/JfUN/5tFPvbSRI74rerPVudta4hAARuAp//M1Qv3SelDmpesJKyD01s6cxfxZL73S
+ 8ppoxafEiXyXTHXreytYwcKpCI2hf2Wsi7m/jIQbiPJGGA1b1pev1seooNytxsT1dTmO
+ 4/PEgLAMEfpgCTfPdhhtbzlcD4NAJpUd1a3H2C7A5uVk7SY4UCMwm8C/h77yfiacZNYW
+ JQAOxMfoxiB9RxNQAMIdnCwa70IRb8e2EQmf3i7eG7jEpw2qIRI97Qk1f+u3idEn90is
+ MxtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=q0T9jbT9J+TwSihAcCr3HGKEWP12uQgYZvS3pdHVqZo=;
- b=fVCxnF5KhaFTd6bC51rvWTRptK91rTO5FvEzn2barf56MsS3AecADFkNldebdRgvdq
- CfIa7eneUP/rlCY27A5MXQyK2bRoFd/y/bgPfksQeI09JToYGZr+uwTp0G7haEYd/CIS
- 7Fi2XrkC8vqwIueK3q3mN7C8aIAiKHE2CI+C5Rix5GB99qWU8JzqzE8qpR88vpwfNlNN
- 4JGHj5tXdVIWMeIQSAggmfc1ZbjbhrigDX7G/4mPTIqUslC3MlSpO/ghYhDtSEZJX8Ct
- J7rIbOTt/+2D6gitEMSJv8PgsV0y2L5l4+Tg7i7r3AShJs6+qThYsZan0D3oqsTHFEKm
- EtIw==
-X-Gm-Message-State: AOAM530oxIzINcGYYOutNJllz19otMzI064FKKOSFQoSlpatG4+6lV81
- ZhVHGBZ8GbUg961xMZEUWchH+Z0ZaeM=
-X-Google-Smtp-Source: ABdhPJwAGxuU4uvgk5s1YLZIMbudsahCI3btlZBwLhg9JqvI5u1fdgmj4bIZHPuxtaOa4gWUddd6XQ==
-X-Received: by 2002:a17:90b:4908:: with SMTP id
- kr8mr9032606pjb.85.1619450676936; 
- Mon, 26 Apr 2021 08:24:36 -0700 (PDT)
-Received: from [192.168.0.4] ([49.173.165.50])
- by smtp.gmail.com with ESMTPSA id 132sm108229pfu.107.2021.04.26.08.24.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 26 Apr 2021 08:24:36 -0700 (PDT)
-To: Heiner Kallweit <hkallweit1@gmail.com>, davem@davemloft.net,
- kuba@kernel.org, dsahern@kernel.org, yoshfuji@linux-ipv6.org,
- netdev@vger.kernel.org, j.vosburgh@gmail.com, vfalico@gmail.com,
- andy@greyhouse.net, roopa@nvidia.com, nikolay@nvidia.com, ast@kernel.org,
- andriin@fb.com, daniel@iogearbox.net, weiwan@google.com,
- cong.wang@bytedance.com, bjorn@kernel.org, herbert@gondor.apana.org.au,
- bridge@lists.linux-foundation.org
-References: <20210425155742.30057-1-ap420073@gmail.com>
- <20210425155742.30057-2-ap420073@gmail.com>
- <d7cf5368-21a4-a551-169a-00a4cb2b3a0d@gmail.com>
-From: Taehee Yoo <ap420073@gmail.com>
-Message-ID: <a43a957a-0fc8-cfff-f04a-cf0bc1ae612b@gmail.com>
-Date: Tue, 27 Apr 2021 00:24:31 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :organization:content-transfer-encoding;
+ bh=Jr2O6QSEtOHevsAE5YFTt/YIC0swEXg9oy1TkL8tb2c=;
+ b=WY2BGYl6Cvl7QSaYCPONr3pLqdcV50l1iMLJUVbVDtTTJ2Yfb3oojYxgThr/0lCVwb
+ LfulhccX5q+6DGiCcK36hA/3JOrv4rF1T4wceonRTIrHOX7CN9KYorW+H9ejhdLr0S28
+ LDI303+kfrFWn/XTSw9NHVhcIOdcZCrk9Tcd+y8LceOsuVrrJN9ecFYgm9NkWtipmVDx
+ 4A5DUqdNcbe0vL1myk8jMGCkaloabcNoGfGDx7/ajYa3XCQQluhhumnxZMfK5cARucuI
+ fl4YXchJaUbm5sFjhOhg4y475zfc/MVGU1Ein347f1I8pui8DVAPCfko3hdCdwhcVYOn
+ YxDg==
+X-Gm-Message-State: AOAM5312L06TfiO4zryg0Yc2dcHVroAvfo34LDeKDqI4qa5f7ULrVNmT
+ vjMOn4XmWZlHHVulWLdd85zYyw==
+X-Google-Smtp-Source: ABdhPJyEJc4B4Yofjg1fjca33hVj+7n7/kRHbZ7cOa8wErqcV8xQokvZvNDJEBp/HBvgCugQ7qnq+A==
+X-Received: by 2002:a19:6b19:: with SMTP id d25mr13285793lfa.406.1619456686893; 
+ Mon, 26 Apr 2021 10:04:46 -0700 (PDT)
+Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se.
+ [193.12.47.89])
+ by smtp.gmail.com with ESMTPSA id c18sm59140ljd.66.2021.04.26.10.04.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 26 Apr 2021 10:04:46 -0700 (PDT)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: davem@davemloft.net,
+	kuba@kernel.org
+Date: Mon, 26 Apr 2021 19:04:02 +0200
+Message-Id: <20210426170411.1789186-1-tobias@waldekranz.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <d7cf5368-21a4-a551-169a-00a4cb2b3a0d@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Organization: Westermo
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 27 Apr 2021 08:08:26 +0000
-Subject: Re: [Bridge] [PATCH net v2 1/2] net: core: make
- bond_get_lowest_level_rcu() generic
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org, idosch@idosch.org,
+ nikolay@nvidia.com, roopa@nvidia.com, olteanv@gmail.com,
+ vivien.didelot@gmail.com
+Subject: [Bridge] [RFC net-next 0/9] net: bridge: Forward offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,200 +101,171 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 4/26/21 3:03 AM, Heiner Kallweit wrote:
+## Overview
 
-Hi Heiner,
-Thank you for the review!
+   vlan1   vlan2
+       \   /
+   .-----------.
+   |    br0    |
+   '-----------'
+   /   /   \   \
+swp0 swp1 swp2 eth0
+  :   :   :
+  (hwdom 1)
 
- > On 25.04.2021 17:57, Taehee Yoo wrote:
- >> The purpose of bond_get_lowest_level_rcu() is to get nested_level under
- >> RCU. Because dev->nested_level is protected by RTNL, so it shouldn't be
- >> used without RTNL. But bonding module needs this value under RCU without
- >> RTNL.
- >> So, this function was added.
- >>
- >> But, there is another module, which needs this function.
- >> So, make this function generic.
- >> the new name is netdev_get_nest_level_rcu().
- >>
- >> Signed-off-by: Taehee Yoo <ap420073@gmail.com>
- >> ---
- >>
- >> v2:
- >>   - No change
- >>
- >>   drivers/net/bonding/bond_main.c | 45 +--------------------------------
- >>   include/linux/netdevice.h       |  1 +
- >>   net/core/dev.c                  | 44 ++++++++++++++++++++++++++++++++
- >>   3 files changed, 46 insertions(+), 44 deletions(-)
- >>
- >> diff --git a/drivers/net/bonding/bond_main.c 
-b/drivers/net/bonding/bond_main.c
- >> index 83ef62db6285..a9feb039ffa6 100644
- >> --- a/drivers/net/bonding/bond_main.c
- >> +++ b/drivers/net/bonding/bond_main.c
- >> @@ -3754,47 +3754,6 @@ static void bond_fold_stats(struct 
-rtnl_link_stats64 *_res,
- >>   	}
- >>   }
- >>
- >> -#ifdef CONFIG_LOCKDEP
- >> -static int bond_get_lowest_level_rcu(struct net_device *dev)
- >> -{
- >> -	struct net_device *ldev, *next, *now, *dev_stack[MAX_NEST_DEV + 1];
- >> -	struct list_head *niter, *iter, *iter_stack[MAX_NEST_DEV + 1];
- >> -	int cur = 0, max = 0;
- >> -
- >> -	now = dev;
- >> -	iter = &dev->adj_list.lower;
- >> -
- >> -	while (1) {
- >> -		next = NULL;
- >> -		while (1) {
- >> -			ldev = netdev_next_lower_dev_rcu(now, &iter);
- >> -			if (!ldev)
- >> -				break;
- >> -
- >> -			next = ldev;
- >> -			niter = &ldev->adj_list.lower;
- >> -			dev_stack[cur] = now;
- >> -			iter_stack[cur++] = iter;
- >> -			if (max <= cur)
- >> -				max = cur;
- >> -			break;
- >> -		}
- >> -
- >> -		if (!next) {
- >> -			if (!cur)
- >> -				return max;
- >> -			next = dev_stack[--cur];
- >> -			niter = iter_stack[cur];
- >> -		}
- >> -
- >> -		now = next;
- >> -		iter = niter;
- >> -	}
- >> -
- >> -	return max;
- >> -}
- >> -#endif
- >> -
- >>   static void bond_get_stats(struct net_device *bond_dev,
- >>   			   struct rtnl_link_stats64 *stats)
- >>   {
- >> @@ -3806,9 +3765,7 @@ static void bond_get_stats(struct net_device 
-*bond_dev,
- >>
- >>
- >>   	rcu_read_lock();
- >> -#ifdef CONFIG_LOCKDEP
- >> -	nest_level = bond_get_lowest_level_rcu(bond_dev);
- >> -#endif
- >> +	nest_level = netdev_get_nest_level_rcu(bond_dev);
- >>
- >>   	spin_lock_nested(&bond->stats_lock, nest_level);
- >>   	memcpy(stats, &bond->bond_stats, sizeof(*stats));
- >> diff --git a/include/linux/netdevice.h b/include/linux/netdevice.h
- >> index 87a5d186faff..507c06bf5dba 100644
- >> --- a/include/linux/netdevice.h
- >> +++ b/include/linux/netdevice.h
- >> @@ -4699,6 +4699,7 @@ int netdev_walk_all_lower_dev(struct 
-net_device *dev,
- >>   			      int (*fn)(struct net_device *lower_dev,
- >>   					struct netdev_nested_priv *priv),
- >>   			      struct netdev_nested_priv *priv);
- >> +int netdev_get_nest_level_rcu(struct net_device *dev);
- >>   int netdev_walk_all_lower_dev_rcu(struct net_device *dev,
- >>   				  int (*fn)(struct net_device *lower_dev,
- >>   					    struct netdev_nested_priv *priv),
- >> diff --git a/net/core/dev.c b/net/core/dev.c
- >> index 15fe36332fb8..efc2bf88eafd 100644
- >> --- a/net/core/dev.c
- >> +++ b/net/core/dev.c
- >> @@ -7709,6 +7709,50 @@ static int __netdev_update_lower_level(struct 
-net_device *dev,
- >>   	return 0;
- >>   }
- >>
- >> +int netdev_get_nest_level_rcu(struct net_device *dev)
- >> +{
- >> +#ifdef CONFIG_LOCKDEP
- >> +	struct net_device *ldev, *next, *now, *dev_stack[MAX_NEST_DEV + 1];
- >> +	struct list_head *niter, *iter, *iter_stack[MAX_NEST_DEV + 1];
- >> +	int cur = 0, max = 0;
- >> +
- >> +	now = dev;
- >> +	iter = &dev->adj_list.lower;
- >> +
- >> +	while (1) {
- >> +		next = NULL;
- >> +		while (1) {
- >> +			ldev = netdev_next_lower_dev_rcu(now, &iter);
- >> +			if (!ldev)
- >> +				break;
- >> +
- >> +			next = ldev;
- >> +			niter = &ldev->adj_list.lower;
- >> +			dev_stack[cur] = now;
- >> +			iter_stack[cur++] = iter;
- >> +			if (max <= cur)
- >> +				max = cur;
- >> +			break;
- >
- > This looks odd. Why a while loop if it's left in the first iteration
- > anyway? The whole loop looks unnecessarily complex. The following
- > should do the same, just in a simpler way (untested!)
- >
- >          while (1) {
- >                  ldev = netdev_next_lower_dev_rcu(now, &iter);
- >                  if (ldev) {
- >                          dev_stack[cur] = now;
- >                          iter_stack[cur++] = iter;
- >                          if (max <= cur)
- >                                  max = cur;
- >                          now = ldev;
- >                          iter = &ldev->adj_list.lower;
- >                  } else {
- >                          if (!cur)
- >                                  break;
- >                          now = dev_stack[--cur];
- >                          iter = iter_stack[cur];
- >                  }
- >          }
- >
- > I know that you just copied the original function.
- > Simplifying the function should be something for a
- > follow-up patch.
- >
- >> +		}
- >> +
- >> +		if (!next) {
- >> +			if (!cur)
- >> +				return max;
- >> +			next = dev_stack[--cur];
- >> +			niter = iter_stack[cur];
- >> +		}
- >> +
- >> +		now = next;
- >> +		iter = niter;
- >> +	}
- >> +
- >> +	return max;
- >> +#else
- >> +	return 0;
- >> +#endif
- >> +}
- >> +EXPORT_SYMBOL_GPL(netdev_get_nest_level_rcu);
- >> +
- >>   int netdev_walk_all_lower_dev_rcu(struct net_device *dev,
- >>   				  int (*fn)(struct net_device *dev,
- >>   					    struct netdev_nested_priv *priv),
- >>
- >
+Up to this point, switchdevs have been trusted with offloading
+forwarding between bridge ports, e.g. forwarding a unicast from swp0
+to swp1 or flooding a broadcast from swp2 to swp1 and swp0. This
+series extends forward offloading to include some new classes of
+traffic:
 
-I think you're right.
-Your logic is more simple and stable.
-If I send a v3 patch, I will use your logic after some tests.
+- Locally originating flows, i.e. packets that ingress on br0 that are
+  to be forwarded to one or several of the ports swp{0,1,2}. Notably
+  this also includes routed flows, e.g. a packet ingressing swp0 on
+  VLAN 1 which is then routed over to VLAN 2 by the CPU and then
+  forwarded to swp1 is "locally originating" from br0's point of view.
 
-Thanks a lot!
-Taehee
+- Flows originating from "foreign" interfaces, i.e. an interface that
+  is not offloaded by a particular switchdev instance. This includes
+  ports belonging to other switchdev instances. A typical example
+  would be flows from eth0 towards swp{0,1,2}.
+
+The bridge still looks up its FDB/MDB as usual and then notifies the
+switchdev driver that a particular skb should be offloaded if it
+matches one of the classes above. It does so by using the _accel
+version of dev_queue_xmit, supplying its own netdev as the
+"subordinate" device. The driver can react to the presence of the
+subordinate in its .ndo_select_queue in what ever way it needs to make
+sure to forward the skb in much the same way that it would for packets
+ingressing on regular ports.
+
+Hardware domains to which a particular skb has been forwarded are
+recorded so that duplicates are avoided.
+
+The main performance benefit is thus seen on multicast flows. Imagine
+for example that:
+
+- An IP camera is connected to swp0 (VLAN 1)
+
+- The CPU is acting as a multicast router, routing the group from VLAN
+  1 to VLAN 2.
+
+- There are subscribers for the group in question behind both swp1 and
+  swp2 (VLAN 2).
+
+With this offloading in place, the bridge need only send a single skb
+to the driver, which will send it to the hardware marked in such a way
+that the switch will perform the multicast replication according to
+the MDB configuration. Naturally, the number of saved skb_clones
+increase linearly with the number of subscribed ports.
+
+As an extra benefit, on mv88e6xxx, this also allows the switch to
+perform source address learning on these flows, which avoids having to
+sync dynamic FDB entries over slow configuration interfaces like MDIO
+to avoid flows directed towards the CPU being flooded as unknown
+unicast by the switch.
+
+
+## RFC
+
+- In general, what do you think about this idea?
+
+- hwdom. What do you think about this terminology? Personally I feel
+  that we had too many things called offload_fwd_mark, and that as the
+  use of the bridge internal ID (nbp->offload_fwd_mark) expands, it
+  might be useful to have a separate term for it.
+
+- .dfwd_{add,del}_station. Am I stretching this abstraction too far,
+  and if so do you have any suggestion/preference on how to signal the
+  offloading from the bridge down to the switchdev driver?
+
+- The way that flooding is implemented in br_forward.c (lazily cloning
+  skbs) means that you have to mark the forwarding as completed very
+  early (right after should_deliver in maybe_deliver) in order to
+  avoid duplicates. Is there some way to move this decision point to a
+  later stage that I am missing?
+
+- BR_MULTICAST_TO_UNICAST. Right now, I expect that this series is not
+  compatible with unicast-to-multicast being used on a port. Then
+  again, I think that this would also be broken for regular switchdev
+  bridge offloading as this flag is not offloaded to the switchdev
+  port, so there is no way for the driver to refuse it. Any ideas on
+  how to handle this?
+
+
+## mv88e6xxx Specifics
+
+Since we are now only receiving a single skb for both unicast and
+multicast flows, we can tag the packets with the FORWARD command
+instead of FROM_CPU. The swich(es) will then forward the packet in
+accordance with its ATU, VTU, STU, and PVT configuration - just like
+for packets ingressing on user ports.
+
+Crucially, FROM_CPU is still used for:
+
+- Ports in standalone mode.
+
+- Flows that are trapped to the CPU and software-forwarded by a
+  bridge. Note that these flows match neither of the classes discussed
+  in the overview.
+
+- Packets that are sent directly to a port netdev without going
+  through the bridge, e.g. lldpd sending out PDU via an AF_PACKET
+  socket.
+
+We thus have a pretty clean separation where the data plane uses
+FORWARDs and the control plane uses TO_/FROM_CPU.
+
+The barrier between different bridges is enforced by port based VLANs
+on mv88e6xxx, which in essence is a mapping from a source device/port
+pair to an allowed set of egress ports. In order to have a FORWARD
+frame (which carries a _source_ device/port) correctly mapped by the
+PVT, we must use a unique pair for each bridge.
+
+Fortunately, there is typically lots of unused address space in most
+switch trees. When was the last time you saw an mv88e6xxx product
+using more than 4 chips? Even if you found one with 16 (!) devices,
+you would still have room to allocate 16*16 virtual ports to software
+bridges.
+
+Therefore, the mv88e6xxx driver will allocate a virtual device/port
+pair to each bridge that it offloads. All members of the same bridge
+are then configured to allow packets from this virtual port in their
+PVTs.
+
+Tobias Waldekranz (9):
+  net: dfwd: Constrain existing users to macvlan subordinates
+  net: bridge: Disambiguate offload_fwd_mark
+  net: bridge: switchdev: Recycle unused hwdoms
+  net: bridge: switchdev: Forward offloading
+  net: dsa: Track port PVIDs
+  net: dsa: Forward offloading
+  net: dsa: mv88e6xxx: Allocate a virtual DSA port for each bridge
+  net: dsa: mv88e6xxx: Map virtual bridge port in PVT
+  net: dsa: mv88e6xxx: Forward offloading
+
+ MAINTAINERS                                   |   1 +
+ drivers/net/dsa/mv88e6xxx/Makefile            |   1 +
+ drivers/net/dsa/mv88e6xxx/chip.c              |  61 ++++++-
+ drivers/net/dsa/mv88e6xxx/dst.c               | 160 ++++++++++++++++++
+ drivers/net/dsa/mv88e6xxx/dst.h               |  14 ++
+ .../net/ethernet/intel/fm10k/fm10k_netdev.c   |   3 +
+ drivers/net/ethernet/intel/i40e/i40e_main.c   |   3 +
+ drivers/net/ethernet/intel/ixgbe/ixgbe_main.c |   3 +
+ include/linux/dsa/mv88e6xxx.h                 |  13 ++
+ include/net/dsa.h                             |  13 ++
+ net/bridge/br_forward.c                       |  11 +-
+ net/bridge/br_if.c                            |   4 +-
+ net/bridge/br_private.h                       |  54 +++++-
+ net/bridge/br_switchdev.c                     | 141 +++++++++++----
+ net/dsa/port.c                                |  16 +-
+ net/dsa/slave.c                               |  36 +++-
+ net/dsa/tag_dsa.c                             |  33 +++-
+ 17 files changed, 510 insertions(+), 57 deletions(-)
+ create mode 100644 drivers/net/dsa/mv88e6xxx/dst.c
+ create mode 100644 drivers/net/dsa/mv88e6xxx/dst.h
+ create mode 100644 include/linux/dsa/mv88e6xxx.h
+
+-- 
+2.25.1
+
