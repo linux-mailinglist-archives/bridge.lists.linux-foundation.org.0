@@ -1,82 +1,79 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747F836C09B
-	for <lists.bridge@lfdr.de>; Tue, 27 Apr 2021 10:08:39 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5928836C0A1
+	for <lists.bridge@lfdr.de>; Tue, 27 Apr 2021 10:08:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 0E5D983C80;
-	Tue, 27 Apr 2021 08:08:33 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 525E883C51;
+	Tue, 27 Apr 2021 08:08:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Hnt7GhfCHw9y; Tue, 27 Apr 2021 08:08:32 +0000 (UTC)
+	with ESMTP id iCgVy56-GgDS; Tue, 27 Apr 2021 08:08:32 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 2D90783C6F;
+	by smtp1.osuosl.org (Postfix) with ESMTP id C0D0783B47;
 	Tue, 27 Apr 2021 08:08:31 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 08547C002D;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 778D6C0024;
 	Tue, 27 Apr 2021 08:08:30 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 91F75C000B
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:54 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7761BC000B
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 8D898403A9
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:54 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 6369A83443
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key)
- header.d=waldekranz-com.20150623.gappssmtp.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id S23Zda7HZHww for <bridge@lists.linux-foundation.org>;
- Mon, 26 Apr 2021 17:04:53 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id woqT8bUCVRB3 for <bridge@lists.linux-foundation.org>;
+ Mon, 26 Apr 2021 17:04:54 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 78536403A3
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:53 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id x19so58981489lfa.2
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 10:04:53 -0700 (PDT)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
+ [IPv6:2a00:1450:4864:20::133])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 7CCFD83455
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 17:04:54 +0000 (UTC)
+Received: by mail-lf1-x133.google.com with SMTP id r128so62374404lff.4
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 10:04:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:organization:content-transfer-encoding;
- bh=gIoM+pn92FmZ7l7fGywvcoFz7NhbL6+Ajxhl2csuoH4=;
- b=h/DCxncDj/YrNnh8RNeWnko9Hu+QqSLcJ+7SmZtNXPDB6Nh2VR+UlmwFU1HyMbQJw1
- KJpaxslG4hLz5Q2WlS3v+DiLNCf1XQW/+daYTnRGmiGadi9/SDdfUuq19ZdPkYIpXa/V
- 9ISJ8Aw/EUuaS1D6Yi7P+RG4Vey6DytR+g5MzCzLY17JH8HqDikcR/POHLDrHJueGY18
- McuL/u8ZtlTcefFr9/Wh3HFlVu4/pNpwWF9wubfLn/AdRkoQrse8PCxfldEQNDn4L411
- eAN/roayikrAn+4ea3s93LZBdXWBt34HBokMNAVG3WTKHTJZOnuMq9lL9wLdBeziGOD1
- UxVQ==
+ bh=6jO9lKWvNXYqdJyM5lCPEQQkRdWVnlQlbjfM8XXf2v8=;
+ b=qPnr7n8CwJXjEsTLB4rmYkKB8NRheLcxrmx5roLwS/+3SaNuQnp1P8uP+pPTYuzkz7
+ OFaVyG16nqOObJ8KcxNZ3dp+RUUTG9BWrs+lc5w5V+72xzFB/2FggGas8E34uLPN9ahW
+ kYegr964IiRipmBOt/wWmJHWi2xS0UaoLqYHAGzpi230EE25kuyK7KLouF15fmzfv4Mi
+ VlBbxEYrj+s4qnB+IpbKVzh4Upf3QeppIQ6xhhBy31Yqc1qPp0u21s9oHYVZCi1v8AZ0
+ rVvZ2gp01kwbTuVzSrlPlJXy0UTgtWqH07fq0tmYxV3P/3dMr/dNg5V5U/Ps4wyqgozO
+ rZOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:organization:content-transfer-encoding;
- bh=gIoM+pn92FmZ7l7fGywvcoFz7NhbL6+Ajxhl2csuoH4=;
- b=XTHhggGn0rB4qJ8JLMx4Eh8YEq491uqBEg1y/0ZIuCAIavt5/G9jRkRkkdj7/zcqG1
- wwjrTGDj30hfBJydstHhRySU5K5k8qUONfz0z6l+gKNxCJ5Si/fD8m6Y2F328bdehksm
- yP3idZ/+HUxvnfJxZRQ9GQN44b0+EJyPlelDo6A3gaSXmQlwN8sccIHHS5x/334Qdc3J
- E+kK//Y+w/mwtuYPJ2d+trDpDN5f9bgZc6aD7B3YUo1eVjROxb6kNqyL7/XscnnB4iMO
- 1Ls90X6bx4wVI+d2EwLDbZryWGQV0kWqXsmzRCt+i9Dt5iGLfJyaTNqk4adnsw27aoFm
- 63bg==
-X-Gm-Message-State: AOAM5315sH8nZuiO4j9z31NH7f5vmTGIgOmwEmHggZeChRFWCW/oAltR
- rclUh27MuwlBKimLQeMbvxEZOw==
-X-Google-Smtp-Source: ABdhPJxbcXo+aROPYbeQTvaHsvvv3yjXsCfK4qwS5i4OyRmvKeWwRH5gj22iV2Sb0NOn5SpRl2TV2Q==
-X-Received: by 2002:a19:520b:: with SMTP id m11mr13318514lfb.157.1619456691254; 
- Mon, 26 Apr 2021 10:04:51 -0700 (PDT)
+ bh=6jO9lKWvNXYqdJyM5lCPEQQkRdWVnlQlbjfM8XXf2v8=;
+ b=Zs+3e8DlIS84watNDfl2txG2XS1qNLady7e2Bw6TXVitn65Cw8X7wdz11v4KSAEVmA
+ 1lkQ4Xa9B7jvRQueEhWnJnxLkkgm5OoxX/D+QHlI1VvjSmasSAl6saxW0Wo0bdFhCDS1
+ 9cq6Ktm7YU5IsUFVYIEED+Epyu+DgmxxBiyijF8RulQWkApZZA56Gk1WtjdwO9SC832h
+ NADMQBu6EqEDd1+j2XuX0lmwiBfo/Yrt4RD8DE0EkezHZMXJ8B82uMkqajZtk1oW0JyO
+ B9a/wvkSrDtZbkmJb/H8Gd+X53bad8olz57beEDUn+fzCQA1qbuydWA+8d4XuWX1Fs9T
+ +taA==
+X-Gm-Message-State: AOAM533OHd808DdDGNXtrjrgthk0MQ3uvo4CsieKrvzAHHbyoGBygAiU
+ g68PBR9+jOr0uSZSI+/h292wug==
+X-Google-Smtp-Source: ABdhPJwojJ85VjAYnTpem4HGCSwPQtiHLBY5RdNMmwq6GgALnObnYL9JSM1J5TMn7t+873jUy+3eRw==
+X-Received: by 2002:a19:ec0a:: with SMTP id b10mr7823784lfa.53.1619456692412; 
+ Mon, 26 Apr 2021 10:04:52 -0700 (PDT)
 Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se.
  [193.12.47.89])
- by smtp.gmail.com with ESMTPSA id c18sm59140ljd.66.2021.04.26.10.04.50
+ by smtp.gmail.com with ESMTPSA id c18sm59140ljd.66.2021.04.26.10.04.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Apr 2021 10:04:50 -0700 (PDT)
+ Mon, 26 Apr 2021 10:04:51 -0700 (PDT)
 From: Tobias Waldekranz <tobias@waldekranz.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Mon, 26 Apr 2021 19:04:07 +0200
-Message-Id: <20210426170411.1789186-6-tobias@waldekranz.com>
+Date: Mon, 26 Apr 2021 19:04:08 +0200
+Message-Id: <20210426170411.1789186-7-tobias@waldekranz.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210426170411.1789186-1-tobias@waldekranz.com>
 References: <20210426170411.1789186-1-tobias@waldekranz.com>
@@ -88,7 +85,7 @@ Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
  netdev@vger.kernel.org, bridge@lists.linux-foundation.org, idosch@idosch.org,
  nikolay@nvidia.com, roopa@nvidia.com, olteanv@gmail.com,
  vivien.didelot@gmail.com
-Subject: [Bridge] [RFC net-next 5/9] net: dsa: Track port PVIDs
+Subject: [Bridge] [RFC net-next 6/9] net: dsa: Forward offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -103,66 +100,116 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-In some scenarios a tagger must know which VLAN to assign to a packet,
-even if the packet is set to egress untagged. Since the VLAN
-information in the skb will be removed by the bridge in this case,
-track each port's PVID such that the VID of an outgoing frame can
-always be determined.
+Allow DSA drivers to support forward offloading from a bridge by:
+
+- Passing calls to .ndo_dfwd_{add,del}_station to the drivers.
+
+- Recording the subordinate device of offloaded skbs in the control
+  buffer so that the tagger can take the appropriate action.
 
 Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 ---
- include/net/dsa.h |  1 +
- net/dsa/port.c    | 16 ++++++++++++++--
- 2 files changed, 15 insertions(+), 2 deletions(-)
+ include/net/dsa.h |  7 +++++++
+ net/dsa/slave.c   | 36 ++++++++++++++++++++++++++++++++++--
+ 2 files changed, 41 insertions(+), 2 deletions(-)
 
 diff --git a/include/net/dsa.h b/include/net/dsa.h
-index 507082959aa4..1f9ba9889034 100644
+index 1f9ba9889034..77d4df819299 100644
 --- a/include/net/dsa.h
 +++ b/include/net/dsa.h
-@@ -270,6 +270,7 @@ struct dsa_port {
- 	unsigned int		ageing_time;
- 	bool			vlan_filtering;
- 	u8			stp_state;
-+	u16			pvid;
- 	struct net_device	*bridge_dev;
- 	struct devlink_port	devlink_port;
- 	bool			devlink_port_setup;
-diff --git a/net/dsa/port.c b/net/dsa/port.c
-index 6379d66a6bb3..02d96aebfcc6 100644
---- a/net/dsa/port.c
-+++ b/net/dsa/port.c
-@@ -651,8 +651,14 @@ int dsa_port_vlan_add(struct dsa_port *dp,
- 		.vlan = vlan,
- 		.extack = extack,
- 	};
-+	int err;
-+
-+	err = dsa_port_notify(dp, DSA_NOTIFIER_VLAN_ADD, &info);
+@@ -119,6 +119,7 @@ struct dsa_netdevice_ops {
  
--	return dsa_port_notify(dp, DSA_NOTIFIER_VLAN_ADD, &info);
-+	if (!err && (vlan->flags & BRIDGE_VLAN_INFO_PVID))
-+		dp->pvid = vlan->vid;
+ struct dsa_skb_cb {
+ 	struct sk_buff *clone;
++	struct net_device *sb_dev;
+ };
+ 
+ struct __dsa_skb_cb {
+@@ -828,6 +829,12 @@ struct dsa_switch_ops {
+ 					  const struct switchdev_obj_ring_role_mrp *mrp);
+ 	int	(*port_mrp_del_ring_role)(struct dsa_switch *ds, int port,
+ 					  const struct switchdev_obj_ring_role_mrp *mrp);
 +
-+	return err;
++	/* L2 forward offloading */
++	void *	(*dfwd_add_station)(struct dsa_switch *ds, int port,
++				    struct net_device *sb_dev);
++	void	(*dfwd_del_station)(struct dsa_switch *ds, int port,
++				    struct net_device *sb_dev);
+ };
+ 
+ #define DSA_DEVLINK_PARAM_DRIVER(_id, _name, _type, _cmodes)		\
+diff --git a/net/dsa/slave.c b/net/dsa/slave.c
+index 77b33bd161b8..3689ffa2dbb8 100644
+--- a/net/dsa/slave.c
++++ b/net/dsa/slave.c
+@@ -657,6 +657,13 @@ static netdev_tx_t dsa_slave_xmit(struct sk_buff *skb, struct net_device *dev)
+ 	return dsa_enqueue_skb(nskb, dev);
  }
  
- int dsa_port_vlan_del(struct dsa_port *dp,
-@@ -663,8 +669,14 @@ int dsa_port_vlan_del(struct dsa_port *dp,
- 		.port = dp->index,
- 		.vlan = vlan,
- 	};
-+	int err;
++static u16 dsa_slave_select_queue(struct net_device *dev, struct sk_buff *skb,
++				  struct net_device *sb_dev)
++{
++	DSA_SKB_CB(skb)->sb_dev = sb_dev;
++	return netdev_pick_tx(dev, skb, sb_dev);
++}
 +
-+	err = dsa_port_notify(dp, DSA_NOTIFIER_VLAN_DEL, &info);
+ /* ethtool operations *******************************************************/
  
--	return dsa_port_notify(dp, DSA_NOTIFIER_VLAN_DEL, &info);
-+	if (!err && vlan->vid == dp->pvid)
-+		dp->pvid = 0;
-+
-+	return err;
+ static void dsa_slave_get_drvinfo(struct net_device *dev,
+@@ -1708,10 +1715,33 @@ static int dsa_slave_fill_forward_path(struct net_device_path_ctx *ctx,
+ 	return 0;
  }
  
- int dsa_port_mrp_add(const struct dsa_port *dp,
++static void *dsa_slave_dfwd_add_station(struct net_device *dev,
++					struct net_device *sb_dev)
++{
++	struct dsa_port *dp = dsa_slave_to_port(dev);
++	struct dsa_switch *ds = dp->ds;
++
++	if (ds->ops->dfwd_add_station)
++		return ds->ops->dfwd_add_station(ds, dp->index, sb_dev);
++
++	return ERR_PTR(-EOPNOTSUPP);
++}
++
++static void dsa_slave_dfwd_del_station(struct net_device *dev,
++				       void *sb_dev)
++{
++	struct dsa_port *dp = dsa_slave_to_port(dev);
++	struct dsa_switch *ds = dp->ds;
++
++	if (ds->ops->dfwd_del_station)
++		ds->ops->dfwd_del_station(ds, dp->index, sb_dev);
++}
++
+ static const struct net_device_ops dsa_slave_netdev_ops = {
+ 	.ndo_open	 	= dsa_slave_open,
+ 	.ndo_stop		= dsa_slave_close,
+ 	.ndo_start_xmit		= dsa_slave_xmit,
++	.ndo_select_queue	= dsa_slave_select_queue,
+ 	.ndo_change_rx_flags	= dsa_slave_change_rx_flags,
+ 	.ndo_set_rx_mode	= dsa_slave_set_rx_mode,
+ 	.ndo_set_mac_address	= dsa_slave_set_mac_address,
+@@ -1734,6 +1764,8 @@ static const struct net_device_ops dsa_slave_netdev_ops = {
+ 	.ndo_get_devlink_port	= dsa_slave_get_devlink_port,
+ 	.ndo_change_mtu		= dsa_slave_change_mtu,
+ 	.ndo_fill_forward_path	= dsa_slave_fill_forward_path,
++	.ndo_dfwd_add_station	= dsa_slave_dfwd_add_station,
++	.ndo_dfwd_del_station	= dsa_slave_dfwd_del_station,
+ };
+ 
+ static struct device_type dsa_type = {
+@@ -1914,8 +1946,8 @@ int dsa_slave_create(struct dsa_port *port)
+ 	slave_dev->features = master->vlan_features | NETIF_F_HW_TC;
+ 	if (ds->ops->port_vlan_add && ds->ops->port_vlan_del)
+ 		slave_dev->features |= NETIF_F_HW_VLAN_CTAG_FILTER;
+-	slave_dev->hw_features |= NETIF_F_HW_TC;
+-	slave_dev->features |= NETIF_F_LLTX;
++	slave_dev->hw_features |= NETIF_F_HW_TC | NETIF_F_HW_L2FW_DOFFLOAD;
++	slave_dev->features |= NETIF_F_LLTX | NETIF_F_HW_L2FW_DOFFLOAD;
+ 	slave_dev->ethtool_ops = &dsa_slave_ethtool_ops;
+ 	if (!is_zero_ether_addr(port->mac))
+ 		ether_addr_copy(slave_dev->dev_addr, port->mac);
 -- 
 2.25.1
 
