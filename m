@@ -1,101 +1,97 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F6C36C095
-	for <lists.bridge@lfdr.de>; Tue, 27 Apr 2021 10:08:35 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A0A36C098
+	for <lists.bridge@lfdr.de>; Tue, 27 Apr 2021 10:08:37 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 2FCD660B11;
+	by smtp4.osuosl.org (Postfix) with ESMTP id 8D04E405C8;
 	Tue, 27 Apr 2021 08:08:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Eefww3DolRpY; Tue, 27 Apr 2021 08:08:30 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id xp6RJiUecHgt; Tue, 27 Apr 2021 08:08:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 344AE60B00;
+	by smtp4.osuosl.org (Postfix) with ESMTP id 995CB405BA;
 	Tue, 27 Apr 2021 08:08:29 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 501B4C0024;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9BBC0C0025;
 	Tue, 27 Apr 2021 08:08:28 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6130CC000B
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:18:02 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 25782C000B
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:24:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 42BC9402AF
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:18:02 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 1285340342
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:24:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id subiLbxfdaph for <bridge@lists.linux-foundation.org>;
- Mon, 26 Apr 2021 15:17:59 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id tq9BYiKyhxqR for <bridge@lists.linux-foundation.org>;
+ Mon, 26 Apr 2021 15:24:38 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
- [IPv6:2607:f8b0:4864:20::633])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 9A02F40296
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:17:59 +0000 (UTC)
-Received: by mail-pl1-x633.google.com with SMTP id h20so29110523plr.4
- for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 08:17:59 -0700 (PDT)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
+ [IPv6:2607:f8b0:4864:20::62d])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 12F4C4036D
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 15:24:37 +0000 (UTC)
+Received: by mail-pl1-x62d.google.com with SMTP id e2so24801090plh.8
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Apr 2021 08:24:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=dqh4dH8aZ6HN+B6a/NbTwQiRYC2u5Akv4+7vt6N7BqI=;
- b=XY9Yv9AWPcZwWKle2oLxy6MXxZYJ/wI3gWfHvn1lwE0JJXaahPaKvpQZfVqimJVczU
- 6cKT0NyHZMxVxRYb1j2gl3iw6Tk0aJJSghG2us6p4q5uzGj/Bi7mgOvUX+hqf3MhzQg+
- gTBcuWVt1SUt7oWg50ZtZ1OR0L2iUpJEBqTZ12/nkPhOna7owJ3beyuLuIs3y6kI1/0z
- +V/a4ZdA7XHpDRqjZ4u5iYt6ECEjJ3wudJb3xa4WXtVz2JMzaaRgGQ4XBw4aHI86j7pH
- D+LyTlb4q5HRHj7KWC+tPmNrO2NaYpKzJ1YP7lWKjUMaesuaq1PzEn1tPnB5qQMKro/f
- FqHA==
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=q0T9jbT9J+TwSihAcCr3HGKEWP12uQgYZvS3pdHVqZo=;
+ b=d4UWmkkRHMFKP3kmi5OF+3tUt2yHNzgDLOlWEj7T2XOeHCDvRyd8JHq8AbUrzST7FX
+ Z8REYPJxb+n6Y62qo4mLz7ghuRtgyF70jkT3Sk6yeZNd9gfP+9XX8OLicZQxJRxk8SD6
+ JUbVsWMhMqlEsuOnprSxi4DZG6/esyvBE5KAdH6S0u/qJRtrV7TopyYavmlaqkXt2tI3
+ pEZnblHvFjEbRq7nugYy2HTtuOOJkZp8wvIiReVoodNkAGi1nqYMqrdBueMMRFG/GO1I
+ a6xbjZyddbFIB8y5BzfquAN2EF/uLQSVQuaONjZE0DOQJOV1v5nI0jPvVGxNQTpv9mVy
+ 7Dug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ h=x-gm-message-state:subject:to:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=dqh4dH8aZ6HN+B6a/NbTwQiRYC2u5Akv4+7vt6N7BqI=;
- b=jWKBqr+ddX8dSAPH24vE1OFmtlIx+yZhewbqVzIjGRn2FZspTyVVH/Ia4wqmi4fKeF
- u35n5ScUyK7BqEwqY8ASy/+JhZ6JC4fI49WptWVXrKnalaoLMjYWpLQwUU01yj0U00RS
- JOsS9Yp4DmPpSbOdnacd+lPlYdffA0Ai5QnMHSVHwZzSLxUy2LcsEnSXFrBf9kwfN5/Z
- ZErdig9eIkxmOpWCWoyqnepSCMJ+3ub7lPQCeenXGaNouSycfyCI40wrnkc3sCVzY/Gr
- 7+wnMa4fQ8U5KWvxDHsvWmZV6c0OySGM7F6cj7R0o4sCsHJ6C6tvR6YWbDRdGo47Dyyv
- w5qg==
-X-Gm-Message-State: AOAM533/c8quhSZuehF5VY21XyZmJYJSosl7xmFU2FHR4KWpRTPtmibS
- D8N/Ns8A+lcmjsfybx837Mu4oWqlTQ4=
-X-Google-Smtp-Source: ABdhPJzjB2/a2k1EK1OBw6sXE24xe/04DWLan0d03jv+ZZbEaiLUlLmytXqmukKx0eOwj7yzsb+Olw==
-X-Received: by 2002:a17:90a:cb0e:: with SMTP id
- z14mr3371246pjt.128.1619450278670; 
- Mon, 26 Apr 2021 08:17:58 -0700 (PDT)
+ bh=q0T9jbT9J+TwSihAcCr3HGKEWP12uQgYZvS3pdHVqZo=;
+ b=fVCxnF5KhaFTd6bC51rvWTRptK91rTO5FvEzn2barf56MsS3AecADFkNldebdRgvdq
+ CfIa7eneUP/rlCY27A5MXQyK2bRoFd/y/bgPfksQeI09JToYGZr+uwTp0G7haEYd/CIS
+ 7Fi2XrkC8vqwIueK3q3mN7C8aIAiKHE2CI+C5Rix5GB99qWU8JzqzE8qpR88vpwfNlNN
+ 4JGHj5tXdVIWMeIQSAggmfc1ZbjbhrigDX7G/4mPTIqUslC3MlSpO/ghYhDtSEZJX8Ct
+ J7rIbOTt/+2D6gitEMSJv8PgsV0y2L5l4+Tg7i7r3AShJs6+qThYsZan0D3oqsTHFEKm
+ EtIw==
+X-Gm-Message-State: AOAM530oxIzINcGYYOutNJllz19otMzI064FKKOSFQoSlpatG4+6lV81
+ ZhVHGBZ8GbUg961xMZEUWchH+Z0ZaeM=
+X-Google-Smtp-Source: ABdhPJwAGxuU4uvgk5s1YLZIMbudsahCI3btlZBwLhg9JqvI5u1fdgmj4bIZHPuxtaOa4gWUddd6XQ==
+X-Received: by 2002:a17:90b:4908:: with SMTP id
+ kr8mr9032606pjb.85.1619450676936; 
+ Mon, 26 Apr 2021 08:24:36 -0700 (PDT)
 Received: from [192.168.0.4] ([49.173.165.50])
- by smtp.gmail.com with ESMTPSA id a190sm90776pfb.185.2021.04.26.08.17.54
+ by smtp.gmail.com with ESMTPSA id 132sm108229pfu.107.2021.04.26.08.24.32
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 26 Apr 2021 08:17:58 -0700 (PDT)
-To: Nikolay Aleksandrov <nikolay@nvidia.com>,
- Herbert Xu <herbert@gondor.apana.org.au>
+ Mon, 26 Apr 2021 08:24:36 -0700 (PDT)
+To: Heiner Kallweit <hkallweit1@gmail.com>, davem@davemloft.net,
+ kuba@kernel.org, dsahern@kernel.org, yoshfuji@linux-ipv6.org,
+ netdev@vger.kernel.org, j.vosburgh@gmail.com, vfalico@gmail.com,
+ andy@greyhouse.net, roopa@nvidia.com, nikolay@nvidia.com, ast@kernel.org,
+ andriin@fb.com, daniel@iogearbox.net, weiwan@google.com,
+ cong.wang@bytedance.com, bjorn@kernel.org, herbert@gondor.apana.org.au,
+ bridge@lists.linux-foundation.org
 References: <20210425155742.30057-1-ap420073@gmail.com>
- <20210425155742.30057-3-ap420073@gmail.com>
- <ed54816f-2591-d8a7-61d8-63b7f49852c1@nvidia.com>
- <20210426124806.4zqhtn4wewair4ua@gondor.apana.org.au>
- <1e8cda49-4bc3-6f0b-29f3-97848aab18f0@nvidia.com>
+ <20210425155742.30057-2-ap420073@gmail.com>
+ <d7cf5368-21a4-a551-169a-00a4cb2b3a0d@gmail.com>
 From: Taehee Yoo <ap420073@gmail.com>
-Message-ID: <68b18d15-d472-3305-4f91-5e61f8b60488@gmail.com>
-Date: Tue, 27 Apr 2021 00:17:52 +0900
+Message-ID: <a43a957a-0fc8-cfff-f04a-cf0bc1ae612b@gmail.com>
+Date: Tue, 27 Apr 2021 00:24:31 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1e8cda49-4bc3-6f0b-29f3-97848aab18f0@nvidia.com>
+In-Reply-To: <d7cf5368-21a4-a551-169a-00a4cb2b3a0d@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 27 Apr 2021 08:08:26 +0000
-Cc: bridge@lists.linux-foundation.org, cong.wang@bytedance.com,
- daniel@iogearbox.net, yoshfuji@linux-ipv6.org, j.vosburgh@gmail.com,
- dsahern@kernel.org, roopa@nvidia.com, ast@kernel.org, bjorn@kernel.org,
- vfalico@gmail.com, netdev@vger.kernel.org, kuba@kernel.org, weiwan@google.com,
- andriin@fb.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net 2/2] net: bridge: fix lockdep
- multicast_lock false positive splat
+Subject: Re: [Bridge] [PATCH net v2 1/2] net: core: make
+ bond_get_lowest_level_rcu() generic
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -110,31 +106,200 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 4/26/21 10:15 PM, Nikolay Aleksandrov wrote:
- > On 26/04/2021 15:48, Herbert Xu wrote:
+On 4/26/21 3:03 AM, Heiner Kallweit wrote:
 
-Hi Nikolay and Herbert,
-Thank you for the reviews!
+Hi Heiner,
+Thank you for the review!
 
- >> On Sun, Apr 25, 2021 at 07:45:27PM +0300, Nikolay Aleksandrov wrote:
- >>>
- >>> Ugh.. that's just very ugly. :) The setup you've described above is 
-by all means invalid, but
- >>> possible unfortunately. The bridge already checks if it's being 
-added as a port to another
- >>> bridge, but not through multiple levels of indirection. These locks 
-are completely unrelated
- >>> as they're in very different contexts (different devices).
+ > On 25.04.2021 17:57, Taehee Yoo wrote:
+ >> The purpose of bond_get_lowest_level_rcu() is to get nested_level under
+ >> RCU. Because dev->nested_level is protected by RTNL, so it shouldn't be
+ >> used without RTNL. But bonding module needs this value under RCU without
+ >> RTNL.
+ >> So, this function was added.
  >>
- >> Surely we should forbid this? Otherwise what's to stop someone
- >> from creating a loop?
+ >> But, there is another module, which needs this function.
+ >> So, make this function generic.
+ >> the new name is netdev_get_nest_level_rcu().
  >>
- >> Cheers,
+ >> Signed-off-by: Taehee Yoo <ap420073@gmail.com>
+ >> ---
+ >>
+ >> v2:
+ >>   - No change
+ >>
+ >>   drivers/net/bonding/bond_main.c | 45 +--------------------------------
+ >>   include/linux/netdevice.h       |  1 +
+ >>   net/core/dev.c                  | 44 ++++++++++++++++++++++++++++++++
+ >>   3 files changed, 46 insertions(+), 44 deletions(-)
+ >>
+ >> diff --git a/drivers/net/bonding/bond_main.c 
+b/drivers/net/bonding/bond_main.c
+ >> index 83ef62db6285..a9feb039ffa6 100644
+ >> --- a/drivers/net/bonding/bond_main.c
+ >> +++ b/drivers/net/bonding/bond_main.c
+ >> @@ -3754,47 +3754,6 @@ static void bond_fold_stats(struct 
+rtnl_link_stats64 *_res,
+ >>   	}
+ >>   }
+ >>
+ >> -#ifdef CONFIG_LOCKDEP
+ >> -static int bond_get_lowest_level_rcu(struct net_device *dev)
+ >> -{
+ >> -	struct net_device *ldev, *next, *now, *dev_stack[MAX_NEST_DEV + 1];
+ >> -	struct list_head *niter, *iter, *iter_stack[MAX_NEST_DEV + 1];
+ >> -	int cur = 0, max = 0;
+ >> -
+ >> -	now = dev;
+ >> -	iter = &dev->adj_list.lower;
+ >> -
+ >> -	while (1) {
+ >> -		next = NULL;
+ >> -		while (1) {
+ >> -			ldev = netdev_next_lower_dev_rcu(now, &iter);
+ >> -			if (!ldev)
+ >> -				break;
+ >> -
+ >> -			next = ldev;
+ >> -			niter = &ldev->adj_list.lower;
+ >> -			dev_stack[cur] = now;
+ >> -			iter_stack[cur++] = iter;
+ >> -			if (max <= cur)
+ >> -				max = cur;
+ >> -			break;
+ >> -		}
+ >> -
+ >> -		if (!next) {
+ >> -			if (!cur)
+ >> -				return max;
+ >> -			next = dev_stack[--cur];
+ >> -			niter = iter_stack[cur];
+ >> -		}
+ >> -
+ >> -		now = next;
+ >> -		iter = niter;
+ >> -	}
+ >> -
+ >> -	return max;
+ >> -}
+ >> -#endif
+ >> -
+ >>   static void bond_get_stats(struct net_device *bond_dev,
+ >>   			   struct rtnl_link_stats64 *stats)
+ >>   {
+ >> @@ -3806,9 +3765,7 @@ static void bond_get_stats(struct net_device 
+*bond_dev,
+ >>
+ >>
+ >>   	rcu_read_lock();
+ >> -#ifdef CONFIG_LOCKDEP
+ >> -	nest_level = bond_get_lowest_level_rcu(bond_dev);
+ >> -#endif
+ >> +	nest_level = netdev_get_nest_level_rcu(bond_dev);
+ >>
+ >>   	spin_lock_nested(&bond->stats_lock, nest_level);
+ >>   	memcpy(stats, &bond->bond_stats, sizeof(*stats));
+ >> diff --git a/include/linux/netdevice.h b/include/linux/netdevice.h
+ >> index 87a5d186faff..507c06bf5dba 100644
+ >> --- a/include/linux/netdevice.h
+ >> +++ b/include/linux/netdevice.h
+ >> @@ -4699,6 +4699,7 @@ int netdev_walk_all_lower_dev(struct 
+net_device *dev,
+ >>   			      int (*fn)(struct net_device *lower_dev,
+ >>   					struct netdev_nested_priv *priv),
+ >>   			      struct netdev_nested_priv *priv);
+ >> +int netdev_get_nest_level_rcu(struct net_device *dev);
+ >>   int netdev_walk_all_lower_dev_rcu(struct net_device *dev,
+ >>   				  int (*fn)(struct net_device *lower_dev,
+ >>   					    struct netdev_nested_priv *priv),
+ >> diff --git a/net/core/dev.c b/net/core/dev.c
+ >> index 15fe36332fb8..efc2bf88eafd 100644
+ >> --- a/net/core/dev.c
+ >> +++ b/net/core/dev.c
+ >> @@ -7709,6 +7709,50 @@ static int __netdev_update_lower_level(struct 
+net_device *dev,
+ >>   	return 0;
+ >>   }
+ >>
+ >> +int netdev_get_nest_level_rcu(struct net_device *dev)
+ >> +{
+ >> +#ifdef CONFIG_LOCKDEP
+ >> +	struct net_device *ldev, *next, *now, *dev_stack[MAX_NEST_DEV + 1];
+ >> +	struct list_head *niter, *iter, *iter_stack[MAX_NEST_DEV + 1];
+ >> +	int cur = 0, max = 0;
+ >> +
+ >> +	now = dev;
+ >> +	iter = &dev->adj_list.lower;
+ >> +
+ >> +	while (1) {
+ >> +		next = NULL;
+ >> +		while (1) {
+ >> +			ldev = netdev_next_lower_dev_rcu(now, &iter);
+ >> +			if (!ldev)
+ >> +				break;
+ >> +
+ >> +			next = ldev;
+ >> +			niter = &ldev->adj_list.lower;
+ >> +			dev_stack[cur] = now;
+ >> +			iter_stack[cur++] = iter;
+ >> +			if (max <= cur)
+ >> +				max = cur;
+ >> +			break;
+ >
+ > This looks odd. Why a while loop if it's left in the first iteration
+ > anyway? The whole loop looks unnecessarily complex. The following
+ > should do the same, just in a simpler way (untested!)
+ >
+ >          while (1) {
+ >                  ldev = netdev_next_lower_dev_rcu(now, &iter);
+ >                  if (ldev) {
+ >                          dev_stack[cur] = now;
+ >                          iter_stack[cur++] = iter;
+ >                          if (max <= cur)
+ >                                  max = cur;
+ >                          now = ldev;
+ >                          iter = &ldev->adj_list.lower;
+ >                  } else {
+ >                          if (!cur)
+ >                                  break;
+ >                          now = dev_stack[--cur];
+ >                          iter = iter_stack[cur];
+ >                  }
+ >          }
+ >
+ > I know that you just copied the original function.
+ > Simplifying the function should be something for a
+ > follow-up patch.
+ >
+ >> +		}
+ >> +
+ >> +		if (!next) {
+ >> +			if (!cur)
+ >> +				return max;
+ >> +			next = dev_stack[--cur];
+ >> +			niter = iter_stack[cur];
+ >> +		}
+ >> +
+ >> +		now = next;
+ >> +		iter = niter;
+ >> +	}
+ >> +
+ >> +	return max;
+ >> +#else
+ >> +	return 0;
+ >> +#endif
+ >> +}
+ >> +EXPORT_SYMBOL_GPL(netdev_get_nest_level_rcu);
+ >> +
+ >>   int netdev_walk_all_lower_dev_rcu(struct net_device *dev,
+ >>   				  int (*fn)(struct net_device *dev,
+ >>   					    struct netdev_nested_priv *priv),
  >>
  >
- > Indeed that would be best, it's very easy to loop them.
- >
 
-We can make very various interface graphs with master/slave interface types.
-So, if we need something to forbid it, I think it should be generic 
-code, not only for the bridge module.
+I think you're right.
+Your logic is more simple and stable.
+If I send a v3 patch, I will use your logic after some tests.
+
+Thanks a lot!
+Taehee
