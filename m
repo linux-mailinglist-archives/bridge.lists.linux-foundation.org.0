@@ -1,60 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF2D36D995
-	for <lists.bridge@lfdr.de>; Wed, 28 Apr 2021 16:28:51 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 922FA36E1A2
+	for <lists.bridge@lfdr.de>; Thu, 29 Apr 2021 00:47:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id BB92E40165;
-	Wed, 28 Apr 2021 14:28:48 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id AE54F400FC;
+	Wed, 28 Apr 2021 22:47:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pSxutjWCXboX; Wed, 28 Apr 2021 14:28:47 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 00B7740ECB;
-	Wed, 28 Apr 2021 14:28:47 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ahCz78dEc8cK; Wed, 28 Apr 2021 22:47:19 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTP id DF7EF4023E;
+	Wed, 28 Apr 2021 22:47:18 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9E7F4C0025;
-	Wed, 28 Apr 2021 14:28:46 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id ADB7CC0019;
+	Wed, 28 Apr 2021 22:47:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2B8B1C0001
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 14:28:45 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7D8ECC0001
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 22:47:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 11ED040154
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 14:28:45 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 6B9A54023E
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 22:47:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id oDZLsEQ0_0tB for <bridge@lists.linux-foundation.org>;
- Wed, 28 Apr 2021 14:28:43 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 0E2C0400D6
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 14:28:42 +0000 (UTC)
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
- by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FVgsp287gzvTJd;
- Wed, 28 Apr 2021 22:26:06 +0800 (CST)
-Received: from huawei.com (10.175.101.6) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.498.0; Wed, 28 Apr 2021
- 22:28:28 +0800
-From: zhangzhengming <zhangzhengming@huawei.com>
-To: <roopa@nvidia.com>, <nikolay@nvidia.com>, <davem@davemloft.net>,
- <kuba@kernel.org>
-Date: Wed, 28 Apr 2021 22:38:14 +0800
-Message-ID: <1619620694-12419-1-git-send-email-zhangzhengming@huawei.com>
-X-Mailer: git-send-email 2.7.4.huawei.3
+ with ESMTP id YcYMOzBWI3y4 for <bridge@lists.linux-foundation.org>;
+ Wed, 28 Apr 2021 22:47:15 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id CC706400FC
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 22:47:14 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id d27so44988313lfv.9
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 15:47:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=fESSpBC1aDaGSiiSWoWCp93klb34+nPHcLNTHfCmqAk=;
+ b=tUwNuvZ3MRWuquW9qyyjGpqNpRoQmfNJI08lW3Cd0PCWW+zRLAvzCwCwAkgkgPyqW5
+ uABlBreEiT9urb8QgmIhMLKbzoySw+4fpb8ty15M9yPg5D22SSWDd2KU6cDSP8JfKjtT
+ GyCUlcK/fnmr0Tt910VOcVdYH9/CWWDonyT21QslX95o82nXbuAWXXJazc9jYUjeq6hK
+ N1nCk4st0bkbFDqHLEjR9FlJzoCnm5QsSeksbtW04p6gkThZoAcyrsutQ9z7vfwYNXDn
+ mbUKB6bWLg9Z0kdCT8Rf2ZS2inG2gBG3qCcghxbO0Q0AbGm/IEhYPtlS9gt4k1HQiKuM
+ dY7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=fESSpBC1aDaGSiiSWoWCp93klb34+nPHcLNTHfCmqAk=;
+ b=kx6jj4iZCGIfiRMJBTSABybGeguWFIUhUD2oCbnhs2lEFmUQ0TPJbPrgBM3rWVvx4y
+ vS6xXdC/o1ppNq1TsGAb79Ai20d1cL0z96DIl1UtQ+s6DtmYhwqLJUyDInmN4eZpH77n
+ eErNhT55XWjvAJQYgte4LdLVgMoeMNTdLBVk7GvLEBbwr6A0xjCMQwNVbFvzpN1T90Vn
+ I+mBRi71NeEpk4UXsumnWxfutNO0tF7keXKh3czejT7tmB8BwjNdK+o7dvCzk6GFCk4V
+ gwKdUKYo50h7TYTyjV/nbDyDpFYaZreXzzhVO6Ufk/lib9zW/bw8zUFV2g9HvzG6bWrl
+ CJqg==
+X-Gm-Message-State: AOAM533/fnSG9a94wDZ/8wJJAYL9uFSboWkTu+0noE6/IyqKdai7EpU8
+ f7ydM4w11a6xqdRzJs4e1LeZZeKFk0Pt2Lm1
+X-Google-Smtp-Source: ABdhPJxZ59wTAXf2uyBMwziMz4qrm0fMmP96YuP71OyPi052EomyILrxg/D1kyJCX2SP7pxgm+RfhQ==
+X-Received: by 2002:a05:6512:3992:: with SMTP id
+ j18mr22383691lfu.506.1619650031946; 
+ Wed, 28 Apr 2021 15:47:11 -0700 (PDT)
+Received: from wkz-x280 (h-90-88.A259.priv.bahnhof.se. [212.85.90.88])
+ by smtp.gmail.com with ESMTPSA id z17sm273762lfd.87.2021.04.28.15.47.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 28 Apr 2021 15:47:11 -0700 (PDT)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: Nikolay Aleksandrov <nikolay@nvidia.com>, davem@davemloft.net,
+ kuba@kernel.org
+In-Reply-To: <ac177d80-6530-be48-95bc-57652a31fe6a@nvidia.com>
+References: <20210426170411.1789186-1-tobias@waldekranz.com>
+ <20210426170411.1789186-5-tobias@waldekranz.com>
+ <ac177d80-6530-be48-95bc-57652a31fe6a@nvidia.com>
+Date: Thu, 29 Apr 2021 00:47:10 +0200
+Message-ID: <87tunqni1d.fsf@waldekranz.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.175.101.6]
-X-CFilter-Loop: Reflected
-Cc: netdev@vger.kernel.org, zhangzhengming@huawei.com,
- bridge@lists.linux-foundation.org, wangxiaogang3@huawei.com,
- xuhanbing@huawei.com
-Subject: [Bridge] [PATCH v2] bridge: Fix possible races between assigning
-	rx_handler_data and setting IFF_BRIDGE_PORT bit
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org, idosch@idosch.org,
+ roopa@nvidia.com, olteanv@gmail.com, vivien.didelot@gmail.com
+Subject: Re: [Bridge] [RFC net-next 4/9] net: bridge: switchdev: Forward
+	offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -69,79 +98,296 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Zhang Zhengming <zhangzhengming@huawei.com>
+On Tue, Apr 27, 2021 at 13:35, Nikolay Aleksandrov <nikolay@nvidia.com> wrote:
+> On 26/04/2021 20:04, Tobias Waldekranz wrote:
+>> Allow switchdevs to forward frames from the CPU in accordance with the
+>> bridge configuration in the same way as is done between bridge
+>> ports. This means that the bridge will only send a single skb towards
+>> one of the ports under the switchdev's control, and expects the driver
+>> to deliver the packet to all eligible ports in its domain.
+>> 
+>> Primarily this improves the performance of multicast flows with
+>> multiple subscribers, as it allows the hardware to perform the frame
+>> replication.
+>> 
+>> The basic flow between the driver and the bridge is as follows:
+>> 
+>> - The switchdev accepts the offload by returning a non-null pointer
+>>   from .ndo_dfwd_add_station when the port is added to the bridge.
+>> 
+>> - The bridge sends offloadable skbs to one of the ports under the
+>>   switchdev's control using dev_queue_xmit_accel.
+>> 
+>> - The switchdev notices the offload by checking for a non-NULL
+>>   "sb_dev" in the core's call to .ndo_select_queue.
+>> 
+>> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+>> ---
+>>  net/bridge/br_forward.c   | 11 +++++++-
+>>  net/bridge/br_private.h   | 27 ++++++++++++++++++
+>>  net/bridge/br_switchdev.c | 59 +++++++++++++++++++++++++++++++++++++--
+>>  3 files changed, 93 insertions(+), 4 deletions(-)
+>> 
+>
+> Hi,
+> Please try to find a way to reduce the number of new tests in the fast path.
+> This specific feature might help these devices, but the new tests hurt everybody else.
+> I don't mind the control plane changes, but I'd like to minimize the fast-path impact.
 
-There is a crash in the function br_get_link_af_size_filtered,
-as the port_exists(dev) is true and the rx_handler_data of dev is NULL.
-But the rx_handler_data of dev is correct saved in vmcore.
+Wholeheartedly agree.
 
-The oops looks something like:
- ...
- pc : br_get_link_af_size_filtered+0x28/0x1c8 [bridge]
- ...
- Call trace:
-  br_get_link_af_size_filtered+0x28/0x1c8 [bridge]
-  if_nlmsg_size+0x180/0x1b0
-  rtnl_calcit.isra.12+0xf8/0x148
-  rtnetlink_rcv_msg+0x334/0x370
-  netlink_rcv_skb+0x64/0x130
-  rtnetlink_rcv+0x28/0x38
-  netlink_unicast+0x1f0/0x250
-  netlink_sendmsg+0x310/0x378
-  sock_sendmsg+0x4c/0x70
-  __sys_sendto+0x120/0x150
-  __arm64_sys_sendto+0x30/0x40
-  el0_svc_common+0x78/0x130
-  el0_svc_handler+0x38/0x78
-  el0_svc+0x8/0xc
+> Do you need "accel_priv" to be a pointer, I mean can't derive sb_dev from the port alone ?
+> Either way - you can mark the port via its internal flags if it can accelerate, those are
+> used frequently and are in a hot cache line (by the way that reminds me that the port
+> offload mark/hwdom should be moved in the first cache line).
 
-In br_add_if(), we found there is no guarantee that
-assigning rx_handler_data to dev->rx_handler_data
-will before setting the IFF_BRIDGE_PORT bit of priv_flags.
-So there is a possible data competition:
+I need to stash accel_priv somewhere as .ndo_dfwd_del_station expects it
+sent back when unregistering the offload. But there is no need for it to
+be part of the fast-path. Would it be ok to add a BR_FORWARD_OFFLOAD to
+p->flags, which would be used in the fast-path, while also keeping
+accel_priv on the port, but on a colder line?
 
-CPU 0:                                                        CPU 1:
-(RCU read lock)                                               (RTNL lock)
-rtnl_calcit()                                                 br_add_slave()
-  if_nlmsg_size()                                               br_add_if()
-    br_get_link_af_size_filtered()                              -> netdev_rx_handler_register
-                                                                    ...
-                                                                    // The order is not guaranteed
-      ...                                                           -> dev->priv_flags |= IFF_BRIDGE_PORT;
-      // The IFF_BRIDGE_PORT bit of priv_flags has been set
-      -> if (br_port_exists(dev)) {
-        // The dev->rx_handler_data has NOT been assigned
-        -> p = br_port_get_rcu(dev);
-        ....
-                                                                    -> rcu_assign_pointer(dev->rx_handler_data, rx_handler_data);
-                                                                     ...
+> For example you could possibly drop fwd_accel, add the bitmap in a union with sb_dev pointer
+> in br_input_skb_cb which can be set at __br_forward at the accel check and pass it down to
+> avoid the final test.
 
-Fix it in br_get_link_af_size_filtered, using br_port_get_check_rcu() and checking the return value.
+Great idea! I will add it in v1.
 
-Signed-off-by: Zhang Zhengming <zhangzhengming@huawei.com>
-Reviewed-by: Zhao Lei <zhaolei69@huawei.com>
-Reviewed-by: Wang Xiaogang <wangxiaogang3@huawei.com>
-Suggested-by: Nikolay Aleksandrov <nikolay@nvidia.com>
----
- net/bridge/br_netlink.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+> Furthermore since the hwdoms are bits and if the port accel is a bit
+> you could probably reduce the nbp_switchdev_can_accel() helper to one test with a few bitops.
 
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index f2b1343..ed5aba2 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -103,8 +103,9 @@ static size_t br_get_link_af_size_filtered(const struct net_device *dev,
- 
- 	rcu_read_lock();
- 	if (netif_is_bridge_port(dev)) {
--		p = br_port_get_rcu(dev);
--		vg = nbp_vlan_group_rcu(p);
-+		p = br_port_get_check_rcu(dev);
-+		if (p)
-+			vg = nbp_vlan_group_rcu(p);
- 	} else if (dev->priv_flags & IFF_EBRIDGE) {
- 		br = netdev_priv(dev);
- 		vg = br_vlan_group_rcu(br);
--- 
-2.7.4
+Not sure I follow. The current code has two tests:
 
+1. Is offloading enabled on the port. (To be done using p->flags in v1)
+2. Is offloading allowed for this frame to this port.
+
+The port can be part of a hwdom that does not support forward
+offloading; indeed only one driver would support it initially. So how do
+I avoid having to test the conditions individually?
+
+> In nbp_switchdev_allowed_egress() I'd make the hwdom tests rely on skb's offload_fwd_mark
+> so in the software forwarding case we could avoid them.
+
+Flipping the left and right side of the expression is possible, but I
+think that would only impact the case where the frame is _not_ allowed
+to egress. Is that what you mean? Otherwise you still need to test for
+the condition that we have forwarded to this port's hwdom already, to
+avoid sending duplicates on the wire. This is independent of
+skb->offload_fwd_mark as both Rx-offloaded and non-Rx-offloaded frames
+can still be Tx-offloaded to other hwdoms.
+
+A typical example would be a broadcast frame ingressing the bridge from
+eth0 in the figure from the cover letter. skb->offload_fwd_mark would
+always be 0, but you still need to test fwd_hwdoms to skip over swp{1,2}
+after you have sent the skb to swp0.
+
+> I might be missing something above, but we have to try and reduce these tests as much as
+> possible, also the port's first cache line is quite crowded so avoiding any new fields
+> would be best, i.e. at some point we'll move the hwdom/offload mark there to avoid pulling
+> in the last cache line of net_bridge_port, so it'd be best to avoid having to move accel_priv
+> there too.
+>
+> Cheers,
+>  Nik
+>
+>> diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+>> index 6e9b049ae521..b4fb3b0bb1ec 100644
+>> --- a/net/bridge/br_forward.c
+>> +++ b/net/bridge/br_forward.c
+>> @@ -32,6 +32,8 @@ static inline int should_deliver(const struct net_bridge_port *p,
+>>  
+>>  int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb)
+>>  {
+>> +	struct net_device *sb_dev = NULL;
+>> +
+>>  	skb_push(skb, ETH_HLEN);
+>>  	if (!is_skb_forwardable(skb->dev, skb))
+>>  		goto drop;
+>> @@ -48,7 +50,10 @@ int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb
+>>  		skb_set_network_header(skb, depth);
+>>  	}
+>>  
+>> -	dev_queue_xmit(skb);
+>> +	if (br_switchdev_accels_skb(skb))
+>> +		sb_dev = BR_INPUT_SKB_CB(skb)->brdev;
+>> +
+>> +	dev_queue_xmit_accel(skb, sb_dev);
+>>  
+>>  	return 0;
+>>  
+>> @@ -105,6 +110,8 @@ static void __br_forward(const struct net_bridge_port *to,
+>>  		indev = NULL;
+>>  	}
+>>  
+>> +	nbp_switchdev_frame_mark_accel(to, skb);
+>> +
+>>  	NF_HOOK(NFPROTO_BRIDGE, br_hook,
+>>  		net, NULL, skb, indev, skb->dev,
+>>  		br_forward_finish);
+>> @@ -174,6 +181,8 @@ static struct net_bridge_port *maybe_deliver(
+>>  	if (!should_deliver(p, skb))
+>>  		return prev;
+>>  
+>> +	nbp_switchdev_frame_mark_fwd(p, skb);
+>> +
+>>  	if (!prev)
+>>  		goto out;
+>>  
+>> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+>> index aba92864d285..933e951b0d7a 100644
+>> --- a/net/bridge/br_private.h
+>> +++ b/net/bridge/br_private.h
+>> @@ -332,6 +332,7 @@ struct net_bridge_port {
+>>  #endif
+>>  #ifdef CONFIG_NET_SWITCHDEV
+>>  	int				hwdom;
+>> +	void				*accel_priv;
+>>  #endif
+>>  	u16				group_fwd_mask;
+>>  	u16				backup_redirected_cnt;
+>> @@ -506,7 +507,9 @@ struct br_input_skb_cb {
+>>  #endif
+>>  
+>>  #ifdef CONFIG_NET_SWITCHDEV
+>> +	u8 fwd_accel:1;
+>>  	int src_hwdom;
+>> +	br_hwdom_map_t fwd_hwdoms;
+>>  #endif
+>>  };
+>>  
+>> @@ -1597,6 +1600,15 @@ static inline void br_sysfs_delbr(struct net_device *dev) { return; }
+>>  
+>>  /* br_switchdev.c */
+>>  #ifdef CONFIG_NET_SWITCHDEV
+>> +static inline bool br_switchdev_accels_skb(struct sk_buff *skb)
+>> +{
+>> +	return BR_INPUT_SKB_CB(skb)->fwd_accel;
+>> +}
+>> +
+>> +void nbp_switchdev_frame_mark_accel(const struct net_bridge_port *p,
+>> +				    struct sk_buff *skb);
+>> +void nbp_switchdev_frame_mark_fwd(const struct net_bridge_port *p,
+>> +				  struct sk_buff *skb);
+>>  void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>  			      struct sk_buff *skb);
+>>  bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
+>> @@ -1619,6 +1631,21 @@ static inline void br_switchdev_frame_unmark(struct sk_buff *skb)
+>>  	skb->offload_fwd_mark = 0;
+>>  }
+>>  #else
+>> +static inline bool br_switchdev_accels_skb(struct sk_buff *skb)
+>> +{
+>> +	return false;
+>> +}
+>> +
+>> +static inline void nbp_switchdev_frame_mark_accel(const struct net_bridge_port *p,
+>> +						  struct sk_buff *skb)
+>> +{
+>> +}
+>> +
+>> +static inline void nbp_switchdev_frame_mark_fwd(const struct net_bridge_port *p,
+>> +						struct sk_buff *skb)
+>> +{
+>> +}
+>> +
+>>  static inline void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>  					    struct sk_buff *skb)
+>>  {
+>> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+>> index 54bd7205bfb5..c903171ad291 100644
+>> --- a/net/bridge/br_switchdev.c
+>> +++ b/net/bridge/br_switchdev.c
+>> @@ -8,6 +8,26 @@
+>>  
+>>  #include "br_private.h"
+>>  
+>> +static bool nbp_switchdev_can_accel(const struct net_bridge_port *p,
+>> +				    const struct sk_buff *skb)
+>> +{
+>> +	return p->accel_priv && (p->hwdom != BR_INPUT_SKB_CB(skb)->src_hwdom);
+>> +}
+>> +
+>> +void nbp_switchdev_frame_mark_accel(const struct net_bridge_port *p,
+>> +				    struct sk_buff *skb)
+>> +{
+>> +	if (nbp_switchdev_can_accel(p, skb))
+>> +		BR_INPUT_SKB_CB(skb)->fwd_accel = true;
+>> +}
+>> +
+>> +void nbp_switchdev_frame_mark_fwd(const struct net_bridge_port *p,
+>> +				  struct sk_buff *skb)
+>> +{
+>> +	if (nbp_switchdev_can_accel(p, skb))
+>> +		set_bit(p->hwdom, BR_INPUT_SKB_CB(skb)->fwd_hwdoms);
+>> +}
+>> +
+>>  void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>  			      struct sk_buff *skb)
+>>  {
+>> @@ -18,8 +38,10 @@ void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>  bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
+>>  				  const struct sk_buff *skb)
+>>  {
+>> -	return !skb->offload_fwd_mark ||
+>> -	       BR_INPUT_SKB_CB(skb)->src_hwdom != p->hwdom;
+>> +	struct br_input_skb_cb *cb = BR_INPUT_SKB_CB(skb);
+>> +
+>> +	return !test_bit(p->hwdom, cb->fwd_hwdoms) &&
+>> +		(!skb->offload_fwd_mark || cb->src_hwdom != p->hwdom);
+>>  }
+>>  
+>>  /* Flags that can be offloaded to hardware */
+>> @@ -125,6 +147,27 @@ int br_switchdev_port_vlan_del(struct net_device *dev, u16 vid)
+>>  	return switchdev_port_obj_del(dev, &v.obj);
+>>  }
+>>  
+>> +static void nbp_switchdev_fwd_offload_add(struct net_bridge_port *p)
+>> +{
+>> +	void *priv;
+>> +
+>> +	if (!(p->dev->features & NETIF_F_HW_L2FW_DOFFLOAD))
+>> +		return;
+>> +
+>> +	priv = p->dev->netdev_ops->ndo_dfwd_add_station(p->dev, p->br->dev);
+>> +	if (!IS_ERR_OR_NULL(priv))
+>> +		p->accel_priv = priv;
+>> +}
+>> +
+>> +static void nbp_switchdev_fwd_offload_del(struct net_bridge_port *p)
+>> +{
+>> +	if (!p->accel_priv)
+>> +		return;
+>> +
+>> +	p->dev->netdev_ops->ndo_dfwd_del_station(p->dev, p->accel_priv);
+>> +	p->accel_priv = NULL;
+>> +}
+>> +
+>>  static int nbp_switchdev_hwdom_set(struct net_bridge_port *joining)
+>>  {
+>>  	struct net_bridge *br = joining->br;
+>> @@ -176,13 +219,23 @@ int nbp_switchdev_add(struct net_bridge_port *p)
+>>  		return err;
+>>  	}
+>>  
+>> -	return nbp_switchdev_hwdom_set(p);
+>> +	err = nbp_switchdev_hwdom_set(p);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	if (p->hwdom)
+>> +		nbp_switchdev_fwd_offload_add(p);
+>> +
+>> +	return 0;
+>>  }
+>>  
+>>  void nbp_switchdev_del(struct net_bridge_port *p)
+>>  {
+>>  	ASSERT_RTNL();
+>>  
+>> +	if (p->accel_priv)
+>> +		nbp_switchdev_fwd_offload_del(p);
+>> +
+>>  	if (p->hwdom)
+>>  		nbp_switchdev_hwdom_put(p);
+>>  }
+>> 
