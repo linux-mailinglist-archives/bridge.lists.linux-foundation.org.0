@@ -1,89 +1,152 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9873636E1FF
-	for <lists.bridge@lfdr.de>; Thu, 29 Apr 2021 01:10:39 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC7836E7C5
+	for <lists.bridge@lfdr.de>; Thu, 29 Apr 2021 11:16:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 17B404065E;
-	Wed, 28 Apr 2021 23:10:38 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 3AE4C6F6EA;
+	Thu, 29 Apr 2021 09:16:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id B7BmUHzwmYKw; Wed, 28 Apr 2021 23:10:37 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 80E3B400FC;
-	Wed, 28 Apr 2021 23:10:36 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id KEda9I-RryDR; Thu, 29 Apr 2021 09:16:50 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTP id 4F1306F6E4;
+	Thu, 29 Apr 2021 09:16:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 39E22C0019;
-	Wed, 28 Apr 2021 23:10:36 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 143CDC0019;
+	Thu, 29 Apr 2021 09:16:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5942DC0001
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 23:10:35 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 77F5AC0001
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Apr 2021 09:16:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 331CF4023E
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 23:10:35 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 5087484D1A
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Apr 2021 09:16:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id iw86Ev3FMNhg for <bridge@lists.linux-foundation.org>;
- Wed, 28 Apr 2021 23:10:34 +0000 (UTC)
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=nvidia.com
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 85WEO-Igk5t3 for <bridge@lists.linux-foundation.org>;
+ Thu, 29 Apr 2021 09:16:45 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com
- [IPv6:2a00:1450:4864:20::22e])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 034E0400FC
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 23:10:33 +0000 (UTC)
-Received: by mail-lj1-x22e.google.com with SMTP id a36so63345278ljq.8
- for <bridge@lists.linux-foundation.org>; Wed, 28 Apr 2021 16:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=UWpZlaBMjKz4UP0WedOlFwoa27E2OItNueqHQod90wE=;
- b=u3ImikCHb3itOPRZgI+mVBFcvUR/Y0xn0DqVYk6nEFB0L5avMEG4NKv4d0iwME8KqT
- azA8f0rP6FUt0giABRXlKN+mbz/gtKm8ZYSOfsQ5wkuaDIzAuTFzJGr9gpw3yEOxfZFe
- h2TAPjc/zDLMpsAWzbAJw++ziyJ3ejQ7NZ0+Ony8lPXhFsUGZH6CYQFWHYXHcxYmX3n0
- DQ9W0qsz2juQCu4i32spc43pc22v3XEdTZ1G9e+6Ksx7LLpRvIKr4zw1CbHVScwZ6q9N
- RZJBdA3jgjzKBHDIa/RPGby4pCsO4tB9yu4RJOHFOxMRDC4sywllZvTmFUqd8CykAbkE
- h0Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=UWpZlaBMjKz4UP0WedOlFwoa27E2OItNueqHQod90wE=;
- b=su5pFphHAI24WxjMYsfHJxty7g/f1xn/izcvSQvZ2HseNSgy4Dp59m12k9+Z1CIiQI
- gZ/XqVyG5RlP7fSzL01su6KtetUY8X1AsUjPSe4POrt/rZDwVxaBMedZgIf/mqwQX57i
- fmoQ8FNpa7TzTmGZ9bLqvrN6EgRqXcCDQNySHBmday3HyqF2y7DifY4Rfoa5rez90CCv
- CFuYSsBO4jTlpi9USaEithQky0tSYRo5+/sN0hZhm3XE3+J3ss7lMsZA+mbkoYNnzC9z
- IjyLAbvE5xi0VIlLJ8B4sTxkRB7OLEwi67BsNM/I3PvF3mYDjGxQrGlbE9Od60fdFbr2
- 7ROg==
-X-Gm-Message-State: AOAM5321V/g2Vq7irtjyXOgRLcn/kc0Gz/b3BOLo92/Z6TPl9lteuwg+
- 17MYhHcwHiJh87C/aYrTgc1nIPzHnHtlS7KS
-X-Google-Smtp-Source: ABdhPJydgOHGWzy9ZKZm5AftQESUtXOaiLshCnhjArRS5oeFREl390FhSevreFijyLBiA9C0VuQ5KA==
-X-Received: by 2002:a2e:b4ba:: with SMTP id q26mr21827931ljm.223.1619651431533; 
- Wed, 28 Apr 2021 16:10:31 -0700 (PDT)
-Received: from wkz-x280 (h-90-88.A259.priv.bahnhof.se. [212.85.90.88])
- by smtp.gmail.com with ESMTPSA id w15sm269198ljd.126.2021.04.28.16.10.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Apr 2021 16:10:31 -0700 (PDT)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20210427100753.pvkjbqp2qzkfbcpq@skbuf>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id A1C9B84643
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Apr 2021 09:16:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Wdhu3r9M6diePy4UjG4NIVOIOz2Bl0q/nGTqD5VZMIzv2dVT1p4a9HV9O/Rpnn1PwAXxsdxlOZseAz8Gzqh7kHtEQnzbumAgEm3JideAqpuDVdb+uN4ncSNq8Y5ASwQNxjKL4mA+oZiktFK49EFGg1TPEZ1BW0iw7Se48TXLPpr6QAAAE1B7MqcwYhywYyuaR+fhtrW5JKKQ3quWUHPQ7y/OK8hxiuAgJF4PwujmcrD+TIISlQSjVm/vsSFLt8fm7adB10Eh1l/p5Mob796vo8oirx7c3aDOmyO+ryjV2Ay8a95Em4QT2VwaBAj4HSjeYWlu1H4Kcwm2kG8wBdqq7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nFITK1aL21pIIpQ42+jX0WnCiao57sobbj3r5uJKad0=;
+ b=UadK/rnqa196vQfe2oeIwl7HOAVqiIIGDc5snE6+zX4zzpF2Fz9TtT/apr38wCGnK1LB/ANxOA20cmfwZicQylxRxn8pm4rZ4yQUe0ZFyuYHzBZ7/e0rS9J7mLk8AWMUtX/YwXigx4EANfsH/p1zkgJbgvtD8xO8aluuDLXktf7sPzyXHSG+Of0m8MfV1xpiojuzEH2xNZsFFa9NvfOekHZLtcpo/6RstQ5brhWreglRsu7Fj9NmyOc7+9j9LgYjUBgWNeYUNvTpUiinow/oSBqlCDdpxgoWy5Q+/zY0uypdAW95nafs7lyrM6SI+jc15lwYjDn5yuBG6CsFMFdipQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nFITK1aL21pIIpQ42+jX0WnCiao57sobbj3r5uJKad0=;
+ b=Zsg9x9H7Yrimz7Uq4AheUppQMaZmjmS2oWi83PJ5+ttyp7lOufJPYOgnsN6jq5M0ibSDV9QIPwBCA47vXNCY0GoYf7I8Vliul97MtJQZS8dt/RwCbzU66gQBJDvY/B6TVc/ECCbQAadpm2LFqo8PFdJD2LHyYsDkDUBscHSY2AdsipsDdDDycKav4AO7xzm8pbuZnJO3E9DiYAakYzaSWrzISxP4n2vHR/vosGgZD+QPE7uRsGpwHActBIgKYxhTQDzCRHGDdze2v/84QHFMIq90idW8vDoo9IknKQXnyKa+WeBnMLOOVHaNleyBrEegS9T5TZ/FEkDKh1hM5Twmsw==
+Authentication-Results: lists.linux-foundation.org; dkim=none (message not
+ signed) header.d=none;lists.linux-foundation.org; dmarc=none action=none
+ header.from=nvidia.com;
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
+ by DM4PR12MB5166.namprd12.prod.outlook.com (2603:10b6:5:395::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.23; Thu, 29 Apr
+ 2021 09:16:44 +0000
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::a145:fd5b:8d6f:20e6]) by DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::a145:fd5b:8d6f:20e6%2]) with mapi id 15.20.4065.030; Thu, 29 Apr 2021
+ 09:16:44 +0000
+To: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
+ kuba@kernel.org
 References: <20210426170411.1789186-1-tobias@waldekranz.com>
- <20210426170411.1789186-6-tobias@waldekranz.com>
- <20210426194026.3sr22rqyf2srrwtq@skbuf> <877dkoq09r.fsf@waldekranz.com>
- <20210426202800.y4hfurf5k3hrbvqf@skbuf> <8735vcoztz.fsf@waldekranz.com>
- <20210427100753.pvkjbqp2qzkfbcpq@skbuf>
-Date: Thu, 29 Apr 2021 01:10:30 +0200
-Message-ID: <87pmyengyh.fsf@waldekranz.com>
+ <20210426170411.1789186-5-tobias@waldekranz.com>
+ <ac177d80-6530-be48-95bc-57652a31fe6a@nvidia.com>
+ <87tunqni1d.fsf@waldekranz.com>
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <51e241f3-cd75-44a1-f4bf-4f040dae0d7c@nvidia.com>
+Date: Thu, 29 Apr 2021 12:16:35 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <87tunqni1d.fsf@waldekranz.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: ZR0P278CA0126.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:20::23) To DM4PR12MB5278.namprd12.prod.outlook.com
+ (2603:10b6:5:39e::17)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.241.173] (213.179.129.39) by
+ ZR0P278CA0126.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:20::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4087.25 via Frontend Transport; Thu, 29 Apr 2021 09:16:40 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9c2a7f09-9a69-48bc-ed58-08d90aef8192
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5166:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM4PR12MB5166F7A6E8CDEF6462DBCFC6DF5F9@DM4PR12MB5166.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Fm9YwFqcHS8BL8L8I4NLYM2ssDD0gkrblJa0zmVBueWtWjE81YWrwPCK6bZUG6n4DcCQqKekjvJNGp/K6quCp2yArlzd1RmvlrAwKw1G3wctQvb2qlhh5/ruAsijaml2ki3bpwGk/8yBGZRY+N1ghZXJf+tPVkdkSuYJRdkx+UV2tcTmKvN9qsQlt3OTlSBywWX8cmh84mC6PmzmH3l5Pl0JoiOfARKO+3+pRlIXLOgjnGYBeENkw0DJsyzUnbQpa90J4jbwyCXihTJMwg4NITZpluUbAmBcDIq0Hif8tpd+zjrd6Qq41dr6zaXb+keJuFxDfU+UZd/yV2HwN0MyoCrgvbbgwLBZnlP81/cXRA1huighQ6dH5p3B+1YPdo8Qvryn6AO6SjcnI7oVn3RWrVTzv2N5uYmyE77vdrMuXrhkR2pPaywGgC+F25HfV6GWpgCKwMiyjYgj3e0hom5TbuorV3q/Rcik1yCFzCy1/ohEsLH4K5qZI9aW+RZh2T2fFUyP61QOADT6CQtBTbxpOiLg9u9S46OW58ZYHDJq5+n8nLK73YQ6z7wMl3cKJkFI5Pzho+mchgfXrkqC9kTJU2a+3oD2Pjx8k1H9abQzG2S65rgkET03AcbO+w5vLms+OqPKjFObGlOqZYPYhZC0CTDeA267gnaET64bu5eCOwJJPHd+H7+bHZNrWRQzPHY5
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(31696002)(6666004)(26005)(86362001)(53546011)(4326008)(956004)(5660300002)(478600001)(8936002)(16526019)(2906002)(2616005)(16576012)(7416002)(186003)(83380400001)(36756003)(316002)(8676002)(6486002)(66946007)(38100700002)(66556008)(30864003)(66476007)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?S3dKeXV0d2ZhTWJIQVlicFVsd1I3WHdoOThqWFpKaDYxRnVVdU4vaVBpdExL?=
+ =?utf-8?B?Y1pMN2NPK3lBK3BiN0RTb0JvOU95TzJMUC92MTJOeG9pSDE5RHViZWMrcVVQ?=
+ =?utf-8?B?eGtJYUtmc1AxMDFwNjZHMXhrQ05sMTBHUWYvVzJpaWFwYVN0S0x0T3kzL0VR?=
+ =?utf-8?B?aVZqTXM2ZDhqZDlCdDlseFVIS3lnam9WNkxjSVhXK3RjNVhEZlRpWEpsdThy?=
+ =?utf-8?B?Z1VUMDdBaG1qOTRxRTNwWmdOM09mek1WNlduQTJuaHM0UmR3V0dzRHVSVDkw?=
+ =?utf-8?B?MHF6c0xSUU1TUjREdVF3ek82QUU2MTc1QjN2dzRUY1dkUDliaWwwR3lhcHlr?=
+ =?utf-8?B?S2hvMHF1UWk4VTY0T2Y4VFUrSDhQZ2lXZFhUbkpYYnB0blQvU00ySXVBc3dI?=
+ =?utf-8?B?aUw2Qmw3aUNWU3VSeXdRQXl2eHc5Ym9zd2JSR29qMVg1dmoxSFkxaUpEMGpz?=
+ =?utf-8?B?aDdmM2VXRGtVd3JqZ0l2RHFNUlBDTWs4SXRjZ3dBNzZVVElZVUVGaVBpdHVM?=
+ =?utf-8?B?SStPaTdBbDQyOTQraWFuSlBOcUljVGhuZG82eVVrblMvdW13UlloMEtaRXZv?=
+ =?utf-8?B?cFhieWlpelF0WUZnUjlOQ3ZMOGo2MzVKMGR0UDNQQ3BOOU5CdGNSNFVEb2Vq?=
+ =?utf-8?B?c0VkaVYyeml5bmZhNm5NNlZGc0VQSmV6M2hvcXRhSWlIOXpLbEJrazkvSjlB?=
+ =?utf-8?B?aEVqZjFXRm80QzdIa0tpUTBFcFF2dnNoOUdaNWszTVM1WExrWGVZbGxzVUNZ?=
+ =?utf-8?B?blRSS3VGajBDSUlLLzVmUDNVTFlMVGxLVmJsaXAyc09WaFFJeGw5UnpsNmt1?=
+ =?utf-8?B?bjl6U29LcTBGWFhWcnFHd1lRN3hmQUtLdmZlZWEvckEvWE5PbnZoNzNYTktj?=
+ =?utf-8?B?UHVSVmk2Q0xnQy85OWRBb3BtaU53MmRXSjBlc1k5Y25jVTkxUDJ6OGwwMUYv?=
+ =?utf-8?B?MnpyL2NZdE9tNnhVRmpJd21uVjM3b205NU1EYS9TY29sZEEzc2ZOVzZockpt?=
+ =?utf-8?B?SmhiZ1d6VzY1TkRCbUhnQ082SVJ0UDUxQjNsSk92OHdQMXl1eWZVNmFGOVkz?=
+ =?utf-8?B?aDYvT1pUU2RDeWZDQmpsMXR0N044VWVoUndRQSsrRWRNc0E4c3J4VHNKMWNy?=
+ =?utf-8?B?VG1WSXNraTU4eS80bnMwNVZiQnRDa2RMZlFQa0xUNFFUTnVDanhBc3o4N3JM?=
+ =?utf-8?B?VTl5UXM2RG1TRzU0NERXUmFGcFJGbUdRZGRiazUwTXB5NE1ENm1MbVR3WU1i?=
+ =?utf-8?B?ODJtTUJwRllLVmxCUExObDRYa1JlMDdQRkluYkR0VkFXMEdKdmJrV3VzNTFu?=
+ =?utf-8?B?dVpFK3ZRRXFyL2Z0d3JrcFBYZStLNjhaRitTUHRBRWN3Qnl2bFVIeEhkRXdI?=
+ =?utf-8?B?Y1MxRkFVMjdXQ3QxM0g2QU14Y1M3SVZGMHEyTEs0Y0l3ZWtSdWlqOEFidWdV?=
+ =?utf-8?B?V09tbkhIaWVzcHNHcEdWNUI4bzFBai9mWXlsaGsrdTNDQkpkb3FGYnZPanBH?=
+ =?utf-8?B?cG1lTkdGak5EaUlGM2lpdE5LZk5pRzd4TmZ3bWpIQlJSTENDeCtCbHdLVUlH?=
+ =?utf-8?B?M2Q1T3JBNy9XZEFuNkhtRndFVW9PT25PRkVwT3UyaDczWTIyWlNpVVZ1RzI3?=
+ =?utf-8?B?R3pxTy9jd2xtZkNZT3FVWEtTRE5yNEpvTnIxb0tLRGNtRHR3TU5kSE5kV2FH?=
+ =?utf-8?B?ZW9yTzBZODVPOUUvY3NLZXdUbEk3Q0tJcGRiU1FKekphTmNSUXZxeFdRcXMv?=
+ =?utf-8?Q?a0TMpe6z0Dp5gPBdsUZgD/cn3whBZne2+wd8BEO?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c2a7f09-9a69-48bc-ed58-08d90aef8192
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2021 09:16:43.9516 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SfuJ0hIEolfYd7wZcvwe6qCPl0ShrUzT4UIahDG9uVnLsbLIf/2WRKojcTjli04SEeFnLuuMqCcCCiDC3mQFRQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5166
 Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
- netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- vivien.didelot@gmail.com, idosch@idosch.org, nikolay@nvidia.com,
- roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [RFC net-next 5/9] net: dsa: Track port PVIDs
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org, idosch@idosch.org,
+ roopa@nvidia.com, olteanv@gmail.com, vivien.didelot@gmail.com
+Subject: Re: [Bridge] [RFC net-next 4/9] net: bridge: switchdev: Forward
+	offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,146 +161,330 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Apr 27, 2021 at 13:07, Vladimir Oltean <olteanv@gmail.com> wrote:
-> On Tue, Apr 27, 2021 at 11:12:56AM +0200, Tobias Waldekranz wrote:
->> On Mon, Apr 26, 2021 at 23:28, Vladimir Oltean <olteanv@gmail.com> wrote:
->> > On Mon, Apr 26, 2021 at 10:05:52PM +0200, Tobias Waldekranz wrote:
->> >> On Mon, Apr 26, 2021 at 22:40, Vladimir Oltean <olteanv@gmail.com> wrote:
->> >> > Hi Tobias,
->> >> >
->> >> > On Mon, Apr 26, 2021 at 07:04:07PM +0200, Tobias Waldekranz wrote:
->> >> >> In some scenarios a tagger must know which VLAN to assign to a packet,
->> >> >> even if the packet is set to egress untagged. Since the VLAN
->> >> >> information in the skb will be removed by the bridge in this case,
->> >> >> track each port's PVID such that the VID of an outgoing frame can
->> >> >> always be determined.
->> >> >> 
->> >> >> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
->> >> >> ---
->> >> >
->> >> > Let me give you this real-life example:
->> >> >
->> >> > #!/bin/bash
->> >> >
->> >> > ip link add br0 type bridge vlan_filtering 1
->> >> > for eth in eth0 eth1 swp2 swp3 swp4 swp5; do
->> >> > 	ip link set $eth up
->> >> > 	ip link set $eth master br0
->> >> > done
->> >> > ip link set br0 up
->> >> >
->> >> > bridge vlan add dev eth0 vid 100 pvid untagged
->> >> > bridge vlan del dev swp2 vid 1
->> >> > bridge vlan del dev swp3 vid 1
->> >> > bridge vlan add dev swp2 vid 100
->> >> > bridge vlan add dev swp3 vid 100 untagged
->> >> >
->> >> > reproducible on the NXP LS1021A-TSN board.
->> >> > The bridge receives an untagged packet on eth0 and floods it.
->> >> > It should reach swp2 and swp3, and be tagged on swp2, and untagged on
->> >> > swp3 respectively.
->> >> >
->> >> > With your idea of sending untagged frames towards the port's pvid,
->> >> > wouldn't we be leaking this packet to VLAN 1, therefore towards ports
->> >> > swp4 and swp5, and the real destination ports would not get this packet?
->> >> 
->> >> I am not sure I follow. The bridge would never send the packet to
->> >> swp{4,5} because should_deliver() rejects them (as usual). So it could
->> >> only be sent either to swp2 or swp3. In the case that swp3 is first in
->> >> the bridge's port list, it would be sent untagged, but the PVID would be
->> >> 100 and the flooding would thus be limited to swp{2,3}.
->> >
->> > Sorry, _I_ don't understand.
->> >
->> > When you say that the PVID is 100, whose PVID is it, exactly? Is it the
->> > pvid of the source port (aka eth0 in this example)? That's not what I
->> > see, I see the pvid of the egress port (the Marvell device)...
->> 
->> I meant the PVID of swp3.
->> 
->> In summary: This series incorrectly assumes that a port's PVID always
->> corresponds to the VID that should be assigned to untagged packets on
->> egress. This is wrong because PVID only specifies which VID to assign
->> packets to on ingress, it says nothing about policy on egress. Multiple
->> VIDs can also be configured to egress untagged on a given port. The VID
->> must thus be sent along with each packet in order for the driver to be
->> able to assign it to the correct VID.
->
-> So yes, I think you and I are on the same page now, in that the port
-> driver must not inject untagged packets into the port's PVID, since the
-> PVID is an ingress setting. Heck, the PVID might not even be installed
-> on the egress port, and that doesn't mean it shouldn't send untagged
-> packets, it only means it shouldn't receive them.
->
-> Just to be even more clear, this is what I think happens with your
-> change.
->
-> Untagged packets classified to VLAN 100 are reinterpreted by the port
-> driver as untagged, and sent to VLAN 1 (the PVID of the egress port).
-> What you said about should_deliver() doesn't matter/doesn't make sense,
-> because the offload forwarding domain contains all of swp2, swp3, swp4,
-> swp5. It is not per-VLAN. So the bridge has no idea that the port driver
-> will inject the packet with the wrong VLAN information. The packet
-> _will_ end up on the wrong ports, and it has hopped VLANs.
+On 29/04/2021 01:47, Tobias Waldekranz wrote:
+> On Tue, Apr 27, 2021 at 13:35, Nikolay Aleksandrov <nikolay@nvidia.com> wrote:
+>> On 26/04/2021 20:04, Tobias Waldekranz wrote:
+>>> Allow switchdevs to forward frames from the CPU in accordance with the
+>>> bridge configuration in the same way as is done between bridge
+>>> ports. This means that the bridge will only send a single skb towards
+>>> one of the ports under the switchdev's control, and expects the driver
+>>> to deliver the packet to all eligible ports in its domain.
+>>>
+>>> Primarily this improves the performance of multicast flows with
+>>> multiple subscribers, as it allows the hardware to perform the frame
+>>> replication.
+>>>
+>>> The basic flow between the driver and the bridge is as follows:
+>>>
+>>> - The switchdev accepts the offload by returning a non-null pointer
+>>>   from .ndo_dfwd_add_station when the port is added to the bridge.
+>>>
+>>> - The bridge sends offloadable skbs to one of the ports under the
+>>>   switchdev's control using dev_queue_xmit_accel.
+>>>
+>>> - The switchdev notices the offload by checking for a non-NULL
+>>>   "sb_dev" in the core's call to .ndo_select_queue.
+>>>
+>>> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+>>> ---
+>>>  net/bridge/br_forward.c   | 11 +++++++-
+>>>  net/bridge/br_private.h   | 27 ++++++++++++++++++
+>>>  net/bridge/br_switchdev.c | 59 +++++++++++++++++++++++++++++++++++++--
+>>>  3 files changed, 93 insertions(+), 4 deletions(-)
+>>>
+>>
+>> Hi,
+>> Please try to find a way to reduce the number of new tests in the fast path.
+>> This specific feature might help these devices, but the new tests hurt everybody else.
+>> I don't mind the control plane changes, but I'd like to minimize the fast-path impact.
+> 
+> Wholeheartedly agree.
+> 
+>> Do you need "accel_priv" to be a pointer, I mean can't derive sb_dev from the port alone ?
+>> Either way - you can mark the port via its internal flags if it can accelerate, those are
+>> used frequently and are in a hot cache line (by the way that reminds me that the port
+>> offload mark/hwdom should be moved in the first cache line).
+> 
+> I need to stash accel_priv somewhere as .ndo_dfwd_del_station expects it
+> sent back when unregistering the offload. But there is no need for it to
+> be part of the fast-path. Would it be ok to add a BR_FORWARD_OFFLOAD to
+> p->flags, which would be used in the fast-path, while also keeping
+> accel_priv on the port, but on a colder line?
+> 
 
-My brain's iproute2 simulator must have malfunctioned :) Anyway, we
-agree that the current implementation only works for the common case
-where there is a single untagged VID on a port that is also set as the
-PVID.
+About the flag - yes, that is what I'm proposing. Use an internal port flag for it
+and for the tests.
 
->> > So to reiterate: when you transmit a packet towards your hardware switch
->> > which has br0 inside the sb_dev, how does the switch know in which VLAN
->> > to forward that packet? As far as I am aware, when the bridge had
->> > received the packet as untagged on eth0, it did not insert VLAN 100 into
->> > the skb itself, so the bridge VLAN information is lost when delivering
->> > the frame to the egress net device. Am I wrong?
->> 
->> VID 100 is inserted into skb->vlan_tci on ingress from eth0, in
->> br_vlan.c/__allowed_ingress. It is then cleared again in
->> br_vlan.c/br_handle_vlan if the egress port (swp3 in our example) is set
->> to egress the VID untagged.
->> 
->> The last step only clears skb->vlan_present though, the actual VID
->> information still resides in skb->vlan_tci. I tried just removing 5/9
->> from this series, and then sourced the VID from skb->vlan_tci for
->> untagged packets. It works like a charm! I think this is the way
->> forward.
->> 
->> The question is if we need another bit of information to signal that
->> skb->vlan_tci contains valid information, but the packet should still be
->> considered untagged? This could also be used on Rx to carry priority
->> (PCP) information to the bridge.
->
-> Either we add another bit of information, or we don't clear the VLAN
-> in this bit of code, if the port supports fwd offload:
->
-> br_handle_vlan:
->
-> 	if (v->flags & BRIDGE_VLAN_INFO_UNTAGGED)
-> 		__vlan_hwaccel_clear_tag(skb);
->
-> The expectation that the hardware handles VLAN popping on the egress of
-> individual ports (as part of the replication procedure) should be valid,
-> I guess. In the case of DSA, all packets sent between the DSA master and
-> the CPU port using fwd offload should be VLAN-tagged.
+About the pointer - it is certainly not appropriate to use net_bridge_port for a void pointer
+coming in from a driver or external place. I see that it's always the bridge device so can
+we just compare the result of the add op to the bridge dev and set only the flag based on it?
+Then on the del path if the flag is set we know it's the bridge and use it as sb_dev.
 
-Yeah I agree that for this offload, it would be fine to always send
-packets tagged. There are some things that might be helped by that extra
-bit of info though:
+>> For example you could possibly drop fwd_accel, add the bitmap in a union with sb_dev pointer
+>> in br_input_skb_cb which can be set at __br_forward at the accel check and pass it down to
+>> avoid the final test.
+> 
+> Great idea! I will add it in v1.
+> 
+Actually you can also use a static key to avoid all checks and effects of this feature on
+the bridge fast-path. You can enable it when the first device that can accelerate shows
+up and disable it when the last one leaves.
 
-- VLAN PCP. The switchdev and bridge could communicate the priority bits
-  also for untagged packets, both on ingress and egress. This would
-  maintain the priority up to a VLAN upper on top of the bridge, where
-  you can use the standard {ingress,egress}-qos-map feature to map PCP
-  to socket priority.
+By the way __br_forward() can take one more argument (sb_dev) and always set it because
+that cache line is dirty anyway due to the tstamp zeroing, but that doesn't matter if
+static keys are used. Just noting it. :)
 
-- TC. Right now, matching on VLANs is messy because there is no way to
-  express "match VLAN1" in a filter that can be reused across a group of
-  ports ("block" in TC parlance) where some may be untagged members and
-  others are tagged. In hardware, the VLAN parser typically resides much
-  earlier in the pipeline (way before reaching the bridge engine) so
-  TCAMs can easily do these things.
+>> Furthermore since the hwdoms are bits and if the port accel is a bit
+>> you could probably reduce the nbp_switchdev_can_accel() helper to one test with a few bitops.
+> 
+> Not sure I follow. The current code has two tests:
+> 
+> 1. Is offloading enabled on the port. (To be done using p->flags in v1)
+> 2. Is offloading allowed for this frame to this port.
+> 
+> The port can be part of a hwdom that does not support forward
+> offloading; indeed only one driver would support it initially. So how do
+> I avoid having to test the conditions individually?
+> 
 
-But this is perhaps a separate job. Nothing stops us from going the
-always-tagged-route now and adding "untagged awareness" to the stack
-later on.
+Coming to think of it with the port bit test first it should be fine.
+
+
+For the sake of fun here's one way that can turn it into one test,
+obviously I haven't tested anything:
+ - reserve a few most significant bits of hwdom as "feature" bits, say 4
+ - add a "feature" bit which encodes ability to accelerate
+ => test becomes p->hwdom | (src_hwdom & hwdom_bitmask) > (accel feature bit) | p->hwdom
+It's very hacky and _not_ to be used. :)
+
+>> In nbp_switchdev_allowed_egress() I'd make the hwdom tests rely on skb's offload_fwd_mark
+>> so in the software forwarding case we could avoid them.
+> 
+> Flipping the left and right side of the expression is possible, but I
+> think that would only impact the case where the frame is _not_ allowed
+> to egress. Is that what you mean? Otherwise you still need to test for
+> the condition that we have forwarded to this port's hwdom already, to
+> avoid sending duplicates on the wire. This is independent of
+> skb->offload_fwd_mark as both Rx-offloaded and non-Rx-offloaded frames
+> can still be Tx-offloaded to other hwdoms.
+> 
+> A typical example would be a broadcast frame ingressing the bridge from
+> eth0 in the figure from the cover letter. skb->offload_fwd_mark would
+> always be 0, but you still need to test fwd_hwdoms to skip over swp{1,2}
+> after you have sent the skb to swp0.
+> 
+
+Yeah, you're right I was still thinking only of offloaded skbs, didn't consider
+mixing the two.
+
+>> I might be missing something above, but we have to try and reduce these tests as much as
+>> possible, also the port's first cache line is quite crowded so avoiding any new fields
+>> would be best, i.e. at some point we'll move the hwdom/offload mark there to avoid pulling
+>> in the last cache line of net_bridge_port, so it'd be best to avoid having to move accel_priv
+>> there too.
+>>
+>> Cheers,
+>>  Nik
+>>
+>>> diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+>>> index 6e9b049ae521..b4fb3b0bb1ec 100644
+>>> --- a/net/bridge/br_forward.c
+>>> +++ b/net/bridge/br_forward.c
+>>> @@ -32,6 +32,8 @@ static inline int should_deliver(const struct net_bridge_port *p,
+>>>  
+>>>  int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb)
+>>>  {
+>>> +	struct net_device *sb_dev = NULL;
+>>> +
+>>>  	skb_push(skb, ETH_HLEN);
+>>>  	if (!is_skb_forwardable(skb->dev, skb))
+>>>  		goto drop;
+>>> @@ -48,7 +50,10 @@ int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb
+>>>  		skb_set_network_header(skb, depth);
+>>>  	}
+>>>  
+>>> -	dev_queue_xmit(skb);
+>>> +	if (br_switchdev_accels_skb(skb))
+>>> +		sb_dev = BR_INPUT_SKB_CB(skb)->brdev;
+>>> +
+>>> +	dev_queue_xmit_accel(skb, sb_dev);
+>>>  
+>>>  	return 0;
+>>>  
+>>> @@ -105,6 +110,8 @@ static void __br_forward(const struct net_bridge_port *to,
+>>>  		indev = NULL;
+>>>  	}
+>>>  
+>>> +	nbp_switchdev_frame_mark_accel(to, skb);
+>>> +
+>>>  	NF_HOOK(NFPROTO_BRIDGE, br_hook,
+>>>  		net, NULL, skb, indev, skb->dev,
+>>>  		br_forward_finish);
+>>> @@ -174,6 +181,8 @@ static struct net_bridge_port *maybe_deliver(
+>>>  	if (!should_deliver(p, skb))
+>>>  		return prev;
+>>>  
+>>> +	nbp_switchdev_frame_mark_fwd(p, skb);
+>>> +
+>>>  	if (!prev)
+>>>  		goto out;
+>>>  
+>>> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+>>> index aba92864d285..933e951b0d7a 100644
+>>> --- a/net/bridge/br_private.h
+>>> +++ b/net/bridge/br_private.h
+>>> @@ -332,6 +332,7 @@ struct net_bridge_port {
+>>>  #endif
+>>>  #ifdef CONFIG_NET_SWITCHDEV
+>>>  	int				hwdom;
+>>> +	void				*accel_priv;
+>>>  #endif
+>>>  	u16				group_fwd_mask;
+>>>  	u16				backup_redirected_cnt;
+>>> @@ -506,7 +507,9 @@ struct br_input_skb_cb {
+>>>  #endif
+>>>  
+>>>  #ifdef CONFIG_NET_SWITCHDEV
+>>> +	u8 fwd_accel:1;
+>>>  	int src_hwdom;
+>>> +	br_hwdom_map_t fwd_hwdoms;
+>>>  #endif
+>>>  };
+>>>  
+>>> @@ -1597,6 +1600,15 @@ static inline void br_sysfs_delbr(struct net_device *dev) { return; }
+>>>  
+>>>  /* br_switchdev.c */
+>>>  #ifdef CONFIG_NET_SWITCHDEV
+>>> +static inline bool br_switchdev_accels_skb(struct sk_buff *skb)
+>>> +{
+>>> +	return BR_INPUT_SKB_CB(skb)->fwd_accel;
+>>> +}
+>>> +
+>>> +void nbp_switchdev_frame_mark_accel(const struct net_bridge_port *p,
+>>> +				    struct sk_buff *skb);
+>>> +void nbp_switchdev_frame_mark_fwd(const struct net_bridge_port *p,
+>>> +				  struct sk_buff *skb);
+>>>  void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>>  			      struct sk_buff *skb);
+>>>  bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
+>>> @@ -1619,6 +1631,21 @@ static inline void br_switchdev_frame_unmark(struct sk_buff *skb)
+>>>  	skb->offload_fwd_mark = 0;
+>>>  }
+>>>  #else
+>>> +static inline bool br_switchdev_accels_skb(struct sk_buff *skb)
+>>> +{
+>>> +	return false;
+>>> +}
+>>> +
+>>> +static inline void nbp_switchdev_frame_mark_accel(const struct net_bridge_port *p,
+>>> +						  struct sk_buff *skb)
+>>> +{
+>>> +}
+>>> +
+>>> +static inline void nbp_switchdev_frame_mark_fwd(const struct net_bridge_port *p,
+>>> +						struct sk_buff *skb)
+>>> +{
+>>> +}
+>>> +
+>>>  static inline void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>>  					    struct sk_buff *skb)
+>>>  {
+>>> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+>>> index 54bd7205bfb5..c903171ad291 100644
+>>> --- a/net/bridge/br_switchdev.c
+>>> +++ b/net/bridge/br_switchdev.c
+>>> @@ -8,6 +8,26 @@
+>>>  
+>>>  #include "br_private.h"
+>>>  
+>>> +static bool nbp_switchdev_can_accel(const struct net_bridge_port *p,
+>>> +				    const struct sk_buff *skb)
+>>> +{
+>>> +	return p->accel_priv && (p->hwdom != BR_INPUT_SKB_CB(skb)->src_hwdom);
+>>> +}
+>>> +
+>>> +void nbp_switchdev_frame_mark_accel(const struct net_bridge_port *p,
+>>> +				    struct sk_buff *skb)
+>>> +{
+>>> +	if (nbp_switchdev_can_accel(p, skb))
+>>> +		BR_INPUT_SKB_CB(skb)->fwd_accel = true;
+>>> +}
+>>> +
+>>> +void  (const struct net_bridge_port *p,
+>>> +				  struct sk_buff *skb)
+>>> +{
+>>> +	if (nbp_switchdev_can_accel(p, skb))
+>>> +		set_bit(p->hwdom, BR_INPUT_SKB_CB(skb)->fwd_hwdoms);
+>>> +}
+>>> +
+>>>  void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>>  			      struct sk_buff *skb)
+>>>  {
+>>> @@ -18,8 +38,10 @@ void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
+>>>  bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
+>>>  				  const struct sk_buff *skb)
+>>>  {
+>>> -	return !skb->offload_fwd_mark ||
+>>> -	       BR_INPUT_SKB_CB(skb)->src_hwdom != p->hwdom;
+>>> +	struct br_input_skb_cb *cb = BR_INPUT_SKB_CB(skb);
+>>> +
+>>> +	return !test_bit(p->hwdom, cb->fwd_hwdoms) &&
+>>> +		(!skb->offload_fwd_mark || cb->src_hwdom != p->hwdom);
+>>>  }
+>>>  
+>>>  /* Flags that can be offloaded to hardware */
+>>> @@ -125,6 +147,27 @@ int br_switchdev_port_vlan_del(struct net_device *dev, u16 vid)
+>>>  	return switchdev_port_obj_del(dev, &v.obj);
+>>>  }
+>>>  
+>>> +static void nbp_switchdev_fwd_offload_add(struct net_bridge_port *p)
+>>> +{
+>>> +	void *priv;
+>>> +
+>>> +	if (!(p->dev->features & NETIF_F_HW_L2FW_DOFFLOAD))
+>>> +		return;
+>>> +
+>>> +	priv = p->dev->netdev_ops->ndo_dfwd_add_station(p->dev, p->br->dev);
+>>> +	if (!IS_ERR_OR_NULL(priv))
+>>> +		p->accel_priv = priv;
+>>> +}
+>>> +
+>>> +static void nbp_switchdev_fwd_offload_del(struct net_bridge_port *p)
+>>> +{
+>>> +	if (!p->accel_priv)
+>>> +		return;
+>>> +
+>>> +	p->dev->netdev_ops->ndo_dfwd_del_station(p->dev, p->accel_priv);
+>>> +	p->accel_priv = NULL;
+>>> +}
+>>> +
+>>>  static int nbp_switchdev_hwdom_set(struct net_bridge_port *joining)
+>>>  {
+>>>  	struct net_bridge *br = joining->br;
+>>> @@ -176,13 +219,23 @@ int nbp_switchdev_add(struct net_bridge_port *p)
+>>>  		return err;
+>>>  	}
+>>>  
+>>> -	return nbp_switchdev_hwdom_set(p);
+>>> +	err = nbp_switchdev_hwdom_set(p);
+>>> +	if (err)
+>>> +		return err;
+>>> +
+>>> +	if (p->hwdom)
+>>> +		nbp_switchdev_fwd_offload_add(p);
+>>> +
+>>> +	return 0;
+>>>  }
+>>>  
+>>>  void nbp_switchdev_del(struct net_bridge_port *p)
+>>>  {
+>>>  	ASSERT_RTNL();
+>>>  
+>>> +	if (p->accel_priv)
+>>> +		nbp_switchdev_fwd_offload_del(p);
+>>> +
+>>>  	if (p->hwdom)
+>>>  		nbp_switchdev_hwdom_put(p);
+>>>  }
+>>>
+
