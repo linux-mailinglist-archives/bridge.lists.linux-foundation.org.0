@@ -1,71 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id D599B36F2AA
-	for <lists.bridge@lfdr.de>; Fri, 30 Apr 2021 00:40:17 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89D9C370D90
+	for <lists.bridge@lfdr.de>; Sun,  2 May 2021 17:06:10 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id C5C2841A1A;
-	Thu, 29 Apr 2021 22:40:15 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id B9FF64040A;
+	Sun,  2 May 2021 15:06:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9XoOcPG3c9hq; Thu, 29 Apr 2021 22:40:14 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 08FBD41A0F;
-	Thu, 29 Apr 2021 22:40:13 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fINEtGpduGzo; Sun,  2 May 2021 15:06:08 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTP id 2C74840404;
+	Sun,  2 May 2021 15:06:07 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id BEEDDC0019;
-	Thu, 29 Apr 2021 22:40:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 18C10C0024;
+	Sun,  2 May 2021 15:06:07 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 42C89C0001
- for <bridge@lists.linux-foundation.org>; Thu, 29 Apr 2021 22:40:12 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0AC91C0001
+ for <bridge@lists.linux-foundation.org>; Sun,  2 May 2021 15:06:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 293BA6F86F
- for <bridge@lists.linux-foundation.org>; Thu, 29 Apr 2021 22:40:12 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id EDEC941DF7
+ for <bridge@lists.linux-foundation.org>; Sun,  2 May 2021 15:06:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4SeZv1mlyH4g for <bridge@lists.linux-foundation.org>;
- Thu, 29 Apr 2021 22:40:11 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1C5FB6F86B
- for <bridge@lists.linux-foundation.org>; Thu, 29 Apr 2021 22:40:11 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 684AB6146D;
- Thu, 29 Apr 2021 22:40:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1619736010;
- bh=kQFx8Pwf7KAmyZVuDu0CSPZWkOVdAGYFuE4Hv0jweNg=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=INWBvu5ahgW03E8MPEByClQ1ZkRhxh97IovHaixR/0EfpkHqcQ3k1Nvl9EKjv5Y9Q
- Dp1V1USB56UNO63fuZhfiwcfL15YpT3UqqT5Svahfw2O6eHmhNIRalmrtp/zFaigHg
- plwp2TIQUQWKhWUwMdYmMAUTo/b8z0Itt0GHmuQu2C3KxPbNUEt03A0DlUxxysVMPa
- mEg+KSB41dt1d5wJ5y9iI7CzFA5D0TPq97/5QwX8lDiFbJgFBkVW1Vm+MAIlZC8Cgi
- Z1ARLaB9sJpNdJ/aZSBakmZVIXWbgdzfN9rDzswapPTbQnIiKS0BnD8C9hiiUCBq9+
- +OJGAfbXuj/rg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 5E87560BCF;
- Thu, 29 Apr 2021 22:40:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=messagingengine.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pqB18LgcKtiy for <bridge@lists.linux-foundation.org>;
+ Sun,  2 May 2021 15:06:01 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 9402741C48
+ for <bridge@lists.linux-foundation.org>; Sun,  2 May 2021 15:06:01 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 06A5D580789;
+ Sun,  2 May 2021 10:58:49 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Sun, 02 May 2021 10:58:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=VQZqUm
+ PAipEQ3F6paRnDKa1ranMI53JGXUptVU2DPVM=; b=QS3+4HRSYVmnrgO0R8KBAU
+ ZPpdkELhL5kMONYMdXovC0OsD/FeS5Dxj5WZF1Ah4AD4SFpPlje8Gy9IEcg/sM27
+ JrzXtc1KtNS5OabNtx/57XS6fDod5b4ZBcUYIzrm80zURBtYN4EL+PZuL0u/WEBR
+ ioozKWwh+QAAxn04lS8OwD0VLWIFWeRt/V/23cfwajGP+8TDZ7isrpavmvHsjuVR
+ idyLMJUHuSsNk6MSSlmVuVSgwB2WbK0kN2ouEaCUIUw3biZwRRBRDlp6vgpA8pbq
+ oJ12jTXgEdwRm+7sHZltiaINri+xFnIn5/it2A2yk6agH8UEj2xdNNauvwiK8iqw
+ ==
+X-ME-Sender: <xms:KL6OYL5TuX8se5qCwQng6wa1zNVn3MWgL59snorr7sdUUSsuZ7xPUw>
+ <xme:KL6OYA54QyIxdv5Is1NWOrgt40aItk9car8rYE-kPDO9lHPaaSmIFgiIAYSkzqTjA
+ VUQ9OsbcNZJqT8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefuddgudefgecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcu
+ ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrth
+ htvghrnheptdffkeekfeduffevgeeujeffjefhtefgueeugfevtdeiheduueeukefhudeh
+ leetnecukfhppeduleefrdegjedrudeihedrvdehudenucevlhhushhtvghrufhiiigvpe
+ dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehiughoshgthhesihguohhstghhrdhorhhg
+X-ME-Proxy: <xmx:KL6OYCcK3_ySb6g3jNGdRs7i3rl-IwTNsqAQDF63zR3Sfu0H9uGIEw>
+ <xmx:KL6OYMLI7YCoxoNMruCZ5Ii1POlVZW3OspynDBQxDnSrn2SyPwfjLw>
+ <xmx:KL6OYPKKuBIyDH2iNHNS9EkFnVuT-ssp_6WQbNk3oIwdGKLsL588hA>
+ <xmx:Kb6OYAWe7mzKf1voDa-xb5_FlNXgzNjN5lZICAYppsKFkcDxfB7s1A>
+Received: from localhost (unknown [193.47.165.251])
+ by mail.messagingengine.com (Postfix) with ESMTPA;
+ Sun,  2 May 2021 10:58:47 -0400 (EDT)
+Date: Sun, 2 May 2021 17:58:45 +0300
+From: Ido Schimmel <idosch@idosch.org>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Message-ID: <YI6+JXDG/4K30G5L@shredder>
+References: <20210426170411.1789186-1-tobias@waldekranz.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161973601038.15907.11344410460500659654.git-patchwork-notify@kernel.org>
-Date: Thu, 29 Apr 2021 22:40:10 +0000
-References: <1619620694-12419-1-git-send-email-zhangzhengming@huawei.com>
-In-Reply-To: <1619620694-12419-1-git-send-email-zhangzhengming@huawei.com>
-To: zhangzhengming <zhangzhengming@huawei.com>
-Cc: netdev@vger.kernel.org, wangxiaogang3@huawei.com,
- bridge@lists.linux-foundation.org, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, davem@davemloft.net, xuhanbing@huawei.com
-Subject: Re: [Bridge] [PATCH v2] bridge: Fix possible races between
- assigning rx_handler_data and setting IFF_BRIDGE_PORT bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210426170411.1789186-1-tobias@waldekranz.com>
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ vivien.didelot@gmail.com, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, olteanv@gmail.com, davem@davemloft.net
+Subject: Re: [Bridge] [RFC net-next 0/9] net: bridge: Forward offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -80,46 +99,204 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
-
-This patch was applied to netdev/net.git (refs/heads/master):
-
-On Wed, 28 Apr 2021 22:38:14 +0800 you wrote:
-> From: Zhang Zhengming <zhangzhengming@huawei.com>
+On Mon, Apr 26, 2021 at 07:04:02PM +0200, Tobias Waldekranz wrote:
+> ## Overview
 > 
-> There is a crash in the function br_get_link_af_size_filtered,
-> as the port_exists(dev) is true and the rx_handler_data of dev is NULL.
-> But the rx_handler_data of dev is correct saved in vmcore.
+>    vlan1   vlan2
+>        \   /
+>    .-----------.
+>    |    br0    |
+>    '-----------'
+>    /   /   \   \
+> swp0 swp1 swp2 eth0
+>   :   :   :
+>   (hwdom 1)
 > 
-> The oops looks something like:
->  ...
->  pc : br_get_link_af_size_filtered+0x28/0x1c8 [bridge]
->  ...
->  Call trace:
->   br_get_link_af_size_filtered+0x28/0x1c8 [bridge]
->   if_nlmsg_size+0x180/0x1b0
->   rtnl_calcit.isra.12+0xf8/0x148
->   rtnetlink_rcv_msg+0x334/0x370
->   netlink_rcv_skb+0x64/0x130
->   rtnetlink_rcv+0x28/0x38
->   netlink_unicast+0x1f0/0x250
->   netlink_sendmsg+0x310/0x378
->   sock_sendmsg+0x4c/0x70
->   __sys_sendto+0x120/0x150
->   __arm64_sys_sendto+0x30/0x40
->   el0_svc_common+0x78/0x130
->   el0_svc_handler+0x38/0x78
->   el0_svc+0x8/0xc
+> Up to this point, switchdevs have been trusted with offloading
+> forwarding between bridge ports, e.g. forwarding a unicast from swp0
+> to swp1 or flooding a broadcast from swp2 to swp1 and swp0. This
+> series extends forward offloading to include some new classes of
+> traffic:
 > 
-> [...]
+> - Locally originating flows, i.e. packets that ingress on br0 that are
+>   to be forwarded to one or several of the ports swp{0,1,2}. Notably
+>   this also includes routed flows, e.g. a packet ingressing swp0 on
+>   VLAN 1 which is then routed over to VLAN 2 by the CPU and then
+>   forwarded to swp1 is "locally originating" from br0's point of view.
+> 
+> - Flows originating from "foreign" interfaces, i.e. an interface that
+>   is not offloaded by a particular switchdev instance. This includes
+>   ports belonging to other switchdev instances. A typical example
+>   would be flows from eth0 towards swp{0,1,2}.
+> 
+> The bridge still looks up its FDB/MDB as usual and then notifies the
+> switchdev driver that a particular skb should be offloaded if it
+> matches one of the classes above. It does so by using the _accel
+> version of dev_queue_xmit, supplying its own netdev as the
+> "subordinate" device. The driver can react to the presence of the
+> subordinate in its .ndo_select_queue in what ever way it needs to make
+> sure to forward the skb in much the same way that it would for packets
+> ingressing on regular ports.
+> 
+> Hardware domains to which a particular skb has been forwarded are
+> recorded so that duplicates are avoided.
+> 
+> The main performance benefit is thus seen on multicast flows. Imagine
+> for example that:
+> 
+> - An IP camera is connected to swp0 (VLAN 1)
+> 
+> - The CPU is acting as a multicast router, routing the group from VLAN
+>   1 to VLAN 2.
+> 
+> - There are subscribers for the group in question behind both swp1 and
+>   swp2 (VLAN 2).
 
-Here is the summary with links:
-  - [v2] bridge: Fix possible races between assigning rx_handler_data and setting IFF_BRIDGE_PORT bit
-    https://git.kernel.org/netdev/net/c/59259ff7a81b
+IIUC, this falls under the first use case ("Locally originating flows").
+Do you have a need for this optimization in the forwarding case? Asking
+because it might allow us to avoid unnecessary modifications to the
+forwarding path. I have yet to look at the code, so maybe it's not a big
+deal.
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> 
+> With this offloading in place, the bridge need only send a single skb
+> to the driver, which will send it to the hardware marked in such a way
+> that the switch will perform the multicast replication according to
+> the MDB configuration. Naturally, the number of saved skb_clones
+> increase linearly with the number of subscribed ports.
 
+Yes, this is clear. FWIW, Spectrum has something similar. You can send
+packets as either "data" or "control". Data packets are injected via the
+CPU port and forwarded according to the hardware database. Control
+packets are sent as-is via the specified front panel port, bypassing the
+hardware data path. mlxsw is always sending packets as "control".
 
+> 
+> As an extra benefit, on mv88e6xxx, this also allows the switch to
+> perform source address learning on these flows, which avoids having to
+> sync dynamic FDB entries over slow configuration interfaces like MDIO
+> to avoid flows directed towards the CPU being flooded as unknown
+> unicast by the switch.
+
+Since you are not syncing FDBs, it is possible that you are needlessly
+flooding locally generated packets. This optimization avoids it.
+
+> 
+> 
+> ## RFC
+> 
+> - In general, what do you think about this idea?
+
+Looks sane to me
+
+> 
+> - hwdom. What do you think about this terminology? Personally I feel
+>   that we had too many things called offload_fwd_mark, and that as the
+>   use of the bridge internal ID (nbp->offload_fwd_mark) expands, it
+>   might be useful to have a separate term for it.
+
+Sounds OK
+
+> 
+> - .dfwd_{add,del}_station. Am I stretching this abstraction too far,
+>   and if so do you have any suggestion/preference on how to signal the
+>   offloading from the bridge down to the switchdev driver?
+
+I was not aware of this interface before the RFC, but your use case
+seems to fit the kdoc: "Called by upper layer devices to accelerate
+switching or other station functionality into hardware".
+
+Do you expect this optimization to only work when physical netdevs are
+enslaved to the bridge? What about LAG/VLANs?
+
+> 
+> - The way that flooding is implemented in br_forward.c (lazily cloning
+>   skbs) means that you have to mark the forwarding as completed very
+>   early (right after should_deliver in maybe_deliver) in order to
+>   avoid duplicates. Is there some way to move this decision point to a
+>   later stage that I am missing?
+> 
+> - BR_MULTICAST_TO_UNICAST. Right now, I expect that this series is not
+>   compatible with unicast-to-multicast being used on a port. Then
+>   again, I think that this would also be broken for regular switchdev
+>   bridge offloading as this flag is not offloaded to the switchdev
+>   port, so there is no way for the driver to refuse it. Any ideas on
+>   how to handle this?
+> 
+> 
+> ## mv88e6xxx Specifics
+> 
+> Since we are now only receiving a single skb for both unicast and
+> multicast flows, we can tag the packets with the FORWARD command
+> instead of FROM_CPU. The swich(es) will then forward the packet in
+> accordance with its ATU, VTU, STU, and PVT configuration - just like
+> for packets ingressing on user ports.
+> 
+> Crucially, FROM_CPU is still used for:
+> 
+> - Ports in standalone mode.
+> 
+> - Flows that are trapped to the CPU and software-forwarded by a
+>   bridge. Note that these flows match neither of the classes discussed
+>   in the overview.
+> 
+> - Packets that are sent directly to a port netdev without going
+>   through the bridge, e.g. lldpd sending out PDU via an AF_PACKET
+>   socket.
+> 
+> We thus have a pretty clean separation where the data plane uses
+> FORWARDs and the control plane uses TO_/FROM_CPU.
+> 
+> The barrier between different bridges is enforced by port based VLANs
+> on mv88e6xxx, which in essence is a mapping from a source device/port
+> pair to an allowed set of egress ports. In order to have a FORWARD
+> frame (which carries a _source_ device/port) correctly mapped by the
+> PVT, we must use a unique pair for each bridge.
+> 
+> Fortunately, there is typically lots of unused address space in most
+> switch trees. When was the last time you saw an mv88e6xxx product
+> using more than 4 chips? Even if you found one with 16 (!) devices,
+> you would still have room to allocate 16*16 virtual ports to software
+> bridges.
+> 
+> Therefore, the mv88e6xxx driver will allocate a virtual device/port
+> pair to each bridge that it offloads. All members of the same bridge
+> are then configured to allow packets from this virtual port in their
+> PVTs.
+> 
+> Tobias Waldekranz (9):
+>   net: dfwd: Constrain existing users to macvlan subordinates
+>   net: bridge: Disambiguate offload_fwd_mark
+>   net: bridge: switchdev: Recycle unused hwdoms
+>   net: bridge: switchdev: Forward offloading
+>   net: dsa: Track port PVIDs
+>   net: dsa: Forward offloading
+>   net: dsa: mv88e6xxx: Allocate a virtual DSA port for each bridge
+>   net: dsa: mv88e6xxx: Map virtual bridge port in PVT
+>   net: dsa: mv88e6xxx: Forward offloading
+> 
+>  MAINTAINERS                                   |   1 +
+>  drivers/net/dsa/mv88e6xxx/Makefile            |   1 +
+>  drivers/net/dsa/mv88e6xxx/chip.c              |  61 ++++++-
+>  drivers/net/dsa/mv88e6xxx/dst.c               | 160 ++++++++++++++++++
+>  drivers/net/dsa/mv88e6xxx/dst.h               |  14 ++
+>  .../net/ethernet/intel/fm10k/fm10k_netdev.c   |   3 +
+>  drivers/net/ethernet/intel/i40e/i40e_main.c   |   3 +
+>  drivers/net/ethernet/intel/ixgbe/ixgbe_main.c |   3 +
+>  include/linux/dsa/mv88e6xxx.h                 |  13 ++
+>  include/net/dsa.h                             |  13 ++
+>  net/bridge/br_forward.c                       |  11 +-
+>  net/bridge/br_if.c                            |   4 +-
+>  net/bridge/br_private.h                       |  54 +++++-
+>  net/bridge/br_switchdev.c                     | 141 +++++++++++----
+>  net/dsa/port.c                                |  16 +-
+>  net/dsa/slave.c                               |  36 +++-
+>  net/dsa/tag_dsa.c                             |  33 +++-
+>  17 files changed, 510 insertions(+), 57 deletions(-)
+>  create mode 100644 drivers/net/dsa/mv88e6xxx/dst.c
+>  create mode 100644 drivers/net/dsa/mv88e6xxx/dst.h
+>  create mode 100644 include/linux/dsa/mv88e6xxx.h
+> 
+> -- 
+> 2.25.1
+> 
