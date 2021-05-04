@@ -1,158 +1,148 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A1B373042
-	for <lists.bridge@lfdr.de>; Tue,  4 May 2021 21:04:03 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id B50CD37312E
+	for <lists.bridge@lfdr.de>; Tue,  4 May 2021 22:05:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id EF5D6405B5;
-	Tue,  4 May 2021 19:04:01 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 5015D405C8;
+	Tue,  4 May 2021 20:05:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yVZ3FgJVtpmK; Tue,  4 May 2021 19:04:01 +0000 (UTC)
+	with ESMTP id 5irwUxHXkg3d; Tue,  4 May 2021 20:05:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 76204405B1;
-	Tue,  4 May 2021 19:04:00 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id CD862405C3;
+	Tue,  4 May 2021 20:05:36 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 49C1AC001C;
-	Tue,  4 May 2021 19:04:00 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8672DC001C;
+	Tue,  4 May 2021 20:05:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AC311C0001
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 19:03:58 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6CC3AC0001
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:05:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 95848846E5
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 19:03:58 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 4696360D4E
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:05:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=garmin.com header.b="OJhdxKx6";
- dkim=pass (2048-bit key) header.d=garmin.onmicrosoft.com
- header.b="GLYwZ3cg"
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nMpzYGorqKLS for <bridge@lists.linux-foundation.org>;
- Tue,  4 May 2021 19:03:57 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from mx0b-000eb902.pphosted.com (mx0b-000eb902.pphosted.com
- [205.220.177.212])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 5DB6883ED2
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 19:03:57 +0000 (UTC)
-Received: from pps.filterd (m0220299.ppops.net [127.0.0.1])
- by mx0a-000eb902.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 144I8d7P025980; Tue, 4 May 2021 13:23:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garmin.com;
- h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=pps1;
- bh=Fj46d+TFO6oS9m9H9NaMKRavcBycZmgywtCruQcLscg=;
- b=OJhdxKx6hEgp7j7TT6nzISmkxKLf7sQ/jhSNPZG1ZfoOMIhhw4bBUxVZLzF/ZrBnuRMQ
- /rSUiFaQ4nW5lrQXQ+6lXK0FYi88qGl9Gr4eUWkz16giinH+zu8ElL+aSgtI1BTpqI9c
- aoCZdN1UdT85iRxvDgtqZ1jx+QltAQoYbiBn90mfVLcLT8QITlijNAphZI1FeWHZXYcc
- +T/MBkqD3thxpq6ZA/7w/65QXt4I+rNZS60eS8iUVZnslw/Om8dy1LZH33Kp+tlJJ+4X
- WraZXZPdETnMaWj7bkXI/ueXR043GjMvSBWNr2NCfTIKBHd08dKHbQQCX9TNsGxC+zcQ TA== 
-Received: from nam10-mw2-obe.outbound.protection.outlook.com
- (mail-mw2nam10lp2100.outbound.protection.outlook.com [104.47.55.100])
- by mx0a-000eb902.pphosted.com with ESMTP id 38ajpd2753-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 04 May 2021 13:23:30 -0500
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=nvidia.com
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id QA55qUbt_WvX for <bridge@lists.linux-foundation.org>;
+ Tue,  4 May 2021 20:05:33 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2062f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::62f])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 0140D60697
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:05:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N8+rarTButp6VAgGtJUc8MruzwqjAStbrhredVgeGT0uO1wnsYTFvuH9E64WSQmUKOzDiCO7OV9BldeQafvuFwafTqDLsIwtXAG5/Ua7V9+1FTu5GTqHBb0cP+NIcvTO4gcROgAUPw7FhO4YjQQvNjc2mD4Kcy+FdYS5y/4lscvSzAdSX8Z4ptHxmxMZOc5VOeunVMD4WUaaTfDbNtiuCpIe2AgCn80vr0qCkXNfPaDhrxkV12AX20suOJ+DipWFkm8EKAiliYPhVAvppjSLxWmr6gGpD6iT2RoxZL22Jfggb/VEHYeno9zWmTAei6bv+rpwnAcYrzzyfJ3csOF1Sg==
+ b=JzXW8DqP8ZS/4bxlD0h/lns6H52b/B6MGHes0/bwj3pzOXica8SXJnkrOZScCzc7jxc11WAcaTbcunpET6ZWHiCT2h9I3R4CLMGUBGZI9eayGFMMG9j1Ewgvm5WNdcOG5IbHdlVr1N8q5I07AsbXZ61LbjlcuQugYcq5RFeunURpCo13AQpZnq/rAvJ7e/r/tJA+AruVvFKxSnRfYs6hCE1/UWGmB0ir+kmhgxwS6o5pIeDD9TS9tQHz+56AKwY2Wk0QxFFdi4BQHaFXOEMSBZUuVuc0J/4xxfMjnHtkV9zei5++xUrz6Y3v8J0iV3jpn00ot7TUeJW2kjc/+S8Piw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fj46d+TFO6oS9m9H9NaMKRavcBycZmgywtCruQcLscg=;
- b=LUdn0hEi35e2gjpjY7rS55tdYlnam9Qlo/2akaG0QOr2GYp8sDbOAzZCKf1O80tI8fRZHeEPrORvwdoD+HHW7e5P/S5QQaDEkIarmdYHRs+li5crIBWmGwH+kME1lA+bvGVd2WFYYJF/ldAf8wI6JBwY3WLy6weR7ytT7+C/8LeDiJhcmQgJ4HrFZOS8JgDdEFS/02TSr+zgLcpoOJzVz1sVdkgX0AL9Q3LJaWBR/ff5irU1OVImCeq8tIXOy/GEFCbE7l4eZztaYfPKEGPMuqFCFQyOVqxcu5VeDntjnbJEu8D+M/VZcmJgeYOVYYdLUBIbNWFzYS3hFiMhdin7SQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 204.77.163.244) smtp.rcpttodomain=nvidia.com smtp.mailfrom=garmin.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=garmin.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=garmin.onmicrosoft.com; s=selector1-garmin-onmicrosoft-com;
+ bh=xDaZfruxRLOBNCUNl44GntcTxlfx0NYWY3plBC20+I0=;
+ b=CejC/SejTT1RFdpJ0j/0F1B1lNMbkcWNoYsmxHtour0QmutddL4RXKQ2YcPFm9el5sBYVY1AN5hqnc6RMtcPPKGmCVa8OIyDaudSd/odvBzIj5Z4MPvJrrzJ7FOnHmlvZCsO+YyEDjqyqnOIkONfoinZumQkQ1sVBDn67WBx5ULxWJ/d/sjc7+O9zrRPfMwNKd9+gVuL6ZONfHRCRYxuA+/8tu/qukhyDH2Z1Gx/4rjEX6QoTkgU7kU9OzRUAi/Wna81/XxXqqCHIEvQ7+s7kwhbmNBXcukMEZd/csPc49zoVSypir4UaOXqOBuLTtHtXo8i1MVcHa0LNcf+30b22w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fj46d+TFO6oS9m9H9NaMKRavcBycZmgywtCruQcLscg=;
- b=GLYwZ3cgydMX0maQcdUxqt0CBhxPUSmMqOTP7mTOYDnoERjmHYFJ8GLmnVv3UHYR3oRiA5wu/aVG1uc78caRgNXm51Af3PSgpas7dVaT7lCjcThfxecR7xQfGWMXoO2IttmvukKISyZFYZGtnNCBmZ5s4jKW2nudHSFQW298utp9BfhfF2qeECeiAamItpewN3x1upfyjCwge3GfYvET/GrRgwSx63fUbrZJdM92aR3gaudb5PxXvgAL80yZxKAC+oKubly+0Knuqz4sJBBYSxD6Uq3EZtar32vHTedM0cN4uRrQRjzAy3XWiut3z5A2x/MGjCHm4zz7wEXd3ucs0A==
-Received: from BN9PR03CA0340.namprd03.prod.outlook.com (2603:10b6:408:f6::15)
- by DM5PR04MB0589.namprd04.prod.outlook.com (2603:10b6:3:9d::17) with
+ bh=xDaZfruxRLOBNCUNl44GntcTxlfx0NYWY3plBC20+I0=;
+ b=F/KwvChQgRDm8FZ3yh3PFp4cs3Tysu5UJ1cbawxIcbHFPeDN/NxjYIoTd8hPHuslaQGsHIWROfdQvEzlX3avX6Fl4ILrecQ8YNw4imKylOO7n2EHuLpNrMMgNKngabN+LTAgwqT3yDfF1ez8R2XR3rYc4z1IL3hFMfOZliDSvEJ+vu41aVtwpkJjydpnDQlCwR2YAqBicWQWG6357LCikViEzUIZ9crWC25U89086FAGg/j1e/p8i5RnqcabctTmBlfVpeiP02zjSInikVUwRoYn3DlAQIuPc/iMJALiBlR3gmGZrQuP0VEJIqesAR1i1cqiOS5GbQ3Mb0aoSzklEw==
+Authentication-Results: idosch.org; dkim=none (message not signed)
+ header.d=none;idosch.org; dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
+ by DM4PR12MB5053.namprd12.prod.outlook.com (2603:10b6:5:388::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.27; Tue, 4 May
- 2021 18:23:26 +0000
-Received: from BN7NAM10FT057.eop-nam10.prod.protection.outlook.com
- (2603:10b6:408:f6:cafe::55) by BN9PR03CA0340.outlook.office365.com
- (2603:10b6:408:f6::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend
- Transport; Tue, 4 May 2021 18:23:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 204.77.163.244)
- smtp.mailfrom=garmin.com; nvidia.com; dkim=none (message not signed)
- header.d=none;nvidia.com; dmarc=pass action=none header.from=garmin.com;
-Received-SPF: Pass (protection.outlook.com: domain of garmin.com designates
- 204.77.163.244 as permitted sender) receiver=protection.outlook.com;
- client-ip=204.77.163.244; helo=edgetransport.garmin.com;
-Received: from edgetransport.garmin.com (204.77.163.244) by
- BN7NAM10FT057.mail.protection.outlook.com (10.13.157.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4108.25 via Frontend Transport; Tue, 4 May 2021 18:23:26 +0000
-Received: from OLAWPA-EXMB4.ad.garmin.com (10.5.144.25) by
- olawpa-edge2.garmin.com (10.60.4.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.1.2106.2; Tue, 4 May 2021 13:23:21 -0500
-Received: from huangjoseph-vm1.ad.garmin.com (10.5.84.15) by
- OLAWPA-EXMB4.ad.garmin.com (10.5.144.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2242.4; Tue, 4 May 2021 13:23:25 -0500
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>, 
- "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, <bridge@lists.linux-foundation.org>,
- <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Date: Tue, 4 May 2021 14:22:58 -0400
-Message-ID: <20210504182259.5042-6-Joseph.Huang@garmin.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210504182259.5042-1-Joseph.Huang@garmin.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.26; Tue, 4 May
+ 2021 20:05:31 +0000
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::d556:5155:7243:5f0f]) by DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::d556:5155:7243:5f0f%6]) with mapi id 15.20.4087.044; Tue, 4 May 2021
+ 20:05:31 +0000
+To: Joseph Huang <Joseph.Huang@garmin.com>, Roopa Prabhu <roopa@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ido Schimmel <idosch@idosch.org>
 References: <20210504182259.5042-1-Joseph.Huang@garmin.com>
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Message-ID: <6fd5711c-8d53-d72b-995d-1caf77047ecf@nvidia.com>
+Date: Tue, 4 May 2021 23:05:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <20210504182259.5042-1-Joseph.Huang@garmin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [213.179.129.39]
+X-ClientProxiedBy: ZR0P278CA0005.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:16::15) To DM4PR12MB5278.namprd12.prod.outlook.com
+ (2603:10b6:5:39e::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: OLAWPA-EXMB2.ad.garmin.com (10.5.144.24) To
- OLAWPA-EXMB4.ad.garmin.com (10.5.144.25)
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.21.241.230] (213.179.129.39) by
+ ZR0P278CA0005.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:16::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4087.27 via Frontend Transport; Tue, 4 May 2021 20:05:29 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e72eb858-ca08-400e-4b5e-08d90f29b5a2
-X-MS-TrafficTypeDiagnostic: DM5PR04MB0589:
-X-Microsoft-Antispam-PRVS: <DM5PR04MB0589D596739A62BAB1CB3561FB5A9@DM5PR04MB0589.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1417;
+X-MS-Office365-Filtering-Correlation-Id: fad57310-98a8-429d-706a-08d90f37f826
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5053:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM4PR12MB50532E5183859621CF20F88ADF5A9@DM4PR12MB5053.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tOXjbgfvlUhzBTBSvi3pl1fo8JSI6ckSYQ0CgGnS5DyvRqaD8ygizSbqyovnGCOa82xgJbxz0sAslZOW2/A1sGNhC8lzIkknnSVdPC85JXB1sWfJ7d7AVzIX+8ZJs8At2GHH4khql2b2dEkcJyWJIo+pDipgwxBDKJbuD62ikGLAYM2iaj+zA4ldJIBR6kdjdnGnspG8xWP74gnrtna5JrJkx9zX16DsgRkKSJDTWZtqbTf2V0xBbU80QzLoqOzO0l/5WHe/ydPeUQitt3FoFdW4g/GVwTQA1L5+3Dk50ntXzkaqv3uxzkD4ZCgiiruP4x9gvYrKPFAFc+9T9UVf7/9ptAPYNPzxk2sgN36qQE77eiqyS5S+GVdLwkWaQjL7dZzhbbiuwy25dqnF5hv38GQXnYYxI4Qiz9WxCSemkjcLkRuumkEsR3ebN0MGpwZd36xckD8JgTgorRsG3wEWJ6fZmFLw13gGjb6Y2z26EeX5t+YnQnZdzHLGsQ2jcsMurqb7Zxt43sS8Gcn0YcWUzHSM7OG9ZUZUfrVFHUHX0ir9jaarroMqtdM0DRRM4QsoY0sd2lJBU6qZzJ6TECg7X71uk5VvsjrVZHBzLgrSP5Rizx5oj2sHEbJS55t6kFgtju5bpss+qXvCgpae1Kq5S1Kvb75nvHwGLqYiY5C+ldA=
-X-Forefront-Antispam-Report: CIP:204.77.163.244; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:edgetransport.garmin.com; PTR:extedge.garmin.com;
- CAT:NONE;
- SFS:(39860400002)(396003)(346002)(376002)(136003)(46966006)(36840700001)(107886003)(7636003)(316002)(1076003)(478600001)(2616005)(70586007)(5660300002)(6666004)(70206006)(186003)(83380400001)(8936002)(110136005)(86362001)(26005)(36756003)(82740400003)(4326008)(426003)(2906002)(7696005)(82310400003)(8676002)(36860700001)(47076005)(336012)(356005);
- DIR:OUT; SFP:1102; 
-X-OriginatorOrg: garmin.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 18:23:26.3994 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e72eb858-ca08-400e-4b5e-08d90f29b5a2
-X-MS-Exchange-CrossTenant-Id: 38d0d425-ba52-4c0a-a03e-2a65c8e82e2d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38d0d425-ba52-4c0a-a03e-2a65c8e82e2d; Ip=[204.77.163.244];
- Helo=[edgetransport.garmin.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN7NAM10FT057.eop-nam10.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0589
-X-Proofpoint-ORIG-GUID: MV7wwsIDto4SV8aemqFPnkHtS5spJa4M
-X-Proofpoint-GUID: MV7wwsIDto4SV8aemqFPnkHtS5spJa4M
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.761
- definitions=2021-05-04_12:2021-05-04,
- 2021-05-04 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- impostorscore=0 bulkscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=999 phishscore=0 clxscore=1015 mlxscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104060000 definitions=main-2105040121
-Cc: Joseph Huang <Joseph.Huang@garmin.com>
-Subject: [Bridge] [PATCH 5/6] bridge: Flood Queries even when mcast_flood is
-	disabled
+X-Microsoft-Antispam-Message-Info: MhrLnuoHcuSDKan4QWWS1REMasy9nieUQo+J6opSOxA+cFscWFKCwy3P0h/9eBC9zKNQ+94PhU+x1AaHvNSt/S1k2Np7rAJoVpCjNxU84zp9NVhyvunyI5eEkT7mbrBq0987qcLBm17icjQb6jA9ylDP37txu4N/hAnBeGwUmpfRgljcDLDRcNZWw9dHEUKZdIFFyZS176OdEz8XN1JE1BsxtQwnb6Aq97efPt4Uulfny5mLNobhrNFoyj234905H0pUfkALo2OYqwWYdBH2dJy/LtP/+83Niek5BKR1UuogcXeiwmGc/IArm4H2JuezXH5seWj2XcAh0LHpvFCkeLKxLesYrO6d7cjwd7WmNqKkIu6c+SToI/MM2PGzTnMjU2+B58xRMyEsq08vL06FERWZOixNBL6L2+OkZbw3DPakaWae88PX0CGQiAtVY/TI+AfJt8CcL3aADf92dYtI0MUvra/XnA5oKm+JPOk8IvyuMRlOyQ3VrVAb1Gqz/I53pkNM3p0ebZOJTsqNa9jxHKBmhfsTdX7+XVe93DLUIMzvCp6hnky9rbWkJb+v1oFIzd64C+4+UG/yb858bPi53vmkJ5LWGt1OFEYHflFFT7HjJAQY9PgUXX9J1aagdNb1LWmnLOgKHIiYQ/G12qAkfRGB41e2yTTDRM1YgQZFxJ63YDj33nvS7lsa1VORji2u
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(396003)(376002)(39850400004)(366004)(36756003)(478600001)(186003)(5660300002)(16526019)(53546011)(26005)(8676002)(66556008)(66476007)(6486002)(8936002)(2906002)(16576012)(31686004)(316002)(83380400001)(110136005)(6666004)(66946007)(86362001)(38100700002)(31696002)(956004)(2616005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?SzRXYlpFVVVMOXI1OTZnd29lOWl0MnVpMVVOWWc4MDZybVRnWlhROHN5czBV?=
+ =?utf-8?B?WUhoT1dUalRkTWYwSVJZY1J3VEtMdU9QRUxCOW11TndhbGV5bHZleUU5cGk3?=
+ =?utf-8?B?ZDdtZjF4Y0hPMlBIUVJEdkxMRXJOYWp0KzBpUWlwTHVsRE9KVW81bHJqWjds?=
+ =?utf-8?B?ajA0TDZ2ak5ocW9ObGxMTGg5MktQRnF1MHgwU0dZUFo0NE92Qi93VDdCWEhl?=
+ =?utf-8?B?NXZ3eFFCRU5TM0FodGhubU5WdFRlaTJrekV2ei9kVWwxMWQ1YnBVanhZdXNa?=
+ =?utf-8?B?Q21mSXFETERXeGpqMEhGTWtZdzRvSWtSeENqUUhQZUxzclAwT0hxTXQvTnRS?=
+ =?utf-8?B?bXdZSlVPWENFbmt3Q0pYSVIxaHpmNkx6OW55dVBGaFVsY3dmbVpzelVkZm9t?=
+ =?utf-8?B?cGZ3aitGMktoNHBNZzlJZWJDWUxVY0czUU1kSHUzbVp2dDdYcy9NTlhBcGEx?=
+ =?utf-8?B?WW00ZFJ5c3Zzdk9FK1RXUmJXTHJ0RFk0Q2xhdGFaalcwNEZUcTlvN0ljWjhv?=
+ =?utf-8?B?SE5QWmFqVW5MVGtadGNwUU4xeU9YTXZLNmpsQmR4Y291cm9sUUN2OWRUZ1JL?=
+ =?utf-8?B?bHhtZS93cGl4OXcwaDRyNGJCa2t1cVRqTHVaMzFEdVorcDF1bkRVMU9mYkc2?=
+ =?utf-8?B?UytXekNkRjM2WXRGNG1Ja09jUFpYaENXSXZwZHRXN2VId09HQWxUZUc3TmJO?=
+ =?utf-8?B?Nm1VbCtldkhLQkd2enlXbXVGajJwWUdiMDZaVFc3RkIxNWNuOGlNbmUxN1gr?=
+ =?utf-8?B?ek9xc3NVUDhDVXJYN05Ib3E4YlhtVzVkNHFON3dqSlgzTEJFZGlyOHl5a3BX?=
+ =?utf-8?B?bjd6MGZUK3RzSFA5TXNacEs1eHZGMEJvR0MyQko2QVR6MXJLUkZ5bDM1Y1J1?=
+ =?utf-8?B?UTdCdVVLRnJsL0dyTWYyMXpwU25rTEpPMzdwc3M3QStTMFNiQUNIcHAvd1Bp?=
+ =?utf-8?B?SVcxU0JUNzRPTFhtNVJFbk9WSnVxcGt2RnhHd1lOdXc0OWtwU3hVYmQ3V0lQ?=
+ =?utf-8?B?YXBQRkNScFBTZ0pXVXl5dFBZcUJPYjkrQjlXcXF1dFdXbytjZVdFWGlvMmJ4?=
+ =?utf-8?B?ZjJHbG1TMitFeVFxZVNQSnR4Z3pUaVZ5QVNQT3lQOXJBbk9ZVWxCWHlteGZL?=
+ =?utf-8?B?MlVaRGVzK01sdURXa0tZaWhTSDNTaHEzTTdXMzZTZHJqK2pOcEpTOUJ0dkhZ?=
+ =?utf-8?B?akZyVndacEs0RkNodHhZaVZnVHlmOG9LQkxXZW5WL3cvM2o4SlJ3STEyRGlz?=
+ =?utf-8?B?R3d6a3B0Q2tWeSttU1dpZjh4VEQ4MXpZc3hyV2RsaEJIOXhiQzgzdHhJU2JC?=
+ =?utf-8?B?L2Z0MlhXODR3ODVtbk9qNUlLV1VUY1BYZ2JYczdYSWFwUTFVN0JvR1NUaE9j?=
+ =?utf-8?B?N2U4ekpYWERPSFR4N2xUSUs3MjZ1cWNuQTFlR2tra2ZSTktUVmJkVm5VUkZ6?=
+ =?utf-8?B?azB6cEJFbENIOVdGYWVmdWQ0anIrOUVSczlkUVhFbDZrM096M1NaTWtJQzdL?=
+ =?utf-8?B?VnJzREJ5ZUxIYmVKTjFwVUthbjQ3SWU3TFBLMnpuRm10OHVzcEFFMzFONGVu?=
+ =?utf-8?B?ZmtJVnlUOUdzWWVUelRXWU1ydUZsL1NlMFFFOE9BWUEzNWtOVEdlZGdaUEs3?=
+ =?utf-8?B?N00vYzZOZWl3cjVOTlBQUkI3OWNsaXRrUElmZXV5TlZ3ZG9tQmtSL3AwUzRx?=
+ =?utf-8?B?ODd6TzcyWGliMjJzRjhWYnl6UmxkT1k4d25mL2dsMEVKZEw3K1pLdllNdWpC?=
+ =?utf-8?Q?iFlo5F/55sFgHg0VSiwBPHz8awroVHBWPMnQ82G?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fad57310-98a8-429d-706a-08d90f37f826
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 20:05:31.2424 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EtKmvulbudd7WvHew/SxR7X5CRGOs6hIXQJKrKF5X1C5G+BzOZQWU7M7kAvfva9R5ERxKhhhc451EpVwW5yLFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5053
+Subject: Re: [Bridge] [PATCH net 0/6] bridge: Fix snooping in multi-bridge
+ config with switchdev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -164,90 +154,115 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Joseph Huang via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Joseph Huang <Joseph.Huang@garmin.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Modify the forwarding path so that received Queries are always flooded
-even when mcast_flood is disabled on a bridge port.
+On 04/05/2021 21:22, Joseph Huang wrote:
+> This series of patches contains the following fixes:
+> 
+> 1. In a distributed system with multiple hardware-offloading bridges,
+>    if a multicast source is attached to a Non-Querier bridge, the bridge
+>    will not forward any multicast packets from that source to the Querier.
+> 
+>                     +--------------------+
+>                     |                    |
+>                     |      Snooping      |    +------------+
+>                     |      Bridge 1      |----| Listener 1 |
+>                     |     (Querier)      |    +------------+
+>                     |                    |
+>                     +--------------------+
+>                               |
+>                               |
+>                     +----+---------+-----+
+>                     |    | mrouter |     |
+>    +-----------+    |    +---------+     |    +------------+
+>    | MC Source |----|      Snooping      |----| Listener 2 |
+>    +-----------|    |      Bridge 2      |    +------------+
+>                     |    (Non-Querier)   |
+>                     +--------------------+
+> 
+>    In this scenario, Listener 1 will never receive multicast traffic
+>    from MC Source since Snooping Bridge 2 does not forward multicast
+>    packets to the mrouter port. Patches 0001, 0002, and 0003 address
+>    this issue.
+> 
+> 2. If mcast_flood is disabled on a bridge port, some of the snooping
+>    functions stop working properly.
+> 
+>    a. Consider the following scenario:
+> 
+>                        +--------------------+
+>                        |                    |
+>                        |      Snooping      |    +------------+
+>                        |      Bridge 1      |----| Listener 1 |
+>                        |     (Querier)      |    +------------+
+>                        |                    |
+>                        +--------------------+
+>                                  |
+>                                  |
+>                        +--------------------+
+>                        |    | mrouter |     |
+>       +-----------+    |    +---------+     |
+>       | MC Source |----|      Snooping      |
+>       +-----------|    |      Bridge 2      |
+>                        |    (Non-Querier)   |
+>                        +--------------------+
+> 
+>       In this scenario, Listener 1 will never receive multicast traffic
+>       from MC Source if mcast_flood is disabled on the mrouter port on
+>       Snooping Bridge 2. Patch 0004 addresses this issue.
+> 
+>    b. For a Non-Querier bridge, if mcast_flood is disabled on a bridge
+>       port, Queries received from other Querier will not be forwarded
+>       out of that bridge port. Patch 0005 addresses this issue.
+> 
+> 3. After a system boots up, the first couple Reports are not handled
+>    properly:
+> 
+>    1) the Report from the Host is being flooded (via br_flood) to all
+>       bridge ports, and
+>    2) if the mrouter port's mcast_flood is disabled, the Reports received
+>       from other hosts will not be forwarded to the Querier.
+> 
+>    Patch 0006 addresses this issue.
+> 
+> These patches were developed and verified initially against 5.4 kernel
+> (due to hardware platform limitation) and forward-patched to 5.12.
+> Snooping code introduced between 5.4 and 5.12 are not extensively tested
+> (only IGMPv2/MLDv1 were tested). The hardware platform used were two
+> bridges utilizing a single Marvell 88E6352 Ethernet switch chip (i.e.,
+> no cross-chip bridging involved).
+> 
+> Joseph Huang (6):
+>   bridge: Refactor br_mdb_notify
+>   bridge: Offload mrouter port forwarding to switchdev
+>   bridge: Avoid traffic disruption when Querier state changes
+>   bridge: Force mcast_flooding for mrouter ports
+>   bridge: Flood Queries even when mcast_flood is disabled
+>   bridge: Always multicast_flood Reports
+> 
+>  net/bridge/br_device.c    |   5 +-
+>  net/bridge/br_forward.c   |   3 +-
+>  net/bridge/br_input.c     |   5 +-
+>  net/bridge/br_mdb.c       |  70 +++++++++++++---------
+>  net/bridge/br_multicast.c | 121 ++++++++++++++++++++++++++++++++++----
+>  net/bridge/br_private.h   |  11 +++-
+>  6 files changed, 169 insertions(+), 46 deletions(-)
+> 
+> 
+> base-commit: 5e321ded302da4d8c5d5dd953423d9b748ab3775
+> 
 
-In current implementation, when mcast_flood is disabled on a bridge
-port, Queries received from other Querier will not be forwarded out of
-that bridge port. This unfortunately broke multicast snooping.
+Hi,
+This patch-set is inappropriate for -net, if at all. It's quite late over here
+and I'll review the rest later, but I can say from a quick peek that patch 02
+is unacceptable for it increases the complexity with 1 order of magnitude of all
+add/del call paths and some of them can be invoked on user packets. A lot of this
+functionality should be "hidden" in the driver or done by a user-space daemon/helper.
+Most of the flooding behaviour changes must be hidden behind some new option
+otherwise they'll break user setups that rely on the current. I'll review the patches
+in detail over the following few days, net-next is closed anyway.
 
-Signed-off-by: Joseph Huang <Joseph.Huang@garmin.com>
----
- net/bridge/br_forward.c   | 3 ++-
- net/bridge/br_multicast.c | 3 +++
- net/bridge/br_private.h   | 3 +++
- 3 files changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index 6e9b049ae521..2fb9b4a78881 100644
---- a/net/bridge/br_forward.c
-+++ b/net/bridge/br_forward.c
-@@ -203,7 +203,8 @@ void br_flood(struct net_bridge *br, struct sk_buff *skb,
- 				continue;
- 			break;
- 		case BR_PKT_MULTICAST:
--			if (!(p->flags & BR_MCAST_FLOOD) && skb->dev != br->dev)
-+			if (!(p->flags & BR_MCAST_FLOOD) && skb->dev != br->dev &&
-+			    !BR_INPUT_SKB_CB_FORCE_FLOOD(skb))
- 				continue;
- 			break;
- 		case BR_PKT_BROADCAST:
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 719ded3204a0..b7d9c491abe0 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -3238,6 +3238,7 @@ static int br_multicast_ipv4_rcv(struct net_bridge *br,
- 		err = br_ip4_multicast_igmp3_report(br, port, skb, vid);
- 		break;
- 	case IGMP_HOST_MEMBERSHIP_QUERY:
-+		BR_INPUT_SKB_CB(skb)->force_flood = 1;
- 		br_ip4_multicast_query(br, port, skb, vid);
- 		break;
- 	case IGMP_HOST_LEAVE_MESSAGE:
-@@ -3300,6 +3301,7 @@ static int br_multicast_ipv6_rcv(struct net_bridge *br,
- 		err = br_ip6_multicast_mld2_report(br, port, skb, vid);
- 		break;
- 	case ICMPV6_MGM_QUERY:
-+		BR_INPUT_SKB_CB(skb)->force_flood = 1;
- 		err = br_ip6_multicast_query(br, port, skb, vid);
- 		break;
- 	case ICMPV6_MGM_REDUCTION:
-@@ -3322,6 +3324,7 @@ int br_multicast_rcv(struct net_bridge *br, struct net_bridge_port *port,
- 
- 	BR_INPUT_SKB_CB(skb)->igmp = 0;
- 	BR_INPUT_SKB_CB(skb)->mrouters_only = 0;
-+	BR_INPUT_SKB_CB(skb)->force_flood = 0;
- 
- 	if (!br_opt_get(br, BROPT_MULTICAST_ENABLED))
- 		return 0;
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 9aa51508ba83..59af599d48eb 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -491,6 +491,7 @@ struct br_input_skb_cb {
- #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
- 	u8 igmp;
- 	u8 mrouters_only:1;
-+	u8 force_flood:1;
- #endif
- 	u8 proxyarp_replied:1;
- 	u8 src_port_isolated:1;
-@@ -510,8 +511,10 @@ struct br_input_skb_cb {
- 
- #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
- # define BR_INPUT_SKB_CB_MROUTERS_ONLY(__skb)	(BR_INPUT_SKB_CB(__skb)->mrouters_only)
-+# define BR_INPUT_SKB_CB_FORCE_FLOOD(__skb)		(BR_INPUT_SKB_CB(__skb)->force_flood)
- #else
- # define BR_INPUT_SKB_CB_MROUTERS_ONLY(__skb)	(0)
-+# define BR_INPUT_SKB_CB_FORCE_FLOOD(__skb)		(0)
- #endif
- 
- #define br_printk(level, br, format, args...)	\
--- 
-2.17.1
+Cheers,
+ Nik
 
