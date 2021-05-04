@@ -1,90 +1,168 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA7E373136
-	for <lists.bridge@lfdr.de>; Tue,  4 May 2021 22:07:24 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08347373184
+	for <lists.bridge@lfdr.de>; Tue,  4 May 2021 22:38:05 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id E6E6140146;
-	Tue,  4 May 2021 20:07:22 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id E2911418B4;
+	Tue,  4 May 2021 20:38:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LWlXI_u73K2e; Tue,  4 May 2021 20:07:22 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 8nygFdk39Kuk; Tue,  4 May 2021 20:38:02 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 47C04405C9;
-	Tue,  4 May 2021 20:07:21 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id C3BDA418C6;
+	Tue,  4 May 2021 20:38:00 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 04369C001C;
-	Tue,  4 May 2021 20:07:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7EBB7C001C;
+	Tue,  4 May 2021 20:38:00 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0120AC0001
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:07:20 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E1B61C0001
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:37:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id D5E0460D4E
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:07:19 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id C23CB8440A
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:37:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key)
- header.d=waldekranz-com.20150623.gappssmtp.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id y2blOPlfo536 for <bridge@lists.linux-foundation.org>;
- Tue,  4 May 2021 20:07:18 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 7D9F560697
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:07:18 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id p12so12774205ljg.1
- for <bridge@lists.linux-foundation.org>; Tue, 04 May 2021 13:07:18 -0700 (PDT)
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=garmin.com header.b="fTOPYw/u";
+ dkim=pass (2048-bit key) header.d=garmin.onmicrosoft.com
+ header.b="Gdyac/Gg"
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id UaiQDSl9_QAh for <bridge@lists.linux-foundation.org>;
+ Tue,  4 May 2021 20:37:57 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from mx0b-000eb902.pphosted.com (mx0b-000eb902.pphosted.com
+ [205.220.177.212])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id A0A2A84407
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 20:37:57 +0000 (UTC)
+Received: from pps.filterd (m0220299.ppops.net [127.0.0.1])
+ by mx0a-000eb902.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 144KYkP0018519; Tue, 4 May 2021 15:37:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garmin.com;
+ h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pps1;
+ bh=hb38XH+yM07WGRcGwGh5Vt0v+WlRZZP2QH2DF8kYNzQ=;
+ b=fTOPYw/uMIBR1rD5D7XIVWAzdlDmXXzwlcyQErxqsl3yLoU/Vrle+8ZKe2Bfdqc4FmiC
+ NDd+t5/dU4UVjwRozGwoITMEK+6DpvUlEKu62MicrtdDZbDbHTxP39dPuabvLRjHg27L
+ 9MrIYm6agMzOgB5ZT1M+CYlfdb9pyShGOoLfhWm4o0r5oJZlL+VsnyZWNTx9JFbUcYD0
+ wccCNrTaB+Kwbdz8yHnRA9EJGKDB3A6djrT2Y0HiZ4rbfigOoLEUPvG/kqlpMCIX72Iv
+ 8wu+AfcIDGu3tS6iShDwrUJYax4s6dhFnh47ntwXJj+GYoERhU+mFGK50PrdIZM+qZoz NQ== 
+Received: from nam11-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11lp2168.outbound.protection.outlook.com [104.47.57.168])
+ by mx0a-000eb902.pphosted.com with ESMTP id 38ajpd2dq2-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 04 May 2021 15:37:50 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XSc/wMcWx/r7jDDj16BAh8tMcTm3rFE15i2xKaPnmyHPreDpdtr2RHxNUKJNVk8ovlAL7Dk4gtYTjldHsNrhwBI6wZsDgVSwg91Rtx87bMctGeW+jXHa0TdgU4HFPnWVvJjgJRisonuG0oLsRHu+ZujWJShtiszXbA1lzPkwNTG/rPeSUVtHNG2pDLNrvNpaJXmSFUrsj/OjrqFgD/hvTfyt6FYdZBnWa/iU2xHdYLiXOqcPh4V11IzzeCjAReqmFw7P9sGhR9696Pls5HncXbqawSb3L6oZjJeQjKi++gY8TSF3noIY3GIPmCrNck5OpoGoR4DfulviJamYvjKn6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hb38XH+yM07WGRcGwGh5Vt0v+WlRZZP2QH2DF8kYNzQ=;
+ b=B1knluaVEcYyq4+7NmfYqiLRnZWNgmtu/+JPk5TGCRvMPu5tJVrgjAvBSKpMF5S+86gjBu/gaCkIXwxpras+R2h2oYbYd/hUvUT4jy3FHWDPyzPZRkZONfw6JnUnREfOUXJdd1V0gKQ5/FiArVQgu+OwbZz/05qi97kfg6TsaB5L0g1TdBeXnUaOMUHfFE0jx4L/m7tbfzJlpYjKssyFIpdMVLwPu7TQCnPZqsm3JW429e2RMgywS1yqmT721u9RTOWcfmw2kKW/CgM3N8IfQjGSlUY4BuR6pYKiADM1HDEVqzc0kSUUt/MQ8LH0reKw1KcbD6lZdBaACfHeXr5tkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 204.77.163.244) smtp.rcpttodomain=nvidia.com smtp.mailfrom=garmin.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=garmin.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=Dm0qTmtQ/pvhRjI4p1Lrq8NFg5VnRTeGtk7rmeTytwI=;
- b=11kZCEtxU2UYQXpmUmE5+iqDdHTzWhWjpYaRuZgkSKM49tHI1Lar+DIFIWoGEm7UmA
- fijwNhVz7+JogMVUKw+ZGCpi/UQrWa/UoMr1x9p2/aEfNpEjyGkn+kKlZrdU880FJqpv
- 3Wsufin2uf9zyehYYRRWK0HKjgjJfceLh5wyAQGOHslgEFEhEisAf6LBknUDjQZxpg+k
- +Mgsx1DH06HyBRAwMAm6jRgSg5CQHJjG4q8bWOzwAgdubOK9GPJPSB24AEyFwuKZgiQC
- 7D3v35c5pcew6mO4UIPb6b6qBKcvd9OJynQoxUTzHkmrudWIlLr2QFQdZBBHD7mlZV02
- bBhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=Dm0qTmtQ/pvhRjI4p1Lrq8NFg5VnRTeGtk7rmeTytwI=;
- b=lT9r5yxP5be56ivOZgNBZ/ciLljFMjqmk0nckassXR9q7wdwBXS1/jLPdhXU7njpoI
- T5dhoUV18acNNZ4c9IAKUe1ikC+X1cnIkTjcEDQCYfOLlm4VVy1B2THX+wSE2hHQuRVR
- xuaPdKtu8NhUMuwJ2WWx5Lr7CO9mOrErN178vcF1pFKOuX23xzAjKtYwCnyCQB7P7m98
- z/1QBy2yY9nK/BQQN3E/oky3noLOVFBFEeqqNfxfgoYXBNXdQikHDATZKSeDz4+jjUts
- cAbgi0xJ+cdbK073fZvCZXlCxwt6ZuYxA594gd+j7AzOyGncBGVygKKxz2YG38pyPjf6
- MjYA==
-X-Gm-Message-State: AOAM532+MF6MgQNedEuG8qBWpRdP/Ukq06i49zoZWfaL9aIC2wY4vLm5
- QRFsMQCcaf3MZGceVN5K11hmdYB7Dt7LLQ==
-X-Google-Smtp-Source: ABdhPJy9/k4qlRebfBDAnegDjHFx2uvYqdCX5GejdLN+gg7jN0oOPu+gDiNWK85tcm8nNccI/sVo9g==
-X-Received: by 2002:a2e:7d19:: with SMTP id y25mr6843944ljc.82.1620158836079; 
- Tue, 04 May 2021 13:07:16 -0700 (PDT)
-Received: from wkz-x280 (h-90-88.A259.priv.bahnhof.se. [212.85.90.88])
- by smtp.gmail.com with ESMTPSA id c7sm208591lfv.27.2021.05.04.13.07.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 May 2021 13:07:15 -0700 (PDT)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Vladimir Oltean <olteanv@gmail.com>, andrew@lunn.ch
-In-Reply-To: <20210504152106.oppawchuruapg4sb@skbuf>
-References: <20210426170411.1789186-1-tobias@waldekranz.com>
- <20210426170411.1789186-7-tobias@waldekranz.com>
- <20210427101747.n3y6w6o7thl5cz3r@skbuf> <878s4uo8xc.fsf@waldekranz.com>
- <20210504152106.oppawchuruapg4sb@skbuf>
-Date: Tue, 04 May 2021 22:07:14 +0200
-Message-ID: <874kfintzh.fsf@waldekranz.com>
+ d=garmin.onmicrosoft.com; s=selector1-garmin-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hb38XH+yM07WGRcGwGh5Vt0v+WlRZZP2QH2DF8kYNzQ=;
+ b=Gdyac/GgN9nPZV2BBRzwnGRnjjPu416QLjtbuT6f1EjCaiRBF+FEG6gvdKRw7xLVg3QmonlH1d4elOW83+0M0OB/AvQbS2bKIW/KqW+NDlssw28hx3xhf6S2UrgJ8VMMWQKmu72bm+n5gNuRq4gsqDgWVOVvNsFbl2eET3NwuEg1DBkzY73lUQXK0sq8lCPWmocGNJ2ql2/+Bh+0HdzUiu+PobqxjJOIkR3geYhKH7dRcPLcC+zgKauiSOeXd7YI9zs7IaYA4AocXxjjrU9Cz5NNbQi4QUGhZAJ0mUKZ60JnW9bH6+/mg4wfihLlZHXEEFkc8WzFt5GG2RFNBs9SLA==
+Received: from DM5PR04CA0032.namprd04.prod.outlook.com (2603:10b6:3:12b::18)
+ by PH0PR04MB7224.namprd04.prod.outlook.com (2603:10b6:510:16::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.44; Tue, 4 May
+ 2021 20:37:46 +0000
+Received: from DM6NAM10FT062.eop-nam10.prod.protection.outlook.com
+ (2603:10b6:3:12b:cafe::61) by DM5PR04CA0032.outlook.office365.com
+ (2603:10b6:3:12b::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.28 via Frontend
+ Transport; Tue, 4 May 2021 20:37:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 204.77.163.244)
+ smtp.mailfrom=garmin.com; nvidia.com; dkim=none (message not signed)
+ header.d=none;nvidia.com; dmarc=pass action=none header.from=garmin.com;
+Received-SPF: Pass (protection.outlook.com: domain of garmin.com designates
+ 204.77.163.244 as permitted sender) receiver=protection.outlook.com;
+ client-ip=204.77.163.244; helo=edgetransport.garmin.com;
+Received: from edgetransport.garmin.com (204.77.163.244) by
+ DM6NAM10FT062.mail.protection.outlook.com (10.13.153.188) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.25 via Frontend Transport; Tue, 4 May 2021 20:37:46 +0000
+Received: from OLAWPA-EXMB2.ad.garmin.com (10.5.144.24) by
+ olawpa-edge4.garmin.com (10.60.4.228) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2106.2; Tue, 4 May 2021 15:37:40 -0500
+Received: from OLAWPA-EXMB4.ad.garmin.com (10.5.144.25) by
+ OLAWPA-EXMB2.ad.garmin.com (10.5.144.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2242.4; Tue, 4 May 2021 15:37:45 -0500
+Received: from OLAWPA-EXMB4.ad.garmin.com ([fe80::d9c:e89c:1ef1:23c]) by
+ OLAWPA-EXMB4.ad.garmin.com ([fe80::d9c:e89c:1ef1:23c%23]) with mapi id
+ 15.01.2242.008; Tue, 4 May 2021 15:37:45 -0500
+To: Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>, 
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Ido Schimmel
+ <idosch@idosch.org>
+Thread-Topic: [PATCH net 0/6] bridge: Fix snooping in multi-bridge config with
+ switchdev
+Thread-Index: AQHXQRKRJez3iJGzm0eCT/EpouXvN6rUE08A//+0kwQ=
+Date: Tue, 4 May 2021 20:37:45 +0000
+Message-ID: <685c25c2423c451480c0ad2cf78877be@garmin.com>
+References: <20210504182259.5042-1-Joseph.Huang@garmin.com>,
+ <6fd5711c-8d53-d72b-995d-1caf77047ecf@nvidia.com>
+In-Reply-To: <6fd5711c-8d53-d72b-995d-1caf77047ecf@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.50.4.6]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-Cc: f.fainelli@gmail.com, jiri@resnulli.us, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, vivien.didelot@gmail.com, idosch@idosch.org,
- nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [RFC net-next 6/9] net: dsa: Forward offloading
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d28cc703-faed-4f91-3cb3-08d90f3c79cc
+X-MS-TrafficTypeDiagnostic: PH0PR04MB7224:
+X-Microsoft-Antispam-PRVS: <PH0PR04MB7224AC5F7271E01E14FA9FE8FB5A9@PH0PR04MB7224.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9C2j4fRrnwkLuBbx+m2pZnKPcq8GM3J9PZNgbOjPRLF0CrcL7nKN2IciSuNq3shX1gDtEj3PNBqB9edYM1k1l8TmbjTXvcf0dfHFIEVHCcU1QJP/8lUGpsd0dfkzZbvonyjXzwFlrcUH/mJU/ALrU1S5Bdnv2hL9ES6tVF7HvwpRqUIpasP3DWq4mjCKIQbKuOL1vhRksKeLa/aLihQLu0tKFZG767jp0ia/qow8fmnVZ0Kg+h2QVnFybopdWfgapXkXQ4cBCovvYXN1qVUoJAznjfApeWdwT5lohMkEG7jFOErMBp3KgQ+2yof2LbMNlCyCq4O9VSFWS0h1lC/OIqgYQbnzWbfV1FZs6H+WLx4T2f/MGbTxJzP2KE71pO9mYVIFLRoL/IKAiy9Ys3A3NLXD692vhHvAi38bzc0Jie8Oq4ehrS9Dr2poNy9Sw26gfsCGW8lkufSv/rbM1mbO65+CiviN1xd3qCnoYQrqSRvBu7jmOoF2TAi/i7LWAkkNpPDpXY/54nNrdOHe5KDnD5Lrd2D/A75gKLnnRxXWrrwHMMaO6W7ynljW0+PKo+JmNlUgntYaD9KegVstepGLVMElY0P3EtsmB7TX5RItlYpBL8FuLgjA4KChIsfauidkMpBkppE/ej5amweFmjzx3A==
+X-Forefront-Antispam-Report: CIP:204.77.163.244; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:edgetransport.garmin.com; PTR:extedge.garmin.com;
+ CAT:NONE;
+ SFS:(396003)(346002)(39860400002)(376002)(136003)(36840700001)(46966006)(4744005)(26005)(478600001)(70206006)(2616005)(426003)(2906002)(8936002)(47076005)(336012)(186003)(7696005)(36860700001)(82310400003)(70586007)(316002)(8676002)(356005)(7636003)(83380400001)(24736004)(36756003)(86362001)(108616005)(5660300002)(82740400003)(110136005);
+ DIR:OUT; SFP:1102; 
+X-OriginatorOrg: garmin.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 20:37:46.4328 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d28cc703-faed-4f91-3cb3-08d90f3c79cc
+X-MS-Exchange-CrossTenant-Id: 38d0d425-ba52-4c0a-a03e-2a65c8e82e2d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38d0d425-ba52-4c0a-a03e-2a65c8e82e2d; Ip=[204.77.163.244];
+ Helo=[edgetransport.garmin.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM10FT062.eop-nam10.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR04MB7224
+X-Proofpoint-ORIG-GUID: --Q2QQ_LzBjJQxmvOzT8IjsFlLTp9zCO
+X-Proofpoint-GUID: --Q2QQ_LzBjJQxmvOzT8IjsFlLTp9zCO
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.761
+ definitions=2021-05-04_15:2021-05-04,
+ 2021-05-04 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501
+ impostorscore=0 bulkscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=999 phishscore=0 clxscore=1011 mlxscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104060000 definitions=main-2105040138
+Subject: Re: [Bridge] [PATCH net 0/6] bridge: Fix snooping in multi-bridge
+ config with switchdev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,119 +174,37 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: "Huang, Joseph via Bridge" <bridge@lists.linux-foundation.org>
+Reply-To: "Huang, Joseph" <Joseph.Huang@garmin.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, May 04, 2021 at 18:21, Vladimir Oltean <olteanv@gmail.com> wrote:
-> On Tue, May 04, 2021 at 04:44:31PM +0200, Tobias Waldekranz wrote:
->> On Tue, Apr 27, 2021 at 13:17, Vladimir Oltean <olteanv@gmail.com> wrote:
->> > On Mon, Apr 26, 2021 at 07:04:08PM +0200, Tobias Waldekranz wrote:
->> >> Allow DSA drivers to support forward offloading from a bridge by:
->> >> 
->> >> - Passing calls to .ndo_dfwd_{add,del}_station to the drivers.
->> >> 
->> >> - Recording the subordinate device of offloaded skbs in the control
->> >>   buffer so that the tagger can take the appropriate action.
->> >> 
->> >> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
->> >> ---
->> >>  include/net/dsa.h |  7 +++++++
->> >>  net/dsa/slave.c   | 36 ++++++++++++++++++++++++++++++++++--
->> >>  2 files changed, 41 insertions(+), 2 deletions(-)
->> >> 
->> >> diff --git a/include/net/dsa.h b/include/net/dsa.h
->> >> index 1f9ba9889034..77d4df819299 100644
->> >> --- a/include/net/dsa.h
->> >> +++ b/include/net/dsa.h
->> >> @@ -119,6 +119,7 @@ struct dsa_netdevice_ops {
->> >>  
->> >>  struct dsa_skb_cb {
->> >>  	struct sk_buff *clone;
->> >> +	struct net_device *sb_dev;
->> >>  };
->> >>  
->> >>  struct __dsa_skb_cb {
->> >> @@ -828,6 +829,12 @@ struct dsa_switch_ops {
->> >>  					  const struct switchdev_obj_ring_role_mrp *mrp);
->> >>  	int	(*port_mrp_del_ring_role)(struct dsa_switch *ds, int port,
->> >>  					  const struct switchdev_obj_ring_role_mrp *mrp);
->> >> +
->> >> +	/* L2 forward offloading */
->> >> +	void *	(*dfwd_add_station)(struct dsa_switch *ds, int port,
->> >> +				    struct net_device *sb_dev);
->> >> +	void	(*dfwd_del_station)(struct dsa_switch *ds, int port,
->> >> +				    struct net_device *sb_dev);
->> >>  };
->> >>  
->> >>  #define DSA_DEVLINK_PARAM_DRIVER(_id, _name, _type, _cmodes)		\
->> >> diff --git a/net/dsa/slave.c b/net/dsa/slave.c
->> >> index 77b33bd161b8..3689ffa2dbb8 100644
->> >> --- a/net/dsa/slave.c
->> >> +++ b/net/dsa/slave.c
->> >> @@ -657,6 +657,13 @@ static netdev_tx_t dsa_slave_xmit(struct sk_buff *skb, struct net_device *dev)
->> >>  	return dsa_enqueue_skb(nskb, dev);
->> >>  }
->> >>  
->> >> +static u16 dsa_slave_select_queue(struct net_device *dev, struct sk_buff *skb,
->> >> +				  struct net_device *sb_dev)
->> >> +{
->> >> +	DSA_SKB_CB(skb)->sb_dev = sb_dev;
->> >> +	return netdev_pick_tx(dev, skb, sb_dev);
->> >> +}
->> >> +
->> >
->> > DSA_SKB_CB is going away:
->> > https://patchwork.kernel.org/project/netdevbpf/patch/20210427042203.26258-5-yangbo.lu@nxp.com/
->> >
->> > Let's either negotiate with Yangbo on keeping it, or make
->> > .ndo_select_queue a bypass towards the tagger, where it can use its own
->> > SKB_CB structure and be more flexible in general (I think I'm leaning
->> > towards the latter).
->> 
->> Thus far, Yangbo is a tough negotiator, giving me the silent treatment:
->> 
->> https://lore.kernel.org/netdev/87y2d2noe5.fsf@waldekranz.com/
->> 
->> :)
->> 
->> That memset is giving me a hard time. I have just disabled it on my
->> branch at the moment. Any ideas on how to get rid of it without breaking
->> timestamping?
->
-> :)
->
-> Is there any guarantee written somewhere that the ownership of skb->cb
-> belongs to the NIC driver at the time of the ndo_select_queue call?
->
-> If there is, then the trivial solution is to just move the memset in
-> ndo_select_queue.
->
-> If there isn't, then we've got bigger issues (such as, for example, the
-> qdisc layer being able to overwrite your DSA_SKB_CB(skb)->sb_dev).
+> Hi,
+> This patch-set is inappropriate for -net, if at all. It's quite late over=
+ here and I'll
+> review the rest later, but I can say from a quick peek that patch 02 is
+> unacceptable for it increases the complexity with 1 order of magnitude of=
+ all
+> add/del call paths and some of them can be invoked on user packets. A lot=
+ of
+> this functionality should be "hidden" in the driver or done by a user-spa=
+ce
+> daemon/helper.
+> Most of the flooding behaviour changes must be hidden behind some new
+> option otherwise they'll break user setups that rely on the current. I'll=
+ review
+> the patches in detail over the following few days, net-next is closed any=
+way.
+>=20
+> Cheers,
+>  Nik
 
-The comment says:
+Hi Nik,
 
-   "This is owned by whoever has the skb queued ATM."
+Thanks for your quick response!
+Once you have a chance to review the set, please let me know how I can impr=
+ove them to make them acceptable. These are real problems and we do need to=
+ fix them.
 
-But qdisc_skb_cb is a thing as it turns out - so I think I can kiss the
-idea of stashing the pointer in the CB goodbye.
-
-Looking at some of the other users of .ndo_select_queue, I get the
-feeling that we should really:
-
-- Pre-generate a FROM_CPU tag template and store it under "TxQ 0"
-- Pre-generate a FORWARD tag template and store it under "TxQ 1"
-- Redfine tag_dsa's .ndo_select_queue to be: `return sb_dev ? 1 : 0;`
-- Fetch the template using skb_queue_mapping, fill in the VID, and send
-  it.
-
-There is really no need to recompute the static parts of the tags on
-each skb. It would mean moving some knowledge of the tagging format to
-the driver. But that boundary is pretty artificial for
-mv88e6xxx. tag_dsa has no use outside of mv88e6xxx, and mv88e6xxx does
-not work with any other tagger. I suppose you could even move the whole
-tagger to drivers/net/dsa/mv88e6xxx/?
-
-What do you think?
-
-Andrew?
+Thanks,
+Joseph
