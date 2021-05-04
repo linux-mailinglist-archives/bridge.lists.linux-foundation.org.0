@@ -1,83 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4D2372C52
-	for <lists.bridge@lfdr.de>; Tue,  4 May 2021 16:44:42 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7EB7372CDA
+	for <lists.bridge@lfdr.de>; Tue,  4 May 2021 17:21:16 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9551060B53;
-	Tue,  4 May 2021 14:44:40 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 29B3040570;
+	Tue,  4 May 2021 15:21:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id MSRHyI5Waj4X; Tue,  4 May 2021 14:44:39 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id AE_pT8-whNa4; Tue,  4 May 2021 15:21:14 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTP id EBC7C6088C;
-	Tue,  4 May 2021 14:44:38 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 7A9E24057A;
+	Tue,  4 May 2021 15:21:13 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C0E92C0001;
-	Tue,  4 May 2021 14:44:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4493AC001C;
+	Tue,  4 May 2021 15:21:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 394A2C0001
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 14:44:37 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3B2AFC0001
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 15:21:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 27ADF60B3D
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 14:44:37 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 29D4D842F4
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 15:21:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 23IUfe5wZZ8w for <bridge@lists.linux-foundation.org>;
- Tue,  4 May 2021 14:44:36 +0000 (UTC)
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id uU1DprARdUtN for <bridge@lists.linux-foundation.org>;
+ Tue,  4 May 2021 15:21:10 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
- [IPv6:2a00:1450:4864:20::133])
- by smtp3.osuosl.org (Postfix) with ESMTPS id EA0CC6088C
- for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 14:44:35 +0000 (UTC)
-Received: by mail-lf1-x133.google.com with SMTP id 2so13660562lft.4
- for <bridge@lists.linux-foundation.org>; Tue, 04 May 2021 07:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=cPrifclr87s/6R17fQyVakQEUFrMtvg1/O/9UfYkzbE=;
- b=OX4Lh5Fvq1Sw1rXFrs0XdzbfI0n/oZ01jUpaNJ41CclS/mRA+QYImCt2FEk0Z+uEA5
- ghM412tiqPcbw1rbjjnyV4KotpeH4aWllyTtXAxAc4Yytp+Fa3i3oTZ6lgNCGC/y6qH1
- eteZzm2rgmnpn++tlojY0G6RabkjDLVD80y80AJ8dqojO+6+xPZ2OwyWbHVIPXG/g/rM
- fXrzuM2aokmbtH4SKIT+bsW22arxzTx1sWP7VPJdFQk8igKSKYCQ4RvWB5CW7W5PRihX
- cGr1FevvGwXwCh9YpmS7I13Q59dj149XDn8p52REg2rhyl7hKWbifAiPd6aQOlyw5g4V
- Ozqw==
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 7F0A8842C8
+ for <bridge@lists.linux-foundation.org>; Tue,  4 May 2021 15:21:10 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id d4so9873040wru.7
+ for <bridge@lists.linux-foundation.org>; Tue, 04 May 2021 08:21:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=aEdqS7pdiyLCIJYayaS5kAzFZi2LdXOPyRL1s5b/IaQ=;
+ b=WUOchx6Oj9YGBrY7qf+3qjv/qNzHkallUzcwBmPKlWOefziMZkAaWpfsTgSQuxnUm0
+ lQr3fc/suIPheBR/w6ktptLAA2yW0NpcABuSJnu4AAzAWJcBmoFhs00HQi0Ke4lWp62W
+ HNDMvxd/ptJXzEC85Yx7rbGRdMsJPRp2c7c/GzHCog1wHbKJ9UO8UK8yAplrlx4I3X0I
+ RjkH8gNin9XI+UYr0fCTSmI0MXIhidj4PEFzvHNivQgUjYbnexdsxkmw7hnYIhvsbCze
+ xucudSW5sJcoV0QsEkwJTuGgvJP6zen/lny4H3n+6elArkvRDV6BoHHpX0Jxtw+/jfpK
+ hYqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=cPrifclr87s/6R17fQyVakQEUFrMtvg1/O/9UfYkzbE=;
- b=P7qANMfdoQDM/twgAXAh13FROZuw8Gu17mUHEuKA0UAuVVBPFx5lk++fIVSJIaj6VJ
- /pd0m5s/7k+L2sSc4ZWf0Gun9Jl0T2BefJdYvelfecYn/6VFF3ThU5hhCHHu8Wfar28u
- /MNxsyIih3/L38WuoKtLwWZ/C2+ycxBh/wVhVRm5LXhRYKtKHKPZh3XxMI+EZWLu2PoK
- cAEzQ641x5rPBgreN+fgYyXEzNIgKcddRlJU41kZ2b/OenRwM5B/J513mV/iq1wWNdEZ
- qXU2bWezortsw4X/tfHKpW77E0eNDOpjV8fP54dbkvDUgI06fcmjZcSH82pxu6mAF/a8
- hSKw==
-X-Gm-Message-State: AOAM530bFsV0snWqs0s10gz8DQihG+SVfJliDBLbMuED4MKDwCkRUp4Z
- YSKydM6bdKm9kYxZZbztKbNIS+c25wGoog==
-X-Google-Smtp-Source: ABdhPJxXD7SD3GPvhgRiJZRX4Pi/EOZngGi/cORtCRHqo317F9Cxw6QWqfcU6uj7P+RpjpVsFpkFxw==
-X-Received: by 2002:a05:6512:6d5:: with SMTP id
- u21mr17546323lff.586.1620139473484; 
- Tue, 04 May 2021 07:44:33 -0700 (PDT)
-Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
- by smtp.gmail.com with ESMTPSA id c21sm291466lfc.80.2021.05.04.07.44.32
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=aEdqS7pdiyLCIJYayaS5kAzFZi2LdXOPyRL1s5b/IaQ=;
+ b=pR+4EeoqUy2GPZPaQHLAz0hnSJhrZ9LXQQNi3ZDWu5j9gMVygnvGmWN2hvoZGVD111
+ 5Otob6vu8lfyOF3I80Kn+yytmHWcnRfHh11sNsgWX1QhzoSoRZSN5GrR2glgtZ9RCymJ
+ kbk7HIhiBx8HPose2w0ZMpbWY2wAxxKYmg5ACdXaXjBhiapjkvwlBOBOrtdUcre7gQoc
+ 5Mnntc/BfgDKCzzgXQmB4ryP6paMGPLQp+2F7g8k+riwg13WAdTW+hYq1sSkTg2OWBmt
+ JzkDooSyxdVN9s359rR/vVYYnaw2FljlH+OAY/MdglgJlCDXxd1uaIcAyc2ieDGjkJiP
+ KRZg==
+X-Gm-Message-State: AOAM531ZAACy/QSrP3uX92oO9YfpTbOgM2t61wNXDHfikvIfzB4qiNQi
+ x5VsInhvWb1eABEPuNZ0xCk=
+X-Google-Smtp-Source: ABdhPJy7fE67VnlN/DspgkVj7/i00iFH0dLw21s/qf0G3KegfdlGuchgdnPD3NyHSEuyCgma1Jy2fg==
+X-Received: by 2002:adf:c002:: with SMTP id z2mr32603841wre.100.1620141668484; 
+ Tue, 04 May 2021 08:21:08 -0700 (PDT)
+Received: from skbuf ([86.127.41.210])
+ by smtp.gmail.com with ESMTPSA id m7sm2786817wrv.35.2021.05.04.08.21.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 May 2021 07:44:32 -0700 (PDT)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20210427101747.n3y6w6o7thl5cz3r@skbuf>
+ Tue, 04 May 2021 08:21:08 -0700 (PDT)
+Date: Tue, 4 May 2021 18:21:06 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Message-ID: <20210504152106.oppawchuruapg4sb@skbuf>
 References: <20210426170411.1789186-1-tobias@waldekranz.com>
  <20210426170411.1789186-7-tobias@waldekranz.com>
  <20210427101747.n3y6w6o7thl5cz3r@skbuf>
-Date: Tue, 04 May 2021 16:44:31 +0200
-Message-ID: <878s4uo8xc.fsf@waldekranz.com>
+ <878s4uo8xc.fsf@waldekranz.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <878s4uo8xc.fsf@waldekranz.com>
 Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
  netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  vivien.didelot@gmail.com, idosch@idosch.org, nikolay@nvidia.com,
@@ -97,76 +100,88 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Apr 27, 2021 at 13:17, Vladimir Oltean <olteanv@gmail.com> wrote:
-> On Mon, Apr 26, 2021 at 07:04:08PM +0200, Tobias Waldekranz wrote:
->> Allow DSA drivers to support forward offloading from a bridge by:
->> 
->> - Passing calls to .ndo_dfwd_{add,del}_station to the drivers.
->> 
->> - Recording the subordinate device of offloaded skbs in the control
->>   buffer so that the tagger can take the appropriate action.
->> 
->> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
->> ---
->>  include/net/dsa.h |  7 +++++++
->>  net/dsa/slave.c   | 36 ++++++++++++++++++++++++++++++++++--
->>  2 files changed, 41 insertions(+), 2 deletions(-)
->> 
->> diff --git a/include/net/dsa.h b/include/net/dsa.h
->> index 1f9ba9889034..77d4df819299 100644
->> --- a/include/net/dsa.h
->> +++ b/include/net/dsa.h
->> @@ -119,6 +119,7 @@ struct dsa_netdevice_ops {
->>  
->>  struct dsa_skb_cb {
->>  	struct sk_buff *clone;
->> +	struct net_device *sb_dev;
->>  };
->>  
->>  struct __dsa_skb_cb {
->> @@ -828,6 +829,12 @@ struct dsa_switch_ops {
->>  					  const struct switchdev_obj_ring_role_mrp *mrp);
->>  	int	(*port_mrp_del_ring_role)(struct dsa_switch *ds, int port,
->>  					  const struct switchdev_obj_ring_role_mrp *mrp);
->> +
->> +	/* L2 forward offloading */
->> +	void *	(*dfwd_add_station)(struct dsa_switch *ds, int port,
->> +				    struct net_device *sb_dev);
->> +	void	(*dfwd_del_station)(struct dsa_switch *ds, int port,
->> +				    struct net_device *sb_dev);
->>  };
->>  
->>  #define DSA_DEVLINK_PARAM_DRIVER(_id, _name, _type, _cmodes)		\
->> diff --git a/net/dsa/slave.c b/net/dsa/slave.c
->> index 77b33bd161b8..3689ffa2dbb8 100644
->> --- a/net/dsa/slave.c
->> +++ b/net/dsa/slave.c
->> @@ -657,6 +657,13 @@ static netdev_tx_t dsa_slave_xmit(struct sk_buff *skb, struct net_device *dev)
->>  	return dsa_enqueue_skb(nskb, dev);
->>  }
->>  
->> +static u16 dsa_slave_select_queue(struct net_device *dev, struct sk_buff *skb,
->> +				  struct net_device *sb_dev)
->> +{
->> +	DSA_SKB_CB(skb)->sb_dev = sb_dev;
->> +	return netdev_pick_tx(dev, skb, sb_dev);
->> +}
->> +
->
-> DSA_SKB_CB is going away:
-> https://patchwork.kernel.org/project/netdevbpf/patch/20210427042203.26258-5-yangbo.lu@nxp.com/
->
-> Let's either negotiate with Yangbo on keeping it, or make
-> .ndo_select_queue a bypass towards the tagger, where it can use its own
-> SKB_CB structure and be more flexible in general (I think I'm leaning
-> towards the latter).
-
-Thus far, Yangbo is a tough negotiator, giving me the silent treatment:
-
-https://lore.kernel.org/netdev/87y2d2noe5.fsf@waldekranz.com/
+On Tue, May 04, 2021 at 04:44:31PM +0200, Tobias Waldekranz wrote:
+> On Tue, Apr 27, 2021 at 13:17, Vladimir Oltean <olteanv@gmail.com> wrote:
+> > On Mon, Apr 26, 2021 at 07:04:08PM +0200, Tobias Waldekranz wrote:
+> >> Allow DSA drivers to support forward offloading from a bridge by:
+> >> 
+> >> - Passing calls to .ndo_dfwd_{add,del}_station to the drivers.
+> >> 
+> >> - Recording the subordinate device of offloaded skbs in the control
+> >>   buffer so that the tagger can take the appropriate action.
+> >> 
+> >> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> >> ---
+> >>  include/net/dsa.h |  7 +++++++
+> >>  net/dsa/slave.c   | 36 ++++++++++++++++++++++++++++++++++--
+> >>  2 files changed, 41 insertions(+), 2 deletions(-)
+> >> 
+> >> diff --git a/include/net/dsa.h b/include/net/dsa.h
+> >> index 1f9ba9889034..77d4df819299 100644
+> >> --- a/include/net/dsa.h
+> >> +++ b/include/net/dsa.h
+> >> @@ -119,6 +119,7 @@ struct dsa_netdevice_ops {
+> >>  
+> >>  struct dsa_skb_cb {
+> >>  	struct sk_buff *clone;
+> >> +	struct net_device *sb_dev;
+> >>  };
+> >>  
+> >>  struct __dsa_skb_cb {
+> >> @@ -828,6 +829,12 @@ struct dsa_switch_ops {
+> >>  					  const struct switchdev_obj_ring_role_mrp *mrp);
+> >>  	int	(*port_mrp_del_ring_role)(struct dsa_switch *ds, int port,
+> >>  					  const struct switchdev_obj_ring_role_mrp *mrp);
+> >> +
+> >> +	/* L2 forward offloading */
+> >> +	void *	(*dfwd_add_station)(struct dsa_switch *ds, int port,
+> >> +				    struct net_device *sb_dev);
+> >> +	void	(*dfwd_del_station)(struct dsa_switch *ds, int port,
+> >> +				    struct net_device *sb_dev);
+> >>  };
+> >>  
+> >>  #define DSA_DEVLINK_PARAM_DRIVER(_id, _name, _type, _cmodes)		\
+> >> diff --git a/net/dsa/slave.c b/net/dsa/slave.c
+> >> index 77b33bd161b8..3689ffa2dbb8 100644
+> >> --- a/net/dsa/slave.c
+> >> +++ b/net/dsa/slave.c
+> >> @@ -657,6 +657,13 @@ static netdev_tx_t dsa_slave_xmit(struct sk_buff *skb, struct net_device *dev)
+> >>  	return dsa_enqueue_skb(nskb, dev);
+> >>  }
+> >>  
+> >> +static u16 dsa_slave_select_queue(struct net_device *dev, struct sk_buff *skb,
+> >> +				  struct net_device *sb_dev)
+> >> +{
+> >> +	DSA_SKB_CB(skb)->sb_dev = sb_dev;
+> >> +	return netdev_pick_tx(dev, skb, sb_dev);
+> >> +}
+> >> +
+> >
+> > DSA_SKB_CB is going away:
+> > https://patchwork.kernel.org/project/netdevbpf/patch/20210427042203.26258-5-yangbo.lu@nxp.com/
+> >
+> > Let's either negotiate with Yangbo on keeping it, or make
+> > .ndo_select_queue a bypass towards the tagger, where it can use its own
+> > SKB_CB structure and be more flexible in general (I think I'm leaning
+> > towards the latter).
+> 
+> Thus far, Yangbo is a tough negotiator, giving me the silent treatment:
+> 
+> https://lore.kernel.org/netdev/87y2d2noe5.fsf@waldekranz.com/
+> 
+> :)
+> 
+> That memset is giving me a hard time. I have just disabled it on my
+> branch at the moment. Any ideas on how to get rid of it without breaking
+> timestamping?
 
 :)
 
-That memset is giving me a hard time. I have just disabled it on my
-branch at the moment. Any ideas on how to get rid of it without breaking
-timestamping?
+Is there any guarantee written somewhere that the ownership of skb->cb
+belongs to the NIC driver at the time of the ndo_select_queue call?
+
+If there is, then the trivial solution is to just move the memset in
+ndo_select_queue.
+
+If there isn't, then we've got bigger issues (such as, for example, the
+qdisc layer being able to overwrite your DSA_SKB_CB(skb)->sb_dev).
