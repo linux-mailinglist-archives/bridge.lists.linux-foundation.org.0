@@ -1,59 +1,61 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080C33740DE
-	for <lists.bridge@lfdr.de>; Wed,  5 May 2021 18:39:24 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA75D3740F1
+	for <lists.bridge@lfdr.de>; Wed,  5 May 2021 18:40:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 942CD60A61;
-	Wed,  5 May 2021 16:39:22 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 40B7583D5F;
+	Wed,  5 May 2021 16:40:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FDxWE8UNU8am; Wed,  5 May 2021 16:39:22 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 3C0F260804;
-	Wed,  5 May 2021 16:39:21 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1nnf8pBF0VYf; Wed,  5 May 2021 16:40:25 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTP id DF92E83B5F;
+	Wed,  5 May 2021 16:40:24 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 01FBBC0024;
-	Wed,  5 May 2021 16:39:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A6B52C0024;
+	Wed,  5 May 2021 16:40:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5936CC0001
- for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 16:39:19 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BE1AFC0001
+ for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 16:40:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 3C81D60A67
- for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 16:39:19 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id AD00F60A67
+ for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 16:40:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Ym6sk2jCUcWc for <bridge@lists.linux-foundation.org>;
- Wed,  5 May 2021 16:39:17 +0000 (UTC)
+ with ESMTP id DaHZ2Pg1jIat for <bridge@lists.linux-foundation.org>;
+ Wed,  5 May 2021 16:40:23 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 60C4160804
- for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 16:39:17 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AFDE6199E;
- Wed,  5 May 2021 16:39:16 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 19D82607CD
+ for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 16:40:23 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B0B34613C4;
+ Wed,  5 May 2021 16:40:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620232757;
- bh=nz3Z5sM/05N+UqtzH9mUGxRGExsUafPLfAvtce1O0Ms=;
+ s=k20201202; t=1620232822;
+ bh=iUyfDaESffOejNa44GP7IeITpDiWol9iTfGo0sc9l+U=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=BmfEzqRhOOYneQpJ4CSrm3ax8knDhIXTZkIKjMghjxjGPo5cI4ydjjCEtIciCK5+i
- C2foR0gnFUjxOZ+3+Pijrwpkt2OYrPDTEIIotPYv/ZI289F/DKjsx06NgV/myV8HJQ
- 59X07oio8/bVFK4mneovQa4MBVc7PeOV2kxg+YKLcdN2kQoXG+szpqXb+8wCZ3IiPD
- gi9uv7CEjkpbgj3kODbdo0o3GqyuM316Dl7fVf7ifJNiQr5NDNsRmxhIRPPxddE4dp
- xB6GPCFpT42ew+vRGdoTczwQqiG1zPNkyyn2cDRFphxEmqv5qaKCCwhJmHR0CNyR70
- d8bbi55sNYMxA==
+ b=tmaUHemNOcVKywjzaDWQk+gTyOkN+oJKySSn+5kiR/32exzZtBK3XnqNEOnhO+83M
+ Cf+uFlAemPbybTv6b/EHIxKZwGIjkDsjU5cQVlWKQ5yFh8rUwubqu6XAdf9UJtOPCZ
+ 0dFHjpwRF0qCLhPfc+CXTqo/R4mjjhJwnV9UmK4fau/8y9UEViA7VkscttJ9tYDf1p
+ gulTECAAejfgPZ+l6vJ3PCPalUORSR1A1Rqfmou+zjb6yP0rmWJxThDJV+Cap/adKH
+ Rb4BiwbTzdWLiLCM5mWr8je2WtEpiFvxeoCagFzjNumeBLad7TBdw+YofgZ54cugEI
+ GSdEcJGA/r2Pg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Wed,  5 May 2021 12:38:24 -0400
-Message-Id: <20210505163856.3463279-14-sashal@kernel.org>
+Date: Wed,  5 May 2021 12:39:44 -0400
+Message-Id: <20210505164004.3463707-12-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210505163856.3463279-1-sashal@kernel.org>
-References: <20210505163856.3463279-1-sashal@kernel.org>
+In-Reply-To: <20210505164004.3463707-1-sashal@kernel.org>
+References: <20210505164004.3463707-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -61,8 +63,8 @@ Content-Transfer-Encoding: 8bit
 Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  Amer Abdalamer <amer@nvidia.com>, "David S . Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH AUTOSEL 5.4 14/46] net: bridge: when suppression is
-	enabled exclude RARP packets
+Subject: [Bridge] [PATCH AUTOSEL 4.19 12/32] net: bridge: when suppression
+	is enabled exclude RARP packets
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,11 +101,11 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/net/bridge/br_arp_nd_proxy.c b/net/bridge/br_arp_nd_proxy.c
-index b18cdf03edb3..c4e0f4777df5 100644
+index eb44ae05abaa..b52e70362268 100644
 --- a/net/bridge/br_arp_nd_proxy.c
 +++ b/net/bridge/br_arp_nd_proxy.c
-@@ -155,7 +155,9 @@ void br_do_proxy_suppress_arp(struct sk_buff *skb, struct net_bridge *br,
- 	if (br_opt_get(br, BROPT_NEIGH_SUPPRESS_ENABLED)) {
+@@ -158,7 +158,9 @@ void br_do_proxy_suppress_arp(struct sk_buff *skb, struct net_bridge *br,
+ 	if (br->neigh_suppress_enabled) {
  		if (p && (p->flags & BR_NEIGH_SUPPRESS))
  			return;
 -		if (ipv4_is_zeronet(sip) || sip == tip) {
@@ -111,7 +113,7 @@ index b18cdf03edb3..c4e0f4777df5 100644
 +		    parp->ar_op != htons(ARPOP_RREPLY) &&
 +		    (ipv4_is_zeronet(sip) || sip == tip)) {
  			/* prevent flooding to neigh suppress ports */
- 			BR_INPUT_SKB_CB(skb)->proxyarp_replied = 1;
+ 			BR_INPUT_SKB_CB(skb)->proxyarp_replied = true;
  			return;
 -- 
 2.30.2
