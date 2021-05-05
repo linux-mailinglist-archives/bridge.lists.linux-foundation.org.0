@@ -1,93 +1,93 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E94D3735B3
-	for <lists.bridge@lfdr.de>; Wed,  5 May 2021 09:40:15 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 597573736B1
+	for <lists.bridge@lfdr.de>; Wed,  5 May 2021 11:01:20 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id C70D3400C9;
-	Wed,  5 May 2021 07:40:13 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id B02A2607F7;
+	Wed,  5 May 2021 09:01:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FiQ8_lXxfgR8; Wed,  5 May 2021 07:40:13 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GDKF91JmbtpI; Wed,  5 May 2021 09:01:17 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 69181401CA;
-	Wed,  5 May 2021 07:40:12 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 3A709607EF;
+	Wed,  5 May 2021 09:01:16 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 35763C0024;
-	Wed,  5 May 2021 07:40:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E93B9C0024;
+	Wed,  5 May 2021 09:01:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2C461C0001
- for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 07:40:10 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6B8EFC0001
+ for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 09:01:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 05E426073D
- for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 07:40:10 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 4B08983CE8
+ for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 09:01:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=messagingengine.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dY9-1OSx_FwQ for <bridge@lists.linux-foundation.org>;
- Wed,  5 May 2021 07:40:08 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by smtp3.osuosl.org (Postfix) with ESMTPS id C7742605D4
- for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 07:40:08 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id C325A58095A;
- Wed,  5 May 2021 03:40:05 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Wed, 05 May 2021 03:40:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=XGAZ/H
- Ub1ggaRYimKsJOVdJMZycWod7347H73fuhCGY=; b=D1N5qqeiHaEaEHhEL6jiu3
- P2uWIqjr3JjFcPYiEWhGcBB1JNfiecYZ9VQCVuiWLasYA+oHBAwkRbcdDVgK3O03
- SIlP5iPe9TQ30STXOA3auIpgr+GCw9p1Feye6FiqDkMh7RnL3PeTdy3aRYzZeLiB
- nqLvUOS5a6tLdULj9C31IJMF3ckKKWRw9Vt2o9WHuEgH1EU9XvMxedPjg1DUVxLC
- oerpeLFfd5rFAgYhj8QsB8HKysyzQJ0+42fq74EhgGyox6a+iZASx/D5fVFq9ANw
- /xqpZk9jSFoPIDSTEFMP6RXkV+217vJpcmnn4fyCgENncJL9lkrlA3OtsCekKEfA
- ==
-X-ME-Sender: <xms:00uSYHUihf4d1QjKyA07Xr7-UqoXKAHac00JGV1BWzWGmkcypb_cmg>
- <xme:00uSYPnldn2lqww0jFJqBtshsyysPUv8naP8SWpUo5M07Y6Ybp0bJ0DLLYESW8G61
- nuXDf3XVH9EioI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefjedguddujecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcu
- ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrth
- htvghrnheptdffkeekfeduffevgeeujeffjefhtefgueeugfevtdeiheduueeukefhudeh
- leetnecukfhppeekgedrvddvledrudehfedrudekjeenucevlhhushhtvghrufhiiigvpe
- dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehiughoshgthhesihguohhstghhrdhorhhg
-X-ME-Proxy: <xmx:00uSYDb5KSWqMLYB8WYrKAOQV2kK7nEMxeUkrHE1Z53CAOZpwb1iwQ>
- <xmx:00uSYCUMcV9uah9CDZ_aidGfKYXtASMVabQdsHmpszKtwkmIgo5JZQ>
- <xmx:00uSYBkua7gJK8pX1x_tH33qv3xiXSHk-w9k_Q4-YrGnYk3uxUcrTA>
- <xmx:1UuSYCiApZvkqH-2B5PQh7GX7dY1mhzxxUGxrGZfeCZNXIHL1zzcMQ>
-Received: from localhost (igld-84-229-153-187.inter.net.il [84.229.153.187])
- by mail.messagingengine.com (Postfix) with ESMTPA;
- Wed,  5 May 2021 03:40:02 -0400 (EDT)
-Date: Wed, 5 May 2021 10:39:58 +0300
-From: Ido Schimmel <idosch@idosch.org>
-To: Tobias Waldekranz <tobias@waldekranz.com>
-Message-ID: <YJJLzr5sJ2FYZRZ4@shredder.lan>
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key)
+ header.d=waldekranz-com.20150623.gappssmtp.com
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id uPKJCWD-zFZT for <bridge@lists.linux-foundation.org>;
+ Wed,  5 May 2021 09:01:13 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
+ [IPv6:2a00:1450:4864:20::22a])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 4F13F83CE6
+ for <bridge@lists.linux-foundation.org>; Wed,  5 May 2021 09:01:13 +0000 (UTC)
+Received: by mail-lj1-x22a.google.com with SMTP id e12so1500328ljn.2
+ for <bridge@lists.linux-foundation.org>; Wed, 05 May 2021 02:01:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=CHszZK7LblPbIXozkASGXG0KNy6kheJ5G3pXtlHdYnQ=;
+ b=k6bHhtUS4olAAtkrAOahBxLSc5WpKrfi4zD12DHNMLUAjYB6RGAXtjuP4hmnDJGhIy
+ xUowlwnIr1SvmdcLgavdkJpQs1ajPmjaIqxezkolP5XvjRWlSuMB6qiACRyd8Nz7SqQB
+ 4Mbqj6cHA272gLGFBZ6FfpvDLTHDdjE5v/zn3ZhVvHJUYR9g/XwJ4q0vjJRTv/F+2fqx
+ pmCcjQ4Y5yGc18g9k2DxfXm18Bs7JuyNhnzsGeeD6Qb5X3lRJVyoHFzxb6h3kLtDtLU0
+ FGunUYRveXcjLVzUFE/NzElQ3hysDDDBtfWjDc2aFWsvXDbHHBbn+YUUfBfrLnSH3A16
+ MPwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=CHszZK7LblPbIXozkASGXG0KNy6kheJ5G3pXtlHdYnQ=;
+ b=Nta+exjREZgIHL/ngy33BwTWcqBg9SARM+s7hpIN/yrqteVh0/Ov2MGpa9Fqyah7cs
+ 9RZneMq+aXKZMZgX8g2U8NfeRKnZBlN0WdK3bqKLPh+bTdRZ26SkKjsuobbFzJLFWqWO
+ Q3YyXdMbXJMhrxx0YSe+r9yS6uWOXxDhzvGvwVywwwvXWQCOB5WVTnqvAMH0pcoh+QBs
+ iI3NACwgX2Wxt5M4ouDfujXvsqLjo4PciSW9ZW214+/MPiK9JNJ3nq60JdTN5TAjbyaa
+ 28SEKVEWPzXtf88/6lgg1W6dz7FyXLXag9KAfTVrscUgTwwN9IqlgWtlmW73VvhoR7Uy
+ YbOw==
+X-Gm-Message-State: AOAM531Ks2ry7A4tRenEy7fJ4shUQGJyboYeO6XQ0YRdoS/KRwrWCMqU
+ ioM5E8MPOVDFSfxvpn4TU+K95+Ha49i4NQ==
+X-Google-Smtp-Source: ABdhPJzAq8p38vqysHThVjNdLyomEUJ7rUdLeUrbXdQcCLO4QeXk/YDc/UttBRLNdlSwCApCKlkGkA==
+X-Received: by 2002:a2e:8283:: with SMTP id y3mr20906981ljg.51.1620205270712; 
+ Wed, 05 May 2021 02:01:10 -0700 (PDT)
+Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+ by smtp.gmail.com with ESMTPSA id q20sm368123lfm.194.2021.05.05.02.01.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 May 2021 02:01:10 -0700 (PDT)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+In-Reply-To: <20210504230409.kohxoc4cl7sjpkrg@skbuf>
 References: <20210426170411.1789186-1-tobias@waldekranz.com>
- <20210426170411.1789186-3-tobias@waldekranz.com>
- <YI6+kQxjCcnYmwkx@shredder> <87h7jknqwn.fsf@waldekranz.com>
+ <20210426170411.1789186-7-tobias@waldekranz.com>
+ <20210427101747.n3y6w6o7thl5cz3r@skbuf> <878s4uo8xc.fsf@waldekranz.com>
+ <20210504152106.oppawchuruapg4sb@skbuf> <874kfintzh.fsf@waldekranz.com>
+ <20210504205823.j5wg547lgyw776rl@skbuf> <87y2cum9mo.fsf@waldekranz.com>
+ <20210504230409.kohxoc4cl7sjpkrg@skbuf>
+Date: Wed, 05 May 2021 11:01:09 +0200
+Message-ID: <87pmy5mu5m.fsf@waldekranz.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87h7jknqwn.fsf@waldekranz.com>
+Content-Type: text/plain
 Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us,
  netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- vivien.didelot@gmail.com, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, olteanv@gmail.com, davem@davemloft.net
-Subject: Re: [Bridge] [RFC net-next 2/9] net: bridge: Disambiguate
-	offload_fwd_mark
+ vivien.didelot@gmail.com, idosch@idosch.org, nikolay@nvidia.com,
+ roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [RFC net-next 6/9] net: dsa: Forward offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,84 +102,54 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, May 03, 2021 at 10:49:12AM +0200, Tobias Waldekranz wrote:
-> On Sun, May 02, 2021 at 18:00, Ido Schimmel <idosch@idosch.org> wrote:
-> > On Mon, Apr 26, 2021 at 07:04:04PM +0200, Tobias Waldekranz wrote:
-> >> - skb->cb->offload_fwd_mark becomes skb->cb->src_hwdom. There is a
-> >>   slight change here: Whereas previously this was only set for
-> >>   offloaded packets, we now always track the incoming hwdom. As all
-> >>   uses where already gated behind checks of skb->offload_fwd_mark,
-> >>   this will not introduce any functional change, but it paves the way
-> >>   for future changes where the ingressing hwdom must be known both for
-> >>   offloaded and non-offloaded frames.
-> >
-> > [...]
-> >
-> >> @@ -43,15 +43,15 @@ int nbp_switchdev_mark_set(struct net_bridge_port *p)
-> >>  void nbp_switchdev_frame_mark(const struct net_bridge_port *p,
-> >>  			      struct sk_buff *skb)
-> >>  {
-> >> -	if (skb->offload_fwd_mark && !WARN_ON_ONCE(!p->offload_fwd_mark))
-> >> -		BR_INPUT_SKB_CB(skb)->offload_fwd_mark = p->offload_fwd_mark;
-> >> +	if (p->hwdom)
-> >> +		BR_INPUT_SKB_CB(skb)->src_hwdom = p->hwdom;
-> >>  }
-> >
-> > I assume you are referring to this change? "src_hwdom" sounds weird if
-> > it's expected to be valid for non-offloaded frames.
-> 
-> Perhaps "non-offloaded" was a sloppy description on my part. I was
-> trying to describe frames that originate from a switchdev, but have not
-> been forwarded by hardware; e.g. STP BPDUs, IGMP reports, etc. So
-> nbp_switchdev_frame_mark now basically says: "If this skb came in from a
-> switchdev, make sure to note which one".
-> 
-> > Can you elaborate about "future changes where the ingressing hwdom must
-> > be known both for offloaded and non-offloaded frames"?
-> 
-> Typical example: The switchdev has a fixed configuration to trap STP
-> BPDUs, but STP is not running on the bridge and the group_fwd_mask
-> allows them to be forwarded. Say we have this setup:
-> 
->       br0
->     /  |  \
-> swp0 swp1 swp2
-> 
-> A BPDU comes in on swp0 and is trapped to the CPU; the driver does not
-> set skb->offload_fwd_mark. The bridge determines that the frame should
-> be forwarded to swp{1,2}. It is imperative that forward offloading is
-> _not_ allowed in this case, as the source hwdom is already "poisoned".
-> 
-> Recording the source hwdom allows this case to be handled properly.
+On Wed, May 05, 2021 at 02:04, Vladimir Oltean <olteanv@gmail.com> wrote:
+> On Wed, May 05, 2021 at 12:12:15AM +0200, Tobias Waldekranz wrote:
+>> > and you create a dependency between the tagger and the switch driver
+>> > which was supposed by design to not exist.
+>> 
+>> Sure, but _why_ should it not exist? Many fields in the tag can only be
+>> correctly generated/interpreted in combination with knowledge of the
+>> current configuration, which is the driver's domain. The dependency is
+>> already there, etched in silicon.
+>
+> I'm a bit more of a pragmatic person,
 
-OK, thanks for the explanation. If it is allowed, then the packet will
-be transmitted from swp0, from which it was received.
+Excuse me sir, I believe you left your dagger IN MY HEART :)
 
-> 
-> > Probably best to split this change to a different patch given the rest
-> > of the changes are mechanical.
-> 
-> Right, but I think the change in name to warrants a change in
-> semantics. It is being renamed to src_hwdom because it now holds just
-> that information. Again, there is no functional change introduced by
-> this since nbp_switchdev_allowed_egress always checks for the presence
-> of skb->offload_fwd_mark anyway. But if you feel strongly about it, I
-> will split it up.
+> it's not so much that I think that
+> Lennert Buytenhek's original DSA design from 2008 was the holy grail and
+> that we should do everything we can to preserve it intact. Far from it.
+> But I actually like having the option to inject a DSA-tagged packet
+> using Spirent TestCenter and measure IP forwarding between dsa_loop
+> "switch" ports (actually a one-armed router is what it is). I also like,
+> as a reviewer, to be able to test, if I want to, how a tail tagger
+> behaves even if I don't own a switch with tail tagging. And this
+> separation between the switch driver and the tag protocol driver makes
+> that possible, just see it as a nice perk which we don't want to lose.
 
-If you put the explanation above in the changelog, then it should be
-fine to keep it as one patch.
+Completely understandable. I was trying to extrapolate where we will end
+up with this separation as we add more and more features and couple the
+tagger closer to the driver, and see if the current architecture was
+still the optimal one. Trying to be ...pragmatic, if you will.
 
-> 
-> >>  
-> >>  bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
-> >>  				  const struct sk_buff *skb)
-> >>  {
-> >>  	return !skb->offload_fwd_mark ||
-> >> -	       BR_INPUT_SKB_CB(skb)->offload_fwd_mark != p->offload_fwd_mark;
-> >> +	       BR_INPUT_SKB_CB(skb)->src_hwdom != p->hwdom;
-> >>  }
-> >>  
-> >>  /* Flags that can be offloaded to hardware */
-> >> -- 
-> >> 2.25.1
-> >> 
+> As for more advanced features, like "the hardware requires me to invent
+> a unique number based on a rolling counter, call it a TX timestamp ID,
+> put it in the DSA header, then when transmission is done, an IRQ will be
+> raised, and I need to match that TX timestamp that just became available
+> to me, which is identifiable via the timestamp ID that I put in the DSA
+> header, with the original skb", of course you can't do that without
+> communication between the tagger and the driver itself, unless you make
+> the tagger handle interrupts (and then there's the whole issue that the
+> tagging protocol driver needs to be instantiated per switch, if it's
+> going to be stateful), or the switch driver send packets. As a general
+> rule of thumb, just don't break dsa_loop and we should be fine. For
+> example, yes, PTP requires driver <-> tagger communication, but PTP
+> timestamping is also not enabled by default, and guarded by an ioctl
+> which dsa_loop doesn't implement. So the tagger can never trigger faulty
+> code, dereferencing a ds->priv pointer which it thinks is "struct
+> mv88e6xxx_chip" but is actually "struct dsa_loop_priv".
+
+This should also hold for forward offloading, since dsa_loop would not
+implement .ndo_dfwd_{add,del}_station.
+
+Alright, include/linux/dsa/mv88e6xxx.h here I come!
