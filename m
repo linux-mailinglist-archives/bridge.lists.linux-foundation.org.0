@@ -1,61 +1,61 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id B289537D18E
-	for <lists.bridge@lfdr.de>; Wed, 12 May 2021 20:01:53 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F04E37D198
+	for <lists.bridge@lfdr.de>; Wed, 12 May 2021 20:02:56 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id A0BC34055F;
-	Wed, 12 May 2021 18:01:51 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id E5689843D6;
+	Wed, 12 May 2021 18:02:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Gap6suwCqhUu; Wed, 12 May 2021 18:01:51 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 1614E4055B;
-	Wed, 12 May 2021 18:01:50 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id bT1W1GOtynjH; Wed, 12 May 2021 18:02:54 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTP id 793AA843E1;
+	Wed, 12 May 2021 18:02:53 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D1B2DC0024;
-	Wed, 12 May 2021 18:01:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2EE03C0024;
+	Wed, 12 May 2021 18:02:53 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 73A6FC0001
- for <bridge@lists.linux-foundation.org>; Wed, 12 May 2021 18:01:48 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B014AC0001
+ for <bridge@lists.linux-foundation.org>; Wed, 12 May 2021 18:02:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 5479140291
- for <bridge@lists.linux-foundation.org>; Wed, 12 May 2021 18:01:48 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 91C8840291
+ for <bridge@lists.linux-foundation.org>; Wed, 12 May 2021 18:02:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ursqVx4-WcSi for <bridge@lists.linux-foundation.org>;
- Wed, 12 May 2021 18:01:47 +0000 (UTC)
+ with ESMTP id NawUeVmruuMm for <bridge@lists.linux-foundation.org>;
+ Wed, 12 May 2021 18:02:50 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 1895040157
- for <bridge@lists.linux-foundation.org>; Wed, 12 May 2021 18:01:47 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3CD6261421;
- Wed, 12 May 2021 18:01:45 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id E520840157
+ for <bridge@lists.linux-foundation.org>; Wed, 12 May 2021 18:02:50 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1FE4D6143A;
+ Wed, 12 May 2021 18:02:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620842506;
- bh=A0Tn6cgL/nNYlXK6awgCA3wXIqEGNrIqSa2qBv/KxG4=;
+ s=k20201202; t=1620842570;
+ bh=NxRr3i/3FfdnK/KAHIiXOLrAkGgYPUD+efpTLGlFqX4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=oSSVQEpa5uECDUo2lMZwzOo8tecYysUS/+HuDJ8CbEv4XV7YOvcFwBvIrRFHHQoTi
- YI6Zi/AePoV3fRjNlN8vzY0qE6oAowOw2nyoXYBcbOhbyimqTuqkz8skdGzFzTk7C3
- 7XFWd72IBZVPL1gaqUY4eHpjXurtg68PThdhda0OstSGDoqjmt0lFY6mtkMVAxX4zR
- BKQ/fYZwle49lGiTZBGdbQqPOrxU1SE90y5AoQuWTJGnQGP4iKKfaAt9xcNEmtKRO0
- EPMz9HjRX0z72fTy3MnkrdCTIz+C3bp0bZE8o7mGTWShEt/XfFyRE1aVLniElIUf52
- J+kehX9NhIC3w==
+ b=vEt+pP136ssI4AaYaSSHE8/ZuVLLDyoR9ifNtWwr99SYQ3VnypXWUnn/SMoZC0EeH
+ HCzHRr6La8xKYoczNxc2+Vs1iPNhtpqNHD68ZolFyMuVZcRE6I/6eZdMgZZd1YHoJR
+ ZIODsrZZYiNwlxx2T46PDLk74yKjWpNl6TCIYahCoWuSK2EcNr7EktIQO6J9XUrY43
+ ue0dqu5CL8kGZtriOFEboE6yt0YPBfMBCQy8kItcUISOahaWWoEoT6san9tsW8SBFW
+ J48UDVJ9Qz24wLcTcccAJKQFpBYaULQ5Jit6WLuc/UaFxOSz1rJRU8P6R6/uWvZOAC
+ HuMbHfgkjL90w==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Wed, 12 May 2021 14:00:55 -0400
-Message-Id: <20210512180104.664121-28-sashal@kernel.org>
+Date: Wed, 12 May 2021 14:01:56 -0400
+Message-Id: <20210512180206.664536-26-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210512180104.664121-1-sashal@kernel.org>
-References: <20210512180104.664121-1-sashal@kernel.org>
+In-Reply-To: <20210512180206.664536-1-sashal@kernel.org>
+References: <20210512180206.664536-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -65,7 +65,7 @@ Cc: Sasha Levin <sashal@kernel.org>, Zhao Lei <zhaolei69@huawei.com>,
  bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  Zhang Zhengming <zhangzhengming@huawei.com>,
  "David S . Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH AUTOSEL 5.12 28/37] bridge: Fix possible races
+Subject: [Bridge] [PATCH AUTOSEL 5.11 26/35] bridge: Fix possible races
 	between assigning rx_handler_data and setting IFF_BRIDGE_PORT bit
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -143,10 +143,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index f2b1343f8332..ed5aba21d3d5 100644
+index 49700ce0e919..a0a134050b2c 100644
 --- a/net/bridge/br_netlink.c
 +++ b/net/bridge/br_netlink.c
-@@ -103,8 +103,9 @@ static size_t br_get_link_af_size_filtered(const struct net_device *dev,
+@@ -102,8 +102,9 @@ static size_t br_get_link_af_size_filtered(const struct net_device *dev,
  
  	rcu_read_lock();
  	if (netif_is_bridge_port(dev)) {
