@@ -1,46 +1,45 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351B237F89F
-	for <lists.bridge@lfdr.de>; Thu, 13 May 2021 15:21:49 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178BC37F8AF
+	for <lists.bridge@lfdr.de>; Thu, 13 May 2021 15:22:37 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id C281440FAD;
-	Thu, 13 May 2021 13:21:47 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id B6B12843D7;
+	Thu, 13 May 2021 13:21:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TboyzU5y82RN; Thu, 13 May 2021 13:21:47 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 36EED40FA3;
-	Thu, 13 May 2021 13:21:46 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id KNr4EZuzQFKZ; Thu, 13 May 2021 13:21:10 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTP id 28703844C9;
+	Thu, 13 May 2021 13:21:09 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F0646C001C;
-	Thu, 13 May 2021 13:21:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 46EE7C002B;
+	Thu, 13 May 2021 13:21:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4C45BC0001
- for <bridge@lists.linux-foundation.org>; Thu, 13 May 2021 13:21:44 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4257BC0001
+ for <bridge@lists.linux-foundation.org>; Thu, 13 May 2021 13:21:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 2E6AB608D1
- for <bridge@lists.linux-foundation.org>; Thu, 13 May 2021 13:21:44 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2FB4B4051D
+ for <bridge@lists.linux-foundation.org>; Thu, 13 May 2021 13:21:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3CCO3nz-3ZPC for <bridge@lists.linux-foundation.org>;
- Thu, 13 May 2021 13:21:43 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5ey2ToI3Xm3T for <bridge@lists.linux-foundation.org>;
+ Thu, 13 May 2021 13:21:04 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:c2c:665b::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1AA4760A46
- for <bridge@lists.linux-foundation.org>; Thu, 13 May 2021 13:21:41 +0000 (UTC)
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 3A4CC40522
+ for <bridge@lists.linux-foundation.org>; Thu, 13 May 2021 13:21:04 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 2EAF341008; Thu, 13 May 2021 15:21:01 +0200 (CEST)
+ with ESMTPSA id 2511641009; Thu, 13 May 2021 15:21:02 +0200 (CEST)
 From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>
 To: netdev@vger.kernel.org
-Date: Thu, 13 May 2021 15:20:45 +0200
-Message-Id: <20210513132053.23445-4-linus.luessing@c0d3.blue>
+Date: Thu, 13 May 2021 15:20:46 +0200
+Message-Id: <20210513132053.23445-5-linus.luessing@c0d3.blue>
 In-Reply-To: <20210513132053.23445-1-linus.luessing@c0d3.blue>
 References: <20210513132053.23445-1-linus.luessing@c0d3.blue>
 MIME-Version: 1.0
@@ -50,8 +49,8 @@ X-Last-TLS-Session-Version: TLSv1.2
 Cc: bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, "David S . Miller" <davem@davemloft.net>
-Subject: [Bridge] [net-next v4 03/11] net: bridge: mcast: prepare mdb
-	netlink for mcast router split
+Subject: [Bridge] [net-next v4 04/11] net: bridge: mcast: prepare query
+	reception for mcast router split
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -67,85 +66,107 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 In preparation for the upcoming split of multicast router state into
-their IPv4 and IPv6 variants and to avoid IPv6 #ifdef clutter later add
-some inline functions for the protocol specific parts in the mdb router
-netlink code. Also the we need iterate over the port instead of router
-list to be able put one router port entry with both the IPv4 and IPv6
-multicast router info later.
+their IPv4 and IPv6 variants and as the br_multicast_mark_router() will
+be split for that remove the select querier wrapper and instead add
+ip4 and ip6 variants for br_multicast_query_received().
 
 Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
 ---
- net/bridge/br_mdb.c | 39 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 34 insertions(+), 5 deletions(-)
+ net/bridge/br_multicast.c | 53 ++++++++++++++++++++-------------------
+ 1 file changed, 27 insertions(+), 26 deletions(-)
 
-diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index d61def8..482edb9 100644
---- a/net/bridge/br_mdb.c
-+++ b/net/bridge/br_mdb.c
-@@ -16,29 +16,58 @@
+diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+index 6fe93a3..7edbbc9 100644
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -2615,22 +2615,6 @@ update:
+ }
+ #endif
  
- #include "br_private.h"
+-static bool br_multicast_select_querier(struct net_bridge *br,
+-					struct net_bridge_port *port,
+-					struct br_ip *saddr)
+-{
+-	switch (saddr->proto) {
+-	case htons(ETH_P_IP):
+-		return br_ip4_multicast_select_querier(br, port, saddr->src.ip4);
+-#if IS_ENABLED(CONFIG_IPV6)
+-	case htons(ETH_P_IPV6):
+-		return br_ip6_multicast_select_querier(br, port, &saddr->src.ip6);
+-#endif
+-	}
+-
+-	return false;
+-}
+-
+ static void
+ br_multicast_update_query_timer(struct net_bridge *br,
+ 				struct bridge_mcast_other_query *query,
+@@ -2708,19 +2692,36 @@ static void br_multicast_mark_router(struct net_bridge *br,
+ 		  now + br->multicast_querier_interval);
+ }
  
-+static bool br_rports_have_mc_router(struct net_bridge *br)
-+{
-+	return !hlist_empty(&br->ip4_mc_router_list);
-+}
-+
-+static bool
-+br_ip4_rports_get_timer(struct net_bridge_port *port, unsigned long *timer)
-+{
-+	*timer = br_timer_value(&port->ip4_mc_router_timer);
-+	return !hlist_unhashed(&port->ip4_rlist);
-+}
-+
-+static bool
-+br_ip6_rports_get_timer(struct net_bridge_port *port, unsigned long *timer)
-+{
-+	*timer = 0;
-+	return false;
-+}
-+
- static int br_rports_fill_info(struct sk_buff *skb, struct netlink_callback *cb,
- 			       struct net_device *dev)
+-static void br_multicast_query_received(struct net_bridge *br,
+-					struct net_bridge_port *port,
+-					struct bridge_mcast_other_query *query,
+-					struct br_ip *saddr,
+-					unsigned long max_delay)
++static void
++br_ip4_multicast_query_received(struct net_bridge *br,
++				struct net_bridge_port *port,
++				struct bridge_mcast_other_query *query,
++				struct br_ip *saddr,
++				unsigned long max_delay)
  {
- 	struct net_bridge *br = netdev_priv(dev);
--	struct net_bridge_port *p;
-+	bool have_ip4_mc_rtr, have_ip6_mc_rtr;
-+	unsigned long ip4_timer, ip6_timer;
- 	struct nlattr *nest, *port_nest;
-+	struct net_bridge_port *p;
+-	if (!br_multicast_select_querier(br, port, saddr))
++	if (!br_ip4_multicast_select_querier(br, port, saddr->src.ip4))
+ 		return;
  
--	if (!br->multicast_router || hlist_empty(&br->ip4_mc_router_list))
-+	if (!br->multicast_router)
-+		return 0;
-+
-+	if (!br_rports_have_mc_router(br))
- 		return 0;
+ 	br_multicast_update_query_timer(br, query, max_delay);
+ 	br_multicast_mark_router(br, port);
+ }
  
- 	nest = nla_nest_start_noflag(skb, MDBA_ROUTER);
- 	if (nest == NULL)
- 		return -EMSGSIZE;
++#if IS_ENABLED(CONFIG_IPV6)
++static void
++br_ip6_multicast_query_received(struct net_bridge *br,
++				struct net_bridge_port *port,
++				struct bridge_mcast_other_query *query,
++				struct br_ip *saddr,
++				unsigned long max_delay)
++{
++	if (!br_ip6_multicast_select_querier(br, port, &saddr->src.ip6))
++		return;
++
++	br_multicast_update_query_timer(br, query, max_delay);
++	br_multicast_mark_router(br, port);
++}
++#endif
++
+ static void br_ip4_multicast_query(struct net_bridge *br,
+ 				   struct net_bridge_port *port,
+ 				   struct sk_buff *skb,
+@@ -2768,8 +2769,8 @@ static void br_ip4_multicast_query(struct net_bridge *br,
+ 		saddr.proto = htons(ETH_P_IP);
+ 		saddr.src.ip4 = iph->saddr;
  
--	hlist_for_each_entry_rcu(p, &br->ip4_mc_router_list, ip4_rlist) {
--		if (!p)
-+	list_for_each_entry_rcu(p, &br->port_list, list) {
-+		have_ip4_mc_rtr = br_ip4_rports_get_timer(p, &ip4_timer);
-+		have_ip6_mc_rtr = br_ip6_rports_get_timer(p, &ip6_timer);
-+
-+		if (!have_ip4_mc_rtr && !have_ip6_mc_rtr)
- 			continue;
-+
- 		port_nest = nla_nest_start_noflag(skb, MDBA_ROUTER_PORT);
- 		if (!port_nest)
- 			goto fail;
-+
- 		if (nla_put_nohdr(skb, sizeof(u32), &p->dev->ifindex) ||
- 		    nla_put_u32(skb, MDBA_ROUTER_PATTR_TIMER,
--				br_timer_value(&p->ip4_mc_router_timer)) ||
-+				max(ip4_timer, ip6_timer)) ||
- 		    nla_put_u8(skb, MDBA_ROUTER_PATTR_TYPE,
- 			       p->multicast_router)) {
- 			nla_nest_cancel(skb, port_nest);
+-		br_multicast_query_received(br, port, &br->ip4_other_query,
+-					    &saddr, max_delay);
++		br_ip4_multicast_query_received(br, port, &br->ip4_other_query,
++						&saddr, max_delay);
+ 		goto out;
+ 	}
+ 
+@@ -2856,8 +2857,8 @@ static int br_ip6_multicast_query(struct net_bridge *br,
+ 		saddr.proto = htons(ETH_P_IPV6);
+ 		saddr.src.ip6 = ipv6_hdr(skb)->saddr;
+ 
+-		br_multicast_query_received(br, port, &br->ip6_other_query,
+-					    &saddr, max_delay);
++		br_ip6_multicast_query_received(br, port, &br->ip6_other_query,
++						&saddr, max_delay);
+ 		goto out;
+ 	} else if (!group) {
+ 		goto out;
 -- 
 2.31.0
 
