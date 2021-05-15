@@ -2,92 +2,71 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C333819EF
-	for <lists.bridge@lfdr.de>; Sat, 15 May 2021 18:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EAF6381B10
+	for <lists.bridge@lfdr.de>; Sat, 15 May 2021 22:46:34 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D7EA54057E;
-	Sat, 15 May 2021 16:45:04 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 00C0C40461;
+	Sat, 15 May 2021 20:46:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Ex5s1-rgennp; Sat, 15 May 2021 16:45:04 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 49E7C40492;
-	Sat, 15 May 2021 16:45:03 +0000 (UTC)
+	with ESMTP id 4ymEKPHPgoyU; Sat, 15 May 2021 20:46:32 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTP id 44AC64046D;
+	Sat, 15 May 2021 20:46:31 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F268FC0024;
-	Sat, 15 May 2021 16:45:02 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0C41BC0024;
+	Sat, 15 May 2021 20:46:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2EE36C0001
- for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 16:45:02 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3F44BC0001
+ for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 20:46:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 02418606EF
- for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 16:45:02 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 2047B83CB3
+ for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 20:46:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XS9uVcEHk-JD for <bridge@lists.linux-foundation.org>;
- Sat, 15 May 2021 16:45:01 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com
- [IPv6:2607:f8b0:4864:20::736])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1F55F605EE
- for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 16:45:00 +0000 (UTC)
-Received: by mail-qk1-x736.google.com with SMTP id k127so1968508qkc.6
- for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 09:45:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Di0tqQRWLN116HzASz5hiSUHMEBmVNCl6fxRwEe3CFk=;
- b=f+jMnZN0cLBSqvApg/1qJq/cF1cVYc3CpgJKG8GQBoLex92Jp2NG9PuGnfZnIkifdp
- EHbAvdtIakodfGPxpErihof3l0WHWeGkVcvoxt9oUEofkDzNDJIIAhvGwBR0zZEIhRoY
- 9Dr/qC8+m395QhSuoilv4Ljyb0VdVCQwff4Ifa58Iv7N2xFs5ceoHs4tfB0669zWBV5p
- bD6/ADBx1QvRYMTRQ17utQzZHxgzEtBcOboz1A6JhjdjkoQW47OE5vmH+OgxMzvsTMFo
- ZiNk15+bVeIXtjXTx1qboJNN0Qw8F6mZMMA6GibYC7LNIqgmlPbUHX6qf3hK7gvBRv3c
- /OzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=Di0tqQRWLN116HzASz5hiSUHMEBmVNCl6fxRwEe3CFk=;
- b=eaz78XFi/rBX3fduWeTSmeE8NuDt24afH/TQH5QwW6iOh5okJbNcNj6LcFNOyaAU/5
- waG6gha8TFrfo2/2Ycrvfgaqc6ksycmZz740Cb/6w686V2MDRyOBaMIh/W+uCoEAIwu5
- /vBVcJt9PHn+iM63QImbTJgmegSm8sPqLflGHvSvSyeXlRqbv6sDlzr6YGK6TO/8k2Ua
- JidgUX/tN7Gkvg7eK0FPgk3Yj2CQsvPhIexhvINdfBmPo7s7b9nyqtQKvejib/2Nglpo
- QvVXnayG8n+7/HGK10g5iDnC5zmobKHnW83Fqx46GruP1JyJJHKmUBI3Ysg0QygM5sxX
- VJJA==
-X-Gm-Message-State: AOAM5307EF/PaJQF3OL+aQUVPiHTwaHhcZ1U0mzrM/mSEFDw7igIxpBs
- MK85jkUV/mCG+QoDP3fYVO0=
-X-Google-Smtp-Source: ABdhPJyLgyUXFdIj5scFIJV7gr8fsGegR4P4H4zNwmp6ri6zWh1k8GWiIoA1ywsmrJR5DvJlrLQZbw==
-X-Received: by 2002:a37:a2c5:: with SMTP id
- l188mr49124178qke.413.1621097099495; 
- Sat, 15 May 2021 09:44:59 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id j25sm6847094qka.116.2021.05.15.09.44.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 May 2021 09:44:58 -0700 (PDT)
-Date: Sat, 15 May 2021 09:44:57 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Linus =?iso-8859-1?Q?L=FCssing?= <linus.luessing@c0d3.blue>
-Message-ID: <20210515164457.GA1387203@roeck-us.net>
-References: <20210513132053.23445-1-linus.luessing@c0d3.blue>
- <20210513132053.23445-6-linus.luessing@c0d3.blue>
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=infradead.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id yhV9a7g7xTJk for <bridge@lists.linux-foundation.org>;
+ Sat, 15 May 2021 20:46:27 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 0583683CB2
+ for <bridge@lists.linux-foundation.org>; Sat, 15 May 2021 20:46:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=UoJ9DFfErbajmQEYJKCqN6Ov0S2aMEodekeWmwF9UXs=; b=Ha8GFjiLgIF5p/vutkuHnNkj8X
+ +ZHJeYbzLAFq6/hYfPXadLpKaV5J+MI6LN6bdkCmzce1FbH6whyMJLnWo8E93Kyq7Lv0Hj1uO0dx1
+ 5FoyvdvrjChkAzsYT8qmpAnkxvxS5/wdr4mTlDDRSZtgQru4PsQGGeOvtngUq9K90ODOV+QBU/rZ7
+ bID5QH8oDiadMzrMjGHmtUAioBsGbeUWYvbdl4mr2jBqcIpX49L4LkkrPCvZhlPMXuEebvKx9ui3l
+ u86V92lEYBy1wF3O32tMQ92QNPfK+9aiT+QgIJLj4V111PJfn+bKg+aDa64BxdXDdrV17SKWbYQ3U
+ 9mJMb+hQ==;
+Received: from [2601:1c0:6280:3f0::7376]
+ by bombadil.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1li1B3-00CgFX-GE; Sat, 15 May 2021 20:46:25 +0000
+To: trix@redhat.com, roopa@nvidia.com, nikolay@nvidia.com,
+ davem@davemloft.net, kuba@kernel.org
+References: <20210515203849.1756371-1-trix@redhat.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <17c9c0cb-6f7a-20e7-62dd-9a2845e962ba@infradead.org>
+Date: Sat, 15 May 2021 13:46:24 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <20210515203849.1756371-1-trix@redhat.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210513132053.23445-6-linus.luessing@c0d3.blue>
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S . Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [net-next v4 05/11] net: bridge: mcast: prepare
- is-router function for mcast router split
+ linux-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH] net: bridge: fix signature of stub
+	br_multicast_is_router
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,29 +81,51 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, May 13, 2021 at 03:20:47PM +0200, Linus Lüssing wrote:
-> In preparation for the upcoming split of multicast router state into
-> their IPv4 and IPv6 variants make br_multicast_is_router() protocol
-> family aware.
+On 5/15/21 1:38 PM, trix@redhat.com wrote:
+> From: Tom Rix <trix@redhat.com>
 > 
-> Note that for now br_ip6_multicast_is_router() uses the currently still
-> common ip4_mc_router_timer for now. It will be renamed to
-> ip6_mc_router_timer later when the split is performed.
+> Building with CONFIG_IPV6 off causes this build error
 > 
-> While at it also renames the "1" and "2" constants in
-> br_multicast_is_router() to the MDB_RTR_TYPE_TEMP_QUERY and
-> MDB_RTR_TYPE_PERM enums.
+> br_input.c:135:8: error: too many arguments to function
+>   â€˜br_multicast_is_routerâ€™
+>         br_multicast_is_router(br, skb)) {
+>         ^~~~~~~~~~~~~~~~~~~~~~
+> In file included from net/bridge/br_input.c:23:
+> net/bridge/br_private.h:1059:20: note: declared here
+>  static inline bool br_multicast_is_router(struct net_bridge *br)
+>                     ^~~~~~~~~~~~~~~~~~~~~~
 > 
-> Signed-off-by: Linus Lüssing <linus.luessing@c0d3.blue>
+> Comparing the stub with the real function shows the stub needs
+> another parameter.
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
 
-Just in case this hasn't been reported yet. In next-20210514:
+Hi,
 
-$ git grep br_multicast_is_router
-net/bridge/br_input.c:                      br_multicast_is_router(br, skb)) {
-net/bridge/br_multicast.c:      is_router = br_multicast_is_router(br, NULL);
-net/bridge/br_private.h:br_multicast_is_router(struct net_bridge *br, struct sk_buff *skb)
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-net/bridge/br_private.h:static inline bool br_multicast_is_router(struct net_bridge *br)
-                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A similar patch has already been merged:
 
-Guenter
+https://lore.kernel.org/netdev/20210514073233.2564187-1-razor@blackwall.org/
+
+> ---
+>  net/bridge/br_private.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index f9a381fcff094..9fd54626ca809 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -1056,7 +1056,7 @@ static inline void br_multicast_flood(struct net_bridge_mdb_entry *mdst,
+>  {
+>  }
+>  
+> -static inline bool br_multicast_is_router(struct net_bridge *br)
+> +static inline bool br_multicast_is_router(struct net_bridge *br, struct sk_buff *skb)
+>  {
+>  	return false;
+>  }
+> 
+
+
+-- 
+~Randy
+
