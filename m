@@ -1,85 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9D33A2992
-	for <lists.bridge@lfdr.de>; Thu, 10 Jun 2021 12:45:53 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2806C3A2994
+	for <lists.bridge@lfdr.de>; Thu, 10 Jun 2021 12:45:54 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9083B60873;
-	Thu, 10 Jun 2021 10:45:51 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 9BAEB40399;
+	Thu, 10 Jun 2021 10:45:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id WCZxFFeM8t_W; Thu, 10 Jun 2021 10:45:51 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 322046084C;
-	Thu, 10 Jun 2021 10:45:50 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id m-6I1n4KwoBm; Thu, 10 Jun 2021 10:45:51 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 0AA514000B;
+	Thu, 10 Jun 2021 10:45:51 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D46BBC0022;
-	Thu, 10 Jun 2021 10:45:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0AC48C0029;
+	Thu, 10 Jun 2021 10:45:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8B0DEC000B
- for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 10:45:48 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 75241C000B
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 10:45:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 6FA1F60856
- for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 10:45:48 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 64BD083CEA
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 10:45:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id awHkxYXHQd2G for <bridge@lists.linux-foundation.org>;
- Thu, 10 Jun 2021 10:45:47 +0000 (UTC)
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id jWlLzn_eEc-G for <bridge@lists.linux-foundation.org>;
+ Thu, 10 Jun 2021 10:45:48 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
- [IPv6:2a00:1450:4864:20::62b])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B869F6084C
- for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 10:45:47 +0000 (UTC)
-Received: by mail-ej1-x62b.google.com with SMTP id ce15so43377480ejb.4
- for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 03:45:47 -0700 (PDT)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 7CFAB83CA1
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 10:45:48 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id g20so43445074ejt.0
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Jun 2021 03:45:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bwD7tLjIytzsF2Noid/CFwwwO+Xsa64mcNBZBhtUbeE=;
- b=f6CFykudWQOYyA9KqsAlp9KI46ZYLC6Te9Lw8jeyUv2CGnWxNth+pu/KdJPKoSaPRA
- nU+Sq8Sx8yAobNjY5IfBFG2SUU7jkZv54h495lhbPIKLI2tRwLNMmmcyRPJ/25r+yiy0
- KVsHgKrQ7Y/+GngOh0zc9CeGW89PQ0CemtWZRHsIYAjblQUUCkKvOsOUtMBwtP6CxWEY
- gM84BsOouAVSW1UsM9yen6iIdktkfTGyUkBKxSDxHSsqmxCrnrBqVKZl4XJKFkOmOMWr
- t4eGr2rnbjWUHc4dxznWvLvX79w2ql4W+tBNm0GOVxexxrdipxsU7CXrzrgJ1FNS5p0Z
- 4Xuw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=OHs+5yapG1eHIgZGuzyj7K/JjrXGKBa3D/k+j6h/h8k=;
+ b=bzshpus1Tg6X0zN0cY6Fa23oCQq8kf/CmBfNQgHl+CWbazGST9PmfBqX1tlV4zc6Xf
+ 1W3uO3bebMb9PqtCVMpo6KUtl0MDSJ8UGHZiEplDapH2JLGt3BbjS3FCqxyLKcA63ma0
+ AN7/gxLXP+rTgWWmLEzsrIUXkmagqUc3g44KyzkVrZDQLXuAcaLZ/9otMUQnkZm7ZsfA
+ 84rgd6WZZA3s1jSXW7JBsHVnOHsejmd/oK+DV4liQIhuwJxreTmCL9/m75UeKPxeKPP5
+ IjrfOKCiuhfxciBi/02Jn1thKuOu1nMQ8Vpysnuk9U76Ud1u2G/hutcqYpmgA4K8uCxV
+ tgXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bwD7tLjIytzsF2Noid/CFwwwO+Xsa64mcNBZBhtUbeE=;
- b=hilbMsDeMzVOHAkj5zhBOuW3eJePuENpjjVtir3Bb7DMT8pu825qNWyipCLzS2PEgk
- ojIgQpgakUfgztIg2mIPxOo8zxfCGeGxE1sMJdvsRDgueLi/oFy3c/PjCdgzL1RSfhU5
- 8L0IIa5UPlUqvwYR5ohD6g5B+1h37T79/Ku6ucAL8MH66Ru6TAQdJQ08S5I23x2D99iN
- LAl4o3jScnLfKsLcPqYp6jcxwG4pA0Zz59EWZ/80XynNnOfS1WA+zQqHRdc2XWLhJYhP
- grPN/7eu4K1rS2J1O5uuPPnu+LPSZL5+bvy7YuWBwxd1EMkWnx4lL+zshv32/fmmWP3D
- aYXA==
-X-Gm-Message-State: AOAM530W6Sio4sBqsM8p0oQGpdo4ZaluGeefO0E179e7/cf9aJ9TWAMn
- nZLgXrKD3E9/6e2BklskVLTkcw==
-X-Google-Smtp-Source: ABdhPJwd2vywjLqUORTSRomxouvP1kM/orHcJXtkR3DS9pPFXeu7RBhwRxD3TElw6ccJIRP8NiIuTw==
-X-Received: by 2002:a17:906:d1d2:: with SMTP id
- bs18mr3971919ejb.56.1623321945610; 
- Thu, 10 Jun 2021 03:45:45 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=OHs+5yapG1eHIgZGuzyj7K/JjrXGKBa3D/k+j6h/h8k=;
+ b=R2aDY+AdqwI4nZQNdMzcjF7SlTCa/jUhYPF+wMZnzl88hSRjQ++5fE4olZzh6+VVtD
+ EMr1hFC5FCL0uvN83uHIFpjC3pZwgOujfE26hM9Byz9e/Pv6VeV2jGkxm7yh1Wb6USTA
+ pvM9+yeZNgAvAEvkB6H9WF6AltJIsgprXlNBGVKgadq5OkgeX6OOBqugdiFonFC5f60M
+ oY5j09x2oKCqxmqxFDYYxLmPFb+Kmv+wXHcJ0uUTngC0CIsYXsBbS14O/eqmPabRkpCM
+ 6wQ0BiplgSxYItKA+lk7OlJ7NW5ok/PHMRaVYRq93xZ4IZE40xqX7BU6+R9yiI4DQ+XU
+ vHTw==
+X-Gm-Message-State: AOAM533XF3vlX7A1rjj9fEPxUzC3YSG3odewbKgcdUzougvRMP1Cv9zU
+ EFox6JProQSSRMwH69elL73kAQ==
+X-Google-Smtp-Source: ABdhPJzj+VvmRfwnYXmVqS+uA82hQa6Bq5zcWe8gnJgIbFcHl+aw57ZmZXX1ZrF6hToTHWBK0Nl3fA==
+X-Received: by 2002:a17:906:3888:: with SMTP id
+ q8mr3820063ejd.15.1623321946521; 
+ Thu, 10 Jun 2021 03:45:46 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id y1sm866526ejl.7.2021.06.10.03.45.44
+ by smtp.gmail.com with ESMTPSA id y1sm866526ejl.7.2021.06.10.03.45.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jun 2021 03:45:45 -0700 (PDT)
+ Thu, 10 Jun 2021 03:45:46 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Thu, 10 Jun 2021 13:45:35 +0300
-Message-Id: <20210610104537.119538-1-razor@blackwall.org>
+Date: Thu, 10 Jun 2021 13:45:36 +0300
+Message-Id: <20210610104537.119538-2-razor@blackwall.org>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210610104537.119538-1-razor@blackwall.org>
+References: <20210610104537.119538-1-razor@blackwall.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <nikolay@nvidia.com>, bridge@lists.linux-foundation.org,
  davem@davemloft.net, roopa@nvidia.com
-Subject: [Bridge] [PATCH net 0/2] net: bridge: vlan tunnel egress path fixes
+Subject: [Bridge] [PATCH net 1/2] net: bridge: fix vlan tunnel dst null
+	pointer dereference
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,26 +101,133 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Hi,
-These two fixes take care of tunnel_dst problems in the vlan tunnel egress
-path. Patch 01 fixes a null ptr deref due to the lockless use of tunnel_dst
-pointer without checking it first, and patch 02 fixes a use-after-free
-issue due to wrong dst refcounting (dst_clone() -> dst_hold_safe()).
+This patch fixes a tunnel_dst null pointer dereference due to lockless
+access in the tunnel egress path. When deleting a vlan tunnel the
+tunnel_dst pointer is set to NULL without waiting a grace period (i.e.
+while it's still usable) and packets egressing are dereferencing it
+without checking. Use READ/WRITE_ONCE to annotate the lockless use of
+tunnel_id, use RCU for accessing tunnel_dst and make sure it is read
+only once and checked in the egress path. The dst is already properly RCU
+protected so we don't need to do anything fancy than to make sure
+tunnel_id and tunnel_dst are read only once and checked in the egress path.
 
-Both fix the same commit and should be queued for stable backports:
-11538d039ac6 ("bridge: vlan dst_metadata hooks in ingress and egress paths")
-
-Thanks,
- Nik
-
-Nikolay Aleksandrov (2):
-  net: bridge: fix vlan tunnel dst null pointer dereference
-  net: bridge: fix vlan tunnel dst refcnt when egressing
-
+Fixes: 11538d039ac6 ("bridge: vlan dst_metadata hooks in ingress and egress paths")
+Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
  net/bridge/br_private.h     |  4 ++--
  net/bridge/br_vlan_tunnel.c | 38 +++++++++++++++++++++++--------------
  2 files changed, 26 insertions(+), 16 deletions(-)
 
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index 7ce8a77cc6b6..e013d33f1c7c 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -90,8 +90,8 @@ struct bridge_mcast_stats {
+ #endif
+ 
+ struct br_tunnel_info {
+-	__be64			tunnel_id;
+-	struct metadata_dst	*tunnel_dst;
++	__be64				tunnel_id;
++	struct metadata_dst __rcu	*tunnel_dst;
+ };
+ 
+ /* private vlan flags */
+diff --git a/net/bridge/br_vlan_tunnel.c b/net/bridge/br_vlan_tunnel.c
+index 0d3a8c01552e..03de461a0d44 100644
+--- a/net/bridge/br_vlan_tunnel.c
++++ b/net/bridge/br_vlan_tunnel.c
+@@ -41,26 +41,33 @@ static struct net_bridge_vlan *br_vlan_tunnel_lookup(struct rhashtable *tbl,
+ 				      br_vlan_tunnel_rht_params);
+ }
+ 
++static void vlan_tunnel_info_release(struct net_bridge_vlan *vlan)
++{
++	struct metadata_dst *tdst = rtnl_dereference(vlan->tinfo.tunnel_dst);
++
++	WRITE_ONCE(vlan->tinfo.tunnel_id, 0);
++	RCU_INIT_POINTER(vlan->tinfo.tunnel_dst, NULL);
++	dst_release(&tdst->dst);
++}
++
+ void vlan_tunnel_info_del(struct net_bridge_vlan_group *vg,
+ 			  struct net_bridge_vlan *vlan)
+ {
+-	if (!vlan->tinfo.tunnel_dst)
++	if (!rcu_access_pointer(vlan->tinfo.tunnel_dst))
+ 		return;
+ 	rhashtable_remove_fast(&vg->tunnel_hash, &vlan->tnode,
+ 			       br_vlan_tunnel_rht_params);
+-	vlan->tinfo.tunnel_id = 0;
+-	dst_release(&vlan->tinfo.tunnel_dst->dst);
+-	vlan->tinfo.tunnel_dst = NULL;
++	vlan_tunnel_info_release(vlan);
+ }
+ 
+ static int __vlan_tunnel_info_add(struct net_bridge_vlan_group *vg,
+ 				  struct net_bridge_vlan *vlan, u32 tun_id)
+ {
+-	struct metadata_dst *metadata = NULL;
++	struct metadata_dst *metadata = rtnl_dereference(vlan->tinfo.tunnel_dst);
+ 	__be64 key = key32_to_tunnel_id(cpu_to_be32(tun_id));
+ 	int err;
+ 
+-	if (vlan->tinfo.tunnel_dst)
++	if (metadata)
+ 		return -EEXIST;
+ 
+ 	metadata = __ip_tun_set_dst(0, 0, 0, 0, 0, TUNNEL_KEY,
+@@ -69,8 +76,8 @@ static int __vlan_tunnel_info_add(struct net_bridge_vlan_group *vg,
+ 		return -EINVAL;
+ 
+ 	metadata->u.tun_info.mode |= IP_TUNNEL_INFO_TX | IP_TUNNEL_INFO_BRIDGE;
+-	vlan->tinfo.tunnel_dst = metadata;
+-	vlan->tinfo.tunnel_id = key;
++	rcu_assign_pointer(vlan->tinfo.tunnel_dst, metadata);
++	WRITE_ONCE(vlan->tinfo.tunnel_id, key);
+ 
+ 	err = rhashtable_lookup_insert_fast(&vg->tunnel_hash, &vlan->tnode,
+ 					    br_vlan_tunnel_rht_params);
+@@ -79,9 +86,7 @@ static int __vlan_tunnel_info_add(struct net_bridge_vlan_group *vg,
+ 
+ 	return 0;
+ out:
+-	dst_release(&vlan->tinfo.tunnel_dst->dst);
+-	vlan->tinfo.tunnel_dst = NULL;
+-	vlan->tinfo.tunnel_id = 0;
++	vlan_tunnel_info_release(vlan);
+ 
+ 	return err;
+ }
+@@ -182,12 +187,15 @@ int br_handle_ingress_vlan_tunnel(struct sk_buff *skb,
+ int br_handle_egress_vlan_tunnel(struct sk_buff *skb,
+ 				 struct net_bridge_vlan *vlan)
+ {
++	struct metadata_dst *tunnel_dst;
++	__be64 tunnel_id;
+ 	int err;
+ 
+-	if (!vlan || !vlan->tinfo.tunnel_id)
++	if (!vlan)
+ 		return 0;
+ 
+-	if (unlikely(!skb_vlan_tag_present(skb)))
++	tunnel_id = READ_ONCE(vlan->tinfo.tunnel_id);
++	if (!tunnel_id || unlikely(!skb_vlan_tag_present(skb)))
+ 		return 0;
+ 
+ 	skb_dst_drop(skb);
+@@ -195,7 +203,9 @@ int br_handle_egress_vlan_tunnel(struct sk_buff *skb,
+ 	if (err)
+ 		return err;
+ 
+-	skb_dst_set(skb, dst_clone(&vlan->tinfo.tunnel_dst->dst));
++	tunnel_dst = rcu_dereference(vlan->tinfo.tunnel_dst);
++	if (tunnel_dst)
++		skb_dst_set(skb, dst_clone(&tunnel_dst->dst));
+ 
+ 	return 0;
+ }
 -- 
 2.31.1
 
