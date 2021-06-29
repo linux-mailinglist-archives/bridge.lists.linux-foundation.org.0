@@ -1,80 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5953B73DB
-	for <lists.bridge@lfdr.de>; Tue, 29 Jun 2021 16:07:41 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141E93B73D6
+	for <lists.bridge@lfdr.de>; Tue, 29 Jun 2021 16:07:38 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 115F8403BE;
+	by smtp1.osuosl.org (Postfix) with ESMTP id B51ED837AC;
 	Tue, 29 Jun 2021 14:07:36 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lceTRGNqGVbv; Tue, 29 Jun 2021 14:07:35 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id A368F403CE;
-	Tue, 29 Jun 2021 14:07:34 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id VfoCgOa4Z8ND; Tue, 29 Jun 2021 14:07:36 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 503F983843;
+	Tue, 29 Jun 2021 14:07:35 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E03E5C0028;
-	Tue, 29 Jun 2021 14:07:33 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 26D7CC0023;
+	Tue, 29 Jun 2021 14:07:35 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 90162C000E
- for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 14:07:31 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2E8E0C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 14:07:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 7310682846
- for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 14:07:31 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 0C5E2404A4
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 14:07:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id GSBneqcsZnyq for <bridge@lists.linux-foundation.org>;
- Tue, 29 Jun 2021 14:07:30 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ERUes4iJU01q for <bridge@lists.linux-foundation.org>;
+ Tue, 29 Jun 2021 14:07:32 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by smtp1.osuosl.org (Postfix) with ESMTPS id A870E82C21
- for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 14:07:30 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id v20so18035747eji.10
- for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 07:07:30 -0700 (PDT)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 02CFF4049C
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 14:07:31 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id o5so11550603ejy.7
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Jun 2021 07:07:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=F8Bq9LOrbkQe2teXAwhBAJEVwZD45ZGkMkz1XIbZDow=;
- b=bOyLRLO05LKRkEOc74lMre1hcIgPlqFfHeSIbnHbPi4AW+sKiRM4lbixxkhMx7H0od
- 1azpY0RF/jRISRaWzcsGdNGp7xnV3LvfYg88OepcmbC4JFAXjXXzqxFfwI7mP7QF8FK1
- 8TseTb6TCbMVv/F6egydkf+4UBFwgYcOqsDAjnScKoq/rqEnhyEYK/+JLLj3TJZ+inI9
- qX33sDyKc1XhNva9UXUfZ1hMt1xT/ujw/979jSj6bcs9UVIe1mrSOFJTqP6czAWRYlD0
- XMBjY0snHCATCHI30IKkum3MRWwwR9wmTTtmRUe+TArp7dcFi5+x+J6lb2nRo20/S1qo
- ElKg==
+ bh=ExBxfgEAQTeIcUqZy35cgliNZw5pKEc8pvrekt89wDM=;
+ b=hHj7Fs0zMwlg1N14gH3jx9xGdI7XkmEm8PzB+RALPqNc0IAHNCDd8bKAMlUz6P1qcn
+ VeOEL0jG778JVmkwvSzYVwoFtDk3uxfZlA9jGl6l33juRtkWsQgimncnk6niKur2IMGR
+ EqOaqnB1vS5augQiQzsagOD7DmOKigoiQCDDycoTT7MB9qX95qbReK2m5dY4kac8s1EY
+ NoIplKBlUIO9gv3yXmto1o5Us714Vjk1xb6WQD8WuP2iVJK8fFRwNrl/bZV2jj5aC203
+ v/ffQ58zYbpRJcoUVPDmgzemgkOtRcEnDrm7cbnsRNw09xqK+V5FAfg5HykFmHQO39xY
+ o+UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=F8Bq9LOrbkQe2teXAwhBAJEVwZD45ZGkMkz1XIbZDow=;
- b=XTFDX7Z3AuZ73DkavNihitu39Tp/W5kQV3aIn09d+zk/2RAVKNJKNrH8CYMSVNxDoR
- 0VLgbHnJAmVevSxPFAcZTwasBzhXY09AvoyWP4hPAzGPo7b6KY1G8bG95emliKfLente
- uipjMHPt0IZ4+J2eu5Dqfe8vg3rtCI/xNTv9ImzHXFhX25MGh9BgW+/Cc4J5ms3Np1w/
- K1VdLnpbzHQn7KIKgV+jzF/QRkDN+GQ8mkyuhFuQClSkpISuVv3lR1KYFGw0xm69056a
- O5dFm0PnA6HwpUl+M+cosd5soK+AONYuVPEcRdYmneP9vqfGKefU1jjsSOFoWcP7yJZV
- Q6HQ==
-X-Gm-Message-State: AOAM530WKtmT31iaO3Sk/JQzQLd8x3oph6IBsyFQcrjXuLPibq/nkSZF
- nLniUAX3/bevKYEHzfb/piE=
-X-Google-Smtp-Source: ABdhPJwGiLzWQkXhkH2cvJPS6bY913LHD5WNtCSLZHr3+61wEJZBRYxbc2d4WvhTVUaI0XndLjE/YA==
-X-Received: by 2002:a17:906:2cca:: with SMTP id
- r10mr3806844ejr.298.1624975648786; 
- Tue, 29 Jun 2021 07:07:28 -0700 (PDT)
+ bh=ExBxfgEAQTeIcUqZy35cgliNZw5pKEc8pvrekt89wDM=;
+ b=dd5Tl2e7rs026VvZVHYp06daK58NskjaaZAHfOxBl9DKTIUulb9w1OEa0ESvFhCZDa
+ MAe8YQ5flJFw3z3jRGHuwYSDaQlO91kMNi7rxnnwIf91b3VUr3KNWzNz+OVf5GFMtTIX
+ J0KjZcIj7quJSLlX5fGfSDdHGt8ZDVoly7pemGBZ4NLaA2kVV1aUnjvpBa7sVzavjAwT
+ CAOd01WvoufiqMBcjV6uTv3KNKN32k0OJBhxGtOKBkZrHZRnCqtouxalx9iVZqz1Xpec
+ yCB9ZcprDnyL/YIgsNRY7XS/2YO3u7xN7FScALrDovay+IOicpS4lGKxuQcrHk6+nJjd
+ U2/Q==
+X-Gm-Message-State: AOAM533dsOEpPpBp+iTDPyNHA/fejuByWodrOQzPQTIQZiTVihzvG//n
+ CUcnqdIuOPCYC7HtfCpQTss=
+X-Google-Smtp-Source: ABdhPJxw+4Vh4LKmPVGz1+DrfVaZQj1VAwygr4y0s2bilcCRg80ecnuUO67N2CiixpuLs8kMrt8axA==
+X-Received: by 2002:a17:906:52d6:: with SMTP id
+ w22mr30364861ejn.512.1624975650027; 
+ Tue, 29 Jun 2021 07:07:30 -0700 (PDT)
 Received: from localhost.localdomain ([188.26.224.68])
- by smtp.gmail.com with ESMTPSA id b27sm8220121ejl.10.2021.06.29.07.07.27
+ by smtp.gmail.com with ESMTPSA id b27sm8220121ejl.10.2021.06.29.07.07.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Jun 2021 07:07:28 -0700 (PDT)
+ Tue, 29 Jun 2021 07:07:29 -0700 (PDT)
 From: Vladimir Oltean <olteanv@gmail.com>
 To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
  "David S. Miller" <davem@davemloft.net>
-Date: Tue, 29 Jun 2021 17:06:55 +0300
-Message-Id: <20210629140658.2510288-13-olteanv@gmail.com>
+Date: Tue, 29 Jun 2021 17:06:56 +0300
+Message-Id: <20210629140658.2510288-14-olteanv@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210629140658.2510288-1-olteanv@gmail.com>
 References: <20210629140658.2510288-1-olteanv@gmail.com>
@@ -86,8 +86,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Vivien Didelot <vivien.didelot@gmail.com>,
  Tobias Waldekranz <tobias@waldekranz.com>
-Subject: [Bridge] [PATCH v5 net-next 12/15] net: dsa: include bridge
-	addresses which are local in the host fdb list
+Subject: [Bridge] [PATCH v5 net-next 13/15] net: dsa: include fdb entries
+	pointing to bridge in the host fdb list
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,69 +102,76 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Tobias Waldekranz <tobias@waldekranz.com>
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-The bridge automatically creates local (not forwarded) fdb entries
-pointing towards physical ports with their interface MAC addresses.
-For switchdev, the significance of these fdb entries is the exact
-opposite of that of non-local entries: instead of sending these frame
-outwards, we must send them inwards (towards the host).
+The bridge supports a legacy way of adding local (non-forwarded) FDB
+entries, which works on an individual port basis:
 
-NOTE: The bridge's own MAC address is also "local". If that address is
-not shared with any port, the bridge's MAC is not be added by this
-functionality - but the following commit takes care of that case.
+bridge fdb add dev swp0 00:01:02:03:04:05 master local
 
-NOTE 2: We mark these addresses as host-filtered regardless of the value
-of ds->assisted_learning_on_cpu_port. This is because, as opposed to the
-speculative logic done for dynamic address learning on foreign
-interfaces, the local FDB entries are rather fixed, so there isn't any
-risk of them migrating from one bridge port to another.
+As well as a new way, added by Roopa Prabhu in commit 3741873b4f73
+("bridge: allow adding of fdb entries pointing to the bridge device"):
 
+bridge fdb add dev br0 00:01:02:03:04:05 self local
+
+The two commands are functionally equivalent, except that the first one
+produces an entry with fdb->dst == swp0, and the other an entry with
+fdb->dst == NULL. The confusing part, though, is that even if fdb->dst
+is swp0 for the 'local on port' entry, that destination is not used.
+
+Nonetheless, the idea is that the bridge has reference counting for
+local entries, and local entries pointing towards the bridge are still
+'as local' as local entries for a port.
+
+The bridge adds the MAC addresses of the interfaces automatically as
+FDB entries with is_local=1. For the MAC address of the ports, fdb->dst
+will be equal to the port, and for the MAC address of the bridge,
+fdb->dst will point towards the bridge (i.e. be NULL). Therefore, if the
+MAC address of the bridge is not inherited from either of the physical
+ports, then we must explicitly catch local FDB entries emitted towards
+the br0, otherwise we'll miss the MAC address of the bridge (and, of
+course, any entry with 'bridge add dev br0 ... self local').
+
+Co-developed-by: Tobias Waldekranz <tobias@waldekranz.com>
 Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
 v4->v5: none
 
- net/dsa/slave.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+ net/dsa/slave.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/net/dsa/slave.c b/net/dsa/slave.c
-index ea9a7c1ce83e..d006bd04f84a 100644
+index d006bd04f84a..a7b5d2a41472 100644
 --- a/net/dsa/slave.c
 +++ b/net/dsa/slave.c
-@@ -2398,10 +2398,12 @@ static int dsa_slave_switchdev_event(struct notifier_block *unused,
- 		fdb_info = ptr;
+@@ -2415,7 +2415,11 @@ static int dsa_slave_switchdev_event(struct notifier_block *unused,
+ 			struct net_device *br_dev;
+ 			struct dsa_slave_priv *p;
  
- 		if (dsa_slave_dev_check(dev)) {
--			if (!fdb_info->added_by_user || fdb_info->is_local)
--				return NOTIFY_OK;
--
- 			dp = dsa_slave_to_port(dev);
+-			br_dev = netdev_master_upper_dev_get_rcu(dev);
++			if (netif_is_bridge_master(dev))
++				br_dev = dev;
++			else
++				br_dev = netdev_master_upper_dev_get_rcu(dev);
 +
-+			if (fdb_info->is_local)
-+				host_addr = true;
-+			else if (!fdb_info->added_by_user)
-+				return NOTIFY_OK;
- 		} else {
- 			/* Snoop addresses added to foreign interfaces
- 			 * bridged with us, or the bridge
-@@ -2425,9 +2427,15 @@ static int dsa_slave_switchdev_event(struct notifier_block *unused,
+ 			if (!br_dev)
  				return NOTIFY_DONE;
  
- 			dp = p->dp;
--			host_addr = true;
-+			host_addr = fdb_info->is_local;
- 
--			if (!fdb_info->added_by_user &&
-+			/* FDB entries learned by the software bridge should
-+			 * be installed as host addresses only if the driver
-+			 * requests assisted learning.
-+			 * On the other hand, FDB entries for local termination
-+			 * should always be installed.
-+			 */
-+			if (!fdb_info->added_by_user && !fdb_info->is_local &&
- 			    !dp->ds->assisted_learning_on_cpu_port)
+@@ -2443,8 +2447,13 @@ static int dsa_slave_switchdev_event(struct notifier_block *unused,
+ 			 * LAG we don't want to send traffic to the CPU, the
+ 			 * other ports bridged with the LAG should be able to
+ 			 * autonomously forward towards it.
++			 * On the other hand, if the address is local
++			 * (therefore not learned) then we want to trap it to
++			 * the CPU regardless of whether the interface it
++			 * belongs to is offloaded or not.
+ 			 */
+-			if (dsa_tree_offloads_bridge_port(dp->ds->dst, dev))
++			if (dsa_tree_offloads_bridge_port(dp->ds->dst, dev) &&
++			    !fdb_info->is_local)
  				return NOTIFY_DONE;
+ 		}
  
 -- 
 2.25.1
