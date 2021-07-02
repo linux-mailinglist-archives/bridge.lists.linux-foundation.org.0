@@ -1,147 +1,150 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84703B9FA4
-	for <lists.bridge@lfdr.de>; Fri,  2 Jul 2021 13:17:05 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0783B9FD6
+	for <lists.bridge@lfdr.de>; Fri,  2 Jul 2021 13:32:32 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 11A95606B1;
-	Fri,  2 Jul 2021 11:17:04 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 0609460A74;
+	Fri,  2 Jul 2021 11:32:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lxtLo4OxMDlv; Fri,  2 Jul 2021 11:17:03 +0000 (UTC)
+	with ESMTP id aCZGNhT4a3Gm; Fri,  2 Jul 2021 11:32:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 9E9B660648;
-	Fri,  2 Jul 2021 11:17:02 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 891C360AD8;
+	Fri,  2 Jul 2021 11:32:29 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 61E9FC001F;
-	Fri,  2 Jul 2021 11:17:02 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 38E1AC000E;
+	Fri,  2 Jul 2021 11:32:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BE89EC000E
- for <bridge@lists.linux-foundation.org>; Fri,  2 Jul 2021 11:17:00 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EBA9EC000E
+ for <bridge@lists.linux-foundation.org>; Fri,  2 Jul 2021 11:32:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 9E8304224B
- for <bridge@lists.linux-foundation.org>; Fri,  2 Jul 2021 11:17:00 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 83FC141DB7
+ for <bridge@lists.linux-foundation.org>; Fri,  2 Jul 2021 11:32:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=nvidia.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id y6FGpVuX1kUj for <bridge@lists.linux-foundation.org>;
- Fri,  2 Jul 2021 11:16:59 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id DLPxczUCZeuQ for <bridge@lists.linux-foundation.org>;
+ Fri,  2 Jul 2021 11:32:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2063.outbound.protection.outlook.com [40.107.96.63])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 6C50442244
- for <bridge@lists.linux-foundation.org>; Fri,  2 Jul 2021 11:16:59 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2061e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8c::61e])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 9DCD6405CE
+ for <bridge@lists.linux-foundation.org>; Fri,  2 Jul 2021 11:32:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F8VPIA/7YuMmjYC3yVOBs0jeYo8HqZIBAdBnc625XPKhZZNQZNaXakOLphi6DncBAGGgy7ZOu1v81vjk+dDkignpPvZzT0w2gkkyu2hAAgGOV7QrCpo0t4gPEsNKgCkotEr/zHFW4wmtMJ6ijpMt90qvN2lf394dtETUoUGOD4reaJFwvQEFug7mitYGkEWGc4f/IethnuXyJxr+zKSsJktFwvlItxRlnCOcza1/rtiJUPxWFNxunARzOcWwEP9YRCdrgcvgFBT4OGsCr8glAAQ5p16NqStv6wrbsYxJYifxHUR4xUQk9hbNJJuu0FKxNyJnXOFh+4/RAxWxgHl8bw==
+ b=ZVcJ1IQ08R6k/lJ8OHvS/iwuyfp20dBMLwRLebKrTsGpRw9UgMPDP7Z8KsLS6mmop85kEvXKorVbXgJwM+QqWeqHkjzYzgZUokfgkIiQbqO2+AgzWIcSL81Xay89cVofDsIsy/UBCaixOlVR2WCNicFksspa2FSsiD3BgxZY3lQMH1MhsafwWVdJsL+Lg10aZG1qFU4osy/L2Wv1H5JdwVxqjy+OAryAWe3FrPEGul+U11aevJs1evHtKKmktUnagfYSzpS4wFywGtXmmRNe/CGdpFH1FC2Y094lu5istLQH7IrPatvLBn95XTjCUt2ZpQHNvEw51+G8qoo8YvGtow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qd8xLkRCM6SKISMKJf3NDD+yOFlQIiW4imN9nW+F+S4=;
- b=U0kydzJrjBRP3SYCim0j3jzKNcZzr5ckq2GlWc6UFRUyeAaY9rch8O3g2E3v7IXyWTd1QWwEcS+L/mV/FEvTjgvmsfiM8ScEnVS+IMrfsy8zLU6QMIQ2bQAdIWi7WKDbinp5p8PmU+JqJ8v5R9vy3RsmMcXHsFs+1CpCu2KNh1JNd9Thohcwe5Rr1U225dLdPFSkJcOWiu3pzd93iMZm5nzYmVx7L/G2dGwzE8Ej7/cPqDHZenc6SyS4cyhBr3z+qxUxoCRgV70PvNFQ1rOozhcbIx3Y6/hIMSLeEjWFQlWIs8O+Kz7Fpax9+rNvZuXhkFLpqFhlOgDnebKqlKIFMg==
+ bh=hHkywHm6uE4FDats5lJRaIbzP4vyWP5tDTBTkMikN1U=;
+ b=Q7a405hXI58NGupgRZEW1rE+e0Lq0QYlYpqwCdTWi0NVLnBzCeYhkFvnHNaSNNCc5GhpJFBaOfjb9we6liXsIof89f4hs+Esu6vb48EW0FbUE4moof35mgxFkiKviSBeBQY7C9Gk15WAN6Lp/WBth9A0LXpqKeW9ze1a2T9MxG0dhjOZPb7CFk20xeFAyut+d904U4DdNuQeor8mWV1cslkfcA+hx1A6NO1IRzY+k8a5bR/siYAOsb3jQn0YMWVPHwYVGN05DwJAFT9HapvbnWAP5lQ3fCpKRqLZpQaNRQA03c0NAHzU6KWk/LhE/XPktVEVtyWPeLyhcezBMuJcoQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qd8xLkRCM6SKISMKJf3NDD+yOFlQIiW4imN9nW+F+S4=;
- b=sxU2550GqGlfdYNTgzbfEOglkpjnxVjJWOmG5N6vPeFvC4J+659A/4oPY9v3TeSGxNm/wBRQEGF31OJtpy+em4bhB33YeY236SkFLHqO+Vz5INcwooHcpQmHzJ7RkzXm44Lv4YzyHL13I3MGeOjfKtNl4Nv/FyVe1xhmUTuC1eUljFUyTuvNMtEWBxthUvgtHLG609voO1F1Okf6KmQicfkMEWRhKnk05aMOQAJel6IOHk1Wo0/BJ1XgGL/9FSRk19mnXjhi/tZAIOYsmdZ208DiIzi8OMiEcyjogx4H37lVCASlsw3erTW/bCI8wn92rwqZN7Sp4Abr6hM+oX8Y7w==
+ bh=hHkywHm6uE4FDats5lJRaIbzP4vyWP5tDTBTkMikN1U=;
+ b=IXO5DIGIyGio7Uqv9tCxEZ4kqwcqpDhcBfS1BByYyymT8TbbxNPMbP1bR4GB6CQLhE5F17d7l/p80p4NT1Pd2fPD1S6AMGDKplhhBYgQ3kYfbqyieueDFa+7pCwVw47mcjzcuQKJrHc+C7y5ciccodRY77m55mLgjNBCMMbV5Ja62fwqvvNYuHCqz6sopwd2mJrDERmSZSejx/zs8L1TYTrpgWjZuZppmFB+oEtQuLbJQlk7WJYv0ZUm1uOixsGib6vWw7bFNtQlK9OW9EGOqJWEF6GB0Y/5dQvz33sSRlK5o4tw4oJUf+/h6VBbB/HON1KEaTCknKka8LLSgS4F+g==
 Authentication-Results: proxmox.com; dkim=none (message not signed)
  header.d=none;proxmox.com; dmarc=none action=none header.from=nvidia.com;
 Received: from BL1PR12MB5271.namprd12.prod.outlook.com (2603:10b6:208:315::9)
- by BL0PR12MB5521.namprd12.prod.outlook.com (2603:10b6:208:1c7::12)
+ by BL1PR12MB5285.namprd12.prod.outlook.com (2603:10b6:208:31f::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22; Fri, 2 Jul
- 2021 11:16:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.21; Fri, 2 Jul
+ 2021 11:32:20 +0000
 Received: from BL1PR12MB5271.namprd12.prod.outlook.com
  ([fe80::31e3:a65f:b29f:6c25]) by BL1PR12MB5271.namprd12.prod.outlook.com
  ([fe80::31e3:a65f:b29f:6c25%2]) with mapi id 15.20.4287.024; Fri, 2 Jul 2021
- 11:16:57 +0000
-To: Wolfgang Bumiller <w.bumiller@proxmox.com>, netdev@vger.kernel.org
+ 11:32:19 +0000
+To: Wolfgang Bumiller <w.bumiller@proxmox.com>
 References: <20210702082605.6034-1-w.bumiller@proxmox.com>
+ <113d8503-8670-c0a3-54a6-0b18af64632e@nvidia.com>
+ <20210702112919.ccxyp4fyvrjrxkrz@wobu-vie.proxmox.com>
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <113d8503-8670-c0a3-54a6-0b18af64632e@nvidia.com>
-Date: Fri, 2 Jul 2021 14:16:51 +0300
+Message-ID: <fdd49de6-982b-c1e7-5e9b-05ed418fc4a2@nvidia.com>
+Date: Fri, 2 Jul 2021 14:32:13 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
-In-Reply-To: <20210702082605.6034-1-w.bumiller@proxmox.com>
+In-Reply-To: <20210702112919.ccxyp4fyvrjrxkrz@wobu-vie.proxmox.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [213.179.129.39]
-X-ClientProxiedBy: ZR0P278CA0022.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::9) To BL1PR12MB5271.namprd12.prod.outlook.com
+X-ClientProxiedBy: ZR0P278CA0073.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:22::6) To BL1PR12MB5271.namprd12.prod.outlook.com
  (2603:10b6:208:315::9)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from [10.21.241.74] (213.179.129.39) by
- ZR0P278CA0022.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1c::9) with Microsoft
+ ZR0P278CA0073.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:22::6) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4287.22 via Frontend Transport; Fri, 2 Jul 2021 11:16:55 +0000
+ 15.20.4287.23 via Frontend Transport; Fri, 2 Jul 2021 11:32:17 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8ec4e2c7-a633-4a53-bb47-08d93d4ae78f
-X-MS-TrafficTypeDiagnostic: BL0PR12MB5521:
+X-MS-Office365-Filtering-Correlation-Id: 8ef8ac2a-be8d-4661-476c-08d93d4d0d79
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5285:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL0PR12MB55214609829C80A5ABCA44F6DF1F9@BL0PR12MB5521.namprd12.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5285DC830AFC2E9C04CF28D1DF1F9@BL1PR12MB5285.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sMyNxGKsfm0pltyLY8WmP8F/n3vM3ysTrBpczDryzUvBs3wqBXarEEJwOr/09hOiUdH6PI7k3INUTofE78aLIXy5U1NUOXvtpFw8ZfPkOzZc19fdgTmIKbHATdNAkKuZ+gTLkeFUrbFRVQqNA2zOKkW092SmbvvXrahFbhnzhBjKhas4KrPIrwJ02Tj7hF8SLKptnzLqz9wYEBKZvxwi3TdccBtatu4xd6bhIY5ahOnn3BwJT+0mKal3ATxBGVQPGVFNGli0AyK1lWTIFYU7wZLEVlPw7Uu9XxuRu/svnb6UW4Av2Z+E3tX/0mArW9PiWdpkxyir2y6IlODBiEUwzU/G82OSmeNXe6nMAvzJ80SLSpQbjv4po5bVyPleGcsoz2T6e1Nt3tQu8vd8NjPLOCusH9tQYdIDlWfYSRGYAriYUbfwpUw3FwL5xsbeMEa8541sGW/DWLW5XlPmRtUeoCtcHhB/BRqI+LAslKZmHKTX0JwW+DcO0rwuf8QMssRelxGkzauifhfM1gQpQ1DjYd36bNh1M7avwNFWEov2B9xJ2nZIsN5grmofaYRXKweNVGE2HcHxqgxDdyGRa09h6RMJteU3Pbf9bRlcsDzGcuMPziKQAeNNPQTB2SBb5ZQmE/Ra3RYI6no9DuitoycQOc28ArcjZ4Zm+XrFWdmo2nfnQxJMwzRrvwPPM2R5b2bmi3/wG4oi9ea7unMxdOWZMdQAiT+mVgUG9p7mVYPcneE=
+X-Microsoft-Antispam-Message-Info: i7xwqtbOGlNE4H/vdINGDBryone4t7HtuZ73HWZfNyAzMqfLOyrYfrQTgafbmzYA27fozs0rQ8Gjjxv8M8foW+8UMs1bRo5e5rpOYQY/P/03O/p7JBjzbPAduoWIOjAfVvh5P5BD007WWivlTWiCUam+U21wGEUlrTu/hUBIRv7AhzBbQlQyV29sJr74GSEdXH5tJa4853PMAwNxGQN+VF/OB0Pmr6n+4gGBkquRo3wzrtwkILA+2voLjhT1LWuPrWvldBBum5WGjCmYZ2077rITPGzv/mKhH+b4zhR1UiSEx6WHnbWA5lizP5t112Rtch9+zZoSYaEgabviBC7HJSTjFKJTcOcwt5GC4lCw/ZBsqbsumtJyltRI2K0Ms2Kr/ekjljErJ4quLWBE06Mq0EsaCdEhDaBflTw+j5BbTsaMC00Ot/ALYkgpjiFr8DFL0k7sCVg33Wl9HAuAWsv4OpTiHe22kyBGwDiGRttR16tJKNWLCZIaQ499z7CI2tuyBINVTcQjUd2WlXzotk5EWsQaCULUpL+8aemUxvqWf1OS1qV0Z/ZKrRnkI4oVSscMTMJFKqeknQ4UkTuCAxbywLoBz1rElQd3OnzNs13J+Twqhd77qkNd9XvwPmg6xEt5hOfkLFRfWtpnTYpD3niegbtPQvHSV73fYT5kw8QeDRVMBcV02RzBeiif16tklJol1fYBFVv/n24Iskxi1nJe5JAeVnC2GkJg7PYVqaE3aVg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL1PR12MB5271.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(396003)(376002)(39860400002)(346002)(31686004)(31696002)(86362001)(53546011)(2906002)(16576012)(26005)(4326008)(36756003)(316002)(5660300002)(8936002)(956004)(478600001)(54906003)(2616005)(8676002)(6666004)(38100700002)(66476007)(16526019)(66556008)(186003)(66946007)(6486002)(83380400001)(43740500002)(45980500001);
+ SFS:(4636009)(396003)(366004)(376002)(39860400002)(136003)(346002)(2906002)(6486002)(36756003)(66476007)(4326008)(66946007)(83380400001)(186003)(478600001)(8676002)(8936002)(16526019)(66556008)(6916009)(26005)(86362001)(38100700002)(31686004)(5660300002)(2616005)(16576012)(54906003)(31696002)(316002)(956004)(6666004)(53546011)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHBPTTROd2xqV3F3dTVBdFdCeGQ4aVNPdTllVWR4NWZSL2FhaUN3ak1zUXA0?=
- =?utf-8?B?T1pmTktFbWtob1gyR1FzQU1VVFhUa0srYThUT0lWbkpudU1HSFgwdmhRWnBN?=
- =?utf-8?B?QmRkeU5hK0lxdXROMkQvc29OQWZHcGhLV05Cc3hVc2FQbjIwWWZRZm5EcWFN?=
- =?utf-8?B?dGZZd0hNQlNWUm5XTlZzanJ3blJ0NVBkYnQxUDBKTkt1SlRyRWU5Vy9ySDZh?=
- =?utf-8?B?U2RtakNRY2JQSHlIUkttUnpPenlWZUoxYVpCTEMzbDVNR0VFY2pYNEFlNk5v?=
- =?utf-8?B?dUdLMFNCSGY3Ykk5Wk5sL001dmcwVW9CNkVJRmV0b3NUcTJJSXZ1bE9PajU1?=
- =?utf-8?B?NnZhRjI4U0d1NGZueCtUaWJwWnY5SFBYYkFieUNyREJhYytCcnJ2QVZvU0Vr?=
- =?utf-8?B?R2ltWWEyWU96S3d5cXIzQkFQMk1oRzJMaWdQNUNqSm9lNzlrMHh1KzhxVEw0?=
- =?utf-8?B?NXpGTzB5WVNNakpqNmVkMlFVSXlmNGFTOXJlcTVRVnhuU1JEZ29teFVMUldu?=
- =?utf-8?B?MDVCNjlSZE5HY3VpNE9pL3h2YTZUM2FBNEcxNVJ0SFd3L3NuM2ZUK1pMZ1RD?=
- =?utf-8?B?TFNKZlhyTkNaVnVxa2psSm05MmpkaVpPeTE1NkJ0dUZjaC9kSmNocDZkcUlQ?=
- =?utf-8?B?RmFsT1p6WGdQc01meFZvQ1IrSmxEYS8wakc0ZWhDbmRDQWhqeFpQL24vdEhi?=
- =?utf-8?B?TExYdWVUand1UVZIblZ5NW9OT1orK2Z6MU0yR285andGZHB5UTlsMnphbTZT?=
- =?utf-8?B?MEV6Wks3M25TSHczVnh0UVExeXZYb255S0hPRXFTU1Q5S0xJWVZHUDhTd3dm?=
- =?utf-8?B?WFkyYUdkSDVFc1BLOVJaRGp3OFVSWDM0OFdQK1lUQkpScDI5UkNoQ2liOVhO?=
- =?utf-8?B?WDFOZlZRVHNLcW9LSk8vN2R6V3lxTnBwQ1ZkVEJiVCs0SE9DYlptd3VKUWVI?=
- =?utf-8?B?eXhXWUljaWYzdnE4Z0E5RnF4V3l6MzdrMWN0RHJxUWN0aDhWNkE1UzgwZy83?=
- =?utf-8?B?RjFRaFVEbGJPRlBodXFNYzJhVFAwWVhIK3BSOTV3Q0FaZHdDeDNpMUw5TktP?=
- =?utf-8?B?QUp0MllKcFJZWFJiNGdLWGRDb0xRUWRyU25qUjJ4ek9kTWJJejVydmNJbktp?=
- =?utf-8?B?dzBZMGkyZDZiWmo3c2JOTmFFT0o4RUNOMXdJQXFLckNmYjEwRmhJbncrVlhz?=
- =?utf-8?B?cDJRVGNCbFpldHNlR2RiYUl4SWlKSTdNaWwrU0srRmJaYjdzaVZFU2FZUVcr?=
- =?utf-8?B?SjhYOE1BK3FKRi9IZGRtek0xZVBxdmZFenExTE5uczFpRDZObGVQUjhPeG5w?=
- =?utf-8?B?TVczS3V3RFFGOHNIYkowWHl6VEs3bDArYUI2M1AvaTlRdzBHaUhWWmdaUStz?=
- =?utf-8?B?L0JJbnBTLzFnUzlMUDhTeW5Db1RFY2NoOFY4ck1hSG05VFhDTUpseTVNeGRz?=
- =?utf-8?B?d2NqUjBzdnN6KzlxM0tnaU1oZjhRSGRyYzl4QVpyWFFSeDh2cVJCUXpEcVlG?=
- =?utf-8?B?cGY3UmYxcThwN2JUc0c3ZWVESTQrVU02d29zcFBYVmxROVA0REJLYVc2UDJI?=
- =?utf-8?B?OENLSm1Lb1JVR1p5V3ByMUFNekJzTzB4ZFJmR1pSRDdrUE9VcncxME9CLzJ5?=
- =?utf-8?B?dHZQTGlFTWFiamNHVEFyNlFWK0tRUmYxcFIvcmRPNmtVakFnSDFXVUpVZ0lz?=
- =?utf-8?B?cmNINlBoZHR4bnFscjJNdlRDMTZsa0ZQd0pRNFRWTTRvdEpnOUUvMXh5aHhK?=
- =?utf-8?Q?aur42qYUUmZyYZ6YwjT2KD1FR/aklwU49Bkof39?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dXBiUHdQbFBlTS9NUnlFNEk5RkFRZFdEVWdFVnRxL3FvMDVzNG8wOGZwOHRq?=
+ =?utf-8?B?YVlmblJMWklkU1F5U2QwMGxBaU9SSUdielVxOVdaWTM0eXh5WWJ4d2VtSXpF?=
+ =?utf-8?B?QStkWUlpaGFJTmNtUlVhbUNxcnM0RloxYk5EV09rdGxRSnBRNUxqaER5OHJI?=
+ =?utf-8?B?MUcxV29YajlxUHIrdytUWERvNzRnUDVJSk9GcHhTYjJRUWdSbWdNdDFaaGRh?=
+ =?utf-8?B?SzBGMnVYb1lPSGs0TW41NVBwVGgxcnlPQnAwQktSbkZhQ3J3RllTVDZMRFdS?=
+ =?utf-8?B?UFBOeGxhOXRkUEhkU2x2d1FyZXpJQ1RDemZOT1Rjd3pjN0xKK1NEK2J5dWp5?=
+ =?utf-8?B?NnJ3ZnhydnJuYUc0ODNpRHJBZlF4WHNKT2Y0TS9WcGF3MkpBS0E2cUEyRmpx?=
+ =?utf-8?B?a1NXem5kcVZQQlBxUkJ0Y0t6RnU4QmNiazJVVFpRaExBNTZmYmhsZVpIUHJa?=
+ =?utf-8?B?eVZCZENsZmhQV3pWWkxJSTM0S29nSE5qK0M5UDV0ZmNkTXRHVnpWeWhQNDFq?=
+ =?utf-8?B?aHRSeTRuK0xYVlNEQ2ExcHFzQmJmamE4ZnJwTW45b0tOanVpanRlcnkxaXN5?=
+ =?utf-8?B?UmZ6Q3NGOGMzMy9CTGEvZlFSNzkxMGhEd0Z4bEVnRXhOY0g3NFBsaEUzYmh0?=
+ =?utf-8?B?aU9hd05QZW9DblU2Wm1tb2RhWmxFSGZwNkdEc0NmdVlUYjVBZk9IOXQwa28y?=
+ =?utf-8?B?UDZnQ0k1dms1RjlqSWpjOXZSVGIyQ2V3RklOODJHUUE3SjEvdjNRUXBHOVdJ?=
+ =?utf-8?B?T0FGeXYzZDRVeFFmSnJiOVBPclFNNFhlRjBpcXJTdHNuYVp6TlhIRDNuQzhv?=
+ =?utf-8?B?RlhnY0Ywbm5ocDhvSW5xeTJlYldDRE15dXFZTmIxQ2VvaXN2SU1zMGczQ3FJ?=
+ =?utf-8?B?SGJuOWFCTTV4RExlSmNmcm5KRU1YNmlwWHZBMEgybnZua0hFajJla3J4enB3?=
+ =?utf-8?B?dDhSYlV2bzBPRlZGMWFlWGh6NnVYWHVHSTBoc050WWRXYzdWcWRPemo5RjFy?=
+ =?utf-8?B?NHJLL3c1UGlCN1dwQWoyTWNNWTVOQU13dDNwWXJUMHR4OU82eDdkYXdYdzR0?=
+ =?utf-8?B?Mk5hSkxkN05oS3M5OHV5UURaYjFzVm00S0lMMFdvWFlJaGF6WU9oZncxd1lE?=
+ =?utf-8?B?QkdET2RNbkdFR0ovUmIyWHc5M29OekY5dC92eklLcGtxQ0ZZZzgwM25IM0dG?=
+ =?utf-8?B?ZkFpQ3ZjYlduQk9hQmJ6UDUwaDgrY3FHTEFvSk1qUk9zTGtiTzdVa21KMlVo?=
+ =?utf-8?B?eFYrVG4xdUJTcENpaCtIUVZtZXlzNlpKTG9FR043OTUvWXJsRWhiUHQ0cHpq?=
+ =?utf-8?B?MjFZb2wvbUw4S254MCtUZHRsZ2FKcTlST1IycHR2M25RekxJODZBenlQZVl6?=
+ =?utf-8?B?T2FHcENBaHQyK2NKNmlIcHJhVFRtYm1Tc0Q1aDg3K1YzME15Z21vdlRhOUlU?=
+ =?utf-8?B?eFlRWjFvR2VWQmU2OVh1b0IwSG01bVlod3hiYXZzV2oyUTdqak5pQTl2Q09m?=
+ =?utf-8?B?d2tleEhuMWM1ajVGNDVIWFhKZk1hdTV2eXBvUFVDMHp2eDNuZGVXcnRjWkxm?=
+ =?utf-8?B?V1c4dmE2bytqS2dMS0ZETlExN01FM09zV1kzKzdHakYrSWhKdkt1dG1Ob0tP?=
+ =?utf-8?B?bkprNHUyVitMN2VrYm4rYUpEczJ4MllDNXJhdWIvbDdPamdmV1lmZXFPNWho?=
+ =?utf-8?B?OTRsNTlocERuZXh5d2picUlIWU5YSm1nT0IyWDljK3J4SFdldDBWM0ZBTGUy?=
+ =?utf-8?Q?1xjlEhwOAUifYN3Bjo+qr/ejC0HPrHwniLcAT2h?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ec4e2c7-a633-4a53-bb47-08d93d4ae78f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ef8ac2a-be8d-4661-476c-08d93d4d0d79
 X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5271.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2021 11:16:57.3169 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2021 11:32:19.8539 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zMxXaIMJVuVx22bGAZ0oWIszx2Cl8MZA0WrNcZIK5i77Bp/uNmL63d9aA5H4LS5iuVMCB3NpBIESJqQ5G6uYAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB5521
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7C7/iDNXTT59h3pQYIRjinOzzKIgdITsLCyIo7zaJfhWrD5vsXPrr4KO4gG4SjtIJKsN4jvzN46ktpoS7FbXjQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5285
 Cc: Vlad Yasevich <vyasevic@redhat.com>, "Michael S. Tsirkin" <mst@redhat.com>,
- bridge@lists.linux-foundation.org, Thomas Lamprecht <t.lamprecht@proxmox.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ Thomas Lamprecht <t.lamprecht@proxmox.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH v2] net: bridge: sync fdb to new
 	unicast-filtering ports
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -158,79 +161,84 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 02/07/2021 11:26, Wolfgang Bumiller wrote:
-> Since commit 2796d0c648c9 ("bridge: Automatically manage
-> port promiscuous mode.")
-> bridges with `vlan_filtering 1` and only 1 auto-port don't
-> set IFF_PROMISC for unicast-filtering-capable ports.
+On 02/07/2021 14:29, Wolfgang Bumiller wrote:
+> On Fri, Jul 02, 2021 at 02:16:51PM +0300, Nikolay Aleksandrov wrote:
+>> On 02/07/2021 11:26, Wolfgang Bumiller wrote:
+>>> Since commit 2796d0c648c9 ("bridge: Automatically manage
+>>> port promiscuous mode.")
+>>> bridges with `vlan_filtering 1` and only 1 auto-port don't
+>>> set IFF_PROMISC for unicast-filtering-capable ports.
+>>>
+>>> Normally on port changes `br_manage_promisc` is called to
+>>> update the promisc flags and unicast filters if necessary,
+>>> but it cannot distinguish between *new* ports and ones
+>>> losing their promisc flag, and new ports end up not
+>>> receiving the MAC address list.
+>>>
+>>> Fix this by calling `br_fdb_sync_static` in `br_add_if`
+>>> after the port promisc flags are updated and the unicast
+>>> filter was supposed to have been filled.
+>>>
+>>> Fixes: 2796d0c648c9 ("bridge: Automatically manage port promiscuous mode.")
+>>> Signed-off-by: Wolfgang Bumiller <w.bumiller@proxmox.com>
+>>> ---
+>>> Changes to v1:
+>>>   * Added unsync to error case.
+>>>   * Improved error message
+>>>   * Added `Fixes` tag to commit message
+>>>
+>>
+>> Hi,
+>> One comment below..
+>>
+>>>  net/bridge/br_if.c | 13 +++++++++++++
+>>>  1 file changed, 13 insertions(+)
+>>>
+>>> diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
+>>> index f7d2f472ae24..2fd03a9742c8 100644
+>>> --- a/net/bridge/br_if.c
+>>> +++ b/net/bridge/br_if.c
+>>> @@ -652,6 +652,18 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
+>>>  	list_add_rcu(&p->list, &br->port_list);
+>>>  
+>>>  	nbp_update_port_count(br);
+>>> +	if (!br_promisc_port(p) && (p->dev->priv_flags & IFF_UNICAST_FLT)) {
+>>> +		/* When updating the port count we also update all ports'
+>>> +		 * promiscuous mode.
+>>> +		 * A port leaving promiscuous mode normally gets the bridge's
+>>> +		 * fdb synced to the unicast filter (if supported), however,
+>>> +		 * `br_port_clear_promisc` does not distinguish between
+>>> +		 * non-promiscuous ports and *new* ports, so we need to
+>>> +		 * sync explicitly here.
+>>> +		 */
+>>> +		if (br_fdb_sync_static(br, p))
+>>> +			netdev_err(dev, "failed to sync bridge static fdb addresses to this port\n");
+>>> +	}
+>>>  
+>>>  	netdev_update_features(br->dev);
+>>>  
+>>> @@ -701,6 +713,7 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
+>>>  	return 0;
+>>>  
+>>>  err7:
+>>> +	br_fdb_unsync_static(br, p);
+>>
+>> I don't think you should always unsync, but only if they were synced otherwise you
+>> might delete an entry that wasn't added by the bridge (e.g. promisc bond dev with mac A ->
+>> port mac A and if the bridge has that as static fdb it will delete it on error)
 > 
-> Normally on port changes `br_manage_promisc` is called to
-> update the promisc flags and unicast filters if necessary,
-> but it cannot distinguish between *new* ports and ones
-> losing their promisc flag, and new ports end up not
-> receiving the MAC address list.
+> Right, sorry, I don't know why I missed that.
+> Conditional setup => conditional teardown, obviously >.>
 > 
-> Fix this by calling `br_fdb_sync_static` in `br_add_if`
-> after the port promisc flags are updated and the unicast
-> filter was supposed to have been filled.
+>>
+>> I've been thinking some more about this and obviously you can check if the sync happened,
+>> but you could avoid the error path if you move that sync after the vlan init (nbp_vlan_init())
+>> but before the port is STP enabled, that would avoid error handling altogether.
 > 
-> Fixes: 2796d0c648c9 ("bridge: Automatically manage port promiscuous mode.")
-> Signed-off-by: Wolfgang Bumiller <w.bumiller@proxmox.com>
-> ---
-> Changes to v1:
->   * Added unsync to error case.
->   * Improved error message
->   * Added `Fixes` tag to commit message
+> Yeah, that's true. Although it'll be easier for future changes
+> introducing another error case to forget about taking this into account.
+> Which way do you prefer?
 > 
 
-Hi,
-One comment below..
-
->  net/bridge/br_if.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
-> index f7d2f472ae24..2fd03a9742c8 100644
-> --- a/net/bridge/br_if.c
-> +++ b/net/bridge/br_if.c
-> @@ -652,6 +652,18 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
->  	list_add_rcu(&p->list, &br->port_list);
->  
->  	nbp_update_port_count(br);
-> +	if (!br_promisc_port(p) && (p->dev->priv_flags & IFF_UNICAST_FLT)) {
-> +		/* When updating the port count we also update all ports'
-> +		 * promiscuous mode.
-> +		 * A port leaving promiscuous mode normally gets the bridge's
-> +		 * fdb synced to the unicast filter (if supported), however,
-> +		 * `br_port_clear_promisc` does not distinguish between
-> +		 * non-promiscuous ports and *new* ports, so we need to
-> +		 * sync explicitly here.
-> +		 */
-> +		if (br_fdb_sync_static(br, p))
-> +			netdev_err(dev, "failed to sync bridge static fdb addresses to this port\n");
-> +	}
->  
->  	netdev_update_features(br->dev);
->  
-> @@ -701,6 +713,7 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
->  	return 0;
->  
->  err7:
-> +	br_fdb_unsync_static(br, p);
-
-I don't think you should always unsync, but only if they were synced otherwise you
-might delete an entry that wasn't added by the bridge (e.g. promisc bond dev with mac A ->
-port mac A and if the bridge has that as static fdb it will delete it on error)
-
-I've been thinking some more about this and obviously you can check if the sync happened,
-but you could avoid the error path if you move that sync after the vlan init (nbp_vlan_init())
-but before the port is STP enabled, that would avoid error handling altogether.
-
-Thanks,
- Nik
-
->  	list_del_rcu(&p->list);
->  	br_fdb_delete_by_port(br, p, 0, 1);
->  	nbp_update_port_count(br);
-> 
+I don't have a strong preference, up to you really. Both ways are correct. :)
 
