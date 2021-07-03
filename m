@@ -2,138 +2,91 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498F23BA89D
-	for <lists.bridge@lfdr.de>; Sat,  3 Jul 2021 13:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9043BAA72
+	for <lists.bridge@lfdr.de>; Sun,  4 Jul 2021 00:04:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id F1C8F41E63;
-	Sat,  3 Jul 2021 11:58:47 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 6176540291;
+	Sat,  3 Jul 2021 22:04:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PQbBaWWp3qKr; Sat,  3 Jul 2021 11:58:47 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 5D88540388;
-	Sat,  3 Jul 2021 11:58:46 +0000 (UTC)
+	with ESMTP id o2mzqyLn7aex; Sat,  3 Jul 2021 22:04:37 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 4C2A540239;
+	Sat,  3 Jul 2021 22:04:36 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 80EC9C0025;
-	Sat,  3 Jul 2021 11:58:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EFC68C0022;
+	Sat,  3 Jul 2021 22:04:35 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 296E6C0022
- for <bridge@lists.linux-foundation.org>; Sat,  3 Jul 2021 11:58:44 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ACE55C000E
+ for <bridge@lists.linux-foundation.org>; Sat,  3 Jul 2021 22:04:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 187B640388
- for <bridge@lists.linux-foundation.org>; Sat,  3 Jul 2021 11:58:44 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 96FAD605BA
+ for <bridge@lists.linux-foundation.org>; Sat,  3 Jul 2021 22:04:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id a3Hoeo9Ovtyo for <bridge@lists.linux-foundation.org>;
- Sat,  3 Jul 2021 11:58:43 +0000 (UTC)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key)
+ header.d=waldekranz-com.20150623.gappssmtp.com
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id T1ZWLi36eaIa for <bridge@lists.linux-foundation.org>;
+ Sat,  3 Jul 2021 22:04:30 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (mail-db8eur05on2047.outbound.protection.outlook.com [40.107.20.47])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 1346141B0C
- for <bridge@lists.linux-foundation.org>; Sat,  3 Jul 2021 11:58:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l+nRUFLnzWBjzeQaLOz6r0OACAuZ9qYjiZIkUZCGb/Veb67+dhKoxeX2WeXnqOJBNzeLPepZCeqOLo/cobUVr4JF2Zlg9S+HTq7pkruV8i6kFOREGB8vp4hNrjmo7Fvy2I6THgBqd5vPFPbexalxzT60mQXZVdWcm5LhCFU4zmbXqq8uoA2W9npuMEEsJ3x4HVkjnapwA7IPQsMgxW3J2GhcWQgjzsAHeSDQ0BMl0w7Q5yl3rmQJCXQi3xGItEf0q41C5FgasOhzdQYfSOkzQrxSYpmPqWoObL+NCplIkXUzzzEzeGYSO6DUBx8Avy8WC7amAgKV19Qd7Wo4r/OCnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DduN+q9h+tIBuMlP1SW0pq2bUKwwt+2igei15Vdqnek=;
- b=LjhiR5l6lqayj/MaPkqQaPOTuAmzpcpivFQkwCyIG4Y4sP0Wi+RXki5M4WCj6twJsxMDuOKMSy9tyQsb7/gURik0IeXVe/lWmNzB5/jTGP/h4vvDFBac5tj10SLRCNmAA/CZyzxURDCK5qLDkyFq5apCPEAbrUWKM6OCztyfEJwB+fP19dTEQdKIzdFC27HRbUjFVrbN6TJxyJvvO4BQ8FBAA6IRulW3cxWN8h7ewO35/Z2VOzrAJfq6aCROZloND1we/w7qTT8MljoyEGnh4JSWPw7EPvBFcV9VYwjBpf758jGavYa4JQjb4EZ1ynLFlCJF3WBBDRvKXUYifwBgmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DduN+q9h+tIBuMlP1SW0pq2bUKwwt+2igei15Vdqnek=;
- b=h1R8WAbjiWvWq25/oggMOeUnCjqHWODUSRzmUj2aS7Pwk0PDOiTwzdc4bL27Mcsy09WBLtnoRHLDf3uF5pYHtMr8GusObDT21jeh7Up21r1RMQxt2svnZxp7DHtKUuvmYXc1buS1IARGL53Sghl5VCxO2qIqXN6ZKIhRiZB7qL4=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0401MB2509.eurprd04.prod.outlook.com (2603:10a6:800:56::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22; Sat, 3 Jul
- 2021 11:58:40 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::b1a0:d654:a578:53ab]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::b1a0:d654:a578:53ab%7]) with mapi id 15.20.4287.031; Sat, 3 Jul 2021
- 11:58:40 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Date: Sat,  3 Jul 2021 14:57:05 +0300
-Message-Id: <20210703115705.1034112-11-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 52EDE605A3
+ for <bridge@lists.linux-foundation.org>; Sat,  3 Jul 2021 22:04:30 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id u20so18814416ljo.12
+ for <bridge@lists.linux-foundation.org>; Sat, 03 Jul 2021 15:04:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=okdp90Yfcba26hN1esNZqS1HVRaNvnmmGNRxv0IzGOA=;
+ b=UkDNKK6P5Q6tEKjRB/ZpGzLc6DljGaMUwdfOO3uFNsCTsK6iqOOkvmQcfi/BYdsebx
+ 6Yq6vw3qhyPBlQJ9BoupRYOVhwKQRZePFla1TNyO+XGvAX9vudjaTSGaLRw7ZghuZPli
+ 2ZaTivyuOiy/O35PC7twa3732RDd7PEDgO+4zcgWQcO06dGxeM+OmJ+ZA9JedXryxxL/
+ qOTd9b18JGJWiMjpzLth19IC2/XI9OjVR0fBiH+wgD1en6h9bfzJhe4izj8vrX7sNc1R
+ jkKCTtszDqcUEjYq1ehWIK3Ulkjf9OIeU5AEKNgD1tOVxW0f0Ctxrqoufz3lWzaJGQgm
+ fkTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=okdp90Yfcba26hN1esNZqS1HVRaNvnmmGNRxv0IzGOA=;
+ b=iRCRrOhrkKeF3LMx9GXp+RRI+zYW/jyV9ptA1UPOf6CgeiTRd+2wvbYKwIRh9Q1sNa
+ RG1dUysiJRrQSJ/z6y0d0u4SvGD/ovhoARp/X3VHzSF3HP0KgV1dLPvr9KkccF+AMkRg
+ 58ck9AaHydpU67X9vUm8pl2EyObDoWIWNGUR1BBxjUft9Nr5LwY9yF0luX0uL+surgT4
+ 7l2QvTLmDxMFo+86OrwVmf6zJpow/6FOIE8WuJacSUl7bT1j/ODxDsVWJQhv0rRjT4QC
+ XCq7wOM6gx4jcxXPX81t9t6uybVVqq+Y17CMtPTKT8sE/c+2X1iyiCFEWMnAYSmAGOds
+ 4xCw==
+X-Gm-Message-State: AOAM531lpWG2syFAJtuoT06elm1sTVWn7VOzlafMJFqyuQDU4ZrTFieL
+ YB8auwYCNQ6aTLOsIyn8DQRU3A==
+X-Google-Smtp-Source: ABdhPJxTMAsHczz51ZHc3ERw1L5KSdX5BTupf/L8bZ9CfpJtQ4LW0DRa9vuH+SDSeGGcw/SCPy9nSQ==
+X-Received: by 2002:a2e:9752:: with SMTP id f18mr2787950ljj.165.1625349867934; 
+ Sat, 03 Jul 2021 15:04:27 -0700 (PDT)
+Received: from wkz-x280 (h-81-170-220-178.A259.priv.bahnhof.se.
+ [81.170.220.178])
+ by smtp.gmail.com with ESMTPSA id d24sm639710lfa.243.2021.07.03.15.04.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 03 Jul 2021 15:04:27 -0700 (PDT)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
 In-Reply-To: <20210703115705.1034112-1-vladimir.oltean@nxp.com>
 References: <20210703115705.1034112-1-vladimir.oltean@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [188.26.224.68]
-X-ClientProxiedBy: PR3P189CA0081.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:102:b4::26) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
+Date: Sun, 04 Jul 2021 00:04:26 +0200
+Message-ID: <871r8f836d.fsf@waldekranz.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (188.26.224.68) by
- PR3P189CA0081.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:b4::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4287.23 via Frontend Transport; Sat, 3 Jul 2021 11:58:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5cd5d110-5c19-4662-0763-08d93e19e627
-X-MS-TrafficTypeDiagnostic: VI1PR0401MB2509:
-X-Microsoft-Antispam-PRVS: <VI1PR0401MB2509BD2E080CF6F080AD40B5E01E9@VI1PR0401MB2509.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oxsFHy9I+zX5H/aZhuo6AD18Jtb+Pz0oV/H4kEAME5PQ5mrLcnI0DGGqjfr2WfJtGWvQIzfLVnV81Dm3eqX+e8LqRUORCod6gLi0CFia3DqdKRFmqujLn1zCB0tYHsRZ1IigEXVoK3vqZivHxWqeP3R+rpQjiegn2vr730/QoQPHT5ENqzxbBYsJNR1XBQehZEOjoosEkzlL5O5pH8qQXLPGv8AfAkcgOLjgqGBDqEbbEqdDk8e+f8COyFNFVb5AVEbzZbpR5X0zPr0Zv/XMmNvnF7rE/+sfG7CSm+F2XK3JyTkjLUw45BF/ZmlfrlOHX1rMNACHs88TttGmxVPtRDBGuAb1Q5o9D+CtY4SB4DfqdOy3nyci0v5m5FgLs8h3d6H+iVIgJQNV9utLGF/yEiRUOYrVVAb+F0b+/NmYJRfdeRvWrfsDW/p/vP/tIsEgnUrVOB/WjSC2rNmovGkTry265toQ/zP3Xf/CCLd/knYubaRF+ucyCimcw10lrRZtFRVpYm7sd8AwiBlHeeN1CCENELSOIQf1q2BhQshNwH/iuSrUq966yRh1w/cm16kYO7R75fEJVkGN3z7Nk3O02G3xhB7Gd+mZBNMqS12HtZyHBtNnMx+HQUsJrFM16aG4Jxo9rkWJEqGv5q+waKNy7t/tKajrPAPJdokE4TWgwwU/MVmilf1MfM1Nay/AFTomkLDe9VG2g8z1g40hIBglGX5Qjl1Q8Fknt5sdfCKcDHK3QGpyEgljUrhpBO+hoO4O
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(376002)(366004)(346002)(136003)(39850400004)(6506007)(2906002)(4326008)(36756003)(2616005)(44832011)(956004)(6666004)(478600001)(7416002)(5660300002)(110136005)(66946007)(26005)(52116002)(1076003)(8676002)(8936002)(316002)(54906003)(66476007)(66556008)(6486002)(38100700002)(16526019)(38350700002)(186003)(83380400001)(86362001)(6512007)(69590400013);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?X09kkgn7HcJI1Q3EPd6fkVEM+Gr6zhppT7MuDfQkUKE52VoyHriev0UIz1fF?=
- =?us-ascii?Q?uD842OwK9TF0x97FBz/Ef4kn2KSYpgtcIDnS0b5NCwXdU9dubuWD5u3V1J4E?=
- =?us-ascii?Q?eApYTz0vXlS7CyaynDqQKqIQP25/0FFYzf3aYPwNcO8DNqeyz4JniNVa+OCc?=
- =?us-ascii?Q?0+2Cat1uMseXDZmfeMT1hyG2HetvhN6ExxkJrVOri6KTSeHqspk/aAgyiZZJ?=
- =?us-ascii?Q?9LcvLxMmJFBjqVZSg/9kPQ6xB83ulCIKMqrphTNoHzLXzzQeDiXZ1m2GuQ/W?=
- =?us-ascii?Q?AVSQEOyaq/xI4mHCmnVaVae45YfOG68++c497FLhyZ9PsfdEgvC+7EWDc90s?=
- =?us-ascii?Q?WsLyrcjosP5UgSp1Pf/EXMdmtEBmomPVXYvxtaAW+TKNrntSl6CAtH2pRbER?=
- =?us-ascii?Q?zSR5L77DaghyDBgllKKmwZf4xEX8S68K8+TOVEwbxJJhagNAkGdJspfZ5/OY?=
- =?us-ascii?Q?dHZ4NYCcLqsOkEpsVgOxEQIPKm8bOkgcUGgmC4BxQ86d1uFtcIg7Wg5kb9HA?=
- =?us-ascii?Q?xy8ptHDYAi9qsqcR+kCTLSvtB5/w+pQaLze5vonxGuGsRTuEMCeIcGH5/W1M?=
- =?us-ascii?Q?zF0vXuMb8Iut3nvsOUQeBobVV2xwMh7M8iWl3jw5/ijm3H6yBkQUTrP960fs?=
- =?us-ascii?Q?dmDUdPRpP40V4HRiSl0F228iRe3r9OHfFOsF8Ly3L4J/M9jJBwgaVjHoJfKb?=
- =?us-ascii?Q?+h5ZkQ2amIay6Cd2xYa+CjMPfg2MTInxcGhgw7En6PYHChMop9jIRvpRcLW2?=
- =?us-ascii?Q?SJAlH1zfG7Z3q5nAWFZQdYiRPXP5FgENyxqLfnwo9gEt/FlAKw3ofdSibm/k?=
- =?us-ascii?Q?Ydm5/3oVta0xwuiT/PXBKTg8y/CSRAyCWAlOxrMQTg75Ic+NiFMM3D5YwBFV?=
- =?us-ascii?Q?/wMyFWFkF0QnHlRK0eYjySofNeVlZ1cKR/TJPUvr9KBlmYMWr+BOXb8oQg97?=
- =?us-ascii?Q?aFCQAtsO21/74D5yiUxvbwrgDvH6o6gZTPROHmpsmAoBJqLG1NY0g/g3ZbSc?=
- =?us-ascii?Q?zqzcxsbGs08ONX641jHzNGBXyZ6ESaI5rTMcRHn3Ys8rq7jmP3tYplYT3Fdr?=
- =?us-ascii?Q?X3QkMFXKmfo1sif1+2CN5FX7jEmITtLMME5Uxe+a87gUnyrV6r34vmzrMcaa?=
- =?us-ascii?Q?3p2TdzS6wBRB/csowt2OKPmPnEvaa6Wg1ri/zm+LlD9kb0DlufqcRPTWonQ6?=
- =?us-ascii?Q?tXoyxeeUvfIK07hDLDXaJFoVgdCe6w+pZBeTAEr2n1oDP0O8Kz2zRNDamWcX?=
- =?us-ascii?Q?ePbqGS1XnzcgUJxo0RbmiWXeTpb9vyuni/f3JYW/6HydTdmP9iC3fqn1PrTC?=
- =?us-ascii?Q?9Zvlla3tVO6WWjYpykD9SBcE?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cd5d110-5c19-4662-0763-08d93e19e627
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2021 11:58:40.7906 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: evVRshzTH5E4BID7UqPv0Aq7Cb8ry+Kvb566lAnCINi/K53WC/wb1psEG9YYkF95t8QVyVZ0CsSKxmrkmhZ3YA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2509
+Content-Type: text/plain
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Jiri Pirko <jiri@resnulli.us>, bridge@lists.linux-foundation.org,
  Alexander Duyck <alexander.duyck@gmail.com>, Ido Schimmel <idosch@idosch.org>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Tobias Waldekranz <tobias@waldekranz.com>
-Subject: [Bridge] [RFC PATCH v2 net-next 10/10] net: dsa: tag_dsa: offload
-	the bridge forwarding process
+ Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [Bridge] [RFC PATCH v2 net-next 00/10] Allow forwarding for the
+	software bridge data path to be offloaded to capable devices
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -148,146 +101,249 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Tobias Waldekranz <tobias@waldekranz.com>
+On Sat, Jul 03, 2021 at 14:56, Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> For this series I have taken Tobias' work from here:
+> https://patchwork.kernel.org/project/netdevbpf/cover/20210426170411.1789186-1-tobias@waldekranz.com/
+> and made the following changes:
+> - I collected and integrated (hopefully all of) Nikolay's, Ido's and my
+>   feedback on the bridge driver changes. Otherwise, the structure of the
+>   bridge changes is pretty much the same as Tobias left it.
+> - I basically rewrote the DSA infrastructure for the data plane
+>   forwarding offload, based on the commonalities with another switch
+>   driver for which I implemented this feature (not submitted here)
+> - I adapted mv88e6xxx to use the new infrastructure, hopefully it still
+>   works but I didn't test that
 
-Allow the DSA tagger to generate FORWARD frames for offloaded skbs
-sent from a bridge that we offload, allowing the switch to handle any
-frame replication that may be required. This also means that source
-address learning takes place on packets sent from the CPU, meaning
-that return traffic no longer needs to be flooded as unknown unicast.
+Hi Vladimir,
 
-Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- net/dsa/dsa_priv.h | 11 +++++++++
- net/dsa/tag_dsa.c  | 60 +++++++++++++++++++++++++++++++++++++++-------
- 2 files changed, 63 insertions(+), 8 deletions(-)
+Sorry that I have dropped the ball on this series. I have actually had a
+v1 of this queued up for a while. Unfortunately I ran into mv88e6xxx
+specific problems. (See below)
 
-diff --git a/net/dsa/dsa_priv.h b/net/dsa/dsa_priv.h
-index c577338b5bb7..c070157cd967 100644
---- a/net/dsa/dsa_priv.h
-+++ b/net/dsa/dsa_priv.h
-@@ -389,6 +389,17 @@ static inline struct sk_buff *dsa_untag_bridge_pvid(struct sk_buff *skb)
- 	return skb;
- }
- 
-+static inline struct net_device *
-+dsa_slave_get_sb_dev(const struct net_device *dev, struct sk_buff *skb)
-+{
-+	u16 queue_mapping = skb_get_queue_mapping(skb);
-+	struct netdev_queue *txq;
-+
-+	txq = netdev_get_tx_queue(dev, queue_mapping);
-+
-+	return txq->sb_dev;
-+}
-+
- /* switch.c */
- int dsa_switch_register_notifier(struct dsa_switch *ds);
- void dsa_switch_unregister_notifier(struct dsa_switch *ds);
-diff --git a/net/dsa/tag_dsa.c b/net/dsa/tag_dsa.c
-index a822355afc90..9151ed141b3e 100644
---- a/net/dsa/tag_dsa.c
-+++ b/net/dsa/tag_dsa.c
-@@ -125,8 +125,49 @@ enum dsa_code {
- static struct sk_buff *dsa_xmit_ll(struct sk_buff *skb, struct net_device *dev,
- 				   u8 extra)
- {
-+	struct net_device *sb_dev = dsa_slave_get_sb_dev(dev, skb);
- 	struct dsa_port *dp = dsa_slave_to_port(dev);
-+	u8 tag_dev, tag_port;
-+	enum dsa_cmd cmd;
- 	u8 *dsa_header;
-+	u16 pvid = 0;
-+	int err;
-+
-+	if (sb_dev) {
-+		/* Don't bother finding the accel_priv corresponding with this
-+		 * subordinate device, we know it's the bridge becase we can't
-+		 * offload anything else, so just search for it under the port,
-+		 * we know it's the same.
-+		 */
-+		struct dsa_bridge_fwd_accel_priv *accel_priv = dp->accel_priv;
-+		struct dsa_switch_tree *dst = dp->ds->dst;
-+
-+		cmd = DSA_CMD_FORWARD;
-+
-+		/* When offloading forwarding for a bridge, inject FORWARD
-+		 * packets on behalf of a virtual switch device with an index
-+		 * past the physical switches.
-+		 */
-+		tag_dev = dst->last_switch + 1 + accel_priv->bridge_num;
-+		tag_port = 0;
-+
-+		/* If we are offloading forwarding for a VLAN-unaware bridge,
-+		 * inject packets to hardware using the bridge's pvid, since
-+		 * that's where the packets ingressed from.
-+		 */
-+		if (!br_vlan_enabled(sb_dev)) {
-+			/* Safe because __dev_queue_xmit() runs under
-+			 * rcu_read_lock_bh()
-+			 */
-+			err = br_vlan_get_pvid_rcu(sb_dev, &pvid);
-+			if (err)
-+				return NULL;
-+		}
-+	} else {
-+		cmd = DSA_CMD_FROM_CPU;
-+		tag_dev = dp->ds->index;
-+		tag_port = dp->index;
-+	}
- 
- 	if (skb->protocol == htons(ETH_P_8021Q)) {
- 		if (extra) {
-@@ -134,10 +175,10 @@ static struct sk_buff *dsa_xmit_ll(struct sk_buff *skb, struct net_device *dev,
- 			memmove(skb->data, skb->data + extra, 2 * ETH_ALEN);
- 		}
- 
--		/* Construct tagged FROM_CPU DSA tag from 802.1Q tag. */
-+		/* Construct tagged DSA tag from 802.1Q tag. */
- 		dsa_header = skb->data + 2 * ETH_ALEN + extra;
--		dsa_header[0] = (DSA_CMD_FROM_CPU << 6) | 0x20 | dp->ds->index;
--		dsa_header[1] = dp->index << 3;
-+		dsa_header[0] = (cmd << 6) | 0x20 | tag_dev;
-+		dsa_header[1] = tag_port << 3;
- 
- 		/* Move CFI field from byte 2 to byte 1. */
- 		if (dsa_header[2] & 0x10) {
-@@ -148,12 +189,13 @@ static struct sk_buff *dsa_xmit_ll(struct sk_buff *skb, struct net_device *dev,
- 		skb_push(skb, DSA_HLEN + extra);
- 		memmove(skb->data, skb->data + DSA_HLEN + extra, 2 * ETH_ALEN);
- 
--		/* Construct untagged FROM_CPU DSA tag. */
-+		/* Construct untagged DSA tag. */
- 		dsa_header = skb->data + 2 * ETH_ALEN + extra;
--		dsa_header[0] = (DSA_CMD_FROM_CPU << 6) | dp->ds->index;
--		dsa_header[1] = dp->index << 3;
--		dsa_header[2] = 0x00;
--		dsa_header[3] = 0x00;
-+
-+		dsa_header[0] = (cmd << 6) | tag_dev;
-+		dsa_header[1] = tag_port << 3;
-+		dsa_header[2] = pvid >> 8;
-+		dsa_header[3] = pvid & 0xff;
- 	}
- 
- 	return skb;
-@@ -304,6 +346,7 @@ static const struct dsa_device_ops dsa_netdev_ops = {
- 	.xmit	  = dsa_xmit,
- 	.rcv	  = dsa_rcv,
- 	.needed_headroom = DSA_HLEN,
-+	.bridge_fwd_offload = true,
- };
- 
- DSA_TAG_DRIVER(dsa_netdev_ops);
-@@ -347,6 +390,7 @@ static const struct dsa_device_ops edsa_netdev_ops = {
- 	.xmit	  = edsa_xmit,
- 	.rcv	  = edsa_rcv,
- 	.needed_headroom = EDSA_HLEN,
-+	.bridge_fwd_offload = true,
- };
- 
- DSA_TAG_DRIVER(edsa_netdev_ops);
--- 
-2.25.1
+> The data plane of the software bridge can be partially offloaded to
+> switchdev, in the sense that we can trust the accelerator to:
+> (a) look up its FDB (which is more or less in sync with the software
+>     bridge FDB) for selecting the destination ports for a packet
+> (b) replicate the frame in hardware in case it's a multicast/broadcast,
+>     instead of the software bridge having to clone it and send the
+>     clones to each net device one at a time. This reduces the bandwidth
+>     needed between the CPU and the accelerator, as well as the CPU time
+>     spent.
+>
+> The data path forwarding offload is managed per "hardware domain" - a
+> generalization of the "offload_fwd_mark" concept which is being
+> introduced in this series. Every packet is delivered only once to each
+> hardware domain.
+>
+> In addition, Tobias said in the original cover letter:
+>
+> ====================
+> ## Overview
+>
+>    vlan1   vlan2
+>        \   /
+>    .-----------.
+>    |    br0    |
+>    '-----------'
+>    /   /   \   \
+> swp0 swp1 swp2 eth0
+>   :   :   :
+>   (hwdom 1)
+>
+> Up to this point, switchdevs have been trusted with offloading
+> forwarding between bridge ports, e.g. forwarding a unicast from swp0
+> to swp1 or flooding a broadcast from swp2 to swp1 and swp0. This
+> series extends forward offloading to include some new classes of
+> traffic:
+>
+> - Locally originating flows, i.e. packets that ingress on br0 that are
+>   to be forwarded to one or several of the ports swp{0,1,2}. Notably
+>   this also includes routed flows, e.g. a packet ingressing swp0 on
+>   VLAN 1 which is then routed over to VLAN 2 by the CPU and then
+>   forwarded to swp1 is "locally originating" from br0's point of view.
+>
+> - Flows originating from "foreign" interfaces, i.e. an interface that
+>   is not offloaded by a particular switchdev instance. This includes
+>   ports belonging to other switchdev instances. A typical example
+>   would be flows from eth0 towards swp{0,1,2}.
+>
+> The bridge still looks up its FDB/MDB as usual and then notifies the
+> switchdev driver that a particular skb should be offloaded if it
+> matches one of the classes above. It does so by using the _accel
+> version of dev_queue_xmit, supplying its own netdev as the
+> "subordinate" device. The driver can react to the presence of the
+> subordinate in its .ndo_select_queue in what ever way it needs to make
+> sure to forward the skb in much the same way that it would for packets
+> ingressing on regular ports.
+>
+> Hardware domains to which a particular skb has been forwarded are
+> recorded so that duplicates are avoided.
+>
+> The main performance benefit is thus seen on multicast flows. Imagine
+> for example that:
+>
+> - An IP camera is connected to swp0 (VLAN 1)
+>
+> - The CPU is acting as a multicast router, routing the group from VLAN
+>   1 to VLAN 2.
+>
+> - There are subscribers for the group in question behind both swp1 and
+>   swp2 (VLAN 2).
+>
+> With this offloading in place, the bridge need only send a single skb
+> to the driver, which will send it to the hardware marked in such a way
+> that the switch will perform the multicast replication according to
+> the MDB configuration. Naturally, the number of saved skb_clones
+> increase linearly with the number of subscribed ports.
+>
+> As an extra benefit, on mv88e6xxx, this also allows the switch to
+> perform source address learning on these flows, which avoids having to
+> sync dynamic FDB entries over slow configuration interfaces like MDIO
+> to avoid flows directed towards the CPU being flooded as unknown
+> unicast by the switch.
+>
+>
+> ## RFC
+>
+> - In general, what do you think about this idea?
+>
+> - hwdom. What do you think about this terminology? Personally I feel
+>   that we had too many things called offload_fwd_mark, and that as the
+>   use of the bridge internal ID (nbp->offload_fwd_mark) expands, it
+>   might be useful to have a separate term for it.
+>
+> - .dfwd_{add,del}_station. Am I stretching this abstraction too far,
+>   and if so do you have any suggestion/preference on how to signal the
+>   offloading from the bridge down to the switchdev driver?
+>
+> - The way that flooding is implemented in br_forward.c (lazily cloning
+>   skbs) means that you have to mark the forwarding as completed very
+>   early (right after should_deliver in maybe_deliver) in order to
+>   avoid duplicates. Is there some way to move this decision point to a
+>   later stage that I am missing?
+>
+> - BR_MULTICAST_TO_UNICAST. Right now, I expect that this series is not
+>   compatible with unicast-to-multicast being used on a port. Then
+>   again, I think that this would also be broken for regular switchdev
+>   bridge offloading as this flag is not offloaded to the switchdev
+>   port, so there is no way for the driver to refuse it. Any ideas on
+>   how to handle this?
+>
+>
+> ## mv88e6xxx Specifics
+>
+> Since we are now only receiving a single skb for both unicast and
+> multicast flows, we can tag the packets with the FORWARD command
+> instead of FROM_CPU. The swich(es) will then forward the packet in
+> accordance with its ATU, VTU, STU, and PVT configuration - just like
+> for packets ingressing on user ports.
+>
+> Crucially, FROM_CPU is still used for:
+>
+> - Ports in standalone mode.
+>
+> - Flows that are trapped to the CPU and software-forwarded by a
+>   bridge. Note that these flows match neither of the classes discussed
+>   in the overview.
+>
+> - Packets that are sent directly to a port netdev without going
+>   through the bridge, e.g. lldpd sending out PDU via an AF_PACKET
+>   socket.
+>
+> We thus have a pretty clean separation where the data plane uses
+> FORWARDs and the control plane uses TO_/FROM_CPU.
+>
+> The barrier between different bridges is enforced by port based VLANs
+> on mv88e6xxx, which in essence is a mapping from a source device/port
+> pair to an allowed set of egress ports.
 
+Unless I am missing something, it turns out that the PVT is not enough
+to support multiple (non-VLAN filtering) bridges in multi-chip
+setups. While the isolation barrier works, there is no way of correctly
+managing automatic learning.
+
+> In order to have a FORWARD
+> frame (which carries a _source_ device/port) correctly mapped by the
+> PVT, we must use a unique pair for each bridge.
+>
+> Fortunately, there is typically lots of unused address space in most
+> switch trees. When was the last time you saw an mv88e6xxx product
+> using more than 4 chips? Even if you found one with 16 (!) devices,
+> you would still have room to allocate 16*16 virtual ports to software
+> bridges.
+>
+> Therefore, the mv88e6xxx driver will allocate a virtual device/port
+> pair to each bridge that it offloads. All members of the same bridge
+> are then configured to allow packets from this virtual port in their
+> PVTs.
+
+So while this solution is cute, it does not work in this example:
+
+ CPU
+  | .-----.
+.-0-1-. .-0-1-.
+| sw0 | | sw1 |
+'-2-3-' '-2-3-'
+
+- [sw0p2, sw1p2] are attached to one bridge
+- [sw0p3, sw1p3] are attached to another bridge
+- Neither bridge uses VLAN filtering
+
+Since no VLAN information available in the frames, the source addresses
+of FORWARDs sent over the DSA link (sw0p1, sw1p0) cannot possibly be
+separated into different FIDs. They will all be placed in the respective
+port's default FID. Thus, the two bridges are not isolated with respect
+to their FDBs.
+
+My current plan is therefore to start by reworking how bridges are
+isolated on mv88e6xxx. Roughly by allocating a reserved VID/FID pair for
+each non-filtering bridge. Two of these can be easily managed since both
+VID 0 and 4095 are illegal on the wire but allowed in the VTU - after
+that it gets tricky. The best scheme I have come up with is to just grab
+an unused VID when adding any subsequent non-filtering bridge; in the
+event that that VID is requested by a filtering bridge or a VLAN upper,
+you move the non-filtering bridge to another currently unused VID.
+
+Does that sound reasonable?
+
+> ====================
+>
+> Tobias Waldekranz (5):
+>   net: dfwd: constrain existing users to macvlan subordinates
+>   net: bridge: disambiguate offload_fwd_mark
+>   net: bridge: switchdev: recycle unused hwdoms
+>   net: bridge: switchdev: allow the data plane forwarding to be
+>     offloaded
+>   net: dsa: tag_dsa: offload the bridge forwarding process
+>
+> Vladimir Oltean (5):
+>   net: extract helpers for binding a subordinate device to TX queues
+>   net: allow ndo_select_queue to go beyond dev->num_real_tx_queues
+>   net: dsa: track the number of switches in a tree
+>   net: dsa: add support for bridge forwarding offload
+>   net: dsa: mv88e6xxx: map virtual bridges with forwarding offload in
+>     the PVT
+>
+>  drivers/net/dsa/mv88e6xxx/chip.c              | 106 +++++++++++-
+>  .../net/ethernet/intel/fm10k/fm10k_netdev.c   |   3 +
+>  drivers/net/ethernet/intel/i40e/i40e_main.c   |   3 +
+>  drivers/net/ethernet/intel/ixgbe/ixgbe_main.c |   3 +
+>  include/linux/if_bridge.h                     |   1 +
+>  include/linux/netdevice.h                     |  13 +-
+>  include/net/dsa.h                             |  37 ++++
+>  net/bridge/br_forward.c                       |  18 +-
+>  net/bridge/br_if.c                            |   4 +-
+>  net/bridge/br_private.h                       |  49 +++++-
+>  net/bridge/br_switchdev.c                     | 163 +++++++++++++++---
+>  net/bridge/br_vlan.c                          |  10 +-
+>  net/core/dev.c                                |  31 +++-
+>  net/dsa/dsa2.c                                |   3 +
+>  net/dsa/dsa_priv.h                            |  28 +++
+>  net/dsa/port.c                                |  35 ++++
+>  net/dsa/slave.c                               | 134 +++++++++++++-
+>  net/dsa/switch.c                              |  58 +++++++
+>  net/dsa/tag_dsa.c                             |  60 ++++++-
+>  19 files changed, 700 insertions(+), 59 deletions(-)
+>
+> -- 
+> 2.25.1
