@@ -1,96 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 808613BBA9F
-	for <lists.bridge@lfdr.de>; Mon,  5 Jul 2021 11:57:37 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62263BCC15
+	for <lists.bridge@lfdr.de>; Tue,  6 Jul 2021 13:16:02 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 3061482AF8;
-	Mon,  5 Jul 2021 09:57:36 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 270A340269;
+	Tue,  6 Jul 2021 11:16:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id W2NdTMEWzAry; Mon,  5 Jul 2021 09:57:35 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id AE513829C5;
-	Mon,  5 Jul 2021 09:57:34 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id UK3vwSH7M2EY; Tue,  6 Jul 2021 11:16:00 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id C00E5402CF;
+	Tue,  6 Jul 2021 11:15:59 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 728B2C0022;
-	Mon,  5 Jul 2021 09:57:34 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 90B5DC001F;
+	Tue,  6 Jul 2021 11:15:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6F0CEC000E
- for <bridge@lists.linux-foundation.org>; Mon,  5 Jul 2021 09:57:32 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 87D4DC000E
+ for <bridge@lists.linux-foundation.org>; Tue,  6 Jul 2021 11:15:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 50D36400C6
- for <bridge@lists.linux-foundation.org>; Mon,  5 Jul 2021 09:57:32 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 69B3F834C7
+ for <bridge@lists.linux-foundation.org>; Tue,  6 Jul 2021 11:15:57 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id emu_tmSBA_SV for <bridge@lists.linux-foundation.org>;
- Mon,  5 Jul 2021 09:57:31 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 886E9400B5
- for <bridge@lists.linux-foundation.org>; Mon,  5 Jul 2021 09:57:31 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id he13so9651896ejc.11
- for <bridge@lists.linux-foundation.org>; Mon, 05 Jul 2021 02:57:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=UywVHfIXA8Il15KCHtfEgZv5xfnhEZ34vLyTargXKlk=;
- b=TkeqJE48gZCnOXcVOxTCrulvm2g32F0N95QRYIoHW8IUD1AEDNjNqxLopGWCXJc9vH
- Bs8lRfpcJpieitfTEOJ86r1RIsZqRRaiPMWTTYQougcp2aFv0I0cArcZOK0J+CzoE56M
- aUxSqECi9itQJP1u61fNWMplURkFXuG3W2YIyNPMBVh9aQ4Wbo5b2WYx3k2r+XSEct5e
- Z2SGaeTIxGNX/AdHR7PqPmobVQUolTpkNPpCPC0h8opJGonwl1af9yDM0t54/LaJmz0W
- ty27zSlpkch6V65rdOaEF6cTEjWMpcZ8tKQmkfpq+wtU7ueoxoxB6tHQY28JYNEWpXKW
- 1QAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=UywVHfIXA8Il15KCHtfEgZv5xfnhEZ34vLyTargXKlk=;
- b=oDPWx4kBqEbD0Cctnnqp35s7qXAlvaHZCGqvQ3P4y9DSsZPIGl/HjbuBSZ9c0qVaAN
- +KMC7/hWlVK5uED0Kx6H2mK83NjvtMn/xq/9KUZ/F+JBX+FjopKHDmkNm5eVynqjvKvu
- VGIseclaeYKUvm/+GWA2PMHjhZ0N5c7oIIHjnlRBicumAEsvYGZT+/mHakaIOGyA/5zR
- 6fn3T8N/s+Ylfqpw9j5brrPz1M2YB54zEIZpa1UUc1axFDZBnlkqpRZSVhg5XurXDsaA
- kD3amPoD5uhXdjygeIhEii2XDSM5pKlTrMz/Gr+22LEaRVm8mRR+8JtMqDWZbHRZ2ctd
- L+Ow==
-X-Gm-Message-State: AOAM532u17pmsRNI4/gVnQpRg6lUCHhAVGMp5gxU8/r3Ys65YUCnOoQZ
- /FhuEIwa/MZid3oL/aoD+dI=
-X-Google-Smtp-Source: ABdhPJzLp/vyjce7xVcMJsWfJpmfULAy25MDSrrAaO9oSanq+e597oeQJw7jLVzGFCqDX2T8DKfbCg==
-X-Received: by 2002:a17:907:94c4:: with SMTP id
- dn4mr12276614ejc.363.1625479049653; 
- Mon, 05 Jul 2021 02:57:29 -0700 (PDT)
-Received: from skbuf ([188.26.224.68])
- by smtp.gmail.com with ESMTPSA id p23sm5139087edt.71.2021.07.05.02.57.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Jul 2021 02:57:29 -0700 (PDT)
-Date: Mon, 5 Jul 2021 12:57:27 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Tobias Waldekranz <tobias@waldekranz.com>
-Message-ID: <20210705095727.w7iigb3goaorzef5@skbuf>
-References: <20210703115705.1034112-1-vladimir.oltean@nxp.com>
- <20210705042018.137390-1-dqfext@gmail.com>
- <87v95p6u0r.fsf@waldekranz.com>
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id fgkScTpRlh9d for <bridge@lists.linux-foundation.org>;
+ Tue,  6 Jul 2021 11:15:57 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 05C5082FCE
+ for <bridge@lists.linux-foundation.org>; Tue,  6 Jul 2021 11:15:56 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D37CC61C37;
+ Tue,  6 Jul 2021 11:15:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1625570156;
+ bh=UIZQa9iSQhxcVaXMJJxbl1bvgrn5SEdBhZXIr0j9owk=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Jtw9A6YhntZ9/WUFChD6fbVNxkJM5XymcKkRDFbIuOMGNfxbepMHhmzriv87GZC1Y
+ JTauwuVaMO4BZnlezQrsfgJbj6j49TSkero6BQNN4Jst568HdkEzqc4c55SULQd4tU
+ fJPSVogcU3GwMq7+7Y5Po5USVVo0RzDfzOWnoLeByrdFroimZZY210ECo62cHvDopR
+ JpEEDHlR/qw7E048bwUturxUepoAO8mJf20s/ILskQcy3tYQrJ5mxaXwFc0GY4423u
+ Au3/d3hTS8Ka35hBMZvntUDxCgqji6/F+4NvVZCc474MmEHtxqLP2CN12W626Q+8/2
+ iyPxpzCjfF9Pg==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Date: Tue,  6 Jul 2021 07:12:18 -0400
+Message-Id: <20210706111409.2058071-78-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210706111409.2058071-1-sashal@kernel.org>
+References: <20210706111409.2058071-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87v95p6u0r.fsf@waldekranz.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Jiri Pirko <jiri@resnulli.us>, Ido Schimmel <idosch@idosch.org>,
- bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
- Roopa Prabhu <roopa@nvidia.com>, Alexander Duyck <alexander.duyck@gmail.com>,
- Vivien Didelot <vivien.didelot@gmail.com>, DENG Qingfang <dqfext@gmail.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [RFC PATCH v2 net-next 00/10] Allow forwarding for the
- software bridge data path to be offloaded to capable devices
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
+Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ "David S . Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH AUTOSEL 5.13 078/189] net: bridge: mrp: Update ring
+	transitions.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,66 +80,47 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jul 05, 2021 at 10:32:04AM +0200, Tobias Waldekranz wrote:
-> > Many DSA taggers use port bit field in their TX tags, which allows
-> > replication in hardware. (multiple bits set = send to multiple ports)
-> > I wonder if the tagger API can be updated to support this.
->
-> I think you could, but it would be tricky.
->
-> The bridge does not operate using vectors/bitfields, rather it is
-> procedural code that you have to loop through before knowing the set of
-> destination ports.
->
-> This series just sends the skb to the first port in the hardware domain
-> and trusts the HW to calculate the same port set as the code in
-> br_forward.c would have.
->
-> To do what you suggest, the bridge would have to translate each nbp into
-> a position in a bitfield (or call out to the underlying driver to do it)
-> as it is looping through ports, then send the aggregated mask along with
-> the skb. Knowing if a port is the first one you have come across for a
-> given domain is very easy (just maintain a bitfield), knowing if it is
-> the last one is harder. So you would likely end up having to queue up
-> the actual transmission until after the loop has been executed, which
-> hard to combine with the "lazy cloning" that you really want to get
-> decent performance.
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-In addition to changing the bridge in order to get the entire bit mask,
-one also has to somehow propagate that bit mask per skb down to the
-driver which might be tricky in itself. There is currently no bridge
-specific data structure passed between the bridge and the switchdev
-driver, it is just the struct net_device *sb_dev. A hacky solution I
-might imagine is for the bridge to kzalloc() a small data structure
-like:
+[ Upstream commit fcb34635854a5a5814227628867ea914a9805384 ]
 
-struct bridge_fwd_offload_accel_priv {
-	struct net_device *sb_dev; /* Must be first! */
-	unsigned long port_mask;
-};
+According to the standard IEC 62439-2, the number of transitions needs
+to be counted for each transition 'between' ring state open and ring
+state closed and not from open state to closed state.
 
-and call as follows:
+Therefore fix this for both ring and interconnect ring.
 
-int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb)
-{
-	struct bridge_fwd_offload_accel_priv *accel_priv = NULL;
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ net/bridge/br_mrp.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-	if (br_switchdev_accels_skb(skb)) {
-		accel_priv = kzalloc(sizeof(*accel_priv), GFP_ATOMIC);
-		if (!accel_priv)
-			return -ENOMEM;
+diff --git a/net/bridge/br_mrp.c b/net/bridge/br_mrp.c
+index cd2b1e424e54..f7012b7d7ce4 100644
+--- a/net/bridge/br_mrp.c
++++ b/net/bridge/br_mrp.c
+@@ -627,8 +627,7 @@ int br_mrp_set_ring_state(struct net_bridge *br,
+ 	if (!mrp)
+ 		return -EINVAL;
+ 
+-	if (mrp->ring_state == BR_MRP_RING_STATE_CLOSED &&
+-	    state->ring_state != BR_MRP_RING_STATE_CLOSED)
++	if (mrp->ring_state != state->ring_state)
+ 		mrp->ring_transitions++;
+ 
+ 	mrp->ring_state = state->ring_state;
+@@ -715,8 +714,7 @@ int br_mrp_set_in_state(struct net_bridge *br, struct br_mrp_in_state *state)
+ 	if (!mrp)
+ 		return -EINVAL;
+ 
+-	if (mrp->in_state == BR_MRP_IN_STATE_CLOSED &&
+-	    state->in_state != BR_MRP_IN_STATE_CLOSED)
++	if (mrp->in_state != state->in_state)
+ 		mrp->in_transitions++;
+ 
+ 	mrp->in_state = state->in_state;
+-- 
+2.30.2
 
-		accel_priv->sb_dev = BR_INPUT_SKB_CB(skb)->brdev;
-		accel_priv->port_mask = port_mask;
-	}
-
-	dev_queue_xmit_accel(skb, accel_priv);
-}
-
-This way, the code in net/core/dev.c can be left unmodified. We give it
-an accel_priv pointer but it can think it is only looking at a sb_dev
-pointer, since that is the first element in the structure.
-
-But then the switchdev driver must kfree(accel_priv) in the xmit function.
-
-Not really nice, but for a cuter solution, I think we would need to extend struct sk_buff.
