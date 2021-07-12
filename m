@@ -1,97 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825513C6879
-	for <lists.bridge@lfdr.de>; Tue, 13 Jul 2021 04:22:01 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833E13C9C59
+	for <lists.bridge@lfdr.de>; Thu, 15 Jul 2021 12:03:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 274DD835E0;
-	Tue, 13 Jul 2021 02:22:00 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 86A214159A;
+	Thu, 15 Jul 2021 10:03:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Tj0x3XHDhhKX; Tue, 13 Jul 2021 02:21:59 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id axmyNClsMVkF; Thu, 15 Jul 2021 10:03:24 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id C9BB083051;
-	Tue, 13 Jul 2021 02:21:58 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id E9B1F41572;
+	Thu, 15 Jul 2021 10:03:23 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7EC9DC001B;
-	Tue, 13 Jul 2021 02:21:58 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 94B48C001F;
+	Thu, 15 Jul 2021 10:03:23 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 193DBC000E
- for <bridge@lists.linux-foundation.org>; Tue, 13 Jul 2021 02:21:56 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 887E2C000E
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 15:50:06 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id EEFD14012C
- for <bridge@lists.linux-foundation.org>; Tue, 13 Jul 2021 02:21:55 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 69382403CE
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 15:50:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
+ dkim=pass (1024-bit key) header.d=blackhole.sk
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id aQ_BUFZ3-nXC for <bridge@lists.linux-foundation.org>;
- Tue, 13 Jul 2021 02:21:55 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com
- [IPv6:2607:f8b0:4864:20::42c])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 661AB400F6
- for <bridge@lists.linux-foundation.org>; Tue, 13 Jul 2021 02:21:55 +0000 (UTC)
-Received: by mail-pf1-x42c.google.com with SMTP id x16so18137240pfa.13
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 19:21:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=NlVPTZqzkr7X/6SxfWdup8v6l5x7x3FOQrlL4P9RfQg=;
- b=ApkQ294WrZDrFMp44CboLatxYl0a2e1eN2N/HgtF8ZMgZxrKHelJMNQpByirmSEAHt
- /VZd8uL/gbvdnMCBGsbWr6euvFrlQbKKUM4OgFSdB6ZCaqfVq2MSNVdF9tHLddSFnNKj
- NZa3XQ4HwSQj/vcSlI6yMUHX/Q4H09d1tqupDQqCAEBgORcOpUZsGSWD1VUFUtbLNqiP
- zqS3S+Ac5eKdwSL8sqnNs3+8vb3fLDTIGp3bpo1Ea+8lH/EUc/3F6n7DaGs0/aCmV0wf
- zCocuPGt3uEOHiWPXzyHmz796Wp+ONQEzPOnQzdsmrMbvezQxqNkTFUtPKGobAeRtsTH
- a4uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=NlVPTZqzkr7X/6SxfWdup8v6l5x7x3FOQrlL4P9RfQg=;
- b=Qv4tOvbb6B2JbLSsZvRUD6UsMDN4kY2iKjiMTqVIyLMw0zw94uDj4YgKhAnKtyTkZj
- ZD7kegqyWDHkAs8yxq6N5SRb3RKtoptZtUusGepG+0KM1mYyuDbdYKGm/vB6fNjrX6+O
- bAQMtT2iWjfsgtQayogqMwAKKyzZRwFdN4U89Tvk6sFNSBDXJIQfk62w+9k76xih7KOC
- bM257ZcDISjxCoYgnymMQmFP52e221HXQvBdu3Gj34vBqx+EVuHrAuMO0e/OWjZ2Pzyu
- zoRDfDZqyYCJaQZ2EcDF7AqZ+4j18M6Mfuk0Y9ypKZ9jaqep2PDStva1NYW/YtiSqyU2
- PkiA==
-X-Gm-Message-State: AOAM5323GU+Mbs4MwZksvnfuPrv937S+y6bqzTcbaDfuGtc7D710PFvR
- p7jBw96P1kkvNrwOB+gCDlc=
-X-Google-Smtp-Source: ABdhPJyYA1T49l5wpTcSySdSWTBvDZquM32w3tTKfIemyz1nNf8hvOADBOTR+1exaI4v7AQhBBmpxQ==
-X-Received: by 2002:a62:7c52:0:b029:329:d4c2:8820 with SMTP id
- x79-20020a627c520000b0290329d4c28820mr2036248pfc.59.1626142914851; 
- Mon, 12 Jul 2021 19:21:54 -0700 (PDT)
-Received: from [10.230.31.46] ([192.19.223.252])
- by smtp.gmail.com with ESMTPSA id s123sm17321242pfb.78.2021.07.12.19.21.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 12 Jul 2021 19:21:54 -0700 (PDT)
-To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+ with ESMTP id z9ASm00hlb34 for <bridge@lists.linux-foundation.org>;
+ Mon, 12 Jul 2021 15:50:04 +0000 (UTC)
+X-Greylist: delayed 00:08:50 by SQLgrey-1.8.0
+Received: from mail-proxyout-mua-31.websupport.eu
+ (mail-proxyout-mua-31.websupport.eu [37.9.172.181])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 32E6D4002B
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 15:50:04 +0000 (UTC)
+Received: from in-6.websupport.sk (unknown [10.10.2.106])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail-proxyout-mua-31.websupport.eu (Postfix) with ESMTPS id C85D1C0015;
+ Mon, 12 Jul 2021 17:41:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackhole.sk;
+ s=mail; t=1626104461;
+ bh=RWYhEtAwTgLXUQOVcWGtAxGzTFa/bMHHrTYq7ywzREE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References;
+ b=kwOYoP0vDwN7lEgYWF+w/8XPSj4+0UK18zCtnWvMuutSLKZR2tnK/ZAoGhV/ggRXp
+ 3QC1iQ3StGFLmXr+sLecOpX3rRWb99ntnpSzFpF0koTVkTJlyfu4OuDIy10i0TZ8p4
+ go0HudYCEd+31SrgBXwYDhlOPrsaEVPNuJlTA3AU=
+Received: from thinkpad (otava-0257.koleje.cuni.cz [78.128.181.4])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: kabel@blackhole.sk)
+ by in-6.websupport.sk (Postfix) with ESMTPSA id 4GNnzd1fWGz12Nlk;
+ Mon, 12 Jul 2021 17:41:01 +0200 (CEST)
+Date: Mon, 12 Jul 2021 17:40:59 +0200
+From: Marek Behun <kabel@blackhole.sk>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Message-ID: <20210712174059.7916c0da@thinkpad>
+In-Reply-To: <20210712152142.800651-1-vladimir.oltean@nxp.com>
 References: <20210712152142.800651-1-vladimir.oltean@nxp.com>
- <20210712152142.800651-4-vladimir.oltean@nxp.com>
-From: Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <c4f3a25a-9dba-2710-490e-45e47ef56528@gmail.com>
-Date: Mon, 12 Jul 2021 19:21:44 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210712152142.800651-4-vladimir.oltean@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Cc: Andrew Lunn <andrew@lunn.ch>, Grygorii Strashko <grygorii.strashko@ti.com>,
- Jiri Pirko <jiri@resnulli.us>, bridge@lists.linux-foundation.org,
- Ido Schimmel <idosch@idosch.org>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Vivien Didelot <vivien.didelot@gmail.com>,
- Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [RFC PATCH v3 net-next 03/24] net: mlxsw: refactor
- prechangeupper sanity checks
+X-Out-Spamd-Result: default: False [1.90 / 1000.00]; ARC_NA(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; TAGGED_RCPT(0.00)[];
+ MIME_GOOD(-0.10)[text/plain]; RCPT_COUNT_TWELVE(0.00)[15];
+ RCVD_COUNT_ZERO(0.00)[0]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MID_RHS_NOT_FQDN(0.50)[];
+ ASN(0.00)[asn:2852, ipnet:78.128.128.0/17, country:CZ];
+ FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,davemloft.net,lunn.ch,gmail.com,resnulli.us,idosch.org,waldekranz.com,nvidia.com,networkplumber.org,lists.linux-foundation.org,ti.com];
+ SUSPICIOUS_RECIPS(1.50)[]
+X-Out-Rspamd-Server: mail-antispam-4
+X-Out-Rspamd-Queue-Id: 4GNnzd1fWGz12Nlk
+Authentication-Results: in-6.websupport.sk;
+ auth=pass smtp.auth=kabel@blackhole.sk smtp.mailfrom=kabel@blackhole.sk
+X-Mailman-Approved-At: Thu, 15 Jul 2021 10:03:23 +0000
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Jiri Pirko <jiri@resnulli.us>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Vivien Didelot <vivien.didelot@gmail.com>,
+ Ido Schimmel <idosch@idosch.org>, Grygorii Strashko <grygorii.strashko@ti.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S.
+ Miller" <davem@davemloft.net>, Tobias Waldekranz <tobias@waldekranz.com>
+Subject: Re: [Bridge] [RFC PATCH v3 net-next 00/24] Allow forwarding for the
+ software bridge data path to be offloaded to capable devices
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,14 +103,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+Vladimir, on what mv88e6xxx devices are you developing this stuff?
+Do you use Turris MOX for this?
 
-
-On 7/12/2021 8:21 AM, Vladimir Oltean wrote:
-> Make more room for extra code in the NETDEV_PRECHANGEUPPER handlers from
-> mlxsw by moving the existing sanity checks to 2 new dedicated functions.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Marek
