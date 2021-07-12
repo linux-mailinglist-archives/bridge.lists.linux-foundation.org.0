@@ -1,142 +1,143 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FFC3C5F1F
-	for <lists.bridge@lfdr.de>; Mon, 12 Jul 2021 17:22:58 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id C72883C6153
+	for <lists.bridge@lfdr.de>; Mon, 12 Jul 2021 19:01:32 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 40DF2403F0;
-	Mon, 12 Jul 2021 15:22:57 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id E407682D17;
+	Mon, 12 Jul 2021 17:01:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id OGuATkBeG9gM; Mon, 12 Jul 2021 15:22:56 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 0e7QMKQ3L8hj; Mon, 12 Jul 2021 17:01:29 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id ADC0E403DC;
-	Mon, 12 Jul 2021 15:22:55 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 04E2E82FA5;
+	Mon, 12 Jul 2021 17:01:29 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7DAF2C001A;
-	Mon, 12 Jul 2021 15:22:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AE2CCC0022;
+	Mon, 12 Jul 2021 17:01:28 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 103BBC000E
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 15:22:53 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2043EC000E
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 17:01:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 3772560890
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 15:22:44 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id EC27B607E6
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 17:01:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp3.osuosl.org (amavisd-new);
  dkim=pass (1024-bit key) header.d=nxp.com
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PK18VCqlH91k for <bridge@lists.linux-foundation.org>;
- Mon, 12 Jul 2021 15:22:43 +0000 (UTC)
+ with ESMTP id EA3ryVUQ72Ol for <bridge@lists.linux-foundation.org>;
+ Mon, 12 Jul 2021 17:01:25 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from EUR03-VE1-obe.outbound.protection.outlook.com
- (mail-ve1eur03on062e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe09::62e])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 666B06088A
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 15:22:43 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (mail-eopbgr60049.outbound.protection.outlook.com [40.107.6.49])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 331B7607E4
+ for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 17:01:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BmobA9Uakx/LG/BsWclT58QmEx/kj8LDV2PJlE1gosr290FRUg1eqlILE+7t29TgPzPUIGv5DHzf9hB8E7OOs7v2VSU95RV8qgApODvE27zob/wc+2GXg57UdyDnHcrP8WoQNU9hdvYa7kIfSLbhQpmbwKmN9rV0zc6S1lB01Fgj/xkK0I6SkYMcxmR10kmMC3rUgZ5J5CfxCdd/nzgkHma6+WenvlAAKYHdrbunwxbh1lDfopQB1cjantGAy7vhjxT8zTg6+7cYu+DyIYBs/scvmEJdG1jrvBUJZUb58Y8rbenIcCFzCOt/h+2QA1VPW3LaTJ3tS376arj1KRQnMg==
+ b=SYOpUUJuTm+VtXW5b3Rv/enmVNOSMazVDINBxJLOQjYzIrk1IccXfWp+yttFab+hLTZQIZcigMvmJ3eR52dCXf7rM3oy2MT2Tse7cDQOlO+1pL+THRG9KmQVkioBVhdHmi7TddanxMNmbKwuX3W3ywNkOookAXNUxI4vm9dhIAUNZk1/izky4hy8kKWbHadpybp+NSBNmqO3oUfs6QmJkdFpbXR8/SQh0zR293aUH/8WDxeVHRU0WlWbkQmcrOA3bHqeZkNSA32O8eaLJPDK4xy0L8v2mStJZu1mn7jwL2n4Lw6s7aockowRcRNoW74TIGkkzBaTqzLy7qCy4k4kzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PhRJZfuWSZ6soOzr0n7BBsWXwa+g+/chbcyOA+nDW4s=;
- b=Eu35toHCgLGdIDTSul1NnySSVfSRFyXSgFP+Lavm7G2upX7s0dJquX9xgWEZ+zzCoEDKwP1os8IiPkNsjEi0N00d/TTOtQi9+Y2FxDDu+GG25KrPcULyb+8qifjEF43pltLfdI5MKCZSgMSYjshSc34J3jCsTMKwKJEzK999Nu3YX0oGtWAGmBkfeoqVZX9HsnSuYgIsHtQQAx9TlszntHmT3vsbHW/DGfUe3FyL2zlTE+fl7Nz8WdI36mxulvaTFlsiUYNFF+zam0jfAi8AHvpekt1AflXaD/kzbEZmB9x7B1nB7sh9CdxgNdg2gCAVHrBXPeFwbwz++RJ9SyeRBA==
+ bh=hi68UCk//tATx9kRXqunHnkORQeNS2cTaOQVCItiVL0=;
+ b=mcayi9s7DHeFd4eSWE2IXUtEproCyoWj+8krDLub/9Wq9LqpLBmiSlfOZ2OSvU3kg0CwmjZakUDnxR83CcZn66Gcq7VEcX7xm4bFqkBkbF53iuuf9J/baowEft0GbiVQRVep6JWSuMOwXr7E9yE6Wzke4rTHgeO3q9f6niZEyEGuOt5bZMl0OLrmxA7IIAim3LSvK7Hq6P04gKFMpxOLho1ZUDbDWLVI5GiEizXgVtIwE7THw8+YZr75R9TH5H2pvn2PfcXDDLtH6j8/eqzAqesQyv2k2tS/+hf8VcwJC/oK/DByfXdWmY2Ab5DbbKs4wjjssuY6ZYxm4zONNs/+Jw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PhRJZfuWSZ6soOzr0n7BBsWXwa+g+/chbcyOA+nDW4s=;
- b=Vx4KCH/+UXcrZWokHMxlRqTfsIvcyGLIw69eEZcUzDvaFQkwKb8mroXWLFbbejhN8eUL/IWkCbPS5+mAapqK0cGaN4F0xtrgARXfoOKVBef4bjAwVM/nSJF2H3feGDN/GE9Me186gGFenfq8gKAvuOFJIlS4j1JjBW/E3q7qEM4=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+ bh=hi68UCk//tATx9kRXqunHnkORQeNS2cTaOQVCItiVL0=;
+ b=JVU6pbgfh98WL+a6sDjIVeYAN+kGKzWq5ka+ro8km3PMdrJjBJNAzW5/YZKmxsNioYd2BjiHWjnUN1SFduasXVbyKawUQzlpVqn0brOR8r0jhwf6m2KZpXTVp7E9n3mjAXqkiPHOjrinFfAl5pRpxFI6nAzGnLnooYH8ThaR+M8=
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0402MB2798.eurprd04.prod.outlook.com (2603:10a6:800:ae::13)
+ by VI1PR0401MB2511.eurprd04.prod.outlook.com (2603:10a6:800:50::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Mon, 12 Jul
- 2021 15:22:41 +0000
+ 2021 17:01:21 +0000
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::b1a0:d654:a578:53ab]) by VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::b1a0:d654:a578:53ab%7]) with mapi id 15.20.4308.026; Mon, 12 Jul 2021
- 15:22:40 +0000
+ 17:01:21 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Date: Mon, 12 Jul 2021 18:21:42 +0300
-Message-Id: <20210712152142.800651-25-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210712152142.800651-1-vladimir.oltean@nxp.com>
+To: Marek Behun <kabel@blackhole.sk>
+Thread-Topic: [RFC PATCH v3 net-next 00/24] Allow forwarding for the software
+ bridge data path to be offloaded to capable devices
+Thread-Index: AQHXdzGsaUZwcS7NYkCNFax/7xm0CKs/ejyAgAAWcwA=
+Date: Mon, 12 Jul 2021 17:01:21 +0000
+Message-ID: <20210712170120.xo34ztomimq5oqdg@skbuf>
 References: <20210712152142.800651-1-vladimir.oltean@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM4PR0101CA0058.eurprd01.prod.exchangelabs.com
- (2603:10a6:200:41::26) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (82.76.66.29) by
- AM4PR0101CA0058.eurprd01.prod.exchangelabs.com (2603:10a6:200:41::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.20 via Frontend
- Transport; Mon, 12 Jul 2021 15:22:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 55b34e6a-5bb0-4fe2-273a-08d94548e397
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2798:
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB2798E3DDC64FB95A0621611AE0159@VI1PR0402MB2798.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MzEkkI+MXb8sWZfPez9F1rPoYmuP/+C3xQKeO3iG+xdhO4I0zMTzD9lYWzWa54oOsV4hUHijobJpH92h50a7DcoVmffqALL5bRhCHxLA5nXq8gs26DcHBA37iIWYZvGnAx4lAsWk7R0B1d9I0E0JlAP5bDrFNKjpkfHgSu3gOXr3mr/535pObAq5r5wdGpVjBTEBjXEFqLQVu9oi7iP31Oum3qyGxoFQWTdgniGlPgaUW/+GA/Bv8yE7Bn0UcFvvJIAA9dvc3LLq/cUSKSqmevAnr5+V+TucpiWJLEI3tXGPLize56wg3E4HsSqjPAfLDi/qdMUBOG+tuDHiHPJ3wrCAoDNcDZ0mnwy/ldE4rpjFly4umzXvWn/Gq8Rz+SRIYIjtA6zyzy+9spGSvr77bjUXSd9Y0+zAfD7vLqyY6bdZ694OwkeaPCd+N0sME6/IGPGkVsSFU/0RaPasCLhKEeP2gEPDnEhWBfgf7XKEORzHV0NhW2ATrCgIn3muihSoyl6/5Cs9gkVl6MO3Kkp34UPmldegrXUx8NegKLUWjCAsv55tigjBCbBP6GYx4wiv3YXrFt0nH9egrBkzeOAVoDqGzL/oGLf241EIpMMqNYOb3eQc39jnvBUSZMVbYTn6K4EIA+1UWgbrd6PHS59Ij55knkWhoP2SN4sC6ueTZ7lilBmimXFhR1ytlZWYP5mSFLZh8EYOUXq+dGRvRnf0Lw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ <20210712174059.7916c0da@thinkpad>
+In-Reply-To: <20210712174059.7916c0da@thinkpad>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: blackhole.sk; dkim=none (message not signed)
+ header.d=none;blackhole.sk; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9b3dca97-3086-4460-9ff7-08d94556aca0
+x-ms-traffictypediagnostic: VI1PR0401MB2511:
+x-microsoft-antispam-prvs: <VI1PR0401MB25111CFB1BB8DE13546D44C5E0159@VI1PR0401MB2511.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: D6sP8x4JPgAeSnzuRIwDvjDGk8rl7vXMcbNoM5TPA0LJGaXeXjEQ55spXsOzCMKB9zCxUVDvrv7jxo6+u0oPo+Z04VIGUw2srjTntsZt8hcEka/xRrX4NLtLRd/zmfbK56X6iGTxVPhcW1ewd7PdHfQi0ctsO3nFklo1hjp9K0ZSS3xLQ1Y5+vYbh63qW19LlrSUuu4qwKe5zIbj4ffV5bl6PNW0i5BVnwfy1cQCMcmFXJte+/cqIONVNf44H4y0cJSK6ul8r3Zs7lgQV4cwzZOrK02+q7co1ZWKBvV2DDR9FxRTw1Ez02CrG18uohRWULw64ov0R5j9i6xGzQcQiDJ/BRCHUgQ9F5qMcr5JJM7RNz5MF10ch9b057wOfF8ldrn1xyjLBgGDYsfp1keHCZdJ2IP4ypSGsUrmotl0wmhPbW0sRbQTgD5Qz7ZLXilLgxPXHO1pHUXMvQIIqumaRyRwHyM6DrbAvcZSpPfHLJZQm2xtC4cgDBK+WUP6mTrtyoLz1+xpv8c2X5XwRp4m/oegFkO7414Yff3U+WjGpESVcDWzW2aqXdfVSLacH9+aMk76AenFcFZLhAOGPheiJl+G6RX8JjmYWjPcfYqXqwcCdEfFLqtAGDG0f6qFFsG1/gYHVy9EuKWarfG9uzU5Eg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(346002)(396003)(136003)(366004)(83380400001)(66946007)(4326008)(110136005)(2906002)(52116002)(6506007)(54906003)(38350700002)(956004)(2616005)(186003)(8936002)(44832011)(316002)(1076003)(38100700002)(6666004)(478600001)(5660300002)(36756003)(6512007)(26005)(66476007)(6486002)(7416002)(8676002)(86362001)(66556008);
+ SFS:(4636009)(7916004)(346002)(39860400002)(136003)(376002)(366004)(396003)(66946007)(66476007)(66446008)(86362001)(8676002)(2906002)(91956017)(9686003)(71200400001)(6916009)(316002)(44832011)(33716001)(7416002)(64756008)(66556008)(6512007)(478600001)(122000001)(76116006)(4326008)(6486002)(6506007)(83380400001)(26005)(5660300002)(38100700002)(8936002)(1076003)(54906003)(186003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ftcUt3gq4ciC+etsyVWzZb9PZd4cfI0ZlvtMSvyWZx8IkdYrw+0zM6fETY4W?=
- =?us-ascii?Q?xf8tFNR48Xf1UkRYdZdgIvmrCvLcJPvm3Fg1HPLOAeceIS5BaHpTzLFKwSga?=
- =?us-ascii?Q?ljmnnLZfgorssMu3jLVp7YKaH0afsbbgRBbiqD63pEAeu+5m69ddhxuJOXhK?=
- =?us-ascii?Q?5sv7sM/GBK2QHmL+jfRVgnE1nfXvttv2R+oGzMMhxDIDrjrjRKDseryYd86m?=
- =?us-ascii?Q?m4K4K0nT7xan3V6AOLf7SV/ZNUenz5VyOytYaElA7Bn5Q0TEvbMreDtZS8Ad?=
- =?us-ascii?Q?xj+EuOoIHH5GUNWDz3HESCqxVHho3dBGMlvAeUceHyJttM2LkKi4n378QUmy?=
- =?us-ascii?Q?/64rFUcBEOIWNQQNBmFj/OCTd2IsEfHn3VP0jRj1uKTef4UEoxXevQx8IOL+?=
- =?us-ascii?Q?uH9nTQCpfUEUr7jZ4QTgzbXF8OXGfVcOg01CODmjLPDGset9rCVHAD63eRMr?=
- =?us-ascii?Q?rEmEVsQ5kbwyIgWiqCcAQT/RHM2JnvgR7JCvL+efYH1Yhwzjpx39xvZI9laZ?=
- =?us-ascii?Q?PSyrejKUPoVud6TPeMLcUrteHUC6LPMqa81hLfuvif8LK1TNrtAoUb29Wzrg?=
- =?us-ascii?Q?LfttEyl/aTjqaHmuir46vvmSdo1ujTEDxspLhTvss1o6CnFlhEERYWd6uxMp?=
- =?us-ascii?Q?GDWCN9cRY+OmoKrquowTA0q1G5c+BU4OH6lfwwUxJzdMHrOK/jqEcNyzfzBK?=
- =?us-ascii?Q?jLM3UyzlwX8JyoIt4zbGQC27NxFSyyB/hetmhE4FUKNoqwhRLF2LWBoSl/vt?=
- =?us-ascii?Q?j7irFxpJepzMdaGDrvrMyintdHKOHHvMqJP1yXJl/fabEIinW0dUdX0a8Ejb?=
- =?us-ascii?Q?iuhKGjUaFTEyOu0bmiQzvcmp4pFxPIspCeYvzWcArZB2WFUR+VLkrMMZxg4C?=
- =?us-ascii?Q?/mLhFw34A3bZHo4sjMgNPy1eg5MjBIAjYO6JSNhx4Zwax0v1klAcWK6yMSY9?=
- =?us-ascii?Q?uByK/T7ct3o2VSU8BkfEHJTasUzITP8vjepQk56RDvC/By0CVcMmnM7VFiXh?=
- =?us-ascii?Q?CZw6wRIHf4L8dnHo2eTBSr5V8jiEIr3q6CFK6A6BpaTilQHWl1RC3zEgM8jb?=
- =?us-ascii?Q?wh5nHnJqUp2PxD11rsOWvjTGxPR8peN4Nkvj6YFA5+q7VpDIouvpE+OsUF5d?=
- =?us-ascii?Q?sqCyeHp4hQlDO2/yzBKoteW689/EXeCkLTgy58K3PeliB9FkrAOQ7xIDm66Z?=
- =?us-ascii?Q?JVUFwm/rakPuXlYjW0aVQ0Ec6LZdD0EJVKqvkp/uj5u8y1V26XL2h6vTXq5b?=
- =?us-ascii?Q?DE56GHFoQ6MBfhQSBM7j0Zx0B43PUl+Qd0IOcYyYeVTwA5zrUi4nhz3B0g9Y?=
- =?us-ascii?Q?UFuRK3Udl61+DmiK0y2OMlqo?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?F+cJ3W3e0GwfeWars+8fhcNoO1akYrBHh7waDFZ0k6hW8Aelv90MJYhpzD13?=
+ =?us-ascii?Q?IZTdZmn9tb4KA3KAUrM+TMM7XAsdUIWWtvjemyfHUFKXVp2VUEVbwETJdT+S?=
+ =?us-ascii?Q?IHBNF1ryuWe08tzsp7xyzFEOp0WRTvYyjOiqng4stOjOx/Dm7v5M5GWBn2eM?=
+ =?us-ascii?Q?Y6zmsr73pPLmQ1pUxCgPSyo0JAAO2JO4dPMH3wAv8xGTCXGbf1fCgCt1CRih?=
+ =?us-ascii?Q?tuT3+u8svRY3vSpOb/upxN4FXH0cihKayLJqW01JQbQ/xTEXQzJBEFOFPQwC?=
+ =?us-ascii?Q?REjAn5sFvY0guijgt6y+dZH7zkVQPzQLAs6KO93Hjr/uZB4SkRrP2h+cdRmi?=
+ =?us-ascii?Q?oaFxZtF+yGgA6V5TFKhQy8KvEz1ZokZyDXCniQO5GTzeD5mKZFptRKiMEK/3?=
+ =?us-ascii?Q?P8Ic9WhzNe/fR+M/ERyXWSFweDH0R+E5RyGoZMRdI01ZZszxMzYbFaUAAj5w?=
+ =?us-ascii?Q?a/8JA7lRxwTTJ71hX4/x1hb/pQjBMZnzLrQUuQ7hhKbFIzsJZrGSrG5EKWA8?=
+ =?us-ascii?Q?VCO9zXKx/6YX/tUI6zNmWQxt4pjF77qq1w/Nxvi0TZeGYa8w2QxyI+oI+uvl?=
+ =?us-ascii?Q?8eC5Y/hacVE/T/1TrKvw43IlF6laEHhUWAPSXWccOg+i/dOZrXscAs+KMz3t?=
+ =?us-ascii?Q?sgHRxjEtYkWTtS+yxiIZ99gqbiNT4aHLkbdOa9CTDQXLaDi4us1+wxN1UDBA?=
+ =?us-ascii?Q?FLg/5yJ5yiyXPMWsW0YZIV8hnVbya6lh7v3hTzfP2r9NXaSwLS1dp1cg+794?=
+ =?us-ascii?Q?oF7i+zIfLP5QhUS5FnHPnNLdOCv/r7npE4Qjh7dECCfvHPb2yu8oDHMETJ2i?=
+ =?us-ascii?Q?/DfxlE0b5K6Ye5U9z1tcPxtgCYeDlZzcuP43CX4wodX76gUd+eClSQSQlEmR?=
+ =?us-ascii?Q?RaaSvX0FjMpygrBtXqOizIGphpGJNXNeSUvCERrzoi6IS44z3oEfQDCB01NI?=
+ =?us-ascii?Q?dWMQcSTkZDIrOwuyl4vdPzm2RE2F6hxn/5zrZoV+eWGP3k+VreLkqCubzfwH?=
+ =?us-ascii?Q?NOerKedBnFFiX6ik7scz3B5NBiDc95ZiAEEWatJsPT2qf2erdQHNV26+nROM?=
+ =?us-ascii?Q?2Tx6Jw3+jm5ZbriLU/h5Zi6Y8coVSRltgJcrkItka9rr4/AKceIYFwbgo57G?=
+ =?us-ascii?Q?s5gaHukzkXPL9+JQk1i8NPWOpCcGF4Vln6jUwk0UDQZx7FXHA7vEWa1RH5A5?=
+ =?us-ascii?Q?Y2MXcdrfVGZZMYCeNR7W6OHnE+9SsBzPXLismQoHwiUlYfvVVGbjRw/Wnhqm?=
+ =?us-ascii?Q?GYPpSTAAKq2ZuM6a+kLkBELffholafypnSs2EMEncUdiIrMYID5kF87FzoY8?=
+ =?us-ascii?Q?mO6LLhIo4RFqBwD0S/mHjVk0?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <1BB5E62C3DFF8548A3F571CCC8C557B5@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55b34e6a-5bb0-4fe2-273a-08d94548e397
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2021 15:22:40.9630 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Bdjvc9XgQ39Wn7S2wahLQ46QUvDMQb5e7xkTzLS4K4UANRNrQOPohStw+H0V5jEJSIzIcd6tsiCKCRBJQym+Wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2798
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b3dca97-3086-4460-9ff7-08d94556aca0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jul 2021 17:01:21.4408 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5Gie8jcC4dCZBZC/FUH2pNvEy/xc4Bm+zRNZNDFzhGWYwBnTwQi7ikKWajEAhtBCbw8gFzghGUY7VWLJsTMSNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2511
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Jiri Pirko <jiri@resnulli.us>, bridge@lists.linux-foundation.org,
- Ido Schimmel <idosch@idosch.org>, Grygorii Strashko <grygorii.strashko@ti.com>,
+ Jiri Pirko <jiri@resnulli.us>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@idosch.org>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Vivien Didelot <vivien.didelot@gmail.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>,
  Tobias Waldekranz <tobias@waldekranz.com>
-Subject: [Bridge] [RFC PATCH v3 net-next 24/24] net: dsa: tag_dsa: offload
-	the bridge forwarding process
+Subject: Re: [Bridge] [RFC PATCH v3 net-next 00/24] Allow forwarding for the
+ software bridge data path to be offloaded to capable devices
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -151,100 +152,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Tobias Waldekranz <tobias@waldekranz.com>
+Hi Marek,
 
-Allow the DSA tagger to generate FORWARD frames for offloaded skbs
-sent from a bridge that we offload, allowing the switch to handle any
-frame replication that may be required. This also means that source
-address learning takes place on packets sent from the CPU, meaning
-that return traffic no longer needs to be flooded as unknown unicast.
+On Mon, Jul 12, 2021 at 05:40:59PM +0200, Marek Behun wrote:
+> Vladimir, on what mv88e6xxx devices are you developing this stuff?
+> Do you use Turris MOX for this?
 
-Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- net/dsa/tag_dsa.c | 52 +++++++++++++++++++++++++++++++++++++++--------
- 1 file changed, 44 insertions(+), 8 deletions(-)
+I didn't develop the Marvell stuff nor did I come up with the idea
+there, Tobias did. I also am not particularly interested in supporting
+this for Marvell beyond making sure that the patches look simple and
+okay, and pave the way for other drivers to do the same thing.
 
-diff --git a/net/dsa/tag_dsa.c b/net/dsa/tag_dsa.c
-index a822355afc90..0f258218c8cf 100644
---- a/net/dsa/tag_dsa.c
-+++ b/net/dsa/tag_dsa.c
-@@ -126,7 +126,42 @@ static struct sk_buff *dsa_xmit_ll(struct sk_buff *skb, struct net_device *dev,
- 				   u8 extra)
- {
- 	struct dsa_port *dp = dsa_slave_to_port(dev);
-+	u8 tag_dev, tag_port;
-+	enum dsa_cmd cmd;
- 	u8 *dsa_header;
-+	u16 pvid = 0;
-+	int err;
-+
-+	if (skb->offload_fwd_mark) {
-+		struct dsa_switch_tree *dst = dp->ds->dst;
-+		struct net_device *br = dp->bridge_dev;
-+
-+		cmd = DSA_CMD_FORWARD;
-+
-+		/* When offloading forwarding for a bridge, inject FORWARD
-+		 * packets on behalf of a virtual switch device with an index
-+		 * past the physical switches.
-+		 */
-+		tag_dev = dst->last_switch + 1 + dp->bridge_num;
-+		tag_port = 0;
-+
-+		/* If we are offloading forwarding for a VLAN-unaware bridge,
-+		 * inject packets to hardware using the bridge's pvid, since
-+		 * that's where the packets ingressed from.
-+		 */
-+		if (!br_vlan_enabled(br)) {
-+			/* Safe because __dev_queue_xmit() runs under
-+			 * rcu_read_lock_bh()
-+			 */
-+			err = br_vlan_get_pvid_rcu(br, &pvid);
-+			if (err)
-+				return NULL;
-+		}
-+	} else {
-+		cmd = DSA_CMD_FROM_CPU;
-+		tag_dev = dp->ds->index;
-+		tag_port = dp->index;
-+	}
- 
- 	if (skb->protocol == htons(ETH_P_8021Q)) {
- 		if (extra) {
-@@ -134,10 +169,10 @@ static struct sk_buff *dsa_xmit_ll(struct sk_buff *skb, struct net_device *dev,
- 			memmove(skb->data, skb->data + extra, 2 * ETH_ALEN);
- 		}
- 
--		/* Construct tagged FROM_CPU DSA tag from 802.1Q tag. */
-+		/* Construct tagged DSA tag from 802.1Q tag. */
- 		dsa_header = skb->data + 2 * ETH_ALEN + extra;
--		dsa_header[0] = (DSA_CMD_FROM_CPU << 6) | 0x20 | dp->ds->index;
--		dsa_header[1] = dp->index << 3;
-+		dsa_header[0] = (cmd << 6) | 0x20 | tag_dev;
-+		dsa_header[1] = tag_port << 3;
- 
- 		/* Move CFI field from byte 2 to byte 1. */
- 		if (dsa_header[2] & 0x10) {
-@@ -148,12 +183,13 @@ static struct sk_buff *dsa_xmit_ll(struct sk_buff *skb, struct net_device *dev,
- 		skb_push(skb, DSA_HLEN + extra);
- 		memmove(skb->data, skb->data + DSA_HLEN + extra, 2 * ETH_ALEN);
- 
--		/* Construct untagged FROM_CPU DSA tag. */
-+		/* Construct untagged DSA tag. */
- 		dsa_header = skb->data + 2 * ETH_ALEN + extra;
--		dsa_header[0] = (DSA_CMD_FROM_CPU << 6) | dp->ds->index;
--		dsa_header[1] = dp->index << 3;
--		dsa_header[2] = 0x00;
--		dsa_header[3] = 0x00;
-+
-+		dsa_header[0] = (cmd << 6) | tag_dev;
-+		dsa_header[1] = tag_port << 3;
-+		dsa_header[2] = pvid >> 8;
-+		dsa_header[3] = pvid & 0xff;
- 	}
- 
- 	return skb;
--- 
-2.25.1
+I did my testing using a different DSA driver and extra patches which
+I did not post here yet. I just reposted/adapted Tobias' work because
+mv88e6xxx needs less work to support the TX data plane offload, and this
+framework does need a first user to get accepted, so why delay it any
+further if mv88e6xxx needs 2 patches whereas other drivers need 30.
 
+I did use the MOX for some minimal testing however, at least as far as
+I could - there is this COMPHY SERDES bug in the bootloader which makes
+the board fail to boot, and now the device tree workaround you gave me
+does not appear to bypass the issue any longer or I didn't reaply it
+properly. The point is that it isn't as easy as I would have liked to
+use the MOX for testing. I was able to validate the "net: dsa: track the
+number of switches in a tree" patch on MOX, though, since DSA probes
+earlier than xhci, and even though the boot hung, I did put some prints
+and got the expected results.=
