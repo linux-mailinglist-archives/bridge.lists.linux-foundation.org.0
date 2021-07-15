@@ -1,98 +1,95 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71403C9C5A
-	for <lists.bridge@lfdr.de>; Thu, 15 Jul 2021 12:03:28 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC07B3CA0F0
+	for <lists.bridge@lfdr.de>; Thu, 15 Jul 2021 16:49:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9D6EE60ADE;
-	Thu, 15 Jul 2021 10:03:26 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 8361683E16;
+	Thu, 15 Jul 2021 14:49:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NLL9rnBEV_cB; Thu, 15 Jul 2021 10:03:25 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id D3FC660B2B;
-	Thu, 15 Jul 2021 10:03:24 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id PB0FHhe3uodA; Thu, 15 Jul 2021 14:49:37 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id B084683E15;
+	Thu, 15 Jul 2021 14:49:36 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D758CC000E;
-	Thu, 15 Jul 2021 10:03:23 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 697BBC001F;
+	Thu, 15 Jul 2021 14:49:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DAE9DC000E
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 17:27:30 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C899DC000E
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Jul 2021 14:49:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id C5285401B3
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 17:27:30 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id A4FFC42368
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Jul 2021 14:49:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=blackhole.sk
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id aBAe4MmXyTNW for <bridge@lists.linux-foundation.org>;
- Mon, 12 Jul 2021 17:27:27 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from mail-proxyout-mua-31.websupport.eu
- (mail-proxyout-mua-31.websupport.eu [37.9.172.181])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 6FE8C400E9
- for <bridge@lists.linux-foundation.org>; Mon, 12 Jul 2021 17:27:27 +0000 (UTC)
-Received: from in-1.websupport.sk (unknown [10.10.2.101])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- by mail-proxyout-mua-31.websupport.eu (Postfix) with ESMTPS id 6876DC04E9;
- Mon, 12 Jul 2021 19:27:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blackhole.sk;
- s=mail; t=1626110835;
- bh=1Z+7eKuQGefXsiLmO54SfAanWObwQV+Nmi5tV4R3u7o=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References;
- b=M1B/1GM91bA66bvkS5pB9vyTSJM2mE6+CKSdJq0ZKYfGSaXIWZxsg+Mf71uN6aUmq
- DorGBzhYUzlU/b8kw5102jFwR2MGv3BGVK+9ADN/zjEJgBWbZjGt/rV0XHcNB76QFe
- n+wqu3Ft2GrNYEzUTu1R/lD7ZkQVRmvSF0TJT9Co=
-Received: from thinkpad (otava-0257.koleje.cuni.cz [78.128.181.4])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: kabel@blackhole.sk)
- by in-1.websupport.sk (Postfix) with ESMTPSA id 4GNrL85jJZz5vlZ;
- Mon, 12 Jul 2021 19:27:12 +0200 (CEST)
-Date: Mon, 12 Jul 2021 19:27:11 +0200
-From: Marek Behun <kabel@blackhole.sk>
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id oJH6BLcEtkEM for <bridge@lists.linux-foundation.org>;
+ Thu, 15 Jul 2021 14:49:33 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 4F53B42268
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Jul 2021 14:49:32 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id
+ y21-20020a7bc1950000b02902161fccabf1so6237073wmi.2
+ for <bridge@lists.linux-foundation.org>; Thu, 15 Jul 2021 07:49:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=VkHeawapFxvFE6350X6CQgGsPoo5+76V86NE1YTDZZY=;
+ b=UCw4fcFiE2bu30hwS5e53xnmFf+zg/e3F4GQSOf+CxTd+/UU2nPZ0Lv4BfuRyw22uc
+ CDod9C4FfBlOTDCB2ZUDsDPLR9UI29zIbwcxnnobpyQc2kXJiWaTdm/oSo3WFy2KTXol
+ 1qL7NpIrmTG+IC8MwIR3dC8yu/CLxOhBcApyJ9aIRHY4pyTYzpRRACAkcAnIpi81LY8g
+ pmC74sEB878o/1vGjgLlk2EVOhfl54LAaFQNWEpUZuLTMtR92vHJb8i4ZSSXhnJaZZP/
+ X9vdSHQVr5SU0CDzgCGNlu3m9L4siq0kEpBAtnbOlIirLJldET+9pt6bDAt8+GPdGv4D
+ cddg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=VkHeawapFxvFE6350X6CQgGsPoo5+76V86NE1YTDZZY=;
+ b=ooIgWBqNVEwKgAddNexJ0Az+Qp5hXgKCm0R479PtOOXIQ1ST11QrnY1+Olsu0zOAwh
+ cqY6fzrPHP2JsCxmyr7tNqiWxPpDJsP7IzayXx8XOxs82JOV7k0Lgrg/hI7jCrE2WvHK
+ 0Uuv4D8XIjQLIaoMFlpLqg1JL7arLZfPP1TWBAp+uofAo3oTgsSDi9++3BswUwjjHS/2
+ 8wXPc/6nQvqeAFsCDUkhLkNiLjytdWTBEe+t5Wr5q4paoEKRMUZvILpD7SByei2b2BfK
+ MtCZ92KNNb3Wrwo3jwTYTNiRU0c0QaSuEgBXwastH7LR3III1vrBzchrILqeZw4qPj0+
+ 9GfQ==
+X-Gm-Message-State: AOAM531KC3/VnBNjW9umgnZ23xGMpTzrqEO49nCtEUlPLvwFoE2/Axkp
+ 8ypAPSjl/rBeGOEgAYlcBjE=
+X-Google-Smtp-Source: ABdhPJzIiQlCsY1cJjf6mEApH3G+KNcm4gc3JXaKMEnw1biTXn4fv73C/YDcYJ+yFsvtMviRpZLGbg==
+X-Received: by 2002:a05:600c:1c0d:: with SMTP id
+ j13mr5097890wms.34.1626360571117; 
+ Thu, 15 Jul 2021 07:49:31 -0700 (PDT)
+Received: from skbuf ([82.76.66.29])
+ by smtp.gmail.com with ESMTPSA id q17sm249958wrv.47.2021.07.15.07.49.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 15 Jul 2021 07:49:30 -0700 (PDT)
+Date: Thu, 15 Jul 2021 17:49:29 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
 To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Message-ID: <20210712192711.126f2b35@thinkpad>
-In-Reply-To: <20210712170120.xo34ztomimq5oqdg@skbuf>
+Message-ID: <20210715144929.oa3u44is3v6gewr5@skbuf>
 References: <20210712152142.800651-1-vladimir.oltean@nxp.com>
- <20210712174059.7916c0da@thinkpad>
- <20210712170120.xo34ztomimq5oqdg@skbuf>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+ <20210712152142.800651-23-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Out-Spamd-Result: default: False [1.90 / 1000.00]; ARC_NA(0.00)[];
- TO_DN_EQ_ADDR_SOME(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; TAGGED_RCPT(0.00)[];
- MIME_GOOD(-0.10)[text/plain]; RCPT_COUNT_TWELVE(0.00)[15];
- RCVD_COUNT_ZERO(0.00)[0]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+]; MID_RHS_NOT_FQDN(0.50)[];
- ASN(0.00)[asn:2852, ipnet:78.128.128.0/17, country:CZ];
- FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,davemloft.net,lunn.ch,gmail.com,resnulli.us,idosch.org,waldekranz.com,nvidia.com,networkplumber.org,lists.linux-foundation.org,ti.com];
- SUSPICIOUS_RECIPS(1.50)[]
-X-Out-Rspamd-Server: mail-antispam-4
-X-Out-Rspamd-Queue-Id: 4GNrL85jJZz5vlZ
-Authentication-Results: in-1.websupport.sk;
- auth=pass smtp.auth=kabel@blackhole.sk smtp.mailfrom=kabel@blackhole.sk
-X-Mailman-Approved-At: Thu, 15 Jul 2021 10:03:23 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210712152142.800651-23-vladimir.oltean@nxp.com>
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Jiri Pirko <jiri@resnulli.us>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@idosch.org>,
- Grygorii Strashko <grygorii.strashko@ti.com>,
+ Jiri Pirko <jiri@resnulli.us>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Vivien Didelot <vivien.didelot@gmail.com>,
+ Ido Schimmel <idosch@idosch.org>, Grygorii Strashko <grygorii.strashko@ti.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>,
  Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [RFC PATCH v3 net-next 00/24] Allow forwarding for the
- software bridge data path to be offloaded to capable devices
+Subject: Re: [Bridge] [RFC PATCH v3 net-next 22/24] net: dsa: add support
+ for bridge TX forwarding offload
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,53 +104,92 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Vladimir,
+On Mon, Jul 12, 2021 at 06:21:40PM +0300, Vladimir Oltean wrote:
+> +static bool dsa_port_bridge_tx_fwd_prepare(struct dsa_port *dp,
+> +					   struct net_device *bridge_dev)
+> +{
+> +	struct dsa_switch *ds = dp->ds;
+> +	struct dsa_switch_tree *dst;
+> +	int bridge_num, err;
+> +
+> +	dst = ds->dst;
+> +
+> +	bridge_num = dsa_tree_find_bridge_num(dst, bridge_dev);
+> +	if (bridge_num < 0) {
+> +		/* First port that offloads TX forwarding for this bridge */
+> +		int bridge_num;
 
-On Mon, 12 Jul 2021 17:01:21 +0000
-Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+Stupid bug: "bridge_num" is redeclared here as a different variable with
+a different scope, shadowing the one from dsa_port_bridge_tx_fwd_prepare().
 
-> Hi Marek,
-> 
-> On Mon, Jul 12, 2021 at 05:40:59PM +0200, Marek Behun wrote:
-> > Vladimir, on what mv88e6xxx devices are you developing this stuff?
-> > Do you use Turris MOX for this?  
-> 
-> I didn't develop the Marvell stuff nor did I come up with the idea
-> there, Tobias did. I also am not particularly interested in supporting
-> this for Marvell beyond making sure that the patches look simple and
-> okay, and pave the way for other drivers to do the same thing.
-> 
-> I did my testing using a different DSA driver and extra patches which
-> I did not post here yet. I just reposted/adapted Tobias' work because
-> mv88e6xxx needs less work to support the TX data plane offload, and this
-> framework does need a first user to get accepted, so why delay it any
-> further if mv88e6xxx needs 2 patches whereas other drivers need 30.
-> 
-> I did use the MOX for some minimal testing however, at least as far as
-> I could - there is this COMPHY SERDES bug in the bootloader which makes
-> the board fail to boot, and now the device tree workaround you gave me
-> does not appear to bypass the issue any longer or I didn't reaply it
-> properly.
+> +
+> +		bridge_num = find_first_zero_bit(&dst->fwd_offloading_bridges,
+> +						 DSA_MAX_NUM_OFFLOADING_BRIDGES);
+> +		if (bridge_num >= ds->num_fwd_offloading_bridges)
+> +			return false;
+> +
+> +		set_bit(bridge_num, &dst->fwd_offloading_bridges);
+> +	}
+> +
+> +	dp->bridge_num = bridge_num;
 
-Sorry about that. Current upstream U-Boot solves this issue, but we did
-not release official update yet because there are still some things that
-need to be done. We have some RCs, though.
+and then here, the scope from the "if" block is lost, so the bridge_num
+variable is still -1. So dp->bridge_num remains -1.
 
-If you are interested, it is pretty easy to upgrade:
-- MTD partition "secure-firmware" needs to be flashed with
-    https://gitlab.nic.cz/turris/mox-boot-builder/uploads/8d5a17fae8f6e14ca11968ee5174c7ca/trusted-secure-firmware.bin
-  (this file needs to be signed by CZ.NIC)
-- MTD partition "a53-firmware" (or "u-boot" in older DTS) needs to be
-  flashed with
-    https://secure.nic.cz/files/mbehun/a53-firmware.bin
-  (this file can be built by users themselves)
+Deleting the "int bridge_num" declaration from the "if" block fixes the
+issue. This got introduced between v2 and v3.
 
-> The point is that it isn't as easy as I would have liked to
-> use the MOX for testing. I was able to validate the "net: dsa: track the
-> number of switches in a tree" patch on MOX, though, since DSA probes
-> earlier than xhci, and even though the boot hung, I did put some prints
-> and got the expected results.
+> +
+> +	/* Notify the driver */
+> +	err = dsa_port_bridge_fwd_offload_add(dp, bridge_dev, bridge_num);
+> +	if (err) {
+> +		dsa_port_bridge_tx_fwd_unprepare(dp, bridge_dev);
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>  int dsa_port_bridge_join(struct dsa_port *dp, struct net_device *br,
+>  			 struct netlink_ext_ack *extack)
+>  {
+> @@ -241,6 +310,7 @@ int dsa_port_bridge_join(struct dsa_port *dp, struct net_device *br,
+>  	};
+>  	struct net_device *dev = dp->slave;
+>  	struct net_device *brport_dev;
+> +	bool tx_fwd_offload;
+>  	int err;
+>  
+>  	/* Here the interface is already bridged. Reflect the current
+> @@ -254,7 +324,10 @@ int dsa_port_bridge_join(struct dsa_port *dp, struct net_device *br,
+>  	if (err)
+>  		goto out_rollback;
+>  
+> -	err = switchdev_bridge_port_offload(brport_dev, dev, dp, false, extack);
+> +	tx_fwd_offload = dsa_port_bridge_tx_fwd_prepare(dp, br);
+> +
+> +	err = switchdev_bridge_port_offload(brport_dev, dev, dp, tx_fwd_offload,
+> +					    extack);
+>  	if (err)
+>  		goto out_rollback_unbridge;
+>  
+> @@ -279,6 +352,8 @@ int dsa_port_pre_bridge_leave(struct dsa_port *dp, struct net_device *br,
+>  	struct net_device *brport_dev = dsa_port_to_bridge_port(dp);
+>  	struct net_device *dev = dp->slave;
+>  
+> +	dsa_port_bridge_tx_fwd_prepare(dp, br);
 
-I will try to do some tests with this patch series.
+We are in the pre_bridge_leave path, this should have been _unprepare.
 
-Marek
+> +
+>  	return switchdev_bridge_port_unoffload(brport_dev, dev, dp, extack);
+>  }
+
+The patches should work otherwise, if somebody wants to test they should
+make these changes.
+
+There are also some more changes that need to be made to mlxsw to
+properly handle the unoffload of bridge ports that are LAG devices and
+VLAN devices. I have them in my tree now. When net-next reopens I will
+first send a series of 7 refactoring patches for dpaa2-switch, mlxsw and
+prestera, and then the TX data plane offload in DSA as a 15-patch series.
