@@ -1,81 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760EF3CE73A
-	for <lists.bridge@lfdr.de>; Mon, 19 Jul 2021 19:10:18 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ACE13CE740
+	for <lists.bridge@lfdr.de>; Mon, 19 Jul 2021 19:10:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 263FC605F9;
-	Mon, 19 Jul 2021 17:10:16 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id B0A20403D8;
+	Mon, 19 Jul 2021 17:10:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NEhwBEppr54v; Mon, 19 Jul 2021 17:10:15 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 740FE60853;
-	Mon, 19 Jul 2021 17:10:14 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id CsAApdOqEeCk; Mon, 19 Jul 2021 17:10:18 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id D8736403DC;
+	Mon, 19 Jul 2021 17:10:16 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 44AFEC0029;
-	Mon, 19 Jul 2021 17:10:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B7489C0026;
+	Mon, 19 Jul 2021 17:10:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4C9A7C000E
- for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 17:10:12 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2BD16C000E
+ for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 17:10:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 1CEB483984
- for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 17:10:12 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id D55BC400BE
+ for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 17:10:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CzdpqwWV6ywk for <bridge@lists.linux-foundation.org>;
- Mon, 19 Jul 2021 17:10:10 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5pUB9ViAMSCF for <bridge@lists.linux-foundation.org>;
+ Mon, 19 Jul 2021 17:10:12 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
 Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
  [IPv6:2a00:1450:4864:20::629])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 15F518367B
- for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 17:10:09 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id dt7so29882342ejc.12
- for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 10:10:09 -0700 (PDT)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 0C213402F0
+ for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 17:10:10 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id qb4so29879542ejc.11
+ for <bridge@lists.linux-foundation.org>; Mon, 19 Jul 2021 10:10:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=29TqZv5oN4lRjIuLVLlHSdl22CZNOehTdPTwu5IVoLg=;
- b=UgKnCiitiLfGRIgT44411Dx5uiabkLnWL/K6/F6ItGI+xdJa+ctfbwl6hogSiD6Qhs
- OamGHqEACBiOsrfqae9Xd0hd4qHrbOSMDUs9iCgqDXol3LxZ4s406aUFW+MS8mYS3+uV
- befDHIrIZNIzmkRRH/GDkwT18p+0nP2YYw0yN388X5vJkxVbR2Dz2PuldE5uTDgts5lm
- Vy85Tev8e/kBHccEc55MVi4sPDXrD4zwopr4HKuVad76uTF66vu6kDCqhS+HqYRQOLXL
- cV0+Myv10OjpvL1km+yTu3vyb8cVIUyBReWTIHANrG1O4GGlaijBpuJL8nEELHdH741y
- QAyQ==
+ bh=0cf2LlS6jWfQkusBdzzkz/uvVmHVHUO2QoyYAj4uPiI=;
+ b=Gkm9g8hVYMOhtrs9MTG+1zFy8TL/tamGGnCnIrlm+IOtoTAHVbv/K3knrcbhKNtLh1
+ DYOnkhmtPquPsFpuVbsVwOL79M2+a84h9oTZHx1EpcF9VHvWdGIudiRX9TStEKB57tP0
+ 54OddR1Zf+EuQ8khnjxVeua9jStoybFiAOr/RaFx0KF5qjyW1xzR4BjUTnRCihyhB+ct
+ XGQ0LCgYpOowd3ybZzlAyXFROfrQJE+ra+/fGseWvNfBwG9k2DJeACff9SvKldqR2nI4
+ y8VFTpUoI3nXTWu7F5Ellv5vh3lnO2jndI4tSXFpN8MgRH7ajwPrKWEsJbNguoihHsNO
+ juwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=29TqZv5oN4lRjIuLVLlHSdl22CZNOehTdPTwu5IVoLg=;
- b=aUScLMv8FrNoRudHsPoLc8HtYS5H8TgQE5sy5aCFEkKacuPnep/+NHD+lWYc1DOHns
- v60GmS5OqKlsALVXei5Wb5/JueeN/qAnHyOzojWAEwn60A6lYae/LTXMzPhDlJPvpSfJ
- b+8a6Iw3G5vpFzfTKftoaTV9S72Dca73cwHr4o3NIJa88ZZTotSFfpTxkfZJB3B1WyQL
- MvixrCCTeKq9IrHIyM/0GZ/PEo+LFSYtl4UuL6WesMHTfSBWr7C8nmsglFtdybUpTZU3
- ZzuQejtpa3hsz7QO+IPXKGo/I3nFGR6lbAOQbOXdBuUR5cFQNy9876zd+glf+wL4VJAR
- H76g==
-X-Gm-Message-State: AOAM5331C8ByQZ2oLO/kusBD1EnEP6tXVDQEZ8+a3WLVSGH7jrU+DOYe
- AHrzb+UURPsgK2TBeQT4Bmmwqg==
-X-Google-Smtp-Source: ABdhPJxYxJjv1X81gq8ReaRbBW1NnkwEMPa46l5HvYHHzi/S1jUnT0sViircGsm38aNkPlVYEawnfA==
-X-Received: by 2002:a17:907:62a5:: with SMTP id
- nd37mr27649202ejc.148.1626714608131; 
- Mon, 19 Jul 2021 10:10:08 -0700 (PDT)
+ bh=0cf2LlS6jWfQkusBdzzkz/uvVmHVHUO2QoyYAj4uPiI=;
+ b=ZljR2guhupYjksv7L3r95dVs0BTW0d5QUjH8BiJB07eOSbznvbB8ZqbcrdLt6fZEuY
+ E98sDYNVR3rEt51H3PbO6nOm44bytE+m1czvo+TEq+GiEe7CHuD8QHYYSKVlF4AzFvSn
+ fB+XaSSt+rXE4pWKB7LyOiQysl2+/Kmhy5Sg3PoiPm03FJRK7yjhkEntUAFlXPGWYRV7
+ uqLms9M5+XkTDZZVhIBHy0RwdMkaygOie7taXWB8ZksbtdZIRe0LpJFSwlCemb/xHDiT
+ Sn4JzFp3UbhSrt8zMnWlM/fde3Jxz7pDo9Eblr2GKXx5CP1M+RdGjkm06Qweyc1xMVzm
+ fj9g==
+X-Gm-Message-State: AOAM532T6e/yggNrd9rJLpQH7jYUT10ooWoVhnYJjrD+mNUE3LF/uBtV
+ 5wof0wE2NleUZVAdGdh/NYPmEA==
+X-Google-Smtp-Source: ABdhPJwtOFuV3FqU4fr00EqQNTXvoFiTqke8X4xPkej103amW1xUOkZ9vR0U74QcOE0oI6EH95REwQ==
+X-Received: by 2002:a17:906:2a04:: with SMTP id
+ j4mr28744231eje.344.1626714609073; 
+ Mon, 19 Jul 2021 10:10:09 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id nc29sm6073896ejc.10.2021.07.19.10.10.07
+ by smtp.gmail.com with ESMTPSA id nc29sm6073896ejc.10.2021.07.19.10.10.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Jul 2021 10:10:07 -0700 (PDT)
+ Mon, 19 Jul 2021 10:10:08 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Mon, 19 Jul 2021 20:06:34 +0300
-Message-Id: <20210719170637.435541-13-razor@blackwall.org>
+Date: Mon, 19 Jul 2021 20:06:35 +0300
+Message-Id: <20210719170637.435541-14-razor@blackwall.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210719170637.435541-1-razor@blackwall.org>
 References: <20210719170637.435541-1-razor@blackwall.org>
@@ -83,8 +83,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 12/15] net: bridge: vlan: add support for
-	global options
+Subject: [Bridge] [PATCH net-next 13/15] net: bridge: vlan: add support for
+	dumping global vlan options
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,200 +101,168 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-We can have two types of vlan options depending on context:
- - per-device vlan options (split in per-bridge and per-port)
- - global vlan options
-
-The second type wasn't supported in the bridge until now, but we need
-them for per-vlan multicast support, per-vlan STP support and other
-options which require global vlan context. They are contained in the global
-bridge vlan context even if the vlan is not configured on the bridge device
-itself. This patch adds initial netlink attributes and support for setting
-these global vlan options, they can only be set (RTM_NEWVLAN) and the
-operation must use the bridge device. Since there are no such options yet
-it shouldn't have any functional effect.
+Add a new vlan options dump flag which causes only global vlan options
+to be dumped. The dumps are done only with bridge devices, ports are
+ignored. They support vlan compression if the options in sequential
+vlans are equal (currently always true).
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- include/uapi/linux/if_bridge.h | 13 ++++++
- net/bridge/br_private.h        |  4 ++
- net/bridge/br_vlan.c           | 16 +++++--
- net/bridge/br_vlan_options.c   | 85 ++++++++++++++++++++++++++++++++++
- 4 files changed, 115 insertions(+), 3 deletions(-)
+ include/uapi/linux/if_bridge.h |  1 +
+ net/bridge/br_private.h        |  4 ++++
+ net/bridge/br_vlan.c           | 41 +++++++++++++++++++++++++++-------
+ net/bridge/br_vlan_options.c   | 31 +++++++++++++++++++++++++
+ 4 files changed, 69 insertions(+), 8 deletions(-)
 
 diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 1f7513300cfe..760b264bd03d 100644
+index 760b264bd03d..2203eb749d31 100644
 --- a/include/uapi/linux/if_bridge.h
 +++ b/include/uapi/linux/if_bridge.h
-@@ -485,10 +485,15 @@ enum {
-  *     [BRIDGE_VLANDB_ENTRY_INFO]
-  *     ...
-  * }
-+ * [BRIDGE_VLANDB_GLOBAL_OPTIONS] = {
-+ *     [BRIDGE_VLANDB_GOPTS_ID]
-+ *     ...
-+ * }
-  */
- enum {
- 	BRIDGE_VLANDB_UNSPEC,
- 	BRIDGE_VLANDB_ENTRY,
-+	BRIDGE_VLANDB_GLOBAL_OPTIONS,
- 	__BRIDGE_VLANDB_MAX,
- };
- #define BRIDGE_VLANDB_MAX (__BRIDGE_VLANDB_MAX - 1)
-@@ -538,6 +543,14 @@ enum {
- };
- #define BRIDGE_VLANDB_STATS_MAX (__BRIDGE_VLANDB_STATS_MAX - 1)
+@@ -479,6 +479,7 @@ enum {
  
-+enum {
-+	BRIDGE_VLANDB_GOPTS_UNSPEC,
-+	BRIDGE_VLANDB_GOPTS_ID,
-+	BRIDGE_VLANDB_GOPTS_RANGE,
-+	__BRIDGE_VLANDB_GOPTS_MAX
-+};
-+#define BRIDGE_VLANDB_GOPTS_MAX (__BRIDGE_VLANDB_GOPTS_MAX - 1)
-+
- /* Bridge multicast database attributes
-  * [MDBA_MDB] = {
-  *     [MDBA_MDB_ENTRY] = {
+ /* flags used in BRIDGE_VLANDB_DUMP_FLAGS attribute to affect dumps */
+ #define BRIDGE_VLANDB_DUMPF_STATS	(1 << 0) /* Include stats in the dump */
++#define BRIDGE_VLANDB_DUMPF_GLOBAL	(1 << 1) /* Dump global vlan options only */
+ 
+ /* Bridge vlan RTM attributes
+  * [BRIDGE_VLANDB_ENTRY] = {
 diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 5515b6c37322..bc920bc1ff44 100644
+index bc920bc1ff44..e0a982275a93 100644
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -1605,6 +1605,10 @@ int br_vlan_process_options(const struct net_bridge *br,
- 			    struct net_bridge_vlan *range_end,
- 			    struct nlattr **tb,
- 			    struct netlink_ext_ack *extack);
-+int br_vlan_rtm_process_global_options(struct net_device *dev,
-+				       const struct nlattr *attr,
-+				       int cmd,
-+				       struct netlink_ext_ack *extack);
+@@ -1609,6 +1609,10 @@ int br_vlan_rtm_process_global_options(struct net_device *dev,
+ 				       const struct nlattr *attr,
+ 				       int cmd,
+ 				       struct netlink_ext_ack *extack);
++bool br_vlan_global_opts_can_enter_range(const struct net_bridge_vlan *v_curr,
++					 const struct net_bridge_vlan *r_end);
++bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
++			      const struct net_bridge_vlan *v_opts);
  
  /* vlan state manipulation helpers using *_ONCE to annotate lock-free access */
  static inline u8 br_vlan_get_state(const struct net_bridge_vlan *v)
 diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index ab4969a4a380..dcb5acf783d2 100644
+index dcb5acf783d2..e66b004df763 100644
 --- a/net/bridge/br_vlan.c
 +++ b/net/bridge/br_vlan.c
-@@ -2203,12 +2203,22 @@ static int br_vlan_rtm_process(struct sk_buff *skb, struct nlmsghdr *nlh,
- 	}
+@@ -1919,6 +1919,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
+ 			    u32 dump_flags)
+ {
+ 	struct net_bridge_vlan *v, *range_start = NULL, *range_end = NULL;
++	bool dump_global = !!(dump_flags & BRIDGE_VLANDB_DUMPF_GLOBAL);
+ 	bool dump_stats = !!(dump_flags & BRIDGE_VLANDB_DUMPF_STATS);
+ 	struct net_bridge_vlan_group *vg;
+ 	int idx = 0, s_idx = cb->args[1];
+@@ -1937,6 +1938,10 @@ static int br_vlan_dump_dev(const struct net_device *dev,
+ 		vg = br_vlan_group_rcu(br);
+ 		p = NULL;
+ 	} else {
++		/* global options are dumped only for bridge devices */
++		if (dump_global)
++			return 0;
++
+ 		p = br_port_get_rcu(dev);
+ 		if (WARN_ON(!p))
+ 			return -EINVAL;
+@@ -1959,7 +1964,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
  
- 	nlmsg_for_each_attr(attr, nlh, sizeof(*bvm), rem) {
--		if (nla_type(attr) != BRIDGE_VLANDB_ENTRY)
-+		switch (nla_type(attr)) {
-+		case BRIDGE_VLANDB_ENTRY:
-+			err = br_vlan_rtm_process_one(dev, attr,
-+						      nlh->nlmsg_type,
-+						      extack);
-+			break;
-+		case BRIDGE_VLANDB_GLOBAL_OPTIONS:
-+			err = br_vlan_rtm_process_global_options(dev, attr,
-+								 nlh->nlmsg_type,
-+								 extack);
-+			break;
-+		default:
+ 	/* idx must stay at range's beginning until it is filled in */
+ 	list_for_each_entry_rcu(v, &vg->vlan_list, vlist) {
+-		if (!br_vlan_should_use(v))
++		if (!dump_global && !br_vlan_should_use(v))
  			continue;
-+		}
+ 		if (idx < s_idx) {
+ 			idx++;
+@@ -1972,8 +1977,21 @@ static int br_vlan_dump_dev(const struct net_device *dev,
+ 			continue;
+ 		}
  
- 		vlans++;
--		err = br_vlan_rtm_process_one(dev, attr, nlh->nlmsg_type,
--					      extack);
- 		if (err)
- 			break;
- 	}
+-		if (dump_stats || v->vid == pvid ||
+-		    !br_vlan_can_enter_range(v, range_end)) {
++		if (dump_global) {
++			if (br_vlan_global_opts_can_enter_range(v, range_end))
++				continue;
++			if (!br_vlan_global_opts_fill(skb, range_start->vid,
++						      range_end->vid,
++						      range_start)) {
++				err = -EMSGSIZE;
++				break;
++			}
++			/* advance number of filled vlans */
++			idx += range_end->vid - range_start->vid + 1;
++
++			range_start = v;
++		} else if (dump_stats || v->vid == pvid ||
++			   !br_vlan_can_enter_range(v, range_end)) {
+ 			u16 vlan_flags = br_vlan_flags(range_start, pvid);
+ 
+ 			if (!br_vlan_fill_vids(skb, range_start->vid,
+@@ -1995,11 +2013,18 @@ static int br_vlan_dump_dev(const struct net_device *dev,
+ 	 * - last vlan (range_start == range_end, not in range)
+ 	 * - last vlan range (range_start != range_end, in range)
+ 	 */
+-	if (!err && range_start &&
+-	    !br_vlan_fill_vids(skb, range_start->vid, range_end->vid,
+-			       range_start, br_vlan_flags(range_start, pvid),
+-			       dump_stats))
+-		err = -EMSGSIZE;
++	if (!err && range_start) {
++		if (dump_global &&
++		    !br_vlan_global_opts_fill(skb, range_start->vid,
++					      range_end->vid, range_start))
++			err = -EMSGSIZE;
++		else if (!dump_global &&
++			 !br_vlan_fill_vids(skb, range_start->vid,
++					    range_end->vid, range_start,
++					    br_vlan_flags(range_start, pvid),
++					    dump_stats))
++			err = -EMSGSIZE;
++	}
+ 
+ 	cb->args[1] = err ? idx : 0;
+ 
 diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
-index b4add9ea8964..a7d5a2334207 100644
+index a7d5a2334207..f290f5140547 100644
 --- a/net/bridge/br_vlan_options.c
 +++ b/net/bridge/br_vlan_options.c
-@@ -258,3 +258,88 @@ int br_vlan_process_options(const struct net_bridge *br,
- 
+@@ -259,6 +259,37 @@ int br_vlan_process_options(const struct net_bridge *br,
  	return err;
  }
-+
-+static int br_vlan_process_global_one_opts(const struct net_bridge *br,
-+					   struct net_bridge_vlan_group *vg,
-+					   struct net_bridge_vlan *v,
-+					   struct nlattr **tb,
-+					   bool *changed,
-+					   struct netlink_ext_ack *extack)
+ 
++bool br_vlan_global_opts_can_enter_range(const struct net_bridge_vlan *v_curr,
++					 const struct net_bridge_vlan *r_end)
 +{
-+	*changed = false;
-+	return 0;
++	return v_curr->vid - r_end->vid == 1;
 +}
 +
-+static const struct nla_policy br_vlan_db_gpol[BRIDGE_VLANDB_GOPTS_MAX + 1] = {
-+	[BRIDGE_VLANDB_GOPTS_ID]	= { .type = NLA_U16 },
-+	[BRIDGE_VLANDB_GOPTS_RANGE]	= { .type = NLA_U16 },
-+};
-+
-+int br_vlan_rtm_process_global_options(struct net_device *dev,
-+				       const struct nlattr *attr,
-+				       int cmd,
-+				       struct netlink_ext_ack *extack)
++bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
++			      const struct net_bridge_vlan *v_opts)
 +{
-+	struct nlattr *tb[BRIDGE_VLANDB_GOPTS_MAX + 1];
-+	struct net_bridge_vlan_group *vg;
-+	struct net_bridge_vlan *v;
-+	u16 vid, vid_range = 0;
-+	struct net_bridge *br;
-+	int err = 0;
++	struct nlattr *nest;
 +
-+	if (cmd != RTM_NEWVLAN) {
-+		NL_SET_ERR_MSG_MOD(extack, "Global vlan options support only set operation");
-+		return -EINVAL;
-+	}
-+	if (!netif_is_bridge_master(dev)) {
-+		NL_SET_ERR_MSG_MOD(extack, "Global vlan options can only be set on bridge device");
-+		return -EINVAL;
-+	}
-+	br = netdev_priv(dev);
-+	vg = br_vlan_group(br);
-+	if (WARN_ON(!vg))
-+		return -ENODEV;
++	nest = nla_nest_start(skb, BRIDGE_VLANDB_GLOBAL_OPTIONS);
++	if (!nest)
++		return false;
 +
-+	err = nla_parse_nested(tb, BRIDGE_VLANDB_GOPTS_MAX, attr,
-+			       br_vlan_db_gpol, extack);
-+	if (err)
-+		return err;
++	if (nla_put_u16(skb, BRIDGE_VLANDB_GOPTS_ID, vid))
++		goto out_err;
 +
-+	if (!tb[BRIDGE_VLANDB_GOPTS_ID]) {
-+		NL_SET_ERR_MSG_MOD(extack, "Missing vlan entry id");
-+		return -EINVAL;
-+	}
-+	vid = nla_get_u16(tb[BRIDGE_VLANDB_GOPTS_ID]);
-+	if (!br_vlan_valid_id(vid, extack))
-+		return -EINVAL;
++	if (vid_range && vid < vid_range &&
++	    nla_put_u16(skb, BRIDGE_VLANDB_GOPTS_RANGE, vid_range))
++		goto out_err;
 +
-+	if (tb[BRIDGE_VLANDB_GOPTS_RANGE]) {
-+		vid_range = nla_get_u16(tb[BRIDGE_VLANDB_GOPTS_RANGE]);
-+		if (!br_vlan_valid_id(vid_range, extack))
-+			return -EINVAL;
-+		if (vid >= vid_range) {
-+			NL_SET_ERR_MSG_MOD(extack, "End vlan id is less than or equal to start vlan id");
-+			return -EINVAL;
-+		}
-+	} else {
-+		vid_range = vid;
-+	}
++	nla_nest_end(skb, nest);
 +
-+	for (; vid <= vid_range; vid++) {
-+		bool changed = false;
++	return true;
 +
-+		v = br_vlan_find(vg, vid);
-+		if (!v) {
-+			NL_SET_ERR_MSG_MOD(extack, "Vlan in range doesn't exist, can't process global options");
-+			err = -ENOENT;
-+			break;
-+		}
-+
-+		err = br_vlan_process_global_one_opts(br, vg, v, tb, &changed,
-+						      extack);
-+		if (err)
-+			break;
-+	}
-+
-+	return err;
++out_err:
++	nla_nest_cancel(skb, nest);
++	return false;
 +}
++
+ static int br_vlan_process_global_one_opts(const struct net_bridge *br,
+ 					   struct net_bridge_vlan_group *vg,
+ 					   struct net_bridge_vlan *v,
 -- 
 2.31.1
 
