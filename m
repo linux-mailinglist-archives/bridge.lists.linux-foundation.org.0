@@ -1,102 +1,95 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1974D3CFB32
-	for <lists.bridge@lfdr.de>; Tue, 20 Jul 2021 15:51:41 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id A81F33CFB7A
+	for <lists.bridge@lfdr.de>; Tue, 20 Jul 2021 16:02:20 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id DFF1C404EC;
-	Tue, 20 Jul 2021 13:51:38 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id A5817827D8;
+	Tue, 20 Jul 2021 14:02:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Nmt5inyoS4wN; Tue, 20 Jul 2021 13:51:38 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yrBgJzeaPDAY; Tue, 20 Jul 2021 14:02:17 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 3A25E404E7;
-	Tue, 20 Jul 2021 13:51:37 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id E82F28281A;
+	Tue, 20 Jul 2021 14:02:16 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E4E6CC0022;
-	Tue, 20 Jul 2021 13:51:36 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A77CFC0022;
+	Tue, 20 Jul 2021 14:02:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DEB0AC000E
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:51:34 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C02B7C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 14:02:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id BE2BB404C3
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:51:34 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 8EFE6607FA
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 14:02:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SeaUBZpIZuuz for <bridge@lists.linux-foundation.org>;
- Tue, 20 Jul 2021 13:51:31 +0000 (UTC)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=messagingengine.com
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Bhs4SUmvyG-U for <bridge@lists.linux-foundation.org>;
+ Tue, 20 Jul 2021 14:02:13 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
 Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
  [66.111.4.230])
- by smtp4.osuosl.org (Postfix) with ESMTPS id D9127404B4
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:51:31 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 22F84580A2D;
- Tue, 20 Jul 2021 09:51:29 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Tue, 20 Jul 2021 09:51:29 -0400
+ by smtp3.osuosl.org (Postfix) with ESMTPS id AD54B6068A
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 14:01:55 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 9953858177C;
+ Tue, 20 Jul 2021 10:01:54 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute5.internal (MEProxy); Tue, 20 Jul 2021 10:01:54 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:content-type:date:from:in-reply-to
  :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=RnfYnU
- XKt4Ke4MftA5VvFPElPeokJ2dpZfg8rcz5Vu0=; b=QrTUmqt2py7V7koT/9N+ll
- EutBd4CkyQUnJKhZbJexgiMBQcqlkrJ43sCf3Z47PFHsce55J/Zx57A3jQe3F9ia
- WdjQ9zQvWPnIGSG/Ige0kp4yVJy1cv7WnpIuJW4CrWA+slOYCDivgZtPzu4jVVEE
- 9fxXZf6jk33tQrKal3Y3gG0otZit+XIrohpBty8+WvPEFnvqOMzSCOcLC+Y+tAUK
- L9wx6M2B51kThhrXrArKT+acjtiikH1kptNwMksZOIV+GoUaEqdae8c0cwwA6sQI
- GAGoIIa0lANqk2uqLwb+yvRHIPdFyTSsK9Rt7hMxfR9/XsoVMHnXeGYidrgIcr8w
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Fbfjll
+ +276W8sItskCenThre81QQRVpyey7VS1hHpAU=; b=m+FsyOY6f3VZxMb3tKxRgU
+ F0V7B6iG40I9jDsoa9OooiCqLEiAUJ8kWfBsDcVuatejLzhEdl5BX+D++RCHm5Ux
+ 4h7aTvHBfqb55SMhG7p00RrNNjUkWNt4/e04BhSttGPW7VptDX/VNZ3fFvCKW3HZ
+ QyXNv0UoGz9qRHvY6zCmGLBxH6he4V0Qoql81I4fMb9gOsEDtL0KaXnPaCgTVSEE
+ B47gId/lOODTaOTtCRTMlr+ZRgMYy/UXW6woknGj5hZhW7F7TxPMH2wdg/RIBOn+
+ FuG5WTOiI9vkPagtJ1nrh+x02MaLb1WUd/P8Hq9Or8dmXWG/LDpywFhOiVOeZdcA
  ==
-X-ME-Sender: <xms:39T2YGTqkFPemr1uXnsgcTs17ZEP1jd0PuICYM65fe2yO5pCLCS8bQ>
- <xme:39T2YLzAb9tRyLYzl0t6bxOLWDsKSKD5DL2vkKepxNMJoqhO7IVHev4j0CkSUry0H
- zxuhYtJAiNAeWI>
-X-ME-Received: <xmr:39T2YD1QboIZuCTGVZ7fw_7gc5578J1odOMTpHLYXvXxHMiP32F2GKFCB_638HU8tmTMwu65xbycp3VWga17ZMXWjd4yuA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfedvgdeikecutefuodetggdotefrodftvf
+X-ME-Sender: <xms:Udf2YExkO1NYl8uRsqGq9h_ioJwj8LjtyAw0N0-O7PWPJbbAZDVPHQ>
+ <xme:Udf2YIQYbHJDVGiAPg21Zku_0mzAJOtE9Rbgbz0iBaDrGcRz0SXg4wIfSyJKM-1e-
+ He23mXYH2FJicg>
+X-ME-Received: <xmr:Udf2YGVgHd8on58C2op4ch-weH-lVmvCRcMtCC9iMRJh4uYPajJKim0jZiqh3SkTyMommiQ_Z5b-zr-0j-zyxBHi5rf6xg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfedvgdejtdcutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
  fjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcuufgt
  hhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrthhtvg
- hrnheptdffkeekfeduffevgeeujeffjefhtefgueeugfevtdeiheduueeukefhudehleet
- necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepihguoh
- hstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:39T2YCBkLsgjlR-WIrhJvuFNoe-K6qRhYzEQQ-NxTXtt0_lwD0enpg>
- <xmx:39T2YPgleTO_seiWkFTjWOjtDJihSCT_kE2mofEcYAmfLKGnpLQDBQ>
- <xmx:39T2YOqWOFT8qSygj2atL7iW-hkUXXlcjkrrJI8fTf6NyVZ7g7u-sA>
- <xmx:4dT2YKQG3-DLtTwfgw2_0bxrL1gj-Qvp8j53y8CLTG4Nt9Inz8gVxQ>
+ hrnhepgfevgfevueduueffieffheeifffgjeelvedtteeuteeuffekvefggfdtudfgkeev
+ necuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtne
+ curfgrrhgrmhepmhgrihhlfhhrohhmpehiughoshgthhesihguohhstghhrdhorhhg
+X-ME-Proxy: <xmx:Udf2YCg1HBy1yvhnIH44zIPbfsynopGKk45IpC0jVWrl8esk-SHjiw>
+ <xmx:Udf2YGBW6DxR0jx24K8O-ETVrR0x6Vo88pSmL0P_H0qOdimSNQw10A>
+ <xmx:Udf2YDKj7Q29zYVpckqFRNnZ-9TK1Ldvjbm6eGEV1S_FpZsIq9AoWg>
+ <xmx:Utf2YCzZmWRNuqkYssS24Qc7Fq8FEokBSJaD-jfSaZQv1mEaDfPVhw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 20 Jul 2021 09:51:27 -0400 (EDT)
-Date: Tue, 20 Jul 2021 16:51:23 +0300
+ 20 Jul 2021 10:01:52 -0400 (EDT)
+Date: Tue, 20 Jul 2021 17:01:48 +0300
 From: Ido Schimmel <idosch@idosch.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Message-ID: <YPbU20/cjkz04s8b@shredder>
-References: <20210718214434.3938850-1-vladimir.oltean@nxp.com>
- <YPaybQZE8l6mRE2l@shredder> <20210720132026.mpk3iq3z6vmmzxyd@skbuf>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Message-ID: <YPbXTKj4teQZ1QRi@shredder>
+References: <20210720134655.892334-1-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210720132026.mpk3iq3z6vmmzxyd@skbuf>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, Marek Behun <kabel@blackhole.sk>,
- Florian Fainelli <f.fainelli@gmail.com>,
+In-Reply-To: <20210720134655.892334-1-vladimir.oltean@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Jiri Pirko <jiri@resnulli.us>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, Vivien Didelot <vivien.didelot@gmail.com>,
+ DENG Qingfang <dqfext@gmail.com>, Grygorii Strashko <grygorii.strashko@ti.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Marek Behun <kabel@blackhole.sk>,
  "David S. Miller" <davem@davemloft.net>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>, Jiri Pirko <jiri@resnulli.us>,
- Vadym Kochan <vkochan@marvell.com>, DENG Qingfang <dqfext@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Lars Povlsen <lars.povlsen@microchip.com>, netdev@vger.kernel.org,
- UNGLinuxDriver@microchip.com, Taras Chornyi <tchornyi@marvell.com>,
  Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [PATCH v4 net-next 00/15] Allow forwarding for the
- software bridge data path to be offloaded to capable devices
+Subject: Re: [Bridge] [PATCH v5 net-next 00/10] Let switchdev drivers
+ offload and unoffload bridge ports at their own convenience
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,57 +104,64 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Jul 20, 2021 at 04:20:26PM +0300, Vladimir Oltean wrote:
-> On Tue, Jul 20, 2021 at 02:24:29PM +0300, Ido Schimmel wrote:
-> > Too many things are squashed into this one patchset. It needs to be
-> > split.
-> >
-> > The TX forwarding offload in mv88e6xxx is not related to the replay
-> > stuff and should be added in a separate patchset. This can be done by
-> > first adding the switchdev_bridge_port_offload() /
-> > switchdev_bridge_port_unoffload() APIs that only take care of setting /
-> > unsetting the hardware domain for the bridge port. Then, in a different
-> > patchset, these APIs can be augmented with a parameter for the replay
-> > stuff. It should be easier to review that way and require less
-> > unnecessary surgeries in drivers that do not require the added
-> > functionality.
+On Tue, Jul 20, 2021 at 04:46:45PM +0300, Vladimir Oltean wrote:
+> The explicit switchdev offloading API will see further extensions in the
+> future.
 > 
-> Fair point. I will submit patches 1-10 and 11-15 separately.
+> The patches were split from a larger series for easier review:
+> https://patchwork.kernel.org/project/netdevbpf/cover/20210718214434.3938850-1-vladimir.oltean@nxp.com/
 
-Not sure if you mean in that order or not, but I suggested first getting
-the TX forwarding offload (patches 11-15) in and then extending the new
-APIs with replay argument so that drivers can opt-in. This should reduce
-the complexity of the second patchset and make it less likely to
-introduce bugs.
+This is not what I meant. I specifically suggested to get the TX
+forwarding offload first and then extending the API with an argument to
+opt-in for the replay / cleanup:
+
+https://lore.kernel.org/netdev/YPbU20%2Fcjkz04s8b@shredder/
 
 > 
-> > According to the title, the patchset is focused on improving
-> > performance, but there are no performance numbers that I could see and
-> > most of the patches deal with the replay stuff instead.
+> Tobias Waldekranz (2):
+>   net: bridge: disambiguate offload_fwd_mark
+>   net: bridge: switchdev: recycle unused hwdoms
 > 
-> Maybe, but the truth is that it is not really the performance
-> improvement that I care about. The performance quote is from Tobias'
-> original cover letter, which I took as-is. I can build a synthetic test
-> for multicasting on 10 mv88e6xxx ports or something like that, or maybe
-> Tobias can provide a more relevant example out of Westermo's use cases.
-> But it would be silly if this patchset's acceptance would depend on the
-> numbers. This is one of those cases where completely different interests
-> led me and Tobias to the the same solution.
+> Vladimir Oltean (8):
+>   net: dpaa2-switch: use extack in dpaa2_switch_port_bridge_join
+>   net: dpaa2-switch: refactor prechangeupper sanity checks
+>   mlxsw: spectrum: refactor prechangeupper sanity checks
+>   mlxsw: spectrum: refactor leaving an 8021q upper that is a bridge port
+>   net: marvell: prestera: refactor prechangeupper sanity checks
+>   net: switchdev: guard drivers against multiple obj replays on same
+>     bridge port
+>   net: bridge: switchdev: let drivers inform which bridge ports are
+>     offloaded
+>   net: bridge: switchdev object replay helpers for everybody
 > 
-> I don't want to bore you to death with details, but for some switches
-> (DSA or otherwise), being able to send bridge packets as they are (data
-> plane packets) instead of what they aren't (control plane packets) is a
-> matter of functionality and not performance. Such switches only use
-> control plane packets for link-local packet traps, and sending/receiving
-> a control packet is expensive.
+>  .../ethernet/freescale/dpaa2/dpaa2-switch.c   |  69 +++-
+>  .../ethernet/marvell/prestera/prestera_main.c |  99 +++--
+>  .../marvell/prestera/prestera_switchdev.c     |  42 ++-
+>  .../marvell/prestera/prestera_switchdev.h     |   7 +-
+>  .../net/ethernet/mellanox/mlxsw/spectrum.c    | 347 ++++++++++++------
+>  .../net/ethernet/mellanox/mlxsw/spectrum.h    |   4 +
+>  .../mellanox/mlxsw/spectrum_switchdev.c       |  28 +-
+>  .../microchip/sparx5/sparx5_switchdev.c       |  48 ++-
+>  drivers/net/ethernet/mscc/ocelot_net.c        | 115 ++++--
+>  drivers/net/ethernet/rocker/rocker.h          |   9 +-
+>  drivers/net/ethernet/rocker/rocker_main.c     |  34 +-
+>  drivers/net/ethernet/rocker/rocker_ofdpa.c    |  42 ++-
+>  drivers/net/ethernet/ti/am65-cpsw-nuss.c      |  34 +-
+>  drivers/net/ethernet/ti/am65-cpsw-switchdev.c |  14 +-
+>  drivers/net/ethernet/ti/am65-cpsw-switchdev.h |   3 +
+>  drivers/net/ethernet/ti/cpsw_new.c            |  32 +-
+>  drivers/net/ethernet/ti/cpsw_switchdev.c      |   4 +-
+>  drivers/net/ethernet/ti/cpsw_switchdev.h      |   3 +
+>  include/linux/if_bridge.h                     |  60 +--
+>  net/bridge/br_fdb.c                           |   1 -
+>  net/bridge/br_if.c                            |  11 +-
+>  net/bridge/br_mdb.c                           |   1 -
+>  net/bridge/br_private.h                       |  61 ++-
+>  net/bridge/br_switchdev.c                     | 254 +++++++++++--
+>  net/bridge/br_vlan.c                          |   1 -
+>  net/dsa/port.c                                |  83 ++---
+>  26 files changed, 1059 insertions(+), 347 deletions(-)
 > 
-> For this class of switches (some may call them "dumb", but whatever),
-> this patch series makes the difference between supporting and not
-> supporting local IP termination through a VLAN-aware bridge, bridging
-> with a foreign interface, bridging with software upper interfaces like
-> LAG, etc.
-
-OK, so this can be mentioned in the cover letter as well as an argument
-for the feature. Wanted to make sure the patches were actually tested
-given Tobias was the first to publish them and I'm not sure if he tested
-them in the new form or if you have the required hardware.
+> -- 
+> 2.25.1
+> 
