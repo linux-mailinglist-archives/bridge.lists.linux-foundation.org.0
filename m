@@ -1,70 +1,141 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F253CFA8A
-	for <lists.bridge@lfdr.de>; Tue, 20 Jul 2021 15:30:17 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id D98E93CFB14
+	for <lists.bridge@lfdr.de>; Tue, 20 Jul 2021 15:47:23 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 7672A600BA;
-	Tue, 20 Jul 2021 13:30:15 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 1784583A75;
+	Tue, 20 Jul 2021 13:47:22 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id IxFx_G54fKTV; Tue, 20 Jul 2021 13:30:14 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id BA65260593;
-	Tue, 20 Jul 2021 13:30:13 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id lKjflbb9j91C; Tue, 20 Jul 2021 13:47:21 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 10E9183A7D;
+	Tue, 20 Jul 2021 13:47:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 70FC9C0022;
-	Tue, 20 Jul 2021 13:30:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3370CC0025;
+	Tue, 20 Jul 2021 13:47:19 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BE928C000E
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:30:11 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 040C0C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:47:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id AD86340245
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:30:11 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id F364F40498
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:47:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2HOiCyYxWsNl for <bridge@lists.linux-foundation.org>;
- Tue, 20 Jul 2021 13:30:10 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp2.osuosl.org (Postfix) with ESMTPS id D0A75400FC
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:30:10 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 631FD610C7;
- Tue, 20 Jul 2021 13:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1626787810;
- bh=pM/Z7xBX0awLX5qAZcCmzltz6LpWjzPsabVIVtiP95Q=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=Ni2DTwoP6Nf5/sChghNv1vY3uySkuw3zo5pRp0xjh/8A39SuWOGg84LcrCGs48eWU
- vpkjN+OgjTruPbG3+4Kfs9C2TuBap3RKtc+DFxSXjDpxFD1sraEK00AU4GeEHi3cIj
- +OcfndnVE0QN1k54MKka5BaTjNaRQvk/3Iuistsf4kgV9k8sptVKIzIpFTikUIQtNY
- 1m82TNBj3j0esP4Xma+AQ9BnuAQYTGqhtggkHRB8/mdkiULksIQI28omo2Fcgo7gsW
- 1UoEaYmUD8j1+i/HNJ7HzoqS8kib1txRUK35J7KOUEU7GX27qOqu5Cz87npkvXslOu
- pOwGPojp/WKoQ==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 5766260A4E;
- Tue, 20 Jul 2021 13:30:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (1024-bit key) header.d=nxp.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id mcpL_0NzC8q9 for <bridge@lists.linux-foundation.org>;
+ Tue, 20 Jul 2021 13:47:15 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (mail-db3eur04on061b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe0c::61b])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 5F4BC400D6
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 13:47:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KW+gs0yih75ipRXuYLnd7qOfr2ZsNcJlRJaN0Zv9Airt7KAD40HE4g/5E9v4TTWcz0aeS/Sax5sUSJ+iANt+u40cEONDvE3WFAo44yLO0pgvloXLR02rknEinA7a8cqHf/sBw6EkEDEx87K1VftJ9fbY2syHngy8b+pqPX1Y4Av1/oR1o64080YRyJJIUC5jWHhfqTZ+FpY7VjGvusvQNbA/r94a7rnb1jyTW2x/nIIjsuUa+EhRA+jCUBmpfLj4wC56K9ahERIMAn6IT/zkuHHj1EmmsIeWedeWbSDXvo3aZX7e2qOd5v0Mhbrc4+CxoWqEVCWFnBT7Sl1k/LQu8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LglH0w1vp4WC3sskwgO3VjbY6Ou7YGQatfYwouiD61E=;
+ b=A7rcU9eVW/QCibFJCvOgsJES7znPLsOEDb8JzuQD3zC6FK8ha5yRwkVuPOLwcjr3eEt4TEFLCzWM2kA27qcNQhD8kAlBoQWz0B7bbPsWSezq4nHbxsXHihIpENEjqStGfbuZ/pnhcieOj4zZbohFHAhpOIA6KRGzMu//Xhj6y86ID+eO6fwnjWqAU27qSdEi9X9TqMdwU1vhGksXHhfH8l2t3yTC1yqehXr4w4Ruxai3RsE7/K2eeJknh6pebZzedwhevqx28xnbyOJgZ0c2WFeRSnJK2/LBxirRMX575KyUyftt4Ub4mUyE1sZ+zkutrroLfPwW1OyHRbCxbxjJTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LglH0w1vp4WC3sskwgO3VjbY6Ou7YGQatfYwouiD61E=;
+ b=WRyjAeY2Uzqzgmo11Z6lFLoYYKfs2IInIsmk6c0Tul8ogYBON+WNPq3txN/2tVvxRDfJI8i3Wp2E3erX/ke7eZ1sk5EboWfEo/Y/2fQV7mCoHCyJM5ZN8YVtkrBAMxuGrXSbrlpMPlVzlpXphL2OH6eX8V6Yntthf2YMr4iBKfk=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Tue, 20 Jul
+ 2021 13:47:11 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
+ 13:47:11 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+Date: Tue, 20 Jul 2021 16:46:45 +0300
+Message-Id: <20210720134655.892334-1-vladimir.oltean@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162678781035.19709.7575566902962912080.git-patchwork-notify@kernel.org>
-Date: Tue, 20 Jul 2021 13:30:10 +0000
-References: <20210719170637.435541-1-razor@blackwall.org>
-In-Reply-To: <20210719170637.435541-1-razor@blackwall.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- nikolay@nvidia.com, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 00/15] net: bridge: multicast: add
-	vlan support
+Content-Type: text/plain
+X-ClientProxiedBy: PR3P191CA0002.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:102:54::7) To VI1PR04MB5136.eurprd04.prod.outlook.com
+ (2603:10a6:803:55::19)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (82.76.66.29) by
+ PR3P191CA0002.EURP191.PROD.OUTLOOK.COM (2603:10a6:102:54::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4242.19 via Frontend Transport; Tue, 20 Jul 2021 13:47:09 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8239afa4-27bf-4934-0c48-08d94b84dfa7
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5696:
+X-Microsoft-Antispam-PRVS: <VI1PR04MB56966FD5DE75974961ED307BE0E29@VI1PR04MB5696.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: enQquURI/T2gHvbhshT+kCS65ZL2FCjVhs1+wzD6GaeLv+AvdmzKms4uBnTAqvIEgFHa7g62K0jzr7l0EVmRDFnmMBhSr1vbbK1xp0mLxF5n8wKSwGxWeWbUdhlaHVa+gtIT/UVh2j0A7x5kY+RNl8Dre9Q36nA6yvBFPXKnpRbyYpYIBOcC3J4HYDzmEod1jMAEVIEUoZY35yksilriVm0KzF5Lwb5ujC46n0pVOvBIWxAmr4WWyVtOJOQJ4mI9ccucFPK6G04CNRx3udzHg8bdSBI6WS+o0UmCustQ0uRBq4nSW/7eW+QXkTDff4/WtKMjkixICGqNmt7Zhg9QMAQ1MZ6vyP9sCXOnsH7yDsX5ijgfspeqplGXerTS1eZA35glwJZ7AbNXewUSh7UtQi+5v5Ah7P+N1Yo8EIFfV+j0v5z+QThEgOCnQ4pJEXyCcgO8dmPBPV0cZIdUY8QBGYHt8ZZmFOmwD3eXAs91H4nCSSCwhib40jo8qu7X/yoy/pDofhZyu0kwYLRCTl+B1GjhAc7BX7QtpthqQtKIZEBMEZ1qfYBmAeBXsmobmHocHY2BU30l/6u4lSOguhlC/f2F5A6ltpUuquHtKQdWX7vDN947rR20jT/wBwr7EnVa/2TTsvty9b8bCgbmlrVc0tZn1Q6GUi7Caf3Po5OqtzBPrv2FXRzOolTslnMcqIshoXiL+hJ817TuvUTFNOcVnMFMtZZSdg8OOhBWGlAv3YJ8iPTjryULcyACpIM18U3xWiUV5Xeuk3bkR8dET0MNMJFVM8k/b5QK/K8Qt/NJ3es=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(39860400002)(396003)(366004)(346002)(66946007)(6486002)(66556008)(316002)(26005)(54906003)(110136005)(38350700002)(6666004)(38100700002)(8676002)(83380400001)(4326008)(66476007)(8936002)(6512007)(2616005)(186003)(5660300002)(36756003)(966005)(52116002)(956004)(478600001)(7416002)(44832011)(86362001)(1076003)(2906002)(6506007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Qp97RQoGOMUJKA4eO2AiPebejRzt0r1Bx7cwCm5Jr7bDsJA2pjc2Zi2qFgWn?=
+ =?us-ascii?Q?wynUwa5Fl8lyUXNBmSLUKR+bbfXP7phsZHcDGYmNqn/1vJOxPstcgkqvedDM?=
+ =?us-ascii?Q?K3fnJggo/Kstd6yrDSlKntKp/PNsMUxQzS/BhMDzileMvfOeiPQ2cK5PsIdH?=
+ =?us-ascii?Q?3zHBZWVKOgvAHOhkOsQL22C1J1QAyjUflcT/B03pQ3LuhbiTS2wzsRyzbv8w?=
+ =?us-ascii?Q?wBzL6eGuBKucSB9FQU9GdL8ek/rLcX44D05DYyVPSMnTXkIkk+unylgWjAnX?=
+ =?us-ascii?Q?J2wiT7d9xq/XZrNEyUDIrxw5Iw09JJn5lRVHtEJA6LhUvxbGn6yIAjgBY2d7?=
+ =?us-ascii?Q?s2rLrnRezhVUflPSOuSS4HgHrRCNiX9bURmvwc1BRqjTnyKDF004M/UYtAlQ?=
+ =?us-ascii?Q?8oSvhxjBWbOLTT/OdZffURhbrlfkps7odbFQjwHXnUAZgHZjeGmwN8M/47Na?=
+ =?us-ascii?Q?jhtSt9GKaFFbPWLhvJDn6iCJ/qIBHrts1jX5ioc4/i8saXILu5obndziKtBH?=
+ =?us-ascii?Q?wGXLZN+xyzccjTcdj72c11ppGTOLMLq91X1cN2SZ0UaEdSzNKhYiKlE81uYM?=
+ =?us-ascii?Q?w7yIox9JWQvDTa0cmQ3bdzLHPEtRileSRnwBQeYDFv3v8UyHjIz+S2Akh8AQ?=
+ =?us-ascii?Q?kasIyTrMOkDOrRuGiw7d6H9uad0Z4MYJVLL3ikEqwOnBS+9CvY7jY2nBenCt?=
+ =?us-ascii?Q?3dCN4Pjyapq+g87Fm7vrVqdhlda2yjWJOv6R1LGeGpgRv5Dm1Iy0b73VE+S2?=
+ =?us-ascii?Q?RNW3pBlUZ0Vq22LD82DM1doVzK211j0ec9o+pGK299x0uoxKOT/CdlIbNvD1?=
+ =?us-ascii?Q?9zIIIPWqbKiNo1nB20vJAOnIc8jNf/yLowkzNW61OuMOy7QRdjkhzBAlWIGC?=
+ =?us-ascii?Q?XJHa3cG9nm6vABp+rdZY2v/bXdp7rBdTKPNHqzeiXHwKC03G0z5mptcyCgpA?=
+ =?us-ascii?Q?1BBWiF9oh3+MPjg45VdSjfpRDmOSIM97Uk33Af8lxZRYzXvtSjl9o1MEZ3rU?=
+ =?us-ascii?Q?sjy6SOkD6be8OGHjkKQfa372o7E6t7DSsf4hkMmSsVn9T5yGvivvhCSFX8/L?=
+ =?us-ascii?Q?N3+aHAkrxczzZGilBrMAeLdNjQYKpdL08ifWgR7zscijkgWcg4YG6FKXCHYN?=
+ =?us-ascii?Q?IV3/w7M/3YyzslQ/PJPuQ6oxbNslXqVSHkr1hVlNlJ9tdetowIO8iq0bP1hq?=
+ =?us-ascii?Q?ixMz21kvUPRI0netjlzKG7Bs7TmTBKq47HnpiLk4jxO0QOhptkSOovLBfwAP?=
+ =?us-ascii?Q?Ng4Td2vnqULInrx/pxCgI6+Iiui7GMstfnlDsZDhaPrC1M85Vwfl7wXatIQm?=
+ =?us-ascii?Q?ENZktUtMs7TkqLC00tyL8W7B?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8239afa4-27bf-4934-0c48-08d94b84dfa7
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 13:47:11.1587 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1xThuzYW5PG/uDYtIlRy/BgBVvnazw1PQbyH3vJLBrV2IlgeohKnpOnpVuBgbD9TzQyemehVLRmNVpy29TI8ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5696
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Jiri Pirko <jiri@resnulli.us>, DENG Qingfang <dqfext@gmail.com>,
+ bridge@lists.linux-foundation.org, Ido Schimmel <idosch@idosch.org>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Marek Behun <kabel@blackhole.sk>, Vivien Didelot <vivien.didelot@gmail.com>,
+ Tobias Waldekranz <tobias@waldekranz.com>
+Subject: [Bridge] [PATCH v5 net-next 00/10] Let switchdev drivers offload
+	and unoffload bridge ports at their own convenience
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,104 +150,84 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+This series introduces an explicit API through which switchdev drivers
+mark a bridge port as offloaded or not:
+- switchdev_bridge_port_offload()
+- switchdev_bridge_port_unoffload()
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Currently, the bridge assumes that a port is offloaded if
+dev_get_port_parent_id(dev, &ppid, recurse=true) returns something, but
+that is just an assumption that breaks some use cases (like a
+non-offloaded LAG interface on top of a switchdev port, bridged with
+other switchdev ports).
 
-On Mon, 19 Jul 2021 20:06:22 +0300 you wrote:
-> From: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> Hi all,
-> This patchset adds initial per-vlan multicast support, most of the code
-> deals with moving to multicast context pointers from bridge/port pointers.
-> That allows us to switch them with the per-vlan contexts when a multicast
-> packet is being processed and vlan multicast snooping has been enabled.
-> That is controlled by a global bridge option added in patch 06 which is
-> off by default (BR_BOOLOPT_MCAST_VLAN_SNOOPING). It is important to note
-> that this option can change only under RTNL and doesn't require
-> multicast_lock, so we need to be careful when retrieving mcast contexts
-> in parallel. For packet processing they are switched only once in
-> br_multicast_rcv() and then used until the packet has been processed.
-> For the most part we need these contexts only to read config values and
-> check if they are disabled. The global mcast state which is maintained
-> consists of querier and router timers, the rest are config options.
-> The port mcast state which is maintained consists of query timer and
-> link to router port list if it's ever marked as a router port. Port
-> multicast contexts _must_ be used only with their respective global
-> contexts, that is a bridge port's mcast context must be used only with
-> bridge's global mcast context and a vlan/port's mcast context must be
-> used only with that vlan's global mcast context due to the router port
-> lists. This way a bridge port can be marked as a router in multiple
-> vlans, but might not be a router in some other vlan. Also this allows us
-> to have per-vlan querier elections, per-vlan queries and basically the
-> whole multicast state becomes per-vlan when the option is enabled.
-> One of the hardest parts is synchronization with vlan's memory
-> management, that is done through a new vlan flag: BR_VLFLAG_MCAST_ENABLED
-> which is changed only under multicast_lock. When a vlan is being
-> destroyed first that flag is removed under the lock, then the multicast
-> context is torn down which includes waiting for any outstanding context
-> timers. Since all of the vlan processing depends on BR_VLFLAG_MCAST_ENABLED
-> it must be checked first if the contexts are vlan and the multicast_lock
-> has been acquired. That is done by all IGMP/MLD packet processing
-> functions and timers. When processing a packet we have RCU so the vlan
-> memory won't be freed, but if the flag is missing we must not process it.
-> The timers are synchronized in the same way with the addition of waiting
-> for them to finish in case they are running after removing the flag
-> under multicast_lock (i.e. they were waiting for the lock). Multicast vlan
-> snooping requires vlan filtering to be enabled, if it's disabled then
-> snooping gets automatically disabled, too. BR_VLFLAG_GLOBAL_MCAST_ENABLED
-> controls if a vlan has BR_VLFLAG_MCAST_ENABLED set which is used in all
-> vlan disabled checks. We need both flags because one is controlled by
-> user-space globally (BR_VLFLAG_GLOBAL_MCAST_ENABLED) and the other is
-> for a particular bridge/vlan or port/vlan entry (BR_VLFLAG_MCAST_ENABLED).
-> Since the latter is also used for synchronization between the multicast
-> and vlan code, and also controlled by BR_VLFLAG_GLOBAL_MCAST_ENABLED we
-> rely on it when checking if a vlan context is disabled. The multicast
-> fast-path has 3 new bit tests on the cache-hot bridge flags field, I
-> didn't observe any measurable difference. I haven't forced either
-> context options to be always disabled when the other type is enabled
-> because the state consists of timers which either expire (router) or
-> don't affect the normal operation. Some options, like the mcast querier
-> one, won't be allowed to change for the disabled context type, that will
-> come with a future patch-set which adds per-vlan querier control.
-> 
-> [...]
+Along with some consolidation of the bridge logic to assign a "switchdev
+offloading mark" to a port (now better called a "hardware domain"), this
+series allows the bridge driver side to no longer impose restrictions on
+that configuration.
 
-Here is the summary with links:
-  - [net-next,01/15] net: bridge: multicast: factor out port multicast context
-    https://git.kernel.org/netdev/net-next/c/9632233e7de8
-  - [net-next,02/15] net: bridge: multicast: factor out bridge multicast context
-    https://git.kernel.org/netdev/net-next/c/d3d065c0032b
-  - [net-next,03/15] net: bridge: multicast: use multicast contexts instead of bridge or port
-    https://git.kernel.org/netdev/net-next/c/adc47037a7d5
-  - [net-next,04/15] net: bridge: vlan: add global and per-port multicast context
-    https://git.kernel.org/netdev/net-next/c/613d61dbef8e
-  - [net-next,05/15] net: bridge: multicast: add vlan state initialization and control
-    https://git.kernel.org/netdev/net-next/c/7b54aaaf53cb
-  - [net-next,06/15] net: bridge: add vlan mcast snooping knob
-    https://git.kernel.org/netdev/net-next/c/f4b7002a7076
-  - [net-next,07/15] net: bridge: multicast: add helper to get port mcast context from port group
-    https://git.kernel.org/netdev/net-next/c/74edfd483de8
-  - [net-next,08/15] net: bridge: multicast: use the port group to port context helper
-    https://git.kernel.org/netdev/net-next/c/eb1593a0b4c4
-  - [net-next,09/15] net: bridge: multicast: check if should use vlan mcast ctx
-    https://git.kernel.org/netdev/net-next/c/4cdd0d10f31d
-  - [net-next,10/15] net: bridge: multicast: add vlan querier and query support
-    https://git.kernel.org/netdev/net-next/c/615cc23e6283
-  - [net-next,11/15] net: bridge: multicast: include router port vlan id in notifications
-    https://git.kernel.org/netdev/net-next/c/1e9ca45662d6
-  - [net-next,12/15] net: bridge: vlan: add support for global options
-    https://git.kernel.org/netdev/net-next/c/47ecd2dbd8ec
-  - [net-next,13/15] net: bridge: vlan: add support for dumping global vlan options
-    https://git.kernel.org/netdev/net-next/c/743a53d9636a
-  - [net-next,14/15] net: bridge: vlan: notify when global options change
-    https://git.kernel.org/netdev/net-next/c/9aba624d7cb2
-  - [net-next,15/15] net: bridge: vlan: add mcast snooping control
-    https://git.kernel.org/netdev/net-next/c/9dee572c3848
+Right now, all switchdev drivers must be modified to use the explicit
+API, but more and more logic can then be placed centrally in the bridge
+and therefore ease the job of a switchdev driver writer in the future.
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+For example, the first thing we can hook into the explicit switchdev
+offloading API calls are the switchdev object and FDB replay helpers.
+So far, these have only been used by DSA in "pull" mode (where the
+driver must ask for them). Adding the replay helpers to other drivers
+involves a lot of repetition. But by moving the helpers inside the
+bridge port offload/unoffload hook points, we can move the entire replay
+process to "push" mode (where the bridge provides them automatically).
 
+The explicit switchdev offloading API will see further extensions in the
+future.
+
+The patches were split from a larger series for easier review:
+https://patchwork.kernel.org/project/netdevbpf/cover/20210718214434.3938850-1-vladimir.oltean@nxp.com/
+
+Tobias Waldekranz (2):
+  net: bridge: disambiguate offload_fwd_mark
+  net: bridge: switchdev: recycle unused hwdoms
+
+Vladimir Oltean (8):
+  net: dpaa2-switch: use extack in dpaa2_switch_port_bridge_join
+  net: dpaa2-switch: refactor prechangeupper sanity checks
+  mlxsw: spectrum: refactor prechangeupper sanity checks
+  mlxsw: spectrum: refactor leaving an 8021q upper that is a bridge port
+  net: marvell: prestera: refactor prechangeupper sanity checks
+  net: switchdev: guard drivers against multiple obj replays on same
+    bridge port
+  net: bridge: switchdev: let drivers inform which bridge ports are
+    offloaded
+  net: bridge: switchdev object replay helpers for everybody
+
+ .../ethernet/freescale/dpaa2/dpaa2-switch.c   |  69 +++-
+ .../ethernet/marvell/prestera/prestera_main.c |  99 +++--
+ .../marvell/prestera/prestera_switchdev.c     |  42 ++-
+ .../marvell/prestera/prestera_switchdev.h     |   7 +-
+ .../net/ethernet/mellanox/mlxsw/spectrum.c    | 347 ++++++++++++------
+ .../net/ethernet/mellanox/mlxsw/spectrum.h    |   4 +
+ .../mellanox/mlxsw/spectrum_switchdev.c       |  28 +-
+ .../microchip/sparx5/sparx5_switchdev.c       |  48 ++-
+ drivers/net/ethernet/mscc/ocelot_net.c        | 115 ++++--
+ drivers/net/ethernet/rocker/rocker.h          |   9 +-
+ drivers/net/ethernet/rocker/rocker_main.c     |  34 +-
+ drivers/net/ethernet/rocker/rocker_ofdpa.c    |  42 ++-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      |  34 +-
+ drivers/net/ethernet/ti/am65-cpsw-switchdev.c |  14 +-
+ drivers/net/ethernet/ti/am65-cpsw-switchdev.h |   3 +
+ drivers/net/ethernet/ti/cpsw_new.c            |  32 +-
+ drivers/net/ethernet/ti/cpsw_switchdev.c      |   4 +-
+ drivers/net/ethernet/ti/cpsw_switchdev.h      |   3 +
+ include/linux/if_bridge.h                     |  60 +--
+ net/bridge/br_fdb.c                           |   1 -
+ net/bridge/br_if.c                            |  11 +-
+ net/bridge/br_mdb.c                           |   1 -
+ net/bridge/br_private.h                       |  61 ++-
+ net/bridge/br_switchdev.c                     | 254 +++++++++++--
+ net/bridge/br_vlan.c                          |   1 -
+ net/dsa/port.c                                |  83 ++---
+ 26 files changed, 1059 insertions(+), 347 deletions(-)
+
+-- 
+2.25.1
 
