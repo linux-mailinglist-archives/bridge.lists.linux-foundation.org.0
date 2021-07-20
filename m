@@ -2,101 +2,68 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EBCD3CF64C
-	for <lists.bridge@lfdr.de>; Tue, 20 Jul 2021 10:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E3633CF82C
+	for <lists.bridge@lfdr.de>; Tue, 20 Jul 2021 12:44:42 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id E463D400E4;
-	Tue, 20 Jul 2021 08:45:28 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 72B6E403AD;
+	Tue, 20 Jul 2021 10:44:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id wCLHilmrx-nQ; Tue, 20 Jul 2021 08:45:28 +0000 (UTC)
+	with ESMTP id AcSuL4lTGpwh; Tue, 20 Jul 2021 10:44:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 80A9840167;
-	Tue, 20 Jul 2021 08:45:27 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 1613640393;
+	Tue, 20 Jul 2021 10:44:39 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 320A9C0022;
-	Tue, 20 Jul 2021 08:45:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D289BC0022;
+	Tue, 20 Jul 2021 10:44:38 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B086EC000E
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 08:45:25 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 55026C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 10:44:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 9E904835C4
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 08:45:25 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 435938399B
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 10:44:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
+ dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id c77zwzQCW30A for <bridge@lists.linux-foundation.org>;
- Tue, 20 Jul 2021 08:45:25 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by smtp1.osuosl.org (Postfix) with ESMTPS id DF3B3835BA
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 08:45:24 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id t2so27118039edd.13
- for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 01:45:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=1pTMpOorH4LXisVDsXChy+V+9uhVQ+gNlcIaEeOCwgw=;
- b=PN0n7YiIgzdEzWTu+Hn+Zg1BVFbf8oa8DRCmTAwLnsS/hNSCj7BW9S5xB97H2O0AMc
- cZv2dH7j3sdKeolAH9wQUkAtIthofsXJVmyKUQer3a4tRlxQ7Mv06d1DRsNWX4PlOT5j
- gj6elyDDBkh0ongrV/OMYJFxmY/riLEenq1ukRLXN36IUCt6Edbuvu02k3Wz1zDII8kJ
- ROiEBPoddxtJ+LTak9vMOz5fJAFwgPalbrUZ1hRk2eEE7VA+aFOVWWyE9lkH8SjcmZp5
- depv9ZvyeSQYnkFCZZX7ugVebi5PQBlIfLwhFgpJLdiJaQNgW9sesCGtjE5Tc/zZhrJH
- hHNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=1pTMpOorH4LXisVDsXChy+V+9uhVQ+gNlcIaEeOCwgw=;
- b=Ea1DtCOCWv3IvavSTb1PtIpEFR3HDET5pEbhzWVIa69Bkeu+mj3qqZdMlx+NMxaoP7
- ITx/TBHqxEV89oVbmcZuRIVpCu3Jga3HKfhM2J0xYeI34UjfQBkxA7Oe7g4LDRqxQwVA
- gQAhvpNDotXWMvWqlB7UoohFJW59kCCcVmatFhPB3CRW+6RVTEWPDOb8KCn3L5P20AQS
- W7lrIJMuyWXdqEAZJhbE/xFCCG2gz/V3f9ohrWUpPjKGcZprMhI0godIKp47BBt8xwiI
- oWI/9QQc5qK/nM1Gjn2DBMrzTZtn68i7aZ0oT8wyO4wDEtQ3L0iT1mlvmMmZU2gAew2K
- o8rg==
-X-Gm-Message-State: AOAM533sBG+nNrX2cQL7MwimtNJyjhYuyo5hqAHVL+PHA4HO0q2C4SkI
- pMuEHzRtYzda0wxoCWI8dXE=
-X-Google-Smtp-Source: ABdhPJxDzUmnDBr3FnJxsrTGzmISxnDFYJY0nVkE1Yu2DpPmwDKycq0Um4vr7UGXd0sHFR5RYYV2gQ==
-X-Received: by 2002:aa7:c4c9:: with SMTP id p9mr20618792edr.385.1626770723103; 
- Tue, 20 Jul 2021 01:45:23 -0700 (PDT)
-Received: from skbuf ([82.76.66.29])
- by smtp.gmail.com with ESMTPSA id j11sm6881855ejy.40.2021.07.20.01.45.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Jul 2021 01:45:22 -0700 (PDT)
-Date: Tue, 20 Jul 2021 11:45:20 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Message-ID: <20210720084520.4t7sfshyzeuw4ba3@skbuf>
-References: <20210718214434.3938850-1-vladimir.oltean@nxp.com>
- <20210718214434.3938850-10-vladimir.oltean@nxp.com>
- <20210720075354.u57sju7bvn5o3ses@soft-dev3-1.localhost>
+ with ESMTP id Frg7qTI2Ye2G for <bridge@lists.linux-foundation.org>;
+ Tue, 20 Jul 2021 10:44:36 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id CFDBA83993
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Jul 2021 10:44:36 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4748B6120F;
+ Tue, 20 Jul 2021 10:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1626777876;
+ bh=J4am9/bVVh/y4DpPyboBO49mcaLQLuHHpQ8U9G74tLM=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=GLafNpJFthhFofmm7KYcXWxJZ8kEW8iN5MLI/SE2NA6r0HtLmmoBpV3HURGhRWnbB
+ h6r+J2co8OCnH11uB16ZdOSHJOGqPmb5HH5LSSWzXzyqihDtvF96i1U7AgVwiygyb4
+ JatBw+Zkksw1rKKxRhKSpcpca4soppvBHGoEEnRIY8AiTa9+YiQuhwO77EWeLYNAKc
+ dBewllbngb1F4G1CR/PUXrUfKoGCUh1DGhTkRHgAQ+TDf7+cVJ3tvm42aME8I2PpbU
+ lNdTCWUx6ZppCbkV8I7jExAG+jM7w/jQZ8q0Evspkip4O+uwDChCr3rl1Wks0ViBu6
+ 5G8TV2uXPUOUg==
+Date: Tue, 20 Jul 2021 12:44:27 +0200
+From: Jakub Kicinski <kuba@kernel.org>
+To: Yajun Deng <yajun.deng@linux.dev>
+Message-ID: <20210720124427.6b4e05a8@cakuba>
+In-Reply-To: <20210719122158.5037-1-yajun.deng@linux.dev>
+References: <20210719122158.5037-1-yajun.deng@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210720075354.u57sju7bvn5o3ses@soft-dev3-1.localhost>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Ido Schimmel <idosch@idosch.org>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, UNGLinuxDriver@microchip.com,
- Marek Behun <kabel@blackhole.sk>, Florian Fainelli <f.fainelli@gmail.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>, Jiri Pirko <jiri@resnulli.us>,
- Vadym Kochan <vkochan@marvell.com>, DENG Qingfang <dqfext@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>,
- Lars Povlsen <lars.povlsen@microchip.com>, netdev@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Taras Chornyi <tchornyi@marvell.com>,
- Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [PATCH v4 net-next 09/15] net: bridge: switchdev: let
- drivers inform which bridge ports are offloaded
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: linux-decnet-user@lists.sourceforge.net, jiri@resnulli.us,
+ xiyou.wangcong@gmail.com, yoshfuji@linux-ipv6.org, netdev@vger.kernel.org,
+ dsahern@kernel.org, bridge@lists.linux-foundation.org,
+ linux-wireless@vger.kernel.org, jhs@mojatatu.com, linux-kernel@vger.kernel.org,
+ nikolay@nvidia.com, roopa@nvidia.com, courmisch@gmail.com,
+ johannes@sipsolutions.net, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH 0/4] Remove rtnetlink_send() in rtnetlink
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,12 +78,21 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Horatiu,
+On Mon, 19 Jul 2021 20:21:54 +0800, Yajun Deng wrote:
+> rtnetlink_send() is similar to rtnl_notify(), there is no need for two 
+> functions to do the same thing. we can remove rtnetlink_send() and 
+> modify rtnl_notify() to adapt more case.
+>
+> Patch1: remove rtnetlink_send() modify rtnl_notify() to adapt 
+> more case in rtnetlink.
+> Path2,Patch3: Adjustment parameters in rtnl_notify().
+> Path4: rtnetlink_send() already removed, use rtnl_notify() instead 
+> of rtnetlink_send().
 
-On Tue, Jul 20, 2021 at 09:53:54AM +0200, Horatiu Vultur wrote:
-> Tested-by: Horatiu Vultur <horatiu.vultur@microchip.com> # ocelot-switch
+You can't break compilation in between patches. Each step of the series
+(each patch) must be self-contained, build, and work correctly.
+Otherwise bisection becomes a nightmare.
 
-Thanks for testing.
-Next time could you please trim the quoted portion to maybe just the
-commit message? I spent around 30 seconds scrolling down, half expecting
-there to be an inline comment on a line of code or something.
+Please also post series as a thread (patches in reply to the cover
+letter), it seems that patchwork did not group the patches correctly
+here.
