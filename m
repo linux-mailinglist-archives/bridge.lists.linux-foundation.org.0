@@ -1,137 +1,73 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A69E3D1A27
-	for <lists.bridge@lfdr.de>; Thu, 22 Jul 2021 01:06:19 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD373D1F24
+	for <lists.bridge@lfdr.de>; Thu, 22 Jul 2021 09:40:12 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 4643B4031E;
-	Wed, 21 Jul 2021 23:06:17 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 86CB782786;
+	Thu, 22 Jul 2021 07:40:10 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id wpoH-x2esk9y; Wed, 21 Jul 2021 23:06:16 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id JxRsyDL53bEO; Thu, 22 Jul 2021 07:40:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id A51A740319;
-	Wed, 21 Jul 2021 23:06:15 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id F3921824D4;
+	Thu, 22 Jul 2021 07:40:08 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5D9BCC0022;
-	Wed, 21 Jul 2021 23:06:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B0C7DC0022;
+	Thu, 22 Jul 2021 07:40:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3248DC000E
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jul 2021 23:06:13 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 45CB2C000E
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Jul 2021 07:40:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 2488040319
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jul 2021 23:06:13 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 2BE1A6072F
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Jul 2021 07:40:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id tKBIAvV7-Qc4 for <bridge@lists.linux-foundation.org>;
- Wed, 21 Jul 2021 23:06:11 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com
- (mail-eopbgr30069.outbound.protection.outlook.com [40.107.3.69])
- by smtp4.osuosl.org (Postfix) with ESMTPS id C9C7C40317
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jul 2021 23:06:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bumlNpcEkUnXZL4ElaFOOvH4vlZsJ84PEzfFTHxU9kt7xZsVrGnRsJTj2TVWrACwgBxPCmCQLhy234ERvrYQxGgEw2i9dpmUOGk+9CO/gyflAXJrSDwj6SpbFnm39yB9AY7IUhRG6c6/AQM+l6u1SKxihVRVAtU11bP3FlycOpuVynaB/kQz3r3XUwyOAJGHas2AphfFtUeTMFKGS8VJXB+dVBVgyluDeC0nITAbTP8S0zKEtIU+XeRgiAgKWSebxBxygHXwEr7re/VsadlKD/lljICbZip2VKWcbtYZoFX6+5kNEPh7qzzKMQxg5ZDET9ysjf2pCSbotoaBUkN8yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qMlAATUQNoiSpSLH6nwNifBU3P3Yztf287tfE98zNq0=;
- b=UtUtz5KAtGauQ4+437whIlWwf9QXGHc4p2AkBki2VdJhDUYk9Nm9DQq1q/zjwTbOfdO1Rh5mkAYDOi3d5jIrInUziAdPAkJYS+QjVJYrFpHHxMmysgH2CZWcdVJHTffBYG4p8y6FDTU4vMyJcxlZ2HSSQ0+5nxrPdEml1VRarZMlzlkuQVWqsMeInZTf4GCaUJui0G6w+CDKJkAGty5wNaHkUHWtpP5BjPbutqc+Dac4gZcILtKptmK9KJeee6SrK0701m9XfSaLK/7yVXHewpogthKXfp+YZ6i8m9+xuAntH4oU+mDuPNidV53bDBLuA3ymwU0eO6gqlgC1ns3qvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qMlAATUQNoiSpSLH6nwNifBU3P3Yztf287tfE98zNq0=;
- b=nL1BeQIi/hYAN11fQrVG/AhMjitSXPJ0/16oXxbAUFmZG6jAnYMBEZjYFC/Qw4AAF4oSKfLjN19bikHsXsImzDI0hKJORBHgLriUVGM0+xzy360z8J7IN4/b+IdxiA168V5p5qA7TPSnuYyJ/3ccZb5tjObf0rzlqLQFZOSXtTo=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VE1PR04MB7216.eurprd04.prod.outlook.com (2603:10a6:800:1b0::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.25; Wed, 21 Jul
- 2021 23:06:05 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4331.034; Wed, 21 Jul 2021
- 23:06:05 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Date: Thu, 22 Jul 2021 02:05:55 +0300
-Message-Id: <20210721230555.2207542-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR03CA0077.eurprd03.prod.outlook.com
- (2603:10a6:208:69::18) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5nJs3Urc1PVh for <bridge@lists.linux-foundation.org>;
+ Thu, 22 Jul 2021 07:40:06 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 62587606CC
+ for <bridge@lists.linux-foundation.org>; Thu, 22 Jul 2021 07:40:06 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id CB5336127C;
+ Thu, 22 Jul 2021 07:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1626939605;
+ bh=Qt9jGf1qvwR8/7NnPaY0fcZx6UYk9QueAlhWllLm9VU=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=aKmU7KHoRcuM1lNa5oc1sLq5mWJLyqan10WUa9AYpdWb3uI5Qli7SFhfdgI2M6iSi
+ sAFbLXIA+0YZapqDjx9vht7O9k7QO59ytqwYeR0PGMZM/J1upCDluShsQfocIV0qZn
+ 7jAZXzkmKrG8z3N1atT15r4xy0tE/Wm69IFtmNrK3XLrNCwkiJTHkx3MQbkkq4Lw0N
+ 9DxPOBtEmN4V+41iUtdWst65LLe2vbyeixqBaf8NeQ3DRq8dZliJvM46eQm3Sz3vXd
+ n3FrxKCmVmR+Jr6v1WWU4IgtmhtceIgi7PxNTvfR3YtX7bBV5UwJeDUYCv7TVTt7k+
+ oTu8zoUV1p6JQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id BC77860C09;
+ Thu, 22 Jul 2021 07:40:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (82.76.66.29) by
- AM0PR03CA0077.eurprd03.prod.outlook.com (2603:10a6:208:69::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4331.25 via Frontend Transport; Wed, 21 Jul 2021 23:06:04 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 77a4fa34-3ee0-4fbf-9255-08d94c9c1e17
-X-MS-TrafficTypeDiagnostic: VE1PR04MB7216:
-X-Microsoft-Antispam-PRVS: <VE1PR04MB72162092A78CED11D06FA2C8E0E39@VE1PR04MB7216.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QS3BERzol+7m2wJcTROiQammEKlvs/kBkJO6Qhy4R6lXAot4T4YiZxxtdma76CKbB33vmpdjZSwLrPjR24o30XzS6sY8HCLahqLjZOHx0KGWI5beDnb/3d8q2vWqnlneVtCkIpoGGEUwethu/rvLmtBXcBzr3SiIz9NftbvLm4s9Z8zXenQ20OxmKTkmwhjRWZ/tc4tDav8zKrnYkczL6a0NfBQLw+oMlt5X16e5Ko/AWRyhiaUoNk9jkfQQmC0y83lzkQc/1JKDQj132oJ+N7W33L1y/x63h0k86lKcIiz1TV3XxCgSC7hbTXKzMrTkOjrua1+L+fDrVKZbDgQ3/bbieAiWxhrB3Qz2qAV7247UV/VhGlC2qnEa9OYT3QcPAQu2cAggHBIFBN9PjVrMqeb32tMmDKBdV/jR+ROD2b5ZdmA5yMFIyTelcUSgmlbTHaq+rxI3a2pG+SivqnMvXwIV6UPvOcoRs//cy54T8LZJOqNuLISjIukvusaMRo1Fj3SSX1C0g6Bt/hrNGEwd9mFtJ1J+/36r9BenljaPL3zsutDFuifkHd1y+9nJTBE7P/R6KgJc7VZX4ACnT5/ae5UVPoOYHpwc3Gfo+5F69R7cR/87rMAiXw3iUFKIvAOJJfZ1LOvEmVGcvOqTfxW0qxMUJSOY3M+TJt+UC5cEV0vpIpTp3k433W2ASJDGCWkMGc8Sxf9jmXQyY4SAo7FwUw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(136003)(39850400004)(346002)(366004)(396003)(6666004)(6506007)(316002)(478600001)(7416002)(110136005)(8936002)(66946007)(4326008)(36756003)(86362001)(66476007)(6512007)(186003)(54906003)(66556008)(38350700002)(8676002)(83380400001)(38100700002)(6486002)(2616005)(2906002)(26005)(52116002)(44832011)(5660300002)(956004)(1076003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?R/LHn7KijhjqDm3ZMFwmpHdgmRdRWOHGBenIxVFnOi7sQWt49gR5tUTLnRFX?=
- =?us-ascii?Q?RyKN68hZNB4zmL6BSg6QzOC4A38EUgFD8N4LbtixGLm5/Le06FTjWHYVN5kT?=
- =?us-ascii?Q?HT29kV78HXaqttChSDUm5dzTZo3ycwEj7QWtQuvvgiAfrunDiEKc3u8EqAcS?=
- =?us-ascii?Q?q03TIift6UqlcORYM/wN6ElGPIbjECiKH77Y19TBUyA2iNgyIaXeB+Pv8FbK?=
- =?us-ascii?Q?B4/zQT7TJnX9qDW7PNUAdZlQIDrFbJI4DKb4e0VXTas+hAeS8aX0wqti1mAO?=
- =?us-ascii?Q?DGxpL8JZVsJso6F3dFO0JesMXkeT1cHPlCbh3QU993Ulpqhm+PP8yjunbfpU?=
- =?us-ascii?Q?PuYYgxre8YP0tecbO8LCFcvtTvNcLF9UV7847YZiOyT0DOKhU3/IUbR962GF?=
- =?us-ascii?Q?szJMhW6z4qKm6aUoIJzD6RQIH9zjMK17ywU5X8H81QSgwWAQjIslr92VJ/Ge?=
- =?us-ascii?Q?vNazpydjHddhKRikv0wC9bECkOu7WMKPDOjF7cjMiqNdgMUPqzM0rSsJPMNm?=
- =?us-ascii?Q?W2v1chRJWNFsuyedccSvMri827LNJCK48ZZKsWUUToBY+CsEALAOziL8H5cC?=
- =?us-ascii?Q?9Gr87a1RHYDJ9ezpGjn5dMdOIjKz8K60GuGTLMIwyZZuv+YHyUt9/rd+oJAS?=
- =?us-ascii?Q?LJOCpF3cmoH7/tvro/g4ow7/76qbWC3sm5jcX7UAuvppVCdCUtpLItal5U/U?=
- =?us-ascii?Q?Kr4Z/8B+BjvGgc0N4+XHcqydkrkCEFgq/QYnmixQYg+PVfOSMVCWMyWbEFKV?=
- =?us-ascii?Q?aV2UOXU6PkLgYrHOjyDv2pCR/ol80T3FsVJlQRpqn6ifOVdr6IpwFavjt9P1?=
- =?us-ascii?Q?gD+Ky1CVyo02hp1oFgcUnTZXeLu2aBP76IeR5H8B6N13ua1eQ8RT26oDT1Bs?=
- =?us-ascii?Q?GgVrFZXJpwXMrqh8pEQQju+uJeDbSnD0AenXbuZAWj+7OBwN0b6gB58LNcBV?=
- =?us-ascii?Q?7KnP6SbaSXcQkFvAclqnADnnKsPNcD7tUmKIt/3Pr02hvNzAyN41sAIrAYsq?=
- =?us-ascii?Q?1iCBR7YxqsfeFEZMbcWfzLyXY3PPpm4FBWI0f/sa5571RkkJdYQ/8wvUqLgM?=
- =?us-ascii?Q?VLTqCeupbBRhX2KLczdz+vhpR5JCkVMrRpLbKjAYfhKDdlMcHQ/PpbLiAOPR?=
- =?us-ascii?Q?7qDT8eyhyaTr1ju5kGGSTHYSdN6cn71CVTdUT6yhkESzUFlRmaaFBElaVgu+?=
- =?us-ascii?Q?EU4+fqQh+S3TO65w1CFb+71Gh4pOldaEmfOORP5f4J+eY/zQNGwL6mwPjJRz?=
- =?us-ascii?Q?uQxWcrP2BIak5EFwBRuzqmWUCV9cQZNRsEg3y7tRmkuEWQKI8nWvLUQxqRMv?=
- =?us-ascii?Q?Y99Nk/UJ/bSJlvQ5wbo4YoGA?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77a4fa34-3ee0-4fbf-9255-08d94c9c1e17
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2021 23:06:05.5834 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7fucEIG0uqU0BsGN5dsIK3O6NLyxcLNJGgz7+8OZce9rDsG0E/gPtjG7Atn1yMEzq/2ZNf1YDZn/oapOGs95WQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7216
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Jiri Pirko <jiri@resnulli.us>, DENG Qingfang <dqfext@gmail.com>,
- Eric Woudstra <ericwouds@gmail.com>, bridge@lists.linux-foundation.org,
- Ido Schimmel <idosch@idosch.org>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Vivien Didelot <vivien.didelot@gmail.com>,
- Tobias Waldekranz <tobias@waldekranz.com>
-Subject: [Bridge] [PATCH net-next] net: switchdev: fix FDB entries towards
-	foreign ports not getting propagated to us
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162693960576.10743.1328836732492291838.git-patchwork-notify@kernel.org>
+Date: Thu, 22 Jul 2021 07:40:05 +0000
+References: <20210721162403.1988814-1-vladimir.oltean@nxp.com>
+In-Reply-To: <20210721162403.1988814-1-vladimir.oltean@nxp.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, jiri@resnulli.us, dqfext@gmail.com,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ vivien.didelot@gmail.com, idosch@idosch.org, grygorii.strashko@ti.com,
+ nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org, kabel@blackhole.sk,
+ davem@davemloft.net, tobias@waldekranz.com
+Subject: Re: [Bridge] [PATCH v6 net-next 0/7] Let switchdev drivers offload
+ and unoffload bridge ports at their own convenience
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -146,321 +82,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The newly introduced switchdev_handle_fdb_{add,del}_to_device helpers
-solved a problem but introduced another one. They have a severe design
-bug: they do not propagate FDB events on foreign interfaces to us, i.e.
-this use case:
+Hello:
 
-         br0
-        /   \
-       /     \
-      /       \
-     /         \
-   swp0       eno0
-(switchdev)  (foreign)
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-when an address is learned on eno0, what is supposed to happen is that
-this event should also be propagated towards swp0. Somehow I managed to
-convince myself that this did work correctly, but obviously it does not.
+On Wed, 21 Jul 2021 19:23:56 +0300 you wrote:
+> This series introduces an explicit API through which switchdev drivers
+> mark a bridge port as offloaded or not:
+> - switchdev_bridge_port_offload()
+> - switchdev_bridge_port_unoffload()
+> 
+> Currently, the bridge assumes that a port is offloaded if
+> dev_get_port_parent_id(dev, &ppid, recurse=true) returns something, but
+> that is just an assumption that breaks some use cases (like a
+> non-offloaded LAG interface on top of a switchdev port, bridged with
+> other switchdev ports).
+> 
+> [...]
 
-The trouble with foreign interfaces is that we must reach a switchdev
-net_device pointer through a foreign net_device that has no direct
-upper/lower relationship with it. So we need to do exploratory searching
-through the lower interfaces of the foreign net_device's bridge upper
-(to reach swp0 from eno0, we must check its upper, br0, for lower
-interfaces that pass the check_cb and foreign_dev_check_cb). This is
-something that the previous code did not do, it just assumed that "dev"
-will become a switchdev interface at some point, somehow, probably by
-magic.
+Here is the summary with links:
+  - [v6,net-next,1/7] net: dpaa2-switch: use extack in dpaa2_switch_port_bridge_join
+    https://git.kernel.org/netdev/net-next/c/123338d7d41e
+  - [v6,net-next,2/7] net: dpaa2-switch: refactor prechangeupper sanity checks
+    https://git.kernel.org/netdev/net-next/c/45035febc495
+  - [v6,net-next,3/7] net: bridge: disambiguate offload_fwd_mark
+    https://git.kernel.org/netdev/net-next/c/f7cf972f9375
+  - [v6,net-next,4/7] net: bridge: switchdev: recycle unused hwdoms
+    https://git.kernel.org/netdev/net-next/c/8582661048eb
+  - [v6,net-next,5/7] net: bridge: switchdev: let drivers inform which bridge ports are offloaded
+    https://git.kernel.org/netdev/net-next/c/2f5dc00f7a3e
+  - [v6,net-next,6/7] net: bridge: guard the switchdev replay helpers against a NULL notifier block
+    https://git.kernel.org/netdev/net-next/c/7105b50b7eec
+  - [v6,net-next,7/7] net: bridge: move the switchdev object replay helpers to "push" mode
+    https://git.kernel.org/netdev/net-next/c/4e51bf44a03a
 
-With this patch, assisted address learning on the CPU port works again
-in DSA:
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-ip link add br0 type bridge
-ip link set swp0 master br0
-ip link set eno0 master br0
-ip link set br0 up
-
-[   46.708929] mscc_felix 0000:00:00.5 swp0: Adding FDB entry towards eno0, addr 00:04:9f:05:f4:ab vid 0 as host address
-
-Fixes: 8ca07176ab00 ("net: switchdev: introduce a fanout helper for SWITCHDEV_FDB_{ADD,DEL}_TO_DEVICE")
-Reported-by: Eric Woudstra <ericwouds@gmail.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- net/switchdev/switchdev.c | 214 +++++++++++++++++++++++++-------------
- 1 file changed, 142 insertions(+), 72 deletions(-)
-
-diff --git a/net/switchdev/switchdev.c b/net/switchdev/switchdev.c
-index 42e88d3d66a7..0ae3478561f4 100644
---- a/net/switchdev/switchdev.c
-+++ b/net/switchdev/switchdev.c
-@@ -378,6 +378,56 @@ int call_switchdev_blocking_notifiers(unsigned long val, struct net_device *dev,
- }
- EXPORT_SYMBOL_GPL(call_switchdev_blocking_notifiers);
- 
-+struct switchdev_nested_priv {
-+	bool (*check_cb)(const struct net_device *dev);
-+	bool (*foreign_dev_check_cb)(const struct net_device *dev,
-+				     const struct net_device *foreign_dev);
-+	const struct net_device *dev;
-+	struct net_device *lower_dev;
-+};
-+
-+static int switchdev_lower_dev_walk(struct net_device *lower_dev,
-+				    struct netdev_nested_priv *priv)
-+{
-+	struct switchdev_nested_priv *switchdev_priv = priv->data;
-+	bool (*foreign_dev_check_cb)(const struct net_device *dev,
-+				     const struct net_device *foreign_dev);
-+	bool (*check_cb)(const struct net_device *dev);
-+	const struct net_device *dev;
-+
-+	check_cb = switchdev_priv->check_cb;
-+	foreign_dev_check_cb = switchdev_priv->foreign_dev_check_cb;
-+	dev = switchdev_priv->dev;
-+
-+	if (check_cb(lower_dev) && !foreign_dev_check_cb(lower_dev, dev)) {
-+		switchdev_priv->lower_dev = lower_dev;
-+		return 1;
-+	}
-+
-+	return 0;
-+}
-+
-+static struct net_device *
-+switchdev_lower_dev_find(struct net_device *dev,
-+			 bool (*check_cb)(const struct net_device *dev),
-+			 bool (*foreign_dev_check_cb)(const struct net_device *dev,
-+						      const struct net_device *foreign_dev))
-+{
-+	struct switchdev_nested_priv switchdev_priv = {
-+		.check_cb = check_cb,
-+		.foreign_dev_check_cb = foreign_dev_check_cb,
-+		.dev = dev,
-+		.lower_dev = NULL,
-+	};
-+	struct netdev_nested_priv priv = {
-+		.data = &switchdev_priv,
-+	};
-+
-+	netdev_walk_all_lower_dev_rcu(dev, switchdev_lower_dev_walk, &priv);
-+
-+	return switchdev_priv.lower_dev;
-+}
-+
- static int __switchdev_handle_fdb_add_to_device(struct net_device *dev,
- 		const struct net_device *orig_dev,
- 		const struct switchdev_notifier_fdb_info *fdb_info,
-@@ -392,37 +442,18 @@ static int __switchdev_handle_fdb_add_to_device(struct net_device *dev,
- 				  const struct switchdev_notifier_fdb_info *fdb_info))
- {
- 	const struct switchdev_notifier_info *info = &fdb_info->info;
--	struct net_device *lower_dev;
-+	struct net_device *br, *lower_dev;
- 	struct list_head *iter;
- 	int err = -EOPNOTSUPP;
- 
--	if (check_cb(dev)) {
--		/* Handle FDB entries on foreign interfaces as FDB entries
--		 * towards the software bridge.
--		 */
--		if (foreign_dev_check_cb && foreign_dev_check_cb(dev, orig_dev)) {
--			struct net_device *br = netdev_master_upper_dev_get_rcu(dev);
--
--			if (!br || !netif_is_bridge_master(br))
--				return 0;
--
--			/* No point in handling FDB entries on a foreign bridge */
--			if (foreign_dev_check_cb(dev, br))
--				return 0;
--
--			return __switchdev_handle_fdb_add_to_device(br, orig_dev,
--								    fdb_info, check_cb,
--								    foreign_dev_check_cb,
--								    add_cb, lag_add_cb);
--		}
--
-+	if (check_cb(dev))
- 		return add_cb(dev, orig_dev, info->ctx, fdb_info);
--	}
- 
--	/* If we passed over the foreign check, it means that the LAG interface
--	 * is offloaded.
--	 */
- 	if (netif_is_lag_master(dev)) {
-+		if (!switchdev_lower_dev_find(dev, check_cb, foreign_dev_check_cb))
-+			goto maybe_bridged_with_us;
-+
-+		/* This is a LAG interface that we offload */
- 		if (!lag_add_cb)
- 			return -EOPNOTSUPP;
- 
-@@ -432,20 +463,49 @@ static int __switchdev_handle_fdb_add_to_device(struct net_device *dev,
- 	/* Recurse through lower interfaces in case the FDB entry is pointing
- 	 * towards a bridge device.
- 	 */
--	netdev_for_each_lower_dev(dev, lower_dev, iter) {
--		/* Do not propagate FDB entries across bridges */
--		if (netif_is_bridge_master(lower_dev))
--			continue;
-+	if (netif_is_bridge_master(dev)) {
-+		if (!switchdev_lower_dev_find(dev, check_cb, foreign_dev_check_cb))
-+			return 0;
-+
-+		/* This is a bridge interface that we offload */
-+		netdev_for_each_lower_dev(dev, lower_dev, iter) {
-+			/* Do not propagate FDB entries across bridges */
-+			if (netif_is_bridge_master(lower_dev))
-+				continue;
-+
-+			/* Bridge ports might be either us, or LAG interfaces
-+			 * that we offload.
-+			 */
-+			if (!check_cb(lower_dev) &&
-+			    !switchdev_lower_dev_find(lower_dev, check_cb,
-+						      foreign_dev_check_cb))
-+				continue;
-+
-+			err = __switchdev_handle_fdb_add_to_device(lower_dev, orig_dev,
-+								   fdb_info, check_cb,
-+								   foreign_dev_check_cb,
-+								   add_cb, lag_add_cb);
-+			if (err && err != -EOPNOTSUPP)
-+				return err;
-+		}
- 
--		err = __switchdev_handle_fdb_add_to_device(lower_dev, orig_dev,
--							   fdb_info, check_cb,
--							   foreign_dev_check_cb,
--							   add_cb, lag_add_cb);
--		if (err && err != -EOPNOTSUPP)
--			return err;
-+		return 0;
- 	}
- 
--	return err;
-+maybe_bridged_with_us:
-+	/* Event is neither on a bridge nor a LAG. Check whether it is on an
-+	 * interface that is in a bridge with us.
-+	 */
-+	br = netdev_master_upper_dev_get_rcu(dev);
-+	if (!br || !netif_is_bridge_master(br))
-+		return 0;
-+
-+	if (!switchdev_lower_dev_find(br, check_cb, foreign_dev_check_cb))
-+		return 0;
-+
-+	return __switchdev_handle_fdb_add_to_device(br, orig_dev, fdb_info,
-+						    check_cb, foreign_dev_check_cb,
-+						    add_cb, lag_add_cb);
- }
- 
- int switchdev_handle_fdb_add_to_device(struct net_device *dev,
-@@ -487,37 +547,18 @@ static int __switchdev_handle_fdb_del_to_device(struct net_device *dev,
- 				  const struct switchdev_notifier_fdb_info *fdb_info))
- {
- 	const struct switchdev_notifier_info *info = &fdb_info->info;
--	struct net_device *lower_dev;
-+	struct net_device *br, *lower_dev;
- 	struct list_head *iter;
- 	int err = -EOPNOTSUPP;
- 
--	if (check_cb(dev)) {
--		/* Handle FDB entries on foreign interfaces as FDB entries
--		 * towards the software bridge.
--		 */
--		if (foreign_dev_check_cb && foreign_dev_check_cb(dev, orig_dev)) {
--			struct net_device *br = netdev_master_upper_dev_get_rcu(dev);
--
--			if (!br || !netif_is_bridge_master(br))
--				return 0;
--
--			/* No point in handling FDB entries on a foreign bridge */
--			if (foreign_dev_check_cb(dev, br))
--				return 0;
--
--			return __switchdev_handle_fdb_del_to_device(br, orig_dev,
--								    fdb_info, check_cb,
--								    foreign_dev_check_cb,
--								    del_cb, lag_del_cb);
--		}
--
-+	if (check_cb(dev))
- 		return del_cb(dev, orig_dev, info->ctx, fdb_info);
--	}
- 
--	/* If we passed over the foreign check, it means that the LAG interface
--	 * is offloaded.
--	 */
- 	if (netif_is_lag_master(dev)) {
-+		if (!switchdev_lower_dev_find(dev, check_cb, foreign_dev_check_cb))
-+			goto maybe_bridged_with_us;
-+
-+		/* This is a LAG interface that we offload */
- 		if (!lag_del_cb)
- 			return -EOPNOTSUPP;
- 
-@@ -527,20 +568,49 @@ static int __switchdev_handle_fdb_del_to_device(struct net_device *dev,
- 	/* Recurse through lower interfaces in case the FDB entry is pointing
- 	 * towards a bridge device.
- 	 */
--	netdev_for_each_lower_dev(dev, lower_dev, iter) {
--		/* Do not propagate FDB entries across bridges */
--		if (netif_is_bridge_master(lower_dev))
--			continue;
-+	if (netif_is_bridge_master(dev)) {
-+		if (!switchdev_lower_dev_find(dev, check_cb, foreign_dev_check_cb))
-+			return 0;
-+
-+		/* This is a bridge interface that we offload */
-+		netdev_for_each_lower_dev(dev, lower_dev, iter) {
-+			/* Do not propagate FDB entries across bridges */
-+			if (netif_is_bridge_master(lower_dev))
-+				continue;
-+
-+			/* Bridge ports might be either us, or LAG interfaces
-+			 * that we offload.
-+			 */
-+			if (!check_cb(lower_dev) &&
-+			    !switchdev_lower_dev_find(lower_dev, check_cb,
-+						      foreign_dev_check_cb))
-+				continue;
-+
-+			err = __switchdev_handle_fdb_del_to_device(lower_dev, orig_dev,
-+								   fdb_info, check_cb,
-+								   foreign_dev_check_cb,
-+								   del_cb, lag_del_cb);
-+			if (err && err != -EOPNOTSUPP)
-+				return err;
-+		}
- 
--		err = __switchdev_handle_fdb_del_to_device(lower_dev, orig_dev,
--							   fdb_info, check_cb,
--							   foreign_dev_check_cb,
--							   del_cb, lag_del_cb);
--		if (err && err != -EOPNOTSUPP)
--			return err;
-+		return 0;
- 	}
- 
--	return err;
-+maybe_bridged_with_us:
-+	/* Event is neither on a bridge nor a LAG. Check whether it is on an
-+	 * interface that is in a bridge with us.
-+	 */
-+	br = netdev_master_upper_dev_get_rcu(dev);
-+	if (!br || !netif_is_bridge_master(br))
-+		return 0;
-+
-+	if (!switchdev_lower_dev_find(br, check_cb, foreign_dev_check_cb))
-+		return 0;
-+
-+	return __switchdev_handle_fdb_del_to_device(br, orig_dev, fdb_info,
-+						    check_cb, foreign_dev_check_cb,
-+						    del_cb, lag_del_cb);
- }
- 
- int switchdev_handle_fdb_del_to_device(struct net_device *dev,
--- 
-2.25.1
 
