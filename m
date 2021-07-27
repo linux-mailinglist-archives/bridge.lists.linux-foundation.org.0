@@ -2,92 +2,86 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA46A3D5BCA
-	for <lists.bridge@lfdr.de>; Mon, 26 Jul 2021 16:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C93C53D6D15
+	for <lists.bridge@lfdr.de>; Tue, 27 Jul 2021 06:03:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 4AFDC402A9;
-	Mon, 26 Jul 2021 14:37:09 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 11E54400CA;
+	Tue, 27 Jul 2021 04:03:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id U4QASr8UUgyL; Mon, 26 Jul 2021 14:37:08 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id B22C8402DF;
-	Mon, 26 Jul 2021 14:37:07 +0000 (UTC)
+	with ESMTP id 7mlUPTom_NlT; Tue, 27 Jul 2021 04:03:27 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 9E6FB40389;
+	Tue, 27 Jul 2021 04:03:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7D984C001F;
-	Mon, 26 Jul 2021 14:37:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 528A6C001F;
+	Tue, 27 Jul 2021 04:03:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9D44DC000E
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jul 2021 14:37:05 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7E534C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 04:03:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 85E7182A8F
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jul 2021 14:37:05 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 57EEF83046
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 04:03:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
+ dkim=pass (2048-bit key) header.d=linaro.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PAd0VptIxtv3 for <bridge@lists.linux-foundation.org>;
- Mon, 26 Jul 2021 14:37:04 +0000 (UTC)
+ with ESMTP id rlLXahcGSwhl for <bridge@lists.linux-foundation.org>;
+ Tue, 27 Jul 2021 04:03:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
- [IPv6:2a00:1450:4864:20::632])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 9114282A0B
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jul 2021 14:37:04 +0000 (UTC)
-Received: by mail-ej1-x632.google.com with SMTP id gn26so10657499ejc.3
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jul 2021 07:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=nnXH9OEkX6/64CRIXpm2q4YcE5R0RLwwDJpdnIFDAWY=;
- b=a46eeZbS67P014IPIYYEuugVBwQdVkgc3xe0nHoGpHa+CLu7h3/0rDHMm1C9u0Vaqa
- GG6yKIfhXq34B2c+8u8MmZz/P8VknqBLIWzPDzPE5/00VCC4jSFXgeTKTC2wGXJFy4po
- chD8bkSL5cNkfThbloN9qTqGuQWNoVdPsm6e0ey1QHpVLG6oAxNjaLNpThgTzEHom8O3
- rlR5IsNd9LSI3RhMjDl0t54xClnANAGUaIY+79MwKaKe9CAoBzAEPbX7sz5Dq3JuoZjW
- XJLk4RjT0csljKhvY94qUxjlJ53IISuVPtHFebdaSySPN9o7sgHspaWRzl0/RrZs8zdI
- 3kTg==
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
+ [IPv6:2607:f8b0:4864:20::22d])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 2F43A82F76
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 04:03:23 +0000 (UTC)
+Received: by mail-oi1-x22d.google.com with SMTP id x15so13633099oic.9
+ for <bridge@lists.linux-foundation.org>; Mon, 26 Jul 2021 21:03:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=fTzo6vxMfYlgbUOwSMawZfNKJyreGjClP9wAsvVTm1E=;
+ b=UD6VtD2nxoM4yb0LGkCOvaX/zF9yrw4fA6tqSCoTSL82aBwK6yqzv0t2Hz5VkIh/da
+ U7yhPJqRFbxApmj84K1i+pXiVe6aku3GXsqXD1Gr0E24zeni9vl8X2Ft59zum4tg7ABv
+ RrVdeW5K4K/YjAP3pmiafa7WtuBsVd0+fZX5olSmVMK1nHp8tsPBxPm6G7+7eGn9ZFlP
+ 7QR+rmk3sAqSdk47QNGEv0p5waWj28vyuS07t6VnIvCCZr3ShLf4G62vnrE7edmJgc/L
+ Gcwk1m4LZIpMUGOrRG4xWX95uINhn33c5huopzBpkKNnX1oTDbgg4cVNeuZjHsHCufPR
+ 57SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=nnXH9OEkX6/64CRIXpm2q4YcE5R0RLwwDJpdnIFDAWY=;
- b=mXqKWHSuZb/pjn2aUu+D3IcAQCxiwy+vgpRU9ECkfIHaEtpGDsovoSv8qoLQLZTw5C
- +XhAlt57n+i5x3ZOTa3EdqIGZ3eAYhly52jYuvRj/x/PFBGj3+PU3Mqbx5DVbPeSe1MR
- 0PSfO+CeG7bhJu+mbWOaezUC81jMdzJy3XC2+Hm1tvVyKVnaOihycemvZSTS7YhjCpPB
- VqhxedkIl98ewOcB57pJrwFDZHDEIJyZJYLUAgykgOhP5dfdRyXA5Hq2gV1EvLFxZ4ub
- Cq7/A682qHwKBq6iFoEfjo3PMPGtKTBchBTUJg2vDKQlH7MUtjwYYfhRzcRGhKZVvtFG
- iWxQ==
-X-Gm-Message-State: AOAM533BbR8LO2yK9hJzgvkaAMAt3dPlBUEUcMh0URD/FSZAthgNUe1J
- KOGCAsPM57cyaswK+QYUSOE=
-X-Google-Smtp-Source: ABdhPJzWjQjZmVeAk8PLFry/T+D+4zv8qYEjpty4byCCB34i8VAjKq0MnJQSS8SoToMzbNYfSvQY0g==
-X-Received: by 2002:a17:906:8158:: with SMTP id
- z24mr17367464ejw.359.1627310222797; 
- Mon, 26 Jul 2021 07:37:02 -0700 (PDT)
-Received: from skbuf ([82.76.66.29])
- by smtp.gmail.com with ESMTPSA id t15sm14213464ejf.119.2021.07.26.07.37.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Jul 2021 07:37:02 -0700 (PDT)
-Date: Mon, 26 Jul 2021 17:37:00 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Message-ID: <20210726143700.6lszvah4jqde3o54@skbuf>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=fTzo6vxMfYlgbUOwSMawZfNKJyreGjClP9wAsvVTm1E=;
+ b=h2NZ8LX6yO/ziDZY/p0/FO4bWeQC7sKelkLf7UAREUnABFHQzq+87GdfM+4oZOxEkk
+ 7LPLwKp8NneT2+hc5ioAVxnzj5oyVXNb7mB64ncT8lxiUTauTJWMwdlRhAKUKPOJ/HL3
+ J0FtwZ3rY8vxzbSnldgfTpYeLcCnHQSJT5In1xw5Dx2bzhi7bBDJBysRF8RxuU29lJtA
+ N1DGm8+lMaH9WnPrfDWjgScqo0k+DIW8HyFmhC7653hi3ay8s2zdAXkJMojYB62FgpHA
+ vytkl2O3kg/Aw2TBgfhQV3zZofa16njbNIefkijMOC9TQBneTs2Mmm1lN65f2+YJUS3v
+ zYeQ==
+X-Gm-Message-State: AOAM532KWi8P0N93WvZ16ghR0F7q+CIBt1nA3YBQB/zSifIkXjpL1969
+ O1GmUOS/dvQbWNHcn92qQhs+0Px/Ap4DMIiwHIfLBA==
+X-Google-Smtp-Source: ABdhPJw+jVLOBD8BsPXzGNdeDNl26ZITTDr1jQEW6mn0yo21vve5G56PdP7KPn7IkR9wNjAU5XZ6SguuPw+dYD0C/Eo=
+X-Received: by 2002:aca:abd4:: with SMTP id u203mr13772228oie.13.1627358602134; 
+ Mon, 26 Jul 2021 21:03:22 -0700 (PDT)
+MIME-Version: 1.0
 References: <20210721162403.1988814-1-vladimir.oltean@nxp.com>
  <20210721162403.1988814-6-vladimir.oltean@nxp.com>
  <CA+G9fYtaM=hexrmMvDXzeHZKuLCp53kRYyyvbBXZzveQzgDSyA@mail.gmail.com>
  <YP7ByrIz4LvrvIY5@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 In-Reply-To: <YP7ByrIz4LvrvIY5@lunn.ch>
+From: Naresh Kamboju <naresh.kamboju@linaro.org>
+Date: Tue, 27 Jul 2021 09:33:10 +0530
+Message-ID: <CA+G9fYtxDUJLRG7sv0aHox=+i7fFaCnLEjA0aaDRXPh+3h57hA@mail.gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Vladimir Oltean <vladimir.oltean@nxp.com>, Ido Schimmel <idosch@idosch.org>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, UNGLinuxDriver@microchip.com,
+ Ioana Ciornei <ioana.ciornei@nxp.com>,
  Horatiu Vultur <horatiu.vultur@microchip.com>,
  Marek Behun <kabel@blackhole.sk>, Florian Fainelli <f.fainelli@gmail.com>,
- Naresh Kamboju <naresh.kamboju@linaro.org>, bridge@lists.linux-foundation.org,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ bridge@lists.linux-foundation.org,
  Linux-Next Mailing List <linux-next@vger.kernel.org>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>,
@@ -95,8 +89,8 @@ Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Stephen Rothwell <sfr@canb.auug.org.au>, Vadym Kochan <vkochan@marvell.com>,
  DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
  Lars Povlsen <lars.povlsen@microchip.com>, Netdev <netdev@vger.kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Taras Chornyi <tchornyi@marvell.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
+ UNGLinuxDriver@microchip.com, Taras Chornyi <tchornyi@marvell.com>,
+ "David S. Miller" <davem@davemloft.net>,
  Tobias Waldekranz <tobias@waldekranz.com>
 Subject: Re: [Bridge] [PATCH v6 net-next 5/7] net: bridge: switchdev: let
  drivers inform which bridge ports are offloaded
@@ -114,9 +108,8 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello Naresh,
-
-On Mon, Jul 26, 2021 at 04:08:10PM +0200, Andrew Lunn wrote:
+On Mon, 26 Jul 2021 at 19:38, Andrew Lunn <andrew@lunn.ch> wrote:
+>
 > On Mon, Jul 26, 2021 at 07:21:20PM +0530, Naresh Kamboju wrote:
 > > On Wed, 21 Jul 2021 at 21:56, Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
 > > >
@@ -126,19 +119,24 @@ On Mon, Jul 26, 2021 at 04:08:10PM +0200, Andrew Lunn wrote:
 > > > hardware domain of the ingress port. Then during forwarding, it enforces
 > > > that the egress port must have a different hardware domain than the
 > > > ingress one (this is done in nbp_switchdev_allowed_egress).
-> 
+>
 > > [Please ignore if it is already reported]
-> > 
+> >
 > > Following build error noticed on Linux next 20210723 tag
 > > with omap2plus_defconfig on arm architecture.
-> 
+>
 > Hi Naresh
-> 
+>
 > Please trim emails when replying. It is really annoying to have to
 > page down and down and down to find your part in the email, and you
 > always wonder if you accidentally jumped over something when paging
 > down at speed.
 
-I agree with what Andrew said.
-I've sent this patch to address the build issue you reported. Thanks.
-https://patchwork.kernel.org/project/netdevbpf/patch/20210726142536.1223744-1-vladimir.oltean@nxp.com/
+It was my bad,
+I will follow your suggestions in future reports.
+Thank you !
+
+>
+>      Andrew
+
+- Naresh
