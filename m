@@ -1,57 +1,55 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6363B3D771F
-	for <lists.bridge@lfdr.de>; Tue, 27 Jul 2021 15:46:14 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C1E3D773A
+	for <lists.bridge@lfdr.de>; Tue, 27 Jul 2021 15:47:00 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id BD94782784;
-	Tue, 27 Jul 2021 13:46:12 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 3885B403D9;
+	Tue, 27 Jul 2021 13:46:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ASz-XXUXSEPh; Tue, 27 Jul 2021 13:46:12 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 4651482848;
-	Tue, 27 Jul 2021 13:46:11 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id kzjhCiGWgij2; Tue, 27 Jul 2021 13:46:57 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id ADB6E403D5;
+	Tue, 27 Jul 2021 13:46:56 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 240FCC001F;
-	Tue, 27 Jul 2021 13:46:11 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 80FACC001F;
+	Tue, 27 Jul 2021 13:46:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 993BCC000E
- for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 13:46:09 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4573FC000E
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 13:46:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 7B300401E0
- for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 13:46:09 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 27CAD40373
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 13:46:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id o6tETrPvPLyU for <bridge@lists.linux-foundation.org>;
- Tue, 27 Jul 2021 13:46:08 +0000 (UTC)
+ with ESMTP id Cufm-ApU_g99 for <bridge@lists.linux-foundation.org>;
+ Tue, 27 Jul 2021 13:46:54 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp2.osuosl.org (Postfix) with ESMTPS id D4E3A400BF
- for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 13:46:08 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E47C561A87;
- Tue, 27 Jul 2021 13:46:06 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 7C3CE400BF
+ for <bridge@lists.linux-foundation.org>; Tue, 27 Jul 2021 13:46:54 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 70A3261A8B;
+ Tue, 27 Jul 2021 13:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1627393568;
- bh=9H8HDtceOWX0HErN0jrka6eIPHxbylKQXGn4e6zyVkc=;
+ s=k20201202; t=1627393614;
+ bh=8ReC+FGP4lYZz9uV6y5T2LUadmvwaKCFRSNklcMmMsU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=diaYH+MvOwfh0PPJg85uJIFwe3o2Xet+oUONDnrnUnNCvGH3k6OiCxqdtITU1cJ5w
- F2N+Dc++1+bOEHDGk8WVFM4ydCC0jMIsegl0BgxT9UDbl8ioSEgAhg7h2ZT2EO7dmC
- +PCmOoYaMG5qDpedR3cdleYbEh3jvPubi7hNhWkJ1EIMiJubiyedOcMbBAs5gUYWKY
- O7KGbpldbcZNSwOesIi6khBPZDcCpDSpsN43dYfID5Ryve+saZ/0Mtb7T48MlpKhZp
- 0F6zYVa75pMV5oEYG3PVT/VmW8mBDZbjpY8nUP85QFNB8egNeg/RMGrXBfH9jZnDsp
- cydxr/K6Y98KA==
+ b=ZOB/Pd9LrBD82LjMCLP4aeHXMJLnVDZeTQ9+6h7YYoDPrCeyrQIA0jObaxmjIVJCf
+ 7/3SYletDhE9tk18Oyl9h9DGKVneKrCw1adBnt0ty+J+xszklfvKszDTOaJxtIklml
+ Gc4OvZDI95raRq+xyBGqS4e5/3l/x/1aBEbH6kmQ9lV5t1w011c/JdLaFXKMqzTfgY
+ 3IsjCbPXr3UD0vs49f3fljZDfS+YTdeUVwYSRZG8fDCN6OXSy63ihoVhwh7O+3zKzI
+ 97HHN6rdW3mCvaMPnlOKAmzSw9Krwul6e5czhTFbOoelkbbhtnNS4CP/DEZABrj8tl
+ 8YOLHfJ1vPgjw==
 From: Arnd Bergmann <arnd@kernel.org>
 To: netdev@vger.kernel.org
-Date: Tue, 27 Jul 2021 15:44:51 +0200
-Message-Id: <20210727134517.1384504-6-arnd@kernel.org>
+Date: Tue, 27 Jul 2021 15:45:16 +0200
+Message-Id: <20210727134517.1384504-31-arnd@kernel.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210727134517.1384504-1-arnd@kernel.org>
 References: <20210727134517.1384504-1-arnd@kernel.org>
@@ -61,7 +59,8 @@ Cc: Arnd Bergmann <arnd@arndb.de>, bridge@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
  "David S. Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH net-next v3 05/31] bridge: use ndo_siocdevprivate
+Subject: [Bridge] [PATCH net-next v3 30/31] net: bridge: move bridge ioctls
+	out of .ndo_do_ioctl
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -78,144 +77,223 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-The bridge driver has an old set of ioctls using the SIOCDEVPRIVATE
-namespace that have never worked in compat mode and are explicitly
-forbidden already.
+Working towards obsoleting the .ndo_do_ioctl operation entirely,
+stop passing the SIOCBRADDIF/SIOCBRDELIF device ioctl commands
+into this callback.
 
-Move them over to ndo_siocdevprivate and fix compat mode for these,
-because we can.
+My first attempt was to add another ndo_siocbr() callback, but
+as there is only a single driver that takes these commands and
+there is already a hook mechanism to call directly into this
+driver, extend this hook instead, and use it for both the
+deviceless and the device specific ioctl commands.
 
 Cc: Roopa Prabhu <roopa@nvidia.com>
 Cc: Nikolay Aleksandrov <nikolay@nvidia.com>
 Cc: bridge@lists.linux-foundation.org
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- net/bridge/br_device.c  |  1 +
- net/bridge/br_ioctl.c   | 37 +++++++++++++++++++++++++------------
- net/bridge/br_private.h |  2 ++
- 3 files changed, 28 insertions(+), 12 deletions(-)
+ include/linux/if_bridge.h |  7 ++++++-
+ net/bridge/br.c           |  2 +-
+ net/bridge/br_device.c    |  1 -
+ net/bridge/br_ioctl.c     | 15 +++------------
+ net/bridge/br_private.h   |  5 ++---
+ net/core/dev_ioctl.c      | 11 ++++++++---
+ net/socket.c              | 33 +++++++++++++++++++++++----------
+ 7 files changed, 43 insertions(+), 31 deletions(-)
 
+diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
+index b73b4ff749e1..21daed10322e 100644
+--- a/include/linux/if_bridge.h
++++ b/include/linux/if_bridge.h
+@@ -61,7 +61,12 @@ struct br_ip_list {
+ 
+ #define BR_DEFAULT_AGEING_TIME	(300 * HZ)
+ 
+-extern void brioctl_set(int (*ioctl_hook)(struct net *, unsigned int, void __user *));
++struct net_bridge;
++void brioctl_set(int (*hook)(struct net *net, struct net_bridge *br,
++			     unsigned int cmd, struct ifreq *ifr,
++			     void __user *uarg));
++int br_ioctl_call(struct net *net, struct net_bridge *br, unsigned int cmd,
++		  struct ifreq *ifr, void __user *uarg);
+ 
+ #if IS_ENABLED(CONFIG_BRIDGE) && IS_ENABLED(CONFIG_BRIDGE_IGMP_SNOOPING)
+ int br_multicast_list_adjacent(struct net_device *dev,
+diff --git a/net/bridge/br.c b/net/bridge/br.c
+index 51f2e25c4cd6..8fb5dca5f8e0 100644
+--- a/net/bridge/br.c
++++ b/net/bridge/br.c
+@@ -359,7 +359,7 @@ static int __init br_init(void)
+ 	if (err)
+ 		goto err_out5;
+ 
+-	brioctl_set(br_ioctl_deviceless_stub);
++	brioctl_set(br_ioctl_stub);
+ 
+ #if IS_ENABLED(CONFIG_ATM_LANE)
+ 	br_fdb_test_addr_hook = br_fdb_test_addr;
 diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
-index 00daf35f54d5..1952bb433ca7 100644
+index 1952bb433ca7..8d6bab244c4a 100644
 --- a/net/bridge/br_device.c
 +++ b/net/bridge/br_device.c
-@@ -455,6 +455,7 @@ static const struct net_device_ops br_netdev_ops = {
+@@ -454,7 +454,6 @@ static const struct net_device_ops br_netdev_ops = {
+ 	.ndo_set_rx_mode	 = br_dev_set_multicast_list,
  	.ndo_change_rx_flags	 = br_dev_change_rx_flags,
  	.ndo_change_mtu		 = br_change_mtu,
- 	.ndo_do_ioctl		 = br_dev_ioctl,
-+	.ndo_siocdevprivate	 = br_dev_siocdevprivate,
+-	.ndo_do_ioctl		 = br_dev_ioctl,
+ 	.ndo_siocdevprivate	 = br_dev_siocdevprivate,
  #ifdef CONFIG_NET_POLL_CONTROLLER
  	.ndo_netpoll_setup	 = br_netpoll_setup,
- 	.ndo_netpoll_cleanup	 = br_netpoll_cleanup,
 diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
-index 2db800fc27ca..9f924fe43641 100644
+index 9f924fe43641..46a24c20e405 100644
 --- a/net/bridge/br_ioctl.c
 +++ b/net/bridge/br_ioctl.c
-@@ -106,15 +106,32 @@ static int add_del_if(struct net_bridge *br, int ifindex, int isadd)
-  * This interface is deprecated because it was too difficult
-  * to do the translation for 32/64bit ioctl compatibility.
-  */
--static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
-+int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user *data, int cmd)
+@@ -366,7 +366,8 @@ static int old_deviceless(struct net *net, void __user *uarg)
+ 	return -EOPNOTSUPP;
+ }
+ 
+-int br_ioctl_deviceless_stub(struct net *net, unsigned int cmd, void __user *uarg)
++int br_ioctl_stub(struct net *net, struct net_bridge *br, unsigned int cmd,
++		  struct ifreq *ifr, void __user *uarg)
  {
- 	struct net_bridge *br = netdev_priv(dev);
- 	struct net_bridge_port *p = NULL;
- 	unsigned long args[4];
-+	void __user *argp;
- 	int ret = -EOPNOTSUPP;
- 
--	if (copy_from_user(args, rq->ifr_data, sizeof(args)))
--		return -EFAULT;
-+	if (in_compat_syscall()) {
-+		unsigned int cargs[4];
-+
-+		if (copy_from_user(cargs, data, sizeof(cargs)))
-+			return -EFAULT;
-+
-+		args[0] = cargs[0];
-+		args[1] = cargs[1];
-+		args[2] = cargs[2];
-+		args[3] = cargs[3];
-+
-+		argp = compat_ptr(args[1]);
-+	} else {
-+		if (copy_from_user(args, data, sizeof(args)))
-+			return -EFAULT;
-+
-+		argp = (void __user *)args[1];
-+	}
- 
- 	switch (args[0]) {
- 	case BRCTL_ADD_IF:
-@@ -171,7 +188,7 @@ static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
- 			return -ENOMEM;
- 
- 		get_port_ifindices(br, indices, num);
--		if (copy_to_user((void __user *)args[1], indices, num*sizeof(int)))
-+		if (copy_to_user(argp, indices, num * sizeof(int)))
- 			num =  -EFAULT;
- 		kfree(indices);
- 		return num;
-@@ -232,7 +249,7 @@ static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
- 
- 		rcu_read_unlock();
- 
--		if (copy_to_user((void __user *)args[1], &p, sizeof(p)))
-+		if (copy_to_user(argp, &p, sizeof(p)))
- 			return -EFAULT;
- 
- 		return 0;
-@@ -282,8 +299,7 @@ static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
- 	}
- 
- 	case BRCTL_GET_FDB_ENTRIES:
--		return get_fdb_entries(br, (void __user *)args[1],
--				       args[2], args[3]);
-+		return get_fdb_entries(br, argp, args[2], args[3]);
- 	}
- 
- 	if (!ret) {
-@@ -320,7 +336,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
- 
- 		args[2] = get_bridge_ifindices(net, indices, args[2]);
- 
--		ret = copy_to_user((void __user *)args[1], indices, args[2]*sizeof(int))
-+		ret = copy_to_user(uarg, indices, args[2]*sizeof(int))
- 			? -EFAULT : args[2];
- 
- 		kfree(indices);
-@@ -335,7 +351,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
- 		if (!ns_capable(net->user_ns, CAP_NET_ADMIN))
- 			return -EPERM;
- 
--		if (copy_from_user(buf, (void __user *)args[1], IFNAMSIZ))
-+		if (copy_from_user(buf, uarg, IFNAMSIZ))
- 			return -EFAULT;
- 
- 		buf[IFNAMSIZ-1] = 0;
-@@ -383,9 +399,6 @@ int br_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
- 	struct net_bridge *br = netdev_priv(dev);
- 
  	switch (cmd) {
--	case SIOCDEVPRIVATE:
--		return old_dev_ioctl(dev, rq, cmd);
+ 	case SIOCGIFBR:
+@@ -390,21 +391,11 @@ int br_ioctl_deviceless_stub(struct net *net, unsigned int cmd, void __user *uar
+ 
+ 		return br_del_bridge(net, buf);
+ 	}
+-	}
+-	return -EOPNOTSUPP;
+-}
 -
+-int br_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
+-{
+-	struct net_bridge *br = netdev_priv(dev);
+ 
+-	switch (cmd) {
  	case SIOCBRADDIF:
  	case SIOCBRDELIF:
- 		return add_del_if(br, rq->ifr_ifindex, cmd == SIOCBRADDIF);
+-		return add_del_if(br, rq->ifr_ifindex, cmd == SIOCBRADDIF);
++		return add_del_if(br, ifr->ifr_ifindex, cmd == SIOCBRADDIF);
+ 
+ 	}
+-
+-	br_debug(br, "Bridge does not support ioctl 0x%x\n", cmd);
+ 	return -EOPNOTSUPP;
+ }
 diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 1c57877270f7..572c28ae41b8 100644
+index 572c28ae41b8..f2d34ea1ea37 100644
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -852,6 +852,8 @@ br_port_get_check_rtnl(const struct net_device *dev)
+@@ -851,11 +851,10 @@ br_port_get_check_rtnl(const struct net_device *dev)
+ }
  
  /* br_ioctl.c */
- int br_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd);
-+int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq,
-+			  void __user *data, int cmd);
- int br_ioctl_deviceless_stub(struct net *net, unsigned int cmd,
- 			     void __user *arg);
+-int br_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd);
+ int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq,
+ 			  void __user *data, int cmd);
+-int br_ioctl_deviceless_stub(struct net *net, unsigned int cmd,
+-			     void __user *arg);
++int br_ioctl_stub(struct net *net, struct net_bridge *br, unsigned int cmd,
++		  struct ifreq *ifr, void __user *uarg);
  
+ /* br_multicast.c */
+ #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
+diff --git a/net/core/dev_ioctl.c b/net/core/dev_ioctl.c
+index 70a379cee5fd..3166f196b296 100644
+--- a/net/core/dev_ioctl.c
++++ b/net/core/dev_ioctl.c
+@@ -6,6 +6,7 @@
+ #include <linux/rtnetlink.h>
+ #include <linux/net_tstamp.h>
+ #include <linux/wireless.h>
++#include <linux/if_bridge.h>
+ #include <net/dsa.h>
+ #include <net/wext.h>
+ 
+@@ -374,6 +375,12 @@ static int dev_ifsioc(struct net *net, struct ifreq *ifr, void __user *data,
+ 	case SIOCWANDEV:
+ 		return dev_siocwandev(dev, &ifr->ifr_settings);
+ 
++	case SIOCBRADDIF:
++	case SIOCBRDELIF:
++		if (!netif_device_present(dev))
++			return -ENODEV;
++		return br_ioctl_call(net, netdev_priv(dev), cmd, ifr, NULL);
++
+ 	case SIOCSHWTSTAMP:
+ 		err = net_hwtstamp_validate(ifr);
+ 		if (err)
+@@ -399,9 +406,7 @@ static int dev_ifsioc(struct net *net, struct ifreq *ifr, void __user *data,
+ 		    cmd == SIOCBONDSETHWADDR ||
+ 		    cmd == SIOCBONDSLAVEINFOQUERY ||
+ 		    cmd == SIOCBONDINFOQUERY ||
+-		    cmd == SIOCBONDCHANGEACTIVE ||
+-		    cmd == SIOCBRADDIF ||
+-		    cmd == SIOCBRDELIF) {
++		    cmd == SIOCBONDCHANGEACTIVE) {
+ 			err = dev_do_ioctl(dev, ifr, cmd);
+ 		} else
+ 			err = -EINVAL;
+diff --git a/net/socket.c b/net/socket.c
+index 48471a219c1d..42665bd99ea4 100644
+--- a/net/socket.c
++++ b/net/socket.c
+@@ -1064,9 +1064,13 @@ static ssize_t sock_write_iter(struct kiocb *iocb, struct iov_iter *from)
+  */
+ 
+ static DEFINE_MUTEX(br_ioctl_mutex);
+-static int (*br_ioctl_hook) (struct net *, unsigned int cmd, void __user *arg);
++static int (*br_ioctl_hook)(struct net *net, struct net_bridge *br,
++			    unsigned int cmd, struct ifreq *ifr,
++			    void __user *uarg);
+ 
+-void brioctl_set(int (*hook) (struct net *, unsigned int, void __user *))
++void brioctl_set(int (*hook)(struct net *net, struct net_bridge *br,
++			     unsigned int cmd, struct ifreq *ifr,
++			     void __user *uarg))
+ {
+ 	mutex_lock(&br_ioctl_mutex);
+ 	br_ioctl_hook = hook;
+@@ -1074,6 +1078,22 @@ void brioctl_set(int (*hook) (struct net *, unsigned int, void __user *))
+ }
+ EXPORT_SYMBOL(brioctl_set);
+ 
++int br_ioctl_call(struct net *net, struct net_bridge *br, unsigned int cmd,
++		  struct ifreq *ifr, void __user *uarg)
++{
++	int err = -ENOPKG;
++
++	if (!br_ioctl_hook)
++		request_module("bridge");
++
++	mutex_lock(&br_ioctl_mutex);
++	if (br_ioctl_hook)
++		err = br_ioctl_hook(net, br, cmd, ifr, uarg);
++	mutex_unlock(&br_ioctl_mutex);
++
++	return err;
++}
++
+ static DEFINE_MUTEX(vlan_ioctl_mutex);
+ static int (*vlan_ioctl_hook) (struct net *, void __user *arg);
+ 
+@@ -1162,14 +1182,7 @@ static long sock_ioctl(struct file *file, unsigned cmd, unsigned long arg)
+ 		case SIOCSIFBR:
+ 		case SIOCBRADDBR:
+ 		case SIOCBRDELBR:
+-			err = -ENOPKG;
+-			if (!br_ioctl_hook)
+-				request_module("bridge");
+-
+-			mutex_lock(&br_ioctl_mutex);
+-			if (br_ioctl_hook)
+-				err = br_ioctl_hook(net, cmd, argp);
+-			mutex_unlock(&br_ioctl_mutex);
++			err = br_ioctl_call(net, NULL, cmd, NULL, argp);
+ 			break;
+ 		case SIOCGIFVLAN:
+ 		case SIOCSIFVLAN:
 -- 
 2.29.2
 
