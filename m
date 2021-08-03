@@ -1,143 +1,142 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E843DF064
-	for <lists.bridge@lfdr.de>; Tue,  3 Aug 2021 16:36:49 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C333DF483
+	for <lists.bridge@lfdr.de>; Tue,  3 Aug 2021 20:15:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 2C1F5607D8;
-	Tue,  3 Aug 2021 14:36:48 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 17F36404A7;
+	Tue,  3 Aug 2021 18:15:45 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9M7NtcEpENRL; Tue,  3 Aug 2021 14:36:47 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id CE0AC607AF;
-	Tue,  3 Aug 2021 14:36:46 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7Z7d4jEawfib; Tue,  3 Aug 2021 18:15:44 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 86BC34048C;
+	Tue,  3 Aug 2021 18:15:43 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DE8F3C000E;
-	Tue,  3 Aug 2021 14:36:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 466BAC001F;
+	Tue,  3 Aug 2021 18:15:43 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EB878C0010
- for <bridge@lists.linux-foundation.org>; Tue,  3 Aug 2021 14:36:43 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3747DC000E
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Aug 2021 18:15:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id DC24E8317B
- for <bridge@lists.linux-foundation.org>; Tue,  3 Aug 2021 14:36:43 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2553F40473
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Aug 2021 18:15:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=nxp.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5Q0tUPgEWY1j for <bridge@lists.linux-foundation.org>;
- Tue,  3 Aug 2021 14:36:43 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id bFOdRjFsxQ-L for <bridge@lists.linux-foundation.org>;
+ Tue,  3 Aug 2021 18:15:39 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com
- (mail-he1eur04on0620.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe0d::620])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 1DAB9839E4
- for <bridge@lists.linux-foundation.org>; Tue,  3 Aug 2021 14:36:43 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (mail-vi1eur05on20619.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7d00::619])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 5F0C04044B
+ for <bridge@lists.linux-foundation.org>; Tue,  3 Aug 2021 18:15:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eJbCHMab/vVJf7cA6qXveYmAoejlQhx2gMrMEKM4Ok2B872dxUDLpeScvDESSh/nbs6KOpIRKPZbwhDqukQ5d40bypOcpjgbdXGPm3O6NeNcickeOR+jfH2uS8T51Unwp25vieuhl7c+HSrbmn+2MK9Pbis1RBO8lmnReWBJCVbmUksGpLTJ6kODMcyRk6DbFPOmdUHwypABSH4pNlm7VfcgQPXKyheze+6UuTjBG/DOlAeCyK0poVBo540EX93bowdmzLj9f9p42xeHavRdOobfK0tfzYStkJPNnVubsLMT5F2sUfxcc1gFMkp6spNnLIBtmaZKyzgkL31RDL+Gaw==
+ b=bugl5OSQqo8XgP3oorTAlGgejlkZFjs2exTjqOhlg4Qjz8tQx9d9FFwHKma52JkgHXwZRQJyH22C+v1/4spgzTxiAUg0Ycql21bqgYTtAvJGDphJ250BCjfWs4O/kSoTDrvSuxeyXqyqckMy5jN03goGv3H5Cz2a+j3/teWdf/EH0ZNdDyAq3VFhjsIim+4k7M3TYM00Bt14RVrp7v99Xq3TtA40/VT3jBKzLPCoT58APm2sfW0N9zJf+/hqsY6hCMGigF6JQPKQR7I51I/jINWlyP9ZLa9FgKtyt2lNNEOslPtoImSRoPaZ/zbRBVWsNGoKaix0vnoqJaZIY3/O1g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PDhe/ij4rTZ0Je5WU3iFaXb1JNRet7j6pWQ+pmHmBpU=;
- b=deP8r8xd3Nhu3S3q3yFio89zdo8tUunfuSXnDdUHsg70V6GhWsEfzWFcWiFm1NHr8VDWjXoVJpK34kXplqatADXitf5PD1sw8l1lpRgCmkmC1YfHLcFz/MVNZ5lz/IbF/xHCRQnqqnMvv2YvDxwJzyhHXmWknZjAyluCIS7vcNV62IOc6POSwdcwRLl5sv6Sioz5HXlf7jxhGm5d5aEGCP1iXMj5DaK/qr1XnR6CL4myA1ZpyI8kTaq4qaT9UqUMP5Vj8JGJhaYc6nlJuaUoE7XzhoFAEWXEs2vgZcszc4w9rTNNRSQdW3623yHCIjzvz3XQkNaz9puZB7dHiLyUFQ==
+ bh=ri+SD2Yc1KXe7XVzan10Kk/GAeyQKExgjuIbCygDU9w=;
+ b=TdrsXoeD9urwa1bDFIGmeG6ANLMm1MTvH8nAUUjg2RIH6es99VEWG0I5VCRfB3/YrjxhitZ4IcVm1TeetM7phWBAdBuTwQBdj82+EZpZitWtIZa20WJTrOpeNCynjrQ60ngzO7JgvoDtHiMCA2cgKY28yJfmNzWL+yUb8v6Y3VN7fUPpW8MDDYKtCF2chaFp0bJiJ6zCrpW/PncXEq6i+fsLtWxX0ZfZ7hOXP3PCXCc3qOjUJcuRiy3ymOYE2AvKhjfWWsiHVlUmyV8J/Uz0f7c5RNJx5xmwe+o7ovuXX3Sujm5G4+uPs3AOmJtfHNmYz1KY/R1hTJwkj4dvhNGc9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PDhe/ij4rTZ0Je5WU3iFaXb1JNRet7j6pWQ+pmHmBpU=;
- b=qQaVOvQABV0lcWbUwScoSRhlnfyiD4DUqB6q7UvwYKldljO1s1CL6mCoeyjWlHdwy9+sPBy4X41C6UUER78VEbxU2ik6N7O0qTPQDvwVOS6pCWda2XWYPUbD51rBotElgq6CeCI0wik1R3h2gZ7eDQBjp2Wm0c8HUairjrZ6Lz0=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+ bh=ri+SD2Yc1KXe7XVzan10Kk/GAeyQKExgjuIbCygDU9w=;
+ b=d710FNp1UMItE8gjhxc9o0moyh44p6Am9BDvB7cWRLiHaZODlTFNCMAi9Pd9KqbnPOo5ivnZpfx0W9PMMo1Zajbr6vE/DY4Q4+68g1wIhxTXqAu0erXpE0rBZNIybvhu0PaG363BJhSkeaOF2DTVbR133M88G3YU7MHsOfjXxHg=
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0402MB2797.eurprd04.prod.outlook.com (2603:10a6:800:ad::15)
+ by VI1PR04MB6270.eurprd04.prod.outlook.com (2603:10a6:803:fb::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.25; Tue, 3 Aug
- 2021 14:36:40 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.21; Tue, 3 Aug
+ 2021 18:15:35 +0000
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4373.026; Tue, 3 Aug 2021
- 14:36:40 +0000
+ 18:15:35 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Date: Tue,  3 Aug 2021 17:36:24 +0300
-Message-Id: <20210803143624.1135002-3-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210803143624.1135002-1-vladimir.oltean@nxp.com>
+To: Grygorii Strashko <grygorii.strashko@ti.com>
+Thread-Topic: [PATCH net-next 0/2] Convert switchdev_bridge_port_{, un}offload
+ to notifiers
+Thread-Index: AQHXiHT2bKwV5tFJ4EatXrPlu4SfBatiBGgAgAARyAA=
+Date: Tue, 3 Aug 2021 18:15:35 +0000
+Message-ID: <20210803181534.qgbcjow4ketd4yio@skbuf>
 References: <20210803143624.1135002-1-vladimir.oltean@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR10CA0029.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:17c::39) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (188.25.144.60) by
- AM0PR10CA0029.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:17c::39) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend
- Transport; Tue, 3 Aug 2021 14:36:38 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6691b366-ae32-49eb-1649-08d9568c1b1c
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2797:
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB2797C90666314DC471F17436E0F09@VI1PR0402MB2797.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:238;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mW74xRoSf8rYW5VAbQfuupnn9t9rZeAdbMlsltuoyuxZw/jS9UxY6cRGpre9xeOVEXhmo+GLmd7q/2RI/JeMh734t6PQecjqyV34QqaavdcVMXeHm0ZnX4vV0RtNg1pIeND7q1Vgz4gGzlUQrV6SNSXuBx3qV2pgiEeEDJSmdrQnsenA3MC4fbfr4KSvyELZGI1rqxkqcucld/zrRbrn4BQAxZ6mq3baWZ3Qj7RAmw2y9nNppJqMTwRXR07ypwzo+jACiEHJBkz9j8oDCxtpDgaEP/6UIf509TAal6QOuIKcBr5iafhNj6ixtLMN7mCg7dXZWJTNSG69zZP4Pk86KHNT3dJVSMXiEMr4HKxHoe7IsXiiVELev8h1EI5PDulv8R/YlLzPvC9UpjB7T5XYrGWfDcrIh280fpjQUVlbF4+COVwtKhkfxyAeh1AjrIDzOi7x4nd48qwwjJ8yz/a5uhaTSfVEf0U50CZXIdQTJxsE53hiIE4ZEfp5KabEx3cvjAID/A9RIPDJJie6CoBnHU2mXWaIC1b1/gXNaR8yiNZ7DCg7z/SvUIFodj7fsVSuRHRHKhobNxpLAKrm0CDy+T9nkwrl/x6ffaSc8EBzSeiA9/8ONp/TUR2D3UN9Qq5fWg0lOXjgyBeZhmSgE5+Cs+1QKVHKK9vO3vPyjHRT+W7/Bi143BUFF/JTTbfQ+Zrr6fvEsSce7r/nQ7L6TWBoPw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ <00acb107-8ff6-9c98-e6c3-f6718d5ce9f4@ti.com>
+In-Reply-To: <00acb107-8ff6-9c98-e6c3-f6718d5ce9f4@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: ti.com; dkim=none (message not signed)
+ header.d=none;ti.com; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d21f5a3a-83f2-4e86-2cd4-08d956aab051
+x-ms-traffictypediagnostic: VI1PR04MB6270:
+x-microsoft-antispam-prvs: <VI1PR04MB62709F28569585A6D6A9DF84E0F09@VI1PR04MB6270.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zhXeFXMSENgJAg/CUlckAmJNlZ1o/rxdEyBCMXR4Zq4tTgGqrHmX3ksOWUFjVy9wzGQthbsavuRhHkX9e1m+5qoSXodfPXrhj7ReEkE09B1bLZaeRXgbvPa0+PfPumQDe5t9wvKngkNYou8MyVJZZWNiQxqvtcOeur5ZTixPkGojrXqZW05C/9KduRlYC4BEbaMRbMKBCL/Z9LlDuaEt1lN6kf0gvHt5EdSRPNr41ACxpaYXlEWc7mki14gIu4e0sKEFJfxlPBBNupKjsuFE410D3e0QPLiPLAVr3b82qGQCM7UABgAdp1rnTUXMKDMVusfcUTch/1XEqWzSf0YwvncMj81uhe7h5jdDK1lKaJuHwqbH05yHr53S01fLUoRxrkt+dtAe24ygMTdl+TFssCi67QYY5pxl7tBjwMcuo8z+eDSYeeoduCH1W90R7dFxkg+MTMuBvsZ5x3wAMLJ66AZ621xg71hNd1oR11yraR9aLA6K2d2im2rdROLq2RgDhArZGY81eHZOoiALiGKDvvXRjD9jVvsSWRXJR9BvPN4crerc5+UqcwJgy0NRY4zAWEEo4hOXdX/2U7W38vG78cyaNWn4sUF3n2RsQTCLK/h5vcanLMjXpa/o+aF/H4UIFfI5HEZHp1SDLRHVqJWlfgLa5qT4wvMZ3OYVsGjdF4RP7qYOJGgm/he0rA6+iFCE5BdfW5ImTFx+yLbUx4eGGVnrrD8D/XxNgUdoEU7v5ttNdNlhEPdny8GrwhTS5vMrJ9Z/wIqJaTkC9qr259eW28GR4AHwbscluR4Nu76t9bM=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(366004)(346002)(376002)(39860400002)(136003)(52116002)(38350700002)(38100700002)(956004)(54906003)(6512007)(2906002)(44832011)(2616005)(110136005)(26005)(6486002)(7416002)(6506007)(1076003)(8936002)(316002)(186003)(86362001)(66556008)(66476007)(36756003)(478600001)(66946007)(5660300002)(8676002)(4326008)(83380400001)(6666004);
+ SFS:(7916004)(4636009)(346002)(376002)(39850400004)(136003)(366004)(396003)(44832011)(83380400001)(2906002)(6916009)(8936002)(66946007)(86362001)(966005)(1076003)(478600001)(7416002)(38100700002)(64756008)(122000001)(91956017)(38070700005)(8676002)(186003)(26005)(71200400001)(76116006)(6486002)(33716001)(9686003)(5660300002)(54906003)(6506007)(66476007)(66556008)(4326008)(66446008)(316002)(45080400002)(6512007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?f2+XTB+OxmuHr4qM8qZgtUK1SxsasUnDvglUSw5sUTPbclRqpE/1m2Wc85pP?=
- =?us-ascii?Q?km5LWbYENfezLxrUSrMV3uXJoPOoXy/t4qb/x8tmJgDPoNs0KdjvKmtc85Ms?=
- =?us-ascii?Q?fQjmWqmhFN2u6LanZPdU1wfmT3tLroWqyK0I88z6OSOW8rgjHSiMTEnMRr+Q?=
- =?us-ascii?Q?ThWZlWga2qm2FfMObnH6WKJnm8/KhASv0ZAV2oFk3fk4xYWIUobOH4+QAyKT?=
- =?us-ascii?Q?o8Mgi2FlC3MPKuhQqNRDAd8TvcDhucqeeloPqV+HDxv3JH5258fhWqO+gqoD?=
- =?us-ascii?Q?NEBsgs5sr/XqYwCFysgnWf0rG7vKC/uuRsfypiODMAum7JirlYz4nkFzqyT5?=
- =?us-ascii?Q?wQVVC8z+o8fmH8nJkfg2R1eVsFUgx/d0PTESngBDQtcSKfdl/Rh8/NxBCpTB?=
- =?us-ascii?Q?kr7Y4mbiiPewzNCBB7kWUrzsm4WHg60E/CewpH67ERAnB2PieqiGS+MmsqcU?=
- =?us-ascii?Q?+Su58v24Y8D2sUP0ERdoDtctarqLWRF6Jfda3BSxu9Mr/PClUZF5+/XFMb+J?=
- =?us-ascii?Q?dV/J5kIt53bz5/Oy1SAf7zTKF7WObkkzMe4xd5xQdTNwbIKAsQFhW1Mcc56a?=
- =?us-ascii?Q?hYmfTiM72JssOYKNyuAMdD8g49bzwkHIZGkNFmr2zoAIdryEwuJKw0aVjwem?=
- =?us-ascii?Q?rpQDHsvlp9aq4SOX65guu1KwZZC6ce8t+E6lhmiS08g7LwAY7bK6a1JV7Z5U?=
- =?us-ascii?Q?WYvItoTxjfjv4bt9UJiUCZs1b5L9mEO0XxAO0Hk8vXhm+JQn4sl5wro9zr/E?=
- =?us-ascii?Q?tiCPHP3i+tijYfjox2yzyeNz/v2j8S9DGztcNA6EzCwYDZcKgjnLSS9ff4dz?=
- =?us-ascii?Q?KAqhQQ0ap1fHdI78AFAv5auCuH+L4/4tlQbBiW36f6rr6ryQXQISH97MI1S3?=
- =?us-ascii?Q?zja4fi2Mg9aVR6isKL0Y5XFmBacyfEg9vQI7IL6GtASXz40S0OiF0xSlPQXd?=
- =?us-ascii?Q?hY53x52UrNtbkhBPvo1uqWA2sP9t4Da+rWCuMheyxpYphFGlIX2HYaVcLWXJ?=
- =?us-ascii?Q?tA9USywA2F9vSDozj08nNLZpubL3jpHNXRL49RFeT28golSrtOUSl6PawtEL?=
- =?us-ascii?Q?wKLkg0q7/3LLlFzeYi/14YY+42KFmkZ0zhShW0yVaR8KlZ7r5q9c9VlZrpYo?=
- =?us-ascii?Q?H5vPpYutsNmhSskmtLHLhZnqrxjUnsz0r+mgLGGOmRGNmXrbw2CcCnen7Jun?=
- =?us-ascii?Q?BvYEh/2s/MDC29kBFmwDVuiR/FYNVsX09ANEIbUz8qJBKQ5BV6azqeNJUuBR?=
- =?us-ascii?Q?+orOukj6tdfLSGBZ8fU4g4W8N2QWQU5dSzdHoj9Hvd75tWA/uzitAdYJBPrQ?=
- =?us-ascii?Q?cimTjbIrRprIINEUhNgBQV66?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?CL+bMfb+QTbSc1sEqmcvW3fX98RHYCqbAGfEwPI8VCIGQz6OkEN1QXzC?=
+ =?Windows-1252?Q?WsuflRYb1Bd2GeD+YWVyN577ooDq1CmDTSk5tOiefZS11QpwmvjISkHc?=
+ =?Windows-1252?Q?JhxAnPlisHU0RGkEdMwVgHvPK+KToGfjKKYMh9YQ7/dWT7ZLuWvnLjNT?=
+ =?Windows-1252?Q?R5G7yD3Zuaknx0IsUtrHNuwdIKLDj840wsuN5NsWOumnXPPkjqwNq5cz?=
+ =?Windows-1252?Q?5AsuuKp+hKDo1md1Dy1wHnrdvfb247B6MGlZa7i/6dWQPjGNpMDCxvOT?=
+ =?Windows-1252?Q?uCSoO9mYIH4xVSrRDn0CL4O7YCF1ENk5+cnORisAdYqG/lrESlL513bZ?=
+ =?Windows-1252?Q?YbAWLH8MLOA1ZX+gmS2QLrZtdtrt68JuAcC1VcfqHdh3ptk0kR5UhJ6X?=
+ =?Windows-1252?Q?YJD/velHZsNWfdtIp/9pbsds3ZYCEcLN4/iY5Y5ALdHRhji4CGJrcGV2?=
+ =?Windows-1252?Q?knWHcCl0AIfGTOOO7uPUtJoPUstTzvrzv9uIr2dHUjHeATM9BZRX8RcA?=
+ =?Windows-1252?Q?FhFDsDIDdU+NamIstmxTftbEUpLO11l1J7NiNgPrvPJp22HIqXOkUQVb?=
+ =?Windows-1252?Q?Jnwp+UhL7OwmwLWhfibFuXp7xi3WkuqSwsQa08fUfTUwbxzVUWKUrZ9B?=
+ =?Windows-1252?Q?Nk6eWOl3F+uokMTtrGCipwGhdYnB6cAmp1CmaMRhh6AQGJDv4TNWerkd?=
+ =?Windows-1252?Q?CtNWX7RcW2e/qwhB4gMtXqCZ2tXf21yUWQtmA9TYsEFXqOCyN5tnCBnh?=
+ =?Windows-1252?Q?+7pqHqSGmT9Ud2ErNy7I7rQfJjaBn5IZA7W89M2xGi3R7pQZMwnoDKL6?=
+ =?Windows-1252?Q?+kLUx0ZZq8/eULLfOe968AjyXS/ZMUOY2zK03KJtNXrqJ9PO+N0ldBP4?=
+ =?Windows-1252?Q?/4VAbpTvH7b2jDDN/oOdq0o5EoF+2mQhoYqcBCr/nV9W/bDYG4J4/SpA?=
+ =?Windows-1252?Q?66Dl3UnTyRU0kkOTRcapfFiVQjdt0UQZBaYR5vW5J5QzkdppxqouVzTO?=
+ =?Windows-1252?Q?BI8CAH0CjB+9hAfqPBDFxoRaGhaS4cjwbwlnoJBDQwu6wUB+MGUg7Ww8?=
+ =?Windows-1252?Q?Tzsaviff2cxDH1A+9MAl503peRK9PUzbDb/AyxK5n3MKmHYVPTGeWt0U?=
+ =?Windows-1252?Q?nDXXUfB+JA62GouoZvxlqpwo4jvXBe7OHPUtenjL0VmI+Me3gluuCNNv?=
+ =?Windows-1252?Q?Z95S9KTY7mdgTAfDm+RkkkNIcxQsTqaLdec+tw0x9S/mfR6q+Za+tgVE?=
+ =?Windows-1252?Q?J3bo/Ry6dOKUehvkKmYR8KKhg0V/7vzdv71j33b7gVMOJUjSS756X1FJ?=
+ =?Windows-1252?Q?h3xXnlIX1QtS0Z6+5kxajZmHZBtfcBwV1yxT4AOVdzQ78QqmsIgbLpku?=
+ =?Windows-1252?Q?DWX6ATRwQ/2Z+BgI+t3qDEbM8pY79jqez5+5zcX5lLbb7gAPjEw0pMwk?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <5EBB01D20F46D54F874D3AB13112056B@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6691b366-ae32-49eb-1649-08d9568c1b1c
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2021 14:36:40.1500 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qlpq53QxWT2dL8irX9ijKik5Pyvdl94pV5dsjKMcK4G6LTDUjXGkXbnugDbZiasKkJFyNwV/IZf34+vJzA4tEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2797
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d21f5a3a-83f2-4e86-2cd4-08d956aab051
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2021 18:15:35.1675 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ogjovxBAQNTQv/OMMFcQGvujAsqN35CrQg2lpmzAkE2ceFhMwxYuUUeeW9VRG3+iRPHdh955E/5285Z4GZFjfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6270
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Jiri Pirko <jiri@resnulli.us>, Arnd Bergmann <arnd@kernel.org>,
- bridge@lists.linux-foundation.org, Ido Schimmel <idosch@idosch.org>,
- Grygorii Strashko <grygorii.strashko@ti.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@idosch.org>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net-next 2/2] Revert "net: build all switchdev
-	drivers as modules when the bridge is a module"
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next 0/2] Convert switchdev_bridge_port_{,
+ un}offload to notifiers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -152,48 +151,42 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This reverts commit b0e81817629a496854ff1799f6cbd89597db65fd. Explicit
-driver dependency on the bridge is no longer needed since
-switchdev_bridge_port_{,un}offload() is no longer implemented by the
-bridge driver but by switchdev.
+On Tue, Aug 03, 2021 at 08:11:56PM +0300, Grygorii Strashko wrote:
+> I've tested builds, but was not able to test bridge itself on TI am57x pl=
+atform.
+>=20
+> 1) See warning
+> [    3.958496] ------------[ cut here ]------------
+> [    3.963165] WARNING: CPU: 0 PID: 1 at lib/refcount.c:25 fib_create_inf=
+o+0xae8/0xbd4
+> [    3.970855] refcount_t: addition on 0; use-after-free.
+> [    3.976043] Modules linked in: autofs4
+> [    3.979827] CPU: 0 PID: 1 Comm: systemd Not tainted 5.14.0-rc4-next-20=
+210802-00002-g5003e4ac441d-dirty #5
+> [    3.989440] Hardware name: Generic DRA72X (Flattened Device Tree)
+> [    3.995574] [<c0111098>] (unwind_backtrace) from [<c010b834>] (show_st=
+ack+0x10/0x14)
+> [    4.003356] [<c010b834>] (show_stack) from [<c09da808>] (dump_stack_lv=
+l+0x40/0x4c)
+> [    4.010986] [<c09da808>] (dump_stack_lvl) from [<c0137b44>] (__warn+0x=
+d8/0x100)
+> [    4.018341] [<c0137b44>] (__warn) from [<c09d6368>] (warn_slowpath_fmt=
++0x94/0xbc)
+> [    4.025848] [<c09d6368>] (warn_slowpath_fmt) from [<c08f68d4>] (fib_cr=
+eate_info+0xae8/0xbd4)
+> [    4.034332] [<c08f68d4>] (fib_create_info) from [<c08f99c4>] (fib_tabl=
+e_insert+0x5c/0x604=A2=B7=86A=CB=D5=EC=CD_=A1
+>=20
+> 2) see warnings and "ip link add name br0 type bridge" just stuck
+> [  158.032135] unregister_netdevice: waiting for lo to become free. Usage=
+ count =3D 3
+>=20
+> It might not be related to this series.
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- drivers/net/ethernet/microchip/sparx5/Kconfig | 1 -
- drivers/net/ethernet/ti/Kconfig               | 2 --
- 2 files changed, 3 deletions(-)
+100% not me.
 
-diff --git a/drivers/net/ethernet/microchip/sparx5/Kconfig b/drivers/net/ethernet/microchip/sparx5/Kconfig
-index d39ae2a6fb49..7bdbb2d09a14 100644
---- a/drivers/net/ethernet/microchip/sparx5/Kconfig
-+++ b/drivers/net/ethernet/microchip/sparx5/Kconfig
-@@ -1,6 +1,5 @@
- config SPARX5_SWITCH
- 	tristate "Sparx5 switch driver"
--	depends on BRIDGE || BRIDGE=n
- 	depends on NET_SWITCHDEV
- 	depends on HAS_IOMEM
- 	depends on OF
-diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
-index 7ac8e5ecbe97..affcf92cd3aa 100644
---- a/drivers/net/ethernet/ti/Kconfig
-+++ b/drivers/net/ethernet/ti/Kconfig
-@@ -64,7 +64,6 @@ config TI_CPSW
- config TI_CPSW_SWITCHDEV
- 	tristate "TI CPSW Switch Support with switchdev"
- 	depends on ARCH_DAVINCI || ARCH_OMAP2PLUS || COMPILE_TEST
--	depends on BRIDGE || BRIDGE=n
- 	depends on NET_SWITCHDEV
- 	depends on TI_CPTS || !TI_CPTS
- 	select PAGE_POOL
-@@ -110,7 +109,6 @@ config TI_K3_AM65_CPSW_NUSS
- config TI_K3_AM65_CPSW_SWITCHDEV
- 	bool "TI K3 AM654x/J721E CPSW Switch mode support"
- 	depends on TI_K3_AM65_CPSW_NUSS
--	depends on BRIDGE || BRIDGE=n
- 	depends on NET_SWITCHDEV
- 	help
- 	 This enables switchdev support for TI K3 CPSWxG Ethernet
--- 
-2.25.1
-
+See if you have David Ahern's bug fix, and if you do, try to see what
+other refcount conversion patches Yajun Deng did, revert them one by one
+and see if any one fixes the issue:
+https://patchwork.kernel.org/project/netdevbpf/patch/20210802160221.27263-1=
+-dsahern@kernel.org/=
