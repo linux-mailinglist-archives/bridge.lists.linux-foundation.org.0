@@ -1,152 +1,146 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id A84473E48E7
-	for <lists.bridge@lfdr.de>; Mon,  9 Aug 2021 17:33:48 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC9D33E4912
+	for <lists.bridge@lfdr.de>; Mon,  9 Aug 2021 17:44:13 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id AB7BE6067B;
-	Mon,  9 Aug 2021 15:33:46 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id C68D0403EA;
+	Mon,  9 Aug 2021 15:44:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ssZ66aOonS1g; Mon,  9 Aug 2021 15:33:45 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id FASQYB_let1P; Mon,  9 Aug 2021 15:44:11 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 1A2E360664;
-	Mon,  9 Aug 2021 15:33:45 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 51D80403F8;
+	Mon,  9 Aug 2021 15:44:10 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CAB48C001F;
-	Mon,  9 Aug 2021 15:33:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1DD2CC001F;
+	Mon,  9 Aug 2021 15:44:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0812AC000E
- for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 15:33:43 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 52B02C000E
+ for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 15:44:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id E921B40210
- for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 15:33:42 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 4171160626
+ for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 15:44:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=nvidia.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id gLRQfIlsz91i for <bridge@lists.linux-foundation.org>;
- Mon,  9 Aug 2021 15:33:41 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ePB9Oi2GDGC2 for <bridge@lists.linux-foundation.org>;
+ Mon,  9 Aug 2021 15:44:07 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2064.outbound.protection.outlook.com [40.107.100.64])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 30723400CE
- for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 15:33:41 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2061d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::61d])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 5BF18605D4
+ for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 15:44:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CsZ5FGJBJ8xvUT+FwujVTAaW58nNhnEAPnEYVpLT1MH3eYkkEJ/+DYSc5UPuFn0NBmcnxR4cBBajX0vvd5hFHzXCxC+FmUXWKAjk+bM2YfhYmGuDnQMPymkKZFMbqQ4e6ctLTkVwUn5FG/7a3piXuPTnNZk4WaDT1+awRw1mVDQOmq76fZj/sCVe+OoFUy9DNIr+w+ygeKZUlbbBPaBzZwsVgfI4YMdGj7exMBrl26n06G4z+/I9ERKsS3WqlYl+b9jkvWFdRYy0crw7jMTG2Z7GtOEhl8z5U47eynnwQDQDjTyInKUTI77oWMVTSD3bdGlSyI5Rks7mqohXBMy4RQ==
+ b=PiBQIa0hCWEnG2rw7iDj4tLzxc3xWhw9dmHBUQRa8FLL8zaeGx+X/el1Cv0WCrY4iLWXj6ejv6qD1PcwxZxo3qChm4AzMpRse06+247lr/snK2ke8N1dWmN160QnZzjVZVti98UjjTjJKP4pCA8zoJH/ea0PLGRD79aT7302x3h4+xTuD0CCqMqjTuzqmZbkq781avjH+VeyiYnbA+IUeMprZ5E4nXNS8t+uVU3kKuFhh6OeDVEyIq6mWncJdlPnBOxVIZ1EmgPVqS2nmN+scUIrIzp1lF5WfYJqlb2EKzcq/UvOeIl/XhXFjznURAXjy5XQUHd9qWvssmMSifTNrA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qqemeWm7qmixJcm6scXCyBgUPiNKCCgr7FJUNgLmrMU=;
- b=aaNhpLskaEFi3ykTeIRqMfuzttS+ognWefnFurN4hKpmEPTlbifhMOwZUncYsH/RVB2/BJf/N1Wq5vwLBZtZIoJfjcLj9wsojcx/KM3FsP7Ax9LNa3yODp+UrjKCpdOuzhho3iRqELUDn+Z85IiNV1ooA0oNxx8i6Oj3+wOxFBOuOgIAFBM1ga8grpZ9lnMYfgZuj2Essjy8Du97oN//P0gbndV8wluwq/UvWEfxpbmWRKoN7AKgIyqI1DOC2/YINsiNsxfUuufyQxkHW2HUgvwz7gXjNyomAcYgiGgW3Pt7Rh21sW85ebHpXFbXc0wh30WrezpXi1pRebFT3giwwA==
+ bh=vC/sSfgn41mQctQq+VvHgYGUdhl6nJ/LCTzp9qvcphs=;
+ b=S7tDWUqxX5zVr3FZgjmE/J7UsbYKZV0qUZBVks8dW3gzjqVRjsSNvvB9K1/pvKahEWF925QG7IZXLuJnUaIgrXP+9DUNJPAXeqVZxLf/VlCpfk3iLgyaFFbUkCOGI51KRpF7oKsUoDSOEosFkZ9d2T2/mR8un90s1iWBBc8HGyky0A7Qr8SIXWCgwpRF1ZzIrOH0dW3ddELwFrU9kxPHRs5HAYOcJuoN2Z+hhcxdgMpokV4WG2Fz0CeAuSewPvBvN0YF30TwXTa+QhpSEnt+EB88WbJPD/s182qSy2V03+0rSAJKsORRpH+Mq2ldZNC/RLbm4SF+AxiQc16rB4MnGg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qqemeWm7qmixJcm6scXCyBgUPiNKCCgr7FJUNgLmrMU=;
- b=k+TIdDqC1YhTmo0f1Kiab6Ol/PU4SBXCHM2KmmF+8cPRZucwGp99QgpH+6lyiV7IgeLZ6MmdgMlaM+1KqI+ZQrmLI4ts87W08LOYvR+eQ4DMZTlN1H6oasR1MFfxJIH4lJJcf9EF95EmT6KKw1UXm1xaEwB2AAMNOOsWW3hVIcoueT29B5mmxNA3XLUXX3DzJz0tlI8cVTXNgzgcli2ycjwnNzjhHrORV2EwP7gjxbvTFWHUZbwJlLs6WLBQj1xCg0utBphwpc7iFvs1bpKnu5UiUZ8pVsK0wLxoSdlY24slDhVwILM23pSdQ2qeoCSw4conqruo/MKdNvcHaw2I1g==
-Authentication-Results: syzkaller.appspotmail.com; dkim=none (message not
- signed) header.d=none;syzkaller.appspotmail.com; dmarc=none action=none
- header.from=nvidia.com;
+ bh=vC/sSfgn41mQctQq+VvHgYGUdhl6nJ/LCTzp9qvcphs=;
+ b=D5aeMchqmfPZiixRPeFG1OfiEnYgYpa5o5TdSYS6qdP3CtOP1ev6ies5ax4sTehKWHeTj4PV8ISN6OIY06uJfuAoFQ6zjZvqPO13oSdWsvILeAoJAl//Y1x/d++3eCnuCk67bbb6vpu8Ffl5zqsiRuZy2kMShAuzzaSeX9pbhyPJEQ1YnBO6vnCHctQ7pJcAQyuJO5bO5wruGeanTU/C8EKZXzF2JHfQtFk3Bp04B0Ihum79i+BNIb/BqrO/T7aJMCWCax3CuVJXAJNFaLIFFHvujFikbOC3q5+Rqg0Kpefybp+vS+KMZMdgJScsO2SwknfYPao6qdtqO7MSEgVKdw==
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM4PR12MB5248.namprd12.prod.outlook.com (2603:10b6:5:39c::15) with
+ by DM8PR12MB5414.namprd12.prod.outlook.com (2603:10b6:8:3e::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Mon, 9 Aug
- 2021 15:33:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.21; Mon, 9 Aug
+ 2021 15:44:03 +0000
 Received: from DM4PR12MB5278.namprd12.prod.outlook.com
  ([fe80::c170:83a0:720d:6287]) by DM4PR12MB5278.namprd12.prod.outlook.com
  ([fe80::c170:83a0:720d:6287%6]) with mapi id 15.20.4394.023; Mon, 9 Aug 2021
- 15:33:39 +0000
-To: Ido Schimmel <idosch@idosch.org>, Vladimir Oltean <vladimir.oltean@nxp.com>
-References: <20210801231730.7493-1-vladimir.oltean@nxp.com>
- <YREcqAdU+6IpT0+w@shredder>
-Message-ID: <da3ddeb1-eef1-a755-dfa0-737e32065d67@nvidia.com>
-Date: Mon, 9 Aug 2021 18:33:30 +0300
+ 15:44:03 +0000
+To: Yang Yingliang <yangyingliang@huawei.com>, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org
+References: <20210809132023.978546-1-yangyingliang@huawei.com>
+Message-ID: <01704dc6-23ae-c5f0-d34d-cfa7b8a2f08b@nvidia.com>
+Date: Mon, 9 Aug 2021 18:43:55 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
-In-Reply-To: <YREcqAdU+6IpT0+w@shredder>
+In-Reply-To: <20210809132023.978546-1-yangyingliang@huawei.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR0P278CA0036.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::23) To DM4PR12MB5278.namprd12.prod.outlook.com
+X-ClientProxiedBy: ZR0P278CA0150.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:41::14) To DM4PR12MB5278.namprd12.prod.outlook.com
  (2603:10b6:5:39e::17)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from [10.21.241.187] (213.179.129.39) by
- ZR0P278CA0036.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1c::23) with Microsoft
+ ZR0P278CA0150.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:41::14) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4394.16 via Frontend Transport; Mon, 9 Aug 2021 15:33:35 +0000
+ 15.20.4394.15 via Frontend Transport; Mon, 9 Aug 2021 15:44:01 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f77c1cde-e80b-4cb5-2c7e-08d95b4b0f71
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5248:
+X-MS-Office365-Filtering-Correlation-Id: 9cba0d83-f739-4860-0bcb-08d95b4c83b5
+X-MS-TrafficTypeDiagnostic: DM8PR12MB5414:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM4PR12MB52481859FD1F76DD8CDE94D6DFF69@DM4PR12MB5248.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Microsoft-Antispam-PRVS: <DM8PR12MB54147F74B2BF5D7648B831AADFF69@DM8PR12MB5414.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oQlfA+aq+nPbEwLJtYc/J5+/yP/ITA2UmMT5Tp7GIXZJ2irmmxnLlh3krUdcnqy5Tr+YlgRghf0+eh8zDmM9z7y3A0kKbenelVk+mylX445bPjb4IeIRrqrsF6u6F+ln7AZxB25y5x3Aus0vYCseTdq65piDDJviYU2ILZAJxWBAvVkTRXE0KCwrOl4AtKOD3c/3/5MvANU50vXgroOXJHK7lhQrmCxIm8t7CeY5ymmzNAL5XWtBQpaTbfiPZMJsxbkTtLGAHHS3QUaaj9ByVE6Kdape9Gqm9gmRHrJDCZho8VGUR/CimBwWV4Qjww4KnDeCII4jjiThSIspUnvo0Qrtl0cgooQxYJSQs8ZZVd2dNRXWfV4x0GsRf6fk91+nRCHYg8lcTIRMWDEffibRmOinE0GAGNfV+y8qWGsZOgLgV0tO/oRLtJtCJn2xLNu9qMaWwTlsshnsy7KlHVROvc01rpTlDqhqWf9srfuh1jrlI9KfHWFDXR4Lko6RGcBMrKdTCLI+pIQQJHO6xPh4qAHcgku/yls+uFaqj6rkx+7M1/7TsqzyjJX/jFZHtAeei2uM+G/ZFdD94+X6pLhNcEVPQ79tgOEdE3hZuJ3+cAFkCTHO7So3zfw4TrfMNzGpeEJq+kdxoJ6kfenFnBDzkx0sElYYa8jozZpMHqydeZ/6iVom8jy/Hx1RdYF5NIZ413a/IvRzEzaEX3k08u4ozALk+zHJmSynw/Kh9peSd64=
+X-Microsoft-Antispam-Message-Info: l4hFWdxVB7pYxIlRZLzYfUOulG2KkZkxkRdp8AMqFuEbnTpu9vb0SrNN6d2xRLlNCNYtOi2l8+LMFwZdpvpK05iAo/RWOnrA6JY7uTIp1/HV6jBGYRVvuNLaQGNzzmk44UY2Ojawb6MukQCUtw3p5TUyhsr5qi0L5jz9e5RiOtj3ogkxZxtzwx9TuB36mLPwL+Oi8p9W+dBV0QKOn12+US07Vj1l8TEtXT+V/lOHusYf2woEHdQyJh4VKZFAhU1o/J1NxGs1Hx4LwvyuK8qXjhPaBpZNM+zvSG9PKHIZ4bHvYueVntJucBXsLtm0PFf39TaC/GTFt/MmzyVthcxu+2sAY2HfpazV8TxsIO5LKScXotjkqSV3GFMYqxsgFzkt5nG/e/F5xLxMiD2Cb1E+g3qQCPyxyx/MA734d2DMxamnrzCLPb7IKjqy3k0eYSzfRwJvYGxfuY3xybI0ojWth0oIxk96PJfP5SuAKgiaxZnWRzocy4IGUgmUmuf240wnua/IayI90Mn1TzkxJ6z972XF3eP3aGqZJYdlAOic5BlM5KUiyYdD2zCQ4T+4QRcPRFeAKco4bdrXQ29UB60fGFkmVrsXjz9xBiDQb1h454iBcKYI5MLV3ldYa3hkVjVUNvXvlLgpDIawveXBLb1Web2JtdpUVgWUOD6B1Ny6iiaoIehQ25AD3lNJN1wYMw++Oct41TXvkgFMNzxhHwRJWImkF5BRCkJLNgmQF14rbMHhvToJbMaWle9i6zS0EJOKGp6gjGymW19XR018SX1/QQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(366004)(136003)(376002)(346002)(39860400002)(26005)(31686004)(2616005)(6486002)(8676002)(53546011)(316002)(66946007)(66476007)(186003)(15650500001)(4326008)(8936002)(66556008)(36756003)(110136005)(2906002)(478600001)(16576012)(956004)(86362001)(83380400001)(54906003)(5660300002)(31696002)(38100700002)(6666004)(45980500001)(43740500002);
+ SFS:(4636009)(136003)(346002)(366004)(376002)(39860400002)(396003)(2906002)(31696002)(26005)(5660300002)(8676002)(478600001)(6666004)(8936002)(31686004)(2616005)(16576012)(66556008)(66946007)(6486002)(38100700002)(956004)(86362001)(186003)(66476007)(4326008)(316002)(53546011)(36756003)(45980500001)(43740500002)(505234006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1JFWC92QWFZL2hLZUZnS0grMisvWXlwQVhlbW5qVWw1Y2pEQndkd2JBdXl1?=
- =?utf-8?B?ZzhvT2M1TEhZUTNuK1lNaHUvT2JSZHE3RzRRSzRhQ3dSSnpwNVdZZFJtWW1k?=
- =?utf-8?B?TXVPL1hMeWIzNit4R1BCWEk3Ty8rUkx1U3pHcno0SXZkUlEwWDRxU2U3T0xV?=
- =?utf-8?B?Z3RldS8wSHpPZWxrVlU2UzBCUnpUbkg3Y2Q4M3YxQW1KSUNFWUkyWG0zYndw?=
- =?utf-8?B?ZjVOQ0JRUTNOSExvZ1hDT05xeUV2eFJGd1RvZzZ2ZCtIcThESk9NKzJUckJi?=
- =?utf-8?B?c0tqbEVMV21haGVGVVNvSDAzbTA4WWN0SDE3SDZUaGJLZW1SbXpmWFNaMUtw?=
- =?utf-8?B?WW1JOWhzSWZOZXpDOUFESmFENFcrUW4yTTZxMDkvanN4dXk2K3dzMDJ3VG90?=
- =?utf-8?B?Ni9uNDJPWmdNY0pYakMrUlFURlFCTiszSUtmQWNRQ3ZJUGwxZkJYNitxb0Vt?=
- =?utf-8?B?amV0UVNPMUQ5NTU4dC9kczdhcWdHNkhnaXRZVExQU2xpencwaHhuWjJySkdB?=
- =?utf-8?B?RU4rY2owVmRyK1MrTW9NMzk2ZXd0UjVpa1ZNcGZiOVloSFJZUVlMZ1IvZzdt?=
- =?utf-8?B?Q0Y1SFZ6Zm1QdG9LRHFiRnV0cHhOSHVxZGdFS0h2QkVPM3JwcllQOVJBZ1hN?=
- =?utf-8?B?ano4ZUtXa0JxK00zdFRvc1FwUUxrWVdIeFpJc0VsQ01GeGlpNDB0ek03Q2Q4?=
- =?utf-8?B?UXByYXRWQThadlpGWHZLS3hiM0tWOFFwN2c5Z0VsVVFRVjFIN2p6blFtM0d5?=
- =?utf-8?B?dndkSnNiR3p4Y1lOVHIrOHNJM2l6N1hhMU54YnV4MlFpa1RzMTRpdVhoQ1dO?=
- =?utf-8?B?TU9KRHVaemxZdTJvTXI2b1d6QjI3VjF6OFI4cXBmcjQ4Skp3NlNTMzd3SHpY?=
- =?utf-8?B?Z3k0NU1LeWtyNnlKQU5yekUreHhZbkNySVJLNFJPNE0xbTV6YlpzbnhweC9r?=
- =?utf-8?B?UTNZM0svRHRvYmVKMnhMeWNvaExkVUlUeEIyaGY2djJIVHpodEhpaXVQOHhD?=
- =?utf-8?B?MWRJZDNVUWYrc2QzWE11SWFSYVVDKzdETTNqVTkzeGo4Y3ZROXJoT3BybEp6?=
- =?utf-8?B?Wmg0d290dXpzdDFBYm9BSE53RE9qRnJMWjhWSnNGTkNiVHZEOVlMcVBUMktO?=
- =?utf-8?B?aHM1NEJRM2lKYURFVlpxanVoQnNhOUpWcUEyc2ZFejFpZzFvSXRnYnNWTDNz?=
- =?utf-8?B?anRLNmZja053NUYrWlVIWkZkYy9VaGNyZVYxYUxUNDAyVmJydTNrclN5Qkln?=
- =?utf-8?B?ZWNzZEpDRitBbjZqTHArcVM5OVNPWjZGeCtRS0o3eVBuMFA3WUM1WXFBdU1K?=
- =?utf-8?B?UjF5SERPY1N6REplSW81UmttaXdmU2c3K1RyTnpSVjVDSnhLVEpKMFoycW9u?=
- =?utf-8?B?WEx4Vzdld3VLWjQ2NGxxbHVJS29zclNlV04zVE10YWkxOEFQV20xd2NwTnRo?=
- =?utf-8?B?QjNxZDVYUG1pSWVsWWF0NDhIdnd1UDNTYmpua1l2czM2dWlLZ09UcDk5Nkty?=
- =?utf-8?B?bG00QzFTQnVQSUpoamkwdzMvWWpyQkordjBVTnFZa29JRkxEM0dJQW05QlV1?=
- =?utf-8?B?OUhHOXZRL2UvcjZ0MHI3dTlJT3ppRXIxa3dxTlo2K0V3SUV2OEliK3dpdGxu?=
- =?utf-8?B?QXFEL1N2QWdiUzhQMWNlUStMK0NpQ2lsdUoyMTJtaUlaOU9vc3EvcndBSVo2?=
- =?utf-8?B?WUFjSXB0WFpnS3I5L0ROWGEvdFd5VEVOOGZBWitRVUtoUTc1TEd4eGk5UVlH?=
- =?utf-8?Q?UpSHet9wnKhVdbkoqz37OncPo2WLXalWWWn9469?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YXJLeFVKaGZLblNOWjBlUVVBRnRWdFhhRngyYmRoY29tSlkwRjNZQlNFN3Mr?=
+ =?utf-8?B?RW5PMlZLZ01xejM1b1lHMFAyRkR4MlUwNm5UcHhiQVdIR0srSllNbk5iTTVF?=
+ =?utf-8?B?SU9GbVd5Q0RJdDlnMVF6ejdDMWJ0VmpyNzhabWQwVitDMGZSa1VQTzVabks2?=
+ =?utf-8?B?Lzg0VlZqdEVNRHFMN2ZNL2ZMYlRUZlB3a3hTbTlabyt0dy9Vczg0YjF2T0lU?=
+ =?utf-8?B?K3pZZUlyYmdwQWYvOU1jSXZ5czFkK08ySmJGWHIxdEVlR2ZRa2Q0emJBdUVB?=
+ =?utf-8?B?NmwyNjRveXlhbVArZms1VExQRU9UaDFpOUoyT1U5THVCaUpqRXViVE1iZC96?=
+ =?utf-8?B?ZVdMemdNdkQycUxpaFRuUzYvOHhtcWdWY2E2VlFtWVk1R21Bakwwa05RbmhV?=
+ =?utf-8?B?ZGgrcm5YWVNKaHBSV0ZFeE9LeHc4ZVREQktxMUNROGtjMXVEc1VXeU5xdjIw?=
+ =?utf-8?B?M1lwR09KTkhpOE50YkwvN0tPTVM4TnBDOWRTRTRHMGt1ZXN5ZmVJK0xTQ3dR?=
+ =?utf-8?B?d2ZkNHhyWFNqNUJlNG51NFZrS09TUDRKcXI5aE9PSkZjNjVuN2JaOFVNMFZ5?=
+ =?utf-8?B?ZElsemZXSjdYSkVkRXFUTmVKNUhxL0FCWlI1Tnl0UWNWL3RSOU1TVEFYUEZz?=
+ =?utf-8?B?Rnl5c2d4c0pwRXBLb3Zub2ZtZUlxb0ZuekJqbFRSbGlTRCtYaFZNbEw5OHBF?=
+ =?utf-8?B?b09UbEFNQTQ0bG12UEduM0Jndkt0L2NNeGVOT0FrdnR4TkNQNkhTWGFLMUti?=
+ =?utf-8?B?SGxuTVBQdU5ZUWt2dHI2V2pzVElIREF5Zkl2T2tmVmxhSEp0U0R4Nitkc01F?=
+ =?utf-8?B?K2RhYk81d1VvbjBnUW0wV0lEdjV3Z1NIVjhHejMxZG5kQzZEZm1xQ3JWa1J1?=
+ =?utf-8?B?NkxHbnQwQlJZV2hJc0g2ekt6TmEvSTN6aVpqU2o1VE4zSFBMTzZGLzczSmU4?=
+ =?utf-8?B?dUJXaWlaeTBOeXE0b0c1VWlobHpUaWhIMmxxN0xyYm12UGJRZDdVOXYrS3NX?=
+ =?utf-8?B?VHFGMERJWlFMTEdlazZ2TzB5OXpoOGt0alRKSmZUamcreU11NVAreVNWM1hl?=
+ =?utf-8?B?TmpXOU1sOHFqa2ZETi9TTmFGcU1Eczh3d0FIVXRZWmpBc1RzMzF3YUU1azlY?=
+ =?utf-8?B?L0tEV3NyS0pjY0o2WFhmSVdJOGQxd3VJZzdGUEFyNXp6WVFGb0xuYVlKc016?=
+ =?utf-8?B?K0pjNmVPdjBZVGd5VFNuOXZKc0hPMDFsbS93NUlncVY1RWpRV2hwazBoazRW?=
+ =?utf-8?B?dTNZSWhIbUxwQVBNMThBWEZLMHcvckZObEc3cHA5TGdyQWNWZTZpeGlqZzQw?=
+ =?utf-8?B?YmVpNjFNTEkydzBIQXRDcGRicHNDeXBxOTFjbUxDVUVjLytYVXdwYmE1WHdM?=
+ =?utf-8?B?UFRvRkxkTDZ1azI4ODA5dVd4WXUvQUFKN0FwdUduNkhWR2MrMXR5ZFVvWHRn?=
+ =?utf-8?B?MkVveHAwcW5QbHRtVUxQRUo4bld4WVd0QlNrUjd3VVY5MVh2b0F6SmlYRllS?=
+ =?utf-8?B?eGZja1NNb1J4REZiM0k5bnAxbUdRc2lQcVEzTUZIOThXZFc1Q0xORDNXUEFM?=
+ =?utf-8?B?T0MyQnNSMlBjMU42L3RxOFB6MjhOUHh2Ri9TNEZXYVIyR0lCelhYemdBVXdY?=
+ =?utf-8?B?eGpzOGp2OUxOOTdOQmFXRENTekhBelcrZ0w0Y1l3d1czdzZvTnhzNyt5eWlB?=
+ =?utf-8?B?dkVqMy9PN0NENDRqcFhGYkVkMER6ZU1IaFFIQmVweExnUUpXK1hoSjJFS0V1?=
+ =?utf-8?Q?ZYYxw7EwHoW36pPbsqW+BXhp7mphTWTbgR86w7M?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f77c1cde-e80b-4cb5-2c7e-08d95b4b0f71
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cba0d83-f739-4860-0bcb-08d95b4c83b5
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2021 15:33:39.0331 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2021 15:44:03.5844 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 50fnawLZrdM0zjZFH8mdVeK8hXyG8nO0s56olnCbAAgts/bYSVT+VvAmTKaI+wAi9sepD3jgsXax8edHnZp+Dg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5248
-Cc: syzbot+9ba1174359adba5a5b7c@syzkaller.appspotmail.com,
- Jiri Pirko <jiri@resnulli.us>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org,
- syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net] net: bridge: validate the NUD_PERMANENT
- bit when adding an extern_learn FDB entry
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2KVd6V39lhH9KS/dHT3Y3w62u8uvzFnjTSGpNCDcofydZddz74P39fEISYO+38wg8bDmMqPKcDw/9yXFuWTnbA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5414
+Cc: kuba@kernel.org, davem@davemloft.net, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net v3] net: bridge: fix memleak in br_add_if()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -163,146 +157,70 @@ Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 09/08/2021 15:16, Ido Schimmel wrote:
-> On Mon, Aug 02, 2021 at 02:17:30AM +0300, Vladimir Oltean wrote:
->> diff --git a/net/bridge/br.c b/net/bridge/br.c
->> index ef743f94254d..bbab9984f24e 100644
->> --- a/net/bridge/br.c
->> +++ b/net/bridge/br.c
->> @@ -166,7 +166,8 @@ static int br_switchdev_event(struct notifier_block *unused,
->>  	case SWITCHDEV_FDB_ADD_TO_BRIDGE:
->>  		fdb_info = ptr;
->>  		err = br_fdb_external_learn_add(br, p, fdb_info->addr,
->> -						fdb_info->vid, false);
->> +						fdb_info->vid,
->> +						fdb_info->is_local, false);
+On 09/08/2021 16:20, Yang Yingliang wrote:
+> I got a memleak report:
 > 
-> When 'is_local' was added in commit 2c4eca3ef716 ("net: bridge:
-> switchdev: include local flag in FDB notifications") it was not
-> initialized in all the call sites that emit
-> 'SWITCHDEV_FDB_ADD_TO_BRIDGE' notification, so it can contain garbage.
+> BUG: memory leak
+> unreferenced object 0x607ee521a658 (size 240):
+> comm "syz-executor.0", pid 955, jiffies 4294780569 (age 16.449s)
+> hex dump (first 32 bytes, cpu 1):
+> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+> backtrace:
+> [<00000000d830ea5a>] br_multicast_add_port+0x1c2/0x300 net/bridge/br_multicast.c:1693
+> [<00000000274d9a71>] new_nbp net/bridge/br_if.c:435 [inline]
+> [<00000000274d9a71>] br_add_if+0x670/0x1740 net/bridge/br_if.c:611
+> [<0000000012ce888e>] do_set_master net/core/rtnetlink.c:2513 [inline]
+> [<0000000012ce888e>] do_set_master+0x1aa/0x210 net/core/rtnetlink.c:2487
+> [<0000000099d1cafc>] __rtnl_newlink+0x1095/0x13e0 net/core/rtnetlink.c:3457
+> [<00000000a01facc0>] rtnl_newlink+0x64/0xa0 net/core/rtnetlink.c:3488
+> [<00000000acc9186c>] rtnetlink_rcv_msg+0x369/0xa10 net/core/rtnetlink.c:5550
+> [<00000000d4aabb9c>] netlink_rcv_skb+0x134/0x3d0 net/netlink/af_netlink.c:2504
+> [<00000000bc2e12a3>] netlink_unicast_kernel net/netlink/af_netlink.c:1314 [inline]
+> [<00000000bc2e12a3>] netlink_unicast+0x4a0/0x6a0 net/netlink/af_netlink.c:1340
+> [<00000000e4dc2d0e>] netlink_sendmsg+0x789/0xc70 net/netlink/af_netlink.c:1929
+> [<000000000d22c8b3>] sock_sendmsg_nosec net/socket.c:654 [inline]
+> [<000000000d22c8b3>] sock_sendmsg+0x139/0x170 net/socket.c:674
+> [<00000000e281417a>] ____sys_sendmsg+0x658/0x7d0 net/socket.c:2350
+> [<00000000237aa2ab>] ___sys_sendmsg+0xf8/0x170 net/socket.c:2404
+> [<000000004f2dc381>] __sys_sendmsg+0xd3/0x190 net/socket.c:2433
+> [<0000000005feca6c>] do_syscall_64+0x37/0x90 arch/x86/entry/common.c:47
+> [<000000007304477d>] entry_SYSCALL_64_after_hwframe+0x44/0xae
+> 
+> On error path of br_add_if(), p->mcast_stats allocated in
+> new_nbp() need be freed, or it will be leaked.
+> 
+> Fixes: 1080ab95e3c7 ("net: bridge: add support for IGMP/MLD stats and export them via netlink")
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+> ---
+> v3:
+>   use br_multicast_del_port() to free mcast_stats
+> ---
+>  net/bridge/br_if.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
+> index 5aa508a08a691..b5fb2b682e191 100644
+> --- a/net/bridge/br_if.c
+> +++ b/net/bridge/br_if.c
+> @@ -604,6 +604,7 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
+>  
+>  	err = dev_set_allmulti(dev, 1);
+>  	if (err) {
+> +		br_multicast_del_port(p);
+>  		kfree(p);	/* kobject not yet init'd, manually free */
+>  		goto err1;
+>  	}
+> @@ -708,6 +709,7 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
+>  err3:
+>  	sysfs_remove_link(br->ifobj, p->dev->name);
+>  err2:
+> +	br_multicast_del_port(p);
+>  	kobject_put(&p->kobj);
+>  	dev_set_allmulti(dev, -1);
+>  err1:
 > 
 
-nice catch
-
->>  		if (err) {
->>  			err = notifier_from_errno(err);
->>  			break;
-> 
-> [...]
-> 
->> @@ -1281,6 +1292,10 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
->>  
->>  		if (swdev_notify)
->>  			flags |= BIT(BR_FDB_ADDED_BY_USER);
->> +
->> +		if (is_local)
->> +			flags |= BIT(BR_FDB_LOCAL);
-> 
-> I have at least once selftest where I forgot the 'static' keyword:
-> 
-> bridge fdb add de:ad:be:ef:13:37 dev $swp1 master extern_learn vlan 1
-> 
-> This patch breaks the test when run against both the kernel and hardware
-> data paths. I don't mind patching these tests, but we might get more
-> reports in the future.
-> 
-> Nik, what do you think?
-> 
-
-Ahh, that's unfortunate. The patch's assumption is correct that we must not have fdb->dst == NULL
-and the dst to be non-local (i.e. without BR_FDB_LOCAL). Since all solutions break user-space in
-a different way and since this patch also already broke it by the check for !p && !NUD_PERMANENT
-in __br_fdb_add() which was allowed before that, I think the best course of action is to ignore
-NUD_PERMANENT in __br_fdb_add() for extern_learn case and always set BR_FDB_LOCAL in br_fdb_external_learn_add()
-when !p. That would allow all prior calls to work and would remove the dst==NULL without BR_FDB_LOCAL
-issue. Honestly, I doubt anyone is using extern_learn with bridge device entries, but we cannot assume
-anything since this is already a part of the uAPI and we must allow it. Basically we silently
-fix the BR_FDB_LOCAL problem so old user syntax and code can continue working.
-It is a hack, but I don't see another solution which doesn't break user-space in some way.
-Handling NUD_PERMANENT only with !p is equivalent, unfortunately we shouldn't keep the error
-since that can break someone who was adding such entries without NUD_PERMANENT flag, but
-we can force it in kernel, that should make such scripts succeed. Traffic used to be blackholed
-for such entries and now it will be received locally, that will be the only difference.
-
-TBH, I want to keep that error so middle ground would be to handle NUD_PERMANENT only
-when used with !p and keep it. :) WDYT ?
-
-Solution which forces BR_FDB_LOCAL for !p calls (completely untested):
-diff --git a/net/bridge/br.c b/net/bridge/br.c
-index c8ae823aa8e7..d3a32c6813e0 100644
---- a/net/bridge/br.c
-+++ b/net/bridge/br.c
-@@ -166,8 +166,7 @@ static int br_switchdev_event(struct notifier_block *unused,
-        case SWITCHDEV_FDB_ADD_TO_BRIDGE:
-                fdb_info = ptr;
-                err = br_fdb_external_learn_add(br, p, fdb_info->addr,
--                                               fdb_info->vid,
--                                               fdb_info->is_local, false);
-+                                               fdb_info->vid, false);
-                if (err) {
-                        err = notifier_from_errno(err);
-                        break;
-diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-index b8e22057f680..4e3b1b66f132 100644
---- a/net/bridge/br_fdb.c
-+++ b/net/bridge/br_fdb.c
-@@ -1255,15 +1255,7 @@ static int __br_fdb_add(struct ndmsg *ndm, struct net_bridge *br,
-                rcu_read_unlock();
-                local_bh_enable();
-        } else if (ndm->ndm_flags & NTF_EXT_LEARNED) {
--               if (!p && !(ndm->ndm_state & NUD_PERMANENT)) {
--                       NL_SET_ERR_MSG_MOD(extack,
--                                          "FDB entry towards bridge must be permanent");
--                       return -EINVAL;
--               }
--
--               err = br_fdb_external_learn_add(br, p, addr, vid,
--                                               ndm->ndm_state & NUD_PERMANENT,
--                                               true);
-+               err = br_fdb_external_learn_add(br, p, addr, vid, true);
-        } else {
-                spin_lock_bh(&br->hash_lock);
-                err = fdb_add_entry(br, p, addr, ndm, nlh_flags, vid, nfea_tb);
-@@ -1491,7 +1483,7 @@ void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p)
- }
- 
- int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
--                             const unsigned char *addr, u16 vid, bool is_local,
-+                             const unsigned char *addr, u16 vid,
-                              bool swdev_notify)
- {
-        struct net_bridge_fdb_entry *fdb;
-@@ -1509,7 +1501,7 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
-                if (swdev_notify)
-                        flags |= BIT(BR_FDB_ADDED_BY_USER);
- 
--               if (is_local)
-+               if (!p)
-                        flags |= BIT(BR_FDB_LOCAL);
- 
-                fdb = fdb_create(br, p, addr, vid, flags);
-@@ -1538,7 +1530,7 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
-                if (swdev_notify)
-                        set_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
- 
--               if (is_local)
-+               if (!p)
-                        set_bit(BR_FDB_LOCAL, &fdb->flags);
- 
-                if (modified)
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 86969d1bd036..907e5742b392 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -778,7 +778,7 @@ int br_fdb_get(struct sk_buff *skb, struct nlattr *tb[], struct net_device *dev,
- int br_fdb_sync_static(struct net_bridge *br, struct net_bridge_port *p);
- void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p);
- int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
--                             const unsigned char *addr, u16 vid, bool is_local,
-+                             const unsigned char *addr, u16 vid,
-                              bool swdev_notify);
- int br_fdb_external_learn_del(struct net_bridge *br, struct net_bridge_port *p,
-                              const unsigned char *addr, u16 vid,
-
-
+I currently cannot test it, but it looks good to me.
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
