@@ -2,96 +2,65 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id E566C3E9E39
-	for <lists.bridge@lfdr.de>; Thu, 12 Aug 2021 08:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD203EA035
+	for <lists.bridge@lfdr.de>; Thu, 12 Aug 2021 10:04:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 382D981CBA;
-	Thu, 12 Aug 2021 06:04:24 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 8E82B80AD0;
+	Thu, 12 Aug 2021 08:04:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id tVLbjqA-kuOT; Thu, 12 Aug 2021 06:04:23 +0000 (UTC)
+	with ESMTP id 8wQIGxr61Rg7; Thu, 12 Aug 2021 08:04:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 62A4D81AAC;
-	Thu, 12 Aug 2021 06:04:22 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 3034380AC6;
+	Thu, 12 Aug 2021 08:04:24 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1B2B1C0022;
-	Thu, 12 Aug 2021 06:04:22 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EE89AC0022;
+	Thu, 12 Aug 2021 08:04:23 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D6A0EC000E
- for <bridge@lists.linux-foundation.org>; Thu, 12 Aug 2021 06:04:20 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A247BC000E
+ for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 02:55:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id BFEFC404FA
- for <bridge@lists.linux-foundation.org>; Thu, 12 Aug 2021 06:04:20 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 8BE1D82BF5
+ for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 02:55:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id H1fxym1umg46 for <bridge@lists.linux-foundation.org>;
- Thu, 12 Aug 2021 06:04:19 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
- [IPv6:2607:f8b0:4864:20::1030])
- by smtp2.osuosl.org (Postfix) with ESMTPS id E2490404F6
- for <bridge@lists.linux-foundation.org>; Thu, 12 Aug 2021 06:04:19 +0000 (UTC)
-Received: by mail-pj1-x1030.google.com with SMTP id
- u21-20020a17090a8915b02901782c36f543so13515344pjn.4
- for <bridge@lists.linux-foundation.org>; Wed, 11 Aug 2021 23:04:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-disposition:content-transfer-encoding;
- bh=nKkNOKnR0BjeJ53ALM7gQ03JCstACfSRC5kNtfzT4yk=;
- b=P0XbE8UYynS6GdhVuBw2y3O0dZ+pvc02m/UylndyPNK85wfDC6Gq59QMnx+hMXD4nI
- yCmncJO5qEPDBI0Y9J84bgG6LxAOOx+WTVY8OLTgn1KYIyLATAWYU2FuapnCogqrjuO/
- rBckONFW6CLiyURRvVq4zBgjBcfyOA06tcb0Lrk4f4VPPd3ZK7QMsVYUi+F+P9OJAAoX
- wXH4q72e3n7sZQqX5TPQKpGhmQWalzjvSnKs+DjrTRnKrmjLtdQtnINr85PSLhnsvKzC
- IbirWZdD7XapV5M0ZEMmq36msmXy9bwiBNuChoaDNSmxmHCj0hqb3Ch8xkfvo/tM+c+n
- ZqaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-disposition
- :content-transfer-encoding;
- bh=nKkNOKnR0BjeJ53ALM7gQ03JCstACfSRC5kNtfzT4yk=;
- b=t2LonW1ff20qE/8wahyDs1CAN6EDL6y/u9WIVC+Wmbi5Ge/xVnnGPF/7vcGz5L/how
- AsNRXBt6LAybsKFLz7B70WWlr84kwmjENhmLbbFu+ePpacfgS1f6vKTVpewWKUWma59X
- TDYTHNk/2wxNrSJG/jlr2bgR0LBxIiJt0z3uIyPlT+IGJU3QB7JVNx9k98AxXvMiyrUa
- Y+zw5dPHSmhKo7uSnuBWdNF5iowZziVg4mU0Oajylt49sepA5G/MMMEt7VhBWdETAxVS
- mqVkyJM1u4yddoXdiNOYp1d3OdEr2Awgxl+/pUT+3Fmqk7vK1s6c4RiE2jVc58CUlRog
- nwIA==
-X-Gm-Message-State: AOAM531/7T8L7+anWOCXYIvnwwROnZHb6lvFItjr/0ILUzw97HLpaUuz
- KWt6zHvH7rXqkZ2kodKIxW4=
-X-Google-Smtp-Source: ABdhPJzFYLWTNVJ+SHnUGsH+wt/Q9EbQiiyLesQa6R68Ta19VJ20+YhgGgRwnBotLuVURb0jPWYH8w==
-X-Received: by 2002:a65:641a:: with SMTP id a26mr2428982pgv.340.1628748259363; 
- Wed, 11 Aug 2021 23:04:19 -0700 (PDT)
-Received: from haswell-ubuntu20.lan ([138.197.212.246])
- by smtp.gmail.com with ESMTPSA id p21sm1666469pfo.8.2021.08.11.23.04.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Aug 2021 23:04:18 -0700 (PDT)
-From: DENG Qingfang <dqfext@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Date: Thu, 12 Aug 2021 14:04:10 +0800
-Message-Id: <20210812060410.1848228-1-dqfext@gmail.com>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id zhDsPVUQ32YI for <bridge@lists.linux-foundation.org>;
+ Mon,  9 Aug 2021 02:55:41 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 299C282B8C
+ for <bridge@lists.linux-foundation.org>; Mon,  9 Aug 2021 02:55:40 +0000 (UTC)
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.56])
+ by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4GjggJ6G3pz1CTqN;
+ Mon,  9 Aug 2021 10:55:24 +0800 (CST)
+Received: from dggpeml500017.china.huawei.com (7.185.36.243) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 9 Aug 2021 10:55:36 +0800
+Received: from huawei.com (10.175.103.91) by dggpeml500017.china.huawei.com
+ (7.185.36.243) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 9 Aug 2021
+ 10:55:35 +0800
+From: Yang Yingliang <yangyingliang@huawei.com>
+To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <bridge@lists.linux-foundation.org>
+Date: Mon, 9 Aug 2021 11:01:35 +0800
+Message-ID: <20210809030135.2445844-1-yangyingliang@huawei.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210811215833.yst5tzgfvih2q4y2@skbuf>
-References: <20210811135247.1703496-1-dqfext@gmail.com>
- <YRRDcGWaWHgBkNhQ@shredder> <20210811214506.4pf5t3wgabs5blqj@skbuf>
- <YRRGsL60WeDGQOnv@shredder> <20210811215833.yst5tzgfvih2q4y2@skbuf>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
- "open list:ETHERNET BRIDGE" <netdev@vger.kernel.org>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- open list <linux-kernel@vger.kernel.org>, Ido Schimmel <idosch@idosch.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next] net: bridge: switchdev: allow port
-	isolation to be offloaded
+Content-Type: text/plain
+X-Originating-IP: [10.175.103.91]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpeml500017.china.huawei.com (7.185.36.243)
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Thu, 12 Aug 2021 08:04:23 +0000
+Cc: kuba@kernel.org, davem@davemloft.net, nikolay@nvidia.com, roopa@nvidia.com
+Subject: [Bridge] [PATCH net] net: bridge: fix memleak in br_add_if()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,25 +75,65 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Aug 12, 2021 at 12:58:33AM +0300, Vladimir Oltean wrote:
-> On Thu, Aug 12, 2021 at 12:52:48AM +0300, Ido Schimmel wrote:
-> > 
-> > If the purpose is correctness, then this is not the only flag that was
-> > missed. BR_HAIRPIN_MODE is also relevant for the data path, for example.
-> 
-> I never wanted to suggest that I'm giving a comprehensive answer, I just
-> answered Qingfang's punctual question here:
-> https://lore.kernel.org/netdev/CALW65jbotyW0MSOd-bd1TH_mkiBWhhRCQ29jgn+d12rXdj2pZA@mail.gmail.com/
-> 
-> Tobias also pointed out the same issue about BR_MULTICAST_TO_UNICAST in
-> conjunction with tx_fwd_offload (although the same is probably true even
-> without it):
-> https://patchwork.kernel.org/project/netdevbpf/cover/20210426170411.1789186-1-tobias@waldekranz.com/
-> 
-> > Anyway, the commit message needs to be reworded to reflect the true
-> > purpose of the patch.
-> 
-> Agree, and potentially extended with all the bridge port flags which are
-> broken without switchdev driver intervention.
+I got a memleak report:
 
-So, what else flags should be added to BR_PORT_FLAGS_HW_OFFLOAD?
+BUG: memory leak
+unreferenced object 0x607ee521a658 (size 240):
+comm "syz-executor.0", pid 955, jiffies 4294780569 (age 16.449s)
+hex dump (first 32 bytes, cpu 1):
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+backtrace:
+[<00000000d830ea5a>] br_multicast_add_port+0x1c2/0x300 net/bridge/br_multicast.c:1693
+[<00000000274d9a71>] new_nbp net/bridge/br_if.c:435 [inline]
+[<00000000274d9a71>] br_add_if+0x670/0x1740 net/bridge/br_if.c:611
+[<0000000012ce888e>] do_set_master net/core/rtnetlink.c:2513 [inline]
+[<0000000012ce888e>] do_set_master+0x1aa/0x210 net/core/rtnetlink.c:2487
+[<0000000099d1cafc>] __rtnl_newlink+0x1095/0x13e0 net/core/rtnetlink.c:3457
+[<00000000a01facc0>] rtnl_newlink+0x64/0xa0 net/core/rtnetlink.c:3488
+[<00000000acc9186c>] rtnetlink_rcv_msg+0x369/0xa10 net/core/rtnetlink.c:5550
+[<00000000d4aabb9c>] netlink_rcv_skb+0x134/0x3d0 net/netlink/af_netlink.c:2504
+[<00000000bc2e12a3>] netlink_unicast_kernel net/netlink/af_netlink.c:1314 [inline]
+[<00000000bc2e12a3>] netlink_unicast+0x4a0/0x6a0 net/netlink/af_netlink.c:1340
+[<00000000e4dc2d0e>] netlink_sendmsg+0x789/0xc70 net/netlink/af_netlink.c:1929
+[<000000000d22c8b3>] sock_sendmsg_nosec net/socket.c:654 [inline]
+[<000000000d22c8b3>] sock_sendmsg+0x139/0x170 net/socket.c:674
+[<00000000e281417a>] ____sys_sendmsg+0x658/0x7d0 net/socket.c:2350
+[<00000000237aa2ab>] ___sys_sendmsg+0xf8/0x170 net/socket.c:2404
+[<000000004f2dc381>] __sys_sendmsg+0xd3/0x190 net/socket.c:2433
+[<0000000005feca6c>] do_syscall_64+0x37/0x90 arch/x86/entry/common.c:47
+[<000000007304477d>] entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+On error path of br_add_if(), p->mcast_stats allocated in
+new_nbp() need be freed, or it will be leaked.
+
+Fixes: 1080ab95e3c7 ("net: bridge: add support for IGMP/MLD stats and export them via netlink")
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+---
+ net/bridge/br_if.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
+index 6e4a32354a13..e2867547d303 100644
+--- a/net/bridge/br_if.c
++++ b/net/bridge/br_if.c
+@@ -616,6 +616,7 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
+ 
+ 	err = dev_set_allmulti(dev, 1);
+ 	if (err) {
++		free_percpu(p->mcast_stats);
+ 		kfree(p);	/* kobject not yet init'd, manually free */
+ 		goto err1;
+ 	}
+@@ -729,6 +730,7 @@ int br_add_if(struct net_bridge *br, struct net_device *dev,
+ err3:
+ 	sysfs_remove_link(br->ifobj, p->dev->name);
+ err2:
++	free_percpu(p->mcast_stats);
+ 	kobject_put(&p->kobj);
+ 	dev_set_allmulti(dev, -1);
+ err1:
+-- 
+2.25.1
+
