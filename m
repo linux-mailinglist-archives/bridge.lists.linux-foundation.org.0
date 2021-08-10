@@ -1,140 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8463E5C29
-	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 15:50:26 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A9D3E7C2D
+	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 17:29:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id A85AA60675;
-	Tue, 10 Aug 2021 13:50:22 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id E7E6881DCB;
+	Tue, 10 Aug 2021 15:29:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id eis1szZigdnU; Tue, 10 Aug 2021 13:50:19 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 63B5F60672;
-	Tue, 10 Aug 2021 13:50:18 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id OQo874_wJ_Rt; Tue, 10 Aug 2021 15:29:50 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 93B3D82D45;
+	Tue, 10 Aug 2021 15:29:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1BB4CC001F;
-	Tue, 10 Aug 2021 13:50:18 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 56717C0020;
+	Tue, 10 Aug 2021 15:29:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9AE92C000E
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 13:50:16 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0D927C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 7A82F402A6
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 13:50:16 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id E4A19606CE
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=nxp.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id skgUdvp7FShi for <bridge@lists.linux-foundation.org>;
- Tue, 10 Aug 2021 13:50:12 +0000 (UTC)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id tgER1qe6Vsb3 for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Aug 2021 15:29:47 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (mail-db8eur05on2085.outbound.protection.outlook.com [40.107.20.85])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 3BA0B402A2
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 13:50:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EkJ3yytTj5zzjRHitwjsGdC/oDCEdQ1LI438M+jmXkz/9h5e3hr5S+7jd7WFdOxsA8lUHPxjZfEN2E3kxBKVmun+nuWcWbDZ7Zsr18LjcnGg8aZYfSKdeEW+35jvEY/qX2gC8Yme3THaiq1Rs+bkgF0+5fQ9P/DJ2a/Mg2XIkvS1NiNxWGuRf0cIqC34YkFCLTDnAEjQY+CKmnA8OW21CqMjAGhvLycSUzZE3RT0/7xX3fb+mlgmwyWiRJNG2gW+YJ1O10b8s9mjL2w30eoi+IXHHJUUIVRKLf9BYD0KH3oFcql0AoAWrJzJSnCY9++ju6w4k7HGNTQBPpjmNQStpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WLb2dFaA/i+r10mugho/BSKWmbLC5ufz+fTQ5w2O9C4=;
- b=GIOVQ4sJMpkMh79FNw4ioDdVEscwuvQE9tOBDmaUqZGTTXmcR3vC06LS+n9NmF9ogQrcfhKdweZ18QhvnLGtbKHMiE0zOM0VMGddjdxLo/XhdTYS4EtuFE78WelmAnbwjT3jnpxfp6rIljWjfZh9Iw+FblLs+YZqIwX4UZbs5Pi+Mub5ergSdFMA8DH6oOGOkLqBVpHB9AOZDZksJHjTUrWMmoR/qV/xSup/wfXfzxut5tZ7syM7azeYe14Js1oBOdIKc5SG8snVNkK9ZIRP8lao1H2LYasz3KTZdxNrsoD6ifDsYo66wpHMWz0LpLedMqHj09FuLmjgN8pYnLxsjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WLb2dFaA/i+r10mugho/BSKWmbLC5ufz+fTQ5w2O9C4=;
- b=IP02/TwcEpgNSF/OS+TW0++1iVOBwv1YFQWgyxbIDb6isnvSWxD5sLqc3WRPD0k66tH2Py1XXr453a4xivXWcBZMQbPtdVlqVYDxKrKz5ldV5seM3ppFhtIYGVsnBnKTJSL8OtY7Vjd8BA6kxyHvFd16F1sB6DvGfoDWKupoPOo=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB6941.eurprd04.prod.outlook.com (2603:10a6:803:12e::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.19; Tue, 10 Aug
- 2021 13:50:10 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4394.023; Tue, 10 Aug 2021
- 13:50:10 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Thread-Topic: [PATCH net v2] net: bridge: fix flags interpretation for extern
- learn fdb entries
-Thread-Index: AQHXjdbqTcGtG93500uVnZ+jLFXWA6tswZaA
-Date: Tue, 10 Aug 2021 13:50:09 +0000
-Message-ID: <20210810135009.tn435h75r24qslgh@skbuf>
-References: <20210810072139.1597621-1-razor@blackwall.org>
- <20210810110010.43859-1-razor@blackwall.org>
-In-Reply-To: <20210810110010.43859-1-razor@blackwall.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: blackwall.org; dkim=none (message not signed)
- header.d=none;blackwall.org; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4ed1eee6-bb0e-451b-5543-08d95c05c510
-x-ms-traffictypediagnostic: VI1PR04MB6941:
-x-microsoft-antispam-prvs: <VI1PR04MB6941A83AFFCB6BE8920E686CE0F79@VI1PR04MB6941.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DBhTFcMzUWkSIbYj56OqHhvDKsMsMMX+JgS7ovUmLVoGptrAItSwb03u2cRdwxzX68dW1cK27/qQxVjluE4uOFwo9QX9Blf73tph+5r3d6iXT9DzRKU7BqIyB2zPcBhN80mgrfKFR+dGu+wAENzBDVsDfE69+JBYZZUjwysA4FDNnNsU2K8FxH64mzP2GjfrNtBZDJ1LmRYrsOIOWgMuPUT5byLQIhl//I6Od3vuPxHSLZU8Zb2cDW4nTdI1DO4fpLPa7jfqpOl7vSv/tQMBRt2kDcVubPVc9CDKwZ6dT9YXLPFlF2DpoDdJW/+/iHg+SdQ42kPkoJR03LtEYo41UPK4hYwdVEgYqDz++jA18WHXtcuWsss/M+CRmHlFqi254DLtWyjxShu7jBOfyPR04/PqdI7O2b6+iN5LtBx6VZI4Z7st+ABViF/v0jiM8zEYJe+Ld0He36qkFsOjWteIa9Y/7zmwEXHYIiaA5Z501qGEIXHah/YLoijRlQBMF9KTcL1B4JYVhxlsx1PJZBtk9CofY06eVb454Hl7pdBh4fKbs3k6hcx3tFNlUr864c+yPZDSxNA3xngDekm1jGB1HqXDlZuCLm3gRMOXLgufPRjP77bmuMnGrnTaBcb3tJg9wIk8MXqTqOnTOF3/EGQxqr0IzHorCxtI1aNQ3Vv8OC5jM3d+apqMLFngcqVfjeodPMBOUN3kYlQV01A2zwxX/Q==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(7916004)(4636009)(366004)(396003)(39860400002)(346002)(136003)(376002)(33716001)(8936002)(1076003)(66946007)(66476007)(66556008)(64756008)(66446008)(76116006)(91956017)(9686003)(5660300002)(26005)(6512007)(2906002)(4744005)(6506007)(44832011)(8676002)(86362001)(6486002)(38100700002)(71200400001)(83380400001)(186003)(478600001)(38070700005)(316002)(4326008)(54906003)(6916009)(122000001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?XjHH2iekBiGa2FSXOmZ08NgxuRMKXrKRaVq65PZeQutQ9V30CRtNQaTRqSaH?=
- =?us-ascii?Q?I18UcM4tU9hPYJNGAuTpeRJz9Unab9erXZWBuKZ+QQyrzAeLsx0Q44A17IQJ?=
- =?us-ascii?Q?BiUUMO9GdoUCLRfYTx97XW4Kgt2yOQEuxq2IY5TzToZNXBxVylPP6A+epOea?=
- =?us-ascii?Q?9b/jeYOWz5pUCVVtDsoX53jyPiuqVpcmJUghz+ZgRkTLEAAQpz69x9LW29sk?=
- =?us-ascii?Q?dflYWlKhl51+/gnNv3IBEA5sz3dJ/29v+GcEuc7NugyEcqDUsFGvF73xGjGc?=
- =?us-ascii?Q?kbQPVAbV3zwFKdgIHRFOzu2w+3wjvd+s898S/dXrQZiZ5pmnOiSuP8ccZqNh?=
- =?us-ascii?Q?AooTQbVuLPTV4u4J5iyxhU6ZZBDhCr9O8of3PPwKS4xLDfyIcPBd7ZIFyrXe?=
- =?us-ascii?Q?ERjW5DZtMzsD73G6kLk320sn9DjV05FwskSDxMoyzBOWC+Tb4uZBuN4AZBj9?=
- =?us-ascii?Q?s+3dXK2M83MAuSFj/9Tu4W3FP6nycixoHfQ1JxDjafiyJRbI31dR4JDRh7Av?=
- =?us-ascii?Q?JIv7NdLtgEonzrIqIcsUO2vA3uoFjk/EjkdykGpFgprRIinlJM81hwydkqmo?=
- =?us-ascii?Q?ZSkn0lVPcE9VDHBdPsg1oBFU9fp94L0VB7mbEvtXb7E6EpjnDbOs8Y2WZMdq?=
- =?us-ascii?Q?+Ap2mQdL9PB22/Z+v2xhvwW2uLLHNaAL1I1ERvLvau6xkMOil/08/rgABt5E?=
- =?us-ascii?Q?otPXxUKYmFxc5DU/EoFkJCWZWF3yQBlu3U8JSIIpxdFHIaKVaMWFiHQajf+d?=
- =?us-ascii?Q?5jWB2e85nh6M8zLGxt0b59PR6lbYBSTzrfX7rvrH9eGrlgnHzPemsjvCe7l1?=
- =?us-ascii?Q?L+C0/LegeMkJo6/hvsoezTZI0l5gIIKKcoVsyk/8sxbsizD+hw4o+DKByXhd?=
- =?us-ascii?Q?hQmoGGo1NOXRU/Nz6wZNAWmvsNvVtJu/zOfsGOJmfNZT8WDyf3ghcXmCP2+C?=
- =?us-ascii?Q?NXqXnWKYD+pgRZunHDsnXs7SLjlwkYKHvZLccVRghQgrmQ55/UPft8P57RTp?=
- =?us-ascii?Q?nAqxiLDfsT0DpoaiWWGLwGExZtnc73YQujHAt9jzEccMLFGt3rRoVG/BQ1gf?=
- =?us-ascii?Q?jBjTgnL5uW61zBR1MJc4edtKipT8iFx/PaImqPMTFU3OTxI21r+E99bgCo76?=
- =?us-ascii?Q?JySwyMQ0RDHTFQwHF+DRXJ59fjrYt5F0WXQyODQGtX2FjUFltyj4LtlJ8lKR?=
- =?us-ascii?Q?feAH2+gK3sJEefJ0tODPjwDo4EoqlIEGD/Ee3mi6b/EjhSurtY3i71hptiry?=
- =?us-ascii?Q?MaEbbziV0SmasakfdbShGfL7NiFHltt9w77J9ktg/N8tChBN5ejAAOl2ca+w?=
- =?us-ascii?Q?4OIhE+IfORJ+emSzMbDGigbu?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <35E3BAAE9FBE9B4494ED82EFA5EE2C96@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 12228606C9
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:46 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id r6so4600152wrt.4
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 08:29:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=S0ul/Cv2dQbKe/+VkzJwYP8SRzCc6gtnQ2xRNVtkMc0=;
+ b=c//x2Wu8QQjep3b73PCrWSfxZQ4GrQCYCM06KdY08LzlRD/XXci3LlNWeGqEOJmS2a
+ +mUcT6qH0Jv3LRXfhTajKHw9GpWyALwuw3574Au0s9zFhmfPgXJmEw4owWVU5F6sxzmz
+ eQpq00UxnUs0BshzQkq0LL66Im4uYfBrU4ugfnnnSb7EH3hHJtNF0yaLw6lO21ExS9nM
+ v+V+McMSquZdlMC1k11Zc2kiXHkSbAKxi2YH31QfsnKqSLDovj6foEfsDXuVXeWiwy/a
+ wDZGUPTFP2EYp7EF65lITb0JsetISqOOSztIgA6rYZ88JJr7z35vfZsE3l68bp9ZyNBV
+ boAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=S0ul/Cv2dQbKe/+VkzJwYP8SRzCc6gtnQ2xRNVtkMc0=;
+ b=Z+zhZCcyDw/JHrobEGbP2Zg5IZ/tBn0oquxCrL2oqDRcPM1fKqsXaPR/PasX8Rgrdw
+ 2W3H2i/MNAybvzziEgq8/Yne20IR/xFkpFdN2qxH461rJ4feyRQnBARHB/9xA/0Whn1G
+ Su34rOAJtG8+R89WsQNNLXbp7L7TNSNR87Cg7TmJ5vBx1EMAdZxbjZZfXkRuFGo7ubXi
+ 4JUTMS6SPTiEjtQSZeAbOXLPlP6AumlyZRvJZBkT27LuRzF7qM2PkaSLLNN8VnDRGWY8
+ cNgIsjlyrKIth+OHu6Vif8GYvuFV61XSGGWhBOcD67L7FNeTwGjXbdYwGLwaPSJNpvYF
+ pH+w==
+X-Gm-Message-State: AOAM531r2IKZDCW36BXNCsaDfKuk51cpKc5FV4VAAOQekMUd70OMpLvh
+ mr5BEoLOQePP+PAVpWto3SSeKQ==
+X-Google-Smtp-Source: ABdhPJwt5tU6h5qM+B9hAAY8Txkmu/QgNuWbdUNcoOIjHqe1aDR/pK4wSNMIpFaYeAVUj5TZRsIBGg==
+X-Received: by 2002:a05:6000:1201:: with SMTP id
+ e1mr31339841wrx.379.1628609385148; 
+ Tue, 10 Aug 2021 08:29:45 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id f15sm22848219wrp.12.2021.08.10.08.29.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Aug 2021 08:29:44 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Tue, 10 Aug 2021 18:29:18 +0300
+Message-Id: <20210810152933.178325-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ed1eee6-bb0e-451b-5543-08d95c05c510
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2021 13:50:09.9370 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: R6uaYAWbpcaal3DyZFtbmgL6Fj4IFFsIHT6hgttjrBoWNB7CzT29Cv5fdvQFMzRlj+XoaE9B/dxhn+uf7lcIsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6941
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- Ido Schimmel <idosch@nvidia.com>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>,
- "roopa@nvidia.com" <roopa@nvidia.com>
-Subject: Re: [Bridge] [PATCH net v2] net: bridge: fix flags interpretation
- for extern learn fdb entries
+Content-Transfer-Encoding: 8bit
+Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ roopa@nvidia.com
+Subject: [Bridge] [PATCH net-next 00/15] net: bridge: vlan: add global mcast
+	options
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -149,30 +97,70 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Aug 10, 2021 at 02:00:10PM +0300, Nikolay Aleksandrov wrote:
-> From: Nikolay Aleksandrov <nikolay@nvidia.com>
->=20
-> Ignore fdb flags when adding port extern learn entries and always set
-> BR_FDB_LOCAL flag when adding bridge extern learn entries. This is
-> closest to the behaviour we had before and avoids breaking any use cases
-> which were allowed.
->=20
-> This patch fixes iproute2 calls which assume NUD_PERMANENT and were
-> allowed before, example:
-> $ bridge fdb add 00:11:22:33:44:55 dev swp1 extern_learn
->=20
-> Extern learn entries are allowed to roam, but do not expire, so static
-> or dynamic flags make no sense for them.
->=20
-> Also add a comment for future reference.
->=20
-> Fixes: eb100e0e24a2 ("net: bridge: allow to add externally learned entrie=
-s from user-space")
-> Fixes: 0541a6293298 ("net: bridge: validate the NUD_PERMANENT bit when ad=
-ding an extern_learn FDB entry")
-> Reviewed-by: Ido Schimmel <idosch@nvidia.com>
-> Tested-by: Ido Schimmel <idosch@nvidia.com>
-> Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> ---
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>=
+Hi,
+This is the first follow-up set after the support for per-vlan multicast
+contexts which extends global vlan options to support bridge's multicast
+config per-vlan, it enables user-space to change and dump the already
+existing bridge vlan multicast context options. The global option patches
+(01 - 09 and 12-13) follow a similar pattern of changing current mcast
+functions to take multicast context instead of a port/bridge directly.
+Option equality checks have been added for dumping vlan range compression.
+The last 2 patches extend the mcast router dump support so it can be
+re-used when dumping vlan config.
+
+patches 01 - 09: add support for various mcast options
+patches 10 - 11: prepare for per-vlan querier control
+patches 12 - 13: add support for querier control and router control
+patches 14 - 15: add support for dumping per-vlan router ports
+
+Next patch-sets:
+ - per-port/vlan router option config
+ - iproute2 support for all new vlan options
+ - selftests
+
+Thanks,
+ Nik
+
+
+Nikolay Aleksandrov (15):
+  net: bridge: vlan: add support for mcast igmp/mld version global
+    options
+  net: bridge: vlan: add support for mcast last member count global
+    option
+  net: bridge: vlan: add support for mcast startup query count global
+    option
+  net: bridge: vlan: add support for mcast last member interval global
+    option
+  net: bridge: vlan: add support for mcast membership interval global
+    option
+  net: bridge: vlan: add support for mcast querier interval global
+    option
+  net: bridge: vlan: add support for mcast query interval global option
+  net: bridge: vlan: add support for mcast query response interval
+    global option
+  net: bridge: vlan: add support for mcast startup query interval global
+    option
+  net: bridge: mcast: move querier state to the multicast context
+  net: bridge: mcast: querier and query state affect only current
+    context type
+  net: bridge: vlan: add support for mcast querier global option
+  net: bridge: vlan: add support for mcast router global option
+  net: bridge: mcast: use the proper multicast context when dumping
+    router ports
+  net: bridge: vlan: use br_rports_fill_info() to export mcast router
+    ports
+
+ include/uapi/linux/if_bridge.h |  14 +++
+ net/bridge/br_mdb.c            |  60 ++++++-----
+ net/bridge/br_multicast.c      |  71 +++++++------
+ net/bridge/br_netlink.c        |  14 ++-
+ net/bridge/br_private.h        |  78 ++++++++++++--
+ net/bridge/br_sysfs_br.c       |  10 +-
+ net/bridge/br_vlan_options.c   | 186 ++++++++++++++++++++++++++++++++-
+ 7 files changed, 354 insertions(+), 79 deletions(-)
+
+-- 
+2.31.1
+
