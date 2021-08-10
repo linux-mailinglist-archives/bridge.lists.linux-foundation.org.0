@@ -1,88 +1,96 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D793E56AE
-	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 11:21:56 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FDE83E5748
+	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 11:43:59 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id DC5ED4027D;
-	Tue, 10 Aug 2021 09:21:53 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id A12FB401B4;
+	Tue, 10 Aug 2021 09:43:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jm5barmpKXs5; Tue, 10 Aug 2021 09:21:53 +0000 (UTC)
+	with ESMTP id W21KPcxC37Qc; Tue, 10 Aug 2021 09:43:53 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 5CA9540263;
-	Tue, 10 Aug 2021 09:21:52 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 0325940263;
+	Tue, 10 Aug 2021 09:43:52 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 197A9C001F;
-	Tue, 10 Aug 2021 09:21:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B276DC001F;
+	Tue, 10 Aug 2021 09:43:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AFE2CC000E
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 09:21:50 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 40F4FC000E
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 09:43:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 9954A605EB
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 09:21:50 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 1D8A960777
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 09:43:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
+ dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mdgtnHWgc1Sd for <bridge@lists.linux-foundation.org>;
- Tue, 10 Aug 2021 09:21:50 +0000 (UTC)
+ with ESMTP id WOrCAQGys37k for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Aug 2021 09:43:50 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B8E4A605D1
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 09:21:49 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id f13so29179240edq.13
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 02:21:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=LGHkd28MWGOCiDBxhGiWFhEVrZHPKuUZlWpdM+gDHPo=;
- b=Os0pBMxreEKRJKeGlgpOk6mhU80oeCPD0k8HXW8LyBX20WrTt35SduZm5PWEMqoFBA
- npOXb5Tno00CL6AJfoTU/RSi998rNHcBE7RfpqJTavKL8md5exUc0lzjKzoYSiU7L3m0
- 5HI8rcceizbw3URhKKmIJf0UD78lRfStAqMtdu42n8HHe5bpW5juP6y6xVPgbyxtSz6m
- FJQM9Y6LUs3idH0JgKvgsrPWgyPJ2GsyBCspBMpHtGSYhmBlzEzldZ+Dttt12jVOkhSp
- H1BekTHWhYi6nRD3iK+mP7g77pAmkstaBku11eAYPjTW/jQgkPz+3Bj2C7jqvo0qfHqV
- IGjQ==
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
+ [IPv6:2607:f8b0:4864:20::102a])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 94F6B60670
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 09:43:50 +0000 (UTC)
+Received: by mail-pj1-x102a.google.com with SMTP id
+ gz13-20020a17090b0ecdb0290178c0e0ce8bso2461700pjb.1
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 02:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-language:content-transfer-encoding;
+ bh=HuDel8ayMwuZGcNVC/Xca01aagp05sJ/uzkjO6nmwrY=;
+ b=MfmFVDcau+Ht5MC0Z11A0Lodc1upVa5x8ongdWS8TE8tjKiQLuzuK0pn8mBCNzIfSI
+ qs5dNWnAfz2I+dUz6znusiGsfKJ7BDJMNJJqNHtjgPgDuOz/w6QTWaycta6RfSaj5fJd
+ xRELdlQj1pSRQzr80J9k4mya1b6nFDdCC1Y7iw8GO8T31QuclJkAvIMX521fpn85ZBU9
+ FZJOhHVQgXcQmfBRdZHxeYjK0v6CfHTqslJchOvJxdxdb8QzvGcT/6Rqkrmf2JcIGtd8
+ Wk6mB9mSaA1A3L0d8p7I/YpIoBt259/YJdwN1q0JP7svIeqbfMiNa3IMTA8NHqiRtn/+
+ U/cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=LGHkd28MWGOCiDBxhGiWFhEVrZHPKuUZlWpdM+gDHPo=;
- b=mYcfGWXeLhnIGM68V8uFhwQpSJpZDuSYuLCmHoiFETPRl2r7P7XnO31V1YANQd6nOh
- rMms12jS3LYNJDMG7mFq2L9oogWF1StK/xcPSDkH4aOhfxlTswBzIF4f6eEA4pa22dEq
- R7nCPPjKSua2+3mWG81nWz04akTxuF+KU1+P0SCY2W42kuuRBiSPaf0EX1BH0tIe9y+M
- gUMlNY7edKL9JWEX9/k9IX1kWTU73HKAzinfBABeb3dmoZqKy4KjetvYdHOJb+Sw3ZPa
- bkYKtdi9dYadn3YsQdkiR8EoLrzcud7JNZmIJWR3wQhUrFIk0Yuy+cvnVfPRaIbApMvQ
- ZDTQ==
-X-Gm-Message-State: AOAM532etAHMrUA3claOE6QJFuxOHFBJlI6k6QFAyJRw59+tvabCJt7f
- h/5qUp+QcomIehJp46anul1OSw==
-X-Google-Smtp-Source: ABdhPJyZwEHu2SXccuEw6WEvLiE3Lcg/ESLqoCrtYA8Mlk35T8c5TAE3lIoE+USY+f/CdYi1k1J25g==
-X-Received: by 2002:a05:6402:50:: with SMTP id
- f16mr3795604edu.346.1628587307833; 
- Tue, 10 Aug 2021 02:21:47 -0700 (PDT)
-Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
- [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id jo17sm2680366ejb.40.2021.08.10.02.21.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 02:21:47 -0700 (PDT)
-From: Nikolay Aleksandrov <razor@blackwall.org>
-To: netdev@vger.kernel.org
-Date: Tue, 10 Aug 2021 12:21:39 +0300
-Message-Id: <20210810092139.11700-1-razor@blackwall.org>
-X-Mailer: git-send-email 2.31.1
+ bh=HuDel8ayMwuZGcNVC/Xca01aagp05sJ/uzkjO6nmwrY=;
+ b=Q4/UPeRbeqfyDaSkgNvqerlxeLd7OoE2cO1s5nCFq4EfSYMexc6eSUydgo20Sv7+SH
+ ek+Yi2/E8Nm9XysyZc0ztL9qLHisJqV16lZahPGn+0uLznvIlnru+Jo+9ruta1KEYti3
+ gN5DhFkCFcXsTX6PS3tMRRxHNU1/0P/BDoYSgFibJI0LzPnk7wtTP7G2YI1qqYDU01oU
+ nMS69IVE6PfpSgpQFTRl5ve4HCtdeZ9Luge0XQcIjgOQLdwD4V8jXY0eQejPP3J8pq8e
+ i947AQbtFEQLF0+KgEAj1DJvLbLd2wPbR89tkmDzwCzwyP+7lHPx6xpGmJkpJPxtZn9o
+ mZiA==
+X-Gm-Message-State: AOAM5337K3JnMnJWPRtxv5aTSTwpGjSpPowrNxd74dtmH7kCpRCtDR9R
+ N1QTjVZoeuLJTJzp/TkfvME=
+X-Google-Smtp-Source: ABdhPJyYxxRshDihijJiBRh2viwhTJjaq/7HY4JjQ/hF2XykKb5wH9QSzJq7MDY2D/2Z/D0DzVB3HQ==
+X-Received: by 2002:a17:90b:228c:: with SMTP id
+ kx12mr30807002pjb.38.1628588630078; 
+ Tue, 10 Aug 2021 02:43:50 -0700 (PDT)
+Received: from [192.168.1.22] (amarseille-551-1-7-65.w92-145.abo.wanadoo.fr.
+ [92.145.152.65])
+ by smtp.gmail.com with ESMTPSA id h11sm11561709pfv.154.2021.08.10.02.43.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 10 Aug 2021 02:43:49 -0700 (PDT)
+To: DENG Qingfang <dqfext@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, David Miller
+ <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+ Jakub Kicinski <kuba@kernel.org>, bridge@lists.linux-foundation.org,
+ netdev <netdev@vger.kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>
+References: <CALW65jbotyW0MSOd-bd1TH_mkiBWhhRCQ29jgn+d12rXdj2pZA@mail.gmail.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <b9a61559-e7f7-86e9-6ac2-c988255db5f0@gmail.com>
+Date: Tue, 10 Aug 2021 02:43:46 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next] net: bridge: vlan: fix global vlan option
-	range dumping
+In-Reply-To: <CALW65jbotyW0MSOd-bd1TH_mkiBWhhRCQ29jgn+d12rXdj2pZA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Bridge] Bridge port isolation offload
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,40 +105,20 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-When global vlan options are equal sequentially we compress them in a
-range to save space and reduce processing time. In order to have the
-proper range end id we need to update range_end if the options are equal
-otherwise we get ranges with the same end vlan id as the start.
 
-Fixes: 743a53d9636a ("net: bridge: vlan: add support for dumping global vlan options")
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
----
- net/bridge/br_vlan.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On 8/9/2021 9:40 PM, DENG Qingfang wrote:
+> Hi,
+> 
+> Bridge port isolation flag (BR_ISOLATED) was added in commit
+> 7d850abd5f4e. But switchdev does not offload it currently.
+> It should be easy to implement in drivers, just like bridge offload
+> but prevent isolated ports to communicate with each other.
+> 
+> Your thoughts?
 
-diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index 8cfd035bbaf9..cbc922681a76 100644
---- a/net/bridge/br_vlan.c
-+++ b/net/bridge/br_vlan.c
-@@ -2019,7 +2019,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
- 
- 		if (dump_global) {
- 			if (br_vlan_global_opts_can_enter_range(v, range_end))
--				continue;
-+				goto update_end;
- 			if (!br_vlan_global_opts_fill(skb, range_start->vid,
- 						      range_end->vid,
- 						      range_start)) {
-@@ -2045,6 +2045,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
- 
- 			range_start = v;
- 		}
-+update_end:
- 		range_end = v;
- 	}
- 
+It maps well on Broadcom switches but there was not a known use case 
+AFAICT that warranted mapping this flag to program the switch hardware 
+accordingly.
 -- 
-2.31.1
-
+Florian
