@@ -1,80 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470193E7C2F
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7ACB3E7C30
 	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 17:29:57 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 01385402BA;
-	Tue, 10 Aug 2021 15:29:54 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 4F40383576;
+	Tue, 10 Aug 2021 15:29:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NfTKyssNLHqq; Tue, 10 Aug 2021 15:29:53 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id voh6pEVCV4ra; Tue, 10 Aug 2021 15:29:55 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 913A040231;
-	Tue, 10 Aug 2021 15:29:52 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 06EBD835B9;
+	Tue, 10 Aug 2021 15:29:55 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id BA639C0020;
-	Tue, 10 Aug 2021 15:29:51 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 37CF8C0020;
+	Tue, 10 Aug 2021 15:29:54 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 38840C000E
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:50 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 11D35C0026
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 25B5740357
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:50 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 3CBF8403A7
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id N8yBgNRcMcnk for <bridge@lists.linux-foundation.org>;
- Tue, 10 Aug 2021 15:29:49 +0000 (UTC)
+ with ESMTP id pI_LZqoDt-ot for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Aug 2021 15:29:50 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 32C5F401C9
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:49 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id k29so14055866wrd.7
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 08:29:48 -0700 (PDT)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 3FE87401C9
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:29:50 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ h24-20020a1ccc180000b029022e0571d1a0so2809280wmb.5
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 08:29:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=x2ddN55QW8ss1GIleq39Orvx1idPr5wWLIOP8DxelRQ=;
- b=eZMyxB9VVve1mnWXRYqd3nY69gpXjy2E4D72oDNfv8iUmcTuWFAwnDHOUOxTeVDKw9
- pNdBWGf8RHzGX8a34oYo1tGXx9NPI2ZdVe5vCsYDQLHndYR0c1JM/J6vRp6ooKpl1V/z
- 9nWfJLiduWS6jI2KgyQhDxI9J5N4ytt/GmDBLiZqwD+W4T8X9ddOmhn4QJZdcupFuwjF
- saQah3SPa5+AQZWKeyadXKYpz0x8SjtrhTm955Cc4bYvQabDjXQR+Fu8/0tg8GUjT5K0
- LNKj8BNpNHQ6gSgTqhQT9AQGqeQeaReihYiVbVCIgdQddaf8UnKcIK73BS6rIDYow02K
- OVCw==
+ bh=IZO6z66xLg3R8sWrzBKsMRKlDrBnbnQRa4M++exAkMo=;
+ b=U3YhjEsyGh+3W1n7NDESfIfndxgRvy02BBNO91BdSVT4m3GoViD/inNT5so3wdY2Ha
+ v+Nk2Xzdte5gbGxNzod489of6jsm+trOKm1iZknoev0889LOyq0PtreBqYKXuDfvJTRb
+ 7HiGitzf/yhQP3hgcQNivLVe59B1Kc9y6YLfnP0kvS8kmmnGnvPXAE1cxV/G6jlzBT/a
+ IOyEKGWReMASxm6EzQ1LS5siGd6keBxcjvBWX3tY1kKhFaiCX846YViz+opD57g+/wkG
+ OVYlW74GtSbrrTNNKRkqgN1xZl2BMuD+4AtnlshWrmEA3XUyTF/2hQHNI7YlmtESndQ9
+ v0mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=x2ddN55QW8ss1GIleq39Orvx1idPr5wWLIOP8DxelRQ=;
- b=Z6e3Chp7JsnlUnPv/iT1107BTHrhltJtHk0zdpdxIE8s/DYoihm24FpbDsD1LAd5uM
- d3NR8muyxqpYjFpfqtQvisZr6w/E4vGE7BEVqxwsD4ba/GurVuORc8Hfv4GajB+dUUl7
- 2qDWA5vMn4GcGCCXQWC3+YhnB+qj4gptZc2hFW+CEArcbAX421fjCvIMlpXCEuFWw5gt
- fgQq3FEhiHLhyaEc4r78oFZOwmNTBr2pYo6II8PLiGrXlWIrkzmFFm3YSgV2raM2qC2V
- HG9zlxi7A+COoRRcbYOi+jmH+mxasIuvT/ddXjO/wSXPsHFxR+Y5szz1TJnruS019GM6
- ojcw==
-X-Gm-Message-State: AOAM5300dEewvhAegQ5LmroqNkTuFvxRq3NBORzlDDKVJoPzMHbvsIMl
- jN2yY0cFd14dbYiIv1yPmdQHDA==
-X-Google-Smtp-Source: ABdhPJzfYycbf9Qc8Dlej1cQh88b6a88y5mVJyHi1n8wFD2B2FkXxFxeeXHUEmaiIIV1jcj3rFD5ww==
-X-Received: by 2002:a5d:6991:: with SMTP id g17mr32087677wru.253.1628609387323; 
- Tue, 10 Aug 2021 08:29:47 -0700 (PDT)
+ bh=IZO6z66xLg3R8sWrzBKsMRKlDrBnbnQRa4M++exAkMo=;
+ b=W6HiTomn/RdJjgyVeyU5O0nzPVH4bCiRuxU6TCHW0yJOh54xGqNjaDaRrZSDvhdJQ3
+ 6MmjnmUzeeCXaiJOR480ONxwOVZWWVs5cr1QqP73tPd7v9MeFaTzb7gDm0VYUfxdlcwz
+ N88hghnL6ttW4spgEy7uXtoSnfaCic+ZSPKkK08t0DD/BOunGDTw2Z5uuOQDc062pdu7
+ PgKsm263Vx4ZJsTnE89m5PHa32IDYGLrdNQ9la5i8DA09XV2RITT8b70jQ4EI992X55H
+ LfPxaLT9IgQhAmpNF2hMqkXqUAYxQokgTO/iDH/vJCSXmbRz+/cTV9MHtnB1rR0mA7eQ
+ 14IA==
+X-Gm-Message-State: AOAM530Pie6JGL9jPpAMZNmhoT/AsUoYcJBTnqPz4KUe0QXLPdsthdS/
+ H5J7Xyj0IyNJANFTnssiSqgV2A==
+X-Google-Smtp-Source: ABdhPJy2hKalajQuYJnbAAAITOVv59wG3BSgqH1DpZP+sygDzMRyD2qVy88dxQsxviQRRxlYTapDVg==
+X-Received: by 2002:a1c:4b12:: with SMTP id y18mr5224754wma.67.1628609388355; 
+ Tue, 10 Aug 2021 08:29:48 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id f15sm22848219wrp.12.2021.08.10.08.29.46
+ by smtp.gmail.com with ESMTPSA id f15sm22848219wrp.12.2021.08.10.08.29.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 08:29:46 -0700 (PDT)
+ Tue, 10 Aug 2021 08:29:47 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Tue, 10 Aug 2021 18:29:20 +0300
-Message-Id: <20210810152933.178325-3-razor@blackwall.org>
+Date: Tue, 10 Aug 2021 18:29:21 +0300
+Message-Id: <20210810152933.178325-4-razor@blackwall.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210810152933.178325-1-razor@blackwall.org>
 References: <20210810152933.178325-1-razor@blackwall.org>
@@ -82,8 +83,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 02/15] net: bridge: vlan: add support for
-	mcast last member count global option
+Subject: [Bridge] [PATCH net-next 03/15] net: bridge: vlan: add support for
+	mcast startup query count global option
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -100,7 +101,7 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Add support to change and retrieve global vlan multicast last member
+Add support to change and retrieve global vlan multicast startup query
 count option.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
@@ -111,72 +112,72 @@ Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
  3 files changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 07acfcc0466c..68099c6bc186 100644
+index 68099c6bc186..62d30153e343 100644
 --- a/include/uapi/linux/if_bridge.h
 +++ b/include/uapi/linux/if_bridge.h
-@@ -551,6 +551,7 @@ enum {
- 	BRIDGE_VLANDB_GOPTS_MCAST_SNOOPING,
+@@ -552,6 +552,7 @@ enum {
  	BRIDGE_VLANDB_GOPTS_MCAST_IGMP_VERSION,
  	BRIDGE_VLANDB_GOPTS_MCAST_MLD_VERSION,
-+	BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT,
+ 	BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT,
++	BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_CNT,
  	__BRIDGE_VLANDB_GOPTS_MAX
  };
  #define BRIDGE_VLANDB_GOPTS_MAX (__BRIDGE_VLANDB_GOPTS_MAX - 1)
 diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 1cc00d2f9156..ca88609c51b7 100644
+index ca88609c51b7..560c57dd33db 100644
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -1187,6 +1187,8 @@ br_multicast_ctx_options_equal(const struct net_bridge_mcast *brmctx1,
- {
- 	return brmctx1->multicast_igmp_version ==
+@@ -1189,6 +1189,8 @@ br_multicast_ctx_options_equal(const struct net_bridge_mcast *brmctx1,
  	       brmctx2->multicast_igmp_version &&
-+	       brmctx1->multicast_last_member_count ==
-+	       brmctx2->multicast_last_member_count &&
+ 	       brmctx1->multicast_last_member_count ==
+ 	       brmctx2->multicast_last_member_count &&
++	       brmctx1->multicast_startup_query_count ==
++	       brmctx2->multicast_startup_query_count &&
  #if IS_ENABLED(CONFIG_IPV6)
  	       brmctx1->multicast_mld_version ==
  	       brmctx2->multicast_mld_version &&
 diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
-index ac32fb40b7ba..75733b5bc6f4 100644
+index 75733b5bc6f4..81a0988b97c1 100644
 --- a/net/bridge/br_vlan_options.c
 +++ b/net/bridge/br_vlan_options.c
-@@ -289,7 +289,9 @@ bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
- 	if (nla_put_u8(skb, BRIDGE_VLANDB_GOPTS_MCAST_SNOOPING,
- 		       !!(v_opts->priv_flags & BR_VLFLAG_GLOBAL_MCAST_ENABLED)) ||
+@@ -291,7 +291,9 @@ bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
  	    nla_put_u8(skb, BRIDGE_VLANDB_GOPTS_MCAST_IGMP_VERSION,
--		       v_opts->br_mcast_ctx.multicast_igmp_version))
-+		       v_opts->br_mcast_ctx.multicast_igmp_version) ||
-+	    nla_put_u32(skb, BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT,
-+			v_opts->br_mcast_ctx.multicast_last_member_count))
+ 		       v_opts->br_mcast_ctx.multicast_igmp_version) ||
+ 	    nla_put_u32(skb, BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT,
+-			v_opts->br_mcast_ctx.multicast_last_member_count))
++			v_opts->br_mcast_ctx.multicast_last_member_count) ||
++	    nla_put_u32(skb, BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_CNT,
++			v_opts->br_mcast_ctx.multicast_startup_query_count))
  		goto out_err;
  
  #if IS_ENABLED(CONFIG_IPV6)
-@@ -317,6 +319,7 @@ static size_t rtnl_vlan_global_opts_nlmsg_size(void)
- 		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_SNOOPING */
+@@ -320,6 +322,7 @@ static size_t rtnl_vlan_global_opts_nlmsg_size(void)
  		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_IGMP_VERSION */
  		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_MLD_VERSION */
-+		+ nla_total_size(sizeof(u32)) /* BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT */
+ 		+ nla_total_size(sizeof(u32)) /* BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT */
++		+ nla_total_size(sizeof(u32)) /* BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_CNT */
  #endif
  		+ nla_total_size(sizeof(u16)); /* BRIDGE_VLANDB_GOPTS_RANGE */
  }
-@@ -391,6 +394,13 @@ static int br_vlan_process_global_one_opts(const struct net_bridge *br,
- 			return err;
+@@ -401,6 +404,13 @@ static int br_vlan_process_global_one_opts(const struct net_bridge *br,
+ 		v->br_mcast_ctx.multicast_last_member_count = cnt;
  		*changed = true;
  	}
-+	if (tb[BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT]) {
++	if (tb[BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_CNT]) {
 +		u32 cnt;
 +
-+		cnt = nla_get_u32(tb[BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT]);
-+		v->br_mcast_ctx.multicast_last_member_count = cnt;
++		cnt = nla_get_u32(tb[BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_CNT]);
++		v->br_mcast_ctx.multicast_startup_query_count = cnt;
 +		*changed = true;
 +	}
  #if IS_ENABLED(CONFIG_IPV6)
  	if (tb[BRIDGE_VLANDB_GOPTS_MCAST_MLD_VERSION]) {
  		u8 ver;
-@@ -413,6 +423,7 @@ static const struct nla_policy br_vlan_db_gpol[BRIDGE_VLANDB_GOPTS_MAX + 1] = {
- 	[BRIDGE_VLANDB_GOPTS_MCAST_SNOOPING]	= { .type = NLA_U8 },
+@@ -424,6 +434,7 @@ static const struct nla_policy br_vlan_db_gpol[BRIDGE_VLANDB_GOPTS_MAX + 1] = {
  	[BRIDGE_VLANDB_GOPTS_MCAST_MLD_VERSION]	= { .type = NLA_U8 },
  	[BRIDGE_VLANDB_GOPTS_MCAST_IGMP_VERSION]	= { .type = NLA_U8 },
-+	[BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT]	= { .type = NLA_U32 },
+ 	[BRIDGE_VLANDB_GOPTS_MCAST_LAST_MEMBER_CNT]	= { .type = NLA_U32 },
++	[BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_CNT]	= { .type = NLA_U32 },
  };
  
  int br_vlan_rtm_process_global_options(struct net_device *dev,
