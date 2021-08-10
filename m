@@ -1,151 +1,143 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DDB3E5817
-	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 12:16:26 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231A93E5876
+	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 12:38:57 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 4DA674038A;
-	Tue, 10 Aug 2021 10:16:25 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 50CF883051;
+	Tue, 10 Aug 2021 10:38:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id s9NeEcd4a3Yw; Tue, 10 Aug 2021 10:16:21 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 021074025C;
-	Tue, 10 Aug 2021 10:16:21 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id OBi_pT_UHYNR; Tue, 10 Aug 2021 10:38:51 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id CC2BC82F11;
+	Tue, 10 Aug 2021 10:38:50 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B2E94C001F;
-	Tue, 10 Aug 2021 10:16:20 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 90A15C001F;
+	Tue, 10 Aug 2021 10:38:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1B327C000E
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 10:16:19 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3E564C000E
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 10:38:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id F21F0401F2
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 10:16:18 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 1F4C2403EA
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 10:38:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (1024-bit key) header.d=nxp.com
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id EW7lZ_S-cdpV for <bridge@lists.linux-foundation.org>;
- Tue, 10 Aug 2021 10:16:15 +0000 (UTC)
+ with ESMTP id cz7DpZHhKIdR for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Aug 2021 10:38:45 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2047.outbound.protection.outlook.com [40.107.102.47])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 0B7454025C
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 10:16:14 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-eopbgr70049.outbound.protection.outlook.com [40.107.7.49])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id ED05E403B3
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 10:38:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MTbVlp6p8Arwgv8x+M3Bi3vuHbRQH3i1ZWcdceYxzl3zksxIKGafKqiO6nOY1mpbqKyf8yVSCMefRMOJiWELbqdBuymbojtGARt3ByGyIV/YLgVv8sE/u0+BtvJUC2AJ/oN9ymFTvqjL+3gLD7kL74zMkuHVrwBESo1Tqf4XiDBLNIN2P9syW1Y/TDrg4tvB7cUBTqj+FSr2DnRM82s9cHjufL9nLOzqzjf7E3L/WKaUipfwYcYVeOV5DPy0EuRbOXIRxCcbZIYCv3kMjJiISpQPUfBrP1/Pt0v1058PLjKw8w/e9bgHoamr8l6bfD3I9LFNfTy8kNjidUWXkAScvw==
+ b=LE7dtP0dgU6Y5Vjjn7D5yny3JoxV8YqPICjFBDI6wpQU578T0g+ErVS2EsKDACJjPSffQv4yrJdbMHBTljQcGzwt1+tsZ7rKSrCM6CXAERE60ePnjZKQrE2Bx0EguHDNWYQp7tqj/3shkBUp3aLfqeB0eKZNQQudlYWNwKJ1nuV8slhjfhkqSAWBKUBT+ga4qCdmPjF0rtp9CIozCKynlKXGu6sUU7vLs0LhNAxhJDL7eoP/UbAEyL+NGw80m/Wp2tNnKz6ZOcJET/jqUi9YauyYK58dp1F1xPK0iuEQPSwBCIyGYbH0thVsw4+8F7aNvwk3ByUjP6qvPWubkOVwfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m7kvnCIA8Q8CgdEoOu+s5wkPoNsO/hKQY1wjXm85SX4=;
- b=OsrXY1Xwp4Mg0aEfPLHh21gPm5IkCsZE4EyE9nyRErY9q9a4KmlhjUViYkKtdzl15qiRR4opI9gN+/xWX6oONvj9cCN+74sX6HPdIPhxXwhnKynI3edBDUNLP+qFthQx0HPKxy+1A2Yi9MgeCuZdQLm8oDQqHcd+kcsD3TYSTxKo2/zlOaT2M0GVl51ZQFsLlUk37Hnf+Y6/+/Aba9dhf0Hj1Hf9mnBhFUaZG+p+haQsIssM38brI4IZhzjaTsT0ryynPQoyZMI8mGBItFDn+msnnJGgK3L1mJ7d5yy8bPiY9xAQsGPvOtMgZHX7GNIeJ8MqfgMp6cXbpM1TEHDXRg==
+ bh=NGtLr/xfPNKdQQi8cLqJEqaFspc5r8oK4Wf/m2YcrSs=;
+ b=eXHMlBQ1lcZztGV6EJYntS86be75d96GSjndlq0PLBsJBMmeyMIZg6dtdkN17PMhrBCudVWSlJ+7vFmnorOKNo7LNzxEiykhfCdTBMsP+XSI8WLjsleE4ANn3NHftjlwEamyvcnoPHx/VW576YVHDxlCBXICBuRajxbJikDSl1rbllhz+hPOKsHu4NDB+994kaEU/I+GidhtZCugvVlAacMcMhlycoV3z8DZfTe/0lQuLl7Md75OrT9KOF99Qssg+iQhqOtFSAlcdMckJ1BH9LOS0eKhz+s14rKfiPvpJIoE6CNEe+FHlw4/0S5kuOVf2cqKTK07rSJFj9/FurDXcA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m7kvnCIA8Q8CgdEoOu+s5wkPoNsO/hKQY1wjXm85SX4=;
- b=aY9bI+99eGtfT2nh5kRtUyLtNqGnRY1IQowjE2kCeV/OEpQ6lXE+QXDUnb7BbU0RHOeCoDoOKrviw9Aug8BeyHt5phY+bdFV6lWR9faxYyO9psguXPGemNqoJjokKPPVlnEjyt8jM44OQtDF0v4VjRYGUCyeJfcGO1MLE86mFOTVT3yYYInGAJq91QrkF3G4klBEWZQYyBImvPmjGtxuvPstwaLvqB7gMaIC/bCdXtz7z6DTkx8Lz+uqDlwVGFTsXeW/yZH897I2KQfbQJ4qKS8894vZUdh5EifZ6VgCwfozKy6ndHKRt5UZw2NLX79HtjXpP1O0+utBRh6GxHsKYQ==
-Authentication-Results: syzkaller.appspotmail.com; dkim=none (message not
- signed) header.d=none;syzkaller.appspotmail.com; dmarc=none action=none
- header.from=nvidia.com;
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM8PR12MB5461.namprd12.prod.outlook.com (2603:10b6:8:3a::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Tue, 10 Aug
- 2021 10:16:13 +0000
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::c170:83a0:720d:6287]) by DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::c170:83a0:720d:6287%6]) with mapi id 15.20.4394.023; Tue, 10 Aug 2021
- 10:16:13 +0000
-To: Vladimir Oltean <vladimir.oltean@nxp.com>, Ido Schimmel <idosch@idosch.org>
+ bh=NGtLr/xfPNKdQQi8cLqJEqaFspc5r8oK4Wf/m2YcrSs=;
+ b=e/+Yej2JBJhFXCj1lt1W23NhlW5Gjs7ZnubKiV3TX38M8EVVKYFuqRpKlEaFiel8ITTh9kDuV3zHdukJJrv8aSN6WrFtiyABG4pboYxT/YhIcWBRKTPFkoKqjUpItceUhYC0g+0zibXEue14MUtEOTJFcIDcKwCsIVU/mRqe9SU=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR04MB6941.eurprd04.prod.outlook.com (2603:10a6:803:12e::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.19; Tue, 10 Aug
+ 2021 10:38:41 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4394.023; Tue, 10 Aug 2021
+ 10:38:41 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Nikolay Aleksandrov <nikolay@nvidia.com>
+Thread-Topic: [PATCH net] net: bridge: validate the NUD_PERMANENT bit when
+ adding an extern_learn FDB entry
+Thread-Index: AQHXhyttiQTxBmfp1EqsG/8ivlTylqtrInkAgAA/5YCAAPY2AIAAOLAAgAABsgCAAAZ3AA==
+Date: Tue, 10 Aug 2021 10:38:41 +0000
+Message-ID: <20210810103840.oequsjeg5be2jkkz@skbuf>
 References: <20210801231730.7493-1-vladimir.oltean@nxp.com>
  <YREcqAdU+6IpT0+w@shredder> <20210809160521.audhnv7o2tugwtmp@skbuf>
  <YRIgynudgTsOpe5q@shredder> <20210810100928.uk7dfstrnts2may4@skbuf>
-Message-ID: <c6d91ec7-6081-85d0-9bc8-569838d8f9a4@nvidia.com>
-Date: Tue, 10 Aug 2021 13:15:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-In-Reply-To: <20210810100928.uk7dfstrnts2may4@skbuf>
-Content-Type: text/plain; charset=utf-8
+ <c6d91ec7-6081-85d0-9bc8-569838d8f9a4@nvidia.com>
+In-Reply-To: <c6d91ec7-6081-85d0-9bc8-569838d8f9a4@nvidia.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR0P278CA0030.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::17) To DM4PR12MB5278.namprd12.prod.outlook.com
- (2603:10b6:5:39e::17)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.21.241.235] (213.179.129.39) by
- ZR0P278CA0030.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1c::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4415.13 via Frontend Transport; Tue, 10 Aug 2021 10:16:09 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 21259bae-f338-4dff-5e6b-08d95be7e1b5
-X-MS-TrafficTypeDiagnostic: DM8PR12MB5461:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM8PR12MB5461B68EEB737FB40576A9C4DFF79@DM8PR12MB5461.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O9H6rttG/WQKfNAWqDSTnWrDtoHVlbY7509CK+aEyKYxuSKerO4tU7TYZHWuq3YtCdbOaLq8SkDTHav/uxoVk0ZB80h66poMo4ehxc9jtovorGy3HM4/o5ylNkerb1dbNYSfEYU8TjbovlTXxq/+ADJVdax6NRUdozsX4x0oRHk4Ct3ov1Mht2fr0LQqina2X48OvNjpML7UFxu/d/xoO2spZC915keNhucF6VYsTypbkmB0jicvohkgMqLl3Ip0sFSOUYwo1NTblrOhWNXTV86vNpDLvAIg7Jb4y20TxUdDdcH0lrW5ccAk/lyKKCtn0wEaRtDM5HDuyHmxoo4y6n7kGqzKbK5OL44SAsMd84Hc4Whx4DULoEtVQC9qh0NRBKXkujqN93n8rw/M3kdxevO9x4tuu1lLptJvAQauO8FPzeJcAcsC16eZ36i8sQXHf4MZQazhVBoFQrpwE5EowR+SFUg0qhacOSll6EnbqBN4SypUKC6rcWrkUPZ/dZHdvAjrGWaGhHhOQr6jM3bC2/lhkwmW8MP7ocISfaYxertDATQ1Mj3d9XY7+NxgF1Y0J3nClLKPHaHxVr5JXhrRFW7xpi0qAypdmz1musG3DblSDJVEjSbhyc4ZbQLZTOBmSKYzF+4f151gwbMV14U8GlkLw7fuJBFs9JBb3nRn40XsWBCzGlxgm/Nb5ZWxqhsN9Z7dFet8JBVs9jf/3UsoBPlIi+x1zjHeJOsh1r9PWLA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(83380400001)(66946007)(26005)(508600001)(4326008)(15650500001)(5660300002)(8936002)(6486002)(2616005)(53546011)(54906003)(86362001)(956004)(2906002)(31696002)(38100700002)(8676002)(316002)(6666004)(36756003)(186003)(110136005)(16576012)(31686004)(66476007)(66556008)(45980500001)(43740500002);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nvidia.com; dkim=none (message not signed)
+ header.d=none;nvidia.com; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 41f3906f-3300-43dc-bdb0-08d95beb0596
+x-ms-traffictypediagnostic: VI1PR04MB6941:
+x-microsoft-antispam-prvs: <VI1PR04MB6941F4469EB63FF87A509F80E0F79@VI1PR04MB6941.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: WpUp3VgIL6Pv1CBKoSDDLMQ3K5nwcQq1GLsJIITtfG2wIDpHqu+7K2xLGT1TDhChe5xS/L2R8nh/kF1L87QtTUAMsklm/TGtZobP3ipXg/vI4u1R764TotiqgyN2lslxXN1MDyokw1Vgnwh2ztkgzLEuveeVwzHngVvjq6dhGVi4uP2gc9toQB71Oycch2PpntDvPFo3abZZ3nvLVKrArhBMfrYMNwt6/R3+pn9S6wg2GAfyFTMOM3hj6/8kJw0mmMiS9by29QPu7lVf3iNoJnpUBbtcdrqcp7a82faB9wgoJRT0VP5973We2R4WEuXWuISuwp0pYN6NK82cFXqXYROQYJuBHR4RHGiaBXzzsroeJ1MCv4OaRPJ4Jevh6veO2uUlxReQec/BDa+9DGC9Vj8j/sHVMa+uR777FI1DRw6a2JQtC7DuomXExlRYmIaHkHAOYV8rorpjsbdhakYmmYSlHDEWFjR58lpv9KV5aWEYRg9sbBBneaeqHxBJPhctDc/3W8ZLSHr7Fv0ovS4/NnDC5QAQj/kaOYEvJEgmtQ8Zd4eWjohUrDAtmACGEf43Q+lO5zwSOwuGhNeezeJsfIHXZGgUJoJz9e2y0+24WCNRvxyj3YUl9pNUf6yGfWyXiJgF8MZcHDulA+PAMOzULRkdQgo7ip7LKGxZ/3O6glGCiUuEgRJKmyAuiBUV5af3+8FQ8GOn+Oig4XIN3jnZfA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(7916004)(4636009)(366004)(396003)(346002)(136003)(376002)(39860400002)(33716001)(1076003)(8936002)(66946007)(66476007)(66556008)(64756008)(66446008)(76116006)(91956017)(26005)(5660300002)(6512007)(2906002)(6506007)(44832011)(8676002)(86362001)(9686003)(53546011)(6486002)(15650500001)(38100700002)(71200400001)(7416002)(83380400001)(186003)(478600001)(38070700005)(122000001)(316002)(4326008)(54906003)(6916009);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WTdvZzlJM0E3UFQrTG1LRS9WdS84WW1jQklabkR1d1lVTVREVzF0OTMwWnpo?=
- =?utf-8?B?d052Y0wxVmxuWE9vMktYMG4xck55aDUyQkMzN25tYWVXellmYzdWNFJuVDZ5?=
- =?utf-8?B?bUVrbFlvNSs3cS9tcmY0WGhJUUdmcTFqM283bXY4R0tQVEZhK0pMTTdrYy9w?=
- =?utf-8?B?RGNQZG5BdDZNR0hqNkRmVmdDOEtiblZoRzFVQ0VvbVRHR0NtZGJkcVhYNEk3?=
- =?utf-8?B?OWJWbVNObndqMTk1OStIdTlBcHE0Sm1Lekw1MExwQlJncUhNanNBSjZtcjd4?=
- =?utf-8?B?eVlwSTJDbG9zOHVjUE1sSGhaVm1CNTVtRWdyVUh1d3VodEN6elIzTVJWYldp?=
- =?utf-8?B?QUFoR2tmTE5HRVUvdTFYSkFaK0tDcDhPVXFhS2JFbkxlb2pRVitmcXlncDNM?=
- =?utf-8?B?b2pCaE5OTHVzSjNMcVRQWk1TMFJyS3hXVTFOL0ZPQXlSYnlWVGYwRDlNUGdZ?=
- =?utf-8?B?ejFTRHlDWmhvTExGRTVGRmhMRjExS3pMd0UvdGZ3cFZmQjd0dEFNUDdxU1Qw?=
- =?utf-8?B?K0pLWHMyWXFTemhONzhRRFZxdWZxT3NOYVNDMTdXaVViOHU4Y2UwVXNINUU5?=
- =?utf-8?B?SGpWa1BaZzBsL3FObERRMVdITlhqYzEvTGVJbVd4dHk4QkdLaW9sQ0JObk4y?=
- =?utf-8?B?TFRTK3FJQU9FN05kcTB1Zy82N0VPOUdQOTRKQWtHdTRhL3N5MTRDdVFJMEZz?=
- =?utf-8?B?RW91UlNxcmVKQmhYUE1nVk1VQUlXa2dHOGlXVStmQ21hNlMwL3pRMUFpWldu?=
- =?utf-8?B?ZEgyL2UxV04xd1k1NHJIWk1Vell4cUVHZVgxYVdneXBUeDRTT0xMelJRVHpS?=
- =?utf-8?B?UVpBR0NPZC83MldEalNRVjRSdVNaNitTQ0piQ1FZcFg2clNOczQ0S2ozWWRr?=
- =?utf-8?B?WDNOaEVrY3k3bXFaeWVYNzZMRXpQZUJWemRSUjMrQ1RoREgyN1JTL1lJbmxw?=
- =?utf-8?B?NDZBanVlQjAyVktSQWRLcHdsUWduaEpFRm5ObzZCekNLeDNBbVlGWGt6RHc2?=
- =?utf-8?B?Q3krcUxEamo4enFmVHp4cmhqVlhBMG5Ld0kvdFRVN1dPYWJxMFYyOExoNXYw?=
- =?utf-8?B?OGNkSVhZNmtrVTNxd3R6Uy9lb0gxNkwyek91TFR5S0Zsc1VzcnFiTlRKQ0NS?=
- =?utf-8?B?MkJmY2tSZHkrSGRwSXMwQkw0MFdyd3EzTzhhMDdOckxZeWxNOGVGYUEvMFlj?=
- =?utf-8?B?bTdBTFVLdEpycHVXVFFxdzFUTjJwN1pwbExhaEJIMXM4K01QVWpmUG40ajU2?=
- =?utf-8?B?S2xaemRMN0JWdjhtMUlTbWNzWHNYdER3RFF0MWZRSHVpeS9HZTJ3Z3JNTXp0?=
- =?utf-8?B?Q2FDbGdhVUIybkFHOVErVUxZZGhkaHJ5ZXNGWk1Sem5Zd3o1YlNlL05vaGN4?=
- =?utf-8?B?V1prODBFbTY4NkpSRThwNkdRR1dodWUwdWZ4YW8yWVNNc3VuWVpBNzl0VVFB?=
- =?utf-8?B?VUVQSWp6SHRyTmtoS2JsNlJXUzRQeU5acmRrSkVIZmZYamlqMHlWd3lSKzdO?=
- =?utf-8?B?aWt1WW1vOG4rUXRmcWtjamVBc0VNdzZrK0hrc1owUVgxVHJJK3lLaFVBNE9H?=
- =?utf-8?B?L01GRFBVRDZVQ3V1REMwY2hWTGUrZnNKeGcrbWRxSDF3cW5LTGhEcDhzdGdE?=
- =?utf-8?B?OGJIV1JuWWRCS0dIbFFKdDd3Vm9PSGR3OHIyeC9BcGFaeWs0OGkxMFNvRmQ0?=
- =?utf-8?B?RDNIUnRuRVp5b1dlQzZ2d2FLdkFqMTc3Vks4NU9yWG5EM2FUeHJST1l1dzJh?=
- =?utf-8?Q?CAEYZ521SHBzDlcxJCbMmFfA2H6k+qJoLAs8gTU?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21259bae-f338-4dff-5e6b-08d95be7e1b5
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fykUcsB8WDbsy8XiDk6/W6L4N4oY5m8ELKGTc/VCZihH2ozyLvWi6rblfFsH?=
+ =?us-ascii?Q?Aq2dGXQJqREnCi/SN0SXrDvS14GIfFi4cnfbcfwIUvsczYtSNwRoZ17x9pa5?=
+ =?us-ascii?Q?kzZ6+lrp1mCknPfk0hSW+nTyjF3E6d/NosWw3SKjUwdwBX68CfYmD2ENQjyr?=
+ =?us-ascii?Q?Za2ADwC8J2KOx4hdR2uHNASRFH+XQlzaLQfzh05SOR7KE8eq1uCk7QXP0Bqt?=
+ =?us-ascii?Q?hBMthjwWx4P0CcH/sMCsfjZsxRHv2WUatnE9EmLq/EnAG1CCZjkT4sV0Gs8Z?=
+ =?us-ascii?Q?NPAt/tMLFhLWe46TWDm0fXZf5WiCH35A0BKiKECbF9BVSM3dkmXDYXUaDK3/?=
+ =?us-ascii?Q?cQwvSXbLmsnESBg5lMZtuvKX01JxnhP+OpZ+RcA+EqHFIODp+rfMBSb9mL2d?=
+ =?us-ascii?Q?YuO0GKpRWJzvckrFgtcNWItFkB26DcUd4hTCknLV97QWakVdGekX9jXtpPK4?=
+ =?us-ascii?Q?KoT3PDMTHmwwP2I67mcNTQ4vWKfUi8OuyLxfYKhdJjzZ6v9diDQOUGdKSm25?=
+ =?us-ascii?Q?6wAAtGzVBvCmgUb1t80AVMC9VTx8eIs5esVgVtXYWkUO6v5wtNe4uLjcL04B?=
+ =?us-ascii?Q?oXIkr4ZSQKGBq5AHPvGlCIbHx+RxSnbpGrjQXV6w8wBflSNbDRcylQFWBHa4?=
+ =?us-ascii?Q?g6tRkmYdAZ5w00VdhYjD+4JDMCWsNh5feqck8ZSBhp5M+XHonRiLt3U1Rcmc?=
+ =?us-ascii?Q?a/HRORVhy938GVR/Hjq9xyHn0OasK+NHdwZZcdN/eWauw9OP4xYaGiqqs/un?=
+ =?us-ascii?Q?MQgH9nTlGVSMkG8WwhUepV2vcILtz/0XphJH1Chre0ysXKVzwx3YBwKOtR+c?=
+ =?us-ascii?Q?SAESxbpZHc4ctZhJ1fBfJxrTO9a8yuHWpSzkur4DxBrEUpyHAxF6N6bM/kTq?=
+ =?us-ascii?Q?wOfCwltbADNNIlTq6gJXm2hwZ+vdiefRjI+yJE+pRxbVDceVn/cDJgFfomAl?=
+ =?us-ascii?Q?snHasRYuwjLFjvkPQ5UfbaR8h7nndm/WeUrbknWxB68TgvF9QGr/3gQOrPqi?=
+ =?us-ascii?Q?eHmCuSvHPjOQgZq2yvewO+KSPM1vj0+zmdXm/JJR76FR8ApWkZtuzKGAhFbf?=
+ =?us-ascii?Q?B7T/Ty4tm+q5BCWmkz8eDtUb+4GPbOuXn4rU9R5eSaaUrWMlg2ssl3O59Tzj?=
+ =?us-ascii?Q?l/rAK1CnIyLWj88u6Y9ucmwp6ssaTVvhWLbUXbHbeweLBz9kd3GOz/AcjyUd?=
+ =?us-ascii?Q?O2L/yOdO1E4SXbs/RfimF9hB+Lqosean8zjbcTay0RKZpzEGIBvh61uYgZb1?=
+ =?us-ascii?Q?BKZQYHUbfpjHrVtb7dI6K20phjEQ1Kah4TFyAkGgY7alN9BAFRg0QhKZU+sB?=
+ =?us-ascii?Q?mZ1V1mpqsInixIyYUOMBCe+/vIw0nmJttuf/h1Kf5Jrb7w=3D=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <B667A00E33403142807AD892B5C49EC8@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2021 10:16:13.4348 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9btijrAd0WpKlGCKn5afqmKI+IKsDnb1z77t8zdLq+0dvqFZgD7GeYo/Tu5yGgjmd2wssJq2Z3iZdZK0DkldHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5461
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41f3906f-3300-43dc-bdb0-08d95beb0596
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2021 10:38:41.7423 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wxvLyYGlVkwANcsG66M7l3/GAISYblApcPk87Solgv1DhcVhIrFYrarB4Sy6r8Y1PKyhB7rLIjvbFI+nEmEi9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6941
 Cc: "syzbot+9ba1174359adba5a5b7c@syzkaller.appspotmail.com"
  <syzbot+9ba1174359adba5a5b7c@syzkaller.appspotmail.com>,
  Jiri Pirko <jiri@resnulli.us>,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
  "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
  syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
+ Ido Schimmel <idosch@idosch.org>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net] net: bridge: validate the NUD_PERMANENT
  bit when adding an extern_learn FDB entry
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -159,51 +151,68 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 10/08/2021 13:09, Vladimir Oltean wrote:
-> On Tue, Aug 10, 2021 at 09:46:34AM +0300, Ido Schimmel wrote:
->> On Mon, Aug 09, 2021 at 04:05:22PM +0000, Vladimir Oltean wrote:
->>> On Mon, Aug 09, 2021 at 03:16:40PM +0300, Ido Schimmel wrote:
->>>> I have at least once selftest where I forgot the 'static' keyword:
->>>>
->>>> bridge fdb add de:ad:be:ef:13:37 dev $swp1 master extern_learn vlan 1
->>>>
->>>> This patch breaks the test when run against both the kernel and hardware
->>>> data paths. I don't mind patching these tests, but we might get more
->>>> reports in the future.
->>>
->>> Is it the 'static' keyword that you forgot, or 'dynamic'? The
->>> tools/testing/selftests/net/forwarding/bridge_vlan_aware.sh selftest
->>> looks to me like it's testing the behavior of an FDB entry which should
->>> roam, and which without the extern_learn flag would be ageable.
->>
->> static - no aging, no roaming
->> dynamic - aging, roaming
->> extern_learn - no aging, roaming
->>
->> So these combinations do not make any sense and the kernel will ignore
->> static/dynamic when extern_learn is specified. It's needed to work
->> around iproute2 behavior of "assume permanent"
-> 
-> Since NTF_EXT_LEARNED is part of ndm->ndm_flags and NUD_REACHABLE/NUD_NOARP
-> are part of ndm->ndm_state, it is not at all clear to me that 'extern_learn'
-> belongs to the same class of bridge neighbor attributes as 'static'/'dynamic',
-> and that it is invalid to have the full degree of freedom. If it isn't,
-> shouldn't the kernel validate that, instead of just ignoring the ndm->ndm_state?
-> If it's too late to validate, shouldn't we at least document somewhere
-> that the ndm_state is ignored in the presence of ndm_flags & NTF_EXT_LEARNED?
-> It is user API after all, easter eggs like this aren't very enjoyable.
-> 
+On Tue, Aug 10, 2021 at 01:15:32PM +0300, Nikolay Aleksandrov wrote:
+> On 10/08/2021 13:09, Vladimir Oltean wrote:
+> > On Tue, Aug 10, 2021 at 09:46:34AM +0300, Ido Schimmel wrote:
+> >> On Mon, Aug 09, 2021 at 04:05:22PM +0000, Vladimir Oltean wrote:
+> >>> On Mon, Aug 09, 2021 at 03:16:40PM +0300, Ido Schimmel wrote:
+> >>>> I have at least once selftest where I forgot the 'static' keyword:
+> >>>>
+> >>>> bridge fdb add de:ad:be:ef:13:37 dev $swp1 master extern_learn vlan =
+1
+> >>>>
+> >>>> This patch breaks the test when run against both the kernel and hard=
+ware
+> >>>> data paths. I don't mind patching these tests, but we might get more
+> >>>> reports in the future.
+> >>>
+> >>> Is it the 'static' keyword that you forgot, or 'dynamic'? The
+> >>> tools/testing/selftests/net/forwarding/bridge_vlan_aware.sh selftest
+> >>> looks to me like it's testing the behavior of an FDB entry which shou=
+ld
+> >>> roam, and which without the extern_learn flag would be ageable.
+> >>
+> >> static - no aging, no roaming
+> >> dynamic - aging, roaming
+> >> extern_learn - no aging, roaming
+> >>
+> >> So these combinations do not make any sense and the kernel will ignore
+> >> static/dynamic when extern_learn is specified. It's needed to work
+> >> around iproute2 behavior of "assume permanent"
+> >=20
+> > Since NTF_EXT_LEARNED is part of ndm->ndm_flags and NUD_REACHABLE/NUD_N=
+OARP
+> > are part of ndm->ndm_state, it is not at all clear to me that 'extern_l=
+earn'
+> > belongs to the same class of bridge neighbor attributes as 'static'/'dy=
+namic',
+> > and that it is invalid to have the full degree of freedom. If it isn't,
+> > shouldn't the kernel validate that, instead of just ignoring the ndm->n=
+dm_state?
+> > If it's too late to validate, shouldn't we at least document somewhere
+> > that the ndm_state is ignored in the presence of ndm_flags & NTF_EXT_LE=
+ARNED?
+> > It is user API after all, easter eggs like this aren't very enjoyable.
+> >=20
+>=20
+> It's too late unfortunately, ignoring other flags in that case has been t=
+he standard
+> behaviour for a long time (it has never made sense to specify flags for e=
+xtern_learn
+> entries). I'll send a separate patch that adds a comment to document it o=
+r if you have
+> another thing in mind feel free to send a patch.
 
-It's too late unfortunately, ignoring other flags in that case has been the standard
-behaviour for a long time (it has never made sense to specify flags for extern_learn
-entries). I'll send a separate patch that adds a comment to document it or if you have
-another thing in mind feel free to send a patch.
+No, I don't have anything else in mind, but since the topic is the same
+as the "net: bridge: fix flags interpretation for extern learn fdb entries"
+patch you already sent, you could as well just send a v2 for that and
+add an extra phrase in a comment somewhere near a NTF_EXT_LEARNED uapi
+definition, or perhaps extend this comment right here:
 
-Thanks,
- Nik
-
+/* NUD_NOARP & NUD_PERMANENT are pseudostates, they never change
+   and make no address resolution or NUD.
+   NUD_PERMANENT also cannot be deleted by garbage collectors.
+ */=
