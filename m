@@ -1,96 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84AE03E53CD
-	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 08:46:52 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1A63E5435
+	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 09:21:55 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 5ADA54045B;
-	Tue, 10 Aug 2021 06:46:50 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 6629D40201;
+	Tue, 10 Aug 2021 07:21:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id i7XC-2w5PXWg; Tue, 10 Aug 2021 06:46:46 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id CFC9A4042E;
-	Tue, 10 Aug 2021 06:46:45 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id MVHgNOkVpCMm; Tue, 10 Aug 2021 07:21:52 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id C032840012;
+	Tue, 10 Aug 2021 07:21:51 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 831CBC001F;
-	Tue, 10 Aug 2021 06:46:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 88C80C001F;
+	Tue, 10 Aug 2021 07:21:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5FC08C000E
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 06:46:44 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 39E6DC000E
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 07:21:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 3C58D607D1
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 06:46:44 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 2361260620
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 07:21:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=messagingengine.com
+ dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jNJ3jqyZgQXm for <bridge@lists.linux-foundation.org>;
- Tue, 10 Aug 2021 06:46:40 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
- [66.111.4.26])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 21A1760685
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 06:46:40 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailout.nyi.internal (Postfix) with ESMTP id 09F125C00DA;
- Tue, 10 Aug 2021 02:46:39 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute6.internal (MEProxy); Tue, 10 Aug 2021 02:46:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=JN+veN
- zxNu2yCry5BzS6GnnIFcdXcsuA3+5PUKwFlcc=; b=BoZoRpgnt+WDl8BD71cTnt
- 7+BSt/lBzqXPG6bIDKHYFpMCqZjm66hBSO2UH09b53Th92wtPMTdJmf5VXOzw729
- vH5+g08CY/1HNoP1WJnQuZ8MH1q6gjJTP60B6R7DPaT6ZtRQqSpUTVDlYA7i8fR2
- fFFals9tLuBpY1kl8yoypuOM9LmqTNiNh/A/27YM5iEQltPcsj7T3HVu61cLltVF
- GFYB9cwoC0z/W0+EEHdWWhS70blb532RycTUfV2O8i2Tk/3TFbWL/k7Q6tgRDUpi
- GQdv0Itn4ZTYaZu0nnPgH4XYW1jpNvzjomNX/9tVX9FQnceVuZqO2s6/NF1An+YQ
- ==
-X-ME-Sender: <xms:ziASYcBB5dSltBqSmw_JDrrgwpsv7-mYJWfx-mfFNAbIsOpK-2FJWQ>
- <xme:ziASYeiapQMMWSX8etxmjqs8jfDW8ynFazw9cERJ1un0j2wVhpTcPA1QrMUwCHt0r
- _LtHf6n-wabWSo>
-X-ME-Received: <xmr:ziASYfm870syRJiw3-TmmqSN0pIppJ9vF7FmNwBzs2dGhJeRC9FqYOATTYE6uVKKxSKJ1TzoL5Kd7nrxutfsotsiq6-Sww>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrjeekgdduuddvucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefkughoucfu
- tghhihhmmhgvlhcuoehiughoshgthhesihguohhstghhrdhorhhgqeenucggtffrrghtth
- gvrhhnpedtffekkeefudffveegueejffejhfetgfeuuefgvedtieehudeuueekhfduheel
- teenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehiug
- hoshgthhesihguohhstghhrdhorhhg
-X-ME-Proxy: <xmx:ziASYSyYSiGjB0dkA6JrRzz24bQUqi6HoIZrJ6esfI8Q9lc6_E16Tg>
- <xmx:ziASYRQXTt5Zh_pRcpSyfS4pAkqTAosvO-ryyv_fQo0gHPmmhcr5PA>
- <xmx:ziASYdZnUu-GxAcf8APzExRiW4ZoyIOZXmUCOosyZuF_Pg7mwCf4wQ>
- <xmx:zyASYSSvy1uQ3lBNBE9HnWlc7dlx6H51DryCBzxkK9zO0DBAIGw6eA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 10 Aug 2021 02:46:37 -0400 (EDT)
-Date: Tue, 10 Aug 2021 09:46:34 +0300
-From: Ido Schimmel <idosch@idosch.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Message-ID: <YRIgynudgTsOpe5q@shredder>
-References: <20210801231730.7493-1-vladimir.oltean@nxp.com>
- <YREcqAdU+6IpT0+w@shredder> <20210809160521.audhnv7o2tugwtmp@skbuf>
+ with ESMTP id zCYYmOo13g96 for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Aug 2021 07:21:49 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 4A0AF60618
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 07:21:49 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id g21so28811182edb.4
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 00:21:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=up+eew742X9QXmow643XmONFSJDHCmQiISaU60otKWY=;
+ b=Hj6XIanI3u2F1shNBA3Vyc+8RWLtizk9WYkfA1YQliwp9LxB8743ERNDZ1NOhwS5NO
+ c/FXufFGrZ0A9Ttt4tNCMet0B6blA8q3DDcGog5oL0gLLHpuHYrncXmkNyxHNfamrFUB
+ f94yI+jcT93NbNFUP1XRjXxW6oGJypqX+f6kZ4CAJiuw5hvImbJdLu00Dd7BrlUpoxrP
+ IYRA2gxyT0rrX3ybz58u2qpfDjC0MxkwNcvkAFNQoSugDDBts+jV6arlHnpXUejU/GlM
+ T88EZEDQAk9F/M/dWDAuO4WkOAZZXO4qKFtttU8adSRuQit6myk/xka7e+++ODKgdxBR
+ bd1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=up+eew742X9QXmow643XmONFSJDHCmQiISaU60otKWY=;
+ b=ENnpg86maQMyhEnF2fXj14aDJSiSlCD/Xi+X5QO3eXf+UCploB/6bBpHA9w/5Cf3mb
+ ACCwWPBASBeLjO+jQsscIV3OSLSHVXa0B2qjjCl9pvoxaPpFIQ9J911kWhiQWAWYdgz9
+ Sd5ETXmx9xjohujHCJGwrfDo9vARiAShYOJ/NncUdaN5PMaPb3aubJorpy2+Bi255PMz
+ wUTgGNIphq3WtbpvN1TF/UWlomhMzo148ceq6C9jKHrebx56TTGr01tTwxd0M4BX7LxA
+ AEAWJB4MoU+3Rj/jyGcr8KjXIwPKzMl4kUzBxyZxdleXzryQU2G4R59a1oMChzVASLL9
+ umQg==
+X-Gm-Message-State: AOAM531+RaZLjnzSBJLK+ZNroianeXNjueUrRb9zb7/MlL2NkQ2Oh4pE
+ R6H3pEHlZZm9QdVbGhY5hlhkQg==
+X-Google-Smtp-Source: ABdhPJzyiED0fEl+efvYe4jeXCQUt5Op8b4nYFC7UVLWft2HvFbF4JCi+uojgtNHGlrhWtFUeJ6n+Q==
+X-Received: by 2002:a05:6402:1514:: with SMTP id
+ f20mr3303243edw.336.1628580107222; 
+ Tue, 10 Aug 2021 00:21:47 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id f26sm9141725edu.4.2021.08.10.00.21.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Aug 2021 00:21:46 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Tue, 10 Aug 2021 10:21:39 +0300
+Message-Id: <20210810072139.1597621-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <YRIfT6vLL16hr+7p@shredder>
+References: <YRIfT6vLL16hr+7p@shredder>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210809160521.audhnv7o2tugwtmp@skbuf>
-Cc: "syzbot+9ba1174359adba5a5b7c@syzkaller.appspotmail.com"
- <syzbot+9ba1174359adba5a5b7c@syzkaller.appspotmail.com>,
- Jiri Pirko <jiri@resnulli.us>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
- "nikolay@nvidia.com" <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net] net: bridge: validate the NUD_PERMANENT
- bit when adding an extern_learn FDB entry
+Content-Transfer-Encoding: 8bit
+Cc: vladimir.oltean@nxp.com, Ido Schimmel <idosch@nvidia.com>,
+ bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ roopa@nvidia.com
+Subject: [Bridge] [PATCH net] net: bridge: fix flags interpretation for
+	extern learn fdb entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,25 +100,103 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Aug 09, 2021 at 04:05:22PM +0000, Vladimir Oltean wrote:
-> On Mon, Aug 09, 2021 at 03:16:40PM +0300, Ido Schimmel wrote:
-> > I have at least once selftest where I forgot the 'static' keyword:
-> >
-> > bridge fdb add de:ad:be:ef:13:37 dev $swp1 master extern_learn vlan 1
-> >
-> > This patch breaks the test when run against both the kernel and hardware
-> > data paths. I don't mind patching these tests, but we might get more
-> > reports in the future.
-> 
-> Is it the 'static' keyword that you forgot, or 'dynamic'? The
-> tools/testing/selftests/net/forwarding/bridge_vlan_aware.sh selftest
-> looks to me like it's testing the behavior of an FDB entry which should
-> roam, and which without the extern_learn flag would be ageable.
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-static - no aging, no roaming
-dynamic - aging, roaming
-extern_learn - no aging, roaming
+Ignore fdb flags when adding port extern learn entries and always set
+BR_FDB_LOCAL flag when adding bridge extern learn entries. This is
+closest to the behaviour we had before and avoids breaking any use cases
+which were allowed.
 
-So these combinations do not make any sense and the kernel will ignore
-static/dynamic when extern_learn is specified. It's needed to work
-around iproute2 behavior of "assume permanent"
+This patch fixes iproute2 calls which assume NUD_PERMANENT and were
+allowed before, example:
+$ bridge fdb add 00:11:22:33:44:55 dev swp1 extern_learn
+
+Extern learn entries are allowed to roam, but do not expire, so static
+or dynamic flags make no sense for them.
+
+Fixes: eb100e0e24a2 ("net: bridge: allow to add externally learned entries from user-space")
+Fixes: 0541a6293298 ("net: bridge: validate the NUD_PERMANENT bit when adding an extern_learn FDB entry")
+Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+Tested-by: Ido Schimmel <idosch@nvidia.com>
+Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
+As discussed I decided to keep the error for !p and !NUD_PERMANENT case.
+
+ net/bridge/br.c         |  3 +--
+ net/bridge/br_fdb.c     | 11 ++++-------
+ net/bridge/br_private.h |  2 +-
+ 3 files changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/net/bridge/br.c b/net/bridge/br.c
+index bbab9984f24e..ef743f94254d 100644
+--- a/net/bridge/br.c
++++ b/net/bridge/br.c
+@@ -166,8 +166,7 @@ static int br_switchdev_event(struct notifier_block *unused,
+ 	case SWITCHDEV_FDB_ADD_TO_BRIDGE:
+ 		fdb_info = ptr;
+ 		err = br_fdb_external_learn_add(br, p, fdb_info->addr,
+-						fdb_info->vid,
+-						fdb_info->is_local, false);
++						fdb_info->vid, false);
+ 		if (err) {
+ 			err = notifier_from_errno(err);
+ 			break;
+diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
+index 835cec1e5a03..5dee30966ed3 100644
+--- a/net/bridge/br_fdb.c
++++ b/net/bridge/br_fdb.c
+@@ -1044,10 +1044,7 @@ static int __br_fdb_add(struct ndmsg *ndm, struct net_bridge *br,
+ 					   "FDB entry towards bridge must be permanent");
+ 			return -EINVAL;
+ 		}
+-
+-		err = br_fdb_external_learn_add(br, p, addr, vid,
+-						ndm->ndm_state & NUD_PERMANENT,
+-						true);
++		err = br_fdb_external_learn_add(br, p, addr, vid, true);
+ 	} else {
+ 		spin_lock_bh(&br->hash_lock);
+ 		err = fdb_add_entry(br, p, addr, ndm, nlh_flags, vid, nfea_tb);
+@@ -1275,7 +1272,7 @@ void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p)
+ }
+ 
+ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+-			      const unsigned char *addr, u16 vid, bool is_local,
++			      const unsigned char *addr, u16 vid,
+ 			      bool swdev_notify)
+ {
+ 	struct net_bridge_fdb_entry *fdb;
+@@ -1293,7 +1290,7 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+ 		if (swdev_notify)
+ 			flags |= BIT(BR_FDB_ADDED_BY_USER);
+ 
+-		if (is_local)
++		if (!p)
+ 			flags |= BIT(BR_FDB_LOCAL);
+ 
+ 		fdb = fdb_create(br, p, addr, vid, flags);
+@@ -1322,7 +1319,7 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+ 		if (swdev_notify)
+ 			set_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
+ 
+-		if (is_local)
++		if (!p)
+ 			set_bit(BR_FDB_LOCAL, &fdb->flags);
+ 
+ 		if (modified)
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index aa64d8d63ca3..2b48b204205e 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -711,7 +711,7 @@ int br_fdb_get(struct sk_buff *skb, struct nlattr *tb[], struct net_device *dev,
+ int br_fdb_sync_static(struct net_bridge *br, struct net_bridge_port *p);
+ void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p);
+ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+-			      const unsigned char *addr, u16 vid, bool is_local,
++			      const unsigned char *addr, u16 vid,
+ 			      bool swdev_notify);
+ int br_fdb_external_learn_del(struct net_bridge *br, struct net_bridge_port *p,
+ 			      const unsigned char *addr, u16 vid,
+-- 
+2.31.1
+
