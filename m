@@ -2,80 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16B03E7C3F
-	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 17:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7B63E7C42
+	for <lists.bridge@lfdr.de>; Tue, 10 Aug 2021 17:30:14 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 70CFC837AC;
-	Tue, 10 Aug 2021 15:30:09 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 5F9AB8381F;
+	Tue, 10 Aug 2021 15:30:13 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zV-JADW3dk2q; Tue, 10 Aug 2021 15:30:08 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id A2B458381F;
-	Tue, 10 Aug 2021 15:30:07 +0000 (UTC)
+	with ESMTP id ZqJ-LrS0Dizh; Tue, 10 Aug 2021 15:30:12 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id D5789834DE;
+	Tue, 10 Aug 2021 15:30:11 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 70BDDC0010;
-	Tue, 10 Aug 2021 15:30:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A0A5EC001F;
+	Tue, 10 Aug 2021 15:30:11 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1228FC001C
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:30:04 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 12B4EC001C
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:30:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 2EB0F40484
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:30:02 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 046E540469
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:30:03 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id J2zOQygL-cIx for <bridge@lists.linux-foundation.org>;
- Tue, 10 Aug 2021 15:30:00 +0000 (UTC)
+ with ESMTP id O_chJBxO-hpt for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Aug 2021 15:30:01 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 88C9E403E8
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:30:00 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- k5-20020a05600c1c85b02902e699a4d20cso2815219wms.2
- for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 08:30:00 -0700 (PDT)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 89315403B2
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 15:30:01 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id
+ m28-20020a05600c3b1cb02902b5a8c22575so2857668wms.0
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Aug 2021 08:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=VZ4j9a98e0WJs436DgllC2xVf3eKi/fAJXZDQxBoJ/o=;
- b=RZRWfM+IcMidlckNyPcIcDqyBy9Jbscz3ilikrUbLBfAdF7TgX/NFmFPliJ099cK7i
- TUcOKL4JaiRFGspcLvBCgp9tDNvDfykQ+kDzdx5o+AsvimQKC/1IaCLWEmXNhmTj1CEO
- FHE2VRzmt2Bub0WKZa50odMeayr6ZzoODplsld01AxX9E2JKgt7URVSmPQOh6y6hjhuv
- Tcp4lrRtwZPf/7aTEzgX1kJxynTNdlQTC1J5Dq/0b2CZyLz87Zf5vMC0JixAo2ukHg9H
- LGD3sH9jSRquaiLIT5M5UYzMN03Qj6K3RepBRWbZy6X6aC/q9wg0LzWmGya5OjlT+OMo
- SXgA==
+ bh=0U8ioPcKzi2jt/DpEgccopIlJARByWOltx48kXuPcYI=;
+ b=kh5L/JWBjVVX4qw5w0ujY9XuKUAA07r7Ic8m9ki46oKaf5YlGdAEMySZlKZgUbRi3f
+ eLwBWw9M4TM+6HB+b8qpu0bC6jQgO8MWZqsbQM2mgBa9ZLfGx+98t07ah13JqfnuyR2r
+ Lb9YtCbNJD1sDLzN4hcoTjRZZ8lsqRuvLhSNja9Ny3ZAVd9jilDt96cBJfMTw+KL6n0g
+ EOY5zVt36u07rbleTpuvtCD6cb0M5HEFFgo9r1WUQarzEiTZCF3RFf6hXKF15MXhYcSS
+ +hl4SO7x1yCOuCNNi7dkHVDY+KO4KR+zoAUSoHoH1ujbK/9YZ3BcoBwSNo6m8znFUO1J
+ M5Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=VZ4j9a98e0WJs436DgllC2xVf3eKi/fAJXZDQxBoJ/o=;
- b=ZWkv/VMCCn5OZJI+yY6POnkLakwa533nIytQMIJ18IwkBPiF4tfDNiVmbVkB71f5dc
- T1xTmWOXNYY8PHU+j2eWXv3lrphP2H6ZEswavju8qMVnzlVyHlcpSEPeRy/beIebIzgL
- cf9BdsEugSMeJaxSRKMHymTRRkIWFAO1jbW15qKNCoziMZ3llrzXzbEnQDYKEsa8roIu
- NtsVHjDcqT68ilJX0Qq1VscOD3FmpG+2GpH6u6SNBfmlQ2868Xe9hj6lWWT3UpOHu1Vg
- M9RqrRuaexjYsFLKsjl6F00pzW4rFj0kJpK9JwGgVqgVe/Bg09Q2nOu00H1MYyIH7QCR
- TPDw==
-X-Gm-Message-State: AOAM530IfzALaZ/ALzWzMhfaiEXqYJ+0zkeiMFx4J+ZJcthDAZbkiqMa
- 7CRZRn3mGP5r2Y6AtLH/cGur5Q==
-X-Google-Smtp-Source: ABdhPJy+D5SMrntWoqaPDCOA+6LGeKpopVn8QADhgzGhWjza9xC3CdGOyoA6v2+9Frv1xfDwQPhAhQ==
-X-Received: by 2002:a1c:32c1:: with SMTP id y184mr4953430wmy.70.1628609398567; 
- Tue, 10 Aug 2021 08:29:58 -0700 (PDT)
+ bh=0U8ioPcKzi2jt/DpEgccopIlJARByWOltx48kXuPcYI=;
+ b=GSVPZPPl/S9n+y1jO/3k8cBYra/G+NX0145VRJAVr7rj/wEvbBZ/YNdGnWaMQPqMGa
+ YO4EXdnkGITjU8KZCbryw/yL87FzeTDx90O90TuBndzG0sMsQ7YdgIiOgtAE8Cfma0ws
+ HlvNvHW/RebxLe/qRggGBRudtaviHpLhUtfsijQsm5mgkX39usTezvlnOtiz8QCMHbYo
+ Bwv5BQGOtOzVeGy4wHXNKo3BmSeDsgNnQbP0OJez1KIrgAOwzfUk9MWBmBiqANBEr2hn
+ 3j8Wi8BluBrKvSE7ZKFOoPWzZNB9foA+DLo0oRmm59zXZ+3iJ/mSgXSardZF4jmsdMZD
+ 7vzQ==
+X-Gm-Message-State: AOAM53082wT97Mnsq8ZLtCSnJgL6hwXdH/oAxEkr1/fJStMMtMoAYsRM
+ qfysyCA0okgdqZfNYFDCBrQWbjD1grMZJfRR
+X-Google-Smtp-Source: ABdhPJz40ns1utPPP7KryyUQIlGnjnhCNIYvVZBTqha+LY0zDCnYn3WSnzqmu42ZcLbEGELUPqpxVg==
+X-Received: by 2002:a05:600c:4eca:: with SMTP id
+ g10mr22571013wmq.16.1628609399520; 
+ Tue, 10 Aug 2021 08:29:59 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id f15sm22848219wrp.12.2021.08.10.08.29.57
+ by smtp.gmail.com with ESMTPSA id f15sm22848219wrp.12.2021.08.10.08.29.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 08:29:58 -0700 (PDT)
+ Tue, 10 Aug 2021 08:29:59 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Tue, 10 Aug 2021 18:29:32 +0300
-Message-Id: <20210810152933.178325-15-razor@blackwall.org>
+Date: Tue, 10 Aug 2021 18:29:33 +0300
+Message-Id: <20210810152933.178325-16-razor@blackwall.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210810152933.178325-1-razor@blackwall.org>
 References: <20210810152933.178325-1-razor@blackwall.org>
@@ -83,8 +84,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 14/15] net: bridge: mcast: use the proper
-	multicast context when dumping router ports
+Subject: [Bridge] [PATCH net-next 15/15] net: bridge: vlan: use
+	br_rports_fill_info() to export mcast router ports
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,120 +102,158 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-When we are dumping the router ports of a vlan mcast context we need to
-use the bridge/vlan and port/vlan's multicast contexts to check if
-IPv4/IPv6 router port is present and later to dump the vlan id.
+Embed the standard multicast router port export by br_rports_fill_info()
+into a new global vlan attribute BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS.
+In order to have the same format for the global bridge mcast context and
+the per-vlan mcast context we need a double-nesting:
+ - BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS
+   - MDBA_ROUTER
+
+Currently we don't compare router lists, if any router port exists in
+the bridge mcast contexts we consider their option sets as different and
+export them separately.
+
+In addition we export the router port vlan id when dumping similar to
+the router port notification format.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/br_mdb.c | 49 ++++++++++++++++++++++++++++-----------------
- 1 file changed, 31 insertions(+), 18 deletions(-)
+ include/uapi/linux/if_bridge.h |  1 +
+ net/bridge/br_mdb.c            | 17 ++++-------------
+ net/bridge/br_private.h        | 15 +++++++++++++++
+ net/bridge/br_vlan_options.c   | 18 ++++++++++++++++++
+ 4 files changed, 38 insertions(+), 13 deletions(-)
 
+diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+index 716ce30b3ca8..4a57d063768d 100644
+--- a/include/uapi/linux/if_bridge.h
++++ b/include/uapi/linux/if_bridge.h
+@@ -562,6 +562,7 @@ enum {
+ 	BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_INTVL,
+ 	BRIDGE_VLANDB_GOPTS_MCAST_QUERIER,
+ 	BRIDGE_VLANDB_GOPTS_MCAST_ROUTER,
++	BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS,
+ 	__BRIDGE_VLANDB_GOPTS_MAX
+ };
+ #define BRIDGE_VLANDB_GOPTS_MAX (__BRIDGE_VLANDB_GOPTS_MAX - 1)
 diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index 73a8915b0148..7c16e2c76220 100644
+index 7c16e2c76220..389ff3c1e9d9 100644
 --- a/net/bridge/br_mdb.c
 +++ b/net/bridge/br_mdb.c
-@@ -16,7 +16,7 @@
+@@ -16,16 +16,6 @@
  
  #include "br_private.h"
  
--static bool br_rports_have_mc_router(struct net_bridge_mcast *brmctx)
-+static bool br_rports_have_mc_router(const struct net_bridge_mcast *brmctx)
- {
- #if IS_ENABLED(CONFIG_IPV6)
- 	return !hlist_empty(&brmctx->ip4_mc_router_list) ||
-@@ -27,46 +27,58 @@ static bool br_rports_have_mc_router(struct net_bridge_mcast *brmctx)
- }
- 
+-static bool br_rports_have_mc_router(const struct net_bridge_mcast *brmctx)
+-{
+-#if IS_ENABLED(CONFIG_IPV6)
+-	return !hlist_empty(&brmctx->ip4_mc_router_list) ||
+-	       !hlist_empty(&brmctx->ip6_mc_router_list);
+-#else
+-	return !hlist_empty(&brmctx->ip4_mc_router_list);
+-#endif
+-}
+-
  static bool
--br_ip4_rports_get_timer(struct net_bridge_port *port, unsigned long *timer)
-+br_ip4_rports_get_timer(struct net_bridge_mcast_port *pmctx,
-+			unsigned long *timer)
- {
--	*timer = br_timer_value(&port->multicast_ctx.ip4_mc_router_timer);
--	return !hlist_unhashed(&port->multicast_ctx.ip4_rlist);
-+	*timer = br_timer_value(&pmctx->ip4_mc_router_timer);
-+	return !hlist_unhashed(&pmctx->ip4_rlist);
- }
- 
- static bool
--br_ip6_rports_get_timer(struct net_bridge_port *port, unsigned long *timer)
-+br_ip6_rports_get_timer(struct net_bridge_mcast_port *pmctx,
-+			unsigned long *timer)
- {
- #if IS_ENABLED(CONFIG_IPV6)
--	*timer = br_timer_value(&port->multicast_ctx.ip6_mc_router_timer);
--	return !hlist_unhashed(&port->multicast_ctx.ip6_rlist);
-+	*timer = br_timer_value(&pmctx->ip6_mc_router_timer);
-+	return !hlist_unhashed(&pmctx->ip6_rlist);
- #else
- 	*timer = 0;
- 	return false;
+ br_ip4_rports_get_timer(struct net_bridge_mcast_port *pmctx,
+ 			unsigned long *timer)
+@@ -47,8 +37,8 @@ br_ip6_rports_get_timer(struct net_bridge_mcast_port *pmctx,
  #endif
  }
  
--static int br_rports_fill_info(struct sk_buff *skb, struct netlink_callback *cb,
--			       struct net_device *dev)
-+static int br_rports_fill_info(struct sk_buff *skb,
-+			       const struct net_bridge_mcast *brmctx)
+-static int br_rports_fill_info(struct sk_buff *skb,
+-			       const struct net_bridge_mcast *brmctx)
++int br_rports_fill_info(struct sk_buff *skb,
++			const struct net_bridge_mcast *brmctx)
  {
--	struct net_bridge *br = netdev_priv(dev);
-+	u16 vid = brmctx->vlan ? brmctx->vlan->vid : 0;
+ 	u16 vid = brmctx->vlan ? brmctx->vlan->vid : 0;
  	bool have_ip4_mc_rtr, have_ip6_mc_rtr;
- 	unsigned long ip4_timer, ip6_timer;
- 	struct nlattr *nest, *port_nest;
- 	struct net_bridge_port *p;
+@@ -97,7 +87,8 @@ static int br_rports_fill_info(struct sk_buff *skb,
+ 				 ip4_timer)) ||
+ 		    (have_ip6_mc_rtr &&
+ 		     nla_put_u32(skb, MDBA_ROUTER_PATTR_INET6_TIMER,
+-				 ip6_timer))) {
++				 ip6_timer)) ||
++		    (vid && nla_put_u16(skb, MDBA_ROUTER_PATTR_VID, vid))) {
+ 			nla_nest_cancel(skb, port_nest);
+ 			goto fail;
+ 		}
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index f5af6b56be8f..6f5106ab6f20 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -958,6 +958,8 @@ bool br_multicast_toggle_global_vlan(struct net_bridge_vlan *vlan, bool on);
+ int br_mdb_replay(struct net_device *br_dev, struct net_device *dev,
+ 		  const void *ctx, bool adding, struct notifier_block *nb,
+ 		  struct netlink_ext_ack *extack);
++int br_rports_fill_info(struct sk_buff *skb,
++			const struct net_bridge_mcast *brmctx);
  
--	if (!br->multicast_ctx.multicast_router)
--		return 0;
--
--	if (!br_rports_have_mc_router(&br->multicast_ctx))
-+	if (!brmctx->multicast_router || !br_rports_have_mc_router(brmctx))
- 		return 0;
+ static inline bool br_group_is_l2(const struct br_ip *group)
+ {
+@@ -1181,6 +1183,17 @@ br_multicast_port_ctx_state_stopped(const struct net_bridge_mcast_port *pmctx)
+ 		pmctx->vlan->state == BR_STATE_BLOCKING);
+ }
  
- 	nest = nla_nest_start_noflag(skb, MDBA_ROUTER);
- 	if (nest == NULL)
- 		return -EMSGSIZE;
- 
--	list_for_each_entry_rcu(p, &br->port_list, list) {
--		have_ip4_mc_rtr = br_ip4_rports_get_timer(p, &ip4_timer);
--		have_ip6_mc_rtr = br_ip6_rports_get_timer(p, &ip6_timer);
-+	list_for_each_entry_rcu(p, &brmctx->br->port_list, list) {
-+		struct net_bridge_mcast_port *pmctx;
++static inline bool
++br_rports_have_mc_router(const struct net_bridge_mcast *brmctx)
++{
++#if IS_ENABLED(CONFIG_IPV6)
++	return !hlist_empty(&brmctx->ip4_mc_router_list) ||
++	       !hlist_empty(&brmctx->ip6_mc_router_list);
++#else
++	return !hlist_empty(&brmctx->ip4_mc_router_list);
++#endif
++}
 +
-+		if (vid) {
-+			struct net_bridge_vlan *v;
+ static inline bool
+ br_multicast_ctx_options_equal(const struct net_bridge_mcast *brmctx1,
+ 			       const struct net_bridge_mcast *brmctx2)
+@@ -1205,6 +1218,8 @@ br_multicast_ctx_options_equal(const struct net_bridge_mcast *brmctx1,
+ 	       brmctx2->multicast_startup_query_interval &&
+ 	       brmctx1->multicast_querier == brmctx2->multicast_querier &&
+ 	       brmctx1->multicast_router == brmctx2->multicast_router &&
++	       !br_rports_have_mc_router(brmctx1) &&
++	       !br_rports_have_mc_router(brmctx2) &&
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	       brmctx1->multicast_mld_version ==
+ 	       brmctx2->multicast_mld_version &&
+diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
+index 6ba45b73931f..b4fd5fa441b7 100644
+--- a/net/bridge/br_vlan_options.c
++++ b/net/bridge/br_vlan_options.c
+@@ -272,6 +272,7 @@ bool br_vlan_global_opts_can_enter_range(const struct net_bridge_vlan *v_curr,
+ bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
+ 			      const struct net_bridge_vlan *v_opts)
+ {
++	struct nlattr *nest2 __maybe_unused;
+ 	u64 clockval __maybe_unused;
+ 	struct nlattr *nest;
+ 
+@@ -326,6 +327,23 @@ bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
+ 			      clockval, BRIDGE_VLANDB_GOPTS_PAD))
+ 		goto out_err;
+ 
++	if (br_rports_have_mc_router(&v_opts->br_mcast_ctx)) {
++		nest2 = nla_nest_start(skb,
++				       BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS);
++		if (!nest2)
++			goto out_err;
 +
-+			v = br_vlan_find(nbp_vlan_group(p), vid);
-+			if (!v)
-+				continue;
-+			pmctx = &v->port_mcast_ctx;
-+		} else {
-+			pmctx = &p->multicast_ctx;
++		rcu_read_lock();
++		if (br_rports_fill_info(skb, &v_opts->br_mcast_ctx)) {
++			rcu_read_unlock();
++			nla_nest_cancel(skb, nest2);
++			goto out_err;
 +		}
++		rcu_read_unlock();
 +
-+		have_ip4_mc_rtr = br_ip4_rports_get_timer(pmctx, &ip4_timer);
-+		have_ip6_mc_rtr = br_ip6_rports_get_timer(pmctx, &ip6_timer);
- 
- 		if (!have_ip4_mc_rtr && !have_ip6_mc_rtr)
- 			continue;
-@@ -390,6 +402,7 @@ static int br_mdb_dump(struct sk_buff *skb, struct netlink_callback *cb)
- 
- 	for_each_netdev_rcu(net, dev) {
- 		if (dev->priv_flags & IFF_EBRIDGE) {
-+			struct net_bridge *br = netdev_priv(dev);
- 			struct br_port_msg *bpm;
- 
- 			if (idx < s_idx)
-@@ -406,7 +419,7 @@ static int br_mdb_dump(struct sk_buff *skb, struct netlink_callback *cb)
- 			bpm->ifindex = dev->ifindex;
- 			if (br_mdb_fill_info(skb, cb, dev) < 0)
- 				goto out;
--			if (br_rports_fill_info(skb, cb, dev) < 0)
-+			if (br_rports_fill_info(skb, &br->multicast_ctx) < 0)
- 				goto out;
- 
- 			cb->args[1] = 0;
++		nla_nest_end(skb, nest2);
++	}
++
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	if (nla_put_u8(skb, BRIDGE_VLANDB_GOPTS_MCAST_MLD_VERSION,
+ 		       v_opts->br_mcast_ctx.multicast_mld_version))
 -- 
 2.31.1
 
