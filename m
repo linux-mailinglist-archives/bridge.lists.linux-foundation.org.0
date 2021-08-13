@@ -1,81 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA5C3EB745
-	for <lists.bridge@lfdr.de>; Fri, 13 Aug 2021 17:00:32 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id D94023EB740
+	for <lists.bridge@lfdr.de>; Fri, 13 Aug 2021 17:00:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id B1B6860BAD;
-	Fri, 13 Aug 2021 15:00:30 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 12E3A40025;
+	Fri, 13 Aug 2021 15:00:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8AFO9gtAvyE2; Fri, 13 Aug 2021 15:00:30 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id FdSyNW30pmWC; Fri, 13 Aug 2021 15:00:22 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 3FE32605AD;
-	Fri, 13 Aug 2021 15:00:29 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 843FB402BE;
+	Fri, 13 Aug 2021 15:00:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1258BC000E;
-	Fri, 13 Aug 2021 15:00:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6BD91C001A;
+	Fri, 13 Aug 2021 15:00:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 928D2C000E
- for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 15:00:27 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 12A57C000E
+ for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 15:00:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 70E8D4073F
- for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 15:00:27 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 01DD9605C8
+ for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 15:00:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2aPWEJEtjEBD for <bridge@lists.linux-foundation.org>;
- Fri, 13 Aug 2021 15:00:26 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 1YKX3A2sBnLF for <bridge@lists.linux-foundation.org>;
+ Fri, 13 Aug 2021 15:00:18 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 9A9AF40364
- for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 15:00:26 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id b13so13731715wrs.3
- for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 08:00:26 -0700 (PDT)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 49A2060B85
+ for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 15:00:18 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id go31so18808889ejc.6
+ for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 08:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ylXTkKnP8F765h1iV6deSBEGxEMvHyfG/yoaLoV5+ec=;
- b=QbNvZc5kYjk7xyUSgO4WUdkGPWtaOV18CuuE8/GlL2Pmakr+f4u7N8ShZGdrI9ieks
- LZIWgVjFVwLhtAHVR2oAgl9wWNdyxHhOhBRu2jiMgJVdJTgYS+lIPIsIxBMAKfALjNqg
- Ax68bOfjx3fQnKiaz43HoaR8yMmVR8WzceAJsI8YgzhQzOZ84yjW4j/76y2OLAPI22Qs
- uSn/lGHXeXaQN7LEcJz/R741CLARI7vK8M6oDl7ngOWXrRRIoNegRx8vzFvBh1bcjQSn
- YqazStUsLcliEAHgIw10P7bZFnRnTVhmM6c4DYHal5UrbIUfSb36mbUSugEOLvl7i5R9
- EGDg==
+ bh=aa6aODpsX834V6oU0xZmiqy1nFlZHpElVbhhKZgOhDo=;
+ b=sQEOZPXHoxZtbTNkHHooY4Pumi+oskz2F8ufdb3z6JrWAZa1A6Q72GLJxcN3nWax19
+ vihTl5SF3JYm2heSXB8FQ+QsvGRblKrLsjSWXbJ3D4a3Jx56AIA/ojVZn10ynMIiq/+z
+ gPrEYy752hlctVr60LlMKKuPUpp5v2EoWndmvDAzPKzzHrjNSYltG4+ZWM0oM8hTYAyc
+ RSLASk9DytjL35qgc/9+F0YRWQya24EEjesNUYKL/vELEnZ2KMaRUL60vYConZ7lTUwH
+ nN4zfmFbt0wck+AGDxFMMRYtINkv5fV3oxZG4ePmPGi8X3wOk5YX7FT7pW7Cnpg4+sYF
+ x6sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ylXTkKnP8F765h1iV6deSBEGxEMvHyfG/yoaLoV5+ec=;
- b=TvkAjiMsuxMXBv4oFaEjChWftjKy3AIKMg/q/XBzeOx+UW6GWbXYt5CU4mVwZcNcdT
- wrqYQhTSDiVwXbIXu1JWrLI4vVAYRRsFORD14Y1TLm359XzwTOq0Jrg563h1c2aqhpsD
- IOi+SV1G5p+yB4ZlwCpFOz+TNmyLKuOH9UHYTTnsvtYY85g4svqe1iWTuSCOTS5wS+ia
- xBNTqUXuceJCmXqZtUPLn+dqnZ4GYk88sifYMQWEu7JtkSEI7r8bZyBw1GVzICiaX2ID
- IpV/yHPbK1ojgiRxNyN8lRXAlthy82Ese0KctO6LRU73S6BM1Sr1WMDAU/Xx44edMdoO
- Btgw==
-X-Gm-Message-State: AOAM531fDeehOEEvbotD5EhASbZqkFrJ3lgUyJYHA7hrtS0JBrQDlVx7
- Zss+BSttY8sJdYcN2A58ETTRQD1cGW7bFdXZ
-X-Google-Smtp-Source: ABdhPJytOmrQdQmVDY/IBScENfnM77up5IuGZN4Mpz4M0PlN2y/GyF8ZmGGyh9JKm2F6A9+2PVO42Q==
-X-Received: by 2002:a17:906:72c8:: with SMTP id
- m8mr2832131ejl.508.1628866813260; 
- Fri, 13 Aug 2021 08:00:13 -0700 (PDT)
+ bh=aa6aODpsX834V6oU0xZmiqy1nFlZHpElVbhhKZgOhDo=;
+ b=hoV5QbZedu4QVD59CPJ2zA78zhmryLlBvmB4IzTMP2fl6u93JRjcYYpnvsren7cgXl
+ bYblQUysSWvZL3egt8mFkqlGZ2qBClaaRceqeIQy+sRB970TnSsoQvS/102lq0D1Ulbv
+ HBz1yJzpSO5NJ2gZ2SmBCSQFTpK2SPsFOXZethIDjqpzHbyxdbmhVEBj30DTJR3r/oob
+ kX+IBLxe6H6ljsTUXpZs6zbXcWDuCkl8ggBlDXjqt0RElML6zBjxxsO62hEk29wc1yIf
+ U4Bz58Y42g8Jjxx/ZeS57/2RxBAqxd/i/1y+4tmRRbFjTvyb1agTOBbXCyc+7CpOtIRM
+ XX4Q==
+X-Gm-Message-State: AOAM532iteoCVz+o95FciI5DJ8TlreLQk16yuKa4+KosYNv0ovgtC9t0
+ aTxtCQfGeAFKFSCbHyc+l60oGQ==
+X-Google-Smtp-Source: ABdhPJzFsTMAlozstkoNR1mzooQNgJooaMiRFM9ZbCOcrTg0bzwofyZywtoh6eDuaMoWuHlZvOgzBw==
+X-Received: by 2002:a17:906:c20d:: with SMTP id
+ d13mr2796793ejz.259.1628866816195; 
+ Fri, 13 Aug 2021 08:00:16 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id d26sm1015711edp.90.2021.08.13.08.00.12
+ by smtp.gmail.com with ESMTPSA id d26sm1015711edp.90.2021.08.13.08.00.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Aug 2021 08:00:12 -0700 (PDT)
+ Fri, 13 Aug 2021 08:00:15 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Fri, 13 Aug 2021 18:00:01 +0300
-Message-Id: <20210813150002.673579-6-razor@blackwall.org>
+Date: Fri, 13 Aug 2021 18:00:02 +0300
+Message-Id: <20210813150002.673579-7-razor@blackwall.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210813150002.673579-1-razor@blackwall.org>
 References: <20210813150002.673579-1-razor@blackwall.org>
@@ -83,8 +83,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 5/6] net: bridge: mcast: dump ipv6 querier
-	state
+Subject: [Bridge] [PATCH net-next 6/6] net: bridge: vlan: dump mcast ctx
+	querier state
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,102 +101,51 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Add support for dumping global IPv6 querier state, we dump the state
-only if our own querier is enabled or there has been another external
-querier which has won the election. For the bridge global state we use
-a new attribute IFLA_BR_MCAST_QUERIER_STATE and embed the state inside.
-The structure is:
-  [IFLA_BR_MCAST_QUERIER_STATE]
-   `[BRIDGE_QUERIER_IPV6_ADDRESS] - ip address of the querier
-   `[BRIDGE_QUERIER_IPV6_PORT]    - bridge port ifindex where the querier
-                                    was seen (set only if external querier)
-   `[BRIDGE_QUERIER_IPV6_OTHER_TIMER]   -  other querier timeout
-
-IPv4 and IPv6 attributes are embedded at the same level of
-IFLA_BR_MCAST_QUERIER_STATE. If we didn't dump anything we cancel the nest
-and return.
+Use the new mcast querier state dump infrastructure and export vlans'
+mcast context querier state embedded in attribute
+BRIDGE_VLANDB_GOPTS_MCAST_QUERIER_STATE.
 
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- include/uapi/linux/if_bridge.h |  3 +++
- net/bridge/br_multicast.c      | 36 ++++++++++++++++++++++++++++++----
- 2 files changed, 35 insertions(+), 4 deletions(-)
+ include/uapi/linux/if_bridge.h | 1 +
+ net/bridge/br_vlan_options.c   | 5 ++++-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index e0fff67fcd88..eceaad200bf6 100644
+index eceaad200bf6..f71a81fdbbc6 100644
 --- a/include/uapi/linux/if_bridge.h
 +++ b/include/uapi/linux/if_bridge.h
-@@ -777,6 +777,9 @@ enum {
- 	BRIDGE_QUERIER_IP_PORT,
- 	BRIDGE_QUERIER_IP_OTHER_TIMER,
- 	BRIDGE_QUERIER_PAD,
-+	BRIDGE_QUERIER_IPV6_ADDRESS,
-+	BRIDGE_QUERIER_IPV6_PORT,
-+	BRIDGE_QUERIER_IPV6_OTHER_TIMER,
- 	__BRIDGE_QUERIER_MAX
+@@ -563,6 +563,7 @@ enum {
+ 	BRIDGE_VLANDB_GOPTS_MCAST_QUERIER,
+ 	BRIDGE_VLANDB_GOPTS_MCAST_ROUTER,
+ 	BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS,
++	BRIDGE_VLANDB_GOPTS_MCAST_QUERIER_STATE,
+ 	__BRIDGE_VLANDB_GOPTS_MAX
  };
- #define BRIDGE_QUERIER_MAX (__BRIDGE_QUERIER_MAX - 1)
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 4513bc13b6d3..0e5d6ba03457 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -2943,15 +2943,15 @@ int br_multicast_dump_querier_state(struct sk_buff *skb,
- 	struct net_bridge_port *p;
- 	struct nlattr *nest;
- 
--	if (!brmctx->multicast_querier &&
--	    !timer_pending(&brmctx->ip4_other_query.timer))
--		return 0;
--
- 	nest = nla_nest_start(skb, nest_attr);
- 	if (!nest)
- 		return -EMSGSIZE;
- 
- 	rcu_read_lock();
-+	if (!brmctx->multicast_querier &&
-+	    !timer_pending(&brmctx->ip4_other_query.timer))
-+		goto out_v6;
-+
- 	br_multicast_read_querier(&brmctx->ip4_querier, &querier);
- 	if (nla_put_in_addr(skb, BRIDGE_QUERIER_IP_ADDRESS,
- 			    querier.addr.src.ip4)) {
-@@ -2968,8 +2968,36 @@ int br_multicast_dump_querier_state(struct sk_buff *skb,
- 		rcu_read_unlock();
+ #define BRIDGE_VLANDB_GOPTS_MAX (__BRIDGE_VLANDB_GOPTS_MAX - 1)
+diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
+index b4fd5fa441b7..49dec53a4a74 100644
+--- a/net/bridge/br_vlan_options.c
++++ b/net/bridge/br_vlan_options.c
+@@ -299,7 +299,9 @@ bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
+ 	    nla_put_u8(skb, BRIDGE_VLANDB_GOPTS_MCAST_QUERIER,
+ 		       v_opts->br_mcast_ctx.multicast_querier) ||
+ 	    nla_put_u8(skb, BRIDGE_VLANDB_GOPTS_MCAST_ROUTER,
+-		       v_opts->br_mcast_ctx.multicast_router))
++		       v_opts->br_mcast_ctx.multicast_router) ||
++	    br_multicast_dump_querier_state(skb, &v_opts->br_mcast_ctx,
++					    BRIDGE_VLANDB_GOPTS_MCAST_QUERIER_STATE))
  		goto out_err;
- 	}
-+
-+out_v6:
-+#if IS_ENABLED(CONFIG_IPV6)
-+	if (!brmctx->multicast_querier &&
-+	    !timer_pending(&brmctx->ip6_other_query.timer))
-+		goto out;
-+
-+	br_multicast_read_querier(&brmctx->ip6_querier, &querier);
-+	if (nla_put_in6_addr(skb, BRIDGE_QUERIER_IPV6_ADDRESS,
-+			     &querier.addr.src.ip6)) {
-+		rcu_read_unlock();
-+		goto out_err;
-+	}
-+
-+	p = __br_multicast_get_querier_port(brmctx->br, &querier);
-+	if (timer_pending(&brmctx->ip6_other_query.timer) &&
-+	    (nla_put_u64_64bit(skb, BRIDGE_QUERIER_IPV6_OTHER_TIMER,
-+			       br_timer_value(&brmctx->ip6_other_query.timer),
-+			       BRIDGE_QUERIER_PAD) ||
-+	     (p && nla_put_u32(skb, BRIDGE_QUERIER_IPV6_PORT,
-+			       p->dev->ifindex)))) {
-+		rcu_read_unlock();
-+		goto out_err;
-+	}
-+out:
-+#endif
- 	rcu_read_unlock();
- 	nla_nest_end(skb, nest);
-+	if (!nla_len(nest))
-+		nla_nest_cancel(skb, nest);
  
- 	return 0;
- 
+ 	clockval = jiffies_to_clock_t(v_opts->br_mcast_ctx.multicast_last_member_interval);
+@@ -379,6 +381,7 @@ static size_t rtnl_vlan_global_opts_nlmsg_size(void)
+ 		+ nla_total_size(sizeof(u64)) /* BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_INTVL */
+ 		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_QUERIER */
+ 		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_ROUTER */
++		+ br_multicast_querier_state_size() /* BRIDGE_VLANDB_GOPTS_MCAST_QUERIER_STATE */
+ #endif
+ 		+ nla_total_size(sizeof(u16)); /* BRIDGE_VLANDB_GOPTS_RANGE */
+ }
 -- 
 2.31.1
 
