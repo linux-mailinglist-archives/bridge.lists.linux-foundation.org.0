@@ -1,93 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id D95663EBF3E
-	for <lists.bridge@lfdr.de>; Sat, 14 Aug 2021 03:11:24 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE0C3EC2C9
+	for <lists.bridge@lfdr.de>; Sat, 14 Aug 2021 15:10:12 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id BF616605FF;
-	Sat, 14 Aug 2021 01:11:22 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id C314F80D9E;
+	Sat, 14 Aug 2021 13:10:10 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id YNk7GT1QGIwx; Sat, 14 Aug 2021 01:11:22 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id rUazvGCNVpyD; Sat, 14 Aug 2021 13:10:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 6A4A76060B;
-	Sat, 14 Aug 2021 01:11:21 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 3B71580D0E;
+	Sat, 14 Aug 2021 13:10:09 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 234B4C0020;
-	Sat, 14 Aug 2021 01:11:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DFEBDC001D;
+	Sat, 14 Aug 2021 13:10:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B0D81C000E
- for <bridge@lists.linux-foundation.org>; Sat, 14 Aug 2021 01:11:19 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7A48AC000E
+ for <bridge@lists.linux-foundation.org>; Sat, 14 Aug 2021 13:10:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 84545400E7
- for <bridge@lists.linux-foundation.org>; Sat, 14 Aug 2021 01:11:19 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 5CA6840320
+ for <bridge@lists.linux-foundation.org>; Sat, 14 Aug 2021 13:10:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Kint07non-u9 for <bridge@lists.linux-foundation.org>;
- Sat, 14 Aug 2021 01:11:18 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by smtp2.osuosl.org (Postfix) with ESMTPS id B15B2400A8
- for <bridge@lists.linux-foundation.org>; Sat, 14 Aug 2021 01:11:18 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id g21so4139036edw.4
- for <bridge@lists.linux-foundation.org>; Fri, 13 Aug 2021 18:11:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=PJhUcsspU97g7E83Bpc3xMjAAqh5e3B1I8VLV04Hlg4=;
- b=lvQlGkQMovEbhDOLkEx9FfNMFdUym7QHjOg8TV2oep0SJ3tQ8K2y2owZAeCFaow50x
- 2VGtWy4UVBOA5Hgv2Um7p3LyrGWWlhoOMsocXgMiubAK4BqyJ7BiUZK3h2X8Llpv4ZQw
- k6Gz4suycc94X9lIr3rsjrX+qEQZi/OrloEcd4zZTfo40c/z+ms8sY96+2HI94Hbgyx3
- 8ja3Youg4lK9LB9/A8W/qNaXmqTAfuDxcLGhYNslXyI9Olc4+3JxhEjZpUsjf3teFDlL
- 2oSbRcOpVlSav3/aqavxHG5/c1qX5sqQlWvB+P/I/MrqlkhgtOERuvKS4J1xGnLwyj2w
- XsQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=PJhUcsspU97g7E83Bpc3xMjAAqh5e3B1I8VLV04Hlg4=;
- b=o7mRnvaYC+1LufTHXgcZINCpi+liecZEcVogNeLsunFlrT95HZCtNUpwZf9k3Eglwx
- 93EchckkHssUHKxS6RAFaXTWm92gDVZadjRygCZoyAu3cndORfjjILUtLUUuaav+9ISN
- gqhykAXvRhmwS4ivQux5bDDybbf41Q6GwTPW4iqhNyGlDCwmmbZ0utnu/GkXCN39bvIV
- ezafQLtEP0WDiMaN+TfZVjw1Y9CVlkqzfIzZhbOScERgZf0EMujdWpVtMl6mP4nVNL5i
- dTkn/MSay1pqC8lv4kimpBf9qN31FiTDYOAmYg6LG/rjJtddgYVsg74gyikuJxiHCtOq
- 9kYg==
-X-Gm-Message-State: AOAM532F8yJ9gNXC3/hnyBD9uqbvq1ejJQz3d7Bpeudg5Ci5OxcgZrLk
- KEYN44WNpFL2598sGAdclPk=
-X-Google-Smtp-Source: ABdhPJzbEz1C74QjqaquNCIRacBK6HSghnVyTzV009KuRSd/PsM34mJM8RMUbtWj+RkNCDXH4rnY+w==
-X-Received: by 2002:a05:6402:26c6:: with SMTP id
- x6mr6754557edd.175.1628903476812; 
- Fri, 13 Aug 2021 18:11:16 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
- by smtp.gmail.com with ESMTPSA id q30sm1595434edi.84.2021.08.13.18.11.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Aug 2021 18:11:16 -0700 (PDT)
-Date: Sat, 14 Aug 2021 04:11:15 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: DENG Qingfang <dqfext@gmail.com>
-Message-ID: <20210814011115.agzyo3cydlupafvy@skbuf>
-References: <20210812142213.2251697-1-dqfext@gmail.com>
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id xv_yU91nZwPz for <bridge@lists.linux-foundation.org>;
+ Sat, 14 Aug 2021 13:10:07 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 460B2402E9
+ for <bridge@lists.linux-foundation.org>; Sat, 14 Aug 2021 13:10:07 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id C134C60F51;
+ Sat, 14 Aug 2021 13:10:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1628946606;
+ bh=RYtYlKZDLFp/vsyM5Zof7b3UUT0n1xGo7+T9ctoG6gE=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=KPzlRtYLpvoV1Rrb7iAV566H9VBLlsAwapVq4Hf/ArSD35+QWvB2fdwNYKvexz2J3
+ 4PZVz7WuvyPBubblGnI88M322cHiLI2mqSPHP/5wOvYDa6rUT8LHXCZwHEFb6CXMxu
+ JBavG65KcsQ8y2kmu3RRY+AX3fVijziCWWMCKizcHTujLvk1YYErhBbfVUVnX8UBMw
+ GqZ3+iOwH9NpAz+dou09KQeAYyszwH+3nLrymSvAAp0e6+1Cpl4ckZmooCbSPMmjq7
+ fWj1ey6X4OnUGm/gOhhfxSHpw7WjuU25CnnAsv+E2omku4U1Qs4uegygijLdnTQHsm
+ Gj0n+oqRXs9MA==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id B6DAB60A9F;
+ Sat, 14 Aug 2021 13:10:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210812142213.2251697-1-dqfext@gmail.com>
-Cc: Ivan Vecera <ivecera@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
- "open list:ETHERNET BRIDGE" <netdev@vger.kernel.org>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- open list <linux-kernel@vger.kernel.org>, Ido Schimmel <idosch@idosch.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [PATCH net-next v2] net: bridge: switchdev: pass more
- port flags to drivers
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162894660674.3097.4333044818411572799.git-patchwork-notify@kernel.org>
+Date: Sat, 14 Aug 2021 13:10:06 +0000
+References: <20210813150002.673579-1-razor@blackwall.org>
+In-Reply-To: <20210813150002.673579-1-razor@blackwall.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ nikolay@nvidia.com, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next 0/6] net: bridge: mcast: dump querier
+	state
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,19 +79,51 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Aug 12, 2021 at 10:22:12PM +0800, DENG Qingfang wrote:
-> These 3 port flags: BR_HAIRPIN_MODE, BR_MULTICAST_TO_UNICAST, and
-> BR_ISOLATED, affect the data path and should be handled by switchdev
-> drivers.
-> 
-> Add them to BR_PORT_FLAGS_HW_OFFLOAD so they can be passed down to
-> the drivers.
-> 
-> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
-> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
-> ---
-> v1 -> v2: added more flags
+Hello:
 
-If you insist to not write a competent commit message which properly
-explains the motivation for the change, then please remove my
-Suggested-by tag and resend. Thanks
+This series was applied to netdev/net-next.git (refs/heads/master):
+
+On Fri, 13 Aug 2021 17:59:56 +0300 you wrote:
+> From: Nikolay Aleksandrov <nikolay@nvidia.com>
+> 
+> Hi,
+> This set adds the ability to dump the current multicast querier state.
+> This is extremely useful when debugging multicast issues, we've had
+> many cases of unexpected queriers causing strange behaviour and mcast
+> test failures. The first patch changes the querier struct to record
+> a port device's ifindex instead of a pointer to the port itself so we
+> can later retrieve it, I chose this way because it's much simpler
+> and doesn't require us to do querier port ref counting, it is best
+> effort anyway. Then patch 02 makes the querier address/port updates
+> consistent via a combination of multicast_lock and seqcount, so readers
+> can only use seqcount to get a consistent snapshot of address and port.
+> Patch 03 is a minor cleanup in preparation for the dump support, it
+> consolidates IPv4 and IPv6 querier selection paths as they share most of
+> the logic (except address comparisons of course). Finally the last three
+> patches add the new querier state dumping support, for the bridge's
+> global multicast context we embed the BRIDGE_QUERIER_xxx attributes
+> into IFLA_BR_MCAST_QUERIER_STATE and for the per-vlan global mcast
+> contexts we embed them into BRIDGE_VLANDB_GOPTS_MCAST_QUERIER_STATE.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,1/6] net: bridge: mcast: record querier port device ifindex instead of pointer
+    https://git.kernel.org/netdev/net-next/c/bb18ef8e7e18
+  - [net-next,2/6] net: bridge: mcast: make sure querier port/address updates are consistent
+    https://git.kernel.org/netdev/net-next/c/67b746f94ff3
+  - [net-next,3/6] net: bridge: mcast: consolidate querier selection for ipv4 and ipv6
+    https://git.kernel.org/netdev/net-next/c/c3fb3698f935
+  - [net-next,4/6] net: bridge: mcast: dump ipv4 querier state
+    https://git.kernel.org/netdev/net-next/c/c7fa1d9b1fb1
+  - [net-next,5/6] net: bridge: mcast: dump ipv6 querier state
+    https://git.kernel.org/netdev/net-next/c/85b410821174
+  - [net-next,6/6] net: bridge: vlan: dump mcast ctx querier state
+    https://git.kernel.org/netdev/net-next/c/ddc649d158c5
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
