@@ -1,87 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1EE63ED1AE
-	for <lists.bridge@lfdr.de>; Mon, 16 Aug 2021 12:11:54 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6F43ED53D
+	for <lists.bridge@lfdr.de>; Mon, 16 Aug 2021 15:10:13 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 369E6403D7;
-	Mon, 16 Aug 2021 10:11:53 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 7C234401D7;
+	Mon, 16 Aug 2021 13:10:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id q09agvApfYDI; Mon, 16 Aug 2021 10:11:52 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id E99DF40397;
-	Mon, 16 Aug 2021 10:11:51 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id UQLFCmCGdQE4; Mon, 16 Aug 2021 13:10:10 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id B98FB40238;
+	Mon, 16 Aug 2021 13:10:09 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0569AC000E;
-	Mon, 16 Aug 2021 10:11:51 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6CFA4C0022;
+	Mon, 16 Aug 2021 13:10:09 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C7115C000E
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 10:11:49 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A35ACC000E
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 13:10:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id B675A40276
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 10:11:49 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 92E3140289
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 13:10:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ArtOX1tWXtzs for <bridge@lists.linux-foundation.org>;
- Mon, 16 Aug 2021 10:11:48 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 57F6C40278
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 10:11:48 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id g21so11741481edw.4
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 03:11:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=hom66D7QlF74ZChwS4t+afVi3WhkjTNJBXj7NjSNFVM=;
- b=tzWe0JAh41Gch5AiXUler1lJGHcqpdBUfWCEMcGGoBuvpGARlOm/fBp4GAqpPZr/eg
- /v2jlAxpf4/MDN2h3VP8hyxcd76IvPO8N2VDN+JgQ3qg0xKxraMsW6v0VrIrxEOClZ8a
- nEffjvCvE2bsllavHYmQd1SPwBRHushTPBFjxy3vRyWhv48f8+xx/apSuijmabUtsO1q
- a/1Tt1jyHBRpsXnr5I5bPhh/uYU2JqkQrh8qp0VwurSmfVGPN3tRdTYU39bkgc1El1ip
- RU7F1RPlIBqriUWYGtNhHP0hr49wbmP57GjqDvgCoSdnb84jZ34lWjhMkdaxKlgHwQE3
- ykIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=hom66D7QlF74ZChwS4t+afVi3WhkjTNJBXj7NjSNFVM=;
- b=CO//SS8D8b8/v2VMG6Q2yecpQBigiEAjtqjwon0K3oXunuUW48wfphp/dpU90uyqg0
- I7/ey6eyKxEDfuYaQuvCm0yKqlwhDE+RzyVOqUCeyKL1LaOrEEyDdjrNdCbr4pork++Q
- CV+bi+XrSqsaF2nY8dwjBf0pIh9Zx226lq3AByINx24RPZv9uUB63nnDoOWy9yQptBPO
- 4L2+XdE7v4odE6Rf19GNFwrcEeB8prlvhknPD9tpFizr9ywixVVfBpKB3lM1zlUI56oa
- oX2jk6z2P8cGGBUgZJq1wZAtm18U2T+gdjfQQYo9vyVtup+De65rLx5b/gYU0B25WBdg
- kf3Q==
-X-Gm-Message-State: AOAM532sQvO8O3nFdW+AnIerwLd71QbJvaR6JtvQKlxMXOGpCF5NIL0g
- 0hG/047cb746Qzqqtyr5kSUlCw==
-X-Google-Smtp-Source: ABdhPJw99vMmXDCLexrjgcOJFxMkdW98wBQ/KdlS/eX4xE1TFTFw04btcQSgI+FBUsmxRIGzKrUGag==
-X-Received: by 2002:aa7:d896:: with SMTP id u22mr19052986edq.290.1629108706486; 
- Mon, 16 Aug 2021 03:11:46 -0700 (PDT)
-Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
- [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id a60sm4673779edf.59.2021.08.16.03.11.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Aug 2021 03:11:46 -0700 (PDT)
-From: Nikolay Aleksandrov <razor@blackwall.org>
-To: netdev@vger.kernel.org
-Date: Mon, 16 Aug 2021 13:11:34 +0300
-Message-Id: <20210816101134.577413-4-razor@blackwall.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210816101134.577413-1-razor@blackwall.org>
-References: <20210816101134.577413-1-razor@blackwall.org>
+ with ESMTP id uyRKy6dP_yk7 for <bridge@lists.linux-foundation.org>;
+ Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 836EF40275
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id 1DDE761163;
+ Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1629119406;
+ bh=OEjXsnwr92JDA8IfjbiPkWnN00OfEKYZhQN0lmo2yBE=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=tJH51f9ARfiLL7RhwEUav5Cy0AiKjsDa43+Vb5SxdNqLRXKEu7VhYv/b0cit6MtYp
+ LLtbW4BFUEptNr/lQaBUJmQQ28UszWzkUOEgrMeQDeg4TsIeVYyGI6LIsFlzv4ocU8
+ O1IPEmeZ8ZAi5cN60gRMLOzKfDynIX6gdnJZAXVk6n/CKV6Ct4HlrCdMjMeOCm8Hi8
+ 89ExygZeMFTDzPATZlqYVjQ6M5y30dipW6HTA9SsiI71iCQajFWTxOf9TfvAQFnxFA
+ VWcnUC9dYCkSbfJeEEwszN4YngSs+7EE0hWYgsU18/2cCJToNfW/rMZD0ecqPrs3xX
+ L86fcamltdI8A==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 107A3609CF;
+ Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 3/3] net: bridge: mcast: account for ipv6
-	size when dumping querier state
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162911940606.11903.8900804380948796171.git-patchwork-notify@kernel.org>
+Date: Mon, 16 Aug 2021 13:10:06 +0000
+References: <20210816101134.577413-1-razor@blackwall.org>
+In-Reply-To: <20210816101134.577413-1-razor@blackwall.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ nikolay@nvidia.com, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next 0/3] net: bridge: mcast: fixes for
+ mcast querier state
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,35 +79,34 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+Hello:
 
-We need to account for the IPv6 attributes when dumping querier state.
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Fixes: 5e924fe6ccfd ("net: bridge: mcast: dump ipv6 querier state")
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
----
- net/bridge/br_multicast.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+On Mon, 16 Aug 2021 13:11:31 +0300 you wrote:
+> From: Nikolay Aleksandrov <nikolay@nvidia.com>
+> 
+> Hi,
+> These three fix querier state dumping. The first patch can be considered
+> a minor behaviour improvement, it avoids dumping querier state when mcast
+> snooping is disabled. The second patch was a report of sizeof(0) used
+> for nested netlink attribute size which should be just 0, and the third
+> patch accounts for IPv6 querier state size when allocating skb for
+> notifications.
+> 
+> [...]
 
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 76992ddac7e0..e411dd814c58 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -2931,7 +2931,13 @@ size_t br_multicast_querier_state_size(void)
- 	return nla_total_size(0) +		/* nest attribute */
- 	       nla_total_size(sizeof(__be32)) + /* BRIDGE_QUERIER_IP_ADDRESS */
- 	       nla_total_size(sizeof(int)) +    /* BRIDGE_QUERIER_IP_PORT */
--	       nla_total_size_64bit(sizeof(u64)); /* BRIDGE_QUERIER_IP_OTHER_TIMER */
-+	       nla_total_size_64bit(sizeof(u64)) + /* BRIDGE_QUERIER_IP_OTHER_TIMER */
-+#if IS_ENABLED(CONFIG_IPV6)
-+	       nla_total_size(sizeof(struct in6_addr)) + /* BRIDGE_QUERIER_IPV6_ADDRESS */
-+	       nla_total_size(sizeof(int)) +		 /* BRIDGE_QUERIER_IPV6_PORT */
-+	       nla_total_size_64bit(sizeof(u64)) +	 /* BRIDGE_QUERIER_IPV6_OTHER_TIMER */
-+#endif
-+	       0;
- }
- 
- /* protected by rtnl or rcu */
--- 
-2.31.1
+Here is the summary with links:
+  - [net-next,1/3] net: bridge: mcast: don't dump querier state if snooping is disabled
+    https://git.kernel.org/netdev/net-next/c/f137b7d4ecf8
+  - [net-next,2/3] net: bridge: mcast: drop sizeof for nest attribute's zero size
+    https://git.kernel.org/netdev/net-next/c/cdda378bd8d9
+  - [net-next,3/3] net: bridge: mcast: account for ipv6 size when dumping querier state
+    https://git.kernel.org/netdev/net-next/c/175e66924719
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
