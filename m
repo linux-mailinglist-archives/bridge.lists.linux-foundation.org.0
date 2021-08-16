@@ -1,81 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5687F3ED94C
-	for <lists.bridge@lfdr.de>; Mon, 16 Aug 2021 16:57:26 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1197A3ED94D
+	for <lists.bridge@lfdr.de>; Mon, 16 Aug 2021 16:57:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 0E18D40339;
+	by smtp3.osuosl.org (Postfix) with ESMTP id F420D6086F;
 	Mon, 16 Aug 2021 14:57:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id B6p1jrJ7BkUk; Mon, 16 Aug 2021 14:57:23 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id satAekyst6qo; Mon, 16 Aug 2021 14:57:23 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 8F1154033F;
-	Mon, 16 Aug 2021 14:57:22 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 113646087C;
+	Mon, 16 Aug 2021 14:57:23 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 990C4C000E;
-	Mon, 16 Aug 2021 14:57:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DF606C0024;
+	Mon, 16 Aug 2021 14:57:22 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 943CCC0010
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:20 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B5C79C0026
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:21 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 8482680DDE
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:20 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 9EE804030C
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id x9I8Xigy7Tnf for <bridge@lists.linux-foundation.org>;
- Mon, 16 Aug 2021 14:57:20 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pPWjuJFQ2vGV for <bridge@lists.linux-foundation.org>;
+ Mon, 16 Aug 2021 14:57:21 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by smtp1.osuosl.org (Postfix) with ESMTPS id CC70F81025
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:19 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id b10so23804868eju.9
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 07:57:19 -0700 (PDT)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id BB5D3402DF
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:20 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id by4so27012864edb.0
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 07:57:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WwnW+GWJajN/nHK/Uu8SXGjaStKjr4BPobqUYTEyxn4=;
- b=hHDIhLqQj6tIa4w4qVJf800brqAuVR7rfr+AG9ipbfVi11s4nScM+Xibp+zDBVAzii
- hkuPeCjHsZ76AvynBapL8kF5odlTh+GOYV3RmrFzMiVTp6OGizUh7XLkDgJg/0+30Waw
- shC1D7SpfqudW6TBOtRVs8KoP1WtmJUbp8UCIgYkiWKAFxkd/8KzKcfIA1kdVCmbaxVs
- od1nxE3C5Ntg/CsaSs82plPxuYsT5V8PiAYsREpXB1FsLaqU6BX9nH4MGvalMe26FGCe
- wgHOj8zgTjecbISRYIBn+sMHQ7/pDvJ3yC4gDGkylHK1BduQ1Xal4OIF2lJrml648DzN
- JH2w==
+ bh=gu3qPVqazrfPsLrdaA6zNjrUNMRsdA16rRPDc2bNkUw=;
+ b=FuV+Ic3USr2PZi1PnKLkMugVAAt5b6+5NCSahnq3tBRmBe/bcNvT2wFZVSDo+FzS8D
+ cM5uGmbJq7o1jfdbiMacajfbGNb1f5R+Smvdjtzrv5N0gitZG+KFycHfxnQWU3eQrLRB
+ 6dd6lfis26okjtBo811z5I8wcdLqoIVkrBaMuwHmp8CTl0GsaIy5JWFL8X5SxWM36hqG
+ o2w6cQecfztfIUAS9pd0m0xmUPAzuu2HMUj1Uq1StplPP9WUozgBq7wwXYmgcA2PMVUc
+ tcnvz1IL9FhSnI2v0GR3HBY3541g2J988f3/Cjq2nyQ8wXz4b1/FSZhSZGinCEHG+XQj
+ Lyww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WwnW+GWJajN/nHK/Uu8SXGjaStKjr4BPobqUYTEyxn4=;
- b=D8Ft70D4W7/hbo/pnlCfc3WifPiTBIV4B6LLLNZ5V0Zvj3VODH1bBp++KStvOKqUXT
- SmzQm7uKPgkpbPtDS4t5zhabgf3YaeF4jojdYvpS80hst/sa6DV7aFLkvw+0BPzRzu54
- MTPnko4WBeVLxIaGoLsfVSbpP8masQQAgigM/YJmdcj3p6erlKVNre3JGShsafX7K8G4
- u5PAjH/g5DtVX8KnmvSLY8ebPmO3vRqefxGStmUxhRia4WBclSz9qCI+0f4AQ9oralKR
- sfOJu6jfIX2IOZzSB3dan6Al/1vdEnOQUUCya5b4dywg7Wty8OIs/I9y8HE27oNW2uwn
- dwcQ==
-X-Gm-Message-State: AOAM5328nvu8G8E5ktzFcHJCrvy2U4fEJaklXa9lmaOv04iz3nxynvRe
- 7aDFPO6a3pKXbPECplAGOIFcqA==
-X-Google-Smtp-Source: ABdhPJxqMtz9zZxKS+mZkhGaAszppeNwrGy17MtcxbPLFXs4I2+RGIMmU2ef/7QEnl9dmxvJ4xrbzw==
-X-Received: by 2002:a17:906:4b42:: with SMTP id
- j2mr6762196ejv.437.1629125837966; 
- Mon, 16 Aug 2021 07:57:17 -0700 (PDT)
+ bh=gu3qPVqazrfPsLrdaA6zNjrUNMRsdA16rRPDc2bNkUw=;
+ b=iNIGMxAi8uCo/qt4rlkAcNrIyb5utBxwzGiwLfzpNCwfLEY2kpYE8Dr1n4Tl+u7h9i
+ DaU6IIXp4qDXWR+TNIiKi1tcz2+nM/weF0Epo3bSkuT0lvF8QxIgdq5XAEukGUHu8QQe
+ YDlrmfFrEWTMTfQqwQGyw5tnAn7O2mOv6igNxnC+6PmlymzM3srlxd0VcKIIQZGo/Y2i
+ HNoRpkuuu7HrK45k1kYQZrvsqP1VNMmAka98RRoxUNNlxKlNXe1Nf6H9bkcAc1arP9p1
+ RXW4RAnycBG/n6lb9VrP5PFoflKOpa9Y4TxJnVUlLbzHAe9/WtahvqZspn9M/jWYKiyG
+ JnOQ==
+X-Gm-Message-State: AOAM533WPyscjbWJE/O1RIl1d61aV0Q/ORbxkRPKTpoO2AJViv1BgIk3
+ fjd+/jiqGR9ZsnVsdNDLJPm+5Q==
+X-Google-Smtp-Source: ABdhPJyfgtxQkZ0H+1ivIO/PeQ3LyKrGyE4V8lSLn5Iir/ILYPFes8w0JiOPJ/cwAAoZX6yFwfbx8w==
+X-Received: by 2002:a05:6402:14d1:: with SMTP id
+ f17mr20183567edx.167.1629125838855; 
+ Mon, 16 Aug 2021 07:57:18 -0700 (PDT)
 Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
  [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id t25sm4946076edi.65.2021.08.16.07.57.17
+ by smtp.gmail.com with ESMTPSA id t25sm4946076edi.65.2021.08.16.07.57.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Aug 2021 07:57:17 -0700 (PDT)
+ Mon, 16 Aug 2021 07:57:18 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Mon, 16 Aug 2021 17:57:04 +0300
-Message-Id: <20210816145707.671901-2-razor@blackwall.org>
+Date: Mon, 16 Aug 2021 17:57:05 +0300
+Message-Id: <20210816145707.671901-3-razor@blackwall.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210816145707.671901-1-razor@blackwall.org>
 References: <20210816145707.671901-1-razor@blackwall.org>
@@ -83,8 +83,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  roopa@nvidia.com
-Subject: [Bridge] [PATCH net-next 1/4] net: bridge: vlan: enable mcast
-	snooping for existing master vlans
+Subject: [Bridge] [PATCH net-next 2/4] net: bridge: vlan: account for router
+	port lists when notifying
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,31 +101,127 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-We always create a vlan with enabled mcast snooping, so when the user
-turns on per-vlan mcast contexts they'll get consistent behaviour with
-the current situation, but one place wasn't updated when a bridge/master
-vlan which already exists (created due to port vlans) is being added as
-real bridge vlan (BRIDGE_VLAN_INFO_BRENTRY). We need to enable mcast
-snooping for that vlan when that happens.
+When sending a global vlan notification we should account for the number
+of router ports when allocating the skb, otherwise we might end up
+losing notifications.
 
-Fixes: 7b54aaaf53cb ("net: bridge: multicast: add vlan state initialization and control")
+Fixes: dc002875c22b ("net: bridge: vlan: use br_rports_fill_info() to export mcast router ports")
 Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 ---
- net/bridge/br_vlan.c | 1 +
- 1 file changed, 1 insertion(+)
+ net/bridge/br_mdb.c          | 30 ++++++++++++++++++++++++++++++
+ net/bridge/br_private.h      |  1 +
+ net/bridge/br_vlan_options.c | 17 +++++++++--------
+ 3 files changed, 40 insertions(+), 8 deletions(-)
 
-diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index cbc922681a76..e25e288e7a85 100644
---- a/net/bridge/br_vlan.c
-+++ b/net/bridge/br_vlan.c
-@@ -694,6 +694,7 @@ static int br_vlan_add_existing(struct net_bridge *br,
- 		vlan->flags |= BRIDGE_VLAN_INFO_BRENTRY;
- 		vg->num_vlans++;
- 		*changed = true;
-+		br_multicast_toggle_one_vlan(vlan, true);
- 	}
+diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+index 389ff3c1e9d9..0281453f7766 100644
+--- a/net/bridge/br_mdb.c
++++ b/net/bridge/br_mdb.c
+@@ -37,6 +37,36 @@ br_ip6_rports_get_timer(struct net_bridge_mcast_port *pmctx,
+ #endif
+ }
  
- 	if (__vlan_add_flags(vlan, flags))
++static size_t __br_rports_one_size(void)
++{
++	return nla_total_size(sizeof(u32)) + /* MDBA_ROUTER_PORT */
++	       nla_total_size(sizeof(u32)) + /* MDBA_ROUTER_PATTR_TIMER */
++	       nla_total_size(sizeof(u8)) +  /* MDBA_ROUTER_PATTR_TYPE */
++	       nla_total_size(sizeof(u32)) + /* MDBA_ROUTER_PATTR_INET_TIMER */
++	       nla_total_size(sizeof(u32)) + /* MDBA_ROUTER_PATTR_INET6_TIMER */
++	       nla_total_size(sizeof(u32));  /* MDBA_ROUTER_PATTR_VID */
++}
++
++size_t br_rports_size(const struct net_bridge_mcast *brmctx)
++{
++	struct net_bridge_mcast_port *pmctx;
++	size_t size = nla_total_size(0); /* MDBA_ROUTER */
++
++	rcu_read_lock();
++	hlist_for_each_entry_rcu(pmctx, &brmctx->ip4_mc_router_list,
++				 ip4_rlist)
++		size += __br_rports_one_size();
++
++#if IS_ENABLED(CONFIG_IPV6)
++	hlist_for_each_entry_rcu(pmctx, &brmctx->ip6_mc_router_list,
++				 ip6_rlist)
++		size += __br_rports_one_size();
++#endif
++	rcu_read_unlock();
++
++	return size;
++}
++
+ int br_rports_fill_info(struct sk_buff *skb,
+ 			const struct net_bridge_mcast *brmctx)
+ {
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index 9b1bf98a2c5a..df0fa246c80c 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -952,6 +952,7 @@ int br_multicast_dump_querier_state(struct sk_buff *skb,
+ 				    const struct net_bridge_mcast *brmctx,
+ 				    int nest_attr);
+ size_t br_multicast_querier_state_size(void);
++size_t br_rports_size(const struct net_bridge_mcast *brmctx);
+ 
+ static inline bool br_group_is_l2(const struct br_ip *group)
+ {
+diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
+index 49dec53a4a74..a3b8a086284b 100644
+--- a/net/bridge/br_vlan_options.c
++++ b/net/bridge/br_vlan_options.c
+@@ -362,7 +362,7 @@ bool br_vlan_global_opts_fill(struct sk_buff *skb, u16 vid, u16 vid_range,
+ 	return false;
+ }
+ 
+-static size_t rtnl_vlan_global_opts_nlmsg_size(void)
++static size_t rtnl_vlan_global_opts_nlmsg_size(const struct net_bridge_vlan *v)
+ {
+ 	return NLMSG_ALIGN(sizeof(struct br_vlan_msg))
+ 		+ nla_total_size(0) /* BRIDGE_VLANDB_GLOBAL_OPTIONS */
+@@ -382,6 +382,8 @@ static size_t rtnl_vlan_global_opts_nlmsg_size(void)
+ 		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_QUERIER */
+ 		+ nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_GOPTS_MCAST_ROUTER */
+ 		+ br_multicast_querier_state_size() /* BRIDGE_VLANDB_GOPTS_MCAST_QUERIER_STATE */
++		+ nla_total_size(0) /* BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS */
++		+ br_rports_size(&v->br_mcast_ctx) /* BRIDGE_VLANDB_GOPTS_MCAST_ROUTER_PORTS */
+ #endif
+ 		+ nla_total_size(sizeof(u16)); /* BRIDGE_VLANDB_GOPTS_RANGE */
+ }
+@@ -398,7 +400,12 @@ static void br_vlan_global_opts_notify(const struct net_bridge *br,
+ 	/* right now notifications are done only with rtnl held */
+ 	ASSERT_RTNL();
+ 
+-	skb = nlmsg_new(rtnl_vlan_global_opts_nlmsg_size(), GFP_KERNEL);
++	/* need to find the vlan due to flags/options */
++	v = br_vlan_find(br_vlan_group(br), vid);
++	if (!v)
++		return;
++
++	skb = nlmsg_new(rtnl_vlan_global_opts_nlmsg_size(v), GFP_KERNEL);
+ 	if (!skb)
+ 		goto out_err;
+ 
+@@ -411,11 +418,6 @@ static void br_vlan_global_opts_notify(const struct net_bridge *br,
+ 	bvm->family = AF_BRIDGE;
+ 	bvm->ifindex = br->dev->ifindex;
+ 
+-	/* need to find the vlan due to flags/options */
+-	v = br_vlan_find(br_vlan_group(br), vid);
+-	if (!v)
+-		goto out_kfree;
+-
+ 	if (!br_vlan_global_opts_fill(skb, vid, vid_range, v))
+ 		goto out_err;
+ 
+@@ -425,7 +427,6 @@ static void br_vlan_global_opts_notify(const struct net_bridge *br,
+ 
+ out_err:
+ 	rtnl_set_sk_err(dev_net(br->dev), RTNLGRP_BRVLAN, err);
+-out_kfree:
+ 	kfree_skb(skb);
+ }
+ 
 -- 
 2.31.1
 
