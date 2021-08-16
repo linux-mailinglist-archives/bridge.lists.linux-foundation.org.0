@@ -1,70 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6F43ED53D
-	for <lists.bridge@lfdr.de>; Mon, 16 Aug 2021 15:10:13 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6533ED94B
+	for <lists.bridge@lfdr.de>; Mon, 16 Aug 2021 16:57:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 7C234401D7;
-	Mon, 16 Aug 2021 13:10:11 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 0761C4029D;
+	Mon, 16 Aug 2021 14:57:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id UQLFCmCGdQE4; Mon, 16 Aug 2021 13:10:10 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5RghRF4J1HLg; Mon, 16 Aug 2021 14:57:22 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id B98FB40238;
-	Mon, 16 Aug 2021 13:10:09 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id ADEE3402DF;
+	Mon, 16 Aug 2021 14:57:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6CFA4C0022;
-	Mon, 16 Aug 2021 13:10:09 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5F13EC0022;
+	Mon, 16 Aug 2021 14:57:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A35ACC000E
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 13:10:07 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8E4AEC000E
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 92E3140289
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 13:10:07 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 6FB1F40333
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uyRKy6dP_yk7 for <bridge@lists.linux-foundation.org>;
- Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 836EF40275
- for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 1DDE761163;
- Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1629119406;
- bh=OEjXsnwr92JDA8IfjbiPkWnN00OfEKYZhQN0lmo2yBE=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=tJH51f9ARfiLL7RhwEUav5Cy0AiKjsDa43+Vb5SxdNqLRXKEu7VhYv/b0cit6MtYp
- LLtbW4BFUEptNr/lQaBUJmQQ28UszWzkUOEgrMeQDeg4TsIeVYyGI6LIsFlzv4ocU8
- O1IPEmeZ8ZAi5cN60gRMLOzKfDynIX6gdnJZAXVk6n/CKV6Ct4HlrCdMjMeOCm8Hi8
- 89ExygZeMFTDzPATZlqYVjQ6M5y30dipW6HTA9SsiI71iCQajFWTxOf9TfvAQFnxFA
- VWcnUC9dYCkSbfJeEEwszN4YngSs+7EE0hWYgsU18/2cCJToNfW/rMZD0ecqPrs3xX
- L86fcamltdI8A==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 107A3609CF;
- Mon, 16 Aug 2021 13:10:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id XPAGhGRo9mO7 for <bridge@lists.linux-foundation.org>;
+ Mon, 16 Aug 2021 14:57:19 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
+ [IPv6:2a00:1450:4864:20::632])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id EBFB74032F
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 14:57:18 +0000 (UTC)
+Received: by mail-ej1-x632.google.com with SMTP id qk33so32230224ejc.12
+ for <bridge@lists.linux-foundation.org>; Mon, 16 Aug 2021 07:57:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6TDmKThXQnwJ9/lpiXTr7wPbuz+EjXXtj7u1wDzkO5M=;
+ b=Y19/YiD3KnkC03qYx0indOUyDBvwrWKUVIY0ybeFfFx8Zf9BHT3Nuq/xciwsycA2vU
+ iS2P3ROP/iZHE6b8+2TN8Kj2yAFnpdGKLufBA5UMLJkWMjhatQ0mdctRXDWg7mUgnhjx
+ X1MuJzqShYg7y94MX/NnDa4qOqKF0bebVJtuxmDPc0VNNwdx7TYn/m4yb8GsTyabnyzn
+ /dQOE8LU2jD9+mvheSmbs9+VY0cXrJmrHZq04NN2mzCxMADtxBxjxa/wPI/wfuTVTWuT
+ F1g1JTst4uA1u6IKVlIlmJATYPyAopXuvvMZ9VG0bOJHfX5Svvq9OoMYyWPzA2Td8m0j
+ BJ0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6TDmKThXQnwJ9/lpiXTr7wPbuz+EjXXtj7u1wDzkO5M=;
+ b=NVMFB9V0iwFqnPWMxG6edUylvcoXPiHP0aeQYAN+td3gzJNrribkDFtCv32qHJRx2S
+ bfulbm6kVGF7/HJzitT6QqMw0msr3VF4UQQw8st1aAaUsuo2Z0xTIHLQ1QPpZPgoYkrm
+ Fcv8FlErwVq4Cg5ye1OhWufSn+qigcdHKZ452rMMPKeSUZ0My1lPlW1ecwPBj05vxi6V
+ LUIaY9ZtevdnBX7xt+pZnTOGW/yLxxC4J7bk0/NkcErovhSnxjnl/fxUXYtmXHwlb4dt
+ hRst966EBMbSzUfPLXsSgiPvDFDdZ69KUrGt5EvO5RyvaPDaDOuH6b9VpP0hRkQUcf4T
+ v4gA==
+X-Gm-Message-State: AOAM531e4NSX5G6JpplWJLo7icRiZc5p0YdfYtHcM2S7KFFIclhG69iP
+ UEE7C+AjTUteGEiD38AYECxPkw==
+X-Google-Smtp-Source: ABdhPJxMivDeVFaVS6IieUvs+gs1sFF0prLEDmZsjqz3F/AF9RNu/VyGdjga7LDRA81fwYXQRwfUSA==
+X-Received: by 2002:a17:906:11c7:: with SMTP id
+ o7mr14730162eja.480.1629125837098; 
+ Mon, 16 Aug 2021 07:57:17 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id t25sm4946076edi.65.2021.08.16.07.57.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Aug 2021 07:57:16 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Mon, 16 Aug 2021 17:57:03 +0300
+Message-Id: <20210816145707.671901-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162911940606.11903.8900804380948796171.git-patchwork-notify@kernel.org>
-Date: Mon, 16 Aug 2021 13:10:06 +0000
-References: <20210816101134.577413-1-razor@blackwall.org>
-In-Reply-To: <20210816101134.577413-1-razor@blackwall.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- nikolay@nvidia.com, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 0/3] net: bridge: mcast: fixes for
- mcast querier state
+Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ roopa@nvidia.com
+Subject: [Bridge] [PATCH net-next 0/4] net: bridge: vlan: fixes for vlan
+	mcast contexts
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,34 +97,34 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Hi,
+These are four fixes for vlan multicast contexts. The first patch enables
+mcast ctx snooping when adding already existing master vlans to be
+consistent with the rest of the code. The second patch accounts for the
+mcast ctx router ports when allocating skb for notification. The third
+one fixes two suspicious rcu usages due to wrong vlan group helper, and
+the fourth updates host vlan mcast state along with port mcast state.
 
-On Mon, 16 Aug 2021 13:11:31 +0300 you wrote:
-> From: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> Hi,
-> These three fix querier state dumping. The first patch can be considered
-> a minor behaviour improvement, it avoids dumping querier state when mcast
-> snooping is disabled. The second patch was a report of sizeof(0) used
-> for nested netlink attribute size which should be just 0, and the third
-> patch accounts for IPv6 querier state size when allocating skb for
-> notifications.
-> 
-> [...]
+Thanks,
+ Nik
 
-Here is the summary with links:
-  - [net-next,1/3] net: bridge: mcast: don't dump querier state if snooping is disabled
-    https://git.kernel.org/netdev/net-next/c/f137b7d4ecf8
-  - [net-next,2/3] net: bridge: mcast: drop sizeof for nest attribute's zero size
-    https://git.kernel.org/netdev/net-next/c/cdda378bd8d9
-  - [net-next,3/3] net: bridge: mcast: account for ipv6 size when dumping querier state
-    https://git.kernel.org/netdev/net-next/c/175e66924719
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Nikolay Aleksandrov (4):
+  net: bridge: vlan: enable mcast snooping for existing master vlans
+  net: bridge: vlan: account for router port lists when notifying
+  net: bridge: mcast: use the correct vlan group helper
+  net: bridge: mcast: toggle also host vlan state in
+    br_multicast_toggle_vlan
 
+ net/bridge/br_mdb.c          | 30 ++++++++++++++++++++++++++++++
+ net/bridge/br_multicast.c    | 10 +++++++---
+ net/bridge/br_private.h      |  7 +------
+ net/bridge/br_vlan.c         |  1 +
+ net/bridge/br_vlan_options.c | 17 +++++++++--------
+ 5 files changed, 48 insertions(+), 17 deletions(-)
+
+-- 
+2.31.1
 
