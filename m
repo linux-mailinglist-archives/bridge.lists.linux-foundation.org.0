@@ -1,70 +1,84 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB853EEA16
-	for <lists.bridge@lfdr.de>; Tue, 17 Aug 2021 11:40:18 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D16E3F1D67
+	for <lists.bridge@lfdr.de>; Thu, 19 Aug 2021 18:01:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id E3784402C6;
-	Tue, 17 Aug 2021 09:40:16 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 0EE3E404E3;
+	Thu, 19 Aug 2021 16:01:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id sUySxgwOFMbZ; Tue, 17 Aug 2021 09:40:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 7AD4C40299;
-	Tue, 17 Aug 2021 09:40:15 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id U33H9e_v-mRp; Thu, 19 Aug 2021 16:01:15 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 82AD4404E2;
+	Thu, 19 Aug 2021 16:01:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3230BC0022;
-	Tue, 17 Aug 2021 09:40:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 49DFEC0022;
+	Thu, 19 Aug 2021 16:01:14 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CFFB9C000E
- for <bridge@lists.linux-foundation.org>; Tue, 17 Aug 2021 09:40:13 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9287FC000E
+ for <bridge@lists.linux-foundation.org>; Thu, 19 Aug 2021 16:01:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id AD29580D46
- for <bridge@lists.linux-foundation.org>; Tue, 17 Aug 2021 09:40:13 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 727C5404E2
+ for <bridge@lists.linux-foundation.org>; Thu, 19 Aug 2021 16:01:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id kZjqYZKEo4pg for <bridge@lists.linux-foundation.org>;
- Tue, 17 Aug 2021 09:40:11 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp1.osuosl.org (Postfix) with ESMTPS id D686B80D06
- for <bridge@lists.linux-foundation.org>; Tue, 17 Aug 2021 09:40:11 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 6AEB360F35;
- Tue, 17 Aug 2021 09:40:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1629193211;
- bh=V9Bku/K/4t7oyt1jzwKixNxdquZRMQx4YUQra0E8/ME=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=DW+nWchzNdunC6g/e4SZfCDN7+hkb70xSwIMrAAy1OE4kk5A9g+vQWkWVoZgWJ0yo
- 7edNw+3MUixJm+Wi/LjH4a0U32nEbmtaugrQvvGAZ7E+cej2vKYcKkTcRzYgHneUyB
- uVagpa0/J2h9wOyb5xBHrb1oxXeWBAz2ibfWYqQo9xqB7p1yhwcT+Mp5tezu3x5R7e
- XGsWoIwNp18jws/blTHaVAaNzezRA3/Dsbl0Vg8DMgBDyevWseu2sCVAW320QccZwK
- D+5el5S3VF4fKTm9GUFqjvIleGpCH0Ym8geLTHvo1P6FsIIFGLS0wpdHG2HELxl0ku
- HOhkWmWCbl2aA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 6043C60A3E;
- Tue, 17 Aug 2021 09:40:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id yjaR0aRnUBWS for <bridge@lists.linux-foundation.org>;
+ Thu, 19 Aug 2021 16:01:11 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com
+ [IPv6:2a00:1450:4864:20::130])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id F072F404CB
+ for <bridge@lists.linux-foundation.org>; Thu, 19 Aug 2021 16:01:10 +0000 (UTC)
+Received: by mail-lf1-x130.google.com with SMTP id y34so13995224lfa.8
+ for <bridge@lists.linux-foundation.org>; Thu, 19 Aug 2021 09:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=GClqOFxFEfC+krefx64HgWgWYCi/YRwdN7djuSeQf4U=;
+ b=sDyifaj3eNNHcpO2QoAnYYjlFqNV9jsxHXWLw0hSH9gHYupXSH3AYMPL4D+7gce/M8
+ 36FyYRX9os3bv8RjgqqSA7vtD37MAAV0op6s+l8oviK9LVXDw6R6RplgFscWEvxwO+rJ
+ Ge9r5BRcZwWqWWybi8Wnn6asbhxxdG19/P8jQA9WsHBAYdkNvyfAfOGFJcNQjqpFUV/8
+ b+fKeKUQ7sQhtmwE9pZ/pbEhG31qmnYtCATiIjzCYoKqWW0gkG4ns80qrO6zmq0FLWKG
+ E9T7HmeTcHkQhCRAEK/iHE8isQVJ8vbdLP5cfs+khY4yvOsRLDMhT1XhmKTptu90f8KD
+ DoXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=GClqOFxFEfC+krefx64HgWgWYCi/YRwdN7djuSeQf4U=;
+ b=Y0fCNY4KKCfUEGsy1T2mpu91zA0unLwFp50bbtNFKSb3/fPpoNaHsMtsJAsTmn2qYE
+ eRhfGkD8prGY+cO54lgPC9F9waBYG4K/zYgt2g8pWDPewFQ4j1uyVtwkrkjRFFoE0s1o
+ 1StVGW8sqjRZ0kfQ7MTiGP8+JsoN3o4Ex1YB73G3VPVYAcsTrJ7GfRMwQ9ePncxc1K0g
+ fMpAbOAkPzfd+85YomMU9NFymBj/PpwMkyNuKn3q9UD+5J61vEELxRemoUY5eKMVFplk
+ IIeaQ7j9Ce9UfbeAamMT85bvjJZJBYvnzoxZzG2j1Y00n60qLRWYrdE4oyTkmGW78fxc
+ 3gnQ==
+X-Gm-Message-State: AOAM531UiyBa/bUriFwVO1Ec0Q2Fwc39bvpZ1swiJjys7cCLezxF3Eko
+ A5+t+pIzwPiWbDs3F6VC2GI=
+X-Google-Smtp-Source: ABdhPJxoAq0FUyM3u5+RYVoK7AjggZpWA/LnLxzJ8X6othdFB7ro4TZEIZsBcKWSAcWAhwmjtgKf+Q==
+X-Received: by 2002:a05:6512:ac4:: with SMTP id
+ n4mr10995422lfu.475.1629388867150; 
+ Thu, 19 Aug 2021 09:01:07 -0700 (PDT)
+Received: from wbg (h-155-4-221-58.NA.cust.bahnhof.se. [155.4.221.58])
+ by smtp.gmail.com with ESMTPSA id n2sm344695lfu.109.2021.08.19.09.01.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 19 Aug 2021 09:01:06 -0700 (PDT)
+From: Joachim Wiberg <troglobit@gmail.com>
+To: Nikolay Aleksandrov <razor@blackwall.org>, netdev@vger.kernel.org
+In-Reply-To: <20210719170637.435541-1-razor@blackwall.org>
+References: <20210719170637.435541-1-razor@blackwall.org>
+Date: Thu, 19 Aug 2021 18:01:05 +0200
+Message-ID: <875yw1qv9a.fsf@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162919321138.26227.14459978814742770113.git-patchwork-notify@kernel.org>
-Date: Tue, 17 Aug 2021 09:40:11 +0000
-References: <20210816145707.671901-1-razor@blackwall.org>
-In-Reply-To: <20210816145707.671901-1-razor@blackwall.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- nikolay@nvidia.com, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 0/4] net: bridge: vlan: fixes for vlan
-	mcast contexts
+Content-Type: text/plain
+Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next 00/15] net: bridge: multicast: add
+	vlan support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,36 +93,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Hi Hik, everyone!
 
-This series was applied to netdev/net-next.git (refs/heads/master):
-
-On Mon, 16 Aug 2021 17:57:03 +0300 you wrote:
+On Mon, Jul 19, 2021 at 20:06, Nikolay Aleksandrov <razor@blackwall.org> wrote:
 > From: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> Hi,
-> These are four fixes for vlan multicast contexts. The first patch enables
-> mcast ctx snooping when adding already existing master vlans to be
-> consistent with the rest of the code. The second patch accounts for the
-> mcast ctx router ports when allocating skb for notification. The third
-> one fixes two suspicious rcu usages due to wrong vlan group helper, and
-> the fourth updates host vlan mcast state along with port mcast state.
-> 
-> [...]
+> This patchset adds initial per-vlan multicast support, most of the code
+> deals with moving to multicast context pointers from bridge/port pointers.
 
-Here is the summary with links:
-  - [net-next,1/4] net: bridge: vlan: enable mcast snooping for existing master vlans
-    https://git.kernel.org/netdev/net-next/c/b92dace38f8f
-  - [net-next,2/4] net: bridge: vlan: account for router port lists when notifying
-    https://git.kernel.org/netdev/net-next/c/05d6f38ec0a5
-  - [net-next,3/4] net: bridge: mcast: use the correct vlan group helper
-    https://git.kernel.org/netdev/net-next/c/3f0d14efe2fa
-  - [net-next,4/4] net: bridge: mcast: toggle also host vlan state in br_multicast_toggle_vlan
-    https://git.kernel.org/netdev/net-next/c/affce9a774ca
+Awesome work, this looks very interesting! :)  I've already built and
+tested net-next for regressions on Marvell SOHO switches, looking good
+so far.
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Curious, are you planning querier per-vlan, including use-ifaddr support
+as well?  In our in-house hack, which I posted a few years ago, we added
+some "dumpster diving" to inet_select_addr(), but it got rather tricky.
+So I've been leaning towards having that in userspace instead.
 
+> Future patch-sets which build on this one (in order):
+>  - iproute2 support for all the new uAPIs
 
+I'm very eager to try out all the new IGMP per-VLAN stuff, do you have
+any branch of the iproute2 support available yet for testing?  For now
+I've hard-coded BROPT_MCAST_VLAN_SNOOPING_ENABLED in br_multicast_init()
+as a workaround, and everything seems to work just as expected :-)
+
+Best regards
+ /Joachim
