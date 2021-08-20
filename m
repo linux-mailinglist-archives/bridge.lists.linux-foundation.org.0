@@ -1,86 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCB213F26C4
-	for <lists.bridge@lfdr.de>; Fri, 20 Aug 2021 08:26:19 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AEE53F2C5D
+	for <lists.bridge@lfdr.de>; Fri, 20 Aug 2021 14:44:06 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D6B914071A;
-	Fri, 20 Aug 2021 06:26:17 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 2F3914011C;
+	Fri, 20 Aug 2021 12:44:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9HmzCtLEsQIF; Fri, 20 Aug 2021 06:26:17 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 8360E40719;
-	Fri, 20 Aug 2021 06:26:16 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id E7mtib2Es_bn; Fri, 20 Aug 2021 12:44:03 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 787FC401AD;
+	Fri, 20 Aug 2021 12:44:02 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3FD7AC001F;
-	Fri, 20 Aug 2021 06:26:16 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3F84BC0022;
+	Fri, 20 Aug 2021 12:44:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 832F2C000E
- for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 06:26:14 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6EE1FC000E
+ for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 12:44:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 5FB7340719
- for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 06:26:14 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 5D11A40466
+ for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 12:44:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id uKVm3GfmaUrl for <bridge@lists.linux-foundation.org>;
- Fri, 20 Aug 2021 06:26:13 +0000 (UTC)
+ with ESMTP id n4U92yANkmS1 for <bridge@lists.linux-foundation.org>;
+ Fri, 20 Aug 2021 12:44:00 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
- [IPv6:2a00:1450:4864:20::12d])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 1D1CB40364
- for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 06:26:12 +0000 (UTC)
-Received: by mail-lf1-x12d.google.com with SMTP id o10so18227934lfr.11
- for <bridge@lists.linux-foundation.org>; Thu, 19 Aug 2021 23:26:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=xM/5hg73CAO5nDlUiWnC06sBYRoGEVNZps4ThjEK80g=;
- b=SM1DxTrgTQmc/EbSc5o/ZKIU4t62Dau5mNSp1bsk7iNoKcDtfvVrYZ+dAjdNqwDI4x
- nzZKOWr7tfhFVPyHPSlQURghDVLrbMfgs43M7gPs+0Uio3Cpz2RTkontu83Eb5mqdD3x
- OfK85T0Upyl6y/12E5n1WE0FwhaPhAS68b7KKXmpmZfkRI286LwpC3WlK4agL7LGhxYo
- xeYHLXxFaBRst7J9z64xRfBl0XEtWNcH9VGL5vGE/T6AMbtDcdvXM8PAmExa+LN6S9qr
- 5RKsTcMQqfMeaucp4c3MObUiIn8thVESL/Uxh5Vp5kfczH7zxWIx/+QUw3kXePwqCkPM
- meGQ==
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 1946840405
+ for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 12:43:59 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id h9so20022183ejs.4
+ for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 05:43:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=giNz4IMQJBWP9MPpTNJl9KipRoS+mbRRhgoflH2MLuc=;
+ b=baP/p1y6Id5GHg2j6wuQaaDBno0KZNyeB8YQbfZfByrzqp2iDkVPPFJka/xKkwp6Ag
+ aGZzfxyIp3KjAIO6i2amosQy9oMzzO6cZ/XpnAfM9XhfGnjrXrhP13cHMDhE/ykRLsp/
+ YIo/ILPY1HLFobWrtZZVYTL6oo3MJ08TJFuHddGwRXpuqbkKOM9V2p9UWExW8WF9jpRm
+ CtPAXg6WY2PuBM8wCsuZ7Xd79qf9a1eOojUkZNx/D7LLGXsAfVzq397ono6XHCkVj5o0
+ h5kIjd8cj3tBVoNtGWXmqzwvgs9JGm3vZqgrfM6V5yHZfjwHMTUmLNsLzVYpaC2UPyh8
+ rmeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=xM/5hg73CAO5nDlUiWnC06sBYRoGEVNZps4ThjEK80g=;
- b=P/SEwqEQpGOiG6W1Yd3fT+4x33VHZ9Nb5Its+mEoWxJE5McAhOGHyVU2OND4W3nw56
- HKKmR/JINn4yoNvwzAeudlmcL+eNdugPN98F0y5TiNLxkbGQhpZG02be4XZAeXhpcjZH
- Vv4zfyYIBYyyv/EF2TsyXN1jADlDxKPX08enWS17Yde/6Q4CVIz+1FTEAhnpb4gHXoG1
- 1BLLoPkfvn68b1s4s0ah2c7MHMkn206sqH4h3F7HIvcYlJ6S82VnKaa+EWZdRezS6iam
- bIB0tr6IZZJMVHVqBfCbd1Rg1Ket+U83SqDnkVKBBNViPxXqkSu1dr3mmW8G4np+stu8
- aNug==
-X-Gm-Message-State: AOAM532970HZ8px1EnYdnu766XlYpNPFJquCV41gTD448J5rN+tHB94M
- 9Wpsyw2MA5mfksou+3mXmmk=
-X-Google-Smtp-Source: ABdhPJygigIOh3nwUm5DE31I2p4oPZ2Dma+yQlZ7L6UHOGLe18iCJvkPJk3AuAOtuy+WJR7ClhlHbw==
-X-Received: by 2002:a05:6512:401a:: with SMTP id
- br26mr9465748lfb.539.1629440771118; 
- Thu, 19 Aug 2021 23:26:11 -0700 (PDT)
-Received: from wbg (h-155-4-221-58.NA.cust.bahnhof.se. [155.4.221.58])
- by smtp.gmail.com with ESMTPSA id bu31sm529124lfb.153.2021.08.19.23.26.10
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=giNz4IMQJBWP9MPpTNJl9KipRoS+mbRRhgoflH2MLuc=;
+ b=N+dbeaODYjl2a1R2NanCE9mMXoJqdb0opWizM1JoMuxqKp/adIJC65frqpzXygQkMm
+ mkDkTaxbQWxeEhaU77a6c3y8gVxXU++AqF9dXldiHrkXMvvxX9WEpNFb2/fZh8Tlx2LV
+ ORwtvtuEGALnCJrDYJUK5t+keFUD6bETawxcx3MNfQX3jQ+GcO9HnLJR5U8Wp/c5vMVf
+ QMR1pbJ4d0c+S1kbwzSBpoLlpBh8h6mx5ONH4LPcgk8K3pqGto5BA59mi9YB0Jz2Xotz
+ UXtWyPor+aUzfpVq2L/tgKCL/dLVJpM59jyT/miqms8qRFf6FhPrahzRXJl19BWkupWw
+ EOnQ==
+X-Gm-Message-State: AOAM530cYeoYQZZ2jg4K8MNu+G3HcAxOwYJYKqtyGKeed7W05i2wK+ka
+ HuRR6e6HVW6+vv7rW50ZULtyEQ==
+X-Google-Smtp-Source: ABdhPJy9j8l2nWFIqj7zYdTJX4V77CWERzGmn2AXcVp2St4jibRZZvLcXL7siAbc0Js3vGS7sLuZAA==
+X-Received: by 2002:a17:907:b07:: with SMTP id
+ h7mr20616242ejl.406.1629463438243; 
+ Fri, 20 Aug 2021 05:43:58 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id ci19sm676627ejc.109.2021.08.20.05.43.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Aug 2021 23:26:10 -0700 (PDT)
-From: Joachim Wiberg <troglobit@gmail.com>
-To: Nikolay Aleksandrov <razor@blackwall.org>, netdev@vger.kernel.org
-In-Reply-To: <458e3729-0bf0-8c45-9e45-352da76eaeb6@blackwall.org>
-References: <20210719170637.435541-1-razor@blackwall.org>
- <875yw1qv9a.fsf@gmail.com>
- <458e3729-0bf0-8c45-9e45-352da76eaeb6@blackwall.org>
-Date: Fri, 20 Aug 2021 08:26:09 +0200
-Message-ID: <871r6or5ry.fsf@gmail.com>
+ Fri, 20 Aug 2021 05:43:57 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Fri, 20 Aug 2021 15:42:53 +0300
+Message-Id: <20210820124255.1465672-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 00/15] net: bridge: multicast: add
-	vlan support
+Subject: [Bridge] [PATCH net-next 0/2] net: bridge: mcast: add support for
+	port/vlan router control
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -95,36 +97,55 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Aug 19, 2021 at 19:22, Nikolay Aleksandrov <razor@blackwall.org> wrote:
-> On 19/08/2021 19:01, Joachim Wiberg wrote:
->> On Mon, Jul 19, 2021 at 20:06, Nikolay Aleksandrov <razor@blackwall.org> wrote:
->>> From: Nikolay Aleksandrov <nikolay@nvidia.com>
->> Curious, are you planning querier per-vlan, including use-ifaddr support
->> as well?  In our in-house hack, which I posted a few years ago, we added
->> some "dumpster diving" to inet_select_addr(), but it got rather tricky.
->> So I've been leaning towards having that in userspace instead.
-> Yes, that is already supported (use-ifaddr needs attention though). In my next
-> patch-set where I added the initial global vlan mcast options I added control
-> for per-vlan querier with per-vlan querier elections and so on. The use-ifaddr
-> needs more work though, that's why I still haven't added that option. I need
-> to add the per-vlan/port router control option so we'll have mostly everything
-> ready in a single release.
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Wow, OK now we're talking, yeah that would be great to have in place as well!
+Hi,
+This small set adds control over port/vlan mcast router config.
+Initially I had added host vlan entry router control via vlan's global
+options but that is really unnecessary and we can use a single per-vlan
+option to control it both for port/vlan and host/vlan entries. Since
+it's all still in net-next we can convert BRIDGE_VLANDB_GOPTS_MCAST_ROUTER
+to BRIDGE_VLANDB_ENTRY_MCAST_ROUTER and use it for both. That makes much
+more sense and is easier for user-space. Patch 01 prepares the port
+router function to be used with port mcast context instead of port and
+then patch 02 converts the global vlan mcast router option to per-vlan
+mcast router option which directly gives us both host/vlan and port/vlan
+mcast router control without any additional changes.
 
->>> Future patch-sets which build on this one (in order):
->>>  - iproute2 support for all the new uAPIs
->> I'm very eager to try out all the new IGMP per-VLAN stuff, do you have
->> any branch of the iproute2 support available yet for testing?
-> I don't have it public yet because I need to polish the support, currently
-> it's very rough, enough for testing purposes for these patch-sets. :)
-> I plan to work on that after I finish with the per-vlan/port router control.
+This way we get the following coherent syntax:
+ [ port/vlan mcast router]
+ $ bridge vlan set vid 100 dev ens20 mcast_router 2
 
-Alright, I can appreciate that.  Really looking forward to this, I'll be
-patiently waiting here in the wings, testing this out.
+ [ bridge/vlan mcast router ]
+ $ bridge vlan set vid 100 dev bridge mcast_router 2
+instead of:
+ $ bridge vlan set vid 100 dev bridge mcast_router 1 global
 
-Fantastic work with this, again! :)
+The mcast_router should not be regarded as a global option, it controls
+the port/vlan and bridge/vlan mcast router behaviour.
 
-All the best
- /Joachim
- 
+This is the last set needed for the initial per-vlan mcast support.
+Next patch-sets:
+ - iproute2 support
+ - selftests
+
+Thanks,
+ Nik
+
+Nikolay Aleksandrov (2):
+  net: bridge: mcast: br_multicast_set_port_router takes multicast
+    context as argument
+  net: bridge: vlan: convert mcast router global opt to per-vlan entry
+
+ include/uapi/linux/if_bridge.h |  2 +-
+ net/bridge/br_multicast.c      | 24 ++++++++++++----
+ net/bridge/br_netlink.c        |  3 +-
+ net/bridge/br_private.h        | 18 +++++++++++-
+ net/bridge/br_sysfs_if.c       |  2 +-
+ net/bridge/br_vlan.c           |  1 +
+ net/bridge/br_vlan_options.c   | 51 ++++++++++++++++++++++------------
+ 7 files changed, 74 insertions(+), 27 deletions(-)
+
+-- 
+2.31.1
+
