@@ -1,70 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010693F2DB7
-	for <lists.bridge@lfdr.de>; Fri, 20 Aug 2021 16:10:12 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84BE3F47C1
+	for <lists.bridge@lfdr.de>; Mon, 23 Aug 2021 11:39:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 5985261405;
-	Fri, 20 Aug 2021 14:10:10 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 15D0E400CB;
+	Mon, 23 Aug 2021 09:39:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Y1_p1pEML51P; Fri, 20 Aug 2021 14:10:09 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id IfgB6Q3dt3_x; Mon, 23 Aug 2021 09:39:25 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id C3810613FE;
-	Fri, 20 Aug 2021 14:10:07 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 97E8740187;
+	Mon, 23 Aug 2021 09:39:24 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 854A6C0022;
-	Fri, 20 Aug 2021 14:10:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 478E6C001F;
+	Mon, 23 Aug 2021 09:39:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E6B57C000E
- for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 14:10:06 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DDDDCC000E
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Aug 2021 06:19:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id D255880F30
- for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 14:10:06 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id B9AC080C6E
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Aug 2021 06:19:44 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
+ dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mabY2GCilBUV for <bridge@lists.linux-foundation.org>;
- Fri, 20 Aug 2021 14:10:06 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 2852280F2D
- for <bridge@lists.linux-foundation.org>; Fri, 20 Aug 2021 14:10:06 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id BA123610FF;
- Fri, 20 Aug 2021 14:10:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1629468605;
- bh=Q53Il28m8kGMtAWjXNQShZZM0+fN0olsOdvSlZ4MQCM=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=K0amjP+HFCKBwmd1G0haYawvfg3UNDkXXFeDlogHYDqvVTQ7JS+iLDxAnkRu+AG+J
- aZoR5gCkWQ84y2AdiHrLFVUlL0dGhSGJF0SvLcWrwjT7Gmn0/a9BcbUbStO6ZwDLLC
- pjWWuJWacTiphCGpNtabREtBW6dC3zqBXE27LyD5pHSgzQB4JLWl3quLrJoDJK9IWc
- 2Hj7eVrS0KfgvUmi55QWWZnDR2FNrBPWCzsSc8xOhY/MhCrijdBUjfajXQeZR+cqBB
- Gq3BFdbT1b/pRyFiTKS9XR31NYy5Mk12C9SACvQjSIvyi0mBW+SSGdFXTG2q8TpIT5
- k1MRjDqq4Elwg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id AC0BB60A89;
- Fri, 20 Aug 2021 14:10:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ with ESMTP id FyHEjvdME2Ql for <bridge@lists.linux-foundation.org>;
+ Mon, 23 Aug 2021 06:19:44 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20::631])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 2DA0E80C66
+ for <bridge@lists.linux-foundation.org>; Mon, 23 Aug 2021 06:19:43 +0000 (UTC)
+Received: by mail-pl1-x631.google.com with SMTP id e15so9519364plh.8
+ for <bridge@lists.linux-foundation.org>; Sun, 22 Aug 2021 23:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+ZeKKxsi+JTCjIObZ4eE1fvYuLFReuH5GCzKzRZkgdE=;
+ b=UCLzYMyaq7Rrmnp8ZFnPp4omrv77mq+4A6TSSxWbqeZmgcMawouGrIXO7wQEGX4ndh
+ PYKaWptz3y5dYVq9LZjG7cqYZhlKesoDrBTXeVAHAlctv2iHKr1OPNQOOoqinC5hWa9x
+ JV56yWZEL5kcLSl3Y9cNT872JEpREwb9UGmuHtZhNFyEXBQa4QZ4Xz/3Ms79Da8IgVcH
+ e83V4rEDO67aDK3PMsP3dPDTrtC6D0B1IOk61uYp1euwsX2rXIwHoVRvewY6bDVWYW2i
+ 97DlNEAOs76P6GTtvaaHpyT73waBlhphm7jkMXPg/4v1swexZIXlhQ5bCnFwV6Bhuz+A
+ PMPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+ZeKKxsi+JTCjIObZ4eE1fvYuLFReuH5GCzKzRZkgdE=;
+ b=h8fB1MWMRZaODuiUrsG7D1Mwu//J6/TYUUqfjyk6EuZ8YVM96+jtMjP822QBIRl0Gt
+ pTvcXz3dcMJA4vioMNmcFSImzOs1jswT83MO3+fnMb27UCaFGLD50lKi4OoObPAWSrt6
+ qytMGtBXQzUIZeXx4qik6xBhOtNT/sDj3392dr5zpea5Z3eb8kRsWv42c4EB9MGNHFOu
+ H4WO0CB2+uoigDLQbl9RpAwT0y//u0+nSZO343G9/OEbY79+MGkzavF1XDw3ya/kQEsy
+ VOkW4XEr25avzjb/ilq5FQEcmIZLDn+mwFKq1CA1wjdbwgpQQW/ITxe2wEEPq91eBqTn
+ BP7g==
+X-Gm-Message-State: AOAM531Y0WAZa3qHZDuSIzm7i/E8ghnsZO2CqWiOO5BXnqLuSYmBaO2D
+ pJoLwNpXLgqLgnZEDajUT1I=
+X-Google-Smtp-Source: ABdhPJw1tycfU8q3I7bG+LeG8Jkrs1BieOAdB8wva7RxHhdPGryWtEvwwDegHVxrcH9xXWjEa6cwfg==
+X-Received: by 2002:a17:90a:6782:: with SMTP id
+ o2mr18231339pjj.165.1629699583082; 
+ Sun, 22 Aug 2021 23:19:43 -0700 (PDT)
+Received: from localhost.localdomain ([1.240.193.107])
+ by smtp.googlemail.com with ESMTPSA id l12sm17273425pgc.41.2021.08.22.23.19.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 22 Aug 2021 23:19:42 -0700 (PDT)
+From: Kangmin Park <l4stpr0gr4m@gmail.com>
+To: Roopa Prabhu <roopa@nvidia.com>
+Date: Mon, 23 Aug 2021 15:19:38 +0900
+Message-Id: <20210823061938.28240-1-l4stpr0gr4m@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162946860569.9666.13581662949976824444.git-patchwork-notify@kernel.org>
-Date: Fri, 20 Aug 2021 14:10:05 +0000
-References: <20210820124255.1465672-1-razor@blackwall.org>
-In-Reply-To: <20210820124255.1465672-1-razor@blackwall.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
+X-Mailman-Approved-At: Mon, 23 Aug 2021 09:39:22 +0000
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- nikolay@nvidia.com, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 0/2] net: bridge: mcast: add support
- for port/vlan router control
+ linux-kernel@vger.kernel.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH net-next] net: bridge: replace
+	__vlan_hwaccel_put_tag with skb_vlan_push
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,37 +97,37 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+br_handle_ingress_vlan_tunnel() is called in br_handle_frame() and
+goto drop when br_handle_ingress_vlan_tunnel() return non-zero.
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+But, br_handle_ingress_vlan_tunnel() always return 0. So, the goto
+routine is currently meaningless.
 
-On Fri, 20 Aug 2021 15:42:53 +0300 you wrote:
-> From: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> Hi,
-> This small set adds control over port/vlan mcast router config.
-> Initially I had added host vlan entry router control via vlan's global
-> options but that is really unnecessary and we can use a single per-vlan
-> option to control it both for port/vlan and host/vlan entries. Since
-> it's all still in net-next we can convert BRIDGE_VLANDB_GOPTS_MCAST_ROUTER
-> to BRIDGE_VLANDB_ENTRY_MCAST_ROUTER and use it for both. That makes much
-> more sense and is easier for user-space. Patch 01 prepares the port
-> router function to be used with port mcast context instead of port and
-> then patch 02 converts the global vlan mcast router option to per-vlan
-> mcast router option which directly gives us both host/vlan and port/vlan
-> mcast router control without any additional changes.
-> 
-> [...]
+However, paired function br_handle_egress_vlan_tunnel() call
+skb_vlan_pop(). So, change br_handle_ingress_vlan_tunnel() to call
+skb_vlan_push() instead of __vlan_hwaccel_put_tag(). And return
+the return value of skb_vlan_push().
 
-Here is the summary with links:
-  - [net-next,1/2] net: bridge: mcast: br_multicast_set_port_router takes multicast context as argument
-    https://git.kernel.org/netdev/net-next/c/a53581d5559e
-  - [net-next,2/2] net: bridge: vlan: convert mcast router global option to per-vlan entry
-    https://git.kernel.org/netdev/net-next/c/2796d846d74a
+Signed-off-by: Kangmin Park <l4stpr0gr4m@gmail.com>
+---
+ net/bridge/br_vlan_tunnel.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+diff --git a/net/bridge/br_vlan_tunnel.c b/net/bridge/br_vlan_tunnel.c
+index 01017448ebde..7b5a33dc9d4d 100644
+--- a/net/bridge/br_vlan_tunnel.c
++++ b/net/bridge/br_vlan_tunnel.c
+@@ -179,9 +179,7 @@ int br_handle_ingress_vlan_tunnel(struct sk_buff *skb,
+ 
+ 	skb_dst_drop(skb);
+ 
+-	__vlan_hwaccel_put_tag(skb, p->br->vlan_proto, vlan->vid);
+-
+-	return 0;
++	return skb_vlan_push(skb, p->br->vlan_proto, vlan->vid);
+ }
+ 
+ int br_handle_egress_vlan_tunnel(struct sk_buff *skb,
+-- 
+2.26.2
 
