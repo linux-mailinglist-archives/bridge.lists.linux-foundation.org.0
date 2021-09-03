@@ -1,87 +1,146 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99313FFD33
-	for <lists.bridge@lfdr.de>; Fri,  3 Sep 2021 11:34:48 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F863FFDCE
+	for <lists.bridge@lfdr.de>; Fri,  3 Sep 2021 12:04:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id E1F44407C7;
-	Fri,  3 Sep 2021 09:34:46 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 70A51400CD;
+	Fri,  3 Sep 2021 10:04:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id DU9HOKHvyKjp; Fri,  3 Sep 2021 09:34:45 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 0B4B04251A;
-	Fri,  3 Sep 2021 09:34:44 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pyyf-tsLRxqt; Fri,  3 Sep 2021 10:04:23 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id A7118407BD;
+	Fri,  3 Sep 2021 10:04:22 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B34AFC0022;
-	Fri,  3 Sep 2021 09:34:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 68A32C0022;
+	Fri,  3 Sep 2021 10:04:22 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A15E3C000E
- for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 09:34:42 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 514D9C000E
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 10:04:21 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 830ED61541
- for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 09:34:42 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 400BE425B4
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 10:04:21 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Nqm8VUGDZM9F for <bridge@lists.linux-foundation.org>;
- Fri,  3 Sep 2021 09:34:40 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=nvidia.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id X1KLmSdMojkM for <bridge@lists.linux-foundation.org>;
+ Fri,  3 Sep 2021 10:04:20 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 4331D606CB
- for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 09:34:40 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id dm15so7144470edb.10
- for <bridge@lists.linux-foundation.org>; Fri, 03 Sep 2021 02:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=aiR23CdvX/YW7ASJTZF8b+8Ds0NXrhmWhy57VeViwyo=;
- b=QLeBRmfebetUgt50tunwIMdWH6Xh1XJU9NxhzbFJAB/SEky4PZPW1vehsAR9QpJ1jd
- xnwHiEdsUpkVp20AXnOhuhqv4wrkuEjJUMej4dHJCqo87Bx5RtJ50Pnt35QfLSCW110V
- O6BT5W/I6LvhXGAadQUXekqC7NFdbPWz9lVQPpHVuoA0aJpWuoBz6Jd7GOm+epqC4AxX
- BzNWPn8aBkBPVwINR4Sk3omo8C/M1BzSgwWTODeAs0P52L0HMrc3Yz4637W0bbelGtZL
- LVCDk8IijuC90eH7mP8I5Yp5mCNT7b3nb8tFBQ/9QP6h/CqUf1mxAdjMfYpjFlRMLi4B
- oHCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=aiR23CdvX/YW7ASJTZF8b+8Ds0NXrhmWhy57VeViwyo=;
- b=qxFcx1n28tqPZfem7tbt5RacnhL+FhizVuzaL8ZU6jowgab+ls3HVmfIM4AJgx56ex
- MSG83G8vbiSRic38zcddwnc7AlHsrSVbanvUkWFNRGOSv0+e1wtMWbEYUca3REuvA6t/
- cP6UtmUX3bAM3se2nWaudqbC9PWG5eJ/Dr4UOwSSSYumo5mqiuXD+WeV5YUdbZPMAf6V
- Ww1JyayQ6J7K/SabaAoo4EL3gX7bJaGeNOnduK8kOcGLcBe3fRH2mpHhYjNVrXKsrz50
- Mb4/gdpCGmkfgYxfZ3O7Oo7nUuPs6ySYpMa5FeHOXj6hgWvnQdpDjlN/gbmdUAfpkgN8
- ttSQ==
-X-Gm-Message-State: AOAM532YzvpHtqf1XMoOWdwkEA6aeLO+DYY95CSRRnTvEOIPuJUQoQns
- hSOwaCZEQ6xWbBSCw6kF9tzxZQ==
-X-Google-Smtp-Source: ABdhPJzGrUF6AYGm5GxlQiWgn7mYn1S8u6cNLXl+74+F+FMUItvxWJaejiL4PMudXeR6R8o86OePeQ==
-X-Received: by 2002:aa7:c903:: with SMTP id b3mr3061137edt.23.1630661678298;
- Fri, 03 Sep 2021 02:34:38 -0700 (PDT)
-Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
- [84.238.136.197])
- by smtp.gmail.com with ESMTPSA id ck4sm2586391edb.67.2021.09.03.02.34.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Sep 2021 02:34:37 -0700 (PDT)
-From: Nikolay Aleksandrov <razor@blackwall.org>
-To: netdev@vger.kernel.org
-Date: Fri,  3 Sep 2021 12:34:15 +0300
-Message-Id: <20210903093415.1544837-1-razor@blackwall.org>
-X-Mailer: git-send-email 2.31.1
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2046.outbound.protection.outlook.com [40.107.220.46])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 4FB8C425AE
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 10:04:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZApwfxF7342oSZHLgn022O0kfy9zsDZGmejbqLHyOi8JEpzXNIA2Ql+LmCOVjqddPz0L5aB4bVWW/Hh0helug+sLQMs+b//0ajPRF/2itRXKyLnwO7E7UJuBBZ9hs8eVQa1BcjNzBBmNp9aor7nrc1acfvKhkEoIshVf/mzyfbMS1E5hT8WMK144vAbc0N6+DbtyAwoc7igH3Lvy68LLWpXKzUu3s425cOcVRGIlu/S1AQBu/aF240ir+52bS1HEiB16jeIUEe14sCr74QqPdSaDtai49xFKB9+3CtlxrCuDlHAHUGBNhGb5AoI7plLrC3C55mzrAzD+wFRU001YYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=OB3hJWEopcX3jrwOqJ3eZxM/ybrrEZHeg5OVrHaLSSk=;
+ b=BZHpzVgWPZpwpXjtjxkSF6eyyfj8zceIKXGYHJ0a7x37IYK2PsXOhbA07TVk3RheeYmtQnatlPHyFILOXE3d0aDkKhtZgIv0NzfKWU6WS/ZmbJM8TLumdslrU+LrMNftpMRy4V95uiLLSkKR0jdbSblJbw7BLxR3EYOtUzLPVjaiUR9MDxxtDp/CHRBwrH78ABP/Gkdn10jiSgznvSQzJ9HJhzUHPjnlQHQEZPClblM4Gki9oApXkKxFkeVrs24+q8gQ+h7z3C1sRzMvSyV3DJnCFMZIBJ2TLIMhPF9CPGD+6g+PZR9xOhJbbqIDGcUJP0Iw7zekoSf7+ByIWvy68g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OB3hJWEopcX3jrwOqJ3eZxM/ybrrEZHeg5OVrHaLSSk=;
+ b=KsFpqQ2cOT+zRzCqM64VnecJoXh0poJSMXiOW/Y4jTGHaZR2ALQAgewsPQfgI0nYg1LCR3uzYqz2WrOq0NGefppNHxr+t4XznYmwKGt2NJIBulUo3NVVxYsIFQkzXezoGYShS4eZRIqzzRZcb+YEt0lBEd2rC47PlQgXMU5s9g1WWtDELZ/9oMOBmbrIon8OhQYCX6mYOGPhssVLuLjEiUKI4k5+1b4WtoDfc6wNhltfIHG+4q9cTU2nEWckV+UPhqbYaMeVt8l010wF5fWPAqt5V1KHPLJNshVCGxhzOqw/VhQm57Hv+2ZluNxdJ2Ig+gfNWPGvH9XZpzxkYsMh3g==
+Authentication-Results: googlegroups.com; dkim=none (message not signed)
+ header.d=none;googlegroups.com; dmarc=none action=none
+ header.from=nvidia.com;
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
+ by DM4PR12MB5213.namprd12.prod.outlook.com (2603:10b6:5:394::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.17; Fri, 3 Sep
+ 2021 10:04:18 +0000
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::c170:83a0:720d:6287]) by DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::c170:83a0:720d:6287%7]) with mapi id 15.20.4478.020; Fri, 3 Sep 2021
+ 10:04:18 +0000
+To: syzbot <syzbot+24b98616278c31afc800@syzkaller.appspotmail.com>,
+ bridge@lists.linux-foundation.org, davem@davemloft.net, kuba@kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, roopa@nvidia.com,
+ syzkaller-bugs@googlegroups.com
+References: <0000000000007d0d1a05cb13924c@google.com>
+Message-ID: <10b89a9f-443c-98d1-ca01-add5f6dd3355@nvidia.com>
+Date: Fri, 3 Sep 2021 13:04:10 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <0000000000007d0d1a05cb13924c@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0067.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:21::18) To DM4PR12MB5278.namprd12.prod.outlook.com
+ (2603:10b6:5:39e::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- roopa@nvidia.com
-Subject: [Bridge] [PATCH net] net: bridge: mcast: fix vlan port router
-	deadlock
+Received: from [10.21.241.78] (213.179.129.39) by
+ ZR0P278CA0067.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:21::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4478.17 via Frontend Transport; Fri, 3 Sep 2021 10:04:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b74f95e9-dd4d-4235-4259-08d96ec23170
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5213:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM4PR12MB521361A746124F09EF48B85FDFCF9@DM4PR12MB5213.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ULyVqNUZNssL6x3esneMrpjsOhMuLhR+Zf76Hi24NskjSwkLS7zr59Jq97q5af47VNp36Vl2CndvRgDjZMJyWgZ1xELc69L2wzlVqlN/Xx/SQ8nG8DT+7ND54BPbS3awiTfzsmwHNRHx3fczVJIt5NapSD0j/0xwD5dQbVINOKYPwccakJctmZLQpxXXA5IhhT7hbJvHgp6duxxsE9fp1FD0MrSlScinZySDeCy4u4R0I2ijl7xibZu/aUY5DyGHY+XQpnDiDD7dSxhqa9jxOhcqQM4HPlL8GsXepU3lk97igyrbwaChGahG6nr5qWsj9nIHXiMdXSK80/t11LtNypr6Kd86vO7XO5TDmjbHFUu4NpWrrQiwlT2iq7ILyBfUaq12hlb+9psgEWzjUV7ENQdHKvXUZFnYH7L11WM7CIbse9IZBMom6K4v/RVdCyiekanWUxT4lZSFK9Am7k/d6yR2uIAtHGQeLJxDt8o5bKcXkxUKW0DXOQsGSfC1My7M6Fyq6CSwTdNEh7uFsdCGLE043ICrs2b+waRkK22Kvs2vw69mz5J7HvAglaJkEjYAj2nQhZYPIRalsCb3XMAsH4SX60dT3y5VPaYw5jfqyvyXeimUe0a6gWoamuDMGSHWEYSgiX07CySCPIMD7i1VtkQIO2DjQnaMaa6AX0tb2bGnbJFCiLA0C/Nf7eslxPUFmUu+jJcz+0X3+40qjkDsuY1b+k2ctq/dPzPdoxjyfYZyS/HLPHFDC3Aa/ZUw8HkY4ZVs7le7JkPdPsGtVF1vOlNpAYyLcX93WPj7vPXTAssye6Z5cZuZoD+8N1KqIITaVZtdMXt3S1MMOQgbpkay+jxC2+feT1QhXOwP62TVLKKZLFaPiYzTzR/aqP/9hC7C
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(31696002)(5660300002)(2906002)(966005)(6486002)(83380400001)(36756003)(186003)(26005)(66476007)(508600001)(53546011)(66946007)(66556008)(8676002)(8936002)(31686004)(86362001)(6666004)(16576012)(316002)(2616005)(38100700002)(956004)(99710200001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RmdadHpRVU9yZDJBbGxydDB3bENONGhub3l5WjBIaCtwa2RmMEJqRUVmSWhl?=
+ =?utf-8?B?VDhYM1RLZ2VDR1ljaU40QzZ3eGlwTWtPdzMvbFlhSzJxMkZLeE55ellFb2po?=
+ =?utf-8?B?RFYwT29QVzF0eTBmWHFNNTZ3alVseEZXbVlUYm1MY3BJTnFTUm1YMnVpVk9V?=
+ =?utf-8?B?YWJBK05QQUtOL2tyaWV5QTZCMURsMWp6Y0IvOWxNTVJCdGVFeXc5VUo2TDVq?=
+ =?utf-8?B?aktaSWJvaUduTFNtaWROYmhISXBYUlFPYVIzV3h1ZTcyblhzS2lIYWZlVGs1?=
+ =?utf-8?B?M1FmZ3JYU3U2TDlFVHlnYW92SkhjSUxPMVR2emVaaEV6T2g1SU1HbkhPcXhi?=
+ =?utf-8?B?ejhFNm5BZ3JGM1VsdEhsemt4b1dHc3lpMG9hNTdOVG5ZOW96eGFpdXRqN3NX?=
+ =?utf-8?B?RkttWTZydENQRGJaOUg5cUIvOWNjbFdibkl1c1k0VjJWUGFnK0V0U3BmVmts?=
+ =?utf-8?B?WUhDSHlXQ1lEeWsra0lqWU5LYXpiRW9jOTB0bUtWWVBuYUQ0ZHpLVitWY0hR?=
+ =?utf-8?B?MW9aNlRlRE1IL3BSUk5JSXJZL1VqVlZBT1YxalBOYWtscGJraXBieEJaWm5Y?=
+ =?utf-8?B?QVZqRVVEbi95bUlNeGVZMU55MjFkL1RLL3NIMHI0cytQMXpudFhNUjV4bENu?=
+ =?utf-8?B?akFzRHpMWURud0dPUHZVUmYzVUdEK0MyOEJSRXRGNFN3QjlYNEcremxZTU9M?=
+ =?utf-8?B?dXdOZWtFNU41SU43cEdoSmdMZXJ0czM3eWlwQVRUSVdWNEhJMTNOL3JiZW9L?=
+ =?utf-8?B?NDhrSTdvOUZmRlJ2R29CTWF5RFNqTmhzRUhwVjdaRVRxUnhPakx5TEUvYmxD?=
+ =?utf-8?B?NlozaVhuV2MxcDBqY3pYeWhtN2t4Wk00cktwU2IrcWF2SU13TTFScFdDcjN0?=
+ =?utf-8?B?NEFVN2pLcy94emFtd2pHUUNVbm1PRERpLzZYOWo3aHJaL1FMQXk3RDVKSktO?=
+ =?utf-8?B?eFJYVFB1dytINGR6U0M4akZkRFl6ZmxtM04vUDZ0WWhJZlVEYWdkeU9VZGZP?=
+ =?utf-8?B?QkR3cTljaVRpRXJobE5pTlhYYkxnN0RRQzY5U1hxV2pzNnErQWJlOGVkZHVK?=
+ =?utf-8?B?U0dZblpnTmJ6Z09rN3dYTVcyQWR2T0JhcXVEV251OW9QUFBkWjFKK01lN000?=
+ =?utf-8?B?SnVrZTZXcUVuYmd4VUZUZ2FzMmluRXV1MUg1NzFBaE8vcVJBSnlaa0g0cE10?=
+ =?utf-8?B?NExHVzllYUFidUVWYWtqdzdISUlqMUdGRVlUYzJCbFZES1I1Nk9qb1RuMHAv?=
+ =?utf-8?B?Mk9GK3ZxcnBoZ2FlVEFLWmlnb1ZHUUlwVFYxZ2pVUkhhck91VXVEQVI0WUc1?=
+ =?utf-8?B?eUYyYWY4L2d4K3MxWjE4N1BHRDViL2JxcG1IOHNYcmplYlpmd3lhZk4xbkgz?=
+ =?utf-8?B?ekVMVXdqU3hBN1Z4bHErakkxV2MvMS96SS9rK2wvWDlGblFneWRTVEQreTF1?=
+ =?utf-8?B?RTRmTHhVTVJNQjdLaEVMQ1pTalZBWWVqQitTdnBRaFlObFZ4QnNhNmJkQlRR?=
+ =?utf-8?B?MjlmL2s2TVNkQTBtOUU1Z0xTTGdkZHFFbmtqL0djeW9WN3FubFZzd3dLd0Fo?=
+ =?utf-8?B?RVJmWjQ0djNHY2Y2ZVhEeDV4bllTaFdsQzQ5QldBQzBpb1o1UlkwMlZocVdO?=
+ =?utf-8?B?S1dCYVJKRkZlWERmSFlZMlZyVnRzRUFDOVJTQWNzYnk0dEpRTHVPTEJKdGc5?=
+ =?utf-8?B?R2tHeXZsYldwaEJuTmpCczFVUVRsT1M4QkRFNU5iaDBIbmZPVjdqM3dxc0hK?=
+ =?utf-8?Q?4kpt0YpRyWZS7jPdc4NrgPmmOlYwS/nthz1Ncz3?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b74f95e9-dd4d-4235-4259-08d96ec23170
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2021 10:04:18.3091 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BA22JgIy5r0wRBUeuwIsCP+/kcEkbKuVbNxP7YF6G4wj2bRrljmibQKDZyz8I89XZUKdnVuVeXmSCkY6RIyxHQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5213
+Subject: Re: [Bridge] [syzbot] KASAN: slab-out-of-bounds Read in add_del_if
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,46 +152,73 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Nikolay Aleksandrov <nikolay@nvidia.com>
+On 03/09/2021 12:03, syzbot wrote:
+> Hello,
+> 
+> syzbot found the following issue on:
+> 
+> HEAD commit:    3bdc70669eb2 Merge branch 'devlink-register'
 
-Before vlan/port mcast router support was added
-br_multicast_set_port_router was used only with bh already disabled due
-to the bridge port lock, but that is no longer the case and when it is
-called to configure a vlan/port mcast router we can deadlock with the
-timer, so always disable bh to make sure it can be called from contexts
-with both enabled and disabled bh.
+That is an older commit, before my ioctl fixes. I think this issue has been
+already fixed by my patch-set:
+ commit d15040a33883
+ Merge: 4167a960574f 9384eacd80f3
+ Author: David S. Miller <davem@davemloft.net>
+ Date:   Thu Aug 5 11:36:59 2021 +0100
 
-Fixes: 2796d846d74a ("net: bridge: vlan: convert mcast router global option to per-vlan entry")
-Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
----
- net/bridge/br_multicast.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+    Merge branch 'bridge-ioctl-fixes'
+    
+    Nikolay Aleksandrov says:
+    
+    ====================
+    net: bridge: fix recent ioctl changes
+    
+    These are three fixes for the recent bridge removal of ndo_do_ioctl
+    done by commit ad2f99aedf8f ("net: bridge: move bridge ioctls out of
+    .ndo_do_ioctl"). Patch 01 fixes a deadlock of the new bridge ioctl
+    hook lock and rtnl by taking a netdev reference and always taking the
+    bridge ioctl lock first then rtnl from within the bridge hook.
+    Patch 02 fixes old_deviceless() bridge calls device name argument, and
+    patch 03 checks in dev_ifsioc()'s SIOCBRADD/DELIF cases if the netdevice is
+    actually a bridge before interpreting its private ptr as net_bridge.
+    
+    Patch 01 was tested by running old bridge-utils commands with lockdep
+    enabled. Patch 02 was tested again by using bridge-utils and using the
+    respective ioctl calls on a "up" bridge device. Patch 03 was tested by
+    using the addif ioctl on a non-bridge device (e.g. loopback).
 
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index 9231617a16e4..3523c8c7068f 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -4255,7 +4255,7 @@ int br_multicast_set_port_router(struct net_bridge_mcast_port *pmctx,
- 	bool del = false;
- 
- 	brmctx = br_multicast_port_ctx_get_global(pmctx);
--	spin_lock(&brmctx->br->multicast_lock);
-+	spin_lock_bh(&brmctx->br->multicast_lock);
- 	if (pmctx->multicast_router == val) {
- 		/* Refresh the temp router port timer */
- 		if (pmctx->multicast_router == MDB_RTR_TYPE_TEMP) {
-@@ -4305,7 +4305,7 @@ int br_multicast_set_port_router(struct net_bridge_mcast_port *pmctx,
- 	}
- 	err = 0;
- unlock:
--	spin_unlock(&brmctx->br->multicast_lock);
-+	spin_unlock_bh(&brmctx->br->multicast_lock);
- 
- 	return err;
- }
--- 
-2.31.1
+
+> git tree:       net-next
+> console output: https://syzkaller.appspot.com/x/log.txt?x=147a8072300000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=914a8107c0ffdc14
+> dashboard link: https://syzkaller.appspot.com/bug?extid=24b98616278c31afc800
+> compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.1
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=13f4ccc9d00000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=15b054f4300000
+> 
+> IMPORTANT: if you fix the issue, please add the following tag to the commit:
+> Reported-by: syzbot+24b98616278c31afc800@syzkaller.appspotmail.com
+> 
+> ==================================================================
+> BUG: KASAN: slab-out-of-bounds in add_del_if+0x13a/0x140 net/bridge/br_ioctl.c:85
+> Read of size 8 at addr ffff888019118c88 by task syz-executor790/8443
+> 
+[snip]
+> ---
+> This report is generated by a bot. It may contain errors.
+> See https://goo.gl/tpsmEJ for more information about syzbot.
+> syzbot engineers can be reached at syzkaller@googlegroups.com.
+> 
+> syzbot will keep track of this issue. See:
+> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+> syzbot can test patches for this issue, for details see:
+> https://goo.gl/tpsmEJ#testing-patches
+> 
+
+#syz test: git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git d15040a33883
 
