@@ -1,81 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753873FEACA
-	for <lists.bridge@lfdr.de>; Thu,  2 Sep 2021 10:44:38 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id B99313FFD33
+	for <lists.bridge@lfdr.de>; Fri,  3 Sep 2021 11:34:48 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id D74DC61455;
-	Thu,  2 Sep 2021 08:44:36 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id E1F44407C7;
+	Fri,  3 Sep 2021 09:34:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id oytCBQUPmJnz; Thu,  2 Sep 2021 08:44:36 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 99A4160745;
-	Thu,  2 Sep 2021 08:44:35 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id DU9HOKHvyKjp; Fri,  3 Sep 2021 09:34:45 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 0B4B04251A;
+	Fri,  3 Sep 2021 09:34:44 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5F2A5C001F;
-	Thu,  2 Sep 2021 08:44:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B34AFC0022;
+	Fri,  3 Sep 2021 09:34:44 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B4DE3C000E
- for <bridge@lists.linux-foundation.org>; Tue, 24 Aug 2021 22:16:07 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A15E3C000E
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 09:34:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 9B9394011B
- for <bridge@lists.linux-foundation.org>; Tue, 24 Aug 2021 22:16:07 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 830ED61541
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 09:34:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Si_IK9I8mWUv for <bridge@lists.linux-foundation.org>;
- Tue, 24 Aug 2021 22:16:06 +0000 (UTC)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20150623.gappssmtp.com
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Nqm8VUGDZM9F for <bridge@lists.linux-foundation.org>;
+ Fri,  3 Sep 2021 09:34:40 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 446C040001
- for <bridge@lists.linux-foundation.org>; Tue, 24 Aug 2021 22:16:06 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- j14-20020a1c230e000000b002e748b9a48bso2580538wmj.0
- for <bridge@lists.linux-foundation.org>; Tue, 24 Aug 2021 15:16:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=bqYee/6ld0ln1QDz/d5FKD7rAylctSHuck8A3MH6AEU=;
- b=REPW9j5igPAi6YKII+JzIr5WSQP8hJn1ZSRO0gN5DQHRr7d+/Rx0i4uhVca/IYB32b
- smxCPueGg7m05O7oW5Oh5tGe/DPLlFMKhR1GF/aKavDDsMqpepFw/vfyRZ8BRiHch9nY
- 93k+stIAr/g1aMDD4bxn2UPrMJIVcqpYCDVWzOwyiceLgWqZMaL8eNoNiCXOs4Lh2Buu
- 1DAY4AT5UTu10cK40tqphCOelqZUiUz/V9PPXU7Q5oYCVlrnUjrJ7qIr9ZUXHmIHTTlJ
- oFmCKctHRsZaCCYYZ1erbE8xAZD4hqe5MdlJqNW+UQfq/q2+G4cfEYwVVS0BX5GJ4dOJ
- 7BDA==
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 4331D606CB
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 09:34:40 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id dm15so7144470edb.10
+ for <bridge@lists.linux-foundation.org>; Fri, 03 Sep 2021 02:34:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=aiR23CdvX/YW7ASJTZF8b+8Ds0NXrhmWhy57VeViwyo=;
+ b=QLeBRmfebetUgt50tunwIMdWH6Xh1XJU9NxhzbFJAB/SEky4PZPW1vehsAR9QpJ1jd
+ xnwHiEdsUpkVp20AXnOhuhqv4wrkuEjJUMej4dHJCqo87Bx5RtJ50Pnt35QfLSCW110V
+ O6BT5W/I6LvhXGAadQUXekqC7NFdbPWz9lVQPpHVuoA0aJpWuoBz6Jd7GOm+epqC4AxX
+ BzNWPn8aBkBPVwINR4Sk3omo8C/M1BzSgwWTODeAs0P52L0HMrc3Yz4637W0bbelGtZL
+ LVCDk8IijuC90eH7mP8I5Yp5mCNT7b3nb8tFBQ/9QP6h/CqUf1mxAdjMfYpjFlRMLi4B
+ oHCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=bqYee/6ld0ln1QDz/d5FKD7rAylctSHuck8A3MH6AEU=;
- b=DFdVLAaewkiQ3ibgB+hhLsVwOx68QP9A8C3mF8rWWEvb99mGdMDu3XXrMi7vVu3y0i
- cbhHlJfO4WemqUkSngzQH6KOqHk7ejxz9akZ+5AWDe10EcS/KbSECTdpFoQIemfMKYh5
- Fn62XpM8me4JIViTpQnmmCBuQzAYk8K/VXYNcvbeuZT27L7c3OMvoBKqGsgn1dbcKwzT
- HZ0aS2XPK+uqf9ZqYiwIFGAb+os0U/MlvtP7QOQISOZYftprEFoVgZTHrh7nfuFTdVnk
- zwyVgQTYFb7VtVhOAdYpm5uMn22dx6JSmp+uhgKuBUUvGp+geccNfnKVxvy5P6nBOuZ/
- wF/g==
-X-Gm-Message-State: AOAM533P9jt1HfKfhQbhF+CFbqYtgOZudaAJM7ID9v51brTyBW/23tP6
- sF5MZOblrAESD5CwlSp7OL1gu0P6J1QrmnnxdlU=
-X-Google-Smtp-Source: ABdhPJxPeve0Wqe+pp+w0RpzKfDhcvjdaWb2sOVl7XVBip+Astm6Qit4KRjjq3z9JcmXkKqWnFTb5D0BADyw8RRgQJc=
-X-Received: by 2002:a1c:1dcc:: with SMTP id d195mr6157176wmd.85.1629843364536; 
- Tue, 24 Aug 2021 15:16:04 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=aiR23CdvX/YW7ASJTZF8b+8Ds0NXrhmWhy57VeViwyo=;
+ b=qxFcx1n28tqPZfem7tbt5RacnhL+FhizVuzaL8ZU6jowgab+ls3HVmfIM4AJgx56ex
+ MSG83G8vbiSRic38zcddwnc7AlHsrSVbanvUkWFNRGOSv0+e1wtMWbEYUca3REuvA6t/
+ cP6UtmUX3bAM3se2nWaudqbC9PWG5eJ/Dr4UOwSSSYumo5mqiuXD+WeV5YUdbZPMAf6V
+ Ww1JyayQ6J7K/SabaAoo4EL3gX7bJaGeNOnduK8kOcGLcBe3fRH2mpHhYjNVrXKsrz50
+ Mb4/gdpCGmkfgYxfZ3O7Oo7nUuPs6ySYpMa5FeHOXj6hgWvnQdpDjlN/gbmdUAfpkgN8
+ ttSQ==
+X-Gm-Message-State: AOAM532YzvpHtqf1XMoOWdwkEA6aeLO+DYY95CSRRnTvEOIPuJUQoQns
+ hSOwaCZEQ6xWbBSCw6kF9tzxZQ==
+X-Google-Smtp-Source: ABdhPJzGrUF6AYGm5GxlQiWgn7mYn1S8u6cNLXl+74+F+FMUItvxWJaejiL4PMudXeR6R8o86OePeQ==
+X-Received: by 2002:aa7:c903:: with SMTP id b3mr3061137edt.23.1630661678298;
+ Fri, 03 Sep 2021 02:34:38 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id ck4sm2586391edb.67.2021.09.03.02.34.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Sep 2021 02:34:37 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Fri,  3 Sep 2021 12:34:15 +0300
+Message-Id: <20210903093415.1544837-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-From: Esther Faride Chau Durazo <takpkyra666@gmail.com>
-Date: Tue, 24 Aug 2021 01:11:36 -0700
-Message-ID: <CABH6LpA+aSYEPB19f4zm2DAJdSiO54+OEs2+TB6r0W9jPgpneg@mail.gmail.com>
-To: dqfext@gmail.com
-Content-Type: multipart/alternative; boundary="000000000000c8665c05ca557a92"
-X-Mailman-Approved-At: Thu, 02 Sep 2021 08:44:34 +0000
-Cc: andrew@lunn.ch, f.fainelli@gmail.com, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, vivien.didelot@gmail.com,
- nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org, olteanv@gmail.com,
- davem@davemloft.net
-Subject: Re: [Bridge] Bridge port isolation offload
+Content-Transfer-Encoding: 8bit
+Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ roopa@nvidia.com
+Subject: [Bridge] [PATCH net] net: bridge: mcast: fix vlan port router
+	deadlock
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -90,14 +96,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
---000000000000c8665c05ca557a92
-Content-Type: text/plain; charset="UTF-8"
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
+Before vlan/port mcast router support was added
+br_multicast_set_port_router was used only with bh already disabled due
+to the bridge port lock, but that is no longer the case and when it is
+called to configure a vlan/port mcast router we can deadlock with the
+timer, so always disable bh to make sure it can be called from contexts
+with both enabled and disabled bh.
 
+Fixes: 2796d846d74a ("net: bridge: vlan: convert mcast router global option to per-vlan entry")
+Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
+ net/bridge/br_multicast.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
---000000000000c8665c05ca557a92
-Content-Type: text/html; charset="UTF-8"
+diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+index 9231617a16e4..3523c8c7068f 100644
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -4255,7 +4255,7 @@ int br_multicast_set_port_router(struct net_bridge_mcast_port *pmctx,
+ 	bool del = false;
+ 
+ 	brmctx = br_multicast_port_ctx_get_global(pmctx);
+-	spin_lock(&brmctx->br->multicast_lock);
++	spin_lock_bh(&brmctx->br->multicast_lock);
+ 	if (pmctx->multicast_router == val) {
+ 		/* Refresh the temp router port timer */
+ 		if (pmctx->multicast_router == MDB_RTR_TYPE_TEMP) {
+@@ -4305,7 +4305,7 @@ int br_multicast_set_port_router(struct net_bridge_mcast_port *pmctx,
+ 	}
+ 	err = 0;
+ unlock:
+-	spin_unlock(&brmctx->br->multicast_lock);
++	spin_unlock_bh(&brmctx->br->multicast_lock);
+ 
+ 	return err;
+ }
+-- 
+2.31.1
 
-<div dir="auto"></div>
-
---000000000000c8665c05ca557a92--
