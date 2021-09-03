@@ -1,147 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58403FFF5C
-	for <lists.bridge@lfdr.de>; Fri,  3 Sep 2021 13:47:33 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E37400019
+	for <lists.bridge@lfdr.de>; Fri,  3 Sep 2021 15:00:13 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 7FCA542658;
-	Fri,  3 Sep 2021 11:47:31 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 1528460653;
+	Fri,  3 Sep 2021 13:00:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jstrW2kNhjWO; Fri,  3 Sep 2021 11:47:30 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id D3kIMeUxT9mB; Fri,  3 Sep 2021 13:00:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id DEBA242650;
-	Fri,  3 Sep 2021 11:47:29 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 83D3461578;
+	Fri,  3 Sep 2021 13:00:09 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 99CB1C0022;
-	Fri,  3 Sep 2021 11:47:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 37DAFC0022;
+	Fri,  3 Sep 2021 13:00:09 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A2A78C000E
- for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 11:47:27 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5DC76C000E
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 13:00:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 73467606C4
- for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 11:47:27 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 3E93A401EE
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 13:00:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=nvidia.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id n_bX2dCp5LeM for <bridge@lists.linux-foundation.org>;
- Fri,  3 Sep 2021 11:47:26 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on20619.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::619])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1A7D260699
- for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 11:47:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YmO4St/3LGCR7esyyM2MJanuXjETbxsKCQ2DDiBMN8x9E7JmcMg42BN76zTlk05TEgkX6Q0fa6e67e2znSyTuGbjBl9WkrwHLGoe9yr34kpJmMuWA6QgKF/akLldVAG2lRXE7In6WA2yMYrX8MCA6n6dCunnisYULyiof3EYMcSD0e3q5lBbU2Gbk6q65pz+6t5LhZkQypWSr35cJNrbGYjZc6Wcz+g9TaubdYMU2Qy9yg5elY+e4V9Ie4K4KuTY/IKvrBPTKRe8flNGGOeEpB0Z8/UUR7eCXVJsj3mZRhSXjYoQfOOprONJdusRdSHQ52ysgM6gqLGLhjConW3Hag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kPt8VrMrbL4mgZExAQeWUV6gm5gc+UY8BvtMWzyjT0k=;
- b=cELOMwb+6ciQBq8DLD0n9ppnDx+ieEWlFt0+nQhatGnoSiLSFxOO4iSoL0BpScbXuFWPsbTRxNDS43ioDK393wDCRZWebACNTf2zGM4Rp964jjQ4Jvqw9fPKct1pwqsSKR5FGfu55o3uMCwdTPrx1VzG3UEaHwfxg1sEASpago1TaX/dC/UlKH2HxFq2yRDJQh5VTSMuPWnsGU8lAGX2JCutM1o0NMPokFnw1T7aDfGt0Fp41TDtriGxkGEhh1EKO83wjjvoK3vvSc9sARds6eZLr33b9jQ4wCXAOuJtnPYctlI060z3RAg9xLiS4WWfDjjKH3S8dZg+A16q34z0VA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kPt8VrMrbL4mgZExAQeWUV6gm5gc+UY8BvtMWzyjT0k=;
- b=I9dCwdsx+wru7b0+aVrhfHs3QiWq+WRS2lfRdK1jVjAxbf6c7OTNMAI9HaFt9CFuMJQOXhsHBF8+GJbk7D0eRrbCp2H/uSfGyO7XgjA7bwX9Rk5z9wQ6rMKO1YNvUWw56jlg7Y/uU9e4XWp2j/Lb8q1yOw/20DLKDzV2BfOYKs5mkpInDkIp12mj8LFdsHvTWbuorwfxPWkUUS7EIFaS1JSU0yT6sSpnbtqIdbAZQ69XDbaz02QhEphDV+Hy0vsdNtcVqqjfL4YRPF3045Er7gxlAzD0vZ6r6h7Ic1r+n4YfkFdNtTHTkFhs8ai50sN2jhQEtKrhQJoXkxZGHrbjag==
-Authentication-Results: googlegroups.com; dkim=none (message not signed)
- header.d=none;googlegroups.com; dmarc=none action=none
- header.from=nvidia.com;
-Received: from BL1PR12MB5271.namprd12.prod.outlook.com (2603:10b6:208:315::9)
- by BL1PR12MB5364.namprd12.prod.outlook.com (2603:10b6:208:314::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.23; Fri, 3 Sep
- 2021 11:47:23 +0000
-Received: from BL1PR12MB5271.namprd12.prod.outlook.com
- ([fe80::6947:8a3e:27c4:c9a9]) by BL1PR12MB5271.namprd12.prod.outlook.com
- ([fe80::6947:8a3e:27c4:c9a9%9]) with mapi id 15.20.4478.022; Fri, 3 Sep 2021
- 11:47:23 +0000
-To: syzbot <syzbot+24b98616278c31afc800@syzkaller.appspotmail.com>,
- bridge@lists.linux-foundation.org, davem@davemloft.net, kuba@kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, roopa@nvidia.com,
- syzkaller-bugs@googlegroups.com
-References: <000000000000fdb19d05cb15c938@google.com>
-Message-ID: <4c482173-e2fa-4533-13e0-f8eeb6218eb1@nvidia.com>
-Date: Fri, 3 Sep 2021 14:47:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-In-Reply-To: <000000000000fdb19d05cb15c938@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZRAP278CA0001.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:10::11) To BL1PR12MB5271.namprd12.prod.outlook.com
- (2603:10b6:208:315::9)
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id nQkqepzKdbcY for <bridge@lists.linux-foundation.org>;
+ Fri,  3 Sep 2021 13:00:06 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 6CBBA40123
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Sep 2021 13:00:06 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id C309E610C8;
+ Fri,  3 Sep 2021 13:00:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1630674005;
+ bh=AGgbOdSzpaAML4LgVInM2rkoEUdrV9Ncc/pxqjPQmE4=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=a0NQcz6dswV9m90yGOVybZcuAwoS9jGhdMzDBENKcxCeMTTBED6B7ifnUgVb1U1G2
+ 10Th34CfDV47zgkf+cynhVZCKNZVJ0WcxL8uB0aHWe30npA6PadBXX0pAS0ZGYSxCP
+ V47xK7uL/63vWOKfh+q1Hm7RIlRekuXyF+/75bn8VdzSkAEsJQe/xgYK83LYg7xVDN
+ FP770EI2qxnHes7PD8tBekerM6B0a94Rh9z5QbGuXOlCOxjGhGTO4KFqecm7gMcAuU
+ BRJoMMIG7ULXNGsArBvWrha/G4aUplySw68rD8eb2JTPLmcpaGGfOAtjf+l9V5XbV2
+ ITB6lFh+3nCJw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id B7988609D9;
+ Fri,  3 Sep 2021 13:00:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Received: from [10.21.241.78] (213.179.129.39) by
- ZRAP278CA0001.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:10::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4478.19 via Frontend Transport; Fri, 3 Sep 2021 11:47:15 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 960f6b51-2871-4cb0-0b2f-08d96ed0943a
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5364:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL1PR12MB53640022FE07D5BF80462B8CDFCF9@BL1PR12MB5364.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:370;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1C4wYKdNQkgwsgj9fH3dGq52y8oBMee4INIpJH02A7zkauCD3j2Aa/8cCSIv84PufDQuQS9jWi0GtZDjfoTgYEEzMl2wDIM5nrY0lP8LNpDLsMlhLf60EIlkPItfyAvwqFtQrCl25lF5B4bXd5WMPpE/2aWTT+6XHmtEraadisiCWzs/dxEHbMo8n16Ke6qAtkEqGNgi6mHrPP5ZZvRkoDEQffMSO1jxO7MW5yX/mEHKUY6zYRh9Tf3La8J5bx8/Kn3ZTEdo8vearuty1tCBmyK5RaEoaJlCz4Skp61YHkrdcDv0kI2fEL4Rn27p/aLMZPaAk0nH+GBElKgyWDbtFbhQ83cvGm1sVPAGx7REU41Jz+I0MqWtCtWZe8zy2gpDYAFUfD/ZT527593UfRmWRf0WUAOmSTBj0K3+RE7hrWEZfLRNf12T8plKS1UJ/fN4BDMsYGpzW2Hadn/jWRymxzJyIKwTW0idOw3+tcOu7Od88ctFNvlpU08oorItf/I7ABJp33h/soh+jyzrk1ECCoNLTW+DGhuligB/2sOZ0caYTZ0kjYzulWTAgwo5nRgPdBWxnwEgrzPCQB0hpEJcjzSZwEnITzjdkys/URNlzs3aU2SijnH3wxxQqMW4v2f1U82pXqatbXG2mMBHsDOrWIJGepgQK+TP3pEDrtUGDhyBw2e8OguQ0U6e8PAADDaAvDhgS1h9XXn6FTJfWNdPWmztIoQIR+HJS3QHFpqZGrJsHAYbIXvoht001MJJDZ7iLvrIbhPxkLOa5J9LA1TqcZ2Be9cBvQLRZ0ZvI9A+uC/PfXeKQOf46/ZDD7o0g/zVPGchuVioSioXo26n/v/pqQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5271.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(366004)(376002)(396003)(346002)(6486002)(966005)(66946007)(38100700002)(2906002)(8676002)(8936002)(31686004)(5660300002)(4744005)(316002)(36756003)(16576012)(6666004)(31696002)(956004)(478600001)(2616005)(66476007)(26005)(186003)(53546011)(86362001)(66556008)(99710200001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YTg0UkRhNEUvajcweEVab2t2NEYwSzRTcEd6aWpCQnZYTkI2K0U5S2lScFlq?=
- =?utf-8?B?eEhSL0ZqMkwwa1RlWVpjbEhQNm53a1UzUzY0MUtpTDhaSXkzOEYrbXZMNVgw?=
- =?utf-8?B?akxyV1hSRXF2YldpaEZreGR1Q2RtOTNjY0JsODU3Nm9pSFVqOFNRUyt6UkJ2?=
- =?utf-8?B?RDNsSDF2US9lMjU0dWEvdmUzcDZ4NU52azRHOVVsZzFGQVZxUmo2NWNRWmtC?=
- =?utf-8?B?NVAzOW05QWVwUzFOQ3RqNFhucHJ0MFNwY21QUDlZOFA1OUlqdkpBcnE4NXZM?=
- =?utf-8?B?VkxuM2pkbmVOQUkwZ0xQZDRXcG5wRzU2SzRlaXdUbHdHMmYrS25paEJPUlZ5?=
- =?utf-8?B?L0VlVitKWnJkeVRDVU8rMHVqS0l1emtVYm9KeWpvVFlJOTd2VDdFRWtvVkJG?=
- =?utf-8?B?Ti9QbFQxcllZdmtRSHZwQm9oaytyMTYvSXZESG0zcXV2NGVzTGhsdnBZV2o0?=
- =?utf-8?B?cG5ZUmxoYzJ6bE5Eb21uUlM5Zk1tUVhuYjdqTkoxelJjRStFem0vdFNGUXpC?=
- =?utf-8?B?RGZRejNxVTJlTXBnRHp2bE9qbVY0QVUxSW93R050bXRWcW9RM09tQ1NOS0xz?=
- =?utf-8?B?bXBrQzVqNjk2UzdVM1ZhZTJPSUFvOE5xS0hEUjU5S1orSUViYTN3aXNJTUVY?=
- =?utf-8?B?eXBmd0tqMHFDK1Zqd096Vk1MSS9MRStLM0hLNUc4elZVdjJJNVBRZkJaRURT?=
- =?utf-8?B?dGozQkVHM2xVVFR6VjgxbjhaTUYwbUdVcGY5dTZUMENEOTNhVnlSdjZWQm1i?=
- =?utf-8?B?QjJyUDJGa1lhalVTcWFtWFJIN3RrRmVJMnJxMXlGV0lIWFFGNXIyQzlGR3g1?=
- =?utf-8?B?azQ5ZEFCeXl2RTQ2aDNhRVBlZVpyU2tiS3gxUjhueHFzNVdGZGFvL3NmeUlO?=
- =?utf-8?B?bGg1Y1c3RjYxMnhQVkZqcld4ZDdxMkdTOVljb1N4ZFNlSzlnTXFSaFQrNWlu?=
- =?utf-8?B?d05Ua0dNbm9BeEsra0tjT0hscXJUSDFNLy8rZjBvOEJOWThENWthQkpiOURF?=
- =?utf-8?B?WmJxZW5CYTRDTVFIMHQ0OGxjdEhYN0ZoY2diWEppN3FOK2t5NFZ5cDlDZDc3?=
- =?utf-8?B?cXlIbGw5SGxBa2IxRlM0Z2Y2b2Zab2d5d290L2JtM1B4RGpwNlVFbk1PQTBu?=
- =?utf-8?B?ekYweHNkZnZlTFNkTXhNRnlHUHQraGtFNThGSkR1WHpyZUVMZjluYm93V0Ev?=
- =?utf-8?B?Zko3dGpQRXJwRm9yYzVZUmJoaUk5WU1WajJSYlFVMTIwNkJ4dE96QnVTaUlG?=
- =?utf-8?B?NnA2L3pNRjhMa1FJYzVLNlI0Z1Y5Ulp1UDRoTHFrZHJqdHVpQjU5NWdZaU1t?=
- =?utf-8?B?Z3RBRHQrK1RJOE00TmNDMmk5VHJYYUxjbXRJdzBLb2ROWUpaK3ZzcktmVkpF?=
- =?utf-8?B?ZXViMEVPTThSREZiMlhDN0lhVDFwd0tuWitiTFRyYmNlQ2ZOTFhsei9Jdk5z?=
- =?utf-8?B?OTJoSXBmR2JoRVhmY0gzL2RGVGxCQ3IwNE13ckQ4MDVUVzdxdHhrWUFqRTly?=
- =?utf-8?B?U05RT3R6TmJSZkRwUWN1YlNjcmJIMm5FWUNQcWl6TTJBeFhWZjYwNkc5aXV5?=
- =?utf-8?B?MEJwVEpjcmhMRVhZOXNTWWhnWUh0Rmhpd2xyM1JvTmdaQ0wzallRTW53VG5a?=
- =?utf-8?B?NFBRVDFMdTZZcHd5SWJpd0dQTVBNZW9jR2NxdU94S2ZJV2VXZDd4OXhTbHRL?=
- =?utf-8?B?UXFSMFh3OU1vUGpyTEZjbWoyaVlQa0RLK2tWbGtidXd4REl6Q1ovdGkrRVZS?=
- =?utf-8?Q?G9ihlmhgGgheMztoLSAr8XKTElgmAb5g50Td3Dl?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 960f6b51-2871-4cb0-0b2f-08d96ed0943a
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5271.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2021 11:47:23.0110 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CUArQldMfv7LLjZMrB5XsQ82ifMIR7pfTyptEkvRouE8pJf7XwQXuXdM3qFnP+1AOtugDQ8sOznXhHw3nTGUZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5364
-Subject: Re: [Bridge] [syzbot] KASAN: slab-out-of-bounds Read in add_del_if
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163067400574.8696.628852222789312507.git-patchwork-notify@kernel.org>
+Date: Fri, 03 Sep 2021 13:00:05 +0000
+References: <20210903093415.1544837-1-razor@blackwall.org>
+In-Reply-To: <20210903093415.1544837-1-razor@blackwall.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ nikolay@nvidia.com, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net] net: bridge: mcast: fix vlan port router
+	deadlock
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -153,28 +76,32 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 03/09/2021 14:42, syzbot wrote:
-> Hello,
-> 
-> syzbot has tested the proposed patch and the reproducer did not trigger any issue:
-> 
-> Reported-and-tested-by: syzbot+24b98616278c31afc800@syzkaller.appspotmail.com
-> 
-> Tested on:
-> 
-> commit:         d15040a3 Merge branch 'bridge-ioctl-fixes'
-> git tree:       git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=aba0c23f8230e048
-> dashboard link: https://syzkaller.appspot.com/bug?extid=24b98616278c31afc800
-> compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.1
-> 
-> Note: testing is done by a robot and is best-effort only.
-> 
+Hello:
 
-#syz fix: net: core: don't call SIOCBRADD/DELIF for non-bridge devices
+This patch was applied to netdev/net.git (refs/heads/master):
+
+On Fri,  3 Sep 2021 12:34:15 +0300 you wrote:
+> From: Nikolay Aleksandrov <nikolay@nvidia.com>
+> 
+> Before vlan/port mcast router support was added
+> br_multicast_set_port_router was used only with bh already disabled due
+> to the bridge port lock, but that is no longer the case and when it is
+> called to configure a vlan/port mcast router we can deadlock with the
+> timer, so always disable bh to make sure it can be called from contexts
+> with both enabled and disabled bh.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net] net: bridge: mcast: fix vlan port router deadlock
+    https://git.kernel.org/netdev/net/c/ddd0d5293810
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
