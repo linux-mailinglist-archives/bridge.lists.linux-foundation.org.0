@@ -1,71 +1,76 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FDB41C2D5
-	for <lists.bridge@lfdr.de>; Wed, 29 Sep 2021 12:40:15 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5EC41FA63
+	for <lists.bridge@lfdr.de>; Sat,  2 Oct 2021 10:05:10 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 3D25B6061C;
-	Wed, 29 Sep 2021 10:40:13 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 5D025415AA;
+	Sat,  2 Oct 2021 08:05:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hRNOMAsvaYJ8; Wed, 29 Sep 2021 10:40:12 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id A6B9B6070F;
-	Wed, 29 Sep 2021 10:40:11 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GfhycpZjrQ2J; Sat,  2 Oct 2021 08:05:07 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 0507C425C9;
+	Sat,  2 Oct 2021 08:05:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4D1F2C0022;
-	Wed, 29 Sep 2021 10:40:11 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id BDF4EC001E;
+	Sat,  2 Oct 2021 08:05:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0C778C000D
- for <bridge@lists.linux-foundation.org>; Wed, 29 Sep 2021 10:40:10 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D97F1C000D
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Sep 2021 14:11:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id E1F9C40794
- for <bridge@lists.linux-foundation.org>; Wed, 29 Sep 2021 10:40:09 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id D4E9640557
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Sep 2021 14:11:29 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4xO8a1Xy_Lov for <bridge@lists.linux-foundation.org>;
- Wed, 29 Sep 2021 10:40:09 +0000 (UTC)
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=linutronix.de header.b="EAGUZt1e";
+ dkim=neutral reason="invalid (unsupported algorithm ed25519-sha256)"
+ header.d=linutronix.de header.b="Y8vkL4ea"
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 3e6E_I20ySYg for <bridge@lists.linux-foundation.org>;
+ Tue, 28 Sep 2021 14:11:27 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 42BAE4063C
- for <bridge@lists.linux-foundation.org>; Wed, 29 Sep 2021 10:40:09 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id C62B36140F;
- Wed, 29 Sep 2021 10:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1632912008;
- bh=E0TH8z77BBmELqaI2fYubgpmiK2lzgi9yaK0FARYJiM=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=EEc1j2eDdwlSF9KZ8oLELKzNZeIcXQ7eoPtoBIx1SiY3fEg1ZZHGaLicqLMeMoZ9M
- gUZbPgh987XcQRr7HKgfqDobOVmrAkdCsYrAGg8EjoyQq2hDlR0W+nrB4tX9ldeJJo
- tTvzk9wMhBY6miobUgsGJhfZxn04kL7EJw+dcBehb28eWtLbmO8yuFrZW1VDIoNw6a
- AwzUJGEzdwodvTaWubuUACaZkR52mFn6qYc8pSaDCZ0kcp3hTjgrZEwWqhLEXEANCH
- wYvbAxdr7sgCas9YUg5DvMelfR2m8Gfvb6ZmBO0Sl9OVKR7qDBXF+R3o92ywCyETE2
- VFNMv5lDzKyYw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id BEC8860A59;
- Wed, 29 Sep 2021 10:40:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id C236E400C5
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Sep 2021 14:11:27 +0000 (UTC)
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1632838284;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=6yrRrecR/xDa6JwQcSu2PQbU6zn6uCv5AzWCbYYTJ1g=;
+ b=EAGUZt1eIqht/TEUWtPuDXMC2lwGRoNRqSm7EiA7Ps97VNiakfpSR9nFuLpInWgitWNREF
+ +OWMcKZILLHFM0LHciUDzEnyF9DSX9QVNNcsjwfnOphQgbQIE7kPd/GSgK2NB0D5LeW18c
+ EKsttVaB8j1m6jHbEyv5yCLhGApQyiWeNXvZFag4wYqrCu+w4nMy1MAFJL8wkAlmV9AY5K
+ QRtKfoMf6qslvAott0VLuYyNRxKwOeMJ5WzuGx8dWSpzqqFQj7EZjN3LytEHxakkVpJTLq
+ u/CwFgHCuvFhFgO8jKkJyuluaJv8PssO5BcQYR18wkzjUkdtkzZwvs3IrjLxBA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1632838284;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=6yrRrecR/xDa6JwQcSu2PQbU6zn6uCv5AzWCbYYTJ1g=;
+ b=Y8vkL4ea/C+M+L8E8P+k+72Rs3rmxK0Dj6Hmzc5DfzWc+Hj+6VBSXL1qKyLc7qjYhrE1Iv
+ BqF0EnBXkoUtiwDw==
+To: bridge@lists.linux-foundation.org,
+	netdev@vger.kernel.org
+Date: Tue, 28 Sep 2021 16:10:49 +0200
+Message-Id: <20210928141049.593833-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163291200877.26498.13462885838977349261.git-patchwork-notify@kernel.org>
-Date: Wed, 29 Sep 2021 10:40:08 +0000
-References: <20210928201239.GA267176@embeddedor>
-In-Reply-To: <20210928201239.GA267176@embeddedor>
-To: Gustavo A. R. Silva <gustavoars@kernel.org>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, davem@davemloft.net, linux-hardening@vger.kernel.org
-Subject: Re: [Bridge] [PATCH][net-next] net: bridge: Use array_size() helper
- in copy_to_user()
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 02 Oct 2021 08:05:05 +0000
+Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Mike Galbraith <efault@gmx.de>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH net] net: bridge: mcast: Associate the seqcount
+	with its protecting lock.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -80,27 +85,64 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+From: Thomas Gleixner <tglx@linutronix.de>
 
-This patch was applied to netdev/net-next.git (refs/heads/master):
+The sequence count bridge_mcast_querier::seq is protected by
+net_bridge::multicast_lock but seqcount_init() does not associate the
+seqcount with the lock. This leads to a warning on PREEMPT_RT because
+preemption is still enabled.
 
-On Tue, 28 Sep 2021 15:12:39 -0500 you wrote:
-> Use array_size() helper instead of the open-coded version in
-> copy_to_user(). These sorts of multiplication factors need
-> to be wrapped in array_size().
-> 
-> Link: https://github.com/KSPP/linux/issues/160
-> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-> 
-> [...]
+Let seqcount_init() associate the seqcount with lock that protects the
+write section. Remove lockdep_assert_held_once() because lockdep already ch=
+ecks
+whether the associated lock is held.
+=09
+Fixes: 67b746f94ff39 ("net: bridge: mcast: make sure querier port/address u=
+pdates are consistent")
+Reported-by: Mike Galbraith <efault@gmx.de>
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Tested-by: Mike Galbraith <efault@gmx.de>
+---
+ net/bridge/br_multicast.c |    6 ++----
+ net/bridge/br_private.h   |    2 +-
+ 2 files changed, 3 insertions(+), 5 deletions(-)
 
-Here is the summary with links:
-  - [net-next] net: bridge: Use array_size() helper in copy_to_user()
-    https://git.kernel.org/netdev/net-next/c/865bfb2affa8
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -1677,8 +1677,6 @@ static void br_multicast_update_querier(
+ 					int ifindex,
+ 					struct br_ip *saddr)
+ {
+-	lockdep_assert_held_once(&brmctx->br->multicast_lock);
+-
+ 	write_seqcount_begin(&querier->seq);
+ 	querier->port_ifidx =3D ifindex;
+ 	memcpy(&querier->addr, saddr, sizeof(*saddr));
+@@ -3867,13 +3865,13 @@ void br_multicast_ctx_init(struct net_br
+=20
+ 	brmctx->ip4_other_query.delay_time =3D 0;
+ 	brmctx->ip4_querier.port_ifidx =3D 0;
+-	seqcount_init(&brmctx->ip4_querier.seq);
++	seqcount_spinlock_init(&brmctx->ip4_querier.seq, &br->multicast_lock);
+ 	brmctx->multicast_igmp_version =3D 2;
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	brmctx->multicast_mld_version =3D 1;
+ 	brmctx->ip6_other_query.delay_time =3D 0;
+ 	brmctx->ip6_querier.port_ifidx =3D 0;
+-	seqcount_init(&brmctx->ip6_querier.seq);
++	seqcount_spinlock_init(&brmctx->ip6_querier.seq, &br->multicast_lock);
+ #endif
+=20
+ 	timer_setup(&brmctx->ip4_mc_router_timer,
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -82,7 +82,7 @@ struct bridge_mcast_other_query {
+ struct bridge_mcast_querier {
+ 	struct br_ip addr;
+ 	int port_ifidx;
+-	seqcount_t seq;
++	seqcount_spinlock_t seq;
+ };
+=20
+ /* IGMP/MLD statistics */
