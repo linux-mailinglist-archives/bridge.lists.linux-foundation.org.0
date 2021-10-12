@@ -1,89 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555D4432D5E
-	for <lists.bridge@lfdr.de>; Tue, 19 Oct 2021 07:43:28 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAD82433055
+	for <lists.bridge@lfdr.de>; Tue, 19 Oct 2021 10:01:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 5DB8783224;
-	Tue, 19 Oct 2021 05:43:26 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 85C57404D9;
+	Tue, 19 Oct 2021 08:01:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id WOuaF5yrkRlP; Tue, 19 Oct 2021 05:43:25 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id E094783BEC;
-	Tue, 19 Oct 2021 05:43:24 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fZQFqYt8Tzjj; Tue, 19 Oct 2021 08:01:40 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id C2BCE404D4;
+	Tue, 19 Oct 2021 08:01:39 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9C5F5C001E;
-	Tue, 19 Oct 2021 05:43:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 985F3C001E;
+	Tue, 19 Oct 2021 08:01:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 386D9C000D
- for <bridge@lists.linux-foundation.org>; Tue, 19 Oct 2021 05:43:23 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id F145DC000D
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 14:18:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 284FE40505
- for <bridge@lists.linux-foundation.org>; Tue, 19 Oct 2021 05:43:23 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id D18A8403D3
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 14:18:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id lRefZ1XQnL0D for <bridge@lists.linux-foundation.org>;
- Tue, 19 Oct 2021 05:43:22 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Ah2wmHqcFsPL for <bridge@lists.linux-foundation.org>;
+ Tue, 12 Oct 2021 14:18:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
- [IPv6:2607:f8b0:4864:20::636])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 7FF79404EE
- for <bridge@lists.linux-foundation.org>; Tue, 19 Oct 2021 05:43:22 +0000 (UTC)
-Received: by mail-pl1-x636.google.com with SMTP id t21so4854243plr.6
- for <bridge@lists.linux-foundation.org>; Mon, 18 Oct 2021 22:43:22 -0700 (PDT)
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com
+ [IPv6:2607:f8b0:4864:20::52c])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id E1E324015E
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 14:18:23 +0000 (UTC)
+Received: by mail-pg1-x52c.google.com with SMTP id 133so14016294pgb.1
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 07:18:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=2dY2SfxkvaAqy+VUYsCEBS0Dl+WmqB9iUBzcxg+rxOE=;
- b=hXqi600Khl9Z/xEidbXK5mABRJNONacofAif6kmzLbqlslY3vWxZoAVobnZYgVtYpR
- dzevsjnUhsAs0kOXypN/ii5fUKp1dr3hvo2TINsNZf01u2ZtbbKtESvL7qlPlXdYbyty
- m6vtpCfF09/WLGDzzaaHpXJl1j5jeAbbSZbWqKoN5JxDS18e125lZ/g1+2i+R4a+t8Ph
- o2Dhmwmm/OKpgJzhqyueGLi5Vr/B+FdC728gtW8+3Q1Du25HxBgN3lPdwj6xKMTji12Q
- 6A+9Nw5WVH769+3QQBUsjU+ZabCRFQ4BC+84VGpXk1a9qTYSbAfwTOJCmnOP6WvwIYqf
- DMMg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Xf2ZZ4dUjskn2wzoA/na9mrwqcf1U/CnBUU6ZdkyGNw=;
+ b=f0x0Mp1+aw8gyzjTYOE2fGveQDjihAKtSAu5Rl/PbG2mSba8TWJbdNQybJpHwg0TS6
+ 6XJqRb65/IRp/ibW7qXiIgZWjxkofIzOQWvOXl1C1QXeB11zHRj76YDAUHvXdO+CMXle
+ jeqTtZ6V9KhkJZnLXZ23/ewqjl1wTla2RrEWewTCB5Rkj7azHWlUQvjfgqFtDgfxSoXZ
+ lXKiUtEhap+ac5MeL0A/Tv9VpEUJYZ9vNrSPaTBpgG0oWorTuwe151VKmmUBp9WaAt+x
+ c/uMB2pnah2UIFTf9JHyUhHdh58vQydFY6VNAHEiU+L6ZFiRvnikjhdjVz9DAwpsl0zT
+ xrpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=2dY2SfxkvaAqy+VUYsCEBS0Dl+WmqB9iUBzcxg+rxOE=;
- b=kx9wg0+WGyKL1TLpqz8X/oiMYfxPJzAJ4IIufwKg0VVIdW/kB9bCil95lICUPF9T3/
- 9+D8J+YUfw4uaDj+Dgr+Y1SFZ28O8jxsX5D3QQ/0Ra9RTT3bmkpiz9MPcba1p1LgreGb
- zxrhTk4yhvnslwY85H3V8OqbVTTvtg4b0EHsz8N9ZpQIyfdBSI1VVyHDM1upnWCaWe2m
- DwaaTMqjY4dSpoDJTUvV4Ed8N3b2SyB+Xiyrq9VjXKnkReiBsktYYB+1LmTo0pZlig/U
- EtxmzMYWLBM3nL1FxwtNxdzgVSvKpMVc40SBsLemKzThTW3J+o/+mDiRIQwBH62h+swr
- 7F0Q==
-X-Gm-Message-State: AOAM530aUmJW7J7/Fl1dX8kQgvBusX4nXhcCj4QteYxNelU6+zdnZ7y2
- qnU277fUirrE83Rt5p9caN4=
-X-Google-Smtp-Source: ABdhPJxnR5q6ik6TFZhMwg3wiOMzk/KsZM0cxZRVUfCAMPyXcKH3qfSVz+L7jHsCLWT9HxHbtDvnEQ==
-X-Received: by 2002:a17:90a:bd18:: with SMTP id
- y24mr4253769pjr.83.1634622201820; 
- Mon, 18 Oct 2021 22:43:21 -0700 (PDT)
-Received: from Laptop-X1 ([209.132.188.80])
- by smtp.gmail.com with ESMTPSA id a22sm15056016pfg.61.2021.10.18.22.43.18
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Xf2ZZ4dUjskn2wzoA/na9mrwqcf1U/CnBUU6ZdkyGNw=;
+ b=yUZEQyXh/uM8Gyrvr9DLMT0Okzy2JjEglR8PF5Nh/m+HYMA5i3SimDd0z+QyyTp8Do
+ hl6QE6sWKjq7nTzM+9kJXIx8ckYIENsnCetUfp32bpiufWslNoTflcraGRUmCAmigreu
+ dQ4Ujkg/br4NP00lVRmH73KuJCVlz0b1ojC+bzKlRp9C4hgQx7ruhZp8N//0j+OTt4Xg
+ U1iKbea4XJw626ilXJVM1jeynzV9+QPqFosbybpIBkJfjokslXecOJ7YIcmL1FkoKXCv
+ QHENZda1/nIHjhy9i7KX5rWmoeH+bmfsNx0/eODXWk/YWoPeyDjOZOO69QD+vHMBiatx
+ 0FjA==
+X-Gm-Message-State: AOAM533j96KFqaILOesyKzHPE+oykKyOoFhSkeYFDxTk4oL3xSbKPrei
+ EpLb37yLUGBxMvayCOqDgFU=
+X-Google-Smtp-Source: ABdhPJwczTJ/0WfRcgg+oiWJ4pkehoBQKkvLZn1mUO2VQu69XEcTIBA/6rUktoDu1GqymOTyylTX/g==
+X-Received: by 2002:a62:6544:0:b0:44b:508b:d05c with SMTP id
+ z65-20020a626544000000b0044b508bd05cmr32131758pfb.56.1634048303387; 
+ Tue, 12 Oct 2021 07:18:23 -0700 (PDT)
+Received: from rok-te3.. ([211.250.198.237])
+ by smtp.googlemail.com with ESMTPSA id r14sm11641143pgf.49.2021.10.12.07.18.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Oct 2021 22:43:21 -0700 (PDT)
-Date: Tue, 19 Oct 2021 13:43:16 +0800
-From: Hangbin Liu <liuhangbin@gmail.com>
-To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <YW5a9JLnfZc1M8Gh@Laptop-X1>
-References: <20211018082612.625417-1-liuhangbin@gmail.com>
- <ab707f4d-587a-0fae-e673-5da49f5946db@nvidia.com>
+ Tue, 12 Oct 2021 07:18:22 -0700 (PDT)
+From: Kyungrok Chung <acadx0@gmail.com>
+To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
+Date: Tue, 12 Oct 2021 23:18:09 +0900
+Message-Id: <20211012141810.30661-1-acadx0@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ab707f4d-587a-0fae-e673-5da49f5946db@nvidia.com>
-Cc: kuba@kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net] net: bridge: mcast: Do not allow users to
- set IGMP counter/timer to zero
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 19 Oct 2021 08:01:38 +0000
+Cc: coreteam@netfilter.org, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [Bridge] [PATCH net-next] net: bridge: make use of helper
+	netif_is_bridge_master()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,77 +98,156 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Nikolay,
+Make use of netdev helper functions to improve code readability.
+Replace 'dev->priv_flags & IFF_EBRIDGE' with netif_is_bridge_master(dev).
 
-On Mon, Oct 18, 2021 at 01:28:14PM +0300, Nikolay Aleksandrov wrote:
-> On 18/10/2021 11:26, Hangbin Liu wrote:
-> > There is no meaning to set an IGMP counter/timer to 0. Or it will cause
-> > unexpected behavior. E.g. if set multicast_membership_interval to 0,
-> > bridge will remove the mdb immediately after adding.
-> > 
-> > Fixes: 79b859f573d6 ("bridge: netlink: add support for multicast_last_member_count")
-> > Fixes: b89e6babad4b ("bridge: netlink: add support for multicast_startup_query_count")
-> > Fixes: 7e4df51eb35d ("bridge: netlink: add support for igmp's intervals")
-> > Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
-> > ---
-> >  net/bridge/br_netlink.c  | 73 +++++++++++++++++++++++++++++---------
-> >  net/bridge/br_sysfs_br.c | 75 +++++++++++++++++++++++++++++++---------
-> >  2 files changed, 116 insertions(+), 32 deletions(-)
-> > 
-> 
-> Nacked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> For a few reasons,
-> I'll start with the obvious that - yes, users are allowed to change the values to non-RFC
-> compliant, but we cannot change that now as we'd risk breaking user-space which is probably
-> doing that somewhere with some of the values below. We can fix any issues that might arise
-> from doing it though, so it doesn't affect normal operation. If changing some of the options
-> to 0 or to unreasonably high values lead to problems let's fix those and we could discuss
-> adding constraints there if necessary.
+Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
+---
+ net/bridge/br.c                 | 4 ++--
+ net/bridge/br_fdb.c             | 6 +++---
+ net/bridge/br_if.c              | 2 +-
+ net/bridge/br_ioctl.c           | 2 +-
+ net/bridge/br_mdb.c             | 4 ++--
+ net/bridge/br_netfilter_hooks.c | 2 +-
+ net/bridge/br_netlink.c         | 4 ++--
+ 7 files changed, 12 insertions(+), 12 deletions(-)
 
-I started this patch when I saw there is not limit for setting
-multicast_membership_interval to 0, which will cause bridge remove the
-mdb directly after adding. Do you think this is a problem.
+diff --git a/net/bridge/br.c b/net/bridge/br.c
+index d3a32c6813e0..1fac72cc617f 100644
+--- a/net/bridge/br.c
++++ b/net/bridge/br.c
+@@ -36,7 +36,7 @@ static int br_device_event(struct notifier_block *unused, unsigned long event, v
+ 	bool changed_addr;
+ 	int err;
+ 
+-	if (dev->priv_flags & IFF_EBRIDGE) {
++	if (netif_is_bridge_master(dev)) {
+ 		err = br_vlan_bridge_event(dev, event, ptr);
+ 		if (err)
+ 			return notifier_from_errno(err);
+@@ -349,7 +349,7 @@ static void __net_exit br_net_exit(struct net *net)
+ 
+ 	rtnl_lock();
+ 	for_each_netdev(net, dev)
+-		if (dev->priv_flags & IFF_EBRIDGE)
++		if (netif_is_bridge_master(dev))
+ 			br_dev_delete(dev, &list);
+ 
+ 	unregister_netdevice_many(&list);
+diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
+index 46812b659710..a6a68e18c70a 100644
+--- a/net/bridge/br_fdb.c
++++ b/net/bridge/br_fdb.c
+@@ -825,7 +825,7 @@ int br_fdb_dump(struct sk_buff *skb,
+ 	struct net_bridge_fdb_entry *f;
+ 	int err = 0;
+ 
+-	if (!(dev->priv_flags & IFF_EBRIDGE))
++	if (!netif_is_bridge_master(dev))
+ 		return err;
+ 
+ 	if (!filter_dev) {
+@@ -1076,7 +1076,7 @@ int br_fdb_add(struct ndmsg *ndm, struct nlattr *tb[],
+ 		return -EINVAL;
+ 	}
+ 
+-	if (dev->priv_flags & IFF_EBRIDGE) {
++	if (netif_is_bridge_master(dev)) {
+ 		br = netdev_priv(dev);
+ 		vg = br_vlan_group(br);
+ 	} else {
+@@ -1173,7 +1173,7 @@ int br_fdb_delete(struct ndmsg *ndm, struct nlattr *tb[],
+ 	struct net_bridge *br;
+ 	int err;
+ 
+-	if (dev->priv_flags & IFF_EBRIDGE) {
++	if (netif_is_bridge_master(dev)) {
+ 		br = netdev_priv(dev);
+ 		vg = br_vlan_group(br);
+ 	} else {
+diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
+index 4a02f8bb278a..c11bba3e7ec0 100644
+--- a/net/bridge/br_if.c
++++ b/net/bridge/br_if.c
+@@ -471,7 +471,7 @@ int br_del_bridge(struct net *net, const char *name)
+ 	if (dev == NULL)
+ 		ret =  -ENXIO; 	/* Could not find device */
+ 
+-	else if (!(dev->priv_flags & IFF_EBRIDGE)) {
++	else if (!netif_is_bridge_master(dev)) {
+ 		/* Attempt to delete non bridge device! */
+ 		ret = -EPERM;
+ 	}
+diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
+index 49c268871fc1..db4ab2c2ce18 100644
+--- a/net/bridge/br_ioctl.c
++++ b/net/bridge/br_ioctl.c
+@@ -26,7 +26,7 @@ static int get_bridge_ifindices(struct net *net, int *indices, int num)
+ 	for_each_netdev_rcu(net, dev) {
+ 		if (i >= num)
+ 			break;
+-		if (dev->priv_flags & IFF_EBRIDGE)
++		if (netif_is_bridge_master(dev))
+ 			indices[i++] = dev->ifindex;
+ 	}
+ 	rcu_read_unlock();
+diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+index 0281453f7766..61ccf46fcc21 100644
+--- a/net/bridge/br_mdb.c
++++ b/net/bridge/br_mdb.c
+@@ -422,7 +422,7 @@ static int br_mdb_dump(struct sk_buff *skb, struct netlink_callback *cb)
+ 	cb->seq = net->dev_base_seq;
+ 
+ 	for_each_netdev_rcu(net, dev) {
+-		if (dev->priv_flags & IFF_EBRIDGE) {
++		if (netif_is_bridge_master(dev)) {
+ 			struct net_bridge *br = netdev_priv(dev);
+ 			struct br_port_msg *bpm;
+ 
+@@ -1016,7 +1016,7 @@ static int br_mdb_parse(struct sk_buff *skb, struct nlmsghdr *nlh,
+ 		return -ENODEV;
+ 	}
+ 
+-	if (!(dev->priv_flags & IFF_EBRIDGE)) {
++	if (!netif_is_bridge_master(dev)) {
+ 		NL_SET_ERR_MSG_MOD(extack, "Device is not a bridge");
+ 		return -EOPNOTSUPP;
+ 	}
+diff --git a/net/bridge/br_netfilter_hooks.c b/net/bridge/br_netfilter_hooks.c
+index 8edfb98ae1d5..b5af68c105a8 100644
+--- a/net/bridge/br_netfilter_hooks.c
++++ b/net/bridge/br_netfilter_hooks.c
+@@ -968,7 +968,7 @@ static int brnf_device_event(struct notifier_block *unused, unsigned long event,
+ 	struct net *net;
+ 	int ret;
+ 
+-	if (event != NETDEV_REGISTER || !(dev->priv_flags & IFF_EBRIDGE))
++	if (event != NETDEV_REGISTER || !netif_is_bridge_master(dev))
+ 		return NOTIFY_DONE;
+ 
+ 	ASSERT_RTNL();
+diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+index 5c6c4305ed23..0c8b5f1a15bc 100644
+--- a/net/bridge/br_netlink.c
++++ b/net/bridge/br_netlink.c
+@@ -106,7 +106,7 @@ static size_t br_get_link_af_size_filtered(const struct net_device *dev,
+ 		p = br_port_get_check_rcu(dev);
+ 		if (p)
+ 			vg = nbp_vlan_group_rcu(p);
+-	} else if (dev->priv_flags & IFF_EBRIDGE) {
++	} else if (netif_is_bridge_master(dev)) {
+ 		br = netdev_priv(dev);
+ 		vg = br_vlan_group_rcu(br);
+ 	}
+@@ -1050,7 +1050,7 @@ int br_dellink(struct net_device *dev, struct nlmsghdr *nlh, u16 flags)
+ 
+ 	p = br_port_get_rtnl(dev);
+ 	/* We want to accept dev as bridge itself as well */
+-	if (!p && !(dev->priv_flags & IFF_EBRIDGE))
++	if (!p && !netif_is_bridge_master(dev))
+ 		return -EINVAL;
+ 
+ 	err = br_afspec(br, p, afspec, RTM_DELLINK, &changed, NULL);
+-- 
+2.33.0
 
-And what about others? I don't think there is a meaning to set other intervals
-to 0.
-
-> 
-> The second issue is that you're mixing different checks below, you say do not allow zero
-> but you're also checking for RFC compliance between different values.
-
-Do you mean the RFC3376 8.3 rule? I can fix it in another patch.
-
-> 
-> The third issue is that you haven't done the same change for the same values for per-vlan
-> multicast options (we have the same options per-vlan as well).
-
-Ah, thanks, I could fix that.
-> 
-> Your fixes tags are wrong, too. Most of these values could be set well before they were
-> available through netlink.
-
-Oh... Then how should I set the fixes tag? Since I want fix both the netlink
-configs and sys configs. Add a new one d902eee43f19 ("bridge: Add multicast
-count/interval sysfs entries")
-
-> 
-> Note on the style - generally I'd add helpers to set them and add the constraints in those
-> helpers, so they can be used for both netlink and sysfs. It would definitely target net-next
-> unless it's an actual bug fix.
-
-How about a helper like:
-
-int br_multicast_set_interval(unsigned long *mcast_val, u64 val)
-{
-	if (val) {
-		mcast_val = clock_t_to_jiffies(val);
-		return 0;
-	} else {
-		NL_SET_ERR_MSG(extack, "Invalid multicast interval, should not be 0");
-		return -EINVAL;
-	}
-}
-
-Thanks
-Hangbin
