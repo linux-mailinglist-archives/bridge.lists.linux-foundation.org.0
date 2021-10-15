@@ -1,146 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3318842ECF1
-	for <lists.bridge@lfdr.de>; Fri, 15 Oct 2021 10:57:27 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3120542ED20
+	for <lists.bridge@lfdr.de>; Fri, 15 Oct 2021 11:06:55 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 7881F404C1;
-	Fri, 15 Oct 2021 08:57:24 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 73DB783ACF;
+	Fri, 15 Oct 2021 09:06:53 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id GK07i0QwaYlU; Fri, 15 Oct 2021 08:57:23 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id PiTnCINnpBJ6; Fri, 15 Oct 2021 09:06:52 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id AAE2840468;
-	Fri, 15 Oct 2021 08:57:22 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 16D0483AC9;
+	Fri, 15 Oct 2021 09:06:52 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5BD91C0022;
-	Fri, 15 Oct 2021 08:57:22 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B5638C0022;
+	Fri, 15 Oct 2021 09:06:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 05A43C000D
- for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 08:57:21 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 485EBC000D
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 09:06:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id D57AC401F4
- for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 08:57:20 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 1BF0F403FF
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 09:06:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ZmgtJ1ok_R6t for <bridge@lists.linux-foundation.org>;
- Fri, 15 Oct 2021 08:57:19 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id eShMmo7tOcMK for <bridge@lists.linux-foundation.org>;
+ Fri, 15 Oct 2021 09:06:49 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2059.outbound.protection.outlook.com [40.107.223.59])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 8B99340012
- for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 08:57:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XhfnSheHzEHz0oWUVqk+bLjZKLAQq6NYYv/oQlF3jnw271Vi7w9/ucig2yhJQgjwxm82e3wigvx5/Z0cAoHQW1qV85cBWgbdKn4Nk8Yva2mNcLmVzmidnYApjDGVypG3FKqLndgp3Vb4pkb2LDUy1ksq5ApA3Ckt0Rz2tNsFOM0elej0Mdi+w/A3Yr+XOPw4K+gi2G8X9mDQxc25IZ9Lzxg2K58Vb2f32wre2ZDM2EkPfnEbgSpMIK+rIWJRyWUCR7v1687KCWgEHVdnOQueqfba36YhE0GA36a2LPmC/3t3wHWSnWgeEVHCdUHXd+wG3YVcfnZ6xgZ1piBapQAd8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OxwfMucszAHmFn0SxPBFzomXvRwRf/HVQvasE15qa6M=;
- b=g15XT0L+igPy4sa5o0ohYToUTuRLNMb1ogCoQe7XVNGWgvOYwIhYcvA0uqqoK6Mqv+WAyvpvMyGPJT9zuaUFa6C/RSXjMu+In5ncpwfY3uwtNP9DG2Zk6KnXOiTACKFBCG6fDTGJQZDkPQTiFgotu95VEY1IBzMuu+z0BNrRjs6tn09uNy4Kfw5KfpM9+Mowb7CjUmOZBiy+uwNbUne3QYvcfLn5vWQKPVx8w3OsnNKqq4NQPADa+tnO7bnDPh/TISQiwE3N/253fYso8R/WwV+z9gPhu6wD+ksopqF3I4BA7Bja4wGmRB3ZWQXLZF+jYuA4wUMg3NdCeVTzKqH/Ig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OxwfMucszAHmFn0SxPBFzomXvRwRf/HVQvasE15qa6M=;
- b=B60ZqjvipXML8Pb7Y088vwFpqTjPBCtSKGhNrR1qM3es02JDmitGMK7FzvJUZQrD/GDjgZe42BlFSn63KvXtFPm4zDWZApMB7H3uXsImqi7ob4CZMXLEgG8aCCV88XQaDRxUSz00LVYWGF2+47Boi91vF8kr9YybGyMxHKUL9Uj2PvG3JkCyoDvC8sixxe5TH3um7tb+S7Ard+YhUC9v7olU3uibcB3CWX91B/4dooTaFsw86XgPjFcTjrykrs3lEdINJQJLpHkEopnDtPXW/nm0pfhdVOraExQs/aOQc61M0F4pxaWRThfo97PMM6kKL9UFszx+ujpgCcq8x4WkaQ==
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM4PR12MB5151.namprd12.prod.outlook.com (2603:10b6:5:392::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Fri, 15 Oct
- 2021 08:57:17 +0000
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea]) by DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea%8]) with mapi id 15.20.4608.017; Fri, 15 Oct 2021
- 08:57:17 +0000
-Message-ID: <357fad9e-581e-7b71-9b32-aac77d5d13c1@nvidia.com>
-Date: Fri, 15 Oct 2021 11:57:06 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Content-Language: en-US
-To: Hangbin Liu <liuhangbin@gmail.com>,
- Nikolay Aleksandrov <nikolay@cumulusnetworks.com>
-References: <20200907095619.11216-1-nikolay@cumulusnetworks.com>
- <20200907095619.11216-11-nikolay@cumulusnetworks.com>
- <YWjsyk/Dzg2/zVbw@Laptop-X1> <YWkhi7iABEKygKaL@Laptop-X1>
-In-Reply-To: <YWkhi7iABEKygKaL@Laptop-X1>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZRAP278CA0005.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:10::15) To DM4PR12MB5278.namprd12.prod.outlook.com
- (2603:10b6:5:39e::17)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 4B2EA403FE
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 09:06:49 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id g10so35444123edj.1
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 02:06:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=kAZh9fqmHigo6xRDqgFos5JwAKHqDbj5bkhVwftM1Ys=;
+ b=KrAgOqV1v2KxOuW7pkfy/lKylkCadAUoPsHrJ7bpEFwfLuP2zvalxzqIFo4jfEfjc5
+ iBdWZ+bk8TJhhjQqzl5lUgOwloB6XEqqxkJ6FVzvCixT1SLpn/CO0t0IBSYWT6FOhaMv
+ /gKEplLZbjCdiUi2TusREYcGOkzdYQts62fGIPetDmKc0djiKFRSj95jwnUZLEMabZHO
+ OdzuSOb4svHB018Ff/nQjlhq/Cc/xFw1b1p8qF8OJO6aTJY9z4faJRPBsrre/Hb8W2vI
+ jVFmX8D4M7htPSCERrDiepcLTAYmSgdiLjV4EcOeRyfyTQ1q6GIZ3IDQGFsLZ1KbE3Ra
+ xmyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=kAZh9fqmHigo6xRDqgFos5JwAKHqDbj5bkhVwftM1Ys=;
+ b=TcZCjCrevQikH+3D54LCZc0rbeybY7xi0sfwfzKTVwZwngAtgcjm1G41XCBMu9lMyE
+ x7/iQTBmzCzJFTCE4UfDsG0nXI93+IN3HTE/QT2XRTLfETpnc79cc2gkXLpTY6HFr5Fu
+ 0o0uPtHZVkW4ISbXoqgczQFpl9S3v0372goIshm5zUC2ljpXMCq3rf+/eMeBiAfsUvyL
+ MW+rQxewGosXt90zWzEs4gnN78hjeA8ponF12PBEb0BHGuJc09ps7j7wHzDidl1z3DAf
+ 7UKUepCUFEl1ALaJ1f3bzu+32jCCfSc9MRcXivsPh9yjDUDKemapfWHTxFu3BN/STKpp
+ X3Hw==
+X-Gm-Message-State: AOAM531lIApgxRUKvqBmZPvxCITIVrLYnKdrqmw7HauZwDVWlmmZrVoq
+ 1DPHuhRrmrBpVAY2n6dPJcDoUg==
+X-Google-Smtp-Source: ABdhPJwwzKlulbjNPJ9dhS1QtKNP/+rvGHzF6kJnLiZ/Ig2orOOXOYfLlqUjw0qeA96Ch3kZF6e4aw==
+X-Received: by 2002:a17:906:a1c1:: with SMTP id
+ bx1mr5230787ejb.447.1634288807299; 
+ Fri, 15 Oct 2021 02:06:47 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id v13sm4695034edl.69.2021.10.15.02.06.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Oct 2021 02:06:46 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Fri, 15 Oct 2021 12:05:46 +0300
+Message-Id: <20211015090546.19967-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <357fad9e-581e-7b71-9b32-aac77d5d13c1@nvidia.com>
+References: <357fad9e-581e-7b71-9b32-aac77d5d13c1@nvidia.com>
 MIME-Version: 1.0
-Received: from [10.21.241.24] (213.179.129.39) by
- ZRAP278CA0005.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:10::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.14 via Frontend Transport; Fri, 15 Oct 2021 08:57:14 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ae099ea-f4cc-44e9-f14b-08d98fb9c9d5
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5151:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM4PR12MB5151BBADD8BB8106D3E1D3E3DFB99@DM4PR12MB5151.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Bf3JqKULo0F0vY41ZPzEZ2OOye3+1LCvtUpJfecqAtttK/ohZN0uKR5RSvk0D7VfykAWps2TsGzuKf4gVJr3siWh4kgiBNPKqkiKHu2nm+4wn/Qmq5MojU49aVVgJ3l3DMoGd1X6F5e+8ifoOAZUsaDdChFa8h0p0OGplfLXFkMeDNo41Af4wDX0chviA+MUAhdUw7UED/792IWtCTdKHcbJnbf8/fDT2Z2IHPjRktYHMFSlPMmduk997cv5aHtNL7B1XEPIS6xlmyt3ahqjc4kIwo/8oSNoSorF6CBVB8jyznJxXTuCfO7mz610tGssA8O5Owna1LwOT0EtGrsvrWdhw2ECqYh64OIo1YbGTroBSFj4cQAzuiSdTIMn5keOO62ukhdGkjGILAV6+15VC6tvmDW22z08navMUxKYATYiuk4zx26Dv3amcV3mW7+YPZkJiEIvMFhCBd+JGWiIElhUBo3ZWEGg1Czts2ZDpVTtTdijS1sOYLD/T+azctN1Nk0MmlGfCNQkiVnKovY4FsbOusQku1PL3PUulON/PURunPMP0RrZWPOtRA28bZ0DntjaBeV7Q9omKssmBpXUevHlvxXKRSAwMxfC+paoQFVXjpD3xmyMAwb21Pf64dbHWL381EvY6acvQAfrl02YICgvG5SJSMmq5JPDWZ4gdpIHFiTF8HH2zmEVku6E3vC/OacfcLmPNsVIN90rnQ5ChazkgvNhv1G6XBXx9zGpbb4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(38100700002)(6666004)(6486002)(26005)(53546011)(186003)(83380400001)(956004)(2616005)(66574015)(2906002)(8936002)(110136005)(31686004)(508600001)(36756003)(66476007)(4326008)(66556008)(8676002)(66946007)(16576012)(316002)(31696002)(5660300002)(86362001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cmpEU0dSeUlwdC8ydjVSTjg4T0tnWjlYb2hLK05RNmFqUlpMZVJyeTBISlJL?=
- =?utf-8?B?WVZ4MzNPK1NoZ2czWjVTWFcybm1ZeEZaN2xwdmtvMnBkNU1wdDl3eU1hNFA1?=
- =?utf-8?B?QkFQOFZKZU9XRU1iUHFrUWRoQWFVWkt5K01qZThHamZwdzk3cHpCbUR4ekdj?=
- =?utf-8?B?QTlveWJicER6L1E1Z1VuNFBmVFRYeldndGpkb3l6bFZ0UHhmcklDNGNtUlMw?=
- =?utf-8?B?YTF5NVZiTnJGQ0JOZDcvb3d2cHV0dmtXU2toYmJ6a2tQTklRclNYUkJoZE1O?=
- =?utf-8?B?RnVWY2E2c3ZIY0ZUUENJOEFxbWttOVpRY3ErRlczc2ZMeWt1REU5cGg1SkI2?=
- =?utf-8?B?bCtsaWFReFZNTDFPeWpDb0czRDdyZXlNclpoQlhORUNIam9sK3MwTUFsZmNW?=
- =?utf-8?B?bFQ0V2RnQytBdG1BcFFSQmlza3Qzak85RVJsOXN5RERMVWxUNG9SK0VXUktq?=
- =?utf-8?B?QkhtZmNORWR1SVRvZmd2Yk05akhxbkp1VVpNM0x6c213MXNtK0pSTGM0TFdB?=
- =?utf-8?B?bTJzbGZFajVaRFlTMDRGeDA4YUNxQ2lSbHZQNlk4aWtwSGxoLzBqUjNyOXhT?=
- =?utf-8?B?dHZwMnpwV2NwaENndnBuRXNWQnh3MHJ6Qmt4UFZUbnBmVXNYcVl5YnJjUTR5?=
- =?utf-8?B?ckZZbVNtOE9MOFZRa0Z3MDhxTGx3dkQwVEhyVElPY0pTVytnZ2ttUXBZTkhD?=
- =?utf-8?B?cHYxbkdvWmVLbnc3UXo3YWRodkVJajUvdmc3UE5vUmVocXl3N05BNUpYZzZi?=
- =?utf-8?B?Y3JNc3E0RWJTa0VKaERkRTZxUEI4N3VpcDhOSWJDWE92QzNGTUFDcTgzQlVo?=
- =?utf-8?B?VHhKQmI2aTYxZVQxa29IQkIvNlN0WHIyZkVjdjdxdktSS3dxRDg2TEJlQ1lV?=
- =?utf-8?B?WGNEUHMxZmFDY2k1MXpjajk0YnF6eGNLZnphVWhsMEVnNlVxSnNZVHRSVTVy?=
- =?utf-8?B?ZndCZ0hYOVB3QWdJVXNqNWJLU1VCSGdzRG9xRHJVdi9zdzRTd1RKa2k1UUt5?=
- =?utf-8?B?VXNta1BaYVhzZFVBaDZRd2IyZjhoU0xQdFl3eENHcHQySVF5QXlpeUU4NnRo?=
- =?utf-8?B?WXNmTXZQTEszaVI3cUx4ME5WSk9hR0NMTnZ4MUZnOVlhT0xidWV1cWxKU01i?=
- =?utf-8?B?OFdBQjB6N3VkbFZ6ZHpxRmZLWHUzYkF4N2l2Y2xzcGJTTXFlTVhvbGFINlVT?=
- =?utf-8?B?cjlYekZVWTVDUjJVcFlzZWVLSVh3bFdvQnlhYzFWd3dabThkcVlpMkZLMFlE?=
- =?utf-8?B?QmRBS3k2MFgxVGhvT0pJVzdxTkJmcmFIU3ZMR3lBTStEVGFGR2QxWmptKzhn?=
- =?utf-8?B?bzNMRzRVN2JlaGQ2RzJuOXlnaUF5akh0NXRoQ0xGY2RvenV6cHFscVc2RXp5?=
- =?utf-8?B?cjZXdUpYWUFKY2w3N2g5SWRxVENQN0M3R2J1RGxBaHhRM2ErdDNrRzEzZk5X?=
- =?utf-8?B?bFdUbXZPK3FLMXdZZ0tiaVcvQ2I0ZmdnQkc0Ulcxd0NKenl4N3hrMm51Vm95?=
- =?utf-8?B?QUg3OUFPQ2NLRVhoZnM3cWg0UzViUCs3a2V0aENPa1RXQldac3lpNkRWUEdL?=
- =?utf-8?B?WDZnMitXWUlCaXB2aDRnc3V6Tjl5TmpOZHkyeEhQZ3NtM05KeWVKRyttVmx5?=
- =?utf-8?B?blNZT010azVwTXhsdkFXR2JEM2JMR3hOUmZXUlV4aFdrK1F3YUYycENUWmk5?=
- =?utf-8?B?Y1FoaldaSHlmbXRlWmM5cWk2a0EwUThFTVBoQUxSUWloUktWT2dmaG9SQWdI?=
- =?utf-8?Q?Fj+F/JMESZPRGAJTcgBj36Cj2ewU78bYjo37JW7?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ae099ea-f4cc-44e9-f14b-08d98fb9c9d5
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 08:57:16.8723 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QkavayOnebDmkT0lY1C9PlXz7ODa1pYcLcx8ixRi8RLErdIoCNBop74mBcyJ+02rkL9Lq6i7rF1W5YDjRKQg2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5151
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next v4 10/15] net: bridge: mcast: support
- for IGMPv3/MLDv2 ALLOW_NEW_SOURCES report
+Content-Transfer-Encoding: 8bit
+Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Hangbin Liu <liuhangbin@gmail.com>, roopa@nvidia.com, kuba@kernel.org,
+ davem@davemloft.net
+Subject: [Bridge] [PATCH net] net: bridge: mcast: use
+	multicast_membership_interval for IGMPv3
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -152,40 +97,13 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 15/10/2021 09:36, Hangbin Liu wrote:
-> On Fri, Oct 15, 2021 at 10:52:00AM +0800, Hangbin Liu wrote:
->>> -	mod_timer(&p->timer, now + br->multicast_membership_interval);
->>> +	if (igmpv2_mldv1)
->>> +		mod_timer(&p->timer, now + br->multicast_membership_interval);
->>
->> Hi Nikolay,
->>
->> Our engineer found that the multicast_membership_interval will not work with
->> IGMPv3. Is it intend as you said "IGMPv3/MLDv2 handling is not yet
->> implemented" ?
-> 
-> Ah, I saw in br_multicast_group_expired() it wait for mp->ports be freed
-> before delete the mdb entry.
-> 
-> And in br_multicast_port_group_expired() it wait for src entry freed first.
-> 
-> But when mod group src timer, we use
-> __grp_src_mod_timer(ent, now + br_multicast_gmi(brmctx));
-> 
-> instead of user configured multicast_membership_interval. I think we should
-> fix it. WDYT?
-> 
-> Thanks
-> Hangbin
-> 
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Hi,
-I did that intentionally because of how RFC 3376 defines the GMI:
+When I added IGMPv3 support I decided to follow the RFC for computing
+the GMI dynamically:
 " 8.4. Group Membership Interval
 
    The Group Membership Interval is the amount of time that must pass
@@ -195,18 +113,37 @@ I did that intentionally because of how RFC 3376 defines the GMI:
    This value MUST be ((the Robustness Variable) times (the Query
    Interval)) plus (one Query Response Interval)."
 
-So it is computed properly and the RFC says "MUST" be. The only thing that is not
-configurable is the QRV currently, if that is added then the GMI will be automatically
-correctly computed as per the RFC. I get the inconsistency though as we don't compute all
-timers as the RFC mandates, I'm inclined to revert the GMI computation as it was before
-and possibly fix how all timers are computed in the future as that may require more work.
-In addition this could've changed user-expected behaviour when switching to v3 queries which
-were supported before IGMPv3 was added, so yeah going forward looks like it'd be better to
-switch to the old GMI behaviour. I'll send the patch in a minute.
+But that actually is inconsistent with how the bridge used to compute it
+for IGMPv2, where it was user-configurable that has a correct default value
+but it is up to user-space to maintain it. This would make it consistent
+with the other timer values which are also maintained correct by the user
+instead of being dynamically computed. It also changes back to the previous
+user-expected GMI behaviour for IGMPv3 queries which were supported before
+IGMPv3 was added. Note that to properly compute it dynamically we would
+need to add support for "Robustness Variable" which is currently missing.
 
-Thanks,
- Nik
+Reported-by: Hangbin Liu <liuhangbin@gmail.com>
+Fixes: 0436862e417e ("net: bridge: mcast: support for IGMPv3/MLDv2 ALLOW_NEW_SOURCES report")
+Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
+ net/bridge/br_private.h | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-
-
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index b4cef3a97f12..5c68052466a0 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -1125,9 +1125,7 @@ static inline unsigned long br_multicast_lmqt(const struct net_bridge_mcast *brm
+ 
+ static inline unsigned long br_multicast_gmi(const struct net_bridge_mcast *brmctx)
+ {
+-	/* use the RFC default of 2 for QRV */
+-	return 2 * brmctx->multicast_query_interval +
+-	       brmctx->multicast_query_response_interval;
++	return brmctx->multicast_membership_interval;
+ }
+ 
+ static inline bool
+-- 
+2.31.1
 
