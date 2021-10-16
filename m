@@ -1,74 +1,75 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07FFD433056
-	for <lists.bridge@lfdr.de>; Tue, 19 Oct 2021 10:01:44 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601F8433057
+	for <lists.bridge@lfdr.de>; Tue, 19 Oct 2021 10:01:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 25FA660B16;
-	Tue, 19 Oct 2021 08:01:42 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 6E72260B28;
+	Tue, 19 Oct 2021 08:01:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id VpifRDmrvHw2; Tue, 19 Oct 2021 08:01:41 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 9A3DD60771;
+	with ESMTP id hBiEJnhxDH_Q; Tue, 19 Oct 2021 08:01:41 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id BAA3E60B49;
 	Tue, 19 Oct 2021 08:01:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C3F4CC000D;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F28A1C0020;
 	Tue, 19 Oct 2021 08:01:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4EFDAC000D
- for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 05:04:49 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 28DF2C000D
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 11:21:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 29BB540170
- for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 05:04:49 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 15CF540411
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 11:21:46 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xIlDqn69pwEr for <bridge@lists.linux-foundation.org>;
- Sat, 16 Oct 2021 05:04:47 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 6ZuT2Od412NK for <bridge@lists.linux-foundation.org>;
+ Sat, 16 Oct 2021 11:21:45 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
- [IPv6:2607:f8b0:4864:20::431])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 6B33740129
- for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 05:04:47 +0000 (UTC)
-Received: by mail-pf1-x431.google.com with SMTP id q19so10123755pfl.4
- for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 22:04:47 -0700 (PDT)
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
+ [IPv6:2607:f8b0:4864:20::62b])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 54CCC40406
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 11:21:45 +0000 (UTC)
+Received: by mail-pl1-x62b.google.com with SMTP id 21so8023620plo.13
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 04:21:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=VNg5ZuSqXtZnIDT/1CeK+dUC1AUVpXTi6dIHjGdCB00=;
- b=O6f/lrGFRvziPIrEcq2SK9AmUeLEU3LElV7tq1rCZPWAQ5lx8VJgS5O+2FOZaY0MYc
- Z09kxUko1rnjEfPnHhu3FfbANUunLACgh7JnMYQw9sWzjc3NxoHQrqFTzypDj2kjohm0
- oToW0d88Gm03fTTZVGcxB+3vppPNm4WFpUansTv1NV/qwKEhXttEJMJ/1wcow703btaF
- MuMzXQGNjeRVmsupDxWx0g1ZCbT5PJV3aknIWoDVFTnM23pOEykGlzMC/AU9CXIxGN+a
- S6CiUlSWASAPZVO/sBMN6KfI9i8ylnS3yALkQoRydqJLLQC4s1mJJXx6bJL/s355/Uw/
- tnBg==
+ bh=v+ROWip2DOu/ejvMTpR01JMqGD3ACZ+pK2z8e30nwBU=;
+ b=U6gEy6R2isS5ApGPffAomw4itnMKRCLFRnH5F1vc3cmy3P5fxilDkNWDakQPr6TEn5
+ nY0UTdBZDHpe8Eq9unND/qfujdHhpqp2zCGE+IKpJagGKhMNfSHSVVKPgbHj9+LLW5J6
+ Ekgfu3L/E+Z8d8XQ4c9MDyKQYL2PKl1TtMGnRr+qrzXE7CiAJf2Jzj4KhS3wPv17TUeR
+ 5vp5S3rilwTz3+CWsIMVSno2bSXDhtkmZ2m4RZsPJyQ1HNWjdv3RIuob6PT99l4g5nKW
+ EJ015IviUY6BL4tidEGWSu61iZzKrxHS7a6v2cdioxum98KfoxgWB15si2tUKEv7F5Qe
+ hDsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=VNg5ZuSqXtZnIDT/1CeK+dUC1AUVpXTi6dIHjGdCB00=;
- b=5obIGsBof6E99nvzgySZXermjaiUyYqmI6GEIS9Te/4rxFlQeESCOZGeCPklM7FaMk
- w4Be1HllETjN2FtCQbCpMhEOm+9l5J/xJCqRwVOSsCGbp71uVacNGh56Xu5HOEZ5DfjJ
- 8+nywiDwjNkl97HnIYCwKVrmT5X3zy+m21zPvXBiykxPeqIzdyf4hDTC61GIJQ7nSvY7
- AZJvgFlCSlN8dQ7P6527OVmE3emT/6ZRSYfZYH7bLpjT6g+X+xstDELaO29q3/9ulNRi
- qYRENLzn1MjPF1ea2aal70NeP8+pFIFBW3PZRuFMeuNlnGbYYT2PIeonjEGLs8j6Cujq
- HhAg==
-X-Gm-Message-State: AOAM533uEfN8HqiDwnI+wRbWfZMh8tyv5Bm8XtSymzTo+UyVwpQYFCc3
- H38+GEEN0lVKYVuFOsBRhSc=
-X-Google-Smtp-Source: ABdhPJzQXYg1bz9xjyuz0BE9PX7NPJ2cEc8GOhsD22CjbWyyyiI0x7xzT6EX3ZLXoChnqKclO8+avA==
-X-Received: by 2002:a63:ea48:: with SMTP id l8mr12304501pgk.99.1634360686763; 
- Fri, 15 Oct 2021 22:04:46 -0700 (PDT)
+ bh=v+ROWip2DOu/ejvMTpR01JMqGD3ACZ+pK2z8e30nwBU=;
+ b=5SUqQ5q5mVnUZKIg4vp2s5JpD0a+NHp5yJNCwlhPsfFEKGvRFmQUnPiD2XL5/6btme
+ zLHouzZg389kWs9dwQLYDYeraXUC6YlvdB7FBWxW05m8Qpm810GpcrVp2eY72nQOE56Q
+ /0VIN+H46fd+X1LJ95G52PIumpMorRm6XTClkL8yftw6S9Ln+QBxU6dQnc5JwMJxAprk
+ x/19xEjWbNIDs5EllER07OLjAFXzCkT6dcxKFYUWgQT88t44MdexR+psOr5esQDFXDlI
+ /WkNvrUqTsKJzAh6DUfu/3TNsiojx61pnemg/taC6iLiL+O7oqp8rcsIguToqe6jue4i
+ jJcw==
+X-Gm-Message-State: AOAM530j9GTNEEo2/CTfkLoaG6+ERvbfLgApT/soUq+m0aYP3wFRzz5/
+ cPpU9oV/5mfEDlEQWO/tWJ8=
+X-Google-Smtp-Source: ABdhPJyaV9NtD0ddKyNyjSDHSOdDhYIYDTt623NEd5phUE6MFqERN6ln5jxLvm5swtvCYllDVMQSbg==
+X-Received: by 2002:a17:90b:4b03:: with SMTP id
+ lx3mr19636771pjb.162.1634383304729; 
+ Sat, 16 Oct 2021 04:21:44 -0700 (PDT)
 Received: from rok-te3.kortoor.gmail.com.beta.tailscale.net ([211.250.198.237])
- by smtp.googlemail.com with ESMTPSA id u24sm6263989pfm.27.2021.10.15.22.04.42
+ by smtp.googlemail.com with ESMTPSA id b16sm7905873pfm.58.2021.10.16.04.21.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Oct 2021 22:04:46 -0700 (PDT)
+ Sat, 16 Oct 2021 04:21:44 -0700 (PDT)
 From: Kyungrok Chung <acadx0@gmail.com>
 To: Marek Lindner <mareklindner@neomailbox.ch>,
  Simon Wunderlich <sw@simonwunderlich.de>,
@@ -77,8 +78,8 @@ To: Marek Lindner <mareklindner@neomailbox.ch>,
  Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
-Date: Sat, 16 Oct 2021 14:04:38 +0900
-Message-Id: <20211016050439.2592877-1-acadx0@gmail.com>
+Date: Sat, 16 Oct 2021 20:21:36 +0900
+Message-Id: <20211016112137.18858-1-acadx0@gmail.com>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -86,7 +87,7 @@ X-Mailman-Approved-At: Tue, 19 Oct 2021 08:01:38 +0000
 Cc: bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
  b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org,
  coreteam@netfilter.org, netfilter-devel@vger.kernel.org
-Subject: [Bridge] [PATCH v2 net-next] net: make use of helper
+Subject: [Bridge] [PATCH v3 net-next] net: make use of helper
 	netif_is_bridge_master()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -110,6 +111,9 @@ Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
 
 v1->v2:
   - Apply fixes to batman-adv, core too.
+
+v2->v3:
+  - Fix wrong logic.
 
  net/batman-adv/multicast.c      | 2 +-
  net/bridge/br.c                 | 4 ++--
@@ -272,7 +276,7 @@ index 5c6c4305ed23..0c8b5f1a15bc 100644
  
  	err = br_afspec(br, p, afspec, RTM_DELLINK, &changed, NULL);
 diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
-index 2dc1b209ba91..d3676666a529 100644
+index 2dc1b209ba91..564d24c451af 100644
 --- a/net/core/rtnetlink.c
 +++ b/net/core/rtnetlink.c
 @@ -4384,7 +4384,7 @@ static int rtnl_fdb_dump(struct sk_buff *skb, struct netlink_callback *cb)
@@ -280,7 +284,7 @@ index 2dc1b209ba91..d3676666a529 100644
  
  				if (br_dev != netdev_master_upper_dev_get(dev) &&
 -				    !(dev->priv_flags & IFF_EBRIDGE))
-+				    netif_is_bridge_master(dev))
++				    !netif_is_bridge_master(dev))
  					continue;
  				cops = ops;
  			}
