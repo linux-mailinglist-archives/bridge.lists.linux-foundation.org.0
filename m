@@ -1,88 +1,92 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD82433055
-	for <lists.bridge@lfdr.de>; Tue, 19 Oct 2021 10:01:43 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FFD433056
+	for <lists.bridge@lfdr.de>; Tue, 19 Oct 2021 10:01:44 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 85C57404D9;
-	Tue, 19 Oct 2021 08:01:41 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 25FA660B16;
+	Tue, 19 Oct 2021 08:01:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fZQFqYt8Tzjj; Tue, 19 Oct 2021 08:01:40 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id VpifRDmrvHw2; Tue, 19 Oct 2021 08:01:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id C2BCE404D4;
-	Tue, 19 Oct 2021 08:01:39 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 9A3DD60771;
+	Tue, 19 Oct 2021 08:01:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 985F3C001E;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C3F4CC000D;
 	Tue, 19 Oct 2021 08:01:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id F145DC000D
- for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 14:18:24 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4EFDAC000D
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 05:04:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id D18A8403D3
- for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 14:18:24 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 29BB540170
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 05:04:49 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Ah2wmHqcFsPL for <bridge@lists.linux-foundation.org>;
- Tue, 12 Oct 2021 14:18:23 +0000 (UTC)
+ with ESMTP id xIlDqn69pwEr for <bridge@lists.linux-foundation.org>;
+ Sat, 16 Oct 2021 05:04:47 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com
- [IPv6:2607:f8b0:4864:20::52c])
- by smtp2.osuosl.org (Postfix) with ESMTPS id E1E324015E
- for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 14:18:23 +0000 (UTC)
-Received: by mail-pg1-x52c.google.com with SMTP id 133so14016294pgb.1
- for <bridge@lists.linux-foundation.org>; Tue, 12 Oct 2021 07:18:23 -0700 (PDT)
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
+ [IPv6:2607:f8b0:4864:20::431])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 6B33740129
+ for <bridge@lists.linux-foundation.org>; Sat, 16 Oct 2021 05:04:47 +0000 (UTC)
+Received: by mail-pf1-x431.google.com with SMTP id q19so10123755pfl.4
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Oct 2021 22:04:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Xf2ZZ4dUjskn2wzoA/na9mrwqcf1U/CnBUU6ZdkyGNw=;
- b=f0x0Mp1+aw8gyzjTYOE2fGveQDjihAKtSAu5Rl/PbG2mSba8TWJbdNQybJpHwg0TS6
- 6XJqRb65/IRp/ibW7qXiIgZWjxkofIzOQWvOXl1C1QXeB11zHRj76YDAUHvXdO+CMXle
- jeqTtZ6V9KhkJZnLXZ23/ewqjl1wTla2RrEWewTCB5Rkj7azHWlUQvjfgqFtDgfxSoXZ
- lXKiUtEhap+ac5MeL0A/Tv9VpEUJYZ9vNrSPaTBpgG0oWorTuwe151VKmmUBp9WaAt+x
- c/uMB2pnah2UIFTf9JHyUhHdh58vQydFY6VNAHEiU+L6ZFiRvnikjhdjVz9DAwpsl0zT
- xrpQ==
+ bh=VNg5ZuSqXtZnIDT/1CeK+dUC1AUVpXTi6dIHjGdCB00=;
+ b=O6f/lrGFRvziPIrEcq2SK9AmUeLEU3LElV7tq1rCZPWAQ5lx8VJgS5O+2FOZaY0MYc
+ Z09kxUko1rnjEfPnHhu3FfbANUunLACgh7JnMYQw9sWzjc3NxoHQrqFTzypDj2kjohm0
+ oToW0d88Gm03fTTZVGcxB+3vppPNm4WFpUansTv1NV/qwKEhXttEJMJ/1wcow703btaF
+ MuMzXQGNjeRVmsupDxWx0g1ZCbT5PJV3aknIWoDVFTnM23pOEykGlzMC/AU9CXIxGN+a
+ S6CiUlSWASAPZVO/sBMN6KfI9i8ylnS3yALkQoRydqJLLQC4s1mJJXx6bJL/s355/Uw/
+ tnBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Xf2ZZ4dUjskn2wzoA/na9mrwqcf1U/CnBUU6ZdkyGNw=;
- b=yUZEQyXh/uM8Gyrvr9DLMT0Okzy2JjEglR8PF5Nh/m+HYMA5i3SimDd0z+QyyTp8Do
- hl6QE6sWKjq7nTzM+9kJXIx8ckYIENsnCetUfp32bpiufWslNoTflcraGRUmCAmigreu
- dQ4Ujkg/br4NP00lVRmH73KuJCVlz0b1ojC+bzKlRp9C4hgQx7ruhZp8N//0j+OTt4Xg
- U1iKbea4XJw626ilXJVM1jeynzV9+QPqFosbybpIBkJfjokslXecOJ7YIcmL1FkoKXCv
- QHENZda1/nIHjhy9i7KX5rWmoeH+bmfsNx0/eODXWk/YWoPeyDjOZOO69QD+vHMBiatx
- 0FjA==
-X-Gm-Message-State: AOAM533j96KFqaILOesyKzHPE+oykKyOoFhSkeYFDxTk4oL3xSbKPrei
- EpLb37yLUGBxMvayCOqDgFU=
-X-Google-Smtp-Source: ABdhPJwczTJ/0WfRcgg+oiWJ4pkehoBQKkvLZn1mUO2VQu69XEcTIBA/6rUktoDu1GqymOTyylTX/g==
-X-Received: by 2002:a62:6544:0:b0:44b:508b:d05c with SMTP id
- z65-20020a626544000000b0044b508bd05cmr32131758pfb.56.1634048303387; 
- Tue, 12 Oct 2021 07:18:23 -0700 (PDT)
-Received: from rok-te3.. ([211.250.198.237])
- by smtp.googlemail.com with ESMTPSA id r14sm11641143pgf.49.2021.10.12.07.18.14
+ bh=VNg5ZuSqXtZnIDT/1CeK+dUC1AUVpXTi6dIHjGdCB00=;
+ b=5obIGsBof6E99nvzgySZXermjaiUyYqmI6GEIS9Te/4rxFlQeESCOZGeCPklM7FaMk
+ w4Be1HllETjN2FtCQbCpMhEOm+9l5J/xJCqRwVOSsCGbp71uVacNGh56Xu5HOEZ5DfjJ
+ 8+nywiDwjNkl97HnIYCwKVrmT5X3zy+m21zPvXBiykxPeqIzdyf4hDTC61GIJQ7nSvY7
+ AZJvgFlCSlN8dQ7P6527OVmE3emT/6ZRSYfZYH7bLpjT6g+X+xstDELaO29q3/9ulNRi
+ qYRENLzn1MjPF1ea2aal70NeP8+pFIFBW3PZRuFMeuNlnGbYYT2PIeonjEGLs8j6Cujq
+ HhAg==
+X-Gm-Message-State: AOAM533uEfN8HqiDwnI+wRbWfZMh8tyv5Bm8XtSymzTo+UyVwpQYFCc3
+ H38+GEEN0lVKYVuFOsBRhSc=
+X-Google-Smtp-Source: ABdhPJzQXYg1bz9xjyuz0BE9PX7NPJ2cEc8GOhsD22CjbWyyyiI0x7xzT6EX3ZLXoChnqKclO8+avA==
+X-Received: by 2002:a63:ea48:: with SMTP id l8mr12304501pgk.99.1634360686763; 
+ Fri, 15 Oct 2021 22:04:46 -0700 (PDT)
+Received: from rok-te3.kortoor.gmail.com.beta.tailscale.net ([211.250.198.237])
+ by smtp.googlemail.com with ESMTPSA id u24sm6263989pfm.27.2021.10.15.22.04.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 Oct 2021 07:18:22 -0700 (PDT)
+ Fri, 15 Oct 2021 22:04:46 -0700 (PDT)
 From: Kyungrok Chung <acadx0@gmail.com>
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
+To: Marek Lindner <mareklindner@neomailbox.ch>,
+ Simon Wunderlich <sw@simonwunderlich.de>,
+ Antonio Quartulli <a@unstable.cc>, Sven Eckelmann <sven@narfation.org>,
  "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <nikolay@nvidia.com>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
  Jozsef Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>
-Date: Tue, 12 Oct 2021 23:18:09 +0900
-Message-Id: <20211012141810.30661-1-acadx0@gmail.com>
+Date: Sat, 16 Oct 2021 14:04:38 +0900
+Message-Id: <20211016050439.2592877-1-acadx0@gmail.com>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 19 Oct 2021 08:01:38 +0000
-Cc: coreteam@netfilter.org, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, netfilter-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [Bridge] [PATCH net-next] net: bridge: make use of helper
+Cc: bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
+ b.a.t.m.a.n@lists.open-mesh.org, linux-kernel@vger.kernel.org,
+ coreteam@netfilter.org, netfilter-devel@vger.kernel.org
+Subject: [Bridge] [PATCH v2 net-next] net: make use of helper
 	netif_is_bridge_master()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -103,6 +107,11 @@ Replace 'dev->priv_flags & IFF_EBRIDGE' with netif_is_bridge_master(dev).
 
 Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
 ---
+
+v1->v2:
+  - Apply fixes to batman-adv, core too.
+
+ net/batman-adv/multicast.c      | 2 +-
  net/bridge/br.c                 | 4 ++--
  net/bridge/br_fdb.c             | 6 +++---
  net/bridge/br_if.c              | 2 +-
@@ -110,8 +119,22 @@ Signed-off-by: Kyungrok Chung <acadx0@gmail.com>
  net/bridge/br_mdb.c             | 4 ++--
  net/bridge/br_netfilter_hooks.c | 2 +-
  net/bridge/br_netlink.c         | 4 ++--
- 7 files changed, 12 insertions(+), 12 deletions(-)
+ net/core/rtnetlink.c            | 2 +-
+ 9 files changed, 14 insertions(+), 14 deletions(-)
 
+diff --git a/net/batman-adv/multicast.c b/net/batman-adv/multicast.c
+index a3b6658ed789..433901dcf0c3 100644
+--- a/net/batman-adv/multicast.c
++++ b/net/batman-adv/multicast.c
+@@ -89,7 +89,7 @@ static struct net_device *batadv_mcast_get_bridge(struct net_device *soft_iface)
+ 	rcu_read_lock();
+ 	do {
+ 		upper = netdev_master_upper_dev_get_rcu(upper);
+-	} while (upper && !(upper->priv_flags & IFF_EBRIDGE));
++	} while (upper && !netif_is_bridge_master(upper));
+ 
+ 	dev_hold(upper);
+ 	rcu_read_unlock();
 diff --git a/net/bridge/br.c b/net/bridge/br.c
 index d3a32c6813e0..1fac72cc617f 100644
 --- a/net/bridge/br.c
@@ -248,6 +271,19 @@ index 5c6c4305ed23..0c8b5f1a15bc 100644
  		return -EINVAL;
  
  	err = br_afspec(br, p, afspec, RTM_DELLINK, &changed, NULL);
+diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+index 2dc1b209ba91..d3676666a529 100644
+--- a/net/core/rtnetlink.c
++++ b/net/core/rtnetlink.c
+@@ -4384,7 +4384,7 @@ static int rtnl_fdb_dump(struct sk_buff *skb, struct netlink_callback *cb)
+ 					continue;
+ 
+ 				if (br_dev != netdev_master_upper_dev_get(dev) &&
+-				    !(dev->priv_flags & IFF_EBRIDGE))
++				    netif_is_bridge_master(dev))
+ 					continue;
+ 				cops = ops;
+ 			}
 -- 
 2.33.0
 
