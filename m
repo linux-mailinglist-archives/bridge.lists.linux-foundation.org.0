@@ -1,87 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC71434390
-	for <lists.bridge@lfdr.de>; Wed, 20 Oct 2021 04:36:24 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2160F434393
+	for <lists.bridge@lfdr.de>; Wed, 20 Oct 2021 04:40:28 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 5917240018;
-	Wed, 20 Oct 2021 02:36:22 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 7DD0A607EE;
+	Wed, 20 Oct 2021 02:40:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id YWGIQ7rn5syM; Wed, 20 Oct 2021 02:36:21 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 8F9A340238;
-	Wed, 20 Oct 2021 02:36:20 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7Xs1UFE5Mo7G; Wed, 20 Oct 2021 02:40:25 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 0F2AD607CA;
+	Wed, 20 Oct 2021 02:40:25 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3B422C0022;
-	Wed, 20 Oct 2021 02:36:20 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C0D63C0022;
+	Wed, 20 Oct 2021 02:40:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4470AC000D
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:36:19 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 37840C000D
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:40:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 2020A83139
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:36:19 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 1EA2B607EE
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:40:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id bYcD5bVYrfC5 for <bridge@lists.linux-foundation.org>;
- Wed, 20 Oct 2021 02:36:18 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pRt4Z2HTQeeW for <bridge@lists.linux-foundation.org>;
+ Wed, 20 Oct 2021 02:40:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
- [IPv6:2607:f8b0:4864:20::52b])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4B17183126
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:36:18 +0000 (UTC)
-Received: by mail-pg1-x52b.google.com with SMTP id t184so8178972pgd.8
- for <bridge@lists.linux-foundation.org>; Tue, 19 Oct 2021 19:36:18 -0700 (PDT)
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
+ [IPv6:2607:f8b0:4864:20::1031])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 65AAB607CA
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:40:23 +0000 (UTC)
+Received: by mail-pj1-x1031.google.com with SMTP id oa4so1400380pjb.2
+ for <bridge@lists.linux-foundation.org>; Tue, 19 Oct 2021 19:40:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uP74WpUfIxkFQrw13QDTf0eyIC/o9Ip6dzTaEPhVPzY=;
- b=HXX1pftRzORTj8Px5lEdsuaix32dXDrAzRrLMT4qb8+nQ19QkoDo8IfUJcH4WFm2M2
- aP3znHPiJ5Z/OgRt4qlU3oMrhzz4HzGOAGwAg1kLxCIyEDDPI7NnhBtaMKrHSIRsN62O
- w5bA1Y8ada/17UO6bUAl6Tt94fm9GpBGooLZS5L57b0Ob0BqBs9q8VtXOa+s4HtkIH2n
- ui7iyGpclZKWSTd+JOUTkRwnuSRDiTCAxdKg0ASSHQHlie+1syy4orPzNuORgS2XKcC8
- VpH5mcKmTw/rdk3BNIWWyhkebhZALuh4LG3OoNx1SIAYToi/UEOSyhp02XFZsrT7zIAi
- YbZg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=g/k6QV2vpt3vH8xJxkTx+3DiBVC3hLVwkQHeAK5Mgfk=;
+ b=Q4nrYsya+U9yJCD42B+ksihz8DeeiDjP1VfdJd73Pys4FFsx7kSFFTQ9NcOFSmo+br
+ R8Z/n7RebPdXUn6VtdcSktRY2xcKlktxC9iETn+uFHH3+qCrdCI8TJWERAxDPLz1fF3m
+ a/YAW3Xgk/We2IYSLR3eQb6gjPgdMtQ38UVyl37vRZ+nLiWSL6IxJRv9rwNHIN4sR/dX
+ prf2BYq+NHtc5tuTgNMMSxeK8lnFA91sdDHgbTrJoqKbhI9ZDeThKnhVlISaTydDUHCG
+ mDcy742Yw3XMCRxB8b8+OtwQWaEDYWjVpoOxuvXJa9weX5cFkXL+xGrfkKfzAC28obto
+ 5tMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uP74WpUfIxkFQrw13QDTf0eyIC/o9Ip6dzTaEPhVPzY=;
- b=rCutueyGCTrjqI94kMd0Mf7g0aewpMKY4GD1xnHYWK3Q6Ou5U2nvrshKxVGRqRyzj0
- rULX9RZ6ZjPfJeEK79hIHidkMiVmreU2zyLly81JWfw5XPah4HT9p42rzLSnN3MyKeDj
- AHNNujMSgsFtV7DTKKnXQzyWZiU0NU5bQGYTcj5nnBaW5qzVU2tgvLR0hIOhO//5ifPA
- 0v8XNxwKzdBl7Cm3LdE1c0x2Cmz11vHphWhTQB/H+ophMZAVNgHa35dxGi3ijhrZczgO
- Ah1Mih4g9hlyy1qW5/490aYAWGy/5n963i7fkr/tW4SmdqrwP6JKdPnk0IsF+MueSSEl
- p67w==
-X-Gm-Message-State: AOAM532J/cdUPEEs0bRxkV2zlksruFAVndQ1ZXTHeH5VoiycqIUbcYTo
- oTin8ZN0QQUeYzaqzByo+Rs=
-X-Google-Smtp-Source: ABdhPJwtuBEQXDL1cCrt1KWlpUZ29vCJwIMVSQE/rzbHQCUkD77aNjUwGn3r0qw7dg1aNj4G4l59sA==
-X-Received: by 2002:a62:1887:0:b0:44c:872e:27ed with SMTP id
- 129-20020a621887000000b0044c872e27edmr3448411pfy.71.1634697377682; 
- Tue, 19 Oct 2021 19:36:17 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=g/k6QV2vpt3vH8xJxkTx+3DiBVC3hLVwkQHeAK5Mgfk=;
+ b=bH5AdJONgXS+5kot4tG4xmhu+iwSMaDZIcWvBqza2qvdI1RBOEJhgMs8ZcBY1abAuE
+ oMWhGu5SVt0sLs0NygJdQoejB6/i6RF6CgUpe40qfgPqcQ5o1WXdSn2upRKATxuuU9Vm
+ uRZFzERvWBAzfhl65y9JuNvVRsmrqNkvx+vMkJxGE1sOwnEUpaS0TkjagNzznQg3doa/
+ SGNkUzz4JHeL61Gpv4CJ3bP0OfkeuUVLLtC1EUWEskT8bv3b2W1EDXr4xNleRCZkEyJ6
+ TOGhX4I685k4QVKGro1zhHtvLcq5J25lA5GHT84Dlvwu+20b1r/5x3jWdgvCyETiNgs0
+ PBkw==
+X-Gm-Message-State: AOAM533vPfylWXYMzc9o+fVWLEjGrUZ15qJxQUZCFWGCjH7l7I3a3Jr2
+ Jqcz7E9gtV0BqDCRYpraiQs=
+X-Google-Smtp-Source: ABdhPJyedc2O5NAOq/eUVV0gGxa6O7q5oShLShXdyhgQaO6s66znvqXDXyE/YTLys9d9qbwR9jp7DA==
+X-Received: by 2002:a17:902:7ec2:b0:13d:b563:c39 with SMTP id
+ p2-20020a1709027ec200b0013db5630c39mr36455928plb.14.1634697622837; 
+ Tue, 19 Oct 2021 19:40:22 -0700 (PDT)
 Received: from Laptop-X1.redhat.com ([209.132.188.80])
- by smtp.gmail.com with ESMTPSA id w2sm524699pfq.207.2021.10.19.19.36.14
+ by smtp.gmail.com with ESMTPSA id bp19sm439990pjb.46.2021.10.19.19.40.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Oct 2021 19:36:17 -0700 (PDT)
+ Tue, 19 Oct 2021 19:40:22 -0700 (PDT)
 From: Hangbin Liu <liuhangbin@gmail.com>
 To: netdev@vger.kernel.org
-Date: Wed, 20 Oct 2021 10:36:04 +0800
-Message-Id: <20211020023604.695416-1-liuhangbin@gmail.com>
+Date: Wed, 20 Oct 2021 10:40:16 +0800
+Message-Id: <20211020024016.695678-1-liuhangbin@gmail.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20211020023604.695416-1-liuhangbin@gmail.com>
+References: <20211020023604.695416-1-liuhangbin@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <razor@blackwall.org>,
  bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
  Hangbin Liu <liuhangbin@gmail.com>, roopa@nvidia.com, kuba@kernel.org,
  davem@davemloft.net
-Subject: [Bridge] [PATCH net] net: bridge: mcast: QRI must be less than QI
+Subject: [Bridge] [PATCHv2 net] net: bridge: mcast: QRI must be less than QI
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,7 +111,7 @@ Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
  5 files changed, 45 insertions(+), 8 deletions(-)
 
 diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index f3d751105343..1a865d08a87f 100644
+index f3d751105343..5931f7c81519 100644
 --- a/net/bridge/br_multicast.c
 +++ b/net/bridge/br_multicast.c
 @@ -4522,6 +4522,33 @@ int br_multicast_set_mld_version(struct net_bridge_mcast *brmctx,
@@ -127,10 +127,10 @@ index f3d751105343..1a865d08a87f 100644
 +	if (val > brmctx->multicast_query_response_interval) {
 +		brmctx->multicast_query_interval = val;
 +		return 0;
-+	} else {
-+		NL_SET_ERR_MSG(extack, "Invalid QI, must greater than QRI");
-+		return -EINVAL;
 +	}
++
++	NL_SET_ERR_MSG(extack, "Invalid QI, must greater than QRI");
++	return -EINVAL;
 +}
 +
 +int br_multicast_set_qri(struct net_bridge_mcast *brmctx, unsigned long val,
@@ -139,10 +139,10 @@ index f3d751105343..1a865d08a87f 100644
 +	if (val < brmctx->multicast_query_interval) {
 +		brmctx->multicast_query_response_interval = val;
 +		return 0;
-+	} else {
-+		NL_SET_ERR_MSG(extack, "Invalid QRI, must less than QI");
-+		return -EINVAL;
 +	}
++
++	NL_SET_ERR_MSG(extack, "Invalid QRI, must less than QI");
++	return -EINVAL;
 +}
 +
  /**
