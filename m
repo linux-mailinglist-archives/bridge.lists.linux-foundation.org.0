@@ -2,86 +2,146 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE84A434ADA
-	for <lists.bridge@lfdr.de>; Wed, 20 Oct 2021 14:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E35E0434B02
+	for <lists.bridge@lfdr.de>; Wed, 20 Oct 2021 14:15:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 0167240193;
-	Wed, 20 Oct 2021 12:10:15 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id C6BC640292;
+	Wed, 20 Oct 2021 12:15:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hGJMsvU0auYN; Wed, 20 Oct 2021 12:10:13 +0000 (UTC)
+	with ESMTP id cm5T7jj4W3WW; Wed, 20 Oct 2021 12:15:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 701E44055F;
-	Wed, 20 Oct 2021 12:10:12 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 25E4840483;
+	Wed, 20 Oct 2021 12:15:19 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 31BE3C0022;
-	Wed, 20 Oct 2021 12:10:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D827DC0022;
+	Wed, 20 Oct 2021 12:15:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0027DC000D
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 12:10:10 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9143AC000D
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 12:15:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id D67E0404CB
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 12:10:10 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 8643540292
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 12:15:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id byDUERuMMTjd for <bridge@lists.linux-foundation.org>;
- Wed, 20 Oct 2021 12:10:10 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id atv7a8T8SBPY for <bridge@lists.linux-foundation.org>;
+ Wed, 20 Oct 2021 12:15:15 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
- [IPv6:2607:f8b0:4864:20::536])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 5E892404C1
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 12:10:10 +0000 (UTC)
-Received: by mail-pg1-x536.google.com with SMTP id m21so22289939pgu.13
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 05:10:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ftphP/rRhj3HAi/sY+WrPVk0b2hRaTcyx6DeAasFrXQ=;
- b=B0CIzVA8hGKlxBlbLI2TXw1a7ZZ4cI4SHyOME6mYX/zv8h4K7atw3/cZ4aDOymv95H
- 3X5Vg7NcqP2XVepAF19Wi7bXeCwcTyJNS4yhadeU5Yel9wMMCqgaqG/kbZboDs3juflh
- OE4H7vqblU4SZteOWMPRSoradW0IED43Y4hJoBd/vB0TF3QdJelCYOyl4TRKsJ2w0Fil
- H/LEvKfwxRdcV3teg2VNyy6KOYPaPnZ7GwhPlAPYg/UYt7Rc8/5J5YEB0C///25Qz+23
- YAtZl6d8tjINLeAZV+twu5jaS3jbnj992LyKB5XZKTG0FSmplO5f+K9RWcH8Gt9V7S0M
- BhIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ftphP/rRhj3HAi/sY+WrPVk0b2hRaTcyx6DeAasFrXQ=;
- b=3QIuBzVMNK3ycpQdGdxSV0ODrcLj1/GxdWfQ8hyOPRtCQt7/g0/FC5AtLctu8PjzOO
- Ofo7QXwqZWWNguludCmN0XHkrXte/KFIWyyV66WfZQp0cH9MxUz1XEzUpjGnhpbwUNkG
- ULGv9B/hovvE69lNqTC/Bv483XmM0NRIBYGeot+vDpgmIes5cuGnwmqI1l7VWZFlgmX4
- 6WQy//6uG66InmrqHKH3QnpIdI0qu4BWgu5/z5XhtJs7hOufyuVqEKOPwqbXf1pV+vNw
- /tGG+eN6YAdq+lbOBPky5Wa7GNRw8JBeSFrIpftY6s4GHXptqYz71uKqH+C88cuXUuYL
- jIeg==
-X-Gm-Message-State: AOAM533XxtfaDroUhqBQuZ+8P/xL9eWcROwWClNhzryZGQkftu97xBIk
- CJUmhMks22/d18bho2+mh/k=
-X-Google-Smtp-Source: ABdhPJwDqkv/QWkMwSTv7clGOxVT91szFLgmv2smVxJYwGLdcgsCHe+9J6TNTh3Id5LSLIBBZl7wNQ==
-X-Received: by 2002:a05:6a00:815:b0:44d:2193:f688 with SMTP id
- m21-20020a056a00081500b0044d2193f688mr5972528pfk.4.1634731809690; 
- Wed, 20 Oct 2021 05:10:09 -0700 (PDT)
-Received: from Laptop-X1 ([209.132.188.80])
- by smtp.gmail.com with ESMTPSA id rm14sm5842795pjb.4.2021.10.20.05.10.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Oct 2021 05:10:09 -0700 (PDT)
-Date: Wed, 20 Oct 2021 20:10:04 +0800
-From: Hangbin Liu <liuhangbin@gmail.com>
-To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <YXAHHBYtFfXbd1hE@Laptop-X1>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2067.outbound.protection.outlook.com [40.107.243.67])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 32114401AF
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 12:15:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Toj0NWuSoEVaqp2OOyYqh8fns+vXhAqhsVreQeVViZWaSi93ErGPfiBEpFqclq2zZoZgd1WKLQIkpkaQUUbbqs2qG683LQEoGHNnXuNu0Zu/w16dzh26d4Euv0Yfw05qJdXVhz4BINT39YToFjz22MxoUj2gxb+aPmWaJS0vd/MKP71xCygJVtsDCi2biXnFZ4m97SZyETISUSORzZhfXbFQb4FV7tVqvHKwU+ZG5E2wWsYYNfsE7LIP9F4yi8NumTVAflWp1FsEweXhFY2bKnrCPUimxjZkPd6uYr5mnfDfitUMB8Bz0dZohdXkoGAPDxd1xIhu655YPfwOC70YBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RihB78LHNG8yCF8rC7fVPzBAu2JZPGnQi2Ytje75HqM=;
+ b=gkGLh1R5cq1sRgabfvtCSE0CyYeI/1NW+loCcPBB+lOTyajkRyeRqag8kllERGZJYsH7UvaCA7pOTO7UMMWO4bNXqYGRF+YjsnH5gkjeA5WWbqBqCL4zPSppPZEzGAnYLmQLRhMM2Mc+QpOVUMwgW/iJzTscvOVv8evi/oBTo6Bx8phdZWqoDL61PL+jKz19GyCne0UAs5U33fTzuAGhIUycHWnZo8zpqXFewh2HdlpXrypnbAU6FfDtrkKSpVU1VKJrVfD68QWtlEPrWOsEMyrW6ASWAaEuLdcfReecG7/zuCfkqdrKbDLnzhnh8lmR7e2MPTP1/p+DtHtlHt+NMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RihB78LHNG8yCF8rC7fVPzBAu2JZPGnQi2Ytje75HqM=;
+ b=deTHw27Cd8GfnWXU2gqw/saUg6kRHuP/SxoqxYY8JhcrB2MK4iwLm6vtUWDAG9XctJ9qo5EhAvc6RM2ElLLBEmS9brjMEx1rldkMKDZymq/s8IxiL3TT0+3TMuEfMAJxaxLrT5ooeSKo7HfC6d2KTF5c9w7V3BlMGQ+J6+DvwhSqCyiZDpAyjjp0kj4WV86ZCBLYBLVqu/3jgvN7fejhPAwXzsd3hCkJzPOn3HInwQRjAWzty6BAAIgLrlAAlqYPrtLNFFWRd/OLybkvI+LcwAexQnF8BzUZvCVzEwJBazd0oLmOVL6zHvZjIUp4rcWmMWx2dJ3P0SKxLSigRYgHag==
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
+ by DM8PR12MB5447.namprd12.prod.outlook.com (2603:10b6:8:36::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4628.16; Wed, 20 Oct 2021 12:15:13 +0000
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::513c:d3d8:9c43:2cea]) by DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::513c:d3d8:9c43:2cea%8]) with mapi id 15.20.4608.018; Wed, 20 Oct 2021
+ 12:15:13 +0000
+Message-ID: <bc778829-1fd3-f108-020b-85440e55f116@nvidia.com>
+Date: Wed, 20 Oct 2021 15:14:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: Hangbin Liu <liuhangbin@gmail.com>
 References: <20211020023604.695416-1-liuhangbin@gmail.com>
  <20211020024016.695678-1-liuhangbin@gmail.com>
  <c041a184-92cb-0ebd-25e9-13bfc6413fc9@nvidia.com>
- <YW/tLekS17ZF9/w1@Laptop-X1>
+ <YW/tLekS17ZF9/w1@Laptop-X1> <YXAHHBYtFfXbd1hE@Laptop-X1>
+In-Reply-To: <YXAHHBYtFfXbd1hE@Laptop-X1>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0098.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:23::13) To DM4PR12MB5278.namprd12.prod.outlook.com
+ (2603:10b6:5:39e::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YW/tLekS17ZF9/w1@Laptop-X1>
+Received: from [10.21.240.28] (213.179.129.39) by
+ ZR0P278CA0098.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:23::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4628.16 via Frontend Transport; Wed, 20 Oct 2021 12:15:11 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7d7e96b6-fded-4ab7-c4d1-08d993c344c1
+X-MS-TrafficTypeDiagnostic: DM8PR12MB5447:
+X-Microsoft-Antispam-PRVS: <DM8PR12MB54472130B0DF87956D510EE7DFBE9@DM8PR12MB5447.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cgvUAcynlLm735wjbugjW02PAfV23eyNVm2puwdUIwFIWrWWTMwolSLsN0Sk8QJS4c0JhjxC3b9q8VYlEcPvsCLf/DJAvSfZduqAE6PADfjC+1/1058ZrNdJnHB448KwOzLPepObjQNc7sK4FP/J2aMV0rNaMvI9zmoGrBuj50VEGhy7C7nLDhkU7iwwgqkrJzxzPiSYx/M1J6XvbNYrJnjW12Gg+OGTQ1efh6NNVUeQkOxo2eBmCCcW7pouVSy0Jev36khlzQ/p6mvaORiqc3nBOtRoCNbvqArBY3PcD6F/25LUSwFhwggmpEaxGN8a9AToMNL6fI+mxqfV/apwyqbsqF4ys6Fktqj3E/iQuPa4nYqpwv2btp9JSNrBd+PPBiXeVVxn6wIcQkmb2DClNeHhKFUHFwqvdDaiLo6cC1A19MyOg6vVPt3rPSWFDYcN+l8OiUoqdOou7dVaWUz8YxDIs1qdETZxahCkCJ5Q439qluOedUAaETyvwnIEEAl/ZzRle3pRPGb+oJqX6gB747Po4YMPaYh3Oo5IKXBUqyfVhJMWbRX3G/rmlnOSy1ENupJurImuL8ncZFC5fCwUn2FrksiF1EBZGMS1/GuQQOmfzDra1CecrFyBxUQX6LDSOCPP8eJ+rtJRwxWjHwV29DA/DItONywdHc71ZXAvu5rUidWNK4fKW+e+v+V5mUUneOnWryx5eG35YE/inc2Wd6mXfSShEAYO/SEBsDRU6EU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(2906002)(36756003)(26005)(53546011)(6916009)(86362001)(31696002)(16576012)(316002)(6486002)(4326008)(38100700002)(66946007)(66556008)(66476007)(6666004)(31686004)(508600001)(8936002)(8676002)(956004)(2616005)(83380400001)(186003)(5660300002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mk5XZ3JOajlqUHhXNUNjQ0xqNEZTeWJOVjhiNVJhR3lLYWhzRFNsOFlXbHdV?=
+ =?utf-8?B?ZThwSHhpb0JGVVlnbVNWeHFKZW1iaUdOd2JRTG5ZWHZCWWNpUGlXdG9XQk9W?=
+ =?utf-8?B?NGwwbnZOMXR1S3ZKd3h6OTJ3ZER1cFV2VkRsTFlDMjdsMjRWenF4OU9hemcy?=
+ =?utf-8?B?ZzhPTmwzeTNQOUpBYkhWUDI3Q1VyNW9sTUZHcWdaaHhxU0tycUkzbkY1aWs2?=
+ =?utf-8?B?VjRQbFd4UHVFWmJhbVhFWFZ0R1dnbklkUTlTT0xBSlhJMm54eVJZMG5zUXNk?=
+ =?utf-8?B?Si9KVjQwRUoxSCtVcDRqN21OTThpTVN0bGg0dGRNSEx0ZXB6RmZhQmVpczJj?=
+ =?utf-8?B?eGJWZ08xOWJYcENOa1AzRzVHTmt3NVVKb2ZrVnV1VzNmaFBkdkRSN1hpcjZO?=
+ =?utf-8?B?VkhBTTE3RkZXT3hnM0xrM291TmprdTlBaFlReWgwOWhDMFU1NndaYStUanZF?=
+ =?utf-8?B?QzhwMFFmR2JVVTdIdzZ1VmVCN1lRQkppU3Z5SnpPU0xzaGwyYU9XZEMrU2wy?=
+ =?utf-8?B?alBPTzBCOEVXaHNoMGVSaUdqWml4ODBGTmxpQ2U3QUJZeDE4d01xRzZpbDlZ?=
+ =?utf-8?B?LzRwdzI3T28xbmtpcngvS1VYUE9CbnNIOXJGVHJZajNhTzFRUi8vQjBYbjcy?=
+ =?utf-8?B?M1pVRElxeUVXeFcyQzZWeWZHVjNGOWhXY041VHJldEZNVnhaaTZYUDBBRy9r?=
+ =?utf-8?B?U1IzbExwY0FZdks1Kzhhb2RqbnpGZ09zT3lDZEV2MThyZE9PQkRncXYwUnBE?=
+ =?utf-8?B?amc5Vm5aNmJwOVIyMlJCaDZEWGZmeHhKbnpXSW41N0lpbmtpUmlmdnRFUTEv?=
+ =?utf-8?B?VUlOZTNUaUJmMXNqWWlSemNOVjlSWHhjdDh1MGJJcTJEM21Nb0E4cVYxQkF5?=
+ =?utf-8?B?UmtqQkNQeVg1ZllzaUFiWGliMDRXOEM2a3dDWFVQb1k3aGsyQ3BDNmM2UVdv?=
+ =?utf-8?B?dHFlUG9uYUVpZlViNXN5ZHhwdm5IWUJLVmRDazJhZXd6emJIMTI0bGFhcTZs?=
+ =?utf-8?B?RHdpREpsanpCZ2wrVCtacDRVTm1KN2hydWZSSnFNeWhFZzNrenFjdi9ZdFdI?=
+ =?utf-8?B?M2Vxd1JxSVVDYzM3emJvRFNwVEoxM3o1RE1RZ2lVQkZHdXlsZ0EvUG9DallF?=
+ =?utf-8?B?ZVpWeW02UFdGQlZ4cHNHamRhdWUxbmNsSlcwRDBFcFBCeUx1RXZhMjV2R2ZL?=
+ =?utf-8?B?QStkZFhoaDdsaS9veVU5SjRpRUpmWXJRUWtBVjV1a1MvNTJ2NWdyZmkwdzZm?=
+ =?utf-8?B?U21DdUJxcG9DQlF3ZXV2VUlQT2xDa2d0MllpK0pNZHZ1MTJlVms0dzczTjF0?=
+ =?utf-8?B?Ymg3b2pwVytLRGhFT1lQSmhlYlJNeXFCMFNEL2ZxUk5wVmVhNDgvV2pVdjhv?=
+ =?utf-8?B?VVQ5d3JHRzE2b2NkaGtOaldrSXdOdGk1TnZoY0RNVXNUd2h2bXZLeVRTR3hu?=
+ =?utf-8?B?bnZqSjZXcE5VZlU5Y0J2TUNlcUljaDRSNXFPczV5RmF3aDhlZ3l4S1BNQU9p?=
+ =?utf-8?B?NXBUcUhEaWgvVDRKRnZtNHArd1oxcnRCc2hKMUhXNVpZKy9jcU53MTRFMSsv?=
+ =?utf-8?B?WWxmMC9wOXgxeDIxUGtMbmpXQWwzcDl5UC8zc2hNMXJORWtiaUw4VHZUQkIv?=
+ =?utf-8?B?blpKWDkzWDlZaGZkd2d0bk9WOTZpUHF2dkl4d05YLytrMGxBMFkrbTZoR1Ey?=
+ =?utf-8?B?V3pDUE4vV2Z3dFNqamdkbHJ0ZHc5UHRCRkV1VnBadFEyTUpyZzU0NXFYTXYr?=
+ =?utf-8?B?SVptdHVGQ2NQeklaTjU1S0hJN3Y1dUFBZXBYWXlSN0oyWmRaZXpjSEJsNmJR?=
+ =?utf-8?B?cVZJdk9pMjBOVTJhMzdYSVRpWGVkeWdpOTUxWlRub1BodWZnMFVLc0pVTVp1?=
+ =?utf-8?B?WXdmRHlkYTR5blA5YVJWWXZPWEdIdnRWcHVybG9BWVAwSFVqYkdDN0JYYXB1?=
+ =?utf-8?B?c1RoMDV4Tk1yekdOTnVzU3RlWXhocWE0aUVUSFhHUTJ2NC9QZzEzWk5KRS9x?=
+ =?utf-8?B?dXRlb2l1b0NiOC9hS2tZNEpIVFVSdnhNbk9Qa2NsZ09OcGUvaGh0L3lxcFk2?=
+ =?utf-8?B?ZTJaSVJtd3VWc0VUcVVNdjV1anJHZktMKzYweHA3UjhXdmxjaDFqcko3ZEZK?=
+ =?utf-8?B?OURlV0tiWkR3NUVKTWJGUnJGOUxjUEJXaFEzN2RZN3hhVml1T2FaTCtveHFs?=
+ =?utf-8?Q?YT8I3IFpQQrl6RhUbMwhqw4=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d7e96b6-fded-4ab7-c4d1-08d993c344c1
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2021 12:15:13.4705 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZUNZU78aarZD+9NL5ZuyhQhS+XprYREhkrR6tUt032q8pWWxZSn5jRxKZsfrD4tAcq+x6TS9WbL18QIiGTE7iA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5447
 Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
  bridge@lists.linux-foundation.org, roopa@nvidia.com, kuba@kernel.org,
  davem@davemloft.net
@@ -98,24 +158,37 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Oct 20, 2021 at 06:19:25PM +0800, Hangbin Liu wrote:
-> On Wed, Oct 20, 2021 at 12:49:17PM +0300, Nikolay Aleksandrov wrote:
-> > Nacked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> > 
-> > I think we just discussed this a day ago? It is the same problem -
-> > while we all agree the values should follow the RFC, users have had
-> > the option to set any values forever (even non-RFC compliant ones).
-> > This change risks breaking user-space.
+On 20/10/2021 15:10, Hangbin Liu wrote:
+> On Wed, Oct 20, 2021 at 06:19:25PM +0800, Hangbin Liu wrote:
+>> On Wed, Oct 20, 2021 at 12:49:17PM +0300, Nikolay Aleksandrov wrote:
+>>> Nacked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+>>>
+>>> I think we just discussed this a day ago? It is the same problem -
+>>> while we all agree the values should follow the RFC, users have had
+>>> the option to set any values forever (even non-RFC compliant ones).
+>>> This change risks breaking user-space.
+>>
+>> OK, I misunderstood your reply in last mail. I thought you only object to
+>> disabling no meaning values(e.g. set timer to 0, which not is forbid by the
+>> RFC). I don't know you also reject to follow a *MUST* rule defined in the RFC.
 > 
-> OK, I misunderstood your reply in last mail. I thought you only object to
-> disabling no meaning values(e.g. set timer to 0, which not is forbid by the
-> RFC). I don't know you also reject to follow a *MUST* rule defined in the RFC.
+> I know you denied the patch due to user-space compatibility. Forgive me
+> if my last reply sound a little aggressive.
+> 
+> Thanks
+> Hangbin
+> 
 
-I know you denied the patch due to user-space compatibility. Forgive me
-if my last reply sound a little aggressive.
+No worries. :) I obviously agree that it should be RFC compliant, but we must do it
+in a different way that doesn't risk breaking users, it goes also for how the values are
+computed. In the future when more of the RFC is implemented we might need to force
+compliance and that might require adding a new option, I guess we'll see when we get there.
 
-Thanks
-Hangbin
+Cheers,
+ Nik
+
