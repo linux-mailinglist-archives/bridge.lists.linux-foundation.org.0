@@ -1,87 +1,152 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2160F434393
-	for <lists.bridge@lfdr.de>; Wed, 20 Oct 2021 04:40:28 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160B8434854
+	for <lists.bridge@lfdr.de>; Wed, 20 Oct 2021 11:49:34 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 7DD0A607EE;
-	Wed, 20 Oct 2021 02:40:26 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 8105E60766;
+	Wed, 20 Oct 2021 09:49:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 7Xs1UFE5Mo7G; Wed, 20 Oct 2021 02:40:25 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 0F2AD607CA;
-	Wed, 20 Oct 2021 02:40:25 +0000 (UTC)
+	with ESMTP id CSUyRUBcsRUy; Wed, 20 Oct 2021 09:49:31 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id C483B60761;
+	Wed, 20 Oct 2021 09:49:30 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C0D63C0022;
-	Wed, 20 Oct 2021 02:40:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 81C53C0022;
+	Wed, 20 Oct 2021 09:49:30 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 37840C000D
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:40:24 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 80620C000D
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 09:49:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 1EA2B607EE
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:40:24 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 6F9A9404C3
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 09:49:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id pRt4Z2HTQeeW for <bridge@lists.linux-foundation.org>;
- Wed, 20 Oct 2021 02:40:23 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=nvidia.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Gk6rVeLZjJXb for <bridge@lists.linux-foundation.org>;
+ Wed, 20 Oct 2021 09:49:27 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
- [IPv6:2607:f8b0:4864:20::1031])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 65AAB607CA
- for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 02:40:23 +0000 (UTC)
-Received: by mail-pj1-x1031.google.com with SMTP id oa4so1400380pjb.2
- for <bridge@lists.linux-foundation.org>; Tue, 19 Oct 2021 19:40:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=g/k6QV2vpt3vH8xJxkTx+3DiBVC3hLVwkQHeAK5Mgfk=;
- b=Q4nrYsya+U9yJCD42B+ksihz8DeeiDjP1VfdJd73Pys4FFsx7kSFFTQ9NcOFSmo+br
- R8Z/n7RebPdXUn6VtdcSktRY2xcKlktxC9iETn+uFHH3+qCrdCI8TJWERAxDPLz1fF3m
- a/YAW3Xgk/We2IYSLR3eQb6gjPgdMtQ38UVyl37vRZ+nLiWSL6IxJRv9rwNHIN4sR/dX
- prf2BYq+NHtc5tuTgNMMSxeK8lnFA91sdDHgbTrJoqKbhI9ZDeThKnhVlISaTydDUHCG
- mDcy742Yw3XMCRxB8b8+OtwQWaEDYWjVpoOxuvXJa9weX5cFkXL+xGrfkKfzAC28obto
- 5tMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=g/k6QV2vpt3vH8xJxkTx+3DiBVC3hLVwkQHeAK5Mgfk=;
- b=bH5AdJONgXS+5kot4tG4xmhu+iwSMaDZIcWvBqza2qvdI1RBOEJhgMs8ZcBY1abAuE
- oMWhGu5SVt0sLs0NygJdQoejB6/i6RF6CgUpe40qfgPqcQ5o1WXdSn2upRKATxuuU9Vm
- uRZFzERvWBAzfhl65y9JuNvVRsmrqNkvx+vMkJxGE1sOwnEUpaS0TkjagNzznQg3doa/
- SGNkUzz4JHeL61Gpv4CJ3bP0OfkeuUVLLtC1EUWEskT8bv3b2W1EDXr4xNleRCZkEyJ6
- TOGhX4I685k4QVKGro1zhHtvLcq5J25lA5GHT84Dlvwu+20b1r/5x3jWdgvCyETiNgs0
- PBkw==
-X-Gm-Message-State: AOAM533vPfylWXYMzc9o+fVWLEjGrUZ15qJxQUZCFWGCjH7l7I3a3Jr2
- Jqcz7E9gtV0BqDCRYpraiQs=
-X-Google-Smtp-Source: ABdhPJyedc2O5NAOq/eUVV0gGxa6O7q5oShLShXdyhgQaO6s66znvqXDXyE/YTLys9d9qbwR9jp7DA==
-X-Received: by 2002:a17:902:7ec2:b0:13d:b563:c39 with SMTP id
- p2-20020a1709027ec200b0013db5630c39mr36455928plb.14.1634697622837; 
- Tue, 19 Oct 2021 19:40:22 -0700 (PDT)
-Received: from Laptop-X1.redhat.com ([209.132.188.80])
- by smtp.gmail.com with ESMTPSA id bp19sm439990pjb.46.2021.10.19.19.40.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 Oct 2021 19:40:22 -0700 (PDT)
-From: Hangbin Liu <liuhangbin@gmail.com>
-To: netdev@vger.kernel.org
-Date: Wed, 20 Oct 2021 10:40:16 +0800
-Message-Id: <20211020024016.695678-1-liuhangbin@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211020023604.695416-1-liuhangbin@gmail.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on20610.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::610])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 6CA02404C1
+ for <bridge@lists.linux-foundation.org>; Wed, 20 Oct 2021 09:49:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AP7KFAQ3A+zosBaWyrA9SzpNJt/NwcZTufPMjdaHdN44AgKmhPuV9syyuOtidaPtC638BtTKdoY9i4P4hNw6zcSJKjP8N8Tc3Q0gKuijnuDtUwSup5qioN5oPkNek7LxofCJZVTTtc47ydE1awLnaoTe0PP+Uhp9rFZZUVdrKwW+lWnbuFN8snnyMc+EORZ8WAv3AYERC/8b3ePd7zS6LqDJ7Ey8LF9EhL8B4KhUC4IHYSSLqMQ7oV/jOq4S0ZbWHCbV2Las8YbEEBcCZQox3GlOgza5EVS0mTxP5yJrH4LJ5EquYsPYdT0vw7k0WyPtYUeMMVQttw0CPKzf1fmRmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jtQhH49jeATDSvrb0XMHhnj5RIAkMJRsgiVpXriwb38=;
+ b=IKrpBA1URETI4yPOhNxzJcy2DUcd4DHA1Ntz/aqmpkLhmtuM9mnPhsDPFxmvJIxue4voyprkOUftiqKgHUMIBQkH5FGIhvQfw0DfH6NEBBSHRMZ/viFjWMn2taR8F7c4n60O9Lk8ilfeqTh8fjOUlSoIl1I3CMVa3l1r325mFNaOjfkMj8Lm+i30kKoLj3KoDJAgaFxFaC080h7TYI4D3k7x+O7SxXB6dFYYto3Zsk7fHZdoGiN9NjjQ08Wrs/JeAStr4GCJdtJr8/8Vf33x6XeIwzzO+u02KceCpiQjkn4wuvC1aGLv/I5HquzKQ1wPZI0Lf3/yKuPF0S3FXfMAww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jtQhH49jeATDSvrb0XMHhnj5RIAkMJRsgiVpXriwb38=;
+ b=AnLum5ggDi67tMcrVtFvtnjcxHkAKtDun+xFwqmxdwjJsid1NcqhzBpM+4kbWEOKeCGQCYBpsXcxrpn0uu/0rnBzrO9x373t4wM+Ceqjltwe5YU1hDJcJzUUsliqmki5zGkwgCz+zAx7koB2ZA83B1D26b1L2OU+mklf3cAkOnr5ejZKsWrA67snKSWB0gQy4CdYAsy1TeYBHJI59x5xqjP+qEYpd70lzCGZLGlEQQRycHJYIbqmcqd9zLXDWrF7fur+uQVpI/oz/VXXJxd4nI5jg5YIg1PElQYtQN7IvNQC6mtr3G7k/C4+3qlxM5czmarfS7FUK1wNY8PN861KSg==
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
+ by DM8PR12MB5398.namprd12.prod.outlook.com (2603:10b6:8:3f::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4628.16; Wed, 20 Oct 2021 09:49:25 +0000
+Received: from DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::513c:d3d8:9c43:2cea]) by DM4PR12MB5278.namprd12.prod.outlook.com
+ ([fe80::513c:d3d8:9c43:2cea%8]) with mapi id 15.20.4608.018; Wed, 20 Oct 2021
+ 09:49:25 +0000
+Message-ID: <c041a184-92cb-0ebd-25e9-13bfc6413fc9@nvidia.com>
+Date: Wed, 20 Oct 2021 12:49:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Content-Language: en-US
+To: Hangbin Liu <liuhangbin@gmail.com>, netdev@vger.kernel.org
 References: <20211020023604.695416-1-liuhangbin@gmail.com>
+ <20211020024016.695678-1-liuhangbin@gmail.com>
+In-Reply-To: <20211020024016.695678-1-liuhangbin@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS8PR04CA0152.eurprd04.prod.outlook.com
+ (2603:10a6:20b:331::7) To DM4PR12MB5278.namprd12.prod.outlook.com
+ (2603:10b6:5:39e::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Hangbin Liu <liuhangbin@gmail.com>, roopa@nvidia.com, kuba@kernel.org,
- davem@davemloft.net
-Subject: [Bridge] [PATCHv2 net] net: bridge: mcast: QRI must be less than QI
+Received: from [10.21.240.28] (213.179.129.39) by
+ AS8PR04CA0152.eurprd04.prod.outlook.com (2603:10a6:20b:331::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4608.16 via Frontend Transport; Wed, 20 Oct 2021 09:49:23 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0f763f02-e1bf-470b-f5b7-08d993aee689
+X-MS-TrafficTypeDiagnostic: DM8PR12MB5398:
+X-Microsoft-Antispam-PRVS: <DM8PR12MB5398E99379E9C5E93BEA3A44DFBE9@DM8PR12MB5398.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5oHdTs1X6a2DxRkssLQ59R7LkdZJrzCNRBoSAU3UKC2wjwDyQwi57mmSqUg3cVbjhdu+47LO9EmUU8xCrCtK2OIpcS4vBqMKM+b+Nn+qac8DYT5vUtaud14hIuzoaCG1ZJa5FCV9XhvyCljzw6CDwuS6tpmf99PDNIGgr+xxGoQzQu3IqvlGQMtBRveIu/6+HYisMB/KtnNCvahu/S50jIUcENFsKQ3g8wgYDqi9gAmVZETkWGEm3w2gCF6bNsr0Evtfs+vDpizHH4/j70OTd+LGKheEmFdlrBQAz4a8unToo7QttVL7pb7CCdjM4GlXlZGROPQA29mGskDuEhO3vaFjKf0+T9zPDgMsc9xDbEgBuoF5iP3L0PZDfh+XesUcorhGK0dE/SQllxD9kpoStEzvQr3KduwJvDC+kPvUpuwVD8HDzrZLIDHFCa5u2v1W+ij2LRWfnD5s7zXQWkozIPZmsneMiopYnzWfZCNDxuZQKOxMXzP5YRot2/A3GRvFs5gegnYnffk4BQrCROV4A9hTuOD9JAsOV1pJBuxpo9q6drnHi1YoT4J12lAZBpas5qem8gLF3suGufVvZRaU8xjCvMv9U/fegbiSwx2ZFsP4YVJhzqajjObYXDsThgpzq3QwUp9NlxwpvEp4h3pTqdxSC5yrF0C8CdhmrUMz2Pj6LqYf68T+7lENUJFS7ZY87FuhVeyPXOreRWquE2zUsm+vnlUEY5f4brkropE4rNU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(16576012)(316002)(6666004)(5660300002)(38100700002)(956004)(2616005)(8936002)(86362001)(6486002)(186003)(26005)(83380400001)(4326008)(31686004)(36756003)(8676002)(66476007)(508600001)(53546011)(66556008)(66946007)(2906002)(31696002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V2NBMXJPejhpSzdybklmRGg5V2tDTUlxM2V5Q2R0RnU0a2Qwdk5pMjVneWNG?=
+ =?utf-8?B?N2M5RTJOWGU0elJSY2I1VEVhT25Ba0pxNXVEOHp0UDdDNjdIdXVYbCtBNit0?=
+ =?utf-8?B?bllHYUFWR1c2SmJWa2ZrZVVVaVNYVGk3SUUxM2RaeGVrV0xXc2xkRUVSYVh0?=
+ =?utf-8?B?RHdwZSthUzljZTF2L2ZUVTIxVldZRWJXNmtqcEY2UUw5YU5ESGNycVlMM2NF?=
+ =?utf-8?B?T0ZxT1Bjd29UQjQrNklOOUhzWjFjU1F2T3k3ZlVxMzQ5dG5Bcmd5bzNzODZP?=
+ =?utf-8?B?UHgzalMzSEx5bHc1bVRpMk9nUFo2Y2N4STJUVUtKcjI4K1k2YkNNWjVRSXd3?=
+ =?utf-8?B?M2ZjbGpidEFUQWg2d3hvZzUrbjk1cEhyY3VWWWhOYlIwenp2cWNiQ29hSUI2?=
+ =?utf-8?B?VGoyMTRGMy9YVFZTOURkSGZDdE9kNnZiRlA0TnFkMUlWb3RWQVNXNVZTMlhV?=
+ =?utf-8?B?dkxXZVkyWXdzdnVFL25SaHI2amZXNzRjSDRpbU9oZG8va2l4aDU5VlVlWnhr?=
+ =?utf-8?B?bVd4VXJ4RHNpeFpUV3ZjclFUOEhoNDc1NXgvdXJQYUEwcHRDRllpWHJQYVhV?=
+ =?utf-8?B?dVVUdGhpV2VDWWJiZytiYnpydTMxZmJvemgrVkFCWHBPVVptT2VBUEhpdUxp?=
+ =?utf-8?B?aFY5VDBwL0ZZSWNFSGN6NjVVVm42SDd6MGR1VERMaU1PaFUrZkhMTGxrVThV?=
+ =?utf-8?B?ZXV3RFl4bk1TeDFnN1hSTnltalJOUkhhQzFlQW9TcGdWREsrejA2b0MvSlBQ?=
+ =?utf-8?B?VG9mSDlpcE82OHBtc0ZTaVk2dmZTTmM0NDFYTi9nZUZaUVlXQUdyNnc1anNG?=
+ =?utf-8?B?R00xalRHWFFGT1dldkZPNjhHUld1Y3JYVzdVNjY3UG0zN1FuQjVaM1drdTJO?=
+ =?utf-8?B?M3JqOXZ2MnBmVFdqMk0wa1lQeVp0cEllVHZiUFU4VGQ1SXZvaGtRZ1huZEdu?=
+ =?utf-8?B?aWZVbVkwMzE4SjlwVEFoVUNhdC9yQW1EdUJ4aEFzZkh5TFRkNGY1Z3J5WGlZ?=
+ =?utf-8?B?OVJTYjZjUHhUdSs0WWZvaGRCbHN5bS91bE1BVzI5aDZCZHBvVnJhSVAxUE5s?=
+ =?utf-8?B?YnBSQ1Zibm10UjQyRG5nVU8wMjQwcUlkdVJSc1dEVkVtanR1b3BSQm0yMUZ3?=
+ =?utf-8?B?L0lNd1JhZUoxTkFLWmFra1J1ZnlycnQ4YWErbWdFdWVJU1pzVU1pS2FWVlp0?=
+ =?utf-8?B?V2NBenY0QjQ3MTJkdjh2M1pBbUhIOENsSWlKZzV5NUNlSnF5UExzbW11UTZU?=
+ =?utf-8?B?QkZ3YWU4Rks3b09GRnoyaW43ZjNYRUhpUEJMcURDZ2xoelJEZmp2aUg4dTJq?=
+ =?utf-8?B?U2tpSXd0LzB4d0VnWEpJdjlLYnp6Zk4wMTNuajlqY3Z2V213N0xLQVdHY0pa?=
+ =?utf-8?B?TFdkSm9VSFl4ZmVId2xYRGZ1N2RzSnQ5M3Q3bjhMYjdvV2VxU29rb1NZTFQr?=
+ =?utf-8?B?R3ZET29SN2twUzJyVkQxRlNPRVYySllQRkp0blZGVFRmdlZhTzJXUXViQ2Jq?=
+ =?utf-8?B?azN5OG5qUGgxa21HSTN3dy9KYXhIRGdCT3NpTHVOaWhpOFhvaUhnOU8vL1Zw?=
+ =?utf-8?B?U0VvTS82L1RPeUxsYnVxYVpEbnVOSHIrUUYydFQ1RlNYNThNNjd2VEFzd0Mz?=
+ =?utf-8?B?c3M0NFVKc3kxalg0aFZVaHJrc1daMC9KbFg5VTc3Y0hnbGk1SXVBTDdOaDE3?=
+ =?utf-8?B?NXhGWEIvZEVRbHVPU3QvejZ0dFpTNHF2dDhYaWlIV2xzSFdCdWk1eHZHcE0x?=
+ =?utf-8?B?T1FyM2tMVzlSMGVaUVQzQWYvUnowM1lhREN3NE9IUUt3WldxM1BsckU3bDlO?=
+ =?utf-8?B?WkNrR20xd0VvOXF0YkQ2TEtRamhzdXVoQktRVnkxOVluV3dQamV1QXBIdSsy?=
+ =?utf-8?B?b0dxZ3dyVGZWdUhHRXBla0tnMWlrRlZhcmc0VVlLQnY5eHVTdHYxMmxpVTk5?=
+ =?utf-8?B?UlRjR0p3UW5naWdIbkwyelNKT2xnazVQMXVGdkdsN1ZxMUptQ25nRHNQZ3N6?=
+ =?utf-8?B?S0Eyb3JHSGNCaTE1dnNSajNldjRLam1pLzJQREhmRG9sZ2JxeVU5YnZBRXQy?=
+ =?utf-8?B?Y0FIR04wNnlEYTlyM1ZXN0toM3YySTA5aVZqZlJ6T1pkT1VzY3Nrcmp6ZFhh?=
+ =?utf-8?B?aFo4YWJSWXRWcXJwVjB4MllXMjY4eUVSeGVVbDY4ZE95QkFaUS9HTWVWblIr?=
+ =?utf-8?Q?N/AAWRNqt7j90d8gGEkzC2w=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f763f02-e1bf-470b-f5b7-08d993aee689
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2021 09:49:25.3299 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LkUWkpzRhXR17wLchTPZEW99sFoMuchdAdR1673dWlTi6YEuhLs2bCQC2vrad22/N+BTfsQFekljJ8hTZK9tbQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5398
+Cc: kuba@kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, davem@davemloft.net, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCHv2 net] net: bridge: mcast: QRI must be less
+	than QI
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,149 +158,37 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Based on RFC3376 8.3:
-The number of seconds represented by the [Query Response Interval]
-must be less than the [Query Interval].
+On 20/10/2021 05:40, Hangbin Liu wrote:
+> Based on RFC3376 8.3:
+> The number of seconds represented by the [Query Response Interval]
+> must be less than the [Query Interval].
+> 
+> Fixes: d902eee43f19 ("bridge: Add multicast count/interval sysfs entries")
+> Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
+> ---
+>  net/bridge/br_multicast.c    | 27 +++++++++++++++++++++++++++
+>  net/bridge/br_netlink.c      |  8 ++++++--
+>  net/bridge/br_private.h      |  4 ++++
+>  net/bridge/br_sysfs_br.c     |  6 ++----
+>  net/bridge/br_vlan_options.c |  8 ++++++--
+>  5 files changed, 45 insertions(+), 8 deletions(-)
+> 
 
-Fixes: d902eee43f19 ("bridge: Add multicast count/interval sysfs entries")
-Signed-off-by: Hangbin Liu <liuhangbin@gmail.com>
----
- net/bridge/br_multicast.c    | 27 +++++++++++++++++++++++++++
- net/bridge/br_netlink.c      |  8 ++++++--
- net/bridge/br_private.h      |  4 ++++
- net/bridge/br_sysfs_br.c     |  6 ++----
- net/bridge/br_vlan_options.c |  8 ++++++--
- 5 files changed, 45 insertions(+), 8 deletions(-)
+Nacked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index f3d751105343..5931f7c81519 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -4522,6 +4522,33 @@ int br_multicast_set_mld_version(struct net_bridge_mcast *brmctx,
- }
- #endif
- 
-+/* RFC3376 8.3: The number of seconds represented by the
-+ * [Query Response Interval] must be less than the [Query Interval].
-+ */
-+int br_multicast_set_qi(struct net_bridge_mcast *brmctx, unsigned long val,
-+			struct netlink_ext_ack *extack)
-+{
-+	if (val > brmctx->multicast_query_response_interval) {
-+		brmctx->multicast_query_interval = val;
-+		return 0;
-+	}
-+
-+	NL_SET_ERR_MSG(extack, "Invalid QI, must greater than QRI");
-+	return -EINVAL;
-+}
-+
-+int br_multicast_set_qri(struct net_bridge_mcast *brmctx, unsigned long val,
-+			 struct netlink_ext_ack *extack)
-+{
-+	if (val < brmctx->multicast_query_interval) {
-+		brmctx->multicast_query_response_interval = val;
-+		return 0;
-+	}
-+
-+	NL_SET_ERR_MSG(extack, "Invalid QRI, must less than QI");
-+	return -EINVAL;
-+}
-+
- /**
-  * br_multicast_list_adjacent - Returns snooped multicast addresses
-  * @dev:	The bridge port adjacent to which to retrieve addresses
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index 5c6c4305ed23..2b32d7d2ce31 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -1357,13 +1357,17 @@ static int br_changelink(struct net_device *brdev, struct nlattr *tb[],
- 	if (data[IFLA_BR_MCAST_QUERY_INTVL]) {
- 		u64 val = nla_get_u64(data[IFLA_BR_MCAST_QUERY_INTVL]);
- 
--		br->multicast_ctx.multicast_query_interval = clock_t_to_jiffies(val);
-+		err = br_multicast_set_qi(&br->multicast_ctx, clock_t_to_jiffies(val), extack);
-+		if (err)
-+			return err;
- 	}
- 
- 	if (data[IFLA_BR_MCAST_QUERY_RESPONSE_INTVL]) {
- 		u64 val = nla_get_u64(data[IFLA_BR_MCAST_QUERY_RESPONSE_INTVL]);
- 
--		br->multicast_ctx.multicast_query_response_interval = clock_t_to_jiffies(val);
-+		err = br_multicast_set_qri(&br->multicast_ctx, clock_t_to_jiffies(val), extack);
-+		if (err)
-+			return err;
- 	}
- 
- 	if (data[IFLA_BR_MCAST_STARTUP_QUERY_INTVL]) {
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 37ca76406f1e..5019c601f689 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -906,6 +906,10 @@ int br_multicast_set_igmp_version(struct net_bridge_mcast *brmctx,
- int br_multicast_set_mld_version(struct net_bridge_mcast *brmctx,
- 				 unsigned long val);
- #endif
-+int br_multicast_set_qi(struct net_bridge_mcast *brmctx, unsigned long val,
-+			struct netlink_ext_ack *extack);
-+int br_multicast_set_qri(struct net_bridge_mcast *brmctx, unsigned long val,
-+			 struct netlink_ext_ack *extack);
- struct net_bridge_mdb_entry *
- br_mdb_ip_get(struct net_bridge *br, struct br_ip *dst);
- struct net_bridge_mdb_entry *
-diff --git a/net/bridge/br_sysfs_br.c b/net/bridge/br_sysfs_br.c
-index d9a89ddd0331..f794652f8592 100644
---- a/net/bridge/br_sysfs_br.c
-+++ b/net/bridge/br_sysfs_br.c
-@@ -658,8 +658,7 @@ static ssize_t multicast_query_interval_show(struct device *d,
- static int set_query_interval(struct net_bridge *br, unsigned long val,
- 			      struct netlink_ext_ack *extack)
- {
--	br->multicast_ctx.multicast_query_interval = clock_t_to_jiffies(val);
--	return 0;
-+	return br_multicast_set_qi(&br->multicast_ctx, clock_t_to_jiffies(val), extack);
- }
- 
- static ssize_t multicast_query_interval_store(struct device *d,
-@@ -682,8 +681,7 @@ static ssize_t multicast_query_response_interval_show(
- static int set_query_response_interval(struct net_bridge *br, unsigned long val,
- 				       struct netlink_ext_ack *extack)
- {
--	br->multicast_ctx.multicast_query_response_interval = clock_t_to_jiffies(val);
--	return 0;
-+	return br_multicast_set_qri(&br->multicast_ctx, clock_t_to_jiffies(val), extack);
- }
- 
- static ssize_t multicast_query_response_interval_store(
-diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
-index 8ffd4ed2563c..71e94ff9d926 100644
---- a/net/bridge/br_vlan_options.c
-+++ b/net/bridge/br_vlan_options.c
-@@ -521,14 +521,18 @@ static int br_vlan_process_global_one_opts(const struct net_bridge *br,
- 		u64 val;
- 
- 		val = nla_get_u64(tb[BRIDGE_VLANDB_GOPTS_MCAST_QUERY_INTVL]);
--		v->br_mcast_ctx.multicast_query_interval = clock_t_to_jiffies(val);
-+		err = br_multicast_set_qi(&v->br_mcast_ctx, clock_t_to_jiffies(val), extack);
-+		if (err)
-+			return err;
- 		*changed = true;
- 	}
- 	if (tb[BRIDGE_VLANDB_GOPTS_MCAST_QUERY_RESPONSE_INTVL]) {
- 		u64 val;
- 
- 		val = nla_get_u64(tb[BRIDGE_VLANDB_GOPTS_MCAST_QUERY_RESPONSE_INTVL]);
--		v->br_mcast_ctx.multicast_query_response_interval = clock_t_to_jiffies(val);
-+		err = br_multicast_set_qri(&v->br_mcast_ctx, clock_t_to_jiffies(val), extack);
-+		if (err)
-+			return err;
- 		*changed = true;
- 	}
- 	if (tb[BRIDGE_VLANDB_GOPTS_MCAST_STARTUP_QUERY_INTVL]) {
--- 
-2.31.1
+I think we just discussed this a day ago? It is the same problem -
+while we all agree the values should follow the RFC, users have had
+the option to set any values forever (even non-RFC compliant ones).
+This change risks breaking user-space.
 
+Users are free to follow the RFC or not, we can't force them at this
+point. This should've been done when the config option was added long
+time ago.
+
+Thanks,
+ Nik
