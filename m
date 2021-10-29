@@ -1,70 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CA743FCA1
-	for <lists.bridge@lfdr.de>; Fri, 29 Oct 2021 14:50:14 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id B596243FCD4
+	for <lists.bridge@lfdr.de>; Fri, 29 Oct 2021 15:00:13 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 2194C40018;
-	Fri, 29 Oct 2021 12:50:13 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id E9D75605F2;
+	Fri, 29 Oct 2021 13:00:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NbVeE1fKVRkQ; Fri, 29 Oct 2021 12:50:12 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id zjt--v1RHbAP; Fri, 29 Oct 2021 13:00:11 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 6E3C8400E9;
-	Fri, 29 Oct 2021 12:50:11 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 8653A60607;
+	Fri, 29 Oct 2021 13:00:10 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 24755C0021;
-	Fri, 29 Oct 2021 12:50:11 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 48DBBC0021;
+	Fri, 29 Oct 2021 13:00:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E8EBCC000E
- for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 12:50:09 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2EF7CC000E
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 13:00:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id C301E400E9
- for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 12:50:09 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 1E8B480FFE
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 13:00:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id hzI2cUOL25x1 for <bridge@lists.linux-foundation.org>;
- Fri, 29 Oct 2021 12:50:08 +0000 (UTC)
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id l2958CFa7Kk5 for <bridge@lists.linux-foundation.org>;
+ Fri, 29 Oct 2021 13:00:07 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by smtp2.osuosl.org (Postfix) with ESMTPS id EE78C40018
- for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 12:50:08 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 7EBD66117A;
- Fri, 29 Oct 2021 12:50:08 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 7023E80F61
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 13:00:07 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id F0B8660F23;
+ Fri, 29 Oct 2021 13:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1635511808;
- bh=8A7jVNKhe8n8XuPnA2FudeVKdnsBoqU4jLdS3VqA9qY=;
+ s=k20201202; t=1635512407;
+ bh=EjgqJvYcxzTW4ZFSj8a1Nqzq1SYLWuXllXv8KvZGmr8=;
  h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=MO+MMIoX1Xef2V56xXg0iplJ3Lsbgv5Khn1yzzgmbbBikRlUPsT3VMA5HcM8hwzcD
- 06up2y94ZXTxsTopa2oqAaxpMcfWjm866Ol/C5S12+CukDJkB+VPUBn1E/pErAV0Y9
- prOD6k2UO6GaMAwZul1TA5k/w10U+S+WrZ9HF6ioZS/QXKhg0pBCLVHnk9cf1eBUM7
- SMec7DoQB03j7QfLGbZhmvp1aHxxZ3hN69c4P0LDNymyDeaywSdX2STrJVqYV1+RXf
- X3xI3mya+Y3luPNdpeznFT+4burC3/lBcEQzNVUEw2EMb1Z72TB6eJIEazeUkhwU53
- RNsV/ntpNdehA==
+ b=hRWdlxWFL/R3pDTGk9bPc7Q4DdE6CXpvwNgH6qe6iGgDHhvZ/NRzbtbwG151cPySS
+ aTypMFFIRdw52+uPB2Er7BI4Ab/zOhFfTlsb9eyMjs27nYyiHHdDO5nXfbeO6eHCwx
+ cZBX/CPgedYQqzTInZNhUdrR9o7F538PROmfvOIrKavCUghBKjAcmC/xKn9FQa8p76
+ KH7taMk3aD5bE/XXlJ+khY7HyXRlFZM6cNy84lJH2qktVlcS+EOs26FabH9pjspdre
+ ffZ9L3ILnuI/5AYn7TydPkEPqLJ3BZL16emUmaMqV+eCDnHVGXP0IPuCRC9otkNSYb
+ iMfQfwlEuNIww==
 Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
  [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 67C0A60AA4;
- Fri, 29 Oct 2021 12:50:08 +0000 (UTC)
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id E2E9E60A1B;
+ Fri, 29 Oct 2021 13:00:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163551180842.32606.14897066407826010805.git-patchwork-notify@kernel.org>
-Date: Fri, 29 Oct 2021 12:50:08 +0000
-References: <20211028155835.2134753-1-ivecera@redhat.com>
-In-Reply-To: <20211028155835.2134753-1-ivecera@redhat.com>
-To: Ivan Vecera <ivecera@redhat.com>
+Message-Id: <163551240692.5054.16014732669098206950.git-patchwork-notify@kernel.org>
+Date: Fri, 29 Oct 2021 13:00:06 +0000
+References: <20211029120527.2716884-1-razor@blackwall.org>
+In-Reply-To: <20211029120527.2716884-1-razor@blackwall.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, horatiu.vultur@microchip.com,
- henrik.bjoernlund@microchip.com, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net v2] net: bridge: fix uninitialized
- variables when BRIDGE_CFM is disabled
+ nikolay@nvidia.com, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net v2] selftests: net: bridge: update IGMP/MLD
+ membership interval value
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -84,22 +84,21 @@ Hello:
 This patch was applied to netdev/net.git (master)
 by David S. Miller <davem@davemloft.net>:
 
-On Thu, 28 Oct 2021 17:58:35 +0200 you wrote:
-> Function br_get_link_af_size_filtered() calls br_cfm_{,peer}_mep_count()
-> that return a count. When BRIDGE_CFM is not enabled these functions
-> simply return -EOPNOTSUPP but do not modify count parameter and
-> calling function then works with uninitialized variables.
-> Modify these inline functions to return zero in count parameter.
+On Fri, 29 Oct 2021 15:05:27 +0300 you wrote:
+> From: Nikolay Aleksandrov <nikolay@nvidia.com>
 > 
-> Fixes: b6d0425b816e ("bridge: cfm: Netlink Notifications.")
-> Cc: Henrik Bjoernlund <henrik.bjoernlund@microchip.com>
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> When I fixed IGMPv3/MLDv2 to use the bridge's multicast_membership_interval
+> value which is chosen by user-space instead of calculating it based on
+> multicast_query_interval and multicast_query_response_interval I forgot
+> to update the selftests relying on that behaviour. Now we have to
+> manually set the expected GMI value to perform the tests correctly and get
+> proper results (similar to IGMPv2 behaviour).
 > 
 > [...]
 
 Here is the summary with links:
-  - [net,v2] net: bridge: fix uninitialized variables when BRIDGE_CFM is disabled
-    https://git.kernel.org/netdev/net/c/829e050eea69
+  - [net,v2] selftests: net: bridge: update IGMP/MLD membership interval value
+    https://git.kernel.org/netdev/net/c/34d7ecb3d4f7
 
 You are awesome, thank you!
 -- 
