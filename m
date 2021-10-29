@@ -2,149 +2,87 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A8543FBBD
-	for <lists.bridge@lfdr.de>; Fri, 29 Oct 2021 13:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6083E43FBFF
+	for <lists.bridge@lfdr.de>; Fri, 29 Oct 2021 14:05:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8E5DE402C6;
-	Fri, 29 Oct 2021 11:48:18 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 355224027E;
+	Fri, 29 Oct 2021 12:05:37 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id wXBeU3_mCntl; Fri, 29 Oct 2021 11:48:18 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 3EC0D402AC;
-	Fri, 29 Oct 2021 11:48:17 +0000 (UTC)
+	with ESMTP id r1bf3_Zzv4FD; Fri, 29 Oct 2021 12:05:36 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id C220A402A9;
+	Fri, 29 Oct 2021 12:05:35 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EC798C0021;
-	Fri, 29 Oct 2021 11:48:16 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8BC84C0021;
+	Fri, 29 Oct 2021 12:05:35 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 89A6DC0012
- for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 11:48:15 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DBAB1C0012
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 12:05:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 715B1400C4
- for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 11:48:15 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id C479040281
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 12:05:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=nvidia.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id qPQmUCezzsTD for <bridge@lists.linux-foundation.org>;
- Fri, 29 Oct 2021 11:48:14 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id a0nFyrHKEMHw for <bridge@lists.linux-foundation.org>;
+ Fri, 29 Oct 2021 12:05:32 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2049.outbound.protection.outlook.com [40.107.101.49])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 01D83400A6
- for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 11:48:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e1B0t8T2gvwbqcjcZpc5MlIpsUSjbhbP98efxaFEsdbDHRJIzkPW+yuN8DexO+DJWWfWh8avZPfKieGh6oG126anY86/xycpQaayvGgWOHXLnq6x4i9OJGVvsMO39YvaQL/vh3yFBanO6CLdAwj4wGOdfjx0S4EQRuHqdq3XPbu3qvmepFcla5Wnb0uCHm2WU6Atny7K/Yh1CtytuNgzx7moPuPhgc3aXUprVFY7uYNOj7KnZtwLykJCHpM0AbQ3eob4Sa8oatfQ2mmNqCdilhOlKg+KCVxmAuspaw34xamkFfN1vm8XV0/g0pFasMLSrCveSynwS6/C+sHDHscvsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7MVZndbcHO12R31T2zRQ5u/20++i9cI/d2ar/UND6WI=;
- b=ZdxHgJpP2MwxQaeqy1QA38MtUkX/saWLf5KGq5M+uKCfBp4K+wjeJnnQmPnoCrr7RsSTbdw+H2R8ahNeTOxX6BdRbjA4YmbNvOoOCbsa8QKCCvdqzNOcerVhBaHQp6gQBR/svyD356ykkoX+sxKUkvu7C5aJX8WlxG4zmOhZE6XnQ/QzLgNztQdaBY4wVQOQNMy21lavBVNbVCn5SoOUlm8vf4Vd9mLRPUWZX0SY8LyjuuVSCHXNx4s//cyYZ21dyLF4REAgv+CV6+g+soPvdT94jwbFw/+Q9wc7dp3yYCZTIGn//YDSjBUfX7Owh+A3eAAWi/pcqvJSLR2YHMurjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7MVZndbcHO12R31T2zRQ5u/20++i9cI/d2ar/UND6WI=;
- b=rfM7H/WLJwT3bEtlcrve72px7/PcT7jJzRJYqV7KHUNx3yEt/5yDPL3w6yKsT7Z4lpk7EzANZBF6qVxSxYd376sjJJJ8REO5H1J0/dQLM1pyYVrs7UG7yDAOvA7R7TzFMuStu9lJYAN8/9b4fq/bOxF0dUY9HUqK2Q/myG1PcSzgDEs0Icobu3YXkBh1zzPpPQ6wnJuR4tVW5Bs6wncVsAuoXKChJSa7iI7yJFY8kxv+TOvrluDBXPv5j61btdqMPFAyrgxkyDXaolmfjbxb0xohYeUojc282GQwsMhAyKpBrjzvsiXW22ITzqeGq0DoLMMK9aKx++V3lZiMFIWmiQ==
-Authentication-Results: blackwall.org; dkim=none (message not signed)
- header.d=none;blackwall.org; dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com (2603:10b6:5:39e::17)
- by DM4PR12MB5087.namprd12.prod.outlook.com (2603:10b6:5:38a::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15; Fri, 29 Oct
- 2021 11:48:12 +0000
-Received: from DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea]) by DM4PR12MB5278.namprd12.prod.outlook.com
- ([fe80::513c:d3d8:9c43:2cea%9]) with mapi id 15.20.4649.015; Fri, 29 Oct 2021
- 11:48:12 +0000
-Message-ID: <c09158a8-f94c-5e33-db31-59430501e631@nvidia.com>
-Date: Fri, 29 Oct 2021 14:48:05 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Content-Language: en-US
-To: Nikolay Aleksandrov <razor@blackwall.org>, netdev@vger.kernel.org
-References: <20211029105343.2705436-1-razor@blackwall.org>
-In-Reply-To: <20211029105343.2705436-1-razor@blackwall.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR0P278CA0024.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:1c::11) To DM4PR12MB5278.namprd12.prod.outlook.com
- (2603:10b6:5:39e::17)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 771194027E
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 12:05:32 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id f8so16282860edy.4
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Oct 2021 05:05:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=yk7ObfgbV6bHLpvFk8W0bMRko++x+nG1d7mbf7ehRf8=;
+ b=3hSVPH2QcGxHO8zd1Asn6yhjgFGMryxEE14djkGf1sXpAeqs/IBDMfyGQek8YEDkrA
+ gSoIMnICeI5klOOesMYf1c9jZtkR5J5Ksq0OOhNAREATdGBxaJKjFhcfMVjwzi9fK5Ez
+ N3gDfPBRW4ib0AmS5evFJWC60hp4nT3GJVZLZFOGgwRj9XvSv9vNmvuif0Qpkto2qm10
+ COFk70ekyklBXjOUeJKuWtLyOGkyzBV98MUpoOv0xe1BPb4dM2SaTEi3nOs+wyxoVcRA
+ 6cEkoA4rvpfJ57rBtlvuEfSADQik+NigfZ9IU24Ci23Yk5Ot1ndXBUPGWfPKbGoqGbP9
+ ER8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=yk7ObfgbV6bHLpvFk8W0bMRko++x+nG1d7mbf7ehRf8=;
+ b=El6rms0u+WycWl2m4CjsSvCizAe3I1M6kv9alXPMOGPhsI5xhlPwciS7CG34SqFdJy
+ JpXLnk8imETbx/12vYEYA3ECRP+6djRxnm6JztT1eY41VtBhwbI3/VMgf8ba150u/GHL
+ dyVfbU2OagZwUKjs602UDpPkJyunTrAHubpjvab+YSYdmZ+zjAKtg3Hp3YY0Z0tHXnR7
+ QY0Q4bepkqRsYucWr2qq0/WPFNDVSi8BBF3BSyMX8TW6rWE8RirWEXQJueK2bQXeWgK5
+ nVVxko8bVx00pjAtC1B31iK/b4lXUh5vNjO4QcQeBDqT4744r/QP3pRR2NZB7OBvpBrr
+ ZXCg==
+X-Gm-Message-State: AOAM533IfmKxZ0aYaQmg+QNzOlzLrxCLvxhNfpXDJjZuLoqmkycfc93P
+ HQY0iym6JdeNv7wZAV6muQzTYoTfkX7fsHQ8
+X-Google-Smtp-Source: ABdhPJzqsVGG8M75ALYvHymIlvBJufCR2xZqPlg4fpuH4VK41ExJlHZqkb6gHrR9SydS29fh766M8g==
+X-Received: by 2002:a17:907:16a1:: with SMTP id
+ hc33mr12960498ejc.137.1635509130435; 
+ Fri, 29 Oct 2021 05:05:30 -0700 (PDT)
+Received: from debil.vdiclient.nvidia.com (84-238-136-197.ip.btc-net.bg.
+ [84.238.136.197])
+ by smtp.gmail.com with ESMTPSA id c7sm2877578ejd.91.2021.10.29.05.05.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 29 Oct 2021 05:05:29 -0700 (PDT)
+From: Nikolay Aleksandrov <razor@blackwall.org>
+To: netdev@vger.kernel.org
+Date: Fri, 29 Oct 2021 15:05:27 +0300
+Message-Id: <20211029120527.2716884-1-razor@blackwall.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <c09158a8-f94c-5e33-db31-59430501e631@nvidia.com>
+References: <c09158a8-f94c-5e33-db31-59430501e631@nvidia.com>
 MIME-Version: 1.0
-Received: from [10.21.241.50] (213.179.129.39) by
- ZR0P278CA0024.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1c::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4649.14 via Frontend Transport; Fri, 29 Oct 2021 11:48:10 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 12c48107-7b97-4264-a6d5-08d99ad1fc39
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5087:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB508779705856E858682714BBDF879@DM4PR12MB5087.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MmGROEKbrzViEeILW37IYIq8X19mdQfpkCo2tCFnd00I9UDhCZFP4ejAkUfc3ZrR7XP8dnOIV/jjBV4+ktTM1Ql6sHlP6l0q92PVWOVoQ73NhfJZFEZ4AKexKt1z7f0+v8C39lqoppkYWUFVCDs/CQ828tj+ZmZbKJgan6tKry2BthU61ZNyzO1ER5WanMWFArsRmyBUCKS9OCl9tEahRpH82UPLWq92kFzmsOlj3O26UQ2sHRAOmfjWvkP7A6SjyFbIm2BxexQunC/mEXStIHSUdw5GBJ0EBus4dkqbELDarTud9BLRxKud/xcDa98UzOJL7fOZYM8fF0xP1jOX2hlIE5tFtnAM0DFXpmOiTizbtg8YY/GTeeuHnWFfauHLwZcVLIjYgjn9tMzidAcrWoFw0vl8rFvja+jupY+TmtcWw5/DUiRLc/HeKf1OZ3m0sFV3U9cHNI32TWXBGyPSOHAEYw3VUvWnVx6IKnnmF6FNESEDDtItXTX993NW4cid7AHFNB9AVTQ7Cz0wwTkBzqegyT6crOnYUIe64S+k+Md+IvvbmFMnSQM9q7qOqQfQgvBlnBZwfsM/uzjAYnZ6zqggjtju8LGf/MEM7JcZRJRmDtNYn+gONbv0Ye2s6ZmmRr2DOaPZ8Y62WCIMWqeULx/8m8sUNZRbe6OqD69iE/AlBKHZo1dOBo4oooG9TQHw7XAGqIh0Bn5tyypHdn655wWdtTFGPsugIfx0c2qGVKqbs5rSq1oa/fKfsBDH61HC
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5278.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(36756003)(2616005)(186003)(31686004)(26005)(31696002)(6666004)(86362001)(2906002)(6486002)(38100700002)(66556008)(4326008)(5660300002)(66476007)(8676002)(83380400001)(53546011)(66946007)(508600001)(956004)(316002)(15650500001)(16576012)(8936002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ODNVaGJEcnNtKzl4MVhMSXhUSktETHpaOXh5UElrV0FLMXN5Zm9WWlY5RWZi?=
- =?utf-8?B?MzhJcVlNWlROVzVzVmVhMzN2YlI4M3R3VWg2WWhoUkpWNDlSbWZxOGFzM0lv?=
- =?utf-8?B?aE1rR2oyYjI2MzVOb005eEdhWE45NUpTOERIeE5IZmNIQUxiYUlobnUvTmVK?=
- =?utf-8?B?L2xXaEhVMTRKeWhWWWJGV21sRlpEN1pHZ3hlZzNZall1MEVhT0NLWGQrNjNU?=
- =?utf-8?B?VEdxZ0FMWlV6QVJHTnFvc0VwS1B4WWE4MUQvbTU3d2xmczJnd213S2taSTBy?=
- =?utf-8?B?SXdzWHY1YWs1WW9qMHhDSUh0ZEZjS3owZkFhV3VSYUxINUNOQ3c5Kzh0Qkhh?=
- =?utf-8?B?eU1PS2dkNUxrRTFOclZRVmxHVHhiR3dhdTVOaU9SNExWbkZlRVpMVnphclFy?=
- =?utf-8?B?eUJrMTZhODB5T3RtTUtGVDBuRVJBa3VTUGFvWnUvQ3FGd3dBa0lESHBWd2JF?=
- =?utf-8?B?WTdROGxUWEFqck1MbkpOejJZNkE3bkxuRVo1d3pBUmR6Q3F1Q0xnSDZvWER4?=
- =?utf-8?B?RG9CVDREbDVqcVpHUml0cG11dTA1RHh5TU81eWV3NDNRazNXMm9NN3ppWXRr?=
- =?utf-8?B?Mm1GeE9MSUUxR1dYRnRhL1lqdGVmUjNqQ1lGN1NGdmQ0WW1uNHpZSFJOdi9X?=
- =?utf-8?B?NXEwdzNpUzUvUDAzZ05YcHNPdnY4eHgzVVB2Q2pGOWh3aXRtdWQyWG9SdUNE?=
- =?utf-8?B?ZXZwNE5mZENza2lNbk1OU0NpbXlKQUcxUjBVZ1M4N3J4V052aElvNmMvTVdz?=
- =?utf-8?B?OUpndVF3U2hzbFZOL21HSUV0NFVnOVFUeEpGTnQ2V21pdVFEZjFsd0hMQmZ4?=
- =?utf-8?B?VjdaUU5CMllWaG5Rd2VJdW5hZXgweVdqT3VpMS8zTTVhRCtrS3U0ZXIrN0s4?=
- =?utf-8?B?Qkg0azV0UldUN1hlN0g0Nk9ldDZ3T3E1a3JDM29VR3pSMFg1Nnp2NWNsdmtz?=
- =?utf-8?B?dElmM01vOE1LYmFRNENRakpqckdQSy83MEJ3VFhYWlREdGxFQ0YrT1FzZHVu?=
- =?utf-8?B?Tkt3eENPT1MyUUd6enByV2VJcXJaaitibi9NUW93cmg5TWhQQXQ5UWVxWWxV?=
- =?utf-8?B?dHVoMjI0dGN2Y2N0algzVzBCai9ONjlpYzMyYklNMFlKWHJWeWliRVZZQTJr?=
- =?utf-8?B?b3hmS0daUFlraWE4NW9VdUZBSEtjZ0l2cjRmYklldWp5aXBXbzg4ZFNsRUVB?=
- =?utf-8?B?Q3Q2SE1yVGZCTHJZS1oydlNqL1AyZHl4UnRNc2hGR09WVFRrNUdWbGFnU2Rx?=
- =?utf-8?B?VE9LVTY0ZE56R2NHa0lIdHFlQ2NCMC9LRUpoMXFxWGFjUDZvK1pSNmJKRlVY?=
- =?utf-8?B?MXFGTjZ4a0pkM0VkSW1CYXRPdlpNRXo0UGJnMGdsOU44TUoyMW1xcWlmNE9O?=
- =?utf-8?B?VmxlSDE2R3preHVUeEdMSGJQUWRqSjF5elRjdXR2aHJ4WkRoRE9yM3IwclNa?=
- =?utf-8?B?SkNMbU9HWFZPcWVCdkR5TUROQUp2aHVUYU0xWjVKUlhYL0dMbXBMU1hSZnRU?=
- =?utf-8?B?bGp5aFMveXVHdjQ5TU9aczNvOGV4NmxPejUwTHVZZ0o3cW9nenNhWk1zTC9w?=
- =?utf-8?B?ZnZBTXlyV2NCc0tvUHBhTDJjWXViWmc3ZmxJU2Z3c2QvYTd2QUxWOVlpdE1L?=
- =?utf-8?B?dDhUQ0VMZjcvblh1UzRYY1FxZGt3UFVKSDJkd0dXeW5lSmQzd0JZZEpmZFpE?=
- =?utf-8?B?SDlMUkJzeUl5VTJ5Z1ZHY2ZnNk80RUJKbWpsaDBRWmxXVVdaeklOYXd6b2Z0?=
- =?utf-8?B?bzhDOHd0VExMbmh1Qkk4ZlBiaTd4VW9wNGlLdFB2VmdjWEpBWUNzbVBMdWFK?=
- =?utf-8?B?SzBmRGtFYlZEUUVtclRFMnBYNU5uS0ZWbWtjUWI1REMvZis4Wm53VzBEaTVB?=
- =?utf-8?B?dDN0d2xxTXF5RTNzajJrcFhjQmZReEZ4aUxDbXh6Wnd1SzhnZVNqRUVpWFIw?=
- =?utf-8?B?aUozbmdDTkZOUjBkb0dNdW8va1BTTVlLSUg5NHNVcytuYUtrYkgwSnhJc3Y4?=
- =?utf-8?B?TXZLc2hvYUNNY1pYQzZkQTBsSEFQNEJnZ3IyVjIyUDdKSWZHNUxzT3ZBMWMz?=
- =?utf-8?B?ZUdOaDltVkxubDgzeTA5ZlJ1a05ObVA0NDliWDMxdHVlVU1HNktlK3NUa2tU?=
- =?utf-8?B?VnlWSWs1VXRZREtVNGRMU3dJNWp5ZWw3c016MVdrZ0NnbFQ5SCt2SXE5NytF?=
- =?utf-8?Q?wP3ucyHnB3gBu5kEz8qUHDI=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12c48107-7b97-4264-a6d5-08d99ad1fc39
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5278.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 11:48:12.2952 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HG2J0b5VykJoemAZ2HpNT4tUS6whLACPD2VfayHv4WsyvnzHT7k6XqIJeHJ2Cp2jZoKYcV9O+fCR+xAcLus2bA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5087
-Cc: bridge@lists.linux-foundation.org, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net] selftests: net: bridge: update IGMP/MLD
- membership interval value
+Content-Transfer-Encoding: 8bit
+Cc: bridge@lists.linux-foundation.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ roopa@nvidia.com
+Subject: [Bridge] [PATCH net v2] selftests: net: bridge: update IGMP/MLD
+	membership interval value
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -156,30 +94,92 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 29/10/2021 13:53, Nikolay Aleksandrov wrote:
-> From: Nikolay Aleksandrov <nikolay@nvidia.com>
-> 
-> When I fixed IGMPv3/MLDv2 to use the bridge's multicast_membership_interval
-> value which is chosen by user-space instead of calculating it based on
-> multicast_query_interval and multicast_query_response_interval I forgot
-> to update the selftests relying on that behaviour. Now we have to
-> manually set the expected GMI value to perform the tests correctly and get
-> proper results (similar to IGMPv2 behaviour).
-> 
-> Fixes: fac3cb82a54a ("net: bridge: mcast: use multicast_membership_interval for IGMPv3")
-> Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-> ---
->  tools/testing/selftests/net/forwarding/bridge_igmp.sh | 3 +++
->  tools/testing/selftests/net/forwarding/bridge_mld.sh  | 3 +++
->  2 files changed, 6 insertions(+)
+From: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Self-NAK, sorry for the noise but I'd prefer to have these values set by a single
-command, no need to be different and also to reset to defaults afterwards, I'll
-send v2 to do that.
+When I fixed IGMPv3/MLDv2 to use the bridge's multicast_membership_interval
+value which is chosen by user-space instead of calculating it based on
+multicast_query_interval and multicast_query_response_interval I forgot
+to update the selftests relying on that behaviour. Now we have to
+manually set the expected GMI value to perform the tests correctly and get
+proper results (similar to IGMPv2 behaviour).
 
+Fixes: fac3cb82a54a ("net: bridge: mcast: use multicast_membership_interval for IGMPv3")
+Signed-off-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
+v2: set membership_interval in the same command and reset it back to
+default after the test
+
+ .../testing/selftests/net/forwarding/bridge_igmp.sh  | 12 +++++++++---
+ tools/testing/selftests/net/forwarding/bridge_mld.sh | 12 +++++++++---
+ 2 files changed, 18 insertions(+), 6 deletions(-)
+
+diff --git a/tools/testing/selftests/net/forwarding/bridge_igmp.sh b/tools/testing/selftests/net/forwarding/bridge_igmp.sh
+index 675eff45b037..1162836f8f32 100755
+--- a/tools/testing/selftests/net/forwarding/bridge_igmp.sh
++++ b/tools/testing/selftests/net/forwarding/bridge_igmp.sh
+@@ -482,10 +482,15 @@ v3exc_timeout_test()
+ 	local X=("192.0.2.20" "192.0.2.30")
+ 
+ 	# GMI should be 3 seconds
+-	ip link set dev br0 type bridge mcast_query_interval 100 mcast_query_response_interval 100
++	ip link set dev br0 type bridge mcast_query_interval 100 \
++					mcast_query_response_interval 100 \
++					mcast_membership_interval 300
+ 
+ 	v3exclude_prepare $h1 $ALL_MAC $ALL_GROUP
+-	ip link set dev br0 type bridge mcast_query_interval 500 mcast_query_response_interval 500
++	ip link set dev br0 type bridge mcast_query_interval 500 \
++					mcast_query_response_interval 500 \
++					mcast_membership_interval 1500
++
+ 	$MZ $h1 -c 1 -b $ALL_MAC -B $ALL_GROUP -t ip "proto=2,p=$MZPKT_ALLOW2" -q
+ 	sleep 3
+ 	bridge -j -d -s mdb show dev br0 \
+@@ -517,7 +522,8 @@ v3exc_timeout_test()
+ 	log_test "IGMPv3 group $TEST_GROUP exclude timeout"
+ 
+ 	ip link set dev br0 type bridge mcast_query_interval 12500 \
+-					mcast_query_response_interval 1000
++					mcast_query_response_interval 1000 \
++					mcast_membership_interval 26000
+ 
+ 	v3cleanup $swp1 $TEST_GROUP
+ }
+diff --git a/tools/testing/selftests/net/forwarding/bridge_mld.sh b/tools/testing/selftests/net/forwarding/bridge_mld.sh
+index ffdcfa87ca2b..e2b9ff773c6b 100755
+--- a/tools/testing/selftests/net/forwarding/bridge_mld.sh
++++ b/tools/testing/selftests/net/forwarding/bridge_mld.sh
+@@ -479,10 +479,15 @@ mldv2exc_timeout_test()
+ 	local X=("2001:db8:1::20" "2001:db8:1::30")
+ 
+ 	# GMI should be 3 seconds
+-	ip link set dev br0 type bridge mcast_query_interval 100 mcast_query_response_interval 100
++	ip link set dev br0 type bridge mcast_query_interval 100 \
++					mcast_query_response_interval 100 \
++					mcast_membership_interval 300
+ 
+ 	mldv2exclude_prepare $h1
+-	ip link set dev br0 type bridge mcast_query_interval 500 mcast_query_response_interval 500
++	ip link set dev br0 type bridge mcast_query_interval 500 \
++					mcast_query_response_interval 500 \
++					mcast_membership_interval 1500
++
+ 	$MZ $h1 -c 1 $MZPKT_ALLOW2 -q
+ 	sleep 3
+ 	bridge -j -d -s mdb show dev br0 \
+@@ -514,7 +519,8 @@ mldv2exc_timeout_test()
+ 	log_test "MLDv2 group $TEST_GROUP exclude timeout"
+ 
+ 	ip link set dev br0 type bridge mcast_query_interval 12500 \
+-					mcast_query_response_interval 1000
++					mcast_query_response_interval 1000 \
++					mcast_membership_interval 26000
+ 
+ 	mldv2cleanup $swp1
+ }
+-- 
+2.31.1
 
