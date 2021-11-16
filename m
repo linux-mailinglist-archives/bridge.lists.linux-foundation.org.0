@@ -1,180 +1,72 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8A1452CE2
-	for <lists.bridge@lfdr.de>; Tue, 16 Nov 2021 09:34:04 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECA5452EE2
+	for <lists.bridge@lfdr.de>; Tue, 16 Nov 2021 11:19:35 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 1D57E403F7;
-	Tue, 16 Nov 2021 08:34:02 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 7243A607CE;
+	Tue, 16 Nov 2021 10:19:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QsXvBKa20nsM; Tue, 16 Nov 2021 08:34:01 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 52F84403F8;
-	Tue, 16 Nov 2021 08:34:00 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GS8P2ydf1Yi9; Tue, 16 Nov 2021 10:19:32 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 00C9660775;
+	Tue, 16 Nov 2021 10:19:32 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0D306C0032;
-	Tue, 16 Nov 2021 08:34:00 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AADD9C0032;
+	Tue, 16 Nov 2021 10:19:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EA89AC0012
- for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 08:33:58 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1599EC0012
+ for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 10:19:30 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id D2EEB80C77
- for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 08:33:58 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 12025400AB
+ for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 10:19:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=oracle.com header.b="IRWGN7u/";
- dkim=fail (1024-bit key) reason="fail (body has been altered)"
- header.d=oracle.onmicrosoft.com header.b="NQu5uVY0"
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zFpZnOuFUiAr for <bridge@lists.linux-foundation.org>;
- Tue, 16 Nov 2021 08:33:57 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=linutronix.de header.b="R6XnQ837";
+ dkim=neutral reason="invalid (unsupported algorithm ed25519-sha256)"
+ header.d=linutronix.de header.b="kfQhV4D6"
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id rzIYycvu_FvB for <bridge@lists.linux-foundation.org>;
+ Tue, 16 Nov 2021 10:19:29 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 8152980C5D
- for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 08:33:57 +0000 (UTC)
-Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1AG7UJbu013778; 
- Tue, 16 Nov 2021 08:33:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : content-type :
- content-transfer-encoding : in-reply-to : mime-version; s=corp-2021-07-09;
- bh=xWqZLEG8FvYVPAWBvuM2luBBRq2trYfk1AOoNRWmB90=;
- b=IRWGN7u/cAur7F5lwRZxEfhuOEow0PvXqoza1SPTP3s/xKa7K5kwYeZjQIgQebSSQWF5
- xnUbigZc2g5HYyYEIU3KjnYAtqsvUHR2zJBDvZ1Ei9QJdVaQmtyWye3rrcNobCkROd+l
- QUX3Tv0Fa+lLY+mbVivI51Zsu7XJVNfPCpgm67kdjVVi8qTX+xeSij9nbfA3K5hj95e8
- CpefX7PxUS/9rnHUxGGQicymPjWPHfM2YD5aNDVnxFXYBsOAGbq2p99DkQHtz5QONrbF
- EFS+Uznf870Bj3r9/QZ/5xvGkSPgJi852xiG2IHdZyhcVBgtVq0roFGneTODzEIfjspw cg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
- by mx0b-00069f02.pphosted.com with ESMTP id 3cbfjxr9n0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 16 Nov 2021 08:33:25 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
- by userp3020.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 1AG8V3Tx188485;
- Tue, 16 Nov 2021 08:33:24 GMT
-Received: from nam10-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam10lp2101.outbound.protection.outlook.com [104.47.58.101])
- by userp3020.oracle.com with ESMTP id 3caq4saeyw-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 16 Nov 2021 08:33:23 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ep62yWfoee9n8hTiRJ9rqhvfFIsYr4k1axIkrWrEoJmyJZyUCUvprc0oEOuzDIjnqsPTb01kun3oW1ll8iY87Oeby7wEUi8ED14nNYc6f/pZmHr/0aiZ5iVDdTUiU5dk7cMvOS/oGOlGQKu6zoj4k18jrwAzCO28zT3Mpcs7dbTEgNIjVrNuNpw5VxWXP4DIc460KNCKolwCNiTmDghPisu4exrA+tX/yS5i1g2PZIR5o8aEKZzUBF3lGfRQEPjO+FxW1DGgnZ07ZIek9xxqMaub95LBfW6jPn4zI/xQoUYjLllpTDY5+9dulluh/G/vhrQqLeAoGl5oqPZNPQa2lw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JwCX9UIc+knuZoIfHMZkDkF3uj4gkic17ZYwY+WTAN8=;
- b=mEPpJTeBHTwmwC0MntXJchQFOET+j4zH+O4diynNQcQx+QiRi7vIm+rVDiwBpbkWTbwLNYTxcIKZ8UPcFNX4ZuQx9r0vo7koO6CYh45GkUx8XEF8TEWB2fNutBmVEjUtiXcHSqHQ7CsyXx9RIRFov+Wl/8LAB4Z87M2m5iVg0j/HysMIO/qUVbK0NrYXKCYVus3GY6Ps2+gINVpYoBBdJ0JceV7SQlt0UryFtVTG3olYXmZjQuTuEWcFWX5JcBUdcPlZXm37GLfeUtTo4wHKEKb3U8H7VYMpSiROadyqcbavgiVdLqRGB2wGR04gy++gH51mQ5iMfGKBY83zAFrjQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JwCX9UIc+knuZoIfHMZkDkF3uj4gkic17ZYwY+WTAN8=;
- b=NQu5uVY06rhAn10GLTnM2YVguzWMwnDffcXLxxnxv+zPrUFer8gfxddL9be0ZTgmc1OwrwJ3T/Ij4BiugokeQsiY2bHVtMX2u5NrrsZNCDXp0pu/SNrVGQur5xy6L6NT987U4dgVD/5eCUIfld+FHCyhE5j9DMW5KFha02e902w=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by MWHPR1001MB2399.namprd10.prod.outlook.com
- (2603:10b6:301:30::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.26; Tue, 16 Nov
- 2021 08:33:22 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::d409:11b5:5eb2:6be9]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::d409:11b5:5eb2:6be9%5]) with mapi id 15.20.4690.016; Tue, 16 Nov 2021
- 08:33:21 +0000
-Date: Tue, 16 Nov 2021 11:32:37 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Message-ID: <20211116083237.GH26989@kadam>
-References: <00c39d09c8df7ad0673bf2043f6566d6ef08b789.1636916479.git.christophe.jaillet@wanadoo.fr>
- <20211115123534.GD26989@kadam>
- <b3c93506-7dc8-a5fe-6cfc-938fc88b9f07@wanadoo.fr>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b3c93506-7dc8-a5fe-6cfc-938fc88b9f07@wanadoo.fr>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: JNAP275CA0014.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4c::19)
- To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 2D2C54043F
+ for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 10:19:28 +0000 (UTC)
+From: Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1637057965;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=tmef5BxDew8mQ5tumKAD4FZtWpS8npOjZyM1kVOj4Uw=;
+ b=R6XnQ837cXV36YauZrLhJ7mcb4dB7DxaDgpY0E6yCJ+Bpj/gRX3fZlpqj5bcgDhjcrjM8g
+ tMLNGBSA9m9llridhOs+LhwgT34keT3P3EEDSvUxXUYqPm5ql5DZSxHF7alAvBf3ZP8KZm
+ /WrQDwk9Q+2kT3WPB7kXCdClSpID5dDncjttgbDnpO7EzyHIyGEHdgbuyaHq5Db7kTk4RO
+ L/camCVyYNnpcc2/EU+4Pp7spLE0+n7evkoblGPnD9Vg6l9lcoqHLKFfrBxcyIopYBBPzI
+ 7a3iGZFV4kDH6Lyl0ryTXkqly1AJqWiu6yctMYhVOHD/4la7KMZqSgwzpgd9cw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1637057965;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=tmef5BxDew8mQ5tumKAD4FZtWpS8npOjZyM1kVOj4Uw=;
+ b=kfQhV4D6ptRcHR4h21mtVX0dnQLgp901RfzVER4WMw/ZNMjdSKY2JkdIoTdAqpK9Cu7Il7
+ 9AikHsembFp1WWCQ==
+To: netdev@vger.kernel.org, bridge@lists.linux-foundation.org
+Date: Tue, 16 Nov 2021 11:19:24 +0100
+Message-ID: <871r3gbdxv.fsf@kurt>
 MIME-Version: 1.0
-Received: from kadam (102.222.70.114) by
- JNAP275CA0014.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4c::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4713.19 via Frontend Transport; Tue, 16 Nov 2021 08:33:03 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4a5b034a-849b-4652-4a18-08d9a8dbbf7d
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2399:
-X-Microsoft-Antispam-PRVS: <MWHPR1001MB2399E11991712AC556BFF0638E999@MWHPR1001MB2399.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DYZglhG05/+tmfzoX2Ye7xPfawYKcN+mH3C5TM3epZZj/H+XMlzBtQDhPeCZ/gZWyG/Pe73YUmLP8BMGDP0cJzEjgmOs5qQ3xZdFI38SLfJITteTLveWWBKgM6BSe3662+lkZiPBI+FKcYlYYYXjh45KEUSZm8CrDwqhbYyLs286RoMRoujxwdZP4o9lsdrHYiKbFy2A2InIbPguo2IWGR/Uw5xFaom8almP0V5josYCSOlXjK+m/h9p9FROMyHuxVsW8vIVm71HVqy0LjLbsSDZfbhSFuRKxVfosvYUrQk0Knp2WTEQ2vZNq7Cato1PT5jY8Ke3gf1xiv2WGM0kieO5sZWloEZFMUxBprk6XuG1zFZR0wHFCHlE3HrrB6hHKt/DQtbNue2fKj2+ypzXUTG4NlMcmKp9V4jmj1qySoUWAMXeTudSnOs/6/ddfgrTYKiOKdxrVwPS5vnOfpN/7JzSdwCb/i/z890dTtwhdRVv/NxgIVDag0yQU5rpMqha/RzRko0i6u+owmy/rqzW3m9jkVc3y4X/lNiBR91VAZwF9bjflw2P/wCPssQ2j1NIytmcHH62u9ds9EVg9ZAWVQ1fddY0P/8zx8vzuLHTA+Vx+MZ4oOM/z+ytfoNMjrAZ/C5jMt2NGfDP9hr/EdePhcdIAT+ZDolujo+do6RWKWWYBEABTFPFlwvdb/HFgRQxg7hbn/th7yT626DdfqEmWF7LnxBvt1zMcEe1yoY5SrcqtTajBOQZFfFoozY0c0zv3fHSMIBSET/BdUtClw1HmS/7m27SjZqVW4BSYb3NUM8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(66476007)(66556008)(6496006)(52116002)(9576002)(66946007)(966005)(26005)(956004)(83380400001)(8936002)(33716001)(2906002)(5660300002)(316002)(86362001)(4326008)(8676002)(186003)(6916009)(6666004)(44832011)(38100700002)(38350700002)(55016002)(9686003)(33656002)(1076003)(508600001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?7c5BZ83/huPmFcErR6lJNQbQtLF/Sir8oYl8RbUj/GrxSijE3NHBCxkii7?=
- =?iso-8859-1?Q?ZEyyqQQbZbrMdpPog7k8dDnO3qt5hgLRi7+Ei//2ngmXxafEKqLk/lEufj?=
- =?iso-8859-1?Q?wGefAYJXbwxDm39bm9kpNpZf0xH/ohRPR8gif5+EwwkpylCS88+JtzDkqB?=
- =?iso-8859-1?Q?s3H6RO9RBoDG7JsVrHNVbkFQA7mM6hEfE1fVnjCIC3DE+QcZElMF9xVNML?=
- =?iso-8859-1?Q?nzA/E3yYB9hwuWu67LDOHrvxxySOoD+WMldpEHkSTWW+BX0oJN22HOKIFH?=
- =?iso-8859-1?Q?7HlMrDHjAjslWZP5bSkKGIIkFucFJ0kro0whMNzeDJbaMrx8IGsmy00xWf?=
- =?iso-8859-1?Q?T0M+eDC/fw+oFKCpZe1So+QWac8Fz9l72q0bt07t7Lf2EnuLr6kOqQm0uJ?=
- =?iso-8859-1?Q?5PSCN5nF9fIWVZhRwNI9LnbZPTmhrFR7gAR3wpecXgm2Jj+eMwU9LuUYzX?=
- =?iso-8859-1?Q?wPDzems5XgC4EQYVfX7I2u2Qeanay7BX7VeFCAD9kW19fsoGRYJjHQykWL?=
- =?iso-8859-1?Q?ZXToLAuhXCuzaMQVnZAPDTQW9RXSyf2k3YyPpg6YNdKLlijGiIDouSqXAS?=
- =?iso-8859-1?Q?U59NC5tJeBl3oDgRRa4tZqf/ZsZlynul5eC4BUMjEm2fD7mLzP+/bvNWxm?=
- =?iso-8859-1?Q?SlxY2crDfuz5t9zO0X17bun7uiMx4lVRCfrKk2kEZcffhFXXF7w3NVVCJ1?=
- =?iso-8859-1?Q?RlewmkjQNBGJGbIa5AXvAY9yJNaviZePl62LNGSiLxm4r9hduueaRBBPaU?=
- =?iso-8859-1?Q?944+4+pJlmBl0qi4GGWpMfeXbsaiovD93qTxJsXbUJb7U6ko70ZZUG7ezn?=
- =?iso-8859-1?Q?ZUwQXALZpSZtfGej4HtGU2BYdBdNY1PydnzFRKLf+eKYwZmGegUV37gv55?=
- =?iso-8859-1?Q?H66BbTYqMzsEcHHAZLJAmQjcbOu1THEyF+tnmJHEm2JhpNNMVnvV9MI6k8?=
- =?iso-8859-1?Q?VRknhsMqs+nRyBcZGMDda4ZUIX0+EXrCa9npIaJsAv6xshOfJ0tantX44N?=
- =?iso-8859-1?Q?8Z2ZSA3ClgxLwEXVywMoX8DUH7w07wJ8djpSMw5C/ztj20tJrWqVkFNe/b?=
- =?iso-8859-1?Q?3FUE9O7PJ/ppokpwonzVyx5+xOYsbqRACfUv54FCjR1wyJnbee/dyOCAqA?=
- =?iso-8859-1?Q?tQgaJXnfjKm8r7oeSXK1dqpQBm4x6/SjbBrmrXse1e2tWuP/DLsvV7N1Zx?=
- =?iso-8859-1?Q?wE8wS7ngTHCzX2Nu76mlOgj4KuYpv6y4H6+FKT5xVUAst3hdbrjk/nlXir?=
- =?iso-8859-1?Q?iVDHh/O8Wt6vCPPOS50b5nZB+kXR1ESKykMl0w2Y3X8ZIPeLUjqSnQpauh?=
- =?iso-8859-1?Q?tdAXokeWvArA9nEZKE7Ii1x91q0gvdyjaiRQZTD0D6XqizJ/g9Rd1sZ3EL?=
- =?iso-8859-1?Q?muYsHPx851+9P2y6puH1hBr02rjMuiZaXwzhXQFBI1An7pPpt3G6D1lLI4?=
- =?iso-8859-1?Q?1U+fQo35324w/MjeEZ5yPg7n0LZEPwYp/HzEq2LNDRoWdLM874OztiJoot?=
- =?iso-8859-1?Q?9gA6Huino2wjrARlrRIMtg+R/xvddrUAKal3kcbtw7H1LQ9cdslD72qNwS?=
- =?iso-8859-1?Q?bmwS5zFlADza9s1ACajbqTLkxq9BMuDI6GczUtbg8rmlE3Vav8LvCtbx9Y?=
- =?iso-8859-1?Q?VJxwEOzSatroMO9Tx/imvgKVKD1M8xuYyx9/fH9g7OFaJlacL7sw7DWZEE?=
- =?iso-8859-1?Q?VaYWm8Y8ylqAdah8bpp9zKUL6T4shcoC1aB4zoF3pyLu3SxpHSwOk7Ov1N?=
- =?iso-8859-1?Q?THtlxAz0/3Q85XKnNhffGBaU0=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a5b034a-849b-4652-4a18-08d9a8dbbf7d
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2021 08:33:21.6337 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v77iE4rkTPvXn2NasPLEKNQSw7xjXXtIEaWmgEh0Ard2JN7XUoBoNaxyFoaVKHIosXnqn9pbBoqSA3AEKVMziuUCECg5AoIGFQgM0RDNFCY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1001MB2399
-X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10169
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- suspectscore=0 mlxscore=0
- phishscore=0 bulkscore=0 mlxlogscore=385 adultscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2111160043
-X-Proofpoint-ORIG-GUID: fr4W52j6eLKhOEGKQvD90ww-MwoTt0Iq
-X-Proofpoint-GUID: fr4W52j6eLKhOEGKQvD90ww-MwoTt0Iq
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- nikolay@nvidia.com, roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH] net: bridge: Slightly optimize 'find_portno()'
+Content-Type: multipart/signed; boundary="=-=-=";
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>
+Subject: [Bridge] RFC: PTP Boundary Clock over UDPv4/UDPv6 on Linux bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -189,40 +81,143 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Nov 15, 2021 at 07:35:48PM +0100, Christophe JAILLET wrote:
-> Le 15/11/2021 à 13:35, Dan Carpenter a écrit :
-> > On Sun, Nov 14, 2021 at 08:02:35PM +0100, Christophe JAILLET wrote:
-> > > The 'inuse' bitmap is local to this function. So we can use the
-> > > non-atomic '__set_bit()' to save a few cycles.
-> > > 
-> > > While at it, also remove some useless {}.
-> > 
-> > I like the {} and tend to add it in new code.  There isn't a rule about
-> > this one way or the other.
-> > 
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-[ heavily snipped ]
+Hi all,
 
-> 
-> - checkpatch prefers the style without {}
+I'm currently trying to setup a PTP Boundary Clock over UDPv4 or UDPv6
+on top of a switch using a Linux bridge. It works fine using PTP Layer 2
+transport, but not for UDP. I'm wondering whether this is supported
+using Linux or if I'm doing something wrong.
 
-Not for these.
+My setup looks like this:
 
-> - Usually, greg k-h and Joe Perches give feed-back that extra {} should be
-> removed.
+Bridge (DSA):
 
-I can't find any reference to that.
+|$ ip link set eth0 up
+|$ ip link set lan0 up
+|$ ip link set lan1 up
+|$ ip link add name br0 type bridge
+|$ ip link set dev lan0 master br0
+|$ ip link set dev lan1 master br0
+|$ ip link set br0 up
+|$ dhclient br0
 
-> - in https://www.kernel.org/doc/html/v5.13/process/coding-style.html, after
-> "Rationale: K&R":
->    "Do not unnecessarily use braces where a single statement will do."
+PTP:
 
-There are exceptions for readability.  For example, mutiline indents
-get it whether they need or not.  Do while statements get braces.
+|$ ptp4l -4 -i lan0 -i lan1 --tx_timestamp_timeout=3D40 -m
 
-Quite a lot of people don't use braces for list_for_each() unless it's
-required, definitely, but I think it's allowable.
+It seems like ptp4l cannot receive any PTP messages. Tx works fine.
 
-regards,
-dan carpenter
+The following hack solves the problem for me. However, I'm not sure
+whether that's the correct approach or not. Any opinions, ideas,
+comments?
 
+Thanks,
+Kurt
+
+|From 2e8b429b3ebabda8e81693b9704dbe5e5205ab09 Mon Sep 17 00:00:00 2001
+|From: Kurt Kanzenbach <kurt@linutronix.de>
+|Date: Wed, 4 Aug 2021 09:33:12 +0200
+|Subject: [PATCH] net: bridge: input: Handle PTP over UDPv4 and UDPv6
+|
+|PTP is considered management traffic. A time aware switch should intercept=
+ all
+|PTP messages and handle them accordingly. The corresponding Linux setup is=
+ like
+|this:
+|
+|         +-- br0 --+
+|        / /   |     \
+|       / /    |      \
+|      /  |    |     / \
+|     /   |    |    /   \
+|   swp0 swp1 swp2 swp3 swp4
+|
+|ptp4l runs on all individual switch ports and needs full control over send=
+ing
+|and receiving messages on these ports.
+|
+|However, the bridge code treats PTP messages over UDP transport as regular=
+ IP
+|messages and forwards them to br0. This way, the running ptp4l instances c=
+annot
+|receive these frames on the individual switch port interfaces.
+|
+|Fix it by intercepting PTP UDP traffic in the bridge code and pass them to=
+ the
+|regular network processing.
+|
+|Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+|---
+| net/bridge/br_input.c | 13 +++++++++++++
+| 1 file changed, 13 insertions(+)
+|
+|diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+|index b50382f957c1..4e12be70a003 100644
+|--- a/net/bridge/br_input.c
+|+++ b/net/bridge/br_input.c
+|@@ -271,6 +271,13 @@ static int br_process_frame_type(struct net_bridge_po=
+rt *p,
+| 	return 0;
+| }
+|=20
+|+static const unsigned char ptp_ip_destinations[][ETH_ALEN] =3D {
+|+	{ 0x01, 0x00, 0x5e, 0x00, 0x01, 0x81 }, /* IPv4 PTP */
+|+	{ 0x01, 0x00, 0x5e, 0x00, 0x00, 0x6b }, /* IPv4 P2P */
+|+	{ 0x33, 0x33, 0x00, 0x00, 0x01, 0x81 }, /* IPv6 PTP */
+|+	{ 0x33, 0x33, 0x00, 0x00, 0x00, 0x6b }, /* IPv6 P2P */
+|+};
+|+
+| /*
+|  * Return NULL if skb is handled
+|  * note: already called with rcu_read_lock
+|@@ -280,6 +287,7 @@ static rx_handler_result_t br_handle_frame(struct sk_b=
+uff **pskb)
+| 	struct net_bridge_port *p;
+| 	struct sk_buff *skb =3D *pskb;
+| 	const unsigned char *dest =3D eth_hdr(skb)->h_dest;
+|+	int i;
+|=20
+| 	if (unlikely(skb->pkt_type =3D=3D PACKET_LOOPBACK))
+| 		return RX_HANDLER_PASS;
+|@@ -360,6 +368,11 @@ static rx_handler_result_t br_handle_frame(struct sk_=
+buff **pskb)
+| 	if (unlikely(br_process_frame_type(p, skb)))
+| 		return RX_HANDLER_PASS;
+|=20
+|+	/* Check for PTP over UDPv4 or UDPv6. */
+|+	for (i =3D 0; i < ARRAY_SIZE(ptp_ip_destinations); ++i)
+|+		if (ether_addr_equal(ptp_ip_destinations[i], dest))
+|+			return RX_HANDLER_PASS;
+|+
+| forward:
+| 	switch (p->state) {
+| 	case BR_STATE_FORWARDING:
+|--=20
+|2.30.2
+
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAmGThawTHGt1cnRAbGlu
+dXRyb25peC5kZQAKCRB5KluBy5jwpqtJEAC/5q6nEuYpfxhRoSb/OvMHUEXIF+hR
+IQFlPaxHAiar+LxWmxRF5O8We/YfpZNSDwj5OXhquPxYsfLLQzINB8RRBkagRgtk
+oYOVlluR68iSQhpiG0SYMjlaGE4I0RSgHT2I+uVn2pWYhNznZrt1Nu8h+OMJfsgV
+wATbnOWD33YiefUdl8eW43L2z0fIXuxRA5ad2SImvBSsE3gsZi10sF1BVowPmL4j
+Ch3b6dNRU653455Q/M8ZJ0hEGIisblSVvV0msyjWgyLCtnPRHWXi1AmczqopODLQ
+a9nPiPKTjY0Lu9dGhCPuM4TgZZrNJYuBUHBy6Twg4DBQp1I8DKI4esECH3g6vpFA
+H+72cLplqPpIXfnF3C/d6NY7nLITVS5zKlvyCIbz0Igz7TCH0JzEJ9jMMY+zr4Cv
+yp4/IoCqBicz1ZQN7eA4LnTjslzGPdQVcfWV7UNBbqtZ+AQ7pN6vhvIiLrhb09PI
+woFC9lZP24ZV5a59EcbLbGjhHPz1BBu8jinP7FYXdbn9wsTzrk6aBPmr1u/djoN3
+qJOhxxukultUyXiu9n9nWutoD+8LPTWWRNHFdcG4uzNd0UOQ4wKeVcSmgd4rKTFT
+YnpEqjRm3WGFe5yQsrJb7J4ffLYa5o5R9XDD7k+WM60UbOoPjpSY7m7v0euuxBr5
+DDN0N+s+Hpnayg==
+=5oM/
+-----END PGP SIGNATURE-----
+--=-=-=--
