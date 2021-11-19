@@ -1,78 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DCE8452FB2
-	for <lists.bridge@lfdr.de>; Tue, 16 Nov 2021 12:02:39 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FAE345707C
+	for <lists.bridge@lfdr.de>; Fri, 19 Nov 2021 15:20:17 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id AC71B4045A;
-	Tue, 16 Nov 2021 11:02:37 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 0CB0A401E9;
+	Fri, 19 Nov 2021 14:20:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id e2kfF4vKF4IX; Tue, 16 Nov 2021 11:02:37 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 40D774045F;
-	Tue, 16 Nov 2021 11:02:36 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 95-iXKw6tnvl; Fri, 19 Nov 2021 14:20:14 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 3BEFC40480;
+	Fri, 19 Nov 2021 14:20:13 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D511CC0032;
-	Tue, 16 Nov 2021 11:02:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EB834C0036;
+	Fri, 19 Nov 2021 14:20:12 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D589FC0012
- for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 11:02:34 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 15523C0012
+ for <bridge@lists.linux-foundation.org>; Fri, 19 Nov 2021 14:20:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id B23954021C
- for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 11:02:34 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 0496A61C03
+ for <bridge@lists.linux-foundation.org>; Fri, 19 Nov 2021 14:20:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=linutronix.de header.b="FMvhaX4k";
- dkim=neutral reason="invalid (unsupported algorithm ed25519-sha256)"
- header.d=linutronix.de header.b="xrfnTvU+"
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id gxlq9ZujD4T6 for <bridge@lists.linux-foundation.org>;
- Tue, 16 Nov 2021 11:02:34 +0000 (UTC)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id KFaKNn-nvJPx for <bridge@lists.linux-foundation.org>;
+ Fri, 19 Nov 2021 14:20:09 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 06F144012F
- for <bridge@lists.linux-foundation.org>; Tue, 16 Nov 2021 11:02:33 +0000 (UTC)
-From: Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637060552;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=e10OOvD1u94xS1GIboSwL6Wuc+WCr9I2DZUFe4rpbtc=;
- b=FMvhaX4kB8DiRB3Y0+aRBO2m9ILwQaDzzDjIuuSP7ybiynoiE7y+6vlCC0ffCgB5whAKqe
- wji6zoUFSUOj7qtaa9jJO92IX6CGn+HzUND7MvTYKf6XXyNbgGmASYzWdxLBsVSwDrFbPE
- ExWt2gPdx9ads9cBqdWycGs8i4a9e4+EPfZXsHfAkll8oDNqcxB3X9Alz3AOBI8aFDgRyV
- g6W5S0uSIV5eq3mIgLYLAfR1J9MSXb66VHr4dXtSWLPCQTWdPF08FhwgCkgQwKLr8zFwON
- EV4gBz5D+so8mPYqvkD6Xs4bXDulCIvYPWbdfNNVtn9OA9BCfTGUBG15/DLnGw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637060552;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=e10OOvD1u94xS1GIboSwL6Wuc+WCr9I2DZUFe4rpbtc=;
- b=xrfnTvU+0HOOavO+mLbWCo6RkmxZo0uconkWrKQSXfBhww+JwGZuCctDNbyFBwDbkOsNpE
- QDV03R1dWmSrL9BQ==
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-In-Reply-To: <20211116102138.26vkpeh23el6akya@skbuf>
-References: <871r3gbdxv.fsf@kurt> <20211116102138.26vkpeh23el6akya@skbuf>
-Date: Tue, 16 Nov 2021 12:02:31 +0100
-Message-ID: <87y25o9xdk.fsf@kurt>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id DF1DD61C05
+ for <bridge@lists.linux-foundation.org>; Fri, 19 Nov 2021 14:20:09 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id 737A161AD0;
+ Fri, 19 Nov 2021 14:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1637331609;
+ bh=pjpzP9H3wrBaZrYocYGO8qrHvgn5vKMBZS1Zg+A2dZs=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=lyKSqcQrOB3rmrtZvv132yaGMwMrTX9NC0PSogPTKazSaOmL0+r95F11tcQmRLfRH
+ 4d/jtdikxoOqGu11XMXjBy59uBpE2xSAfmFddByT17I8EnJHoHS11fB7LtZQl4QSh3
+ 9Nt6sHpN+v7kna/ak+Qzod2BDDrI7LkazQwp77sWbyp0haZNpoeqtAjhlBO2wDE6YV
+ Vy7jdgFTCMHHc6eQeHUs5Fzx8FMEca+D1jqVatqtrbez7+VL+ElSPf3x+N6chpsvge
+ eu0WRoO4zHykRQwIx5lK1M3v12wc/zFD/4XZ0T1V+f3+7wRDKUA4qlOsL2alCLUSgy
+ pEgffhjkVer/w==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 62C206096E;
+ Fri, 19 Nov 2021 14:20:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>
-Subject: Re: [Bridge] RFC: PTP Boundary Clock over UDPv4/UDPv6 on Linux
-	bridge
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163733160939.14640.16666157203692458688.git-patchwork-notify@kernel.org>
+Date: Fri, 19 Nov 2021 14:20:09 +0000
+References: <20211119020642.108397-1-bernard@vivo.com>
+In-Reply-To: <20211119020642.108397-1-bernard@vivo.com>
+To: Bernard Zhao <bernard@vivo.com>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH] net/bridge: replace simple_strtoul to kstrtol
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -87,43 +79,26 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
---=-=-=
-Content-Type: text/plain
+Hello:
 
-On Tue Nov 16 2021, Vladimir Oltean wrote:
-> This should do the trick as well?
->
-> /sbin/ebtables --table broute --append BROUTING --protocol 0x88F7 --jump DROP
->
-> /sbin/ebtables --table broute --append BROUTING --protocol 0x0800 --ip-protocol udp --ip-destination-port 320 --jump DROP
-> /sbin/ebtables --table broute --append BROUTING --protocol 0x0800 --ip-protocol udp --ip-destination-port 319 --jump DROP
->
-> /sbin/ebtables --table broute --append BROUTING --protocol 0x86DD --ip6-protocol udp --ip6-destination-port 320 --jump DROP
-> /sbin/ebtables --table broute --append BROUTING --protocol 0x86DD --ip6-protocol udp --ip6-destination-port 319 --jump DROP
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-After quick test, indeed it does. Thanks, problem solved.
+On Thu, 18 Nov 2021 18:06:42 -0800 you wrote:
+> simple_strtoull is obsolete, use kstrtol instead.
+> 
+> Signed-off-by: Bernard Zhao <bernard@vivo.com>
+> ---
+>  net/bridge/br_sysfs_br.c | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
 
-Thanks,
-Kurt
+Here is the summary with links:
+  - net/bridge: replace simple_strtoul to kstrtol
+    https://git.kernel.org/netdev/net-next/c/520fbdf7fb19
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
------BEGIN PGP SIGNATURE-----
 
-iQJHBAEBCgAxFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAmGTj8cTHGt1cnRAbGlu
-dXRyb25peC5kZQAKCRB5KluBy5jwpgo2D/9ijxk4btdfvAuyAOy2VgeGlA78Ly1D
-CKC8U6MlRW56YdY1u92mwKzJS7o2Bef3I8Lb2Axemg6WGpzIG7fMMlVd+Dfa39/v
-957Z+XcwD50JsfARhDwQkpx841UN0N5QjFL2eHTIpZ1iIGv6++6rQcYv72jxUHpC
-MopX8ahmqP6LkFMmoIc7oSCJJTGhjMCNGzbuBoRHddxYh+alT/v9EyZyx6WflCWT
-w3wt2u8fVyIDty+SwD0Ktyvi9X9tbOY3yFjPU40KrXdvtUGnqFTT1IHQ5Kch7v8Z
-mdydY23AkKcdT02GHiV+IylaAsUx2UUVSGbgLoWu8bXoxY92xDvjeFiGhdPcLbnV
-RiMjeQdZ5AAdxaFDdLP45OHqhmnDNydp3gnRQizbNRdNgVuvy7JL4I2gnOYl0zuM
-e/ZEWL0dyoaoTOwN/L87phQtykopion5VVyj8z0RZN/x0zxjiUS3Vnud3/Os34+9
-J/ohMiiF0DJmWj+xtufuaCvz2EgvIDPiRYIm5oY+IMyM2gGkhpbauNKStQGFuP7x
-tc5J/LHdcxatVxV8THPFzuM5dWS1U/pn/TCgDqmtVk6Fb0lJhn7bMVhf0jYJei/R
-Vv0bHlVAj0XfQeu0xEnjHIczx2AnnI4UEa4txKxkWFnk8CuL4mahXdiUoN5sVhn/
-e3xs4ArAMUKVUQ==
-=hk+a
------END PGP SIGNATURE-----
---=-=-=--
