@@ -1,128 +1,59 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DEAC47DFB2
-	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 08:43:08 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA2547E0B4
+	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 10:07:17 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id D78734060B;
-	Thu, 23 Dec 2021 07:43:05 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id F07C68175B;
+	Thu, 23 Dec 2021 09:07:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9ehOw5JuwdLf; Thu, 23 Dec 2021 07:43:05 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id D4B99405F3;
-	Thu, 23 Dec 2021 07:43:03 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XuRyIVgGD4ii; Thu, 23 Dec 2021 09:07:15 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 9BFDD8175C;
+	Thu, 23 Dec 2021 09:07:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 77550C006E;
-	Thu, 23 Dec 2021 07:43:03 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 59088C006E;
+	Thu, 23 Dec 2021 09:07:14 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AB454C0012
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 07:43:01 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B9724C0012
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Dec 2021 19:26:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 84C1D81461
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 07:43:01 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id A835182CE5
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Dec 2021 19:26:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=nvidia.com
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SZrSsrdJ_mHF for <bridge@lists.linux-foundation.org>;
- Thu, 23 Dec 2021 07:43:00 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2040.outbound.protection.outlook.com [40.107.243.40])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 3FE168145C
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 07:43:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cXrQ0kUZxzeZg9Dr1dMVAohlrdoDCM8Ox8kIrpSIWpXCZOq6nlKOimfk9ISrL30PAdynP0Nw186imZ0NHVqIR0ZHSpEZK85fjfFEeHRMYpnZxkJLk9Qi0+Ye2WHOgbcn5+0JiuBI60Hgp6+OMpgVNvJuEfJlozqdu079iEejR/6wLo0I0MymLKytuIgejwM2KhMIMZUgsuf430hJpuLL8PK/bNSm3/zCqTf3LlFzqi90Xqs/BF0a++yqwfx+bdEBMRv14s/XYYjlw3FFAd2m/jYThk26FqyglpoWeZyl3+i0K9YrJeKmYtYDFX56F+R2YqSPfw1INca71MZs45b6hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/TQ8ypWdJowcw74MF0/KAtqjsmkhSXiLQiRMn+aGK1c=;
- b=ewn7deQNfn52p2vn8EQU7xRz+t4/D2xsvcRONI+gc0KhzvzGLwsvyubPjYjH1v5TqQ2/uXP4uYp5IrWo4TvXX0q3FrWHXUrzuEk+BbHth3l061BRb7ESgEClyFor837dPYuTRQdPlDxtqqM1DTkutl2nu3F4LOMm6ij+AQzOag0g6B0JBIXxHD2rNMfd5Y6zsC3o0ni61hSvEg8sefuqo4HNgcYO5JyfUysoWjdUmpswGXKTVK0rBm0trRh6B0C617ZBVHc1tdjXHt3JoXJWybNWVdQsVnIJvBvFO+u2HnJO5hqZBpCJZQ7EOUY755wdhIMPZvilVlprCcbGbw0PtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.238) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/TQ8ypWdJowcw74MF0/KAtqjsmkhSXiLQiRMn+aGK1c=;
- b=PKXPNhHqq1bYgT3GgG7QzPE39uRdm20tPtYw1q676u87MYqKnUOM1tURsag1Ki72PjGIN/bWNiKgB1ZDMabqsdLZ7FXWE/mFteCdgaAockNbCsTjEDNEgtRcN43iibpL6EcE4BvjWJSr8J22XaghtDXKC4MZKkRr412lGwtKRcoJuTNi2wc+naxypLgKStwYY6kPWpSCtB7fspBS4uFlYP35V7Hbfts4jDt3cZo8AWYz2lk4BfT/PUBiM5o4P4/7DlW900LvdsBJuq8KJcxNrage8WIi8Qfdd0gRD35u3rkxOQoxgnTSQt4+zVFxQ5QL3Ku+OjxUZ7uwezPlHPpb8A==
-Received: from MWHPR02CA0020.namprd02.prod.outlook.com (2603:10b6:300:4b::30)
- by DM5PR12MB1722.namprd12.prod.outlook.com (2603:10b6:3:107::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.20; Thu, 23 Dec
- 2021 07:42:57 +0000
-Received: from CO1NAM11FT055.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:4b:cafe::7f) by MWHPR02CA0020.outlook.office365.com
- (2603:10b6:300:4b::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.19 via Frontend
- Transport; Thu, 23 Dec 2021 07:42:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.238; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.238) by
- CO1NAM11FT055.mail.protection.outlook.com (10.13.175.129) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4823.18 via Frontend Transport; Thu, 23 Dec 2021 07:42:56 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL105.nvidia.com
- (10.27.9.14) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
- Thu, 23 Dec 2021 07:42:56 +0000
-Received: from [172.27.12.230] (172.20.187.6) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.9; Wed, 22 Dec 2021
- 23:42:52 -0800
-Message-ID: <d4dc329f-ffcc-044f-01f7-5db2d0a69d92@nvidia.com>
-Date: Thu, 23 Dec 2021 09:42:48 +0200
+ with ESMTP id FVzCiLujQ2ur for <bridge@lists.linux-foundation.org>;
+ Wed, 22 Dec 2021 19:26:10 +0000 (UTC)
+X-Greylist: delayed 00:09:16 by SQLgrey-1.8.0
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 9AEC682C7D
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Dec 2021 19:26:10 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (unknown [217.70.183.201])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id 40DF5C424E
+ for <bridge@lists.linux-foundation.org>; Wed, 22 Dec 2021 19:11:06 +0000 (UTC)
+Received: (Authenticated sender: repk@triplefau.lt)
+ by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 0D4B91BF207;
+ Wed, 22 Dec 2021 19:10:57 +0000 (UTC)
+From: Remi Pommarel <repk@triplefau.lt>
+To: netdev@vger.kernel.org
+Date: Wed, 22 Dec 2021 20:13:20 +0100
+Message-Id: <20211222191320.17662-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Content-Language: en-US
-To: Remi Pommarel <repk@triplefau.lt>, <netdev@vger.kernel.org>
-References: <20211222191320.17662-1-repk@triplefau.lt>
-In-Reply-To: <20211222191320.17662-1-repk@triplefau.lt>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.187.6]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d87ce6b1-b276-4aa9-d8b3-08d9c5e7d61f
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1722:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB17227674EAD9413E350A83F0DF7E9@DM5PR12MB1722.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G+knnafEDHcj5/33yLCqrPfWmxTujRJhvAZllFu3Gjb8NHmCRH3quioBfvkqkOcfogS6TjCnUjgxks4gPVnV+EKzLCkWyrtmjqyee4uJs8lkHj1BDKrYnAdK29ZtnYNDW00OA/0fWryUDNYI4iwjQmepsJHDBNV9++8feDM6Hq52U4TqC/SS7aSR7ztqbEUSnAsxZJWgNt8yiTFC+zs85nYGBkKsp5SwB+5TfYBu0buFqHMj09EeuQg84V5QBGDBpu2BEjW78gnqUpsetIZKpQd7v3hWBdMPX/NzA7QTtBqI15NdFXJruwwHfVvh1ccr6XbQNBQH8wvECBBJck+lqKfOBTQaYHA5OY3nw6C8JF6ZqOoGtMfa3D6nXgpN6yci4FJ+fZA5gKFbkXi71dR4MA2zAn1BPQL2ldyni3uqu0mf3piyOZuCbSuWOPsbPt3WViuy13HS0eR3l9zLEGIdUMChBjKVmNvHrmfkqaB2kz+p4UqXgunRsdlBZx12TPME/cArDgGOrxpa9BLlmZiLuOntHiq4zyxLB+OH9jr3ZDz/yIDOUjiye8OGn8pRK6yRUnLQZszCT1PBKmAZd7pDVRXY7k55tV0HPvuc95rATLFyH5FwKXBiNmWqdvQnltpk0a9Nu3ZrngFCzPUQweg2jvHGoBgPIGgKBZ1Xqck2BUzSV77faBtopnHzaz36BCe/zRLdBFCvXepWcQhpPb04aRjWXN9bXhVxAW9gULHH6Ivih1y7I+lI73Xs1nc6dH3UvuldIFQBUrZ3EcHoZ4RDQFENGA/Hqt4FP625SZHZi9TEgtYUWSs8lQVKQODNNBYY8ahDEm3eBiiANj3xFyk5cg==
-X-Forefront-Antispam-Report: CIP:12.22.5.238; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
- SFS:(4636009)(40470700002)(46966006)(36840700001)(82310400004)(2906002)(81166007)(26005)(40460700001)(16576012)(86362001)(53546011)(47076005)(508600001)(70206006)(6666004)(316002)(70586007)(5660300002)(356005)(31686004)(8936002)(83380400001)(54906003)(186003)(31696002)(4326008)(110136005)(36756003)(36860700001)(8676002)(16526019)(2616005)(426003)(336012)(36900700001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2021 07:42:56.9070 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d87ce6b1-b276-4aa9-d8b3-08d9c5e7d61f
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.238];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT055.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1722
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 23 Dec 2021 09:07:12 +0000
 Cc: Arnd Bergmann <arnd@arndb.de>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
+ linux-kernel@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net] net: bridge: fix ioctl old_deviceless
-	bridge argument
+Subject: [Bridge] [PATCH net] net: bridge: fix ioctl old_deviceless bridge
+	argument
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -134,42 +65,38 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 22/12/2021 21:13, Remi Pommarel wrote:
-> Commit 561d8352818f ("bridge: use ndo_siocdevprivate") changed the
-> source and destination arguments of copy_{to,from}_user in bridge's
-> old_deviceless() from args[1] to uarg breaking SIOC{G,S}IFBR ioctls.
-> 
-> Commit cbd7ad29a507 ("net: bridge: fix ioctl old_deviceless bridge
-> argument") fixed only BRCTL_{ADD,DEL}_BRIDGES commands leaving
-> BRCTL_GET_BRIDGES one untouched.
-> 
-> The fixes BRCTL_GET_BRIDGES as well
-> 
-> Fixes: 561d8352818f ("bridge: use ndo_siocdevprivate")
-> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-> ---
->  net/bridge/br_ioctl.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
-> index db4ab2c2ce18..891cfcf45644 100644
-> --- a/net/bridge/br_ioctl.c
-> +++ b/net/bridge/br_ioctl.c
-> @@ -337,7 +337,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
->  
->  		args[2] = get_bridge_ifindices(net, indices, args[2]);
->  
-> -		ret = copy_to_user(uarg, indices,
-> +		ret = copy_to_user((void __user *)args[1], indices,
->  				   array_size(args[2], sizeof(int)))
->  			? -EFAULT : args[2];
->  
-> 
+Commit 561d8352818f ("bridge: use ndo_siocdevprivate") changed the
+source and destination arguments of copy_{to,from}_user in bridge's
+old_deviceless() from args[1] to uarg breaking SIOC{G,S}IFBR ioctls.
 
-Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+Commit cbd7ad29a507 ("net: bridge: fix ioctl old_deviceless bridge
+argument") fixed only BRCTL_{ADD,DEL}_BRIDGES commands leaving
+BRCTL_GET_BRIDGES one untouched.
+
+The fixes BRCTL_GET_BRIDGES as well
+
+Fixes: 561d8352818f ("bridge: use ndo_siocdevprivate")
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+---
+ net/bridge/br_ioctl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
+index db4ab2c2ce18..891cfcf45644 100644
+--- a/net/bridge/br_ioctl.c
++++ b/net/bridge/br_ioctl.c
+@@ -337,7 +337,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
+ 
+ 		args[2] = get_bridge_ifindices(net, indices, args[2]);
+ 
+-		ret = copy_to_user(uarg, indices,
++		ret = copy_to_user((void __user *)args[1], indices,
+ 				   array_size(args[2], sizeof(int)))
+ 			? -EFAULT : args[2];
+ 
+-- 
+2.33.0
 
