@@ -1,55 +1,58 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BEF347E570
-	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 16:27:13 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 56D8740010;
-	Thu, 23 Dec 2021 15:27:11 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id v5ucbwLzUUzL; Thu, 23 Dec 2021 15:27:10 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 71D3640A02;
-	Thu, 23 Dec 2021 15:27:09 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1DFF8C006E;
-	Thu, 23 Dec 2021 15:27:09 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 39376C0012
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 15:27:07 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DDE47E571
+	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 16:27:20 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 12181408B1
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 15:27:07 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id C4D7A4163C;
+	Thu, 23 Dec 2021 15:27:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id fj7uyULRQHdP for <bridge@lists.linux-foundation.org>;
- Thu, 23 Dec 2021 15:27:06 +0000 (UTC)
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id oR9aW1_ideso; Thu, 23 Dec 2021 15:27:18 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 7AE2C4163B;
+	Thu, 23 Dec 2021 15:27:17 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4F55FC006E;
+	Thu, 23 Dec 2021 15:27:17 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0C142C0012
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 15:27:16 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp3.osuosl.org (Postfix) with ESMTP id EF47260EFF
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 15:27:15 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id YbLbWjIKYCkK for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Dec 2021 15:27:15 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
- [217.70.183.197])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 0D46340221
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 15:27:05 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
+ [217.70.183.198])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 0831B60EE6
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 15:27:14 +0000 (UTC)
 Received: (Authenticated sender: repk@triplefau.lt)
- by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id CDBCA1C0004;
- Thu, 23 Dec 2021 15:27:00 +0000 (UTC)
+ by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id EEBA5C0007;
+ Thu, 23 Dec 2021 15:27:10 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
 To: netdev@vger.kernel.org
-Date: Thu, 23 Dec 2021 16:31:37 +0100
-Message-Id: <20211223153139.7661-1-repk@triplefau.lt>
+Date: Thu, 23 Dec 2021 16:31:38 +0100
+Message-Id: <20211223153139.7661-2-repk@triplefau.lt>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211223153139.7661-1-repk@triplefau.lt>
+References: <20211223153139.7661-1-repk@triplefau.lt>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Cc: Arnd Bergmann <arnd@arndb.de>, bridge@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH net 0/2] Fix SIOCGIFBR/SIOCSIFBR ioctl
+Subject: [Bridge] [PATCH net 1/2] net: bridge: fix ioctl old_deviceless
+	bridge argument
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -64,66 +67,48 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-SIOC{G,S}IFBR ioctls have been broken since [0], as discussed here [1]
-the intent was to get them working in compat mode.
+Commit 561d8352818f ("bridge: use ndo_siocdevprivate") changed the
+source and destination arguments of copy_{to,from}_user in bridge's
+old_deviceless() from args[1] to uarg breaking SIOC{G,S}IFBR ioctls.
 
-This serie is gathering patch from [2] with the one from [3].
+Commit cbd7ad29a507 ("net: bridge: fix ioctl old_deviceless bridge
+argument") fixed only BRCTL_{ADD,DEL}_BRIDGES commands leaving
+BRCTL_GET_BRIDGES one untouched.
 
-The first patch fixes the ioctl usage so it can be backported to stable
-kernel while the second one adds proper support for those ioctl in
-compat mode.
+The fixes BRCTL_GET_BRIDGES as well and has been tested with busybox's
+brctl.
 
-This has been tested with busybox's brctl as below.
+Example of broken brctl:
+$ brctl show
+bridge name     bridge id               STP enabled     interfaces
+brctl: can't get bridge name for index 0: No such device or address
 
-Before this serie
+Example of fixed brctl:
+$ brctl show
+bridge name     bridge id               STP enabled     interfaces
+br0             8000.000000000000       no
 
-- 64-bit brctl:
-  $ brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  brctl: can't get bridge name for index 0: No such device or address
+Fixes: 561d8352818f ("bridge: use ndo_siocdevprivate")
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+---
+ net/bridge/br_ioctl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-- 32-bit brctl on CONFIG_COMPAT=y kernel:
-  $ brctl show
-  brctl: SIOCGIFBR: Invalid argument
-
-With first patch of this serie
-
-- 64-bit brctl
-  $ brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  br0             8000.000000000000       no
-
-- 32-bit brctl on CONFIG_COMPAT=y kernel
-  $ brctl show
-    brctl: SIOCGIFBR: Invalid argument
-
-With both patches
-
-- 64-bit brctl
-  $ brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  br0             8000.000000000000       no
-
-- 32-bit brctl on CONFIG_COMPAT=y kernel
-  $ brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  br0             8000.000000000000       no
-
-[0] commit 561d8352818f ("bridge: use ndo_siocdevprivate")
-[1] https://lkml.org/lkml/2021/12/22/805
-[2] https://lkml.org/lkml/2021/12/22/743
-[3] https://lkml.org/lkml/2021/12/23/212
-
-Thanks,
-
-Remi Pommarel (2):
-  net: bridge: fix ioctl old_deviceless bridge argument
-  net: bridge: Get SIOCGIFBR/SIOCSIFBR ioctl working in compat mode
-
- net/bridge/br_ioctl.c | 75 ++++++++++++++++++++++++++++---------------
- net/socket.c          | 20 ++----------
- 2 files changed, 52 insertions(+), 43 deletions(-)
-
+diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
+index db4ab2c2ce18..891cfcf45644 100644
+--- a/net/bridge/br_ioctl.c
++++ b/net/bridge/br_ioctl.c
+@@ -337,7 +337,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
+ 
+ 		args[2] = get_bridge_ifindices(net, indices, args[2]);
+ 
+-		ret = copy_to_user(uarg, indices,
++		ret = copy_to_user((void __user *)args[1], indices,
+ 				   array_size(args[2], sizeof(int)))
+ 			? -EFAULT : args[2];
+ 
 -- 
 2.33.0
 
