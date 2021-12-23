@@ -1,62 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70CB47E754
-	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 19:00:32 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 132F147E777
+	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 19:10:19 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 82494402BC;
-	Thu, 23 Dec 2021 18:00:30 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 5F17D4165F;
+	Thu, 23 Dec 2021 18:10:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TBo0-k1o3INh; Thu, 23 Dec 2021 18:00:29 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id E0FE540386;
-	Thu, 23 Dec 2021 18:00:28 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id gaWDNjuS5x68; Thu, 23 Dec 2021 18:10:16 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id CAFFF4166C;
+	Thu, 23 Dec 2021 18:10:15 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 991BBC006E;
-	Thu, 23 Dec 2021 18:00:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 82A5DC006E;
+	Thu, 23 Dec 2021 18:10:15 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 42946C0012
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:00:27 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 75056C0012
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:10:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 2890860EBA
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:00:27 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 5D3184166A
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:10:13 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id X5IevDC8Uy5t for <bridge@lists.linux-foundation.org>;
- Thu, 23 Dec 2021 18:00:26 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net
- [217.70.183.200])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 466B260E36
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:00:25 +0000 (UTC)
-Received: (Authenticated sender: repk@triplefau.lt)
- by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id EE8DA20003;
- Thu, 23 Dec 2021 18:00:22 +0000 (UTC)
-Date: Thu, 23 Dec 2021 19:05:20 +0100
-From: Remi Pommarel <repk@triplefau.lt>
-To: Jakub Kicinski <kuba@kernel.org>
-Message-ID: <YcS6YAJVFUDcDmo0@pilgrim>
-References: <20211223153139.7661-1-repk@triplefau.lt>
- <20211223153139.7661-3-repk@triplefau.lt>
- <20211223085944.55b43857@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
- <YcS25oqoo+xnAIIW@pilgrim>
- <20211223095318.30d2b9ce@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id h7PVWWwckJCs for <bridge@lists.linux-foundation.org>;
+ Thu, 23 Dec 2021 18:10:12 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 881234165F
+ for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:10:12 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C855661F44;
+ Thu, 23 Dec 2021 18:10:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 83803C36AE9;
+ Thu, 23 Dec 2021 18:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1640283010;
+ bh=oyh+QBfNI/GMX9Lq6AawFnQWCAFkjjqO6uAUCAtczVA=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=vL58s+QGCC49AR9aFgbj996Q8JloiwBecYYNRV+G3ws3FU7kOjPe4SVrVLAGLv0PW
+ n2YjXmNCpdXwaEyWFzTcMhhpc/r4FWNAczmmkyLj1x1qOg5VEuHgoHFmP6ztXDn7aK
+ nQuhCDfIFD8hgXQ8i9s25METHzsd8nEbwX2Mgh3dim9sMM+UU3ZqKATBnM2kxNYn+G
+ cq0Gmh0JnqemQwP4q03xdaxXc1WYnDrXjszIKFbHmnorSzNpUywM/YCEHaGfpl3J9M
+ RgkPSNpu820hUQXpHutCPw2Tf9BFfPnpOPzBRqd6SCcCQIgx9QGUA9XiV10mZdNAx1
+ IB8GsmybKTqHQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
+ 6CF4CEAC06B; Thu, 23 Dec 2021 18:10:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211223095318.30d2b9ce@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
-Cc: Arnd Bergmann <arnd@arndb.de>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net 2/2] net: bridge: Get SIOCGIFBR/SIOCSIFBR
- ioctl working in compat mode
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <164028301044.27483.17708005720486132473.git-patchwork-notify@kernel.org>
+Date: Thu, 23 Dec 2021 18:10:10 +0000
+References: <20211222191320.17662-1-repk@triplefau.lt>
+In-Reply-To: <20211222191320.17662-1-repk@triplefau.lt>
+To: Remi Pommarel <repk@triplefau.lt>
+Cc: arnd@arndb.de, netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net] net: bridge: fix ioctl old_deviceless
+	bridge argument
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -71,38 +83,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Dec 23, 2021 at 09:53:18AM -0800, Jakub Kicinski wrote:
-> On Thu, 23 Dec 2021 18:50:30 +0100 Remi Pommarel wrote:
-> > On Thu, Dec 23, 2021 at 08:59:44AM -0800, Jakub Kicinski wrote:
-> > > On Thu, 23 Dec 2021 16:31:39 +0100 Remi Pommarel wrote:  
-> > > > In compat mode SIOC{G,S}IFBR ioctls were only supporting
-> > > > BRCTL_GET_VERSION returning an artificially version to spur userland
-> > > > tool to use SIOCDEVPRIVATE instead. But some userland tools ignore that
-> > > > and use SIOC{G,S}IFBR unconditionally as seen with busybox's brctl.
-> > > > 
-> > > > Example of non working 32-bit brctl with CONFIG_COMPAT=y:
-> > > > $ brctl show
-> > > > brctl: SIOCGIFBR: Invalid argument
-> > > > 
-> > > > Example of fixed 32-bit brctl with CONFIG_COMPAT=y:
-> > > > $ brctl show
-> > > > bridge name     bridge id               STP enabled     interfaces
-> > > > br0
-> > > > 
-> > > > Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-> > > > Co-developed-by: Arnd Bergmann <arnd@arndb.de>
-> > > > Signed-off-by: Arnd Bergmann <arnd@arndb.de>  
-> > > 
-> > > Since Arnd said this is not supposed to be backported I presume it
-> > > should go to net-next?  
-> > 
-> > Yes, out of curiosity, is it appropriate to mix "[PATCH net]" and
-> > "[PATCH net-next]" in the same serie ?
-> 
-> It's not, mixing makes it quite hard to know what's needed where.
-> Also hard to automate things on our end. Let me pick out the first
-> patch, I'll be sending a PR to Linus shortly and then merge net into
-> net-next. At which point you'll be able to rebase on top of net-next
-> and resend just the second patch for net-next..
+Hello:
 
-Ok sounds good to me thanks.
+This patch was applied to netdev/net.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed, 22 Dec 2021 20:13:20 +0100 you wrote:
+> Commit 561d8352818f ("bridge: use ndo_siocdevprivate") changed the
+> source and destination arguments of copy_{to,from}_user in bridge's
+> old_deviceless() from args[1] to uarg breaking SIOC{G,S}IFBR ioctls.
+> 
+> Commit cbd7ad29a507 ("net: bridge: fix ioctl old_deviceless bridge
+> argument") fixed only BRCTL_{ADD,DEL}_BRIDGES commands leaving
+> BRCTL_GET_BRIDGES one untouched.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net] net: bridge: fix ioctl old_deviceless bridge argument
+    https://git.kernel.org/netdev/net/c/d95a56207c07
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
