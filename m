@@ -1,74 +1,56 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 132F147E777
-	for <lists.bridge@lfdr.de>; Thu, 23 Dec 2021 19:10:19 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B401C47EE9E
+	for <lists.bridge@lfdr.de>; Fri, 24 Dec 2021 12:42:15 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 5F17D4165F;
-	Thu, 23 Dec 2021 18:10:17 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 53BCF81461;
+	Fri, 24 Dec 2021 11:42:14 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gaWDNjuS5x68; Thu, 23 Dec 2021 18:10:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id CAFFF4166C;
-	Thu, 23 Dec 2021 18:10:15 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id q-khpTn8qEBY; Fri, 24 Dec 2021 11:42:13 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id C059D81465;
+	Fri, 24 Dec 2021 11:42:12 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 82A5DC006E;
-	Thu, 23 Dec 2021 18:10:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 45312C0070;
+	Fri, 24 Dec 2021 11:42:12 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 75056C0012
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:10:13 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id F117BC0012
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Dec 2021 11:42:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 5D3184166A
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:10:13 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id C96524016C
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Dec 2021 11:42:10 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id h7PVWWwckJCs for <bridge@lists.linux-foundation.org>;
- Thu, 23 Dec 2021 18:10:12 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 881234165F
- for <bridge@lists.linux-foundation.org>; Thu, 23 Dec 2021 18:10:12 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id C855661F44;
- Thu, 23 Dec 2021 18:10:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 83803C36AE9;
- Thu, 23 Dec 2021 18:10:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1640283010;
- bh=oyh+QBfNI/GMX9Lq6AawFnQWCAFkjjqO6uAUCAtczVA=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=vL58s+QGCC49AR9aFgbj996Q8JloiwBecYYNRV+G3ws3FU7kOjPe4SVrVLAGLv0PW
- n2YjXmNCpdXwaEyWFzTcMhhpc/r4FWNAczmmkyLj1x1qOg5VEuHgoHFmP6ztXDn7aK
- nQuhCDfIFD8hgXQ8i9s25METHzsd8nEbwX2Mgh3dim9sMM+UU3ZqKATBnM2kxNYn+G
- cq0Gmh0JnqemQwP4q03xdaxXc1WYnDrXjszIKFbHmnorSzNpUywM/YCEHaGfpl3J9M
- RgkPSNpu820hUQXpHutCPw2Tf9BFfPnpOPzBRqd6SCcCQIgx9QGUA9XiV10mZdNAx1
- IB8GsmybKTqHQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 6CF4CEAC06B; Thu, 23 Dec 2021 18:10:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id zCQqKyYXLCw9 for <bridge@lists.linux-foundation.org>;
+ Fri, 24 Dec 2021 11:42:09 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id A490C40136
+ for <bridge@lists.linux-foundation.org>; Fri, 24 Dec 2021 11:42:07 +0000 (UTC)
+Received: (Authenticated sender: repk@triplefau.lt)
+ by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 12E0B40005;
+ Fri, 24 Dec 2021 11:42:03 +0000 (UTC)
+From: Remi Pommarel <repk@triplefau.lt>
+To: netdev@vger.kernel.org
+Date: Fri, 24 Dec 2021 12:46:40 +0100
+Message-Id: <20211224114640.29679-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164028301044.27483.17708005720486132473.git-patchwork-notify@kernel.org>
-Date: Thu, 23 Dec 2021 18:10:10 +0000
-References: <20211222191320.17662-1-repk@triplefau.lt>
-In-Reply-To: <20211222191320.17662-1-repk@triplefau.lt>
-To: Remi Pommarel <repk@triplefau.lt>
-Cc: arnd@arndb.de, netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, nikolay@nvidia.com, roopa@nvidia.com,
- kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net] net: bridge: fix ioctl old_deviceless
-	bridge argument
+Cc: Arnd Bergmann <arnd@arndb.de>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH net-next] net: bridge: Get SIOCGIFBR/SIOCSIFBR
+	ioctl working in compat mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -83,29 +65,201 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+In compat mode SIOC{G,S}IFBR ioctls were only supporting
+BRCTL_GET_VERSION returning an artificially version to spur userland
+tool to use SIOCDEVPRIVATE instead. But some userland tools ignore that
+and use SIOC{G,S}IFBR unconditionally as seen with busybox's brctl.
 
-This patch was applied to netdev/net.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+Example of non working 32-bit brctl with CONFIG_COMPAT=y:
+$ brctl show
+brctl: SIOCGIFBR: Invalid argument
 
-On Wed, 22 Dec 2021 20:13:20 +0100 you wrote:
-> Commit 561d8352818f ("bridge: use ndo_siocdevprivate") changed the
-> source and destination arguments of copy_{to,from}_user in bridge's
-> old_deviceless() from args[1] to uarg breaking SIOC{G,S}IFBR ioctls.
-> 
-> Commit cbd7ad29a507 ("net: bridge: fix ioctl old_deviceless bridge
-> argument") fixed only BRCTL_{ADD,DEL}_BRIDGES commands leaving
-> BRCTL_GET_BRIDGES one untouched.
-> 
-> [...]
+Example of fixed 32-bit brctl with CONFIG_COMPAT=y:
+$ brctl show
+bridge name     bridge id               STP enabled     interfaces
+br0
 
-Here is the summary with links:
-  - [net] net: bridge: fix ioctl old_deviceless bridge argument
-    https://git.kernel.org/netdev/net/c/d95a56207c07
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+Co-developed-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ net/bridge/br_ioctl.c | 75 ++++++++++++++++++++++++++++---------------
+ net/socket.c          | 20 ++----------
+ 2 files changed, 52 insertions(+), 43 deletions(-)
 
-You are awesome, thank you!
+diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
+index 891cfcf45644..5f3c1cf7f6ad 100644
+--- a/net/bridge/br_ioctl.c
++++ b/net/bridge/br_ioctl.c
+@@ -102,37 +102,56 @@ static int add_del_if(struct net_bridge *br, int ifindex, int isadd)
+ 	return ret;
+ }
+ 
++#define BR_UARGS_MAX 4
++static int br_dev_read_uargs(unsigned long *args, size_t nr_args,
++			     void __user **argp, void __user *data)
++{
++	int ret;
++
++	if (nr_args < 2 || nr_args > BR_UARGS_MAX)
++		return -EINVAL;
++
++	if (in_compat_syscall()) {
++		unsigned int cargs[BR_UARGS_MAX];
++		int i;
++
++		ret = copy_from_user(cargs, data, nr_args * sizeof(*cargs));
++		if (ret)
++			goto fault;
++
++		for (i = 0; i < nr_args; ++i)
++			args[i] = cargs[i];
++
++		*argp = compat_ptr(args[1]);
++	} else {
++		ret = copy_from_user(args, data, nr_args * sizeof(*args));
++		if (ret)
++			goto fault;
++		*argp = (void __user *)args[1];
++	}
++
++	return 0;
++fault:
++	return -EFAULT;
++}
++
+ /*
+  * Legacy ioctl's through SIOCDEVPRIVATE
+  * This interface is deprecated because it was too difficult
+  * to do the translation for 32/64bit ioctl compatibility.
+  */
+-int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user *data, int cmd)
++int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq,
++			  void __user *data, int cmd)
+ {
+ 	struct net_bridge *br = netdev_priv(dev);
+ 	struct net_bridge_port *p = NULL;
+ 	unsigned long args[4];
+ 	void __user *argp;
+-	int ret = -EOPNOTSUPP;
+-
+-	if (in_compat_syscall()) {
+-		unsigned int cargs[4];
+-
+-		if (copy_from_user(cargs, data, sizeof(cargs)))
+-			return -EFAULT;
+-
+-		args[0] = cargs[0];
+-		args[1] = cargs[1];
+-		args[2] = cargs[2];
+-		args[3] = cargs[3];
+-
+-		argp = compat_ptr(args[1]);
+-	} else {
+-		if (copy_from_user(args, data, sizeof(args)))
+-			return -EFAULT;
++	int ret;
+ 
+-		argp = (void __user *)args[1];
+-	}
++	ret = br_dev_read_uargs(args, ARRAY_SIZE(args), &argp, data);
++	if (ret)
++		return ret;
+ 
+ 	switch (args[0]) {
+ 	case BRCTL_ADD_IF:
+@@ -301,6 +320,9 @@ int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user
+ 
+ 	case BRCTL_GET_FDB_ENTRIES:
+ 		return get_fdb_entries(br, argp, args[2], args[3]);
++
++	default:
++		ret = -EOPNOTSUPP;
+ 	}
+ 
+ 	if (!ret) {
+@@ -313,12 +335,15 @@ int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user
+ 	return ret;
+ }
+ 
+-static int old_deviceless(struct net *net, void __user *uarg)
++static int old_deviceless(struct net *net, void __user *data)
+ {
+ 	unsigned long args[3];
++	void __user *argp;
++	int ret;
+ 
+-	if (copy_from_user(args, uarg, sizeof(args)))
+-		return -EFAULT;
++	ret = br_dev_read_uargs(args, ARRAY_SIZE(args), &argp, data);
++	if (ret)
++		return ret;
+ 
+ 	switch (args[0]) {
+ 	case BRCTL_GET_VERSION:
+@@ -337,7 +362,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
+ 
+ 		args[2] = get_bridge_ifindices(net, indices, args[2]);
+ 
+-		ret = copy_to_user((void __user *)args[1], indices,
++		ret = copy_to_user(argp, indices,
+ 				   array_size(args[2], sizeof(int)))
+ 			? -EFAULT : args[2];
+ 
+@@ -353,7 +378,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
+ 		if (!ns_capable(net->user_ns, CAP_NET_ADMIN))
+ 			return -EPERM;
+ 
+-		if (copy_from_user(buf, (void __user *)args[1], IFNAMSIZ))
++		if (copy_from_user(buf, argp, IFNAMSIZ))
+ 			return -EFAULT;
+ 
+ 		buf[IFNAMSIZ-1] = 0;
+diff --git a/net/socket.c b/net/socket.c
+index 7f64a6eccf63..6b2a898055ca 100644
+--- a/net/socket.c
++++ b/net/socket.c
+@@ -3233,21 +3233,6 @@ static int compat_ifr_data_ioctl(struct net *net, unsigned int cmd,
+ 	return dev_ioctl(net, cmd, &ifreq, data, NULL);
+ }
+ 
+-/* Since old style bridge ioctl's endup using SIOCDEVPRIVATE
+- * for some operations; this forces use of the newer bridge-utils that
+- * use compatible ioctls
+- */
+-static int old_bridge_ioctl(compat_ulong_t __user *argp)
+-{
+-	compat_ulong_t tmp;
+-
+-	if (get_user(tmp, argp))
+-		return -EFAULT;
+-	if (tmp == BRCTL_GET_VERSION)
+-		return BRCTL_VERSION + 1;
+-	return -EINVAL;
+-}
+-
+ static int compat_sock_ioctl_trans(struct file *file, struct socket *sock,
+ 			 unsigned int cmd, unsigned long arg)
+ {
+@@ -3259,9 +3244,6 @@ static int compat_sock_ioctl_trans(struct file *file, struct socket *sock,
+ 		return sock_ioctl(file, cmd, (unsigned long)argp);
+ 
+ 	switch (cmd) {
+-	case SIOCSIFBR:
+-	case SIOCGIFBR:
+-		return old_bridge_ioctl(argp);
+ 	case SIOCWANDEV:
+ 		return compat_siocwandev(net, argp);
+ 	case SIOCGSTAMP_OLD:
+@@ -3290,6 +3272,8 @@ static int compat_sock_ioctl_trans(struct file *file, struct socket *sock,
+ 	case SIOCGSTAMP_NEW:
+ 	case SIOCGSTAMPNS_NEW:
+ 	case SIOCGIFCONF:
++	case SIOCSIFBR:
++	case SIOCGIFBR:
+ 		return sock_ioctl(file, cmd, arg);
+ 
+ 	case SIOCGIFFLAGS:
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.33.0
 
