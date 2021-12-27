@@ -1,56 +1,126 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B401C47EE9E
-	for <lists.bridge@lfdr.de>; Fri, 24 Dec 2021 12:42:15 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9172F47FC61
+	for <lists.bridge@lfdr.de>; Mon, 27 Dec 2021 12:56:14 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 53BCF81461;
-	Fri, 24 Dec 2021 11:42:14 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 1F1B1409A2;
+	Mon, 27 Dec 2021 11:56:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id q-khpTn8qEBY; Fri, 24 Dec 2021 11:42:13 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id C059D81465;
-	Fri, 24 Dec 2021 11:42:12 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id EOfUZX6CkH53; Mon, 27 Dec 2021 11:56:11 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 75E3C4039D;
+	Mon, 27 Dec 2021 11:56:10 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 45312C0070;
-	Fri, 24 Dec 2021 11:42:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2EEC8C0070;
+	Mon, 27 Dec 2021 11:56:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id F117BC0012
- for <bridge@lists.linux-foundation.org>; Fri, 24 Dec 2021 11:42:10 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id F1497C0012
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Dec 2021 11:56:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id C96524016C
- for <bridge@lists.linux-foundation.org>; Fri, 24 Dec 2021 11:42:10 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id CE4AA4039D
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Dec 2021 11:56:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zCQqKyYXLCw9 for <bridge@lists.linux-foundation.org>;
- Fri, 24 Dec 2021 11:42:09 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
- [217.70.183.194])
- by smtp2.osuosl.org (Postfix) with ESMTPS id A490C40136
- for <bridge@lists.linux-foundation.org>; Fri, 24 Dec 2021 11:42:07 +0000 (UTC)
-Received: (Authenticated sender: repk@triplefau.lt)
- by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 12E0B40005;
- Fri, 24 Dec 2021 11:42:03 +0000 (UTC)
-From: Remi Pommarel <repk@triplefau.lt>
-To: netdev@vger.kernel.org
-Date: Fri, 24 Dec 2021 12:46:40 +0100
-Message-Id: <20211224114640.29679-1-repk@triplefau.lt>
-X-Mailer: git-send-email 2.33.0
+ with ESMTP id TGTQOlOLY6sI for <bridge@lists.linux-foundation.org>;
+ Mon, 27 Dec 2021 11:56:03 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2068.outbound.protection.outlook.com [40.107.236.68])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id AFA0C40286
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Dec 2021 11:56:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mlOYkhFttKOFFEN7rdspn07guutzR2QD8ZLZ5Up8KGtlsW/09Xiea9Kd7ZDiXVzDGLw6Io/J8vs6Y+u0nyerWFpbLWr5F6mqin706SAAM0X2lSqx4ZleBKXDWgMBuXnG70momJJ7QbWEhJpdygTMwIcVMsdu6qmIOnIMr4MqjJuamUbNs8OTc6szuEi0+ink9aDe8CpiNz0L69MSqbcNUD5bTiiZkkJcF6Sj0c3yhslQzXJTPvca9TZITWYu/KCTBfsH2c/U+7mfyW1LxKaK4ZqX71QGlQD3JNGrTwKb25cOwJx6qtyazgsuGOhP12xgP+OGbrwahdFSge/kLELMFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rHjc+haXJ3N0fI3TA9Jur+pxStmTK8+xRk3JKyYpXu4=;
+ b=hFqBa+LWP3wEBHcnHaJmBlqrmogcjUDDAmIN5/QBDmt8Wdmr+igiO9SDZaqa0TrTpVJTpb7js6Bh5JjtrQVVOsMNWhtqjhmndkj4zJgh8jLIUPTUnUCf/167i1P+joD5YbxYOyZK2nE9Kdi7JdXjDDH/R74kU6q8ZWNRM2fK5SO9bXOoi4ilIYFR2SVT32L04fBkBwl1XtfejMNBWV85s/plKA5TPexsnLhD7oIu9MLx4XO1v13Kc+rxX0QjjN5ZZJ7cCPgMYwIamED+0xPmrfdwW+iqgbGqM1OcnV/Acl2uc7ZfFrtPr5s9l00HWvq4YxC1qIht+r+rkbEOJsyADw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.235) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rHjc+haXJ3N0fI3TA9Jur+pxStmTK8+xRk3JKyYpXu4=;
+ b=MZDkm1eIe8dDle4fvPlAWj2UJzGWlMQT466hy45/eqkmBOB7SP0JlkvU4VuhtWO+1YI2kaM4vt8dHQ9vB41coASIti+x62krHNln5a2IcKdXh1EDUB9nqOKh6o6kSfGNmXU2TqcX9QYzOxigd8NLmx8rZv9n5zV+RQDex0FrdZE62rnh2v/ybdttwQWdkM2xe3vJ26Sokm6lW1E+lQPyk7hyqQmWiD88KIPKpeQfKpSQBiCSxnfEZSsI0he6dVBuzzSXFv+K0dXobdaSZT5LhaPg1WLH8gnDgpLMDes3zlQI8szoKmoCuWNpngHg7238KAekrgKKt/FXxITtAXdF1g==
+Received: from CO2PR07CA0065.namprd07.prod.outlook.com (2603:10b6:100::33) by
+ BL0PR12MB2401.namprd12.prod.outlook.com (2603:10b6:207:4d::19) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4823.19; Mon, 27 Dec 2021 11:56:00 +0000
+Received: from CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:100:0:cafe::4) by CO2PR07CA0065.outlook.office365.com
+ (2603:10b6:100::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.18 via Frontend
+ Transport; Mon, 27 Dec 2021 11:55:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.235; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.235) by
+ CO1NAM11FT005.mail.protection.outlook.com (10.13.174.147) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4823.18 via Frontend Transport; Mon, 27 Dec 2021 11:55:59 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
+ Mon, 27 Dec 2021 11:55:58 +0000
+Received: from [172.27.0.136] (172.20.187.6) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.9; Mon, 27 Dec 2021
+ 03:55:55 -0800
+Message-ID: <ec0cd540-e785-3a3a-311f-10f0d7bc7adc@nvidia.com>
+Date: Mon, 27 Dec 2021 13:55:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: Remi Pommarel <repk@triplefau.lt>, <netdev@vger.kernel.org>
+References: <20211224114640.29679-1-repk@triplefau.lt>
+In-Reply-To: <20211224114640.29679-1-repk@triplefau.lt>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.187.6]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 961b0ec4-69de-47ea-e238-08d9c92fd96b
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2401:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR12MB240134CAB399A236C6D2BD6ADF429@BL0PR12MB2401.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:339;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6B3xJdT/y+nZVaZdUkY5G6SE1KXk98/UOtBpzfx5n6U2klOutLv6E5Wc3NNtuTliuJS9hRuR3cRkBvGnpQR/KP1XR9fo/H7kVmRz1je6JHP6368stEluT0zAyxDs6mIUf/CRlWpRZe2qQb3lcin7/9XKR19cY+Fk88eu3nU1dW5qiW0EUBb6nfaWwEhkV9Sa2Py8fbpg+L2y8A4piXOZV0MPeIYeIrO8V6cB8N+CegWt8NKVhM4BOGP1+Hj52aiAKeWBeGhb6VsWwd8WpOw4U4Pr/xgAsg/uuLYJYO4YJ85GFAmY+KzKDTTyfNBY7qtGjEQeZnbf6czqQqWBW/nDkJAt9JEG1P4wBTO3Pc6NNRosY8x7rg9PBG9k1LzkoPjZfNc7SCKU9Zu/FXimyyRqwcsaithlFY3H/ggkWgA2YT5UWaa1ePGXih0XzV0HQuumg+Z05hy6G95ujsSqpQ2t9Rzz4vPsWhyDZJPs813s5i5zeBwZ7mOqlhyW6r83+UyQyTm04NGGdvOmCySnnloCxXAm+y3sO006e2Sc6AlmLhJYICpRvVje0mcxIHfHZZpu1oF8BYe+N+7KI3hTe+TvQCa+FKxDasLk7kOA6T6Bn3pmJ1uCPtlIXc92wRq++JzbftPzzEJMUcgscQdL55NDDLhUG3sAo9ZKjd9DxKbWxAVM+OEjfA38NL2turhznrrIxpDDc15M1s2siZkN0f1k9d4kNZnQ1C0POSf3EieQNrhuG6UUSXzTZ/9jdClK+AkrDCAe2YVIxNwywPjhRMJhXdNcY80Kvbua3Zf0pjj5bIvajUR1cRoCqGWUerVdaYdMI1w+F/oH2+NDRxbwncH2LQ==
+X-Forefront-Antispam-Report: CIP:12.22.5.235; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
+ SFS:(4636009)(40470700002)(46966006)(36840700001)(316002)(356005)(110136005)(70586007)(70206006)(8676002)(36756003)(16576012)(81166007)(31696002)(508600001)(86362001)(36860700001)(8936002)(47076005)(2616005)(31686004)(40460700001)(82310400004)(53546011)(16526019)(426003)(336012)(186003)(26005)(83380400001)(4744005)(6666004)(4326008)(2906002)(5660300002)(54906003)(43740500002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Dec 2021 11:55:59.6757 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 961b0ec4-69de-47ea-e238-08d9c92fd96b
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.235];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2401
 Cc: Arnd Bergmann <arnd@arndb.de>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ linux-kernel@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH net-next] net: bridge: Get SIOCGIFBR/SIOCSIFBR
-	ioctl working in compat mode
+Subject: Re: [Bridge] [PATCH net-next] net: bridge: Get SIOCGIFBR/SIOCSIFBR
+ ioctl working in compat mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -62,204 +132,36 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-In compat mode SIOC{G,S}IFBR ioctls were only supporting
-BRCTL_GET_VERSION returning an artificially version to spur userland
-tool to use SIOCDEVPRIVATE instead. But some userland tools ignore that
-and use SIOC{G,S}IFBR unconditionally as seen with busybox's brctl.
+On 24/12/2021 13:46, Remi Pommarel wrote:
+> In compat mode SIOC{G,S}IFBR ioctls were only supporting
+> BRCTL_GET_VERSION returning an artificially version to spur userland
+> tool to use SIOCDEVPRIVATE instead. But some userland tools ignore that
+> and use SIOC{G,S}IFBR unconditionally as seen with busybox's brctl.
+> 
+> Example of non working 32-bit brctl with CONFIG_COMPAT=y:
+> $ brctl show
+> brctl: SIOCGIFBR: Invalid argument
+> 
+> Example of fixed 32-bit brctl with CONFIG_COMPAT=y:
+> $ brctl show
+> bridge name     bridge id               STP enabled     interfaces
+> br0
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> Co-developed-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  net/bridge/br_ioctl.c | 75 ++++++++++++++++++++++++++++---------------
+>  net/socket.c          | 20 ++----------
+>  2 files changed, 52 insertions(+), 43 deletions(-)
+> 
 
-Example of non working 32-bit brctl with CONFIG_COMPAT=y:
-$ brctl show
-brctl: SIOCGIFBR: Invalid argument
+Looks good to me, thanks.
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
 
-Example of fixed 32-bit brctl with CONFIG_COMPAT=y:
-$ brctl show
-bridge name     bridge id               STP enabled     interfaces
-br0
-
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-Co-developed-by: Arnd Bergmann <arnd@arndb.de>
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- net/bridge/br_ioctl.c | 75 ++++++++++++++++++++++++++++---------------
- net/socket.c          | 20 ++----------
- 2 files changed, 52 insertions(+), 43 deletions(-)
-
-diff --git a/net/bridge/br_ioctl.c b/net/bridge/br_ioctl.c
-index 891cfcf45644..5f3c1cf7f6ad 100644
---- a/net/bridge/br_ioctl.c
-+++ b/net/bridge/br_ioctl.c
-@@ -102,37 +102,56 @@ static int add_del_if(struct net_bridge *br, int ifindex, int isadd)
- 	return ret;
- }
- 
-+#define BR_UARGS_MAX 4
-+static int br_dev_read_uargs(unsigned long *args, size_t nr_args,
-+			     void __user **argp, void __user *data)
-+{
-+	int ret;
-+
-+	if (nr_args < 2 || nr_args > BR_UARGS_MAX)
-+		return -EINVAL;
-+
-+	if (in_compat_syscall()) {
-+		unsigned int cargs[BR_UARGS_MAX];
-+		int i;
-+
-+		ret = copy_from_user(cargs, data, nr_args * sizeof(*cargs));
-+		if (ret)
-+			goto fault;
-+
-+		for (i = 0; i < nr_args; ++i)
-+			args[i] = cargs[i];
-+
-+		*argp = compat_ptr(args[1]);
-+	} else {
-+		ret = copy_from_user(args, data, nr_args * sizeof(*args));
-+		if (ret)
-+			goto fault;
-+		*argp = (void __user *)args[1];
-+	}
-+
-+	return 0;
-+fault:
-+	return -EFAULT;
-+}
-+
- /*
-  * Legacy ioctl's through SIOCDEVPRIVATE
-  * This interface is deprecated because it was too difficult
-  * to do the translation for 32/64bit ioctl compatibility.
-  */
--int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user *data, int cmd)
-+int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq,
-+			  void __user *data, int cmd)
- {
- 	struct net_bridge *br = netdev_priv(dev);
- 	struct net_bridge_port *p = NULL;
- 	unsigned long args[4];
- 	void __user *argp;
--	int ret = -EOPNOTSUPP;
--
--	if (in_compat_syscall()) {
--		unsigned int cargs[4];
--
--		if (copy_from_user(cargs, data, sizeof(cargs)))
--			return -EFAULT;
--
--		args[0] = cargs[0];
--		args[1] = cargs[1];
--		args[2] = cargs[2];
--		args[3] = cargs[3];
--
--		argp = compat_ptr(args[1]);
--	} else {
--		if (copy_from_user(args, data, sizeof(args)))
--			return -EFAULT;
-+	int ret;
- 
--		argp = (void __user *)args[1];
--	}
-+	ret = br_dev_read_uargs(args, ARRAY_SIZE(args), &argp, data);
-+	if (ret)
-+		return ret;
- 
- 	switch (args[0]) {
- 	case BRCTL_ADD_IF:
-@@ -301,6 +320,9 @@ int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user
- 
- 	case BRCTL_GET_FDB_ENTRIES:
- 		return get_fdb_entries(br, argp, args[2], args[3]);
-+
-+	default:
-+		ret = -EOPNOTSUPP;
- 	}
- 
- 	if (!ret) {
-@@ -313,12 +335,15 @@ int br_dev_siocdevprivate(struct net_device *dev, struct ifreq *rq, void __user
- 	return ret;
- }
- 
--static int old_deviceless(struct net *net, void __user *uarg)
-+static int old_deviceless(struct net *net, void __user *data)
- {
- 	unsigned long args[3];
-+	void __user *argp;
-+	int ret;
- 
--	if (copy_from_user(args, uarg, sizeof(args)))
--		return -EFAULT;
-+	ret = br_dev_read_uargs(args, ARRAY_SIZE(args), &argp, data);
-+	if (ret)
-+		return ret;
- 
- 	switch (args[0]) {
- 	case BRCTL_GET_VERSION:
-@@ -337,7 +362,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
- 
- 		args[2] = get_bridge_ifindices(net, indices, args[2]);
- 
--		ret = copy_to_user((void __user *)args[1], indices,
-+		ret = copy_to_user(argp, indices,
- 				   array_size(args[2], sizeof(int)))
- 			? -EFAULT : args[2];
- 
-@@ -353,7 +378,7 @@ static int old_deviceless(struct net *net, void __user *uarg)
- 		if (!ns_capable(net->user_ns, CAP_NET_ADMIN))
- 			return -EPERM;
- 
--		if (copy_from_user(buf, (void __user *)args[1], IFNAMSIZ))
-+		if (copy_from_user(buf, argp, IFNAMSIZ))
- 			return -EFAULT;
- 
- 		buf[IFNAMSIZ-1] = 0;
-diff --git a/net/socket.c b/net/socket.c
-index 7f64a6eccf63..6b2a898055ca 100644
---- a/net/socket.c
-+++ b/net/socket.c
-@@ -3233,21 +3233,6 @@ static int compat_ifr_data_ioctl(struct net *net, unsigned int cmd,
- 	return dev_ioctl(net, cmd, &ifreq, data, NULL);
- }
- 
--/* Since old style bridge ioctl's endup using SIOCDEVPRIVATE
-- * for some operations; this forces use of the newer bridge-utils that
-- * use compatible ioctls
-- */
--static int old_bridge_ioctl(compat_ulong_t __user *argp)
--{
--	compat_ulong_t tmp;
--
--	if (get_user(tmp, argp))
--		return -EFAULT;
--	if (tmp == BRCTL_GET_VERSION)
--		return BRCTL_VERSION + 1;
--	return -EINVAL;
--}
--
- static int compat_sock_ioctl_trans(struct file *file, struct socket *sock,
- 			 unsigned int cmd, unsigned long arg)
- {
-@@ -3259,9 +3244,6 @@ static int compat_sock_ioctl_trans(struct file *file, struct socket *sock,
- 		return sock_ioctl(file, cmd, (unsigned long)argp);
- 
- 	switch (cmd) {
--	case SIOCSIFBR:
--	case SIOCGIFBR:
--		return old_bridge_ioctl(argp);
- 	case SIOCWANDEV:
- 		return compat_siocwandev(net, argp);
- 	case SIOCGSTAMP_OLD:
-@@ -3290,6 +3272,8 @@ static int compat_sock_ioctl_trans(struct file *file, struct socket *sock,
- 	case SIOCGSTAMP_NEW:
- 	case SIOCGSTAMPNS_NEW:
- 	case SIOCGIFCONF:
-+	case SIOCSIFBR:
-+	case SIOCGIFBR:
- 		return sock_ioctl(file, cmd, arg);
- 
- 	case SIOCGIFFLAGS:
--- 
-2.33.0
 
