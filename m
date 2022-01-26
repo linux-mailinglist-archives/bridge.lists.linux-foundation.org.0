@@ -1,49 +1,47 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF854A2CDF
-	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:41 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00EDA4A2CE0
+	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:42 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 191714098B;
-	Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 06D7C61B99;
+	Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id e4EgM6hkGzbM; Sat, 29 Jan 2022 08:15:38 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id RlsWC9kCWMq3; Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 8B3E64094B;
-	Sat, 29 Jan 2022 08:15:37 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 646A26107E;
+	Sat, 29 Jan 2022 08:15:38 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 56796C0073;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 88F74C0079;
 	Sat, 29 Jan 2022 08:15:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 63E14C002F
- for <bridge@lists.linux-foundation.org>; Tue, 25 Jan 2022 06:19:48 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C182CC002F
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 02:54:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 4463360A9D
- for <bridge@lists.linux-foundation.org>; Tue, 25 Jan 2022 06:19:48 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id A262D60C03
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 02:54:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=nvidia.com
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XYFo-Lsav4fd for <bridge@lists.linux-foundation.org>;
- Tue, 25 Jan 2022 06:19:46 +0000 (UTC)
+ with ESMTP id B4p4pyQcjfl1 for <bridge@lists.linux-foundation.org>;
+ Wed, 26 Jan 2022 02:54:46 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2048.outbound.protection.outlook.com [40.107.223.48])
- by smtp3.osuosl.org (Postfix) with ESMTPS id C04C5607F0
- for <bridge@lists.linux-foundation.org>; Tue, 25 Jan 2022 06:19:46 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 74B4E60B66
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 02:54:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P7HYMSABb92g40pCTxkvA1HiYlgWJS12firZ9tWHG15XmScqKxZJKXwp/4rGKzSxFcF+BcUwl3nzTbTTRjjrSrOvqFdKm2Zp295uOZY4HX8+I5vjE00sFHNTTPYjgTX7gNXUO+qeGRBlSecBEwgXl+wBPW9CIKcWOiUd2N6c56gwnFDVWC+DvOsAUynrGENRT1Tr13lp9Di3lr2jw6qA383RnYItmrfskq9kfkzpiQ66TfB8yYE0nZIgc7MUY6SoyxaBKtVoG2hM+bPHyB80BDJJsQJ60EypXbkWl2icKKYMi2KawXLNI8cdjUi8ac9xsjC2eF/0JHxd0eOWrfelkw==
+ b=SNrRcI2+iRG674I+urkN6JaWp+bKGTYn56UIBnUCOaeJKNEcZEq+sPEjYP4i+p1hIYhJy4Q5ezH1a2q1cTzNJ5DfH6UfcwxkXroJuEURxldik0CqJFVOK4L8ZE5/zs4nDwtWDyjAsspc7J8tsT772zuMtukeXtkeztD7pW3qwhENZNYfmrH7e3yBuhmGS2eGaITXLtP3P4qq3IIoHu3rGWI5Evf2yTzWaa+iHtRJRJcvdZ2vTNLviUdxv838rAkN1Z7YF0dqXFV1SFIgtOMIK1LUOiwSwX2wkJ+kOUBLmR3yGjnlUQ/EA4ygY75LHkmMr8EOQt8CWriOLm5VRHdZOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VgrXuCotWpenuvOgBO5s0mNNruBAafldw+RETouHM3I=;
- b=hZd3pSIVOKdq8ZA3DRInu1pDbBCPKNrl+0brQ+cgXvKgCBo9JDV4pxbytPIr7SCIJ7ONdfLOVIJ0sUq46juFInq9nAtLlFRHKJVk+IArivkJ6RQogyKUDs8VnZzii41NAkzK0mIvMoTCvRygqrpAC81gMuTcICwxt0VL6Jv/00IS2QJ0MX7VOW6Gm1t0yHY6b3+D1fDIHLb5p3IGOd1Etkmwse8o7aM2wC/40iw2VY7qlFgXPanISYnAT6ZIxTxpxccTwT7qy9Zs/rIKVKF75J+pqtlTHmlwFbQKyWDdPU+Kc207lX94WHvQUR+gVzBNEavoyAhPGYpPlu+iQk1ONw==
+ bh=N3UU6MorBUNmbg3AiobR+szu8JhD3o+Y0PfbqYjTzIY=;
+ b=eIE6g7D8e7dlykqtRsbcIrY2oWYd9uFfxIXs0T0gJQzRxhaIw8eZdHG+vfqBTQv86jq6VtEIt5ZohJ83yslx+YjaeKPG2Po9rYHU8VYXpExprJZIJe1oop2cqRUPBcNKAMgyw4v2QVUVjDDNJ8PiPai0auGuim+u6f4fFHZlPmwtw7iXrzavPxpyNNsa3Tb1dPSotVHDUF4r81lbts/hzjcFS4YaAKm4vO8aSiq0gibbQf6GYFx57hkudAxxLC7lmNB86ONmuWqifLKe509LeuTz7whZyf9Q2DEj6J/zEv097Yy/fba3it0sfsG8nvN31sqsL+/PtYSMSkmzlZziqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  12.22.5.238) smtp.rcpttodomain=lists.linux-foundation.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -51,18 +49,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VgrXuCotWpenuvOgBO5s0mNNruBAafldw+RETouHM3I=;
- b=DmkKdXIjQWnuuWJRf7VxLSxUoquFTit4NmLQNezkM9CXNCLoWpwdvo9Hn5oSQ8+r2wc0mHqZ2H8Y3PNzRf2TTv6TXwfWcDjYTLHF3lhEZ56uyXjx2zCAwSAWfShwMbLD4Eik+K3QqWVJdnQR00LzGV/pmYwY+mLdhyZMo5Iall/Cr8LpabRWrB1MYFNawi+UUC+2MTiuXBTUdZceC3a0Jyx0y5aq/m52kqzrac2uvGF7nlUkrfR2MZP3qz6k79RTI46b9bIViCtrVvZjuRUbbwnIgLufAuVCGqrTSn5WVtfFsXZkWSVRIkLc1EW3d7deH8YfDhAr+ioAG1aLSf9New==
-Received: from BN8PR16CA0002.namprd16.prod.outlook.com (2603:10b6:408:4c::15)
- by DM6PR12MB3339.namprd12.prod.outlook.com (2603:10b6:5:119::23) with
+ bh=N3UU6MorBUNmbg3AiobR+szu8JhD3o+Y0PfbqYjTzIY=;
+ b=Z4vyIxJWpw7GwtXBGQbD7LOhtFSA+5jDeQBFRel3Y4qqNDut3cSi0Pb/FPynhOtoLjnDRfwDEYG6g0vrWO40qDHxgG6kzn9oLkhs4Na/8rtweePFVV8cQt4xhD+2c/dC5ktTuKhhUakalZRpYiU+dUS8GD03FOiWPW6uGI4Aaojf4piI05NnXWXnZZQ2drBK4ltxc7az5xvw0rlzocZFdZ61OSkd+n11R48A/XRLaR76ClsCL/IBaCWxSo9c+kJ3B3s3qrZQ01NZDfHDoagfEiWITRhutE+qS8RldCI1yqcFJaxjphaXoenG2fdrwNIxSZQ+oXfC8+CynWUBwQce4g==
+Received: from BN0PR02CA0059.namprd02.prod.outlook.com (2603:10b6:408:e5::34)
+ by DM5PR12MB1225.namprd12.prod.outlook.com (2603:10b6:3:7a::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.13; Tue, 25 Jan
- 2022 06:19:44 +0000
-Received: from BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:4c:cafe::ec) by BN8PR16CA0002.outlook.office365.com
- (2603:10b6:408:4c::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17 via Frontend
- Transport; Tue, 25 Jan 2022 06:19:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.12; Wed, 26 Jan
+ 2022 02:54:43 +0000
+Received: from BN8NAM11FT042.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e5:cafe::8f) by BN0PR02CA0059.outlook.office365.com
+ (2603:10b6:408:e5::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15 via Frontend
+ Transport; Wed, 26 Jan 2022 02:54:43 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
  smtp.mailfrom=nvidia.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
@@ -70,55 +68,58 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  12.22.5.238 as permitted sender) receiver=protection.outlook.com;
  client-ip=12.22.5.238; helo=mail.nvidia.com;
 Received: from mail.nvidia.com (12.22.5.238) by
- BN8NAM11FT029.mail.protection.outlook.com (10.13.177.68) with Microsoft SMTP
+ BN8NAM11FT042.mail.protection.outlook.com (10.13.177.85) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4909.7 via Frontend Transport; Tue, 25 Jan 2022 06:19:43 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- DRHQMAIL105.nvidia.com (10.27.9.14) with Microsoft SMTP Server (TLS) id
- 15.0.1497.18; Tue, 25 Jan 2022 06:19:42 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; 
- Mon, 24 Jan 2022 22:19:41 -0800
-Received: from d3.nvidia.com (10.127.8.13) by mail.nvidia.com (10.126.190.182)
- with Microsoft SMTP Server id 15.2.986.9 via Frontend Transport;
- Mon, 24 Jan 2022 22:19:40 -0800
+ 15.20.4930.15 via Frontend Transport; Wed, 26 Jan 2022 02:54:42 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL105.nvidia.com
+ (10.27.9.14) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
+ Wed, 26 Jan 2022 02:54:41 +0000
+Received: from d3 (10.126.231.35) by rnnvmail201.nvidia.com (10.129.68.8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; Tue, 25 Jan 2022
+ 18:54:40 -0800
+Date: Wed, 26 Jan 2022 11:54:37 +0900
 To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Date: Tue, 25 Jan 2022 15:19:03 +0900
-Message-ID: <20220125061903.714509-1-bpoirier@nvidia.com>
-X-Mailer: git-send-email 2.34.1
+Message-ID: <YfC37T23elbsAD0R@d3>
+References: <20220125061903.714509-1-bpoirier@nvidia.com>
+ <cc425efa-1e20-286a-ba96-bc9555142c9c@nvidia.com>
+ <25ec6925-8ebf-d2fa-7d73-708ba72cec0a@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <25ec6925-8ebf-d2fa-7d73-708ba72cec0a@nvidia.com>
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: drhqmail201.nvidia.com (10.126.190.180) To
+ rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 18f8efcf-8bbe-41d7-aa8b-08d9dfcaad3e
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3339:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3339ACE41F3C6EB8B4ED5438B05F9@DM6PR12MB3339.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:949;
+X-MS-Office365-Filtering-Correlation-Id: b5b94930-20e2-4f22-c3ea-08d9e07733ec
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1225:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1225EF98F7F4685E2D629014B0209@DM5PR12MB1225.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:660;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UjGmUPjhk4/o7GoKQHIhThN49MlFMqDuFZftKwrwvkXnIa7Bw6AWlAvJ1tZrYaDRLtBwUqnJYkrKvJ0gwh4L2f2ogVmL78gGBKkjJpLmzSvQdbhqva6yKOFEuy4OTzL07YpmQV4DDb4pJDEupne/Q5RayV0j1BU+pGE4TvLUTZZvFbYt6UEcbHZZO1bUeGreeAyJkv+6BbmZvHDYCKVVia7Ca1j4BdiUc2fYEWMn00hmVnIubgizapRgN3bm4sxAtU1tUu+JYjLLm9M7b6bjTHLs+Xeb7/Q3H5aYVnhHPCimqQz862QOgFCM7TVl8fAI2PeYGTvw//nSE22eoKrBECtlDZKrXVnQ8L9r3Nwdbs3ZFBOxtq5vmnL+pYosBt/MJ2nII8zcLMuKtEfJvjIZ0Dx3vMjt1TxMGveM227N+Xhft6LoPGfL8nj0iz/CuAEAnM1uQME4bLBycVJP8kpRYqJzuDI/uMiyQW1iHC1S9G8YMf10AMNLNENClelxPDLzMu8uS7pNF49IVDg1Hk6gT5UsjEaGNcq+1gKTp6EIKyY7o76vATnHFPItwXrSPmC2ekCNz5dpaslfoCtMbsKTf3XwhJ3KTUwCiUvoVo4i7J476PI9L2QlO99gVq5KXgiPOlnYI7xHpkq+v9GEmPSG38pcYWmhBwzU4MJ1ShCvpLD3VBO3jB8xHjeXlOgh4mo2GW8ndYAVeCKeDIIk8vKUg7eR9oyEwB8BSrTfptdnuzikpsq8hzgO1tcP16R7/SCXp5x2/72PAC1+yNZFqVMoxuslyg6uvuZxWZS9WbMbJXQ=
+X-Microsoft-Antispam-Message-Info: Sh3MijeRHfVHgwC7FWPGs7PYIg58zZTUiCQIaf1MYt8RZXYZD2rfnWwQNLxdZTR41yhEzi7PwCNEp/JGlXHoFETqBcu229Fm2qlfanoPXJ6AwwYZRyw2j1/FD9BDisRouejQIWOgZG0WJM8QOIVGk0rMxunLwAjqNq2hah9ywfVZpq6Uz4ePfCrpiYFbupPjyperFawsaS0v9ChJnRmzarOFY7elHhduiXA8Pkp9P3clwkOS9HYNiPQLd4IabCxiHfyl9yOhISWUPOnG7CPnD/Vl//l6gJ/jGlyeEqBnczbHPk6Hdf4Q8aIha8PrAY4h0IL6ANg98Fh6AvuX4X0p+qzAUb6txOtyh179zi3LlZ/rWGPPxMGw7M0GdkyFMzezcFodXLc9QwE/QSJwI2QJ1RpfmXOry1TfQu4XEwgUXyNxbgEo0L4Q89ks0MIYEYVciva2EWJxJvCi775Cw6JdubHjeoTHmRmB5+RSRXatyIBfV0ZHC+QE/wZOs3+51L2+/oMQZwS19qkwr+RlVcYZ0MjjNgjntJZyhxOp42mITx0CC5a0fDRg5NhbmMlkKSolgDzKRsb9zLTdaJ9jt6b0aaR8HnP8k7DurOjbK1YMuqO1839OE0MBYhCd5D2UMIlRNqmYjwhY9wWOykR5zZi6jPqHkIGxErWmaNZT9L3cpa8R9WYlJlzRkkcjJBnEvN9QbXJ7Bd2xFmFwWdOw/2pDfDZTGiCxila4GVVE1cWYyALrUfJvwwZHJW9dq93+IcEGoUlMaVXqimFJHem/gwa/gdO/LXlNs/Ng7mNbJ5Q9BrM=
 X-Forefront-Antispam-Report: CIP:12.22.5.238; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
- SFS:(4636009)(40470700004)(36840700001)(46966006)(6862004)(36860700001)(70206006)(8936002)(5660300002)(7696005)(6636002)(508600001)(81166007)(316002)(356005)(1076003)(40460700003)(2616005)(70586007)(336012)(26005)(2906002)(86362001)(426003)(47076005)(6666004)(36756003)(8676002)(54906003)(37006003)(82310400004)(186003)(4326008)(83380400001)(36900700001);
+ SFS:(4636009)(40470700004)(36840700001)(46966006)(16526019)(53546011)(36860700001)(82310400004)(33716001)(83380400001)(186003)(9686003)(55016003)(47076005)(426003)(508600001)(81166007)(40460700003)(316002)(336012)(6666004)(4326008)(86362001)(356005)(6636002)(26005)(70586007)(8676002)(2906002)(54906003)(9576002)(8936002)(5660300002)(6862004)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 06:19:43.0870 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18f8efcf-8bbe-41d7-aa8b-08d9dfcaad3e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2022 02:54:42.4801 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5b94930-20e2-4f22-c3ea-08d9e07733ec
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.238];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT042.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3339
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1225
 X-Mailman-Approved-At: Sat, 29 Jan 2022 08:15:36 +0000
 Cc: Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org, "David S. Miller" <davem@davemloft.net>,
  Roopa Prabhu <roopa@nvidia.com>
-Subject: [Bridge] [PATCH net] net: bridge: vlan: Fix dumping with ifindex
+Subject: Re: [Bridge] [PATCH net] net: bridge: vlan: Fix dumping with ifindex
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -135,112 +136,65 @@ Reply-To: Benjamin Poirier <bpoirier@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Specifying ifindex in a RTM_GETVLAN dump leads to an infinite repetition
-of the same entries. netlink_dump() normally calls the dump function
-repeatedly until it returns 0 which br_vlan_rtm_dump() never does in
-that case.
+On 2022-01-25 11:51 +0200, Nikolay Aleksandrov wrote:
+> On 25/01/2022 10:24, Nikolay Aleksandrov wrote:
+> > On 25/01/2022 08:19, Benjamin Poirier wrote:
+> >> Specifying ifindex in a RTM_GETVLAN dump leads to an infinite repetition
+> >> of the same entries. netlink_dump() normally calls the dump function
+> >> repeatedly until it returns 0 which br_vlan_rtm_dump() never does in
+> >> that case.
+> >>
+> >> Fixes: 8dcea187088b ("net: bridge: vlan: add rtm definitions and dump support")
+> >> Signed-off-by: Benjamin Poirier <bpoirier@nvidia.com>
+> >> ---
+> >>  net/bridge/br_vlan.c | 6 ++++--
+> >>  1 file changed, 4 insertions(+), 2 deletions(-)
+> >>
+> > [snip]
+> >>
+> >> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+> >> index 84ba456a78cc..2e606f2b9a4d 100644
+> >> --- a/net/bridge/br_vlan.c
+> >> +++ b/net/bridge/br_vlan.c
+> >> @@ -2013,7 +2013,7 @@ static int br_vlan_rtm_dump(struct sk_buff *skb, struct netlink_callback *cb)
+> >>  		dump_flags = nla_get_u32(dtb[BRIDGE_VLANDB_DUMP_FLAGS]);
+> >>  
+> >>  	rcu_read_lock();
+> >> -	if (bvm->ifindex) {
+> >> +	if (bvm->ifindex && !s_idx) {
+> >>  		dev = dev_get_by_index_rcu(net, bvm->ifindex);
+> >>  		if (!dev) {
+> >>  			err = -ENODEV;
+> >> @@ -2022,7 +2022,9 @@ static int br_vlan_rtm_dump(struct sk_buff *skb, struct netlink_callback *cb)
+> >>  		err = br_vlan_dump_dev(dev, skb, cb, dump_flags);
+> >>  		if (err && err != -EMSGSIZE)
+> >>  			goto out_err;
+> >> -	} else {
+> >> +		else if (!err)
+> >> +			idx++;
+> >> +	} else if (!bvm->ifindex) {
+> >>  		for_each_netdev_rcu(net, dev) {
+> >>  			if (idx < s_idx)
+> >>  				goto skip;
+> > 
+> > Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+> 
+> Actually I'd prefer an alternative that would encapsulate handling the single
+> device dump in its block, avoid all the "else if"s and is simpler (untested):
+> 
+> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+> index 84ba456a78cc..43201260e37b 100644
+> --- a/net/bridge/br_vlan.c
+> +++ b/net/bridge/br_vlan.c
+> @@ -2020,7 +2020,8 @@ static int br_vlan_rtm_dump(struct sk_buff *skb, struct netlink_callback *cb)
+>                         goto out_err;
+>                 }
+>                 err = br_vlan_dump_dev(dev, skb, cb, dump_flags);
+> -               if (err && err != -EMSGSIZE)
+> +               /* if the dump completed without an error we return 0 here */
+> +               if (err != -EMSGSIZE)
+>                         goto out_err;
+>         } else {
+>                 for_each_netdev_rcu(net, dev) {
 
-Fixes: 8dcea187088b ("net: bridge: vlan: add rtm definitions and dump support")
-Signed-off-by: Benjamin Poirier <bpoirier@nvidia.com>
----
- net/bridge/br_vlan.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-The problem can be reproduced by using the following iproute2 patch and
-running:
-ip link add br0 type bridge
-ip link add dummy0 master br0 type dummy
-bridge vlan add dev dummy0 vid 100
-
-./bridge/bridge -d vlan show dev dummy0
-[infinite loop]
-
-	diff --git a/bridge/vlan.c b/bridge/vlan.c
-	index 8300f353..f206a671 100644
-	--- a/bridge/vlan.c
-	+++ b/bridge/vlan.c
-	@@ -1128,7 +1128,8 @@ static int vlan_show(int argc, char **argv, int subject)
-		if (show_details && subject == VLAN_SHOW_VLAN) {
-			__u32 dump_flags = show_stats ? BRIDGE_VLANDB_DUMPF_STATS : 0;
-	 
-	-		if (rtnl_brvlandump_req(&rth, PF_BRIDGE, dump_flags) < 0) {
-	+		if (rtnl_brvlandump_req(&rth, PF_BRIDGE, dump_flags,
-	+					filter_index) < 0) {
-				perror("Cannot send dump request");
-				exit(1);
-			}
-	@@ -1240,7 +1241,8 @@ static int vlan_global_show(int argc, char **argv)
-	 
-		new_json_obj(json);
-	 
-	-	if (rtnl_brvlandump_req(&rth, PF_BRIDGE, dump_flags) < 0) {
-	+	if (rtnl_brvlandump_req(&rth, PF_BRIDGE, dump_flags, filter_index)
-	+	    < 0) {
-			perror("Cannot send dump request");
-			exit(1);
-		}
-	diff --git a/include/libnetlink.h b/include/libnetlink.h
-	index 9e4cc101..276b7fbf 100644
-	--- a/include/libnetlink.h
-	+++ b/include/libnetlink.h
-	@@ -69,7 +69,8 @@ int rtnl_neightbldump_req(struct rtnl_handle *rth, int family)
-		__attribute__((warn_unused_result));
-	 int rtnl_mdbdump_req(struct rtnl_handle *rth, int family)
-		__attribute__((warn_unused_result));
-	-int rtnl_brvlandump_req(struct rtnl_handle *rth, int family, __u32 dump_flags)
-	+int rtnl_brvlandump_req(struct rtnl_handle *rth, int family, __u32 dump_flags,
-	+			int ifindex)
-		__attribute__((warn_unused_result));
-	 int rtnl_netconfdump_req(struct rtnl_handle *rth, int family)
-		__attribute__((warn_unused_result));
-	diff --git a/lib/libnetlink.c b/lib/libnetlink.c
-	index 7e977a67..e0fce8e5 100644
-	--- a/lib/libnetlink.c
-	+++ b/lib/libnetlink.c
-	@@ -450,7 +450,8 @@ int rtnl_mdbdump_req(struct rtnl_handle *rth, int family)
-		return send(rth->fd, &req, sizeof(req), 0);
-	 }
-	 
-	-int rtnl_brvlandump_req(struct rtnl_handle *rth, int family, __u32 dump_flags)
-	+int rtnl_brvlandump_req(struct rtnl_handle *rth, int family, __u32 dump_flags,
-	+			int ifindex)
-	 {
-		struct {
-			struct nlmsghdr nlh;
-	@@ -462,6 +463,7 @@ int rtnl_brvlandump_req(struct rtnl_handle *rth, int family, __u32 dump_flags)
-			.nlh.nlmsg_flags = NLM_F_DUMP | NLM_F_REQUEST,
-			.nlh.nlmsg_seq = rth->dump = ++rth->seq,
-			.bvm.family = family,
-	+		.bvm.ifindex = ifindex,
-		};
-	 
-		addattr32(&req.nlh, sizeof(req), BRIDGE_VLANDB_DUMP_FLAGS, dump_flags);
-	-- 
-
-diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index 84ba456a78cc..2e606f2b9a4d 100644
---- a/net/bridge/br_vlan.c
-+++ b/net/bridge/br_vlan.c
-@@ -2013,7 +2013,7 @@ static int br_vlan_rtm_dump(struct sk_buff *skb, struct netlink_callback *cb)
- 		dump_flags = nla_get_u32(dtb[BRIDGE_VLANDB_DUMP_FLAGS]);
- 
- 	rcu_read_lock();
--	if (bvm->ifindex) {
-+	if (bvm->ifindex && !s_idx) {
- 		dev = dev_get_by_index_rcu(net, bvm->ifindex);
- 		if (!dev) {
- 			err = -ENODEV;
-@@ -2022,7 +2022,9 @@ static int br_vlan_rtm_dump(struct sk_buff *skb, struct netlink_callback *cb)
- 		err = br_vlan_dump_dev(dev, skb, cb, dump_flags);
- 		if (err && err != -EMSGSIZE)
- 			goto out_err;
--	} else {
-+		else if (!err)
-+			idx++;
-+	} else if (!bvm->ifindex) {
- 		for_each_netdev_rcu(net, dev) {
- 			if (idx < s_idx)
- 				goto skip;
--- 
-2.34.1
-
+LGTM, thank you.
