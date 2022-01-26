@@ -1,95 +1,109 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3574A2CE1
-	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:43 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3814A2CE9
+	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:48 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 7CBF182F57;
-	Sat, 29 Jan 2022 08:15:41 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 610E04048E;
+	Sat, 29 Jan 2022 08:15:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Fb35l1ieo6vy; Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id iTgLQ6uf9axs; Sat, 29 Jan 2022 08:15:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 1E516831CA;
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 6EEB040116;
 	Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2ACA0C007B;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 71DE0C0079;
 	Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3630CC002D
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:10:02 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 430D7C002D
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:51:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 1D19040385
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:10:02 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 2F97F40132
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:51:00 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id K1u0t99SKQzb for <bridge@lists.linux-foundation.org>;
- Wed, 26 Jan 2022 12:10:01 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com
- [IPv6:2607:f8b0:4864:20::1042])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 6751140291
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:10:01 +0000 (UTC)
-Received: by mail-pj1-x1042.google.com with SMTP id
- s2-20020a17090ad48200b001b501977b23so4399707pju.2
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 04:10:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=AEzAoHuhPGPKCGh3cWJjJrGXHXVQzmvhoLSTyK087Xo=;
- b=djMVuKsI0YKi8jRlWCDcM3ROIbZoH//glenypM9jc7sLmeCe/EE75Y67qRrzAf3wQP
- QUobivH6WxoG9ejnNkyis1z3Jf46rdvKV7V2W3ttwBKNfuyoNAyUMIBSaurN+y6UYFmm
- NVhUjhZGlh0F4MQW6fuIZqv3iIKXwHD+7sUKTw9LzoI4OoSO74QRpxtGqMf2MIVDqMbI
- agGnOSaI6mF2rB8YbiD39ItlFrnyCv+mSU123nGp2x0E17DtbzhA9fwphSrJz4pi+THm
- sozAj6KeeguRAfAJerosUnbKNCaqMDE2tAGjnZPFKcdJtzOKZSovKzaQHvbcJtOXaEow
- fEIg==
+ with ESMTP id JOa6f0yPCQ3k for <bridge@lists.linux-foundation.org>;
+ Wed, 26 Jan 2022 12:50:59 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 06E0F409A0
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:50:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1643201457;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=e9hOV54Md4mkMW4fxi7kpJhvDxIQw3Di2qayJ9be2AQ=;
+ b=DLSkFGgW2t4i1H8JMQrzOgXoTqD0KLaiDl8B6ei76G04jVzuUsDUNX+IqzeITKhcKNgMR5
+ o/2OodU6UulwYgLWJ+lxqUJId0Vmj127SVFdlFLFcjNGueiIOSNBY4vp3t+LOqP8vkPdf8
+ zpdi+P0ZKemknRoCVJ+zyxWAbIBSpps=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-177-G1C2oYtHPuiZzuQgGvDnPA-1; Wed, 26 Jan 2022 07:50:56 -0500
+X-MC-Unique: G1C2oYtHPuiZzuQgGvDnPA-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ w3-20020a50c443000000b0040696821132so9593252edf.22
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 04:50:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=AEzAoHuhPGPKCGh3cWJjJrGXHXVQzmvhoLSTyK087Xo=;
- b=stf0RlQPnBCLq8szuODUVppXgcUPnpePeLU44qs/OEQIU77IxuvXxXspTWTHMOA5Mj
- Cz5Fy/jrCZyfkctvgUi4fqXogCRNjuHAYNfy+GRHF96FedwTiLvB78RruZ13vXENYCdb
- rDvEyXkSqEfHIAqYCH4qX4gSa5B+t0z0k0XpALSMYL2k6wOe7SFsVIBgz8z/2I3j2qyI
- xZPNYHoc71EUc2fOdoQPzDNRKy0/mqY+Cy6UKqDNfUtq/YV8XRazrXxbl0sQAu6dZDae
- a/VVNPtuWUREgcyN3wHIlGAMs8JzA+dY2BiuOKpgyf1cR2eH46Zc+UMCNHo/UCAbBpU2
- bL5Q==
-X-Gm-Message-State: AOAM5317dHvIXjepg72DMfRVXWJiYPyhEVAE3O3q8mGMnRAR11jL+x8V
- 2cBC38xbcGT1iluz2ZL43NwG7DxOLC/0/A==
-X-Google-Smtp-Source: ABdhPJxncV8VOSnug4ym2aL2nT/IZC7T0uIUIvLBVm9RqV/h+fb+P0gfjEnvrMXmbIV133KdjmCRIg==
-X-Received: by 2002:a17:90a:7e8a:: with SMTP id
- j10mr8400366pjl.13.1643199000857; 
- Wed, 26 Jan 2022 04:10:00 -0800 (PST)
-Received: from localhost ([2405:201:6014:d064:3d4e:6265:800c:dc84])
- by smtp.gmail.com with ESMTPSA id h9sm1886487pfe.101.2022.01.26.04.10.00
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=e9hOV54Md4mkMW4fxi7kpJhvDxIQw3Di2qayJ9be2AQ=;
+ b=qfGW5866ZCjOewt93ISnq+qCTsP3CDKxsfyFnUt0X1WCKEMLT1mVNcZisju9sjlwaZ
+ 37YFIf3tQjH0xC582TxfSgAp55LG39d7iPZHzZY98dusdiwBMx34cyuLz2bNX8yCOVaf
+ QW1T+45iSic24+CSnu6CStqN3cPFGsEhWhkmh+DncblC/iKE8Nki+zLC1vhMAPEDK9HS
+ ffj+2NUPT/jPA7MlGIwVUY+aB6mPuj+Ot4/pi3RSGVxJjRtVCUTF9LqjIPCvS1VqCb6f
+ pj4lzYCjwI7gmJudfkhTaxca3kxMOMqJjKsZMwHIT/QP7nA9ORhmt7gYTz0azDbxOrLW
+ bjmw==
+X-Gm-Message-State: AOAM5312Tfb/NXY7p/V4Y0DC1huTTedmAKjVEkq1UAZyJ+E7eV3qYhUP
+ clGw4lLusjsnhylUEqxWxYmJYS8DX1TBWagiHuiOenMoORsmKOcGagdaOt9mJCOh+5ktdxWwU0K
+ v6NDGvcPggsWtNy4yf2yqpQUE/azstpI=
+X-Received: by 2002:a05:6402:4405:: with SMTP id
+ y5mr12529177eda.223.1643201455150; 
+ Wed, 26 Jan 2022 04:50:55 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJymMzrQNTBr6KQtAAL2rYnA7z94zIvHXkQfemPJFKG3tbK1JiITdY/yWlO6BrrB0vG5KgMPIQ==
+X-Received: by 2002:a05:6402:4405:: with SMTP id
+ y5mr12529108eda.223.1643201454170; 
+ Wed, 26 Jan 2022 04:50:54 -0800 (PST)
+Received: from alrua-x1.borgediget.toke.dk ([45.145.92.2])
+ by smtp.gmail.com with ESMTPSA id a11sm9764879edv.76.2022.01.26.04.50.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Jan 2022 04:10:00 -0800 (PST)
-Date: Wed, 26 Jan 2022 17:38:09 +0530
-From: Kumar Kartikeya Dwivedi <memxor@gmail.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Message-ID: <20220126120809.ihs2wko74dm4r3pi@apollo.legion>
+ Wed, 26 Jan 2022 04:50:53 -0800 (PST)
+Received: by alrua-x1.borgediget.toke.dk (Postfix, from userid 1000)
+ id E764A1805FA; Wed, 26 Jan 2022 13:50:51 +0100 (CET)
+From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
+To: Nikolay Aleksandrov <nikolay@nvidia.com>, Lorenzo Bianconi
+ <lorenzo@kernel.org>
+In-Reply-To: <113d070a-6df1-66c2-1586-94591bc5aada@nvidia.com>
 References: <cover.1643044381.git.lorenzo@kernel.org>
  <720907692575488526f06edc2cf5c8f783777d4f.1643044381.git.lorenzo@kernel.org>
  <61553c87-a3d3-07ae-8c2f-93cf0cb52263@nvidia.com>
  <YfEwLrB6JqNpdUc0@lore-desk>
+ <113d070a-6df1-66c2-1586-94591bc5aada@nvidia.com>
+X-Clacks-Overhead: GNU Terry Pratchett
+Date: Wed, 26 Jan 2022 13:50:51 +0100
+Message-ID: <878rv23bkk.fsf@toke.dk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YfEwLrB6JqNpdUc0@lore-desk>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=toke@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-Mailman-Approved-At: Sat, 29 Jan 2022 08:15:36 +0000
 Cc: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- daniel@iogearbox.net, Roopa Prabhu <roopa@nvidia.com>, netdev@vger.kernel.org,
- dsahern@kernel.org, toke@redhat.com, komachi.yoshiki@gmail.com, ast@kernel.org,
- lorenzo.bianconi@redhat.com, Ido Schimmel <idosch@idosch.org>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, brouer@redhat.com, kuba@kernel.org,
- bpf@vger.kernel.org, andrii.nakryiko@gmail.com, davem@davemloft.net
+ daniel@iogearbox.net, netdev@vger.kernel.org, dsahern@kernel.org,
+ Roopa Prabhu <roopa@nvidia.com>, komachi.yoshiki@gmail.com, ast@kernel.org,
+ davem@davemloft.net, Ido Schimmel <idosch@idosch.org>, memxor@gmail.com,
+ brouer@redhat.com, kuba@kernel.org, bpf@vger.kernel.org,
+ andrii.nakryiko@gmail.com, lorenzo.bianconi@redhat.com
 Subject: Re: [Bridge] [RFC bpf-next 1/2] net: bridge: add unstable
  br_fdb_find_port_from_ifindex helper
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -106,42 +120,69 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Jan 26, 2022 at 04:57:42PM IST, Lorenzo Bianconi wrote:
-> > On 24/01/2022 19:20, Lorenzo Bianconi wrote:
-> > > Similar to bpf_xdp_ct_lookup routine, introduce
-> > > br_fdb_find_port_from_ifindex unstable helper in order to accelerate
-> > > linux bridge with XDP. br_fdb_find_port_from_ifindex will perform a
-> > > lookup in the associated bridge fdb table and it will return the
-> > > output ifindex if the destination address is associated to a bridge
-> > > port or -ENODEV for BOM traffic or if lookup fails.
-> > >
-> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > ---
-> > >  net/bridge/br.c         | 21 +++++++++++++
-> > >  net/bridge/br_fdb.c     | 67 +++++++++++++++++++++++++++++++++++------
-> > >  net/bridge/br_private.h | 12 ++++++++
-> > >  3 files changed, 91 insertions(+), 9 deletions(-)
-> > >
-> >
-> > Hi Lorenzo,
->
-> Hi Nikolay,
->
-> thx for the review.
->
-> [...]
->
-> I guess at the time I sent the series it was just in bpf-next but now it should
-> be in net-next too.
-> I do not think we need a unregister here.
-> @Kumar: agree?
->
+Nikolay Aleksandrov <nikolay@nvidia.com> writes:
 
-Yes, no need to call unregister (hence there is no unregister).
+> On 26/01/2022 13:27, Lorenzo Bianconi wrote:
+>>> On 24/01/2022 19:20, Lorenzo Bianconi wrote:
+>>>> Similar to bpf_xdp_ct_lookup routine, introduce
+>>>> br_fdb_find_port_from_ifindex unstable helper in order to accelerate
+>>>> linux bridge with XDP. br_fdb_find_port_from_ifindex will perform a
+>>>> lookup in the associated bridge fdb table and it will return the
+>>>> output ifindex if the destination address is associated to a bridge
+>>>> port or -ENODEV for BOM traffic or if lookup fails.
+>>>>
+>>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>>>> ---
+>>>>  net/bridge/br.c         | 21 +++++++++++++
+>>>>  net/bridge/br_fdb.c     | 67 +++++++++++++++++++++++++++++++++++------
+>>>>  net/bridge/br_private.h | 12 ++++++++
+>>>>  3 files changed, 91 insertions(+), 9 deletions(-)
+>>>>
+>>>
+>>> Hi Lorenzo,
+>> 
+>> Hi Nikolay,
+>> 
+>> thx for the review.
+>> 
+>>> Please CC bridge maintainers for bridge-related patches, I've added Roopa and the
+>>> bridge mailing list as well. Aside from that, the change is certainly interesting, I've been
+>>> thinking about a similar helper for some time now, few comments below.
+>> 
+>> yes, sorry for that. I figured it out after sending the series out.
+>> 
+>>>
+>>> Have you thought about the egress path and if by the current bridge state the packet would
+>>> be allowed to egress through the found port from the lookup? I'd guess you have to keep updating
+>>> the active ports list based on netlink events, but there's a lot of egress bridge logic that
+>>> either have to be duplicated or somehow synced. Check should_deliver() (br_forward.c) and later
+>>> egress stages, but I see how this is a good first step and perhaps we can build upon it.
+>>> There are a few possible solutions, but I haven't tried anything yet, most obvious being
+>>> yet another helper. :)
+>> 
+>> ack, right but I am bit worried about adding too much logic and slow down xdp
+>> performances. I guess we can investigate first the approach proposed by Alexei
+>> and then revaluate. Agree?
+>> 
+>
+> Sure, that approach sounds very interesting, but my point was that
+> bypassing the ingress and egress logic defeats most of the bridge
+> features. You just get an fdb hash table which you can build today
+> with ebpf without any changes to the kernel. :) You have multiple
+> states, flags and options for each port and each vlan which can change
+> dynamically based on external events (e.g. STP, config changes etc)
+> and they can affect forwarding even if the fdbs remain in the table.
 
-> > [...]
+To me, leveraging all this is precisely the reason to have BPF helpers
+instead of just replicating state in BPF maps: it's very easy to do that
+and show a nice speedup, and then once you get all the corner cases
+covered that the in-kernel code already deals with, you've chipped away
+at that speedup and spent a lot of time essentially re-writing the
+battle-tested code already in the kernel.
 
+So I think figuring out how to do the state sync is the right thing to
+do; a second helper would be fine for this, IMO, but I'm not really
+familiar enough with the bridge code to really have a qualified opinion.
 
+-Toke
 
---
-Kartikeya
