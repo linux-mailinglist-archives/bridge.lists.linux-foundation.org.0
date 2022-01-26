@@ -1,116 +1,95 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521134A2CE6
-	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:46 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3574A2CE1
+	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:43 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id D19F440123;
+	by smtp1.osuosl.org (Postfix) with ESMTP id 7CBF182F57;
 	Sat, 29 Jan 2022 08:15:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Xy_PRTnBAoj5; Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id CEA014048E;
-	Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Fb35l1ieo6vy; Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 1E516831CA;
+	Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id AC421C0072;
-	Sat, 29 Jan 2022 08:15:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2ACA0C007B;
+	Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8B72BC002D
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:02:31 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3630CC002D
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:10:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 68AA641610
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:02:31 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 1D19040385
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:10:02 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=redhat.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Bv9INmbMuhmB for <bridge@lists.linux-foundation.org>;
- Wed, 26 Jan 2022 12:02:30 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 1B1994160A
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1643198548;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=JffvNSe2BvAV1CIblV/we+uBV7wt/SYCRMsaGQKbhCY=;
- b=bVM0tDtUtVXr0Mj6dbicCiqUP4CYbhp5hp7AZ2blCjRm3ikx6G589XY0qveoKVssd6Gwz1
- WfXcbVd+JfIsbG9q/+uEmCnc/oMeytqGidHDNqHM72wcVIYMfhBbTpGEEZJc5RVpDcZ+eS
- wdEb+AdyosdBzukZWqptWBlC+8yKAI4=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-96-QkFikGu8M-2fOPbVajzOIw-1; Wed, 26 Jan 2022 07:02:27 -0500
-X-MC-Unique: QkFikGu8M-2fOPbVajzOIw-1
-Received: by mail-ej1-f72.google.com with SMTP id
- b12-20020a17090630cc00b006a7190bdfbaso4797183ejb.18
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 04:02:27 -0800 (PST)
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id K1u0t99SKQzb for <bridge@lists.linux-foundation.org>;
+ Wed, 26 Jan 2022 12:10:01 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com
+ [IPv6:2607:f8b0:4864:20::1042])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 6751140291
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 12:10:01 +0000 (UTC)
+Received: by mail-pj1-x1042.google.com with SMTP id
+ s2-20020a17090ad48200b001b501977b23so4399707pju.2
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 04:10:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=AEzAoHuhPGPKCGh3cWJjJrGXHXVQzmvhoLSTyK087Xo=;
+ b=djMVuKsI0YKi8jRlWCDcM3ROIbZoH//glenypM9jc7sLmeCe/EE75Y67qRrzAf3wQP
+ QUobivH6WxoG9ejnNkyis1z3Jf46rdvKV7V2W3ttwBKNfuyoNAyUMIBSaurN+y6UYFmm
+ NVhUjhZGlh0F4MQW6fuIZqv3iIKXwHD+7sUKTw9LzoI4OoSO74QRpxtGqMf2MIVDqMbI
+ agGnOSaI6mF2rB8YbiD39ItlFrnyCv+mSU123nGp2x0E17DtbzhA9fwphSrJz4pi+THm
+ sozAj6KeeguRAfAJerosUnbKNCaqMDE2tAGjnZPFKcdJtzOKZSovKzaQHvbcJtOXaEow
+ fEIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=JffvNSe2BvAV1CIblV/we+uBV7wt/SYCRMsaGQKbhCY=;
- b=sp3JBXdTrMByGK4v7zUkGTWS5KjOE5QTy7hlFJixCNXVLkZ/4nxNRYO8j0bL5FA9iH
- qeZMFpVh/jJ6mRI0Ox7E5+DlhWY/70G713WMnQEjJxIfFSKEP2xlHii+vy9j18nCuoT8
- A6i6P+VQo069T5/aCIMj28bHVgf7e8ueSgOgP5B6+hqKncfjO9Trg/BSje0QhvBWcBTT
- 2U2F5x31x7opvYDfv++C9M5ZJLSD0EM0dCeGsyJZmzsouPnmrc+yXs+rWlU1ynjgARnX
- 9sY8JYFJ3nJVJp7Oq6rJpk0iJT/OBccBW4ll58HU0P23PfPoA7I56RMMJfTVq02X5I1r
- 9qCQ==
-X-Gm-Message-State: AOAM532WdvyMp39Z6lwjHzYE2S0wvnsHuXlrQFaMp06b4ORYoEFBe/W5
- 3COchzDQRRj85jxNNGDi3JAaMjLLeLP4GHJND1k4DoybXPCrJ3D3AWQuKj7jgbKUOzW2TkZR5/h
- dmcZL98aCRG5cdNSUarKQop6hUqRTMgw=
-X-Received: by 2002:a17:907:7208:: with SMTP id
- dr8mr20302104ejc.503.1643198546024; 
- Wed, 26 Jan 2022 04:02:26 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy0+dKaLOqKZ04M8CubkNiWEfd6Zntql4B7K4J5CdeX8Zg49omzBwDYV9V8DA87HIjWqq5ZZw==
-X-Received: by 2002:a17:907:7208:: with SMTP id
- dr8mr20302068ejc.503.1643198545600; 
- Wed, 26 Jan 2022 04:02:25 -0800 (PST)
-Received: from alrua-x1.borgediget.toke.dk ([45.145.92.2])
- by smtp.gmail.com with ESMTPSA id e19sm6248161ejl.225.2022.01.26.04.02.24
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=AEzAoHuhPGPKCGh3cWJjJrGXHXVQzmvhoLSTyK087Xo=;
+ b=stf0RlQPnBCLq8szuODUVppXgcUPnpePeLU44qs/OEQIU77IxuvXxXspTWTHMOA5Mj
+ Cz5Fy/jrCZyfkctvgUi4fqXogCRNjuHAYNfy+GRHF96FedwTiLvB78RruZ13vXENYCdb
+ rDvEyXkSqEfHIAqYCH4qX4gSa5B+t0z0k0XpALSMYL2k6wOe7SFsVIBgz8z/2I3j2qyI
+ xZPNYHoc71EUc2fOdoQPzDNRKy0/mqY+Cy6UKqDNfUtq/YV8XRazrXxbl0sQAu6dZDae
+ a/VVNPtuWUREgcyN3wHIlGAMs8JzA+dY2BiuOKpgyf1cR2eH46Zc+UMCNHo/UCAbBpU2
+ bL5Q==
+X-Gm-Message-State: AOAM5317dHvIXjepg72DMfRVXWJiYPyhEVAE3O3q8mGMnRAR11jL+x8V
+ 2cBC38xbcGT1iluz2ZL43NwG7DxOLC/0/A==
+X-Google-Smtp-Source: ABdhPJxncV8VOSnug4ym2aL2nT/IZC7T0uIUIvLBVm9RqV/h+fb+P0gfjEnvrMXmbIV133KdjmCRIg==
+X-Received: by 2002:a17:90a:7e8a:: with SMTP id
+ j10mr8400366pjl.13.1643199000857; 
+ Wed, 26 Jan 2022 04:10:00 -0800 (PST)
+Received: from localhost ([2405:201:6014:d064:3d4e:6265:800c:dc84])
+ by smtp.gmail.com with ESMTPSA id h9sm1886487pfe.101.2022.01.26.04.10.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Jan 2022 04:02:25 -0800 (PST)
-Received: by alrua-x1.borgediget.toke.dk (Postfix, from userid 1000)
- id 513FF1805FA; Wed, 26 Jan 2022 13:02:24 +0100 (CET)
-From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, Alexei Starovoitov
- <alexei.starovoitov@gmail.com>
-In-Reply-To: <YfEr3Soy8YuJczHk@lore-desk>
+ Wed, 26 Jan 2022 04:10:00 -0800 (PST)
+Date: Wed, 26 Jan 2022 17:38:09 +0530
+From: Kumar Kartikeya Dwivedi <memxor@gmail.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Message-ID: <20220126120809.ihs2wko74dm4r3pi@apollo.legion>
 References: <cover.1643044381.git.lorenzo@kernel.org>
  <720907692575488526f06edc2cf5c8f783777d4f.1643044381.git.lorenzo@kernel.org>
  <61553c87-a3d3-07ae-8c2f-93cf0cb52263@nvidia.com>
- <CAADnVQLv=45+Symc-8Y9QuzOAG40e3XkvVxQ-ibO-HOCyJhETw@mail.gmail.com>
- <YfEr3Soy8YuJczHk@lore-desk>
-X-Clacks-Overhead: GNU Terry Pratchett
-Date: Wed, 26 Jan 2022 13:02:24 +0100
-Message-ID: <87ee4u3dtb.fsf@toke.dk>
+ <YfEwLrB6JqNpdUc0@lore-desk>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=toke@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YfEwLrB6JqNpdUc0@lore-desk>
 X-Mailman-Approved-At: Sat, 29 Jan 2022 08:15:36 +0000
 Cc: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- Network Development <netdev@vger.kernel.org>, David Ahern <dsahern@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Yoshiki Komachi <komachi.yoshiki@gmail.com>,
- Alexei Starovoitov <ast@kernel.org>,
- Lorenzo Bianconi <lorenzo.bianconi@redhat.com>,
- Ido Schimmel <idosch@idosch.org>, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Jesper Dangaard Brouer <brouer@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- bpf <bpf@vger.kernel.org>, Andrii Nakryiko <andrii.nakryiko@gmail.com>,
- "David S. Miller" <davem@davemloft.net>,
- Kumar Kartikeya Dwivedi <memxor@gmail.com>
+ daniel@iogearbox.net, Roopa Prabhu <roopa@nvidia.com>, netdev@vger.kernel.org,
+ dsahern@kernel.org, toke@redhat.com, komachi.yoshiki@gmail.com, ast@kernel.org,
+ lorenzo.bianconi@redhat.com, Ido Schimmel <idosch@idosch.org>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, brouer@redhat.com, kuba@kernel.org,
+ bpf@vger.kernel.org, andrii.nakryiko@gmail.com, davem@davemloft.net
 Subject: Re: [Bridge] [RFC bpf-next 1/2] net: bridge: add unstable
  br_fdb_find_port_from_ifindex helper
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -127,54 +106,42 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Lorenzo Bianconi <lorenzo@kernel.org> writes:
-
->> On Mon, Jan 24, 2022 at 10:32 AM Nikolay Aleksandrov <nikolay@nvidia.com> wrote:
->> > >
->> > > +int br_fdb_find_port_from_ifindex(struct xdp_md *xdp_ctx,
->> > > +                               struct bpf_fdb_lookup *opt,
->> > > +                               u32 opt__sz)
->> > > +{
->> > > +     struct xdp_buff *ctx = (struct xdp_buff *)xdp_ctx;
->> > > +     struct net_bridge_port *port;
->> > > +     struct net_device *dev;
->> > > +     int ret = -ENODEV;
->> > > +
->> > > +     BUILD_BUG_ON(sizeof(struct bpf_fdb_lookup) != NF_BPF_FDB_OPTS_SZ);
->> > > +     if (!opt || opt__sz != sizeof(struct bpf_fdb_lookup))
->> > > +             return -ENODEV;
->> > > +
->> > > +     rcu_read_lock();
->> > > +
->> > > +     dev = dev_get_by_index_rcu(dev_net(ctx->rxq->dev), opt->ifindex);
->> > > +     if (!dev)
->> > > +             goto out;
->> 
->> imo that is way too much wrapping for an unstable helper.
->> The dev lookup is not cheap.
->> 
->> With all the extra checks the XDP acceleration gets reduced.
->> I think it would be better to use kprobe/fentry on bridge
->> functions that operate on fdb and replicate necessary
->> data into bpf map.
->> Then xdp prog would do a single cheap lookup from that map
->> to figure out 'port'.
+On Wed, Jan 26, 2022 at 04:57:42PM IST, Lorenzo Bianconi wrote:
+> > On 24/01/2022 19:20, Lorenzo Bianconi wrote:
+> > > Similar to bpf_xdp_ct_lookup routine, introduce
+> > > br_fdb_find_port_from_ifindex unstable helper in order to accelerate
+> > > linux bridge with XDP. br_fdb_find_port_from_ifindex will perform a
+> > > lookup in the associated bridge fdb table and it will return the
+> > > output ifindex if the destination address is associated to a bridge
+> > > port or -ENODEV for BOM traffic or if lookup fails.
+> > >
+> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > ---
+> > >  net/bridge/br.c         | 21 +++++++++++++
+> > >  net/bridge/br_fdb.c     | 67 +++++++++++++++++++++++++++++++++++------
+> > >  net/bridge/br_private.h | 12 ++++++++
+> > >  3 files changed, 91 insertions(+), 9 deletions(-)
+> > >
+> >
+> > Hi Lorenzo,
 >
-> ack, right. This is a very interesting approach. I will investigate
-> it. Thanks.
+> Hi Nikolay,
+>
+> thx for the review.
+>
+> [...]
+>
+> I guess at the time I sent the series it was just in bpf-next but now it should
+> be in net-next too.
+> I do not think we need a unregister here.
+> @Kumar: agree?
+>
 
-I think it would be interesting to try both, and compare their
-performance. I'm a bit sceptical about Alexei's assertion that
-dev_get_by_index_rcu() is that expensive: we do such a lookup in the XDP
-redirect code when using the non-map bpf_redirect() helper, and I have
-not been able to measure a significant performance difference between
-the map and non-map variants (after we added bulking to the latter).
+Yes, no need to call unregister (hence there is no unregister).
 
-If looking up devices by ifindex does turn out to be too expensive,
-maybe what we really need is a way to pass around 'struct net_device'
-pointers to BPF helpers, so a given BPF program only has to do the
-lookup once if it's calling multiple dev-based helpers? I think this
-should be doable with BTF, no?
+> > [...]
 
--Toke
 
+
+--
+Kartikeya
