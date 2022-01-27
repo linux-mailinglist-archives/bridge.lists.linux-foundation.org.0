@@ -1,84 +1,134 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4B44A2CE8
-	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:48 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF154A2CE5
+	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:45 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 6E79761B92;
+	by smtp1.osuosl.org (Postfix) with ESMTP id 650A882FBE;
 	Sat, 29 Jan 2022 08:15:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rprZiZKZ1S1T; Sat, 29 Jan 2022 08:15:41 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1AUn_NtRFfK1; Sat, 29 Jan 2022 08:15:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id C9A8161B9D;
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 03F5082F49;
 	Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B1964C0077;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E637DC008C;
 	Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 79630C002D
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 15:00:46 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8DA42C000B
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jan 2022 07:50:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 507AA60F53
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 15:00:46 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 6537284D12
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jan 2022 07:50:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 1wSmJQc2Sjpa for <bridge@lists.linux-foundation.org>;
- Wed, 26 Jan 2022 15:00:44 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id DD17D60D77
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jan 2022 15:00:43 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id E46D5CE1E67;
- Wed, 26 Jan 2022 15:00:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 010A8C340E6;
- Wed, 26 Jan 2022 15:00:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643209238;
- bh=ZmlWB7oHgY4EUnBee2pldpeTuBsyuIALVfTUMB0azg0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pqbjYQZfZ7lixZCQlNjBWxdELqePWgf6CgBwjPK2K1FpZxU69BYSrU5NDWr+VShbD
- MKE9vO0yVgcGcKncMgHq24YGoVp8WbZLhiZxdWHwUtwYEKA853hnlN+8hsLnmGEHJq
- O2lcF7NeLzLxIpVObp6DM8OZax/rcyfrgVumVzLh1lgeatJuPUxKrnEEkA//r08TtD
- 5qcGQFptJMe02O2qH9XaH60zKnBl5Ci+k9+I2DyWkCdf6TVz0k5SRpO/bxTx6hSX4M
- RHUYElrvOXB9C7Up0paU3kPBri8zlo70vMWsK8693nziN7Mtjh5esVUK0sfLjUzjkr
- TVG5ymCpRUmOQ==
-Date: Wed, 26 Jan 2022 16:00:34 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Nikolay Aleksandrov <nikolay@nvidia.com>
-Message-ID: <YfFiEgNHwo7o78vq@lore-desk>
-References: <cover.1643044381.git.lorenzo@kernel.org>
- <720907692575488526f06edc2cf5c8f783777d4f.1643044381.git.lorenzo@kernel.org>
- <61553c87-a3d3-07ae-8c2f-93cf0cb52263@nvidia.com>
- <YfEwLrB6JqNpdUc0@lore-desk>
- <113d070a-6df1-66c2-1586-94591bc5aada@nvidia.com>
- <878rv23bkk.fsf@toke.dk>
- <499142da-2b16-4d94-48b0-8141506e79e3@nvidia.com>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id s2xlEj_MODT8 for <bridge@lists.linux-foundation.org>;
+ Thu, 27 Jan 2022 07:50:18 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2127.outbound.protection.outlook.com [40.107.93.127])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 3554A84CB6
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jan 2022 07:50:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qbu0+ig/5gog5gN8Sbe5bP4U8hdsHNeqPguHCeorW9enLLgorS2ufsy9p9nT0d7TmFGNOih3J9kHWB5uq2GA8V6pcyz/OtUA6/wOZwDFBuJ3GXPW+JZ1qUw5g1AmWPohVFoU4DVdZDqIqg7ZQpFLe5i56jP3aobiKtgWI+0Rdi2wxjRGCEJBVjbWHng1nogxL/tec24RwjWOO9PRbl3EXETgq36flmQzbd44K3YWKT8mz1TR/LOnh2X7xKI6gI8vLTzqGT97+rIsSpFimNFisFIAL1HhcRJYBCKdt4Vj6kh/FWu/y5eCWYgnV7MNI3BGuO4kc7ozwecC0AwDQ2PN+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V8iMB/tKXYAzchAuHpJxAZjpz3NDUudrGkTXPiq2oa4=;
+ b=SwQRBmIMf3q/BmV1VEAmS3n0fF1RQIsOrmhZ860+sRhUZWj5UW8Glrk4jYXCZgHl//szJgMhxRbgWvHzk8DdiDy5zVj3OLNMRCJtFNhZXlskXIJDH4h/8DJzm6myfMQ7GiOPdiWWrFX/7QIOafwdZWDWGKzFcJIPQ0vvJsLx6FBhRYuKlI28VpYei5/ns/oETXM4OrhL88R3N6ovsh/eaDGz0d/RiEXtnIyl5VUoTrEZYZuSHcSlF/FLK3mRXMd+6sRuxj0qAT/EcnKAkSmMF9N8F+nOzCljce9o1WFGoilGY6r8Jb8i5nO9JcN6bJTAITjvye3/rueVv4q2x9Hh8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=pica8com.onmicrosoft.com; s=selector2-pica8com-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V8iMB/tKXYAzchAuHpJxAZjpz3NDUudrGkTXPiq2oa4=;
+ b=ZeZ0gbiYQnKHbRWFW6rWC9oIK9zImLsFk89Gi40P7WEzBdzJtd+usYcDaLT+8v9+bs+PEfuOQ+PqD6NDnM9RdcrcQAP+v8hzBp0spgdfYhvPxms4l+2zp1IL/5byyzSMihpcvcsEiiGU/neFqA1HLlLuAdukGFYjbHSNrPaqEwg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=pica8.com;
+Received: from DM6PR12MB4601.namprd12.prod.outlook.com (2603:10b6:5:163::16)
+ by PH7PR12MB5620.namprd12.prod.outlook.com (2603:10b6:510:137::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Thu, 27 Jan
+ 2022 07:50:14 +0000
+Received: from DM6PR12MB4601.namprd12.prod.outlook.com
+ ([fe80::b4e3:1aaf:91f5:7cb7]) by DM6PR12MB4601.namprd12.prod.outlook.com
+ ([fe80::b4e3:1aaf:91f5:7cb7%3]) with mapi id 15.20.4930.017; Thu, 27 Jan 2022
+ 07:50:14 +0000
+From: Tim Yi <tim.yi@pica8.com>
+To: nikolay@nvidia.com
+Date: Thu, 27 Jan 2022 15:49:53 +0800
+Message-Id: <20220127074953.12632-1-tim.yi@pica8.com>
+X-Mailer: git-send-email 2.28.0.618.g9bc233ae1c
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: HK2PR03CA0062.apcprd03.prod.outlook.com
+ (2603:1096:202:17::32) To DM6PR12MB4601.namprd12.prod.outlook.com
+ (2603:10b6:5:163::16)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="OSlkpr/o/h7btl8h"
-Content-Disposition: inline
-In-Reply-To: <499142da-2b16-4d94-48b0-8141506e79e3@nvidia.com>
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 27d336a9-232a-492c-4ed3-08d9e169a6bc
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5620:EE_
+X-Microsoft-Antispam-PRVS: <PH7PR12MB562033DC8D740E3108419875D8219@PH7PR12MB5620.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yI4dV0o1kGf0+AxV5xqU77z7OtnOiXHRypQ9icxwNZt8dQXz3jtVV4YzxtvCrr91utOl2buMNSTamNzoTWRZ362nLRIvU2DIAAJYNdhOwRPAQ4FmH+8+4mRTnXQIc80+t9g/z7Wpxb3HePEDdui+pOy8pFbz+EHOM3hmT/46VTjDvjkponGQyYybWjUwYVZmfO/9/9K/+gd3iwnWCqZ5wjW0i67w1wtfBQiLPMpkRmmasmpAL/YBzHDJz4Z9Xg2px7T6rYuZN3qDka0A8YrrUpgYtMSw9EWmXx9sANNoR+5oJptHjNx6lmxKJZroQdSCMTfvUu1d4L+XtPC61V5emJJdzEWueXAXAj3M0zT1mLtRQcuaQqYoPNtPClxK1YGHOmLE2x4c6zteVTNyaRCvMEa/QRrVXjPwYCFoBn8wA/DUc5274C+k4Myepwrox3km8h5PeDKMeSxqB0kfYcNFNbAb9Qq9Rdg3nmVHBj3bAPzt/jNqlTtJCEmFKZeikzrtLwGQ90Hir1QYmkspS0rWCN1MnPSjcHzkJF08DQ0o6MYoze+N4VTi2uGt28uw9dpZ0MXNyt72vP1Spzvh09KrwhKFGMjn31sKWEtg1Wz+dJIy2cX71p9B/tQORMA0TjDUQ0PylexpORn9WsQRvZQu5dDYK8rkJaDrFy+eMlrDJMRr4J8JhqRzNuFEkyQmuoPGPCxn1PAS7tNVQUJtT12zmg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(396003)(136003)(39830400003)(366004)(346002)(376002)(508600001)(52116002)(38350700002)(107886003)(38100700002)(44832011)(2906002)(86362001)(5660300002)(6666004)(6506007)(6512007)(4326008)(66946007)(66476007)(316002)(1076003)(36756003)(26005)(6916009)(8676002)(6486002)(8936002)(66556008)(2616005)(186003)(83380400001)(20210929001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?o8YMUNVYCE2UFVgePjjF5VEok1yqxRwhqjGOJUMDK1mN8U8kBA7RuKB1fIBU?=
+ =?us-ascii?Q?OLBbfgp6jH1q5NadKIqhA88n2Pmc3ZYJDAGiXEcAcAP+jt6coQKyE2stWpH/?=
+ =?us-ascii?Q?VxjHmPu8hNBA98x8pp2B/cszc1MVnNtDieZLzkS7SQiJ40cCGWCfgPOSbjKH?=
+ =?us-ascii?Q?z+Q5rsp2WoOmS5t25VAdrF62hRbAZaZ55oDt0PNby3XidrxxIhf4Wcg7s4ob?=
+ =?us-ascii?Q?u/uNZU14ZexQh1pl9QaNCc6bXvYd/mclj768ICQJYV4MJqpqg2//QIXWU+tT?=
+ =?us-ascii?Q?ftK+4AiwDqVUeKFQ3A9VkHKr4/z8GTUnQr09j+uZ98Klt4eHgPFEHIBrimQq?=
+ =?us-ascii?Q?TUZrRhMqqTe/yN2u7W53nmzCzrAJy7olrQRoXmxKOvLjv1i4befINQojdku1?=
+ =?us-ascii?Q?7DEY8GZCp0jehV4ZTV9O459N/w+hwAVEf5EyiMWnLG9+wNAvxv4WS09o8LIS?=
+ =?us-ascii?Q?/HexhAtilkagzHopU+ykl9BXNV3bx35SSpyFDyWHlWf+ZCTmkYEkcjz2wFB0?=
+ =?us-ascii?Q?kf2eV3eMvA1aHOblHfYqg9GOFydxwRslPr+A+kk0bDa/X5xYAsMLQCP0sTO/?=
+ =?us-ascii?Q?98IRsMSUEyl56zoskE+PUzRPrQmMGfiCI/vdYMyYK/5Jez37L/E+22U9kHum?=
+ =?us-ascii?Q?4uQRAx3i2bnchsBq5rJ7om31kS64SY/rcXsnM8HOMI3Py24VMKvp+jhI2bAJ?=
+ =?us-ascii?Q?WrbTSCQAt/qWiuk62gvB1GfhjeNyxRaWnP4YClhFdrOTlLN9iexgmBvG3T3J?=
+ =?us-ascii?Q?h1nCXxtx7naMKL38aL/xMA7WezGAxjCXeEcMCDnvXGVYHIkqB0Io9Uw9nUOD?=
+ =?us-ascii?Q?3P7hIcEOSOxOkQtDWusNxhMd6DgGLlTFGPNRKGnugL7KY8RboRtBtN0V+/sR?=
+ =?us-ascii?Q?9InLAa5KJ8vxt3Y6NfmJFCvi6RN6EVRv3dV3/tFZwGz3haiAvumbNvsU9yX2?=
+ =?us-ascii?Q?dEVUKaFtcXan6wT6s9541PwHfa5i4wG/Ixkw5w7tB+5U1DTSdHXiDXGGUA7A?=
+ =?us-ascii?Q?n/wTYOPWEzMg2QOXfrHVbFBpLfDmDfDtbPh/SABjE6wjJV6dokZ4e7nRp2Yx?=
+ =?us-ascii?Q?zQtf+WC/vbnRRVrR0DJSWgCEWCGG9/a0ZY5r2KlfvGOVyRe93Vvlu0sa5FIX?=
+ =?us-ascii?Q?mq3EjNEbVI+ot9/BoKFQbo0GDIuHNyAI8OJSEuhTc1W5BUe/EOChwxeGv+8x?=
+ =?us-ascii?Q?Ig3r21zij6riB+uifMSGZs79uUqq8ytriwZUUjhxpFFtvoaYQJKn8SzYW6sh?=
+ =?us-ascii?Q?jMNzecTh/ne2t/a0wOWgmE9Y6j2e5oRWcZlXzGQKViiXZnOG1nyRZ9cDtnWU?=
+ =?us-ascii?Q?YIw0CuFNKhP5Klxlk3pO4O/nVXcUZHnv9tHnjUt9qBn0Zt+5lAvT3KBTrQqO?=
+ =?us-ascii?Q?GvGFWNferVuTGycBU8rr9G/zwudDveynrCyKxh0xkN7QBXew5JC35UNg7E9j?=
+ =?us-ascii?Q?tFKpFMUY8Q+r2BEFIs4yX5f4UW/l+ZMnh/WwuDt56xn805KIfCdGZYjH0aA/?=
+ =?us-ascii?Q?63RS7sshPy9HxBGBv+5glx6xpy3B63l5yvmb2pR8npmcExm32n4/b5p7llce?=
+ =?us-ascii?Q?NYspvdIKgYXkD9ytemf+eg2bMekF4mNgl3IwjhpBe0H7DKmIh/YE71fg/gZl?=
+ =?us-ascii?Q?tz1rL1QL27+4e2JpLWBH+ME=3D?=
+X-OriginatorOrg: pica8.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27d336a9-232a-492c-4ed3-08d9e169a6bc
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4601.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2022 07:50:13.8716 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 1649697f-e494-4b71-8227-3f383d0979ad
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uigfEnUIAkWVPiQj8QDQCKMm2rTUz5kxegXPG/WtJHxzIWgqXnV3jCHQsREsK4RGzjnnB1f+Vr30A8et64BzdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5620
 X-Mailman-Approved-At: Sat, 29 Jan 2022 08:15:36 +0000
-Cc: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- daniel@iogearbox.net, Roopa Prabhu <roopa@nvidia.com>, netdev@vger.kernel.org,
- dsahern@kernel.org,
- Toke =?iso-8859-1?Q?H=F8iland-J=F8rgensen?= <toke@redhat.com>,
- komachi.yoshiki@gmail.com, ast@kernel.org, davem@davemloft.net,
- Ido Schimmel <idosch@idosch.org>, memxor@gmail.com, brouer@redhat.com,
- kuba@kernel.org, bpf@vger.kernel.org, andrii.nakryiko@gmail.com,
- lorenzo.bianconi@redhat.com
-Subject: Re: [Bridge] [RFC bpf-next 1/2] net: bridge: add unstable
- br_fdb_find_port_from_ifindex helper
+Cc: Tim Yi <tim.yi@pica8.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, roopa@nvidia.com, kuba@kernel.org,
+ davem@davemloft.net
+Subject: [Bridge] [PATCH] net: bridge: vlan: fix memory leak in
+	__allowed_ingress
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,118 +143,36 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+When using per-vlan state, if vlan snooping and stats are disabled,
+untagged or priority-tagged ingress frame will go to check pvid state.
+If the port state is forwarding and the pvid state is not
+learning/forwarding, untagged or priority-tagged frame will be dropped
+but skb memory is not freed.
+Should free skb when __allowed_ingress returns false.
 
---OSlkpr/o/h7btl8h
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Tim Yi <tim.yi@pica8.com>
+---
+ net/bridge/br_vlan.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> On 26/01/2022 14:50, Toke H=F8iland-J=F8rgensen wrote:
-> > Nikolay Aleksandrov <nikolay@nvidia.com> writes:
-> >=20
-> >> On 26/01/2022 13:27, Lorenzo Bianconi wrote:
-> >>>> On 24/01/2022 19:20, Lorenzo Bianconi wrote:
-> >>>>> Similar to bpf_xdp_ct_lookup routine, introduce
-> >>>>> br_fdb_find_port_from_ifindex unstable helper in order to accelerate
-> >>>>> linux bridge with XDP. br_fdb_find_port_from_ifindex will perform a
-> >>>>> lookup in the associated bridge fdb table and it will return the
-> >>>>> output ifindex if the destination address is associated to a bridge
-> >>>>> port or -ENODEV for BOM traffic or if lookup fails.
-> >>>>>
-> >>>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> >>>>> ---
-> >>>>>  net/bridge/br.c         | 21 +++++++++++++
-> >>>>>  net/bridge/br_fdb.c     | 67 +++++++++++++++++++++++++++++++++++--=
-----
-> >>>>>  net/bridge/br_private.h | 12 ++++++++
-> >>>>>  3 files changed, 91 insertions(+), 9 deletions(-)
-> >>>>>
-> >>>>
-> >>>> Hi Lorenzo,
-> >>>
-> >>> Hi Nikolay,
-> >>>
-> >>> thx for the review.
-> >>>
-> >>>> Please CC bridge maintainers for bridge-related patches, I've added =
-Roopa and the
-> >>>> bridge mailing list as well. Aside from that, the change is certainl=
-y interesting, I've been
-> >>>> thinking about a similar helper for some time now, few comments belo=
-w.
-> >>>
-> >>> yes, sorry for that. I figured it out after sending the series out.
-> >>>
-> >>>>
-> >>>> Have you thought about the egress path and if by the current bridge =
-state the packet would
-> >>>> be allowed to egress through the found port from the lookup? I'd gue=
-ss you have to keep updating
-> >>>> the active ports list based on netlink events, but there's a lot of =
-egress bridge logic that
-> >>>> either have to be duplicated or somehow synced. Check should_deliver=
-() (br_forward.c) and later
-> >>>> egress stages, but I see how this is a good first step and perhaps w=
-e can build upon it.
-> >>>> There are a few possible solutions, but I haven't tried anything yet=
-, most obvious being
-> >>>> yet another helper. :)
-> >>>
-> >>> ack, right but I am bit worried about adding too much logic and slow =
-down xdp
-> >>> performances. I guess we can investigate first the approach proposed =
-by Alexei
-> >>> and then revaluate. Agree?
-> >>>
-> >>
-> >> Sure, that approach sounds very interesting, but my point was that
-> >> bypassing the ingress and egress logic defeats most of the bridge
-> >> features. You just get an fdb hash table which you can build today
-> >> with ebpf without any changes to the kernel. :) You have multiple
-> >> states, flags and options for each port and each vlan which can change
-> >> dynamically based on external events (e.g. STP, config changes etc)
-> >> and they can affect forwarding even if the fdbs remain in the table.
-> >=20
-> > To me, leveraging all this is precisely the reason to have BPF helpers
-> > instead of just replicating state in BPF maps: it's very easy to do that
-> > and show a nice speedup, and then once you get all the corner cases
-> > covered that the in-kernel code already deals with, you've chipped away
-> > at that speedup and spent a lot of time essentially re-writing the
-> > battle-tested code already in the kernel.
-> >=20
-> > So I think figuring out how to do the state sync is the right thing to
-> > do; a second helper would be fine for this, IMO, but I'm not really
-> > familiar enough with the bridge code to really have a qualified opinion.
-> >=20
-> > -Toke
-> >=20
->=20
-> Right, sounds good to me. IMO it should be required in order to get a mea=
-ningful bridge
-> speedup, otherwise the solution is incomplete and you just do simple look=
-ups that ignore
-> all of the state that could impact the forwarding decision.
+diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+index 84ba456a78cc..88c4297cddee 100644
+--- a/net/bridge/br_vlan.c
++++ b/net/bridge/br_vlan.c
+@@ -560,10 +560,10 @@ static bool __allowed_ingress(const struct net_bridge *br,
+ 		    !br_opt_get(br, BROPT_VLAN_STATS_ENABLED)) {
+ 			if (*state == BR_STATE_FORWARDING) {
+ 				*state = br_vlan_get_pvid_state(vg);
+-				return br_vlan_state_allowed(*state, true);
+-			} else {
+-				return true;
++				if (!br_vlan_state_allowed(*state, true))
++					goto drop;
+ 			}
++			return true;
+ 		}
+ 	}
+ 	v = br_vlan_find(vg, *vid);
+-- 
+2.28.0.618.g9bc233ae1c
 
-ack, I agree but I need to review it first since I am not so familiar
-with that codebase :)
-Doing so we can compare this solution with the one proposed by Alexei.
-
-Regards,
-Lorenzo
-
->=20
-> Cheers,
->  Nik
-
---OSlkpr/o/h7btl8h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYfFiEgAKCRA6cBh0uS2t
-rBX0AP970Tqrve/nXSLkopFCEuLZea5q0NCx3xs7Gbf0S76AAAD8CTp3W8h7ZG17
-TTj9kv5ZzIJ/AyBF9f0UGoVCRYGvuwI=
-=2a4l
------END PGP SIGNATURE-----
-
---OSlkpr/o/h7btl8h--
