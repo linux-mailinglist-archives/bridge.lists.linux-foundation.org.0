@@ -1,134 +1,138 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF154A2CE5
-	for <lists.bridge@lfdr.de>; Sat, 29 Jan 2022 09:15:45 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051B74AAE65
+	for <lists.bridge@lfdr.de>; Sun,  6 Feb 2022 09:23:37 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 650A882FBE;
-	Sat, 29 Jan 2022 08:15:42 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id BD90C401ED;
+	Sun,  6 Feb 2022 08:23:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1AUn_NtRFfK1; Sat, 29 Jan 2022 08:15:41 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id gALNjaYn2X-i; Sun,  6 Feb 2022 08:23:33 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 03F5082F49;
-	Sat, 29 Jan 2022 08:15:40 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 0C77D40181;
+	Sun,  6 Feb 2022 08:23:32 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E637DC008C;
-	Sat, 29 Jan 2022 08:15:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B4813C0039;
+	Sun,  6 Feb 2022 08:23:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8DA42C000B
- for <bridge@lists.linux-foundation.org>; Thu, 27 Jan 2022 07:50:19 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A647FC000B
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Feb 2022 17:07:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 6537284D12
- for <bridge@lists.linux-foundation.org>; Thu, 27 Jan 2022 07:50:19 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 9542941727
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Feb 2022 17:07:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id s2xlEj_MODT8 for <bridge@lists.linux-foundation.org>;
- Thu, 27 Jan 2022 07:50:18 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (1024-bit key) header.d=plvision.eu
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ZgbIHaw3ff4S for <bridge@lists.linux-foundation.org>;
+ Thu,  3 Feb 2022 17:07:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2127.outbound.protection.outlook.com [40.107.93.127])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 3554A84CB6
- for <bridge@lists.linux-foundation.org>; Thu, 27 Jan 2022 07:50:18 +0000 (UTC)
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com
+ (mail-ve1eur02on0711.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe06::711])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 290A44035C
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Feb 2022 17:07:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qbu0+ig/5gog5gN8Sbe5bP4U8hdsHNeqPguHCeorW9enLLgorS2ufsy9p9nT0d7TmFGNOih3J9kHWB5uq2GA8V6pcyz/OtUA6/wOZwDFBuJ3GXPW+JZ1qUw5g1AmWPohVFoU4DVdZDqIqg7ZQpFLe5i56jP3aobiKtgWI+0Rdi2wxjRGCEJBVjbWHng1nogxL/tec24RwjWOO9PRbl3EXETgq36flmQzbd44K3YWKT8mz1TR/LOnh2X7xKI6gI8vLTzqGT97+rIsSpFimNFisFIAL1HhcRJYBCKdt4Vj6kh/FWu/y5eCWYgnV7MNI3BGuO4kc7ozwecC0AwDQ2PN+Q==
+ b=a0SkD4y5Nb6AQhPm/R6ZE4gPkehkleB2e9P/StZOVOVExQb9DvEI2bbL9Jy2+suV2jqk6yIYDB9409zK9lzNsstW7tsR/xZ1o7CMo6vkTBbrmcw0GaOmofDQPXv1GokStxtel+ikvA2S7u57eILTxgGnZfV51pjmC77/Vwgy0U43ZtteNPKI7Sv+oSoNvJMLsUHtu2vBUDvFU2PIsFC5YUyvRHSRS1urA0UCNGfV+GMCSmtXysLmTnDN71WuChs2Z1BMNi5KM/CnmREsO5VWR7t4CF+HQQkWWRAI5/h+Xv56M9KaBXWq8Zd228SfR/LXBtgq8ZH0BydoKo3ZjAdJyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V8iMB/tKXYAzchAuHpJxAZjpz3NDUudrGkTXPiq2oa4=;
- b=SwQRBmIMf3q/BmV1VEAmS3n0fF1RQIsOrmhZ860+sRhUZWj5UW8Glrk4jYXCZgHl//szJgMhxRbgWvHzk8DdiDy5zVj3OLNMRCJtFNhZXlskXIJDH4h/8DJzm6myfMQ7GiOPdiWWrFX/7QIOafwdZWDWGKzFcJIPQ0vvJsLx6FBhRYuKlI28VpYei5/ns/oETXM4OrhL88R3N6ovsh/eaDGz0d/RiEXtnIyl5VUoTrEZYZuSHcSlF/FLK3mRXMd+6sRuxj0qAT/EcnKAkSmMF9N8F+nOzCljce9o1WFGoilGY6r8Jb8i5nO9JcN6bJTAITjvye3/rueVv4q2x9Hh8g==
+ bh=oilwTxtWG9ioJagG2A1UEQStcPOJxwa1T/rekfuWgyo=;
+ b=Fn59Xfnjni2JvxXibYvhWJibhspbh7AxwOcZJTRkfY4Nl1IAl+Mx4wYs3xEVNErNq6rgW02b0+oY38yYsudtiGu7xyn0bx92OneUra4uRW5WuEsChbHkizvqS4U07m6FN0o8myisPKrI0f3Lw/uidacNoxdNoDZfoMvz+Pk1AUQXH83Qsh6x3JrX75BDygXcuVjmaI/UiT4UN9+POps6OpRc9k+zQPjooi2fmXCRDXKDcYY6E7yjodHs3Wx+yoOa3iRQjN6W7+SHbZWvDVvX2aajZYHb5rNvM3axtmWyxjT8u3oce5QqBrWmEE3c2YEip/tzMMUch8TylB7K5YojgQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=pica8com.onmicrosoft.com; s=selector2-pica8com-onmicrosoft-com;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V8iMB/tKXYAzchAuHpJxAZjpz3NDUudrGkTXPiq2oa4=;
- b=ZeZ0gbiYQnKHbRWFW6rWC9oIK9zImLsFk89Gi40P7WEzBdzJtd+usYcDaLT+8v9+bs+PEfuOQ+PqD6NDnM9RdcrcQAP+v8hzBp0spgdfYhvPxms4l+2zp1IL/5byyzSMihpcvcsEiiGU/neFqA1HLlLuAdukGFYjbHSNrPaqEwg=
+ bh=oilwTxtWG9ioJagG2A1UEQStcPOJxwa1T/rekfuWgyo=;
+ b=U4dzlQVJaPv3sGXyzz3Z5x+0vk8BjaBq9E9J7mREyo6pKluj3QghT2StNWE/k4I4RGcv+3JvACebSJSjnVCMN1p/C3++cX/LJdJ3YH5eBvikJvn6ZWeqFIwLq+Z/DFnLL7Gctm5uNectVrCqpbIk3ZvkyLsTivwXolgyK1wJq94=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=pica8.com;
-Received: from DM6PR12MB4601.namprd12.prod.outlook.com (2603:10b6:5:163::16)
- by PH7PR12MB5620.namprd12.prod.outlook.com (2603:10b6:510:137::5) with
+ header.d=none;dmarc=none action=none header.from=plvision.eu;
+Received: from AM0P190MB0738.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:19b::9)
+ by VI1P190MB0734.EURP190.PROD.OUTLOOK.COM (2603:10a6:800:123::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Thu, 27 Jan
- 2022 07:50:14 +0000
-Received: from DM6PR12MB4601.namprd12.prod.outlook.com
- ([fe80::b4e3:1aaf:91f5:7cb7]) by DM6PR12MB4601.namprd12.prod.outlook.com
- ([fe80::b4e3:1aaf:91f5:7cb7%3]) with mapi id 15.20.4930.017; Thu, 27 Jan 2022
- 07:50:14 +0000
-From: Tim Yi <tim.yi@pica8.com>
-To: nikolay@nvidia.com
-Date: Thu, 27 Jan 2022 15:49:53 +0800
-Message-Id: <20220127074953.12632-1-tim.yi@pica8.com>
-X-Mailer: git-send-email 2.28.0.618.g9bc233ae1c
-Content-Transfer-Encoding: 8bit
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 3 Feb
+ 2022 17:07:19 +0000
+Received: from AM0P190MB0738.EURP190.PROD.OUTLOOK.COM
+ ([fe80::a15f:104c:c805:a3]) by AM0P190MB0738.EURP190.PROD.OUTLOOK.COM
+ ([fe80::a15f:104c:c805:a3%8]) with mapi id 15.20.4951.014; Thu, 3 Feb 2022
+ 17:07:19 +0000
+From: Oleksandr Mazur <oleksandr.mazur@plvision.eu>
+To: netdev@vger.kernel.org
+Date: Thu,  3 Feb 2022 19:06:54 +0200
+Message-Id: <20220203170654.29784-1-oleksandr.mazur@plvision.eu>
+X-Mailer: git-send-email 2.17.1
 Content-Type: text/plain
-X-ClientProxiedBy: HK2PR03CA0062.apcprd03.prod.outlook.com
- (2603:1096:202:17::32) To DM6PR12MB4601.namprd12.prod.outlook.com
- (2603:10b6:5:163::16)
+X-ClientProxiedBy: FR3P281CA0006.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1d::16) To AM0P190MB0738.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:208:19b::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 27d336a9-232a-492c-4ed3-08d9e169a6bc
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5620:EE_
-X-Microsoft-Antispam-PRVS: <PH7PR12MB562033DC8D740E3108419875D8219@PH7PR12MB5620.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-MS-Office365-Filtering-Correlation-Id: d80d484b-7193-4050-96ab-08d9e737a2ed
+X-MS-TrafficTypeDiagnostic: VI1P190MB0734:EE_
+X-Microsoft-Antispam-PRVS: <VI1P190MB0734FCDC4215E9EB7C339CA2E4289@VI1P190MB0734.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yI4dV0o1kGf0+AxV5xqU77z7OtnOiXHRypQ9icxwNZt8dQXz3jtVV4YzxtvCrr91utOl2buMNSTamNzoTWRZ362nLRIvU2DIAAJYNdhOwRPAQ4FmH+8+4mRTnXQIc80+t9g/z7Wpxb3HePEDdui+pOy8pFbz+EHOM3hmT/46VTjDvjkponGQyYybWjUwYVZmfO/9/9K/+gd3iwnWCqZ5wjW0i67w1wtfBQiLPMpkRmmasmpAL/YBzHDJz4Z9Xg2px7T6rYuZN3qDka0A8YrrUpgYtMSw9EWmXx9sANNoR+5oJptHjNx6lmxKJZroQdSCMTfvUu1d4L+XtPC61V5emJJdzEWueXAXAj3M0zT1mLtRQcuaQqYoPNtPClxK1YGHOmLE2x4c6zteVTNyaRCvMEa/QRrVXjPwYCFoBn8wA/DUc5274C+k4Myepwrox3km8h5PeDKMeSxqB0kfYcNFNbAb9Qq9Rdg3nmVHBj3bAPzt/jNqlTtJCEmFKZeikzrtLwGQ90Hir1QYmkspS0rWCN1MnPSjcHzkJF08DQ0o6MYoze+N4VTi2uGt28uw9dpZ0MXNyt72vP1Spzvh09KrwhKFGMjn31sKWEtg1Wz+dJIy2cX71p9B/tQORMA0TjDUQ0PylexpORn9WsQRvZQu5dDYK8rkJaDrFy+eMlrDJMRr4J8JhqRzNuFEkyQmuoPGPCxn1PAS7tNVQUJtT12zmg==
+X-Microsoft-Antispam-Message-Info: ALghg3gwPu7iOoWzIFq0426U/lWJja2+UycjyvHCQ4G2WdoWI6GCS0sPIpu+8fSIpDtegF8jOeuMX0HmA9BfI4UckAvyGmlqcAz49MXQ3vduL/5YesORMUi/WoGc3FSiYkRVc4dgjRA6xUBQsJgR65NdyUHaOpusoBhsMprtCVqVIM6J3jBa8sLk8ltiaB/QH29PRlmrzFh6vGbH0V25AAkBvLomHSlK5AWSgsJedk0zbQ4oxE2zOXLIK/iUNWltpHa2f5DftQpsMMOp2VlTuTVGdoAzFR4WL3kfRbosSjTG0SEMGFGiXTHPtu9svdxQFyML4XpVe4Q3Sjlkv0EdP7GjkSRYMfzw3CeIPn3YWcay+Npum9y2MW/EDbhwR+EwGs11VVT7Ak307xBAf8Gzod6r1FPTipf2aKz1e5ftpIcqJJxpfEAmc2eB6v+fwiLD7OrJBRgbeI8f3brumD+l3CnTmpgCxdb8phME0zmIQZUSc8JSrhVAH2V06aNSGv6wIJmN+v9CepvYwSENLQt2sqoyYUWLjIVIPXiUxQVkRpEVlot09/sPZCM3le7NtUDmlj8F0uqyo+0yOLgaMWbpVB2mUazaWYwMORVSEM2nnOC0qNQ377S04C2kyPomhWKBZOpSBCARt71j7iSGaJ2EvL/OpmU5T3VuKK6RvE7NcvrhYCVJr0eoSV+/OZoAeyH25oUTrxdnvRajRifMZUP59w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(396003)(136003)(39830400003)(366004)(346002)(376002)(508600001)(52116002)(38350700002)(107886003)(38100700002)(44832011)(2906002)(86362001)(5660300002)(6666004)(6506007)(6512007)(4326008)(66946007)(66476007)(316002)(1076003)(36756003)(26005)(6916009)(8676002)(6486002)(8936002)(66556008)(2616005)(186003)(83380400001)(20210929001);
+ IPV:NLI; SFV:NSPM; H:AM0P190MB0738.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230001)(346002)(39830400003)(376002)(396003)(366004)(136003)(186003)(26005)(36756003)(6506007)(6512007)(6666004)(6486002)(54906003)(66946007)(8676002)(8936002)(66556008)(66476007)(83380400001)(4326008)(508600001)(316002)(6916009)(44832011)(2616005)(38350700002)(38100700002)(1076003)(86362001)(2906002)(5660300002)(52116002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?o8YMUNVYCE2UFVgePjjF5VEok1yqxRwhqjGOJUMDK1mN8U8kBA7RuKB1fIBU?=
- =?us-ascii?Q?OLBbfgp6jH1q5NadKIqhA88n2Pmc3ZYJDAGiXEcAcAP+jt6coQKyE2stWpH/?=
- =?us-ascii?Q?VxjHmPu8hNBA98x8pp2B/cszc1MVnNtDieZLzkS7SQiJ40cCGWCfgPOSbjKH?=
- =?us-ascii?Q?z+Q5rsp2WoOmS5t25VAdrF62hRbAZaZ55oDt0PNby3XidrxxIhf4Wcg7s4ob?=
- =?us-ascii?Q?u/uNZU14ZexQh1pl9QaNCc6bXvYd/mclj768ICQJYV4MJqpqg2//QIXWU+tT?=
- =?us-ascii?Q?ftK+4AiwDqVUeKFQ3A9VkHKr4/z8GTUnQr09j+uZ98Klt4eHgPFEHIBrimQq?=
- =?us-ascii?Q?TUZrRhMqqTe/yN2u7W53nmzCzrAJy7olrQRoXmxKOvLjv1i4befINQojdku1?=
- =?us-ascii?Q?7DEY8GZCp0jehV4ZTV9O459N/w+hwAVEf5EyiMWnLG9+wNAvxv4WS09o8LIS?=
- =?us-ascii?Q?/HexhAtilkagzHopU+ykl9BXNV3bx35SSpyFDyWHlWf+ZCTmkYEkcjz2wFB0?=
- =?us-ascii?Q?kf2eV3eMvA1aHOblHfYqg9GOFydxwRslPr+A+kk0bDa/X5xYAsMLQCP0sTO/?=
- =?us-ascii?Q?98IRsMSUEyl56zoskE+PUzRPrQmMGfiCI/vdYMyYK/5Jez37L/E+22U9kHum?=
- =?us-ascii?Q?4uQRAx3i2bnchsBq5rJ7om31kS64SY/rcXsnM8HOMI3Py24VMKvp+jhI2bAJ?=
- =?us-ascii?Q?WrbTSCQAt/qWiuk62gvB1GfhjeNyxRaWnP4YClhFdrOTlLN9iexgmBvG3T3J?=
- =?us-ascii?Q?h1nCXxtx7naMKL38aL/xMA7WezGAxjCXeEcMCDnvXGVYHIkqB0Io9Uw9nUOD?=
- =?us-ascii?Q?3P7hIcEOSOxOkQtDWusNxhMd6DgGLlTFGPNRKGnugL7KY8RboRtBtN0V+/sR?=
- =?us-ascii?Q?9InLAa5KJ8vxt3Y6NfmJFCvi6RN6EVRv3dV3/tFZwGz3haiAvumbNvsU9yX2?=
- =?us-ascii?Q?dEVUKaFtcXan6wT6s9541PwHfa5i4wG/Ixkw5w7tB+5U1DTSdHXiDXGGUA7A?=
- =?us-ascii?Q?n/wTYOPWEzMg2QOXfrHVbFBpLfDmDfDtbPh/SABjE6wjJV6dokZ4e7nRp2Yx?=
- =?us-ascii?Q?zQtf+WC/vbnRRVrR0DJSWgCEWCGG9/a0ZY5r2KlfvGOVyRe93Vvlu0sa5FIX?=
- =?us-ascii?Q?mq3EjNEbVI+ot9/BoKFQbo0GDIuHNyAI8OJSEuhTc1W5BUe/EOChwxeGv+8x?=
- =?us-ascii?Q?Ig3r21zij6riB+uifMSGZs79uUqq8ytriwZUUjhxpFFtvoaYQJKn8SzYW6sh?=
- =?us-ascii?Q?jMNzecTh/ne2t/a0wOWgmE9Y6j2e5oRWcZlXzGQKViiXZnOG1nyRZ9cDtnWU?=
- =?us-ascii?Q?YIw0CuFNKhP5Klxlk3pO4O/nVXcUZHnv9tHnjUt9qBn0Zt+5lAvT3KBTrQqO?=
- =?us-ascii?Q?GvGFWNferVuTGycBU8rr9G/zwudDveynrCyKxh0xkN7QBXew5JC35UNg7E9j?=
- =?us-ascii?Q?tFKpFMUY8Q+r2BEFIs4yX5f4UW/l+ZMnh/WwuDt56xn805KIfCdGZYjH0aA/?=
- =?us-ascii?Q?63RS7sshPy9HxBGBv+5glx6xpy3B63l5yvmb2pR8npmcExm32n4/b5p7llce?=
- =?us-ascii?Q?NYspvdIKgYXkD9ytemf+eg2bMekF4mNgl3IwjhpBe0H7DKmIh/YE71fg/gZl?=
- =?us-ascii?Q?tz1rL1QL27+4e2JpLWBH+ME=3D?=
-X-OriginatorOrg: pica8.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27d336a9-232a-492c-4ed3-08d9e169a6bc
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4601.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YQ9nXn0BB68m7XePcvhDpfjAOvJYflLDl+u0s5hrXmIObCGO219z73EUroSy?=
+ =?us-ascii?Q?1cS+fZrK0dHfPcon1NXLKe73csIrNVcmnfkGXYAW43hLJtq7DL3pXg2nfdeb?=
+ =?us-ascii?Q?9HU48bW3IzPbl4cR3swIwwdxuNgh+Rr6IW/Zfy5FjM7d73D84hnNQ58IbiQu?=
+ =?us-ascii?Q?BhZJkuxXodJXVVG9CRYVWXFSEF39XC8q1Amisb1HOhQkk+vOrnjId0jp21Jh?=
+ =?us-ascii?Q?hTGbUw9kBCnpUK8cbd4+CAXfVpmvq6JgbM12aB6kzJjg0WamV9axkDSCBzw6?=
+ =?us-ascii?Q?Of7Ersjlv6NiLiKKDkq1O0HmJn8X0tjcH6NzbZs4H99zV/A1zLcttXqa4A1J?=
+ =?us-ascii?Q?0Zu4lcrNGEE2S3KZfCHYV8rUrPRwu9jqocZ9pUfYSNAmoljH0nygaSzTs5ZN?=
+ =?us-ascii?Q?66EkJ/KQ3pjeY1lbq2V0PKUbF3xkMh4nMoCpi4oWKLQwSUPYrI3h0LoTX7qC?=
+ =?us-ascii?Q?C0FophWchSIVm/6QHyWeVjvr09KuSAqVB+5tGc6ra3l3IlYxNt+fg381ChtQ?=
+ =?us-ascii?Q?dvfp4gmTXSKbV1CL4RizvRgMo1klD4CYUx73cVSxjuHzINMSgfsqJlSDtqDL?=
+ =?us-ascii?Q?fucY8uVuphiUksMTEEipE3witqUrxgLLVpmJp9stsgYC+tJdSzmxnjTVWCer?=
+ =?us-ascii?Q?UoBp91yH5osGvN/WCwdXQTZtA4MUiY7Kql7XFQk7XSln2VUFbx0OIHLS0dhw?=
+ =?us-ascii?Q?7rq3fDxcrk8DHIyLGQgPVnSkdfX4YJy7EH1ve/aAZX6RlKP9htH774QbDEXo?=
+ =?us-ascii?Q?FI3oJOeHl0FstqJxhC9cpfSUgTqtUd+wGFRM49S+hDs/APb45TWG9+9i11qD?=
+ =?us-ascii?Q?sBe1LP7e42JX3fcwORfQ/4wU53XsxOEy8D0czIr7McFG9iMx0whtCCubxVET?=
+ =?us-ascii?Q?TfkVhR3GzbDYO8qEumJXUl3dQgo7bZKIKKRba5p9j1C+V9KfCYR40q/Jjhiq?=
+ =?us-ascii?Q?Ra6sKLmo5RyLEuYs/Y13qhj0yvOjY3RA07rABrJSyFIYDUrvNTta4goO0Uzt?=
+ =?us-ascii?Q?vINRwhHFIHNs13Zb1TZSvhbTjSmi3+ka2rEGdLX2n1LXTRngV+EaiIuWSKAJ?=
+ =?us-ascii?Q?AHlWB87JEJkKcNSOL53jt4BxeW7qj9yBOFuRprxIS+trjnxVlqHcCp6SeJi9?=
+ =?us-ascii?Q?iSu2IR1GAZjzz6haQIvktl+Y6BaOxJC+NdD1rAxFVegdQug6izS0CLZbKFnu?=
+ =?us-ascii?Q?5LHHGDU81uUFjF/W801ByR3XDkOhCF4d993sEaaLSJvvB9U3B/JZyxV77y07?=
+ =?us-ascii?Q?b20Dk+FH9axD8e8jSCoTx4yavVSOaUzs53MEr5paDZWa562eX+Y1Jy4CP1rp?=
+ =?us-ascii?Q?SktSZT/KW3sxxLemlNpweX6KbEH/xts1wAnPQaAYtIuoPDnCnd3F0yHPMheU?=
+ =?us-ascii?Q?yMbCEHGFxsBPm9GyftwqNFF1Cio4f8mX5y9Y7mPTHBTcjziWcS6HwAyhvGs1?=
+ =?us-ascii?Q?dx3qQdX8eKsFD+ciCSRGeu4ncM7SGaCy/Ec0p6JeOJDC7G6GbN2F+CoYHhuO?=
+ =?us-ascii?Q?YXrMjHWoON+uBjZ9DqPmTBdDpEpumxvouCRvmugKADIgQnkAHxfAMOvf1ROr?=
+ =?us-ascii?Q?DRV49FbQ1TTmkUqzdKjUEsrqpgOrmsW1Djkg9/J6n1MRRwgS1W+/ZPpifEhs?=
+ =?us-ascii?Q?DNkB+Uvzhhz7k5dl5duQKfRIfXCqCFrYPg2gWIMWtLek8oqKYIxVn8CzKO0+?=
+ =?us-ascii?Q?3WZ1Iw=3D=3D?=
+X-OriginatorOrg: plvision.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: d80d484b-7193-4050-96ab-08d9e737a2ed
+X-MS-Exchange-CrossTenant-AuthSource: AM0P190MB0738.EURP190.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2022 07:50:13.8716 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2022 17:07:19.3582 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 1649697f-e494-4b71-8227-3f383d0979ad
+X-MS-Exchange-CrossTenant-Id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uigfEnUIAkWVPiQj8QDQCKMm2rTUz5kxegXPG/WtJHxzIWgqXnV3jCHQsREsK4RGzjnnB1f+Vr30A8et64BzdQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5620
-X-Mailman-Approved-At: Sat, 29 Jan 2022 08:15:36 +0000
-Cc: Tim Yi <tim.yi@pica8.com>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, roopa@nvidia.com, kuba@kernel.org,
- davem@davemloft.net
-Subject: [Bridge] [PATCH] net: bridge: vlan: fix memory leak in
-	__allowed_ingress
+X-MS-Exchange-CrossTenant-UserPrincipalName: PVpmzEF9OSGiIO7UfvJdITJkhOP/s3CqoCWF9UpooMepw2Q/8rzLJwdSp16X3A70f8idVDvPIPsEpRhs3Km5zSSB3DtcoaDvVv7XPKgwZIE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P190MB0734
+X-Mailman-Approved-At: Sun, 06 Feb 2022 08:23:31 +0000
+Cc: bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Oleksandr Mazur <oleksandr.mazur@plvision.eu>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [RFC net-next] net: bridge: multicast: notify switchdev
+	driver whenever MC processing gets disabled
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -143,36 +147,45 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-When using per-vlan state, if vlan snooping and stats are disabled,
-untagged or priority-tagged ingress frame will go to check pvid state.
-If the port state is forwarding and the pvid state is not
-learning/forwarding, untagged or priority-tagged frame will be dropped
-but skb memory is not freed.
-Should free skb when __allowed_ingress returns false.
+Whenever bridge driver hits the max capacity of MDBs, it disables
+the MC processing (by setting corresponding bridge option), but never
+notifies switchdev about such change (the notifiers are called only upon
+explicit setting of this option, through the registered netlink interface).
 
-Signed-off-by: Tim Yi <tim.yi@pica8.com>
+This could lead to situation when Software MDB processing gets disabled,
+but this event never gets offloaded to the underlying Hardware.
+
+I would like to propose to simply add a notify message in such case,
+as in other places where this option gets altered.
+
+Signed-off-by: Oleksandr Mazur <oleksandr.mazur@plvision.eu>
 ---
- net/bridge/br_vlan.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ net/bridge/br_multicast.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-index 84ba456a78cc..88c4297cddee 100644
---- a/net/bridge/br_vlan.c
-+++ b/net/bridge/br_vlan.c
-@@ -560,10 +560,10 @@ static bool __allowed_ingress(const struct net_bridge *br,
- 		    !br_opt_get(br, BROPT_VLAN_STATS_ENABLED)) {
- 			if (*state == BR_STATE_FORWARDING) {
- 				*state = br_vlan_get_pvid_state(vg);
--				return br_vlan_state_allowed(*state, true);
--			} else {
--				return true;
-+				if (!br_vlan_state_allowed(*state, true))
-+					goto drop;
- 			}
-+			return true;
- 		}
+diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+index de2409889489..d53c08906bc8 100644
+--- a/net/bridge/br_multicast.c
++++ b/net/bridge/br_multicast.c
+@@ -82,6 +82,9 @@ static void br_multicast_find_del_pg(struct net_bridge *br,
+ 				     struct net_bridge_port_group *pg);
+ static void __br_multicast_stop(struct net_bridge_mcast *brmctx);
+ 
++static int br_mc_disabled_update(struct net_device *dev, bool value,
++				 struct netlink_ext_ack *extack);
++
+ static struct net_bridge_port_group *
+ br_sg_port_find(struct net_bridge *br,
+ 		struct net_bridge_port_group_sg_key *sg_p)
+@@ -1156,6 +1159,8 @@ struct net_bridge_mdb_entry *br_multicast_new_group(struct net_bridge *br,
+ 		return mp;
+ 
+ 	if (atomic_read(&br->mdb_hash_tbl.nelems) >= br->hash_max) {
++		err = br_mc_disabled_update(br->dev, false, NULL);
++		WARN_ON(err && err != -EOPNOTSUPP);
+ 		br_opt_toggle(br, BROPT_MULTICAST_ENABLED, false);
+ 		return ERR_PTR(-E2BIG);
  	}
- 	v = br_vlan_find(vg, *vid);
 -- 
-2.28.0.618.g9bc233ae1c
+2.17.1
 
