@@ -2,63 +2,89 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 076444AC02C
-	for <lists.bridge@lfdr.de>; Mon,  7 Feb 2022 14:53:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72DC94AC775
+	for <lists.bridge@lfdr.de>; Mon,  7 Feb 2022 18:30:57 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 424A380BE9;
-	Mon,  7 Feb 2022 13:53:50 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 0E0C781415;
+	Mon,  7 Feb 2022 17:30:56 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HHYOTZ5yHkps; Mon,  7 Feb 2022 13:53:49 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id E386D80BE7;
-	Mon,  7 Feb 2022 13:53:48 +0000 (UTC)
+	with ESMTP id o7CZ3b6y-rOf; Mon,  7 Feb 2022 17:30:55 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id B3FFD81402;
+	Mon,  7 Feb 2022 17:30:54 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 88F28C0073;
-	Mon,  7 Feb 2022 13:53:48 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6E7C9C0073;
+	Mon,  7 Feb 2022 17:30:54 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A2D1FC000B
- for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 13:53:46 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B8DDEC000B
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 17:30:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 8411C80BE9
- for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 13:53:46 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id A60A740265
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 17:30:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zp43frA2-FvE for <bridge@lists.linux-foundation.org>;
- Mon,  7 Feb 2022 13:53:45 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
- by smtp1.osuosl.org (Postfix) with ESMTPS id B705A80BE7
- for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 13:53:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
- Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
- bh=ZCBQfIgsaaqGa9NdTBKby2K4luKCO2x9ltO+P32Dy1E=; b=ZQvMoWmrRru7q2T1QO7Q5DY945
- INsEvCnlxHc53LgeQB7iZK2L/tRVPegucijhvHQqRM0tcryCYciDk5ehjRhxBTgklPMWc1M1hwcep
- J6001389zlRq0WJ1gXvPebIKhQm+OxtecXRCxDHiEZS10LnSSwLo+bjo6Wl58ueAV0Qc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
- (envelope-from <andrew@lunn.ch>)
- id 1nH4SS-004dvH-6g; Mon, 07 Feb 2022 14:53:32 +0100
-Date: Mon, 7 Feb 2022 14:53:32 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <YgEkXARS160I9Ooe@lunn.ch>
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key)
+ header.d=networkplumber-org.20210112.gappssmtp.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id gLeIM2I-px02 for <bridge@lists.linux-foundation.org>;
+ Mon,  7 Feb 2022 17:30:52 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com
+ [IPv6:2607:f8b0:4864:20::62f])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id F127D401F7
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 17:30:51 +0000 (UTC)
+Received: by mail-pl1-x62f.google.com with SMTP id z5so11667329plg.8
+ for <bridge@lists.linux-foundation.org>; Mon, 07 Feb 2022 09:30:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20210112.gappssmtp.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=c3UO1TTRZqzSjjDQY9Mwanici3NZ8tfp3AuhU7oMYuA=;
+ b=QPHaqlTiE16WocBPSKB+Lh+Ski0qtk/u+htUzq292AHwqkwfgCqNFPoyzWnzp35sr1
+ n78XPElUsjVk+gUGFqDap1fb/7cK7w3cKnLfv/E1GfzCkSjYiGDbS4+eZ00YZIqec36r
+ 55RYOC2HtBq5z7nfTlvxbqnm0+1d/78bCDNOvtUD+Jznz0Pv/3oQaLKY4fJGfaDokHcs
+ m3OPmlwR+CTgXREhrBYj5yishPrXwWxcJrEjBiv+ALyN8E2AYBv2GcZorbFEj/MBHjdb
+ i4HFCxGCYrfT39BP2j5Ag0bTWXBwepHMjSv7tZCU5oF3rdb1QaapZIZPlDDy/uKn9Kx/
+ hOgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=c3UO1TTRZqzSjjDQY9Mwanici3NZ8tfp3AuhU7oMYuA=;
+ b=I2uPkjuk7VjC9jjVPdzqUQZ7iZfn5+bWAQ7QgLK1QF9QIaDBXdSsIM3WI/lmd8w0dd
+ oYJl+cQL87lJTc/FgNNqWWRXhR4OTK1DHilqID7kNvYzPfilV0m+LVoU9piaDXCdAdCb
+ n1C4hj69BCOlLdJ1Y7M2x5A+e8TqaJoh/4EBqCdxXU8NQhHqYZFoIbeBiVXoUDWR2/76
+ bEILxlbgwzhNLNJWSPHkmCM3ox8Hcpu8cAKtATQQxgFQmS6i+NN/RUVfX3zkVOwH5cGg
+ wxx9L8LQi6T1u+HTnEHDkgxpbcdIlQ/VA6yoLnRjgYMboEG+x51M2mHHbK5f3mcOw2VM
+ FcsQ==
+X-Gm-Message-State: AOAM5319BXXoQT8hYv+FfDGVT0jSlxDaA4+CdJDuYjLt6wq9ma8+bkz0
+ HksavKBRR5JxXoHz8Q5xFtdtIA==
+X-Google-Smtp-Source: ABdhPJybnmCKGPtO8IqhqttCxQi89zitG0at/CJ7JkdPePmN1OOEdHERPm0zX6p8FrnaR53d4x9KXw==
+X-Received: by 2002:a17:90a:af97:: with SMTP id
+ w23mr11768861pjq.162.1644255051050; 
+ Mon, 07 Feb 2022 09:30:51 -0800 (PST)
+Received: from hermes.local (204-195-112-199.wavecable.com. [204.195.112.199])
+ by smtp.gmail.com with ESMTPSA id
+ 38sm8878921pgm.37.2022.02.07.09.30.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Feb 2022 09:30:50 -0800 (PST)
+Date: Mon, 7 Feb 2022 09:30:48 -0800
+From: Stephen Hemminger <stephen@networkplumber.org>
+To: Hans Schultz <schultz.hans@gmail.com>
+Message-ID: <20220207093048.24bb6249@hermes.local>
+In-Reply-To: <20220207100742.15087-2-schultz.hans+netdev@gmail.com>
 References: <20220207100742.15087-1-schultz.hans+netdev@gmail.com>
  <20220207100742.15087-2-schultz.hans+netdev@gmail.com>
- <YgD5MglBy/UbN0uX@shredder>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YgD5MglBy/UbN0uX@shredder>
-Cc: netdev@vger.kernel.org, Hans Schultz <schultz.hans@gmail.com>,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Hans Schultz <schultz.hans+netdev@gmail.com>,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Hans Schultz <schultz.hans+netdev@gmail.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
  kuba@kernel.org, davem@davemloft.net
 Subject: Re: [Bridge] [PATCH net-next 1/4] net: bridge: Add support for
@@ -77,19 +103,18 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-> > +	if (p->flags & BR_PORT_LOCKED) {
-> > +		fdb_entry = br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
-> > +		if (!(fdb_entry && fdb_entry->dst == p))
-> > +			goto drop;
-> 
-> I'm not familiar with 802.1X so I have some questions:
+On Mon,  7 Feb 2022 11:07:39 +0100
+Hans Schultz <schultz.hans@gmail.com> wrote:
 
-Me neither.
+> --- a/include/uapi/linux/if_link.h
+> +++ b/include/uapi/linux/if_link.h
+> @@ -532,6 +532,7 @@ enum {
+>  	IFLA_BRPORT_GROUP_FWD_MASK,
+>  	IFLA_BRPORT_NEIGH_SUPPRESS,
+>  	IFLA_BRPORT_ISOLATED,
+> +	IFLA_BRPORT_LOCKED,
+>  	IFLA_BRPORT_BACKUP_PORT,
+>  	IFLA_BRPORT_MRP_RING_OPEN,
 
-> 
-> 1. Do we need to differentiate between no FDB entry and an FDB entry
-> pointing to a different port than we expect?
-
-And extending that question, a static vs a dynamic entry?
-
-    Andrew
+Adding new element in middle of enum causes them to be renumbered.
+That breaks the kernel ABI. Please add only at end.
