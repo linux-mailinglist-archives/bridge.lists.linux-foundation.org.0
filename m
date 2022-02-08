@@ -1,92 +1,95 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4664B3AC1
-	for <lists.bridge@lfdr.de>; Sun, 13 Feb 2022 11:14:07 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2E0D4B3AC5
+	for <lists.bridge@lfdr.de>; Sun, 13 Feb 2022 11:14:10 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 1E1A060C03;
+	by smtp1.osuosl.org (Postfix) with ESMTP id E33B681BF5;
 	Sun, 13 Feb 2022 10:14:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kyZ1VCi4hL1p; Sun, 13 Feb 2022 10:14:05 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id A6D8660BC1;
-	Sun, 13 Feb 2022 10:14:04 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HtgnBi0vqYPM; Sun, 13 Feb 2022 10:14:06 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 10BC9815AB;
+	Sun, 13 Feb 2022 10:14:05 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A744AC0070;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E063FC001A;
 	Sun, 13 Feb 2022 10:14:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4BE6FC000B
- for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 10:08:23 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B09CCC000B
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Feb 2022 09:07:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 2C186814B6
- for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 10:08:23 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 963CA401C3
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Feb 2022 09:07:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vfX1gZwj-dSQ for <bridge@lists.linux-foundation.org>;
- Mon,  7 Feb 2022 10:08:22 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id bDX0B_LPNuZ3 for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Feb 2022 09:07:24 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com
- [IPv6:2a00:1450:4864:20::243])
- by smtp1.osuosl.org (Postfix) with ESMTPS id EAA4B81339
- for <bridge@lists.linux-foundation.org>; Mon,  7 Feb 2022 10:08:21 +0000 (UTC)
-Received: by mail-lj1-x243.google.com with SMTP id e17so18766495ljk.5
- for <bridge@lists.linux-foundation.org>; Mon, 07 Feb 2022 02:08:21 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id CDB6F401C1
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Feb 2022 09:07:23 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id r7so11634324wmq.5
+ for <bridge@lists.linux-foundation.org>; Tue, 08 Feb 2022 01:07:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:organization:content-transfer-encoding;
- bh=s5p54l/5ghXdgSmZcw68jguzPsn8MNmzYbYS1HcBzhQ=;
- b=RzMbPy1Ln5QC6ew2bpQt2fFy5Gg4iv7JtdI3IUXtfqISS/HnN0e86EcT7Di/nEKMxE
- 1NadGpBz6dm7Q4yJ5wejlLcbT2YiydWbY0KrhlqgdPm/o3bPUTm+yqbvl0nNIqjwoaD2
- SGBnI8aDBDsezm963aQhsje0reUXEAc0i9BHqFs6iUaa5NdDNOZ6kHeH+LqpXjDpUkE+
- 5Z+l92urz0maruhjX3vzEGZf+tks0CM3tCNjn9Dzi0C+1ImRdLzgDv79IzTC0DzPlTs9
- eZNh5g0ZdlI8FpmT4zgLHyw1Twr3mcA0Vd2WzQUWxekdtA7YXTx6O4RNsztpkypFklQP
- sPbQ==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version:content-transfer-encoding;
+ bh=vpEZx2aDaRD4hwz/cgEGHsBbudveBVKpDQc3oNrzJIc=;
+ b=A1mUx61Urxs2tc3tDNhFy5T2KYzXThskLrNm4DZWlKBPDM1U1/UpjS3L5MCLg7Nwp0
+ lruhQU7oJCghLyzpYkjK7jdMiWwSWztmQCbknVuOk1DFg94SmfPNWpwfsExjOy/+8Vt2
+ MaMwlHLqPHn1YWbEMte4iUQ8Yfewa66RLkgp82QG3HJN5HRJDSV3Effiw9CKp9UWNc1z
+ ux7bPK+bV8P8z1E/scBFoGuZT3y/GCGzIP9ULqrTl/JNZ69tR/PyHRlu4yQ3e+Rm7qSp
+ Wyb552MCBAUv/yNsVjtNq7jOSEXvcY+mKjUYPm3iP7AYBZbFP8puo7690NMGVYyUi97N
+ p8aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:organization:content-transfer-encoding;
- bh=s5p54l/5ghXdgSmZcw68jguzPsn8MNmzYbYS1HcBzhQ=;
- b=XFu6YSW5A/MGJBma3D8sjI7wkGzHfNjHqsRbfAq3ac9QxO2fvwAAf8JM/qlHr+ey+j
- cdZvAXLx8kyxVis69//dGlT8wcean0hh2KN+NVh0y5AzMG+he4gWAsIEUDu7GksbvYrc
- 9PRZJuVrdRSZPNeQKVp0w7X017TvI9xh9sJ6tefYbyBfEt1JXD1jpAfhde4Y11pyFv54
- Ns06b/cPMeEMcBt2EP06fIuGgXNRjCoGF09kzCzG82jD6g2Gkkzu2uUDyCsOauDDa5C6
- QUsqigz72Pll/CCAiiyMxBa5J862dbWgRn6KRu/NGVkMAiWf1x8DC3h7xNUySOTMnLI/
- lHFA==
-X-Gm-Message-State: AOAM533lTBLeuvdUGfuum+vVdgOukXO1sjLdNXN6tIhXX9CSRA5qle6/
- ChirzZmDqdmbaD/v7JKqnZ8=
-X-Google-Smtp-Source: ABdhPJxMQy4Pq8xSBb2Kxdy0UnyMlVEthzWHERuU3S/+zvpQY031kDEBJGyRzezNzLjiKs+NiMTyJg==
-X-Received: by 2002:a2e:5810:: with SMTP id m16mr8134875ljb.261.1644228499706; 
- Mon, 07 Feb 2022 02:08:19 -0800 (PST)
-Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
- by smtp.gmail.com with ESMTPSA id k12sm1546034ljh.45.2022.02.07.02.08.18
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version:content-transfer-encoding;
+ bh=vpEZx2aDaRD4hwz/cgEGHsBbudveBVKpDQc3oNrzJIc=;
+ b=NEPZE3akoWbEsqZPMuJhjdgodZ4PBbK4URRX4x4tge4Sb2R/fgawYK4Z41TZy4Q4gn
+ c8Bn3AHRbo3h8uCGdt5nJE8na0ososzrV8meWGN7mV4/tnTzFs1fKzrkpILrRRfdI3De
+ GWOoSENaaAEneVtn+uBng7IdH8f4zYtr9oJHbQ3ZGLrR6xESUznSNQiHBpeofyQIVLNI
+ Y05lzSIz4ZJ6VoNJjkV8m/rUUY7R4mkRO2x03IlZj/PKB1lH4CX+ORgekzm98rYbzjNb
+ tQD4R1z9VZUctHYXB4WycQbZIShCbau97QaftdUwgnvJLee3QmRISKp6dh8uCDarcSzu
+ NDlA==
+X-Gm-Message-State: AOAM5315N8r99mafmvvtyuUD4G2qmLm9trngobufEnoSZTbWzZMdm1Qp
+ HwTu2Cn/e33o4dG0wKallHcJ++Uz1TwP6ym25d8=
+X-Google-Smtp-Source: ABdhPJwGj5CMnZHIBULLOZXgzOyt/GzqPmlJb8H7Fsp+QBjdmImqlhcfcnu04//CymPcII4Qucj2gA==
+X-Received: by 2002:a05:600c:4f06:: with SMTP id
+ l6mr228404wmq.126.1644311241631; 
+ Tue, 08 Feb 2022 01:07:21 -0800 (PST)
+Received: from wse-c0127 (2-104-116-184-cable.dk.customer.tdc.net.
+ [2.104.116.184])
+ by smtp.gmail.com with ESMTPSA id u7sm585007wrm.15.2022.02.08.01.07.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Feb 2022 02:08:19 -0800 (PST)
+ Tue, 08 Feb 2022 01:07:21 -0800 (PST)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
-To: davem@davemloft.net,
-	kuba@kernel.org
-Date: Mon,  7 Feb 2022 11:07:42 +0100
-Message-Id: <20220207100742.15087-5-schultz.hans+netdev@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220207100742.15087-1-schultz.hans+netdev@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>, Ido Schimmel <idosch@idosch.org>
+In-Reply-To: <YgEkXARS160I9Ooe@lunn.ch>
 References: <20220207100742.15087-1-schultz.hans+netdev@gmail.com>
+ <20220207100742.15087-2-schultz.hans+netdev@gmail.com>
+ <YgD5MglBy/UbN0uX@shredder> <YgEkXARS160I9Ooe@lunn.ch>
+Date: Tue, 08 Feb 2022 10:06:43 +0100
+Message-ID: <867da5viak.fsf@gmail.com>
 MIME-Version: 1.0
-Organization: Westermo Network Technologies AB
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sun, 13 Feb 2022 10:14:02 +0000
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Hans Schultz <schultz.hans+netdev@gmail.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>
-Subject: [Bridge] [PATCH net-next 4/4] net: bridge: Refactor bridge port in
-	locked mode to use jump labels
+Cc: netdev@vger.kernel.org, Hans Schultz <schultz.hans@gmail.com>,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 1/4] net: bridge: Add support for
+ bridge port in locked mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,94 +104,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-As the locked mode feature is in the hot path of the bridge modules
-reception of packets, it needs to be refactored to use jump labels
-for optimization.
+On m=C3=A5n, feb 07, 2022 at 14:53, Andrew Lunn <andrew@lunn.ch> wrote:
+>> > +	if (p->flags & BR_PORT_LOCKED) {
+>> > +		fdb_entry =3D br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
+>> > +		if (!(fdb_entry && fdb_entry->dst =3D=3D p))
+>> > +			goto drop;
+>>=20
+>> I'm not familiar with 802.1X so I have some questions:
+>
+> Me neither.
+>
+>>=20
+>> 1. Do we need to differentiate between no FDB entry and an FDB entry
+>> pointing to a different port than we expect?
+>
+> And extending that question, a static vs a dynamic entry?
+>
+>     Andrew
 
-Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
----
- net/bridge/br_input.c   | 22 ++++++++++++++++++----
- net/bridge/br_netlink.c |  6 ++++++
- net/bridge/br_private.h |  2 ++
- 3 files changed, 26 insertions(+), 4 deletions(-)
-
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 469e3adbce07..6fc428d6bac5 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -23,6 +23,18 @@
- #include "br_private.h"
- #include "br_private_tunnel.h"
- 
-+static struct static_key_false br_input_locked_port_feature;
-+
-+void br_input_locked_port_add(void)
-+{
-+	static_branch_inc(&br_input_locked_port_feature);
-+}
-+
-+void br_input_locked_port_remove(void)
-+{
-+	static_branch_dec(&br_input_locked_port_feature);
-+}
-+
- static int
- br_netif_receive_skb(struct net *net, struct sock *sk, struct sk_buff *skb)
- {
-@@ -91,10 +103,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 				&state, &vlan))
- 		goto out;
- 
--	if (p->flags & BR_PORT_LOCKED) {
--		fdb_entry = br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
--		if (!(fdb_entry && fdb_entry->dst == p))
--			goto drop;
-+	if (static_branch_unlikely(&br_input_locked_port_feature)) {
-+		if (p->flags & BR_PORT_LOCKED) {
-+			fdb_entry = br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
-+			if (!(fdb_entry && fdb_entry->dst == p))
-+				goto drop;
-+		}
- 	}
- 
- 	nbp_switchdev_frame_mark(p, skb);
-diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-index 7d4432ca9a20..e3dbe9fed75c 100644
---- a/net/bridge/br_netlink.c
-+++ b/net/bridge/br_netlink.c
-@@ -860,6 +860,7 @@ static int br_set_port_state(struct net_bridge_port *p, u8 state)
- static void br_set_port_flag(struct net_bridge_port *p, struct nlattr *tb[],
- 			     int attrtype, unsigned long mask)
- {
-+	bool locked = p->flags & BR_PORT_LOCKED;
- 	if (!tb[attrtype])
- 		return;
- 
-@@ -867,6 +868,11 @@ static void br_set_port_flag(struct net_bridge_port *p, struct nlattr *tb[],
- 		p->flags |= mask;
- 	else
- 		p->flags &= ~mask;
-+
-+	if ((p->flags & BR_PORT_LOCKED) && !locked)
-+		br_input_locked_port_add();
-+	if (!(p->flags & BR_PORT_LOCKED) && locked)
-+		br_input_locked_port_remove();
- }
- 
- /* Process bridge protocol info on port */
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 2661dda1a92b..0ec3ef897978 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -832,6 +832,8 @@ void br_manage_promisc(struct net_bridge *br);
- int nbp_backup_change(struct net_bridge_port *p, struct net_device *backup_dev);
- 
- /* br_input.c */
-+void br_input_locked_port_add(void);
-+void br_input_locked_port_remove(void);
- int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb);
- rx_handler_func_t *br_get_rx_handler(const struct net_device *dev);
- 
--- 
-2.30.2
-
+The question is - if there is an fdb entry or not - for the specific client
+mac address behind the locked port in the bridge associated with the
+respective locked port and vlan taken into consideration.
+Normally you would have learning disabled, or from a fresh start if a port
+is locked, it will not learn on incoming from that port, so you need to
+add the fdb entry from user-space. In the common case you will want to
+use static entries and remember the master flag for the entry to go to
+the bridge module.
