@@ -1,80 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id C015A4B97D0
-	for <lists.bridge@lfdr.de>; Thu, 17 Feb 2022 05:40:20 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECC94BA408
+	for <lists.bridge@lfdr.de>; Thu, 17 Feb 2022 16:12:14 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id C145D417B3;
-	Thu, 17 Feb 2022 04:40:18 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id D602D83E7A;
+	Thu, 17 Feb 2022 15:12:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id S0W-J9RCLNta; Thu, 17 Feb 2022 04:40:18 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 332DA417B6;
-	Thu, 17 Feb 2022 04:40:17 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id T2rRIICWDfop; Thu, 17 Feb 2022 15:12:12 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 3CD2C83E56;
+	Thu, 17 Feb 2022 15:12:11 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D10E7C0073;
-	Thu, 17 Feb 2022 04:40:16 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DC2DDC0039;
+	Thu, 17 Feb 2022 15:12:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A79F8C0011
- for <bridge@lists.linux-foundation.org>; Thu, 17 Feb 2022 04:40:14 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 08276C000B
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Feb 2022 13:49:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 823A261C57
- for <bridge@lists.linux-foundation.org>; Thu, 17 Feb 2022 04:40:14 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id E5CE04036F
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Feb 2022 13:49:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JAld8OXOkabW for <bridge@lists.linux-foundation.org>;
- Thu, 17 Feb 2022 04:40:13 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id ADBDF60B41
- for <bridge@lists.linux-foundation.org>; Thu, 17 Feb 2022 04:40:13 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id B8A40B820F8;
- Thu, 17 Feb 2022 04:40:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6108FC340EC;
- Thu, 17 Feb 2022 04:40:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1645072809;
- bh=SQie68LtRJwl6pfaDF+fS7AfThug4tVyYsyf5TnnDHk=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=Hu1z+s5TJUTiOBBG6qj4KsIbqwHJn8CImpT8ZxGQs8I0X8ABWw3xjZoGW0mCb6E3R
- dEk3IHHjfuo58mRzDBHomA20lqgcAt8PgYKo+8SpqAznvnQomU00wFLCv4QDk7JK1q
- xjzCk3cEnvOaEv5Ysry4HwGDKJ+uv3kzEohmUEXtnuIT2Nnja2hauxSHgDozI185bI
- ZQEdm53zAzi5QtyS7sa3PTzjf7ggi324TdjgCS7JeiGrErZkH2+uU+MTS+zrc2ALHh
- WMP7OoYXeAVDorjxFcvawulYf/XCYodFkvuWXBuwab+1ivRTdq0ZRxTYttnGxLvjXn
- VfE3XH4mox8Kg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 463A6E7BB07; Thu, 17 Feb 2022 04:40:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=armlinux.org.uk
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id RWwWxZutTuf6 for <bridge@lists.linux-foundation.org>;
+ Wed, 16 Feb 2022 13:49:30 +0000 (UTC)
+X-Greylist: delayed 00:10:08 by SQLgrey-1.8.0
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
+ [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id EA04440125
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Feb 2022 13:49:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=tjvtg6e6rfEBajxf7gEQ25jMTSa3cr331jVbNJooOA0=; b=fRzh+dlUNwjRlxwNg3p81SGp3B
+ iStgmRxGiJO6bKTyqJwOLl8g3KNUsuNbBJrLRQ7UilHK2F8X5sVUfqqLvgT4IA+wsrJTra5I0v0qY
+ dyZ7dqySINcTzpwqnM0bGq/bbzCr879Q3scd+JS3+0YPwLeEp9erYpO0YXsup7ValRWBOpdquQBjz
+ iFOyTAvMnuNfMkyx+WuYaKrh39IiHrhOcAKz5cLMGwOkIAMjOHDgej31lVHn85+QZtw0iya38+4ti
+ pbyviRSYF7YV5Wuln6MXHB4eQXiXuZyPeAkYP2kV5rkjGEdQPeho+Dsp3yOU3Ccq5Yqw6OonUeJHf
+ BSJUVR5g==;
+Received: from shell.armlinux.org.uk
+ ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57284)
+ by pandora.armlinux.org.uk with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <linux@armlinux.org.uk>)
+ id 1nKKWP-0003ue-5J; Wed, 16 Feb 2022 13:39:05 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+ (envelope-from <linux@shell.armlinux.org.uk>)
+ id 1nKKWK-00006Q-7J; Wed, 16 Feb 2022 13:39:00 +0000
+Date: Wed, 16 Feb 2022 13:39:00 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Message-ID: <Ygz+dNz1YvyiFpxa@shell.armlinux.org.uk>
+References: <20220216132934.1775649-1-tobias@waldekranz.com>
+ <20220216132934.1775649-10-tobias@waldekranz.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164507280928.19778.1810833319273321601.git-patchwork-notify@kernel.org>
-Date: Thu, 17 Feb 2022 04:40:09 +0000
-References: <20220215165303.31908-1-oleksandr.mazur@plvision.eu>
-In-Reply-To: <20220215165303.31908-1-oleksandr.mazur@plvision.eu>
-To: Oleksandr Mazur <oleksandr.mazur@plvision.eu>
-Cc: ivecera@redhat.com, taras.chornyi@plvision.eu, yotamg@mellanox.com,
- vladimir.oltean@nxp.com, razor@blackwall.org,
- bridge@lists.linux-foundation.org, volodymyr.mytnyk@plvision.eu,
- linux-kernel@vger.kernel.org, jiri@mellanox.com, netdev@vger.kernel.org,
- nogahf@mellanox.com, roopa@nvidia.com, kuba@kernel.org, nikolay@nvidia.com,
- davem@davemloft.net, mickeyr@marvell.com
-Subject: Re: [Bridge] [PATCH net v2] net: bridge: multicast: notify
- switchdev driver whenever MC processing gets disabled
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220216132934.1775649-10-tobias@waldekranz.com>
+X-Mailman-Approved-At: Thu, 17 Feb 2022 15:12:09 +0000
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
+ Nikolay Aleksandrov <nikolay@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
+Subject: Re: [Bridge] [RFC net-next 9/9] net: dsa: mv88e6xxx: MST Offloading
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,29 +90,80 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Hi,
 
-This patch was applied to netdev/net.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+On Wed, Feb 16, 2022 at 02:29:34PM +0100, Tobias Waldekranz wrote:
+> +static int mv88e6xxx_sid_new(struct mv88e6xxx_chip *chip, u8 *sid)
+> +{
+> +	DECLARE_BITMAP(busy, MV88E6XXX_N_SID) = { 0 };
+> +	struct mv88e6xxx_mst *mst;
+> +
+> +	set_bit(0, busy);
+> +
+> +	list_for_each_entry(mst, &chip->msts, node) {
+> +		set_bit(mst->stu.sid, busy);
+> +	}
 
-On Tue, 15 Feb 2022 18:53:03 +0200 you wrote:
-> Whenever bridge driver hits the max capacity of MDBs, it disables
-> the MC processing (by setting corresponding bridge option), but never
-> notifies switchdev about such change (the notifiers are called only upon
-> explicit setting of this option, through the registered netlink interface).
-> 
-> This could lead to situation when Software MDB processing gets disabled,
-> but this event never gets offloaded to the underlying Hardware.
-> 
-> [...]
+Do you need these set_bit() operations to be atomic? Would __set_bit()
+produce better code?
 
-Here is the summary with links:
-  - [net,v2] net: bridge: multicast: notify switchdev driver whenever MC processing gets disabled
-    https://git.kernel.org/netdev/net/c/c832962ac972
+> +
+> +	*sid = find_first_zero_bit(busy, MV88E6XXX_N_SID);
+> +
+> +	return (*sid >= mv88e6xxx_max_sid(chip)) ? -ENOSPC : 0;
 
-You are awesome, thank you!
+Hmm. Let's hope that mv88e6xxx_max_sid() never returns a value larger
+than MV88E6XXX_N_SID.
+
+> +}
+> +
+...
+> +static int mv88e6xxx_sid_get(struct mv88e6xxx_chip *chip, struct net_device *br,
+> +			     u16 mstid, u8 *sid)
+> +{
+> +	struct mv88e6xxx_mst *mst;
+> +	int err;
+> +
+> +	if (!br)
+> +		return 0;
+> +
+> +	if (!mv88e6xxx_has_stu(chip))
+> +		return -EOPNOTSUPP;
+> +
+> +	list_for_each_entry(mst, &chip->msts, node) {
+> +		if (mst->br == br && mst->mstid == mstid) {
+> +			refcount_inc(&mst->refcnt);
+> +			*sid = mst->stu.sid;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	err = mv88e6xxx_sid_new(chip, sid);
+> +	if (err)
+> +		return err;
+> +
+> +	mst = kzalloc(sizeof(*mst), GFP_KERNEL);
+> +	if (!mst)
+> +		return -ENOMEM;
+> +
+> +	INIT_LIST_HEAD(&mst->node);
+
+There is no need to initialise the node if you're then going to be
+adding it to the list.
+
+> +	refcount_set(&mst->refcnt, 1);
+> +	mst->br = br;
+> +	mst->mstid = mstid;
+> +	mst->stu.valid = true;
+> +	mst->stu.sid = *sid;
+> +	list_add_tail(&mst->node, &chip->msts);
+> +	return mv88e6xxx_stu_loadpurge(chip, &mst->stu);
+
+I haven't checked what the locking is here - I hope it's not possible
+for two of these to run concurrently.
+
+Thanks.
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
