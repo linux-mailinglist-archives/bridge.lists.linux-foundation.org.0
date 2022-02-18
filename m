@@ -2,80 +2,80 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44DE4BBC86
-	for <lists.bridge@lfdr.de>; Fri, 18 Feb 2022 16:53:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 494AF4BBC87
+	for <lists.bridge@lfdr.de>; Fri, 18 Feb 2022 16:53:25 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 64C1A84C1C;
-	Fri, 18 Feb 2022 15:53:14 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id EE45584C9C;
+	Fri, 18 Feb 2022 15:53:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id dchXQwseCOXv; Fri, 18 Feb 2022 15:53:13 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 127A684C30;
-	Fri, 18 Feb 2022 15:53:13 +0000 (UTC)
+	with ESMTP id 4_jmWjB5XsZ2; Fri, 18 Feb 2022 15:53:23 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 6A52F84C9D;
+	Fri, 18 Feb 2022 15:53:22 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D7201C0039;
-	Fri, 18 Feb 2022 15:53:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 23431C0039;
+	Fri, 18 Feb 2022 15:53:22 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EFD02C000B
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:10 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7C6F6C000B
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id DE795408BF
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:10 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 5E1E2402AC
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:20 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ZG8O5B_O_6UX for <bridge@lists.linux-foundation.org>;
- Fri, 18 Feb 2022 15:53:10 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 6Im_LxRzLLk4 for <bridge@lists.linux-foundation.org>;
+ Fri, 18 Feb 2022 15:53:19 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
- [IPv6:2a00:1450:4864:20::12a])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 1743A40110
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:09 +0000 (UTC)
-Received: by mail-lf1-x12a.google.com with SMTP id j15so6233912lfe.11
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 07:53:09 -0800 (PST)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 94A8340245
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:19 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id e5so6237091lfr.9
+ for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 07:53:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:organization:content-transfer-encoding;
- bh=xsR/hKbVC0DUFloHcPTPuu9npcAFNkMVex8QVbhOYjs=;
- b=PgVAF2CFxXClr7XtfIleyOCx+Gi9xnzlboqeOO6fOXSA4GfJD2Ha0fAgYXYPdDHteC
- vVpqeRpulaJTSnmFzPLBnW61aOBN8o/IHCO1jXT5f+Dl4hdm0GITuRs6lSQLQoK2PC/g
- pIIRO1x/od0SMlwA9qsptKJvUIuTiHb5ffM7Q3KwGC6EpDsKd5SmiSTUCqfUN4cKVXzD
- CyL3Zbh+2JNub0wD9nXiGQtIYWWRQmbJfNpp/OfwYI9X8R6GLysRgcKKwAGrzcDbNCib
- eD0KcsEZSDdTLX5/zZb+U2TCtTLJz+1//jTSo2e7/4HBAK9JuKLsqvps2AB9GiceJPNl
- Ekjw==
+ bh=pe7DtCHDCmLRwyE/qHTyP5z+rDV+SzCi98cUiAV5b/4=;
+ b=Fv7QJcyGriYpIrAjds8vlp5zMhjOy9wVM+dvvFiid3g2j0XoAXnynXE+rJyOVPmo07
+ bYt1+BjUHRsiz5qZNIfS7G2IxWkmjmV4nbAlC+ao+/NJ0urGXNlCZofWgOgMNK7HmVih
+ vKp0fceLxj+gk+xlc41FEm/lTkHk5Xn+ir07CApg2gMkD/SH3MLJYJhlZJKaRvmSiu53
+ dz84Ap35uW3CFJ1glbh1mETbpIzBbBY42JKfAENcIbe8RdIv+WtZIbBrYgXqDy53bQu+
+ DHL6zp6BhpTh9WXBs2tBFWQW5gIVRAU4vJXRDeibZTVqQS/54QHlIUmf6GsddjYHeW62
+ 5kBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:organization:content-transfer-encoding;
- bh=xsR/hKbVC0DUFloHcPTPuu9npcAFNkMVex8QVbhOYjs=;
- b=RGDdlhVibdQ3cGVC2BrCbpSj1m70CwlgURyF+XQ6SA1Mjn2FNbR8aq3KaGAu+rF/rg
- WzhcK4QhekpxHevSRtvkOzwXFSFLMCE9upSB/ThCCmDwnAXDpWTy2quYV6KGLHL7MKmz
- vA2QnU0KT0uUGHdd5q7HOqwKMq0uPK5kbyIWHG0imT+77oGCKtWsmPOvy2DAArdiHDXQ
- ptdecuiQRgeX0jElEAvEvxESW+OGXztwsQdDPd19ku0TNi5//zmhseLtg8Sdw08jFcqt
- Ew7XMSm1lTeaE82SyVWF7EHnCuQZg245+L0WqCFJcTNFI5uT2Yeek1btzNM2mlsxXPE5
- G7wQ==
-X-Gm-Message-State: AOAM531DWOCkAx64kzJCNkhG6bLYRJ8d5oXCZO3TcC4uT7sPEU0AmZDY
- u46IwjD+zDmZoXthIjzLa5mss8DEJBZVQahLdl4=
-X-Google-Smtp-Source: ABdhPJxf1VgdE9FjUrG2Oi4IAPd+jiHT04vxuDLYzDhWK7uJvLNPkAjxOe6PtwjlzS+9t2RKS3e9vQ==
-X-Received: by 2002:a19:7605:0:b0:443:1126:3756 with SMTP id
- c5-20020a197605000000b0044311263756mr5774248lff.641.1645199588095; 
- Fri, 18 Feb 2022 07:53:08 -0800 (PST)
+ bh=pe7DtCHDCmLRwyE/qHTyP5z+rDV+SzCi98cUiAV5b/4=;
+ b=b/O9g58koaFTtA8X2/cXFKSf6hDcAEzSpS/crWzXr9RCw7JZ+N1FGzdxw8YdzwRkzz
+ Dk7S8hKS0mM4EAxQClBDtAFEapnEVyu/iMCyjKLE3hyriaTckXCXw5kVexllSZT5E8m/
+ 2jfkh5/gFXIN7ieWk/YbKGqR/IRMPjSG827h4r5emANt9qpqDPPFYfKJzRIP5YStIk0Q
+ uqFUi4h9R9bbFC1/sb/FFPQe+rQi8FySGUEizqY+QZfN5VxWp/yLMP1erhm1aeCwcow3
+ zDYNni9+8RHGvyBkKjNm+X1bmbqL/Lq2CNPUlPqCNl0TxFOr74t+m4alg0C7mz4jKG6S
+ nppA==
+X-Gm-Message-State: AOAM5331xV+uIlxcp3abxK+o36Pj2HVWzszPWhdMqkJTedFfc5OZp7gJ
+ 0ACEoVUISW4rDvH3V+LdAqk=
+X-Google-Smtp-Source: ABdhPJzDS4V2syfnTKcCTFbVQOsoDsQ4wpiSbJ5RpmfK6xrg+H26ZXoNOGx2NsTx1GAoVoo+95qrjA==
+X-Received: by 2002:a05:6512:214e:b0:443:1469:c8b0 with SMTP id
+ s14-20020a056512214e00b004431469c8b0mr5893383lfr.518.1645199597543; 
+ Fri, 18 Feb 2022 07:53:17 -0800 (PST)
 Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
- by smtp.gmail.com with ESMTPSA id v11sm295453lfr.3.2022.02.18.07.53.06
+ by smtp.gmail.com with ESMTPSA id v11sm295453lfr.3.2022.02.18.07.53.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Feb 2022 07:53:07 -0800 (PST)
+ Fri, 18 Feb 2022 07:53:17 -0800 (PST)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Fri, 18 Feb 2022 16:51:46 +0100
-Message-Id: <20220218155148.2329797-4-schultz.hans+netdev@gmail.com>
+Date: Fri, 18 Feb 2022 16:51:47 +0100
+Message-Id: <20220218155148.2329797-5-schultz.hans+netdev@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220218155148.2329797-1-schultz.hans+netdev@gmail.com>
 References: <20220218155148.2329797-1-schultz.hans+netdev@gmail.com>
@@ -93,8 +93,8 @@ Cc: Petr Machata <petrm@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, linux-kselftest@vger.kernel.org,
  Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
  Shuah Khan <shuah@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net-next v3 3/5] net: dsa: Add support for
-	offloaded locked port flag
+Subject: [Bridge] [PATCH net-next v3 4/5] net: dsa: mv88e6xxx: Add support
+	for bridge port locked mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -109,36 +109,118 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Among the switchcores that support this feature is the Marvell
-mv88e6xxx family.
+Supporting bridge ports in locked mode using the drop on lock
+feature in Marvell mv88e6xxx switchcores is described in the
+'88E6096/88E6097/88E6097F Datasheet', sections 4.4.6, 4.4.7 and
+5.1.2.1 (Drop on Lock).
+
+This feature is implemented here facilitated by the locked port flag.
 
 Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
 ---
- net/dsa/port.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/dsa/mv88e6xxx/chip.c |  9 ++++++++-
+ drivers/net/dsa/mv88e6xxx/port.c | 33 ++++++++++++++++++++++++++++++++
+ drivers/net/dsa/mv88e6xxx/port.h |  9 ++++++++-
+ 3 files changed, 49 insertions(+), 2 deletions(-)
 
-diff --git a/net/dsa/port.c b/net/dsa/port.c
-index bd78192e0e47..01ed22ed74a1 100644
---- a/net/dsa/port.c
-+++ b/net/dsa/port.c
-@@ -176,7 +176,7 @@ static int dsa_port_inherit_brport_flags(struct dsa_port *dp,
- 					 struct netlink_ext_ack *extack)
- {
- 	const unsigned long mask = BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD |
--				   BR_BCAST_FLOOD;
-+				   BR_BCAST_FLOOD | BR_PORT_LOCKED;
- 	struct net_device *brport_dev = dsa_port_to_bridge_port(dp);
- 	int flag, err;
+diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
+index 58ca684d73f7..eed3713b97ae 100644
+--- a/drivers/net/dsa/mv88e6xxx/chip.c
++++ b/drivers/net/dsa/mv88e6xxx/chip.c
+@@ -5881,7 +5881,7 @@ static int mv88e6xxx_port_pre_bridge_flags(struct dsa_switch *ds, int port,
+ 	const struct mv88e6xxx_ops *ops;
  
-@@ -200,7 +200,7 @@ static void dsa_port_clear_brport_flags(struct dsa_port *dp)
- {
- 	const unsigned long val = BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD;
- 	const unsigned long mask = BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD |
--				   BR_BCAST_FLOOD;
-+				   BR_BCAST_FLOOD | BR_PORT_LOCKED;
- 	int flag, err;
+ 	if (flags.mask & ~(BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD |
+-			   BR_BCAST_FLOOD))
++			   BR_BCAST_FLOOD | BR_PORT_LOCKED))
+ 		return -EINVAL;
  
- 	for_each_set_bit(flag, &mask, 32) {
+ 	ops = chip->info->ops;
+@@ -5939,6 +5939,13 @@ static int mv88e6xxx_port_bridge_flags(struct dsa_switch *ds, int port,
+ 			goto out;
+ 	}
+ 
++	if (flags.mask & BR_PORT_LOCKED) {
++		bool locked = !!(flags.val & BR_PORT_LOCKED);
++
++		err = mv88e6xxx_port_set_lock(chip, port, locked);
++		if (err)
++			goto out;
++	}
+ out:
+ 	mv88e6xxx_reg_unlock(chip);
+ 
+diff --git a/drivers/net/dsa/mv88e6xxx/port.c b/drivers/net/dsa/mv88e6xxx/port.c
+index ab41619a809b..46b7381899a0 100644
+--- a/drivers/net/dsa/mv88e6xxx/port.c
++++ b/drivers/net/dsa/mv88e6xxx/port.c
+@@ -1234,6 +1234,39 @@ int mv88e6xxx_port_set_mirror(struct mv88e6xxx_chip *chip, int port,
+ 	return err;
+ }
+ 
++int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
++			    bool locked)
++{
++	u16 reg;
++	int err;
++
++	err = mv88e6xxx_port_read(chip, port, MV88E6XXX_PORT_CTL0, &reg);
++	if (err)
++		return err;
++
++	reg &= ~MV88E6XXX_PORT_CTL0_SA_FILT_MASK;
++	if (locked)
++		reg |= MV88E6XXX_PORT_CTL0_SA_FILT_DROP_ON_LOCK;
++
++	err = mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_CTL0, reg);
++	if (err)
++		return err;
++
++	err = mv88e6xxx_port_read(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, &reg);
++	if (err)
++		return err;
++
++	reg &= ~MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
++	if (locked)
++		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
++
++	err = mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, reg);
++	if (err)
++		return err;
++
++	return 0;
++}
++
+ int mv88e6xxx_port_set_8021q_mode(struct mv88e6xxx_chip *chip, int port,
+ 				  u16 mode)
+ {
+diff --git a/drivers/net/dsa/mv88e6xxx/port.h b/drivers/net/dsa/mv88e6xxx/port.h
+index 03382b66f800..3f70557f0d48 100644
+--- a/drivers/net/dsa/mv88e6xxx/port.h
++++ b/drivers/net/dsa/mv88e6xxx/port.h
+@@ -142,7 +142,11 @@
+ /* Offset 0x04: Port Control Register */
+ #define MV88E6XXX_PORT_CTL0					0x04
+ #define MV88E6XXX_PORT_CTL0_USE_CORE_TAG			0x8000
+-#define MV88E6XXX_PORT_CTL0_DROP_ON_LOCK			0x4000
++#define MV88E6XXX_PORT_CTL0_SA_FILT_MASK			0xc000
++#define MV88E6XXX_PORT_CTL0_SA_FILT_DISABLED			0x0000
++#define MV88E6XXX_PORT_CTL0_SA_FILT_DROP_ON_LOCK		0x4000
++#define MV88E6XXX_PORT_CTL0_SA_FILT_DROP_ON_UNLOCK		0x8000
++#define MV88E6XXX_PORT_CTL0_SA_FILT_DROP_ON_CPU		0xc000
+ #define MV88E6XXX_PORT_CTL0_EGRESS_MODE_MASK			0x3000
+ #define MV88E6XXX_PORT_CTL0_EGRESS_MODE_UNMODIFIED		0x0000
+ #define MV88E6XXX_PORT_CTL0_EGRESS_MODE_UNTAGGED		0x1000
+@@ -365,6 +369,9 @@ int mv88e6xxx_port_set_fid(struct mv88e6xxx_chip *chip, int port, u16 fid);
+ int mv88e6xxx_port_get_pvid(struct mv88e6xxx_chip *chip, int port, u16 *pvid);
+ int mv88e6xxx_port_set_pvid(struct mv88e6xxx_chip *chip, int port, u16 pvid);
+ 
++int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
++			    bool locked);
++
+ int mv88e6xxx_port_set_8021q_mode(struct mv88e6xxx_chip *chip, int port,
+ 				  u16 mode);
+ int mv88e6095_port_tag_remap(struct mv88e6xxx_chip *chip, int port);
 -- 
 2.30.2
 
