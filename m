@@ -1,100 +1,135 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04BA24BBC88
-	for <lists.bridge@lfdr.de>; Fri, 18 Feb 2022 16:53:36 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id C44ED4BC72E
+	for <lists.bridge@lfdr.de>; Sat, 19 Feb 2022 10:47:06 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 8770940192;
-	Fri, 18 Feb 2022 15:53:34 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id EA37A41BAA;
+	Sat, 19 Feb 2022 09:47:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id qG-oO3zbOs-h; Fri, 18 Feb 2022 15:53:33 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 9AF0340110;
-	Fri, 18 Feb 2022 15:53:32 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id amqxgZq7uuNU; Sat, 19 Feb 2022 09:47:04 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 5FEB741BD3;
+	Sat, 19 Feb 2022 09:47:03 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 51FC8C0039;
-	Fri, 18 Feb 2022 15:53:32 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AACBFC0073;
+	Sat, 19 Feb 2022 09:47:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C8430C000B
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:31 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7EBF6C000B
+ for <bridge@lists.linux-foundation.org>; Sat, 19 Feb 2022 09:47:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id B73E2812C6
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:31 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 6C49841BAA
+ for <bridge@lists.linux-foundation.org>; Sat, 19 Feb 2022 09:47:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 7b51RvskbpAY for <bridge@lists.linux-foundation.org>;
- Fri, 18 Feb 2022 15:53:31 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 6rO48MZhZBpd for <bridge@lists.linux-foundation.org>;
+ Sat, 19 Feb 2022 09:47:00 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
- [IPv6:2a00:1450:4864:20::229])
- by smtp1.osuosl.org (Postfix) with ESMTPS id B39CB80B86
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 15:53:30 +0000 (UTC)
-Received: by mail-lj1-x229.google.com with SMTP id t14so4923493ljh.8
- for <bridge@lists.linux-foundation.org>; Fri, 18 Feb 2022 07:53:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:organization:content-transfer-encoding;
- bh=+Mu8RvBnev8GXTejYsZPejfoz1EIMAndo1iFiCzGtfU=;
- b=Ne7ve291QC1Ba2C/uEJ1kQrM/HEA0BtP4jUbz3fW5Zi43QXrH90M4ADD9g/D9y1sq2
- 4nDJo9rkkksFdRJVWv6+MS2HY08pNJvc9HxJfrYhVvV9PPWrroL8CWUBq6hrSm38/rRm
- rV/i42qonsEW7yMLJAzRVLHwFn8/KWEk1RcnscyahJaWwLDDgXR9WLSVYhtPBdFyTxay
- AXHj/yWPjSKpxqLvNaSYskfyqH6a3zBZkYGujTNkKkfkcBIiWJe07mo7RUMo8RonwzyL
- 87F7hwllYfSa5jvOSIQAL1+CIwjUDVc+JFce5Bp+Oe2LWfap7oj2nhK9djtyVILWGtOa
- fYxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:organization:content-transfer-encoding;
- bh=+Mu8RvBnev8GXTejYsZPejfoz1EIMAndo1iFiCzGtfU=;
- b=xV/YM0O5CFUMjLX1D6FDaQr+OtjsfJFz7y4hWLrXq60JKEI/yEZgzTWjUuYqX6WVJE
- 2Ru2gqpWSdyumzEKytpT2NZGB2ft+l0UsSOVsiZjJTqkRoCXYK34Sdo399spQVlKTTIh
- jD9tKL0wM2bUmAo/I/ZBi8YisgpxZ02PI+k1JHmEvGEF+AGnjc/H9FxgfAvjMRcosC06
- A06kJlujkxDcMEufQHDV3npq4a15e226frhE6OFvNvy4S/PNkXgbN4natcBbWmSS1K1l
- 4Mjazoul8cfmJnY+bUZKMz1n8YWHQe6abQJlMRPHbWf2BkDkRjhNbc8cajG55x/srpjT
- m87w==
-X-Gm-Message-State: AOAM533cw5gM0NNz0F8tQrnPpuqHn2eiJ9g/FAQtmc+Elq7hYoZ9MZGY
- b51k4Efgv4w4T3OkT1ZJbjU=
-X-Google-Smtp-Source: ABdhPJxlzT3gBFdCoywzClFF8dDbeFMFzORMD607SdJ3lZizRUrVvz9NSMNSjqfnZ1Mc3OoijizKEw==
-X-Received: by 2002:a2e:90c9:0:b0:244:2f8a:7aca with SMTP id
- o9-20020a2e90c9000000b002442f8a7acamr6152453ljg.129.1645199608751; 
- Fri, 18 Feb 2022 07:53:28 -0800 (PST)
-Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
- by smtp.gmail.com with ESMTPSA id v11sm295453lfr.3.2022.02.18.07.53.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Feb 2022 07:53:28 -0800 (PST)
-From: Hans Schultz <schultz.hans@gmail.com>
-X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
-To: davem@davemloft.net,
-	kuba@kernel.org
-Date: Fri, 18 Feb 2022 16:51:48 +0100
-Message-Id: <20220218155148.2329797-6-schultz.hans+netdev@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220218155148.2329797-1-schultz.hans+netdev@gmail.com>
-References: <20220218155148.2329797-1-schultz.hans+netdev@gmail.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2060d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eae::60d])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 2B8274087B
+ for <bridge@lists.linux-foundation.org>; Sat, 19 Feb 2022 09:47:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ft1LRpv4qOWneqOCzQLGvuhKc9ih6jXakU3W8zyOHZCIGqBOfV+9VxYx8TK1uqyhd/ytOT69c78DU1mza+YX+Pn2yPUAz3QvuIM+ZYdB6xm77hmBRR51H5aEyWNWMnTz1wGwqH1d9mXYL4fFxLhNrYqPzhBlfrhxdFPYvOdzrvaELvBG5TDLVIDrdROjQF7jP8tJe8OYYUyJTVYBkzAuxdYLv3EiT+ho915O5E2Ws0oEMHVob4QMOTIDft5/rIXz7CEXQ5DZy0Dcw1juMJtfL9b0BRl4zCsb5xU6mx9RG5QPE6qitfoxRA8xeoKZb+BB/WGFwVyFlCxTw/+I8wI3xw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DWidAe/8A4gdk6Kl8311PrlfqqyC1xvATabjBn6pkyk=;
+ b=jNelv/T/Z338WPbhzV4kBD16Xp98BUphuglCs262EFkiyxInLkAFKJc9IF2qgu/ERIRVH2tWqX64ccG3FfJ0jw01f4/OkOfZK17C2WAKGjCPYZFGLpklqAyMYF4ZRYOktwXQvbk7tjWkMJrjrlXFK5At3gcXJSW4Z/hPlPNRYqjG1fzF7SZuZ6fvC1ztJ4fwiX7bbWcwke4Wp40wSlSnr8zPYxdRrMphA3zVo8PY38TB6+iZDiKUvJwMuCkcK3JjklQsB9gt7flJKrhDco4WNziL2jDh/KZpwHWFQ26p7F98fr8hEgnT4x4e1peHxOHuL6phjS+czDxETX1zSZ851w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.236) smtp.rcpttodomain=lunn.ch smtp.mailfrom=nvidia.com; dmarc=pass
+ (p=reject sp=reject pct=100) action=none header.from=nvidia.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DWidAe/8A4gdk6Kl8311PrlfqqyC1xvATabjBn6pkyk=;
+ b=Ej2Ge6n2InAqQomc87fweyXLr+eFIn43jiZsyuDzU/L1myrc+vf5R+ZxgZC2SPTuGiFUSoda5ouO8paHZRZzbfg6ZOfAqrBba2RF1bFymlBhh/HbLc2vHsCJPBnteuUGVmul/4xvjxRkCXT730UrMnjhwFI8wwgpWhr51+9VjIro6wwLpnkO9levH+VHhapypNGY7aAuWXIj3u/vo4X7vvtErMMPithjtaLpw/BVeVQ0UvjHhh7/QdG2XiAMBFFR5Cfy7MSt9OuJEiAQDDhYS8UWix4p53C5L5Vif0/BPGZJIoP3QBggtzfULBw8kFAEzyylE6vX+rMhHM9fbwO78Q==
+Received: from DM6PR18CA0010.namprd18.prod.outlook.com (2603:10b6:5:15b::23)
+ by BN6PR12MB1938.namprd12.prod.outlook.com (2603:10b6:404:fe::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Sat, 19 Feb
+ 2022 09:46:57 +0000
+Received: from DM6NAM11FT045.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:15b:cafe::78) by DM6PR18CA0010.outlook.office365.com
+ (2603:10b6:5:15b::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.24 via Frontend
+ Transport; Sat, 19 Feb 2022 09:46:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.236)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.236 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.236; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.236) by
+ DM6NAM11FT045.mail.protection.outlook.com (10.13.173.123) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4995.15 via Frontend Transport; Sat, 19 Feb 2022 09:46:56 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL109.nvidia.com
+ (10.27.9.19) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
+ Sat, 19 Feb 2022 09:46:51 +0000
+Received: from [172.27.1.59] (10.126.230.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; Sat, 19 Feb 2022
+ 01:46:41 -0800
+Message-ID: <60f020b7-53b8-4f3c-ead2-8077aad8e5bb@nvidia.com>
+Date: Sat, 19 Feb 2022 11:46:37 +0200
 MIME-Version: 1.0
-Organization: Westermo Network Technologies AB
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Hans Schultz <schultz.hans@gmail.com>, <davem@davemloft.net>,
+ <kuba@kernel.org>
+References: <20220218155148.2329797-1-schultz.hans+netdev@gmail.com>
+ <20220218155148.2329797-2-schultz.hans+netdev@gmail.com>
+In-Reply-To: <20220218155148.2329797-2-schultz.hans+netdev@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.230.35]
+X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6301791a-21f0-41c3-3d7f-08d9f38cc469
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1938:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB19389D36AF7BDBBFFB5E923CDF389@BN6PR12MB1938.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VwR+2IcBfbczkGrVi3hzF3M2Fj826fmUSL6hmApXj1IqeFPqx+9lrOH/PBjfWsm1GbiCswN/qn4laqdpaG9E61J4PlM0SqY6x/pk+uLXM3SA0notpLV5ZJHURQWBZIbuV5KH0IalHrnMAZmDeIZc2U9PhoCyBE0zmcB7VvnCFLnst67CXNnxjzGj2yMeE2DxzeQTTD+hNkIB2T6g4EljhF6Es3buQ9XyvvWD99pXHc9opDvDRlOCyS4JWsK0TnhvMEkgerUDgnm6apf3wZoJbyycSUBMi/keZHQppIp8J0hAy3J2a2C3a8gz9XyTIGGr0jMIyNc2lJGFYaLt+xmRqtqjmhaPvHSJJgw8Y5POwccF5VmSML/blLKw9UKMpUBcZ8ZxyQxkX+Y9D09lt4efbomWbfWtzkh2vAxRBGd1ZPnL3kD6lkADsdHOXpbLgI0JoZNjEljRQMc/wvWjIqR25xzIB5/RidTUQ+4widpye5BFivels6ZmSepYvaUHZ5CZtv5oYG+HoaD4rsnXTnVDqsTMS7Zhj1cce5sWzj8368zUm/l+WF64MeIfQqy+TzXG8gMDQ1vOBBBYzAqDL6LD0tNxj8b9kqwr5IihLNWufiyjxiy+x3uLTHWrjuNnDmffZjB2tTeWwfEFLcoAzvPZWH+gHvvx40BrCNncf7IbPM8v8yzF1VWGtFFbcVKO5QFD7ZJhi0JvN4+jwWugFAZa9YEXoKGdAySZmnY/O0dmlRcRYRnLgrvx8FZW7BJyYn/h
+X-Forefront-Antispam-Report: CIP:12.22.5.236; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(5660300002)(4326008)(31696002)(8936002)(31686004)(7416002)(36860700001)(70586007)(16526019)(82310400004)(8676002)(2906002)(26005)(186003)(70206006)(86362001)(53546011)(36756003)(83380400001)(81166007)(508600001)(2616005)(356005)(6666004)(40460700003)(110136005)(316002)(47076005)(54906003)(336012)(16576012)(426003)(43740500002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2022 09:46:56.4744 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6301791a-21f0-41c3-3d7f-08d9f38cc469
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.236];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT045.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1938
 Cc: Petr Machata <petrm@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
  Baowen Zheng <baowen.zheng@corigine.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Amit Cohen <amcohen@nvidia.com>,
  netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Ido Schimmel <idosch@nvidia.com>, Stephen Suryaputra <ssuryaextr@gmail.com>,
- Hans Schultz <schultz.hans+netdev@gmail.com>,
- Po-Hsu Lin <po-hsu.lin@canonical.com>,
- Nikolay Aleksandrov <nikolay@nvidia.com>, linux-kselftest@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org, Ido
+ Schimmel <idosch@nvidia.com>, Stephen
+ Suryaputra <ssuryaextr@gmail.com>, Hans Schultz <schultz.hans+netdev@gmail.com>,
+ Po-Hsu Lin <po-hsu.lin@canonical.com>, linux-kselftest@vger.kernel.org,
  Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
  Shuah Khan <shuah@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net-next v3 5/5] selftests: forwarding: tests of
-	locked port feature
+Subject: Re: [Bridge] [PATCH net-next v3 1/5] net: bridge: Add support for
+ bridge port in locked mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,240 +141,85 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Nikolay Aleksandrov via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Nikolay Aleksandrov <nikolay@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-These tests check that the basic locked port feature works, so that no 'host'
-can communicate (ping) through a locked port unless the MAC address of the
-'host' interface is in the forwarding database of the bridge.
+On 18/02/2022 17:51, Hans Schultz wrote:
+> In a 802.1X scenario, clients connected to a bridge port shall not
+> be allowed to have traffic forwarded until fully authenticated.
+> A static fdb entry of the clients MAC address for the bridge port
+> unlocks the client and allows bidirectional communication.
+> 
+> This scenario is facilitated with setting the bridge port in locked
+> mode, which is also supported by various switchcore chipsets.
+> 
+> Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
+> ---
+>  include/linux/if_bridge.h    |  1 +
+>  include/uapi/linux/if_link.h |  1 +
+>  net/bridge/br_input.c        | 10 +++++++++-
+>  net/bridge/br_netlink.c      |  6 +++++-
+>  4 files changed, 16 insertions(+), 2 deletions(-)
+> 
 
-Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
----
- .../testing/selftests/net/forwarding/Makefile |   1 +
- .../net/forwarding/bridge_locked_port.sh      | 174 ++++++++++++++++++
- tools/testing/selftests/net/forwarding/lib.sh |  16 ++
- 3 files changed, 191 insertions(+)
- create mode 100755 tools/testing/selftests/net/forwarding/bridge_locked_port.sh
+Hi Hans,
+The patch looks good overall, I have one minor cosmetic comment below.
 
-diff --git a/tools/testing/selftests/net/forwarding/Makefile b/tools/testing/selftests/net/forwarding/Makefile
-index 72ee644d47bf..8fa97ae9af9e 100644
---- a/tools/testing/selftests/net/forwarding/Makefile
-+++ b/tools/testing/selftests/net/forwarding/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0+ OR MIT
- 
- TEST_PROGS = bridge_igmp.sh \
-+	bridge_locked_port.sh \
- 	bridge_port_isolation.sh \
- 	bridge_sticky_fdb.sh \
- 	bridge_vlan_aware.sh \
-diff --git a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-new file mode 100755
-index 000000000000..d2805441b325
---- /dev/null
-+++ b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-@@ -0,0 +1,174 @@
-+#!/bin/bash
-+# SPDX-License-Identifier: GPL-2.0
-+
-+ALL_TESTS="locked_port_ipv4 locked_port_ipv6 locked_port_vlan"
-+NUM_NETIFS=4
-+CHECK_TC="no"
-+source lib.sh
-+
-+h1_create()
-+{
-+	simple_if_init $h1 192.0.2.1/24 2001:db8:1::1/64
-+	vrf_create "vrf-vlan-h1"
-+        ip link set dev vrf-vlan-h1 up
-+        vlan_create $h1 100 vrf-vlan-h1 192.0.3.1/24 2001:db8:3::1/64
-+}
-+
-+h1_destroy()
-+{
-+	vlan_destroy $h1 100
-+	simple_if_fini $h1 192.0.2.1/24 2001:db8:1::1/64
-+}
-+
-+h2_create()
-+{
-+	simple_if_init $h2 192.0.2.2/24 2001:db8:1::2/64
-+	vrf_create "vrf-vlan-h2"
-+	ip link set dev vrf-vlan-h2 up
-+	vlan_create $h2 100 vrf-vlan-h2 192.0.3.2/24 2001:db8:3::2/64
-+}
-+
-+h2_destroy()
-+{
-+	vlan_destroy $h2 100
-+	simple_if_fini $h2 192.0.2.2/24 2001:db8:1::2/64
-+}
-+
-+switch_create()
-+{
-+	ip link add dev br0 type bridge vlan_filtering 1
-+
-+	ip link set dev $swp1 master br0
-+	ip link set dev $swp2 master br0
-+
-+	ip link set dev br0 up
-+	ip link set dev $swp1 up
-+	ip link set dev $swp2 up
-+
-+	bridge link set dev $swp1 learning off
-+}
-+
-+switch_destroy()
-+{
-+	ip link set dev $swp2 down
-+	ip link set dev $swp1 down
-+
-+	ip link del dev br0
-+}
-+
-+setup_prepare()
-+{
-+	h1=${NETIFS[p1]}
-+	swp1=${NETIFS[p2]}
-+
-+	swp2=${NETIFS[p3]}
-+	h2=${NETIFS[p4]}
-+
-+	vrf_prepare
-+
-+	h1_create
-+	h2_create
-+
-+	switch_create
-+}
-+
-+cleanup()
-+{
-+	pre_cleanup
-+
-+	switch_destroy
-+
-+	h2_destroy
-+	h1_destroy
-+
-+	vrf_cleanup
-+}
-+
-+ifaddr()
-+{
-+	ip -br link show dev "$1" | awk '{ print($3); }'
-+}
-+
-+locked_port_ipv4()
-+{
-+	RET=0
-+
-+	check_locked_port_support || return 0
-+
-+	ping_do $h1 192.0.2.2
-+	check_err $? "Ping didn't work when it should have"
-+
-+	bridge link set dev $swp1 locked on
-+
-+	ping_do $h1 192.0.2.2
-+	check_fail $? "Ping worked when it should not have"
-+
-+	bridge fdb add `ifaddr $h1` dev $swp1 master static
-+
-+	ping_do $h1 192.0.2.2
-+	check_err $? "Ping didn't work when it should have"
-+
-+	bridge link set dev $swp1 locked off
-+	bridge fdb del `ifaddr $h1` dev $swp1 master static
-+	log_test "Locked port ipv4"
-+}
-+
-+locked_port_vlan()
-+{
-+	RET=0
-+
-+	check_locked_port_support || return 0
-+	check_vlan_filtering_support || return 0
-+
-+	bridge vlan add vid 100 dev $swp1 tagged
-+	bridge vlan add vid 100 dev $swp2 tagged
-+
-+	ping_do $h1.100 192.0.3.2
-+	check_err $? "Ping didn't work when it should have"
-+
-+	bridge link set dev $swp1 locked on
-+	ping_do $h1.100 192.0.3.2
-+	check_fail $? "Ping worked when it should not have"
-+
-+	bridge fdb add `ifaddr $h1` dev $swp1 vlan 100 master static
-+
-+	ping_do $h1.100 192.0.3.2
-+	check_err $? "Ping didn't work when it should have"
-+
-+	bridge link set dev $swp1 locked off
-+	bridge vlan del vid 100 dev $swp1
-+	bridge vlan del vid 100 dev $swp2
-+	bridge fdb del `ifaddr $h1` dev $swp1 vlan 100 master static
-+	log_test "Locked port vlan"
-+}
-+
-+locked_port_ipv6()
-+{
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	ping6_do $h1 2001:db8:1::2
-+	check_err $? "Ping6 didn't work when it should have"
-+
-+	bridge link set dev $swp1 locked on
-+
-+	ping6_do $h1 2001:db8:1::2
-+	check_fail $? "Ping worked when it should not have"
-+
-+	bridge fdb add `ifaddr $h1` dev $swp1 master static
-+	ping6_do $h1 2001:db8:1::2
-+	check_err $? "Ping didn't work when it should have"
-+
-+	bridge link set dev $swp1 locked off
-+	bridge fdb del `ifaddr $h1` dev $swp1 master static
-+	log_test "Locked port ipv6"
-+}
-+
-+trap cleanup EXIT
-+
-+setup_prepare
-+setup_wait
-+
-+tests_run
-+
-+exit $EXIT_STATUS
-diff --git a/tools/testing/selftests/net/forwarding/lib.sh b/tools/testing/selftests/net/forwarding/lib.sh
-index 7da783d6f453..9ded90f17ead 100644
---- a/tools/testing/selftests/net/forwarding/lib.sh
-+++ b/tools/testing/selftests/net/forwarding/lib.sh
-@@ -125,6 +125,22 @@ check_ethtool_lanes_support()
- 	fi
- }
- 
-+check_locked_port_support()
-+{
-+        if ! bridge -d link show | grep -q " locked"; then
-+                echo "SKIP: iproute2 too old; Locked port feature not supported."
-+                return $ksft_skip
-+        fi
-+}
-+
-+check_vlan_filtering_support()
-+{
-+	if ! bridge -d vlan show | grep -q "state forwarding"; then
-+		echo "SKIP: vlan filtering not supported."
-+		return $ksft_skip
-+	fi
-+}
-+
- if [[ "$(id -u)" -ne 0 ]]; then
- 	echo "SKIP: need root privileges"
- 	exit $ksft_skip
--- 
-2.30.2
+> diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
+> index 509e18c7e740..3aae023a9353 100644
+> --- a/include/linux/if_bridge.h
+> +++ b/include/linux/if_bridge.h
+> @@ -58,6 +58,7 @@ struct br_ip_list {
+>  #define BR_MRP_LOST_CONT	BIT(18)
+>  #define BR_MRP_LOST_IN_CONT	BIT(19)
+>  #define BR_TX_FWD_OFFLOAD	BIT(20)
+> +#define BR_PORT_LOCKED		BIT(21)
+>  
+>  #define BR_DEFAULT_AGEING_TIME	(300 * HZ)
+>  
+> diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+> index 6218f93f5c1a..a45cc0a1f415 100644
+> --- a/include/uapi/linux/if_link.h
+> +++ b/include/uapi/linux/if_link.h
+> @@ -537,6 +537,7 @@ enum {
+>  	IFLA_BRPORT_MRP_IN_OPEN,
+>  	IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
+>  	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
+> +	IFLA_BRPORT_LOCKED,
+>  	__IFLA_BRPORT_MAX
+>  };
+>  #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
+> diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+> index b50382f957c1..e99f635ff727 100644
+> --- a/net/bridge/br_input.c
+> +++ b/net/bridge/br_input.c
+> @@ -81,6 +81,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+>  	if (!p || p->state == BR_STATE_DISABLED)
+>  		goto drop;
+>  
+> +	br = p->br;
+>  	brmctx = &p->br->multicast_ctx;
+>  	pmctx = &p->multicast_ctx;
+>  	state = p->state;
+> @@ -88,10 +89,17 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+>  				&state, &vlan))
+>  		goto out;
+>  
+> +	if (p->flags & BR_PORT_LOCKED) {
+> +		struct net_bridge_fdb_entry *fdb_src =
+> +			br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
 
+Please leave an empty line between variable declaration and the code.
+
+> +		if (!fdb_src || READ_ONCE(fdb_src->dst) != p ||
+> +		    test_bit(BR_FDB_LOCAL, &fdb_src->flags))
+> +			goto drop;
+> +	}
+> +
+
+With the above change you can add my Acked-by tag.
+
+Thanks,
+ Nik
