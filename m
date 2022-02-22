@@ -1,86 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD82B4BFF88
-	for <lists.bridge@lfdr.de>; Tue, 22 Feb 2022 18:00:59 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2254C01E0
+	for <lists.bridge@lfdr.de>; Tue, 22 Feb 2022 20:15:32 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id C96EC60EE0;
-	Tue, 22 Feb 2022 17:00:57 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id CE21E81570;
+	Tue, 22 Feb 2022 19:15:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KYNLlmMK4o2k; Tue, 22 Feb 2022 17:00:57 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 6382960EE2;
-	Tue, 22 Feb 2022 17:00:56 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 0Gpxj9CdaLA0; Tue, 22 Feb 2022 19:15:30 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 42432812F1;
+	Tue, 22 Feb 2022 19:15:29 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 25272C0073;
-	Tue, 22 Feb 2022 17:00:56 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E98BEC0073;
+	Tue, 22 Feb 2022 19:15:28 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0390BC0011
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 17:00:54 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8B452C0011
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 19:15:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id D817481B71
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 17:00:53 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 79331812B7
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 19:15:27 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=messagingengine.com
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id az2w-O4DGKxJ for <bridge@lists.linux-foundation.org>;
- Tue, 22 Feb 2022 17:00:53 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
- [66.111.4.224])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4D7DC8132F
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 17:00:53 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 797D65803B7;
- Tue, 22 Feb 2022 12:00:50 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Tue, 22 Feb 2022 12:00:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=HtCItNyhGVUgQ9zYx
- 8y8HwkSSNP7qG6erjhX3gp1Vas=; b=GtZc3a+Qfwr7g0xbB/r/BXPgspmACWS5G
- 0OGqRVvN6z11OqHVovHGRWCIY+6qwMtxF85hTXbUfkCrF+fnjHoeZnPCv0XXOJla
- 0JkgBu9WCWEnKJottlEKs/Q4JTZdyLmnRmhTbDr+/rVr0IPN2yxgwBw/wMgTVpG8
- C9DoX4S/LL3KjKX65DZDCRznCURUQokspAfI6u2Fi3Fx8wU6QTNyq8N5GoT7nieO
- Yhhv/C7ifwD/9umjdWpzeNwMitCll2oBCOj6sJ8t/mdGGx5OHFJ+xV/TdaC/1R0N
- 6AUjtVDxl/Y72YPEjJVL0il7EKgeRDlxX1hKjl3laKNHeOagby5aA==
-X-ME-Sender: <xms:wRYVYiV488PJ8dsyWXC2-qZX4Ec6K41Dsf4gR_5L-9d82sciAItPsQ>
- <xme:wRYVYumBrUxVr8yJp28gXjHjH6idO1Ji3PhD6ODs9V4bVAf8CwKGf-myJP2AHBedc
- jQyhpQuubrzuUs>
-X-ME-Received: <xmr:wRYVYmb-w1BGYM1gutgPONq5dR0QQG6p26CwXhoUD4DKQDnERE5vPOkh4d_7pU4ztW3VGAKMjf_r8oAuyqgkzbGcag0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrkeekgdelfecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepkfguohcuufgt
- hhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrthhtvg
- hrnheptdffkeekfeduffevgeeujeffjefhtefgueeugfevtdeiheduueeukefhudehleet
- necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepihguoh
- hstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:whYVYpVh7rh-btnjQECit2ixdjjH1xEQgpb0OQe732sLUJXzafy88w>
- <xmx:whYVYskuy1ClagUaAi7TsEOtjRvTRcRyXCCXBfOPZhK_9PsMx-ELbw>
- <xmx:whYVYucdvuL-RBwSfTBPxtNiwaIxsdnMxtpGFdKjt1-cJflnmCUyjw>
- <xmx:whYVYqpPNokjYGIilBHrkHosAHqdWOFV-0p14_H7TjNh5i0VZ3gNjw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 22 Feb 2022 12:00:48 -0500 (EST)
-Date: Tue, 22 Feb 2022 19:00:46 +0200
-From: Ido Schimmel <idosch@idosch.org>
+ with ESMTP id ekfSgCIBR0NJ for <bridge@lists.linux-foundation.org>;
+ Tue, 22 Feb 2022 19:15:26 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 913B2812A8
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 19:15:26 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 52364615D5;
+ Tue, 22 Feb 2022 19:15:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23712C340EF;
+ Tue, 22 Feb 2022 19:15:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1645557324;
+ bh=U9jeNgWTnREJMOGMhNcgz9fVNyZ6v4l6J7nfG6DOUbE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=kWXWCyLxNVANdV5eeEktWoPfKTJphflfJSUcU4jZVaHQnJS0AraA+Bh2WccNDGPND
+ Pti8QeNuH9VF2E7xzHou4j9QEiodZABeC+pcnhnsuoPclcK0Ldy1wmzGaFsdMbkLWT
+ gIYz/w3E5EcBBxUBy6ui1nhgwVxRpq4WfiyNESnOHNnsu0dTIPVY+NQvUFhlEzu/ss
+ wMrfr3tH9sJyyadZck4iJJdBRodB93wuyZd05mJUmaoZtOZiQnpa4THmg4kF4nTD80
+ fmGqUM2ffmFxPPSk3TiZlvFEFWzaIxeUwSYKjK1lJCYYntMBNODSm3spMFLl9rWQUy
+ a4FMqFCBPLjpQ==
+Date: Tue, 22 Feb 2022 11:15:23 -0800
+From: Jakub Kicinski <kuba@kernel.org>
 To: Hans Schultz <schultz.hans@gmail.com>
-Message-ID: <YhUWvhkhRVY+/Osd@shredder>
+Message-ID: <20220222111523.030ab13d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
 References: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
- <20220222132818.1180786-6-schultz.hans+netdev@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220222132818.1180786-6-schultz.hans+netdev@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Cc: Petr Machata <petrm@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
  Baowen Zheng <baowen.zheng@corigine.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Amit Cohen <amcohen@nvidia.com>,
@@ -91,11 +70,10 @@ Cc: Petr Machata <petrm@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
  Stephen Suryaputra <ssuryaextr@gmail.com>,
  Po-Hsu Lin <po-hsu.lin@canonical.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, linux-kselftest@vger.kernel.org,
- Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
- Vladimir Oltean <olteanv@gmail.com>, Shuah Khan <shuah@kernel.org>,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v4 5/5] selftests: forwarding: tests
- of locked port feature
+ Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Shuah Khan <shuah@kernel.org>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next v4 0/5] Add support for locked bridge
+ ports (for 802.1X)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -110,41 +88,70 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Feb 22, 2022 at 02:28:18PM +0100, Hans Schultz wrote:
-> diff --git a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-> new file mode 100755
-> index 000000000000..a8800e531d07
-> --- /dev/null
-> +++ b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-> @@ -0,0 +1,180 @@
-> +#!/bin/bash
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +ALL_TESTS="locked_port_ipv4 locked_port_ipv6 locked_port_vlan"
-> +NUM_NETIFS=4
-> +CHECK_TC="no"
-> +source lib.sh
-> +
-> +h1_create()
-> +{
-> +	simple_if_init $h1 192.0.2.1/24 2001:db8:1::1/64
-> +	vrf_create "vrf-vlan-h1"
-> +	ip link set dev vrf-vlan-h1 up
-> +	vlan_create $h1 100 vrf-vlan-h1 198.51.100.1/24 ::ffff:c633:6401/64
+On Tue, 22 Feb 2022 14:28:13 +0100 Hans Schultz wrote:
+> This series starts by adding support for SA filtering to the bridge,
+> which is then allowed to be offloaded to switchdev devices. Furthermore
+> an offloading implementation is supplied for the mv88e6xxx driver.
+> 
+> Public Local Area Networks are often deployed such that there is a
+> risk of unauthorized or unattended clients getting access to the LAN.
+> To prevent such access we introduce SA filtering, such that ports
+> designated as secure ports are set in locked mode, so that only
+> authorized source MAC addresses are given access by adding them to
+> the bridges forwarding database. Incoming packets with source MAC
+> addresses that are not in the forwarding database of the bridge are
+> discarded. It is then the task of user space daemons to populate the
+> bridge's forwarding database with static entries of authorized entities.
+> 
+> The most common approach is to use the IEEE 802.1X protocol to take
+> care of the authorization of allowed users to gain access by opening
+> for the source address of the authorized host.
+> 
+> With the current use of the bridge parameter in hostapd, there is
+> a limitation in using this for IEEE 802.1X port authentication. It
+> depends on hostapd attaching the port on which it has a successful
+> authentication to the bridge, but that only allows for a single
+> authentication per port. This patch set allows for the use of
+> IEEE 802.1X port authentication in a more general network context with
+> multiple 802.1X aware hosts behind a single port as depicted, which is
+> a commonly used commercial use-case, as it is only the number of
+> available entries in the forwarding database that limits the number of
+> authenticated clients.
+> 
+>       +--------------------------------+
+>       |                                |
+>       |      Bridge/Authenticator      |
+>       |                                |
+>       +-------------+------------------+
+>        802.1X port  |
+>                     |
+>                     |
+>              +------+-------+
+>              |              |
+>              |  Hub/Switch  |
+>              |              |
+>              +-+----------+-+
+>                |          |
+>             +--+--+    +--+--+
+>             |     |    |     |
+>     Hosts   |  a  |    |  b  |   . . .
+>             |     |    |     |
+>             +-----+    +-----+
+> 
+> The 802.1X standard involves three different components, a Supplicant
+> (Host), an Authenticator (Network Access Point) and an Authentication
+> Server which is typically a Radius server. This patch set thus enables
+> the bridge module together with an authenticator application to serve
+> as an Authenticator on designated ports.
+> 
+> 
+> For the bridge to become an IEEE 802.1X Authenticator, a solution using
+> hostapd with the bridge driver can be found at
+> https://github.com/westermo/hostapd/tree/bridge_driver .
+> 
+> 
+> The relevant components work transparently in relation to if it is the
+> bridge module or the offloaded switchcore case that is in use.
 
-Hi,
-
-Why did you change it from 2001:db8:3::1/64 to ::ffff:c633:6401/64? It
-was actually OK the first time...
-
-Anyway, looking at locked_port_vlan() I see that you are only testing
-IPv4 so you can just drop this address:
-
-vlan_create $h1 100 vrf-vlan-h1 198.51.100.1/24
-
-Same for $h2
-
-LGTM otherwise. Feel free to add my tag to the next version
-
-
-> +}
+You still haven't answer my question. Is the data plane clear text in
+the deployment you describe?
