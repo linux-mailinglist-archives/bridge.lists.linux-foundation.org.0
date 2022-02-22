@@ -1,79 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE4E14BF959
-	for <lists.bridge@lfdr.de>; Tue, 22 Feb 2022 14:29:42 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BCF04BF962
+	for <lists.bridge@lfdr.de>; Tue, 22 Feb 2022 14:29:49 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id A251F60ECE;
-	Tue, 22 Feb 2022 13:29:41 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id C255860ED6;
+	Tue, 22 Feb 2022 13:29:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id II8WLLmbvtsv; Tue, 22 Feb 2022 13:29:41 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 52B9B60ED6;
-	Tue, 22 Feb 2022 13:29:40 +0000 (UTC)
+	with ESMTP id LRv85y-u3q64; Tue, 22 Feb 2022 13:29:47 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 65F2960EDB;
+	Tue, 22 Feb 2022 13:29:46 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0E9AEC0073;
-	Tue, 22 Feb 2022 13:29:40 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4436FC0073;
+	Tue, 22 Feb 2022 13:29:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E1868C0077
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:37 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9E399C0011
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id D49E060ED6
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:37 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 7E6A8410B1
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:44 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id tmFOBcQBsoHN for <bridge@lists.linux-foundation.org>;
- Tue, 22 Feb 2022 13:29:37 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id R6haX9jQaIen for <bridge@lists.linux-foundation.org>;
+ Tue, 22 Feb 2022 13:29:44 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
- [IPv6:2a00:1450:4864:20::22c])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 28CEA60EC6
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:37 +0000 (UTC)
-Received: by mail-lj1-x22c.google.com with SMTP id o9so19570893ljq.4
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 05:29:36 -0800 (PST)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com
+ [IPv6:2a00:1450:4864:20::12c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id BCC4B402BC
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:43 +0000 (UTC)
+Received: by mail-lf1-x12c.google.com with SMTP id w27so7039982lfa.5
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 05:29:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:organization:content-transfer-encoding;
- bh=EwW1ad9aaDxzLEmHNXCm17nZVCt4Pcys+G0syr6CYU4=;
- b=pZe7+VYM2Ch4tnW0vNrVk4kIXpos0UkPqBnqRz0liSSCmjg5WR46ijNkTFp1HCgHFG
- G7xtFljcmI1+/ai2y4SDM+SuB0bYJ6ujqEiFCprXncNFqQuO3QTWAYzw1L2HjZjT4H3N
- v/0RVdM4I4DpTyyct5KApt+YAfxnXRgaxNJUJAMngBXVw0Ri55ZE9X1fL2nhUd6LZcrn
- skDkxgDKgNOhZFP6P6RWDaFGYspOza6cihrkcaaDHNr72RtORhJmLoMNX/dxH0eZmcRY
- MNvzvYmKHTdpW8/Glo8PDfXtx+xP4+15Juf+9hRUfW87XIYD64cyFvB8sH6Ie98g2nc5
- gR+g==
+ bh=Z+hbLNvF0Nhve3XBOMxW8KtWdx8aJiHJ43sZ0z9sw1E=;
+ b=qO5Sru+DZqGzH4+Za4ahOJYJK/duIXhEZA7V/VVfsVzC5RwvI/uX/oPlWpfAzaWqzV
+ 107TBki28TfJolkKkSAvh2IFNfqHT6f62lZ5mLMFDNS7EdYGIV9NwM9Kl6a9RNdOP5i+
+ nkW26DL79MK2HzK5rsy47tYU7EQg9PhP1SyQYgc+NI92/MlgTF12CK7J5s6f0No+Zmop
+ EZ/R9GrW/mbWigROLcu1w3qZBUYAnNWHE88/fvsrV4YZR4UviqsCv10r8EbOKrEyAXBg
+ iEV+DlFF7X3WoMjYQTX+pDbeetysz/YOzRmQtJ7JhPY4Jm2SZDPu7RxYZTYvtUgWYyBi
+ 7kwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:organization:content-transfer-encoding;
- bh=EwW1ad9aaDxzLEmHNXCm17nZVCt4Pcys+G0syr6CYU4=;
- b=3Ldr0rv3ouBHRGHko0yI4nU1iUxBAr4TSR8SAe2N9337em9BbySCkhAaJ3xrm9RT49
- fqyrr4ys1rG407ZtfTOUSl2kYSXba/wKgWYPgUHD4OWdn/zO1IkTfXLX8BZDGKfbdhP9
- rL9FqpDjpCGRziwS1aGzr+lK7I+5KKdodNCtAssnqjo541fNJrGdUpRYQqO48uQMCejJ
- oqKZfOV28fITb1XUYQyDFK4TBvdK/g/4OmR5+pFyMudHQT/vAb6FmbMYgsNjicVsxPci
- P492Py+v4ieKg4uHomkeqL4P2pVLCcTIcUti2D6dek0+lbX3jfDqd4xJDg9aMZ8zG6Pc
- IT/A==
-X-Gm-Message-State: AOAM531jqX0bPvAaw0vQUKAVrHTODZW1deHf7O6n9hkSJ9hM84LY6rf3
- 2XO3xyWNdVCb4SlvsV5KlbI=
-X-Google-Smtp-Source: ABdhPJzHDYyISKgjREvcwBLgHfMKpwDFHOum7zloAcofWXBg+CYq18JOmAuV0xwIBhhLStIP1a2GLQ==
-X-Received: by 2002:a2e:8752:0:b0:23e:d951:4184 with SMTP id
- q18-20020a2e8752000000b0023ed9514184mr18296155ljj.410.1645536575198; 
- Tue, 22 Feb 2022 05:29:35 -0800 (PST)
+ bh=Z+hbLNvF0Nhve3XBOMxW8KtWdx8aJiHJ43sZ0z9sw1E=;
+ b=F480nY8b7BF2H6DoPGfwRam05g/ioXgutXwrmX+4DUL3AKnHNRrf/79XVMzalolYGX
+ ddNjR+EmdsKNK1MwrTOgqQjZKgDXBxhgXUdMw7tUBnsFhRe6S8zz2utCqynvthG/Ouxa
+ 1s3iigwKrUrwWYHvhq2Oyto3l13lM/9yWf4mHHo/WtexmbF9msTsLvlc6HXN/PEzAxqn
+ cBjVNoGObvobH88+OWk8kSiDxlLPonNtHKnIyMnn8nXXO9T4wmpOyztcUpa+OeJz260N
+ uQYi/WeXtZ8JBJw1gVR6d7mGRkhLJLpw3MbmUpu8XKHtdf8XCJU5BJVF/uOkxoJxFuYf
+ GYvg==
+X-Gm-Message-State: AOAM532hvQHNvxvVEqHswKpGDw7PmME/K+t8YEvW5zxOC17HH9s+7Mbs
+ IRWM5I84o44s3Lad815yZHs=
+X-Google-Smtp-Source: ABdhPJwolKKl+qChVGRAvJCxdChiH+ZkxIpLXFQkRe02q8DltrOGJJiqQzm+Xu0ntqAFve+Idw9aCQ==
+X-Received: by 2002:a05:6512:3f08:b0:443:3d74:2461 with SMTP id
+ y8-20020a0565123f0800b004433d742461mr16779614lfa.461.1645536581597; 
+ Tue, 22 Feb 2022 05:29:41 -0800 (PST)
 Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
- by smtp.gmail.com with ESMTPSA id e22sm1703685ljb.17.2022.02.22.05.29.32
+ by smtp.gmail.com with ESMTPSA id e22sm1703685ljb.17.2022.02.22.05.29.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Feb 2022 05:29:34 -0800 (PST)
+ Tue, 22 Feb 2022 05:29:41 -0800 (PST)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Tue, 22 Feb 2022 14:28:15 +0100
-Message-Id: <20220222132818.1180786-3-schultz.hans+netdev@gmail.com>
+Date: Tue, 22 Feb 2022 14:28:16 +0100
+Message-Id: <20220222132818.1180786-4-schultz.hans+netdev@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
 References: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
@@ -83,16 +85,16 @@ Content-Transfer-Encoding: 8bit
 Cc: Petr Machata <petrm@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
  Baowen Zheng <baowen.zheng@corigine.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Amit Cohen <amcohen@nvidia.com>,
- bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
- David Ahern <dsahern@kernel.org>, Roopa Prabhu <roopa@nvidia.com>,
- linux-kernel@vger.kernel.org, Stephen Suryaputra <ssuryaextr@gmail.com>,
+ netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Ido Schimmel <idosch@nvidia.com>, Stephen Suryaputra <ssuryaextr@gmail.com>,
  Hans Schultz <schultz.hans+netdev@gmail.com>,
  Po-Hsu Lin <po-hsu.lin@canonical.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, linux-kselftest@vger.kernel.org,
- Ido Schimmel <idosch@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
  Shuah Khan <shuah@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net-next v4 2/5] net: bridge: Add support for
-	offloading of locked port flag
+Subject: [Bridge] [PATCH net-next v4 3/5] net: dsa: Include BR_PORT_LOCKED
+	in the list of synced brport flags
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,30 +109,38 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Various switchcores support setting ports in locked mode, so that
-clients behind locked ports cannot send traffic through the port
-unless a fdb entry is added with the clients MAC address.
+Ensures that the DSA switch driver gets notified of changes to the
+BR_PORT_LOCKED flag as well, for the case when a DSA port joins or
+leaves a LAG that is a bridge port.
 
 Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
-Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
-Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 ---
- net/bridge/br_switchdev.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ net/dsa/port.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-index f8fbaaa7c501..bf549fc22556 100644
---- a/net/bridge/br_switchdev.c
-+++ b/net/bridge/br_switchdev.c
-@@ -72,7 +72,7 @@ bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
+diff --git a/net/dsa/port.c b/net/dsa/port.c
+index bd78192e0e47..01ed22ed74a1 100644
+--- a/net/dsa/port.c
++++ b/net/dsa/port.c
+@@ -176,7 +176,7 @@ static int dsa_port_inherit_brport_flags(struct dsa_port *dp,
+ 					 struct netlink_ext_ack *extack)
+ {
+ 	const unsigned long mask = BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD |
+-				   BR_BCAST_FLOOD;
++				   BR_BCAST_FLOOD | BR_PORT_LOCKED;
+ 	struct net_device *brport_dev = dsa_port_to_bridge_port(dp);
+ 	int flag, err;
  
- /* Flags that can be offloaded to hardware */
- #define BR_PORT_FLAGS_HW_OFFLOAD (BR_LEARNING | BR_FLOOD | \
--				  BR_MCAST_FLOOD | BR_BCAST_FLOOD)
-+				  BR_MCAST_FLOOD | BR_BCAST_FLOOD | BR_PORT_LOCKED)
+@@ -200,7 +200,7 @@ static void dsa_port_clear_brport_flags(struct dsa_port *dp)
+ {
+ 	const unsigned long val = BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD;
+ 	const unsigned long mask = BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD |
+-				   BR_BCAST_FLOOD;
++				   BR_BCAST_FLOOD | BR_PORT_LOCKED;
+ 	int flag, err;
  
- int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 			       unsigned long flags,
+ 	for_each_set_bit(flag, &mask, 32) {
 -- 
 2.30.2
 
