@@ -1,98 +1,100 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF464BF955
-	for <lists.bridge@lfdr.de>; Tue, 22 Feb 2022 14:29:29 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD8904BF958
+	for <lists.bridge@lfdr.de>; Tue, 22 Feb 2022 14:29:41 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id EBF074055F;
-	Tue, 22 Feb 2022 13:29:27 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id A78D7402B7;
+	Tue, 22 Feb 2022 13:29:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RYzLs-D2i7ob; Tue, 22 Feb 2022 13:29:26 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Gf3uPNC2Q4vr; Tue, 22 Feb 2022 13:29:38 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id C98A8405AE;
-	Tue, 22 Feb 2022 13:29:25 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 1F5AF402A0;
+	Tue, 22 Feb 2022 13:29:38 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8F3BEC0073;
-	Tue, 22 Feb 2022 13:29:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D3F68C0073;
+	Tue, 22 Feb 2022 13:29:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6F0D7C0011
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:24 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 23FC8C0021
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 5E4F08131C
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:24 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 04EBB60ECE
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FGosuUbBHjHV for <bridge@lists.linux-foundation.org>;
- Tue, 22 Feb 2022 13:29:23 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id fE9mVo25ublA for <bridge@lists.linux-foundation.org>;
+ Tue, 22 Feb 2022 13:29:33 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
- [IPv6:2a00:1450:4864:20::22f])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4D14A81302
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:23 +0000 (UTC)
-Received: by mail-lj1-x22f.google.com with SMTP id 29so9823191ljv.10
- for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 05:29:23 -0800 (PST)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 0BAB960EC6
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 13:29:32 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id y24so12412037lfg.1
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Feb 2022 05:29:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version:organization
- :content-transfer-encoding;
- bh=VHfLSHEUp8KFCoSMOat+t/9h+kqq+wol9Ucvkw0K0Ko=;
- b=el49x+sn8P8oo55vRYxMrzV9h6912Vs30PpYWE8XEE5Rg+Hbs6HMyLY17n57nDsZ7O
- aoqx1c9OHaZ+Io5wS879xBafzK7c3Nf0tDkUmGyZL/zAGoHi75UCpa8k6+houBXp1q4V
- oFKaIFEQ1XZjaAI9XSfYbL/ejqEd9A3NgguMLlye8h++oKStvlezt2WHfREbhW9tu78h
- TOmJy3YMPDou7kHbHKL01G6PML1X6EUBiyYiH69UE2IfX89VoVAYcQg3lIcVJ2eK9Xgr
- MRsKNi1LEy5RTLMHVHqNe/dArG8PdYs/+741BQpMPmFGCW6ZciZRDkhPEpznBW+slsoA
- /Ong==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:organization:content-transfer-encoding;
+ bh=3BXfPtwYes87TF7Ndtlw8cxUkNRZ8ysar0tPJqhRxXE=;
+ b=RNXfPWhIi3GS914t5geUCBao/Y6xUXkHsYoIkdJETuwHinT2KMb0LZpl7HE3wgCBHf
+ KPa+HXyk9h4+eqGyIWHTGKfpwR/saAVHSxEaEmX5OPrCqHjSpwU3YLHqf/5mPqIapPPo
+ JPQ/BT3Rvlf9leXI3pD4vsPZiwIcaPm7bb2kwwBZhLsaV64ukDJxdgDu8hgNRkNwSIrV
+ cw+zxfY0cJvCWJdo5rO898gNs1EryibASXvlYUsp7Ze+SWrntVcyPziy35TjawuMeyBt
+ yqJ7y+uH0aPun69ryhWQE/FqGzFszuRjRrGODlElpZ4I7QsQeq6elEp5ePGDu8WHGk2b
+ Xb+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :organization:content-transfer-encoding;
- bh=VHfLSHEUp8KFCoSMOat+t/9h+kqq+wol9Ucvkw0K0Ko=;
- b=6fvPL3OFs1mVUrlnq/gIDXCG2WTDfy63iAn/qfFzE3F1K6AeSHxbUfirBAvWcixfeQ
- 7uKyTX4bC1qXcVZ1hDwVPFVVwQSRsYF5Uog2ZCpoV3oujC/JrltAKuVgHH+VnmDowH4W
- 8CAMJIHOrrLVD752R26Z8sN78pg170cwlXrOqNQEkky/fIGaqmFdt+SufAMLGvSCASdv
- V8dEYAZ+wEwlCZvWjXt3waFjRlQc0lEt3BT4oMYscL1z0pFav6QdoCHzek81he9W998j
- pdC9kqT2lJuz48uIkFbAe4PL5nqgjP+aKRgBhe9CZeBe1FGP4hjD/vufxv2/bnTSajl5
- Wseg==
-X-Gm-Message-State: AOAM531/a+SBI/MlFJB2XURf9bjcwV1VH8Lg91RUG/McnhqF4zqpKTy8
- MtET+gmqgSW/asYfD5SBJv0=
-X-Google-Smtp-Source: ABdhPJxlMGmaG+tjtwWeeYytkr79toeqRMRJY7lpZtYdhn6zv6UTQAyG41KqbPEYkrroWlEL+S63rA==
-X-Received: by 2002:a2e:a270:0:b0:245:f51f:354 with SMTP id
- k16-20020a2ea270000000b00245f51f0354mr18263908ljm.497.1645536560909; 
- Tue, 22 Feb 2022 05:29:20 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:organization:content-transfer-encoding;
+ bh=3BXfPtwYes87TF7Ndtlw8cxUkNRZ8ysar0tPJqhRxXE=;
+ b=DAOHEOrhFckRkeGt9RYKyko0fP2LRmm+6cmOCpftpDCQ9zXK+qq0DdWuMa3wCNPwJU
+ kbYZ/H6Y/hiOdelpJURrQdwc9q2WFqaVmuFjVl4SKXWAyckXkcTn6WS6OCTxApqeyjuX
+ 5YqmnPaMnyFnBvjJ8eNxc03NJcrUSof4PNiZdjzb20RsTZak8GQqbsFxXQH/IeolICGX
+ toqZuYc6qM/sR4DtpL2VhFQjzNAI1dv1Rl8iqosqCunGRwNk0K1gLvKptyxvHe8E5gS3
+ Hht4rUp/O2C+oqQADWNAYzZCzq5eP2qgLQH7/CkPiDRpuIZWCNt4+s15CvYCxJKLw9NN
+ smkA==
+X-Gm-Message-State: AOAM533uS/JAz341WMWkIWh0hGsN2Zcna3uSNdUu0MtpQxcY1cQydj3G
+ gfVrr2pqCr4SKtfrGw2mqGsouPyDDtxMDz0mNNE=
+X-Google-Smtp-Source: ABdhPJxhUrAVugWW+xfjsMau4tFpoNfMq1N0rjRAzld0kCNdJp/OnzndCvbaBdc4mp1ZiqBiHSKn4w==
+X-Received: by 2002:a05:6512:3d8b:b0:442:628c:73f3 with SMTP id
+ k11-20020a0565123d8b00b00442628c73f3mr17192711lfv.419.1645536570686; 
+ Tue, 22 Feb 2022 05:29:30 -0800 (PST)
 Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
- by smtp.gmail.com with ESMTPSA id e22sm1703685ljb.17.2022.02.22.05.29.17
+ by smtp.gmail.com with ESMTPSA id e22sm1703685ljb.17.2022.02.22.05.29.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Feb 2022 05:29:20 -0800 (PST)
+ Tue, 22 Feb 2022 05:29:30 -0800 (PST)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Tue, 22 Feb 2022 14:28:13 +0100
-Message-Id: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
+Date: Tue, 22 Feb 2022 14:28:14 +0100
+Message-Id: <20220222132818.1180786-2-schultz.hans+netdev@gmail.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
+References: <20220222132818.1180786-1-schultz.hans+netdev@gmail.com>
 MIME-Version: 1.0
 Organization: Westermo Network Technologies AB
 Content-Transfer-Encoding: 8bit
 Cc: Petr Machata <petrm@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
  Baowen Zheng <baowen.zheng@corigine.com>,
  Florian Fainelli <f.fainelli@gmail.com>, Amit Cohen <amcohen@nvidia.com>,
- netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Ido Schimmel <idosch@nvidia.com>, Stephen Suryaputra <ssuryaextr@gmail.com>,
+ bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
+ David Ahern <dsahern@kernel.org>, Roopa Prabhu <roopa@nvidia.com>,
+ linux-kernel@vger.kernel.org, Stephen Suryaputra <ssuryaextr@gmail.com>,
  Hans Schultz <schultz.hans+netdev@gmail.com>,
  Po-Hsu Lin <po-hsu.lin@canonical.com>,
  Nikolay Aleksandrov <nikolay@nvidia.com>, linux-kselftest@vger.kernel.org,
- Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Ido Schimmel <idosch@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
  Shuah Khan <shuah@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH net-next v4 0/5] Add support for locked bridge
-	ports (for 802.1X)
+Subject: [Bridge] [PATCH net-next v4 1/5] net: bridge: Add support for
+	bridge port in locked mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,92 +109,118 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This series starts by adding support for SA filtering to the bridge,
-which is then allowed to be offloaded to switchdev devices. Furthermore
-an offloading implementation is supplied for the mv88e6xxx driver.
+In a 802.1X scenario, clients connected to a bridge port shall not
+be allowed to have traffic forwarded until fully authenticated.
+A static fdb entry of the clients MAC address for the bridge port
+unlocks the client and allows bidirectional communication.
 
-Public Local Area Networks are often deployed such that there is a
-risk of unauthorized or unattended clients getting access to the LAN.
-To prevent such access we introduce SA filtering, such that ports
-designated as secure ports are set in locked mode, so that only
-authorized source MAC addresses are given access by adding them to
-the bridges forwarding database. Incoming packets with source MAC
-addresses that are not in the forwarding database of the bridge are
-discarded. It is then the task of user space daemons to populate the
-bridge's forwarding database with static entries of authorized entities.
+This scenario is facilitated with setting the bridge port in locked
+mode, which is also supported by various switchcore chipsets.
 
-The most common approach is to use the IEEE 802.1X protocol to take
-care of the authorization of allowed users to gain access by opening
-for the source address of the authorized host.
+Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
+Acked-by: Nikolay Aleksandrov <nikolay@nvidia.com>
+Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+---
+ include/linux/if_bridge.h    |  1 +
+ include/uapi/linux/if_link.h |  1 +
+ net/bridge/br_input.c        | 11 ++++++++++-
+ net/bridge/br_netlink.c      |  6 +++++-
+ 4 files changed, 17 insertions(+), 2 deletions(-)
 
-With the current use of the bridge parameter in hostapd, there is
-a limitation in using this for IEEE 802.1X port authentication. It
-depends on hostapd attaching the port on which it has a successful
-authentication to the bridge, but that only allows for a single
-authentication per port. This patch set allows for the use of
-IEEE 802.1X port authentication in a more general network context with
-multiple 802.1X aware hosts behind a single port as depicted, which is
-a commonly used commercial use-case, as it is only the number of
-available entries in the forwarding database that limits the number of
-authenticated clients.
-
-      +--------------------------------+
-      |                                |
-      |      Bridge/Authenticator      |
-      |                                |
-      +-------------+------------------+
-       802.1X port  |
-                    |
-                    |
-             +------+-------+
-             |              |
-             |  Hub/Switch  |
-             |              |
-             +-+----------+-+
-               |          |
-            +--+--+    +--+--+
-            |     |    |     |
-    Hosts   |  a  |    |  b  |   . . .
-            |     |    |     |
-            +-----+    +-----+
-
-The 802.1X standard involves three different components, a Supplicant
-(Host), an Authenticator (Network Access Point) and an Authentication
-Server which is typically a Radius server. This patch set thus enables
-the bridge module together with an authenticator application to serve
-as an Authenticator on designated ports.
-
-
-For the bridge to become an IEEE 802.1X Authenticator, a solution using
-hostapd with the bridge driver can be found at
-https://github.com/westermo/hostapd/tree/bridge_driver .
-
-
-The relevant components work transparently in relation to if it is the
-bridge module or the offloaded switchcore case that is in use.
-
-Hans Schultz (5):
-  net: bridge: Add support for bridge port in locked mode
-  net: bridge: Add support for offloading of locked port flag
-  net: dsa: Include BR_PORT_LOCKED in the list of synced brport flags
-  net: dsa: mv88e6xxx: Add support for bridge port locked mode
-  selftests: forwarding: tests of locked port feature
-
- drivers/net/dsa/mv88e6xxx/chip.c              |   9 +-
- drivers/net/dsa/mv88e6xxx/port.c              |  29 +++
- drivers/net/dsa/mv88e6xxx/port.h              |   9 +-
- include/linux/if_bridge.h                     |   1 +
- include/uapi/linux/if_link.h                  |   1 +
- net/bridge/br_input.c                         |  11 +-
- net/bridge/br_netlink.c                       |   6 +-
- net/bridge/br_switchdev.c                     |   2 +-
- net/dsa/port.c                                |   4 +-
- .../testing/selftests/net/forwarding/Makefile |   1 +
- .../net/forwarding/bridge_locked_port.sh      | 180 ++++++++++++++++++
- tools/testing/selftests/net/forwarding/lib.sh |   8 +
- 12 files changed, 254 insertions(+), 7 deletions(-)
- create mode 100755 tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-
+diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
+index 509e18c7e740..3aae023a9353 100644
+--- a/include/linux/if_bridge.h
++++ b/include/linux/if_bridge.h
+@@ -58,6 +58,7 @@ struct br_ip_list {
+ #define BR_MRP_LOST_CONT	BIT(18)
+ #define BR_MRP_LOST_IN_CONT	BIT(19)
+ #define BR_TX_FWD_OFFLOAD	BIT(20)
++#define BR_PORT_LOCKED		BIT(21)
+ 
+ #define BR_DEFAULT_AGEING_TIME	(300 * HZ)
+ 
+diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+index 6218f93f5c1a..a45cc0a1f415 100644
+--- a/include/uapi/linux/if_link.h
++++ b/include/uapi/linux/if_link.h
+@@ -537,6 +537,7 @@ enum {
+ 	IFLA_BRPORT_MRP_IN_OPEN,
+ 	IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
+ 	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
++	IFLA_BRPORT_LOCKED,
+ 	__IFLA_BRPORT_MAX
+ };
+ #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
+diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+index b50382f957c1..e0c13fcc50ed 100644
+--- a/net/bridge/br_input.c
++++ b/net/bridge/br_input.c
+@@ -81,6 +81,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+ 	if (!p || p->state == BR_STATE_DISABLED)
+ 		goto drop;
+ 
++	br = p->br;
+ 	brmctx = &p->br->multicast_ctx;
+ 	pmctx = &p->multicast_ctx;
+ 	state = p->state;
+@@ -88,10 +89,18 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+ 				&state, &vlan))
+ 		goto out;
+ 
++	if (p->flags & BR_PORT_LOCKED) {
++		struct net_bridge_fdb_entry *fdb_src =
++			br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
++
++		if (!fdb_src || READ_ONCE(fdb_src->dst) != p ||
++		    test_bit(BR_FDB_LOCAL, &fdb_src->flags))
++			goto drop;
++	}
++
+ 	nbp_switchdev_frame_mark(p, skb);
+ 
+ 	/* insert into forwarding database after filtering to avoid spoofing */
+-	br = p->br;
+ 	if (p->flags & BR_LEARNING)
+ 		br_fdb_update(br, p, eth_hdr(skb)->h_source, vid, 0);
+ 
+diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+index 2ff83d84230d..7d4432ca9a20 100644
+--- a/net/bridge/br_netlink.c
++++ b/net/bridge/br_netlink.c
+@@ -184,6 +184,7 @@ static inline size_t br_port_info_size(void)
+ 		+ nla_total_size(1)	/* IFLA_BRPORT_VLAN_TUNNEL */
+ 		+ nla_total_size(1)	/* IFLA_BRPORT_NEIGH_SUPPRESS */
+ 		+ nla_total_size(1)	/* IFLA_BRPORT_ISOLATED */
++		+ nla_total_size(1)	/* IFLA_BRPORT_LOCKED */
+ 		+ nla_total_size(sizeof(struct ifla_bridge_id))	/* IFLA_BRPORT_ROOT_ID */
+ 		+ nla_total_size(sizeof(struct ifla_bridge_id))	/* IFLA_BRPORT_BRIDGE_ID */
+ 		+ nla_total_size(sizeof(u16))	/* IFLA_BRPORT_DESIGNATED_PORT */
+@@ -269,7 +270,8 @@ static int br_port_fill_attrs(struct sk_buff *skb,
+ 							  BR_MRP_LOST_CONT)) ||
+ 	    nla_put_u8(skb, IFLA_BRPORT_MRP_IN_OPEN,
+ 		       !!(p->flags & BR_MRP_LOST_IN_CONT)) ||
+-	    nla_put_u8(skb, IFLA_BRPORT_ISOLATED, !!(p->flags & BR_ISOLATED)))
++	    nla_put_u8(skb, IFLA_BRPORT_ISOLATED, !!(p->flags & BR_ISOLATED)) ||
++	    nla_put_u8(skb, IFLA_BRPORT_LOCKED, !!(p->flags & BR_PORT_LOCKED)))
+ 		return -EMSGSIZE;
+ 
+ 	timerval = br_timer_value(&p->message_age_timer);
+@@ -827,6 +829,7 @@ static const struct nla_policy br_port_policy[IFLA_BRPORT_MAX + 1] = {
+ 	[IFLA_BRPORT_GROUP_FWD_MASK] = { .type = NLA_U16 },
+ 	[IFLA_BRPORT_NEIGH_SUPPRESS] = { .type = NLA_U8 },
+ 	[IFLA_BRPORT_ISOLATED]	= { .type = NLA_U8 },
++	[IFLA_BRPORT_LOCKED] = { .type = NLA_U8 },
+ 	[IFLA_BRPORT_BACKUP_PORT] = { .type = NLA_U32 },
+ 	[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT] = { .type = NLA_U32 },
+ };
+@@ -893,6 +896,7 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[],
+ 	br_set_port_flag(p, tb, IFLA_BRPORT_VLAN_TUNNEL, BR_VLAN_TUNNEL);
+ 	br_set_port_flag(p, tb, IFLA_BRPORT_NEIGH_SUPPRESS, BR_NEIGH_SUPPRESS);
+ 	br_set_port_flag(p, tb, IFLA_BRPORT_ISOLATED, BR_ISOLATED);
++	br_set_port_flag(p, tb, IFLA_BRPORT_LOCKED, BR_PORT_LOCKED);
+ 
+ 	changed_mask = old_flags ^ p->flags;
+ 
 -- 
 2.30.2
 
