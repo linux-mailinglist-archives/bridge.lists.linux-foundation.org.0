@@ -1,74 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35AC4C30EE
-	for <lists.bridge@lfdr.de>; Thu, 24 Feb 2022 17:06:28 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4843B4C314B
+	for <lists.bridge@lfdr.de>; Thu, 24 Feb 2022 17:29:49 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 6F36940A10;
-	Thu, 24 Feb 2022 16:06:27 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id E4FA440A5A;
+	Thu, 24 Feb 2022 16:29:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id xBDiBR_msltu; Thu, 24 Feb 2022 16:06:26 +0000 (UTC)
+	with ESMTP id DEIvl1Uce-Cb; Thu, 24 Feb 2022 16:29:47 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id B4CAE40A13;
-	Thu, 24 Feb 2022 16:06:25 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 5548640A39;
+	Thu, 24 Feb 2022 16:29:46 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 72987C0037;
-	Thu, 24 Feb 2022 16:06:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0B736C0036;
+	Thu, 24 Feb 2022 16:29:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B67B9C0011
- for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 16:06:24 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 22384C0011
+ for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 16:29:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id D874C83E19
- for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 16:06:16 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id C6E2440A3F
+ for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 16:29:39 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id adz8QGXDMKOb for <bridge@lists.linux-foundation.org>;
- Thu, 24 Feb 2022 16:06:14 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp1.osuosl.org (Postfix) with ESMTPS id E205A83E13
- for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 16:06:14 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id BEBC5616A0;
- Thu, 24 Feb 2022 16:06:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAC1FC340E9;
- Thu, 24 Feb 2022 16:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1645718773;
- bh=6WN+LQVBZezsAh7KVD4VaWoSKM/ZTRQU90sZ5yKY33s=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=SQYBEdvFu9oSHN+ebTqdV5/BHZdCpZA/fMR9ZcLuszdMt48Snk1hhPZZbJHaQoxav
- h7ATGC1X9EvXWBbgND4GOeXs7hWBJRFPiHZzuRSGRPS1SGhrgH5z49uM563aRkTf2a
- 6Xb2NQXEaxnAl6sBwmGNajxiJLSZ5abyjQXmZk7dQ3ghYCVptcRdRV3zKzIZPFZXYD
- cyKYxgTEWuD7gMjsd8/A34tuARQToUZd0u6v2u3dVfvSR4liFNigMmOz64KFPBJY9K
- 1wOFejqne3p3dR2MQIXTDxQ8uApTdkl4o5/xBlWuNKQB7a85kqFlKxOev6m+KOfPZV
- WXgvR0ptD9/Ww==
-Date: Thu, 24 Feb 2022 08:06:11 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <20220224080611.4e32bac3@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <66dc205f-9f57-61c1-35d9-8712e8d9fe3a@blackwall.org>
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Mp1hincOlRwD for <bridge@lists.linux-foundation.org>;
+ Thu, 24 Feb 2022 16:29:39 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
+ [IPv6:2a00:1450:4864:20::131])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id EDAB240A57
+ for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 16:29:38 +0000 (UTC)
+Received: by mail-lf1-x131.google.com with SMTP id f37so4788981lfv.8
+ for <bridge@lists.linux-foundation.org>; Thu, 24 Feb 2022 08:29:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=Xa6MAq+rNUf44zva/0KAJya5lpKaHjn2wMQpnlHghgw=;
+ b=Yj4+pap66cqOlKxhRjNnfnD8zWcxf9YREa3tXAn3vzk/YeFZpnz7dviOGt7ZAKeb9o
+ oMIIIq+A++0UOeejViTbqKHEu26hfJE00VLuqcb4yIu2XjJ0YMycsrtJxk/wsWNyTAqy
+ o83gkRGSJlHfehzmD255N8UOuhOAkuvbUK5rvnN1IUCJX+3o1QnZODnLOySkS66Kym7t
+ 6osWwVorc5sMDjR23T+WRe1wIpWQVe9zInGohVsDMs9An2dkT7JJOiRveHrRFAuLfkXP
+ n1+rN8N0bWWRuzL63I3mUuLqXiSIZ9snq4/CaqkDfrRJKyKePWFiHdYr2SDonnJEZO08
+ yeYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=Xa6MAq+rNUf44zva/0KAJya5lpKaHjn2wMQpnlHghgw=;
+ b=TNUqx0e38YgL9vCWJbLSXCJE2dRuvoEV+VzDiIpjed1w0ldaKjM7TNi/4yh046Vtug
+ lB94FgpkBZd//TuEVTni5jcDeWVgPh9yLPxa9FdtkO6fInvL9zof9TgCL1jpevG/EAKr
+ LZ5K0AMX1ZG7bOwFc8h3DIxDLZ/nv5p48URhnGq5gbNjoRii5hMwunOyG+mMyJeIuGdQ
+ N26h/6eQLmCAT1ntouzrNkzbUAFV3xM2uhBJnBc4uNst1X0YgywOa5Z+h1P34hMRxVzv
+ UoIgO1iNq1nUAnFvcvUm3epyC4mVlC3mrl2JKL6Vw8qmgvKbZg4TJzh2/V0XN9MK6Z1Y
+ QUrw==
+X-Gm-Message-State: AOAM530LMdD1h0Sk6B3d3TnxsJZIdcuhkUPtBFhmOyCdpUeqbrSwlFji
+ ZgLS2spdmzo/vgTauGLDSHs=
+X-Google-Smtp-Source: ABdhPJx/XkiYdteZIOnPrgPRLU8La/W/ow6dq1xZtLGnXTkkTHpsswA0KTDy+fmvBAxOJjb9utMCTw==
+X-Received: by 2002:ac2:592d:0:b0:443:3c8b:590c with SMTP id
+ v13-20020ac2592d000000b004433c8b590cmr2196604lfi.147.1645720176616; 
+ Thu, 24 Feb 2022 08:29:36 -0800 (PST)
+Received: from wbg (a124.broadband3.quicknet.se. [46.17.184.124])
+ by smtp.gmail.com with ESMTPSA id m7sm245126lfr.82.2022.02.24.08.29.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Feb 2022 08:29:35 -0800 (PST)
+From: Joachim Wiberg <troglobit@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>, Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20220224080611.4e32bac3@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 References: <20220223172407.175865-1-troglobit@gmail.com>
  <66dc205f-9f57-61c1-35d9-8712e8d9fe3a@blackwall.org>
+ <20220224080611.4e32bac3@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Date: Thu, 24 Feb 2022 17:29:35 +0100
+Message-ID: <875yp4qlcg.fsf@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: Joachim Wiberg <troglobit@gmail.com>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, "David S .
- Miller" <davem@davemloft.net>, Roopa Prabhu <roopa@nvidia.com>
+Content-Type: text/plain
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ "David S . Miller" <davem@davemloft.net>, Roopa Prabhu <roopa@nvidia.com>
 Subject: Re: [Bridge] [PATCH 1/1 net-next] net: bridge: add support for host
- l2 mdb entries
+	l2 mdb entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -83,31 +95,18 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, 24 Feb 2022 13:26:22 +0200 Nikolay Aleksandrov wrote:
-> On 23/02/2022 19:24, Joachim Wiberg wrote:
-> > This patch expands on the earlier work on layer-2 mdb entries by adding
-> > support for host entries.  Due to the fact that host joined entries do
-> > not have any flag field, we infer the permanent flag when reporting the
-> > entries to userspace, which otherwise would be listed as 'temp'.
-> > 
-> > Before patch:
-> > 
-> >     ~# bridge mdb add dev br0 port br0 grp 01:00:00:c0:ff:ee permanent
-> >     Error: bridge: Flags are not allowed for host groups.
-> >     ~# bridge mdb add dev br0 port br0 grp 01:00:00:c0:ff:ee
-> >     Error: bridge: Only permanent L2 entries allowed.
-> > 
-> > After patch:
-> > 
-> >     ~# bridge mdb add dev br0 port br0 grp 01:00:00:c0:ff:ee permanent
-> >     ~# bridge mdb show
-> >     dev br0 port br0 grp 01:00:00:c0:ff:ee permanent vid 1
-> > 
-> > Signed-off-by: Joachim Wiberg <troglobit@gmail.com>
->
-> It would be nice to add a selftest for L2 entries. You can send it as a follow-up.
+On Thu, Feb 24, 2022 at 08:06, Jakub Kicinski <kuba@kernel.org> wrote:
+> On Thu, 24 Feb 2022 13:26:22 +0200 Nikolay Aleksandrov wrote:
+>> On 23/02/2022 19:24, Joachim Wiberg wrote:
+>> > This patch expands on the earlier work on layer-2 mdb entries by adding
+>> > support for host entries.
+>> It would be nice to add a selftest for L2 entries. You can send it as a follow-up.
+> Let's wait for that, also checkpatch says you need to balance brackets
+> to hold kernel coding style.
 
-Let's wait for that, also checkpatch says you need to balance brackets
-to hold kernel coding style.
+Jakub, by "wait for that" do you mean you'd prefer I add the selftests
+to this?  Otherwise I'll send a v2 with the style fixes.
 
-> Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+Best regards
+ /Joachim
+ 
