@@ -1,80 +1,68 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD734CD40E
-	for <lists.bridge@lfdr.de>; Fri,  4 Mar 2022 13:10:21 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E384CF3BD
+	for <lists.bridge@lfdr.de>; Mon,  7 Mar 2022 09:37:31 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 135C660B5B;
-	Fri,  4 Mar 2022 12:10:20 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 2F0C781985;
+	Mon,  7 Mar 2022 08:37:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ujRUVLmVIc8Q; Fri,  4 Mar 2022 12:10:18 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id aZJr3-qcXsf2; Mon,  7 Mar 2022 08:37:29 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 633F960F7D;
-	Fri,  4 Mar 2022 12:10:17 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 700DA818A7;
+	Mon,  7 Mar 2022 08:37:28 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0EB6BC0070;
-	Fri,  4 Mar 2022 12:10:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 34EACC0070;
+	Mon,  7 Mar 2022 08:37:28 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 028ACC000B
- for <bridge@lists.linux-foundation.org>; Fri,  4 Mar 2022 12:10:15 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9ED9EC000B
+ for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 22:38:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id CF4324019C
- for <bridge@lists.linux-foundation.org>; Fri,  4 Mar 2022 12:10:15 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 89BC440383
+ for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 22:38:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8PwsCIYNe5aM for <bridge@lists.linux-foundation.org>;
- Fri,  4 Mar 2022 12:10:14 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by smtp2.osuosl.org (Postfix) with ESMTPS id B97434019A
- for <bridge@lists.linux-foundation.org>; Fri,  4 Mar 2022 12:10:14 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7CAC561DD2;
- Fri,  4 Mar 2022 12:10:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9B265C340F0;
- Fri,  4 Mar 2022 12:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646395812;
- bh=Xieg0ITcJqTt/jIZLiexhbijH6baoMOJ0W7XtQGkkzM=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=qs7Adw1hN+QtMwm6shLuEst5UfUV5331LQwMSDpww+D4iEiW0ZHDRBG4khl5mwlDa
- 0Tn4o1Zf6YT3OF5RQBoYo2qdYJbH744V2oAei+fgZbbNyE+bMUEfcsPMyXq2UT5+uq
- o2F+YzWtER3Dz/zkw1pqP/FJlW8pXWH0732imUCqFkoCLdIVZs/Z5MVJD2wnCCg8yx
- V9QLXQmgp3dxlc43g3J/KtcNg4xHW6441wjpR7hDrPmm8t/CNuOBI15FnLHvsU2hHW
- aEnjr3s0akp5MLgFg3DmG/ybA4itaYzoswOzjoaywsyareJs9+44/pYetEYuVYbyC7
- nW7v75Ht5o9SA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 84066EAC099; Fri,  4 Mar 2022 12:10:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ with ESMTP id yAqryJzlnGiQ for <bridge@lists.linux-foundation.org>;
+ Tue,  1 Mar 2022 22:38:34 +0000 (UTC)
+X-Greylist: delayed 00:07:42 by SQLgrey-1.8.0
+Received: from fox.pavlix.cz (fox.pavlix.cz [IPv6:2a01:430:17:1::ffff:1417])
+ by smtp2.osuosl.org (Postfix) with ESMTP id E89F1400A4
+ for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 22:38:33 +0000 (UTC)
+Received: from [172.16.63.206] (37-48-0-234.nat.epc.tmcz.cz [37.48.0.234])
+ by fox.pavlix.cz (Postfix) with ESMTPSA id 8219111111E;
+ Tue,  1 Mar 2022 23:30:47 +0100 (CET)
+Message-ID: <f7fc9c30-0514-0bfb-ee98-f3944d752d7f@simerda.eu>
+Date: Tue, 1 Mar 2022 23:30:46 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164639581253.6905.17402968335901101140.git-patchwork-notify@kernel.org>
-Date: Fri, 04 Mar 2022 12:10:12 +0000
-References: <20220303171505.1604775-1-bigeasy@linutronix.de>
-In-Reply-To: <20220303171505.1604775-1-bigeasy@linutronix.de>
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: andrew@lunn.ch, linux-doc@vger.kernel.org, razor@blackwall.org,
- kurt@linutronix.de, jcmvbkbc@gmail.com, steve.wahl@hpe.com,
- horatiu.vultur@microchip.com, f.fainelli@gmail.com, corbet@lwn.net,
- bridge@lists.linux-foundation.org, roopa@nvidia.com, kuba@kernel.org,
- vivien.didelot@gmail.com, linux-xtensa@linux-xtensa.org, mike.travis@hpe.com,
- l.stelmach@samsung.com, tglx@linutronix.de, chris@zankel.net,
- netdev@vger.kernel.org, robinmholt@gmail.com, UNGLinuxDriver@microchip.com,
- olteanv@gmail.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/9] net: Convert user to netif_rx().
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Content-Language: en-US
+To: Tobias Waldekranz <tobias@waldekranz.com>,
+ Vladimir Oltean <olteanv@gmail.com>
+References: <20220301100321.951175-1-tobias@waldekranz.com>
+ <20220301162142.2rv23g4cyd2yacbs@skbuf> <87fso1nzdt.fsf@waldekranz.com>
+From: =?UTF-8?Q?Pavel_=c5=a0imerda?= <code@simerda.eu>
+In-Reply-To: <87fso1nzdt.fsf@waldekranz.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 07 Mar 2022 08:37:25 +0000
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ Petr Machata <petrm@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Russell King <linux@armlinux.org.uk>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
+ netdev@vger.kernel.org, Cooper Lees <me@cooperlees.com>,
+ navolnenoze@simerda.eu, Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
+ Matt Johnston <matt@codeconstruct.com.au>, davem@davemloft.net,
+ linux-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH v2 net-next 00/10] net: bridge: Multiple
+	Spanning Trees
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,61 +77,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
 
-On Thu,  3 Mar 2022 18:14:56 +0100 you wrote:
-> This is the first batch of converting netif_rx_ni() caller to
-> netif_rx(). The change making this possible is net-next and
-> netif_rx_ni() is a wrapper around netif_rx(). This is a clean up in
-> order to remove netif_rx_ni().
+On 01/03/2022 22:20, Tobias Waldekranz wrote:
+> On Tue, Mar 01, 2022 at 18:21, Vladimir Oltean <olteanv@gmail.com> wrote:
+>> Hi Tobias,
+>>
+>> On Tue, Mar 01, 2022 at 11:03:11AM +0100, Tobias Waldekranz wrote:
+>>> A proposal for the corresponding iproute2 interface is available here:
+>>>
+>>> https://github.com/wkz/iproute2/tree/mst
+>>
+>> Please pardon my ignorance. Is there a user-mode STP protocol application
+>> that supports MSTP, and that you've tested these patches with?
+>> I'd like to give it a try.
 > 
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: bridge@lists.linux-foundation.org
-> Cc: Chris Zankel <chris@zankel.net>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: Kurt Kanzenbach <kurt@linutronix.de>
-> Cc: linux-doc@vger.kernel.org
-> Cc: linux-xtensa@linux-xtensa.org
-> Cc: Łukasz Stelmach <l.stelmach@samsung.com>
-> Cc: Max Filippov <jcmvbkbc@gmail.com>
-> Cc: Mike Travis <mike.travis@hpe.com>
-> Cc: Nikolay Aleksandrov <razor@blackwall.org>
-> Cc: Robin Holt <robinmholt@gmail.com>
-> Cc: Roopa Prabhu <roopa@nvidia.com>
-> Cc: Steve Wahl <steve.wahl@hpe.com>
-> Cc: UNGLinuxDriver@microchip.com
-> Cc: Vivien Didelot <vivien.didelot@gmail.com>
-> Cc: Vladimir Oltean <olteanv@gmail.com>
-> Sebastian
+> I see that Stephen has already pointed you to mstpd in a sibling
+> message.
+> 
+> It is important to note though, that AFAIK mstpd does not actually
+> support MSTP on a vanilla Linux system. The protocol implementation is
+> in place, and they have a plugin architecture that makes it easy for people
+> to hook it up to various userspace SDKs and whatnot, but you can't use
+> it with a regular bridge.
+> 
+> A colleague of mine has been successfully running a modified version of
+> mstpd which was tailored for v1 of this series (RFC). But I do not
+> believe he has had the time to rework it for v2. That should mostly be a
+> matter of removing code though, as v2 allows you to manage the MSTIs
+> directly, rather than having to translate it to an associated VLAN.
 
-Here is the summary with links:
-  - [net-next,1/9] docs: networking: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/21f95a88eab4
-  - [net-next,2/9] net: xtensa: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/aa4e5761bff5
-  - [net-next,3/9] net: sgi-xp: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/4343b866aa94
-  - [net-next,4/9] net: caif: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/3fb4430e73bf
-  - [net-next,5/9] net: dsa: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/db00cc9da079
-  - [net-next,6/9] net: ethernet: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/90f77c1c512f
-  - [net-next,7/9] net: macvlan: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/566214f44697
-  - [net-next,8/9] net: bridge: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/2e83bdd5d6cf
-  - [net-next,9/9] net: dev: Use netif_rx().
-    https://git.kernel.org/netdev/net-next/c/ad0a043fc26c
+Hello,
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+we experimented with mstpd with pretty reasonable kernel modifications. Vanilla kernel wasn't capable of transferring the correct mapping from mstpd to the hardware due to lack of vlan2msti mapping and per-msti port state (rather than just per-vlan port state).
 
+https://github.com/mstpd/mstpd/pull/112
 
+I didn't pursue this for a while, though.
+
+Regards,
+Pavel
