@@ -1,84 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D644C903A
-	for <lists.bridge@lfdr.de>; Tue,  1 Mar 2022 17:21:53 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4FC4C9159
+	for <lists.bridge@lfdr.de>; Tue,  1 Mar 2022 18:20:09 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 4CA3940761;
-	Tue,  1 Mar 2022 16:21:51 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 91C2560C07;
+	Tue,  1 Mar 2022 17:20:07 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Ssb_3AqOLeQS; Tue,  1 Mar 2022 16:21:50 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id D61FD4054E;
-	Tue,  1 Mar 2022 16:21:49 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fmDdiDNqXXxc; Tue,  1 Mar 2022 17:20:07 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 1F3FD60E8F;
+	Tue,  1 Mar 2022 17:20:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7E90BC007B;
-	Tue,  1 Mar 2022 16:21:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C721BC007B;
+	Tue,  1 Mar 2022 17:20:05 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id ABA39C001A
- for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 16:21:47 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EFAD2C001A
+ for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 17:20:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 95F3D60EA4
- for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 16:21:47 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id CFE1160E5A
+ for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 17:20:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JwWCYd4_O3j4 for <bridge@lists.linux-foundation.org>;
- Tue,  1 Mar 2022 16:21:46 +0000 (UTC)
+ with ESMTP id h6g_MqwmgRFc for <bridge@lists.linux-foundation.org>;
+ Tue,  1 Mar 2022 17:20:02 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B897D60E8F
- for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 16:21:46 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id kt27so3452480ejb.0
- for <bridge@lists.linux-foundation.org>; Tue, 01 Mar 2022 08:21:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Jx8eZ/jgrSE5jtq/IeRwHlPFovNus3LfRlDhg1AW13A=;
- b=en9t2M3R/YDinK1EfneMzgv5fnKSDbV2GexbGi8qUVmwTSDoEp15UHwZA/M2o65vTS
- 1amV/o9IYHjiDxmjxen42QPAkYKpPfbSgHnHpSavW1XfsTw58PopoiG6cKAbBHAUIh80
- Z9vXf90FSFzOih7QWrwZWVuvpsy21CRZGjywUCXNukoL5p8tTEzXYMkVKhBYpK7eeQp1
- iB71j6/AwNLOcWKUYtR2hDgFxCZC/LqpqjPme7lTy8Lh7Q6qlP0sr34zBSPk7aMnM/gD
- TaZi52W9EXR5i0OekbRJVPsXfV+ELpeg9leOt1TkHdfXLGOy0pvBzQ4B3q69dCXgfx6T
- Y+XA==
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
+ [IPv6:2607:f8b0:4864:20::1030])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id AE63860B54
+ for <bridge@lists.linux-foundation.org>; Tue,  1 Mar 2022 17:20:02 +0000 (UTC)
+Received: by mail-pj1-x1030.google.com with SMTP id
+ cp23-20020a17090afb9700b001bbfe0fbe94so2785219pjb.3
+ for <bridge@lists.linux-foundation.org>; Tue, 01 Mar 2022 09:20:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20210112.gappssmtp.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=9x7bVbTmKslH1o+b4w0DypYAmuXcIYWDpO7m/YGx0Qo=;
+ b=T6MithCuHZshlDV57jTTWmaPRQiWB3Vu51iHZzs9uMkcD2KiIU0O8SEm0Mud/Bk9q0
+ bi+xar/dppgJyefJgnB3QJEKbrup7tlgIr6fmM1v5voTNVSaRIVfJRI4fP7nkTnMgH+j
+ lUFrsIQiNbBrT8sPzecjb+GCGn10inOHFOJlT73U1370WeR3SB42d17B+7ZybP++fCIb
+ teBW+ABfyi0ogU9O11SabHkjMOeQ0Uv24M1sHgolj+ES6we7hf96BzHiAMWkMSH7hgy+
+ Mqf6/n10dJpSgUc521cRXCRKMJn7kUNwDeDN7yT+Ky+j1W/ze+x+1LaU2ijtn2oXJzAt
+ 0oQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Jx8eZ/jgrSE5jtq/IeRwHlPFovNus3LfRlDhg1AW13A=;
- b=dyqUWmhpgkbcYazAIuVPEGFwbXCjBREov7+dIih74roq3TiA2hgXUcvGSre8ljIqRI
- rcPcSZk8hZDbLqTCkH8VI181Yi2D7skrYCmNIE+ojizIo8aVthiCW4wImCthduy1IiqX
- /t0dCYMAK6GVRtlyiLGeKzC3FcnGpywOtHcxy9Da8w3aL8d70Y1EV/xyk/iGcdmcgAE/
- PxocyEkdnSGfLyRxkQozVzh8nsNMpKDWINxKBnNpidQ3/w69APPtjJnfBUcRccMmPK4x
- Txv+RXT577YZyyE3BMFh33WCmrrkXvYA0iesvcpEq+zdyxNWa37Uw/lHDCHx2PWHjs4o
- T5yA==
-X-Gm-Message-State: AOAM532Xwg0JX1c8P9K/JzahBwGCSIqnb9ONP1dyuWWd8/qA4UTJFL6+
- S2ZXRRWJbWqocLT+C1Ya9U8=
-X-Google-Smtp-Source: ABdhPJxGtOTYdS7L0n3Cy3fp114D1jiHE3zZ+VjSMi5+/5L86y6D2puo9eWWttxwjz7E6uhYGujEWA==
-X-Received: by 2002:a17:906:3ac6:b0:6cb:6808:95f9 with SMTP id
- z6-20020a1709063ac600b006cb680895f9mr19934324ejd.375.1646151704776; 
- Tue, 01 Mar 2022 08:21:44 -0800 (PST)
-Received: from skbuf ([188.25.231.156]) by smtp.gmail.com with ESMTPSA id
- ey10-20020a1709070b8a00b006cee56b87b9sm5486818ejc.141.2022.03.01.08.21.43
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=9x7bVbTmKslH1o+b4w0DypYAmuXcIYWDpO7m/YGx0Qo=;
+ b=EyWalOfzDsmFFlc3XTdGiltLp/g+yU5S1Znfx/wsmY32sDTn9Gy0hPNXc3YioCjvt9
+ nA7/5ZoKOqVon+6z4Up6KjhJFcalnGK5owZyK7/zJ6WmL6+sdN5n8ABfoIO6N6xE76iw
+ VVceYZ5UE3dDPtAzbOQdaWwq16PEsm3ZzasZ1B+WqO0jcZAOeZohRSP5djOyxZhmQcsC
+ 81fmmxp3o/7R8MuDRCH3G0MMIJV3D0MoNK/32mPY5BWT5pAMsJtgjvwV4LYAtempN9GV
+ YPuLw5lFkE/5biK0yOEobkT/4LDCWsreOu9kjclEFPDCMcJJ+tnlvWgFd4ac0PjhNalC
+ /HEQ==
+X-Gm-Message-State: AOAM530ktnXuRm3xy3SCi6izXdiXmFHDYODhudGQ63C+b9uIFU4LB4SK
+ y/hLhYesBaICwaJ54HdjAlseWA==
+X-Google-Smtp-Source: ABdhPJzr1ItsjT+0FV4MRTJS4f0uhZNMv14qPieGTQIdPmh6Yg3RVpWrsvm7SewNq78ieo9fUMg6XQ==
+X-Received: by 2002:a17:902:7086:b0:14f:ee29:5ef0 with SMTP id
+ z6-20020a170902708600b0014fee295ef0mr26224089plk.142.1646155202058; 
+ Tue, 01 Mar 2022 09:20:02 -0800 (PST)
+Received: from hermes.local (204-195-112-199.wavecable.com. [204.195.112.199])
+ by smtp.gmail.com with ESMTPSA id
+ g25-20020a633759000000b0036c4f1f95c4sm13649242pgn.40.2022.03.01.09.20.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Mar 2022 08:21:44 -0800 (PST)
-Date: Tue, 1 Mar 2022 18:21:42 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Tobias Waldekranz <tobias@waldekranz.com>
-Message-ID: <20220301162142.2rv23g4cyd2yacbs@skbuf>
+ Tue, 01 Mar 2022 09:20:01 -0800 (PST)
+Date: Tue, 1 Mar 2022 09:19:59 -0800
+From: Stephen Hemminger <stephen@networkplumber.org>
+To: Vladimir Oltean <olteanv@gmail.com>
+Message-ID: <20220301091959.4c8a893b@hermes.local>
+In-Reply-To: <20220301162142.2rv23g4cyd2yacbs@skbuf>
 References: <20220301100321.951175-1-tobias@waldekranz.com>
+ <20220301162142.2rv23g4cyd2yacbs@skbuf>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220301100321.951175-1-tobias@waldekranz.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Petr Machata <petrm@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
@@ -87,7 +89,7 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  netdev@vger.kernel.org, Cooper Lees <me@cooperlees.com>,
  Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
  Matt Johnston <matt@codeconstruct.com.au>, davem@davemloft.net,
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, Tobias Waldekranz <tobias@waldekranz.com>
 Subject: Re: [Bridge] [PATCH v2 net-next 00/10] net: bridge: Multiple
 	Spanning Trees
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -104,13 +106,18 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Tobias,
+On Tue, 1 Mar 2022 18:21:42 +0200
+Vladimir Oltean <olteanv@gmail.com> wrote:
 
-On Tue, Mar 01, 2022 at 11:03:11AM +0100, Tobias Waldekranz wrote:
-> A proposal for the corresponding iproute2 interface is available here:
+> Hi Tobias,
 > 
-> https://github.com/wkz/iproute2/tree/mst
+> On Tue, Mar 01, 2022 at 11:03:11AM +0100, Tobias Waldekranz wrote:
+> > A proposal for the corresponding iproute2 interface is available here:
+> > 
+> > https://github.com/wkz/iproute2/tree/mst  
+> 
+> Please pardon my ignorance. Is there a user-mode STP protocol application
+> that supports MSTP, and that you've tested these patches with?
+> I'd like to give it a try.
 
-Please pardon my ignorance. Is there a user-mode STP protocol application
-that supports MSTP, and that you've tested these patches with?
-I'd like to give it a try.
+https://github.com/mstpd/mstpd
