@@ -1,83 +1,85 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9D84CC8E3
-	for <lists.bridge@lfdr.de>; Thu,  3 Mar 2022 23:28:57 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6F54CC8EA
+	for <lists.bridge@lfdr.de>; Thu,  3 Mar 2022 23:29:51 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 46F7760F64;
-	Thu,  3 Mar 2022 22:28:56 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 4E399415DC;
+	Thu,  3 Mar 2022 22:29:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t69LzYaaeHyU; Thu,  3 Mar 2022 22:28:55 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id C9C3760F74;
-	Thu,  3 Mar 2022 22:28:54 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Kjtua_6ul0bX; Thu,  3 Mar 2022 22:29:49 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id E3CB0415D5;
+	Thu,  3 Mar 2022 22:29:48 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 77CC9C0070;
-	Thu,  3 Mar 2022 22:28:54 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id BB7F2C0070;
+	Thu,  3 Mar 2022 22:29:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8CB4EC000B
- for <bridge@lists.linux-foundation.org>; Thu,  3 Mar 2022 22:28:53 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8F060C000B
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Mar 2022 22:29:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 7A8F960F72
- for <bridge@lists.linux-foundation.org>; Thu,  3 Mar 2022 22:28:53 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 7BD4940363
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Mar 2022 22:29:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 41TV_fv4844w for <bridge@lists.linux-foundation.org>;
- Thu,  3 Mar 2022 22:28:52 +0000 (UTC)
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 7qFrYbXn6xx8 for <bridge@lists.linux-foundation.org>;
+ Thu,  3 Mar 2022 22:29:46 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by smtp3.osuosl.org (Postfix) with ESMTPS id C065560F64
- for <bridge@lists.linux-foundation.org>; Thu,  3 Mar 2022 22:28:52 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id qt6so13659769ejb.11
- for <bridge@lists.linux-foundation.org>; Thu, 03 Mar 2022 14:28:52 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 69248400DA
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Mar 2022 22:29:46 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id x5so8445679edd.11
+ for <bridge@lists.linux-foundation.org>; Thu, 03 Mar 2022 14:29:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=Q3KMKlNL1UmXA+3fpqyraxkBiFVYfDRSUjKE3l3RuVk=;
- b=MDnX4bgCQ/oEW0UhmojxOqONfN9vQW6YLWXvJiTN9ZgftqcQr1HntMOS2g3/z2DPmE
- 8m33ZJNdMHy5QvE34NBHTPyrFtQvSqNCX42VcKXLUA28fVVOjSENDm9kkQb1YrThCzCw
- 4mhs+Ja7G4trf5TymB8l8SBevLF4w8Cx1wjasWV1OlHemYMPolDQEc3m40FjuotYMIpW
- V6ohRAT19l0vMqSS6sFnNBHePLzvjUzcp24j5GeZvNTFfz0x9TD2VOYGM0sWaQzurbAG
- VnZd3CbpCGqvfBGxVJoFWuMNGVRlf0X0sqsXMbKEppdV4jwy/kqgzP0I0ikBXbUVso/Z
- hbtg==
+ bh=qURyynMi/HgXpmSfLyUFNqbqAu/l3MGX7Mv0yI+XyPQ=;
+ b=Ep3QG/4ZU24+B32NtMclXeYMmGtv/CULxCL1Xcm8LpSfsHlwc1RTO4xFbc2BtrbqRI
+ wDXQD3JBhvqiFguK4cLM0aMfivTA8qyy0+Hnf+PP/zfio3r48S7rMkJeCF35l9tWeIJ9
+ mYwxrsKxnteK0lvvQUrJlMPI0Sk2yD/jrwglf9Wv3ZEk+QCLUDHd7m8QPxYd726BqHi7
+ 8KYmUHMI7xBVqF/1QJPn4zifeyxo/cOQYMIPV9na6+SiN3Wo5GEnLYo9GjPtjmuA9BvE
+ Uzuiej//fqAXgRzjnqLsRzkRu3JqXTga+bPwZPb7aSJRoNSMim0pbBcv3PeymH4LOt94
+ ClqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=Q3KMKlNL1UmXA+3fpqyraxkBiFVYfDRSUjKE3l3RuVk=;
- b=nkrossM1afrx3bqZrXc1t3AV9GV0S3R+PlgFFGVZQetl7NtPmWFYBmOl9cav3T+O/2
- Ukf/O6ot0SgxIFGyIo7WX/AcQ4yKtxOGzRP11xQBgIek5SqkL3qGcHv3vO0b8bNe8zDy
- x+eg/SDr8IAY1aJ3Y7SEdN3i2Uc2jPpk9c+tXJediC8qn2SNuk0ZwbgUrbrsb0w0nxGk
- ug5CoL1K7RdxjQb34lIyMBkaakauXp+d+ct6+PYkq7nvId62NH7cQxBXdLnTb0yay0SS
- fDzuk33zVeCaZEq5bEL7JiXIVQPyIN+PM6I0Q/K5tUr4DQCJcFz/E3VSToLDDzxhz8N7
- ITfA==
-X-Gm-Message-State: AOAM530sWcQHXNazo9z+GPvkaqLthf1CkNzngmkqRIqKo6tscxjOzrfI
- S/NDZzLDAMjzzazV/6EjqkU=
-X-Google-Smtp-Source: ABdhPJzk13wyTbmYgwXumamuMcIRNwpzubAWgHvblQ9VhZ2Wj9eexC+yjherORwhPTNIQRvPpaYgVg==
-X-Received: by 2002:a17:906:5d11:b0:6da:68ed:270f with SMTP id
- g17-20020a1709065d1100b006da68ed270fmr7732259ejt.661.1646346530968; 
- Thu, 03 Mar 2022 14:28:50 -0800 (PST)
+ bh=qURyynMi/HgXpmSfLyUFNqbqAu/l3MGX7Mv0yI+XyPQ=;
+ b=K8DrANG/zOjrZDyaf47VcLca2JHX0DI0NaxHEZoDwanltQfioP7ixMUxpq9vlOULfe
+ 8KuytOv6C0G1+YXt8Kk3G+kKnqn66+kbZyS9w4GKKlkwqmJu/F0+s9EVPI4FsFy6KF4r
+ sPwQOsRzxVsdO43MfEVV/SQ4DBZzeLqGlABcFkutdMpbOXMU3wdLnI9r3NRnJvhKpL92
+ KfuxBRIhFQxrpVL2V9lsDhi+37P+p/xTxhPJPAlT7CQlV++2ju1HWMh0UfjEzb5FkUeO
+ Cfc7A+iuuczPEL0ockKIEeLtmCvm0PCjNFa6c12ilIY0OUDNkyuuNc1Sc/nM6xlLUYNl
+ 6tbA==
+X-Gm-Message-State: AOAM531FB7FTdxqYOSs7vxlz8lztOeU1F2lgJRcNSnO8Tpnzb2fkd5qy
+ 98jgdsSoBJCtEWD7oRcfv+I=
+X-Google-Smtp-Source: ABdhPJycAcEdH9myQCMw6g6i+TkljUrgPIVf7+QgiP17Bb4KxbhWSFhcGDjT5Qr7OEZT7GxjdIz8hQ==
+X-Received: by 2002:a05:6402:270a:b0:410:63d:a66d with SMTP id
+ y10-20020a056402270a00b00410063da66dmr36458587edd.48.1646346584524; 
+ Thu, 03 Mar 2022 14:29:44 -0800 (PST)
 Received: from skbuf ([188.25.231.156]) by smtp.gmail.com with ESMTPSA id
- n27-20020a1709062bdb00b006da975173bfsm810028ejg.170.2022.03.03.14.28.49
+ v2-20020a509d02000000b00412d53177a6sm1369846ede.20.2022.03.03.14.29.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Mar 2022 14:28:50 -0800 (PST)
-Date: Fri, 4 Mar 2022 00:28:48 +0200
+ Thu, 03 Mar 2022 14:29:44 -0800 (PST)
+Date: Fri, 4 Mar 2022 00:29:42 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Tobias Waldekranz <tobias@waldekranz.com>
-Message-ID: <20220303222848.4e2s2zrbzfckmiqw@skbuf>
+Message-ID: <20220303222942.dkz7bfuagkv7hbpp@skbuf>
 References: <20220301100321.951175-1-tobias@waldekranz.com>
- <20220301100321.951175-2-tobias@waldekranz.com>
+ <20220301100321.951175-7-tobias@waldekranz.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220301100321.951175-2-tobias@waldekranz.com>
+In-Reply-To: <20220301100321.951175-7-tobias@waldekranz.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Petr Machata <petrm@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
@@ -87,8 +89,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
  Matt Johnston <matt@codeconstruct.com.au>, davem@davemloft.net,
  linux-kernel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH v2 net-next 01/10] net: bridge: mst: Multiple
- Spanning Tree (MST) mode
+Subject: Re: [Bridge] [PATCH v2 net-next 06/10] net: dsa: Pass VLAN MSTI
+ migration notifications to driver
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -103,44 +105,94 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Mar 01, 2022 at 11:03:12AM +0100, Tobias Waldekranz wrote:
-> Allow the user to switch from the current per-VLAN STP mode to an MST
-> mode.
-> 
-> Up to this point, per-VLAN STP states where always isolated from each
-> other. This is in contrast to the MSTP standard (802.1Q-2018, Clause
-> 13.5), where VLANs are grouped into MST instances (MSTIs), and the
-> state is managed on a per-MSTI level, rather that at the per-VLAN
-> level.
-> 
-> Perhaps due to the prevalence of the standard, many switching ASICs
-> are built after the same model. Therefore, add a corresponding MST
-> mode to the bridge, which we can later add offloading support for in a
-> straight-forward way.
-> 
-> For now, all VLANs are fixed to MSTI 0, also called the Common
-> Spanning Tree (CST). That is, all VLANs will follow the port-global
-> state.
-> 
-> Upcoming changes will make this actually useful by allowing VLANs to
-> be mapped to arbitrary MSTIs and allow individual MSTI states to be
-> changed.
+On Tue, Mar 01, 2022 at 11:03:17AM +0100, Tobias Waldekranz wrote:
+> Add the usual trampoline functionality from the generic DSA layer down
+> to the drivers for VLAN MSTI migrations.
 > 
 > Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 > ---
-> +void br_mst_vlan_set_state(struct net_bridge_port *p, struct net_bridge_vlan *v,
-> +			   u8 state)
+>  include/net/dsa.h  |  3 +++
+>  net/dsa/dsa_priv.h |  1 +
+>  net/dsa/port.c     | 10 ++++++++++
+>  net/dsa/slave.c    |  6 ++++++
+>  4 files changed, 20 insertions(+)
+> 
+> diff --git a/include/net/dsa.h b/include/net/dsa.h
+> index cfedcfb86350..cc8acb01bd9b 100644
+> --- a/include/net/dsa.h
+> +++ b/include/net/dsa.h
+> @@ -962,6 +962,9 @@ struct dsa_switch_ops {
+>  				 struct netlink_ext_ack *extack);
+>  	int	(*port_vlan_del)(struct dsa_switch *ds, int port,
+>  				 const struct switchdev_obj_port_vlan *vlan);
+> +	int	(*vlan_msti_set)(struct dsa_switch *ds,
+> +				 const struct switchdev_attr *attr);
 
-Function can be static.
+I would rather pass the struct switchdev_vlan_attr and the orig_dev
+(bridge) as separate arguments here. Or even the struct dsa_bridge, for
+consistency to the API changes for database isolation.
 
+> +
+>  	/*
+>  	 * Forwarding database
+>  	 */
+> diff --git a/net/dsa/dsa_priv.h b/net/dsa/dsa_priv.h
+> index 07c0ad52395a..87ec0697e92e 100644
+> --- a/net/dsa/dsa_priv.h
+> +++ b/net/dsa/dsa_priv.h
+> @@ -217,6 +217,7 @@ int dsa_port_vlan_filtering(struct dsa_port *dp, bool vlan_filtering,
+>  			    struct netlink_ext_ack *extack);
+>  bool dsa_port_skip_vlan_configuration(struct dsa_port *dp);
+>  int dsa_port_ageing_time(struct dsa_port *dp, clock_t ageing_clock);
+> +int dsa_port_vlan_msti(struct dsa_port *dp, const struct switchdev_attr *attr);
+>  int dsa_port_mtu_change(struct dsa_port *dp, int new_mtu,
+>  			bool targeted_match);
+>  int dsa_port_fdb_add(struct dsa_port *dp, const unsigned char *addr,
+> diff --git a/net/dsa/port.c b/net/dsa/port.c
+> index d9da425a17fb..5f45cb7d70ba 100644
+> --- a/net/dsa/port.c
+> +++ b/net/dsa/port.c
+> @@ -778,6 +778,16 @@ int dsa_port_bridge_flags(struct dsa_port *dp,
+>  	return 0;
+>  }
+>  
+> +int dsa_port_vlan_msti(struct dsa_port *dp, const struct switchdev_attr *attr)
 > +{
-> +	struct net_bridge_vlan_group *vg = nbp_vlan_group(p);
+> +	struct dsa_switch *ds = dp->ds;
 > +
-> +	if (v->state == state)
-> +		return;
+> +	if (!ds->ops->vlan_msti_set)
+> +		return -EOPNOTSUPP;
 > +
-> +	br_vlan_set_state(v, state);
-> +
-> +	if (v->vid == vg->pvid)
-> +		br_vlan_set_pvid_state(vg, state);
+> +	return ds->ops->vlan_msti_set(ds, attr);
+
+I guess this doesn't need to be a cross-chip notifier event for all
+switches, because replication to all bridge ports is handled by
+switchdev_handle_port_attr_set(). Ok. But isn't it called too many times
+per switch?
+
 > +}
+> +
+>  int dsa_port_mtu_change(struct dsa_port *dp, int new_mtu,
+>  			bool targeted_match)
+>  {
+> diff --git a/net/dsa/slave.c b/net/dsa/slave.c
+> index 089616206b11..c6ffcd782b5a 100644
+> --- a/net/dsa/slave.c
+> +++ b/net/dsa/slave.c
+> @@ -314,6 +314,12 @@ static int dsa_slave_port_attr_set(struct net_device *dev, const void *ctx,
+>  
+>  		ret = dsa_port_bridge_flags(dp, attr->u.brport_flags, extack);
+>  		break;
+> +	case SWITCHDEV_ATTR_ID_VLAN_MSTI:
+> +		if (!dsa_port_offloads_bridge_dev(dp, attr->orig_dev))
+> +			return -EOPNOTSUPP;
+> +
+> +		ret = dsa_port_vlan_msti(dp, attr);
+> +		break;
+>  	default:
+>  		ret = -EOPNOTSUPP;
+>  		break;
+> -- 
+> 2.25.1
+> 
+
