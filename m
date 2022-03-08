@@ -2,97 +2,97 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3ADE4D025F
-	for <lists.bridge@lfdr.de>; Mon,  7 Mar 2022 16:03:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 112B04D116B
+	for <lists.bridge@lfdr.de>; Tue,  8 Mar 2022 09:01:19 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id A5A2060E8A;
-	Mon,  7 Mar 2022 15:03:15 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 5E88F60F1C;
+	Tue,  8 Mar 2022 08:01:17 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gJbcwOeds0cu; Mon,  7 Mar 2022 15:03:15 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 23C5060E84;
-	Mon,  7 Mar 2022 15:03:14 +0000 (UTC)
+	with ESMTP id lqR_UhGaEz2h; Tue,  8 Mar 2022 08:01:15 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 6044760F19;
+	Tue,  8 Mar 2022 08:01:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DA639C0073;
-	Mon,  7 Mar 2022 15:03:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6A028C0087;
+	Tue,  8 Mar 2022 08:01:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2DECFC000B
- for <bridge@lists.linux-foundation.org>; Mon,  7 Mar 2022 15:03:12 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C22A2C0073
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Mar 2022 08:01:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 15CFC40875
- for <bridge@lists.linux-foundation.org>; Mon,  7 Mar 2022 15:03:12 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id A46BC823F6
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Mar 2022 08:01:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key)
  header.d=waldekranz-com.20210112.gappssmtp.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id t0tHbnDQyZEd for <bridge@lists.linux-foundation.org>;
- Mon,  7 Mar 2022 15:03:11 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id stKOKqs_nB1g for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Mar 2022 08:01:10 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by smtp4.osuosl.org (Postfix) with ESMTPS id E91E640892
- for <bridge@lists.linux-foundation.org>; Mon,  7 Mar 2022 15:03:10 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id q5so6154049ljb.11
- for <bridge@lists.linux-foundation.org>; Mon, 07 Mar 2022 07:03:10 -0800 (PST)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 2D807823E3
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Mar 2022 08:01:09 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id u3so7406587ljd.0
+ for <bridge@lists.linux-foundation.org>; Tue, 08 Mar 2022 00:01:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=/BTt8YfLqIyHV2xz5yac4//kRwc8vucWlkgPD1H5W5U=;
- b=geSKUfzqH0ywLbmlSI4UD7XWu1DZAlvfys+W7vVP+VziMkRy9OPLCGWNyAdIXt1Bk5
- h809Vnkn1UErlMBAksU9IxSwTd3AvnT4UYUsCk8Fbj3N7QPq2u4sVhQA/K7918afijZ/
- +nXawLyl8sKtpITj3idcFoayKBWNTF8YEL15U34F09L97BWaO82jpZjN3qn9i5EP/WcK
- YqYWxTW8LazUdo+MmCRa9MQupXERDJ2rNoYVtiqDZr8AJPrvVKVP838BI0qFTNRs0JMg
- L2C3s4WjE0o6b0WRiadxWMjVi1woqYDlUuZc2YWb8XtkniDw4Hj87xdrKekXMDgAW0uC
- W9aA==
+ :mime-version; bh=N1JQmXY3MiDRND7VSRLrJaIi39qStDN8kUy7mhBbHvU=;
+ b=OSplhnKUOwP/veTrvwlJNWoyd87iFGFw8KdsfnskpNvi1DmxUUgeZ0y6FXU0giiaOP
+ 9BVNdyU7XnlL2cClz2rvZAGklte+z/PEetCiaCped+Uf4MBQcpaplfit3FIKb7AWzd/H
+ qrvJS6ujHQQ1suru6bmMtVfnlqCcKiVEoG8rdEhcEGaW/COSjpVP+Esrb4s4UhTA8d4D
+ p9x28oqyveUyDWRkb/H5dKvNfzWBNXnlzwHieQzR/W23XRLZB+hT40Kou+DhLb0scGCr
+ H8QDY73piaAptUbBkzZaupPKKevN87TEEqJ1jSXSOCQY+WpGSwQXUMvpcYTb+d2RL5OG
+ I/Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=/BTt8YfLqIyHV2xz5yac4//kRwc8vucWlkgPD1H5W5U=;
- b=YfUt+6B4JITTCnHSHgIodqr314cKUiLNbx0pl5rxcOzIfB+/yrHc5gYXzl5vqIgvjX
- /aCNYlLH8l+K7IklbJDB7LOhMYafCkOc8MF+JAuAqAcU3OFUUOKueoa2LPQaBue14I3o
- ocBuOT2oZtGIShgzNZkby6Get0jiZ124KpkSoxAYb7Wg3dgDGLG+hziWv0B+nyxcbDt3
- u1gjVc3dvuv8xQx1mYOxWfBDY9ZAE1WeuVN6S++NTUuxx+/qGEbXrH+mg+rG3sD5ijr9
- e+YixYL1VkWsnBo6DKLfXXA+nV+UMF+SJzDDX1qNokIlFFph9dA6SPQDUb+O3+aa6Jge
- hlRw==
-X-Gm-Message-State: AOAM5304B/u8z+eS8BFKNXouThQ8bKN41M3YrLTKGNxCKIn5gkvjrRPm
- uhjLunPiAdMqdBEQbihczZ2nYi6hHKjoW82JcEEroQ==
-X-Google-Smtp-Source: ABdhPJyRIzgTgkB5vzWWj4N/L5SwvNpTpRxtAde1STA6pj+0+6N4W5+mT6ohmIbc8yWzPAk4nV5rOA==
-X-Received: by 2002:a2e:9909:0:b0:244:c10b:3df2 with SMTP id
- v9-20020a2e9909000000b00244c10b3df2mr7871072lji.288.1646665388327; 
- Mon, 07 Mar 2022 07:03:08 -0800 (PST)
+ bh=N1JQmXY3MiDRND7VSRLrJaIi39qStDN8kUy7mhBbHvU=;
+ b=SJAKzk9BH1uuy+u+4b89ofpWCP/pVB0w3WMRVLztdLA31O5obbctUwTjsKoO0xN//u
+ g+Le4HjF4bWPS4szFVFkXt3rpQxYxtihPopWYQa+Qdp7D4C/ZtzRXlt2cr4iWYMItGYP
+ /IrX6Nq3E+dfGkBW+/4sQbYBXeffFLwg/XIJXCGXDs5hRn2Bf9Bfo/NCWjy8DCaMFOvt
+ MidAkgw+kZ/52Vy29pN/z7ZtisF0iEyjmpuMR/SbMVVgqJzHwEkxCQvAu7OG7mEJD4Rs
+ GlODgo8Wpy+Eude9UgRz7GBOeXhyU/kysBS9ZzLYourvlItmDtxd5GKKYLZJ//EHUjpm
+ UDTA==
+X-Gm-Message-State: AOAM531VSiDljnlY8Yt/tCZifvEugKE3zEX6ip4V7khBjRsub6cBD5N+
+ pt6vKRLSZVeuxrk5Hvi4mDNYb+R3LgFj9cftBaYtOw==
+X-Google-Smtp-Source: ABdhPJzPOIXh4HnWtAOAlC47hq9ZERGpuF6ToCpO0+7qk5e2A7SDC0OW6NBscxM5ucBIvZxa8h8pUQ==
+X-Received: by 2002:a2e:bf1b:0:b0:247:d88b:2b05 with SMTP id
+ c27-20020a2ebf1b000000b00247d88b2b05mr9754887ljr.515.1646726467224; 
+ Tue, 08 Mar 2022 00:01:07 -0800 (PST)
 Received: from wkz-x280 (a124.broadband3.quicknet.se. [46.17.184.124])
  by smtp.gmail.com with ESMTPSA id
- p1-20020a05651238c100b004435d1d47fasm2890905lft.102.2022.03.07.07.03.07
+ n16-20020a0565120ad000b00443c3f383c5sm3337466lfu.231.2022.03.08.00.01.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Mar 2022 07:03:07 -0800 (PST)
+ Tue, 08 Mar 2022 00:01:06 -0800 (PST)
 From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov
- <razor@blackwall.org>, davem@davemloft.net, kuba@kernel.org
-In-Reply-To: <5d3acf32-9875-de6d-7495-5e4860fb88f1@nvidia.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+In-Reply-To: <20220303205921.sxb52jzw4jcdj6m7@skbuf>
 References: <20220301100321.951175-1-tobias@waldekranz.com>
- <20220301100321.951175-4-tobias@waldekranz.com>
- <53EED92D-FEAC-4CC6-AF2A-52E73F839AB5@blackwall.org>
- <5d3acf32-9875-de6d-7495-5e4860fb88f1@nvidia.com>
-Date: Mon, 07 Mar 2022 16:03:07 +0100
-Message-ID: <871qzdolec.fsf@waldekranz.com>
+ <20220301100321.951175-5-tobias@waldekranz.com>
+ <20220303205921.sxb52jzw4jcdj6m7@skbuf>
+Date: Tue, 08 Mar 2022 09:01:04 +0100
+Message-ID: <87y21kna9r.fsf@waldekranz.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Petr Machata <petrm@nvidia.com>, bridge@lists.linux-foundation.org,
- Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+ Petr Machata <petrm@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Russell King <linux@armlinux.org.uk>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
  netdev@vger.kernel.org, Cooper Lees <me@cooperlees.com>,
- Ido Schimmel <idosch@nvidia.com>, Matt Johnston <matt@codeconstruct.com.au>,
- Vladimir Oltean <olteanv@gmail.com>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v2 net-next 03/10] net: bridge: mst: Support
- setting and reporting MST port states
+ Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
+ Matt Johnston <matt@codeconstruct.com.au>, davem@davemloft.net,
+ linux-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH v2 net-next 04/10] net: bridge: mst: Notify
+ switchdev drivers of VLAN MSTI migrations
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,111 +107,234 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Mar 01, 2022 at 17:53, Roopa Prabhu <roopa@nvidia.com> wrote:
-> On 3/1/22 15:19, Nikolay Aleksandrov wrote:
->> On 1 March 2022 11:03:14 CET, Tobias Waldekranz <tobias@waldekranz.com> wrote:
->>> Make it possible to change the port state in a given MSTI. This is
->>> done through a new netlink interface, since the MSTIs are objects in
->>> their own right. The proposed iproute2 interface would be:
->>>
->>>     bridge mst set dev <PORT> msti <MSTI> state <STATE>
->>>
->>> Current states in all applicable MSTIs can also be dumped. The
->>> proposed iproute interface looks like this:
->>>
->>> $ bridge mst
->>> port              msti
->>> vb1               0
->>> 		    state forwarding
->>> 		  100
->>> 		    state disabled
->>> vb2               0
->>> 		    state forwarding
->>> 		  100
->>> 		    state forwarding
->>>
->>> The preexisting per-VLAN states are still valid in the MST
->>> mode (although they are read-only), and can be queried as usual if one
->>> is interested in knowing a particular VLAN's state without having to
->>> care about the VID to MSTI mapping (in this example VLAN 20 and 30 are
->>> bound to MSTI 100):
->>>
->>> $ bridge -d vlan
->>> port              vlan-id
->>> vb1               10
->>> 		    state forwarding mcast_router 1
->>> 		  20
->>> 		    state disabled mcast_router 1
->>> 		  30
->>> 		    state disabled mcast_router 1
->>> 		  40
->>> 		    state forwarding mcast_router 1
->>> vb2               10
->>> 		    state forwarding mcast_router 1
->>> 		  20
->>> 		    state forwarding mcast_router 1
->>> 		  30
->>> 		    state forwarding mcast_router 1
->>> 		  40
->>> 		    state forwarding mcast_router 1
->>>
->>> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
->>> ---
->>> include/uapi/linux/if_bridge.h |  16 +++
->>> include/uapi/linux/rtnetlink.h |   5 +
->>> net/bridge/br_mst.c            | 244 +++++++++++++++++++++++++++++++++
->>> net/bridge/br_netlink.c        |   3 +
->>> net/bridge/br_private.h        |   4 +
->>> 5 files changed, 272 insertions(+)
->>>
->>> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
->>> index b68016f625b7..784482527861 100644
->>> --- a/include/uapi/linux/if_bridge.h
->>> +++ b/include/uapi/linux/if_bridge.h
->>> @@ -785,4 +785,20 @@ enum {
->>> 	__BRIDGE_QUERIER_MAX
->>> };
->>> #define BRIDGE_QUERIER_MAX (__BRIDGE_QUERIER_MAX - 1)
->>> +
->>> +enum {
->>> +	BRIDGE_MST_UNSPEC,
->>> +	BRIDGE_MST_ENTRY,
->>> +	__BRIDGE_MST_MAX,
->>> +};
->>> +#define BRIDGE_MST_MAX (__BRIDGE_MST_MAX - 1)
->>> +
->>> +enum {
->>> +	BRIDGE_MST_ENTRY_UNSPEC,
->>> +	BRIDGE_MST_ENTRY_MSTI,
->>> +	BRIDGE_MST_ENTRY_STATE,
->>> +	__BRIDGE_MST_ENTRY_MAX,
->>> +};
->>> +#define BRIDGE_MST_ENTRY_MAX (__BRIDGE_MST_ENTRY_MAX - 1)
->>> +
->>> #endif /* _UAPI_LINUX_IF_BRIDGE_H */
->>> diff --git a/include/uapi/linux/rtnetlink.h b/include/uapi/linux/rtnetlink.h
->>> index 0970cb4b1b88..4a48f3ce862c 100644
->>> --- a/include/uapi/linux/rtnetlink.h
->>> +++ b/include/uapi/linux/rtnetlink.h
->>> @@ -192,6 +192,11 @@ enum {
->>> 	RTM_GETTUNNEL,
->>> #define RTM_GETTUNNEL	RTM_GETTUNNEL
->>>
->>> +	RTM_GETMST = 124 + 2,
->>> +#define RTM_GETMST	RTM_GETMST
->>> +	RTM_SETMST,
->>> +#define RTM_SETMST	RTM_SETMST
->>> +
->> I think you should also update selinux  (see nlmsgtab.c)
->> I'll think about this one, if there is some nice way to avoid the new rtm types.
+On Thu, Mar 03, 2022 at 22:59, Vladimir Oltean <olteanv@gmail.com> wrote:
+> On Tue, Mar 01, 2022 at 11:03:15AM +0100, Tobias Waldekranz wrote:
+>> Whenever a VLAN moves to a new MSTI, send a switchdev notification so
+>> that switchdevs can...
+>> 
+>> ...either refuse the migration if the hardware does not support
+>> offloading of MST...
+>> 
+>> ..or track a bridge's VID to MSTI mapping when offloading is
+>> supported.
+>> 
+>> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+>> ---
+>>  include/net/switchdev.h   | 10 +++++++
+>>  net/bridge/br_mst.c       | 15 +++++++++++
+>>  net/bridge/br_switchdev.c | 57 +++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 82 insertions(+)
+>> 
+>> diff --git a/include/net/switchdev.h b/include/net/switchdev.h
+>> index 3e424d40fae3..39e57aa5005a 100644
+>> --- a/include/net/switchdev.h
+>> +++ b/include/net/switchdev.h
+>> @@ -28,6 +28,7 @@ enum switchdev_attr_id {
+>>  	SWITCHDEV_ATTR_ID_BRIDGE_MC_DISABLED,
+>>  	SWITCHDEV_ATTR_ID_BRIDGE_MROUTER,
+>>  	SWITCHDEV_ATTR_ID_MRP_PORT_ROLE,
+>> +	SWITCHDEV_ATTR_ID_VLAN_MSTI,
+>>  };
+>>  
+>>  struct switchdev_brport_flags {
+>> @@ -35,6 +36,14 @@ struct switchdev_brport_flags {
+>>  	unsigned long mask;
+>>  };
+>>  
+>> +struct switchdev_vlan_attr {
+>> +	u16 vid;
+>> +
+>> +	union {
+>> +		u16 msti;
+>> +	};
 >
-> yes, since these are all port attributes, seems like 'bridge link set' 
-> should work
->
-> Tobias, can you pls check if extending RTM_SETLINK (with AF_BRIDGE) is 
-> an option here ?
->
-> ie via br_setlink
+> Do you see other VLAN attributes that would be added in the future, such
+> as to justify making this a single-element union from the get-go?
 
-Yeah that makes sense. Not sure how I convinced myself that I needed a
-separate rtm type for it. I will give it a try. Thanks!
+I could imagine being able to control things like multicast snooping on
+a per-VLAN basis. Being able to act as a multicast router in one VLAN
+but not another.
+
+> Anyway if that is the case, we're lacking an id for the attribute type,
+> so we'd end up needing to change drivers when a second union element
+> appears. Otherwise they'd all expect an u16 msti.
+
+My idea was that `enum switchdev_attr_id` would hold all of that
+information. In this example SWITCHDEV_ATTR_ID_VLAN_MSTI, denotes both
+that `vlan_attr` is the valid member of `u` and that `msti` is the valid
+member of `vlan_attr`. If we add SWITCHDEV_ATTR_ID_VLAN_SNOOPING, that
+would point to both `vlan_attr` and a new `bool snooping` in the union.
+
+Do you think we should just have a SWITCHDEV_ATTR_ID_VLAN_ATTR for all
+per-VLAN attributes and then have a separate union?
+
+>> +};
+>> +
+>>  struct switchdev_attr {
+>>  	struct net_device *orig_dev;
+>>  	enum switchdev_attr_id id;
+>> @@ -50,6 +59,7 @@ struct switchdev_attr {
+>>  		u16 vlan_protocol;			/* BRIDGE_VLAN_PROTOCOL */
+>>  		bool mc_disabled;			/* MC_DISABLED */
+>>  		u8 mrp_port_role;			/* MRP_PORT_ROLE */
+>> +		struct switchdev_vlan_attr vlan_attr;	/* VLAN_* */
+>>  	} u;
+>>  };
+>>  
+>> diff --git a/net/bridge/br_mst.c b/net/bridge/br_mst.c
+>> index 8dea8e7257fd..aba603675165 100644
+>> --- a/net/bridge/br_mst.c
+>> +++ b/net/bridge/br_mst.c
+>> @@ -7,6 +7,7 @@
+>>   */
+>>  
+>>  #include <linux/kernel.h>
+>> +#include <net/switchdev.h>
+>>  
+>>  #include "br_private.h"
+>>  
+>> @@ -65,9 +66,23 @@ static void br_mst_vlan_sync_state(struct net_bridge_vlan *pv, u16 msti)
+>>  
+>>  int br_mst_vlan_set_msti(struct net_bridge_vlan *mv, u16 msti)
+>>  {
+>> +	struct switchdev_attr attr = {
+>> +		.id = SWITCHDEV_ATTR_ID_VLAN_MSTI,
+>> +		.flags = SWITCHDEV_F_DEFER,
+>
+> Is the bridge spinlock held (atomic context), or otherwise why is
+> SWITCHDEV_F_DEFER needed here?
+
+Nope, just copypasta. In fact, it shouldn't be needed when setting the
+state either, as you can only change the state via a netlink message. I
+will remove it.
+
+>> +		.orig_dev = mv->br->dev,
+>> +		.u.vlan_attr = {
+>> +			.vid = mv->vid,
+>> +			.msti = msti,
+>> +		},
+>> +	};
+>>  	struct net_bridge_vlan_group *vg;
+>>  	struct net_bridge_vlan *pv;
+>>  	struct net_bridge_port *p;
+>> +	int err;
+>> +
+>> +	err = switchdev_port_attr_set(mv->br->dev, &attr, NULL);
+>
+> Treating a "VLAN attribute" as a "port attribute of the bridge" is
+> pushing the taxonomy just a little, but I don't have a better suggestion.
+
+Isn't there prior art here? I thought things like VLAN filtering already
+worked like this?
+
+>> +	if (err && err != -EOPNOTSUPP)
+>> +		return err;
+>>  
+>>  	mv->msti = msti;
+>>  
+>> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+>> index 6f6a70121a5e..160d7659f88a 100644
+>> --- a/net/bridge/br_switchdev.c
+>> +++ b/net/bridge/br_switchdev.c
+>> @@ -428,6 +428,57 @@ static int br_switchdev_vlan_replay(struct net_device *br_dev,
+>>  	return 0;
+>>  }
+>>  
+>> +static int br_switchdev_mst_replay(struct net_device *br_dev,
+>> +				   const void *ctx, bool adding,
+>> +				   struct notifier_block *nb,
+>> +				   struct netlink_ext_ack *extack)
+>
+> "bool adding" is unused, and replaying the VLAN to MSTI associations
+> before deleting them makes little sense anyway.
+>
+> I understand the appeal of symmetry, so maybe put an
+>
+> 	if (adding) {
+> 		err = br_switchdev_vlan_attr_replay(...);
+> 		if (err && err != -EOPNOTSUPP)
+> 			return err;
+> 	}
+>
+> at the end of br_switchdev_vlan_replay()?
+
+Yeah, that is better. Will change.
+
+>> +{
+>> +	struct switchdev_notifier_port_attr_info attr_info = {
+>> +		.info = {
+>> +			.dev = br_dev,
+>> +			.extack = extack,
+>> +			.ctx = ctx,
+>> +		},
+>> +	};
+>> +	struct net_bridge *br = netdev_priv(br_dev);
+>> +	struct net_bridge_vlan_group *vg;
+>> +	struct net_bridge_vlan *v;
+>> +	int err;
+>> +
+>> +	ASSERT_RTNL();
+>> +
+>> +	if (!nb)
+>> +		return 0;
+>> +
+>> +	if (!netif_is_bridge_master(br_dev))
+>> +		return -EINVAL;
+>> +
+>> +	vg = br_vlan_group(br);
+>> +
+>> +	list_for_each_entry(v, &vg->vlan_list, vlist) {
+>> +		struct switchdev_attr attr = {
+>> +			.id = SWITCHDEV_ATTR_ID_VLAN_MSTI,
+>> +			.flags = SWITCHDEV_F_DEFER,
+>
+> I don't think SWITCHDEV_F_DEFER has any effect on a replay.
+
+Right, will fix.
+
+>> +			.orig_dev = br_dev,
+>> +			.u.vlan_attr = {
+>> +				.vid = v->vid,
+>> +				.msti = v->msti,
+>> +			}
+>> +		};
+>> +
+>> +		if (!v->msti)
+>> +			continue;
+>> +
+>> +		attr_info.attr = &attr;
+>> +		err = nb->notifier_call(nb, SWITCHDEV_PORT_ATTR_SET, &attr_info);
+>> +		err = notifier_to_errno(err);
+>> +		if (err)
+>> +			return err;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
+>>  struct br_switchdev_mdb_complete_info {
+>>  	struct net_bridge_port *port;
+>> @@ -695,6 +746,10 @@ static int nbp_switchdev_sync_objs(struct net_bridge_port *p, const void *ctx,
+>>  	if (err && err != -EOPNOTSUPP)
+>>  		return err;
+>>  
+>> +	err = br_switchdev_mst_replay(br_dev, ctx, true, blocking_nb, extack);
+>> +	if (err && err != -EOPNOTSUPP)
+>> +		return err;
+>> +
+>>  	err = br_switchdev_mdb_replay(br_dev, dev, ctx, true, blocking_nb,
+>>  				      extack);
+>>  	if (err && err != -EOPNOTSUPP)
+>> @@ -719,6 +774,8 @@ static void nbp_switchdev_unsync_objs(struct net_bridge_port *p,
+>>  
+>>  	br_switchdev_mdb_replay(br_dev, dev, ctx, false, blocking_nb, NULL);
+>>  
+>> +	br_switchdev_mst_replay(br_dev, ctx, false, blocking_nb, NULL);
+>> +
+>>  	br_switchdev_vlan_replay(br_dev, ctx, false, blocking_nb, NULL);
+>>  }
+>>  
+>> -- 
+>> 2.25.1
+>> 
