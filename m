@@ -1,82 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF2B4D4829
-	for <lists.bridge@lfdr.de>; Thu, 10 Mar 2022 14:36:53 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900F74D482A
+	for <lists.bridge@lfdr.de>; Thu, 10 Mar 2022 14:36:55 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D3D97418F4;
-	Thu, 10 Mar 2022 13:36:51 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 00DB48472F;
+	Thu, 10 Mar 2022 13:36:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FyN_9eHuZD9Z; Thu, 10 Mar 2022 13:36:51 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 558B34186E;
-	Thu, 10 Mar 2022 13:36:50 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id uKse6GwaCTcw; Thu, 10 Mar 2022 13:36:53 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 8BAE484731;
+	Thu, 10 Mar 2022 13:36:52 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 239EEC0070;
-	Thu, 10 Mar 2022 13:36:50 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 623F4C0073;
+	Thu, 10 Mar 2022 13:36:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 01165C000B
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 13:36:49 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 445E9C001D
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 13:36:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 5B4B1817C3
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 13:36:48 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 21CB18472E
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 13:36:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id X6q2UZT32qx5 for <bridge@lists.linux-foundation.org>;
- Thu, 10 Mar 2022 13:36:47 +0000 (UTC)
+ with ESMTP id fmztEEPu-DD1 for <bridge@lists.linux-foundation.org>;
+ Thu, 10 Mar 2022 13:36:50 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com
- [IPv6:2a00:1450:4864:20::22e])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 02E1E84222
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 13:36:46 +0000 (UTC)
-Received: by mail-lj1-x22e.google.com with SMTP id q5so7717892ljb.11
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 05:36:46 -0800 (PST)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
+ [IPv6:2a00:1450:4864:20::230])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 4945684731
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 13:36:50 +0000 (UTC)
+Received: by mail-lj1-x230.google.com with SMTP id q5so7718099ljb.11
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 05:36:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:organization:content-transfer-encoding;
- bh=da086JP55rsZQrttnyPrbRnmSrzYkA4tf6FDeCXSGn8=;
- b=T3pCfhXKeJNPFF0Ywe6LZn1pHA44EqA9YxKjTmKKlVDrLjYJWDLgL/YgInvMe9CI4d
- y5cbZq+hAcb/sOWKO7QNrlYXygu0vvN3KPsUayvBLomowlmUFcNgmnLhY+rtiZeQnq2j
- F9pzKkWJn9jdtiWABNokozCAGPie45oFqMO1lWYIAC45t+ljL2JdnCVrC1MHBQeBFfyX
- ZLeIM1lduvNIlZQKqJpWEF3r2Bhjn7w2hCzgaHiD2pI/evOFLW2Y7drMW4pGtZ8/vYfR
- Fy3qoxitky7UGvbcRKDh+hR64MjZMKsy88AM+dZlr0WO99jsLbWBEtXP3vcl/XYKRpAy
- e3gw==
+ bh=NqCB67vT/c9mnsvCZbyxsMiWwZnjZ99KtMNG9ZRMdjE=;
+ b=gkiTNDi5pZ9lk4PtAzuCZONXJq/Ix6gNIP6lS2X8nIxEocHHlWsxFVlQnakJrBoTpF
+ oHT9ruoMDwEr5cLAj0Z3erdEOCp1ualiI3kJq7TIN7mYN1pqCvOzfqEhbFM6W/r8MOxb
+ OS+q7KTn5rQEM8yha5bL9Hq8q4fBL0ePKYvUqYCvVhV4IZx+JI+ExouAmFZjPFZvFySd
+ hn3IA4krwCpeyTjYje2DPMcl0ZVOwG12by+T3JqVPQc8xK/20D3EuGbTTf2JRWiXmTo9
+ SI/bK9q33kbzhW+ElY1YHK16eercCeiIESDKv96IPGEMz+GYJqaSirVRbsAm6XulchXk
+ Co+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:organization:content-transfer-encoding;
- bh=da086JP55rsZQrttnyPrbRnmSrzYkA4tf6FDeCXSGn8=;
- b=8JrqWCO81nkGM0ryUZI5qX2ux+Jwp8H8iJmLzPTb8JSQ/XOrhvtYw8W9MdantlX6hA
- yKrqPqtI5foZyGCw4i2HNyM3sVDQhdlTCmnGgcJoHXc334TKjvvPX205rc/Kv7hYDEo5
- HuOknaD9z9l18G8ceugb2sDKfJcY7jhgHIxFUacO1a/n4ul4asOiZuuR7NHgpvr0UD4r
- 51hwpkJ++NUZbKTeHtBpD+m4tCtP3kFQgj5XEqx3xYGzvfnIKHSp9zgcIrkI59d3sDW1
- hb1g4jPB0x3eul2eQkAdaN1nyLMyhFgcuL6/mkayj1OeSr3w96yFJSkmn/uqjTJlKKi5
- QFoA==
-X-Gm-Message-State: AOAM530M6jLZe1LkUho6KD/wORd3/t+5X1s3rUre0cr2BBBrQaNEi6A6
- EGfiffy4+N6Q1jPjCTIBcdY=
-X-Google-Smtp-Source: ABdhPJzMizES4JCUEafTa3GjIxPUTNg/1is32WNPQdEpeGG0FGKWVqDSV1WqeRRKdpXtSbUrHy47Ng==
-X-Received: by 2002:a2e:b386:0:b0:249:1446:4ead with SMTP id
- f6-20020a2eb386000000b0024914464eadmr1057058lje.263.1646919404870; 
- Thu, 10 Mar 2022 05:36:44 -0800 (PST)
+ bh=NqCB67vT/c9mnsvCZbyxsMiWwZnjZ99KtMNG9ZRMdjE=;
+ b=SnlI65mRZTWJSKDIcmRTyAbnoYJchSNjTfuQB1RP58yjhRrfNiZXmb5UQi4GM+spiY
+ D70ae2ZsRxqDD5a+IDVsicjER4BQCu9zAwUKEUwQqOgkULDTlhc7EC5vQyCsf5LkkrEx
+ uigB23E4OPosniCPF7icdFBr8CtLH0QSkkpH0YQBsrc6jU/GrmWkNiIVHGu3GwsdCszK
+ vnm0OrLJ0HZ62bl7WgAm02KZx8w+aMd4ObmPx3LU98W5fY/b9HTtd6IncEJJvSBZXcw9
+ X6IsNSmyqEUpMoe9W3kE5m+aIhfXjEBEC3OhRsT/1cfWQO9826zMYs/10Dhqd6Rzw16B
+ R+4A==
+X-Gm-Message-State: AOAM531fx7FGsfjWLMro2IPkNDAJZi5kRpxaDNJ4FD1bnIvfZmaKlQ8+
+ ojRE3t0mTw5sIAfnn/7fcN7l+X/yZUQYlw==
+X-Google-Smtp-Source: ABdhPJzALSN85vM/MYGsqF+G/jpOWjdpM2jeGicHF1VoQtP/X7X4iNq+rg9zM5dEvzLmFwOgRPNbzQ==
+X-Received: by 2002:a2e:3004:0:b0:223:c126:5d1a with SMTP id
+ w4-20020a2e3004000000b00223c1265d1amr3079728ljw.408.1646919408328; 
+ Thu, 10 Mar 2022 05:36:48 -0800 (PST)
 Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
  by smtp.gmail.com with ESMTPSA id
- i2-20020a05651c120200b00247d22bc318sm1060299lja.22.2022.03.10.05.36.42
+ i2-20020a05651c120200b00247d22bc318sm1060299lja.22.2022.03.10.05.36.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Mar 2022 05:36:44 -0800 (PST)
+ Thu, 10 Mar 2022 05:36:47 -0800 (PST)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Thu, 10 Mar 2022 14:36:15 +0100
-Message-Id: <20220310133617.575673-2-schultz.hans+netdev@gmail.com>
+Date: Thu, 10 Mar 2022 14:36:16 +0100
+Message-Id: <20220310133617.575673-3-schultz.hans+netdev@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220310133617.575673-1-schultz.hans+netdev@gmail.com>
 References: <20220310133617.575673-1-schultz.hans+netdev@gmail.com>
@@ -90,8 +88,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  linux-kernel@vger.kernel.org, Ido Schimmel <idosch@nvidia.com>,
  Hans Schultz <schultz.hans+netdev@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
  Vladimir Oltean <olteanv@gmail.com>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH iproute2-next 1/3] net: bridge: add fdb flag to
-	extent locked port feature
+Subject: [Bridge] [PATCH iproute2-next 2/3] net: switchdev: add support for
+	offloading of fdb locked flag
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,104 +104,89 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add an intermediate state for clients behind a locked port to allow for
-possible opening of the port for said clients. This feature corresponds
-to the Mac-Auth and MAC Authentication Bypass (MAB) named features. The
-latter defined by Cisco.
+Used for Mac-auth/MAB feature in the offloaded case.
 
 Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
 ---
- include/uapi/linux/neighbour.h |  1 +
- net/bridge/br_fdb.c            |  6 ++++++
- net/bridge/br_input.c          | 11 ++++++++++-
- net/bridge/br_private.h        |  3 ++-
- 4 files changed, 19 insertions(+), 2 deletions(-)
+ include/net/switchdev.h | 3 ++-
+ net/bridge/br.c         | 3 ++-
+ net/bridge/br_fdb.c     | 7 +++++--
+ net/bridge/br_private.h | 2 +-
+ 4 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/include/uapi/linux/neighbour.h b/include/uapi/linux/neighbour.h
-index db05fb55055e..83115a592d58 100644
---- a/include/uapi/linux/neighbour.h
-+++ b/include/uapi/linux/neighbour.h
-@@ -208,6 +208,7 @@ enum {
- 	NFEA_UNSPEC,
- 	NFEA_ACTIVITY_NOTIFY,
- 	NFEA_DONT_REFRESH,
-+	NFEA_LOCKED,
- 	__NFEA_MAX
+diff --git a/include/net/switchdev.h b/include/net/switchdev.h
+index 3e424d40fae3..d5d923411f5e 100644
+--- a/include/net/switchdev.h
++++ b/include/net/switchdev.h
+@@ -229,7 +229,8 @@ struct switchdev_notifier_fdb_info {
+ 	u16 vid;
+ 	u8 added_by_user:1,
+ 	   is_local:1,
+-	   offloaded:1;
++	   offloaded:1,
++	   locked:1;
  };
- #define NFEA_MAX (__NFEA_MAX - 1)
+ 
+ struct switchdev_notifier_port_obj_info {
+diff --git a/net/bridge/br.c b/net/bridge/br.c
+index b1dea3febeea..adcdbecbc218 100644
+--- a/net/bridge/br.c
++++ b/net/bridge/br.c
+@@ -166,7 +166,8 @@ static int br_switchdev_event(struct notifier_block *unused,
+ 	case SWITCHDEV_FDB_ADD_TO_BRIDGE:
+ 		fdb_info = ptr;
+ 		err = br_fdb_external_learn_add(br, p, fdb_info->addr,
+-						fdb_info->vid, false);
++						fdb_info->vid, false,
++						fdb_info->locked);
+ 		if (err) {
+ 			err = notifier_from_errno(err);
+ 			break;
 diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-index 6ccda68bd473..396dcf3084cf 100644
+index 396dcf3084cf..91387aa7e400 100644
 --- a/net/bridge/br_fdb.c
 +++ b/net/bridge/br_fdb.c
-@@ -105,6 +105,7 @@ static int fdb_fill_info(struct sk_buff *skb, const struct net_bridge *br,
- 	struct nda_cacheinfo ci;
- 	struct nlmsghdr *nlh;
- 	struct ndmsg *ndm;
-+	u8 ext_flags = 0;
+@@ -987,7 +987,7 @@ static int __br_fdb_add(struct ndmsg *ndm, struct net_bridge *br,
+ 					   "FDB entry towards bridge must be permanent");
+ 			return -EINVAL;
+ 		}
+-		err = br_fdb_external_learn_add(br, p, addr, vid, true);
++		err = br_fdb_external_learn_add(br, p, addr, vid, true, false);
+ 	} else {
+ 		spin_lock_bh(&br->hash_lock);
+ 		err = fdb_add_entry(br, p, addr, ndm, nlh_flags, vid, nfea_tb);
+@@ -1216,7 +1216,7 @@ void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p)
  
- 	nlh = nlmsg_put(skb, portid, seq, type, sizeof(*ndm), flags);
- 	if (nlh == NULL)
-@@ -125,11 +126,16 @@ static int fdb_fill_info(struct sk_buff *skb, const struct net_bridge *br,
- 		ndm->ndm_flags |= NTF_EXT_LEARNED;
- 	if (test_bit(BR_FDB_STICKY, &fdb->flags))
- 		ndm->ndm_flags |= NTF_STICKY;
-+	if (test_bit(BR_FDB_ENTRY_LOCKED, &fdb->flags))
-+		ext_flags |= 1 << NFEA_LOCKED;
+ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+ 			      const unsigned char *addr, u16 vid,
+-			      bool swdev_notify)
++			      bool swdev_notify, bool locked)
+ {
+ 	struct net_bridge_fdb_entry *fdb;
+ 	bool modified = false;
+@@ -1236,6 +1236,9 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+ 		if (!p)
+ 			flags |= BIT(BR_FDB_LOCAL);
  
- 	if (nla_put(skb, NDA_LLADDR, ETH_ALEN, &fdb->key.addr))
- 		goto nla_put_failure;
- 	if (nla_put_u32(skb, NDA_MASTER, br->dev->ifindex))
- 		goto nla_put_failure;
-+	if (nla_put_u8(skb, NDA_FDB_EXT_ATTRS, ext_flags))
-+		goto nla_put_failure;
++		if (locked)
++			flags |= BIT(BR_FDB_ENTRY_LOCKED);
 +
- 	ci.ndm_used	 = jiffies_to_clock_t(now - fdb->used);
- 	ci.ndm_confirmed = 0;
- 	ci.ndm_updated	 = jiffies_to_clock_t(now - fdb->updated);
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index e0c13fcc50ed..897908484b18 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -75,6 +75,7 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 	struct net_bridge_mcast *brmctx;
- 	struct net_bridge_vlan *vlan;
- 	struct net_bridge *br;
-+	unsigned long flags = 0;
- 	u16 vid = 0;
- 	u8 state;
- 
-@@ -94,8 +95,16 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 			br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
- 
- 		if (!fdb_src || READ_ONCE(fdb_src->dst) != p ||
--		    test_bit(BR_FDB_LOCAL, &fdb_src->flags))
-+		    test_bit(BR_FDB_LOCAL, &fdb_src->flags)) {
-+			if (!fdb_src) {
-+				set_bit(BR_FDB_ENTRY_LOCKED, &flags);
-+				br_fdb_update(br, p, eth_hdr(skb)->h_source, vid, flags);
-+			}
- 			goto drop;
-+		} else {
-+			if (test_bit(BR_FDB_ENTRY_LOCKED, &fdb_src->flags))
-+				goto drop;
-+		}
- 	}
- 
- 	nbp_switchdev_frame_mark(p, skb);
+ 		fdb = fdb_create(br, p, addr, vid, flags);
+ 		if (!fdb) {
+ 			err = -ENOMEM;
 diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 48bc61ebc211..f5a0b68c4857 100644
+index f5a0b68c4857..3275e33b112f 100644
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -248,7 +248,8 @@ enum {
- 	BR_FDB_ADDED_BY_EXT_LEARN,
- 	BR_FDB_OFFLOADED,
- 	BR_FDB_NOTIFY,
--	BR_FDB_NOTIFY_INACTIVE
-+	BR_FDB_NOTIFY_INACTIVE,
-+	BR_FDB_ENTRY_LOCKED,
- };
- 
- struct net_bridge_fdb_key {
+@@ -790,7 +790,7 @@ int br_fdb_sync_static(struct net_bridge *br, struct net_bridge_port *p);
+ void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p);
+ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
+ 			      const unsigned char *addr, u16 vid,
+-			      bool swdev_notify);
++			      bool swdev_notify, bool locked);
+ int br_fdb_external_learn_del(struct net_bridge *br, struct net_bridge_port *p,
+ 			      const unsigned char *addr, u16 vid,
+ 			      bool swdev_notify);
 -- 
 2.30.2
 
