@@ -1,96 +1,96 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D264D4E0E
-	for <lists.bridge@lfdr.de>; Thu, 10 Mar 2022 17:05:47 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4060B4D4E0F
+	for <lists.bridge@lfdr.de>; Thu, 10 Mar 2022 17:05:53 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id B76D1403BF;
-	Thu, 10 Mar 2022 16:05:45 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id DD9B140A7C;
+	Thu, 10 Mar 2022 16:05:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lIdqyeSBRPyN; Thu, 10 Mar 2022 16:05:45 +0000 (UTC)
+	with ESMTP id htsa6gRizAk1; Thu, 10 Mar 2022 16:05:51 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 29DD04040C;
-	Thu, 10 Mar 2022 16:05:44 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 48A4B4040C;
+	Thu, 10 Mar 2022 16:05:50 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CB679C0073;
-	Thu, 10 Mar 2022 16:05:43 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0A073C0073;
+	Thu, 10 Mar 2022 16:05:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AB62FC000B
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 16:05:41 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C34D3C000B
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 16:05:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 86744403BF
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 16:05:41 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id B2B0A41936
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 16:05:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id fiocztZjRTAK for <bridge@lists.linux-foundation.org>;
- Thu, 10 Mar 2022 16:05:40 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 7-RKA5SlSbIH for <bridge@lists.linux-foundation.org>;
+ Thu, 10 Mar 2022 16:05:47 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 080B8403A2
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 16:05:39 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id bn33so8386381ljb.6
- for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 08:05:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=a47/kfMIXmMimdkS0oL0JoxaVtTsUq4puZeDbeGUm9Y=;
- b=04IWU311iyNWvLh+4z6efV3IVimCg+0iXV/HO6uNNlDwrOjW8ZhyHR4SuudlVDuTum
- gqZVmZReaIp6IBpYdIONB8k97GEYu3RMgnjWcytVYtlZC+m5/D3tZZOk9RtPgWsgRTX9
- 5S0ShUCrhTY36HShqYZB/KcEFIsfQcgRXYYrDkyXF+P7qHqVkEiTgiaw/eqJcRLMaxLz
- oYgakxqRrR/MCiS3Zt8tB2qNRm7bUSX94KJjWKWXyDSYUkgbhRDJp4aMpxmIiUWlH9n5
- ZtSV23o6uIaELOrquC+AVpftGUgiYGUIKp4YM4X6sEZVQ/gBkfUqwR+wNuQNrKL6gYrz
- JKVQ==
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id BC0D141934
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 16:05:46 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id g20so7596079edw.6
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Mar 2022 08:05:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=QMLpysDwZRJXsNTpOkpDQ0qqZGLPweA1Fp1BJeeZZvI=;
+ b=oHPETXL5JN1QV7aFH3+N2eY8CWrcsu+R0DVVt2ZByX/8mu3OLyaeO3eZsUX4BRYU5U
+ s41dt5O7HaBXuXjQ1sVNfNGIgc9V9Tkv66jutuNQvQoqm0rRNNCcwcGV1byYwLOuS+XN
+ JCLSMsVh/p9p6V1GN6XYnM2K+shhher1ibq8AHXVcpNay8a31yg34Bw6iAT330zV7DmX
+ XhaYjQc6DlTo1GINt+ZYWiGh+XfU7uSC72DuqHn1OcycxO0+HxlzCUbjXuYbLKXHRZE+
+ otqwrXiBgabxVQliFDJyZnOT0svdPKrkSH9saw2pY1MwOThlgTocR9fZY393LWgNPhkZ
+ gXag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=a47/kfMIXmMimdkS0oL0JoxaVtTsUq4puZeDbeGUm9Y=;
- b=q0qlmu9SwWq681F/R91gFH7JdzrdvaGCaXk35FEzCrUgIVvnMn34KkM4B9kc8hKRuu
- XvR5SFxExVVw3HQnRoDEd+1vwVSVlNuT+R3BylPHW8toHShM5fmRnnYLCgFkN2lzB2FR
- weIytS8O+WZER3qp7ZZE0pUgcF6q3YvmFXpLSvYLgef3P3hmwiRjmlRPLgSBmkY5K3Ze
- CiHapCHDgYYqShho+6bc8MV4AJxP01KuiRqGnmJzpA94jOir3d/ESaFMMEuIJPvz7ZeC
- s9oaAhpuqKKwavmEvhDI0qYGDkSKiRClJsVyY2NHSfeQdmVfRnRu/NK9VfmXyg3QC6PX
- C7/Q==
-X-Gm-Message-State: AOAM531WfEe51I5uRu+bjuwDVdbTBxdUEFLa5VD7uyEDopaiZZrrPIGs
- +l6TSAbNaopxBGvB9XOHl9HsGrO9+TorS9Y/PxI=
-X-Google-Smtp-Source: ABdhPJzx3mtbb/gT8X71tN1JhdwgyQSxq7uztMR3ML5AdHZG7wEGIrsGIXSDxImZa1L96XG2jyoXbg==
-X-Received: by 2002:a2e:b0cc:0:b0:235:dcdf:e6e9 with SMTP id
- g12-20020a2eb0cc000000b00235dcdfe6e9mr3635773ljl.88.1646928337313; 
- Thu, 10 Mar 2022 08:05:37 -0800 (PST)
-Received: from wkz-x280 (h-212-85-90-115.A259.priv.bahnhof.se. [212.85.90.115])
- by smtp.gmail.com with ESMTPSA id
- bu20-20020a056512169400b0043eaf37af75sm1045976lfb.199.2022.03.10.08.05.35
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=QMLpysDwZRJXsNTpOkpDQ0qqZGLPweA1Fp1BJeeZZvI=;
+ b=s6gxfSrYEBTFFhhFi0nW8I15fcbkBAdLKFmWNsSh1S0e9MJFOe4+VlDMzEy4XLqe8j
+ BkvOPAbdT1AQhubEecsAqa1IOCpZhiGLSybeln3Zgi8uTFGz10S/tGDEgk0tNBEUOJwc
+ jCxzm1qvv072EwIJW3ig+inQyzL5nsL9d+98TiAd/S4LOj5y5pZDcCikptoOPcfVv0UM
+ UV7ajhaovP/JArtFRp0gbqmuFtbS5wRua5oacd40gmPnOSjvFBEhou3PgjTckHHg2LfT
+ LDyjKDU4i/opDBVa3iBz3tAvmou18U06oGxTxpdCUb+JH5AkBL1hLi/javdaon1xvlV8
+ MJaw==
+X-Gm-Message-State: AOAM530zrcnMSBkMOEZj7SKRwj7NXO+I+qTgEr2YGfJ9I7sQ/mUeu/ug
+ F+/nCkHe5Kc5BproAmB2bLQ=
+X-Google-Smtp-Source: ABdhPJxmMcwpl4Myrm2lOmxRAOis1Le2+RYH2Z4MXZZDErK+3wrDSnBGVatkRZhgH/43FVAgJawRiQ==
+X-Received: by 2002:a05:6402:12d7:b0:415:ced2:389d with SMTP id
+ k23-20020a05640212d700b00415ced2389dmr5156046edx.197.1646928344437; 
+ Thu, 10 Mar 2022 08:05:44 -0800 (PST)
+Received: from skbuf ([188.25.231.156]) by smtp.gmail.com with ESMTPSA id
+ j5-20020a056402238500b00416c32d548esm444879eda.59.2022.03.10.08.05.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Mar 2022 08:05:36 -0800 (PST)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20220310103509.g35syl776kyh5j2n@skbuf>
-References: <20220301100321.951175-1-tobias@waldekranz.com>
- <20220301100321.951175-8-tobias@waldekranz.com>
- <20220303222055.7a5pr4la3wmuuekc@skbuf> <87mthymblh.fsf@waldekranz.com>
- <20220310103509.g35syl776kyh5j2n@skbuf>
-Date: Thu, 10 Mar 2022 17:05:35 +0100
-Message-ID: <87h785n67k.fsf@waldekranz.com>
+ Thu, 10 Mar 2022 08:05:43 -0800 (PST)
+Date: Thu, 10 Mar 2022 18:05:42 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Hans Schultz <schultz.hans@gmail.com>
+Message-ID: <20220310160542.dihodbfxnexyjo2d@skbuf>
+References: <20220310142320.611738-1-schultz.hans+netdev@gmail.com>
+ <20220310142320.611738-4-schultz.hans+netdev@gmail.com>
+ <20220310142836.m5onuelv4jej5gvs@skbuf> <865yolg8d7.fsf@gmail.com>
+ <20220310150717.h7gaxamvzv47e5zc@skbuf> <86sfrpergs.fsf@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86sfrpergs.fsf@gmail.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Petr Machata <petrm@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Russell King <linux@armlinux.org.uk>,
- Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
- netdev@vger.kernel.org, Cooper Lees <me@cooperlees.com>,
- Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
- Matt Johnston <matt@codeconstruct.com.au>, davem@davemloft.net,
- linux-kernel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH v2 net-next 07/10] net: dsa: Pass MST state
- changes to driver
+ Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
+ Ido Schimmel <idosch@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 3/3] net: dsa: mv88e6xxx: mac-auth/MAB
+ implementation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,120 +105,69 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Mar 10, 2022 at 12:35, Vladimir Oltean <olteanv@gmail.com> wrote:
-> On Thu, Mar 10, 2022 at 09:54:34AM +0100, Tobias Waldekranz wrote:
->> >> +	if (!dsa_port_can_configure_learning(dp) || dp->learning) {
->> >> +		switch (state->state) {
->> >> +		case BR_STATE_DISABLED:
->> >> +		case BR_STATE_BLOCKING:
->> >> +		case BR_STATE_LISTENING:
->> >> +			/* Ideally we would only fast age entries
->> >> +			 * belonging to VLANs controlled by this
->> >> +			 * MST.
->> >> +			 */
->> >> +			dsa_port_fast_age(dp);
->> >
->> > Does mv88e6xxx support this? If it does, you might just as well
->> > introduce another variant of ds->ops->port_fast_age() for an msti.
->> 
->> You can limit ATU operations to a particular FID. So the way I see it we
->> could either have:
->> 
->> int (*port_vlan_fast_age)(struct dsa_switch *ds, int port, u16 vid)
->> 
->> + Maybe more generic. You could imagine there being a way to trigger
->>   this operation from userspace for example.
->> - We would have to keep the VLAN<->MSTI mapping in the DSA layer in
->>   order to be able to do the fan-out in dsa_port_set_mst_state.
->> 
->> or:
->> 
->> int (*port_msti_fast_age)(struct dsa_switch *ds, int port, u16 msti)
->> 
->> + Let's the mapping be an internal affair in the driver.
->> - Perhaps, less generically useful.
->> 
->> Which one do you prefer? Or is there a hidden third option? :)
->
-> Yes, I was thinking of "port_msti_fast_age". I don't see a cheap way of
-> keeping VLAN to MSTI associations in the DSA layer. Only if we could
-> retrieve this mapping from the bridge layer - maybe with something
-> analogous to br_vlan_get_info(), but br_mst_get_info(), and this gets
-> passed a VLAN_N_VID sized bitmap, which the bridge populates with ones
-> and zeroes.
+On Thu, Mar 10, 2022 at 04:51:15PM +0100, Hans Schultz wrote:
+> On tor, mar 10, 2022 at 17:07, Vladimir Oltean <olteanv@gmail.com> wrote:
+> > On Thu, Mar 10, 2022 at 04:00:52PM +0100, Hans Schultz wrote:
+> >> >> +	brport = dsa_port_to_bridge_port(dp);
+> >> >
+> >> > Since this is threaded interrupt context, I suppose it could race with
+> >> > dsa_port_bridge_leave(). So it is best to check whether "brport" is NULL
+> >> > or not.
+> >> >
+> >> Would something like:
+> >> if (dsa_is_unused_port(chip->ds, port))
+> >>         return -ENODATA;
+> >> 
+> >> be appropriate and sufficient for that?
+> >
+> > static inline
+> > struct net_device *dsa_port_to_bridge_port(const struct dsa_port *dp)
+> > {
+> > 	if (!dp->bridge)
+> > 		return NULL;
+> >
+> > 	if (dp->lag)
+> > 		return dp->lag->dev;
+> > 	else if (dp->hsr_dev)
+> > 		return dp->hsr_dev;
+> >
+> > 	return dp->slave;
+> > }
+> >
+> > Notice the "dp->bridge" check. The assignments are in dsa_port_bridge_create()
+> > and in dsa_port_bridge_destroy(). These functions assume rtnl_mutex protection.
+> > The question was how do you serialize with that, and why do you assume
+> > that dsa_port_to_bridge_port() returns non-NULL.
+> >
+> > So no, dsa_is_unused_port() would do absolutely nothing to help.
+> 
+> I was thinking in indirect terms (dangerous I know :-).
 
-That can easily be done. Given that, should we go for port_vlan_fast_age
-instead? port_msti_fast_age feels like an awkward interface, since I
-don't think there is any hardware out there that can actually perform
-that operation without internally fanning it out over all affected VIDs
-(or FIDs in the case of mv88e6xxx).
+Sorry, I don't understand what you mean by "indirect terms". An "unused
+port" is one with 'status = "disabled";' in the device tree. I would
+expect that you don't need to handle FDB entries towards such a port!
 
-> The reason why I asked for this is because I'm not sure of the
-> implications of flushing the entire FDB of the port for a single MSTP
-> state change. It would trigger temporary useless flooding in other MSTIs
-> at the very least. There isn't any backwards compatibility concern to
-> speak of, so we can at least try from the beginning to limit the
-> flushing to the required VLANs.
+You have a port receiving traffic with an unknown {MAC SA, VID}.
+When the port is configured as locked by the bridge, this traffic will
+generate ATU miss interrupts. These will be handled in an interrupt
+thread that is scheduled to be handled some time in the future.
+In between the moment when the packet is received and the moment when
+the interrupt thread runs, a user could run "ip link set lan0 nomaster".
+Then the interrupt thread would notify the bridge about these entries,
+point during which a bridge port no longer exists => NULL pointer dereference.
+By taking the rtnl_lock() and then checking whether dsa_port_to_bridge_port()
+is NULL, you figure out whether the interrupt handler ran completely
+before dsa_port_bridge_leave(), or completely after dsa_port_bridge_leave().
 
-Aside from the performance implications of flows being temporarily
-flooded I don't think there are any.
+> 
+> But wrt the nl lock, I wonder when other threads could pull the carpet
+> away under this, and so I might have to wait till after the last call
+> (mv88e6xxx_g1_atu_loadpurge) to free the nl lock?
 
-I suppose if you've disabled flooding of unknown unicast on that port,
-you would loose the flow until you see some return traffic (or when one
-side gives up and ARPs). While somewhat esoteric, it would be nice to
-handle this case if the hardware supports it.
-
-> What I didn't think about, and will be a problem, is
-> dsa_port_notify_bridge_fdb_flush() - we don't know the vid to flush.
-> The easy way out here would be to export dsa_port_notify_bridge_fdb_flush(),
-> add a "vid" argument to it, and let drivers call it. Thoughts?
-
-To me, this seems to be another argument in favor of
-port_vlan_fast_age. That way you would know the VIDs being flushed at
-the DSA layer, and driver writers needn't concern themselves with having
-to remember to generate the proper notifications back to the bridge.
-
-> Alternatively, if you think that cross-flushing FDBs of multiple MSTIs
-> isn't a real problem, I suppose we could keep the "port_fast_age" method.
-
-What about falling back to it if the driver doesn't support per-VLAN
-flushing? Flushing all entries will work in most cases, at the cost of
-some temporary flooding. Seems more useful than refusing the offload
-completely.
-
->> > And since it is new code, you could require that drivers _do_ support
->> > configuring learning before they could support MSTP. After all, we don't
->> > want to keep legacy mechanisms in place forever.
->> 
->> By "configuring learning", do you mean this new fast-age-per-vid/msti,
->> or being able to enable/disable learning per port? If it's the latter,
->> I'm not sure I understand how those two are related.
->
-> The code from dsa_port_set_state() which you've copied:
->
-> 	if (!dsa_port_can_configure_learning(dp) ||
-> 	    (do_fast_age && dp->learning)) {
->
-> has this explanation:
->
-> 1. DSA keeps standalone ports in the FORWARDING state.
-> 2. DSA also disables address learning on standalone ports, where this is
->    possible (dsa_port_can_configure_learning(dp) == true).
-> 3. When a port joins a bridge, it leaves its FORWARDING state from
->    standalone mode and inherits the bridge port's BLOCKING state
-> 4. dsa_port_set_state() treats a port transition from FORWARDING to
->    BLOCKING as a transition requiring an FDB flush
-> 5. due to (2), the FDB flush at stage (4) is in fact not needed, because
->    the FDB of that port should already be empty. Flushing the FDB may be
->    a costly operation for some drivers, so it is avoided if possible.
->
-> So this is why the "dsa_port_can_configure_learning()" check is there -
-> for compatibility with drivers that can't configure learning => they
-> keep learning enabled also in standalone mode => they need an FDB flush
-> when a standalone port joins a bridge.
->
-> What I'm saying is: for drivers that offload MSTP, let's force them to
-> get the basics right first (have configurable learning), rather than go
-> forward forever with a backwards compatibility mode.
-
-Makes sense, I'll just move it up to the initial capability check.
+That might make sense. It means: if the user runs "ip link set lan0 nomaster",
+wait until I've notified the bridge and installed the entry to my own
+ATU, so that they're in sync. Then, del_nbp() -> br_fdb_delete_by_port()
+would come in, find that entry notified by us (I think!) and remove it.
+If you call rtnl_unlock() too early, it might be possible that the ATU
+entry remains lingering (unless I'm missing some subtle implicit
+serialization based on mv88e6xxx_reg_lock() or similar).
