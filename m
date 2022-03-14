@@ -1,80 +1,78 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190AF4D7FFA
-	for <lists.bridge@lfdr.de>; Mon, 14 Mar 2022 11:37:56 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 506FD4D7FFB
+	for <lists.bridge@lfdr.de>; Mon, 14 Mar 2022 11:37:57 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 1062B40376;
-	Mon, 14 Mar 2022 10:37:54 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id F1BBF828F2;
+	Mon, 14 Mar 2022 10:37:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gppqwKIS4orP; Mon, 14 Mar 2022 10:37:53 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Xl0KZG0_LEou; Mon, 14 Mar 2022 10:37:55 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 14CC1404C1;
-	Mon, 14 Mar 2022 10:37:52 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 4242781759;
+	Mon, 14 Mar 2022 10:37:54 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CB6B1C0084;
-	Mon, 14 Mar 2022 10:37:51 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0765CC0084;
+	Mon, 14 Mar 2022 10:37:54 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E6DC6C0012
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:37:49 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 06E20C0012
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:37:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id C747A60EAF
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:37:49 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 04BC68136F
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:37:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id sH7_sLqB3KBa for <bridge@lists.linux-foundation.org>;
- Mon, 14 Mar 2022 10:37:49 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id j3_8zT8dKG6O for <bridge@lists.linux-foundation.org>;
+ Mon, 14 Mar 2022 10:37:51 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B774260D4E
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:37:48 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id qt6so32754118ejb.11
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 03:37:48 -0700 (PDT)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id E452781358
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:37:50 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id kt27so32933120ejb.0
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 03:37:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20210112.gappssmtp.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=yA1PUpNaaU438Qdsw8uGHv+PhN27r0uo54eSzuWIqzQ=;
- b=htpaPsBWIhk9Lp3ysfhCNyhgm+tyrndaW4X+SPkjo07T6W2Xrp8HehI6a8dtpSNUrl
- xwjvNYJrhSYDpNw5E/EqLdB7nbtv7xyOS+2+ZExE0IQB+nNXd7QuqybibxP6RUb78Euf
- rO3qoG1KDMDprLNSe+8Bb9BbJYeIm+Ga1tRu1vGDSQPa1dZgBjTHqHsieI9rjJ7oOBdX
- yhk+uT7rgL2D8eClU+ekY429xN8a98zTxk3awCbkkmAGlMUPtfZkAJV+LEluk2LOW3wZ
- Ubg0mulQc8bUW6jYNO8yJar9xygAdjOJe5JJAL8iUd8dGpTbwAcBVtBWISO/ReuL7WCN
- WUSw==
+ bh=MZp7gpnQ9sDMK3u9FGLF0DtfQSh/r7kXG58Sm7tKpYY=;
+ b=saLhr5vFxCZrsjEj3zox8KF0Jb1MMbflR64Kb4l4U4tzSm3yiiVkIu+uDJS5QATHiw
+ +lz3GSqr1atOyRu9wMyJSddeuHQfuT51ZKhx5MXqEaQwuT4mU0EpDw/EZf0OKtxz77k9
+ E1u92oMbVLni/4nwkwlmgAPyRXb2sJAeOYNkMiqFVWgHeTD/7FDa+CcVqS+dsCMaYNmZ
+ 8vcD5L0hbgAhMnwckDw9FbuSlEXGVYKADhUqOsrUuhlNxZ8L+K0y1SDQUcZM3MCyD+M4
+ iDbXJ+YTY706sAufKQi8A9tZU7mX/5UGDJ9gg8pL1zaHxP1Y+57GunLctJxM6ahtSYqU
+ ojfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=yA1PUpNaaU438Qdsw8uGHv+PhN27r0uo54eSzuWIqzQ=;
- b=4bNRwxtE6XcwWmqjrc2Umb4NalGWzeCr91Y82q1mt84CeMFUcyitZhnQZ0TRUMWZHg
- O1lAmwGw+jH+qmSjKOR34bUxXNOByMFUBsH+x+rHlJd8l01+a6mUrY/mH4/y1g09WyOB
- 4gU4+NDYyoDJaJCVDeixX05t28sotaxXN+7DuzwxBFszXiT7yu4TVBZT7t/QfVnBioU6
- +O0f/fkt+paNKojCw6dTQhCQeVCnxlCRjnN9IAMLQ6XmNBvuUHu0EPlUUPAFIwpXJLIv
- BMBoSK4ebC6ntIFtrdma81ZQQ2NVF4R3UwRWR85N34SegojCfHdp6BXg8ZTZi2ufIpXM
- dB/w==
-X-Gm-Message-State: AOAM530gxZWzwtrwi/apGg03K+ysBl1ON24PJeWIyzYrcyMTJioNNFt9
- p12biTio/pjb4M8lIKDZNktrAw==
-X-Google-Smtp-Source: ABdhPJwKRvibeHjI8Dr+gy3mQvlt/4VrthMgf0JTc5QPgmu74aKKcmgRFQ6ZWFM62y7Fv0MZBCMmGg==
-X-Received: by 2002:a17:906:4ccd:b0:6b7:75ca:3eac with SMTP id
- q13-20020a1709064ccd00b006b775ca3eacmr17722806ejt.167.1647254266396; 
- Mon, 14 Mar 2022 03:37:46 -0700 (PDT)
+ bh=MZp7gpnQ9sDMK3u9FGLF0DtfQSh/r7kXG58Sm7tKpYY=;
+ b=QkekpYzQeWkjikF8fFkFzoz/ck5BaWsTbzvhRJp4tUPhNbw/cUXuDs4KI7Cv3Ob2sU
+ UyPlt944fzVZUI/8hqgceq6C/OnrHUc4jwp5wAXI9eex6WhYyOzltTGW2HB01MMrSl6Z
+ Ok1yJo0AYVwkXKCWRdXQnTPcXSW3gD4tHbzqvZP8/bJojQiJLOK70y3VHGiP37C/FHt2
+ NDh2OyCeiPv0QGs7cPiYRSGwIfVti9OjLAlzwIm5sjxTQTcn8GDC1oK+3BXKUsoqhuC1
+ xGff0Nuo422qosY1jfHJazXPhun/TdIAsU8nQa/quQ2XPwMF5H63IS1CZJAHMb06ZO7G
+ eJHw==
+X-Gm-Message-State: AOAM5303ti3BDD0gRNG/8OSI3IVNkMOiduvesEkDF+Cqa5kkpPE4uXBd
+ auuylkQ3QnTGqmToWR7FqMMmbw==
+X-Google-Smtp-Source: ABdhPJwBzilczZqjxRl2tocXjpfILbiCNUlThUkPEV5lBZ6+4VrjKX37ZNnHET3BIlhwSTB67FQbBg==
+X-Received: by 2002:a17:906:3adb:b0:6b7:876c:d11b with SMTP id
+ z27-20020a1709063adb00b006b7876cd11bmr17836590ejd.250.1647254268847; 
+ Mon, 14 Mar 2022 03:37:48 -0700 (PDT)
 Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
  by smtp.gmail.com with ESMTPSA id
- s21-20020a170906961500b006daac87ddb0sm6636613ejx.140.2022.03.14.03.37.44
+ cc20-20020a0564021b9400b00412f2502469sm7694617edb.23.2022.03.14.03.37.47
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Mar 2022 03:37:46 -0700 (PDT)
-Message-ID: <9c103a85-f0e2-77cd-9fc6-dc19d99b19ec@blackwall.org>
-Date: Mon, 14 Mar 2022 12:37:43 +0200
+ Mon, 14 Mar 2022 03:37:48 -0700 (PDT)
+Message-ID: <d16cb4b7-a1bf-2e96-0b59-2c4c37b2fdd3@blackwall.org>
+Date: Mon, 14 Mar 2022 12:37:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
@@ -82,9 +80,9 @@ Content-Language: en-US
 To: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
  kuba@kernel.org
 References: <20220314095231.3486931-1-tobias@waldekranz.com>
- <20220314095231.3486931-2-tobias@waldekranz.com>
+ <20220314095231.3486931-4-tobias@waldekranz.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20220314095231.3486931-2-tobias@waldekranz.com>
+In-Reply-To: <20220314095231.3486931-4-tobias@waldekranz.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -95,8 +93,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Cooper Lees <me@cooperlees.com>, Roopa Prabhu <roopa@nvidia.com>,
  Matt Johnston <matt@codeconstruct.com.au>, Vladimir Oltean <olteanv@gmail.com>,
  Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v3 net-next 01/14] net: bridge: mst: Multiple
- Spanning Tree (MST) mode
+Subject: Re: [Bridge] [PATCH v3 net-next 03/14] net: bridge: mst: Support
+ setting and reporting MST port states
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -112,159 +110,353 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 14/03/2022 11:52, Tobias Waldekranz wrote:
-> Allow the user to switch from the current per-VLAN STP mode to an MST
-> mode.
+> Make it possible to change the port state in a given MSTI by extending
+> the bridge port netlink interface (RTM_SETLINK on PF_BRIDGE).The
+> proposed iproute2 interface would be:
 > 
-> Up to this point, per-VLAN STP states where always isolated from each
-> other. This is in contrast to the MSTP standard (802.1Q-2018, Clause
-> 13.5), where VLANs are grouped into MST instances (MSTIs), and the
-> state is managed on a per-MSTI level, rather that at the per-VLAN
-> level.
+>     bridge mst set dev <PORT> msti <MSTI> state <STATE>
 > 
-> Perhaps due to the prevalence of the standard, many switching ASICs
-> are built after the same model. Therefore, add a corresponding MST
-> mode to the bridge, which we can later add offloading support for in a
-> straight-forward way.
+> Current states in all applicable MSTIs can also be dumped via a
+> corresponding RTM_GETLINK. The proposed iproute interface looks like
+> this:
 > 
-> For now, all VLANs are fixed to MSTI 0, also called the Common
-> Spanning Tree (CST). That is, all VLANs will follow the port-global
-> state.
+> $ bridge mst
+> port              msti
+> vb1               0
+> 		    state forwarding
+> 		  100
+> 		    state disabled
+> vb2               0
+> 		    state forwarding
+> 		  100
+> 		    state forwarding
 > 
-> Upcoming changes will make this actually useful by allowing VLANs to
-> be mapped to arbitrary MSTIs and allow individual MSTI states to be
-> changed.
+> The preexisting per-VLAN states are still valid in the MST
+> mode (although they are read-only), and can be queried as usual if one
+> is interested in knowing a particular VLAN's state without having to
+> care about the VID to MSTI mapping (in this example VLAN 20 and 30 are
+> bound to MSTI 100):
+> 
+> $ bridge -d vlan
+> port              vlan-id
+> vb1               10
+> 		    state forwarding mcast_router 1
+> 		  20
+> 		    state disabled mcast_router 1
+> 		  30
+> 		    state disabled mcast_router 1
+> 		  40
+> 		    state forwarding mcast_router 1
+> vb2               10
+> 		    state forwarding mcast_router 1
+> 		  20
+> 		    state forwarding mcast_router 1
+> 		  30
+> 		    state forwarding mcast_router 1
+> 		  40
+> 		    state forwarding mcast_router 1
 > 
 > Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 > ---
-[snip]
-> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-> index 48bc61ebc211..35b47f6b449a 100644
-> --- a/net/bridge/br_private.h
-> +++ b/net/bridge/br_private.h
-> @@ -178,6 +178,7 @@ enum {
->   * @br_mcast_ctx: if MASTER flag set, this is the global vlan multicast context
->   * @port_mcast_ctx: if MASTER flag unset, this is the per-port/vlan multicast
->   *                  context
-> + * @msti: if MASTER flag set, this holds the VLANs MST instance
->   * @vlist: sorted list of VLAN entries
->   * @rcu: used for entry destruction
->   *
-> @@ -210,6 +211,8 @@ struct net_bridge_vlan {
->  		struct net_bridge_mcast_port	port_mcast_ctx;
->  	};
->  
-> +	u16				msti;
-> +
->  	struct list_head		vlist;
->  
->  	struct rcu_head			rcu;
-> @@ -445,6 +448,7 @@ enum net_bridge_opts {
->  	BROPT_NO_LL_LEARN,
->  	BROPT_VLAN_BRIDGE_BINDING,
->  	BROPT_MCAST_VLAN_SNOOPING_ENABLED,
-> +	BROPT_MST_ENABLED,
->  };
->  
->  struct net_bridge {
-> @@ -1765,6 +1769,29 @@ static inline bool br_vlan_state_allowed(u8 state, bool learn_allow)
->  }
->  #endif
->  
-> +/* br_mst.c */
-> +#ifdef CONFIG_BRIDGE_VLAN_FILTERING
 
-There is already such ifdef, you can embed all MST code inside it.
+Hi Tobias,
+A few comments below..
 
-> +DECLARE_STATIC_KEY_FALSE(br_mst_used);
-> +static inline bool br_mst_is_enabled(struct net_bridge *br)
-> +{
-> +	return static_branch_unlikely(&br_mst_used) &&
-> +		br_opt_get(br, BROPT_MST_ENABLED);
-> +}
-> +
-> +void br_mst_set_state(struct net_bridge_port *p, u16 msti, u8 state);
-> +void br_mst_vlan_init_state(struct net_bridge_vlan *v);
-> +int br_mst_set_enabled(struct net_bridge *br, bool on,
-> +		       struct netlink_ext_ack *extack);
-> +#else
-> +static inline bool br_mst_is_enabled(struct net_bridge *br)
-> +{
-> +	return false;
-> +}
-> +
-> +static inline void br_mst_set_state(struct net_bridge_port *p,
-> +				    u16 msti, u8 state) {}
-> +#endif
-> +
->  struct nf_br_ops {
->  	int (*br_dev_xmit_hook)(struct sk_buff *skb);
+>  include/uapi/linux/if_bridge.h |  17 ++++++
+>  include/uapi/linux/rtnetlink.h |   1 +
+>  net/bridge/br_mst.c            | 105 +++++++++++++++++++++++++++++++++
+>  net/bridge/br_netlink.c        |  32 +++++++++-
+>  net/bridge/br_private.h        |  15 +++++
+>  5 files changed, 169 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+> index f60244b747ae..879dfaef8da0 100644
+> --- a/include/uapi/linux/if_bridge.h
+> +++ b/include/uapi/linux/if_bridge.h
+> @@ -122,6 +122,7 @@ enum {
+>  	IFLA_BRIDGE_VLAN_TUNNEL_INFO,
+>  	IFLA_BRIDGE_MRP,
+>  	IFLA_BRIDGE_CFM,
+> +	IFLA_BRIDGE_MST,
+>  	__IFLA_BRIDGE_MAX,
 >  };
-> diff --git a/net/bridge/br_stp.c b/net/bridge/br_stp.c
-> index 1d80f34a139c..82a97a021a57 100644
-> --- a/net/bridge/br_stp.c
-> +++ b/net/bridge/br_stp.c
-> @@ -43,6 +43,9 @@ void br_set_state(struct net_bridge_port *p, unsigned int state)
->  		return;
+>  #define IFLA_BRIDGE_MAX (__IFLA_BRIDGE_MAX - 1)
+> @@ -453,6 +454,21 @@ enum {
 >  
->  	p->state = state;
-> +	if (br_opt_get(p->br, BROPT_MST_ENABLED))
-> +		br_mst_set_state(p, 0, state);
+>  #define IFLA_BRIDGE_CFM_CC_PEER_STATUS_MAX (__IFLA_BRIDGE_CFM_CC_PEER_STATUS_MAX - 1)
+>  
+> +enum {
+> +	IFLA_BRIDGE_MST_UNSPEC,
+> +	IFLA_BRIDGE_MST_ENTRY,
+> +	__IFLA_BRIDGE_MST_MAX,
+> +};
+> +#define IFLA_BRIDGE_MST_MAX (__IFLA_BRIDGE_MST_MAX - 1)
 > +
->  	err = switchdev_port_attr_set(p->dev, &attr, NULL);
->  	if (err && err != -EOPNOTSUPP)
->  		br_warn(p->br, "error setting offload STP state on port %u(%s)\n",
-> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-> index 7557e90b60e1..0f5e75ccac79 100644
-> --- a/net/bridge/br_vlan.c
-> +++ b/net/bridge/br_vlan.c
-> @@ -226,6 +226,24 @@ static void nbp_vlan_rcu_free(struct rcu_head *rcu)
->  	kfree(v);
+> +enum {
+> +	IFLA_BRIDGE_MST_ENTRY_UNSPEC,
+> +	IFLA_BRIDGE_MST_ENTRY_MSTI,
+> +	IFLA_BRIDGE_MST_ENTRY_STATE,
+> +	__IFLA_BRIDGE_MST_ENTRY_MAX,
+> +};
+> +#define IFLA_BRIDGE_MST_ENTRY_MAX (__IFLA_BRIDGE_MST_ENTRY_MAX - 1)
+> +
+>  struct bridge_stp_xstats {
+>  	__u64 transition_blk;
+>  	__u64 transition_fwd;
+> @@ -786,4 +802,5 @@ enum {
+>  	__BRIDGE_QUERIER_MAX
+>  };
+>  #define BRIDGE_QUERIER_MAX (__BRIDGE_QUERIER_MAX - 1)
+> +
+
+stray new line
+
+>  #endif /* _UAPI_LINUX_IF_BRIDGE_H */
+> diff --git a/include/uapi/linux/rtnetlink.h b/include/uapi/linux/rtnetlink.h
+> index 51530aade46e..83849a37db5b 100644
+> --- a/include/uapi/linux/rtnetlink.h
+> +++ b/include/uapi/linux/rtnetlink.h
+> @@ -817,6 +817,7 @@ enum {
+>  #define RTEXT_FILTER_MRP	(1 << 4)
+>  #define RTEXT_FILTER_CFM_CONFIG	(1 << 5)
+>  #define RTEXT_FILTER_CFM_STATUS	(1 << 6)
+> +#define RTEXT_FILTER_MST	(1 << 7)
+>  
+>  /* End of information exported to user level */
+>  
+> diff --git a/net/bridge/br_mst.c b/net/bridge/br_mst.c
+> index 78ef5fea4d2b..df65aa7701c1 100644
+> --- a/net/bridge/br_mst.c
+> +++ b/net/bridge/br_mst.c
+> @@ -124,3 +124,108 @@ int br_mst_set_enabled(struct net_bridge *br, bool on,
+>  	br_opt_toggle(br, BROPT_MST_ENABLED, on);
+>  	return 0;
 >  }
->  
-> +static void br_vlan_init_state(struct net_bridge_vlan *v)
+> +
+> +int br_mst_fill_info(struct sk_buff *skb, struct net_bridge_vlan_group *vg)
+
+const vg
+
 > +{
-> +	struct net_bridge *br;
+> +	struct net_bridge_vlan *v;
+
+const v
+
+> +	struct nlattr *nest;
+> +	unsigned long *seen;
+> +	int err = 0;
 > +
-> +	if (br_vlan_is_master(v))
-> +		br = v->br;
-> +	else
-> +		br = v->port->br;
+> +	seen = bitmap_zalloc(VLAN_N_VID, 0);
+> +	if (!seen)
+> +		return -ENOMEM;
 > +
-> +	if (br_opt_get(br, BROPT_MST_ENABLED)) {
-> +		br_mst_vlan_init_state(v);
-> +		return;
+> +	list_for_each_entry(v, &vg->vlan_list, vlist) {
+> +		if (test_bit(v->brvlan->msti, seen))
+> +			continue;
+> +
+> +		nest = nla_nest_start_noflag(skb, IFLA_BRIDGE_MST_ENTRY);
+> +		if (!nest ||
+> +		    nla_put_u16(skb, IFLA_BRIDGE_MST_ENTRY_MSTI, v->brvlan->msti) ||
+> +		    nla_put_u8(skb, IFLA_BRIDGE_MST_ENTRY_STATE, v->state)) {
+> +			err = -EMSGSIZE;
+> +			break;
+> +		}
+> +		nla_nest_end(skb, nest);
+> +
+> +		set_bit(v->brvlan->msti, seen);
+
+__set_bit()
+
 > +	}
 > +
-> +	v->state = BR_STATE_FORWARDING;
-> +	v->msti = 0;
+> +	kfree(seen);
+> +	return err;
 > +}
 > +
->  /* This is the shared VLAN add function which works for both ports and bridge
->   * devices. There are four possible calls to this function in terms of the
->   * vlan entry type:
-> @@ -322,7 +340,7 @@ static int __vlan_add(struct net_bridge_vlan *v, u16 flags,
->  	}
->  
->  	/* set the state before publishing */
-> -	v->state = BR_STATE_FORWARDING;
-> +	br_vlan_init_state(v);
->  
->  	err = rhashtable_lookup_insert_fast(&vg->vlan_hash, &v->vnode,
->  					    br_vlan_rht_params);
-> diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
-> index a6382973b3e7..09112b56e79c 100644
-> --- a/net/bridge/br_vlan_options.c
-> +++ b/net/bridge/br_vlan_options.c
-> @@ -99,6 +99,11 @@ static int br_vlan_modify_state(struct net_bridge_vlan_group *vg,
->  		return -EBUSY;
->  	}
->  
-> +	if (br_opt_get(br, BROPT_MST_ENABLED)) {
-> +		NL_SET_ERR_MSG_MOD(extack, "Can't modify vlan state directly when MST is enabled");
+> +static const struct nla_policy br_mst_nl_policy[IFLA_BRIDGE_MST_ENTRY_MAX + 1] = {
+> +	[IFLA_BRIDGE_MST_ENTRY_MSTI] = NLA_POLICY_RANGE(NLA_U16,
+> +						   1, /* 0 reserved for CST */
+> +						   VLAN_N_VID - 1),
+> +	[IFLA_BRIDGE_MST_ENTRY_STATE] = NLA_POLICY_RANGE(NLA_U8,
+> +						    BR_STATE_DISABLED,
+> +						    BR_STATE_BLOCKING),
+> +};
+> +
+> +static int br_mst_parse_one(struct net_bridge_port *p,
+> +			    const struct nlattr *attr,
+> +			    struct netlink_ext_ack *extack)
+> +{
+
+I'd either set the state after parsing, so this function just does what it
+says (parse) or I'd rename it.
+
+> +	struct nlattr *tb[IFLA_BRIDGE_MST_ENTRY_MAX + 1];
+> +	u16 msti;
+> +	u8 state;
+> +	int err;
+> +
+> +	err = nla_parse_nested(tb, IFLA_BRIDGE_MST_ENTRY_MAX, attr,
+> +			       br_mst_nl_policy, extack);
+> +	if (err)
+> +		return err;
+> +
+> +	if (!tb[IFLA_BRIDGE_MST_ENTRY_MSTI]) {
+> +		NL_SET_ERR_MSG_MOD(extack, "MSTI not specified");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!tb[IFLA_BRIDGE_MST_ENTRY_STATE]) {
+> +		NL_SET_ERR_MSG_MOD(extack, "State not specified");
+> +		return -EINVAL;
+> +	}
+> +
+> +	msti = nla_get_u16(tb[IFLA_BRIDGE_MST_ENTRY_MSTI]);
+> +	state = nla_get_u8(tb[IFLA_BRIDGE_MST_ENTRY_STATE]);
+> +
+> +	br_mst_set_state(p, msti, state);
+> +	return 0;
+> +}
+> +
+> +int br_mst_parse(struct net_bridge_port *p, struct nlattr *mst_attr,
+> +		 struct netlink_ext_ack *extack)
+
+This doesn't just parse though, it also sets the state. Please rename it to
+something more appropriate.
+
+const mst_attr
+
+> +{
+> +	struct nlattr *attr;
+> +	int err, msts = 0;
+> +	int rem;
+> +
+> +	if (!br_opt_get(p->br, BROPT_MST_ENABLED)) {
+> +		NL_SET_ERR_MSG_MOD(extack, "Can't modify MST state when MST is disabled");
 > +		return -EBUSY;
 > +	}
 > +
->  	if (v->state == state)
->  		return 0;
+> +	nla_for_each_nested(attr, mst_attr, rem) {
+> +		switch (nla_type(attr)) {
+> +		case IFLA_BRIDGE_MST_ENTRY:
+> +			err = br_mst_parse_one(p, attr, extack);
+> +			break;
+> +		default:
+> +			continue;
+> +		}
+> +
+> +		msts++;
+> +		if (err)
+> +			break;
+> +	}
+> +
+> +	if (!msts) {
+> +		NL_SET_ERR_MSG_MOD(extack, "Found no MST entries to process");
+> +		err = -EINVAL;
+> +	}
+> +
+> +	return err;
+> +}
+> diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+> index 7d4432ca9a20..d2b4550f30d6 100644
+> --- a/net/bridge/br_netlink.c
+> +++ b/net/bridge/br_netlink.c
+> @@ -485,7 +485,8 @@ static int br_fill_ifinfo(struct sk_buff *skb,
+>  			   RTEXT_FILTER_BRVLAN_COMPRESSED |
+>  			   RTEXT_FILTER_MRP |
+>  			   RTEXT_FILTER_CFM_CONFIG |
+> -			   RTEXT_FILTER_CFM_STATUS)) {
+> +			   RTEXT_FILTER_CFM_STATUS |
+> +			   RTEXT_FILTER_MST)) {
+>  		af = nla_nest_start_noflag(skb, IFLA_AF_SPEC);
+>  		if (!af)
+>  			goto nla_put_failure;
+> @@ -564,7 +565,28 @@ static int br_fill_ifinfo(struct sk_buff *skb,
+>  		nla_nest_end(skb, cfm_nest);
+>  	}
 >  
+> +	if ((filter_mask & RTEXT_FILTER_MST) &&
+> +	    br_opt_get(br, BROPT_MST_ENABLED) && port) {
+> +		struct net_bridge_vlan_group *vg = nbp_vlan_group(port);
+
+const vg
+
+> +		struct nlattr *mst_nest;
+> +		int err;
+> +
+> +		if (!vg || !vg->num_vlans)
+> +			goto done;
+> +
+> +		mst_nest = nla_nest_start(skb, IFLA_BRIDGE_MST);
+> +		if (!mst_nest)
+> +			goto nla_put_failure;
+> +
+> +		err = br_mst_fill_info(skb, vg);
+> +		if (err)
+> +			goto nla_put_failure;
+> +
+> +		nla_nest_end(skb, mst_nest);
+> +	}
+> +
+
+I think you should also update br_get_link_af_size_filtered() to account for the
+new dump attributes based on the filter. I'd adjust vinfo_sz based on the filter
+flag.
+
+>  done:
+> +
+>  	if (af)
+>  		nla_nest_end(skb, af);
+>  	nlmsg_end(skb, nlh);
+> @@ -803,6 +825,14 @@ static int br_afspec(struct net_bridge *br,
+>  			if (err)
+>  				return err;
+>  			break;
+> +		case IFLA_BRIDGE_MST:
+> +			if (cmd != RTM_SETLINK || !p)
+> +				return -EINVAL;
+
+These are two different errors, please set extack appropriately
+for each error.
+
+> +
+> +			err = br_mst_parse(p, attr, extack);
+> +			if (err)
+> +				return err;
+> +			break;
+>  		}
+>  	}
+>  
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index b907d389b63a..08d82578bd97 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -1783,6 +1783,9 @@ int br_mst_vlan_set_msti(struct net_bridge_vlan *v, u16 msti);
+>  void br_mst_vlan_init_state(struct net_bridge_vlan *v);
+>  int br_mst_set_enabled(struct net_bridge *br, bool on,
+>  		       struct netlink_ext_ack *extack);
+> +int br_mst_fill_info(struct sk_buff *skb, struct net_bridge_vlan_group *vg);
+> +int br_mst_parse(struct net_bridge_port *p, struct nlattr *mst_attr,
+> +		 struct netlink_ext_ack *extack);
+>  #else
+>  static inline bool br_mst_is_enabled(struct net_bridge *br)
+>  {
+> @@ -1791,6 +1794,18 @@ static inline bool br_mst_is_enabled(struct net_bridge *br)
+>  
+>  static inline void br_mst_set_state(struct net_bridge_port *p,
+>  				    u16 msti, u8 state) {}
+> +static inline int br_mst_fill_info(struct sk_buff *skb,
+> +				   struct net_bridge_vlan_group *vg)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static inline int br_mst_parse(struct net_bridge_port *p,
+> +			       struct nlattr *mst_attr,
+> +			       struct netlink_ext_ack *extack)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+>  #endif
+>  
+>  struct nf_br_ops {
 
