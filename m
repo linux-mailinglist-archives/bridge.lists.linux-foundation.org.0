@@ -1,78 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD224D8017
-	for <lists.bridge@lfdr.de>; Mon, 14 Mar 2022 11:42:31 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91514D801A
+	for <lists.bridge@lfdr.de>; Mon, 14 Mar 2022 11:43:20 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 8044583E66;
-	Mon, 14 Mar 2022 10:42:29 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 904A44148A;
+	Mon, 14 Mar 2022 10:43:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vZn5Qop3_klK; Mon, 14 Mar 2022 10:42:28 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id s441fGCHx5gI; Mon, 14 Mar 2022 10:43:18 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 0085B83E4E;
-	Mon, 14 Mar 2022 10:42:28 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 38FE0410B8;
+	Mon, 14 Mar 2022 10:43:17 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A587FC0084;
-	Mon, 14 Mar 2022 10:42:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EB975C0012;
+	Mon, 14 Mar 2022 10:43:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0BE48C0012
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:42:26 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 92ED1C0012
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:43:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id ED60A83E27
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:42:25 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 8138A60ED7
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:43:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id MxVrDBsgpnse for <bridge@lists.linux-foundation.org>;
- Mon, 14 Mar 2022 10:42:22 +0000 (UTC)
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id yEGdyGlJFcAn for <bridge@lists.linux-foundation.org>;
+ Mon, 14 Mar 2022 10:43:15 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
- [IPv6:2a00:1450:4864:20::534])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 48B2F831D6
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:42:22 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id y22so19195370eds.2
- for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 03:42:22 -0700 (PDT)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id C4FBD60EB8
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 10:43:14 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id qt6so32787590ejb.11
+ for <bridge@lists.linux-foundation.org>; Mon, 14 Mar 2022 03:43:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20210112.gappssmtp.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=oMG0T9vcdOIb6WRbUJ5vRlSPE5rT2gbTg+vjg6aHM+o=;
- b=Bgv9nNrzSnDKRVZKbeGdd71L3Iiv4FIxcwNstK5Ia4cJNSsOwFWT5l72JNt+brFxig
- W7z2+gRIYUfsxp7M1DzYc/o6h1PaUxviTqtXMwgHnT1iWXPTXT/C+Rm9aFVJ5r+9KKmg
- UmCHq421Xsh/2OE0wRDQ60MwupTZdNx72CUaN+ufqe0ceeJ1z7QlMMVVmO/RpqJh8xIf
- EvdlHIkZsn6wMSzzvK/wjWWR9fuh/AkBBSKXnp7KwdDJ1sUnNEZ12lsBpAWafsxNCAyi
- E3BM3gmFXQ+GmkJ10qAbchg7YS+BdGz/mStPSKaCVEWvbl3eWZ2BK0h6sg/mPjvBL60Y
- ftdg==
+ bh=A7EqDn+Rvpx8UXeNB7ju/W8rAWMhJLZzf0YL/c7EbsM=;
+ b=R9FlibjV7YbRYHtNtmZ8gtRoaI/OqgLDDsvIOf3Nna/kMrJKoO2Diw1xJYXOdFMzNe
+ eVfypM8Up5u0iHhizU6sIocI0SNbPJbzdQv8Ij8W7wpXkCKeh84v4GmDoVgvHii5FWT3
+ GdN6qq+nsKIYd0xgNHR41sr8NQUoSMz6Tofd9TsZXuGYp/bqCEt20UZK70YOM0qaL3lu
+ Woy8tXCsY4dC5ScaFoePtavo0uiax78Jfoat3ahD9sOSepgUJZvvsZbvxT7XDlZ8xAwI
+ kWe/+9uPXcsL9avWiyXaxxwl40n29bgAFDocnLoaPo5x2IvO5vKoO9+6CMwmWW3l+ouS
+ ozMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=oMG0T9vcdOIb6WRbUJ5vRlSPE5rT2gbTg+vjg6aHM+o=;
- b=ePrxTG/pZ8GNgD0oH7Hg48l413pi6LHjiZLxEywF65p0T4a2Q7YvdWFw8kvDuyup+T
- ivOdzUX3W0qYk04DDk9awx25jZo9AMtP9QXCyX5Da5ISXW3j19WPpaB8zV4UCLZABqjr
- 87guLVyOqKQkrdET7m+0WHTfV+4LRCltsXjsUA1r9uEgHMn3xUE0B3VBasTfP8KHJx8E
- qPGbVyBUmDSr7EcsOYj4h8oN+55IyjYEdZEKUFOV0eukcWFxLVAK8bAObjwqaPmk52wZ
- 7rG1SEuUfh9TxNeTKlOmTyCCxto/GGusW+UUG7VWN5CgT1oUk1zIqmJ9PkShcZq0CYJn
- 0c7Q==
-X-Gm-Message-State: AOAM530/GkP6lCDGvSLVBVEijtBa5Gc34uyqmR6mpc4SKeYZ872tJkpW
- sZM7w6ykRu7u33kt8qbcxCUPrw==
-X-Google-Smtp-Source: ABdhPJxyti+ZZIBqAkD5R1g1ftKPfUvMSW2DqKLuBzw6ePGKI8J6QwFpwkKLPShUROCFJsNNtbrQTQ==
-X-Received: by 2002:a05:6402:50cd:b0:418:5267:d8ba with SMTP id
- h13-20020a05640250cd00b004185267d8bamr11708559edb.68.1647254540354; 
- Mon, 14 Mar 2022 03:42:20 -0700 (PDT)
+ bh=A7EqDn+Rvpx8UXeNB7ju/W8rAWMhJLZzf0YL/c7EbsM=;
+ b=QQdoJaCtmfHoutbtQiLMP8oMXjyaJJj+NDJ8lrPqJKIL0AvnBkQ1/6Dtljdk0+MWBM
+ stpDTPSnaJTAm5Pt5AA7rl2bttPZhb7a7yPrbV23f8G9o4mWgVtofezCt2hNPT5Qz6YQ
+ HZY9csZYQm8GxL04wqcuWhH9kceQpGFQmWnImyco3XLmqEMybgRpkyrxg6BV61NfXide
+ MHEc8XUYuDXBr7/uVBZ9c8L6mHEXH+Mbjqvs4rCeia1tTMNd+G3niCU14KtP3gJagUZM
+ +HQPrPRGnb9CvSu5z7xIE709jUGFBw+BB6mHYd46t1baSmLxw8kv8PdcvZn1o+sv7uGe
+ Cm8A==
+X-Gm-Message-State: AOAM533P1FYeE4l/CoZ2ffqTxTGS1aCFeW8cyYBCsfbfbnTrIx9SuCDb
+ 5mlsHnCG9qGtFYvrOku2AHlcoA==
+X-Google-Smtp-Source: ABdhPJxTHRTQNFE5kKAa4DCdyAQWIglAKntXNPflLiu//qCYFNVof0yRClCccCCCjGwXKUlnQCWMvQ==
+X-Received: by 2002:a17:906:1613:b0:6cf:1161:eab6 with SMTP id
+ m19-20020a170906161300b006cf1161eab6mr17257995ejd.315.1647254593012; 
+ Mon, 14 Mar 2022 03:43:13 -0700 (PDT)
 Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
  by smtp.gmail.com with ESMTPSA id
- z11-20020a50e68b000000b00412ec8b2180sm7848448edm.90.2022.03.14.03.42.18
+ f15-20020a50e08f000000b004134a121ed2sm8023894edl.82.2022.03.14.03.43.11
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Mar 2022 03:42:20 -0700 (PDT)
-Message-ID: <bf9b90a5-63c7-ac9d-385f-cd0c60de7eee@blackwall.org>
-Date: Mon, 14 Mar 2022 12:42:18 +0200
+ Mon, 14 Mar 2022 03:43:12 -0700 (PDT)
+Message-ID: <ace79051-0f73-8e04-5ac6-6098ffb15acd@blackwall.org>
+Date: Mon, 14 Mar 2022 12:43:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
@@ -80,9 +82,9 @@ Content-Language: en-US
 To: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
  kuba@kernel.org
 References: <20220314095231.3486931-1-tobias@waldekranz.com>
- <20220314095231.3486931-8-tobias@waldekranz.com>
+ <20220314095231.3486931-9-tobias@waldekranz.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20220314095231.3486931-8-tobias@waldekranz.com>
+In-Reply-To: <20220314095231.3486931-9-tobias@waldekranz.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -93,8 +95,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Cooper Lees <me@cooperlees.com>, Roopa Prabhu <roopa@nvidia.com>,
  Matt Johnston <matt@codeconstruct.com.au>, Vladimir Oltean <olteanv@gmail.com>,
  Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v3 net-next 07/14] net: bridge: mst: Add helper
- to map an MSTI to a VID set
+Subject: Re: [Bridge] [PATCH v3 net-next 08/14] net: bridge: mst: Add helper
+ to check if MST is enabled
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -110,91 +112,62 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 14/03/2022 11:52, Tobias Waldekranz wrote:
-> br_mst_get_info answers the question: "On this bridge, which VIDs are
-> mapped to the given MSTI?"
-> 
-> This is useful in switchdev drivers, which might have to fan-out
-> operations, relating to an MSTI, per VLAN.
-> 
-> An example: When a port's MST state changes from forwarding to
-> blocking, a driver may choose to flush the dynamic FDB entries on that
-> port to get faster reconvergence of the network, but this should only
-> be done in the VLANs that are managed by the MSTI in question.
+> This is useful for switchdev drivers that might want to refuse to join
+> a bridge where MST is enabled, if the hardware can't support it.
 > 
 > Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 > ---
->  include/linux/if_bridge.h |  6 ++++++
->  net/bridge/br_mst.c       | 26 ++++++++++++++++++++++++++
->  2 files changed, 32 insertions(+)
+>  include/linux/if_bridge.h | 5 +++++
+>  net/bridge/br_mst.c       | 9 +++++++++
+>  2 files changed, 14 insertions(+)
 > 
 > diff --git a/include/linux/if_bridge.h b/include/linux/if_bridge.h
-> index 3aae023a9353..46e6327fef06 100644
+> index 46e6327fef06..5dbab0a280a6 100644
 > --- a/include/linux/if_bridge.h
 > +++ b/include/linux/if_bridge.h
 > @@ -119,6 +119,7 @@ int br_vlan_get_info(const struct net_device *dev, u16 vid,
 >  		     struct bridge_vlan_info *p_vinfo);
 >  int br_vlan_get_info_rcu(const struct net_device *dev, u16 vid,
 >  			 struct bridge_vlan_info *p_vinfo);
-> +int br_mst_get_info(struct net_device *dev, u16 msti, unsigned long *vids);
+> +bool br_mst_enabled(struct net_device *dev);
+>  int br_mst_get_info(struct net_device *dev, u16 msti, unsigned long *vids);
 >  #else
 >  static inline bool br_vlan_enabled(const struct net_device *dev)
->  {
-> @@ -151,6 +152,11 @@ static inline int br_vlan_get_info_rcu(const struct net_device *dev, u16 vid,
+> @@ -152,6 +153,10 @@ static inline int br_vlan_get_info_rcu(const struct net_device *dev, u16 vid,
 >  {
 >  	return -EINVAL;
 >  }
-> +static inline int br_mst_get_info(struct net_device *dev, u16 msti,
-> +				  unsigned long *vids)
+> +static inline bool br_mst_enabled(struct net_device *dev)
 > +{
-> +	return -EINVAL;
+> +	return false;
 > +}
->  #endif
->  
->  #if IS_ENABLED(CONFIG_BRIDGE)
+>  static inline int br_mst_get_info(struct net_device *dev, u16 msti,
+>  				  unsigned long *vids)
+>  {
 > diff --git a/net/bridge/br_mst.c b/net/bridge/br_mst.c
-> index 7d16926a3a31..eb18dbd5838f 100644
+> index eb18dbd5838f..e5ab2ce451c2 100644
 > --- a/net/bridge/br_mst.c
 > +++ b/net/bridge/br_mst.c
-> @@ -13,6 +13,32 @@
+> @@ -13,6 +13,15 @@
 >  
 >  DEFINE_STATIC_KEY_FALSE(br_mst_used);
 >  
-> +int br_mst_get_info(struct net_device *dev, u16 msti, unsigned long *vids)
+> +bool br_mst_enabled(struct net_device *dev)
+
+const dev
+
 > +{
-> +	struct net_bridge_vlan_group *vg;
-> +	struct net_bridge_vlan *v;
-> +	struct net_bridge *br;
-
-const dev, vg, v, br
-
-> +
-> +	ASSERT_RTNL();
-> +
 > +	if (!netif_is_bridge_master(dev))
-> +		return -EINVAL;
+> +		return false;
 > +
-> +	br = netdev_priv(dev);
-> +	if (!br_opt_get(br, BROPT_MST_ENABLED))
-> +		return -EINVAL;
-> +
-> +	vg = br_vlan_group(br);
-> +
-> +	list_for_each_entry(v, &vg->vlan_list, vlist) {
-> +		if (v->msti == msti)
-> +			set_bit(v->vid, vids);
-
-__set_bit()
-
-> +	}
-> +
-> +	return 0;
+> +	return br_opt_get(netdev_priv(dev), BROPT_MST_ENABLED);
 > +}
-> +EXPORT_SYMBOL(br_mst_get_info);
+> +EXPORT_SYMBOL(br_mst_enabled);
 
 EXPORT_SYMBOL_GPL
 
 > +
->  static void br_mst_vlan_set_state(struct net_bridge_port *p, struct net_bridge_vlan *v,
->  				  u8 state)
+>  int br_mst_get_info(struct net_device *dev, u16 msti, unsigned long *vids)
 >  {
+>  	struct net_bridge_vlan_group *vg;
 
