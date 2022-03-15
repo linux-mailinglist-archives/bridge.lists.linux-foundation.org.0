@@ -1,102 +1,98 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0784D9821
-	for <lists.bridge@lfdr.de>; Tue, 15 Mar 2022 10:53:06 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5CF24D99D0
+	for <lists.bridge@lfdr.de>; Tue, 15 Mar 2022 12:00:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 0DF7860D89;
-	Tue, 15 Mar 2022 09:53:04 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 7E85460F8D;
+	Tue, 15 Mar 2022 11:00:26 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id loFj10-5MvEK; Tue, 15 Mar 2022 09:53:03 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 4376860D88;
-	Tue, 15 Mar 2022 09:53:02 +0000 (UTC)
+	with ESMTP id ucngmCzpOMjM; Tue, 15 Mar 2022 11:00:26 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 01071607EC;
+	Tue, 15 Mar 2022 11:00:24 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EB86FC0033;
-	Tue, 15 Mar 2022 09:53:01 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9B4A0C0033;
+	Tue, 15 Mar 2022 11:00:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BE3AFC000B
- for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 09:53:00 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 88422C000B
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 11:00:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id A6F6F84197
- for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 09:53:00 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 5ED1D41673
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 11:00:23 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id pINtakYxVYuU for <bridge@lists.linux-foundation.org>;
- Tue, 15 Mar 2022 09:52:57 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 863E98411C
- for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 09:52:57 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id qx21so39886698ejb.13
- for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 02:52:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=nzL1DPOauY6xrdeyfpwRODojKdw/bFm68FMajovYo6g=;
- b=aPQtqBpjqL26lRUuA67dWSdBYZ+P/OnQD5b5DPaPCNVFC8mllI1F5Z4DrykGC7Nm52
- NYVARAcB6EKihQiU3nR7auLh2RMcX5iG4aZzNurSihePLSCDNafmV6aDnPt7iohqmzPT
- i+1RJQbOuQTUsiLaWuynMdfIp2D0pEXMbRgq3gppylA50fxe/er+TcNS8B7LqPy9DwNd
- xK4POQpl6tAPqXHcYYhL9RoWDsmggj0qIBO3em3KQdtOCCzH995aYYhNiMf7y+PmHirW
- gmes5oNZhwRimfcWiHSC/2oYzvBdzMMM04H84ESMBLL84WRaxdlbwsUak7eTTugCNdve
- PEXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=nzL1DPOauY6xrdeyfpwRODojKdw/bFm68FMajovYo6g=;
- b=M+Bo8/+EgtaRLeJoBxROMxTC09BQbkDyJEjXTXqLiU87ywo3i/tVzmYY7e/kmAgVnO
- ceCCgjlhMXXkXHrSSgaMTEw5IkyDgyEB9LjybmO4+7wD3YR1agD/43EHhPydmmyGB4fR
- ZC41S+1ZiVclv0ALrGwdvski6so3MeflspNWXt/qBmVSdm0TouETAyuhnzxFf7BZJW6K
- zwP0RpAtja9vnyCzyFKXZtS5G6neOzj+MkifZBkknb27lOR65oN0v9PkDsyFZ2+fHHYK
- +L14/IDNfRCpMpBCLMkqd2wmikaRoEtccCSH4GFHtQDCZn8VC41aJ04AFYYA486GKYEu
- S6Uw==
-X-Gm-Message-State: AOAM5324gf3kWC04Eas/lVaKbjlisHpEnISomlSLqvfEuAeyR6DR6YBg
- gvYK4YuuFg1eC5snPTqb6tP3Dg==
-X-Google-Smtp-Source: ABdhPJyQkxhiMyLn0VYaZCt9sQO44O40CE85NeRb10VArr61L3n9t7cm6DbwGGYW3nPA3mCgwXjBGg==
-X-Received: by 2002:a17:906:d555:b0:6da:ac8c:f66b with SMTP id
- cr21-20020a170906d55500b006daac8cf66bmr21422702ejc.107.1647337975509; 
- Tue, 15 Mar 2022 02:52:55 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- a102-20020a509eef000000b0041614c8f79asm9346624edf.88.2022.03.15.02.52.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Mar 2022 02:52:55 -0700 (PDT)
-Message-ID: <5c05d8b8-9c40-e38d-5c4d-e25526407e51@blackwall.org>
-Date: Tue, 15 Mar 2022 11:52:53 +0200
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=messagingengine.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id e4gRnzBcOThr for <bridge@lists.linux-foundation.org>;
+ Tue, 15 Mar 2022 11:00:22 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
+ [64.147.123.20])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id C088041635
+ for <bridge@lists.linux-foundation.org>; Tue, 15 Mar 2022 11:00:22 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.west.internal (Postfix) with ESMTP id D99753201F82;
+ Tue, 15 Mar 2022 07:00:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute5.internal (MEProxy); Tue, 15 Mar 2022 07:00:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm3; bh=NExbxl+i2kuO3Pvzdgbe/Iig/umuCg0Aqp3WMWOTS
+ DA=; b=bASI2gJC467wslZAh/G66t63jB1zY0shNB3Wuma/AJ/qKyNks5ywiEv9L
+ TjeFFh+XXl3Xba8pswlacUlwKsgv6XjO4tuUavk/8KW8tuiClxHPA2BzZajqfTYu
+ I/uZjMvH74mB/42xUXfqjI554e/RudCwZgpyiDh8kDwbjypE18L2y6YKTQmqJzjL
+ 7mTcc53No0wnYWnN+33WTsR38tuTr69ke7QiYaGaF7iFoR6rqY7RJTwLnaMFAzEU
+ wbls6j+7Dt8oirYqY1Dbh6XhryFblkYZRiWcbtVCbeyEXYZsCO5bDI/c5Hr0/QTQ
+ zcvbWWTTfSjlrGpd4XCbuUKtKKfRg==
+X-ME-Sender: <xms:wHEwYhgcubcKtlyOpo7K_B0uun3VxRqKxmlunBgvA68gC2moawlKPA>
+ <xme:wHEwYmCiJIf315nEu7BpADDUVukfgf_NxMFYJRaqsvYGZT5EGvJkD-puNcBQY19W0
+ h0lFb_6ICuEujc>
+X-ME-Received: <xmr:wHEwYhG7W1ysFc7OfnA3ifivYxnV0YXZaUQMzYoqYvFWRtgU72_pi8NKZHK3p-KHPQaLThhl3M1-tCNJYVScMOWXhDs>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeftddgvdduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtugfgjgesthekredttddtudenucfhrhhomhepkfguohcu
+ ufgthhhimhhmvghluceoihguohhstghhsehiughoshgthhdrohhrgheqnecuggftrfgrth
+ htvghrnhepvdffveekfeeiieeuieetudefkeevkeeuhfeuieduudetkeegleefvdegheej
+ hefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepih
+ guohhstghhsehiughoshgthhdrohhrgh
+X-ME-Proxy: <xmx:wHEwYmRYrzN_v3mGacJ4vuIAqMZVJ9Ssevhx1O329QV0o1bOlTijUQ>
+ <xmx:wHEwYuw-hvty131IEgbXViDinbwbv6yqrqT6ZCBYi20V2w4V7oFboA>
+ <xmx:wHEwYs5uJ987OkhhWOdCaxr-GgSNX_HwXgSsI1sjBCprMFf2yRMhXQ>
+ <xmx:wnEwYigrT9dPwh32_Vq4kNc4l-3wK6s2gVqtjVJsaGGjywalncunYw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 15 Mar 2022 07:00:15 -0400 (EDT)
+Date: Tue, 15 Mar 2022 13:00:12 +0200
+From: Ido Schimmel <idosch@idosch.org>
+To: Hans Schultz <schultz.hans@gmail.com>
+Message-ID: <YjBxvM+rYSMP8UNy@shredder>
+References: <20220310142320.611738-1-schultz.hans+netdev@gmail.com>
+ <20220310142320.611738-2-schultz.hans+netdev@gmail.com>
+ <Yi9fqkQ9wH3Duqhg@shredder> <86h77zha8b.fsf@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
- kuba@kernel.org
-References: <20220315002543.190587-1-tobias@waldekranz.com>
- <20220315002543.190587-4-tobias@waldekranz.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20220315002543.190587-4-tobias@waldekranz.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <86h77zha8b.fsf@gmail.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Petr Machata <petrm@nvidia.com>, Ido Schimmel <idosch@nvidia.com>,
- bridge@lists.linux-foundation.org, Russell King <linux@armlinux.org.uk>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- Cooper Lees <me@cooperlees.com>, Roopa Prabhu <roopa@nvidia.com>,
- Matt Johnston <matt@codeconstruct.com.au>, Vladimir Oltean <olteanv@gmail.com>,
- Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [Bridge] [PATCH v4 net-next 03/15] net: bridge: mst: Support
- setting and reporting MST port states
+ Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
+ Ido Schimmel <idosch@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 1/3] net: bridge: add fdb flag to
+ extent locked port feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,99 +107,24 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 15/03/2022 02:25, Tobias Waldekranz wrote:
-> Make it possible to change the port state in a given MSTI by extending
-> the bridge port netlink interface (RTM_SETLINK on PF_BRIDGE).The
-> proposed iproute2 interface would be:
+On Tue, Mar 15, 2022 at 09:48:52AM +0100, Hans Schultz wrote:
+> On mån, mar 14, 2022 at 17:30, Ido Schimmel <idosch@idosch.org> wrote:
+> > On Thu, Mar 10, 2022 at 03:23:18PM +0100, Hans Schultz wrote:
+> >> @@ -94,8 +95,16 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+> >>  			br_fdb_find_rcu(br, eth_hdr(skb)->h_source, vid);
+> >>  
+> >>  		if (!fdb_src || READ_ONCE(fdb_src->dst) != p ||
+> >> -		    test_bit(BR_FDB_LOCAL, &fdb_src->flags))
+> >> +		    test_bit(BR_FDB_LOCAL, &fdb_src->flags)) {
+> >> +			if (!fdb_src) {
+> >> +				set_bit(BR_FDB_ENTRY_LOCKED, &flags);
+> >
+> > This flag is read-only for user space, right? That is, the kernel needs
+> > to reject it during netlink policy validation.
+> >
 > 
->     bridge mst set dev <PORT> msti <MSTI> state <STATE>
-> 
-> Current states in all applicable MSTIs can also be dumped via a
-> corresponding RTM_GETLINK. The proposed iproute interface looks like
-> this:
-> 
-> $ bridge mst
-> port              msti
-> vb1               0
-> 		    state forwarding
-> 		  100
-> 		    state disabled
-> vb2               0
-> 		    state forwarding
-> 		  100
-> 		    state forwarding
-> 
-> The preexisting per-VLAN states are still valid in the MST
-> mode (although they are read-only), and can be queried as usual if one
-> is interested in knowing a particular VLAN's state without having to
-> care about the VID to MSTI mapping (in this example VLAN 20 and 30 are
-> bound to MSTI 100):
-> 
-> $ bridge -d vlan
-> port              vlan-id
-> vb1               10
-> 		    state forwarding mcast_router 1
-> 		  20
-> 		    state disabled mcast_router 1
-> 		  30
-> 		    state disabled mcast_router 1
-> 		  40
-> 		    state forwarding mcast_router 1
-> vb2               10
-> 		    state forwarding mcast_router 1
-> 		  20
-> 		    state forwarding mcast_router 1
-> 		  30
-> 		    state forwarding mcast_router 1
-> 		  40
-> 		    state forwarding mcast_router 1
-> 
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
-> ---
->  include/uapi/linux/if_bridge.h |  16 +++++
->  include/uapi/linux/rtnetlink.h |   1 +
->  net/bridge/br_mst.c            | 127 +++++++++++++++++++++++++++++++++
->  net/bridge/br_netlink.c        |  44 +++++++++++-
->  net/bridge/br_private.h        |  23 ++++++
->  5 files changed, 210 insertions(+), 1 deletion(-)
-> 
-[snip]
-> diff --git a/net/bridge/br_mst.c b/net/bridge/br_mst.c
-> index 78ef5fea4d2b..355ad102d6b1 100644
-> --- a/net/bridge/br_mst.c
-> +++ b/net/bridge/br_mst.c
-> @@ -124,3 +124,130 @@ int br_mst_set_enabled(struct net_bridge *br, bool on,
->  	br_opt_toggle(br, BROPT_MST_ENABLED, on);
->  	return 0;
->  }
-> +
-> +size_t br_mst_info_size(const struct net_bridge_vlan_group *vg)
-> +{
-> +	DECLARE_BITMAP(seen, VLAN_N_VID) = { 0 };
-> +	const struct net_bridge_vlan *v;
-> +	size_t sz;
-> +
-> +	/* IFLA_BRIDGE_MST */
-> +	sz = nla_total_size(0);
-> +
-> +	list_for_each_entry(v, &vg->vlan_list, vlist) {
+> Yes, the flag is only readable from user space, unless there is a wish
+> to change that.
 
-Note that rtnl_calcit() (which ends up indirectly using this function) is called
-only with rcu so you need to use list_for_each_entry_rcu() here.
-
-> +		if (test_bit(v->brvlan->msti, seen))
-> +			continue;
-> +
-> +		/* IFLA_BRIDGE_MST_ENTRY */
-> +		sz += nla_total_size(0) +
-> +			/* IFLA_BRIDGE_MST_ENTRY_MSTI */
-> +			nla_total_size(sizeof(u16)) +
-> +			/* IFLA_BRIDGE_MST_ENTRY_STATE */
-> +			nla_total_size(sizeof(u8));
-> +
-> +		__set_bit(v->brvlan->msti, seen);
-> +	}
-> +
-> +	return sz;
-> +}
-> +
+OK, so please spell it out in the commit message so that it is clear the
+flag can only be set by the kernel.
