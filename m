@@ -1,95 +1,98 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50BD04DBB1F
-	for <lists.bridge@lfdr.de>; Thu, 17 Mar 2022 00:34:58 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CDEB4DBB8D
+	for <lists.bridge@lfdr.de>; Thu, 17 Mar 2022 01:18:40 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id BA05883E9A;
-	Wed, 16 Mar 2022 23:34:56 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id B557461247;
+	Thu, 17 Mar 2022 00:18:38 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uOF8_H0sJFFq; Wed, 16 Mar 2022 23:34:56 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 5D167832C7;
-	Wed, 16 Mar 2022 23:34:55 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hIDtUtR6lCbx; Thu, 17 Mar 2022 00:18:38 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 38F2260ACA;
+	Thu, 17 Mar 2022 00:18:37 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1355EC0033;
-	Wed, 16 Mar 2022 23:34:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 00C49C0033;
+	Thu, 17 Mar 2022 00:18:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 989E5C000B
- for <bridge@lists.linux-foundation.org>; Wed, 16 Mar 2022 23:34:53 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4DFD8C000B
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 00:18:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 95DD34089B
- for <bridge@lists.linux-foundation.org>; Wed, 16 Mar 2022 23:34:53 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 2930080DAB
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 00:18:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SVTseeByrJdH for <bridge@lists.linux-foundation.org>;
- Wed, 16 Mar 2022 23:34:52 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id gzxX_iLTeAya for <bridge@lists.linux-foundation.org>;
+ Thu, 17 Mar 2022 00:18:34 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 54FA940893
- for <bridge@lists.linux-foundation.org>; Wed, 16 Mar 2022 23:34:52 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id a8so7342953ejc.8
- for <bridge@lists.linux-foundation.org>; Wed, 16 Mar 2022 16:34:52 -0700 (PDT)
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
+ [IPv6:2607:f8b0:4864:20::533])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id EBAAC80C66
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 00:18:33 +0000 (UTC)
+Received: by mail-pg1-x533.google.com with SMTP id 6so1386267pgg.0
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Mar 2022 17:18:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=ARERQSDKxTIHCnmFYNI1ElJI4Oo2Aq2UKhPNaAbSNg4=;
- b=Sg3427dW092vAOLJR2XEcQ/K29NB/DZt5twKJ8gVmA9TrPScdCEOtwyPlsi4FCZsiQ
- bN6oZmE9p4etd9Y6inAr5Puw1utDZX1rFnBWQ/Kpw1SJwyJvdV92GzUsabqabxxpvrUw
- SuzDuuIWz9zSPEAhmuwzs5F3vzZwI94orfMmhn15cY4No379IIbQ/JRjSzJKRW3gtKKD
- rxnRnwNQyJvEIEh4HtC9XgiNZGXrJ4PnKGxAYhTfEkNyZz1Hr0L41eJNWrJGUv7Avdcz
- DmvCS0goyAE/O66WKrs1t7lWQet5Au9SV2XSJTjXfMpLlMmnET6Qdd40ZCIJXPmUKBRG
- Fj5A==
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=JlSDTrMLCmc5n2ZJdwjUCSRTD54RzeM/4/q2sdv25jo=;
+ b=c6sWo3xXkqmXwk4zqCMnEhspLRrdVlstTAEwqW5ADtJsxzmXRVvGDhHJwNbvm3L1GE
+ cBePNIqauQpE2mLrOvmuh2DzSlaizlX28lqEJOuJnCB3essSkUsssjlTc5I9j+YdI+ML
+ ah9cynpMusdLJTPHlaTrCjPCYdY4CKrxFigK4vTd4zcrcugtT/SqBM34cceNXtEn3Cmh
+ n2qX3+Ebtdw7/Fl64N/gScs0ozHSk6Lrnvpjna19n/oGwvzO8M7wFa8UOop1wQBkqki2
+ qujVIXmhyeVE09+4HeePt8Jvw2HQPA7w1UJ5QKLijFRNTqrPN3KOcFQqDIlsIa5f10Kc
+ oC7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=ARERQSDKxTIHCnmFYNI1ElJI4Oo2Aq2UKhPNaAbSNg4=;
- b=oo7bkVwyTTcZToETe7mS+qU5fkZm6tZJi7/E0uPri3W8jIz8uFslcd4QeY5BG6Lh7d
- /7tAxqCtW/l/7uwVSa6hoxHiNqLoIrFr4IbNr1oxpyrgeEnPUezKg3uLteBN5s1WaaLB
- qr2KIpZ0qphs9JJPsWh8uN0YNsZ2xQJb08adSEFkMzFALJuBKTrR6+puYb3tSAFXnA64
- RIRkA951o1TrurBki4znn/ynM3KivAhdj+azAjjSA4pXbjO+0MCmmYbkCVwbUQj0Dvj8
- 44W1h5fMfxExrr6IyRTcLKV4QHXuV4Kh/pKr3imZZDky7Z6rjyq9/lBI83eoGNCdUwdg
- qYag==
-X-Gm-Message-State: AOAM5303u3HNCtzPAB+9QfXMAl9JwjxLoZi3JE8j++MXHOJsPbnYxjpM
- 38tEJZwZTXGfA3xraYGuQVY=
-X-Google-Smtp-Source: ABdhPJwzQis6t91nexEui4K1KPa23MRwnqFeO4w44T/uxSjtpflFDPZt8DNsrj9ZuyA0q7D5SMSOpQ==
-X-Received: by 2002:a17:906:a398:b0:6ce:71b:deff with SMTP id
- k24-20020a170906a39800b006ce071bdeffmr1962568ejz.204.1647473690310; 
- Wed, 16 Mar 2022 16:34:50 -0700 (PDT)
-Received: from skbuf ([188.26.57.45]) by smtp.gmail.com with ESMTPSA id
- l9-20020a170906078900b006dac5f336f8sm1505354ejc.124.2022.03.16.16.34.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 16 Mar 2022 16:34:49 -0700 (PDT)
-Date: Thu, 17 Mar 2022 01:34:47 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Hans Schultz <schultz.hans@gmail.com>
-Message-ID: <20220316233447.kwyirxckgancdqmh@skbuf>
-References: <20220310142320.611738-1-schultz.hans+netdev@gmail.com>
- <20220310142320.611738-4-schultz.hans+netdev@gmail.com>
- <20220310142836.m5onuelv4jej5gvs@skbuf> <86r17495gk.fsf@gmail.com>
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=JlSDTrMLCmc5n2ZJdwjUCSRTD54RzeM/4/q2sdv25jo=;
+ b=XS5w+ZyWlWpTiG+CxkQ6EYGe4krMibClCNdCvNyGSaEm/NqEqtKQnTSE4YLOI3ahkC
+ VvF0Dm+aMj2D3waBgOmgSabopImiTP1EsHQfUmjjyUEz/unsRISlwfa0MakY7xhW2WD0
+ nBr8WyAHnrDB8NEtIvpnFAnU8qUVQk8b9Bt9hbjFqcwmGmfyE85/Jx3xzrK/LI665ivp
+ hVpVaOrxre0MBc1TZjFRq6mdouLDF8gfQPwvS6xE4ZYOBlYxxjWC43jIp/zKao2gIuiH
+ 8TQnm3m3A/iJuHW1ij8RBL+t/sA4oZ50pT7S2N82ihRAbY1+Jh0+TEOtx14Qw5WXb+mD
+ S4TQ==
+X-Gm-Message-State: AOAM5333L1gievIXTieUYUNzN+8YZ8NN3gGyuSG3uyn0ePi9KsZVHrEl
+ ZhITHqiC0aAjA+rMSDoaOAo=
+X-Google-Smtp-Source: ABdhPJzSRmsAdAJfqKM1rx3rtWQ3BwdcVcoOIx2BwAwd73G3PfuesUCuUOHS/gsZ0XuzdTE8TspiRQ==
+X-Received: by 2002:a63:f0d:0:b0:381:ee45:f557 with SMTP id
+ e13-20020a630f0d000000b00381ee45f557mr1622135pgl.436.1647476313279; 
+ Wed, 16 Mar 2022 17:18:33 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+ by smtp.gmail.com with ESMTPSA id
+ w21-20020a634755000000b00368f3ba336dsm3585121pgk.88.2022.03.16.17.18.31
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 16 Mar 2022 17:18:32 -0700 (PDT)
+Message-ID: <f9b3ecf5-c2a4-3a7a-5d19-1dbeae5acb69@gmail.com>
+Date: Wed, 16 Mar 2022 17:18:30 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86r17495gk.fsf@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Hans Schultz <schultz.hans@gmail.com>, davem@davemloft.net, kuba@kernel.org
+References: <20220310142320.611738-1-schultz.hans+netdev@gmail.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220310142320.611738-1-schultz.hans+netdev@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
- Ido Schimmel <idosch@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 3/3] net: dsa: mv88e6xxx: mac-auth/MAB
- implementation
+ Jiri Pirko <jiri@resnulli.us>, Daniel Borkmann <daniel@iogearbox.net>,
+ netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Ido Schimmel <idosch@nvidia.com>, Hans Schultz <schultz.hans+netdev@gmail.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [Bridge] [PATCH net-next 0/3] Extend locked port feature with
+ FDB locked flag (MAC-Auth/MAB)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -104,50 +107,42 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Mar 14, 2022 at 11:46:51AM +0100, Hans Schultz wrote:
-> >> @@ -396,6 +414,13 @@ static irqreturn_t mv88e6xxx_g1_atu_prob_irq_thread_fn(int irq, void *dev_id)
-> >>  				    "ATU miss violation for %pM portvec %x spid %d\n",
-> >>  				    entry.mac, entry.portvec, spid);
-> >>  		chip->ports[spid].atu_miss_violation++;
-> >> +		if (mv88e6xxx_port_is_locked(chip, chip->ports[spid].port))
-> >> +			err = mv88e6xxx_switchdev_handle_atu_miss_violation(chip,
-> >> +									    chip->ports[spid].port,
-> >> +									    &entry,
-> >> +									    fid);
-> >
-> > Do we want to suppress the ATU miss violation warnings if we're going to
-> > notify the bridge, or is it better to keep them for some reason?
-> > My logic is that they're part of normal operation, so suppressing makes
-> > sense.
-> >
+
+
+On 3/10/2022 6:23 AM, Hans Schultz wrote:
+> This patch set extends the locked port feature for devices
+> that are behind a locked port, but do not have the ability to
+> authorize themselves as a supplicant using IEEE 802.1X.
+> Such devices can be printers, meters or anything related to
+> fixed installations. Instead of 802.1X authorization, devices
+> can get access based on their MAC addresses being whitelisted.
 > 
-> I have been seeing many ATU member violations after the miss violation is
-> handled (using ping), and I think it could be considered to suppress the ATU member
-> violations interrupts by setting the IgnoreWrongData bit for the
-> port (sect 4.4.7). This would be something to do whenever a port is set in locked mode?
+> For an authorization daemon to detect that a device is trying
+> to get access through a locked port, the bridge will add the
+> MAC address of the device to the FDB with a locked flag to it.
+> Thus the authorization daemon can catch the FDB add event and
+> check if the MAC address is in the whitelist and if so replace
+> the FDB entry without the locked flag enabled, and thus open
+> the port for the device.
+> 
+> This feature is known as MAC-Auth or MAC Authentication Bypass
+> (MAB) in Cisco terminology, where the full MAB concept involves
+> additional Cisco infrastructure for authorization. There is no
+> real authentication process, as the MAC address of the device
+> is the only input the authorization daemon, in the general
+> case, has to base the decision if to unlock the port or not.
+> 
+> With this patch set, an implementation of the offloaded case is
+> supplied for the mv88e6xxx driver. When a packet ingresses on
+> a locked port, an ATU miss violation event will occur. When
+> handling such ATU miss violation interrupts, the MAC address of
+> the device is added to the FDB with a zero destination port
+> vector (DPV) and the MAC address is communicated through the
+> switchdev layer to the bridge, so that a FDB entry with the
+> locked flag enabled can be added.
 
-So the first packet with a given MAC SA triggers an ATU miss violation
-interrupt.
-
-You program that MAC SA into the ATU with a destination port mask of all
-zeroes. This suppresses further ATU miss interrupts for this MAC SA, but
-now generates ATU member violations, because the MAC SA _is_ present in
-the ATU, but not towards the expected port (in fact, towards _no_ port).
-
-Especially if user space decides it doesn't want to authorize this MAC
-SA, it really becomes a problem because this is now a vector for denial
-of service, with every packet triggering an ATU member violation
-interrupt.
-
-So your suggestion is to set the IgnoreWrongData bit on locked ports,
-and this will suppress the actual member violation interrupts for
-traffic coming from these ports.
-
-So if the user decides to unplug a previously authorized printer from
-switch port 1 and move it to port 2, how is this handled? If there isn't
-a mechanism in place to delete the locked FDB entry when the printer
-goes away, then by setting IgnoreWrongData you're effectively also
-suppressing migration notifications.
-
-Oh, btw, my question was: could you consider suppressing the _prints_ on
-an ATU miss violation on a locked port?
+FWIW, we may have about a 30% - 70% split between switches that will 
+signal ATU violations over a side band interrupt, like mv88e6xxx will, 
+and the rest will likely signal such events via the proprietary tag format.
+-- 
+Florian
