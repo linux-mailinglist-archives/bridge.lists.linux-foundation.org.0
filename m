@@ -1,95 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A9794DCDCB
-	for <lists.bridge@lfdr.de>; Thu, 17 Mar 2022 19:42:16 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A31F4DCED5
+	for <lists.bridge@lfdr.de>; Thu, 17 Mar 2022 20:27:12 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id A4034403E9;
-	Thu, 17 Mar 2022 18:42:14 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 9BE178480F;
+	Thu, 17 Mar 2022 19:27:10 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id cczZKx-Lz_oD; Thu, 17 Mar 2022 18:42:13 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id MYgdoVipcAOe; Thu, 17 Mar 2022 19:27:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 9403E402A8;
-	Thu, 17 Mar 2022 18:42:12 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id E134681491;
+	Thu, 17 Mar 2022 19:27:08 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4EA00C0082;
-	Thu, 17 Mar 2022 18:42:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 89EFBC0082;
+	Thu, 17 Mar 2022 19:27:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7BD30C000B
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 18:42:10 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DD31CC000B
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 19:27:06 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 6A61B60AEC
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 18:42:10 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id B7FA28141C
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 19:27:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id V9rGFv6TMnYo for <bridge@lists.linux-foundation.org>;
- Thu, 17 Mar 2022 18:42:09 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Xc6eFtmrYgUQ for <bridge@lists.linux-foundation.org>;
+ Thu, 17 Mar 2022 19:27:06 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
 Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
  [IPv6:2a00:1450:4864:20::633])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 4EAB460AAB
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 18:42:09 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id u23so3012611ejt.1
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 11:42:09 -0700 (PDT)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id E89918134B
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 19:27:05 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id u23so3240866ejt.1
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 12:27:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=oXxajodOegFpu3qLtW7meKAMsmhaC7A4cIBe9jeyyy8=;
- b=T1CXfgoLZaxde5dXFF4LTNE2qLUFot42LriRrOoKQgCswwyNCHb6anbnIZ/6Gvsqb4
- vmwMIhiVo7o5dlgWLclkHWo/VuqWp19QoWTUmVOdLyIxFs2qubQmR/wJrqOAKwyizCL+
- GGzDyV6Y04zs11XcJL8FLm0IQ9NUA3LGAErmZxba7krGizP2TtvcI4V+tiiAnL/g+7W0
- d+8z/Secp8G0iFoukRBbcCkDVfxNZCfccCC9S8ASJzhefj5KjNmOHKTUnNxGoP4ngWZF
- r3cuM+OGw1wWW+5g6LlM+EWzfDWy9Hebr25O9RlbPEtwvSJuDR9VyCV6u6zY+YSfZRsA
- Nm7w==
+ bh=/7iAhcR4tM55eEx0OphxTplV89HWokZKexzro1tRyR4=;
+ b=B8XIvyZykfMaM6OPqWJsED+v5Dwn3xRPjvNFplB7XHHqcf+b+PsDawQkL/LFEncHXO
+ 7BsmBBjN6XsztRPgkTlTEVyciryk7kfyMykxuI0t9DoxYnt6rqJSySkzGa499pRV5xQl
+ 2K0JH+lIFThsnhGGADoEf9LSYYhuI6P0EY+ZAWnVI1Aoj9oMpsxKN0wTqYppiQyz2G8a
+ /y+0qKS+hz8wZ9WtRe3aGXVnubOQHNZdyZiZpxwrIKXgeyYwZePhUlo/rH6Yb2RuPjCl
+ +aXjTlyMvs9HnFgqVZk8dr50w/0ScT/W1K8nPH8qAzkUX5hAtwUQCGZ6EDlKWyUlrOTI
+ htjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=oXxajodOegFpu3qLtW7meKAMsmhaC7A4cIBe9jeyyy8=;
- b=caCDJEYtT0+EDYnOtCRNQWdttCTeFMnANF1wr+LCtlt8pQmUuhbEPBVh70DIKdbq+l
- NlHqQdoH8V7pIHnhCeBzKkwqW4EI63m52RELCFZc3WrED1pTnEfwnzaatgxt9meLUqhN
- sA6fa46AkhO2V0uY1NiBidVMEICmekvd1IylnZ6Goa6kX56BnYxxe8R1JUPw5xPXFEog
- gh3nRC/WmpyxQIsUVuQIG2D+3QOwkjT89FQYCH8w4udXzrXn05UHrQjkSujnMOWCaExf
- h6p06xOxJTS+mx7P6PKKOKmFF7xXhc47DSUQTnPcNZRf0AVmz1hxQ+mYzBighZ2S42jw
- potg==
-X-Gm-Message-State: AOAM530oN38jidwOJ9DpdhHdCWDxYoBJY2aS91Xg39o7sjI7xxcxOqH/
- nWGFYQZxA74naWlmOftLnqj5gGXE+js=
-X-Google-Smtp-Source: ABdhPJyI7FbCW2YhqjttBaWbUwZA3WvvirdR9td3755YlbQ0QHnT8pu0jP7DlVdmg4nQ31ePLujjcg==
-X-Received: by 2002:a17:906:d54f:b0:6df:a9d8:cbaa with SMTP id
- cr15-20020a170906d54f00b006dfa9d8cbaamr1943701ejc.183.1647542526979; 
- Thu, 17 Mar 2022 11:42:06 -0700 (PDT)
+ bh=/7iAhcR4tM55eEx0OphxTplV89HWokZKexzro1tRyR4=;
+ b=5VyC5U+3MxB0enYMj+/NgqlR+kfSLRibBya5vAJXBDUHLePJUVqnC038au8CZARNZv
+ 9AdoXRvHzE/kwnxrVoPkaUwaj7l+L6CU5xhUDmBTue6rqNXJuxeM9h17natN4L+Mq0c5
+ VXsLormFVIig/cGEqOsB09SLqYEKe7DSct88Yindr5HcLu0snjQJhR5owrxigry2usts
+ 6bhXF/grfEZyJD26/GFy9CcBlOIzPlvNKfp+oA5K4EhC4sFNB4kszbnTIItyTVFmckq9
+ ZdzMXtt0ZFSTBoUaKjaZvvWECEf+pslxSb7DHlQ67/Nz8Cr9oWz9uWX3qPbaAlYmQL/V
+ 1SeQ==
+X-Gm-Message-State: AOAM531KBUzAObiZZjYYPUWSXiVD0AfQDWwaTt05YJSlgT2Rwb5mTDiy
+ tiijOtpEqw3jZbQVJiQca7o=
+X-Google-Smtp-Source: ABdhPJwPhRlaqdL9Yr6GpyMIvyoLXWBJgeNDVCRYVIiBTwwE4iUBPuPMJFdJZW6dfMgWExHCpvYwhA==
+X-Received: by 2002:a17:906:dc81:b0:6df:8348:d201 with SMTP id
+ cs1-20020a170906dc8100b006df8348d201mr5832495ejc.113.1647545223798; 
+ Thu, 17 Mar 2022 12:27:03 -0700 (PDT)
 Received: from skbuf ([188.26.57.45]) by smtp.gmail.com with ESMTPSA id
- w14-20020a170906d20e00b006cee22553f7sm2780238ejz.213.2022.03.17.11.42.05
+ m3-20020a17090679c300b006cf9ce53354sm2782790ejo.190.2022.03.17.12.27.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Mar 2022 11:42:06 -0700 (PDT)
-Date: Thu, 17 Mar 2022 20:42:04 +0200
+ Thu, 17 Mar 2022 12:27:03 -0700 (PDT)
+Date: Thu, 17 Mar 2022 21:27:01 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Hans Schultz <schultz.hans@gmail.com>
-Message-ID: <20220317184204.wehqmziioscdz33t@skbuf>
-References: <20220310142320.611738-1-schultz.hans+netdev@gmail.com>
- <f9b3ecf5-c2a4-3a7a-5d19-1dbeae5acb69@gmail.com>
- <86o825htih.fsf@gmail.com>
+Message-ID: <20220317192701.vskynomfmnciv732@skbuf>
+References: <20220317093902.1305816-1-schultz.hans+netdev@gmail.com>
+ <20220317093902.1305816-4-schultz.hans+netdev@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <86o825htih.fsf@gmail.com>
+In-Reply-To: <20220317093902.1305816-4-schultz.hans+netdev@gmail.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
  Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
- Ido Schimmel <idosch@nvidia.com>, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/3] Extend locked port feature with
- FDB locked flag (MAC-Auth/MAB)
+ Hans Schultz <schultz.hans+netdev@gmail.com>, linux-kselftest@vger.kernel.org,
+ Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
+ Ido Schimmel <idosch@nvidia.com>, Shuah Khan <shuah@kernel.org>,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v2 net-next 3/4] net: dsa: mv88e6xxx:
+ mac-auth/MAB implementation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -104,61 +103,74 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Mar 17, 2022 at 09:29:10AM +0100, Hans Schultz wrote:
-> On ons, mar 16, 2022 at 17:18, Florian Fainelli <f.fainelli@gmail.com> wrote:
-> > On 3/10/2022 6:23 AM, Hans Schultz wrote:
-> >> This patch set extends the locked port feature for devices
-> >> that are behind a locked port, but do not have the ability to
-> >> authorize themselves as a supplicant using IEEE 802.1X.
-> >> Such devices can be printers, meters or anything related to
-> >> fixed installations. Instead of 802.1X authorization, devices
-> >> can get access based on their MAC addresses being whitelisted.
-> >> 
-> >> For an authorization daemon to detect that a device is trying
-> >> to get access through a locked port, the bridge will add the
-> >> MAC address of the device to the FDB with a locked flag to it.
-> >> Thus the authorization daemon can catch the FDB add event and
-> >> check if the MAC address is in the whitelist and if so replace
-> >> the FDB entry without the locked flag enabled, and thus open
-> >> the port for the device.
-> >> 
-> >> This feature is known as MAC-Auth or MAC Authentication Bypass
-> >> (MAB) in Cisco terminology, where the full MAB concept involves
-> >> additional Cisco infrastructure for authorization. There is no
-> >> real authentication process, as the MAC address of the device
-> >> is the only input the authorization daemon, in the general
-> >> case, has to base the decision if to unlock the port or not.
-> >> 
-> >> With this patch set, an implementation of the offloaded case is
-> >> supplied for the mv88e6xxx driver. When a packet ingresses on
-> >> a locked port, an ATU miss violation event will occur. When
-> >> handling such ATU miss violation interrupts, the MAC address of
-> >> the device is added to the FDB with a zero destination port
-> >> vector (DPV) and the MAC address is communicated through the
-> >> switchdev layer to the bridge, so that a FDB entry with the
-> >> locked flag enabled can be added.
-> >
-> > FWIW, we may have about a 30% - 70% split between switches that will 
-> > signal ATU violations over a side band interrupt, like mv88e6xxx will, 
-> > and the rest will likely signal such events via the proprietary tag
-> > format.
-> 
-> I guess that the proprietary tag scheme a scenario where the packet can
-> be forwarded to the bridge module's ingress queue on the respective
-> port?
+On Thu, Mar 17, 2022 at 10:39:01AM +0100, Hans Schultz wrote:
+> +int mv88e6xxx_switchdev_handle_atu_miss_violation(struct mv88e6xxx_chip *chip,
+> +						  int port,
+> +						  struct mv88e6xxx_atu_entry *entry,
+> +						  u16 fid)
+> +{
+> +	struct switchdev_notifier_fdb_info info = {
+> +		.addr = entry->mac,
+> +		.vid = 0,
+> +		.added_by_user = false,
+> +		.is_local = false,
+> +		.offloaded = true,
+> +		.locked = true,
+> +	};
+> +	struct mv88e6xxx_fid_search_ctx ctx;
+> +	struct netlink_ext_ack *extack;
+> +	struct net_device *brport;
+> +	struct dsa_port *dp;
+> +	int err;
+> +
+> +	ctx.fid_search = fid;
+> +	err = mv88e6xxx_vtu_walk(chip, mv88e6xxx_find_vid_on_matching_fid, &ctx);
+> +	if (err < 0)
+> +		return err;
+> +	if (err == 1)
+> +		info.vid = ctx.vid_found;
+> +	else
+> +		return -ENODATA;
+> +
+> +	dp = dsa_to_port(chip->ds, port);
+> +	brport = dsa_port_to_bridge_port(dp);
+> +	if (!brport)
+> +		return -ENODEV;
 
-I'm not sure what you mean by forwarding to the bridge module's ingress
-queue. I expect that both cases of drivers to interact with the bridge
-in the exact same way, expect one of them calls call_switchdev_notifiers()
-from an interrupt context, and the other from NET_RX softirq context,
-from the tagging protocol driver (ok, maybe not directly, it depends
-upon whether we need rtnl_lock which sleeps, things like that).
+dsa_port_to_bridge_port() must be under rtnl_lock().
 
-I might be just projecting based on what I know, but the way I interpret
-what Florian has said is by thinking of "learn frames" as described here:
-https://patchwork.kernel.org/project/netdevbpf/cover/20220209130538.533699-1-schultz.hans+netdev@gmail.com/#24734685
-The advantage of signaling ATU misses or membership violations via learn
-frames is that you have a much wider toolbox of mitigations for denial
-of service. Instead of one ATU interrupt per packet, you have NAPI on
-the DSA master, interrupt coalescing, policers on the DSA master, rate
-limiting for learn frames in the switch...
+On a different CPU rather than the one servicing the interrupt, the
+rtnl_lock is held exactly by the user space command that triggers the
+deletion of the bridge port.
+
+The interrupt thread runs, calls dsa_port_to_bridge_port(), and finds
+a non-NULL brport, because the bridge is still doing something else in
+del_nbp(), it hasn't yet reached the netdev_upper_dev_unlink() function
+which will trigger dsa_port_bridge_leave() -> dsa_port_bridge_destroy().
+
+So you continue bravely, and you call rtnl_lock() below. This will block
+until the "ip" command finishes. When you acquire the rtnl_lock however,
+the brport is no longer valid, because you have waited for the user
+space command to finish.
+
+Best case, the bridge port deletion command was "ip link set lan0 nomaster".
+So "brport" is "lan0", you call SWITCHDEV_FDB_ADD_TO_BRIDGE, the bridge
+doesn't recognize it as a bridge port, says "huh, weird" and carries on.
+
+Worst case, "brport" was an offloaded LAG device which was a bridge
+port, and when it got destroyed by "ip link del bond0", the bridge port
+got destroyed too. So at this stage, you have a use-after-free because
+bond0 no longer exists.
+
+> +
+> +	rtnl_lock();
+> +	err = call_switchdev_notifiers(SWITCHDEV_FDB_ADD_TO_BRIDGE, brport, &info.info, extack);
+> +	if (err)
+> +		goto out;
+> +	entry->portvec = MV88E6XXX_G1_ATU_DATA_PORT_VECTOR_NO_EGRESS;
+> +	err = mv88e6xxx_g1_atu_loadpurge(chip, fid, entry);
+> +
+> +out:
+> +	rtnl_unlock();
+> +	return err;
+> +}
