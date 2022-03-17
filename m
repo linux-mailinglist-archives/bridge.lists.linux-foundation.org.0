@@ -1,82 +1,82 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576E64DC306
-	for <lists.bridge@lfdr.de>; Thu, 17 Mar 2022 10:39:31 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBD34DC309
+	for <lists.bridge@lfdr.de>; Thu, 17 Mar 2022 10:39:34 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id F3AC54052B;
-	Thu, 17 Mar 2022 09:39:29 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id BF560405C6;
+	Thu, 17 Mar 2022 09:39:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HV4T2ESZFDXu; Thu, 17 Mar 2022 09:39:29 +0000 (UTC)
+	with ESMTP id RzcDSwIeTbdm; Thu, 17 Mar 2022 09:39:31 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 4D87440B18;
-	Thu, 17 Mar 2022 09:39:28 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id AE83440B1A;
+	Thu, 17 Mar 2022 09:39:30 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 14D85C000B;
-	Thu, 17 Mar 2022 09:39:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 627DAC0083;
+	Thu, 17 Mar 2022 09:39:30 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 01988C000B
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 09:39:27 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 16980C001A
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 09:39:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id F332541896
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 09:39:26 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 263D64189E
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 09:39:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp4.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KqXIXfTm4xxF for <bridge@lists.linux-foundation.org>;
- Thu, 17 Mar 2022 09:39:24 +0000 (UTC)
+ with ESMTP id ZbZ0iHaOrKdb for <bridge@lists.linux-foundation.org>;
+ Thu, 17 Mar 2022 09:39:27 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
- [IPv6:2a00:1450:4864:20::133])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 0967141892
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 09:39:23 +0000 (UTC)
-Received: by mail-lf1-x133.google.com with SMTP id t25so8006266lfg.7
- for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 02:39:23 -0700 (PDT)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 00AB74189B
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 09:39:26 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id s29so7971847lfb.13
+ for <bridge@lists.linux-foundation.org>; Thu, 17 Mar 2022 02:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:organization:content-transfer-encoding;
- bh=uwQnx6pwvh3u1NvgP1tcS0s4NRQpVnBsyx6kEU6UEk4=;
- b=k2kH5SHw44LX+U1I8vgVRDFxYoHVjCkRGfxHD/XVhACKFuDfdlyhwS79VhJqBVe1Sv
- ZyLiPp7rGfQu5J9UThvg5umZaEIxmlRYvRHzJHdY4bKA64MnmTClSRh+/5l37fXS+hiE
- +aoPn89ubtg6jgj9L59kxamoAPiT3Qk812c68GxOzV1AP+EDdGcv/MAAxE1bJHDfA9/b
- Q3cFIeanOs7HQklTpyEjGuaq0K54NE9OphWdpuCWgxIHDHxHOxbFPJ40VkzCUCvluPJI
- lYU+T38iERECXUx/1dFg0vEu7Qkjali7PfdqYHFdu8lVGVRwHSSfP9hKMtShBwaEwiMf
- d+OQ==
+ bh=1iNgbwecG9CLhXeg2gQUBxDFDV574dX3fCv9EKwDpt4=;
+ b=HXENDTyM/Sdta2Lj8Zcpjj5NFT7bAkeICoOGVLvwn7i9kQ04150a87KR339/nXjh/r
+ c0bqAB+ZKbzvSwyj+6Fn9lJ69REzcTneYEtixxdOSUaZdY1ZI0YIp33ToLuRdEMK8BUX
+ Pg3OhkrunR1fNB7tRzGxb5lPx51P0NHePGWvXwvCBKUZeeVd9oluKZc9BptLUiQDVII6
+ kH10dymWI8PMVkAV2aStuOLAlyWKP8jw3hhsEmI/HJ2zm8zCiMl4ROHyINKbDUPVV9wO
+ V8wxma7y5CkBWFuWuudSr08iFZOPKQPD0hpwFiA6AGgmjg5K1BlZ/OfCf+jLPJczeEQ7
+ 5H6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:organization:content-transfer-encoding;
- bh=uwQnx6pwvh3u1NvgP1tcS0s4NRQpVnBsyx6kEU6UEk4=;
- b=Ke/GZCkmkxJenFy2li5zIx9ld8yd5DQa3ItcBY2W19HRYsMY6nHEIrZv4TUm9uxyaV
- uuuNKKDTF2Hb1mQ8XtaQRaAFFKbzHR764F+RW4QEDL3DycZplwigo7Nr4M2zW25YIfSP
- 0x+S5ZY996LQzxOt1/4Hj1CUHFFSr9W9GY/zVILDTi3rWTAZjmmigFHZ/RW/jPbcmPnS
- KnrnmQVcB/w8X0cmMVyhlt9W4AvLc4vxEszGYFF/Q9YhtCEfiB+UDO3F6aOnJ3CQcrUe
- rSuWa8xxgqlcuLxkoS6uAUyKiqemU6V8OpJu56s0oIy1cHqEYBhbA068Y9fcLNW6h/oG
- sevg==
-X-Gm-Message-State: AOAM532EV4O6ecvXlTt/KEPr7aKPaFRep8sQ5UVTBcSBzDEY7lKJ5/AW
- dbDx3P2RLfXLhct8Z2O/uk97oAT1RCWDiw==
-X-Google-Smtp-Source: ABdhPJz2ESit2pwtBK0+dp42fWwk772KaV2IroyT2+W3Q+GDPLm+wy9O37fS8qnrLVrRU105KSbOYA==
-X-Received: by 2002:a05:6512:32c2:b0:448:942a:3362 with SMTP id
- f2-20020a05651232c200b00448942a3362mr2368898lfg.356.1647509961939; 
- Thu, 17 Mar 2022 02:39:21 -0700 (PDT)
+ bh=1iNgbwecG9CLhXeg2gQUBxDFDV574dX3fCv9EKwDpt4=;
+ b=jdomTNmiwyUmh1B0XZoOL62BRlS1CqEViRMSNJrOqRzi6jTmUiTk7NaVAPUiK0au2/
+ zHivV+j2u6IdZIdfORgh5iDulVdZzkXhES7ZHk36ZxmO4VtnNG5jTrkKnq5G/1yI1Emu
+ JsYhOJX8gW76ox+WXqgfmUB1rAwyS3bG56eWkMbgjF71SBYGtTyxVltX4ODJWJuUw3an
+ U30xG3GkNU2gweE/Ul1Vqn37DalpdPVBBY5z4cZEagikEXvslqCGowtMEUE9kihnFaJp
+ wjLj1aK3yEcLQgtl6y8YttT6GuiU6T/kTE6YQ5bxWTT8iyUmheKOHAi5I9xgNfExgrdB
+ 8AUQ==
+X-Gm-Message-State: AOAM533YEE6zC0ivCV2KQdEguGOtAVUdd3aICYXjb0fWyNDeXBPj2PVf
+ tZr5DCAJM3yHjEtLcJbRj/k=
+X-Google-Smtp-Source: ABdhPJz7ZIV+tE9KhR33mvEXNsDVK1LOVgoI8AsaySYOAy4FcoH5Ek527dxqd7T9+wzuomja+yGxaA==
+X-Received: by 2002:a05:6512:3584:b0:448:26af:11c2 with SMTP id
+ m4-20020a056512358400b0044826af11c2mr2256791lfr.391.1647509964927; 
+ Thu, 17 Mar 2022 02:39:24 -0700 (PDT)
 Received: from wse-c0127.beijerelectronics.com ([208.127.141.29])
  by smtp.gmail.com with ESMTPSA id
- w13-20020a2e998d000000b002496199495csm113479lji.55.2022.03.17.02.39.20
+ w13-20020a2e998d000000b002496199495csm113479lji.55.2022.03.17.02.39.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Mar 2022 02:39:21 -0700 (PDT)
+ Thu, 17 Mar 2022 02:39:24 -0700 (PDT)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Thu, 17 Mar 2022 10:39:00 +0100
-Message-Id: <20220317093902.1305816-3-schultz.hans+netdev@gmail.com>
+Date: Thu, 17 Mar 2022 10:39:01 +0100
+Message-Id: <20220317093902.1305816-4-schultz.hans+netdev@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220317093902.1305816-1-schultz.hans+netdev@gmail.com>
 References: <20220317093902.1305816-1-schultz.hans+netdev@gmail.com>
@@ -91,8 +91,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Hans Schultz <schultz.hans+netdev@gmail.com>, linux-kselftest@vger.kernel.org,
  Roopa Prabhu <roopa@nvidia.com>, Vladimir Oltean <olteanv@gmail.com>,
  Shuah Khan <shuah@kernel.org>, Vivien Didelot <vivien.didelot@gmail.com>
-Subject: [Bridge] [PATCH v2 net-next 2/4] net: switchdev: add support for
-	offloading of fdb locked flag
+Subject: [Bridge] [PATCH v2 net-next 3/4] net: dsa: mv88e6xxx: mac-auth/MAB
+	implementation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,89 +107,315 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Used for Mac-auth/MAB feature in the offloaded case.
+This implementation for the Marvell mv88e6xxx chip series, is
+based on handling ATU miss violations occurring when packets
+ingress on a port that is locked. The mac address triggering
+the ATU miss violation is communicated through switchdev to
+the bridge module, which adds a fdb entry with the fdb locked
+flag set.
+Note: The locked port must have learning enabled for the ATU
+miss violation to occur.
 
 Signed-off-by: Hans Schultz <schultz.hans+netdev@gmail.com>
 ---
- include/net/switchdev.h | 3 ++-
- net/bridge/br.c         | 3 ++-
- net/bridge/br_fdb.c     | 7 +++++--
- net/bridge/br_private.h | 2 +-
- 4 files changed, 10 insertions(+), 5 deletions(-)
+ drivers/net/dsa/mv88e6xxx/Makefile            |  1 +
+ drivers/net/dsa/mv88e6xxx/chip.c              | 10 +--
+ drivers/net/dsa/mv88e6xxx/chip.h              |  5 ++
+ drivers/net/dsa/mv88e6xxx/global1.h           |  1 +
+ drivers/net/dsa/mv88e6xxx/global1_atu.c       | 29 ++++++-
+ .../net/dsa/mv88e6xxx/mv88e6xxx_switchdev.c   | 75 +++++++++++++++++++
+ .../net/dsa/mv88e6xxx/mv88e6xxx_switchdev.h   | 20 +++++
+ drivers/net/dsa/mv88e6xxx/port.c              | 17 ++++-
+ drivers/net/dsa/mv88e6xxx/port.h              |  1 +
+ 9 files changed, 150 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.c
+ create mode 100644 drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.h
 
-diff --git a/include/net/switchdev.h b/include/net/switchdev.h
-index 3e424d40fae3..d5d923411f5e 100644
---- a/include/net/switchdev.h
-+++ b/include/net/switchdev.h
-@@ -229,7 +229,8 @@ struct switchdev_notifier_fdb_info {
- 	u16 vid;
- 	u8 added_by_user:1,
- 	   is_local:1,
--	   offloaded:1;
-+	   offloaded:1,
-+	   locked:1;
- };
+diff --git a/drivers/net/dsa/mv88e6xxx/Makefile b/drivers/net/dsa/mv88e6xxx/Makefile
+index c8eca2b6f959..3ca57709730d 100644
+--- a/drivers/net/dsa/mv88e6xxx/Makefile
++++ b/drivers/net/dsa/mv88e6xxx/Makefile
+@@ -15,3 +15,4 @@ mv88e6xxx-objs += port_hidden.o
+ mv88e6xxx-$(CONFIG_NET_DSA_MV88E6XXX_PTP) += ptp.o
+ mv88e6xxx-objs += serdes.o
+ mv88e6xxx-objs += smi.o
++mv88e6xxx-objs += mv88e6xxx_switchdev.o
+\ No newline at end of file
+diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
+index 84b90fc36c58..e1b6bd738085 100644
+--- a/drivers/net/dsa/mv88e6xxx/chip.c
++++ b/drivers/net/dsa/mv88e6xxx/chip.c
+@@ -1714,11 +1714,11 @@ static int mv88e6xxx_vtu_get(struct mv88e6xxx_chip *chip, u16 vid,
+ 	return err;
+ }
  
- struct switchdev_notifier_port_obj_info {
-diff --git a/net/bridge/br.c b/net/bridge/br.c
-index b1dea3febeea..adcdbecbc218 100644
---- a/net/bridge/br.c
-+++ b/net/bridge/br.c
-@@ -166,7 +166,8 @@ static int br_switchdev_event(struct notifier_block *unused,
- 	case SWITCHDEV_FDB_ADD_TO_BRIDGE:
- 		fdb_info = ptr;
- 		err = br_fdb_external_learn_add(br, p, fdb_info->addr,
--						fdb_info->vid, false);
-+						fdb_info->vid, false,
-+						fdb_info->locked);
- 		if (err) {
- 			err = notifier_from_errno(err);
- 			break;
-diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-index 57ec559a85a7..57aa1955d34d 100644
---- a/net/bridge/br_fdb.c
-+++ b/net/bridge/br_fdb.c
-@@ -987,7 +987,7 @@ static int __br_fdb_add(struct ndmsg *ndm, struct net_bridge *br,
- 					   "FDB entry towards bridge must be permanent");
- 			return -EINVAL;
- 		}
--		err = br_fdb_external_learn_add(br, p, addr, vid, true);
-+		err = br_fdb_external_learn_add(br, p, addr, vid, true, false);
- 	} else {
- 		spin_lock_bh(&br->hash_lock);
- 		err = fdb_add_entry(br, p, addr, ndm, nlh_flags, vid, nfea_tb);
-@@ -1216,7 +1216,7 @@ void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p)
- 
- int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
- 			      const unsigned char *addr, u16 vid,
--			      bool swdev_notify)
-+			      bool swdev_notify, bool locked)
+-static int mv88e6xxx_vtu_walk(struct mv88e6xxx_chip *chip,
+-			      int (*cb)(struct mv88e6xxx_chip *chip,
+-					const struct mv88e6xxx_vtu_entry *entry,
+-					void *priv),
+-			      void *priv)
++int mv88e6xxx_vtu_walk(struct mv88e6xxx_chip *chip,
++		       int (*cb)(struct mv88e6xxx_chip *chip,
++				 const struct mv88e6xxx_vtu_entry *entry,
++				 void *priv),
++		       void *priv)
  {
- 	struct net_bridge_fdb_entry *fdb;
- 	bool modified = false;
-@@ -1236,6 +1236,9 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
- 		if (!p)
- 			flags |= BIT(BR_FDB_LOCAL);
+ 	struct mv88e6xxx_vtu_entry entry = {
+ 		.vid = mv88e6xxx_max_vid(chip),
+diff --git a/drivers/net/dsa/mv88e6xxx/chip.h b/drivers/net/dsa/mv88e6xxx/chip.h
+index 30b92a265613..64e8fc470fdf 100644
+--- a/drivers/net/dsa/mv88e6xxx/chip.h
++++ b/drivers/net/dsa/mv88e6xxx/chip.h
+@@ -763,6 +763,11 @@ static inline void mv88e6xxx_reg_unlock(struct mv88e6xxx_chip *chip)
+ 	mutex_unlock(&chip->reg_lock);
+ }
  
-+		if (locked)
-+			flags |= BIT(BR_FDB_ENTRY_LOCKED);
++int mv88e6xxx_vtu_walk(struct mv88e6xxx_chip *chip,
++		       int (*cb)(struct mv88e6xxx_chip *chip,
++				 const struct mv88e6xxx_vtu_entry *entry,
++				 void *priv),
++		       void *priv);
+ int mv88e6xxx_fid_map(struct mv88e6xxx_chip *chip, unsigned long *bitmap);
+ 
+ #endif /* _MV88E6XXX_CHIP_H */
+diff --git a/drivers/net/dsa/mv88e6xxx/global1.h b/drivers/net/dsa/mv88e6xxx/global1.h
+index 2c1607c858a1..729cc0610d9a 100644
+--- a/drivers/net/dsa/mv88e6xxx/global1.h
++++ b/drivers/net/dsa/mv88e6xxx/global1.h
+@@ -136,6 +136,7 @@
+ #define MV88E6XXX_G1_ATU_DATA_TRUNK				0x8000
+ #define MV88E6XXX_G1_ATU_DATA_TRUNK_ID_MASK			0x00f0
+ #define MV88E6XXX_G1_ATU_DATA_PORT_VECTOR_MASK			0x3ff0
++#define MV88E6XXX_G1_ATU_DATA_PORT_VECTOR_NO_EGRESS		0x0000
+ #define MV88E6XXX_G1_ATU_DATA_STATE_MASK			0x000f
+ #define MV88E6XXX_G1_ATU_DATA_STATE_UC_UNUSED			0x0000
+ #define MV88E6XXX_G1_ATU_DATA_STATE_UC_AGE_1_OLDEST		0x0001
+diff --git a/drivers/net/dsa/mv88e6xxx/global1_atu.c b/drivers/net/dsa/mv88e6xxx/global1_atu.c
+index 40bd67a5c8e9..afa54fe8667e 100644
+--- a/drivers/net/dsa/mv88e6xxx/global1_atu.c
++++ b/drivers/net/dsa/mv88e6xxx/global1_atu.c
+@@ -12,6 +12,8 @@
+ 
+ #include "chip.h"
+ #include "global1.h"
++#include "port.h"
++#include "mv88e6xxx_switchdev.h"
+ 
+ /* Offset 0x01: ATU FID Register */
+ 
+@@ -114,6 +116,18 @@ static int mv88e6xxx_g1_atu_op_wait(struct mv88e6xxx_chip *chip)
+ 	return mv88e6xxx_g1_wait_bit(chip, MV88E6XXX_G1_ATU_OP, bit, 0);
+ }
+ 
++static int mv88e6xxx_g1_read_atu_violation(struct mv88e6xxx_chip *chip)
++{
++	int err;
 +
- 		fdb = fdb_create(br, p, addr, vid, flags);
- 		if (!fdb) {
- 			err = -ENOMEM;
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index f5a0b68c4857..3275e33b112f 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -790,7 +790,7 @@ int br_fdb_sync_static(struct net_bridge *br, struct net_bridge_port *p);
- void br_fdb_unsync_static(struct net_bridge *br, struct net_bridge_port *p);
- int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
- 			      const unsigned char *addr, u16 vid,
--			      bool swdev_notify);
-+			      bool swdev_notify, bool locked);
- int br_fdb_external_learn_del(struct net_bridge *br, struct net_bridge_port *p,
- 			      const unsigned char *addr, u16 vid,
- 			      bool swdev_notify);
++	err = mv88e6xxx_g1_write(chip, MV88E6XXX_G1_ATU_OP,
++				 MV88E6XXX_G1_ATU_OP_BUSY | MV88E6XXX_G1_ATU_OP_GET_CLR_VIOLATION);
++	if (err)
++		return err;
++
++	return mv88e6xxx_g1_atu_op_wait(chip);
++}
++
+ static int mv88e6xxx_g1_atu_op(struct mv88e6xxx_chip *chip, u16 fid, u16 op)
+ {
+ 	u16 val;
+@@ -356,11 +370,11 @@ static irqreturn_t mv88e6xxx_g1_atu_prob_irq_thread_fn(int irq, void *dev_id)
+ 	int spid;
+ 	int err;
+ 	u16 val;
++	u16 fid;
+ 
+ 	mv88e6xxx_reg_lock(chip);
+ 
+-	err = mv88e6xxx_g1_atu_op(chip, 0,
+-				  MV88E6XXX_G1_ATU_OP_GET_CLR_VIOLATION);
++	err = mv88e6xxx_g1_read_atu_violation(chip);
+ 	if (err)
+ 		goto out;
+ 
+@@ -368,6 +382,10 @@ static irqreturn_t mv88e6xxx_g1_atu_prob_irq_thread_fn(int irq, void *dev_id)
+ 	if (err)
+ 		goto out;
+ 
++	err = mv88e6xxx_g1_read(chip, MV88E6352_G1_ATU_FID, &fid);
++	if (err)
++		goto out;
++
+ 	err = mv88e6xxx_g1_atu_data_read(chip, &entry);
+ 	if (err)
+ 		goto out;
+@@ -396,6 +414,13 @@ static irqreturn_t mv88e6xxx_g1_atu_prob_irq_thread_fn(int irq, void *dev_id)
+ 				    "ATU miss violation for %pM portvec %x spid %d\n",
+ 				    entry.mac, entry.portvec, spid);
+ 		chip->ports[spid].atu_miss_violation++;
++		if (mv88e6xxx_port_is_locked(chip, chip->ports[spid].port))
++			err = mv88e6xxx_switchdev_handle_atu_miss_violation(chip,
++									    chip->ports[spid].port,
++									    &entry,
++									    fid);
++		if (err)
++			goto out;
+ 	}
+ 
+ 	if (val & MV88E6XXX_G1_ATU_OP_FULL_VIOLATION) {
+diff --git a/drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.c b/drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.c
+new file mode 100644
+index 000000000000..574ae7680720
+--- /dev/null
++++ b/drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.c
+@@ -0,0 +1,75 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * mv88e6xxx_switchdev.c
++ *
++ *	Authors:
++ *	Hans J. Schultz		<hans.schultz@westermo.com>
++ *
++ */
++
++#include <net/switchdev.h>
++#include "chip.h"
++#include "global1.h"
++
++struct mv88e6xxx_fid_search_ctx {
++	u16 fid_search;
++	u16 vid_found;
++};
++
++static int mv88e6xxx_find_vid_on_matching_fid(struct mv88e6xxx_chip *chip,
++					      const struct mv88e6xxx_vtu_entry *entry,
++					      void *priv)
++{
++	struct mv88e6xxx_fid_search_ctx *ctx = priv;
++
++	if (ctx->fid_search == entry->fid) {
++		ctx->vid_found = entry->vid;
++		return 1;
++	}
++	return 0;
++}
++
++int mv88e6xxx_switchdev_handle_atu_miss_violation(struct mv88e6xxx_chip *chip,
++						  int port,
++						  struct mv88e6xxx_atu_entry *entry,
++						  u16 fid)
++{
++	struct switchdev_notifier_fdb_info info = {
++		.addr = entry->mac,
++		.vid = 0,
++		.added_by_user = false,
++		.is_local = false,
++		.offloaded = true,
++		.locked = true,
++	};
++	struct mv88e6xxx_fid_search_ctx ctx;
++	struct netlink_ext_ack *extack;
++	struct net_device *brport;
++	struct dsa_port *dp;
++	int err;
++
++	ctx.fid_search = fid;
++	err = mv88e6xxx_vtu_walk(chip, mv88e6xxx_find_vid_on_matching_fid, &ctx);
++	if (err < 0)
++		return err;
++	if (err == 1)
++		info.vid = ctx.vid_found;
++	else
++		return -ENODATA;
++
++	dp = dsa_to_port(chip->ds, port);
++	brport = dsa_port_to_bridge_port(dp);
++	if (!brport)
++		return -ENODEV;
++
++	rtnl_lock();
++	err = call_switchdev_notifiers(SWITCHDEV_FDB_ADD_TO_BRIDGE, brport, &info.info, extack);
++	if (err)
++		goto out;
++	entry->portvec = MV88E6XXX_G1_ATU_DATA_PORT_VECTOR_NO_EGRESS;
++	err = mv88e6xxx_g1_atu_loadpurge(chip, fid, entry);
++
++out:
++	rtnl_unlock();
++	return err;
++}
+diff --git a/drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.h b/drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.h
+new file mode 100644
+index 000000000000..127f3098f745
+--- /dev/null
++++ b/drivers/net/dsa/mv88e6xxx/mv88e6xxx_switchdev.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ *
++ * mv88e6xxx_switchdev.h
++ *
++ *	Authors:
++ *	Hans J. Schultz		<hans.schultz@westermo.com>
++ *
++ */
++
++#ifndef DRIVERS_NET_DSA_MV88E6XXX_MV88E6XXX_SWITCHDEV_H_
++#define DRIVERS_NET_DSA_MV88E6XXX_MV88E6XXX_SWITCHDEV_H_
++
++#include <net/switchdev.h>
++
++int mv88e6xxx_switchdev_handle_atu_miss_violation(struct mv88e6xxx_chip *chip,
++						  int port,
++						  struct mv88e6xxx_atu_entry *entry,
++						  u16 fid);
++
++#endif /* DRIVERS_NET_DSA_MV88E6XXX_MV88E6XXX_SWITCHDEV_H_ */
+diff --git a/drivers/net/dsa/mv88e6xxx/port.c b/drivers/net/dsa/mv88e6xxx/port.c
+index 795b3128768f..4656a6a3e93e 100644
+--- a/drivers/net/dsa/mv88e6xxx/port.c
++++ b/drivers/net/dsa/mv88e6xxx/port.c
+@@ -1239,6 +1239,17 @@ int mv88e6xxx_port_set_mirror(struct mv88e6xxx_chip *chip, int port,
+ 	return err;
+ }
+ 
++bool mv88e6xxx_port_is_locked(struct mv88e6xxx_chip *chip, int port)
++{
++	u16 reg;
++
++	if (mv88e6xxx_port_read(chip, port, MV88E6XXX_PORT_CTL0, &reg))
++		return false;
++	if (!(reg & MV88E6XXX_PORT_CTL0_SA_FILT_DROP_ON_LOCK))
++		return false;
++	return true;
++}
++
+ int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
+ 			    bool locked)
+ {
+@@ -1261,9 +1272,11 @@ int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
+ 	if (err)
+ 		return err;
+ 
+-	reg &= ~MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
++	reg &= ~(MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT |
++		 MV88E6XXX_PORT_ASSOC_VECTOR_IGNORE_WRONG);
+ 	if (locked)
+-		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
++		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT |
++			MV88E6XXX_PORT_ASSOC_VECTOR_IGNORE_WRONG;
+ 
+ 	return mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, reg);
+ }
+diff --git a/drivers/net/dsa/mv88e6xxx/port.h b/drivers/net/dsa/mv88e6xxx/port.h
+index e0a705d82019..09ea8f1615bb 100644
+--- a/drivers/net/dsa/mv88e6xxx/port.h
++++ b/drivers/net/dsa/mv88e6xxx/port.h
+@@ -374,6 +374,7 @@ int mv88e6xxx_port_set_fid(struct mv88e6xxx_chip *chip, int port, u16 fid);
+ int mv88e6xxx_port_get_pvid(struct mv88e6xxx_chip *chip, int port, u16 *pvid);
+ int mv88e6xxx_port_set_pvid(struct mv88e6xxx_chip *chip, int port, u16 pvid);
+ 
++bool mv88e6xxx_port_is_locked(struct mv88e6xxx_chip *chip, int port);
+ int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
+ 			    bool locked);
+ 
 -- 
 2.30.2
 
