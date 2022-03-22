@@ -1,88 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BD54E3D33
-	for <lists.bridge@lfdr.de>; Tue, 22 Mar 2022 12:08:16 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E20D4E3F65
+	for <lists.bridge@lfdr.de>; Tue, 22 Mar 2022 14:22:11 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 17864611E3;
-	Tue, 22 Mar 2022 11:08:14 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 8B95E81398;
+	Tue, 22 Mar 2022 13:22:09 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Vvm7fObxJr4Y; Tue, 22 Mar 2022 11:08:13 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id A08AC611DD;
-	Tue, 22 Mar 2022 11:08:12 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id tgpbHOQiV6h3; Tue, 22 Mar 2022 13:22:09 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 2607C842AC;
+	Tue, 22 Mar 2022 13:22:08 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5BB0FC0082;
-	Tue, 22 Mar 2022 11:08:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CEF0CC0082;
+	Tue, 22 Mar 2022 13:22:07 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 924D0C000B
- for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 11:08:11 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0C498C000B
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 13:22:06 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 8700940133
- for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 11:08:11 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 097A6842AC
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 13:22:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FlwXvsfrx9Rc for <bridge@lists.linux-foundation.org>;
- Tue, 22 Mar 2022 11:08:10 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5e94F-ILXT6F for <bridge@lists.linux-foundation.org>;
+ Tue, 22 Mar 2022 13:22:05 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
- [IPv6:2a00:1450:4864:20::535])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 7B00A401FB
- for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 11:08:10 +0000 (UTC)
-Received: by mail-ed1-x535.google.com with SMTP id g20so21210904edw.6
- for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 04:08:10 -0700 (PDT)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
+ [IPv6:2a00:1450:4864:20::22f])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 3155981398
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 13:22:05 +0000 (UTC)
+Received: by mail-lj1-x22f.google.com with SMTP id q5so23876074ljb.11
+ for <bridge@lists.linux-foundation.org>; Tue, 22 Mar 2022 06:22:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=9ZYK2bO0oPIhpErMM+q2xzW2Mm6s9oaP61Irqyq44+o=;
- b=Nvd7dfWXP+MA7dn8CeB7ApslVwt7Ch4qLfscmiSOHeFbaOF9/tK1poS1ifcMe3ghNg
- DnCEz0wXmVONAozXAWG/QpUZ4hiqnzDPu35fl+Oht/1JY2MNekzvFurIZPRK9t/7rxZS
- jQDTi9f0zRetFMQRsN1rLdQSRxaaGPNqka4iqCdbRHdX/PjP+gv6AxOPBUGud1P0psXO
- BCooV9cbBp7iFmg4K8E0k9YVVMJWkK8r3oJTpljeWkfSp9Y9W+mb7xk88H/CNd5BtcM3
- SSlFK/VVUIZV5bVyZBvk+zDc7RNpT/k+MCpku+Wej43wkkN4k2xU3ruiYTp8mggUiK4h
- ez/w==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=AjcCl508/3oBfoVa+HHFPodqa5oQijS6CmLfzMEJ/u4=;
+ b=RbgTHNgJumkKhypcVJzqThV2d98m5yX0RD5BZKNJlLmXSNgMuLiLI24cCu53Me2Y41
+ kFFJPAq2f+tJChxDH/EPhvnv5EnETOgWfdtGRGm2jijKSd2anzrZEG6GYmHaxxLEpNHE
+ ki3QBs951g5pKa6JoS9uSl2NWDERGyfhhT3If/gClFoO0owTBcU+bW5dcSeiVNzrUQr+
+ GYah0ydJN+vLiU7DBBSjo7XlkmcB64QodtXu7Bsssvb0CTNrkR9OhyyK1KDFj5eWVPF2
+ pPfLPxmeUl/JtK3y93wMJRS2xBBYUgp6feZdgCppceRbeg881nn/wlcQSuETg3D0yCWL
+ W3Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=9ZYK2bO0oPIhpErMM+q2xzW2Mm6s9oaP61Irqyq44+o=;
- b=JaiDcw9H6zHH7uPz8IK5jXlT0s5Fjsd91BQfSIJrTAWxz8GWhWkCFNRz9EyuQkclvl
- L9AovozTC2dGL6CXhM/kU4+ktrOq39XEUCh3H7z3JUmruSy4eFGMMNtsoN/bSkg9N69z
- uaRqut6Bj7yvoKplNsaH9UcaFnoqbLHPJAtUGX2eZd8bEQDnZzKnvb87oAzadRzZ8Smw
- zPJ4gQ3PPVr5gly0JRbLHuiWozOu0PXX6uwYNFUYIzUm0hE5/3FGGw+/yJ/bAhcWGj5Y
- uZLxxC4oNFTvC1dYRZfkezk3FK/lVtLVMChVrEQvMpfLDE07/RV12oKBCfe5S8EIH+JT
- sKGA==
-X-Gm-Message-State: AOAM532JHGLv6WKqupeP6Y6pp/5tpF5AkKuaUPsNKUeyF6NieJcwji+g
- IQaVMLrIRREajVV+ZJlMbio=
-X-Google-Smtp-Source: ABdhPJxwzHI14us8PNdJyGZCDFh1poffoPsaBjmk5C1HtrUqXOCt2KvM/2Sr02yEmj1OjpVrpDyDEQ==
-X-Received: by 2002:a05:6402:168a:b0:3fb:600e:4cc3 with SMTP id
- a10-20020a056402168a00b003fb600e4cc3mr27599944edv.32.1647947288419; 
- Tue, 22 Mar 2022 04:08:08 -0700 (PDT)
-Received: from skbuf ([188.26.57.45]) by smtp.gmail.com with ESMTPSA id
- u9-20020a170906124900b006ce88a505a1sm8482338eja.179.2022.03.22.04.08.06
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=AjcCl508/3oBfoVa+HHFPodqa5oQijS6CmLfzMEJ/u4=;
+ b=nTkRO6RZqgc2GqvuU8boki2yPBZAncTvOI/JuTi1ubBVEoqdy2gy2S2VV/mGUwLCGs
+ ZHEQUs5TpOA9axX/0JYxSCK8Y0BvKGV2IGrXR19pp+iHIEE8BK9loTIxnop2RMNgb2N2
+ iXEXNpc8zGHUBaK4rWZTBaynfmj0ypVvIhUv2pTsA05zC14Ce0rH5i6dbwtDKKtWPK+c
+ p5KXIB5DI208RZ1bIIh5+FjokCfXhyaV/2lYsyOP5Lot/ztj3nEnSyy+cuPGh775nys5
+ vBy/6l3BV9gPtkkLEbfMi/8Ctf8x+GUVH1IUIE/JNY1oYVEd3dHioy7rExIsCv1MbZa/
+ xLdA==
+X-Gm-Message-State: AOAM532ytjh1A8UGd1mwIyvFvkKLqswx5eqoMhovRZScxQsoWkE/328c
+ r4GR2s1NmjIxsLAr4k88u2ggtHyQdriW7g==
+X-Google-Smtp-Source: ABdhPJzFswqUOAuAWZ/WBTHRItFTQwUGjyxdjYGlpcmIQYC2z/Bnt3kcgiq8Zgmq2gEsp5Ka7wtgyQ==
+X-Received: by 2002:a2e:bf04:0:b0:246:7ace:e157 with SMTP id
+ c4-20020a2ebf04000000b002467acee157mr19388105ljr.241.1647955322452; 
+ Tue, 22 Mar 2022 06:22:02 -0700 (PDT)
+Received: from wse-c0127 ([208.127.141.29]) by smtp.gmail.com with ESMTPSA id
+ x11-20020a19e00b000000b004488bf4137esm2204467lfg.245.2022.03.22.06.21.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Mar 2022 04:08:07 -0700 (PDT)
-Date: Tue, 22 Mar 2022 13:08:06 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Hans Schultz <schultz.hans@gmail.com>
-Message-ID: <20220322110806.kbdb362jf6pbtqaf@skbuf>
-References: <20220317153625.2ld5zgtuhoxbcgvo@skbuf> <86ilscr2a4.fsf@gmail.com>
- <20220317161808.psftauoz5iaecduy@skbuf> <8635jg5xe5.fsf@gmail.com>
- <20220317172013.rhjvknre5w7mfmlo@skbuf> <86tubvk24r.fsf@gmail.com>
- <20220318121400.sdc4guu5m4auwoej@skbuf> <86pmmjieyl.fsf@gmail.com>
- <20220318131943.hc7z52beztqlzwfq@skbuf> <86a6dixnd2.fsf@gmail.com>
+ Tue, 22 Mar 2022 06:22:01 -0700 (PDT)
+From: Hans Schultz <schultz.hans@gmail.com>
+X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
+To: Vladimir Oltean <olteanv@gmail.com>, Hans Schultz <schultz.hans@gmail.com>
+In-Reply-To: <20220322110806.kbdb362jf6pbtqaf@skbuf>
+References: <20220317153625.2ld5zgtuhoxbcgvo@skbuf>
+ <86ilscr2a4.fsf@gmail.com> <20220317161808.psftauoz5iaecduy@skbuf>
+ <8635jg5xe5.fsf@gmail.com> <20220317172013.rhjvknre5w7mfmlo@skbuf>
+ <86tubvk24r.fsf@gmail.com> <20220318121400.sdc4guu5m4auwoej@skbuf>
+ <86pmmjieyl.fsf@gmail.com> <20220318131943.hc7z52beztqlzwfq@skbuf>
+ <86a6dixnd2.fsf@gmail.com> <20220322110806.kbdb362jf6pbtqaf@skbuf>
+Date: Tue, 22 Mar 2022 14:21:58 +0100
+Message-ID: <86ee2ujf61.fsf@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86a6dixnd2.fsf@gmail.com>
+Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
@@ -106,47 +104,53 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Mar 22, 2022 at 12:01:13PM +0100, Hans Schultz wrote:
-> On fre, mar 18, 2022 at 15:19, Vladimir Oltean <olteanv@gmail.com> wrote:
-> > On Fri, Mar 18, 2022 at 02:10:26PM +0100, Hans Schultz wrote:
-> >> In the offloaded case there is no difference between static and dynamic
-> >> flags, which I see as a general issue. (The resulting ATU entry is static
-> >> in either case.)
-> >
-> > It _is_ a problem. We had the same problem with the is_local bit.
-> > Independently of this series, you can add the dynamic bit to struct
-> > switchdev_notifier_fdb_info and make drivers reject it.
-> >
-> >> These FDB entries are removed when link goes down (soft or hard). The
-> >> zero DPV entries that the new code introduces age out after 5 minutes,
-> >> while the locked flagged FDB entries are removed by link down (thus the
-> >> FDB and the ATU are not in sync in this case).
-> >
-> > Ok, so don't let them disappear from hardware, refresh them from the
-> > driver, since user space and the bridge driver expect that they are
-> > still there.
-> 
-> I have now tested with two extra unmanaged switches (each connected to a
-> seperate port on our managed switch, and when migrating from one port to
-> another, there is member violations, but as the initial entry ages out,
-> a new miss violation occurs and the new port adds the locked entry. In
-> this case I only see one locked entry, either on the initial port or
-> later on the port the host migrated to (via switch).
-> 
-> If I refresh the ATU entries indefinitly, then this migration will for
-> sure not work, and with the member violation suppressed, it will be
-> silent about it.
+On tis, mar 22, 2022 at 13:08, Vladimir Oltean <olteanv@gmail.com> wrote:
+> On Tue, Mar 22, 2022 at 12:01:13PM +0100, Hans Schultz wrote:
+>> On fre, mar 18, 2022 at 15:19, Vladimir Oltean <olteanv@gmail.com> wrote:
+>> > On Fri, Mar 18, 2022 at 02:10:26PM +0100, Hans Schultz wrote:
+>> >> In the offloaded case there is no difference between static and dynamic
+>> >> flags, which I see as a general issue. (The resulting ATU entry is static
+>> >> in either case.)
+>> >
+>> > It _is_ a problem. We had the same problem with the is_local bit.
+>> > Independently of this series, you can add the dynamic bit to struct
+>> > switchdev_notifier_fdb_info and make drivers reject it.
+>> >
+>> >> These FDB entries are removed when link goes down (soft or hard). The
+>> >> zero DPV entries that the new code introduces age out after 5 minutes,
+>> >> while the locked flagged FDB entries are removed by link down (thus the
+>> >> FDB and the ATU are not in sync in this case).
+>> >
+>> > Ok, so don't let them disappear from hardware, refresh them from the
+>> > driver, since user space and the bridge driver expect that they are
+>> > still there.
+>> 
+>> I have now tested with two extra unmanaged switches (each connected to a
+>> seperate port on our managed switch, and when migrating from one port to
+>> another, there is member violations, but as the initial entry ages out,
+>> a new miss violation occurs and the new port adds the locked entry. In
+>> this case I only see one locked entry, either on the initial port or
+>> later on the port the host migrated to (via switch).
+>> 
+>> If I refresh the ATU entries indefinitly, then this migration will for
+>> sure not work, and with the member violation suppressed, it will be
+>> silent about it.
+>
+> Manual says that migrations should trigger miss violations if configured
+> adequately, is this not the case?
+>
+Yes, but that depends on the ATU entries ageing out. As it is now, it works.
 
-Manual says that migrations should trigger miss violations if configured
-adequately, is this not the case?
+>> So I don't think it is a good idea to refresh the ATU entries
+>> indefinitely.
+>> 
+>> Another issue I see, is that there is a deadlock or similar issue when
+>> receiving violations and running 'bridge fdb show' (it seemed that
+>> member violations also caused this, but not sure yet...), as the unit
+>> freezes, not to return...
+>
+> Have you enabled lockdep, debug atomic sleep, detect hung tasks, things
+> like that?
 
-> So I don't think it is a good idea to refresh the ATU entries
-> indefinitely.
-> 
-> Another issue I see, is that there is a deadlock or similar issue when
-> receiving violations and running 'bridge fdb show' (it seemed that
-> member violations also caused this, but not sure yet...), as the unit
-> freezes, not to return...
-
-Have you enabled lockdep, debug atomic sleep, detect hung tasks, things
-like that?
+No, I haven't looked deeper into it yet. Maybe I was hoping someone had
+an idea... but I guess it cannot be a netlink deadlock?
