@@ -1,74 +1,72 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A364E509C
-	for <lists.bridge@lfdr.de>; Wed, 23 Mar 2022 11:47:05 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A744E50C2
+	for <lists.bridge@lfdr.de>; Wed, 23 Mar 2022 11:57:30 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D9D68419B9;
-	Wed, 23 Mar 2022 10:47:03 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 4CD0184825;
+	Wed, 23 Mar 2022 10:57:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id oYdEPLPF3G2K; Wed, 23 Mar 2022 10:47:03 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id p3CggwlzUbgv; Wed, 23 Mar 2022 10:57:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 70FE6419F1;
-	Wed, 23 Mar 2022 10:47:02 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id CBC438499A;
+	Wed, 23 Mar 2022 10:57:26 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 389FDC0073;
-	Wed, 23 Mar 2022 10:47:02 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 7F8C3C0073;
+	Wed, 23 Mar 2022 10:57:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B7796C000B
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 10:47:00 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2A11EC000B
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 10:57:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 9DA244028D
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 10:47:00 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 25D5084991
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 10:57:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 7ISVXY9kbsJq for <bridge@lists.linux-foundation.org>;
- Wed, 23 Mar 2022 10:46:59 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id DzU-QxghUEVY for <bridge@lists.linux-foundation.org>;
+ Wed, 23 Mar 2022 10:57:24 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 08BDC4012A
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 10:46:58 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id a26so1963264lfg.10
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 03:46:58 -0700 (PDT)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
+ [IPv6:2a00:1450:4864:20::234])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 3B8FA84825
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 10:57:24 +0000 (UTC)
+Received: by mail-lj1-x234.google.com with SMTP id bn33so1284872ljb.6
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 03:57:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=Pu11LzVwuByfb36IZDoOrF20LUpwOjWGCIQG1Ta8jIk=;
- b=Ntiazh9dgiTE4IwJgyUwQMnIG/ORs4kK1bZSFbSQydrSo/iK8bqJMWdRu/tsA3bDqG
- IoTMbmyQGQKSwc7re78cg6+wSgvrdWFZKBtGnE1ELpFS90Cxutl6ccSGIHp0OYvyqOuM
- d/BLjJwBQrtiqW4AFg99q/dh4ZEhJ5cJbdwIphqhcP4LGkjrgw5YMKVgnazbiLXpnf7E
- Joyliu8uqdz9KbVNSLnjKhtNvl5TCLXC2pyj449YPVK+J3D/ymqYNhR/wukKVYDsfsmS
- eaPCjYt4cZxsI8AiV6likmQID2ZhEISyR/JVfS/4s+cQnwyb+DJe3c+S8J5ZI9yIes4c
- exYw==
+ :mime-version; bh=OXIgpQewnxlg0QpZCeU/b/t8bzjboH/kCWJvwnGyNJc=;
+ b=MMJDo4C5ZsXS02QHJkGPkc2lyI5LXoN+MlgkdrsVMW5SssCeJVW62Hs8mQRF3COpAT
+ VoO5NNnXNPCV4rNmVczeMJZdEJK+aGSdrLdzEa/e4kve9X3PhraQJf3lE+5NyF/0sQqD
+ MS2xjVtu0Xrt1BF9eRkLSzjEISDF0SDQNKCgEPF/mhGwcW4uoOgOHLtMIEfWVKdS0/17
+ 4TmHYqPFP1N3VJNhdX7S6rtXZvyW8EH2g+P2iZMreLFP5sL3HUkBfPb8eZy1b3fKu7Gn
+ RcXSB1t5eFFxEuRKGIynxbt7uuw1MSFaG0Y2wRLVCmncp7cHrBFYKq7TvBKJtC5cHXXE
+ zP5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=Pu11LzVwuByfb36IZDoOrF20LUpwOjWGCIQG1Ta8jIk=;
- b=I8Uei27AxD5+ItYrMxFlN/hl1K1Jrc9Pqd3qWvGKqB9qWIyoGupVx975qk2T54Ac9R
- KDZwJksTba++BANdzXEb5mgWyOvmkM7uU33n+us4k56deuYFlecudOH85SI8Xi4niaU+
- FZicMyUf1ShT9XtBcjhC5VUP3qf/AK6HCWhenN5tf0EkvYVGtW53JbZuqi8j6GSNtcNb
- Bzmz5j6XhDRZ+NKZQMSWzZ2KbX7iNuMAZibwrOX56qKDYp/80OU9IMMwAhhtpWNpZDgW
- /DJK5nunJNDV+l9HhS5QmAyhx9J2fvq33lNGCEs1v4Pr3/H3nBDZouxp4Hwusf9eMLAZ
- InCQ==
-X-Gm-Message-State: AOAM5307Jaqj+3tMgaJQnazVF57PGzBFR1kvjhAMB5+QJAg/pT6dBTdN
- WqRRijHBgjC1dijzBFioo4ymJ9LEckeHKA==
-X-Google-Smtp-Source: ABdhPJwS+x43AwVdf/Sg4bgW4u+6IvcsrHVM8+aAaoQWmLJD4WKc4uQK5ia9Z5ZW/bb2U0c4Qv33gQ==
-X-Received: by 2002:a05:6512:c23:b0:44a:2c00:1a08 with SMTP id
- z35-20020a0565120c2300b0044a2c001a08mr10346655lfu.468.1648032416918; 
- Wed, 23 Mar 2022 03:46:56 -0700 (PDT)
+ bh=OXIgpQewnxlg0QpZCeU/b/t8bzjboH/kCWJvwnGyNJc=;
+ b=4ZfG/XjXP3vJ+DpxXr57GjOcFqE3Z36b0DD8/xQUj9KMQq+8wKyjNXNPh4M330r/8q
+ crmLBEcQ2RBksgAphcUJkw/p7p1gIFPvnTg/dTcx99EhOcfk8zdM6+bRYOn2zjGT9SNs
+ Z9dr24xtmWiq8JgC5z7sKif1Lane9/oHqKcATHMU/EdAOKnC6c0CREOXcfftfLaX3NQ3
+ avK/IlAGwf405jG3QtRn8r0m+RPecaaHgsurlXRJipneSYO4GXiHJyYRUAapAPkVjxgA
+ KIFcghPcNS2DE2L0aHFvjCh7pq3CTxDs2IWywLK077E44ReSWhtlB0s15AUIUwTglRTW
+ dvYQ==
+X-Gm-Message-State: AOAM532hp4YJoVCZj5hPAZnoKPSvEn6vj5Bbg3jCQh7bFwaEoYODVQUq
+ CMOgJCkM8qRwHT8jDJC+Dchu7ZAY//lm1w==
+X-Google-Smtp-Source: ABdhPJxhKO/5vy8tmJTecOngQH5nB4XpLXNl7EL+81Szm3yq5mv9kBuGhnMN5unFmagxo5GjkOcSdw==
+X-Received: by 2002:a2e:b014:0:b0:23c:9593:f7 with SMTP id
+ y20-20020a2eb014000000b0023c959300f7mr21851030ljk.209.1648033039623; 
+ Wed, 23 Mar 2022 03:57:19 -0700 (PDT)
 Received: from wse-c0127 ([208.127.141.29]) by smtp.gmail.com with ESMTPSA id
- p12-20020a056512138c00b0044833f1cd85sm2495587lfa.62.2022.03.23.03.46.54
+ l4-20020a2e9084000000b00244cb29e3e4sm2738763ljg.133.2022.03.23.03.57.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Mar 2022 03:46:56 -0700 (PDT)
+ Wed, 23 Mar 2022 03:57:19 -0700 (PDT)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: Vladimir Oltean <olteanv@gmail.com>, Hans Schultz <schultz.hans@gmail.com>
@@ -79,8 +77,8 @@ References: <20220317161808.psftauoz5iaecduy@skbuf>
  <86pmmjieyl.fsf@gmail.com> <20220318131943.hc7z52beztqlzwfq@skbuf>
  <86a6dixnd2.fsf@gmail.com> <20220322110806.kbdb362jf6pbtqaf@skbuf>
  <86fsn90ye8.fsf@gmail.com> <20220323101643.kum3nuqctunakcfo@skbuf>
-Date: Wed, 23 Mar 2022 11:46:53 +0100
-Message-ID: <86h77px7xe.fsf@gmail.com>
+Date: Wed, 23 Mar 2022 11:57:16 +0100
+Message-ID: <864k3p5437.fsf@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -165,6 +163,8 @@ On ons, mar 23, 2022 at 12:16, Vladimir Oltean <olteanv@gmail.com> wrote:
 > ATU interrupt handler you do mv88e6xxx_reg_lock() -> rtnl_lock(), while
 > from the port_fdb_dump() handler you do rtnl_lock() -> mv88e6xxx_reg_lock()?
 
-Yes, I forgot that the whole handler is under mv88e6xxx_reg_lock(). I
-hope then that I can release the mv88e6xxx_reg_lock() before calling the
-handler function with issues?
+If I release the mv88e6xxx_reg_lock() before calling the handler, I need
+to get it again for the mv88e6xxx_g1_atu_loadpurge() call at least. But
+maybe the vtu_walk also needs the mv88e6xxx_reg_lock()?
+I could also just release the mv88e6xxx_reg_lock() before the
+call_switchdev_notifiers() call and reacquire it immediately after?
