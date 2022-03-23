@@ -1,74 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4C24E527D
-	for <lists.bridge@lfdr.de>; Wed, 23 Mar 2022 13:49:44 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58C34E546D
+	for <lists.bridge@lfdr.de>; Wed, 23 Mar 2022 15:42:35 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D1A69401EA;
-	Wed, 23 Mar 2022 12:49:42 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 66BF760BAF;
+	Wed, 23 Mar 2022 14:42:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id o5eJd2FUwdmE; Wed, 23 Mar 2022 12:49:42 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZfEUSTdt1l7d; Wed, 23 Mar 2022 14:42:33 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 5A1684024B;
-	Wed, 23 Mar 2022 12:49:41 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id CC9EA60B62;
+	Wed, 23 Mar 2022 14:42:32 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 18CD6C0073;
-	Wed, 23 Mar 2022 12:49:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8EC4AC0073;
+	Wed, 23 Mar 2022 14:42:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 27920C000B
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 12:49:39 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 03B84C000B
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 14:42:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 17880841A9
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 12:49:39 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id D695940C16
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 14:42:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id anALpjZ-XPfB for <bridge@lists.linux-foundation.org>;
- Wed, 23 Mar 2022 12:49:38 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id w38zcdCGuk1c for <bridge@lists.linux-foundation.org>;
+ Wed, 23 Mar 2022 14:42:30 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com
- [IPv6:2a00:1450:4864:20::22e])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 296C084133
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 12:49:38 +0000 (UTC)
-Received: by mail-lj1-x22e.google.com with SMTP id r22so1677505ljd.4
- for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 05:49:37 -0700 (PDT)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com
+ [IPv6:2a00:1450:4864:20::236])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id A9AA6400FE
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 14:42:29 +0000 (UTC)
+Received: by mail-lj1-x236.google.com with SMTP id 17so2127091ljw.8
+ for <bridge@lists.linux-foundation.org>; Wed, 23 Mar 2022 07:42:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=nM4ECUsKD86TuX1aebriaMiAFYf1FOMfworhtEK62yY=;
- b=q4QXZ6ZYBRVEjNXVeG4HyqNr/xsvJ41Yrfq1g3qXiSTGEX/JyAKhQYXsucxBKhrPoX
- 1zALqoDFrlUEazH4Utx9a5idSyhlM5jEkiIx8KAhoiW4MqmaSiooQIrlBuZHBc29Kp71
- YdInh1dNzHDr6/a+0Iz5PofA7Zmy3jM0BGyS5+pUq9nEy9jHQDPZGwAhU/R1UBr2fn90
- s14w5/bTh/a70n/j/2g8ScpAjOCveJ2AEywNjgbUN5mTLEcoOepBH10NACleW3L2Enoz
- 33uT5HmvypS9EpSoHduNTMc9H9g0NHv7dBMJIHiR0Pez0K7Mr+MbmNiSjYZOEoG8j34n
- kCPw==
+ :mime-version; bh=wWoDyk0souHL0BfO892KrxnvBcHbZCjITuRPNjJCS4Y=;
+ b=Eeb2BjBdh6gZ3pn03ILA5hayAMXT+FBZurX2u1TenrsRs3wU+bTV1J/VdkuK8svT4Y
+ limKSOwJZJ/axP0N+N+H3hQZ7LyolpT4nsTFCStFPOlcrFzhxFdPx7ebfzek/lMo1wTa
+ Ix6g7Hc91E3thdxBPN7BrjeBOYteUA2MHCO49nHjC0Qy5LGJ7cJ0efMAiNoJZUbzDSoT
+ tKPOo3i7ZNU2u3zOIMi5aeQLKMwiiIkgPvj19OKrOwR4turxWsmbKHvj3HAn6iF+w4ss
+ 38CdsQJJhkMBJyQFSQ8Ugqjab0l98jReUth1lu9lIDLRIpOgLC3xcnIC7qbU3FCqTJuJ
+ DxyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=nM4ECUsKD86TuX1aebriaMiAFYf1FOMfworhtEK62yY=;
- b=0+QfVw1rSi+cfZf1mEV3nM6XZ936SOl0yJonvICd6KqhMnplNJB9Q4kqcyaCihFGPG
- 4HdFe7B1mschldNzcGJ9j7MKFnG30Glq02rmwCUtg5PzrX1hMpKkeAV8OXdeynaGNIlc
- zhduzNdwe3i7BguwsIogLKPBelQGBWuJWoystcf39quWdGpDID5/otF9Lbel1dbkgmUz
- RiN71W0zyIvXadYCBUwsR7HtnxeQHlqn52/llBoKpG+i04rbL+CRJiAdH9DFVZnyuC2w
- N/oClooxBMu7xOq7K6JhaLkikGqeQ3bkxR7Z3nh4vHUqGIMr2UCZma8kEtxSPBWu3ys4
- z6dw==
-X-Gm-Message-State: AOAM531UPtSqhEqF9HIkFX4JHAV6JhlOoNhNxOwpj3fdABKh0Vw4xbgH
- v4iSaLk0pvprixBPc+QeYeI=
-X-Google-Smtp-Source: ABdhPJxzVlKNn3Jz26qzmOxkGiYvN7hZ1TF3R5fHeuNMvIa8zgMHBmDQdKGFqBG0N1ilCFcXwDnrzw==
-X-Received: by 2002:a2e:944e:0:b0:246:4a4f:c610 with SMTP id
- o14-20020a2e944e000000b002464a4fc610mr21656073ljh.458.1648039775924; 
- Wed, 23 Mar 2022 05:49:35 -0700 (PDT)
+ bh=wWoDyk0souHL0BfO892KrxnvBcHbZCjITuRPNjJCS4Y=;
+ b=FObzmfBJuAXQe7aU7A9og1dnhPJHUJMvjzkLBXH4+twJmkQwv4yeoXTDqnb3S6md3e
+ AyELioTpP1BpOg1yJ0J2syFowhVjLjDrnF1n/CCYNJZdV72xJGUzUq6dJg43ePlxHZee
+ WzI6x17BmiRjpDCQsYkgD28cy2Dm2IS6iM50rYah3/+R0F5jbXZIWvjuWAKuBx1uH0HR
+ EBtaQHJQDhZDLAwCywliaOVebqy2H/AkXgRHZF+xL5rzk3muGrJSKYPohUYuxpP0+856
+ HZx2r3uZoPJRhlz8VJUh2CqZngphW7d/Cu0/iAsUjWQmF8gpLPzNQDeabdnAclwClbtV
+ kHjA==
+X-Gm-Message-State: AOAM530hwb9tg4segPGe/wb1IqALZzjWz1tR/z0b08vXsHS3oIwv0hgt
+ mr7HThFMjixmbCQXSvLjw6w=
+X-Google-Smtp-Source: ABdhPJyOZPDzNCLStyFd+3QSpZrdrdoNBlBodGlMGwyBzXRLMDkExYS2/X7ys+YlxkePUPOjYsj0lA==
+X-Received: by 2002:a2e:860a:0:b0:249:93fb:f45f with SMTP id
+ a10-20020a2e860a000000b0024993fbf45fmr243185lji.77.1648046547545; 
+ Wed, 23 Mar 2022 07:42:27 -0700 (PDT)
 Received: from wse-c0127 ([208.127.141.29]) by smtp.gmail.com with ESMTPSA id
- n2-20020a056512310200b0044a30030d33sm905924lfb.91.2022.03.23.05.49.33
+ 25-20020a2e0e19000000b002495d863173sm17608ljo.61.2022.03.23.07.42.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Mar 2022 05:49:35 -0700 (PDT)
+ Wed, 23 Mar 2022 07:42:27 -0700 (PDT)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: Vladimir Oltean <olteanv@gmail.com>, Hans Schultz <schultz.hans@gmail.com>
@@ -76,8 +76,8 @@ In-Reply-To: <20220323123534.i2whyau3doq2xdxg@skbuf>
 References: <20220317093902.1305816-1-schultz.hans+netdev@gmail.com>
  <20220317093902.1305816-3-schultz.hans+netdev@gmail.com>
  <86o81whmwv.fsf@gmail.com> <20220323123534.i2whyau3doq2xdxg@skbuf>
-Date: Wed, 23 Mar 2022 13:49:32 +0100
-Message-ID: <86wngkbzqb.fsf@gmail.com>
+Date: Wed, 23 Mar 2022 15:42:24 +0100
+Message-ID: <86h77owx0v.fsf@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -168,10 +168,8 @@ On ons, mar 23, 2022 at 14:35, Vladimir Oltean <olteanv@gmail.com> wrote:
 > FDB entries learned externally.
 >
 
-It seems to me that something is missing then?
-My tests using trafgen that I gave a report on to Lunn generated massive
-amounts of fdb entries, but after a while the ATU was clean and the fdb
-was still full of random entries...
+How is the mechanism supposed to work to remove fdb entries when ATU
+entries age out?
 
 >> >  	} else {
 >> >  		spin_lock_bh(&br->hash_lock);
