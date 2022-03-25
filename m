@@ -2,73 +2,71 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981F34E6F2A
-	for <lists.bridge@lfdr.de>; Fri, 25 Mar 2022 08:50:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8424E6FF3
+	for <lists.bridge@lfdr.de>; Fri, 25 Mar 2022 10:24:29 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id E010D4154E;
-	Fri, 25 Mar 2022 07:50:44 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 6FE2F41CAB;
+	Fri, 25 Mar 2022 09:24:28 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id z-feDE7k5t-e; Fri, 25 Mar 2022 07:50:44 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 7B980415DB;
-	Fri, 25 Mar 2022 07:50:43 +0000 (UTC)
+	with ESMTP id 2AuBiPvDlhlb; Fri, 25 Mar 2022 09:24:27 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 02E5A41A07;
+	Fri, 25 Mar 2022 09:24:27 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 3968CC0082;
-	Fri, 25 Mar 2022 07:50:43 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B11DCC0073;
+	Fri, 25 Mar 2022 09:24:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D8B6AC0012
- for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 07:50:41 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 761A1C0012
+ for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 09:24:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id C68F784407
- for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 07:50:41 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 5DD3F41CAB
+ for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 09:24:25 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xLhDa84mbtzf for <bridge@lists.linux-foundation.org>;
- Fri, 25 Mar 2022 07:50:41 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id c0EpbtjfXwoV for <bridge@lists.linux-foundation.org>;
+ Fri, 25 Mar 2022 09:24:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
- [IPv6:2a00:1450:4864:20::133])
- by smtp1.osuosl.org (Postfix) with ESMTPS id BE05A843BE
- for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 07:50:40 +0000 (UTC)
-Received: by mail-lf1-x133.google.com with SMTP id d5so11976654lfj.9
- for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 00:50:40 -0700 (PDT)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
+ [IPv6:2a00:1450:4864:20::135])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 903DB41A07
+ for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 09:24:23 +0000 (UTC)
+Received: by mail-lf1-x135.google.com with SMTP id m3so12300250lfj.11
+ for <bridge@lists.linux-foundation.org>; Fri, 25 Mar 2022 02:24:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=9OJLQ6ye5gJdMBoarB9Cgrd/z/Jtzc4wMw4dqWR4+a8=;
- b=GRfB+qcnr013dAwD92e8Vdl8fv4LNfc8BUWReBkwaz3gxp2W2yrHCgve3zM7T7x2y2
- revHYNT+zAwFunniTrPC0VyCf5yC0FO0CccNY6Bms6IZTZA8Eetbb0/IHqcdcX7a5H9Z
- g1pLpcBb8uWWwNiMB7xzhw9ihiOJr5NOD1HwcmUDC43mPobLg7IENjvFE9S1gCT8TA+T
- afc0p/tPbaDiLZxVvO94z9uXn666UKjfTbQu8c4nrxipo5XOVG+r03kl6rQ/7mCAIgqm
- DkclfAZgdm4fCtMzqMjvKBetWMeZn0WDTzvH055FBg0PqcyqcOtihqrsWC7exuCMIn/6
- cMkw==
+ :mime-version; bh=SSlLErNJDYMhv4sM1Ccd3PQZryIRODWgd2EpDE7WzJU=;
+ b=ImL22cgHLGRLQQxTNXhpXmDpiXyJG03HzVsLsMEkEtHc3oKTUje3duGQDbBq+V+Neh
+ tmPsIpdPpvQtTLdPpg2Lu0lcrXwOQvzbWvadlNb7yw5V4kMhpIY4YXykVkHCOILSnX96
+ JhgL+uZPAevLVwGZE2D782FRMRQoUY0iZ4g3J99icI/q32uPlkNr3WxpnJGOoJsrBua8
+ 77kxf2YMTUq4IDc+TzyZHXVTj96S+jNl/uLu6AiRB8fhY3dJjmy2oFPYlEifrLwYbHaS
+ YOBEYOH2Y26DpmbXAB6sFoUw/AxPKgOSQfqvPS5Bx+XZt1SuKWw1jywskDS6lWllOrgj
+ PdRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=9OJLQ6ye5gJdMBoarB9Cgrd/z/Jtzc4wMw4dqWR4+a8=;
- b=xzTKGUt++xbYOkKBXY2a/3C9vM7616OkYxpxpMTlmwvRHqbdnufmwfs6acirVCA5gC
- CpI+HnR3T/sGvuYgW6Bb8wp3jPojVB3lNliKt1mjF0+NOkCw/os4mp1B6+u6C4CjduN7
- rZTDyR5UuF5gjs3jt8PFRF1cb8wf7xVMmtmMy0y2rZnKbPSwgnvPW+U7p8rVwhy0A5yl
- HEZk0cPVtCF+71mfZPPFrLNtr/A/t0GWNpez7X+5V6U3E28JHZ5HFXdBB5uw2re+FuKO
- xrbeqAk8fsSD0fvEaDKx1FAXJCvHEzs0dMl6ydHN743eovTCnguJUKEBvgbQVND6dgmn
- 5bxw==
-X-Gm-Message-State: AOAM533R7D69qLih8gIg3z5BztB6sgqzJK/g1wh6x+G8S3lfnnOIYwKt
- CyIL26qkd7XwxCAWdKG5RCE=
-X-Google-Smtp-Source: ABdhPJzc+PQuWazgFCoireB0G4JOgmDiZ574pDqTwHOBKCLLHloHLwZHskjv2ZS8WJoz59mS32/0uw==
-X-Received: by 2002:ac2:5e86:0:b0:436:c46c:bad7 with SMTP id
- b6-20020ac25e86000000b00436c46cbad7mr6763177lfq.578.1648194638525; 
- Fri, 25 Mar 2022 00:50:38 -0700 (PDT)
+ bh=SSlLErNJDYMhv4sM1Ccd3PQZryIRODWgd2EpDE7WzJU=;
+ b=ETbVHjzuTT8BPmERXSBo5Tu3bFcaAuvioPmmcHak6cdZSKiENFl6gobQtlmReZXG6h
+ yT1wgmm+clc/m4649zJXL5xeFWBFkMfKK7c47AidAA0n4LvvyoeRHJlaheNHGBSLBNEq
+ TG+P3ZQbsqfepxZeqJrykBkrfr5mKtdnsLCbzTBMiweu4tH7lAjj11jRHPWpZBOhLdWz
+ nz65LlDe0NwtlJxR5Y6gu3Wo2/n4IDZphe8gvRMcgbuucjvsyUaTCivFT6GV6yl2XqWH
+ 5gFmlWXZa/oUSgaU3/y5YUu/ONlIdCP+okeWkXgLK+WjDNuIy/RcKJm8BXv9c4id3xXG
+ tf5A==
+X-Gm-Message-State: AOAM531aqY49yCA5k4W+sBBLVRCyDouh1morjLfKPT1R+U2T5BdfWGpL
+ YnlEMAwpP9tQK38dodu5L8I=
+X-Google-Smtp-Source: ABdhPJxUl03eI7VIoMcm91yImWCR15ZIRnY2kcIx5G8CT1JoWCIArZwUr9kqUwyPTAjkH7G0HgV4pA==
+X-Received: by 2002:ac2:4477:0:b0:44a:55c6:155d with SMTP id
+ y23-20020ac24477000000b0044a55c6155dmr7015681lfl.376.1648200261100; 
+ Fri, 25 Mar 2022 02:24:21 -0700 (PDT)
 Received: from wse-c0127 ([208.127.141.29]) by smtp.gmail.com with ESMTPSA id
- p12-20020a056512138c00b0044833f1cd85sm606729lfa.62.2022.03.25.00.50.36
+ q20-20020a2e8754000000b002497cfaf36csm614439ljj.42.2022.03.25.02.24.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Mar 2022 00:50:37 -0700 (PDT)
+ Fri, 25 Mar 2022 02:24:20 -0700 (PDT)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: Vladimir Oltean <olteanv@gmail.com>, Hans Schultz <schultz.hans@gmail.com>
@@ -79,8 +77,8 @@ References: <20220317093902.1305816-1-schultz.hans+netdev@gmail.com>
  <86wngkbzqb.fsf@gmail.com> <20220323144304.4uqst3hapvzg3ej6@skbuf>
  <86lewzej4n.fsf@gmail.com> <20220324110959.t4hqale35qbrakdu@skbuf>
  <86v8w3vbk4.fsf@gmail.com> <20220324142749.la5til4ys6zva4uf@skbuf>
-Date: Fri, 25 Mar 2022 08:50:34 +0100
-Message-ID: <86czia1ned.fsf@gmail.com>
+Date: Fri, 25 Mar 2022 10:24:17 +0100
+Message-ID: <865yo21j26.fsf@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -158,7 +156,7 @@ On tor, mar 24, 2022 at 16:27, Vladimir Oltean <olteanv@gmail.com> wrote:
 > DPV=0, right? So will they never trigger any age out interrupt according
 > to this? I'm not clear.
 
-I think that's absolutely right. That leaves two options. Either "port
-10" if it has IntOnAgeOut setting, or the reason why I wrote my comments
-in this part of the code, that it should be able to add a dynamic entry
-in the bridge module from the driver.
+If it could be possible to add a dynamic entry to the bridge module from
+the driver, that would be a solution, and since in the ATU in this case
+ages out entries learned, I don't see why __br_fdb_add() insists that an
+external learned entry must be permanent?
