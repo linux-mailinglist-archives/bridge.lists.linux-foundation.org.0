@@ -1,100 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099314E9AC0
-	for <lists.bridge@lfdr.de>; Mon, 28 Mar 2022 17:13:01 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 692F64EB793
+	for <lists.bridge@lfdr.de>; Wed, 30 Mar 2022 02:54:34 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 58B684056C;
-	Mon, 28 Mar 2022 15:12:56 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 1E24440C5A;
+	Wed, 30 Mar 2022 00:54:33 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id a2dTP4_97MqT; Mon, 28 Mar 2022 15:12:55 +0000 (UTC)
+	with ESMTP id THD9lTCuce0V; Wed, 30 Mar 2022 00:54:32 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 51A5F4042B;
-	Mon, 28 Mar 2022 15:12:54 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 56C5240C60;
+	Wed, 30 Mar 2022 00:54:31 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0D337C0082;
-	Mon, 28 Mar 2022 15:12:54 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 18F69C0073;
+	Wed, 30 Mar 2022 00:54:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 36453C0012
- for <bridge@lists.linux-foundation.org>; Mon, 28 Mar 2022 15:12:53 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4AF80C0012
+ for <bridge@lists.linux-foundation.org>; Wed, 30 Mar 2022 00:54:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 2CB5160ACE
- for <bridge@lists.linux-foundation.org>; Mon, 28 Mar 2022 15:12:53 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 29EF340C60
+ for <bridge@lists.linux-foundation.org>; Wed, 30 Mar 2022 00:54:29 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id QBs_fjbp5fZE for <bridge@lists.linux-foundation.org>;
- Mon, 28 Mar 2022 15:12:52 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B9D7360ACA
- for <bridge@lists.linux-foundation.org>; Mon, 28 Mar 2022 15:12:51 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id bi12so29408625ejb.3
- for <bridge@lists.linux-foundation.org>; Mon, 28 Mar 2022 08:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=8j5QTAZfLhwmkKFIt9nilSI/3dPPPzi4f58TnsoEgH8=;
- b=ealUty7SO2YHat48Wm0vOdR5RY6b0HiVR7jHHq4iBQQaNKsQTtA4vPGJ5uiWtqs2If
- yzDF3I6kdy3oTdpQGXIkUVfr0PgXbigd2ujGC87qw6gPuiAyRYFuL3JJPAV6wcILXLZ1
- xCkH+DtVJwDLGeDAFHev9lUp1BL7McWCvgh6PJpi/L0ZAEE4YJGcc6j6AiVOczLMwVC6
- 5rZS7mSzEUGPMSo6CrMK8mMTj1v4MzwdtpDBHxubyIgfEMms5epwnzaoudrkL3aCCD+s
- B9uSyrwZwthd7ysvD/pVUucT2EdUVVEl8K+9AgMCpEgE6c0MYUpZOLxVT4IOPMpQhk42
- UoVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=8j5QTAZfLhwmkKFIt9nilSI/3dPPPzi4f58TnsoEgH8=;
- b=j8AnIMvrVTMfFuFgFQb5ptuTeCT1kFjaopNyBpH9ccrU7SqKllBPd33eV7kHgmZ7eH
- IaUTRFaGgHWBmbk6ldmGUnE7vWTHv2neTixZbPRhCYk1Qe0qfcc2oo7+DZaq7ZPDDPsJ
- gw9SRaENdxRs0Zfko1G/qdd8lFmdQXXHb+1qWQrdM5lGHDS3NQi1Yn9v2N2IBWriEN22
- JLm5ZxpO0nFDep/xkDfpM6tVCse7jHJShOLCOGO38gs5cM4RpZZPapQTinKN/AZ59sUv
- fyYmLrHFVH65g9rnD+UvaUk2AswzzSOTOCIRwmhZX+HNYxamPMwTky9du5eoFbBN/KXw
- Kgiw==
-X-Gm-Message-State: AOAM5326v9CbTuCY2FhmKVQ45xNUqdnyRlAdZlFbZHRjzdU2Ze6oqt0Q
- HorbN4RTXg/NUNkdVk/sfA8=
-X-Google-Smtp-Source: ABdhPJz6aam8vyQ9xQvfqTbz/cqdVoF1/67xHSYTTq/diC1MSZQ/h+uG6EMOYu4P0YDSO6KktLMqhA==
-X-Received: by 2002:a17:907:1c9e:b0:6e0:2fed:869a with SMTP id
- nb30-20020a1709071c9e00b006e02fed869amr28390275ejc.122.1648480369669; 
- Mon, 28 Mar 2022 08:12:49 -0700 (PDT)
-Received: from skbuf ([188.26.57.45]) by smtp.gmail.com with ESMTPSA id
- d1-20020a50fe81000000b004197f2ecdc2sm7100904edt.89.2022.03.28.08.12.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 28 Mar 2022 08:12:49 -0700 (PDT)
-Date: Mon, 28 Mar 2022 18:12:47 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Hans Schultz <schultz.hans@gmail.com>
-Message-ID: <20220328151247.hgub3vuzqbrl6mis@skbuf>
-References: <20220324142749.la5til4ys6zva4uf@skbuf> <86czia1ned.fsf@gmail.com>
- <20220325132102.bss26plrk4sifby2@skbuf> <86fsn6uoqz.fsf@gmail.com>
- <20220325140003.a4w4hysqbzmrcxbq@skbuf> <86tubmt408.fsf@gmail.com>
- <20220325203057.vrw5nbwqctluc6u3@skbuf> <86ee2m8r2e.fsf@gmail.com>
- <20220328084828.ergz2h64p7ugebwl@skbuf> <86h77ijudc.fsf@gmail.com>
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id rvLBsVGYFNBa for <bridge@lists.linux-foundation.org>;
+ Wed, 30 Mar 2022 00:54:28 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id DB9D540C5A
+ for <bridge@lists.linux-foundation.org>; Wed, 30 Mar 2022 00:54:27 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id BC09FB818FA;
+ Wed, 30 Mar 2022 00:54:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE617C2BBE4;
+ Wed, 30 Mar 2022 00:54:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1648601663;
+ bh=ubFHj+K9Ba1I+teDUAJ4JZ4+3y1MplBuqIus6GiwDiw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=CBmVsgFhCDd+NEOP2ZOO8xSxJYSrIIdrIXwb0PPG+cVPwXOeRa9wHuJhuD7X0rKua
+ lAfcF+KsgnVj1artMm1qqfYlEOH96q6yGvdVKRY2JmaggOVzX9fhFjtTCVnCuA2ybb
+ v0gzV9pyn3829oLYBnWI0jqN3eB7O64Q/RcXPTvl/GChNzGvLoZEBSBT6dIysui+MD
+ KQ3nJAvXV+Fp4XfUXBfocdC6dRUmOs1dgJ6qqb7nllxWtGO7Q9VEr0SX+GIj7RHSGz
+ 8Yx0QDNvFuNo+aVCXfEZ1Hd7keBsarI+Qr/reW1y+7im0i/82dpbHYszks7ICxy5Wo
+ VC/PXLSMeyVrA==
+Date: Tue, 29 Mar 2022 17:54:21 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Alexandra Winter <wintera@linux.ibm.com>, Nikolay Aleksandrov
+ <razor@blackwall.org>
+Message-ID: <20220329175421.4a6325d9@kernel.org>
+In-Reply-To: <20220329114052.237572-1-wintera@linux.ibm.com>
+References: <20220329114052.237572-1-wintera@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <86h77ijudc.fsf@gmail.com>
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
- Ido Schimmel <idosch@nvidia.com>, linux-kselftest@vger.kernel.org,
- Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
- Shuah Khan <shuah@kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v2 net-next 2/4] net: switchdev: add support
- for offloading of fdb locked flag
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: linux-s390@vger.kernel.org, netdev@vger.kernel.org,
+ Heiko Carstens <hca@linux.ibm.com>, bridge@lists.linux-foundation.org,
+ Ido Schimmel <idosch@nvidia.com>, Jay Vosburgh <j.vosburgh@gmail.com>,
+ Hangbin Liu <liuhangbin@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>,
+ Jiri Pirko <jiri@nvidia.com>
+Subject: Re: [Bridge] [PATCH net-next v2] veth: Support bonding events
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -109,112 +83,170 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Mar 28, 2022 at 11:31:43AM +0200, Hans Schultz wrote:
-> On mån, mar 28, 2022 at 11:48, Vladimir Oltean <olteanv@gmail.com> wrote:
-> > On Mon, Mar 28, 2022 at 09:38:33AM +0200, Hans Schultz wrote:
-> >> On fre, mar 25, 2022 at 22:30, Vladimir Oltean <olteanv@gmail.com> wrote:
-> >> > On Fri, Mar 25, 2022 at 05:01:59PM +0100, Hans Schultz wrote:
-> >> >> > An attacker sweeping through the 2^47 source MAC address range is a
-> >> >> > problem regardless of the implementations proposed so far, no?
-> >> >> 
-> >> >> The idea is to have a count on the number of locked entries in both the
-> >> >> ATU and the FDB, so that a limit on entries can be enforced.
-> >> >
-> >> > I can agree with that.
-> >> >
-> >> > Note that as far as I understand regular 802.1X, these locked FDB
-> >> > entries are just bloatware if you don't need MAC authentication bypass,
-> >> > because the source port is already locked, so it drops all traffic from
-> >> > an unknown MAC SA except for the link-local packets necessary to run
-> >> > EAPOL, which are trapped to the CPU.
-> >> 
-> >> 802.1X and MAC Auth can be completely seperated by hostapd listning
-> >> directly on the locked port interface before entering the bridge.
-> >
-> > I don't understand this, sorry. What do you mean "before entering the
-> > bridge"?
-> >
-> RAW socket on network slave device.
+Dropping the BPF people from CC and adding Hangbin, bridge and
+bond/team. Please exercise some judgment when sending patches.
 
-But as far as the port and its driver are concerned, there is a lot of
-unnecessary functionality going on in the background if you don't need
-MAC authentication bypass. All non-EAPOL packets could be unauthorized
-without CPU intervention by simply not enabling CPU-assisted secure
-learning in the first place. You might consider cutting off some of that
-overhead by making user space opt into secure learning.
-
-> >> > So maybe user space should opt into the MAC authentication bypass
-> >> > process, really, since that requires secure CPU-assisted learning, and
-> >> > regular 802.1X doesn't. It's a real additional burden that shouldn't be
-> >> > ignored or enabled by default.
-> >> >
-> >> >> > If unlimited growth of the mv88e6xxx locked ATU entry cache is a
-> >> >> > concern (which it is), we could limit its size, and when we purge a
-> >> >> > cached entry in software is also when we could emit a
-> >> >> > SWITCHDEV_FDB_DEL_TO_BRIDGE for it, right?
-> >> >> 
-> >> >> I think the best would be dynamic entries in both the ATU and the FDB
-> >> >> for locked entries.
-> >> >
-> >> > Making locked (DPV=0) ATU entries be dynamic (age out) makes sense.
-> >> > Since you set the IgnoreWrongData for source ports, you suppress ATU
-> >> > interrupts for this MAC SA, which in turn means that a station which is
-> >> > unauthorized on port A can never redeem itself when it migrates to port B,
-> >> > for which it does have an authorization, since software never receives
-> >> > any notice that it has moved to a new port.
-> >> >
-> >> > But making the locked bridge FDB entry be dynamic, why does it matter?
-> >> > I'm not seeing this through. To denote that it can migrate, or to denote
-> >> > that it can age out? These locked FDB entries are 'extern_learn', so
-> >> > they aren't aged out by the bridge anyway, they are aged out by whomever
-> >> > added them => in our case the SWITCHDEV_FDB_DEL_TO_BRIDGE that I mentioned.
-> >> >
-> >> I think the FDB and the ATU should be as much in sync as possible, and
-> >> the FDB definitely should not keep stale entries that only get removed
-> >> by link down. The SWITCHDEV_FDB_DEL_TO_BRIDGE route would requre an
-> >> interrupt when a entry ages out in the ATU, but we know that that cannot
-> >> happen with DPV=0. Thus the need to add dynamic entries with
-> >> SWITCHDEV_FDB_ADD_TO_BRIDGE. 
-> >
-> > So what is your suggestion exactly? You want the driver to notify the
-> > locked FDB entry via FDB_ADD_TO_BRIDGE with the dynamic flag, and then
-> > rely on the bridge's software ageing timer to delete it? How does that
-> > deletion propagate back to the driver then? I'm unclear on the ownership
-> > model you propose.
-> >
+On Tue, 29 Mar 2022 13:40:52 +0200 Alexandra Winter wrote:
+> Bonding drivers generate specific events during failover that trigger
+> switch updates.  When a veth device is attached to a bridge with a
+> bond interface, we want external switches to learn about the veth
+> devices as well.
 > 
-> As the FDB and the ATU will age out the entry with the same timeout,
-> they will stay relatively in sync compared to the situation where the
-> switchcore driver will not be able to notify the bridge that a zero DPV
-> entry has aged out as it has no port association.
+> Example:
+> 
+> 	| veth_a2   |  veth_b2  |  veth_c2 |
+> 	------o-----------o----------o------
+> 	       \	  |	    /
+> 		o	  o	   o
+> 	      veth_a1  veth_b1  veth_c1
+> 	      -------------------------
+> 	      |        bridge         |
+> 	      -------------------------
+> 			bond0
+> 			/  \
+> 		     eth0  eth1
+> 
+> In case of failover from eth0 to eth1, the netdev_notifier needs to be
+> propagated, so e.g. veth_a2 can re-announce its MAC address to the
+> external hardware attached to eth1.
+> 
+> Without this patch we have seen cases where recovery after bond failover
+> took an unacceptable amount of time (depending on timeout settings in the
+> network).
+> 
+> Due to the symmetric nature of veth special care is required to avoid
+> endless notification loops. Therefore we only notify from a veth
+> bridgeport to a peer that is not a bridgeport.
+> 
+> References:
+> Same handling as for macvlan:
+> commit 4c9912556867 ("macvlan: Support bonding events")
+> and vlan:
+> commit 4aa5dee4d999 ("net: convert resend IGMP to notifier event")
+> 
+> Alternatives:
+> Propagate notifier events to all ports of a bridge. IIUC, this was
+> rejected in https://www.spinics.net/lists/netdev/msg717292.html
 
-So if the DPV=0 ATU entry doesn't get refreshed when a packet hits it
-(even to get dropped), then I suppose the drift between software and
-hardware ageing timers could be kept more or less under control.
+My (likely flawed) reading of Nik's argument was that (1) he was
+concerned about GARP storms; (2) he didn't want the GARP to be
+broadcast to all ports, just the bond that originated the request.
 
-But you still need to change switchdev and the bridge driver to support
-this pattern, and you need to make a compelling case for it, because the
-lack of a FDB_DEL_TO_BRIDGE notifier _is_ a concern in the general case.
+I'm not sure I follow (1), as Hangbin said the event is rare, plus 
+GARP only comes from interfaces that have an IP addr, which IIUC
+most bridge ports will not have.
 
-And if you say "well, you know, the reason why I don't need to emit the
-FDB_DEL_TO_BRIDGE is because I lied about the FDB entry's port association
-in the first place (during FDB_ADD_TO_BRIDGE), it really is associated
-with no port rather than with the port I said, just go with it", well,
-that might not be the strongest argument for a new kind of externally
-learned FDB entry. Anyway I'll defer to bridge and switchdev maintainers.
+This patch in no way addresses (2). But then, again, if we put 
+a macvlan on top of a bridge master it will shotgun its GARPS all 
+the same. So it's not like veth would be special in that regard.
 
-> >> >> How the two are kept in sync is another question, but if there is a
-> >> >> switchcore, it will be the 'master', so I don't think the bridge
-> >> >> module will need to tell the switchcore to remove entries in that
-> >> >> case. Or?
-> >> >
-> >> > The bridge will certainly not *need* to tell the switch to delete a
-> >> > locked FDB entry, but it certainly *can* (and this is in fact part of
-> >> > the authorization process, replace an ATU entry with DPV=0 with an ATU
-> >> > entry with DPV=BIT(port)).
-> >> 
-> >> Yes you are right, but I was implicitly only regarding internal
-> >> mechanisms in the 'bridge + switchcore', and not userspace netlink
-> >> commands.
-> >> >
-> >> > I feel as if I'm missing the essence of your reply.
+Nik, what am I missing?
+
+> It also seems difficult to avoid re-bouncing the notifier.
+
+syzbot will make short work of this patch, I think the potential
+for infinite loops has to be addressed somehow. IIUC this is the 
+first instance of forwarding those notifiers to a peer rather
+than within a upper <> lower device hierarchy which is a DAG.
+
+> Signed-off-by: Alexandra Winter <wintera@linux.ibm.com>
+> ---
+>  drivers/net/veth.c | 53 ++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/drivers/net/veth.c b/drivers/net/veth.c
+> index d29fb9759cc9..74b074453197 100644
+> --- a/drivers/net/veth.c
+> +++ b/drivers/net/veth.c
+> @@ -1579,6 +1579,57 @@ static void veth_setup(struct net_device *dev)
+>  	dev->mpls_features = NETIF_F_HW_CSUM | NETIF_F_GSO_SOFTWARE;
+>  }
+>  
+> +static bool netif_is_veth(const struct net_device *dev)
+> +{
+> +	return (dev->netdev_ops == &veth_netdev_ops);
+
+brackets unnecessary 
+
+> +}
+> +
+> +static void veth_notify_peer(unsigned long event, const struct net_device *dev)
+> +{
+> +	struct net_device *peer;
+> +	struct veth_priv *priv;
+> +
+> +	priv = netdev_priv(dev);
+> +	peer = rtnl_dereference(priv->peer);
+> +	/* avoid re-bounce between 2 bridges */
+> +	if (!netif_is_bridge_port(peer))
+> +		call_netdevice_notifiers(event, peer);
+> +}
+> +
+> +/* Called under rtnl_lock */
+> +static int veth_device_event(struct notifier_block *unused,
+> +			     unsigned long event, void *ptr)
+> +{
+> +	struct net_device *dev, *lower;
+> +	struct list_head *iter;
+> +
+> +	dev = netdev_notifier_info_to_dev(ptr);
+> +
+> +	switch (event) {
+> +	case NETDEV_NOTIFY_PEERS:
+> +	case NETDEV_BONDING_FAILOVER:
+> +	case NETDEV_RESEND_IGMP:
+> +		/* propagate to peer of a bridge attached veth */
+> +		if (netif_is_bridge_master(dev)) {
+
+Having veth sift thru bridge ports seems strange.
+In fact it could be beneficial to filter the event based on
+port state (whether it's forwarding, vlan etc). But looking
+at details of port state outside the bridge would be even stranger.
+
+> +			iter = &dev->adj_list.lower;
+> +			lower = netdev_next_lower_dev_rcu(dev, &iter);
+> +			while (lower) {
+> +				if (netif_is_veth(lower))
+> +					veth_notify_peer(event, lower);
+> +				lower = netdev_next_lower_dev_rcu(dev, &iter);
+
+let's add netdev_for_each_lower_dev_rcu() rather than open-coding
+
+> +			}
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static struct notifier_block veth_notifier_block __read_mostly = {
+> +		.notifier_call  = veth_device_event,
+
+extra tab here
+
+> +};
+> +
+>  /*
+>   * netlink interface
+>   */
+> @@ -1824,12 +1875,14 @@ static struct rtnl_link_ops veth_link_ops = {
+>  
+>  static __init int veth_init(void)
+>  {
+> +	register_netdevice_notifier(&veth_notifier_block);
+
+this can fail
+
+>  	return rtnl_link_register(&veth_link_ops);
+>  }
+>  
+>  static __exit void veth_exit(void)
+>  {
+>  	rtnl_link_unregister(&veth_link_ops);
+> +	unregister_netdevice_notifier(&veth_notifier_block);
+>  }
+>  
+>  module_init(veth_init);
+
