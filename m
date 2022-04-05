@@ -1,91 +1,99 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5614FA7B1
-	for <lists.bridge@lfdr.de>; Sat,  9 Apr 2022 14:37:12 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA154FACA7
+	for <lists.bridge@lfdr.de>; Sun, 10 Apr 2022 10:14:18 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 2C73341CF2;
-	Sat,  9 Apr 2022 12:37:10 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 483BC60BDE;
+	Sun, 10 Apr 2022 08:14:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XQixe65CFZiR; Sat,  9 Apr 2022 12:37:09 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jxhwRErxvSsb; Sun, 10 Apr 2022 08:14:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 66BE741DFE;
-	Sat,  9 Apr 2022 12:37:08 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id A437C60BE5;
+	Sun, 10 Apr 2022 08:14:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 206B8C0088;
-	Sat,  9 Apr 2022 12:37:08 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4ECE7C0088;
+	Sun, 10 Apr 2022 08:14:14 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B2BF0C002C
- for <bridge@lists.linux-foundation.org>; Sat,  9 Apr 2022 12:37:06 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4AD1AC0012
+ for <bridge@lists.linux-foundation.org>; Tue,  5 Apr 2022 23:52:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 9A2A84010E
- for <bridge@lists.linux-foundation.org>; Sat,  9 Apr 2022 12:37:06 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 227CF41624
+ for <bridge@lists.linux-foundation.org>; Tue,  5 Apr 2022 23:52:05 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id GpHEGFZFt-bR for <bridge@lists.linux-foundation.org>;
- Sat,  9 Apr 2022 12:37:05 +0000 (UTC)
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=arista.com
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ZiMZY-WVz04j for <bridge@lists.linux-foundation.org>;
+ Tue,  5 Apr 2022 23:52:03 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 16D6540153
- for <bridge@lists.linux-foundation.org>; Sat,  9 Apr 2022 12:37:04 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id lc2so1585982ejb.12
- for <bridge@lists.linux-foundation.org>; Sat, 09 Apr 2022 05:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=date:from:to:cc:subject:user-agent:in-reply-to:references
- :message-id:mime-version:content-transfer-encoding;
- bh=ph+b6vEsWKwHnBUnlrg/LEJgtkhSmZYe3Lw1mNpS7CI=;
- b=7GuhuVtC3u8UnVwuZhUgtoEzCBmlt85sYwX+st0ZrgtcOnomUhTd6iDkv/nAUakm9x
- jtrUgk4JN3CAd+qFy2qeyTkjbSfyqNM8kRB2oChajlmgiKkeL5QtFKr9iDxUTfqYfXDt
- vZe+4AM6tUaHZotVlJsLR16vVLvPQj9n7EAY4h6xe9xzVrit711zhqpt6O5MD7ZrmWRQ
- oM/CTx7somdyGY4Ja7rJD0WfJivLe1s6G/1+J4M92MFHoeSGGUWU6cULMHDHeZXziRUF
- cMnWEEemDTKucMUmzaGmSNhKRKxjVaSOAmPXkmGIPvdnIG0Kk8v48LqC7eT9iOxWXyaG
- 914g==
+Received: from mail-wm1-x361.google.com (mail-wm1-x361.google.com
+ [IPv6:2a00:1450:4864:20::361])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 72FF24161E
+ for <bridge@lists.linux-foundation.org>; Tue,  5 Apr 2022 23:52:03 +0000 (UTC)
+Received: by mail-wm1-x361.google.com with SMTP id
+ i6-20020a1c3b06000000b0038e710da2dcso2607597wma.1
+ for <bridge@lists.linux-foundation.org>; Tue, 05 Apr 2022 16:52:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:user-agent:in-reply-to
- :references:message-id:mime-version:content-transfer-encoding;
- bh=ph+b6vEsWKwHnBUnlrg/LEJgtkhSmZYe3Lw1mNpS7CI=;
- b=8FlMwiq+qSFqkBO2hRk58eACKaDi/filqV76wYlqnIUtxAp4FHYUjUFIQNml+AiqLO
- 6C9njjz7nnEjZ5NAzKgPhHeJo2oLDXhYM2jIQiiYqxkwB9jXZLp969TPMHL0SPTTJmrt
- w2A1uyrC89HCb918iWzGiTt4Xo7KOk+YCRYPg//291kxaQZhYaqDnVq9EAekqdLVWf2v
- M0IiZm2lJRRh6oOqwobV/PllHsj4bsxE7SSfU0sznb0oo73QmSvoTC+E0jl5TzONsjCu
- VbNxsuRAal67/1JyEisXZXX4SzLnDrYZarunYWhdn3QIz3Kxi66wQBHQkFa/pJR33Jmi
- fFYg==
-X-Gm-Message-State: AOAM531STMkUh/yRp14v7AxhvYYWMPUVACnByJDhVt9SO4ov895l1cdR
- nn02tXNfH/MYg6LUniAyd0iVrQ==
-X-Google-Smtp-Source: ABdhPJzKhEDLLc/H6WeUzFVkzWzt3OCdeGp8uq/bCJuBIOeUJoVZAbU5bjhDnpWhYHWjy/k46jfayg==
-X-Received: by 2002:a17:906:c111:b0:6db:cf0e:3146 with SMTP id
- do17-20020a170906c11100b006dbcf0e3146mr22808993ejc.280.1649507823066; 
- Sat, 09 Apr 2022 05:37:03 -0700 (PDT)
-Received: from [127.0.0.1] ([46.249.67.250]) by smtp.gmail.com with ESMTPSA id
- f1-20020a056402194100b00416b174987asm11881167edz.35.2022.04.09.05.37.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 09 Apr 2022 05:37:02 -0700 (PDT)
-Date: Sat, 09 Apr 2022 15:36:59 +0300
-From: Nikolay Aleksandrov <razor@blackwall.org>
-To: netdev@vger.kernel.org
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220409105857.803667-1-razor@blackwall.org>
-References: <20220409105857.803667-1-razor@blackwall.org>
-Message-ID: <133ACD1C-F64D-499B-BE66-4EDA3598A35C@blackwall.org>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Cc: kuba@kernel.org, bridge@lists.linux-foundation.org, davem@davemloft.net,
- roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 0/6] net: bridge: add flush filtering
-	support
+ h=x-gm-message-state:dkim-signature:from:to:cc:subject:date
+ :message-id:content-transfer-encoding;
+ bh=tjab0l+xfYR0aZEj5soCABbrSjfcWfiSiNw5bb6ADcc=;
+ b=jBsthyfCxTOOMmcgFEaZgz4rJv73phgqeQelc8Lo4ysrYcPZ1/fUYBuTC1hQ6eC0aH
+ xSzwdAri/FLa1WPRnF5YAVhiizJ/U1fYx8dWMLZil89pwGkienrqWhrVbHoq2nZGS3WN
+ AlB13ZrXXitlWUFuBH/cMEI6UiHhVNMllTC0hjGDQDruLhjQ892SKCevNFiV7B6jrjTj
+ Q6KWry8hC0f3RoVFvHuL8rNldUPY6mxTTJickhD+SMHHZQjJQm5XGb55w32tDBPBWoQQ
+ H6d/O6tNsfCHDiyCwp4WG6egRS9MZHLDxKAPN7XHdBx96FGGR3zTHqD5pDskVy26yc/n
+ 2hmQ==
+X-Gm-Message-State: AOAM532AvCFd1QB+EH6/Vkvhb8xGqH+aThe52CFut+7qxfjouZId09gW
+ d75FzrScqIrqeGyMLg21OhWVkU4Jaw2TKF6uJVJ29UNDhcvF
+X-Google-Smtp-Source: ABdhPJzjXl9lYXef6+e9Ggc2Y85pcIUJDGm5uhvKfava0TB3KoHRk4M3HKy4QO+yz963G18cVxs/3dEmP3Ap
+X-Received: by 2002:a7b:c381:0:b0:37b:e01f:c1c0 with SMTP id
+ s1-20020a7bc381000000b0037be01fc1c0mr5174267wmj.98.1649202721448; 
+ Tue, 05 Apr 2022 16:52:01 -0700 (PDT)
+Received: from smtp.aristanetworks.com (smtp.aristanetworks.com. [52.0.43.43])
+ by smtp-relay.gmail.com with ESMTPS id
+ f13-20020a05600c4e8d00b0038c994092fbsm439961wmq.0.2022.04.05.16.52.01
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 05 Apr 2022 16:52:01 -0700 (PDT)
+X-Relaying-Domain: arista.com
+Received: from chmeee (unknown [10.95.70.41])
+ by smtp.aristanetworks.com (Postfix) with ESMTPS id 28C603002D04;
+ Tue,  5 Apr 2022 16:52:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arista.com;
+ s=Arista-A; t=1649202720;
+ bh=tjab0l+xfYR0aZEj5soCABbrSjfcWfiSiNw5bb6ADcc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=woP9fF3qZzunKXrRcPgDSyac21eIvuWWbeTXc12/yEUdySijANk8sRKdptJl6l5cV
+ iLcWQenoSPX2Ua0bGFCFKIClIsbbT65yMydGSEo0ET6l5uKpuHqFK61RohyHNSI0Kq
+ N+MjUi8fnrUaLZTjxB92POD5qaaEiDgFmSq4TIzgFSShKcjV2p+U/2HajpkGw7oVwX
+ Xbnd+gf0pkHohKyV6TZIsm4APNq+F+u8GWZm4iBIUbO2G1UxNT0QdN6rOWgHAL3CD+
+ qbi6ht0AIfArtaytZm0+cEir6F5+2bHfzNrmyt+2AcBxSrm/nEmbNJqmeleAy7LBGo
+ xAWf0YU6uw5RQ==
+Received: from kevmitch by chmeee with local (Exim 4.95)
+ (envelope-from <kevmitch@chmeee>) id 1nbsxp-00188V-Sp;
+ Tue, 05 Apr 2022 16:51:57 -0700
+To: 
+Date: Tue,  5 Apr 2022 16:51:15 -0700
+Message-Id: <20220405235117.269511-1-kevmitch@arista.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sun, 10 Apr 2022 08:14:13 +0000
+Cc: kevmitch@arista.com, Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
+ netdev@vger.kernel.org, gal@nvidia.com, bridge@lists.linux-foundation.org,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
+ "David S. Miller" <davem@davemloft.net>,
+ Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: [Bridge] [PATCH v2 0/1] UDP traceroute packets with no checksum
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,97 +105,25 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Kevin Mitchell via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Kevin Mitchell <kevmitch@arista.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 9 April 2022 13:58:51 EEST, Nikolay Aleksandrov <razor@blackwall=2Eorg> =
-wrote:
->Hi,
->This patch-set adds support to specify filtering conditions for a flush
->operation=2E Initially only FDB flush filtering is added, later MDB
->support will be added as well=2E Some user-space applications need a way
->to delete only a specific set of entries, e=2Eg=2E mlag implementations n=
-eed
->a way to flush only dynamic entries excluding externally learned ones
->or only externally learned ones without static entries etc=2E Also apps
->usually want to target only a specific vlan or port/vlan combination=2E
->The current 2 flush operations (per port and bridge-wide) are not
->extensible and cannot provide such filtering, so a new bridge af
->attribute is added (IFLA_BRIDGE_FLUSH) which contains the filtering
->information for each object type which has to be flushed=2E
->An example structure for fdbs:
->     [ IFLA_BRIDGE_FLUSH ]
->      `[ BRIDGE_FDB_FLUSH ]
->        `[ FDB_FLUSH_NDM_STATE ]
->        `[ FDB_FLUSH_NDM_FLAGS ]
->
->I decided against embedding these into the old flush attributes for
->multiple reasons - proper error handling on unsupported attributes,
->older kernels silently flushing all, need for a second mechanism to
->signal that the attribute should be parsed (e=2Eg=2E using boolopts),
->special treatment for permanent entries=2E
->
->Examples:
->$ bridge fdb flush dev bridge vlan 100 static
->< flush all static entries on vlan 100 >
->$ bridge fdb flush dev bridge vlan 1 dynamic
->< flush all dynamic entries on vlan 1 >
->$ bridge fdb flush dev bridge port ens16 vlan 1 dynamic
->< flush all dynamic entries on port ens16 and vlan 1 >
->$ bridge fdb flush dev bridge nooffloaded nopermanent
->< flush all non-offloaded and non-permanent entries >
->$ bridge fdb flush dev bridge static noextern_learn
->< flush all static entries which are not externally learned >
->$ bridge fdb flush dev bridge permanent
->< flush all permanent entries >
->
->Note that all flags have their negated version (static vs nostatic etc)
->and there are some tricky cases to handle like "static" which in flag
->terms means fdbs that have NUD_NOARP but *not* NUD_PERMANENT, so the
->mask matches on both but we need only NUD_NOARP to be set=2E That's
->because permanent entries have both set so we can't just match on
->NUD_NOARP=2E Also note that this flush operation doesn't treat permanent
->entries in a special way (fdb_delete vs fdb_delete_local), it will
->delete them regardless if any port is using them=2E We can extend the api
->with a flag to do that if needed in the future=2E
->
->Patches in this set:
-> 1=2E adds the new IFLA_BRIDGE_FLUSH bridge af attribute
-> 2=2E adds a basic structure to describe an fdb flush filter
-> 3=2E adds fdb netlink flush call via BRIDGE_FDB_FLUSH attribute
-> 4 - 6=2E add support for specifying various fdb fields to filter
->
->Patch-sets (in order):
-> - Initial flush infra and fdb flush filtering (this set)
-> - iproute2 support
-> - selftests
->
->Future work:
-> - mdb flush support
->
->Thanks,
-> Nik
->
->Nikolay Aleksandrov (6):
->  net: bridge: add a generic flush operation
->  net: bridge: fdb: add support for fine-grained flushing
->  net: bridge: fdb: add new nl attribute-based flush call
->  net: bridge: fdb: add support for flush filtering based on ndm flags
->    and state
->  net: bridge: fdb: add support for flush filtering based on ifindex
->  net: bridge: fdb: add support for flush filtering based on vlan id
->
-> include/uapi/linux/if_bridge=2Eh |  22 ++++++
-> net/bridge/br_fdb=2Ec            | 128 +++++++++++++++++++++++++++++++--
-> net/bridge/br_netlink=2Ec        |  59 ++++++++++++++-
-> net/bridge/br_private=2Eh        |  12 +++-
-> net/bridge/br_sysfs_br=2Ec       |   6 +-
-> 5 files changed, 215 insertions(+), 12 deletions(-)
->
+This is v2 of https://lkml.org/lkml/2022/1/14/1060
 
-Actually if you prefer I can send the selftests with this set, I'm used to=
- sending them last
-after the iproute2 support is finalised=2E :)
+That patch was discovered to cause problems with UDP tunnels as
+described here:
 
-Cheers,
-  Nik
+https://lore.kernel.org/netdev/7eed8111-42d7-63e1-d289-346a596fc933@nvidia.com/
+
+This version addresses the issue by instead explicitly handling zero UDP
+checksum in the nf_reject_verify_csum() helper function.
+
+Unlike the previous patch, this one only allows zero UDP checksum in
+IPv4. I discovered that the non-netfilter IPv6 path would indeed drop
+zero UDP checksum packets, so it's probably best to remain consistent.
+
+-- 
+2.35.1
+
