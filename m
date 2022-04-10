@@ -1,61 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id D660D4FACA9
-	for <lists.bridge@lfdr.de>; Sun, 10 Apr 2022 10:14:21 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5F64FAF45
+	for <lists.bridge@lfdr.de>; Sun, 10 Apr 2022 19:19:59 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 0F5DB83ED6;
-	Sun, 10 Apr 2022 08:14:20 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 1DE5D60F1A;
+	Sun, 10 Apr 2022 17:19:58 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id K4jtGEe8nyM9; Sun, 10 Apr 2022 08:14:19 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id BE85D8402B;
-	Sun, 10 Apr 2022 08:14:15 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id TOKQA3g_0ZzW; Sun, 10 Apr 2022 17:19:57 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id C115160F26;
+	Sun, 10 Apr 2022 17:19:56 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CAAB9C0089;
-	Sun, 10 Apr 2022 08:14:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 836CAC0088;
+	Sun, 10 Apr 2022 17:19:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5A2F1C0012
- for <bridge@lists.linux-foundation.org>; Thu,  7 Apr 2022 15:43:52 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 673DFC0033
+ for <bridge@lists.linux-foundation.org>; Sun, 10 Apr 2022 17:19:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 48C09419A4
- for <bridge@lists.linux-foundation.org>; Thu,  7 Apr 2022 15:43:52 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 4839B8305A
+ for <bridge@lists.linux-foundation.org>; Sun, 10 Apr 2022 17:19:54 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xB_XJvyLtaIl for <bridge@lists.linux-foundation.org>;
- Thu,  7 Apr 2022 15:43:51 +0000 (UTC)
-X-Greylist: delayed 00:31:30 by SQLgrey-1.8.0
-Received: from scorn.kernelslacker.org (scorn.kernelslacker.org
- [IPv6:2600:3c03:e000:2fb::1])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 1ED4541900
- for <bridge@lists.linux-foundation.org>; Thu,  7 Apr 2022 15:43:51 +0000 (UTC)
-Received: from [2601:196:4600:6634:ae9e:17ff:feb7:72ca]
- (helo=wopr.kernelslacker.org)
- by scorn.kernelslacker.org with esmtps (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <davej@codemonkey.org.uk>)
- id 1ncTo1-007UlS-SV; Thu, 07 Apr 2022 11:12:17 -0400
-Received: by wopr.kernelslacker.org (Postfix, from userid 1026)
- id 30428560206; Thu,  7 Apr 2022 11:12:17 -0400 (EDT)
-Date: Thu, 7 Apr 2022 11:12:17 -0400
-From: Dave Jones <davej@codemonkey.org.uk>
-To: netdev@vger.kernel.org
-Message-ID: <20220407151217.GA8736@codemonkey.org.uk>
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=messagingengine.com
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5vMM4NFBC7LR for <bridge@lists.linux-foundation.org>;
+ Sun, 10 Apr 2022 17:19:53 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
+ [64.147.123.20])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id C6A6D82FE4
+ for <bridge@lists.linux-foundation.org>; Sun, 10 Apr 2022 17:19:53 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailout.west.internal (Postfix) with ESMTP id 46CF13201DB0;
+ Sun, 10 Apr 2022 13:19:52 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Sun, 10 Apr 2022 13:19:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm3; bh=cuyUckZywUZIygZ8ZXPDDXCDGhQWLlczqmeYcUsJb
+ 28=; b=Y2sjtjMKmcZN+iFCh6tUH9R8b1YIFSMf47MxY2GFUEI/LzkJm4YgQ7xRW
+ 8Cz7sAaGDTn/I+kaN8xJae6Zqz0402CY/Y4AYqxdrQDOD+eYKMF8dNfbkLdq3h3C
+ w5b/qnHKtUOMmpykk/SsUXHiJ5VD1/K5x9vWzDvjGpnpyvIBu2/M76F3qaXMgVKc
+ wNkj9SVI8LbQMsS/Ucn43FOzmkE7JAOr9ZctrwysezMQAryXu7SnGAzcsmjkR+u6
+ avT5xcQ87Pvh0E3MRRg/jX5DCjz702OeF70yA1NCuVhPs9bUEA3UByXOrrk/cCXU
+ S/fP1Yq79etHPpSGyAaxoo3hDa+wQ==
+X-ME-Sender: <xms:txFTYlOdJcMHhK9qCpvHaR0uLC4iFVVtaxnsB6vN1LXAVnpi9mLMBA>
+ <xme:txFTYn-q1ixuadHZWK7xbJI6Mof3HYLeC0LDIOADJzaRbkt2Ku-4Pd7cB3v6K2XHd
+ nLE_9vcRV7H2XU>
+X-ME-Received: <xmr:txFTYkQKCTvlMnDcZOGXFeieE4LEl8S-_3qEKEe8AVgCRnsXmvp_TJJ5dp3Z>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekgedguddtlecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefkugho
+ ucfutghhihhmmhgvlhcuoehiughoshgthhesihguohhstghhrdhorhhgqeenucggtffrrg
+ htthgvrhhnpeeugfejfeeviedvkedtgfeghfegvedugeevgfetudfgteevveeutdfghfek
+ gfeggfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ hiughoshgthhesihguohhstghhrdhorhhg
+X-ME-Proxy: <xmx:txFTYhvjpfUyMCWA_iDroIimEHx3YmyOhV4DQnMAkABhc5hFywB_MA>
+ <xmx:txFTYte406Q9vQBtdatJAOuQQN-KG68-E3yHi2XdZJP1v-iAH-T_qw>
+ <xmx:txFTYt15Ub969jQ5FyOFMplYTLhgK_XMA7xtC67-USbci_ML0tFFwQ>
+ <xmx:txFTYnvSy-Px09zQyzzasUP0oH6QKvHfikuRvD8bB8K9_6mQjfoWAQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 10 Apr 2022 13:19:50 -0400 (EDT)
+Date: Sun, 10 Apr 2022 20:19:48 +0300
+From: Ido Schimmel <idosch@idosch.org>
+To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Message-ID: <YlMRtBR3+b4dKjC/@shredder>
+References: <20220410134227.18810-1-arinc.unal@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Note: SpamAssassin invocation failed
-X-Mailman-Approved-At: Sun, 10 Apr 2022 08:14:13 +0000
-Cc: Jakub Kicinski <kuba@kernel.org>, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@nvidia.com>
-Subject: [Bridge] [PATCH] decouple llc/bridge
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220410134227.18810-1-arinc.unal@arinc9.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S . Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next] net: bridge: offload BR_HAIRPIN_MODE,
+ BR_ISOLATED, BR_MULTICAST_TO_UNICAST
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -70,124 +103,25 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-I was wondering why the llc code was getting compiled and it turned out
-to be because I had bridging enabled. It turns out to only needs it for
-a single function (llc_mac_hdr_init).
+On Sun, Apr 10, 2022 at 04:42:27PM +0300, Arınç ÜNAL wrote:
+> Add BR_HAIRPIN_MODE, BR_ISOLATED and BR_MULTICAST_TO_UNICAST port flags to
+> BR_PORT_FLAGS_HW_OFFLOAD so that switchdev drivers which have an offloaded
+> data plane have a chance to reject these bridge port flags if they don't
+> support them yet.
+> 
+> It makes the code path go through the
+> SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS driver handlers, which return
+> -EINVAL for everything they don't recognize.
+> 
+> For drivers that don't catch SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS at
+> all, switchdev will return -EOPNOTSUPP for those which is then ignored, but
+> those are in the minority.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Converting this to a static inline like the other llc functions it uses
-allows to decouple the dependency
+Reviewed-by: Ido Schimmel <idosch@nvidia.com>
 
-Signed-off-by: Dave Jones <davej@codemonkey.org.uk>
+> ---
+> Let me know if this is netdev/net material instead.
 
-diff --git include/net/llc.h include/net/llc.h
-index e250dca03963..edcb120ee6b0 100644
---- include/net/llc.h
-+++ include/net/llc.h
-@@ -13,6 +13,7 @@
-  */
- 
- #include <linux/if.h>
-+#include <linux/if_arp.h>
- #include <linux/if_ether.h>
- #include <linux/list.h>
- #include <linux/spinlock.h>
-@@ -100,8 +101,34 @@ extern struct list_head llc_sap_list;
- int llc_rcv(struct sk_buff *skb, struct net_device *dev, struct packet_type *pt,
- 	    struct net_device *orig_dev);
- 
--int llc_mac_hdr_init(struct sk_buff *skb, const unsigned char *sa,
--		     const unsigned char *da);
-+/**
-+ *      llc_mac_hdr_init - fills MAC header fields
-+ *      @skb: Address of the frame to initialize its MAC header
-+ *      @sa: The MAC source address
-+ *      @da: The MAC destination address
-+ *
-+ *      Fills MAC header fields, depending on MAC type. Returns 0, If MAC type
-+ *      is a valid type and initialization completes correctly 1, otherwise.
-+ */
-+static inline int llc_mac_hdr_init(struct sk_buff *skb,
-+				   const unsigned char *sa, const unsigned char *da)
-+{
-+	int rc = -EINVAL;
-+
-+	switch (skb->dev->type) {
-+	case ARPHRD_ETHER:
-+	case ARPHRD_LOOPBACK:
-+		rc = dev_hard_header(skb, skb->dev, ETH_P_802_2, da, sa,
-+				     skb->len);
-+		if (rc > 0)
-+			rc = 0;
-+		break;
-+	default:
-+		break;
-+	}
-+	return rc;
-+}
-+
- 
- void llc_add_pack(int type,
- 		  void (*handler)(struct llc_sap *sap, struct sk_buff *skb));
-diff --git net/802/Kconfig net/802/Kconfig
-index aaa83e888240..8bea5d1d5118 100644
---- net/802/Kconfig
-+++ net/802/Kconfig
-@@ -1,7 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config STP
- 	tristate
--	select LLC
- 
- config GARP
- 	tristate
-diff --git net/bridge/Kconfig net/bridge/Kconfig
-index 3c8ded7d3e84..c011856d3386 100644
---- net/bridge/Kconfig
-+++ net/bridge/Kconfig
-@@ -5,7 +5,6 @@
- 
- config BRIDGE
- 	tristate "802.1d Ethernet Bridging"
--	select LLC
- 	select STP
- 	depends on IPV6 || IPV6=n
- 	help
-diff --git net/llc/llc_output.c net/llc/llc_output.c
-index 5a6466fc626a..ad66886ed141 100644
---- net/llc/llc_output.c
-+++ net/llc/llc_output.c
-@@ -13,34 +13,6 @@
- #include <net/llc.h>
- #include <net/llc_pdu.h>
- 
--/**
-- *	llc_mac_hdr_init - fills MAC header fields
-- *	@skb: Address of the frame to initialize its MAC header
-- *	@sa: The MAC source address
-- *	@da: The MAC destination address
-- *
-- *	Fills MAC header fields, depending on MAC type. Returns 0, If MAC type
-- *	is a valid type and initialization completes correctly 1, otherwise.
-- */
--int llc_mac_hdr_init(struct sk_buff *skb,
--		     const unsigned char *sa, const unsigned char *da)
--{
--	int rc = -EINVAL;
--
--	switch (skb->dev->type) {
--	case ARPHRD_ETHER:
--	case ARPHRD_LOOPBACK:
--		rc = dev_hard_header(skb, skb->dev, ETH_P_802_2, da, sa,
--				     skb->len);
--		if (rc > 0)
--			rc = 0;
--		break;
--	default:
--		break;
--	}
--	return rc;
--}
--
- /**
-  *	llc_build_and_send_ui_pkt - unitdata request interface for upper layers
-  *	@sap: sap to use
+I prefer net-next
