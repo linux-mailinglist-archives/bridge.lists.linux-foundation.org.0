@@ -1,92 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AF04FB63B
-	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 10:41:27 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 896114FB63A
+	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 10:41:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id E3EEC4093B;
-	Mon, 11 Apr 2022 08:41:25 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0z_z6Wi6eiuN; Mon, 11 Apr 2022 08:41:25 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 54E7D408C3;
+	by smtp3.osuosl.org (Postfix) with ESMTP id F2E8660F92;
 	Mon, 11 Apr 2022 08:41:24 +0000 (UTC)
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2FC7CC002C;
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id W6z4MhszcUiV; Mon, 11 Apr 2022 08:41:24 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 5158460F05;
 	Mon, 11 Apr 2022 08:41:23 +0000 (UTC)
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F2DA7C0082;
+	Mon, 11 Apr 2022 08:41:22 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9150EC002C
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:41:21 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BFCC2C002C
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:41:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 68B2883FAE
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:41:21 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 8ABBD408C3
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:41:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nDKcNguN3oJN for <bridge@lists.linux-foundation.org>;
- Mon, 11 Apr 2022 08:41:20 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com
- [IPv6:2a00:1450:4864:20::130])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 94EAB83FA7
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:41:20 +0000 (UTC)
-Received: by mail-lf1-x130.google.com with SMTP id u19so5201897lff.4
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 01:41:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:organization:content-transfer-encoding;
- bh=e7IjdhPKEVh1ILxXP0o9ofaJvPijy5TyOaJH5gWrzSo=;
- b=CG69gl74fRXhya4eLFC2KbyTlkiTOQUfJ0CqTKGenEhzBRLHESehB2tnCquvSwHp9V
- 8SMqS50EaoIbfSPADm86/PKfHoBBmVzE39VIBPdpxhkJkPilkH3vztEfv3WkKvglG1Os
- PuqTSsqBr2RuqS/OZiqe3QORivaD67vSahID8wyRBvrivLtQyvh2pnHU8lvqiKi42tPP
- +A7yJMKoDapprK+zyFWrnq4HlejGJ+SqUcy1CbfwUqjY2GjGeP6jaqbQtqz54pBM65s6
- d1V6NoauDuqLA/hv7/CkSd40hEmp5yCDGBhxITP3i+zGdGFdAa9sslFpeEpk7k4WH1YP
- HVlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:organization:content-transfer-encoding;
- bh=e7IjdhPKEVh1ILxXP0o9ofaJvPijy5TyOaJH5gWrzSo=;
- b=xv5YcDB8UUjROtW5yUzJ0CSHGVJNOcxXlh+f30zFmX0QtwQi0V7GNe9+6f3V+7OJ/C
- cb/2NGIUjVCo0g5pTb6eMfRWKjz2uaj7lFC3T/w1DaoikxGPh7G5Xr3Gf2LB459itRvp
- MB8CdDvwz+YhM3uoCbBuDt86MbPY3dYivJTJHcFbwbLAJWufwM0+F1+6JOmeolnp/2f3
- fNhSECx9z3F2sDDyLYRVtpGskTu/VE5vU0LSzhyFqAlUJELwJ2NDQ0xN3eghaniutez9
- HGO7pGGUjpAQS+9YHvhEP5A2puugA6lDEV4EL05keX4C/GBnkvLEqEOqYzBt/kQR9Skf
- aSCQ==
-X-Gm-Message-State: AOAM532IUqkQmm+qeYfkcmyve5jPevK6u39htcZL2T8tvWmvp7C00B4i
- Ye3esBDuZg/1ZUizhwd0POc=
-X-Google-Smtp-Source: ABdhPJwdM/7oBZs5n1xaB3RwYAFSEvoTFzMB0BeIbziN9YE1pQQ3sgHq8emQrtip5/Es8R74XrPYeA==
-X-Received: by 2002:a05:6512:1681:b0:464:fa16:393d with SMTP id
- bu1-20020a056512168100b00464fa16393dmr11996924lfb.672.1649666477820; 
- Mon, 11 Apr 2022 01:41:17 -0700 (PDT)
-Received: from wbg.labs.westermo.se (h-158-174-22-128.NA.cust.bahnhof.se.
- [158.174.22.128]) by smtp.gmail.com with ESMTPSA id
- x24-20020a056512047800b0046b9dafd55bsm549080lfd.164.2022.04.11.01.41.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 Apr 2022 01:41:16 -0700 (PDT)
-From: Joachim Wiberg <troglobit@gmail.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Date: Mon, 11 Apr 2022 10:40:54 +0200
-Message-Id: <20220411084054.298807-3-troglobit@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220411084054.298807-1-troglobit@gmail.com>
-References: <20220223172407.175865-1-troglobit@gmail.com>
- <20220411084054.298807-1-troglobit@gmail.com>
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=messagingengine.com
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 1qHyQ1Zt57Oy for <bridge@lists.linux-foundation.org>;
+ Mon, 11 Apr 2022 08:41:19 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
+ [64.147.123.20])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 1E46C40338
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:41:18 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailout.west.internal (Postfix) with ESMTP id 49F803201E78;
+ Mon, 11 Apr 2022 04:41:16 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Mon, 11 Apr 2022 04:41:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1649666475; x=
+ 1649752875; bh=Zpd0dbMP4Qqg9X4hnW+fvYt79OSKTVRKGbShdxRmpz8=; b=W
+ EXBJUdrtt46g9rFPLJc2LK70WpYvV2dQ4uaEyx88GQ1MfNWOM1maljBdMlwyjpiN
+ l2MER2ZQ+PcDhKd2W6pFcFPqW+65l5Gud7haY7TIhkoHHYFnSkTwhBPzV1LxQAcV
+ ZIwrBD7w6qFW6PZ3VhEQXfUNDT9KVJbtLmqSb7OrV+o9mdm8n6YaZWDG21y4MXK/
+ cQePpTYVyUjHDucETekE7dm9NKWQXcgvNTo74uTe8XbENk8MLOEWAE88u4A1FzQk
+ YGRlOBN0YSj9SJbVd4MNU9+crMvpzfi1PcUQQGWTY/dhrtIAAP6PM0FOpUQ3j+Tj
+ MOat/POqg+BCEWPbF8t7g==
+X-ME-Sender: <xms:q-lTYjnhsLk7gyG8cvqSMnljjClXCYR6SuR0incil73dJhYpi0vBtw>
+ <xme:q-lTYm03K1FPPnho_O6cXXMCDX-yUpcFQMX02fmG6f83DuocFico1T4rp2I7MKKAh
+ i7aG0tG_J-k9xE>
+X-ME-Received: <xmr:q-lTYprfDvl4XmXkh8dfO_hADWV_Ol7MSvj_Rp09AQfSonIk27t1Lm2IjSVP>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekiedgtdejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesthdtre
+ dttddtvdenucfhrhhomhepkfguohcuufgthhhimhhmvghluceoihguohhstghhsehiugho
+ shgthhdrohhrgheqnecuggftrfgrthhtvghrnheptdffkeekfeduffevgeeujeffjefhte
+ fgueeugfevtdeiheduueeukefhudehleetnecuvehluhhsthgvrhfuihiivgeptdenucfr
+ rghrrghmpehmrghilhhfrhhomhepihguohhstghhsehiughoshgthhdrohhrgh
+X-ME-Proxy: <xmx:q-lTYrn8FFvXIPoiHeq5HKx7aGQkIHRuSqWT1QWtmEKGp6JE9mCTxg>
+ <xmx:q-lTYh2VzUf_aCWdRVEFY-exWbIPSes7fnuMVogP0lLRHYBJ5ZfC3g>
+ <xmx:q-lTYqsnI2Q6M3rdxSaldPz20vpjcM5z9148eofxtjoLYKZFtSaa0g>
+ <xmx:q-lTYqy3ipQJa3XcL3VA_RoAxGXLsc_odlOyFM-kqQ-O1W6BwHg2KA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 11 Apr 2022 04:41:15 -0400 (EDT)
+Date: Mon, 11 Apr 2022 11:41:12 +0300
+From: Ido Schimmel <idosch@idosch.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <YlPpqKFeAs5oCHGD@shredder>
+References: <20220409105857.803667-1-razor@blackwall.org>
+ <20220409105857.803667-4-razor@blackwall.org>
 MIME-Version: 1.0
-Organization: Westermo Network Technologies AB
-Content-Transfer-Encoding: 8bit
-Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@nvidia.com>,
- Joachim Wiberg <troglobit@gmail.com>, "David S . Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH v2 net-next 2/2] selftests: forwarding: new test,
-	verify host mdb entries
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220409105857.803667-4-razor@blackwall.org>
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next 3/6] net: bridge: fdb: add new nl
+ attribute-based flush call
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,138 +99,32 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Boiler plate for testing static mdb entries.  This first test verifies
-adding and removing host mdb entries for all supported types: IPv4,
-IPv6, and MAC multicast.
+On Sat, Apr 09, 2022 at 01:58:54PM +0300, Nikolay Aleksandrov wrote:
+> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+> index 221a4256808f..2f3799cf14b2 100644
+> --- a/include/uapi/linux/if_bridge.h
+> +++ b/include/uapi/linux/if_bridge.h
+> @@ -807,7 +807,15 @@ enum {
+>  /* embedded in IFLA_BRIDGE_FLUSH */
+>  enum {
+>  	BRIDGE_FLUSH_UNSPEC,
+> +	BRIDGE_FLUSH_FDB,
+>  	__BRIDGE_FLUSH_MAX
+>  };
+>  #define BRIDGE_FLUSH_MAX (__BRIDGE_FLUSH_MAX - 1)
+> +
+> +/* embedded in BRIDGE_FLUSH_FDB */
+> +enum {
+> +	FDB_FLUSH_UNSPEC,
 
-Signed-off-by: Joachim Wiberg <troglobit@gmail.com>
----
- .../testing/selftests/net/forwarding/Makefile |   1 +
- .../selftests/net/forwarding/bridge_mdb.sh    | 103 ++++++++++++++++++
- 2 files changed, 104 insertions(+)
- create mode 100755 tools/testing/selftests/net/forwarding/bridge_mdb.sh
+BTW, is there a reason this is not called FLUSH_FDB_UNSPEC given it's
+embedded in BRIDGE_FLUSH_FDB, which is embedded in IFLA_BRIDGE_FLUSH ?
 
-diff --git a/tools/testing/selftests/net/forwarding/Makefile b/tools/testing/selftests/net/forwarding/Makefile
-index 8fa97ae9af9e..ae80c2aef577 100644
---- a/tools/testing/selftests/net/forwarding/Makefile
-+++ b/tools/testing/selftests/net/forwarding/Makefile
-@@ -2,6 +2,7 @@
- 
- TEST_PROGS = bridge_igmp.sh \
- 	bridge_locked_port.sh \
-+	bridge_mdb.sh \
- 	bridge_port_isolation.sh \
- 	bridge_sticky_fdb.sh \
- 	bridge_vlan_aware.sh \
-diff --git a/tools/testing/selftests/net/forwarding/bridge_mdb.sh b/tools/testing/selftests/net/forwarding/bridge_mdb.sh
-new file mode 100755
-index 000000000000..b1ba6876dd86
---- /dev/null
-+++ b/tools/testing/selftests/net/forwarding/bridge_mdb.sh
-@@ -0,0 +1,103 @@
-+#!/bin/bash
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Verify that adding host mdb entries work as intended for all types of
-+# multicast filters: ipv4, ipv6, and mac
-+
-+ALL_TESTS="mdb_add_del_test"
-+NUM_NETIFS=2
-+
-+TEST_GROUP_IP4="225.1.2.3"
-+TEST_GROUP_IP6="ff02::42"
-+TEST_GROUP_MAC="01:00:01:c0:ff:ee"
-+
-+source lib.sh
-+
-+h1_create()
-+{
-+	simple_if_init $h1 192.0.2.1/24 2001:db8:1::1/64
-+}
-+
-+h1_destroy()
-+{
-+	simple_if_fini $h1 192.0.2.1/24 2001:db8:1::1/64
-+}
-+
-+switch_create()
-+{
-+	# Enable multicast filtering
-+	ip link add dev br0 type bridge mcast_snooping 1
-+
-+	ip link set dev $swp1 master br0
-+
-+	ip link set dev br0 up
-+	ip link set dev $swp1 up
-+}
-+
-+switch_destroy()
-+{
-+	ip link set dev $swp1 down
-+	ip link del dev br0
-+}
-+
-+setup_prepare()
-+{
-+	h1=${NETIFS[p1]}
-+	swp1=${NETIFS[p2]}
-+
-+	vrf_prepare
-+
-+	h1_create
-+	switch_create
-+}
-+
-+cleanup()
-+{
-+	pre_cleanup
-+
-+	switch_destroy
-+	h1_destroy
-+
-+	vrf_cleanup
-+}
-+
-+do_mdb_add_del()
-+{
-+	local group=$1
-+	local flag=$2
-+
-+	RET=0
-+	bridge mdb add dev br0 port br0 grp $group $flag 2>/dev/null
-+	check_err $? "Failed adding $group to br0, port br0"
-+
-+	if [ -z "$flag" ]; then
-+	    flag="temp"
-+	fi
-+
-+	bridge mdb show dev br0 | grep $group | grep -q $flag 2>/dev/null
-+	check_err $? "$group not added with $flag flag"
-+
-+	bridge mdb del dev br0 port br0 grp $group 2>/dev/null
-+	check_err $? "Failed deleting $group from br0, port br0"
-+
-+	bridge mdb show dev br0 | grep -q $group >/dev/null
-+	check_err_fail 1 $? "$group still in mdb after delete"
-+
-+	log_test "MDB add/del group $group to bridge port br0"
-+}
-+
-+mdb_add_del_test()
-+{
-+	do_mdb_add_del $TEST_GROUP_MAC permanent
-+	do_mdb_add_del $TEST_GROUP_IP4
-+	do_mdb_add_del $TEST_GROUP_IP6
-+}
-+
-+trap cleanup EXIT
-+
-+setup_prepare
-+setup_wait
-+
-+tests_run
-+
-+exit $EXIT_STATUS
--- 
-2.25.1
+Regardless, in the cover letter you have '[ BRIDGE_FDB_FLUSH ]', which
+is actually BRIDGE_FLUSH_FDB. I only noticed it because the code didn't
+match what I had in my notebook, which I copied from the cover letter :)
 
+> +	__FDB_FLUSH_MAX
+> +};
+> +#define FDB_FLUSH_MAX (__FDB_FLUSH_MAX - 1)
+>  #endif /* _UAPI_LINUX_IF_BRIDGE_H */
