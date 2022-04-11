@@ -1,80 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AD74FBD5F
-	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 15:39:09 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A314FBD60
+	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 15:39:10 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8E10C409A7;
-	Mon, 11 Apr 2022 13:39:07 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 21C4240A90;
+	Mon, 11 Apr 2022 13:39:08 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id A4xgNK6tGEAF; Mon, 11 Apr 2022 13:39:06 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id X1NBHLz2cC3T; Mon, 11 Apr 2022 13:39:07 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id E6A13414E2;
-	Mon, 11 Apr 2022 13:39:05 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id AA88140A93;
+	Mon, 11 Apr 2022 13:39:06 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9A45DC0084;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E24E1C0083;
 	Mon, 11 Apr 2022 13:39:05 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 235A1C008B
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:39:03 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1F9DAC0033
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:39:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id DD11960FD0
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:39:02 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 7AA0483DF1
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:39:03 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id fVrwggQvrRme for <bridge@lists.linux-foundation.org>;
- Mon, 11 Apr 2022 13:39:02 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id cofww9brKMkp for <bridge@lists.linux-foundation.org>;
+ Mon, 11 Apr 2022 13:39:03 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
- [IPv6:2a00:1450:4864:20::12a])
- by smtp3.osuosl.org (Postfix) with ESMTPS id CC2BC60FDE
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:39:01 +0000 (UTC)
-Received: by mail-lf1-x12a.google.com with SMTP id z17so2183148lfj.11
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 06:39:01 -0700 (PDT)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
+ [IPv6:2a00:1450:4864:20::230])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id BE8CE8270B
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:39:02 +0000 (UTC)
+Received: by mail-lj1-x230.google.com with SMTP id m8so2680009ljc.7
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 06:39:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:organization:content-transfer-encoding;
- bh=TFNOjZAXZon/4fuYvoXX/NbbTAf3VntOhKR6DBqpfYk=;
- b=kvB+hyM6e8RNZhoXuBQ/tSpmItfGCHtV/80UPZA2wcqsSJle472+AMQJQkqTSKG1zm
- 9Ts/A1anN1MHNODDAuUPyykcEu1h3TncWzzTNf9nyt/TVZtmY+pPFG7NFuUeJhHrhKXa
- g9WqrFGvVVpE5OLbkZ64U+QIwjL7mx5bxxM82hWCDKNkDygEjR9jbQoxAPm6i/8W5kPR
- RzHZi9JYFT+8ZqGHUqK4lCk6QIv67edRLjOnrYh6wQB2mGbwq+hC0jyLJCtINGFhAInp
- U08yaJaXH9DmG3bSRD4IyKJK0gv0HkZDmsae+6ULbupzhH0+WDlM2Kp1QSlSlOP6Jn3H
- itWQ==
+ bh=z5/W5d8ndtvXDnyj0JyTra9alKgaGGYDMc0cdYTNV+Y=;
+ b=PrNADXRvCHQzEChEPZg2kZj2LmA3yA1kD5ofn6xym7Neu/ROj+Tf88BEBnHcTrX6zN
+ QA+RXn7FIQd2kWEQ6ciFFhyLUIJaYhBKJ4HgU31OE6xHtbMkGZrgQioXycEHo5wN21Af
+ fW7sXUhV8TThK665pAO8Yg8HmweuI9KaHu/7QTVsOFfZj0NwTfKK1o4UaCmFMLLgO59z
+ VYxD1emxfusy5Hutf+hzI6e64uTHPyYv/MDGVwGZZkI98effVZyPQmceUjp8KlRn/UtF
+ n6QTT0FCD65iAkEO1MRKAoN+w2NM7HBb4iy4sTXlUB1U26NLYF52XQkiYWYAY0hDSU9s
+ l9Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:organization:content-transfer-encoding;
- bh=TFNOjZAXZon/4fuYvoXX/NbbTAf3VntOhKR6DBqpfYk=;
- b=axxXaRhe1k7SIhbiHX//KZQ2EmSc9YS635R6tSeC/XWDC/5+eiJcKdgw5Tbbd1Q+9i
- umX07t188h6BBJRvBVUmuaxiL7HmeorJ2lcDmMR8HFSOBpgumecoZLw7PgCrDX6Fb8sC
- 9P7v5IP2ans0gZ2yo7Xf3mLFkOKiXBAQm5UWZ4J3jaRpH3EmFj3WggRMtA+v7C5e3/ro
- 9YwMtTpjdsgEpvBzWt//2vEF/In/X8/BlUeMBjayWyGgdJCIlCULnZvir2hWcaVR0+GG
- otClBQDIAgt+15fXQ1A8gC7WDSco24Q7ndi3um5hJ23yn9dH6zvx5HR2Fy1pTZwxJoGn
- mwVw==
-X-Gm-Message-State: AOAM530k2RSw6KMRGAxIZgmuHzeCBYhid0+Hn1C/9dfRJrFZw6ApgGDT
- E3LwEdg92FSvuoAGFjFm5cA=
-X-Google-Smtp-Source: ABdhPJz8VyAgDW/b+e3V8a/isVm7gzC8dVXcgQJDNS04+ThstRMLoxnxLoypvvmLCJqc1Rsk2tMNoQ==
-X-Received: by 2002:ac2:4194:0:b0:442:ed9e:4a25 with SMTP id
- z20-20020ac24194000000b00442ed9e4a25mr20779404lfh.629.1649684339767; 
- Mon, 11 Apr 2022 06:38:59 -0700 (PDT)
+ bh=z5/W5d8ndtvXDnyj0JyTra9alKgaGGYDMc0cdYTNV+Y=;
+ b=Qec4fSFxKNvks0B+wO6a0TrH/wo9DZ0u8+c/wPUt543Gv+LUPM0cNenFFzhzSd2Z8P
+ 5Vu0NpjOXHh6TGKBZbUcjr3fq0Vz1v8NSNTF4CQtV0jiLYBn+Y8TOFL7hAxgNKzpZm06
+ vLdX2YIo+s0rjl48Qn2mqDZDtnkU8SWlfARxgciTk2lQZ9vyn983pU/hxKOzMGe8TmuC
+ r9XTroBFRaMW0ipqIeJrei/MnfG2BZkAUk27JgphV/UPx+6ZnFF07pcLPckqz6EMcVVL
+ 0saNighP4e53DUN2+yDVc6w5lVigHhfX3Z+ZmWRjH2u8oKAnrY/NoEErqYY+qvywYuV1
+ czAQ==
+X-Gm-Message-State: AOAM530CMoe6vD0pdJy7hi4GHeQaMGn6ZUhY2131x5kF2WwKOdBHzu90
+ ww4ypQ+Bk27Ng2NkOosB8Jk=
+X-Google-Smtp-Source: ABdhPJzQsThOV+obcF51ZdbEECKXTvk7EJ2ggIeeWtcSxu+TM3BAO/EUQdy8+lJnQJzoNqN7/S2pCg==
+X-Received: by 2002:a2e:b5aa:0:b0:24b:519f:d21f with SMTP id
+ f10-20020a2eb5aa000000b0024b519fd21fmr9949878ljn.35.1649684340759; 
+ Mon, 11 Apr 2022 06:39:00 -0700 (PDT)
 Received: from wbg.labs.westermo.se (h-158-174-22-128.NA.cust.bahnhof.se.
  [158.174.22.128]) by smtp.gmail.com with ESMTPSA id
- p12-20020a056512138c00b0044833f1cd85sm3336847lfa.62.2022.04.11.06.38.59
+ p12-20020a056512138c00b0044833f1cd85sm3336847lfa.62.2022.04.11.06.39.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 Apr 2022 06:38:59 -0700 (PDT)
+ Mon, 11 Apr 2022 06:39:00 -0700 (PDT)
 From: Joachim Wiberg <troglobit@gmail.com>
 To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>
-Date: Mon, 11 Apr 2022 15:38:32 +0200
-Message-Id: <20220411133837.318876-9-troglobit@gmail.com>
+Date: Mon, 11 Apr 2022 15:38:33 +0200
+Message-Id: <20220411133837.318876-10-troglobit@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220411133837.318876-1-troglobit@gmail.com>
 References: <20220411133837.318876-1-troglobit@gmail.com>
@@ -86,8 +86,8 @@ Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  Joachim Wiberg <troglobit@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
  "David S . Miller" <davem@davemloft.net>,
  Tobias Waldekranz <tobias@waldekranz.com>
-Subject: [Bridge] [PATCH RFC net-next 08/13] net: bridge: avoid classifying
-	unknown multicast as mrouters_only
+Subject: [Bridge] [PATCH RFC net-next 09/13] selftests: forwarding: rename
+	test groups for next bridge mdb tests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,76 +102,50 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Unknown multicast, MAC/IPv4/IPv6, should always be flooded according to
-the per-port mcast_flood setting, as well as to detected and configured
-mcast_router ports.
-
-This patch drops the mrouters_only classifier of unknown IP multicast
-and moves the flow handling from br_multicast_flood() to br_flood().
-This in turn means br_flood() must know about multicast router ports.
+Rename test groups to PASS and FAIL, respectively, for upcoming changes
+to test suite.
 
 Signed-off-by: Joachim Wiberg <troglobit@gmail.com>
 ---
- net/bridge/br_forward.c   | 11 +++++++++++
- net/bridge/br_multicast.c |  6 +-----
- 2 files changed, 12 insertions(+), 5 deletions(-)
+ .../selftests/net/forwarding/bridge_mdb.sh     | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index 02bb620d3b8d..ab5b97a8c12e 100644
---- a/net/bridge/br_forward.c
-+++ b/net/bridge/br_forward.c
-@@ -199,9 +199,15 @@ static struct net_bridge_port *maybe_deliver(
- void br_flood(struct net_bridge *br, struct sk_buff *skb,
- 	      enum br_pkt_type pkt_type, bool local_rcv, bool local_orig)
- {
-+	struct net_bridge_mcast *brmctx = &br->multicast_ctx;
-+	struct net_bridge_port *rport = NULL;
- 	struct net_bridge_port *prev = NULL;
-+	struct hlist_node *rp = NULL;
- 	struct net_bridge_port *p;
+diff --git a/tools/testing/selftests/net/forwarding/bridge_mdb.sh b/tools/testing/selftests/net/forwarding/bridge_mdb.sh
+index b1ba6876dd86..c0b84b7d4364 100755
+--- a/tools/testing/selftests/net/forwarding/bridge_mdb.sh
++++ b/tools/testing/selftests/net/forwarding/bridge_mdb.sh
+@@ -7,9 +7,15 @@
+ ALL_TESTS="mdb_add_del_test"
+ NUM_NETIFS=2
  
-+	if (pkt_type == BR_PKT_MULTICAST)
-+		rp = br_multicast_get_first_rport_node(brmctx, skb);
+-TEST_GROUP_IP4="225.1.2.3"
+-TEST_GROUP_IP6="ff02::42"
+-TEST_GROUP_MAC="01:00:01:c0:ff:ee"
++PASS_GRP_IP4="225.1.2.3"
++FAIL_GRP_IP4="225.1.2.4"
 +
- 	list_for_each_entry_rcu(p, &br->port_list, list) {
- 		/* Do not flood unicast traffic to ports that turn it off, nor
- 		 * other traffic if flood off, except for traffic we originate
-@@ -212,6 +218,11 @@ void br_flood(struct net_bridge *br, struct sk_buff *skb,
- 				continue;
- 			break;
- 		case BR_PKT_MULTICAST:
-+			rport = br_multicast_rport_from_node_skb(rp, skb);
-+			if (rport == p) {
-+				rp = rcu_dereference(hlist_next_rcu(rp));
-+				break;
-+			}
- 			if (!(p->flags & BR_MCAST_FLOOD) && skb->dev != br->dev)
- 				continue;
- 			break;
-diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
-index db4f2641d1cd..c57e3bbb00ad 100644
---- a/net/bridge/br_multicast.c
-+++ b/net/bridge/br_multicast.c
-@@ -3643,9 +3643,7 @@ static int br_multicast_ipv4_rcv(struct net_bridge_mcast *brmctx,
- 	err = ip_mc_check_igmp(skb);
++PASS_GRP_MAC="01:00:01:c0:ff:ee"
++FAIL_GRP_MAC="01:00:01:c0:ff:ef"
++
++PASS_GRP_IP6="ff02::42"
++FAIL_GRP_IP6="ff02::43"
++
  
- 	if (err == -ENOMSG) {
--		if (!ipv4_is_local_multicast(ip_hdr(skb)->daddr)) {
--			BR_INPUT_SKB_CB(skb)->mrouters_only = 1;
--		} else if (pim_ipv4_all_pim_routers(ip_hdr(skb)->daddr)) {
-+		if (pim_ipv4_all_pim_routers(ip_hdr(skb)->daddr)) {
- 			if (ip_hdr(skb)->protocol == IPPROTO_PIM)
- 				br_multicast_pim(brmctx, pmctx, skb);
- 		} else if (ipv4_is_all_snoopers(ip_hdr(skb)->daddr)) {
-@@ -3712,8 +3710,6 @@ static int br_multicast_ipv6_rcv(struct net_bridge_mcast *brmctx,
- 	err = ipv6_mc_check_mld(skb);
+ source lib.sh
  
- 	if (err == -ENOMSG || err == -ENODATA) {
--		if (!ipv6_addr_is_ll_all_nodes(&ipv6_hdr(skb)->daddr))
--			BR_INPUT_SKB_CB(skb)->mrouters_only = 1;
- 		if (err == -ENODATA &&
- 		    ipv6_addr_is_all_snoopers(&ipv6_hdr(skb)->daddr))
- 			br_ip6_multicast_mrd_rcv(brmctx, pmctx, skb);
+@@ -88,9 +94,9 @@ do_mdb_add_del()
+ 
+ mdb_add_del_test()
+ {
+-	do_mdb_add_del $TEST_GROUP_MAC permanent
+-	do_mdb_add_del $TEST_GROUP_IP4
+-	do_mdb_add_del $TEST_GROUP_IP6
++	do_mdb_add_del $PASS_GRP_MAC permanent
++	do_mdb_add_del $PASS_GRP_IP4
++	do_mdb_add_del $PASS_GRP_IP6
+ }
+ 
+ trap cleanup EXIT
 -- 
 2.25.1
 
