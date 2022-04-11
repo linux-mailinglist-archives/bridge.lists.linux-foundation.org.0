@@ -1,90 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DAB24FB5D7
-	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 10:21:00 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id C558B4FB605
+	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 10:33:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 670F660E74;
-	Mon, 11 Apr 2022 08:20:58 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id 4078481AF3;
+	Mon, 11 Apr 2022 08:33:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id CvInozNoT2_Q; Mon, 11 Apr 2022 08:20:57 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5_QWsOzXrEYP; Mon, 11 Apr 2022 08:33:31 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 9DA4160E33;
-	Mon, 11 Apr 2022 08:20:56 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 7CBE283F7E;
+	Mon, 11 Apr 2022 08:33:30 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 39D3BC0082;
-	Mon, 11 Apr 2022 08:20:56 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2A38BC0082;
+	Mon, 11 Apr 2022 08:33:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 23076C002C
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:20:54 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9A63BC002C
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:33:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 1685F40556
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:20:54 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 69D0783F77
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:33:24 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp2.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=messagingengine.com
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cFhVtDg24PGG for <bridge@lists.linux-foundation.org>;
- Mon, 11 Apr 2022 08:20:53 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id B5Vr5B5JlCI1 for <bridge@lists.linux-foundation.org>;
+ Mon, 11 Apr 2022 08:33:23 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
 Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
  [64.147.123.20])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 6EFAD40338
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:20:53 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id 5AAED3201F27;
- Mon, 11 Apr 2022 04:20:52 -0400 (EDT)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 7EF9983F64
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 08:33:23 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.west.internal (Postfix) with ESMTP id 4673F3201DFD;
+ Mon, 11 Apr 2022 04:33:22 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Mon, 11 Apr 2022 04:20:52 -0400
+ by compute4.internal (MEProxy); Mon, 11 Apr 2022 04:33:22 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1649665251; x=
- 1649751651; bh=dHdCNUO3dPTJm9yrEeHeG1wWaiGHm3Q9QFpcLvdPavA=; b=e
- V+FCzUjqDsYK8Tbxj2R0vTH01vkX02gbiXvapts+duoiQKvaDXhnZwbmh3bPh5QT
- vzeQD+InZNKjKM7d2Ktj27QdPuwr6R90Ejeez3zZmWSBULEhUGvVB6AL+McfBH4p
- YkUfHAjaQf8ihn8qg79cnFDN0N5Yi8ap59RiiOP1+S4piU5OTFbflA1jc8/svBni
- kjiOjSrvZRYFy79c+LmNhC3M+6xCGgUJLC27JsadvXlu/SX7n+tnT+TBpJwrfJqF
- SpQB3ttU9psmKZwW07PCRdd29JbQIaohKYTjmtuPWuM2WPc9FLqyur4BVMLHt2tZ
- xVJdwkZHrZ/+CrohFUSvA==
-X-ME-Sender: <xms:4-RTYv4x6DIVYKTY0UhN0i3pKCJeXhD9wVzaaiqEuEGNPHuyviMysQ>
- <xme:4-RTYk6Z5evFQ3bFRye_b2TkUEotKipPK5U3Ibxs8i-7iujIeCUWHI1c9iIgOlCw1
- pb9m8g6YoOfD-k>
-X-ME-Received: <xmr:4-RTYmeyxqfnrHX1a41gMdw6vbvf60Pl4wOenR5sZR5Qh-nshExTxXgXiUbE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekiedgtddvucetufdoteggodetrfdotf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1649666001; x=
+ 1649752401; bh=63DL3gXe7MJNSMKanG26OImrqCC36Hcg2tJwp9gTWBE=; b=K
+ cDGr/e949d97dbVz8Wn4LtQsQVvRVoEbP8Ps/U9gBYxdloPnwkce6oJsiiPuhbA2
+ cr9bQH4Zs72hhB2fKwoervmonih6C0UTSzhjcScIgXCagLYlcXbcO6kABLL/6KXg
+ YuUm+Kz2rn5aciVNoIghnAPQuok39zrJGSkAEKza4NXLhhlkh11UdTm3cuNTuJ7N
+ /VY4fOyeWIsYuVMYwo84w1DiT4DdXmcA88wC92g2X5eDch0sR/++Q0pZlvsEEhEq
+ mfvRPcX0PqT+AcUp2fs1+9OBSEfE/5CALXVH3HZvckvuIQRA6Bk06H4pnA+xxnhp
+ d/fPDhFjR/g+Q+AxKMt6Q==
+X-ME-Sender: <xms:0edTYjEOEOvP7_i0INKSVJrevGFN0Sp-Q6_SB3dXOlJJZL9fCSWXmw>
+ <xme:0edTYgUtuF3QCWHJhradBdzXMLY7GsBAGSkL7s2hHFkB2Km-sgkHC0MrOJtqfcx8l
+ sD47O4SyRTtfvE>
+X-ME-Received: <xmr:0edTYlIB2i3TZ6cPAyWIT0_wmt7A7sM5qymQ1MM1x0bXs3XlyF9t0mXxtorx>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudekiedgtdeiucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesthdtre
  dttddtvdenucfhrhhomhepkfguohcuufgthhhimhhmvghluceoihguohhstghhsehiugho
- shgthhdrohhrgheqnecuggftrfgrthhtvghrnheptdffkeekfeduffevgeeujeffjefhte
- fgueeugfevtdeiheduueeukefhudehleetnecuvehluhhsthgvrhfuihiivgeptdenucfr
- rghrrghmpehmrghilhhfrhhomhepihguohhstghhsehiughoshgthhdrohhrgh
-X-ME-Proxy: <xmx:4-RTYgLsuQGa0mLyc0cvjZ79qKZ0575fLv1tphwSoQykLcPKSNEvSQ>
- <xmx:4-RTYjINT1C3YoERrDifRyLG29nnMw7YI1qlg4Kmoc9dMX6fOIo3EQ>
- <xmx:4-RTYpwmgj5aJsUkoEPrSweqmcyRZZarKE_uROhfnOt_AE5JjeFY1g>
- <xmx:4-RTYr1D9kI4CqpOa5nEPSmXK-FfMj4LqHXHcGhwQaQNUMhZQEYlnw>
+ shgthhdrohhrgheqnecuggftrfgrthhtvghrnhepgfevgfevueduueffieffheeifffgje
+ elvedtteeuteeuffekvefggfdtudfgkeevnecuffhomhgrihhnpehkvghrnhgvlhdrohhr
+ ghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehiug
+ hoshgthhesihguohhstghhrdhorhhg
+X-ME-Proxy: <xmx:0edTYhGoffvzS5IdQ8VY9hAelEQlkmyfsfao1_dvByB2QO0MK_zvWw>
+ <xmx:0edTYpWZb-PeOKYLJgnhf_JQgk8BNfOWyiC4Z4F4HxPxQMO_WxAU7A>
+ <xmx:0edTYsPewmZBjGXy_xC5TCxX-SpjYOsj8YgsGU5-ukSsG1ZrLNzVCQ>
+ <xmx:0edTYsQ5UXwgyAzCk6JS1sX1y3WfhLE40_exdYFVnSSecsvmTNRO6Q>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 11 Apr 2022 04:20:51 -0400 (EDT)
-Date: Mon, 11 Apr 2022 11:20:48 +0300
+ 11 Apr 2022 04:33:20 -0400 (EDT)
+Date: Mon, 11 Apr 2022 11:33:18 +0300
 From: Ido Schimmel <idosch@idosch.org>
 To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <YlPk4GGqcAGCEZ4s@shredder>
+Message-ID: <YlPnznOq3k8KZg2n@shredder>
 References: <20220409105857.803667-1-razor@blackwall.org>
- <20220409105857.803667-3-razor@blackwall.org>
+ <20220409105857.803667-4-razor@blackwall.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220409105857.803667-3-razor@blackwall.org>
+In-Reply-To: <20220409105857.803667-4-razor@blackwall.org>
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 2/6] net: bridge: fdb: add support for
- fine-grained flushing
+Subject: Re: [Bridge] [PATCH net-next 3/6] net: bridge: fdb: add new nl
+ attribute-based flush call
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,157 +98,119 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sat, Apr 09, 2022 at 01:58:53PM +0300, Nikolay Aleksandrov wrote:
-> Add the ability to specify exactly which fdbs to be flushed. They are
-> described by a new structure - net_bridge_fdb_flush_desc. Currently it
-> can match on port/bridge ifindex, vlan id and fdb flags. It is used to
-> describe the existing dynamic fdb flush operation.
+On Sat, Apr 09, 2022 at 01:58:54PM +0300, Nikolay Aleksandrov wrote:
+> Add a new fdb flush call which parses the embedded attributes in
+> BRIDGE_FLUSH_FDB and fills in the fdb flush descriptor to delete only
+> matching entries. Currently it's a complete flush, support for more
+> fine-grained filtering will be added in the following patches.
 > 
 > Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
 > ---
->  net/bridge/br_fdb.c      | 36 +++++++++++++++++++++++++++++-------
->  net/bridge/br_netlink.c  |  9 +++++++--
->  net/bridge/br_private.h  | 10 +++++++++-
->  net/bridge/br_sysfs_br.c |  6 +++++-
->  4 files changed, 50 insertions(+), 11 deletions(-)
+>  include/uapi/linux/if_bridge.h |  8 ++++++++
+>  net/bridge/br_fdb.c            | 24 ++++++++++++++++++++++++
+>  net/bridge/br_netlink.c        |  8 ++++++++
+>  net/bridge/br_private.h        |  2 ++
+>  4 files changed, 42 insertions(+)
 > 
+> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+> index 221a4256808f..2f3799cf14b2 100644
+> --- a/include/uapi/linux/if_bridge.h
+> +++ b/include/uapi/linux/if_bridge.h
+> @@ -807,7 +807,15 @@ enum {
+>  /* embedded in IFLA_BRIDGE_FLUSH */
+>  enum {
+>  	BRIDGE_FLUSH_UNSPEC,
+> +	BRIDGE_FLUSH_FDB,
+>  	__BRIDGE_FLUSH_MAX
+>  };
+>  #define BRIDGE_FLUSH_MAX (__BRIDGE_FLUSH_MAX - 1)
+> +
+> +/* embedded in BRIDGE_FLUSH_FDB */
+> +enum {
+> +	FDB_FLUSH_UNSPEC,
+> +	__FDB_FLUSH_MAX
+> +};
+> +#define FDB_FLUSH_MAX (__FDB_FLUSH_MAX - 1)
+>  #endif /* _UAPI_LINUX_IF_BRIDGE_H */
 > diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-> index 6ccda68bd473..4b0bf88c4121 100644
+> index 4b0bf88c4121..62f694a739e1 100644
 > --- a/net/bridge/br_fdb.c
 > +++ b/net/bridge/br_fdb.c
-> @@ -558,18 +558,40 @@ void br_fdb_cleanup(struct work_struct *work)
->  	mod_delayed_work(system_long_wq, &br->gc_work, work_delay);
+> @@ -594,6 +594,30 @@ void br_fdb_flush(struct net_bridge *br,
+>  	rcu_read_unlock();
 >  }
 >  
-> -/* Completely flush all dynamic entries in forwarding database.*/
-> -void br_fdb_flush(struct net_bridge *br)
-> +static bool __fdb_flush_matches(const struct net_bridge *br,
-> +				const struct net_bridge_fdb_entry *f,
-> +				const struct net_bridge_fdb_flush_desc *desc)
-> +{
-> +	const struct net_bridge_port *dst = READ_ONCE(f->dst);
-> +	int port_ifidx, br_ifidx = br->dev->ifindex;
-> +
-> +	port_ifidx = dst ? dst->dev->ifindex : 0;
-> +
-> +	return (!desc->vlan_id || desc->vlan_id == f->key.vlan_id) &&
-> +	       (!desc->port_ifindex ||
-> +		(desc->port_ifindex == port_ifidx ||
-> +		 (!dst && desc->port_ifindex == br_ifidx))) &&
-> +	       (!desc->flags_mask ||
-> +		((f->flags & desc->flags_mask) == desc->flags));
-
-I find this easier to read:
-
-port_ifidx = dst ? dst->dev->ifindex : br_ifidx;
-
-if (desc->vlan_id && desc->vlan_id != f->key.vlan_id)
-	return false;
-if (desc->port_ifindex && desc->port_ifindex != port_ifidx)
-	return false;
-if (desc->flags_mask && (f->flags & desc->flags_mask) != desc->flags)
-	return false;
-
-return true;
-
-> +}
-> +
-> +/* Flush forwarding database entries matching the description */
-> +void br_fdb_flush(struct net_bridge *br,
-> +		  const struct net_bridge_fdb_flush_desc *desc)
->  {
->  	struct net_bridge_fdb_entry *f;
-> -	struct hlist_node *tmp;
->  
-> -	spin_lock_bh(&br->hash_lock);
-> -	hlist_for_each_entry_safe(f, tmp, &br->fdb_list, fdb_node) {
-> -		if (!test_bit(BR_FDB_STATIC, &f->flags))
-> +	rcu_read_lock();
-> +	hlist_for_each_entry_rcu(f, &br->fdb_list, fdb_node) {
-> +		if (!__fdb_flush_matches(br, f, desc))
-> +			continue;
-> +
-> +		spin_lock_bh(&br->hash_lock);
-> +		if (!hlist_unhashed(&f->fdb_node))
->  			fdb_delete(br, f, true);
-> +		spin_unlock_bh(&br->hash_lock);
->  	}
-> -	spin_unlock_bh(&br->hash_lock);
-> +	rcu_read_unlock();
->  }
->  
->  /* Flush all entries referring to a specific port.
-> diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
-> index fe2211d4c0c7..6e6dce6880c9 100644
-> --- a/net/bridge/br_netlink.c
-> +++ b/net/bridge/br_netlink.c
-> @@ -1366,8 +1366,13 @@ static int br_changelink(struct net_device *brdev, struct nlattr *tb[],
->  		br_recalculate_fwd_mask(br);
->  	}
->  
-> -	if (data[IFLA_BR_FDB_FLUSH])
-> -		br_fdb_flush(br);
-> +	if (data[IFLA_BR_FDB_FLUSH]) {
-> +		struct net_bridge_fdb_flush_desc desc = {
-> +			.flags_mask = BR_FDB_STATIC
-> +		};
-> +
-> +		br_fdb_flush(br, &desc);
-
-I wanted to ask why you are not doing the same for IFLA_BRPORT_FLUSH,
-but then I read the implementation of br_fdb_delete_by_port() and
-remembered the comment in the cover letter regarding fdb_delete vs
-fdb_delete_local. Probably best to note it in the commit message
-
-> +	}
->  
->  #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
->  	if (data[IFLA_BR_MCAST_ROUTER]) {
-> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-> index 6e62af2e07e9..e6930e9ee69d 100644
-> --- a/net/bridge/br_private.h
-> +++ b/net/bridge/br_private.h
-> @@ -274,6 +274,13 @@ struct net_bridge_fdb_entry {
->  	struct rcu_head			rcu;
->  };
->  
-> +struct net_bridge_fdb_flush_desc {
-> +	unsigned long			flags;
-> +	unsigned long			flags_mask;
-> +	int				port_ifindex;
-> +	u16				vlan_id;
+> +static const struct nla_policy br_fdb_flush_policy[FDB_FLUSH_MAX + 1] = {
+> +	[FDB_FLUSH_UNSPEC]	= { .type = NLA_REJECT },
 > +};
 > +
->  #define MDB_PG_FLAGS_PERMANENT	BIT(0)
->  #define MDB_PG_FLAGS_OFFLOAD	BIT(1)
->  #define MDB_PG_FLAGS_FAST_LEAVE	BIT(2)
-> @@ -759,7 +766,8 @@ int br_fdb_init(void);
->  void br_fdb_fini(void);
->  int br_fdb_hash_init(struct net_bridge *br);
->  void br_fdb_hash_fini(struct net_bridge *br);
-> -void br_fdb_flush(struct net_bridge *br);
-> +void br_fdb_flush(struct net_bridge *br,
-> +		  const struct net_bridge_fdb_flush_desc *desc);
->  void br_fdb_find_delete_local(struct net_bridge *br,
->  			      const struct net_bridge_port *p,
->  			      const unsigned char *addr, u16 vid);
-> diff --git a/net/bridge/br_sysfs_br.c b/net/bridge/br_sysfs_br.c
-> index 3f7ca88c2aa3..612e367fff20 100644
-> --- a/net/bridge/br_sysfs_br.c
-> +++ b/net/bridge/br_sysfs_br.c
-> @@ -344,7 +344,11 @@ static DEVICE_ATTR_RW(group_addr);
->  static int set_flush(struct net_bridge *br, unsigned long val,
->  		     struct netlink_ext_ack *extack)
->  {
-> -	br_fdb_flush(br);
-> +	struct net_bridge_fdb_flush_desc desc = {
-> +		.flags_mask = BR_FDB_STATIC
-> +	};
+> +int br_fdb_flush_nlattr(struct net_bridge *br, struct nlattr *fdb_flush_attr,
+> +			struct netlink_ext_ack *extack)
+> +{
+> +	struct nlattr *fdb_flush_tb[FDB_FLUSH_MAX + 1];
+> +	struct net_bridge_fdb_flush_desc desc = {};
+> +	int err;
+> +
+> +	err = nla_parse_nested(fdb_flush_tb, FDB_FLUSH_MAX, fdb_flush_attr,
+> +			       br_fdb_flush_policy, extack);
+> +	if (err)
+> +		return err;
+> +
+> +	br_debug(br, "flushing port ifindex: %d vlan id: %u flags: 0x%lx flags mask: 0x%lx\n",
+> +		 desc.port_ifindex, desc.vlan_id, desc.flags, desc.flags_mask);
 > +
 > +	br_fdb_flush(br, &desc);
+> +
+> +	return 0;
+> +}
+> +
+>  /* Flush all entries referring to a specific port.
+>   * if do_all is set also flush static entries
+>   * if vid is set delete all entries that match the vlan_id
+> diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+> index 6e6dce6880c9..bd2c91e5723d 100644
+> --- a/net/bridge/br_netlink.c
+> +++ b/net/bridge/br_netlink.c
+> @@ -781,6 +781,7 @@ int br_process_vlan_info(struct net_bridge *br,
+>  
+>  static const struct nla_policy br_flush_policy[BRIDGE_FLUSH_MAX + 1] = {
+>  	[BRIDGE_FLUSH_UNSPEC]	= { .type = NLA_REJECT },
+> +	[BRIDGE_FLUSH_FDB]	= { .type = NLA_NESTED },
+
+In a previous submission [1] Jakub suggested using NLA_POLICY_NESTED()
+
+[1] https://lore.kernel.org/netdev/20220224221447.6c7fa95d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com/
+
+>  };
+>  
+>  static int br_flush(struct net_bridge *br, int cmd,
+> @@ -804,6 +805,13 @@ static int br_flush(struct net_bridge *br, int cmd,
+>  	if (err)
+>  		return err;
+>  
+> +	if (flush_tb[BRIDGE_FLUSH_FDB]) {
+> +		err = br_fdb_flush_nlattr(br, flush_tb[BRIDGE_FLUSH_FDB],
+> +					  extack);
+> +		if (err)
+> +			return err;
+> +	}
+> +
 >  	return 0;
 >  }
 >  
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index e6930e9ee69d..c7ea531d30ef 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -768,6 +768,8 @@ int br_fdb_hash_init(struct net_bridge *br);
+>  void br_fdb_hash_fini(struct net_bridge *br);
+>  void br_fdb_flush(struct net_bridge *br,
+>  		  const struct net_bridge_fdb_flush_desc *desc);
+> +int br_fdb_flush_nlattr(struct net_bridge *br, struct nlattr *fdb_flush_attr,
+> +			struct netlink_ext_ack *extack);
+>  void br_fdb_find_delete_local(struct net_bridge *br,
+>  			      const struct net_bridge_port *p,
+>  			      const unsigned char *addr, u16 vid);
 > -- 
 > 2.35.1
 > 
