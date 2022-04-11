@@ -1,82 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F2450275F
-	for <lists.bridge@lfdr.de>; Fri, 15 Apr 2022 11:28:42 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id D93E2502760
+	for <lists.bridge@lfdr.de>; Fri, 15 Apr 2022 11:28:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 2963861096;
+	by smtp1.osuosl.org (Postfix) with ESMTP id ED9428418B;
 	Fri, 15 Apr 2022 09:28:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KSq35ajQB0kB; Fri, 15 Apr 2022 09:28:40 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Zd78pnq44LMt; Fri, 15 Apr 2022 09:28:41 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id B5D4C60BEC;
-	Fri, 15 Apr 2022 09:28:39 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 8E1E58417C;
+	Fri, 15 Apr 2022 09:28:40 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 72B77C0088;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A21EAC002C;
 	Fri, 15 Apr 2022 09:28:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EF1AFC002C
- for <bridge@lists.linux-foundation.org>; Sun, 10 Apr 2022 13:57:53 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E7D7FC002C
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 22:57:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id E8821416F7
- for <bridge@lists.linux-foundation.org>; Sun, 10 Apr 2022 13:57:53 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id C13378308B
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 22:57:51 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=arinc9.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XlsNDKhdHIqu for <bridge@lists.linux-foundation.org>;
- Sun, 10 Apr 2022 13:57:53 +0000 (UTC)
-X-Greylist: delayed 00:15:05 by SQLgrey-1.8.0
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com
- [136.143.188.14])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 2716F416D3
- for <bridge@lists.linux-foundation.org>; Sun, 10 Apr 2022 13:57:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1649598159; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=JsjF0iRo20Tv+4iySyfoDDvtkFksSCj4x+y2ZnIXE36VBH+UHsaQMWgTINM1Vel0I6DI1UPs+5RZecyfOXVPC/XkE1RVGHHibtR7fadIj8rvlAN0uYhXt+DB7WGewyXKPgttHZleYBm+3wwxf5LMbvMjpy20WdbHQIPvrsERNBo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1649598159;
- h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To;
- bh=nUJ6HOSqvkRRMt2eDoWZ7kiFdlMq4tupafRJGJ7omfg=; 
- b=Oej/Xwa1E9ttYIkdrvqM69ZFJH4Iw/51DuwbvwBm80L9tjkBHtX0pjhFWkjrkD/bxuTuNglgQOL9QihCQoGvphE0xcXG4llKq/3S8VpHL1KbAV4nTk9slG0MO67GBpnXe9ITWbFbbr6F6ZyNwM/4RUuJvzsMgF3/deDXYlGE/nA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=arinc9.com;
- spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
- dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649598159; 
- s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
- bh=nUJ6HOSqvkRRMt2eDoWZ7kiFdlMq4tupafRJGJ7omfg=;
- b=BwBdWBIb4azU/DtAQvAmqrw2QOtt2sTm+PeRjZzT/UtnKAEivHFAR3NWchR39fVA
- gk4LRFqoUi0SUXHTKPD1Qq+q3kd7KCmve6SRArDsoDjXKUu1ZRJLqsr6GyrUgNAVAcR
- +r72pq3gf4KLtziMTJYPRZcjnHNTzAqzKVWSQ25A=
-Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by
- mx.zohomail.com with SMTPS id 1649598157367218.56519159719153;
- Sun, 10 Apr 2022 06:42:37 -0700 (PDT)
-From: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To: Vladimir Oltean <olteanv@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>
-Date: Sun, 10 Apr 2022 16:42:27 +0300
-Message-Id: <20220410134227.18810-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.25.1
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id NAnliSvzwXgj for <bridge@lists.linux-foundation.org>;
+ Mon, 11 Apr 2022 22:57:50 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 964AF8308A
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 22:57:50 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id D6104B819A5;
+ Mon, 11 Apr 2022 22:57:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F90C385A4;
+ Mon, 11 Apr 2022 22:57:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1649717866;
+ bh=a/3DmNUvz8+SO6ZFsddHOOslw+E1jUtBf6lFjrPFsJA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=OtFGbLMQr5tthdn03lz+hSR8JVx1ccVMqBNQd2iJxZq93/l+hDtqxuev5YIxHFbcU
+ hwor0Tj2r/OGlwwYWz26qvyPprjoUvOcz32b7Dk5JlHsH30tKcBxgSeC+2JI10CVuK
+ Hz79TNshZ26pu1sGVCh86vtiIx2DjGR0zubwD7JIXcFlLzP6sDmpQ18hhLLwocCjYk
+ VYOc5HAs0zI6VCbcSo3zraRvb1KPGilLEB5Y+R5kHllP4ABBheR8vvlR0LirqSEa+7
+ HFjzng7ZtVAsN7ILNCWpgSdl24AFafaHQfvRqpXiqQ5RTop5jT7Iji9JW+CALt0oZ6
+ u8s4gm+/EE2aA==
+Date: Mon, 11 Apr 2022 16:57:43 -0600
+From: David Ahern <dsahern@kernel.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <20220411225743.GA8838@u2004-local>
+References: <20220411172934.1813604-1-razor@blackwall.org>
+ <20220411172934.1813604-2-razor@blackwall.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411172934.1813604-2-razor@blackwall.org>
 X-Mailman-Approved-At: Fri, 15 Apr 2022 09:28:38 +0000
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org,
- =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-Subject: [Bridge] [PATCH net-next] net: bridge: offload BR_HAIRPIN_MODE,
-	BR_ISOLATED, BR_MULTICAST_TO_UNICAST
+ idosch@idosch.org, roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next v2 1/8] net: rtnetlink: add
+	RTM_FLUSHNEIGH
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -91,44 +80,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add BR_HAIRPIN_MODE, BR_ISOLATED and BR_MULTICAST_TO_UNICAST port flags to
-BR_PORT_FLAGS_HW_OFFLOAD so that switchdev drivers which have an offloaded
-data plane have a chance to reject these bridge port flags if they don't
-support them yet.
+On Mon, Apr 11, 2022 at 08:29:27PM +0300, Nikolay Aleksandrov wrote:
+> Add a new rtnetlink type used to flush neigh objects. It will be
+> initially used to add flush with filtering support for bridge fdbs, but
+> it also opens the door to add similar support to others (e.g. vxlan).
+> 
+> Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
+> ---
+>  include/uapi/linux/rtnetlink.h | 3 +++
+>  security/selinux/nlmsgtab.c    | 3 ++-
+>  2 files changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/uapi/linux/rtnetlink.h b/include/uapi/linux/rtnetlink.h
+> index 83849a37db5b..06001cfd404b 100644
+> --- a/include/uapi/linux/rtnetlink.h
+> +++ b/include/uapi/linux/rtnetlink.h
+> @@ -194,6 +194,9 @@ enum {
+>  	RTM_GETTUNNEL,
+>  #define RTM_GETTUNNEL	RTM_GETTUNNEL
+>  
+> +	RTM_FLUSHNEIGH = 124,
+> +#define RTM_FLUSHNEIGH	RTM_FLUSHNEIGH
+> +
 
-It makes the code path go through the
-SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS driver handlers, which return
--EINVAL for everything they don't recognize.
+rtm message types are "new, del, get, set" quadruplets; making this a
+flush breaks the current consistent style. Can this be done by adding
+a FLUSH flag to the RTM_DELNEIGH message?
 
-For drivers that don't catch SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS at
-all, switchdev will return -EOPNOTSUPP for those which is then ignored, but
-those are in the minority.
-
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
-Let me know if this is netdev/net material instead.
-
-Commit log is heavily quoted from Vladimir Oltean <olteanv@gmail.com>.
-
-Arınç
----
- net/bridge/br_switchdev.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-index 8cc44c367231..81400e0b26ac 100644
---- a/net/bridge/br_switchdev.c
-+++ b/net/bridge/br_switchdev.c
-@@ -72,7 +72,8 @@ bool nbp_switchdev_allowed_egress(const struct net_bridge_port *p,
- 
- /* Flags that can be offloaded to hardware */
- #define BR_PORT_FLAGS_HW_OFFLOAD (BR_LEARNING | BR_FLOOD | \
--				  BR_MCAST_FLOOD | BR_BCAST_FLOOD | BR_PORT_LOCKED)
-+				  BR_MCAST_FLOOD | BR_BCAST_FLOOD | BR_PORT_LOCKED | \
-+				  BR_HAIRPIN_MODE | BR_ISOLATED | BR_MULTICAST_TO_UNICAST)
- 
- int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 			       unsigned long flags,
--- 
-2.25.1
-
+>  	__RTM_MAX,
+>  #define RTM_MAX		(((__RTM_MAX + 3) & ~3) - 1)
+>  };
