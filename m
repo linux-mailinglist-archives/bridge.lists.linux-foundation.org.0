@@ -1,81 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DDD04FC36A
-	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 19:30:07 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AEBB4FC368
+	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 19:30:06 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8AE674154C;
-	Mon, 11 Apr 2022 17:30:05 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id CCB06600B6;
+	Mon, 11 Apr 2022 17:30:04 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id knEGVq-AuCvN; Mon, 11 Apr 2022 17:30:04 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id B98094154E;
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 6ap2bQ27e3Tq; Mon, 11 Apr 2022 17:30:04 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 702E660FDA;
 	Mon, 11 Apr 2022 17:30:03 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7A239C008B;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3FB3DC0083;
 	Mon, 11 Apr 2022 17:30:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8A1C6C002C
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 28788C002C
  for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 17:30:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 48E23600B6
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 17:30:00 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 17D0582ED2
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 17:30:01 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp3.osuosl.org (amavisd-new);
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nD_WLpcFyWpO for <bridge@lists.linux-foundation.org>;
- Mon, 11 Apr 2022 17:29:59 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id aRvNquo9Aqie for <bridge@lists.linux-foundation.org>;
+ Mon, 11 Apr 2022 17:30:00 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
- [IPv6:2a00:1450:4864:20::52d])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 7F7DF60EFA
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 17:29:59 +0000 (UTC)
-Received: by mail-ed1-x52d.google.com with SMTP id w18so19308982edi.13
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 10:29:59 -0700 (PDT)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 7AF6682D57
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 17:30:00 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id p15so32334259ejc.7
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 10:30:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=G4Lf3IeHTYSBP2jBlrEzBtLYrCtWftbohLvXAydSyEo=;
- b=S5NtrlUiP9am+mfWWs0tdCtoJF8LvNMfNHuBR0cH25+Xpn3ZnLgDT87648YbKHJ1/i
- 0w0gru0NSrKVP38xmgX+es38tXRq1lmxRK/A7qXb9LaBBrcmt0gakCd3bfwwL1CvUUWT
- abEqtMI0job1tDc+M8I/C3ZpW8mK5ejPKawnfxxQEZwg1lmITGg16vsJGeF3JRx8W6fX
- PjQCCBVPSeTF8tmwS2uhHXNRfPOSAjlJI8F9Lh2YeKfwvFOlro59hJSoikLGiHJqaPA+
- HXfFFQPlSRLnHhEXB0856jTQwYzGKOBnCGyPGG/PLJkO9BzzsEd79CvZGhROfPjo6LIR
- Z4lw==
+ bh=RIR/ZHl5ZiFHgx6+6/Rsb1UvqXAuRfjaxLhenAF2JJI=;
+ b=lpBHWyld2PQijqIzQlkNniBq/I0nMhLWr2VIsEI0rkRZH1/1whYuvxToynpfR7JTr5
+ 3Xgl4SqVJO1JjsR1wAcpuCjm70v+RkS/Hg7T1jUdGNFz3itNqosbMCgH69NppQtGNUgC
+ 76yH6xcKdP1HtO2P/Ej+k3uq/Z4kGHVszJONO/OSs/aYeRXWE53tUUS0R/11uO5yNBpe
+ Yc2oYqneWejwOmgK5lsYaGiFEb/8aX4Noc4sK5Mb6liMatA9CeKrQQGn4Jdf22pJkHC/
+ W0DkiN/F4VlOr2bd4c0pcZ53pJ6Oc61NvB32f/yLut7P2SwK7pqK+Fn0C5u5HMolx/jJ
+ iukA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=G4Lf3IeHTYSBP2jBlrEzBtLYrCtWftbohLvXAydSyEo=;
- b=FIvJ1BQgfarvwGD48l78ZWLw2j+3d2hspHAyLFMSlBPN4taKiuEvLyvU/EaiwRYEIF
- XCyZYaRfORx+0ilD1mjRvgkqxjj/8SJaNHov2r+ZlcXYnvyKhiF/7wLgVt237a9DOihl
- YGGcmkiU10ghMABGD8TLmRBpqBtvOjdTjyFV6ZOQCAHSNMhDr9OcgbYUYLU4v5hjP+/I
- cfhK11VCYkpG7lRKp2e1+KncvWQdZT741M4TX2gWRR1xU1dqlUHfc/Z7U4lWxWNZxtfZ
- V4cMYtBig9dgbEumwHTe0SaetxpvWzdA5AoWPCBoDL8NP7SGTh8xrraOrFlGS+DL2t6o
- PYEQ==
-X-Gm-Message-State: AOAM530uis39fBHAIhvYNPlemSPOpNHSSZqzETUnHpAMWnWmDHoGyMIj
- CKm1q047BHdvbfDp2vUEqH/Xkw==
-X-Google-Smtp-Source: ABdhPJyqbmLSnA/vica9jN3RGzm1kJTGmzUhb2chcIrxH4cfEsWv5+bKSxCLe1vGXHL//QtYy97QRw==
-X-Received: by 2002:a05:6402:51c6:b0:41d:196a:27a9 with SMTP id
- r6-20020a05640251c600b0041d196a27a9mr19718535edd.55.1649698197555; 
- Mon, 11 Apr 2022 10:29:57 -0700 (PDT)
+ bh=RIR/ZHl5ZiFHgx6+6/Rsb1UvqXAuRfjaxLhenAF2JJI=;
+ b=4SlY0T1FC4Xw9sNzaoJbGXsqXgug7EuImj45tiiTRIf6XtLKIQQJI3U5r3NUv13W3L
+ ZToQn3/0hhARqCNgHBJxxmR4fIg4/T12q5RVMWWNfILQOk3UfMgvP38OcaWKmxkFKc/o
+ KTO2nlLtIxFT4G0v2jeNOy8JpVly8F99MtDFRv8ZHYgwAcyo9Eh0Gto9Op67xD+M3l+v
+ YmO20qV8hs8scyiR/LLCK6DN7fxTafbdpqrSzqok0eQUJiwIiIgi20ofkL8Tkracciwm
+ HRWcx/ju4BSr/WXhdV8gIOdDZQ4LbJYt3KH7bDpEPhGaDxbc1J9Ic8aSf9h2/0/jtUzG
+ ElRg==
+X-Gm-Message-State: AOAM533WibuhBHqVQpzcAniSzlII1VeDaSNg1NerdeC4bo+lH3l+ycTu
+ u5ujfOvcEAH2gu/ZWddg1QDW2w==
+X-Google-Smtp-Source: ABdhPJzjiQfYrrqu8a4iy9n5tirV+dTQgnN0Pytlq+0lx9yxVIqKtYbtUj7/GJRaUPWTHrfjX2q/zQ==
+X-Received: by 2002:a17:906:7304:b0:6e0:6918:ef6f with SMTP id
+ di4-20020a170906730400b006e06918ef6fmr30501107ejc.370.1649698198740; 
+ Mon, 11 Apr 2022 10:29:58 -0700 (PDT)
 Received: from debil.. (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
  by smtp.gmail.com with ESMTPSA id
- u6-20020a17090626c600b006e74ef7f092sm10325084ejc.176.2022.04.11.10.29.56
+ u6-20020a17090626c600b006e74ef7f092sm10325084ejc.176.2022.04.11.10.29.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 Apr 2022 10:29:57 -0700 (PDT)
+ Mon, 11 Apr 2022 10:29:58 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Mon, 11 Apr 2022 20:29:27 +0300
-Message-Id: <20220411172934.1813604-2-razor@blackwall.org>
+Date: Mon, 11 Apr 2022 20:29:28 +0300
+Message-Id: <20220411172934.1813604-3-razor@blackwall.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220411172934.1813604-1-razor@blackwall.org>
 References: <20220411172934.1813604-1-razor@blackwall.org>
@@ -84,7 +84,7 @@ Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <razor@blackwall.org>,
  bridge@lists.linux-foundation.org, idosch@idosch.org, roopa@nvidia.com,
  kuba@kernel.org, davem@davemloft.net
-Subject: [Bridge] [PATCH net-next v2 1/8] net: rtnetlink: add RTM_FLUSHNEIGH
+Subject: [Bridge] [PATCH net-next v2 2/8] net: add ndo_fdb_flush op
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,51 +99,44 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add a new rtnetlink type used to flush neigh objects. It will be
-initially used to add flush with filtering support for bridge fdbs, but
-it also opens the door to add similar support to others (e.g. vxlan).
+Add a new netdev op called ndo_fdb_flush, it will be later used for
+driver-specific flush implementation dispatched from rtnetlink. The first
+user will be the bridge.
 
 Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
 ---
- include/uapi/linux/rtnetlink.h | 3 +++
- security/selinux/nlmsgtab.c    | 3 ++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ include/linux/netdevice.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/include/uapi/linux/rtnetlink.h b/include/uapi/linux/rtnetlink.h
-index 83849a37db5b..06001cfd404b 100644
---- a/include/uapi/linux/rtnetlink.h
-+++ b/include/uapi/linux/rtnetlink.h
-@@ -194,6 +194,9 @@ enum {
- 	RTM_GETTUNNEL,
- #define RTM_GETTUNNEL	RTM_GETTUNNEL
- 
-+	RTM_FLUSHNEIGH = 124,
-+#define RTM_FLUSHNEIGH	RTM_FLUSHNEIGH
-+
- 	__RTM_MAX,
- #define RTM_MAX		(((__RTM_MAX + 3) & ~3) - 1)
- };
-diff --git a/security/selinux/nlmsgtab.c b/security/selinux/nlmsgtab.c
-index d8ceee9e0d6f..ff53aea8790f 100644
---- a/security/selinux/nlmsgtab.c
-+++ b/security/selinux/nlmsgtab.c
-@@ -95,6 +95,7 @@ static const struct nlmsg_perm nlmsg_route_perms[] =
- 	{ RTM_NEWTUNNEL,	NETLINK_ROUTE_SOCKET__NLMSG_WRITE },
- 	{ RTM_DELTUNNEL,	NETLINK_ROUTE_SOCKET__NLMSG_WRITE },
- 	{ RTM_GETTUNNEL,	NETLINK_ROUTE_SOCKET__NLMSG_READ  },
-+	{ RTM_FLUSHNEIGH,	NETLINK_ROUTE_SOCKET__NLMSG_WRITE },
- };
- 
- static const struct nlmsg_perm nlmsg_tcpdiag_perms[] =
-@@ -180,7 +181,7 @@ int selinux_nlmsg_lookup(u16 sclass, u16 nlmsg_type, u32 *perm)
- 		 * structures at the top of this file with the new mappings
- 		 * before updating the BUILD_BUG_ON() macro!
- 		 */
--		BUILD_BUG_ON(RTM_MAX != (RTM_NEWTUNNEL + 3));
-+		BUILD_BUG_ON(RTM_MAX != (RTM_FLUSHNEIGH + 3));
- 		err = nlmsg_perm(nlmsg_type, perm, nlmsg_route_perms,
- 				 sizeof(nlmsg_route_perms));
- 		break;
+diff --git a/include/linux/netdevice.h b/include/linux/netdevice.h
+index 28ea4f8269d4..16d67e40053c 100644
+--- a/include/linux/netdevice.h
++++ b/include/linux/netdevice.h
+@@ -1265,6 +1265,12 @@ struct netdev_net_notifier {
+  *		       int *idx)
+  *	Used to add FDB entries to dump requests. Implementers should add
+  *	entries to skb and update idx with the number of entries.
++ * int (*ndo_fdb_flush)(struct ndmsg *ndm, struct nlattr *tb[],
++ *			struct net_device *dev,
++ *			u16 vid,
++ *			struct netlink_ext_ack *extack);
++ *	Used to flush FDB entries. Filter attributes can be specified to delete
++ *	only matching FDB entries if implementers support it.
+  *
+  * int (*ndo_bridge_setlink)(struct net_device *dev, struct nlmsghdr *nlh,
+  *			     u16 flags, struct netlink_ext_ack *extack)
+@@ -1515,6 +1521,11 @@ struct net_device_ops {
+ 						struct net_device *dev,
+ 						struct net_device *filter_dev,
+ 						int *idx);
++	int			(*ndo_fdb_flush)(struct ndmsg *ndm,
++						 struct nlattr *tb[],
++						 struct net_device *dev,
++						 u16 vid,
++						 struct netlink_ext_ack *extack);
+ 	int			(*ndo_fdb_get)(struct sk_buff *skb,
+ 					       struct nlattr *tb[],
+ 					       struct net_device *dev,
 -- 
 2.35.1
 
