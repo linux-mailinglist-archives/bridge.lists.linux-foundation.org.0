@@ -2,94 +2,88 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91DD4FB6E8
-	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 11:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2570D4FBD54
+	for <lists.bridge@lfdr.de>; Mon, 11 Apr 2022 15:39:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D185E41607;
-	Mon, 11 Apr 2022 09:07:21 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id BC614408FF;
+	Mon, 11 Apr 2022 13:38:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id THIBzENyhu0p; Mon, 11 Apr 2022 09:07:21 +0000 (UTC)
+	with ESMTP id u4wzzVGAP5Fp; Mon, 11 Apr 2022 13:38:58 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 210FA415FB;
-	Mon, 11 Apr 2022 09:07:20 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id CD3DD408DC;
+	Mon, 11 Apr 2022 13:38:56 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C4589C0084;
-	Mon, 11 Apr 2022 09:07:19 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 834F7C002C;
+	Mon, 11 Apr 2022 13:38:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A41C4C002C
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 09:07:18 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 98511C002C
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:38:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 844D582BBC
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 09:07:18 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 867DA408DC
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:38:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 37W93jWWz8Vr for <bridge@lists.linux-foundation.org>;
- Mon, 11 Apr 2022 09:07:17 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id IrL-v8eNJ4Pn for <bridge@lists.linux-foundation.org>;
+ Mon, 11 Apr 2022 13:38:54 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
- [IPv6:2a00:1450:4864:20::52e])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 9C26082B8C
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 09:07:17 +0000 (UTC)
-Received: by mail-ed1-x52e.google.com with SMTP id g20so17492029edw.6
- for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 02:07:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=Urg3WNbWAAbmT/1unZ8S+i2ajaf9UWWtyCFD6wiRjuI=;
- b=ibyW2IIHcc8wVZkOHS/s3WSv0MoDzWtmuPnwfhxKEi4RzBk+lE+OjaZj1DhEPuw3Hy
- 6NJ+CVirQCZZcErNoU0TAeox7TvSA/CXrx4gFqLwyEAmtLusg2Gr1PN5ur2YAPvxGmMx
- l1llRE5cg55Kho7+i0Suwu/IgcZ5k6U+blXsx/wc1j5CokN/Ry6tC01zoSbllzYJNACg
- XPkLEi65esJc8k4lnuPC40ZEp1Od8Y5LSzhcmhOtqZMMvnDrZTcodeFp2SWWjdlOUNsK
- 8FLIvFyFV/lB5HpY7PItzvZJ8xADMKRWwUY9xYisLDX7x052HHECkMO+7GDDEzpz1jbu
- 7syw==
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
+ [IPv6:2a00:1450:4864:20::12a])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 719374014D
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 13:38:54 +0000 (UTC)
+Received: by mail-lf1-x12a.google.com with SMTP id b21so26707548lfb.5
+ for <bridge@lists.linux-foundation.org>; Mon, 11 Apr 2022 06:38:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version:organization
+ :content-transfer-encoding;
+ bh=KP4a5Nq5xLfHHBjrnafFha3MFdJr67mljPaP7U+xutA=;
+ b=F1Dl0ogpPpEfisEpBYoUipD0dtHfWYZsL+vsWu36yEcuSnNWht4iB9T1IjrVDNe+oA
+ wmM7GmbVwYTm+tzx12ALZ9nrfvLtBsh1cOkktEHvS7YhbjL+YtND53Wgg7IEe9rsOvvv
+ LDdhVTta2Xu2Z4RDG0OmzHfuryBWnrogT1WHfoxfXTYa4IyIinbz5uRNw1QEvQQX3N9q
+ KZyOPbrJhJHwxIcO/SHOqZbCCdW5rLHrJ5hK8bi2WMvc3wb+EYhaHhDl/2r7ylQc5MRH
+ T57oax7TN3zqjTm/2bp6gct/420puw8j5X9LGnYpCmhF/vb9aF+XK2II+IJ15KhsSR7a
+ oaDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=Urg3WNbWAAbmT/1unZ8S+i2ajaf9UWWtyCFD6wiRjuI=;
- b=kG6kT7LqJUMMLuZkoB8QMISfgTXiYvWMripg3LGK85qXDzdvhK2mRrSg/mk6NdCjXx
- 1Zf5CVtPHg/RuANGxvqWGvjTroeG7fSFrWLG/RadM78hjvoc61GeLlsBNI+yPl86Ir3i
- ZTWEdV79L4AKMR0dZr4l/6FA1RG/73/zxqh2lVOCdSwLBm4zfZVtgFjL91QfTxt3K01G
- 9lCFbAIy3EarCu3hMOQwF5xCy56oQwX5+lBB1abiGG2n9ZXhhsNUqkYw6Ns6DLqeoWje
- MPuZ7+cV2uymbeiXSLMOO67nVgxG4r3qxwv1EUiU+brG8kTBHzIUXfeBIeklBZuNaQ0I
- kNYQ==
-X-Gm-Message-State: AOAM531NuABJgSTp4+FoXHpqp1TM2BdquGkvmbaot8SYU5rU+7mDyLsF
- mYYYnPk6ZTAGG2wfnUwvqYcOkw==
-X-Google-Smtp-Source: ABdhPJzhJalaqUptPqm4oxnVKC+KyE7L+rULrYE4tCHqDaE2vTvvQb6dq2zbbq1HN4y7QNIjT/3USw==
-X-Received: by 2002:a05:6402:26c8:b0:419:2e54:9262 with SMTP id
- x8-20020a05640226c800b004192e549262mr31862541edd.61.1649668035740; 
- Mon, 11 Apr 2022 02:07:15 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- w14-20020a509d8e000000b0041cd217726dsm11336827ede.4.2022.04.11.02.07.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Apr 2022 02:07:15 -0700 (PDT)
-Message-ID: <a869797f-8501-3766-36ae-b73b76e8f7e7@blackwall.org>
-Date: Mon, 11 Apr 2022 12:07:14 +0300
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :organization:content-transfer-encoding;
+ bh=KP4a5Nq5xLfHHBjrnafFha3MFdJr67mljPaP7U+xutA=;
+ b=mXj6HsD+lQKAj6x/jcW6+gJ6xuGpnrAhwpzgWke85wivW/0SjLw2JKt8L/uhEIkcMz
+ UcowsIyJjJu7+VeoNysFYs/kFlK8R60pHaj5Cqy1E9IgryLvo6TT0DWulQQYPswxYFhb
+ EQ/miO6VvpvjtTkJISaGXgbJT0aEy0DKwnh1UeOwJecaHOFfEgjVl5ILoSd5A2cue6Ko
+ Rz+hV1bQpcfZAtJ+Gntrd+3V6iL3sfUjS7xeupIYgB/msr2ta+p3NJBh/A6ZM4UKkTrV
+ UA0zhorGRlHi0SYkQUS/F9wCj3nJt1Teq3vA2SyNv33aJfZqZnGLKw8M5OMf0iXRz5sN
+ vHag==
+X-Gm-Message-State: AOAM532Xc7SxsICUUShpSA9/N2C5Jj6ipDkB8JrBx4Jtp3vdp7X2uyjF
+ KYTBjx0n6NeWq9GtqrYF/I4=
+X-Google-Smtp-Source: ABdhPJxLZjiseNnsvsyE9ERiXNC4Cju5eMhw1wxqy7+WLlloblSPYHmdBFXjkMsYrYZKCRsxH49ztw==
+X-Received: by 2002:a05:6512:3b8:b0:46b:a79a:3686 with SMTP id
+ v24-20020a05651203b800b0046ba79a3686mr2944539lfp.350.1649684332221; 
+ Mon, 11 Apr 2022 06:38:52 -0700 (PDT)
+Received: from wbg.labs.westermo.se (h-158-174-22-128.NA.cust.bahnhof.se.
+ [158.174.22.128]) by smtp.gmail.com with ESMTPSA id
+ p12-20020a056512138c00b0044833f1cd85sm3336847lfa.62.2022.04.11.06.38.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Apr 2022 06:38:51 -0700 (PDT)
+From: Joachim Wiberg <troglobit@gmail.com>
+To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>
+Date: Mon, 11 Apr 2022 15:38:24 +0200
+Message-Id: <20220411133837.318876-1-troglobit@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Ido Schimmel <idosch@idosch.org>
-References: <20220409105857.803667-1-razor@blackwall.org>
- <20220409105857.803667-5-razor@blackwall.org> <YlPrJaWjeObhxmwb@shredder>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <YlPrJaWjeObhxmwb@shredder>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Westermo Network Technologies AB
+Content-Transfer-Encoding: 8bit
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next 4/6] net: bridge: fdb: add support for
- flush filtering based on ndm flags and state
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Joachim Wiberg <troglobit@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>,
+ Tobias Waldekranz <tobias@waldekranz.com>
+Subject: [Bridge] [PATCH RFC net-next 00/13] net: bridge: forwarding of
+	unknown IPv4/IPv6/MAC BUM traffic
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -104,81 +98,70 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 11/04/2022 11:47, Ido Schimmel wrote:
-> On Sat, Apr 09, 2022 at 01:58:55PM +0300, Nikolay Aleksandrov wrote:
->> Add support for fdb flush filtering based on ndm flags and state. The
->> new attributes allow users to specify a mask and value which are mapped
->> to bridge-specific flags. NTF_USE is used to represent added_by_user
->> flag since it sets it on fdb add and we don't have a 1:1 mapping for it.
->>
->> Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
->> ---
->>  include/uapi/linux/if_bridge.h |  4 +++
->>  net/bridge/br_fdb.c            | 55 ++++++++++++++++++++++++++++++++++
->>  2 files changed, 59 insertions(+)
->>
->> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
->> index 2f3799cf14b2..4638d7e39f2a 100644
->> --- a/include/uapi/linux/if_bridge.h
->> +++ b/include/uapi/linux/if_bridge.h
->> @@ -815,6 +815,10 @@ enum {
->>  /* embedded in BRIDGE_FLUSH_FDB */
->>  enum {
->>  	FDB_FLUSH_UNSPEC,
->> +	FDB_FLUSH_NDM_STATE,
->> +	FDB_FLUSH_NDM_STATE_MASK,
->> +	FDB_FLUSH_NDM_FLAGS,
->> +	FDB_FLUSH_NDM_FLAGS_MASK,
->>  	__FDB_FLUSH_MAX
->>  };
->>  #define FDB_FLUSH_MAX (__FDB_FLUSH_MAX - 1)
->> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
->> index 62f694a739e1..340a2ace1d5e 100644
->> --- a/net/bridge/br_fdb.c
->> +++ b/net/bridge/br_fdb.c
->> @@ -594,8 +594,40 @@ void br_fdb_flush(struct net_bridge *br,
->>  	rcu_read_unlock();
->>  }
->>  
->> +static unsigned long __ndm_state_to_fdb_flags(u16 ndm_state)
->> +{
->> +	unsigned long flags = 0;
->> +
->> +	if (ndm_state & NUD_PERMANENT)
->> +		__set_bit(BR_FDB_LOCAL, &flags);
->> +	if (ndm_state & NUD_NOARP)
->> +		__set_bit(BR_FDB_STATIC, &flags);
->> +
->> +	return flags;
->> +}
->> +
->> +static unsigned long __ndm_flags_to_fdb_flags(u16 ndm_flags)
->> +{
->> +	unsigned long flags = 0;
->> +
->> +	if (ndm_flags & NTF_USE)
->> +		__set_bit(BR_FDB_ADDED_BY_USER, &flags);
->> +	if (ndm_flags & NTF_EXT_LEARNED)
->> +		__set_bit(BR_FDB_ADDED_BY_EXT_LEARN, &flags);
->> +	if (ndm_flags & NTF_OFFLOADED)
->> +		__set_bit(BR_FDB_OFFLOADED, &flags);
->> +	if (ndm_flags & NTF_STICKY)
->> +		__set_bit(BR_FDB_STICKY, &flags);
->> +
->> +	return flags;
->> +}
->> +
->>  static const struct nla_policy br_fdb_flush_policy[FDB_FLUSH_MAX + 1] = {
->>  	[FDB_FLUSH_UNSPEC]	= { .type = NLA_REJECT },
->> +	[FDB_FLUSH_NDM_STATE]	= { .type = NLA_U16 },
->> +	[FDB_FLUSH_NDM_FLAGS]	= { .type = NLA_U16 },
->> +	[FDB_FLUSH_NDM_STATE_MASK]	= { .type = NLA_U16 },
->> +	[FDB_FLUSH_NDM_FLAGS_MASK]	= { .type = NLA_U16 },
-> 
-> Might be better to use NLA_POLICY_MASK(NLA_U16, mask) and reject
-> unsupported states / flags instead of just ignoring them?
-> 
+This is a proposal to improve forwarding control of BUM traffic to the
+bridge itself.  Another, related, issue regarding loss of function when
+an IP multicast router is detected, is also brought up here which can be
+a separate series in v2.
 
-Yep, forgot about that one. Good point!
+First, we add BROPT_BCAST_FLOOD, BROPT_UNICAST_FLOOD, BROPT_MCAST_FLOOD
+flags for unknown traffic to the bridge itself, with netlink support and
+a selftest.  We ensure backwards compatible forwarding behavior is
+preserved by enabling these flags by default.  Please note however,
+these flags do not affect the behavior of IFF_PROMISC on the bridge
+interface.
 
+Second, and with the above in place, we set out to verify flooding of
+unknown *and* known multicast to regular bridge ports, including the
+bridge itself.  We use `tcpdump -p` in the tests to ensure we do not
+trigger IFF_PROIMISC.  Unknown multicast should be forwarded according
+to the MCAST_FLOOD flag, and known multicast according the MDB and to
+multicast router ports.
 
+We find that forwarding of unknown IP multicast stops[1] as soon as a
+multicast router is known.  Affecting all ports, including the bridge
+itself (this series).  The root cause for this is the classification
+`mrouters_only` in br_multicast_rcv().
+
+Dropping this classification of unknown IP multicast and moving the
+multicast flow handling from br_multicast_flood() to br_flood() fixes
+this problem.  The bridge now properly floods all unknown multicast, and
+this can now be controlled using the MCAST_FLOOD flag on all ports
+including the bridge itself.
+
+The use of br_flood() opens up the need for the multicast 'rport' API,
+but that is behind CONFIG_BRIDGE_IGMP_SNOOPING, which is the primary
+reason for this being an RFC series.  I'd love some feedback on how to
+go about all this, opening up that API and even the take on the issue as
+a whole.
+
+Honestly, despite taking great care to not change the bridge's default
+behavior the patch series in itself propose quite radical changes that
+alone mandate RFC status at this point.  There has been some discussion
+already on this in 20220410220324.4c3l3idubwi3w6if@skbuf and I expect
+more disucssion here.
+
+Note: this series builds upon my previous patch for host l2 mdb entries,
+      20220411084054.298807-1-troglobit@gmail.com, extending the test
+      bridge_mdb.sh
+
+Best regards
+ /Joachim
+
+[1]: MAC multicast is not affected.
+
+net/bridge/br_device.c                        |   4 +
+ net/bridge/br_forward.c                       |  11 +
+ net/bridge/br_input.c                         |  11 +-
+ net/bridge/br_multicast.c                     |   6 +-
+ net/bridge/br_netlink.c                       | 170 +++++++---
+ net/bridge/br_private.h                       |   7 +-
+ net/bridge/br_switchdev.c                     |   8 +-
+ net/bridge/br_sysfs_if.c                      |   2 +-
+ .../drivers/net/ocelot/tc_flower_chains.sh    |  24 +-
+ .../testing/selftests/net/forwarding/Makefile |   3 +-
+ .../selftests/net/forwarding/bridge_flood.sh  | 170 ++++++++++
+ .../selftests/net/forwarding/bridge_mdb.sh    | 321 +++++++++++++++++-
+ tools/testing/selftests/net/forwarding/lib.sh |  33 +-
+ 13 files changed, 683 insertions(+), 87 deletions(-)
+ create mode 100755 tools/testing/selftests/net/forwarding/bridge_flood.sh
+ mode change 100644 => 100755 tools/testing/selftests/net/forwarding/lib.sh
