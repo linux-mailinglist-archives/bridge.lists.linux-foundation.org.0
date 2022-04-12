@@ -1,95 +1,148 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DA24FE2B2
-	for <lists.bridge@lfdr.de>; Tue, 12 Apr 2022 15:32:45 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 431E04FE2EA
+	for <lists.bridge@lfdr.de>; Tue, 12 Apr 2022 15:40:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 9A40381987;
-	Tue, 12 Apr 2022 13:32:43 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 55D6F40194;
+	Tue, 12 Apr 2022 13:40:44 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id s0N96FqMGZJz; Tue, 12 Apr 2022 13:32:42 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id iEU3bSJA8BcS; Tue, 12 Apr 2022 13:40:43 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id A61028321B;
-	Tue, 12 Apr 2022 13:32:41 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id DCCEF40469;
+	Tue, 12 Apr 2022 13:40:42 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5C2C1C0088;
-	Tue, 12 Apr 2022 13:32:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9AB74C0088;
+	Tue, 12 Apr 2022 13:40:42 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6CF97C002C
- for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 13:32:39 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 97665C002C
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 13:40:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 4CBD7408EB
- for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 13:32:39 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 8D63F40353
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 13:40:41 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
+ dkim=pass (1024-bit key) header.d=nxp.com
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xYDFq-UmgfVk for <bridge@lists.linux-foundation.org>;
- Tue, 12 Apr 2022 13:32:38 +0000 (UTC)
+ with ESMTP id fQdRHFN6TkP5 for <bridge@lists.linux-foundation.org>;
+ Tue, 12 Apr 2022 13:40:40 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
- [IPv6:2a00:1450:4864:20::62e])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 5FE60408DE
- for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 13:32:38 +0000 (UTC)
-Received: by mail-ej1-x62e.google.com with SMTP id i27so37372804ejd.9
- for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 06:32:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=dxiyrkbJ1gI5e17uMzQYH9HmVd7ZbYHU6cmKHA1Eej8=;
- b=0oHfHkL/8/Z16pZuFdu0PP47aaLJV+vInQ3Fxy4U4AodZi8XUZlTg3a/1ht0zAVdLY
- s6Whd9eR+N/3AImhOeUnVLZgUhjbuHeVArpbEw35DyEZ81UAV6POd2oPLDEJgqzFh9Qg
- CL3n3TjznoMqoh9/NF5sr4uklZ9bUvXGTU3YcNVt7lHtjORFxfub2c6LEasA8eAdxNiT
- KxpPuz/m+7f0Ba08nzJeGySdf/qI7U5pDDW1VrfnQo4nGnSqJC/aN+B2LKXUUW6zP0vs
- IoNFrvsPbEVjrBtoYZSb931PPENHwYQoqJOk7GCotozPfvGb3+1lB/SMAXNHWVw3/TZP
- mH7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=dxiyrkbJ1gI5e17uMzQYH9HmVd7ZbYHU6cmKHA1Eej8=;
- b=HC/4R/j17tjUlu1TWaGzmX7xC6/XeIs35QFoBF0xg2U9ls/hsjsLB0jLdYIJ29sCSa
- KOOzdckfEHPGmHw571jPTZt5feSan+mzKdHYNv6W1EmFlXTYd1FptVgaQUeUEazFUqA7
- fdHwU+zwto/UwHy265weH5oqmzC+3/ZskTan7bexE5Tt5o3HZbyP9l+JbOLUxIh3eFJd
- jShfPeZhw2IZ/nBBioF6uuvzJNLS4f/9TPuOq4gINRff+mTfsicjc2D+V4TZieURzxIR
- dP/t04j4YsCYCKV8Wao4S+7G1PtWAxoEd/H9KGDvMyU4WuEHUZGK0KQJElC2JESwbq62
- PGWQ==
-X-Gm-Message-State: AOAM530C1aoNcMLoCXvZlCbYu4/OsCZbigCMg2i0jgYGu9sKQQnTY18n
- ulDMTZPeaqPJGu3aqp9VAQww9A==
-X-Google-Smtp-Source: ABdhPJxmv2vdpeWr9kNJHj2itItldgAf2hGzQLGSOQDe2p/DioPn0WkIx5ScXHWtpbDWw+Z7HXhZrA==
-X-Received: by 2002:a17:906:d108:b0:6e8:7765:a70b with SMTP id
- b8-20020a170906d10800b006e87765a70bmr12999379ejz.436.1649770356536; 
- Tue, 12 Apr 2022 06:32:36 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- u3-20020a17090657c300b006d01de78926sm13137685ejr.22.2022.04.12.06.32.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 12 Apr 2022 06:32:36 -0700 (PDT)
-Message-ID: <bf4ed31f-a2a7-a423-5ef4-5cd42b9889de@blackwall.org>
-Date: Tue, 12 Apr 2022 16:32:34 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+ (mail-db5eur01on061c.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe02::61c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 7092F4032F
+ for <bridge@lists.linux-foundation.org>; Tue, 12 Apr 2022 13:40:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VRLqObIYJ1LAjp2nBF+oNVV1BnVg1UrpkgiQJlpj7K7Dx9QjPDAGQvFDzpOlsTGLhs4ETw8sqcTGpa9GzH4+rakRMo6ROKrq5u9s6ZpVqkmpOLdi82VsVNbUaE60OnCfdwyHEjmUNSYPrILu3DMr5gRidDblInRG9qwQkb3BFnFsqjUIONx0j5azN8QPbHmmvXpJG5mkU8w8w4A0i29o3IYUl/Be2q+rM3IRUP8Ano99OinLcF68jILZmrMQVoqv41W2mtt10a+yNf060ltr7z7/Zb9OYQo6q7hXvSwUc6/ev5+xE/J9XPkJqUZGej19E6bdpzNkgyNr6D+TYlKpeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h1dMrDnf2iDyG+FBK8NFK2IZWmzgEB0S7YOUIFG78/I=;
+ b=hp0X0zEVYCN+DBAlhEvSRBG+0ChDo4+8n9AnmthmKvVaqGesFvkwqFN1XskEAGdV47HkoDaQwXLP4Gto9gU72bqSzPhy+bn73L6zhq3MQ7EF589owM9cWPATu7Q6EfTY5NyKB93GVpxLZQBSpNdHeEx28KNnTm94oKoMTNKxlsaJHtui2da99uG8n1pvwRm9tEab1vyfJQMwfy9sm1OXEk24ahpcg6+t+cMYeAUW7winuSt4G/VrW+zvdikQQuWCv2YYSlBNJ7lERBQUmgkwsi5krjWWNdnC+F0bpldtaR6Bd/PPI/WHUJrqzJg8WJ19dvyLhRWW1ff2LjDOX07QnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h1dMrDnf2iDyG+FBK8NFK2IZWmzgEB0S7YOUIFG78/I=;
+ b=kBe9XfUGm4BKDqCdGVtRbRoeeqBqcUe42fyTdaXEzOiaaLR5doZMBjQqOGK7/uX8NIvQG0gHxwxXcweYBgTkv7iRXOEyB61u/7b7qfolkg629ZIXwOGPcoETFOPI8aAlU3P9hPdh10J0UH+4cu7FpIPb+ArYqxZukjVDQQxeWQI=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by AM0PR04MB6531.eurprd04.prod.outlook.com (2603:10a6:208:178::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.30; Tue, 12 Apr
+ 2022 13:40:37 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::8ed:49e7:d2e7:c55e]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::8ed:49e7:d2e7:c55e%3]) with mapi id 15.20.5144.029; Tue, 12 Apr 2022
+ 13:40:36 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Joachim Wiberg <troglobit@gmail.com>
+Thread-Topic: [PATCH RFC net-next 07/13] selftests: forwarding: new test,
+ verify bridge flood flags
+Thread-Index: AQHYTamAs7QHO4PKl0yCkkH/jUKUX6zrKB8AgADB64CAAGBlAA==
+Date: Tue, 12 Apr 2022 13:40:36 +0000
+Message-ID: <20220412134032.lm54stqcblahdej2@skbuf>
+References: <20220411133837.318876-1-troglobit@gmail.com>
+ <20220411133837.318876-8-troglobit@gmail.com>
+ <20220411202128.n4dafks4mnkbzr2k@skbuf> <87fsmiburw.fsf@gmail.com>
+In-Reply-To: <87fsmiburw.fsf@gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: netdev@vger.kernel.org
-References: <20220412132245.2148794-1-razor@blackwall.org>
- <20220412132245.2148794-8-razor@blackwall.org>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20220412132245.2148794-8-razor@blackwall.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Cc: dsahern@kernel.org, bridge@lists.linux-foundation.org, idosch@idosch.org,
- roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v3 7/8] net: bridge: fdb: add support
- for flush filtering based on ndm flags and state
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3fdf7b1f-9cbb-46ea-c361-08da1c8a06b5
+x-ms-traffictypediagnostic: AM0PR04MB6531:EE_
+x-microsoft-antispam-prvs: <AM0PR04MB6531FB2EC382262D26959A40E0ED9@AM0PR04MB6531.eurprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 9zo7PKu27jpbxNLP4ExV/mGQaOilhTIUaY1l2VIKxm+iEp+eYSe2cNq8/VP5BGQRR68UdMkWNyGSlsmqnZ6djVIPEAo72yCFND5ZhlLJhX56BWoY0qkdekxqhBJPPIHrTJI64M8+28triHY3z+bNok4/f1jFmJcEI1YQ/ejlmaBM8RPLbIdU2eyD3nEFsx85CUod80R/7/tqqzvy+SK+dXGUct69QdTIfDQ9raN3q7z/Kppf7dJxvgW8HQgSGDE50VQf3i9WYC3JeVINgmnR+rS19D4vAFq95WomATJJDntXnvyHBu40KjXh4BoAgBxaWL+Pfh/5NTeLMDFSIvj+f8AkKimvb1lDxz72Iow01iFQePiFFy5GyETFXhQ6xwpXRrtoaHIYNVBWyOun4TA0EpkWAL9HJA4Cw6AMDAWqwqZbF4CYlzVPcdUQgmtU/XEZaspU470q3TKuzyY8D5f5W9HvlEAyDgPSbWzaA4fve9octmU3gtxQnYmFXP5Mre5284ZJ8AWeVArbdosN0SUUF3VwASM8i1X7l8V7YJnkLAQeDDdquuY8KoHXq3GfQeyVQFriR9XCqrG3GemfW7w+TMgsZrP691FU3d/T6QxwARklnbg35PuV5n+du9r7o5D37fuJbmdHg+iK4YU/61TmILT1Paq8mThLrd+zdR0pja7b1HzCDzF7D9ZX5UCH60a94SnW16Ka8xfgy43YgU6SVw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(7916004)(4636009)(366004)(6486002)(316002)(1076003)(6916009)(186003)(53546011)(26005)(122000001)(86362001)(44832011)(8936002)(15650500001)(508600001)(2906002)(83380400001)(33716001)(54906003)(38070700005)(4326008)(91956017)(66946007)(64756008)(66476007)(66556008)(66446008)(8676002)(71200400001)(76116006)(5660300002)(6512007)(9686003)(6506007)(38100700002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?8M/ZSlaxD8onfDKX9x0nCN+5m6heZV1ShKUdVoAdPnEmDYaKJ9udyGb347a/?=
+ =?us-ascii?Q?Bbl2+nDN7IqLJKFCF/9uO7yFBje5aUnjaIGCbSMQvJpjquWhfccEcPDI4ZUW?=
+ =?us-ascii?Q?2ENRpXUTMxprGnp7HDh5HfqGQtH6jmAQDuPwLIUtSu4HVvfmj5UWo7VAD2md?=
+ =?us-ascii?Q?u7saO0434pRhBYuNAKRhbikMKpYXVnQ7kP07jZMhN/lb22ZY8aVeWhR59aOn?=
+ =?us-ascii?Q?cuFaYFDIw7pT+h1bXH7s0ugL3iu2FZACvD2BV4FrR3N0QrOZsQ+Uwe1BDw5F?=
+ =?us-ascii?Q?2w0CM0VBCXAuBqiH7Jn0YhU7bS9PwtCfDR1/VnhDLlKT6QRjsFMWD9V5TsEg?=
+ =?us-ascii?Q?A+HjtONpmSzkm/+gC9KtZIg7YVo5wKafAhK3txm5IxgsfKXLq4lY/69lvuS1?=
+ =?us-ascii?Q?6LcwNitqCpoBZQZ0PPLo9HoNmgDo1yWxPyYiopLW4Ww4zYq2YKtNeM0lyPxO?=
+ =?us-ascii?Q?UjfqmUX5AfsQLYTFmSTry9JYa+z1iZMSHmXJr2j0N/oqXltFxMMCPGcrdgOi?=
+ =?us-ascii?Q?Gje0ldlrFvvO6fRF0tqa1r8ynk0luWqnaQ1O00ZrndXF4ah+jCZYI8KEldoX?=
+ =?us-ascii?Q?JoAQXvQ6Iqp4D8coUsu3BEb+IysaTHLz8fz8YsNQiyWKPRam7/fD26qykpx+?=
+ =?us-ascii?Q?+Eq1QC03N/qrnUKYyfuUdxKxwSXRf5EFyeenpwsHrePpu8q3lHo6EwTxciHZ?=
+ =?us-ascii?Q?V+0cDO7+ln3cwCIS2s788JsJVmwJCYS7itJF2DEEOgvkw5cDUCzkFcC270BN?=
+ =?us-ascii?Q?VbFORtWmWXkct6SkwENox/KZSey013CFuePBQ+ljHAp+v00UivfLgRpreZ1h?=
+ =?us-ascii?Q?OwchS90k5oF/ZKM/urJp+8Sbm7BnihJtlGK6DpruYH5uUc0zuH/hpxeLq7eb?=
+ =?us-ascii?Q?VRJCOoNTSiI2/r1udiPxZj/TjLpN1l7e7OMZpXSGZtivnPQ9cCR1uT9ccQKl?=
+ =?us-ascii?Q?I4O327XPU7vyKBOChGE3X1pYfVJDGD4ZR+iO0iJ7UnOOkkUT9yJSSsrRZX4w?=
+ =?us-ascii?Q?SHkfSws88DGZeqIWuMY0iuUFq8/9Wqddpxy7K5IW3iZ9WmLlbEuzevQXRrPB?=
+ =?us-ascii?Q?xM0KDiyNzEJ2Mr4OfeMHlSBffl8gIk4zb6DI+z3K7yTU9medqtafh9I/uVPc?=
+ =?us-ascii?Q?ea91ZA2p27WgLV4X4HRtAzccdJwrB3Mq1dYH7BwSlHOq9xTQO2vDgfFSxb5i?=
+ =?us-ascii?Q?Z9h+WweEBtIp2thbfXJIEtUNDp1JhBCMU7ySqcPPx15IatGpojz89K2Aaq/F?=
+ =?us-ascii?Q?5h+HpanW2I67jxOKArpIpPYmocq+9jnfDdmsrk5DvdEmgONr3B6lu2gvKP+0?=
+ =?us-ascii?Q?udi0F0Alp2q6L7c/tkTWrxhAhtjyq2TlFR/LTblAs0YxNy1fcqJa4bbRxQIw?=
+ =?us-ascii?Q?JlNkNEYJ7J6rW73A4GbSZV/0Q8X3PhM8aglRav+KrMK8kBoHqXA90GKs2t2R?=
+ =?us-ascii?Q?2snwhRAPaBGgK1jy2CG85jE+tHcnPWMeKUH7CeuxBy+hnDCHSbACfkcr7kHq?=
+ =?us-ascii?Q?O/9T5IRC8Hu0YTJqkXUoS5HUQi2slHeiEoKZAXg/Ci96ekR5NzbXjGgoUbiC?=
+ =?us-ascii?Q?dm4fmpJqNBBMyr/lFAvSXLfnESGR3rjWl5Geatv6mc/QfQr8ENb2b2BioqX6?=
+ =?us-ascii?Q?upmcgfE9miUzYiqQFgb2eC+waUCrotFwwB0oyQwBpuEOwgbE4ruZ+Mw7y6bl?=
+ =?us-ascii?Q?9FWq60vEETtG7c7jJlAmZai3HN7stLU4GV7SANjIcxwnGPnNPKRLhizsCM9A?=
+ =?us-ascii?Q?QFXz/JJEUGvwzFK8qYeG9pW83PgXqYk=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <43A5C43A578B114AA2E315EFAE5E28B0@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3fdf7b1f-9cbb-46ea-c361-08da1c8a06b5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2022 13:40:36.9205 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LTSCBecpfkVZfd7AQyAMJZa5KjnQU1qziC6PZfHcwoF69zO0bf0kH7naNfit6ZciNNDi2uU5PdJWsFNseDC00g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6531
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>,
+ Tobias Waldekranz <tobias@waldekranz.com>
+Subject: Re: [Bridge] [PATCH RFC net-next 07/13] selftests: forwarding: new
+ test, verify bridge flood flags
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -104,13 +157,57 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 12/04/2022 16:22, Nikolay Aleksandrov wrote:
-> Add support for fdb flush filtering based on ndm flags and state. NDM
-> state and flags are mapped to bridge-specific flags and matched
-> according to the specified masks. NTF_USE is used to represent
-> added_by_user flag since it sets it on fdb add and we don't have a 1:1
-> mapping for it. Only allowed bits can be set, NTF_USE and NTF_MASTER are
-> ignored.
+On Tue, Apr 12, 2022 at 09:55:31AM +0200, Joachim Wiberg wrote:
+> On Mon, Apr 11, 2022 at 20:21, Vladimir Oltean <vladimir.oltean@nxp.com> =
+wrote:
+> > On Mon, Apr 11, 2022 at 03:38:31PM +0200, Joachim Wiberg wrote:
+> >> +# Verify per-port flood control flags of unknown BUM traffic.
+> >> +#
+> >> +#                     br0
+> >> +#                    /   \
+> >> +#                  h1     h2
+> >
+> > I think the picture is slightly inaccurate. From it I understand that h=
+1
+> > and h2 are bridge ports, but they are stations attached to the real
+> > bridge ports, swp1 and swp2. Maybe it would be good to draw all interfa=
+ces.
+>=20
+> Hmm, yeah either that or drop it entirely.  I sort of assumed everyone
+> knew about the h<-[veth]->swp (or actual cable) setup, but you're right
+> this is a bit unclear.  Me and Tobias have internally used h<-->p (for
+> host<-->bridge-port) and other similar nomenclature.  Finding a good
+> name that fits easily, and is still readable, in ASCII drawings is hard.
+> I'll give it a go in the next drop, thanks!
 
-err, *NTF_SELF* and NTF_MASTER are ignored
+I wasn't thinking of anything too fancy, this would do I guess.
 
+             br0
+            /   \
+ h1 --- swp1     swp2 --- h2
+
+> > Also, to be honest, a generic name like "ports" is hard to digest,
+> > especially since you have another generic variable name "iface".
+> > Maybe "brports" and "station" is a little bit more specific?
+>=20
+> Is there a common naming standard between bridge tests, or is it more
+> important to be consistent the test overview (test heading w/ picture)?
+>=20
+> Anyway, I'll have a look at the naming for the next drop.
+
+Even if there is a common naming standard in the selftests I wouldn't
+know it. I just found the naming here to be vague enough that it is
+confusing. If there are other examples of "port" + "iface" please feel
+free to disregard.
+
+> >> +declare -A flag1=3D([$swp1]=3Doff [$swp2]=3Doff [br0]=3Doff)
+> >> +declare -A flag2=3D([$swp1]=3Doff [$swp2]=3Don  [br0]=3Doff)
+> >> +declare -A flag3=3D([$swp1]=3Doff [$swp2]=3Don  [br0]=3Don )
+> >> +declare -A flag4=3D([$swp1]=3Doff [$swp2]=3Doff [br0]=3Don )
+> > If it's not too much, maybe these could be called "flags_pass1", etc.
+> > Again, it was a bit hard to digest on first read.
+>=20
+> More like flags_pass_fail, but since its the flooding flags, maybe
+> flood_patternN would be better?
+
+This works.=
