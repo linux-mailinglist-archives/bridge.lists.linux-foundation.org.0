@@ -1,79 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA174FF52F
-	for <lists.bridge@lfdr.de>; Wed, 13 Apr 2022 12:52:35 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 646F84FF530
+	for <lists.bridge@lfdr.de>; Wed, 13 Apr 2022 12:52:36 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 74DA941758;
-	Wed, 13 Apr 2022 10:52:33 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 18E9040B1F;
+	Wed, 13 Apr 2022 10:52:34 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id o8s4GDKFCtKk; Wed, 13 Apr 2022 10:52:32 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id bKsap6AWyh5S; Wed, 13 Apr 2022 10:52:33 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id A48BB41743;
-	Wed, 13 Apr 2022 10:52:31 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTPS id AF58340B55;
+	Wed, 13 Apr 2022 10:52:32 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5E7C0C0088;
-	Wed, 13 Apr 2022 10:52:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 92639C008A;
+	Wed, 13 Apr 2022 10:52:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4330AC002C
- for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 10:52:30 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 17907C002C
+ for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 10:52:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 037BE41697
+ by smtp4.osuosl.org (Postfix) with ESMTP id 38A3D41741
  for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 10:52:30 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp4.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4IbtPVl8LSGT for <bridge@lists.linux-foundation.org>;
- Wed, 13 Apr 2022 10:52:28 +0000 (UTC)
+ with ESMTP id c6NKr-oFJzVO for <bridge@lists.linux-foundation.org>;
+ Wed, 13 Apr 2022 10:52:29 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 2C53C41724
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
+ [IPv6:2a00:1450:4864:20::62c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 09D8E41732
  for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 10:52:28 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id lc2so3060977ejb.12
+Received: by mail-ej1-x62c.google.com with SMTP id u15so3062147ejf.11
  for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 03:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20210112.gappssmtp.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=0+d6Rov8cjDp4XASxWMxnkxwuD5Gq2aFtJ+v6sDjNGk=;
- b=E2vRYdVkMpOuOmuBfP6Oq6xxQ8AygCk0IigcDxqCSJmZqps/Xbyf6XW0O12cT1Oax4
- FiCB528iHFY03d7tXKx1d7N2lWiDg084eNkY9gq7shM2MIKG9UF5/64tnrZ3mpv2OI6e
- mV12s6jeyA6T8qTdawpgBxEpaf9xzc4JN48EHsKpzIF3Puf1xfFHkxbwqDOBfCUKcufz
- 72d5o/qUEMspTt1BacW//JMc0IKjZixQER9i2DrxZEZHW1da2hBX9DWVs/SXN4DCMKMj
- t4gR2S79+YxQGdmMRFJdJ5nY175E47oT+YLWlr/jgqTtIN17mxndg0U/ui3nDbEhX3z9
- Zgrg==
+ bh=TL0c+Hs+0lBMqasciNPJrqUQXbgHwj7xsTQadVbU8KQ=;
+ b=nOemDcgk5r0VlAKSVFNceh7dNh1uBqsIVQwLdnbY5q/cBVo39X4dUlRJlTF5Qurn5q
+ beCBvCeRL3+X8pe82zI1Al4cih9Y1uHj/sGrCfUAsXLdvUCv/TtxUSowA6gLXCdpNxuu
+ NCKs7HvTtrIGNAUO8Py93bu1fRsJudXEOetSGPOYkX5+1F+4PBVHk6rFkI8VXVX/FI77
+ zwCvbLKIIUZ3P/O20X26/vZCjzvBNpcsvBzyoGvEFubC28twGcjOYklmqbo1c3nWNnWn
+ DL8JBQfxeYKIv2kt/VoYHSLG9fyTrDdvcVo5/S7G/HkLGw7lii/TzM9CvGmZik9mWU4E
+ 7I2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=0+d6Rov8cjDp4XASxWMxnkxwuD5Gq2aFtJ+v6sDjNGk=;
- b=SmQvdOaurKT/sfScsayll5WtfX66JBaN1FCAxwp/AwbLP8T2qzq7MaoKpD9EXj6uli
- Num3CJSZN743SzjHBw+djq5AKoWu+my1yKQdBO2TfGpszAFfbu8YkjnCnhXxoVBB07Rs
- jQve8TUEv7LjqR72oPtbsMzMOnqq6xNaQ93TReApo202Bv5nJnwxSdDAGWnkNauHwcDK
- nej3AurWrp8+aWapnPOQDW+1ubjgw3ug4f+2AbX+DgO4yqZGBc20+wodTZZgYguKPL4O
- ancBO1pvWEMI2PZcNG75yz4NtRbc7SbZJXyr+eZIhRUsfQHaMRLMY7ZvwKOmnqaC63HM
- 9Abg==
-X-Gm-Message-State: AOAM531Z+NE/i3RnzXQj2ZbeogYIqUcPKkEdKFEYiWANiee28kksULFE
- v8OXeE9lSmfHPpyYw8f1/hj8YQ==
-X-Google-Smtp-Source: ABdhPJzHstTpmBQgNCZQOeZWES1aAH90boWyFAjDx2nJhi9OSbcCrVvB3z3PKcnCHhXapqWq8d+UHw==
-X-Received: by 2002:a17:906:3ad3:b0:6cd:382b:86e5 with SMTP id
- z19-20020a1709063ad300b006cd382b86e5mr36598097ejd.145.1649847146154; 
- Wed, 13 Apr 2022 03:52:26 -0700 (PDT)
+ bh=TL0c+Hs+0lBMqasciNPJrqUQXbgHwj7xsTQadVbU8KQ=;
+ b=kjbkYU/pbDqtZbr+VbNqmBGPUAGmkqkGQs8EZph+xxxr9I/lafF01siV+CJrWLwYUF
+ Rw0mm6LsFOmIshRZZaJbrkljJMCkSEGtWHb2a4GGAJH0P55BYnJpMxPpfE9cyiTV5JO5
+ /CeHjn3HEb/p7OP/gTB37FJiSx2IibwoLsGMj6mesLZHZh6qorF9uUSjQihpDJ5knkkK
+ 5Af4DQQNfOLnCr01NNkWmg5g4HrYhjIus6Q1NA+0kV0JrdhGounSrcII3rmtboePqPv9
+ GcP3r8DNNubuCz2SfkodsmBwHiN185JBz1k5ugyvHtYbEFMAJQHMlxb6cUV4hShBajzD
+ KYnA==
+X-Gm-Message-State: AOAM531zL/Hv7yei891NJMJ7X04wKTTTLZsiafHTsLvxqErHKk7IRgdI
+ YDqKkYPvmE2aB1zYKgWQcU7anA==
+X-Google-Smtp-Source: ABdhPJy6jvymQpMk1zpC1tA/B0YcrpU0Rqtjf4DLdZuYidwvgZC+l358W5S3hhilB/yQeW4IN50uGA==
+X-Received: by 2002:a17:907:2d20:b0:6e8:a4d3:3e91 with SMTP id
+ gs32-20020a1709072d2000b006e8a4d33e91mr9121457ejc.475.1649847147170; 
+ Wed, 13 Apr 2022 03:52:27 -0700 (PDT)
 Received: from debil.. (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
  by smtp.gmail.com with ESMTPSA id
- v8-20020a1709063bc800b006e898cfd926sm2960952ejf.134.2022.04.13.03.52.25
+ v8-20020a1709063bc800b006e898cfd926sm2960952ejf.134.2022.04.13.03.52.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Apr 2022 03:52:25 -0700 (PDT)
+ Wed, 13 Apr 2022 03:52:26 -0700 (PDT)
 From: Nikolay Aleksandrov <razor@blackwall.org>
 To: netdev@vger.kernel.org
-Date: Wed, 13 Apr 2022 13:51:55 +0300
-Message-Id: <20220413105202.2616106-6-razor@blackwall.org>
+Date: Wed, 13 Apr 2022 13:51:56 +0300
+Message-Id: <20220413105202.2616106-7-razor@blackwall.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220413105202.2616106-1-razor@blackwall.org>
 References: <20220413105202.2616106-1-razor@blackwall.org>
@@ -82,8 +84,7 @@ Content-Transfer-Encoding: 8bit
 Cc: Nikolay Aleksandrov <razor@blackwall.org>, dsahern@kernel.org,
  bridge@lists.linux-foundation.org, idosch@idosch.org, roopa@nvidia.com,
  kuba@kernel.org, davem@davemloft.net
-Subject: [Bridge] [PATCH net-next v4 05/12] net: rtnetlink: add bulk delete
-	support flag
+Subject: [Bridge] [PATCH net-next v4 06/12] net: add ndo_fdb_del_bulk
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,59 +99,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add a new rtnl flag (RTNL_FLAG_BULK_DEL_SUPPORTED) which is used to
-verify that the delete operation allows bulk object deletion. Also emit
-a warning if anyone tries to set it for non-delete kind.
+Add a new netdev op called ndo_fdb_del_bulk, it will be later used for
+driver-specific bulk delete implementation dispatched from rtnetlink. The
+first user will be the bridge, we need it to signal to rtnetlink from
+the driver that we support bulk delete operation (NLM_F_BULK).
 
-Suggested-by: David Ahern <dsahern@kernel.org>
 Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
 ---
-v4: new patch
+ include/linux/netdevice.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
- include/net/rtnetlink.h | 3 ++-
- net/core/rtnetlink.c    | 8 ++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/include/net/rtnetlink.h b/include/net/rtnetlink.h
-index 0bf622409aaa..bf8bb3357825 100644
---- a/include/net/rtnetlink.h
-+++ b/include/net/rtnetlink.h
-@@ -10,7 +10,8 @@ typedef int (*rtnl_doit_func)(struct sk_buff *, struct nlmsghdr *,
- typedef int (*rtnl_dumpit_func)(struct sk_buff *, struct netlink_callback *);
- 
- enum rtnl_link_flags {
--	RTNL_FLAG_DOIT_UNLOCKED = BIT(0),
-+	RTNL_FLAG_DOIT_UNLOCKED		= BIT(0),
-+	RTNL_FLAG_BULK_DEL_SUPPORTED	= BIT(1),
- };
- 
- enum rtnl_kinds {
-diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
-index beda4a7da062..63c7df52a667 100644
---- a/net/core/rtnetlink.c
-+++ b/net/core/rtnetlink.c
-@@ -249,6 +249,8 @@ static int rtnl_register_internal(struct module *owner,
- 	if (dumpit)
- 		link->dumpit = dumpit;
- 
-+	WARN_ON(rtnl_msgtype_kind(msgtype) != RTNL_KIND_DEL &&
-+		(flags & RTNL_FLAG_BULK_DEL_SUPPORTED));
- 	link->flags |= flags;
- 
- 	/* publish protocol:msgtype */
-@@ -6009,6 +6011,12 @@ static int rtnetlink_rcv_msg(struct sk_buff *skb, struct nlmsghdr *nlh,
- 	}
- 
- 	flags = link->flags;
-+	if (kind == RTNL_KIND_DEL && (nlh->nlmsg_flags & NLM_F_BULK) &&
-+	    !(flags & RTNL_FLAG_BULK_DEL_SUPPORTED)) {
-+		NL_SET_ERR_MSG(extack, "Bulk delete is not supported");
-+		goto err_unlock;
-+	}
-+
- 	if (flags & RTNL_FLAG_DOIT_UNLOCKED) {
- 		doit = link->doit;
- 		rcu_read_unlock();
+diff --git a/include/linux/netdevice.h b/include/linux/netdevice.h
+index 28ea4f8269d4..a602f29365b0 100644
+--- a/include/linux/netdevice.h
++++ b/include/linux/netdevice.h
+@@ -1260,6 +1260,10 @@ struct netdev_net_notifier {
+  *		      struct net_device *dev,
+  *		      const unsigned char *addr, u16 vid)
+  *	Deletes the FDB entry from dev coresponding to addr.
++ * int (*ndo_fdb_del_bulk)(struct ndmsg *ndm, struct nlattr *tb[],
++ *			   struct net_device *dev,
++ *			   u16 vid,
++ *			   struct netlink_ext_ack *extack);
+  * int (*ndo_fdb_dump)(struct sk_buff *skb, struct netlink_callback *cb,
+  *		       struct net_device *dev, struct net_device *filter_dev,
+  *		       int *idx)
+@@ -1510,6 +1514,11 @@ struct net_device_ops {
+ 					       struct net_device *dev,
+ 					       const unsigned char *addr,
+ 					       u16 vid);
++	int			(*ndo_fdb_del_bulk)(struct ndmsg *ndm,
++						    struct nlattr *tb[],
++						    struct net_device *dev,
++						    u16 vid,
++						    struct netlink_ext_ack *extack);
+ 	int			(*ndo_fdb_dump)(struct sk_buff *skb,
+ 						struct netlink_callback *cb,
+ 						struct net_device *dev,
 -- 
 2.35.1
 
