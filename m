@@ -1,73 +1,77 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F617502763
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20BF1502762
 	for <lists.bridge@lfdr.de>; Fri, 15 Apr 2022 11:28:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 7F096610A7;
-	Fri, 15 Apr 2022 09:28:42 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id 08DA440BB4;
+	Fri, 15 Apr 2022 09:28:43 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id WMfL1ZQmWqWb; Fri, 15 Apr 2022 09:28:42 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id BKNSohl4zKB6; Fri, 15 Apr 2022 09:28:42 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 31A6C610A0;
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 91E4D40BAF;
 	Fri, 15 Apr 2022 09:28:41 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0C376C0092;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 39491C0095;
 	Fri, 15 Apr 2022 09:28:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AD213C002C
- for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 02:04:46 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 24845C002C
+ for <bridge@lists.linux-foundation.org>; Thu, 14 Apr 2022 00:42:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 9529560E27
- for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 02:04:46 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id 176716112C
+ for <bridge@lists.linux-foundation.org>; Thu, 14 Apr 2022 00:42:31 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id k3g7yjBdjE6f for <bridge@lists.linux-foundation.org>;
- Wed, 13 Apr 2022 02:04:46 +0000 (UTC)
+ with ESMTP id GGNxwoir4FSK for <bridge@lists.linux-foundation.org>;
+ Thu, 14 Apr 2022 00:42:30 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by smtp3.osuosl.org (Postfix) with ESMTPS id E153B60D70
- for <bridge@lists.linux-foundation.org>; Wed, 13 Apr 2022 02:04:45 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id D66AF60B2A
+ for <bridge@lists.linux-foundation.org>; Thu, 14 Apr 2022 00:42:29 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 2175FB818C6;
- Wed, 13 Apr 2022 02:04:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74592C385A8;
- Wed, 13 Apr 2022 02:04:41 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 6FC51B818F1;
+ Thu, 14 Apr 2022 00:42:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C65BC385A6;
+ Thu, 14 Apr 2022 00:42:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1649815481;
- bh=Vu+KgFouk8ANRuvIxUVioi8TD5dzKVTLxlfZyOyStr0=;
+ s=k20201202; t=1649896946;
+ bh=8lYIYTMcMRpADQYVwwEbTQ7w7xq7gDAawhUe2eXrNFo=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=oMWCA75tVI/a3DU0b4D8ROEQAnmjNK/m1j0epJam9eyCkHPdJfBkq+VniG4iML3kg
- BoKVDAljU/Pe/GNNEGd7BPLrb/C+LIRLdpRAzrH4sbabmkuqPNXhO+afe4r+yvBs3S
- GisDnceTSgUH/esU7j3XaZR9P6Z7nTI8itdEnWBJCUyAqdcvNQ2qxSM0vkwe7nxH2B
- eQN8f5KXRCVISg6D9yAup2eeOJVULPDOuk3Kl0zePcli439cSOdpi7JbrkLXhWlXJG
- XmxnrIxIQ06FKPqMiooKCqQvx0S3JaJFQnHjZbkG3RD+oIIVB/ZYyfhDFK1h+6OLMZ
- Q5fNsgwfKJhdQ==
-Message-ID: <c418e95e-440e-0502-58f2-63179f370a98@kernel.org>
-Date: Tue, 12 Apr 2022 20:04:40 -0600
+ b=V9J3P/MYXS5MyBbY7MTCPsrfE3nENIideBDr+z1NaP1bcBCdbI3rgl5AU0FWbmsLZ
+ 62EnjksFq+LNx4NUgcKoemXlmZv8EmHHOxnTPP1I+62tLeAZw//HUYCtw8T9CFBHIe
+ Xjzn4NWjVlQ4eY0G9WRzvMmR17iTAnF78k+Mwr1KzmT5JQIND3vvBajDHYMbRFLwmO
+ lNodux6lTYtTYALdmZYoqdOA1g4qIOqgxJMAOLVNXYymjK3WSLJapuNHblHxwjOcR9
+ ECdhgOhZnf68tHU/+aHapN3TtclDep2M8NkIjdAdN/7R/L6o7n4lRkO9p0kl1zHvE0
+ ztYWtas8r600Q==
+Message-ID: <97774474-65a3-fa45-e0b9-8db6c748da28@kernel.org>
+Date: Wed, 13 Apr 2022 18:42:24 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.7.0
+ Gecko/20100101 Thunderbird/91.8.0
 Content-Language: en-US
-To: Nikolay Aleksandrov <razor@blackwall.org>, netdev@vger.kernel.org
-References: <20220412132245.2148794-1-razor@blackwall.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>, Ido Schimmel <idosch@idosch.org>
+References: <20220413105202.2616106-1-razor@blackwall.org>
+ <20220413105202.2616106-6-razor@blackwall.org> <Yla8wj7khYxpwxan@shredder>
+ <e43b5033-d350-fc81-71be-de3e1053c72a@blackwall.org>
 From: David Ahern <dsahern@kernel.org>
-In-Reply-To: <20220412132245.2148794-1-razor@blackwall.org>
+In-Reply-To: <e43b5033-d350-fc81-71be-de3e1053c72a@blackwall.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 15 Apr 2022 09:28:38 +0000
-Cc: idosch@idosch.org, bridge@lists.linux-foundation.org, davem@davemloft.net,
- kuba@kernel.org, roopa@nvidia.com
-Subject: Re: [Bridge] [PATCH net-next v3 0/8] net: bridge: add flush
-	filtering support
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ davem@davemloft.net, kuba@kernel.org, roopa@nvidia.com
+Subject: Re: [Bridge] [PATCH net-next v4 05/12] net: rtnetlink: add bulk
+ delete support flag
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -82,21 +86,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 4/12/22 7:22 AM, Nikolay Aleksandrov wrote:
-> Hi,
-> This patch-set adds support to specify filtering conditions for a bulk
-> delete (flush) operation. This version uses a new nlmsghdr delete flag
-> called NLM_F_BULK in combination with a new ndo_fdb_del_bulk op which is
-> used to signal that the driver supports bulk deletes (that avoids
-> pushing common mac address checks to ndo_fdb_del implementations and
-> also has a different prototype and parsed attribute expectations, more
-> info in patch 03). The new delete flag can be used for any RTM_DEL*
-> type, implementations just need to be careful with older kernels which
-> are doing non-strict attribute parses. Here I use the fact that mac
+On 4/13/22 6:21 AM, Nikolay Aleksandrov wrote:
+>> If a buggy user space application is sending messages with NLM_F_BULK
+>> set (unintentionally), will it break on newer kernel? I couldn't find
+>> where the kernel was validating that reserved flags are not used (I
+>> suspect it doesn't).
+> 
+> Correct, it doesn't.
+> 
+>>
+>> Assuming the above is correct and of interest, maybe just emit a warning
+>> via extack and drop the goto? Alternatively, we can see if anyone
+>> complains which might never happen
+>>
+> 
+> TBH I prefer to error out on an unsupported flag, but I get the problem. These
+> weren't validated before and we start checking now. The problem is that we'll
+> return an extack without an error, but the delete might also remove something.
+> Hrm.. perhaps we can rephrase the error in that case (since it becomes a warning
+> in iproute2 terms):
+>  "NLM_F_BULK flag is set but bulk delete operation is not supported"
+> So it will warn the user it has an unsupported flag.
+> 
+> WDYT ?
+> 
+> IMO we should bite the bullet and keep the error though. :)
+> 
 
-overall it looks fine to me. The rollout of BULK delete for other
-commands will be slow so we need a way to reject the BULK flag if the
-handler does not support it. One thought is to add another flag to
-rtnl_link_flags (e.g., RTNL_FLAG_BULK_DEL_SUPPORTED) and pass that flag
-in for handlers that handle bulk delete and reject it for others in core
-rtnetlink code.
+I agree. The check across the board for BULK flag on any DELETE requests
+should tell us pretty quick if someone is setting that flag when it
+should not be.
