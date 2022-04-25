@@ -2,76 +2,88 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06BEB50E4B8
-	for <lists.bridge@lfdr.de>; Mon, 25 Apr 2022 17:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9829450E52C
+	for <lists.bridge@lfdr.de>; Mon, 25 Apr 2022 18:07:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8CD3C4109E;
-	Mon, 25 Apr 2022 15:48:38 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 5B13C4086C;
+	Mon, 25 Apr 2022 16:06:59 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id IUcFMg9IWNve; Mon, 25 Apr 2022 15:48:37 +0000 (UTC)
+	with ESMTP id 0fpJs_xgSl97; Mon, 25 Apr 2022 16:06:58 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id C83B041551;
-	Mon, 25 Apr 2022 15:48:36 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id B4B1D408DA;
+	Mon, 25 Apr 2022 16:06:57 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6D263C007C;
-	Mon, 25 Apr 2022 15:48:36 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 515BAC007C;
+	Mon, 25 Apr 2022 16:06:57 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 40793C002D
- for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 15:48:35 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3C48FC002D
+ for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 16:06:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 18F01823AB
- for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 15:48:35 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2A234408BA
+ for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 16:06:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=kernel.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XvTREoY1ukdQ for <bridge@lists.linux-foundation.org>;
- Mon, 25 Apr 2022 15:48:33 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 26F6381B53
- for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 15:48:33 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 2D44A61021;
- Mon, 25 Apr 2022 15:48:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8EF6C385A4;
- Mon, 25 Apr 2022 15:48:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1650901711;
- bh=/t9m4/CeRlKdtuZXaz3TIf1SxEIJdA7erFumgZsS0uw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=eOh7UZUkEZo/3ZbQ3PFG7Sonks6El6PeCIN27QpESDKgQAErhvEaXm5KHbAphkzpI
- DbS3z0A806wbIW0q73FkzHUMYhjAKBeCDh22sXJeY2YzhqKHBIkrAOTHC9v2TOudcQ
- cnwD6Y+fV1mnE5tfBuHuBckGxp0n4CdDkY99FAwiw/YJLCMLdSsUKXPVdUb6YxF/MJ
- WtdvWJVvQhKG92F8KUwLIgbkDI6QRXTjwKXys/e3UTkxJ6wwqrn8LRrY7HQmI3at9V
- N4YKmmmQD26s3s3ouZxl4FixIONGLzDT6vjUa0tao1QuHX5QadQY8M9RZKdf+Qr63O
- 8rWNcE/MfKKyQ==
-Date: Mon, 25 Apr 2022 08:48:29 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Alaa Mohamed <eng.alaamohamedsoliman.am@gmail.com>
-Message-ID: <20220425084829.4b446748@kernel.org>
-In-Reply-To: <cover.1650896000.git.eng.alaamohamedsoliman.am@gmail.com>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 0fiH_xK0xYdV for <bridge@lists.linux-foundation.org>;
+ Mon, 25 Apr 2022 16:06:54 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
+ [IPv6:2607:f8b0:4864:20::102d])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 1D009408B3
+ for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 16:06:54 +0000 (UTC)
+Received: by mail-pj1-x102d.google.com with SMTP id
+ u6-20020a17090a1f0600b001d86bd69427so376032pja.5
+ for <bridge@lists.linux-foundation.org>; Mon, 25 Apr 2022 09:06:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20210112.gappssmtp.com; s=20210112;
+ h=date:from:to:subject:message-id:in-reply-to:references:mime-version
+ :content-transfer-encoding;
+ bh=eSUUmvcNxUREKY9cfIXBqiFcqq7TWxDWmLrdLzNKTdU=;
+ b=EKZUOtERmjlzbXufW4645zt3AX8Dp81DRfEiYA6+kWUhMRR3qkn/JamkKu2b/Ny02G
+ dlBxN7CY3TxY4t8SdfHJjGd9T40h8MUEY0AImsXJSW8/ZkiqTEwuUGF5R2KbsXfWuSVf
+ kOosTDhAkaDOuvuD9E/k+TGdqPErzhC7wMl7JVDA7xOuTI4XUVawX8+S5ooCIZCa63yE
+ fEysmS1mtk4vLSpOJFLMcp+faGnMhiGs0OxF4NeFm+SnkOAxvb0MsBIbPoooIjtpYPhS
+ XRpiPiwHTdTuUQUChwjTg5iwy75JYVBxk+Z1aQvvZ/XAvJnezxMv1PVxk/uDfLz7Q0Ew
+ Q+VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=eSUUmvcNxUREKY9cfIXBqiFcqq7TWxDWmLrdLzNKTdU=;
+ b=KKO7YEiq/Mz+h16vuG1BdfGNJMbbq/8DEU5tSg25nzOZwFO0Hb1z+e3DZQtXBECXIK
+ SE7Kw8YWXE02Rd+Cq3OgSiXRHAXSdYAnjo81Bjch2RYeiqWPWLeSzvv8LaO3IKnhROzu
+ YTHn6tIOLyY0psJjW/ibqIBPTF/B4gwa+pk9Mh7QMAGsHZ8zimVE0wdysX2Rv0bQFT9f
+ z0Nmi+UnrXR/Rz5zypeoryXUzZgduHqP2oODVCqm+vHNixarFSmKeBXXTuNxtS9YuKWU
+ 8y2+S4FOWVyN6FYpt7r4FHSYgVPLatPOljh1OVLIV7VCgrD2RavSYQMBFNbGCDnfX/C3
+ gsNg==
+X-Gm-Message-State: AOAM532vVzdvyDdr4Mg2t6O1C8F6HmbM+E7NOp3YWGjD+GYiI+g8iSVC
+ 0t4L+WDFEncQsJy+meSy1KyOQw8VBs+fAw==
+X-Google-Smtp-Source: ABdhPJzVSu1F4Hmq8GEw68XIH/GCjoLJBmeQdY1HdDC3GLemMgHT4W2KyVWU1LTE43HVz4EVbXt34g==
+X-Received: by 2002:a17:902:9a81:b0:158:1c91:4655 with SMTP id
+ w1-20020a1709029a8100b001581c914655mr19258211plp.162.1650902813111; 
+ Mon, 25 Apr 2022 09:06:53 -0700 (PDT)
+Received: from hermes.local (204-195-112-199.wavecable.com. [204.195.112.199])
+ by smtp.gmail.com with ESMTPSA id
+ j9-20020aa78009000000b004fde2dd78b0sm11611858pfi.109.2022.04.25.09.06.52
+ for <bridge@lists.linux-foundation.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 25 Apr 2022 09:06:52 -0700 (PDT)
+Date: Mon, 25 Apr 2022 09:06:49 -0700
+From: Stephen Hemminger <stephen@networkplumber.org>
+To: bridge@lists.linux-foundation.org
+Message-ID: <20220425090649.1b99fade@hermes.local>
+In-Reply-To: <a99bfeb371857968a3fa734c00bd9b0e122719c1.1650896000.git.eng.alaamohamedsoliman.am@gmail.com>
 References: <cover.1650896000.git.eng.alaamohamedsoliman.am@gmail.com>
+ <a99bfeb371857968a3fa734c00bd9b0e122719c1.1650896000.git.eng.alaamohamedsoliman.am@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Cc: shshaikh@marvell.com, jdenham@redhat.com, GR-Linux-NIC-Dev@marvell.com,
- manishc@marvell.com, alexandre.belloni@bootlin.com, outreachy@lists.linux.dev,
- netdev@vger.kernel.org, razor@blackwall.org, bridge@lists.linux-foundation.org,
- jesse.brandeburg@intel.com, linux-kernel@vger.kernel.org,
- vladimir.oltean@nxp.com, sbrivio@redhat.com, claudiu.manoil@nxp.com,
- anthony.l.nguyen@intel.com, roopa@nvidia.com, intel-wired-lan@lists.osuosl.org,
- pabeni@redhat.com, davem@davemloft.net, UNGLinuxDriver@microchip.com
-Subject: Re: [Bridge] [PATCH net-next v4 0/2] propagate extack to
-	vxlan_fdb_delete
+Subject: Re: [Bridge] [PATCH net-next v4 2/2] net: vxlan: vxlan_core.c: Add
+ extack support to vxlan_fdb_delete
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -86,10 +98,24 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, 25 Apr 2022 16:25:05 +0200 Alaa Mohamed wrote:
-> In order to propagate extack to vxlan_fdb_delete and vxlan_fdb_parse,
-> add extack to .ndo_fdb_del and edit all fdb del handelers
+On Mon, 25 Apr 2022 16:25:07 +0200
+Alaa Mohamed <eng.alaamohamedsoliman.am@gmail.com> wrote:
 
-Your patches do not apply cleanly to net-next/master. Please rebase and
-repost. Please wait 24h between postings to allow additional feedback
-to come in.
+>  static int vxlan_fdb_parse(struct nlattr *tb[], struct vxlan_dev *vxlan,
+>  			   union vxlan_addr *ip, __be16 *port, __be32 *src_vni,
+> -			   __be32 *vni, u32 *ifindex, u32 *nhid)
+> +			   __be32 *vni, u32 *ifindex, u32 *nhid, struct netlink_ext_ack *extack)
+>  {
+>  	struct net *net = dev_net(vxlan->dev);
+>  	int err;
+> 
+>  	if (tb[NDA_NH_ID] && (tb[NDA_DST] || tb[NDA_VNI] || tb[NDA_IFINDEX] ||
+> -	    tb[NDA_PORT]))
+> -		return -EINVAL;
+> +	    tb[NDA_PORT])) {
+> +			NL_SET_ERR_MSG(extack,
+> +						   "DST, VNI, ifindex and port are mutually exclusive with NH_ID");
+> +			return -EINVAL;
+> +		}
+
+The indentation is off here?
