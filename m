@@ -1,76 +1,62 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A135159A8
-	for <lists.bridge@lfdr.de>; Sat, 30 Apr 2022 03:46:45 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E89C519CC3
+	for <lists.bridge@lfdr.de>; Wed,  4 May 2022 12:17:18 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 80F0A4012F;
-	Sat, 30 Apr 2022 01:46:43 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 56DF561066;
+	Wed,  4 May 2022 10:17:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id P3-r5eOeMTsD; Sat, 30 Apr 2022 01:46:43 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vF9I9Sn8cOWU; Wed,  4 May 2022 10:17:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 1C7FD40CE7;
-	Sat, 30 Apr 2022 01:46:42 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id AE87F60EE4;
+	Wed,  4 May 2022 10:17:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A2CC0C007C;
-	Sat, 30 Apr 2022 01:46:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 713E1C007E;
+	Wed,  4 May 2022 10:17:14 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 66E59C002D
- for <bridge@lists.linux-foundation.org>; Sat, 30 Apr 2022 01:46:40 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id ABFECC0032
+ for <bridge@lists.linux-foundation.org>; Wed,  4 May 2022 10:17:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 4EB5940223
- for <bridge@lists.linux-foundation.org>; Sat, 30 Apr 2022 01:46:40 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 9B73B82538
+ for <bridge@lists.linux-foundation.org>; Wed,  4 May 2022 10:17:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id TOOMxJeC37xf for <bridge@lists.linux-foundation.org>;
- Sat, 30 Apr 2022 01:46:39 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp2.osuosl.org (Postfix) with ESMTPS id BD2EA4012F
- for <bridge@lists.linux-foundation.org>; Sat, 30 Apr 2022 01:46:39 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 891B6624CB;
- Sat, 30 Apr 2022 01:46:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C941C385DC;
- Sat, 30 Apr 2022 01:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651283198;
- bh=8kP/MRpm1KKd3Rl9molXNCPZpQsRev4DC366b3abSJg=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=FHOkqeeY341VJtIRkHZ/wFD9kpmdQmlxFxvjQmxtTGNiHWWFY2WQDyFuUj7xUn0QX
- aa/G+NaZUzfDfYHjIAs+OSETdfW/RThbzraDlNwj81q9LCVO+Ees3IArkGIUur/1Vc
- mVVFGhaTZovAp7DMr+7+DBRXjNhZzbZI03Lwx6rbZQEBl938YpGI9ajnlftd03djV/
- i1xar24F3qGUJk01ngzu37vgE7T28CzHWhJCXc4Imryd5zQEAgwhY7J5nr9T2W3BFd
- IO/XANqI4YZfboz5VJuZFqcrpo+s0KS+9P6Rr9g2E3e5ycbVZseLZz2zFMvwdustxP
- EBzhOSMg3KlpA==
-Date: Fri, 29 Apr 2022 18:46:36 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Alaa Mohamed <eng.alaamohamedsoliman.am@gmail.com>
-Message-ID: <20220429184636.0b869ae7@kernel.org>
-In-Reply-To: <26815b6deebef7f02e864ca41714533c7009e7b7.1651236082.git.eng.alaamohamedsoliman.am@gmail.com>
-References: <cover.1651236081.git.eng.alaamohamedsoliman.am@gmail.com>
- <26815b6deebef7f02e864ca41714533c7009e7b7.1651236082.git.eng.alaamohamedsoliman.am@gmail.com>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 39jYJ_LEnRXe for <bridge@lists.linux-foundation.org>;
+ Wed,  4 May 2022 10:17:10 +0000 (UTC)
+X-Greylist: delayed 00:10:56 by SQLgrey-1.8.0
+Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 8B9B98248F
+ for <bridge@lists.linux-foundation.org>; Wed,  4 May 2022 10:17:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id E10F54116B; Wed,  4 May 2022 12:06:02 +0200 (CEST)
+Date: Wed, 4 May 2022 12:06:00 +0200
+From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
+To: Kevin Mitchell <kevmitch@arista.com>
+Message-ID: <YnJQCIKgriI3kjFc@sellars>
+References: <20220405235117.269511-1-kevmitch@arista.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: shshaikh@marvell.com, jdenham@redhat.com, GR-Linux-NIC-Dev@marvell.com,
- manishc@marvell.com, alexandre.belloni@bootlin.com, outreachy@lists.linux.dev,
- netdev@vger.kernel.org, razor@blackwall.org, bridge@lists.linux-foundation.org,
- jesse.brandeburg@intel.com, linux-kernel@vger.kernel.org,
- vladimir.oltean@nxp.com, sbrivio@redhat.com, claudiu.manoil@nxp.com,
- anthony.l.nguyen@intel.com, roopa@nvidia.com, intel-wired-lan@lists.osuosl.org,
- pabeni@redhat.com, davem@davemloft.net, UNGLinuxDriver@microchip.com
-Subject: Re: [Bridge] [PATCH net-next v5 1/2] rtnetlink: add extack support
- in fdb del handlers
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220405235117.269511-1-kevmitch@arista.com>
+X-Last-TLS-Session-Version: TLSv1.3
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, netdev@vger.kernel.org,
+ gal@nvidia.com, bridge@lists.linux-foundation.org,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ Matthias Schiffer <mschiffer@universe-factory.net>,
+ Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
+ Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: Re: [Bridge] [PATCH v2 0/1] UDP traceroute packets with no checksum
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -85,16 +71,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, 29 Apr 2022 14:49:06 +0200 Alaa Mohamed wrote:
-> diff --git a/drivers/net/ethernet/intel/ice/ice_main.c b/drivers/net/ethernet/intel/ice/ice_main.c
-> index fde839ef0613..3fccac358198 100644
-> --- a/drivers/net/ethernet/intel/ice/ice_main.c
-> +++ b/drivers/net/ethernet/intel/ice/ice_main.c
-> @@ -5678,7 +5678,7 @@ ice_fdb_add(struct ndmsg *ndm, struct nlattr __always_unused *tb[],
->  static int
->  ice_fdb_del(struct ndmsg *ndm, __always_unused struct nlattr *tb[],
->  	    struct net_device *dev, const unsigned char *addr,
-> -	    __always_unused u16 vid)
-> +	    __always_unused u16 vid, struct netlink_ext_ack *extack)
+On Tue, Apr 05, 2022 at 04:51:15PM -0700, Kevin Mitchell via Bridge wrote:
+> This is v2 of https://lkml.org/lkml/2022/1/14/1060
+> 
+> That patch was discovered to cause problems with UDP tunnels as
+> described here:
+> 
+> https://lore.kernel.org/netdev/7eed8111-42d7-63e1-d289-346a596fc933@nvidia.com/
+> 
+> This version addresses the issue by instead explicitly handling zero UDP
+> checksum in the nf_reject_verify_csum() helper function.
+> 
+> Unlike the previous patch, this one only allows zero UDP checksum in
+> IPv4. I discovered that the non-netfilter IPv6 path would indeed drop
+> zero UDP checksum packets, so it's probably best to remain consistent.
 
-You need to update the kdoc on this one.
+Are you sure that a UDP zero checksum is not working for IPv6
+packets? We are using it here without any issues with VXLAN
+tunnels.
+
+Yes, the original RFC did not allow UDP zero checksums in IPv6
+packets, but I believe this has changed:
+
+https://www.rfc-editor.org/rfc/rfc6936
+(https://www.ietf.org/archive/id/draft-ietf-6man-udpzero-01.html)
+
+Regards, Linus
