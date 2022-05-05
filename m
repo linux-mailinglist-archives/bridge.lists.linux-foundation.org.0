@@ -2,61 +2,92 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E89C519CC3
-	for <lists.bridge@lfdr.de>; Wed,  4 May 2022 12:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 330A551C37A
+	for <lists.bridge@lfdr.de>; Thu,  5 May 2022 17:10:17 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 56DF561066;
-	Wed,  4 May 2022 10:17:16 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id 6B08160AC1;
+	Thu,  5 May 2022 15:10:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vF9I9Sn8cOWU; Wed,  4 May 2022 10:17:15 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id AE87F60EE4;
-	Wed,  4 May 2022 10:17:14 +0000 (UTC)
+	with ESMTP id 6BRProQ_IWaz; Thu,  5 May 2022 15:10:14 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 16BE560B2A;
+	Thu,  5 May 2022 15:10:14 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 713E1C007E;
-	Wed,  4 May 2022 10:17:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9AFA5C0081;
+	Thu,  5 May 2022 15:10:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id ABFECC0032
- for <bridge@lists.linux-foundation.org>; Wed,  4 May 2022 10:17:12 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A3ED5C002D
+ for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 15:10:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 9B73B82538
- for <bridge@lists.linux-foundation.org>; Wed,  4 May 2022 10:17:12 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 7DB8D8401B
+ for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 15:10:11 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 39jYJ_LEnRXe for <bridge@lists.linux-foundation.org>;
- Wed,  4 May 2022 10:17:10 +0000 (UTC)
-X-Greylist: delayed 00:10:56 by SQLgrey-1.8.0
-Received: from mail.aperture-lab.de (mail.aperture-lab.de [116.203.183.178])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 8B9B98248F
- for <bridge@lists.linux-foundation.org>; Wed,  4 May 2022 10:17:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id E10F54116B; Wed,  4 May 2022 12:06:02 +0200 (CEST)
-Date: Wed, 4 May 2022 12:06:00 +0200
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: Kevin Mitchell <kevmitch@arista.com>
-Message-ID: <YnJQCIKgriI3kjFc@sellars>
-References: <20220405235117.269511-1-kevmitch@arista.com>
+ with ESMTP id w6R2fo8ycz5o for <bridge@lists.linux-foundation.org>;
+ Thu,  5 May 2022 15:10:11 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id BD74883F94
+ for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 15:10:10 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id b19so6507666wrh.11
+ for <bridge@lists.linux-foundation.org>; Thu, 05 May 2022 08:10:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+/sF+rK/sk8Mcq8ZDKrTQ+5QhRG26LQDZuCE59tq5gg=;
+ b=WyanZJ4pfugP4UBrAHAI3jE+0AMPPz0h7gFUM9vNG+p5YrdeWWhgzma2gPVbbEw7nQ
+ zqyXYKcg6ZlClU+WsCyXFa9pOTdvmphmLTQBVM970g+nAyt6eS078/B7r+Yd2D4Muq6n
+ tAQ/j/L/oDKTLJ2BpBFlbUakTEiPv6kzIRg2ny56L8R9Zq1zQM0TXBtzngd0ygArbjI2
+ hkOt6i+dsXb84AMFlA6JORanoOhW8jKTQJmasSfefZ/stu/MnlyiD+jTUcuWdV+cgtuH
+ DUyIzIrpkgZJdZNH7TxCKR41L621Fs4c3vS28PpKOYcmjt5RTsDegQQyR3I10AjN2LwM
+ 20oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+/sF+rK/sk8Mcq8ZDKrTQ+5QhRG26LQDZuCE59tq5gg=;
+ b=RHVxOjCQa1xkMGCZIK72SgQ+MEYuZN0uC9Y4avlQAW2Qcyqam33E1XFIGZJObY7/yA
+ f/a1Oeqh+HSX7ncqBNsR89iWTe961kTcMO9VGbS/LHvxbKsJMvbKPfXZ5JU+1NDcJhfj
+ BmptLurs/liL2yo8hYmp5Fh5nbEZhdeuLdnlam7z+/Qeffq1A6M2Kv14qW9NWZixanki
+ pbY8ITzS7xKAzY5MHxZfcxdurWJ91iVp9aLCriAnlpqOTQrAz7OCY8Q0h/39Ce/DgtQ1
+ EteHHEh4Ro9njpv4d4a1XTlZ+mmDJY3fE4TMoZQJh0YC1loVt4tNa2wit9ejJFoVxw2Y
+ SNAw==
+X-Gm-Message-State: AOAM532aPZk5rCczlkNWPzmzvFkVOFVS6x2yawkGNWeuNIFq28GV80bp
+ jCAoVRw7btnxyX+oKAbwy2Y=
+X-Google-Smtp-Source: ABdhPJyH3FeC0GOlGDlLA3jmninPUid5beNQGRlfuR6gYFWw5/iHWVU9gj8FHEZ8LDE1fOqtvSu2cQ==
+X-Received: by 2002:adf:e491:0:b0:20a:cf97:58df with SMTP id
+ i17-20020adfe491000000b0020acf9758dfmr21162391wrm.213.1651763408733; 
+ Thu, 05 May 2022 08:10:08 -0700 (PDT)
+Received: from alaa-emad ([197.57.200.226]) by smtp.gmail.com with ESMTPSA id
+ s6-20020adfea86000000b0020c5253d907sm1419204wrm.83.2022.05.05.08.10.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 05 May 2022 08:10:08 -0700 (PDT)
+From: Alaa Mohamed <eng.alaamohamedsoliman.am@gmail.com>
+To: netdev@vger.kernel.org
+Date: Thu,  5 May 2022 17:09:56 +0200
+Message-Id: <cover.1651762829.git.eng.alaamohamedsoliman.am@gmail.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220405235117.269511-1-kevmitch@arista.com>
-X-Last-TLS-Session-Version: TLSv1.3
-Cc: "David S. Miller" <davem@davemloft.net>,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>, netdev@vger.kernel.org,
- gal@nvidia.com, bridge@lists.linux-foundation.org,
- Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
- Jozsef Kadlecsik <kadlec@netfilter.org>, coreteam@netfilter.org,
- netfilter-devel@vger.kernel.org, Nikolay Aleksandrov <nikolay@nvidia.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Matthias Schiffer <mschiffer@universe-factory.net>,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>,
- Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: Re: [Bridge] [PATCH v2 0/1] UDP traceroute packets with no checksum
+Content-Transfer-Encoding: 8bit
+Cc: eng.alaamohamedsoliman.am@gmail.com, shshaikh@marvell.com,
+ jdenham@redhat.com, GR-Linux-NIC-Dev@marvell.com, manishc@marvell.com,
+ alexandre.belloni@bootlin.com, outreachy@lists.linux.dev,
+ vladimir.oltean@nxp.com, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, jesse.brandeburg@intel.com,
+ linux-kernel@vger.kernel.org, sbrivio@redhat.com, claudiu.manoil@nxp.com,
+ anthony.l.nguyen@intel.com, roopa@nvidia.com, kuba@kernel.org,
+ pabeni@redhat.com, davem@davemloft.net, UNGLinuxDriver@microchip.com,
+ intel-wired-lan@lists.osuosl.org
+Subject: [Bridge] [PATCH net-next v6 0/2] propagate extack to
+	vxlan_fdb_delete
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -71,29 +102,24 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Apr 05, 2022 at 04:51:15PM -0700, Kevin Mitchell via Bridge wrote:
-> This is v2 of https://lkml.org/lkml/2022/1/14/1060
-> 
-> That patch was discovered to cause problems with UDP tunnels as
-> described here:
-> 
-> https://lore.kernel.org/netdev/7eed8111-42d7-63e1-d289-346a596fc933@nvidia.com/
-> 
-> This version addresses the issue by instead explicitly handling zero UDP
-> checksum in the nf_reject_verify_csum() helper function.
-> 
-> Unlike the previous patch, this one only allows zero UDP checksum in
-> IPv4. I discovered that the non-netfilter IPv6 path would indeed drop
-> zero UDP checksum packets, so it's probably best to remain consistent.
+In order to propagate extack to vxlan_fdb_delete and vxlan_fdb_parse,
+add extack to .ndo_fdb_del and edit all fdb del handelers.
 
-Are you sure that a UDP zero checksum is not working for IPv6
-packets? We are using it here without any issues with VXLAN
-tunnels.
+Alaa Mohamed (2):
+  rtnetlink: add extack support in fdb del handlers
+  net: vxlan: Add extack support to vxlan_fdb_delete
 
-Yes, the original RFC did not allow UDP zero checksums in IPv6
-packets, but I believe this has changed:
+ drivers/net/ethernet/intel/ice/ice_main.c     |  3 +-
+ drivers/net/ethernet/mscc/ocelot_net.c        |  3 +-
+ .../net/ethernet/qlogic/qlcnic/qlcnic_main.c  |  3 +-
+ drivers/net/macvlan.c                         |  3 +-
+ drivers/net/vxlan/vxlan_core.c                | 41 +++++++++++++------
+ include/linux/netdevice.h                     |  2 +-
+ net/bridge/br_fdb.c                           |  3 +-
+ net/bridge/br_private.h                       |  3 +-
+ net/core/rtnetlink.c                          |  4 +-
+ 9 files changed, 44 insertions(+), 21 deletions(-)
 
-https://www.rfc-editor.org/rfc/rfc6936
-(https://www.ietf.org/archive/id/draft-ietf-6man-udpzero-01.html)
+-- 
+2.36.0
 
-Regards, Linus
