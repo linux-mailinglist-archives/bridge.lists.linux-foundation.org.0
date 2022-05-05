@@ -1,95 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA51A51C37E
-	for <lists.bridge@lfdr.de>; Thu,  5 May 2022 17:10:23 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9D6951CC61
+	for <lists.bridge@lfdr.de>; Fri,  6 May 2022 00:59:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 7DAF840412;
-	Thu,  5 May 2022 15:10:20 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTP id B06A560B6A;
+	Thu,  5 May 2022 22:59:50 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id UfRGBf6Zt8Lf; Thu,  5 May 2022 15:10:19 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yvHwsuUoh2Ci; Thu,  5 May 2022 22:59:50 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id DA9D7408D5;
-	Thu,  5 May 2022 15:10:18 +0000 (UTC)
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 410BB60B77;
+	Thu,  5 May 2022 22:59:49 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F3289C002D;
-	Thu,  5 May 2022 15:10:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E4F80C0081;
+	Thu,  5 May 2022 22:59:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8988FC002D
- for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 15:10:14 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B393AC002D
+ for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 22:59:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 8566984059
- for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 15:10:14 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 9AE7D4026E
+ for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 22:59:47 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id qcgMXWSYFWDp for <bridge@lists.linux-foundation.org>;
- Thu,  5 May 2022 15:10:13 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by smtp1.osuosl.org (Postfix) with ESMTPS id AE13884013
- for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 15:10:13 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id q23so6534559wra.1
- for <bridge@lists.linux-foundation.org>; Thu, 05 May 2022 08:10:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=m2VDhVRQPjsV1IPycPT/Y4TlTx8jaZtNzcIfdQQLUOE=;
- b=FFAziO4TJTHw3bMRuvzzhIrejv1YFi9kr+TvLjW7GH03D/Ms9GHVRb1qHk7xSkSRbh
- GvMrgZMhsdYjPOhZYy4728AKW1+YecbVpH26/5sPMvodoh8znUPVwIaI2wutBIoVS3id
- V3Q41qlgLA7wJ/1dKXp2jStShtULGJGPdIsH9P84DHXPzRSdX5kmeTdmbO9WPqM1ffop
- IyAnwBJwiXbCsYAGoORTH9/WeQHWkQqXtUWP0kWHWP9csb2E1yLcNsTDW2jlYDYEpICg
- qOYRXPsYrWAAkXYhyDF85cizqBuwsLLGTf+I/NervEbk5N0KYG0lmK2Ud1qeJE8t81t6
- 5HxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=m2VDhVRQPjsV1IPycPT/Y4TlTx8jaZtNzcIfdQQLUOE=;
- b=wxxZ7IySjrSAiY/HLzPQgawxv2/K5OyorToA+sxlSXWjmfz6vLoYpBn9ZV6YkP1IOo
- InDYn/n61aQYYCJFzvYO26PLGQPL7roUZGoFR+0K2Wr0qrmXaOCNneiDiC7cuQzlJgEd
- fycH02MKrYMSX3W97lgeQa5FWfE3X6qmt3spSXvxT1uy1GiaDhHucPs57T00Lehd5Q0R
- kn+/Trkh6x44Dknk9LMM4+yTpsdRVA4ulrYk4L/RdG9WR83hZs4WsMxqX9WD0AO50bvG
- 3f1hwxFDAnZ2lpDgA4/2YWmzX9sscV0jgtTu+2ywam7i8nYrEZ3pxhMPcyWQbZgBsh9M
- T6tw==
-X-Gm-Message-State: AOAM532wVaMOY4/dVE+n5wK1n0x3y0YEinAe7X2zuMeDnAnnAZOBs4Am
- rOuegZLg3B4ACxY6QOGXLwRm5Z+/0YJxIQ==
-X-Google-Smtp-Source: ABdhPJwqfM73K8adtgjCuTsQ1ipScmTZxb+Itq8+sQiiM3H9l56+FpM2fMwHfTDdKGvr4/YnWoJOlA==
-X-Received: by 2002:a5d:5547:0:b0:20c:7a44:d8e7 with SMTP id
- g7-20020a5d5547000000b0020c7a44d8e7mr9963872wrw.349.1651763411909; 
- Thu, 05 May 2022 08:10:11 -0700 (PDT)
-Received: from alaa-emad ([197.57.200.226]) by smtp.gmail.com with ESMTPSA id
- m65-20020a1c2644000000b003942a244ecesm1624120wmm.19.2022.05.05.08.10.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 May 2022 08:10:11 -0700 (PDT)
-From: Alaa Mohamed <eng.alaamohamedsoliman.am@gmail.com>
-To: netdev@vger.kernel.org
-Date: Thu,  5 May 2022 17:09:58 +0200
-Message-Id: <ac4b6c650b6519cc56baa32ef20415460a5aa8ee.1651762830.git.eng.alaamohamedsoliman.am@gmail.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <cover.1651762829.git.eng.alaamohamedsoliman.am@gmail.com>
-References: <cover.1651762829.git.eng.alaamohamedsoliman.am@gmail.com>
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (1024-bit key) header.d=lunn.ch
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id eYx_MKFRIyCb for <bridge@lists.linux-foundation.org>;
+ Thu,  5 May 2022 22:59:46 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 1BFC74011F
+ for <bridge@lists.linux-foundation.org>; Thu,  5 May 2022 22:59:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+ Cc:To:From:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Content-Disposition:In-Reply-To:References;
+ bh=FpzBqVWWDArtZuTKofltIIY/sswU/N9lGcHNVU+L2vo=; b=6EJkiI0YbtkKkB852OCGfp3/Ah
+ 8QSMwiQ27FSRexwFaTN1HjiUI/mHGtpoKirEdHYUrRys2byqN9JFpL2dZF/UJLRKzyXd1RP6ZwcD0
+ MNSBtq0U/1eCJi7JDKWOAQXKCxN3Rx9SYMiKgpmGoXB4yGZ/2JwkniLnWUnslI3A//Mk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1nmkRd-001R5M-Mp; Fri, 06 May 2022 00:59:37 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: netdev <netdev@vger.kernel.org>
+Date: Fri,  6 May 2022 00:59:04 +0200
+Message-Id: <20220505225904.342388-1-andrew@lunn.ch>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Cc: eng.alaamohamedsoliman.am@gmail.com, shshaikh@marvell.com,
- jdenham@redhat.com, GR-Linux-NIC-Dev@marvell.com, manishc@marvell.com,
- alexandre.belloni@bootlin.com, outreachy@lists.linux.dev,
- vladimir.oltean@nxp.com, razor@blackwall.org,
- bridge@lists.linux-foundation.org, jesse.brandeburg@intel.com,
- linux-kernel@vger.kernel.org, sbrivio@redhat.com, claudiu.manoil@nxp.com,
- anthony.l.nguyen@intel.com, roopa@nvidia.com, kuba@kernel.org,
- pabeni@redhat.com, davem@davemloft.net, UNGLinuxDriver@microchip.com,
- intel-wired-lan@lists.osuosl.org
-Subject: [Bridge] [PATCH net-next v6 2/2] net: vxlan: Add extack support to
-	vxlan_fdb_delete
+Cc: Ido Schimmel <idosch@mellanox.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ Andrew Lunn <andrew@lunn.ch>
+Subject: [Bridge] [PATCH RFC] net: bridge: Clear offload_fwd_mark when
+	passing frame up bridge interface.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -104,135 +74,62 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This patch adds extack msg support to vxlan_fdb_delete and vxlan_fdb_parse.
-extack is used to propagate meaningful error msgs to the user of vxlan
-fdb netlink api
+It is possible to stack bridges on top of each other. Consider the
+following which makes use of an Ethernet switch:
 
-Signed-off-by: Alaa Mohamed <eng.alaamohamedsoliman.am@gmail.com>
+       br1
+     /    \
+    /      \
+   /        \
+ br0.11    wlan0
+   |
+   br0
+ /  |  \
+p1  p2  p3
+
+br0 is offloaded to the switch. Above br0 is a vlan interface, for
+vlan 11. This vlan interface is then a slave of br1. br1 also has
+wireless interface as a slave. This setup trunks wireless lan traffic
+over the copper network inside a VLAN.
+
+A frame received on p1 which is passed up to the bridge has the
+skb->offload_fwd_mark flag set to true, indicating it that the switch
+has dealt with forwarding the frame out ports p2 and p3 as
+needed. This flag instructs the software bridge it does not need to
+pass the frame back down again. However, the flag is not getting reset
+when the frame is passed upwards. As a result br1 sees the flag,
+wrongly interprets it, and fails to forward the frame to wlan0.
+
+When passing a frame upwards, clear the flag.
+
+RFC because i don't know the bridge code well enough if this is the
+correct place to do this, and if there are any side effects, could the
+skb be a clone, etc.
+
+Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward mark")
+Signed-off-by: Andrew Lunn <andrew@lunn.ch>
 ---
-changes in V2:
-        - fix spelling vxlan_fdb_delete
-        - add missing braces
-        - edit error message
----
-changes in V3:
-        fix errors reported by checkpatch.pl
----
-changes in V4:
-        - fix errors reported by checkpatch.pl
-        - edit commit message.
----
-changes in V5:
-	- edit commit message
----
- drivers/net/vxlan/vxlan_core.c | 38 ++++++++++++++++++++++++----------
- 1 file changed, 27 insertions(+), 11 deletions(-)
+ net/bridge/br_input.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/net/vxlan/vxlan_core.c b/drivers/net/vxlan/vxlan_core.c
-index ad0f2150cfdb..429ce2168971 100644
---- a/drivers/net/vxlan/vxlan_core.c
-+++ b/drivers/net/vxlan/vxlan_core.c
-@@ -1129,19 +1129,25 @@ static void vxlan_fdb_dst_destroy(struct vxlan_dev *vxlan, struct vxlan_fdb *f,
-
- static int vxlan_fdb_parse(struct nlattr *tb[], struct vxlan_dev *vxlan,
- 			   union vxlan_addr *ip, __be16 *port, __be32 *src_vni,
--			   __be32 *vni, u32 *ifindex, u32 *nhid)
-+			   __be32 *vni, u32 *ifindex, u32 *nhid,
-+			   struct netlink_ext_ack *extack)
- {
- 	struct net *net = dev_net(vxlan->dev);
- 	int err;
-
- 	if (tb[NDA_NH_ID] && (tb[NDA_DST] || tb[NDA_VNI] || tb[NDA_IFINDEX] ||
--	    tb[NDA_PORT]))
--		return -EINVAL;
-+	    tb[NDA_PORT])) {
-+			NL_SET_ERR_MSG(extack,
-+						  "DST, VNI, ifindex and port are mutually exclusive with NH_ID");
-+			return -EINVAL;
-+		}
-
- 	if (tb[NDA_DST]) {
- 		err = vxlan_nla_get_addr(ip, tb[NDA_DST]);
--		if (err)
-+		if (err) {
-+			NL_SET_ERR_MSG(extack, "Unsupported address family");
- 			return err;
-+		}
- 	} else {
- 		union vxlan_addr *remote = &vxlan->default_dst.remote_ip;
-
-@@ -1157,24 +1163,30 @@ static int vxlan_fdb_parse(struct nlattr *tb[], struct vxlan_dev *vxlan,
- 	}
-
- 	if (tb[NDA_PORT]) {
--		if (nla_len(tb[NDA_PORT]) != sizeof(__be16))
-+		if (nla_len(tb[NDA_PORT]) != sizeof(__be16)) {
-+			NL_SET_ERR_MSG(extack, "Invalid vxlan port");
- 			return -EINVAL;
-+		}
- 		*port = nla_get_be16(tb[NDA_PORT]);
- 	} else {
- 		*port = vxlan->cfg.dst_port;
- 	}
-
- 	if (tb[NDA_VNI]) {
--		if (nla_len(tb[NDA_VNI]) != sizeof(u32))
-+		if (nla_len(tb[NDA_VNI]) != sizeof(u32)) {
-+			NL_SET_ERR_MSG(extack, "Invalid vni");
- 			return -EINVAL;
-+		}
- 		*vni = cpu_to_be32(nla_get_u32(tb[NDA_VNI]));
- 	} else {
- 		*vni = vxlan->default_dst.remote_vni;
- 	}
-
- 	if (tb[NDA_SRC_VNI]) {
--		if (nla_len(tb[NDA_SRC_VNI]) != sizeof(u32))
-+		if (nla_len(tb[NDA_SRC_VNI]) != sizeof(u32)) {
-+			NL_SET_ERR_MSG(extack, "Invalid src vni");
- 			return -EINVAL;
-+		}
- 		*src_vni = cpu_to_be32(nla_get_u32(tb[NDA_SRC_VNI]));
- 	} else {
- 		*src_vni = vxlan->default_dst.remote_vni;
-@@ -1183,12 +1195,16 @@ static int vxlan_fdb_parse(struct nlattr *tb[], struct vxlan_dev *vxlan,
- 	if (tb[NDA_IFINDEX]) {
- 		struct net_device *tdev;
-
--		if (nla_len(tb[NDA_IFINDEX]) != sizeof(u32))
-+		if (nla_len(tb[NDA_IFINDEX]) != sizeof(u32)) {
-+			NL_SET_ERR_MSG(extack, "Invalid ifindex");
- 			return -EINVAL;
-+		}
- 		*ifindex = nla_get_u32(tb[NDA_IFINDEX]);
- 		tdev = __dev_get_by_index(net, *ifindex);
--		if (!tdev)
-+		if (!tdev) {
-+			NL_SET_ERR_MSG(extack, "Device not found");
- 			return -EADDRNOTAVAIL;
-+		}
- 	} else {
- 		*ifindex = 0;
- 	}
-@@ -1226,7 +1242,7 @@ static int vxlan_fdb_add(struct ndmsg *ndm, struct nlattr *tb[],
- 		return -EINVAL;
-
- 	err = vxlan_fdb_parse(tb, vxlan, &ip, &port, &src_vni, &vni, &ifindex,
--			      &nhid);
-+			      &nhid, extack);
- 	if (err)
- 		return err;
-
-@@ -1292,7 +1308,7 @@ static int vxlan_fdb_delete(struct ndmsg *ndm, struct nlattr *tb[],
- 	int err;
-
- 	err = vxlan_fdb_parse(tb, vxlan, &ip, &port, &src_vni, &vni, &ifindex,
--			      &nhid);
-+			      &nhid, extack);
- 	if (err)
- 		return err;
-
---
+diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+index 196417859c4a..9327a5fad1df 100644
+--- a/net/bridge/br_input.c
++++ b/net/bridge/br_input.c
+@@ -39,6 +39,13 @@ static int br_pass_frame_up(struct sk_buff *skb)
+ 	dev_sw_netstats_rx_add(brdev, skb->len);
+ 
+ 	vg = br_vlan_group_rcu(br);
++
++	/* Reset the offload_fwd_mark because there could be a stacked
++	 * bridge above, and it should not think this bridge it doing
++	 * that bridges work forward out its ports.
++	 */
++	br_switchdev_frame_unmark(skb);
++
+ 	/* Bridge is just like any other port.  Make sure the
+ 	 * packet is allowed except in promisc mode when someone
+ 	 * may be running packet capture.
+-- 
 2.36.0
 
