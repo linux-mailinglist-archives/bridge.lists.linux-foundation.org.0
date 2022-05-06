@@ -2,64 +2,140 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id D968C51CDE8
-	for <lists.bridge@lfdr.de>; Fri,  6 May 2022 03:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B5CE51DA9F
+	for <lists.bridge@lfdr.de>; Fri,  6 May 2022 16:36:57 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 1D3B0840A7;
-	Fri,  6 May 2022 01:18:36 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id F2C6B81C44;
+	Fri,  6 May 2022 14:36:55 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id e8gl-bCwdLAc; Fri,  6 May 2022 01:18:35 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id A5703840A8;
-	Fri,  6 May 2022 01:18:34 +0000 (UTC)
+	with ESMTP id Ag9FaSx_RVdI; Fri,  6 May 2022 14:36:55 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 7A15881A33;
+	Fri,  6 May 2022 14:36:54 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5A3ADC0081;
-	Fri,  6 May 2022 01:18:34 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3F2F9C0081;
+	Fri,  6 May 2022 14:36:54 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 60A24C002D
- for <bridge@lists.linux-foundation.org>; Fri,  6 May 2022 01:18:32 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B5D39C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  6 May 2022 14:36:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 3B6D2419EB
- for <bridge@lists.linux-foundation.org>; Fri,  6 May 2022 01:18:32 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 9BF95403B3
+ for <bridge@lists.linux-foundation.org>; Fri,  6 May 2022 14:36:52 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=lunn.ch
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id TH-4IKpcJP5t for <bridge@lists.linux-foundation.org>;
- Fri,  6 May 2022 01:18:31 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 607EB419E5
- for <bridge@lists.linux-foundation.org>; Fri,  6 May 2022 01:18:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
- Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
- bh=89A3BqXn4ZfRMO7Ga9StvWtqN0uFnQeeWAfsGXHRlfI=; b=TSN5kgFyrD/tYwoRaqBN6EsGDD
- 0WxhwTFKFyUZJV5sF/y6WmIcP5idQgqlPwU5RvmR5uV38BuYqXo2QofLaN3C1Fa1NNUJKbb15dj65
- KiVfy66yoRToq9J/GR9lOuLniVogpD8CE/oDh0ZVvUSKpEhdkqRoO06aJZimBLYm5EYE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
- (envelope-from <andrew@lunn.ch>)
- id 1nmmbu-001RvF-Kv; Fri, 06 May 2022 03:18:22 +0200
-Date: Fri, 6 May 2022 03:18:22 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stephen Hemminger <stephen@networkplumber.org>
-Message-ID: <YnR3XikvI4tQy5IL@lunn.ch>
+Authentication-Results: smtp2.osuosl.org (amavisd-new);
+ dkim=pass (1024-bit key) header.d=nxp.com
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 97Kvp_BZxGZu for <bridge@lists.linux-foundation.org>;
+ Fri,  6 May 2022 14:36:51 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+ (mail-db3eur04on0628.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe0c::628])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id C63D640193
+ for <bridge@lists.linux-foundation.org>; Fri,  6 May 2022 14:36:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=azV/9KcGrbTaKetwWCi6l7eRbZt3CeAlHjTkKwX2z0Ekhm+no/cGCNN+zoEgEXwBT1KPEdT63E5kns9PgR5SmGyAZ56Gh3LZ3e6IJeqB/CtMx5URoIo7o2SwJA0pSbw5645hVjNqDtrslSWwmUK2xdDOejV5VgozJ5SzREO+yier7Eh2mP8adXeLzMXTqKOmOH3YXIzmrVq1ORsFmfFFodyRHSOW7G8SGaVd6fS2wKnRjE/fKYCUbnfPXh94hQVJ1CuDBApm2qs5EYtpv/t4QJ8/MXgFsMC3NXKpVAhAJKRFhseKBvg2G7Uq+fdUzzOAjG2rB27FUnNKYppUdy8Tkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2yRKnsqksDCSbn1gQAG/Im68So9MbU1So6FBxhsZpd8=;
+ b=JWAfyfqvZoH2e1W22pWQeZm+xMXZmvPr7vQks9IjZ6Gt4QH/+A6z3/LASvzLE6z/jzRdr5MBxKJ6lxwLmPOD9oyeH55R5MuVMlHMC4AAB0GLc/z/F31+lzJss4LqvC7rslQSj40YpGHJqBnwdT7hADSDD3wjdfi1Gk/GVyUNM80ZihdNMzt8duaiP1l0crSU0xEdMtwXyYgdysZjW2EkrpyT1gB7o07ipZxad5PF678Sq1JzG0vg1oYZTiR82VTNpMNgp+B4vBAaHSeBHPwLHLMPHI36X181XS04b3dZ6fhtdDTzv3lnoQDmSurK5OW9pmKI7jEFIMAyLCryKPGEBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2yRKnsqksDCSbn1gQAG/Im68So9MbU1So6FBxhsZpd8=;
+ b=RDdkA5Dbc6E4WgN9K/9ty52KMpqODUrnet7H7nDXLqdQDRu7a0pNxF3SilOug3qOERDmr0/lXytlk8Lcw+zOARvC08Yh7gx123rXvhy0N1sRsgjyGXynD+IPzsoVt/fox29PYL7dtJFkRf/sPKQ4lfNCrYWwI8n1CJhermPWiHc=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by PAXPR04MB8269.eurprd04.prod.outlook.com (2603:10a6:102:1c4::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.27; Fri, 6 May
+ 2022 14:36:45 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::d94f:b885:c587:5cd4]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::d94f:b885:c587:5cd4%6]) with mapi id 15.20.5227.018; Fri, 6 May 2022
+ 14:36:45 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Thread-Topic: [PATCH RFC] net: bridge: Clear offload_fwd_mark when passing
+ frame up bridge interface.
+Thread-Index: AQHYYNPTxzTCj3geMU+nx4uF2Q5CIK0R68IA
+Date: Fri, 6 May 2022 14:36:45 +0000
+Message-ID: <20220506143644.mzfffht44t3glwci@skbuf>
 References: <20220505225904.342388-1-andrew@lunn.ch>
- <20220505160720.27358a55@hermes.local>
+In-Reply-To: <20220505225904.342388-1-andrew@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3f6a1d56-f823-413b-fa72-08da2f6dd850
+x-ms-traffictypediagnostic: PAXPR04MB8269:EE_
+x-microsoft-antispam-prvs: <PAXPR04MB8269FD42D28F589F8C57D55CE0C59@PAXPR04MB8269.eurprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: nRedBhwit8R4ci/KpFl4uQkCNXOKPeWhd2WEJAZv9HrCf2y3ACziKywl7PNrlvctEfi0E8HzWfjuognuzRael5ovKVcrs+wkXSwWxvc/HUZsVnqPwtP9HU5PSsSkXJCdyrSPVf0KJXh+xUnmSs6yr/FWUpYHkKalWaPVdxegC8vRW1yP/Gqmp+V7z3I6EUT52nF4fsuBGpfTut5iuhdKDRyPeOKrH4jJq5RyoACOg5K8zN4YxNTfLfaVpAhP+8pWewCIu0JwQe7TUCVvFyqGPTj4+ibeQjXUgHNdMuMmCIHrJfjwdLHzvNY74ntyaBSNTHdlmBZgrvmfpPdOM9f31yEgocDgTEMNu74ameBkM4QO1Tezn2chF84TaQPqzqj9Ii97JI+srktSh3co4Eq4tjQeDNh4W66b1Ztcu5CJWA+qb4idq9QF/gampFy1SgfVgFQM7rO20tlErgDWwKVBmOo88ZZazSpFCng6x5Djxt195EzCVd2DNRDGtXwmgNDHByKbUZqMXEPjeN0WPcVEpTG1sQeSy49ZzOOxiXJHg+lIDRMupb7nVHFtd4q84BW4FpfUwnvxISEKfTgaFOeNHE0AGNO65kkddzLbIhq6GEao5AJxRuRKmuKeGzokTLOGVBwYI2KyoJMCrAjZYz7NxP3shkx2XETsEKI3DjeGXJl12muxMuJXipqX4iaWQjQ54EpR1aDa9B590NaN4cMvpA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(7916004)(366004)(316002)(1076003)(38100700002)(8936002)(6486002)(38070700005)(54906003)(71200400001)(6916009)(6512007)(26005)(9686003)(5660300002)(122000001)(44832011)(33716001)(6506007)(86362001)(64756008)(8676002)(4326008)(66446008)(66946007)(2906002)(186003)(66476007)(66556008)(83380400001)(76116006)(508600001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kbug1EEX/QtYM7Jzy2FgsiFtJhD1PVYq6G1lLZt2UF21Ig6hYHs8iAobiFzs?=
+ =?us-ascii?Q?1BbRdKp2PklSkAm5j5wef6KWZHmPHtCrDGq4GNkzGZ9yGgyAfuM1MJL7fv2n?=
+ =?us-ascii?Q?RBs7LzF3gguxq8RIANSje3NKHIMJ0jHEAwVsCbppMIr4AN5o4CiNMTtIa3QA?=
+ =?us-ascii?Q?0R3ZmGaD23IoIM/i2LQJfBYQxmTvxBcXPxp+V7ArsYGMHO6sebPHxHwwItnR?=
+ =?us-ascii?Q?liTLNIimiFvf3yylBVWg3iU1RDPJ7y8bRdbqPjppSuP8ms/f9p1Lbz3BdgGq?=
+ =?us-ascii?Q?Baz1FO5hD7ZigaDu0scAjZKADou8aDepLDiQKkpWGJzEc7Sj6cSOt56iv7o4?=
+ =?us-ascii?Q?Fzka6rqiZxyl6YMju/fQLKLQ3qvfl40LOipz12irAUxgMWYRvkLvK7xBcroa?=
+ =?us-ascii?Q?xhWcXu7J/2P9Jxrf2IiQabSFUe0LlQ6TLTn30Znp8Tt2XBgbUTqWsZgPIR0F?=
+ =?us-ascii?Q?IJfp4ctK2iyImrB7rbmqPbDESEPllpmH+gPdA9lLbS3CLDU9VcYXgd/OEaqv?=
+ =?us-ascii?Q?amb6zPRpsVAkgoEgc1y4/qnKmDsa6qU9d+12qO6ys+oL8oSut9te5TI5e7OO?=
+ =?us-ascii?Q?hrmS+XsOj4FK0iDxCAj6WLQGJExmYPc0m2P2jqRYaX5p4MdQjJ/NGRCl+wZB?=
+ =?us-ascii?Q?2Uhqp3LFcpbKvNzn7+jM8p9MdITfjtDiCve4O8N8U4TEJxqoMMEctxQ1iJ3+?=
+ =?us-ascii?Q?tJwqv5IdgxjJR3UV9D7zk+YwWRifsyGRqSMaChu0tKfYcdOlY/qpI5j4V4em?=
+ =?us-ascii?Q?udHIvtf4HcTy7lueBQbP2B57q3BKYchpDRPnIT3yLt6sOBLg/YvjD2o94wpv?=
+ =?us-ascii?Q?nP4Z4ExdTHGpAyTyRRWNbjhg+YmjobjAB3t92w9BKfPcixorJd/mOmBnAdcl?=
+ =?us-ascii?Q?qXcayuvm2g3gWT0BybbnWurUfhyV2OwFH2ywGEVssNDNJFij3Ldu03x6a0Ir?=
+ =?us-ascii?Q?/QcXsXUF5zSbhWr0MUiWHqKfAdF67gtx+Ln/vikUAf8tp2yG/10Z6cK5P8qG?=
+ =?us-ascii?Q?uB1uF/5n6OmrYk9qOojkGC046LZp/+AV7SbQDvZaDkwhQRYiUQmKutB4Eb5v?=
+ =?us-ascii?Q?WfsnS/VDf+gpVscTSGXGNzvmvU35jb3GYZQ4YOY9n8lwGUjpB5MrmnBKotUB?=
+ =?us-ascii?Q?KnVSHHlaeHIMJ1FKmPqkUsAIEdvWmlEFb/PwBlAaR6YTWaUxyrvJUmoeTjow?=
+ =?us-ascii?Q?305TsK5PEPkFd5f+aFSfJxrF3sIZX0UnTOZqSnYpx7pUd2qz2YnI731HcyU/?=
+ =?us-ascii?Q?Mg9EEoWBVNo+JoDuecFvk8yIJ2DmgRWquOBW+lunK+xnUWiMVHK2vxZaN2fq?=
+ =?us-ascii?Q?P7DKmO1GzCfaBQlRO2cKytWo60i1RZuHQbpGgHOLa/gdojC/QJVPpnUipsLP?=
+ =?us-ascii?Q?Yj8pduhhbPjuXhuXCBWOf1kak+JIvzN9F3x5KV1j4p16E/Lmc3sP6+LyCXy0?=
+ =?us-ascii?Q?tiHeBqX0X7H6Y6HTWNNWLlU38yO4i1FmyCTyF1xsDfpSNBZFN4b51LeV0ff6?=
+ =?us-ascii?Q?VWNKRe3nGjMJZhtCr7+AsfmGNjIy5bi0xt60hBw9WYg9li3RHeNeC+8pobVP?=
+ =?us-ascii?Q?qjXpgvRpv3KCdcvBMwrjMsKqmPyvDiRlBgxD09qXfn3V60rViSSmRIyQGuiR?=
+ =?us-ascii?Q?8CQ8T8uQxFnHJWr9h2ZhciWsvOnKeJD3O2hNMMDuQoqQTdw55GqNHq7vTGco?=
+ =?us-ascii?Q?LW+35mCzeHVNy250RCl3vyztZ/yGldQgVmkjo9LpQOb6lYaS3OLSaajHztJ/?=
+ =?us-ascii?Q?UmfT0krOYqsa9tNYNxw8Ue/ioPcv2VM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <ECEC713428F14E41B651B9D65089A9B9@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220505160720.27358a55@hermes.local>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f6a1d56-f823-413b-fa72-08da2f6dd850
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2022 14:36:45.3004 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: b4ks+Fd7GitpAX0pr9G4ND3i1j3djN04NxzqEFjFPu3IfDMmG9VTJnUn/y93oHtNi60EZUbAqbGiW1A8MT48gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8269
 Cc: Ido Schimmel <idosch@mellanox.com>, netdev <netdev@vger.kernel.org>,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- Vladimir Oltean <vladimir.oltean@nxp.com>
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>
 Subject: Re: [Bridge] [PATCH RFC] net: bridge: Clear offload_fwd_mark when
  passing frame up bridge interface.
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -76,59 +152,91 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, May 05, 2022 at 04:07:20PM -0700, Stephen Hemminger wrote:
-> On Fri,  6 May 2022 00:59:04 +0200
-> Andrew Lunn <andrew@lunn.ch> wrote:
-> 
-> > It is possible to stack bridges on top of each other. Consider the
-> > following which makes use of an Ethernet switch:
-> > 
-> >        br1
-> >      /    \
-> >     /      \
-> >    /        \
-> >  br0.11    wlan0
-> >    |
-> >    br0
-> >  /  |  \
-> > p1  p2  p3
-> > 
-> > br0 is offloaded to the switch. Above br0 is a vlan interface, for
-> > vlan 11. This vlan interface is then a slave of br1. br1 also has
-> > wireless interface as a slave. This setup trunks wireless lan traffic
-> > over the copper network inside a VLAN.
-> > 
-> > A frame received on p1 which is passed up to the bridge has the
-> > skb->offload_fwd_mark flag set to true, indicating it that the switch
-> > has dealt with forwarding the frame out ports p2 and p3 as
-> > needed. This flag instructs the software bridge it does not need to
-> > pass the frame back down again. However, the flag is not getting reset
-> > when the frame is passed upwards. As a result br1 sees the flag,
-> > wrongly interprets it, and fails to forward the frame to wlan0.
-> > 
-> > When passing a frame upwards, clear the flag.
-> > 
-> > RFC because i don't know the bridge code well enough if this is the
-> > correct place to do this, and if there are any side effects, could the
-> > skb be a clone, etc.
-> > 
-> > Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward mark")
-> > Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-> 
-> Bridging of bridges is not supposed to be allowed.
-> See:
-> 
-> bridge:br_if.c
-> 
-> 	/* No bridging of bridges */
-> 	if (dev->netdev_ops->ndo_start_xmit == br_dev_xmit) {
-> 		NL_SET_ERR_MSG(extack,
-> 			       "Can not enslave a bridge to a bridge");
-> 		return -ELOOP;
-> 	}
+Hi Andrew,
 
-This is not direct bridging of bridges. There is a vlan interface in
-the middle. And even if it is not supposed to work, it does work, it
-is being used, and it regressed. This fixes the regression.
+On Fri, May 06, 2022 at 12:59:04AM +0200, Andrew Lunn wrote:
+> It is possible to stack bridges on top of each other. Consider the
+> following which makes use of an Ethernet switch:
+>=20
+>        br1
+>      /    \
+>     /      \
+>    /        \
+>  br0.11    wlan0
+>    |
+>    br0
+>  /  |  \
+> p1  p2  p3
+>=20
+> br0 is offloaded to the switch. Above br0 is a vlan interface, for
+> vlan 11. This vlan interface is then a slave of br1. br1 also has
+> wireless interface as a slave. This setup trunks wireless lan traffic
+> over the copper network inside a VLAN.
+>=20
+> A frame received on p1 which is passed up to the bridge has the
+> skb->offload_fwd_mark flag set to true, indicating it that the switch
+> has dealt with forwarding the frame out ports p2 and p3 as
+> needed. This flag instructs the software bridge it does not need to
+> pass the frame back down again. However, the flag is not getting reset
+> when the frame is passed upwards. As a result br1 sees the flag,
+> wrongly interprets it, and fails to forward the frame to wlan0.
+>=20
+> When passing a frame upwards, clear the flag.
+>=20
+> RFC because i don't know the bridge code well enough if this is the
+> correct place to do this, and if there are any side effects, could the
+> skb be a clone, etc.
 
-   Andrew
+Each skb has its own offload_fwd_mark, so clearing it for this skb does
+not affect a clone. And when a packet is simultaneously forwarded and
+locally received, the order is first forward/flood it, then receive it.
+Cloning takes place during forwarding using deliver_clone(), so it
+shouldn't be the case that you are clearing the offload_fwd_mark for a
+yet-to-be-forwarded packet, either. So I think we're good there.
+
+>=20
+> Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward m=
+ark")
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> ---
+>  net/bridge/br_input.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+> index 196417859c4a..9327a5fad1df 100644
+> --- a/net/bridge/br_input.c
+> +++ b/net/bridge/br_input.c
+> @@ -39,6 +39,13 @@ static int br_pass_frame_up(struct sk_buff *skb)
+>  	dev_sw_netstats_rx_add(brdev, skb->len);
+> =20
+>  	vg =3D br_vlan_group_rcu(br);
+> +
+> +	/* Reset the offload_fwd_mark because there could be a stacked
+> +	 * bridge above, and it should not think this bridge it doing
+> +	 * that bridges work forward out its ports.
+
+"this bridge is doing that bridge's work forwarding out its ports"
+
+> +	 */
+> +	br_switchdev_frame_unmark(skb);
+> +
+>  	/* Bridge is just like any other port.  Make sure the
+>  	 * packet is allowed except in promisc mode when someone
+>  	 * may be running packet capture.
+> --=20
+> 2.36.0
+>
+
+The good thing with this patch is that it avoids conditionals.
+The bad thing is that it prevents true offloading of this configuration
+from being possible (when "wlan0" is "p4").
+
+I don't know what hardware is capable of doing this, but I think it's
+cautious to not exclude it, either.
+
+Some safer alternatives to this patch are based on the idea that we
+could ignore skb->offload_fwd_mark coming from an unoffloaded bridge
+port (i.e. treat this condition at br1, not at br0). We could:
+- clear skb->offload_fwd_mark in br_handle_frame_finish(), if p->hwdom is 0
+- change nbp_switchdev_allowed_egress() to return true if cb->src_hwdom =3D=
+=3D 0=
