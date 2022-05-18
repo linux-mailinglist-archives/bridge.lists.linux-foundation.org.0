@@ -1,65 +1,138 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AFE52AF85
-	for <lists.bridge@lfdr.de>; Wed, 18 May 2022 02:59:03 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E5952B2C6
+	for <lists.bridge@lfdr.de>; Wed, 18 May 2022 09:09:17 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id E02DB8406D;
-	Wed, 18 May 2022 00:59:00 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 6549740386;
+	Wed, 18 May 2022 07:09:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0e27V5xL-JYn; Wed, 18 May 2022 00:59:00 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id N9QpENLxWUN5; Wed, 18 May 2022 07:09:14 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 6E65284070;
-	Wed, 18 May 2022 00:58:59 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id BCC60404F8;
+	Wed, 18 May 2022 07:09:13 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 14AC7C0081;
-	Wed, 18 May 2022 00:58:59 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 736D8C0081;
+	Wed, 18 May 2022 07:09:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0FE0DC002D
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 00:58:58 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8E7A6C002D
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 07:09:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id EC09C41862
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 00:58:57 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTP id 6937D83FA5
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 07:09:12 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (1024-bit key) header.d=lunn.ch
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KboANb45FX3z for <bridge@lists.linux-foundation.org>;
- Wed, 18 May 2022 00:58:56 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 633214183C
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 00:58:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
- Cc:To:From:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- Content-Disposition:In-Reply-To:References;
- bh=iKPxo6nmawUzIoV5U9tlyCQp6Vw6AUpCRQ4Ur98rVDI=; b=SwCsPL1wVop+erLd9VYQlzxibL
- a0Z+7K0bAwgPvSdzxnQ01eIe9P+DXZpF2J5TXPYikAJUbL6Fpbc0EhUNot5Bn1S7l+pTTvYcPDCWV
- 82QeSKh4tkh+Ez/UBuaNtrJY3MnbquXZuQxuzNYKz0E49xZJZt+dmrnFQ7bRhg4YqoGY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
- (envelope-from <andrew@lunn.ch>)
- id 1nr81X-003Ejs-Vl; Wed, 18 May 2022 02:58:47 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: netdev <netdev@vger.kernel.org>
-Date: Wed, 18 May 2022 02:58:40 +0200
-Message-Id: <20220518005840.771575-1-andrew@lunn.ch>
-X-Mailer: git-send-email 2.32.0
+Authentication-Results: smtp1.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=nvidia.com
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id isKgMDvDxl_7 for <bridge@lists.linux-foundation.org>;
+ Wed, 18 May 2022 07:09:09 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on20622.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eae::622])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 64EE183F8B
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 07:09:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZiAmpbGlwwSSX8ak86DpqW6SDhNCKkxW0hEkHbswkdYUAqOi2qlHBrFWaE9xb1tLwd5bdzLmk7x1/jf1Bm78Kt+Uov9hpk2RkmJPjsP4ym6Gfkmmp2CxHblHFDC9pg0WCeEM4Iovd+Ig+lWDLrXP40rP2Y9j2P5RHt75wKE5rYnmJtL2cuesX2NE0QdbXECABxZR4TdWZ9YTnCkdmFdiSsEKKXNqWkatN157r3Dq6kjCh+MvHPiLa9SIl8TGqLsHkxYL6nrSXBI7D0uBeiCVzeqAsvU0ovF1OowBOSp1LeAKQSIrZfmUfdAQ0B5fA1xp7L+gt6CldtThe9xNw8GFTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KpSb/21qjkovoW1tb8tzZzoiExteozu+k8+mwyWw6wo=;
+ b=Z4+0/LHKv32qutq26V7Xv1M18EMn7GH5fLjw2eXUJTGzZ/22j2r3XopFUBmA++6qmAgoW5CNMNoJH94hH2rjGOs6gsQc89RhXXcJbjBj072wGoNd8Fqg1eMc4anbbPCFvqpW1ueGbBMzaQP66Z1o+kdHX6Xy/OFv/6K8Es3tpc61PW09UYrOc6Ewxjbvl/0iajuUsWkomE0e4bsKqY2efnF/jyEpT7Zz6ga25X7Y7z4c+EaSWiKwcgbkYFwUY6a78S7bIMbIyFeqpW7utZyuuN3IPswr9oCxjD72a+q3eu4nWPo482UaJT+/wDHiY7UUS7s+yYgf8/CbGpL1/YbCwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KpSb/21qjkovoW1tb8tzZzoiExteozu+k8+mwyWw6wo=;
+ b=X6MDut2yFWxVz8/yDmCBmmyn8ODTH9bRwBmqoIGTa5TK0mzDqlvf4ufRlJwggE0moNdmaHO63NsD8m5dvat98QMhrONfhcH9G34klokF441m0D5H+DzAbBCifhXlbb6duI0OY5JRB/wU4c6a5Ki88Ly1Du8oSvkaIVxECMY1N0cIBGbTLAhQaOPRU3y6WW7fbr1LgF8tvmwD6u9rkY5e4MChhZ0dVoDrg+1yMKsPsnDc8eJrwPD/Bmd0cE7oVHW3eYBgt+l+nLLXLrxq2KFNZv4jawfZbwdRTBjyOOJTeOJ+7BLYnXkkPLQ2Bxs5R7s8wAH98OPGREEY5iivLmVahw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
+ by SJ0PR12MB5612.namprd12.prod.outlook.com (2603:10b6:a03:427::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.14; Wed, 18 May
+ 2022 07:09:05 +0000
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::99d2:88e0:a9ae:8099]) by CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::99d2:88e0:a9ae:8099%2]) with mapi id 15.20.5273.014; Wed, 18 May 2022
+ 07:09:05 +0000
+Date: Wed, 18 May 2022 10:08:59 +0300
+To: Andrew Lunn <andrew@lunn.ch>
+Message-ID: <YoSbi3EXYUwaBs1a@shredder>
+References: <20220518005840.771575-1-andrew@lunn.ch>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220518005840.771575-1-andrew@lunn.ch>
+X-ClientProxiedBy: VI1PR06CA0215.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::36) To CY5PR12MB6179.namprd12.prod.outlook.com
+ (2603:10b6:930:24::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Ido Schimmel <idosch@mellanox.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f629d232-f462-4ba7-24db-08da389d4b31
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB5612:EE_
+X-Microsoft-Antispam-PRVS: <SJ0PR12MB56127A2B987F894A84EB859EB2D19@SJ0PR12MB5612.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nwGNyVanvhO3v0PbxxYvoV91AM485L4+rW7Oc2VOKpWGvd+icMSLdMnD9iyMbadhf5UkB43jRbOgTqK6bl5V9F18S5/bcBVwdGLgcTand82YUvWxJzt6V84PnsR4oMVaOmWC8f58CSrXdJqiiUajnIYMeQRG0yjcL5FDdyoZeO5KFIm1z2JKHBue829E/k5qZqJ1/8P0ARA+KiQMKIoYoU/H0NCCUH+JALFIStN66ac7n5pSa/j2Csasj5IqcY34kzmGIcx+KXKyQFp1ik6Bgs7NQ04lYy8zSZVSAzDK/iuKsWBee3c048oaGNyX9sa+3DC32cza/jSEFxAUWy0dbATeOAxAET4RvIiHRvdbnz1ZOHcWIFuit6WSpmiIq4iL7gaU7etQKsNyHmSjYEwSfPYP/Fs+dX0KyuQDlLxOnSm51Bpv/6rQIA/JeWX5ywHSVf4Xbz3wmEsLl3lnXXSenVQgO9XoSqOozUSDLqp95/SV3IWe50hmZn/WK81ybR3UIpYYhDbYjB+q9FJkzcu2McCCNWnWsN5H0n1eqJBZZmUWHcMYG+glqrXlTc2csGOLRcUaOfwI6RxAVwWUzaAMajzraM7DOuFbevA1ktN9T8r8OyDq9C3/hmnuoBncFvnz2nIE/2o32+XtTTq4PHvgbg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(7916004)(4636009)(366004)(38100700002)(316002)(8936002)(6486002)(9686003)(26005)(6512007)(2906002)(6506007)(6666004)(54906003)(5660300002)(86362001)(66556008)(66476007)(508600001)(186003)(66946007)(6916009)(8676002)(33716001)(4326008);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7kWxMqSQXRd7+FL0w39DS9DbM4WIvLo4eFZq9tDSAyDfjTp6xiXg5OpHrDHK?=
+ =?us-ascii?Q?eNCGiwRv9Ws/ol1Vgy+ewIisCzKs7v43lixnz9DypRY+Sk/mUtD71BUFzK/U?=
+ =?us-ascii?Q?ml8S5g9dnju2MUjTvts+u5rJU3SbZcIH/D6m/4ISgqIyOyqP+yyRTpxCa9Lq?=
+ =?us-ascii?Q?tjt6sbbB3F/Qggn+DyT+WZE/BQjaPFyCksQDwAsbAseSHjY8ANScyTOu6zoQ?=
+ =?us-ascii?Q?gDiZi0EAJKYWqTlO7+irz9ssDjHCZeOsZaCbsrJ5Pj8RQartGTbcM9vcyWzq?=
+ =?us-ascii?Q?wE0wZyvKDqasuiQZV+rJj/SIitVjNbwBAFJB6LVH5LMYBGy6pf2lW/xytjpg?=
+ =?us-ascii?Q?O0rY2WxdVVq87zPU2Kc/4rp4vMum5EGNQdp6Yf+CPvjhiTS7cLtEZY04wo+m?=
+ =?us-ascii?Q?ngp0qY47JXNsdwl0+DLTx5JADH5+ePRbXw//lyV0RSTayjUcn24gj147mIhf?=
+ =?us-ascii?Q?+aKRIklppDx/6CDG+9Jkx30J0iPn5rGc0epgjddD1z7TJ3J4g/QamKL09Mrh?=
+ =?us-ascii?Q?ppwygEoAj6mBA70W6yk/GA/7xJ5J6ryh7RLMHYR0zE7Jogmi+593HwSJO2RX?=
+ =?us-ascii?Q?UjQUskOjpxZaM7akIzCiZkGVMEvXT2q/Y365/86NZt/if51d9sZ94Yr+4aeU?=
+ =?us-ascii?Q?z5Bt9FySCxQkwzMyd2puLUEgRo5TSQrFfEgHXN/j1ER3btNYkP5wh9yin4Cz?=
+ =?us-ascii?Q?0dyFaFUSp0duIPzxiJdMxWJjrBIQazPhUX0YawqpY20FGVB5YPQFalGnYgOq?=
+ =?us-ascii?Q?EWBE3XujODEY+angnoi4EFPb5N4UsDWwom71gun16I9hkSomiC4FdbpkXS61?=
+ =?us-ascii?Q?uWYu6Vuyq54zb6++o8WGDSMZX+xzC/haeKa2IVoch4y9IrrFjbU2k4PXz7RM?=
+ =?us-ascii?Q?fNMGN/Xfd/oI5antMQOzl0PxZaJIburisCBTdkhb0zaSTf9IvnSsq0D0/0vf?=
+ =?us-ascii?Q?NYbm7dIch50PEort2jkYk8xio1uiT6csSMRsvY33rKA5oU1zwcMZPq7/qG17?=
+ =?us-ascii?Q?XrQlUZwuwqU8041vTdQ6IbPzSSSUxJ9MTNc8wmaje50SOWLewGlNaY4DOPOS?=
+ =?us-ascii?Q?BFSq91ecttL2gBGiP6s2XjB2FgpLQWUsnzoLjZbBGQByjJbXlscovjEj4hXk?=
+ =?us-ascii?Q?ZLRku9ZK5jR72HFkOG37yxeoGGz8RZcvOo+r1l+uTfQogMnfE51Q+RpiHU8d?=
+ =?us-ascii?Q?ZM5e39zJ8vA7LoSbVGhg5pWJnvCWPG8cOrhMZKfgkIyxvcgjIBPxz/nkiKxM?=
+ =?us-ascii?Q?pDKB7Qm+Z+EYFi9a8FSgvbuYUqAZweyx5UERcMgo0c+oMQnND2oLrrJ7Hf+u?=
+ =?us-ascii?Q?RHCQJqT1F4wBEawh3RqMwXtRz+LsUCa0MgKjmyhql/D82G0P6wBnyBNY8cmx?=
+ =?us-ascii?Q?MYVSe5KUP9GdPEoy+ABKcYbdbjBBQlvvUno60m/Toh9SuE49M/TZ3jllVY5a?=
+ =?us-ascii?Q?5u5iWJh1dzxFaYNL2MABBm6DIUh9JFXYIw9xf5A9ZkacTvxBPaPm0F0iTgLQ?=
+ =?us-ascii?Q?QS7I6HpcE7xeiBqxi5O8bhLDH0NnsEvCuJp6bN3bqZ77sJ5EG3hDBPk8y6gL?=
+ =?us-ascii?Q?bYDbzuyTh1LY5+69xBDFeeqpv18gJYZNcRjgQZYDMexjiBokioiXAugHDuo9?=
+ =?us-ascii?Q?XByyTRRyJBKJCUMlEuY3G+/SCsEqu0g7lqFWOGvJs8B+e3OQ3femysE7w1O8?=
+ =?us-ascii?Q?QdAKoVQQT+F2otH83zNueIxlCzVJlpLEmFdLvjOBkWiXRcuNg0OT4ZyCz9Uc?=
+ =?us-ascii?Q?rIZBVj/A2g=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f629d232-f462-4ba7-24db-08da389d4b31
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2022 07:09:05.0129 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iVj2PwYPGAmMZNp0f4fTyJqxg4VOX86Eqfsr+0Seiq1+bUx4UWJnKGx4kOVatIrz2DAlrqCkmmCZLcXVfrvgBQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5612
+Cc: Ido Schimmel <idosch@mellanox.com>, netdev <netdev@vger.kernel.org>,
  Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- Andrew Lunn <andrew@lunn.ch>
-Subject: [Bridge] [PATCH v2 net] net: bridge: Clear offload_fwd_mark when
-	passing frame up bridge interface.
+ Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [Bridge] [PATCH v2 net] net: bridge: Clear offload_fwd_mark
+ when passing frame up bridge interface.
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -71,71 +144,43 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-It is possible to stack bridges on top of each other. Consider the
-following which makes use of an Ethernet switch:
+On Wed, May 18, 2022 at 02:58:40AM +0200, Andrew Lunn wrote:
+> It is possible to stack bridges on top of each other. Consider the
+> following which makes use of an Ethernet switch:
+> 
+>        br1
+>      /    \
+>     /      \
+>    /        \
+>  br0.11    wlan0
+>    |
+>    br0
+>  /  |  \
+> p1  p2  p3
+> 
+> br0 is offloaded to the switch. Above br0 is a vlan interface, for
+> vlan 11. This vlan interface is then a slave of br1. br1 also has a
+> wireless interface as a slave. This setup trunks wireless lan traffic
+> over the copper network inside a VLAN.
+> 
+> A frame received on p1 which is passed up to the bridge has the
+> skb->offload_fwd_mark flag set to true, indicating that the switch has
+> dealt with forwarding the frame out ports p2 and p3 as needed. This
+> flag instructs the software bridge it does not need to pass the frame
+> back down again. However, the flag is not getting reset when the frame
+> is passed upwards. As a result br1 sees the flag, wrongly interprets
+> it, and fails to forward the frame to wlan0.
+> 
+> When passing a frame upwards, clear the flag. This is the Rx
+> equivalent of br_switchdev_frame_unmark() in br_dev_xmit().
+> 
+> Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward mark")
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
 
-       br1
-     /    \
-    /      \
-   /        \
- br0.11    wlan0
-   |
-   br0
- /  |  \
-p1  p2  p3
-
-br0 is offloaded to the switch. Above br0 is a vlan interface, for
-vlan 11. This vlan interface is then a slave of br1. br1 also has a
-wireless interface as a slave. This setup trunks wireless lan traffic
-over the copper network inside a VLAN.
-
-A frame received on p1 which is passed up to the bridge has the
-skb->offload_fwd_mark flag set to true, indicating that the switch has
-dealt with forwarding the frame out ports p2 and p3 as needed. This
-flag instructs the software bridge it does not need to pass the frame
-back down again. However, the flag is not getting reset when the frame
-is passed upwards. As a result br1 sees the flag, wrongly interprets
-it, and fails to forward the frame to wlan0.
-
-When passing a frame upwards, clear the flag. This is the Rx
-equivalent of br_switchdev_frame_unmark() in br_dev_xmit().
-
-Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward mark")
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
----
-
-v2:
-Extended the commit message with Ido obsersation of the equivelance of
-br_dev_xmit().
-
-Fixed up the comment.
-
-This code has passed Ido test setup.
-
-net/bridge/br_input.c | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 196417859c4a..68b3e850bcb9 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -39,6 +39,13 @@ static int br_pass_frame_up(struct sk_buff *skb)
- 	dev_sw_netstats_rx_add(brdev, skb->len);
- 
- 	vg = br_vlan_group_rcu(br);
-+
-+	/* Reset the offload_fwd_mark because there could be a stacked
-+	 * bridge above, and it should not think this bridge it doing
-+	 * that bridge's work forwarding out its ports.
-+	 */
-+	br_switchdev_frame_unmark(skb);
-+
- 	/* Bridge is just like any other port.  Make sure the
- 	 * packet is allowed except in promisc mode when someone
- 	 * may be running packet capture.
--- 
-2.36.0
-
+Reviewed-by: Ido Schimmel <idosch@nvidia.com>
+Tested-by: Ido Schimmel <idosch@nvidia.com>
