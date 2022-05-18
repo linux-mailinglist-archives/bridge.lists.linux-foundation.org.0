@@ -1,136 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E5952B2C6
-	for <lists.bridge@lfdr.de>; Wed, 18 May 2022 09:09:17 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465BD52C5B8
+	for <lists.bridge@lfdr.de>; Wed, 18 May 2022 23:43:20 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 6549740386;
-	Wed, 18 May 2022 07:09:15 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id D37A3400EA;
+	Wed, 18 May 2022 21:43:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id N9QpENLxWUN5; Wed, 18 May 2022 07:09:14 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id BCC60404F8;
-	Wed, 18 May 2022 07:09:13 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XqzUq0_yKstP; Wed, 18 May 2022 21:43:18 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 6AE6840160;
+	Wed, 18 May 2022 21:43:17 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 736D8C0081;
-	Wed, 18 May 2022 07:09:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 21C85C007E;
+	Wed, 18 May 2022 21:43:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8E7A6C002D
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 07:09:12 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BAFC9C002D
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 21:43:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 6937D83FA5
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 07:09:12 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 9B18D400EA
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 21:43:16 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=nvidia.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id isKgMDvDxl_7 for <bridge@lists.linux-foundation.org>;
- Wed, 18 May 2022 07:09:09 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id o2tzl1E6ggq4 for <bridge@lists.linux-foundation.org>;
+ Wed, 18 May 2022 21:43:16 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20622.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::622])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 64EE183F8B
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 07:09:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZiAmpbGlwwSSX8ak86DpqW6SDhNCKkxW0hEkHbswkdYUAqOi2qlHBrFWaE9xb1tLwd5bdzLmk7x1/jf1Bm78Kt+Uov9hpk2RkmJPjsP4ym6Gfkmmp2CxHblHFDC9pg0WCeEM4Iovd+Ig+lWDLrXP40rP2Y9j2P5RHt75wKE5rYnmJtL2cuesX2NE0QdbXECABxZR4TdWZ9YTnCkdmFdiSsEKKXNqWkatN157r3Dq6kjCh+MvHPiLa9SIl8TGqLsHkxYL6nrSXBI7D0uBeiCVzeqAsvU0ovF1OowBOSp1LeAKQSIrZfmUfdAQ0B5fA1xp7L+gt6CldtThe9xNw8GFTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KpSb/21qjkovoW1tb8tzZzoiExteozu+k8+mwyWw6wo=;
- b=Z4+0/LHKv32qutq26V7Xv1M18EMn7GH5fLjw2eXUJTGzZ/22j2r3XopFUBmA++6qmAgoW5CNMNoJH94hH2rjGOs6gsQc89RhXXcJbjBj072wGoNd8Fqg1eMc4anbbPCFvqpW1ueGbBMzaQP66Z1o+kdHX6Xy/OFv/6K8Es3tpc61PW09UYrOc6Ewxjbvl/0iajuUsWkomE0e4bsKqY2efnF/jyEpT7Zz6ga25X7Y7z4c+EaSWiKwcgbkYFwUY6a78S7bIMbIyFeqpW7utZyuuN3IPswr9oCxjD72a+q3eu4nWPo482UaJT+/wDHiY7UUS7s+yYgf8/CbGpL1/YbCwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KpSb/21qjkovoW1tb8tzZzoiExteozu+k8+mwyWw6wo=;
- b=X6MDut2yFWxVz8/yDmCBmmyn8ODTH9bRwBmqoIGTa5TK0mzDqlvf4ufRlJwggE0moNdmaHO63NsD8m5dvat98QMhrONfhcH9G34klokF441m0D5H+DzAbBCifhXlbb6duI0OY5JRB/wU4c6a5Ki88Ly1Du8oSvkaIVxECMY1N0cIBGbTLAhQaOPRU3y6WW7fbr1LgF8tvmwD6u9rkY5e4MChhZ0dVoDrg+1yMKsPsnDc8eJrwPD/Bmd0cE7oVHW3eYBgt+l+nLLXLrxq2KFNZv4jawfZbwdRTBjyOOJTeOJ+7BLYnXkkPLQ2Bxs5R7s8wAH98OPGREEY5iivLmVahw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
- by SJ0PR12MB5612.namprd12.prod.outlook.com (2603:10b6:a03:427::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.14; Wed, 18 May
- 2022 07:09:05 +0000
-Received: from CY5PR12MB6179.namprd12.prod.outlook.com
- ([fe80::99d2:88e0:a9ae:8099]) by CY5PR12MB6179.namprd12.prod.outlook.com
- ([fe80::99d2:88e0:a9ae:8099%2]) with mapi id 15.20.5273.014; Wed, 18 May 2022
- 07:09:05 +0000
-Date: Wed, 18 May 2022 10:08:59 +0300
-To: Andrew Lunn <andrew@lunn.ch>
-Message-ID: <YoSbi3EXYUwaBs1a@shredder>
-References: <20220518005840.771575-1-andrew@lunn.ch>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220518005840.771575-1-andrew@lunn.ch>
-X-ClientProxiedBy: VI1PR06CA0215.eurprd06.prod.outlook.com
- (2603:10a6:802:2c::36) To CY5PR12MB6179.namprd12.prod.outlook.com
- (2603:10b6:930:24::22)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id D1F5A40160
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 21:43:15 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id f9so6404650ejc.0
+ for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 14:43:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=+0u6Co0fQyRE3E7Gd5FQVT98igTbdpT+/KuuR/oOF0o=;
+ b=Lq8UN195SQC5IPnKOEO6l2YcI/XCWCeTBJOiTVUrQdQOxiP1flbaAf6YI7ybUg0SOA
+ dwWdS7QqjCMOmLJLxYO9qocWPkMdotKnjr6RgpNBqCZCnXClXC3jLNldc/IQA+E+3MUV
+ 2Jp3+81U9+l4tJimSqzZviLR8KKZnBDgM0376nX7/uC7oEaGV/Hn04khLJNVivyigVpH
+ iW8ubOhHKXxNL4H3rajYGJWeI0v97YfuINgV/bZ/7KBkZJWx53bJnbt6x94JjnHR90I5
+ oB7xrGGWksa6RaAYGX1M3n17tWudAnT3kuqPqhxmx67tDvpt5R4MbvUlR8yqnaQMyFrP
+ uPaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=+0u6Co0fQyRE3E7Gd5FQVT98igTbdpT+/KuuR/oOF0o=;
+ b=HtMNjB4St4yh5/siakNntVBLuMbE7QFBdxxH0Cz/RFLF7LoltmtCJRlJDjFpXPgpkV
+ zkeokYd/j+ujo6uK7aa/7TN+b1Ug90rr5mJ4w/cGDrQmG6Mr7dRmAIZvtsgIWgzqXWXR
+ y5OFgcr9qdWjWd6FG8TwZxfGYpnEW9dsAAyzu5vY82dkkHq429HN09AtpwvFyTybfMsm
+ PhJwr3mnvuiEKYSXILX4tCaHspJZeGwxIdZ29aCgxClzc/UslSpciaLkSSeJg7JjE4kc
+ x5jnr0YTL3FdoPn0x93Tgv8NgK/5v5TrImWED892ChjKYdT0ThRcldM1XQyRSa63d43H
+ O4cQ==
+X-Gm-Message-State: AOAM531EiHtYWwsLkzSTHTWGmhA+GDAgGpftd5OCpCUs4DwdkeUyyh91
+ 2wiL8A1fm9C9qMiz9x5pGvw5HQ==
+X-Google-Smtp-Source: ABdhPJyMMU+X1/waHm0V+jOhDoSXQpwPFG3UJgrD7Y4DiyR5Ls6dWqS1Vt9ubSBbzCWbycRPlmU2HA==
+X-Received: by 2002:a17:906:7309:b0:6f5:ea1:afa with SMTP id
+ di9-20020a170906730900b006f50ea10afamr1466099ejc.170.1652910193932; 
+ Wed, 18 May 2022 14:43:13 -0700 (PDT)
+Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
+ by smtp.gmail.com with ESMTPSA id
+ hg23-20020a1709072cd700b006f3ef214decsm1377344ejc.82.2022.05.18.14.43.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 18 May 2022 14:43:13 -0700 (PDT)
+Message-ID: <b3a94a42-1333-1393-1946-e6412d6830d5@blackwall.org>
+Date: Thu, 19 May 2022 00:43:12 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f629d232-f462-4ba7-24db-08da389d4b31
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB5612:EE_
-X-Microsoft-Antispam-PRVS: <SJ0PR12MB56127A2B987F894A84EB859EB2D19@SJ0PR12MB5612.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nwGNyVanvhO3v0PbxxYvoV91AM485L4+rW7Oc2VOKpWGvd+icMSLdMnD9iyMbadhf5UkB43jRbOgTqK6bl5V9F18S5/bcBVwdGLgcTand82YUvWxJzt6V84PnsR4oMVaOmWC8f58CSrXdJqiiUajnIYMeQRG0yjcL5FDdyoZeO5KFIm1z2JKHBue829E/k5qZqJ1/8P0ARA+KiQMKIoYoU/H0NCCUH+JALFIStN66ac7n5pSa/j2Csasj5IqcY34kzmGIcx+KXKyQFp1ik6Bgs7NQ04lYy8zSZVSAzDK/iuKsWBee3c048oaGNyX9sa+3DC32cza/jSEFxAUWy0dbATeOAxAET4RvIiHRvdbnz1ZOHcWIFuit6WSpmiIq4iL7gaU7etQKsNyHmSjYEwSfPYP/Fs+dX0KyuQDlLxOnSm51Bpv/6rQIA/JeWX5ywHSVf4Xbz3wmEsLl3lnXXSenVQgO9XoSqOozUSDLqp95/SV3IWe50hmZn/WK81ybR3UIpYYhDbYjB+q9FJkzcu2McCCNWnWsN5H0n1eqJBZZmUWHcMYG+glqrXlTc2csGOLRcUaOfwI6RxAVwWUzaAMajzraM7DOuFbevA1ktN9T8r8OyDq9C3/hmnuoBncFvnz2nIE/2o32+XtTTq4PHvgbg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(7916004)(4636009)(366004)(38100700002)(316002)(8936002)(6486002)(9686003)(26005)(6512007)(2906002)(6506007)(6666004)(54906003)(5660300002)(86362001)(66556008)(66476007)(508600001)(186003)(66946007)(6916009)(8676002)(33716001)(4326008);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7kWxMqSQXRd7+FL0w39DS9DbM4WIvLo4eFZq9tDSAyDfjTp6xiXg5OpHrDHK?=
- =?us-ascii?Q?eNCGiwRv9Ws/ol1Vgy+ewIisCzKs7v43lixnz9DypRY+Sk/mUtD71BUFzK/U?=
- =?us-ascii?Q?ml8S5g9dnju2MUjTvts+u5rJU3SbZcIH/D6m/4ISgqIyOyqP+yyRTpxCa9Lq?=
- =?us-ascii?Q?tjt6sbbB3F/Qggn+DyT+WZE/BQjaPFyCksQDwAsbAseSHjY8ANScyTOu6zoQ?=
- =?us-ascii?Q?gDiZi0EAJKYWqTlO7+irz9ssDjHCZeOsZaCbsrJ5Pj8RQartGTbcM9vcyWzq?=
- =?us-ascii?Q?wE0wZyvKDqasuiQZV+rJj/SIitVjNbwBAFJB6LVH5LMYBGy6pf2lW/xytjpg?=
- =?us-ascii?Q?O0rY2WxdVVq87zPU2Kc/4rp4vMum5EGNQdp6Yf+CPvjhiTS7cLtEZY04wo+m?=
- =?us-ascii?Q?ngp0qY47JXNsdwl0+DLTx5JADH5+ePRbXw//lyV0RSTayjUcn24gj147mIhf?=
- =?us-ascii?Q?+aKRIklppDx/6CDG+9Jkx30J0iPn5rGc0epgjddD1z7TJ3J4g/QamKL09Mrh?=
- =?us-ascii?Q?ppwygEoAj6mBA70W6yk/GA/7xJ5J6ryh7RLMHYR0zE7Jogmi+593HwSJO2RX?=
- =?us-ascii?Q?UjQUskOjpxZaM7akIzCiZkGVMEvXT2q/Y365/86NZt/if51d9sZ94Yr+4aeU?=
- =?us-ascii?Q?z5Bt9FySCxQkwzMyd2puLUEgRo5TSQrFfEgHXN/j1ER3btNYkP5wh9yin4Cz?=
- =?us-ascii?Q?0dyFaFUSp0duIPzxiJdMxWJjrBIQazPhUX0YawqpY20FGVB5YPQFalGnYgOq?=
- =?us-ascii?Q?EWBE3XujODEY+angnoi4EFPb5N4UsDWwom71gun16I9hkSomiC4FdbpkXS61?=
- =?us-ascii?Q?uWYu6Vuyq54zb6++o8WGDSMZX+xzC/haeKa2IVoch4y9IrrFjbU2k4PXz7RM?=
- =?us-ascii?Q?fNMGN/Xfd/oI5antMQOzl0PxZaJIburisCBTdkhb0zaSTf9IvnSsq0D0/0vf?=
- =?us-ascii?Q?NYbm7dIch50PEort2jkYk8xio1uiT6csSMRsvY33rKA5oU1zwcMZPq7/qG17?=
- =?us-ascii?Q?XrQlUZwuwqU8041vTdQ6IbPzSSSUxJ9MTNc8wmaje50SOWLewGlNaY4DOPOS?=
- =?us-ascii?Q?BFSq91ecttL2gBGiP6s2XjB2FgpLQWUsnzoLjZbBGQByjJbXlscovjEj4hXk?=
- =?us-ascii?Q?ZLRku9ZK5jR72HFkOG37yxeoGGz8RZcvOo+r1l+uTfQogMnfE51Q+RpiHU8d?=
- =?us-ascii?Q?ZM5e39zJ8vA7LoSbVGhg5pWJnvCWPG8cOrhMZKfgkIyxvcgjIBPxz/nkiKxM?=
- =?us-ascii?Q?pDKB7Qm+Z+EYFi9a8FSgvbuYUqAZweyx5UERcMgo0c+oMQnND2oLrrJ7Hf+u?=
- =?us-ascii?Q?RHCQJqT1F4wBEawh3RqMwXtRz+LsUCa0MgKjmyhql/D82G0P6wBnyBNY8cmx?=
- =?us-ascii?Q?MYVSe5KUP9GdPEoy+ABKcYbdbjBBQlvvUno60m/Toh9SuE49M/TZ3jllVY5a?=
- =?us-ascii?Q?5u5iWJh1dzxFaYNL2MABBm6DIUh9JFXYIw9xf5A9ZkacTvxBPaPm0F0iTgLQ?=
- =?us-ascii?Q?QS7I6HpcE7xeiBqxi5O8bhLDH0NnsEvCuJp6bN3bqZ77sJ5EG3hDBPk8y6gL?=
- =?us-ascii?Q?bYDbzuyTh1LY5+69xBDFeeqpv18gJYZNcRjgQZYDMexjiBokioiXAugHDuo9?=
- =?us-ascii?Q?XByyTRRyJBKJCUMlEuY3G+/SCsEqu0g7lqFWOGvJs8B+e3OQ3femysE7w1O8?=
- =?us-ascii?Q?QdAKoVQQT+F2otH83zNueIxlCzVJlpLEmFdLvjOBkWiXRcuNg0OT4ZyCz9Uc?=
- =?us-ascii?Q?rIZBVj/A2g=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f629d232-f462-4ba7-24db-08da389d4b31
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2022 07:09:05.0129 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iVj2PwYPGAmMZNp0f4fTyJqxg4VOX86Eqfsr+0Seiq1+bUx4UWJnKGx4kOVatIrz2DAlrqCkmmCZLcXVfrvgBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5612
-Cc: Ido Schimmel <idosch@mellanox.com>, netdev <netdev@vger.kernel.org>,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- Vladimir Oltean <vladimir.oltean@nxp.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>, netdev <netdev@vger.kernel.org>
+References: <20220518005840.771575-1-andrew@lunn.ch>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20220518005840.771575-1-andrew@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Cc: Ido Schimmel <idosch@mellanox.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, bridge@lists.linux-foundation.org
 Subject: Re: [Bridge] [PATCH v2 net] net: bridge: Clear offload_fwd_mark
  when passing frame up bridge interface.
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -144,12 +98,10 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, May 18, 2022 at 02:58:40AM +0200, Andrew Lunn wrote:
+On 18/05/2022 03:58, Andrew Lunn wrote:
 > It is possible to stack bridges on top of each other. Consider the
 > following which makes use of an Ethernet switch:
 > 
@@ -181,6 +133,16 @@ On Wed, May 18, 2022 at 02:58:40AM +0200, Andrew Lunn wrote:
 > 
 > Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward mark")
 > Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> ---
+> 
+> v2:
+> Extended the commit message with Ido obsersation of the equivelance of
+> br_dev_xmit().
+> 
+> Fixed up the comment.
+> 
+> This code has passed Ido test setup.
+> 
 
-Reviewed-by: Ido Schimmel <idosch@nvidia.com>
-Tested-by: Ido Schimmel <idosch@nvidia.com>
+Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+
