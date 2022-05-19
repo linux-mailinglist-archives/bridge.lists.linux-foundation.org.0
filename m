@@ -1,90 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465BD52C5B8
-	for <lists.bridge@lfdr.de>; Wed, 18 May 2022 23:43:20 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED4752CD4B
+	for <lists.bridge@lfdr.de>; Thu, 19 May 2022 09:40:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id D37A3400EA;
-	Wed, 18 May 2022 21:43:18 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 66E7E41B77;
+	Thu, 19 May 2022 07:40:22 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XqzUq0_yKstP; Wed, 18 May 2022 21:43:18 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2srIIY0N3N_a; Thu, 19 May 2022 07:40:21 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 6AE6840160;
-	Wed, 18 May 2022 21:43:17 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 8352C418EC;
+	Thu, 19 May 2022 07:40:20 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 21C85C007E;
-	Wed, 18 May 2022 21:43:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 41954C007E;
+	Thu, 19 May 2022 07:40:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BAFC9C002D
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 21:43:16 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BFA23C002D
+ for <bridge@lists.linux-foundation.org>; Thu, 19 May 2022 07:40:18 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 9B18D400EA
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 21:43:16 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id A018A60BD1
+ for <bridge@lists.linux-foundation.org>; Thu, 19 May 2022 07:40:18 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id o2tzl1E6ggq4 for <bridge@lists.linux-foundation.org>;
- Wed, 18 May 2022 21:43:16 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by smtp2.osuosl.org (Postfix) with ESMTPS id D1F5A40160
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 21:43:15 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id f9so6404650ejc.0
- for <bridge@lists.linux-foundation.org>; Wed, 18 May 2022 14:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=+0u6Co0fQyRE3E7Gd5FQVT98igTbdpT+/KuuR/oOF0o=;
- b=Lq8UN195SQC5IPnKOEO6l2YcI/XCWCeTBJOiTVUrQdQOxiP1flbaAf6YI7ybUg0SOA
- dwWdS7QqjCMOmLJLxYO9qocWPkMdotKnjr6RgpNBqCZCnXClXC3jLNldc/IQA+E+3MUV
- 2Jp3+81U9+l4tJimSqzZviLR8KKZnBDgM0376nX7/uC7oEaGV/Hn04khLJNVivyigVpH
- iW8ubOhHKXxNL4H3rajYGJWeI0v97YfuINgV/bZ/7KBkZJWx53bJnbt6x94JjnHR90I5
- oB7xrGGWksa6RaAYGX1M3n17tWudAnT3kuqPqhxmx67tDvpt5R4MbvUlR8yqnaQMyFrP
- uPaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=+0u6Co0fQyRE3E7Gd5FQVT98igTbdpT+/KuuR/oOF0o=;
- b=HtMNjB4St4yh5/siakNntVBLuMbE7QFBdxxH0Cz/RFLF7LoltmtCJRlJDjFpXPgpkV
- zkeokYd/j+ujo6uK7aa/7TN+b1Ug90rr5mJ4w/cGDrQmG6Mr7dRmAIZvtsgIWgzqXWXR
- y5OFgcr9qdWjWd6FG8TwZxfGYpnEW9dsAAyzu5vY82dkkHq429HN09AtpwvFyTybfMsm
- PhJwr3mnvuiEKYSXILX4tCaHspJZeGwxIdZ29aCgxClzc/UslSpciaLkSSeJg7JjE4kc
- x5jnr0YTL3FdoPn0x93Tgv8NgK/5v5TrImWED892ChjKYdT0ThRcldM1XQyRSa63d43H
- O4cQ==
-X-Gm-Message-State: AOAM531EiHtYWwsLkzSTHTWGmhA+GDAgGpftd5OCpCUs4DwdkeUyyh91
- 2wiL8A1fm9C9qMiz9x5pGvw5HQ==
-X-Google-Smtp-Source: ABdhPJyMMU+X1/waHm0V+jOhDoSXQpwPFG3UJgrD7Y4DiyR5Ls6dWqS1Vt9ubSBbzCWbycRPlmU2HA==
-X-Received: by 2002:a17:906:7309:b0:6f5:ea1:afa with SMTP id
- di9-20020a170906730900b006f50ea10afamr1466099ejc.170.1652910193932; 
- Wed, 18 May 2022 14:43:13 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- hg23-20020a1709072cd700b006f3ef214decsm1377344ejc.82.2022.05.18.14.43.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 18 May 2022 14:43:13 -0700 (PDT)
-Message-ID: <b3a94a42-1333-1393-1946-e6412d6830d5@blackwall.org>
-Date: Thu, 19 May 2022 00:43:12 +0300
+Authentication-Results: smtp3.osuosl.org (amavisd-new);
+ dkim=pass (2048-bit key) header.d=kernel.org
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id hA-LONzYzbsA for <bridge@lists.linux-foundation.org>;
+ Thu, 19 May 2022 07:40:16 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 867FF60C13
+ for <bridge@lists.linux-foundation.org>; Thu, 19 May 2022 07:40:16 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 57A00B8218E;
+ Thu, 19 May 2022 07:40:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2A5B5C34113;
+ Thu, 19 May 2022 07:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1652946012;
+ bh=vcohhxrcH1q4h2W5s5L2qwUQGpsxZdvn23PCPcE3/Ds=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=sS3CHmuZhKDmKTGuE6j8eJrscDRmN0OECSbe+QIdvXDeSyvl5preNm3zQvYVOstNT
+ 8+idXefdGIriIdtRU0rGFKBsT2M6a2KJcDQJAf+/gy8piAneh6W3Y2y4ueIsJbZ+es
+ TN131VCcN5MRbr/ofIz3QlIme+Pek0+22l5p36mNEeE8iroZN/ow5rp3cUO3I3P7+P
+ YLl62ob/GKf+UXSw7CU0NpFGiKccgkMkDGhaq4jIPYifpAdN2TAnS2bx4gfMI8TydM
+ S+rJGZyPfwFUABTsdaxojuIjxuTVzvnZFuqWUzyoMQaSlKrR5UjumOUD7flyoBaS/D
+ zE+JFHX4zF72w==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
+ 10188F0389D; Thu, 19 May 2022 07:40:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>, netdev <netdev@vger.kernel.org>
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165294601206.2340.13222966776558845980.git-patchwork-notify@kernel.org>
+Date: Thu, 19 May 2022 07:40:12 +0000
 References: <20220518005840.771575-1-andrew@lunn.ch>
-From: Nikolay Aleksandrov <razor@blackwall.org>
 In-Reply-To: <20220518005840.771575-1-andrew@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Cc: Ido Schimmel <idosch@mellanox.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, bridge@lists.linux-foundation.org
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: idosch@mellanox.com, netdev@vger.kernel.org, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, vladimir.oltean@nxp.com
 Subject: Re: [Bridge] [PATCH v2 net] net: bridge: Clear offload_fwd_mark
  when passing frame up bridge interface.
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -101,7 +85,12 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 18/05/2022 03:58, Andrew Lunn wrote:
+Hello:
+
+This patch was applied to netdev/net.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Wed, 18 May 2022 02:58:40 +0200 you wrote:
 > It is possible to stack bridges on top of each other. Consider the
 > following which makes use of an Ethernet switch:
 > 
@@ -115,34 +104,15 @@ On 18/05/2022 03:58, Andrew Lunn wrote:
 >  /  |  \
 > p1  p2  p3
 > 
-> br0 is offloaded to the switch. Above br0 is a vlan interface, for
-> vlan 11. This vlan interface is then a slave of br1. br1 also has a
-> wireless interface as a slave. This setup trunks wireless lan traffic
-> over the copper network inside a VLAN.
-> 
-> A frame received on p1 which is passed up to the bridge has the
-> skb->offload_fwd_mark flag set to true, indicating that the switch has
-> dealt with forwarding the frame out ports p2 and p3 as needed. This
-> flag instructs the software bridge it does not need to pass the frame
-> back down again. However, the flag is not getting reset when the frame
-> is passed upwards. As a result br1 sees the flag, wrongly interprets
-> it, and fails to forward the frame to wlan0.
-> 
-> When passing a frame upwards, clear the flag. This is the Rx
-> equivalent of br_switchdev_frame_unmark() in br_dev_xmit().
-> 
-> Fixes: f1c2eddf4cb6 ("bridge: switchdev: Use an helper to clear forward mark")
-> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-> ---
-> 
-> v2:
-> Extended the commit message with Ido obsersation of the equivelance of
-> br_dev_xmit().
-> 
-> Fixed up the comment.
-> 
-> This code has passed Ido test setup.
-> 
+> [...]
 
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+Here is the summary with links:
+  - [v2,net] net: bridge: Clear offload_fwd_mark when passing frame up bridge interface.
+    https://git.kernel.org/netdev/net/c/fbb3abdf2223
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
