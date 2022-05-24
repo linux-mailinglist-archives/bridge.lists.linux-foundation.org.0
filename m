@@ -1,75 +1,73 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF65C532E98
-	for <lists.bridge@lfdr.de>; Tue, 24 May 2022 18:08:17 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id B369C532ED3
+	for <lists.bridge@lfdr.de>; Tue, 24 May 2022 18:21:11 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 8AC9660784;
-	Tue, 24 May 2022 16:08:16 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id AE42F41B53;
+	Tue, 24 May 2022 16:21:09 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QUROnbfWhd4Y; Tue, 24 May 2022 16:08:15 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ODpQwb5t0suK; Tue, 24 May 2022 16:21:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 1A401605AC;
-	Tue, 24 May 2022 16:08:15 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 2113E41B49;
+	Tue, 24 May 2022 16:21:08 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DA4F9C007E;
-	Tue, 24 May 2022 16:08:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C7D44C007E;
+	Tue, 24 May 2022 16:21:07 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5F3A1C002D
- for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 16:08:13 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 052A4C002D
+ for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 16:21:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 3EAA0410B5
- for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 16:08:13 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id D8FC141B55
+ for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 16:21:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 1JfZLCvYPSuw for <bridge@lists.linux-foundation.org>;
- Tue, 24 May 2022 16:08:12 +0000 (UTC)
+ with ESMTP id 8vsNRmK1f-_j for <bridge@lists.linux-foundation.org>;
+ Tue, 24 May 2022 16:21:06 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 4902A410A4
- for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 16:08:12 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id 27so16513418ljw.0
- for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 09:08:12 -0700 (PDT)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id EDDBB41B53
+ for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 16:21:05 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id t25so31668957lfg.7
+ for <bridge@lists.linux-foundation.org>; Tue, 24 May 2022 09:21:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=FYyqUIqX7o7uukxhOxpvy5c6jwFhAW9JG5e+iqj0ZAA=;
- b=c40RMye4tt3qCM6W7eagyel05d9f+ezi9QjwhaQUCVPrgeXySiIl9CgyIOCULFxZRD
- R6hBjevW71JnRlce8PS7Z25IqHWEruI0bmo1pEwvrEZrFMyulwV9euVsIFwx1faYR3pt
- IZOpC8zioCI8T2SnZoD3ZoSTFvlbhGEjtZ8ulllzeUUNb91lhIKU8erEgOQ+3jnIWFjx
- fiv+sihOx6bLRkA5OmLH/IMQpg6fnANudZqfBYeJtNmLbZiq+VIKRXePkKm+JBYSWSOK
- 2et3ghTg4DPaTlWwem54LXEFrT27VZvUKSFjYc7yQesvH60Ljkbai0rT9V3qfElTv5FM
- XxeQ==
+ :mime-version; bh=2/bDGPYXufJFzkVnBY8mqDgAglNZetlk8WJ7Djt/e2E=;
+ b=e6JB8CI6WFSU+Q/ABVHaxlfYhBRAsmmbmkIDuhn1m6DKPOXKF37gjB/m9GdsVi49dc
+ JNf43jPT5zw03LMoVZ8t3fuV30/a2V5p20h02AkSpplyqHBCbbU0BEhybKuk9LvBIU0v
+ yF5u5B3igHgLN7iRG8ZQrDAszFgPNI/I5CRCOoGPWgb0Tr5z/PCYQqsyZhaq45tfM2ue
+ TR82sVYgQfPiZLzURg9Q0Ng/5eocdGR5EPE8FxukEwr6LoxzCf3TXITUf9yHbYMLAfmG
+ vt/o3bafEdXjgzQsP4rsUwQGadPuBcmEHO5dtLS97SrWhTOdZeC4FS/jt5IR6+lcfUJ1
+ OuKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=FYyqUIqX7o7uukxhOxpvy5c6jwFhAW9JG5e+iqj0ZAA=;
- b=g4XWZ61QSRiK/P2kOilwMVsfkuEkYrBVpShN771bJxWIbUwdfkOkn6WGdc7IfPfZWB
- Lu7D1uq02YwINo6KXLRP4V752jFo7kPqNDFMo6Razxprh0jMhbWswWZ0GpdkMBYe10cd
- 0GMCF4ENewJ4B3TZzYUyLWyLHK4FkIgQX+BrbQG+4nqLxxTRnQEePI+rzRm6s41WSDcC
- YE0SD/7dWTwTTNQ2QEW1/1Svt1D03ryyAgNCUtgxWtxuUSJts2DsVAagUVDH1LjuSI28
- jlqoZE2nKFYgSxGUucX6it/Kwc2nVunaUa0+aa0sdUODXGyujhwWkHCUGntNYfL8azKr
- KVng==
-X-Gm-Message-State: AOAM5312iElQPxO8AlZmhSmE8KPHwhxjbpVP82skMnY9hLUkFTJ/NEHx
- bf5lO70Jx80aw1Vfi9MbUvY=
-X-Google-Smtp-Source: ABdhPJxuLzq1hI6bqY13WMLFP01JX+UfPxh11e02lJOpXFmfpfy/IHhgLs7X1xQVsl3eRy/uyOdaIA==
-X-Received: by 2002:a05:651c:1a14:b0:253:ed7b:c22 with SMTP id
- by20-20020a05651c1a1400b00253ed7b0c22mr5665926ljb.84.1653408490226; 
- Tue, 24 May 2022 09:08:10 -0700 (PDT)
+ bh=2/bDGPYXufJFzkVnBY8mqDgAglNZetlk8WJ7Djt/e2E=;
+ b=cE0O7MncskaF26NW2LkJjMruTgbVqxH4TH24fgNtkLrcMLbbl0oKBYak2RoVN5Aq1s
+ +cVejyOZWF7lfdK6JGbD8NYCKKYQmusNnk7sCoJWBC3fvvIPYe+uvzaR27dHivC/sIxu
+ XwX/iCxCodYoBSqOrLBzh6DeWwOs+H4utlhsAOxFoU5XNTOMNQjq2vu54wI8pql5zoqz
+ ga/o2SND4fFsgjB6k0is9G063UDPb5HfV6Ecktk8wMIafyoGFk5dp7KZp9Ne2ImMDmOM
+ AjXt9h/FliGAo9O0Ebn5p3s9LrYKsaat4EnbUEQR4gblAEZTft+eFIfrsay79H6bdL/f
+ rBMQ==
+X-Gm-Message-State: AOAM532PDGFwUphxAjhHG+AbzMiNlfezUym+eIzNWF/s8Ka4cBYM5upD
+ 188hwMX3EgdZU8I53jNc154=
+X-Google-Smtp-Source: ABdhPJzIQuFRRQuyC1EsDbZ10YZKs55feovmJnYJ1MTbAEC+b0Jjw4TR7inmyaHD1E/9Z28qwFMM0w==
+X-Received: by 2002:a05:6512:1510:b0:445:cbc3:a51f with SMTP id
+ bq16-20020a056512151000b00445cbc3a51fmr20695039lfb.116.1653409263918; 
+ Tue, 24 May 2022 09:21:03 -0700 (PDT)
 Received: from wse-c0127 (2-104-116-184-cable.dk.customer.tdc.net.
  [2.104.116.184]) by smtp.gmail.com with ESMTPSA id
- u26-20020ac248ba000000b0047255d21188sm2597000lfg.183.2022.05.24.09.08.08
+ a26-20020a19f81a000000b0047255d21116sm2611832lff.69.2022.05.24.09.21.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 May 2022 09:08:09 -0700 (PDT)
+ Tue, 24 May 2022 09:21:03 -0700 (PDT)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: Nikolay Aleksandrov <razor@blackwall.org>, Hans Schultz
@@ -78,8 +76,8 @@ In-Reply-To: <01e6e35c-f5c9-9776-1263-058f84014ed9@blackwall.org>
 References: <20220524152144.40527-1-schultz.hans+netdev@gmail.com>
  <20220524152144.40527-2-schultz.hans+netdev@gmail.com>
  <01e6e35c-f5c9-9776-1263-058f84014ed9@blackwall.org>
-Date: Tue, 24 May 2022 18:08:08 +0200
-Message-ID: <8635gyvrpz.fsf@gmail.com>
+Date: Tue, 24 May 2022 18:21:02 +0200
+Message-ID: <86zgj6oqa9.fsf@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -130,9 +128,10 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 Hi Nik,
 
-I could check if f->dst is NULL, but in general this should be able to
-work on a per port basis, so do you have an idea of how to keep a per
-port counter of added locked fdb entries?
+if a port is decoupled from the bridge, the locked entries would of
+course be invalid, so maybe if adding and removing a port is accounted
+for wrt locked entries and the count of locked entries, would that not
+work?
 
 Best,
 Hans
