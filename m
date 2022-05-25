@@ -1,93 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B4D5337F7
-	for <lists.bridge@lfdr.de>; Wed, 25 May 2022 10:06:55 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0540253388D
+	for <lists.bridge@lfdr.de>; Wed, 25 May 2022 10:34:37 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 6FD0F41BB5;
-	Wed, 25 May 2022 08:06:53 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTP id 9E75A41BCF;
+	Wed, 25 May 2022 08:34:35 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fdikcmdytHHV; Wed, 25 May 2022 08:06:52 +0000 (UTC)
+	with ESMTP id vtfKsgK0TLNZ; Wed, 25 May 2022 08:34:34 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id BE4AD41BB2;
-	Wed, 25 May 2022 08:06:51 +0000 (UTC)
+	by smtp4.osuosl.org (Postfix) with ESMTPS id EAEFC41BCE;
+	Wed, 25 May 2022 08:34:33 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 65664C007E;
-	Wed, 25 May 2022 08:06:51 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9DB28C007E;
+	Wed, 25 May 2022 08:34:33 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 19672C002D
- for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 08:06:50 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A6679C002D
+ for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 08:34:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 161BA82730
- for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 08:06:50 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTP id 8B5E441BCE
+ for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 08:34:32 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp1.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id MJEcEP49YK01 for <bridge@lists.linux-foundation.org>;
- Wed, 25 May 2022 08:06:49 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Wo7_8gXCycLG for <bridge@lists.linux-foundation.org>;
+ Wed, 25 May 2022 08:34:31 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4BC3A826AA
- for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 08:06:49 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id t6so28970384wra.4
- for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 01:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=cVq7pwXv2//Gfr1cHlRRSEheHaq4li61MQakSnDYkHk=;
- b=NSbOEN1kEirXXcI0n+Rf9Sy90jmua25IOlwq3lBlny6ebWLJYupmHvohFiRfMPOYyq
- 4F5ikMXUckwPZMYV4cy1mkymCR7C/+/APrT91TE45m53C/G8or+AB0C7YnLnAmuFqZxj
- a/5bJX+7SKQT+s4uAyqsGz5KEfN+/60UTN5yTFZEQNyAHD1BVJT73zQdK0VlccjJONE9
- 6R2aYtGZx2oDjYvCVCmv2sLZ5HSRUx3w3LKH4wb4s0fzsiBa9yitlqNtoveAi/tXQGzZ
- HxQ1a1kqvyEtO1SgEEEkCr31sl8DHd8EzzaECAtIi2qlVGJgviVNf+Z4TdWIH4CvIbxt
- nT8g==
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com
+ [IPv6:2a00:1450:4864:20::12c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 77F5541BC5
+ for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 08:34:31 +0000 (UTC)
+Received: by mail-lf1-x12c.google.com with SMTP id u30so34824919lfm.9
+ for <bridge@lists.linux-foundation.org>; Wed, 25 May 2022 01:34:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=5L0FJw8nrreK+iWXw2F3MaAOrCQpmilHML/7HPSt5+4=;
+ b=azwYnsS6jJEQvSuK4hoXH6WieSqwBE2dO+Bdu6YXtPBvcuUmTfpC2qwzKvfRSAGzKe
+ AywA5P/AgCEHA+hSDE09wNNIxJeazza54hvRtKsM0KHE9XkEoUECPoherZUTjO/quYLX
+ Ia/SRkqrRtnoKqZUnvfJDwwtnDjK4AWeTkS5oTNe/kttqS2+ML3Ah3K8aCLre0PQ/WsB
+ FLtIyd+3n8Ag8VLjPa5MMsnq6nMbmdQGOMUy8F5fLL1tf6aShTHh97UcbwtSsm4BnOQ0
+ kr5CBdH2eljtkZpg56jZHdcWO1mU1QK+FEeFMv1xX9ebJkDih3+MTRBgbslM8CaHJyNz
+ Ic+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=cVq7pwXv2//Gfr1cHlRRSEheHaq4li61MQakSnDYkHk=;
- b=U/McnswZmnl3M+ivWHF82dqGs2uxLapgmzDyhOLMt+s7bBC2nCwzIthvaB+An0b8H6
- +0HWEaZ+fc/npzCEmWKR+XQxguKimyvscQyCYCsOsFUFWlH4QpUvyT1fepzh24Q0FX35
- O4rWA0cfXRAItn6MqUAaULiIiEMG04WZk/x1riXNZAQM0Df4wQrwG5eRyEdr3H+3LJeQ
- n+zulyrGUtPq2xPmt44MokataGpaSh64/Lw2X9mKTdHGr0Moh82/XJnEI1B+wx3Zatud
- aVVqgwiK6e4DnjyQqmrcvxOAbB+4Ib1xFM6DoocurBgIELJSIKeml3S/h/xHcltYgL/B
- hKpw==
-X-Gm-Message-State: AOAM530YtTASSufMispYGuwWImDZpy1xQcRIHIO0fW70SZGg2xZJ48uz
- Q0A/dk1R+b712l9vsFe5K5JW1A==
-X-Google-Smtp-Source: ABdhPJxxUHRzsWG9Ga2j1bOgOyilkp0ZbdgwfH/TcJtO2mh86zxzRwq60XFA/9neVmDozoa29iR3JA==
-X-Received: by 2002:adf:d1a8:0:b0:20f:f808:2ac8 with SMTP id
- w8-20020adfd1a8000000b0020ff8082ac8mr4694627wrc.495.1653466007320; 
- Wed, 25 May 2022 01:06:47 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- x8-20020a7bc208000000b0039765a7add4sm1038032wmi.29.2022.05.25.01.06.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 25 May 2022 01:06:46 -0700 (PDT)
-Message-ID: <b78fb006-04c4-5a25-7ba5-94428cc9591a@blackwall.org>
-Date: Wed, 25 May 2022 11:06:44 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Hans Schultz <schultz.hans@gmail.com>, davem@davemloft.net, kuba@kernel.org
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=5L0FJw8nrreK+iWXw2F3MaAOrCQpmilHML/7HPSt5+4=;
+ b=4mrML5auuFQ3bQs0VE2IFkbPFdvcPdI1hJwL44MCCjNcAE8w9W/WXd7DIOwbB5J6I0
+ CixqH1jwscSHMKwgJwzxTjlGj3828khJMxZW3IqdylmWyNBjYYINcHLr3qQvHaksy1lc
+ w/Xt0zx74pQJoeI9g69ZwpNDwpZ1Spjo/pewrR6lOnmjlCZN6ndvRGp9bS2dSYvXBHCI
+ HXdTCpi9x8fsrDuSgVOGNg74+wKlkKBue7JtIwz8kALdyoROT4bsGPUVX5QZ1CvWYZ4f
+ eSsigxoGj5mKkwZQVqJ2f6SSvnXhgpyGvqAueFVwP4ryB/LIYCDIt3OEQWrzbVTshWQS
+ WnBw==
+X-Gm-Message-State: AOAM531jqh8EGhvK0CmIq3iXfGbxlbRVMA38sNoLXxxv5dvxoPvxOV/w
+ /H3y1Hc3XxyM2SrlUSmpgGY=
+X-Google-Smtp-Source: ABdhPJxic4FhRXu/llodR7HOqkXULwkms1mxQ9iH9XF+99sL0VI5R5WVn65/uHa0tDznw59r1oiRnQ==
+X-Received: by 2002:ac2:548e:0:b0:477:c2fa:b18e with SMTP id
+ t14-20020ac2548e000000b00477c2fab18emr21744727lfk.269.1653467669317; 
+ Wed, 25 May 2022 01:34:29 -0700 (PDT)
+Received: from wse-c0127 (2-104-116-184-cable.dk.customer.tdc.net.
+ [2.104.116.184]) by smtp.gmail.com with ESMTPSA id
+ i22-20020a2e8096000000b00250664c906asm2972324ljg.133.2022.05.25.01.34.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 25 May 2022 01:34:28 -0700 (PDT)
+From: Hans Schultz <schultz.hans@gmail.com>
+X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
+To: Nikolay Aleksandrov <razor@blackwall.org>, Hans Schultz
+ <schultz.hans@gmail.com>, davem@davemloft.net, kuba@kernel.org
+In-Reply-To: <b78fb006-04c4-5a25-7ba5-94428cc9591a@blackwall.org>
 References: <20220524152144.40527-1-schultz.hans+netdev@gmail.com>
  <20220524152144.40527-2-schultz.hans+netdev@gmail.com>
  <01e6e35c-f5c9-9776-1263-058f84014ed9@blackwall.org>
  <86zgj6oqa9.fsf@gmail.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <86zgj6oqa9.fsf@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <b78fb006-04c4-5a25-7ba5-94428cc9591a@blackwall.org>
+Date: Wed, 25 May 2022 10:34:27 +0200
+Message-ID: <86fskyggdo.fsf@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
@@ -112,52 +106,60 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 24/05/2022 19:21, Hans Schultz wrote:
->>
->> Hi Hans,
->> So this approach has a fundamental problem, f->dst is changed without any synchronization
->> you cannot rely on it and thus you cannot account for these entries properly. We must be very
->> careful if we try to add any new synchronization not to affect performance as well.
->> More below...
->>
->>> @@ -319,6 +326,9 @@ static void fdb_delete(struct net_bridge *br, struct net_bridge_fdb_entry *f,
->>>  	if (test_bit(BR_FDB_STATIC, &f->flags))
->>>  		fdb_del_hw_addr(br, f->key.addr.addr);
->>>  
->>> +	if (test_bit(BR_FDB_ENTRY_LOCKED, &f->flags) && !test_bit(BR_FDB_OFFLOADED, &f->flags))
->>> +		atomic_dec(&f->dst->locked_entry_cnt);
->>
->> Sorry but you cannot do this for multiple reasons:
->>  - f->dst can be NULL
->>  - f->dst changes without any synchronization
->>  - there is no synchronization between fdb's flags and its ->dst
->>
->> Cheers,
->>  Nik
-> 
-> Hi Nik,
-> 
-> if a port is decoupled from the bridge, the locked entries would of
-> course be invalid, so maybe if adding and removing a port is accounted
-> for wrt locked entries and the count of locked entries, would that not
-> work?
-> 
-> Best,
-> Hans
+On ons, maj 25, 2022 at 11:06, Nikolay Aleksandrov <razor@blackwall.org> wrote:
+> On 24/05/2022 19:21, Hans Schultz wrote:
+>>>
+>>> Hi Hans,
+>>> So this approach has a fundamental problem, f->dst is changed without any synchronization
+>>> you cannot rely on it and thus you cannot account for these entries properly. We must be very
+>>> careful if we try to add any new synchronization not to affect performance as well.
+>>> More below...
+>>>
+>>>> @@ -319,6 +326,9 @@ static void fdb_delete(struct net_bridge *br, struct net_bridge_fdb_entry *f,
+>>>>  	if (test_bit(BR_FDB_STATIC, &f->flags))
+>>>>  		fdb_del_hw_addr(br, f->key.addr.addr);
+>>>>  
+>>>> +	if (test_bit(BR_FDB_ENTRY_LOCKED, &f->flags) && !test_bit(BR_FDB_OFFLOADED, &f->flags))
+>>>> +		atomic_dec(&f->dst->locked_entry_cnt);
+>>>
+>>> Sorry but you cannot do this for multiple reasons:
+>>>  - f->dst can be NULL
+>>>  - f->dst changes without any synchronization
+>>>  - there is no synchronization between fdb's flags and its ->dst
+>>>
+>>> Cheers,
+>>>  Nik
+>> 
+>> Hi Nik,
+>> 
+>> if a port is decoupled from the bridge, the locked entries would of
+>> course be invalid, so maybe if adding and removing a port is accounted
+>> for wrt locked entries and the count of locked entries, would that not
+>> work?
+>> 
+>> Best,
+>> Hans
+>
+> Hi Hans,
+> Unfortunately you need the correct amount of locked entries per-port if you want
+> to limit their number per-port, instead of globally. So you need a
+> consistent
 
-Hi Hans,
-Unfortunately you need the correct amount of locked entries per-port if you want
-to limit their number per-port, instead of globally. So you need a consistent
-fdb view with all its attributes when changing its dst in this case, which would
-require new locking because you have multiple dependent struct fields and it will
-kill roaming/learning scalability. I don't think this use case is worth the complexity it
-will bring, so I'd suggest an alternative - you can monitor the number of locked entries
-per-port from a user-space agent and disable port learning or some similar solution that
-doesn't require any complex kernel changes. Is the limit a requirement to add the feature?
+Hi Nik,
+the used dst is a port structure, so it is per-port and not globally.
 
-I have an idea how to do it and to minimize the performance hit if it really is needed
-but it'll add a lot of complexity which I'd like to avoid if possible.
+Best,
+Hans
 
-Cheers,
- Nik
-
+> fdb view with all its attributes when changing its dst in this case, which would
+> require new locking because you have multiple dependent struct fields and it will
+> kill roaming/learning scalability. I don't think this use case is worth the complexity it
+> will bring, so I'd suggest an alternative - you can monitor the number of locked entries
+> per-port from a user-space agent and disable port learning or some similar solution that
+> doesn't require any complex kernel changes. Is the limit a requirement to add the feature?
+>
+> I have an idea how to do it and to minimize the performance hit if it really is needed
+> but it'll add a lot of complexity which I'd like to avoid if possible.
+>
+> Cheers,
+>  Nik
