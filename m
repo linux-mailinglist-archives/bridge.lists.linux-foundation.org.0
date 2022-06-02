@@ -1,75 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679F4539441
-	for <lists.bridge@lfdr.de>; Tue, 31 May 2022 17:49:49 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32ED53B5D4
+	for <lists.bridge@lfdr.de>; Thu,  2 Jun 2022 11:17:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id A456C61002;
-	Tue, 31 May 2022 15:49:46 +0000 (UTC)
+	by smtp1.osuosl.org (Postfix) with ESMTP id BEEE982B1B;
+	Thu,  2 Jun 2022 09:17:22 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 4JLTPtMTM5vu; Tue, 31 May 2022 15:49:45 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 5515E61282;
-	Tue, 31 May 2022 15:49:44 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id TwHvrMRC67KQ; Thu,  2 Jun 2022 09:17:22 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 5D5CA82B9F;
+	Thu,  2 Jun 2022 09:17:21 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 06EFFC0081;
-	Tue, 31 May 2022 15:49:44 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 08CD3C0081;
+	Thu,  2 Jun 2022 09:17:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CF472C002D
- for <bridge@lists.linux-foundation.org>; Tue, 31 May 2022 15:49:42 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BF65BC002D
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Jun 2022 09:17:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id A51BF40B27
- for <bridge@lists.linux-foundation.org>; Tue, 31 May 2022 15:49:42 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTP id 98CA9405A5
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Jun 2022 09:17:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Authentication-Results: smtp2.osuosl.org (amavisd-new);
  dkim=pass (2048-bit key) header.d=gmail.com
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id iLhH95Rb9Wm7 for <bridge@lists.linux-foundation.org>;
- Tue, 31 May 2022 15:49:42 +0000 (UTC)
+ with ESMTP id XVSFeYvKK0dZ for <bridge@lists.linux-foundation.org>;
+ Thu,  2 Jun 2022 09:17:19 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
- [IPv6:2a00:1450:4864:20::229])
- by smtp2.osuosl.org (Postfix) with ESMTPS id D7D0A40104
- for <bridge@lists.linux-foundation.org>; Tue, 31 May 2022 15:49:41 +0000 (UTC)
-Received: by mail-lj1-x229.google.com with SMTP id q1so15137204ljb.5
- for <bridge@lists.linux-foundation.org>; Tue, 31 May 2022 08:49:41 -0700 (PDT)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id AF8A640184
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Jun 2022 09:17:18 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id a2so722932lfg.5
+ for <bridge@lists.linux-foundation.org>; Thu, 02 Jun 2022 02:17:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=A44GayFxXseGVVD0HVJY3qkIMetyjm2M3KFYhOBPZao=;
- b=Lc2SkHq0n+vROccbAbpL/H+0Dgf53+UBnImyq5CgM9VVRWDpx10kq2qoKeRy5CiiNv
- FpYqx7RLrPfzOXP1dLFMNnKOMJjfs0j3CllR2+GJRAa+xeBU5+JbMkHbXZorezgexw5d
- HGgZ4udmYbVkujDnMOIolsGQ7yZ9Um0MhApXuj0MmHNdk/aseo7VgnbONDaDGCgKVE3c
- FuTyGFUkXda1QvJT4RQyWKfbQAi8S/iBAKCnvKjFKVSRdK55tF/42d80eLGIxnVHMeV9
- i67I3EIzPReqjqpeR0xbzcuj79b5DdwnddziDXHyUbsQumSonS/xMlSxLAb4ToZY3hR+
- QdzA==
+ :mime-version; bh=x/BMPJiscOCJwChDcnTSf5xiDyx/TDj8W0/luATDtZM=;
+ b=dlrHFDqdCh4D5XYD3LFF4bau4fjpwDa9QQeUEQnqjyacR8JSdJyEyqbAAhE5xs/9eo
+ hbpywzBbcbbelctEIH3HvNwRbz+hkSHLTzD+g5ueE+or5NO32R15l2mqvbN/1Dwje5Bz
+ h4w40/5gcmUcg2ST+QtF23Eoogki5rZA50RnWqjQOtkBotDm6XVT8hQCD0qLLbE43ZI7
+ Ald8xd1yQwGSOTPjZvDSrm+lVnipzA/iFPdVyoW8Thz2nbriIH4KocuqC2LJkgOSaNSQ
+ b8q+OTbw3oIKnLnNw+65ewXePQYLl8PZZ4m4E5LLpcbDQTn+C3/HUid64m5sB0DhmMQV
+ KQDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=A44GayFxXseGVVD0HVJY3qkIMetyjm2M3KFYhOBPZao=;
- b=t6ENPPxQ3e6mlt90VIe8VA7rATovxryBV7PiB5RA+C05DxjM/n3TDgnB4ZKQrqQu9u
- 1IU7bk9LyUxXfcCN488tus6Dbk354XOYEF2OxviGxar2PAAzLCTb8T2Yj++PDMDr1YwP
- t3kqhrbjCpus43LQcpr4DuoTLRAiz971GT0coRi7bU5NBbj2sW25l+wdI72Pqt4eOQYv
- W5v9OfL4KjbOQJ09jnUHOXG5TOofSumN0owRQMIS270xT4NNYG6AxQFyC8WWZfmo65u3
- ujzFB/4/qtWt7Pkt5wQkhwkxqrJiUq2sguuMW80kq6+mAawxgFS1cuhV9qVXA39VA7FA
- FePg==
-X-Gm-Message-State: AOAM5300lkY4a4+f+7GxN7N/HkrJ/6HJMZJc5LCLSEwWvl4sVyBwKx6G
- WoSb/LlzVzl8U/U9DZyLjrY=
-X-Google-Smtp-Source: ABdhPJyayYqbFsxb0MdWRwSCpz3NUX9pwUjHVkmGzVQskq93loEB+jvYxlRiwE+Ww+vF4RZ2rUjS3w==
-X-Received: by 2002:a05:651c:1a22:b0:255:61fc:4645 with SMTP id
- by34-20020a05651c1a2200b0025561fc4645mr1543446ljb.99.1654012179713; 
- Tue, 31 May 2022 08:49:39 -0700 (PDT)
-Received: from wse-c0127 (2-104-116-184-cable.dk.customer.tdc.net.
- [2.104.116.184]) by smtp.gmail.com with ESMTPSA id
- p16-20020a2e9ad0000000b002556428fcb6sm233597ljj.61.2022.05.31.08.49.38
+ bh=x/BMPJiscOCJwChDcnTSf5xiDyx/TDj8W0/luATDtZM=;
+ b=UXhET0MS9GegDuEF+2O32By8wJBKA51/R7wbaTx1VfaDOjOsUU2ri35Wu+PRscRtIU
+ hXmPP+suy1gcWq9s68DsC8j1vrAFpoKcBs1zuKHgL94/ZD8/HVOGGoplLytbd2GEYjEu
+ vqxKB16kXTwE8Xshb2RX7ScyWTb7RDNql0J1p24asVoY0bm7lURSRENLalRhIs+qHaNq
+ 8aV4s40lHhlb08g6u94KxtZKEvevd3dnHg0eaQ96F06AH2YjowvSfLoXVvcmZsw8Ha9R
+ j01V8mtLf+OcPIeuoP5DPiGaegJVYUgJUay2fqBneEGD1IlYhYaKqdu6e+537VsQfxyq
+ tR8A==
+X-Gm-Message-State: AOAM5316+oMczIusstZj4pSpib9kVBowxucQ970lAoOEkWq8+aXkqGl1
+ NdXY5G6pI6fSR1p9EyYSsJo=
+X-Google-Smtp-Source: ABdhPJyL8UcdmpF/l5y5K8HPvwVK1AZch6rwxEsr9rb2Vk8D6jkGykjQBWg93hwnagPcENwKtaVSng==
+X-Received: by 2002:a05:6512:32c1:b0:478:6e6c:53a5 with SMTP id
+ f1-20020a05651232c100b004786e6c53a5mr38322355lfg.435.1654161436489; 
+ Thu, 02 Jun 2022 02:17:16 -0700 (PDT)
+Received: from wse-c0127 ([208.127.141.28]) by smtp.gmail.com with ESMTPSA id
+ w6-20020a05651204c600b0047906bad093sm809482lfq.173.2022.06.02.02.17.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 May 2022 08:49:39 -0700 (PDT)
+ Thu, 02 Jun 2022 02:17:16 -0700 (PDT)
 From: Hans Schultz <schultz.hans@gmail.com>
 X-Google-Original-From: Hans Schultz <schultz.hans+netdev@gmail.com>
 To: Ido Schimmel <idosch@nvidia.com>, Hans Schultz <schultz.hans@gmail.com>
@@ -79,8 +78,8 @@ References: <20220524152144.40527-1-schultz.hans+netdev@gmail.com>
  <Yo+LAj1vnjq0p36q@shredder> <86sfov2w8k.fsf@gmail.com>
  <YpCgxtJf9Qe7fTFd@shredder> <86sfoqgi5e.fsf@gmail.com>
  <YpYk4EIeH6sdRl+1@shredder>
-Date: Tue, 31 May 2022 17:49:32 +0200
-Message-ID: <868rqh3do3.fsf@gmail.com>
+Date: Thu, 02 Jun 2022 11:17:12 +0200
+Message-ID: <86y1yfzap3.fsf@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -131,5 +130,32 @@ On tis, maj 31, 2022 at 17:23, Ido Schimmel <idosch@nvidia.com> wrote:
 > initialized in br_switchdev_fdb_populate(). Can you add it in the next
 > version?
 
-Yes, definitely. I have only had focus on it in the messages coming up
-from the driver, and neglected it the other way.
+An issue with sending the flag to the driver is that port_fdb_add() is
+suddenly getting more and more arguments and getting messy in my
+opinion, but maybe that's just how it is...
+
+Another issue is that
+bridge fdb add MAC dev DEV master static
+seems to add the entry with the SELF flag set, which I don't think is
+what we would want it to do or?
+Also the replace command is not really supported properly as it is. I
+have made a fix for that which looks something like this:
+
+diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
+index 6cbb27e3b976..f43aa204f375 100644
+--- a/net/bridge/br_fdb.c
++++ b/net/bridge/br_fdb.c
+@@ -917,6 +917,9 @@ static int fdb_add_entry(struct net_bridge *br, struct net_bridge_port *source,
+                if (flags & NLM_F_EXCL)
+                        return -EEXIST;
+ 
++               if (flags & NLM_F_REPLACE)
++                       modified = true;
++
+                if (READ_ONCE(fdb->dst) != source) {
+                        WRITE_ONCE(fdb->dst, source);
+                        modified = true;
+
+The argument for always sending notifications to the driver in the case
+of replace is that a replace command will refresh the entries timeout if
+the entry is the same. Any thoughts on this?
