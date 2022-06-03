@@ -2,97 +2,61 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A7153B9A2
-	for <lists.bridge@lfdr.de>; Thu,  2 Jun 2022 15:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F18A153CCE9
+	for <lists.bridge@lfdr.de>; Fri,  3 Jun 2022 18:08:21 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 233B740B16;
-	Thu,  2 Jun 2022 13:27:37 +0000 (UTC)
+	by smtp2.osuosl.org (Postfix) with ESMTP id C64694027F;
+	Fri,  3 Jun 2022 16:08:19 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KorXiJJLcMr7; Thu,  2 Jun 2022 13:27:36 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id B1A0A400D2;
-	Thu,  2 Jun 2022 13:27:35 +0000 (UTC)
+	with ESMTP id 3YJveeBkd_q3; Fri,  3 Jun 2022 16:08:18 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 0582740BA5;
+	Fri,  3 Jun 2022 16:08:17 +0000 (UTC)
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 789E4C0081;
-	Thu,  2 Jun 2022 13:27:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B9577C007E;
+	Fri,  3 Jun 2022 16:08:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 067DEC002D
- for <bridge@lists.linux-foundation.org>; Thu,  2 Jun 2022 13:27:34 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E7703C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Jun 2022 16:08:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id E2A2841545
- for <bridge@lists.linux-foundation.org>; Thu,  2 Jun 2022 13:27:33 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTP id D620C607CE
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Jun 2022 16:08:15 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at osuosl.org
-Authentication-Results: smtp4.osuosl.org (amavisd-new);
- dkim=pass (2048-bit key) header.d=gmail.com
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 1r0nnavNZ4Yc for <bridge@lists.linux-foundation.org>;
- Thu,  2 Jun 2022 13:27:33 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by smtp4.osuosl.org (Postfix) with ESMTPS id D69DC40939
- for <bridge@lists.linux-foundation.org>; Thu,  2 Jun 2022 13:27:32 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- n124-20020a1c2782000000b003972dfca96cso2769485wmn.4
- for <bridge@lists.linux-foundation.org>; Thu, 02 Jun 2022 06:27:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=l8W+7tcFTmWgcZkmqtvEAURZZKd0U2SDl09JGSg/xJY=;
- b=EqF2c9DqGwXxEBxvnMScQ+ELXNccLj4Uv/g2mPawAj6APVYuwRlURI25YdBdFtNhb2
- hm5s4r8nxVxYtjk7B4r8ZAQ4vzbuC2C1ydfNdoH5WwtOfWly2jlVVtP9j8BfvaCSs1zY
- nqmTz20aaOy0p3CIvz4sk1WFXq5uP46hqsPKSW8g/jpwQ3zA1fVMgwKOmTVsQKYqRUoz
- R6xSU+xTqa6fVeRBfNS8XUZ1bYaAXHpbc8DlW9jiaEO+GeOPURDfDYYBl0TOUayMWdkn
- TdY+VKI1tfIWc9GfRq+WeG2qxLiGye2M4PXQ7ChXlB00w0wKbPA2c1U4iANB/s/HIAbj
- C0+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=l8W+7tcFTmWgcZkmqtvEAURZZKd0U2SDl09JGSg/xJY=;
- b=RzpHOuoRN40B1WdkxOjoIHz6xlrK/CY+ibh5NvcV5yutA7cME2ntpelNHIrVC/uymy
- cfAL9YPsDza1HQ3v0bgWHl0qsU7t4k/LvbhP5aA4z1IUYaJjZKmBPDmPfBL3NKs/dIj/
- AKTjjtW7Hl4ULAJumuSaHs7STLliEylum2bIAFMoxd1gqWwkcYU4b5RWsH8yrv/v6K9H
- J2CWVchbgl0BdYPLHDncaQbZM+pgL8JRLr+t4BREjjHoGeLXzLRBJS51eRTTkOsf19Z1
- 4MsYj/77f7M8HX13Vx7qLIaBnKJbpg4Y69VOxuB9j8sdDzjO8vlTI+kaqXBCF7hvX083
- asZQ==
-X-Gm-Message-State: AOAM532QPIVmy+3KeEemcudX33cyBmY92qw1+1azv83EfIghDJC33W97
- ULbkyc8KqvPvkHEnPcIlY6W8OtQ9Nqyo3XP3jrU=
-X-Google-Smtp-Source: ABdhPJwYupf43+H7wFwlwquLKLXu/Ei58WabOVVaZSXOqm1N2/bD1VaLi6h42LIL3W3Xt9RG1iGYtvyot1MCGIgpLGw=
-X-Received: by 2002:a05:600c:3d94:b0:39c:1c04:3191 with SMTP id
- bi20-20020a05600c3d9400b0039c1c043191mr3899511wmb.171.1654176450981; Thu, 02
- Jun 2022 06:27:30 -0700 (PDT)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id s_ShlQr5dyCm for <bridge@lists.linux-foundation.org>;
+ Fri,  3 Jun 2022 16:08:14 +0000 (UTC)
+X-Greylist: delayed 00:10:03 by SQLgrey-1.8.0
+Received: from 2.mo541.mail-out.ovh.net (2.mo541.mail-out.ovh.net
+ [46.105.74.88])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 5A86860608
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Jun 2022 16:08:14 +0000 (UTC)
+Received: from ex.mail.ovh.net (unknown [10.108.16.173])
+ by mo541.mail-out.ovh.net (Postfix) with SMTP id 9C83523346
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Jun 2022 15:50:58 +0000 (UTC)
+Message-ID: <00be2217-40f4-c15b-409b-8b412ac411c8@lodpp.net>
+Date: Fri, 3 Jun 2022 17:50:57 +0200
 MIME-Version: 1.0
-References: <86sfov2w8k.fsf@gmail.com> <YpCgxtJf9Qe7fTFd@shredder>
- <86sfoqgi5e.fsf@gmail.com> <YpYk4EIeH6sdRl+1@shredder>
- <86y1yfzap3.fsf@gmail.com>
- <d88b6090-2ac8-0664-0e38-bb2860be7f6e@blackwall.org>
- <86sfonjroi.fsf@gmail.com>
- <3d93d46d-c484-da0a-c12c-80e83eba31c9@blackwall.org>
- <YpiTbOsh0HBMwiTE@shredder>
- <86mtevjmie.fsf@gmail.com> <YpiqlziXDCg/1FJH@shredder>
-In-Reply-To: <YpiqlziXDCg/1FJH@shredder>
-From: Hans S <schultz.hans@gmail.com>
-Date: Thu, 2 Jun 2022 15:27:19 +0200
-Message-ID: <CAKUejP5NiPYre8qAJKqJ0SOxQ_DtXHt6q6ze6gr=Xx6VGc8xsA@mail.gmail.com>
-To: Ido Schimmel <idosch@nvidia.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+To: <bridge@lists.linux-foundation.org>
+Content-Language: en-US
+From: Nicolas Piatto <nico@lodpp.net>
 Content-Type: text/plain; charset="UTF-8"
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
- Ido Schimmel <idosch@idosch.org>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, linux-kselftest@vger.kernel.org,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Vladimir Oltean <olteanv@gmail.com>, Shuah Khan <shuah@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH V3 net-next 1/4] net: bridge: add fdb flag to
- extent locked port feature
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [217.70.181.1]
+X-ClientProxiedBy: CAS19.indiv.local (172.16.1.19) To DAG19EX1.indiv.local
+ (172.16.2.37)
+X-Ovh-Tracer-Id: 3306205076742264194
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrleeigdelvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepkfffgggfvffhufgtgfhisehtjeertddtfeejnecuhfhrohhmpefpihgtohhlrghsucfrihgrthhtohcuoehnihgtoheslhhoughpphdrnhgvtheqnecuggftrfgrthhtvghrnheptdejgeduveffieehleejleeigeeliedtjeduuefgjeekieegieffhfefteeutdetnecuffhomhgrihhnpeifihhkihhpvgguihgrrdhorhhgnecukfhppedtrddtrddtrddtpddvudejrdejtddrudekuddrudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepvgigrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepnhhitghosehlohguphhprdhnvghtpdhnsggprhgtphhtthhopedupdhrtghpthhtohepsghrihgughgvsehlihhsthhsrdhlihhnuhigqdhfohhunhgurghtihhonhdrohhrghdpoffvtefjohhsthepmhhoheegud
+Subject: [Bridge] bridge issue with ARP and FDB update between 4.9.142 and
+	4.9.315
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -107,54 +71,119 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Yes, that sounds much like the case. So the replace of course just
-modifies the SW fdb entry, and then it just uses port_fdb_add() to
-replace HW entry I assume, which then in my case triggers
-SWITCHDEV_FDB_DEL_TO_BRIDGE as the locked entry is removed.
-So I should not send the SWITCHDEV_FDB_DEL_TO_BRIDGE message when
-removing the locked entry from port_fdb_add() function...
-
-(note: having problems with smtp.gmail.com...)
+Hello,
 
 
-On Thu, Jun 2, 2022 at 2:18 PM Ido Schimmel <idosch@nvidia.com> wrote:
->
-> On Thu, Jun 02, 2022 at 02:08:41PM +0200, Hans Schultz wrote:
-> > >
-> > > I think Hans is testing with mv88e6xxx which dumps entries directly from
-> > > HW via ndo_fdb_dump(). See dsa_slave_port_fdb_do_dump() which sets
-> > > NTF_SELF.
-> > >
-> > > Hans, are you seeing the entry twice? Once with 'master' and once with
-> > > 'self'?
-> > >
-> >
-> > When replacing a locked entry it looks like this:
-> >
-> > # bridge fdb show dev eth6 | grep 4c
-> > 00:4c:4c:4c:4c:4c vlan 1 master br0 extern_learn offload locked
-> >
-> > # bridge fdb replace 00:4c:4c:4c:4c:4c dev eth6 vlan 1 master static ; bridge fdb show dev eth6 | grep 4c
-> > 00:4c:4c:4c:4c:4c vlan 1 self static
->
-> This output means that the FDB entry was deleted from the bridge driver
-> FDB.
->
-> >
-> > The problem is then that the function
-> > br_fdb_find_rcu(br,eth_hdr(skb)->h_source, vid);
-> > , where the h_source and vid is the entry above, does not find the entry.
-> > My hypothesis was then that this is because of the 'self' flag that I
-> > see.
->
-> br_fdb_find_rcu() does a lookup in the bridge driver FDB, but per the
-> output above, the entry isn't there for some reason. It's only in HW.
->
-> Can it be that you driver is deleting these entries from the bridge
-> driver FDB via SWITCHDEV_FDB_DEL_TO_BRIDGE for some reason?
->
-> >
-> > I am thinking that the function dsa_slave_port_fdb_do_dump() is only for
-> > debug, and thus does not really set any flags in the bridge modules FDB,
-> > but then I don't understand why the above find function does not find
-> > the entry?
+We have a strange behavior of the linux bridge regarding ARP and FDB update.
+
+We could see the change first between 4.9.142 and 5.15.11.
+Then we were able to replicate with 4.9.315 which is reducing the search
+field to a single kernel line (still huge work of digging)
+
+We have seen a huge amount of `unknown unicast flood` on nodes running
+the newer kernel version.
+
+So far we didn't found from which commit(s) is(are) responsible, that's
+why we try to get help here.
+
+Let me explain the context and network design first:
+
+We use 2 routers, SVIs and GLBP [1] as first-hop redundancy protocol on
+them. Those routers provide connectivity to VMs running on Linux nodes.
+
+The networking is fairly simple, the Linux node act as a simple bridge
+(actually one bridge per vlan) between the router and VMs.
+
+|--- Cisco hw devices --------|--- linux node -------------|
+
+                              +--------------------------+
++----+                        |   +--------+   +-----+   |
+| R1 |------------------------|---| bridge |---| VMx |   |
++----+                        |   |        |             |
++----+                        |   |        |   +-----+   |
+| R2 |------------------------|---|        |---| VMy |   |
++----+                        |   +--------+   +-----+   |
+                              |                          |
+                              +--------------------------+
+
+Assuming this:
+- The subnet configured on SVI is a /24
+- MAC addresses provided are for explanation only.
+- GLBP AVG: Active Virtual Gateway, one of the router is elected to
+reply to ARP
+  requests
+- GLBP AVF: Active Virtual Forwarder, each router is assigned a virtual
+MAC and is
+  responsible to forward/route traffic for that MAC.
+
+GLBP Virtual IP: .254 (default-gateway for VMs)
+
+R1 is AVG
+R1 SVI ip: .252
+R1 SVI mac: 00:00:00:00:11:11
+R1 AVF mac: 11:11:11:11:11:11
+
+R2 SVI ip: .253
+R2 SVI mac: 00:00:00:00:22:22
+R2 AVF mac: 22:22:22:22:22:22
+
+
+GLBP as a particular way of working with ARP (but it's in the
+protocol...). When the Active Virtual Gateway (AVG) replies to an ARP
+request from a VM, it does so by sourcing the ARP reply packet from the
+router's SVI MAC address, while it puts the AVF as Source inside the ARP
+packet payload.
+
+GLBP never sends packet nor it sends gratuitous ARP sourced from an AVF MAC.
+
+On 4.9.142, when a VM perform an ARP request for the GW, the AVG replies
+and the bridge updates the FDB with the
+AVF MAC (11:11:11:11:11:11 or 22:22:22:22:22:22) <-> interface.
+The VM gets also the ARP reply and updates its ARP cache based on the
+ARP payload (AVF MAC).
+
+-> Now when the VM can send traffic toward the GW MAC address, the
+bridge does the FDB lookup and forward accordingly.
+
+On 4.9.345, when a VM perform an ARP request for the GW, the AVG replies
+and the bridge updates the FDB with the
+SVI MAC (00:00:00:00:11:11) <-> interface (not the AVF MAC).
+The VM gets also the ARP reply and updates its ARP cache based on the
+ARP Payload (AVF MAC).
+
+Now the VM sends traffic toward the GW MAC address, the bridge does the
+FDB lookup for the AVF MAC - which fails - and flood the traffic everywhere.
+
+As a side note, the behavior on 4.9.12 is also what we see with HW
+switch, aka the CAM is updated as well with the AVF MAC <-> interface.
+
+To workaround this, we have moved from GLBP to HSRP.
+
+As we are not very familiar with C and the netdev codebase is huge, we
+could not find the packet path for unicast packet (ARP replies are
+unicast) within a pure L2 bridge to find a lead...
+
+Here is a capture of search ARP reply packet in our lab to reproduce
+(vms + l2vpn setup between them):
+Forged packet with scapi
+```
+sendp(Ether(dst='9a:d0:e7:09:8c:9e', src='22:8e:b6:cd:54:34') /
+ARP(op='is-at', hwsrc='00:07:b4:00:29:02', psrc='198.18.0.20',
+hwdst='9a:d0:e7:09:8c:9e', pdst=ipv4d), iface='l2tpeth0')
+```
+and the capture
+```
+15:37:21.567196 22:8e:b6:cd:54:34 (oui Unknown) > 9a:d0:e7:09:8c:9e (oui
+Unknown), ethertype ARP (0x0806), length 42: Reply 198.18.0.2 is-at
+00:07:b4:00:29:02 (oui Unknown), length 28
+```
+
+With 4.9.315, we can see that 00:07:b4:00:29:02 is not found in FDB, but
+22:8e:b6:cd:54:34 is.
+
+Any help is welcome and appreciated on how to work on this !
+
+Thanks and best regards,
+Nicolas
+
+[1] https://en.wikipedia.org/wiki/Gateway_Load_Balancing_Protocol
