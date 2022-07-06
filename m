@@ -1,88 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5355689F5
-	for <lists.bridge@lfdr.de>; Wed,  6 Jul 2022 15:48:36 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E1F2568B21
+	for <lists.bridge@lfdr.de>; Wed,  6 Jul 2022 16:23:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 361DA60AE0;
-	Wed,  6 Jul 2022 13:48:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 361DA60AE0
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=GmdcHEVe
+	by smtp4.osuosl.org (Postfix) with ESMTP id 4FCCB417D9;
+	Wed,  6 Jul 2022 14:23:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4FCCB417D9
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=MipxUNNv
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id k4J4weHbB6Gm; Wed,  6 Jul 2022 13:48:32 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 6194C60FE3;
-	Wed,  6 Jul 2022 13:48:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6194C60FE3
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id v3Lst7oodQCz; Wed,  6 Jul 2022 14:23:41 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 6D9AE4154F;
+	Wed,  6 Jul 2022 14:23:40 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6D9AE4154F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 15D0FC0077;
-	Wed,  6 Jul 2022 13:48:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0B2ACC0077;
+	Wed,  6 Jul 2022 14:23:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A4CABC002D
- for <bridge@lists.linux-foundation.org>; Wed,  6 Jul 2022 13:48:30 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 203E5C002D
+ for <bridge@lists.linux-foundation.org>; Wed,  6 Jul 2022 14:23:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 7FAD682FA9
- for <bridge@lists.linux-foundation.org>; Wed,  6 Jul 2022 13:48:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7FAD682FA9
-Authentication-Results: smtp1.osuosl.org;
+ by smtp2.osuosl.org (Postfix) with ESMTP id EC92540AE8
+ for <bridge@lists.linux-foundation.org>; Wed,  6 Jul 2022 14:23:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org EC92540AE8
+Authentication-Results: smtp2.osuosl.org;
  dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=GmdcHEVe
+ header.a=rsa-sha256 header.s=20210112 header.b=MipxUNNv
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xXubkmEEwIPq for <bridge@lists.linux-foundation.org>;
- Wed,  6 Jul 2022 13:48:29 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id tUj3y18Wud0k for <bridge@lists.linux-foundation.org>;
+ Wed,  6 Jul 2022 14:23:38 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 256D081902
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 256D081902
- for <bridge@lists.linux-foundation.org>; Wed,  6 Jul 2022 13:48:29 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id d16so15844690wrv.10
- for <bridge@lists.linux-foundation.org>; Wed, 06 Jul 2022 06:48:28 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2F4E24012D
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 2F4E24012D
+ for <bridge@lists.linux-foundation.org>; Wed,  6 Jul 2022 14:23:38 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id s1so22309065wra.9
+ for <bridge@lists.linux-foundation.org>; Wed, 06 Jul 2022 07:23:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7VGDIlKV6gAV8St0jIFraWnG2EvF6VYrYLOYj9aX/Sc=;
- b=GmdcHEVeVUWW4yGaLtIyHZprjnISw5pW33LwCwJJ7/fDA6Hcfxby9OeEN4idkGEUJr
- tlORqJvsztOQN74ymQ3E4sWlPqW/6bsqHfxN0YB8ADgv1BjiKCRCjYDOh7lZQBb3Tgl5
- BdUozqnyBMsdWXGwJFWBmb35kvsmDF2WLkvQp9mRsWZPmu6EbUWcypm8pcp2H715FnU4
- ipRQuQXENffTeeb6WWoDToEU9RkLs53PtRT5L1YrX7g0bef34vYKUzk1UcPVf5OSAeT5
- XYbuV7KUIBSkcnstqa0uuwHszYv7gMD72sraYPrXUBZl/08SljwdSVHfeHp5mJ+welFO
- bGEg==
+ :cc; bh=WPpPFt2vreAvukEchuJ8KcyDhd0FY1gp7qevaVZJpHI=;
+ b=MipxUNNv1CuzDomW4TDLl1zhaylRYTrx3HZq9GYsjxdcB9+8zSPYgqHTdiwr1z+vMx
+ 1FrXYtgFdTKQJAw332y5OtL+a1DSibzdekPFpU8scZF5wsXT5IozNxflL5z/F9J/EOc8
+ 6fUUAb+3A0iOvdHXB3B0v7vb03sGXtWPoywgxAYh5fGJNL2Gf/akgZZ3o5Q2t/X8AhTv
+ oGRsf1z5hI6JAZutJvqwANARqRbZmUNjWEgtE6le0ja1+VhmfDcpIbt7w6NmofsaRELe
+ 4kHBuQJNq9n9YQUGsOMl/wOhnMFV9A/p892T0cj4Bxeo7uwyANFpUYfIfrchPmUhtkUp
+ n2Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=7VGDIlKV6gAV8St0jIFraWnG2EvF6VYrYLOYj9aX/Sc=;
- b=ehJIDOWAvcNdF8d0kUFUGCuVYp6POK1cNQEqT3w8sK9uWpAeXVyT7F/C3Dyib6sLce
- OfjiFpIpRrv+kASRqyn14GRW7gkrHZg49eKq/Gd6wk+9hbDpsHNDmMavVk/3DlRyPPL4
- zS1UAvJSVBh1ljsHBSfFtyG634KuKFY2WO5kLmvy+BjxO6Yisrvdem1Y9CATDfKO3+R1
- G2zwWQ5MX3uz3KSLP2BF70tym6Ameotkd7Jywww1mi2AqNIViE5k08Cgr09kWd3L/nSr
- WMZy+dfHoEZuvpRCzYTEHC3iWPP3VG0dS3cvoEjNm2ImO86gWI23U/AIUWtg7pq5Potg
- mjDA==
-X-Gm-Message-State: AJIora+yZuC1sXptWob7+fUxgaiT89cSVghxOFiZ73qJlj/Q4li3rVQp
- tLhNnEVuk8OT4jmlDC3CsxiZONGgcu9ZMLoyyyg=
-X-Google-Smtp-Source: AGRyM1ts1iVFzqxNpdFOtNBXP9pYfOs+b0mF015rNdoOcHmF9GTVipUoZ3vq1ks20WVLwoAkcEDLb99UfUxDajaENIY=
-X-Received: by 2002:a5d:658d:0:b0:21d:6e90:c2ed with SMTP id
- q13-20020a5d658d000000b0021d6e90c2edmr11899137wru.113.1657115307223; Wed, 06
- Jul 2022 06:48:27 -0700 (PDT)
+ bh=WPpPFt2vreAvukEchuJ8KcyDhd0FY1gp7qevaVZJpHI=;
+ b=kP2k/RB5lB+2M2AXgAMbbequEMua2wV1EF93rskSttAQamU9ehTeT6GlWjBvVJkfi5
+ o1A7umF3k9c7KgyN6CPckWkrmQOenOOVvKKkc0ks3oM34zgH74QvhsppMiDuH0uJFRT6
+ 5AZCzDUZ9Hai8D/hECDDkSAGZJbP1ETsvgGnqQVBEUAPU+zV3JgJTD+Ls8njRCGWJAPs
+ bWs8SFz0VfQPJN1u6j9WhXTKD2KV5yadNIR4sHOmI6CfqIaO95y3hXx4TUriCELbpmqe
+ C07xVmpo0szDXfnNcanUxyL/S3McLKr80vEEgBAJlmXYVzvGqkQZgwrTFMkAeCWohNP/
+ S2FA==
+X-Gm-Message-State: AJIora+70on23F6VNR+Qkv9hmTcAMUtwTxKvJZHdHlOMw0q8HQOwh6kp
+ ty6vbBEZklLjJvyYsdr3eH6GnI9DP4SvFKs2YcU=
+X-Google-Smtp-Source: AGRyM1vyCqZB5Fa3OerranrlSzgeG9k7CwyXwEFfqtrJ8m53fLEj0coZuzcxmy+5Zyo17nvKGoYAEoROlUXUwRhXr1Q=
+X-Received: by 2002:a5d:4304:0:b0:21b:9b2c:be34 with SMTP id
+ h4-20020a5d4304000000b0021b9b2cbe34mr40056150wrq.577.1657117416326; Wed, 06
+ Jul 2022 07:23:36 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220524152144.40527-1-schultz.hans+netdev@gmail.com>
  <20220524152144.40527-4-schultz.hans+netdev@gmail.com>
  <20220627180557.xnxud7d6ol22lexb@skbuf>
  <CAKUejP7ugMB9d3MVX3m9Brw12_ocFoT+nuJJucYdQH70kzC7=w@mail.gmail.com>
- <CAKUejP5u9rrH8tODODG0a1PLXfLhk7NLe5LUYkefkbs15uU=BQ@mail.gmail.com>
- <20220706132834.rdw7mmpbwt55kt4r@skbuf>
-In-Reply-To: <20220706132834.rdw7mmpbwt55kt4r@skbuf>
+ <20220706085559.oyvzijcikivemfkg@skbuf>
+ <CAKUejP7gmULyrjqd3b3PiWwi7TJzF4HNuEbmAf25Cqh3w7a1mw@mail.gmail.com>
+In-Reply-To: <CAKUejP7gmULyrjqd3b3PiWwi7TJzF4HNuEbmAf25Cqh3w7a1mw@mail.gmail.com>
 From: Hans S <schultz.hans@gmail.com>
-Date: Wed, 6 Jul 2022 15:48:16 +0200
-Message-ID: <CAKUejP7DjCoEjyzGWs4ZQF3_gfy6tBhCYs+H9Ja7hXcFw09qww@mail.gmail.com>
+Date: Wed, 6 Jul 2022 16:23:25 +0200
+Message-ID: <CAKUejP5modz89PxvgjWxNZ6mwyfdD+e2r_2n0Aj+HF8LFfn9SQ@mail.gmail.com>
 To: Vladimir Oltean <olteanv@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
@@ -111,48 +111,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Jul 6, 2022 at 3:28 PM Vladimir Oltean <olteanv@gmail.com> wrote:
->
-> On Tue, Jul 05, 2022 at 05:05:52PM +0200, Hans S wrote:
-> > Hi, does anybody know what it going on with this variable?
-> > struct dsa_port *dp ->ageing_time;
+> >> @@ -919,6 +920,9 @@ static void mv88e6xxx_mac_link_down(struct dsa_switch *ds, int port,
+> >>       if (err)
+> >>               dev_err(chip->dev,
+> >>                       "p%d: failed to force MAC link down\n", port);
+> >> +     else
+> >> +             if (mv88e6xxx_port_is_locked(chip, port, true))
+> >> +                     mv88e6xxx_atu_locked_entry_flush(ds, port);
 > >
-> > I experience that it changes value like a factor ~10 at times.
+> >This is superfluous, is it not? The bridge will transition a port whose
+> >link goes down to BR_STATE_DISABLED, which will make dsa_port_set_state()
+> >fast-age the dynamic FDB entries on the port, which you've already
+> >handled below.
 >
-> Could you be a bit more specific? Are you talking about STP Topology
-> Change Notification BPDUs, which trigger this code path?
->
-> diff --git a/net/bridge/br_stp.c b/net/bridge/br_stp.c
-> index 7d27b2e6038f..9b25bc2dcb3e 100644
-> --- a/net/bridge/br_stp.c
-> +++ b/net/bridge/br_stp.c
-> @@ -671,10 +671,10 @@ void __br_set_topology_change(struct net_bridge *br, unsigned char val)
->
->                 if (val) {
->                         t = 2 * br->forward_delay;
-> -                       br_debug(br, "decreasing ageing time to %lu\n", t);
-> +                       br_info(br, "decreasing ageing time to %lu\n", t);
->                 } else {
->                         t = br->bridge_ageing_time;
-> -                       br_debug(br, "restoring ageing time to %lu\n", t);
-> +                       br_info(br, "restoring ageing time to %lu\n", t);
->                 }
->
->                 err = __set_ageing_time(br->dev, t);
->
-> Coincidentally the default values of 2 * br->forward_delay and br->bridge_ageing_time
-> are 1 order of magnitude apart from each other.
->
-> [  139.998310] br0: topology change detected, propagating
-> [  140.003490] br0: decreasing ageing time to 3000
-> [  175.193054] br0: restoring ageing time to 30000
->
-> What's the problem anyway?
+> I removed this code, but then on link down the locked entries were not
+> cleared out. Something not as thought?
 
-It might be a topology change as you indicate, though I am not sure.
-So I am not using that variable any more for determining the ageing
-time for the locked FDB entries, but instead I have made a function to
-read the time from the chip instead.
+I don't see a fast ageing happening on link down. There is the two cases:
+1. Soft link down
 
-The problem with that, I have mentioned in my latest reply to the
-mac-auth patch set...
+With iproute2 command the link is brought down and
+mv88e6xxx_mac_link_down() is called with rtnl lock taken.
+
+2. Hard link down
+
+I remove the cable from the port and mv88e6xxx_mac_link_down() is
+called without rtnl lock.
+
+As the hard link down case calls without rtnl lock, either I trigger
+the case you have mentioned or I have to use rtnl_is_locked()
+somewhere along the line?
