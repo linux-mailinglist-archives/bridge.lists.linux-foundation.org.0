@@ -1,55 +1,55 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7425356B55C
-	for <lists.bridge@lfdr.de>; Fri,  8 Jul 2022 11:27:24 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AFF456B5F3
+	for <lists.bridge@lfdr.de>; Fri,  8 Jul 2022 11:50:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id A39C540370;
-	Fri,  8 Jul 2022 09:27:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A39C540370
+	by smtp4.osuosl.org (Postfix) with ESMTP id 775C04251F;
+	Fri,  8 Jul 2022 09:50:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 775C04251F
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vj8SqT83wwNI; Fri,  8 Jul 2022 09:27:22 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 20B3640155;
-	Fri,  8 Jul 2022 09:27:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 20B3640155
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id tL3OwnzfYUTT; Fri,  8 Jul 2022 09:50:40 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 0219E42522;
+	Fri,  8 Jul 2022 09:50:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0219E42522
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B8A1EC0078;
-	Fri,  8 Jul 2022 09:27:20 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 83E72C0078;
+	Fri,  8 Jul 2022 09:50:38 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 76399C002D
- for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 09:27:19 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 49F9FC002D
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 09:50:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 5335540483
- for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 09:27:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5335540483
+ by smtp3.osuosl.org (Postfix) with ESMTP id 1677C610F1
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 09:50:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1677C610F1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id fjCKH0P472iZ for <bridge@lists.linux-foundation.org>;
- Fri,  8 Jul 2022 09:27:18 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ngL8GoyNs5W3 for <bridge@lists.linux-foundation.org>;
+ Fri,  8 Jul 2022 09:50:36 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 943A340155
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D683360B75
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 943A340155
- for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 09:27:18 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id D683360B75
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 09:50:35 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 5D9F318873BF;
- Fri,  8 Jul 2022 09:27:15 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 305DD1887465;
+ Fri,  8 Jul 2022 09:50:34 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 58FFA25032B7;
- Fri,  8 Jul 2022 09:27:15 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 265D225032B8;
+ Fri,  8 Jul 2022 09:50:34 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 4A736A1E00B5; Fri,  8 Jul 2022 09:27:15 +0000 (UTC)
+ id 1E89BA1E00B7; Fri,  8 Jul 2022 09:50:34 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Fri, 08 Jul 2022 11:27:15 +0200
+Date: Fri, 08 Jul 2022 11:50:33 +0200
 From: netdev@kapio-technology.com
 To: Vladimir Oltean <olteanv@gmail.com>
 In-Reply-To: <20220708091550.2qcu3tyqkhgiudjg@skbuf>
@@ -59,7 +59,7 @@ References: <20220707152930.1789437-1-netdev@kapio-technology.com>
  <e6f418705e19df370c8d644993aa9a6f@kapio-technology.com>
  <20220708091550.2qcu3tyqkhgiudjg@skbuf>
 User-Agent: Gigahost Webmail
-Message-ID: <463ead20c286688abc9800e487558a3b@kapio-technology.com>
+Message-ID: <e3ea3c0d72c2417430e601a150c7f0dd@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -90,17 +90,6 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 2022-07-08 11:15, Vladimir Oltean wrote:
-
-> 
-> Well, yes, but if I'm correct, the bridge right now can't create locked
-> FDB entries, so is_locked will always be false in the ADD_TO_DEVICE
-> direction.
-
-The bridge can create locked FDB entries with this patch set. That is 
-part of the idea that a SW bridge will have the same features as the HW 
-version, so first I made it in the bridge.
-
-> 
 > When the possibility for it to be true will exist, _all_ switchdev
 > drivers will need to be updated to ignore that (mlxsw, cpss, ocelot,
 > rocker, prestera, etc etc), not just DSA. And you don't need to
@@ -111,3 +100,5 @@ version, so first I made it in the bridge.
 > within DSA until needed otherwise.
 > 
 
+Maybe I have it wrong, but I think that Ido requested me to send it to 
+all the drivers, and have them ignore entries with is_locked=true ...
