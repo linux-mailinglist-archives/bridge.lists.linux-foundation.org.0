@@ -2,107 +2,77 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A810C56B2DB
-	for <lists.bridge@lfdr.de>; Fri,  8 Jul 2022 08:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5519156B421
+	for <lists.bridge@lfdr.de>; Fri,  8 Jul 2022 10:12:42 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 3E7CF403F9;
-	Fri,  8 Jul 2022 06:38:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3E7CF403F9
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=Y+HfLILv
+	by smtp2.osuosl.org (Postfix) with ESMTP id 606184119B;
+	Fri,  8 Jul 2022 08:12:40 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 606184119B
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id O3gGv-djOzjf; Fri,  8 Jul 2022 06:38:48 +0000 (UTC)
+	with ESMTP id XcCI0QB_L771; Fri,  8 Jul 2022 08:12:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id BD0F740207;
-	Fri,  8 Jul 2022 06:38:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BD0F740207
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 7D2AF405B6;
+	Fri,  8 Jul 2022 08:12:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 7D2AF405B6
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 71456C007D;
-	Fri,  8 Jul 2022 06:38:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 874C5C0084;
+	Fri,  8 Jul 2022 08:12:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3117EC002D
- for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 06:38:45 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 60DFAC002D
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 07:12:51 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 05A8F61346
- for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 06:38:45 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 05A8F61346
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=Y+HfLILv
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2D897415DA
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 07:12:51 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2D897415DA
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mEQZp-L4o5dj for <bridge@lists.linux-foundation.org>;
- Fri,  8 Jul 2022 06:38:44 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 3A09C61343
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 3A09C61343
- for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 06:38:44 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id o4so29192005wrh.3
- for <bridge@lists.linux-foundation.org>; Thu, 07 Jul 2022 23:38:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6MNY7diHJ+MnWxKcDHqJkKosV/mr66iz8oydZliBRmQ=;
- b=Y+HfLILvoGNJKQwKFAtwItKF+nCU+J9436rxhfgzKj8LxGXYwEyhG9L5pC/GGnKcdD
- OakYQ5yA1HWawR+S2zFE2a6CJG4WW0xpCZKA5ZEAV9jE47k/LUyRUKiGiG3uKwijbCKU
- NV4KIyrtkEqVcSyMJch5SBJa58tVqjxP7xToKLhCOPnCSfhpg/F4B2xs7hIpHmVkommW
- Zt5rqJZpPIpwTgHyjxaWFhu27gs5QHkOPa6NnNwBF2l0y4vu0P+y0lmOKc7ZRKyjNWMK
- XqtyfkLnqIfI219BNbG+a7HAZwfByoQoCrQ64uSG9r8XWGu9IW0ObRyJKSPD5Zg8lGq9
- iG2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6MNY7diHJ+MnWxKcDHqJkKosV/mr66iz8oydZliBRmQ=;
- b=4wYqFfa0zkuWZzGnJsWirBJ51RryAQ2lGuLgk7C1y6LBRz1ZxoVe6TYzyqOqVRNdw8
- yk9NIbchsCXgoNulPgKLXkqfXgsUaC2+1v3AMf5W/7WW0PnfMEcsvvKjtgEmWmQUQYnE
- Ndu42njcbqTO5cV50ctuFh6LxPmDnGfztwo+1lnWxjabvZzuny6vYa2MIATPibhZu8hy
- Ty1SokXDFZSQscfoGknNxz53gDFIONYO6pAcxREbd1OtNWSA4F0iXsBEyxkyyfK2ornf
- hMB2DesKPD1y2pkBAIhhCJgmBeqrjtilNRnAZbDWRESjYWgI4HxXLCooKUqp8/GtMT8d
- rUDw==
-X-Gm-Message-State: AJIora//WFwUF9zuF5T1e1K8KWXHbKjGPVW5CllVX2tx5NpSxmRikCR4
- q18s36myqq5cYdxvz0Y7XavTW5V3kwP80rZVVSI=
-X-Google-Smtp-Source: AGRyM1v1scyfjp6+EGm8qT5gCJ8TPVBCMuX9yYoD0E0kmstb/lo3xGd1jIUmhQVuWt/vLqRSvbuExBzmMqpCiMTuhMM=
-X-Received: by 2002:adf:dc0d:0:b0:21d:ea5:710f with SMTP id
- t13-20020adfdc0d000000b0021d0ea5710fmr1684518wri.48.1657262322403; Thu, 07
- Jul 2022 23:38:42 -0700 (PDT)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id eTnhPGZbVGPZ for <bridge@lists.linux-foundation.org>;
+ Fri,  8 Jul 2022 07:12:49 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A8048402E3
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id A8048402E3
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Jul 2022 07:12:49 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 910741887361;
+ Fri,  8 Jul 2022 07:12:46 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 8876325032B7;
+ Fri,  8 Jul 2022 07:12:46 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 70813A1E00B7; Fri,  8 Jul 2022 07:12:46 +0000 (UTC)
+X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-References: <20220524152144.40527-2-schultz.hans+netdev@gmail.com>
- <01e6e35c-f5c9-9776-1263-058f84014ed9@blackwall.org>
- <86zgj6oqa9.fsf@gmail.com>
- <b78fb006-04c4-5a25-7ba5-94428cc9591a@blackwall.org>
- <86fskyggdo.fsf@gmail.com>
- <040a1551-2a9f-18d0-9987-f196bb429c1b@blackwall.org>
- <86v8tu7za3.fsf@gmail.com>
- <4bf1c80d-0f18-f444-3005-59a45797bcfd@blackwall.org>
- <20220706181316.r5l5rzjysxow2j7l@skbuf>
- <7cf30a3e-a562-d582-4391-072a2c98ab05@blackwall.org>
- <20220706202130.ehzxnnqnduaq3rmt@skbuf>
- <fe456fb0-4f68-f93e-d4a9-66e3bc56d547@blackwall.org>
- <37d59561-6ce8-6c5f-5d31-5c37a0a3d231@blackwall.org>
-In-Reply-To: <37d59561-6ce8-6c5f-5d31-5c37a0a3d231@blackwall.org>
-From: Hans S <schultz.hans@gmail.com>
-Date: Fri, 8 Jul 2022 08:38:31 +0200
-Message-ID: <CAKUejP4P6-5gYg2owdbcNLKwYvsimg6L-Y_izUxfq=Uz=K_JDg@mail.gmail.com>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 08 Jul 2022 09:12:46 +0200
+From: netdev@kapio-technology.com
+To: Vladimir Oltean <olteanv@gmail.com>
+In-Reply-To: <20220707102836.u7ig6rr2664mcrlf@skbuf>
+References: <20220706122502.1521819-1-netdev@kapio-technology.com>
+ <20220707102836.u7ig6rr2664mcrlf@skbuf>
+User-Agent: Gigahost Webmail
+Message-ID: <f8a4f54a90efa545cac1ff2cdbde78c7@kapio-technology.com>
+X-Sender: netdev@kapio-technology.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 08 Jul 2022 08:12:31 +0000
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
- Ido Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Ido Schimmel <idosch@nvidia.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Eric Dumazet <edumazet@google.com>,
  linux-kselftest@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Vladimir Oltean <olteanv@gmail.com>,
- Shuah Khan <shuah@kernel.org>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH V3 net-next 1/4] net: bridge: add fdb flag to
- extent locked port feature
+ kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ Shuah Khan <shuah@kernel.org>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 1/1] net: dsa: mv88e6xxx: allow
+ reading FID when handling ATU violations
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -117,22 +87,59 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Jul 7, 2022 at 4:08 PM Nikolay Aleksandrov <razor@blackwall.org> wrote:
->
-> On 07/07/2022 00:01, Nikolay Aleksandrov wrote:
-> > On 06/07/2022 23:21, Vladimir Oltean wrote:
-> >> On Wed, Jul 06, 2022 at 10:38:04PM +0300, Nikolay Aleksandrov wrote:
-> [snip]
-> > I already said it's ok to add hard configurable limits if they're done properly performance-wise.
-> > Any distribution can choose to set some default limits after the option exists.
-> >
->
-> Just fyi, and to avoid duplicate efforts, I already have patches for global and per-port software
-> fdb limits that I'll polish and submit soon (depending on time availability, of course). If I find
-> more time I might add per-vlan limits as well to the set. They use embedded netlink attributes
-> to config and dump, so we can easily extend them later (e.g. different action on limit hit, limit
-> statistics etc).
->
+On 2022-07-07 12:28, Vladimir Oltean wrote:
+> On Wed, Jul 06, 2022 at 02:25:02PM +0200, Hans Schultz wrote:
+>> For convenience the function mv88e6xxx_g1_atu_op() has been used to 
+>> read
+>> ATU violations, but the function has other purposes and does not 
+>> enable
+>> the possibility to read the FID when reading ATU violations.
+>> 
+>> The FID is needed to get hold of which VID was involved in the 
+>> violation,
+>> thus the need for future purposes to be able to read the FID.
+> 
+> Make no mistake, the existing code doesn't disallow reading back the 
+> FID
+> during an ATU Get/Clear Violation operation, and your patch isn't
+> "allowing" something that wasn't disallowed.
 
-Sounds good, I will just limit the number of locked entries in the
-driver as they are not controllable from the bridge. :-)
+It would only read 0 the way it worked. And I don't understand why
+mv88e6xxx_g1_atu_op() writes the FID?
+
+> 
+> The documentation for the ATU FID register says that its contents is
+> ignored before the operation starts, and it contains the returned ATU
+> entry's FID after the operation completes.
+> 
+> So the change simply says: don't bother to write the ATU FID register
+> with zero, it doesn't matter what this contains. This is probably true,
+> but the patch needs to do what's written on the box.
+
+Writing 0 to the ATU fID register resulted in a read giving zero of 
+course.
+
+> 
+> Please note that this only even matters at all for switches with
+> mv88e6xxx_num_databases(chip) > 256, where MV88E6352_G1_ATU_FID is a
+> dedicated register which this patch avoids writing. For other switches,
+> the FID is embedded within MV88E6XXX_G1_ATU_CTL or MV88E6XXX_G1_ATU_OP.
+> So _practically_, for those switches, you are still emitting the
+> GET_CLR_VIOLATION ATU op with a FID of 0 whether you like it or not, 
+> and
+> this patch introduces a (most likely irrelevant) discrepancy between 
+> the
+> access methods for various switches.
+> 
+> Please note that this observation is relevant for your future changes 
+> to
+> read back the FID too. As I said here:
+> https://patchwork.kernel.org/project/netdevbpf/patch/20220524152144.40527-4-schultz.hans+netdev@gmail.com/#24912482
+> you can't just assume that the FID lies within the MV88E6352_G1_ATU_FID
+> register, just look at the way it is packed within 
+> mv88e6xxx_g1_atu_op().
+> You'll need to unpack it in the same way.
+
+So I need a new function to read the FID that mimics 
+mv88e6xxx_g1_atu_op()
+as far as I understand?
