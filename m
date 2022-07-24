@@ -1,110 +1,103 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B2A57CD31
-	for <lists.bridge@lfdr.de>; Thu, 21 Jul 2022 16:20:15 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6AC257F3F0
+	for <lists.bridge@lfdr.de>; Sun, 24 Jul 2022 10:11:32 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id BE16083FC2;
-	Thu, 21 Jul 2022 14:20:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BE16083FC2
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=P+0nQPKe
+	by smtp2.osuosl.org (Postfix) with ESMTP id 83BB740BC9;
+	Sun, 24 Jul 2022 08:11:30 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 83BB740BC9
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=FDC1RPQ3
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pIycBbjhQ_BZ; Thu, 21 Jul 2022 14:20:12 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 2B6A983FC3;
-	Thu, 21 Jul 2022 14:20:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2B6A983FC3
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id KOUR0GO_m_G2; Sun, 24 Jul 2022 08:11:30 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id EDA024168B;
+	Sun, 24 Jul 2022 08:11:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org EDA024168B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C1E22C007D;
-	Thu, 21 Jul 2022 14:20:10 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 85444C0078;
+	Sun, 24 Jul 2022 08:11:28 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 79A4EC002D
- for <bridge@lists.linux-foundation.org>; Thu, 21 Jul 2022 14:20:09 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3405EC002D
+ for <bridge@lists.linux-foundation.org>; Sun, 24 Jul 2022 08:11:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 5D2534015F
- for <bridge@lists.linux-foundation.org>; Thu, 21 Jul 2022 14:20:09 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5D2534015F
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=P+0nQPKe
+ by smtp2.osuosl.org (Postfix) with ESMTP id 07DF640BC9
+ for <bridge@lists.linux-foundation.org>; Sun, 24 Jul 2022 08:11:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 07DF640BC9
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jUCd5TaeLX5e for <bridge@lists.linux-foundation.org>;
- Thu, 21 Jul 2022 14:20:08 +0000 (UTC)
+ with ESMTP id cU64J9EtD-Ko for <bridge@lists.linux-foundation.org>;
+ Sun, 24 Jul 2022 08:11:25 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CD60840135
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by smtp2.osuosl.org (Postfix) with ESMTPS id CD60840135
- for <bridge@lists.linux-foundation.org>; Thu, 21 Jul 2022 14:20:07 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id t3so2408000edd.0
- for <bridge@lists.linux-foundation.org>; Thu, 21 Jul 2022 07:20:07 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 88F3840156
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 88F3840156
+ for <bridge@lists.linux-foundation.org>; Sun, 24 Jul 2022 08:11:25 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id d8so11864933wrp.6
+ for <bridge@lists.linux-foundation.org>; Sun, 24 Jul 2022 01:11:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=qXv6CUvSTMfPvvXNvz/Br6ygFjjEQtW3IZorN82JkiU=;
- b=P+0nQPKeA3PoGFzwFw3rHozuSxcxC8sThvgWr85Jgf8I0HLON9ganDXQeF+CXi03M8
- QjR7MJw6kirPoUgYH+Giho7PJvp2ReSEvld3BVDqJP1IlxeQfywVwXtpsBRJSXX4+jWb
- plznFF7jPvGt3gwaqtL2/00LYhCFhrX8Q2iWYZFHKd/mPx6Mpu3FViZ6AsRPoG3iofQI
- H3FmIsHff9UoPwOJzMMdft7cHqTf5qN4rDyGg8bdoUwiX6nh+bYwn2P7RsU/suilsCsu
- 3pYjs4Ujkes4hhtM+BsOvm8IEzRBpXWF+HOV66ewkbbfBisnVv6XU9Kv1t4SKZAjMJNo
- 0u+w==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4j2cZN1zYQwRk4mpzSYDT0FtltzsuIeHx0BCJeg+1MI=;
+ b=FDC1RPQ342icpKEeFzetsAQN1Q1CFXtM5cASqyAfrvxxiF0Mi9rDkVLxxGPfS7UXJ+
+ Q3096eUT8BRnrsCb1iY6+0aENWYYoP9qOg+K3yblDf62ndrmf/huBe8vHUeFwDB1nges
+ xqpwsVcbZuRIKHOo9oMu3N2pcEkXHECcFHDaCYfHg8U4oxbeckCHueqb67SdxJdMxj3z
+ wGkeSF/bcFcMQzvlLVdVJ4Gayv17AmSXKOCEqm8HY6VzWhVidZLl0ldUzmX11zvvy4dM
+ chgw6+MRG4eYzqo6i4YV17MMFk+/v1VPkhLngGm8PBJdzOXdYwCQtAHn2ubDmGZiyaGJ
+ 2Kgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=qXv6CUvSTMfPvvXNvz/Br6ygFjjEQtW3IZorN82JkiU=;
- b=Dfb49uAGrg/fvmdDsltLPZhzptoLjh1ZJPdplRmVysdSBe1Yc1K5FmT/sv6aFC63wK
- NpVz3qED4J7R34GUjgSGov6tUqR5sv8Uc+Nw6t1UC411/b0i32zNu1xHJbVZY3vvjbcY
- QrazoyxTnW8FLhWabMZJ9a6qP6JHEigo8RstDawFQ465I5w+ie4vAN8w+34ixXpsRhWl
- vThfcCaHPkX1RzSQe/YnW6Jbs7aDvXq1KsiLqBKPOzcFepfN2vRcdggzAqzdOLo632Zp
- RFJi48b5xaSMtJ+J/jetByFcsdrLCXSulzdKiuhiz13RTgbs9xeJbX7pQNdpQxWNsyCA
- pQXQ==
-X-Gm-Message-State: AJIora8+5IJwzClywKUubcHz6MRVCWf3TiffN/0H2payd/HZZbq3Lf37
- fyjHosTJ0BPrJMQv8uv7zk4=
-X-Google-Smtp-Source: AGRyM1uGxCFM+uC51rrnQKpnRyzGOk2xs0Ei7v+HkEZHqj5CW5fMsFpSjcMs9VwNKiAXPxxspRRC+w==
-X-Received: by 2002:a05:6402:159a:b0:43b:ba6c:d0e2 with SMTP id
- c26-20020a056402159a00b0043bba6cd0e2mr8810492edv.418.1658413205937; 
- Thu, 21 Jul 2022 07:20:05 -0700 (PDT)
-Received: from skbuf ([188.25.231.115]) by smtp.gmail.com with ESMTPSA id
- w12-20020a05640234cc00b0043bc5ee3ec4sm1105646edc.22.2022.07.21.07.20.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 Jul 2022 07:20:04 -0700 (PDT)
-Date: Thu, 21 Jul 2022 17:20:01 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ido Schimmel <idosch@nvidia.com>
-Message-ID: <20220721142001.twcmiyvhvlxmp24j@skbuf>
-References: <20220708115624.rrjzjtidlhcqczjv@skbuf>
- <723e2995314b41ff323272536ef27341@kapio-technology.com>
- <YsqPWK67U0+Iw2Ru@shredder>
- <d3f674dc6b4f92f2fda3601685c78ced@kapio-technology.com>
- <Ys69DiAwT0Md+6ai@shredder>
- <648ba6718813bf76e7b973150b73f028@kapio-technology.com>
- <YtQosZV0exwyH6qo@shredder>
- <4500e01ec4e2f34a8bbb58ac9b657a40@kapio-technology.com>
- <20220721115935.5ctsbtoojtoxxubi@skbuf> <YtlUWGdgViyjF6MK@shredder>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4j2cZN1zYQwRk4mpzSYDT0FtltzsuIeHx0BCJeg+1MI=;
+ b=bBAToeHnT8aHN2XZcZT75RweOZ1Fdu+cUFRye7HJjC7X6+prGdsQNKfpE/tOX8kKbI
+ a5zcEfJVyjvYVswOPD6GpU6J5zFgJ9P0oWP59rioVNxQneBsU4MmAkkauZVwbWGFU8/B
+ ULpLeEMgeEN59s4cnVwlt407zGFU5kLASjzbRiGetH2hKcycmKTxQIQPA2y/D89lTLtP
+ StMxPOjmPM5a+RV+RZCFkqO6ea+wwD8UcsWgYxbTgMSB37lv0HZkBLcI6s+CGlEg9Bic
+ W4coSkH4cLR8FObuq258Qa2Ar+NGT+EOzX/EWbmitar/NQKDPUmC5t0xxjA2QGE+nAYp
+ G7Cg==
+X-Gm-Message-State: AJIora9YpR/UjFGiruaBwbqcQHlGXIC3Fg8mGjJcnOSGH3lT94/vnTHD
+ 70amb57SwrjyaqplH2XYov39gvq7xY5OOS02JME=
+X-Google-Smtp-Source: AGRyM1tdv7lj8flnITHW2lunWgSsEX+G51gI971XJKu/diR64iG8Iwygok8RSeTQqFi6tcZnZuQKp/riuVo+gjUzxAo=
+X-Received: by 2002:a5d:42c4:0:b0:21e:2cd4:a72e with SMTP id
+ t4-20020a5d42c4000000b0021e2cd4a72emr4545412wrr.249.1658650283641; Sun, 24
+ Jul 2022 01:11:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YtlUWGdgViyjF6MK@shredder>
+References: <Yr2LFI1dx6Oc7QBo@shredder>
+ <CAKUejP6LTFuw7d_1C18VvxXDuYaboD-PvSkk_ANSFjjfhyDGkg@mail.gmail.com>
+ <Yr778K/7L7Wqwws2@shredder>
+ <CAKUejP5w0Dn8y9gyDryNYy7LOUytqZsG+qqqC8JhRcvyC13=hQ@mail.gmail.com>
+ <20220717134610.k3nw6mam256yxj37@skbuf>
+ <20220717140325.p5ox5mhqedbyyiz4@skbuf>
+ <CAKUejP6g3HxS=Scj-2yhsQRJApxnq1e31Nkcc995s7gzfMJOew@mail.gmail.com>
+ <20220717183852.oi6yg4tgc5vonorp@skbuf>
+ <CAKUejP7WyL2r03EiZU4hA63u2e=Wz3KM4X=rDdji5pdZ0ptaZg@mail.gmail.com>
+ <20220721114540.ovm22rtnwqs77nfb@skbuf>
+In-Reply-To: <20220721114540.ovm22rtnwqs77nfb@skbuf>
+From: Hans S <schultz.hans@gmail.com>
+Date: Sun, 24 Jul 2022 10:09:11 +0200
+Message-ID: <CAKUejP6xR81p1QeSCnDP_3uh9owafdYr1pifeCzekzUvU3_dPw@mail.gmail.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
  Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
  Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
- netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- Roopa Prabhu <roopa@nvidia.com>, linux-kernel@vger.kernel.org,
+ Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ Roopa Prabhu <roopa@nvidia.com>, Hans Schultz <schultz.hans+netdev@gmail.com>,
  Vivien Didelot <vivien.didelot@gmail.com>, Eric Dumazet <edumazet@google.com>,
- linux-kselftest@vger.kernel.org, netdev@kapio-technology.com, kuba@kernel.org,
- Paolo Abeni <pabeni@redhat.com>, Shuah Khan <shuah@kernel.org>,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v4 net-next 3/6] drivers: net: dsa: add locked
- fdb entry flag to drivers
+ linux-kselftest@vger.kernel.org, netdev@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Shuah Khan <shuah@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH net-next v1 1/1] net: bridge: ensure that
+ link-local traffic cannot unlock a locked port
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -119,54 +112,17 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Jul 21, 2022 at 04:27:52PM +0300, Ido Schimmel wrote:
-> I tried looking information about MAB online, but couldn't find
-> detailed material that answers my questions, so my answers are based
-> on what I believe is logical, which might be wrong.
+On Thu, Jul 21, 2022 at 1:45 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+>
+> On Sun, Jul 17, 2022 at 09:20:57PM +0200, Hans S wrote:
+>
+> I'm only pointing out the obvious here, we need an opt in for MAB, and
+> the implemented behavior I've seen here kind of points to mapping this
+> to "+learning +locked", where the learning process creates locked FDB entries.
 
-I'm kind of in the same situation here.
-
-> Currently, the bridge will forward packets to a locked entry which
-> effectively means that an unauthorized host can cause the bridge to
-> direct packets to it and sniff them. Yes, the host can't send any
-> packets through the port (while locked) and can't overtake an existing
-> (unlocked) FDB entry, but it still seems like an odd decision. IMO, the
-> situation in mv88e6xxx is even worse because there an unauthorized host
-> can cause packets to a certain DMAC to be blackholed via its zero-DPV
-> entry.
-> 
-> Another (minor?) issue is that locked entries cannot roam between locked
-> ports. Lets say that my user space MAB policy is to authorize MAC X if
-> it appears behind one of the locked ports swp1-swp4. An unauthorized
-> host behind locked port swp5 can generate packets with SMAC X,
-> preventing the true owner of this MAC behind swp1 from ever being
-> authorized.
-
-In the mv88e6xxx offload implementation, the locked entries eventually
-age out from time to time, practically giving the true owner of the MAC
-address another chance every 5 minutes or so. In the pure software
-implementation of locked FDB entries I'm not quite sure. It wouldn't
-make much sense for the behavior to differ significantly though.
-
-> It seems like the main purpose of these locked entries is to signal to
-> user space the presence of a certain MAC behind a locked port, but they
-> should not be able to affect packet forwarding in the bridge, unlike
-> regular entries.
-
-So essentially what you want is for br_handle_frame_finish() to treat
-"dst = br_fdb_find_rcu(br, eth_hdr(skb)->h_dest, vid);" as NULL if
-test_bit(BR_FDB_LOCKED, &dst->flags) is true?
-
-> Regarding a separate knob for MAB, I tend to agree we need it. Otherwise
-> we cannot control which locked ports are able to populate the FDB with
-> locked entries. I don't particularly like the fact that we overload an
-> existing flag ("learning") for that. Any reason not to add an explicit
-> flag ("mab")? At least with the current implementation, locked entries
-> cannot roam between locked ports and cannot be refreshed, which differs
-> from regular learning.
-
-Well, assuming we model the software bridge closer to mv88e6xxx (where
-locked FDB entries can roam after a certain time), does this change things?
-In the software implementation I think it would make sense for them to
-be able to roam right away (the age-out interval in mv88e6xxx is just a
-compromise between responsiveness to roaming and resistance to DoS).
+I can go with the reasoning for the opt in for MAB, but disabling link
+local learning system wide I don't think is a good idea, unless
+someone can ensure me that it does not impact something else.
+In general locked ports should never learn from link local, which is a
+problem if they do, which suggests to me that this patch should
+eventually be accepted as the best solution.
