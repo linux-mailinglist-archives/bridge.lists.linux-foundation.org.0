@@ -1,84 +1,108 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95EB95814B5
-	for <lists.bridge@lfdr.de>; Tue, 26 Jul 2022 16:00:21 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4628584B14
+	for <lists.bridge@lfdr.de>; Fri, 29 Jul 2022 07:25:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id A81BB40169;
-	Tue, 26 Jul 2022 14:00:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A81BB40169
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=VLmpkhCp
+	by smtp3.osuosl.org (Postfix) with ESMTP id 9C89660E96;
+	Fri, 29 Jul 2022 05:25:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9C89660E96
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=WkAkV/6c
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id riIGWqEnEneh; Tue, 26 Jul 2022 14:00:19 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id F2D4740275;
-	Tue, 26 Jul 2022 14:00:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org F2D4740275
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id P3oYkuZZKKKI; Fri, 29 Jul 2022 05:25:42 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 165C560E9F;
+	Fri, 29 Jul 2022 05:25:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 165C560E9F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 91BF8C007D;
-	Tue, 26 Jul 2022 14:00:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B1BD9C007D;
+	Fri, 29 Jul 2022 05:25:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1B511C002D
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jul 2022 14:00:16 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D6380C002D
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Jul 2022 05:25:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id F29CC41997
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jul 2022 14:00:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org F29CC41997
-Authentication-Results: smtp4.osuosl.org;
- dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
- header.a=rsa-sha256 header.s=k20201202 header.b=VLmpkhCp
+ by smtp1.osuosl.org (Postfix) with ESMTP id 9D8C883EFF
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Jul 2022 05:25:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9D8C883EFF
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=WkAkV/6c
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HX84OtfCU1ua for <bridge@lists.linux-foundation.org>;
- Tue, 26 Jul 2022 14:00:15 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DC2CE418E8
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp4.osuosl.org (Postfix) with ESMTPS id DC2CE418E8
- for <bridge@lists.linux-foundation.org>; Tue, 26 Jul 2022 14:00:14 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7E99B615B4;
- Tue, 26 Jul 2022 14:00:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E02D4C433B5;
- Tue, 26 Jul 2022 14:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1658844012;
- bh=JTC417El+CUs57vvMncV+ly5z5naqXGH++ZVORHJmK0=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=VLmpkhCpQri1xVRvF5yjpaUkOBVrcbLBcPWymxj5H4TKPGnxHufJBsNFtmz+vCwv5
- AYqU/T2tPyPo+O7Y5SKGPYrGww5Wy7gFFnNHgwNwsB0Wg8KgJsXT1fVByZFm0n7Tj2
- 1Lxa62EX3CBZvvhR0GUNAXTMTK0jMMLD8ErX3j7IFOTGYbU+PnawHUGN+3MgCP5qnN
- Wk8NI/7/Gh0eNBZsTIsGy8mMEDgKnqO0nsisxwNnN4DuXQaH9Qz20BxAmzEyf1/4pa
- gCcsK7rdI53JZ2+eLoaD8O+bQ7STDvfRrXDBmL/Fsb41e/VUDIt7rl/mrA6LkD51oS
- dA/7H7oyOMT5A==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- BCB50C43143; Tue, 26 Jul 2022 14:00:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id mnybj2-I51_1 for <bridge@lists.linux-foundation.org>;
+ Fri, 29 Jul 2022 05:25:38 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BBE1F83EFA
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id BBE1F83EFA
+ for <bridge@lists.linux-foundation.org>; Fri, 29 Jul 2022 05:25:37 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id
+ r1-20020a05600c35c100b003a326685e7cso3836355wmq.1
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Jul 2022 22:25:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9B+fJLFGx39Gcy7aaco5Kc5jq5xG1Fk7EO3xuRz7x3o=;
+ b=WkAkV/6cwsJb4o9WWErAaQfbeC1idvMXn0SMP+MW4GHMxK6PsP/z8boKVsBjRgrBBf
+ oTzZu97jc2U65u1P6Aeax1Cx2y/v8P6B2wALgIA+8yV6tLI+duOfE+322vNNfQOQ92nY
+ cvi3vuxawepQluJvA0jxIr5J1KlB3sMnlPvRs5kxlw05xLFG5FSx2+qjcfDdHdFbofbo
+ G2JACbV2XIdc/DdeSZ93GoESs+YjDo9spRpFHgzvgzntUgtSJ2EfvZPrxQeH9qRlbl0E
+ YHUEQ92oO2oiojydFNjNNwKUcQvn5OFQuYSljUJB5OOmZsBc7BmRmeVjJ1btvuhoRknf
+ WmdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9B+fJLFGx39Gcy7aaco5Kc5jq5xG1Fk7EO3xuRz7x3o=;
+ b=UhoGJ06I10TPOvoJ2H1YsOX5AxqL5dMisp+MNNp74jrxdHPP+lDQ7BtSglVK8dRf36
+ rNQxiDDn3YaQ2LdQ4CnDHryxzYIyEqBrbNeBpK/xhiwmp03t471oEY3pDxO9lGWeUsla
+ eX6cppyvRHjsMgwqLVrZsgovmzPe+xl4DIfsUTq9nEzDbVWldzuhCCBeCDocqv92Zpyh
+ 7+fOktIgPgcVsOTmAH9r5Qi0dMz15LHdPCAiiWDU3+R1WH0SAKSx0sbwzo4bdVInQMBC
+ etwmK77mlwF4cLtN06CkmszrE+b7Mij/DRErSphnPIRvMsOzJGh1wCzLOvCD2TSXmgGo
+ O8zg==
+X-Gm-Message-State: AJIora+z6eRm7qNP83xvTNIZEtfU7pNU20I/CTsXRq0B+DjH+PhYHs/E
+ puZGO0DtVg8Urs2G8JYNw4gti0NEbJdwaeul6rs=
+X-Google-Smtp-Source: AGRyM1u21Qu8cK2qjhPRLPYSYqEDJ79Ti7WsX0dOf0bYOn/l7dW8mWB/5YluKzXnT+O4cUxAXDTkdwF+WnqSyq2eEs0=
+X-Received: by 2002:a05:600c:3593:b0:3a3:3a49:41a3 with SMTP id
+ p19-20020a05600c359300b003a33a4941a3mr1533880wmq.166.1659072335895; Thu, 28
+ Jul 2022 22:25:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165884401276.3194.15777870435593251642.git-patchwork-notify@kernel.org>
-Date: Tue, 26 Jul 2022 14:00:12 +0000
-References: <20220725001236.95062-1-bpoirier@nvidia.com>
-In-Reply-To: <20220725001236.95062-1-bpoirier@nvidia.com>
-To: Benjamin Poirier <bpoirier@nvidia.com>
-Cc: netdev@vger.kernel.org, razor@blackwall.org,
- bridge@lists.linux-foundation.org, henrik.bjoernlund@microchip.com,
- roopa@nvidia.com, idosch@nvidia.com, horatiu.vultur@microchip.com
-Subject: Re: [Bridge] [PATCH net] bridge: Do not send empty IFLA_AF_SPEC
-	attribute
+References: <Yr2LFI1dx6Oc7QBo@shredder>
+ <CAKUejP6LTFuw7d_1C18VvxXDuYaboD-PvSkk_ANSFjjfhyDGkg@mail.gmail.com>
+ <Yr778K/7L7Wqwws2@shredder>
+ <CAKUejP5w0Dn8y9gyDryNYy7LOUytqZsG+qqqC8JhRcvyC13=hQ@mail.gmail.com>
+ <20220717134610.k3nw6mam256yxj37@skbuf>
+ <20220717140325.p5ox5mhqedbyyiz4@skbuf>
+ <CAKUejP6g3HxS=Scj-2yhsQRJApxnq1e31Nkcc995s7gzfMJOew@mail.gmail.com>
+ <20220717183852.oi6yg4tgc5vonorp@skbuf>
+ <CAKUejP7WyL2r03EiZU4hA63u2e=Wz3KM4X=rDdji5pdZ0ptaZg@mail.gmail.com>
+ <20220721114540.ovm22rtnwqs77nfb@skbuf>
+ <CAKUejP6xR81p1QeSCnDP_3uh9owafdYr1pifeCzekzUvU3_dPw@mail.gmail.com>
+In-Reply-To: <CAKUejP6xR81p1QeSCnDP_3uh9owafdYr1pifeCzekzUvU3_dPw@mail.gmail.com>
+From: Hans S <schultz.hans@gmail.com>
+Date: Fri, 29 Jul 2022 07:23:19 +0200
+Message-ID: <CAKUejP5FGqJZ3HNUANsi4VzM5VRGYmDBRQt3Ohvd90wxyEhEqA@mail.gmail.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
+ Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ Roopa Prabhu <roopa@nvidia.com>, Hans Schultz <schultz.hans+netdev@gmail.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Eric Dumazet <edumazet@google.com>,
+ linux-kselftest@vger.kernel.org, netdev@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Shuah Khan <shuah@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH net-next v1 1/1] net: bridge: ensure that
+ link-local traffic cannot unlock a locked port
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,32 +117,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+On Sun, Jul 24, 2022 at 10:09 AM Hans S <schultz.hans@gmail.com> wrote:
+>
+> On Thu, Jul 21, 2022 at 1:45 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+> >
+> > On Sun, Jul 17, 2022 at 09:20:57PM +0200, Hans S wrote:
+> >
+> > I'm only pointing out the obvious here, we need an opt in for MAB, and
+> > the implemented behavior I've seen here kind of points to mapping this
+> > to "+learning +locked", where the learning process creates locked FDB entries.
+>
+> I can go with the reasoning for the opt in for MAB, but disabling link
+> local learning system wide I don't think is a good idea, unless
+> someone can ensure me that it does not impact something else.
+> In general locked ports should never learn from link local, which is a
+> problem if they do, which suggests to me that this patch should
+> eventually be accepted as the best solution.
 
-This patch was applied to netdev/net.git (master)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Mon, 25 Jul 2022 09:12:36 +0900 you wrote:
-> After commit b6c02ef54913 ("bridge: Netlink interface fix."),
-> br_fill_ifinfo() started to send an empty IFLA_AF_SPEC attribute when a
-> bridge vlan dump is requested but an interface does not have any vlans
-> configured.
-> 
-> iproute2 ignores such an empty attribute since commit b262a9becbcb
-> ("bridge: Fix output with empty vlan lists") but older iproute2 versions as
-> well as other utilities have their output changed by the cited kernel
-> commit, resulting in failed test cases. Regardless, emitting an empty
-> attribute is pointless and inefficient.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net] bridge: Do not send empty IFLA_AF_SPEC attribute
-    https://git.kernel.org/netdev/net/c/9b134b1694ec
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Hi Vladimir,
+sorry, I forget myself. We cannot use +learning as an opt in for MAB
+with this driver, as there will be no HW refresh and other interrupts
+like the age out violation will not occur either, which will be needed
+further on.
+If we really need an opt in for MAB, I think it will have to be a new flag.
+Hans
