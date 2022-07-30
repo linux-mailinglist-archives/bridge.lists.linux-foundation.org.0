@@ -1,159 +1,98 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8DEF585CD5
-	for <lists.bridge@lfdr.de>; Sun, 31 Jul 2022 03:55:06 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FFEA586757
+	for <lists.bridge@lfdr.de>; Mon,  1 Aug 2022 12:25:31 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id DF50A416E1;
-	Sun, 31 Jul 2022 01:55:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DF50A416E1
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=pvTmxd79
+	by smtp3.osuosl.org (Postfix) with ESMTP id 22D9160AEF;
+	Mon,  1 Aug 2022 10:25:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 22D9160AEF
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=brWrA3BH
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ANZEbgqQNuhJ; Sun, 31 Jul 2022 01:55:02 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id C8BCD416F2;
-	Sun, 31 Jul 2022 01:55:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C8BCD416F2
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yNEW-zbaFJ2o; Mon,  1 Aug 2022 10:25:27 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 77B786068D;
+	Mon,  1 Aug 2022 10:25:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 77B786068D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 43A9EC0078;
-	Sun, 31 Jul 2022 01:55:01 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4D36FC0071;
+	Mon,  1 Aug 2022 10:25:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id AA06BC002D
- for <bridge@lists.linux-foundation.org>; Sun, 31 Jul 2022 01:54:59 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id E5AA1C002D
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 16:03:45 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 5122383139
- for <bridge@lists.linux-foundation.org>; Sun, 31 Jul 2022 01:54:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5122383139
-Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=pvTmxd79
+ by smtp2.osuosl.org (Postfix) with ESMTP id B97C740A38
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 16:03:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B97C740A38
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=brWrA3BH
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2v50wLh4v_rk for <bridge@lists.linux-foundation.org>;
- Sun, 31 Jul 2022 01:54:58 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id m-mi6P10haLB for <bridge@lists.linux-foundation.org>;
+ Sat, 30 Jul 2022 16:03:45 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B29AB83133
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2082.outbound.protection.outlook.com [40.107.95.82])
- by smtp1.osuosl.org (Postfix) with ESMTPS id B29AB83133
- for <bridge@lists.linux-foundation.org>; Sun, 31 Jul 2022 01:54:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U7ru27KnmbVSL21D/vxUuMv/ubswHmt4QEb4rwurfWauUoWGNXQod4b9lCJRsJfhE32YHqj8p97qGq7RPf5R0JCY+g+clYFlUMRzKehyHukkthZ7Jh48RxciIrqCOqdqlbj73y9aiVidP4fSdRhYsgigMWtEWI9O1zxXlvkiEO/Y7tNdA755YECDySh2JJF77UqBAg5hsYrlZYy69qwFvU5lrnlclmiU4SwCG9/t/7j0BE1HDpQfn/6thj8P+3shUuDN+3ugFVAjBoe1XbhnpX5Q7W4uDsPL9F6xhIwyAA1zcMulm6LKOpXM8I9kAOG63+9Paw45IBz7Exh4Zj8A5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2YgmbH5KE5e9qKEnqQ30NYf3rYr8hEa0TLzm7/pBtKo=;
- b=EspcQYAk5hKjQxXoMgbNitVwNILacj0plnlBYt7ISqLEA+/xGQIlUm0RyhEb4ajQgTYCS/VmVWxBy79WzO0PHIKfVeZxFkT6ZdJ8tF54xg3pjAijeHujw1PnkxGJaDGDs9RBc7YTRoEIYEf8VgftqSJfMRHLYza+RqVf/5q4/FAR23rCRffAIjKeZYLsDh9qv8zSCFl1OzB99sISUyzgh5QY974dpo0OdMMXu/LhyhUJOntZn0WxQ+z2J6Dv9Z8AatTOB77arTBeTPpIrfkV368QeuflDXVwdzDj6RBgeFLMsGe2H8m0aDYJ7GZ/uMLEVMpdvzQW6CNu41YQqx0C6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2YgmbH5KE5e9qKEnqQ30NYf3rYr8hEa0TLzm7/pBtKo=;
- b=pvTmxd79caN2M3SXXrbHsZmyR1SEvg56OWspn3m4arEPeTTqmXJbfofrjVC9g97tN6eDCW4woEAiHzhs7p1m1403stvGNpMevlBQSWzxY3FI+yb2lJY2pVvXboPyJ+e3uRFPuYdwgLRDLILmcDJ61PVtEz3YjM/wF0FnMxO7p4GMfu8y55ZUylkuiIevHjMbDljN5td2i0iNl9YIM/RLJ+LNpsLtB+BGgNIgJAq+TCpvK53RK2JU+K4DwZ/Tve3/YWJI0rInkC87TSXg23EeVTa0McWi/UbG+4qk/mtGsvXU7yq8aeJiemrFgK5bfp8cmAFwOB6lfyI8w8ka3rZMMQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ0PR12MB5504.namprd12.prod.outlook.com (2603:10b6:a03:3ad::24)
- by BN6PR12MB1716.namprd12.prod.outlook.com (2603:10b6:404:104::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.14; Sun, 31 Jul
- 2022 01:54:54 +0000
-Received: from SJ0PR12MB5504.namprd12.prod.outlook.com
- ([fe80::c92d:eecd:812b:b40c]) by SJ0PR12MB5504.namprd12.prod.outlook.com
- ([fe80::c92d:eecd:812b:b40c%3]) with mapi id 15.20.5482.014; Sun, 31 Jul 2022
- 01:54:53 +0000
-Message-ID: <8e0a0ceb-5816-60a6-6219-7306e75ce006@nvidia.com>
-Date: Sat, 30 Jul 2022 18:54:52 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Sevinj Aghayeva <sevinj.aghayeva@gmail.com>,
- Nikolay Aleksandrov <razor@blackwall.org>
-References: <cover.1659195179.git.sevinj.aghayeva@gmail.com>
- <f7ede054-f0b3-558a-091f-04b4f7139564@blackwall.org>
- <CAMWRUK5j4UAwjw4UGN=SVbbDbut0zWg5e03wupAXCPwT8K8zzQ@mail.gmail.com>
- <CAMWRUK5TZ5iZWZJO7Bbn-b43ZbT7mRzUDr4LdseLCne8qvG6pw@mail.gmail.com>
-In-Reply-To: <CAMWRUK5TZ5iZWZJO7Bbn-b43ZbT7mRzUDr4LdseLCne8qvG6pw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0250.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::15) To SJ0PR12MB5504.namprd12.prod.outlook.com
- (2603:10b6:a03:3ad::24)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CB942408B7
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com
+ [IPv6:2607:f8b0:4864:20::f2f])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id CB942408B7
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 16:03:44 +0000 (UTC)
+Received: by mail-qv1-xf2f.google.com with SMTP id b7so4227321qvq.2
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 09:03:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=zgmGl0zOLMrX607mh9XkqEoaOPwjCXk2yDE13rCP8S4=;
+ b=brWrA3BHLdXgaMLYNPn15nUSgJ+ICxG8mg77/mh6pbRg07FjjG6pva4xRLwxB0eghG
+ Dfq+F+V+x1NOiHFkSbvx4tMx1QCHMIqqEBpB/oHd3QWHQqP92Z2xKTlHXFeP6Dx3NAZe
+ sgtPmxYbpV0bnJUMme0La5BDx5Cp7c0CaFwYJczWmdWyvrpFLdPNJzk0Yv4J8rFViFe4
+ ha3HU+A9U8BGTgtkjkQaBg7QnHTC3qfTulG7b6UZPbBImBZDyYVk72mOQ+V89AT2p5jo
+ KppSykFsfouzX7UG9IQw2bdyE/Zmw5sx5Xah/jVB5rKs+S/K+2cvEFj2Dk/rj+VK9YS0
+ 4rog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=zgmGl0zOLMrX607mh9XkqEoaOPwjCXk2yDE13rCP8S4=;
+ b=Q0nTTtLcfVGjs1lNpDNb7uH66dQqa6jp/wocSIHftDqbeT06He6BPyfSUnzDNPRjsb
+ dZzHq05x46lEk82AP5AnrIA3D0d35xv6tHRpx/RSqfGAay6MdSkxXPyaXGMNuY+OcGiR
+ 5JmMYCiK02B9t8MHKzE7554Fl67o4M56FKR7qYrnA0ORskve6HDDpmMrI9y3BM7Uqvj8
+ GSiRM/+bp5CXw/OSNzZukZZ4F6CCKm/mdV2hKMVpxt5k7Fnm5zuIsprqkRGpLp9xw1HF
+ dHBiocUmD6ynl/XfyQGBlNXSo0wXBahwZAFIeCUJAblpRKk/T+QLXOGn4T98aZ3YCakC
+ 1poQ==
+X-Gm-Message-State: ACgBeo0G4nJrbiDHg1+pzS1SEjiuOepM3HohVZExl292v/trW6HtEfMZ
+ z0gbPU2dY8lbZ703TOa8YnU=
+X-Google-Smtp-Source: AA6agR7TvxAutxwqOLc1mZR6yYJ9ibyJ7OtPept/S/5Xwy40UMUhzGvKys6n5v2Fi0v3+PXvSzM4nQ==
+X-Received: by 2002:a05:6214:29c7:b0:473:7b25:f950 with SMTP id
+ gh7-20020a05621429c700b004737b25f950mr7668120qvb.95.1659197023561; 
+ Sat, 30 Jul 2022 09:03:43 -0700 (PDT)
+Received: from ada ([71.58.109.160]) by smtp.gmail.com with ESMTPSA id
+ 206-20020a3703d7000000b006b5840f3eefsm4447103qkd.130.2022.07.30.09.03.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 30 Jul 2022 09:03:42 -0700 (PDT)
+From: Sevinj Aghayeva <sevinj.aghayeva@gmail.com>
+To: aroulin@nvidia.com
+Date: Sat, 30 Jul 2022 12:03:29 -0400
+Message-Id: <cover.1659195179.git.sevinj.aghayeva@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 265bfab0-9b6b-4ddf-2365-08da7297a998
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1716:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GcI1WHxbBobb81EQEiK7xXtF3bYxFf06vsMFssjqInOIMKEDh9kQc4zwUv29aARd82Jk5fBvUTFQW4/USCF2nCB2gbr0ggB7UUjut4S8KnmCNRstF7sBK9yubPm+3QKK51OK68uVLDOD57Xu70iyzXDaOFjYGpJKwghZTQHs0MyXhAavKQzM73YfI7KXy5r/xzVlFLEuIkQSMo6CGvLdaP4+aHCSwP2qWgU/xU2W3RQvVrTB9BX8//Yo/+Ih414Wjtz07/cHAYU3bYkJx/3SeshDzHpnUtTCJgf513ChpPPPi6kvQ+/ejIvL8e1h9iZQNPyAyFaTdlMItTiQ5eUfRxyuLfbvOV2q96hZPO+ilSwTPNqBKhNp92exR0OZMjRlb60TsRY9QsbToiZdSaiUl3U6mMRqaHnfdxchjPA/w6UeNCBS5ie+2F3CMilt0UDP736kaTrbLytgArryOnCd/ydnqo2d3lzCqBGnIK5p2ZXo8A11LTe9tcmZCUDp1D5wFfCMLUyQKM7oWgC+/BX7jRUWKgpAw18kC9OL+eBGcK58aPfbaeHv+IxGKdCuvGGe7d9GEVsUZ1RKMrwpzf0aP9CZ2hCc2m9RDNnpwJadO3CXluesg3psId0x4vfjeqAo/ziHCl0Sml0MKCDsytslWtDExLtiCM1AGb1sbIPYRGkbsPZKnYXTOvqz1GAaup4Xg0+VFt6m0WkEeiBBzn6aZfCCLmDdVQNDQl4h9TrpdyjWZ60EH6KrvDFKNKjwVbihAmLGFtIZ2AmpdE+74uBaec1lMNGMvVnEJpfV95ElNXMcuYB1Xk4DUCNKWgx6C7+Row8ekZ4J0Wpj4CXDvFhomA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB5504.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(136003)(39860400002)(346002)(366004)(396003)(2616005)(186003)(53546011)(38100700002)(83380400001)(66556008)(6512007)(5660300002)(8936002)(7416002)(66946007)(66476007)(8676002)(4326008)(2906002)(6486002)(6506007)(478600001)(41300700001)(316002)(54906003)(110136005)(31696002)(36756003)(31686004)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0tYTGIzL1c3VG9FVzF5dlNlVldzcDNGdENaYlNJKzA5ZlZmaTNRMG5xRnNO?=
- =?utf-8?B?ak5KREN0MC9MTjNWZmpSNkw1NzJGZlljS1NIK2xQeTFWbC9MTTFrT1daNUVp?=
- =?utf-8?B?VXhWcGlML2g5VWVkcE9IVnZoZ3lBd3RNQUNGazB6NVdSVkJrWUczZVpUSFpH?=
- =?utf-8?B?WDVDRVU4MEwxM3ptYW5TOWcvK25MRDhQVTJxaGgwWlczRE85WitnNkNNQ213?=
- =?utf-8?B?VWR3RSttWGFDVWFWUmRCUDlLaktBeVErdDFsYWE0N3VnUmZCV3kvaTNVcGQv?=
- =?utf-8?B?SGRPRGNyMnF6NDd5alJsbEk3K3p4Z2d0SWJWTERPOGd6RGwwSlU5eExCVVFM?=
- =?utf-8?B?WmQwcHNSV3VPWXc1UzdvRm5XLzltN3JQQnpBcUdsRVBuM0orMDlGY0l6YXkr?=
- =?utf-8?B?UGo3amhDTkRVNnZDb2lHc0ZRVjJOcmpwcjZaQkVZeERyYUJSRjFGSGxXSmJ5?=
- =?utf-8?B?dm12TC9ObW5wYlo5SmtUYmYzSWhFSGNZRDVvWWpDcjBMU1VBV3ExR2xVdXJh?=
- =?utf-8?B?OXVkYzQwOXUxb0Y5UW5oWE05MThMSjFBWFU1ZGVFTFM2cTlYSW1zbzg3Y1da?=
- =?utf-8?B?aUI5M3d1NDVlenBMcXpINmRmcUtVY2lIVVdtTHVpeTF4L3JZaEJkdWpIZ2Vh?=
- =?utf-8?B?RDBxc29ZaDdVaVlwV3hmWkJiQjhEMGJ4Umx0SGo0cmlUVXpoY1U2RXd4WE9I?=
- =?utf-8?B?T0o3cVQ1M0hDWkdja21nWmhRckFHeWtrc0xCTEZHalNoeDhYTUk1Zk9YVGF3?=
- =?utf-8?B?K0c3WXUwMUFGRU1ydnl1b1hLV3A2TlZEMHp4bEdJeEFrcHBZNmpVbVBkMVNZ?=
- =?utf-8?B?ZnJNN3g1aDFPZElsTTQ2anh6cE9SeVpLS1hPWTB5M1Jtd3lDZTV4RTZPOW4r?=
- =?utf-8?B?NHNBWk11b3ovY2ZOaWIyZmNmc2d4QlluRXVIcG11Z1YzSXVtVzN1OENOdDNv?=
- =?utf-8?B?dFJ3VzRQSEhvTTFaVXhQY1FiN0FLZ1k4cElVYkJoZGtWYktJZ0R5aVBHc2E3?=
- =?utf-8?B?cDRkVTR3cWVib2svMUFVd3hlb0tpQVFnRjE1OVVZZGljWU5lTEg4bEJoWWtV?=
- =?utf-8?B?QjNwaXNZL1FDN1o4UHVpU3JrOTIrZWpKRkhaVHpkZDBQOGZiUnVjLzQvdTJK?=
- =?utf-8?B?SFZkRWtIK2hFS0dFeGdZL3A5MWVvSlNZajhLVVhLWXVoTDl2UVNRWEl5VEUw?=
- =?utf-8?B?cUJvckQ1cVdPRy9tOFpiVVVzc2ZaemkrZ3g2YUJtZ2U4ZEhVR3E3d2tKamRk?=
- =?utf-8?B?VU5DcW9OY0NMUlliSm1uK1hkZyszTmxITFNtUXN6aUFFUGNoNTVvTHRIWkIr?=
- =?utf-8?B?RC9lUWNUbmwzRkM5R0JLU25EdmdBYzlLVWxlaUNONHR5Y0wvbDl1YXFqVjQz?=
- =?utf-8?B?SkovZUJHRjE5SG1PT3l5MFYrNjlnK0MvV3gvdVhlWEpJT01tcXdmWHBMQ3Y3?=
- =?utf-8?B?Zk5sSFBuZkpKUnFibkYvaThmY08zMENRYTI2akpTTml5WDhFbFhVbzRHMTFN?=
- =?utf-8?B?VFFVZUdBOGQ2MG55MHdmZGlZSm5PWXhSb0Rlak1IYVhFNCtKbmxkK1RCV2c4?=
- =?utf-8?B?QnFiRUtkQTJHeHlsRDQ2ak1wTy9td21aNUdEQ2FCQXRRb3BQU2VOUlJZTXBZ?=
- =?utf-8?B?TVNlNXo0YWR0OVVCTFUrQWRTTlgxQW9xRFA3K1FLQm1xZkdPZ1JLUGwzdnRY?=
- =?utf-8?B?RjZUY0k0UnBsVG1vMUc3Zm9sMk1sQnRzOGdkdk5kZVBXZ0QwMU9EUjZEdmNq?=
- =?utf-8?B?blowVjdPa0JoaWRPd05TbDNSNFA3emNwV3drM0prcjVma3NUUTNDbGMrQ1J4?=
- =?utf-8?B?cC9za2x1bWNmVDR3dHBjdFFXSll2UkFOcjZkVSsxdGJzZDhIaUJDSWIyY1JT?=
- =?utf-8?B?QzJJZFlkcWZOc0lOV1ZlMzFJRkNCTkZRM0VEd0hPenAyR0M2VTh2VG9xZkVW?=
- =?utf-8?B?VGladXhzeWlUcEF4RE81WnVIOGlPbGdicEFXTXlCOXAwZzVqYkhxWXphSDEv?=
- =?utf-8?B?YWhvNFc3UStlRDc1cTlibTJwOTBTZ3c1R0RRaXRFVVBiNW1oQjZkdTNBbVRy?=
- =?utf-8?B?RWQ1RUh0NFlvNHZnKysrUm55c3hiblF0TnlGS25YZkxvS2RVOHRBeThxU0ZX?=
- =?utf-8?B?OWxEMDVZaWpWR21mS3Bqa2xPNkN2QngvTmx1MTVUZkIvdzhSZ2RlcXFrcnBW?=
- =?utf-8?Q?+rJJaa0b0FfPiEEarJ4jL4qLgt/NmOJo24euaPiSTj1B?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 265bfab0-9b6b-4ddf-2365-08da7297a998
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5504.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2022 01:54:53.8700 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Bu3JVZsj2zU/xuNxPMaNq/DRpiSUjDo8a/sqecUEP7ZlpTSPg89CaiMx5wlKpzb2ED1hkAt5Y1t7Jb2cq+XAKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1716
-Cc: aroulin@nvidia.com, netdev@vger.kernel.org,
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 01 Aug 2022 10:25:24 +0000
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
  bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
  sbrivio@redhat.com, Eric Dumazet <edumazet@google.com>,
+ Sevinj Aghayeva <sevinj.aghayeva@gmail.com>, roopa@nvidia.com,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 0/3] net: vlan: fix bridge binding
- behavior and add selftests
+Subject: [Bridge] [PATCH net-next 0/3] net: vlan: fix bridge binding
+	behavior and add selftests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -165,80 +104,46 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Roopa Prabhu via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Roopa Prabhu <roopa@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+When bridge binding is enabled for a vlan interface, it is expected
+that the link state of the vlan interface will track the subset of the
+ports that are also members of the corresponding vlan, rather than
+that of all ports.
 
-On 7/30/22 09:48, Sevinj Aghayeva wrote:
-> (Resending this because the first email was rejected due to being in HTML.)
->
->
-> On Sat, Jul 30, 2022 at 12:46 PM Sevinj Aghayeva
-> <sevinj.aghayeva@gmail.com> wrote:
->>
->>
->> On Sat, Jul 30, 2022 at 12:22 PM Nikolay Aleksandrov <razor@blackwall.org> wrote:
->>> On 7/30/22 19:03, Sevinj Aghayeva wrote:
->>>> When bridge binding is enabled for a vlan interface, it is expected
->>>> that the link state of the vlan interface will track the subset of the
->>>> ports that are also members of the corresponding vlan, rather than
->>>> that of all ports.
->>>>
->>>> Currently, this feature works as expected when a vlan interface is
->>>> created with bridge binding enabled:
->>>>
->>>>     ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
->>>>           bridge_binding on
->>>>
->>>> However, the feature does not work when a vlan interface is created
->>>> with bridge binding disabled, and then enabled later:
->>>>
->>>>     ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
->>>>           bridge_binding off
->>>>     ip link set vlan10 type vlan bridge_binding on
->>>>
->>>> After these two commands, the link state of the vlan interface
->>>> continues to track that of all ports, which is inconsistent and
->>>> confusing to users. This series fixes this bug and introduces two
->>>> tests for the valid behavior.
->>>>
->>>> Sevinj Aghayeva (3):
->>>>     net: bridge: export br_vlan_upper_change
->>>>     net: 8021q: fix bridge binding behavior for vlan interfaces
->>>>     selftests: net: tests for bridge binding behavior
->>>>
->>>>    include/linux/if_bridge.h                     |   9 ++
->>>>    net/8021q/vlan.h                              |   2 +-
->>>>    net/8021q/vlan_dev.c                          |  21 ++-
->>>>    net/bridge/br_vlan.c                          |   7 +-
->>>>    tools/testing/selftests/net/Makefile          |   1 +
->>>>    .../selftests/net/bridge_vlan_binding_test.sh | 143 ++++++++++++++++++
->>>>    6 files changed, 176 insertions(+), 7 deletions(-)
->>>>    create mode 100755 tools/testing/selftests/net/bridge_vlan_binding_test.sh
->>>>
->>> Hmm.. I don't like this and don't think this bridge function should be
->>> exported at all.
->>>
->>> Calling bridge state changing functions from 8021q module is not the
->>> proper way to solve this. The problem is that the bridge doesn't know
->>> that the state has changed, so you can process NETDEV_CHANGE events and
->>> check for the bridge vlan which got its state changed and react based on
->>> it. I haven't checked in detail, but I think it should be doable. So all
->>> the logic is kept inside the bridge.
->>
->> Hi Nik,
->>
->> Can please elaborate on where I should process NETDEV_CHANGE events? I'm doing this as part of outreachy project and this is my first kernel task, so I don't know the bridging code that well.
->>
->> Thanks!
+Currently, this feature works as expected when a vlan interface is
+created with bridge binding enabled:
 
-good point Nikolay.
+  ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
+        bridge_binding on
 
-Sevinj, see br_vlan_bridge_event and __vlan_device_event  for how both 
-drivers react to netdev change events.
+However, the feature does not work when a vlan interface is created
+with bridge binding disabled, and then enabled later:
 
-I have not looked at it in detail yet, but lets explore and discuss if 
-we can make use of events to achieve same results.
+  ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
+        bridge_binding off
+  ip link set vlan10 type vlan bridge_binding on
+
+After these two commands, the link state of the vlan interface
+continues to track that of all ports, which is inconsistent and
+confusing to users. This series fixes this bug and introduces two
+tests for the valid behavior.
+
+Sevinj Aghayeva (3):
+  net: bridge: export br_vlan_upper_change
+  net: 8021q: fix bridge binding behavior for vlan interfaces
+  selftests: net: tests for bridge binding behavior
+
+ include/linux/if_bridge.h                     |   9 ++
+ net/8021q/vlan.h                              |   2 +-
+ net/8021q/vlan_dev.c                          |  21 ++-
+ net/bridge/br_vlan.c                          |   7 +-
+ tools/testing/selftests/net/Makefile          |   1 +
+ .../selftests/net/bridge_vlan_binding_test.sh | 143 ++++++++++++++++++
+ 6 files changed, 176 insertions(+), 7 deletions(-)
+ create mode 100755 tools/testing/selftests/net/bridge_vlan_binding_test.sh
+
+-- 
+2.25.1
 
