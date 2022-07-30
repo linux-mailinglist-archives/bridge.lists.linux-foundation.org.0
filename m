@@ -1,108 +1,105 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4628584B14
-	for <lists.bridge@lfdr.de>; Fri, 29 Jul 2022 07:25:45 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17CA585B41
+	for <lists.bridge@lfdr.de>; Sat, 30 Jul 2022 18:22:11 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9C89660E96;
-	Fri, 29 Jul 2022 05:25:42 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9C89660E96
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=WkAkV/6c
+	by smtp4.osuosl.org (Postfix) with ESMTP id 817FD41571;
+	Sat, 30 Jul 2022 16:22:08 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 817FD41571
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=WtihCL79
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id P3oYkuZZKKKI; Fri, 29 Jul 2022 05:25:42 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id N2hUC3qkCoEt; Sat, 30 Jul 2022 16:22:07 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 165C560E9F;
-	Fri, 29 Jul 2022 05:25:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 165C560E9F
+	by smtp4.osuosl.org (Postfix) with ESMTPS id B5EAD41697;
+	Sat, 30 Jul 2022 16:22:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B5EAD41697
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B1BD9C007D;
-	Fri, 29 Jul 2022 05:25:40 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 51CC8C0078;
+	Sat, 30 Jul 2022 16:22:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D6380C002D
- for <bridge@lists.linux-foundation.org>; Fri, 29 Jul 2022 05:25:38 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 76143C002D
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 16:22:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 9D8C883EFF
- for <bridge@lists.linux-foundation.org>; Fri, 29 Jul 2022 05:25:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9D8C883EFF
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=WkAkV/6c
+ by smtp3.osuosl.org (Postfix) with ESMTP id 4317060E4D
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 16:22:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4317060E4D
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
+ header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
+ header.s=20210112 header.b=WtihCL79
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mnybj2-I51_1 for <bridge@lists.linux-foundation.org>;
- Fri, 29 Jul 2022 05:25:38 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id oMcAy-xjzTnK for <bridge@lists.linux-foundation.org>;
+ Sat, 30 Jul 2022 16:22:04 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BBE1F83EFA
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by smtp1.osuosl.org (Postfix) with ESMTPS id BBE1F83EFA
- for <bridge@lists.linux-foundation.org>; Fri, 29 Jul 2022 05:25:37 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- r1-20020a05600c35c100b003a326685e7cso3836355wmq.1
- for <bridge@lists.linux-foundation.org>; Thu, 28 Jul 2022 22:25:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=9B+fJLFGx39Gcy7aaco5Kc5jq5xG1Fk7EO3xuRz7x3o=;
- b=WkAkV/6cwsJb4o9WWErAaQfbeC1idvMXn0SMP+MW4GHMxK6PsP/z8boKVsBjRgrBBf
- oTzZu97jc2U65u1P6Aeax1Cx2y/v8P6B2wALgIA+8yV6tLI+duOfE+322vNNfQOQ92nY
- cvi3vuxawepQluJvA0jxIr5J1KlB3sMnlPvRs5kxlw05xLFG5FSx2+qjcfDdHdFbofbo
- G2JACbV2XIdc/DdeSZ93GoESs+YjDo9spRpFHgzvgzntUgtSJ2EfvZPrxQeH9qRlbl0E
- YHUEQ92oO2oiojydFNjNNwKUcQvn5OFQuYSljUJB5OOmZsBc7BmRmeVjJ1btvuhoRknf
- WmdQ==
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AAEEB605B5
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id AAEEB605B5
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 16:22:03 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id j1so827208wrw.1
+ for <bridge@lists.linux-foundation.org>; Sat, 30 Jul 2022 09:22:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc; bh=0BQC7ztdjoYB/4v5qeCyLiMyRnHfJxj5E3xif1QgE+s=;
+ b=WtihCL79/iOXyOmDf5JkST8Z0eK9w4M590s7E8csWckLrVZRAfYaAYr3J7uWTXLg1L
+ XDVxg5QjIXMy83XQhAJDQPbaytxEcjapeiBoukUlSHGdlqebVGDsY9jvqY+XuaKPBOUF
+ Jf+aF7pnJK/HhD/pkOO1j7sZPIfD7Uqp0iD7IWS4fN1nPA5fOX58HRVe9CfLz8aqf9tL
+ 697JLhLr/trHae02me2CdJkE8sChwI31rt/PE2zqnUuaH7BiMdMzv/6ctZcHIgfUBiu6
+ z/FwBG/DyeKseCtTpdS8mKko6LtY8jqf/GjSfen6Sw+jn9avfKYcTcwiyx/TLMODq+eN
+ sBnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=9B+fJLFGx39Gcy7aaco5Kc5jq5xG1Fk7EO3xuRz7x3o=;
- b=UhoGJ06I10TPOvoJ2H1YsOX5AxqL5dMisp+MNNp74jrxdHPP+lDQ7BtSglVK8dRf36
- rNQxiDDn3YaQ2LdQ4CnDHryxzYIyEqBrbNeBpK/xhiwmp03t471oEY3pDxO9lGWeUsla
- eX6cppyvRHjsMgwqLVrZsgovmzPe+xl4DIfsUTq9nEzDbVWldzuhCCBeCDocqv92Zpyh
- 7+fOktIgPgcVsOTmAH9r5Qi0dMz15LHdPCAiiWDU3+R1WH0SAKSx0sbwzo4bdVInQMBC
- etwmK77mlwF4cLtN06CkmszrE+b7Mij/DRErSphnPIRvMsOzJGh1wCzLOvCD2TSXmgGo
- O8zg==
-X-Gm-Message-State: AJIora+z6eRm7qNP83xvTNIZEtfU7pNU20I/CTsXRq0B+DjH+PhYHs/E
- puZGO0DtVg8Urs2G8JYNw4gti0NEbJdwaeul6rs=
-X-Google-Smtp-Source: AGRyM1u21Qu8cK2qjhPRLPYSYqEDJ79Ti7WsX0dOf0bYOn/l7dW8mWB/5YluKzXnT+O4cUxAXDTkdwF+WnqSyq2eEs0=
-X-Received: by 2002:a05:600c:3593:b0:3a3:3a49:41a3 with SMTP id
- p19-20020a05600c359300b003a33a4941a3mr1533880wmq.166.1659072335895; Thu, 28
- Jul 2022 22:25:35 -0700 (PDT)
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc;
+ bh=0BQC7ztdjoYB/4v5qeCyLiMyRnHfJxj5E3xif1QgE+s=;
+ b=HhaagNsPUpr/9RF7uwObmX1UTOjwiMihU2LfBhKxDTF3ui0FWSYWxtLIr+AxVakPa6
+ pUuf9VgLBkhmu6dWnWyY8x94bEzjXlzEZsTlOnDHC1Pj/NsOTDHWPHvlKZGzUGyKqsqY
+ +6ri0qSRoEcHLCP1RM+0bgPCqMAh5WWPYiMoBRkF+RWXnP5qSIiN3Yz+osdHoBTOQgTL
+ Fil3dN2xw65kKZt+Af04Z5wzcR6V72wrEVhCKdocwF1imP7XAyC5uhZHuN/zLVpbC72w
+ nOJ7ssKtDF8NCUiAwsW6r7iqW1lgE0bmSLKoYkm2M2CUwzJxSvDWbqVWTYlMN2HnKj07
+ 0IwA==
+X-Gm-Message-State: ACgBeo0teQh1ZS6ZkIjLCpCWOOv4Oe0AWQxicdbBGEHt424j5fGqDt+Z
+ lqI3yHcMmC28bIq52TjUgSZVqw==
+X-Google-Smtp-Source: AA6agR5HePf8wJw0fTd3HYsWdhMjCAq6Lrl8j879hetdIKwStLc4LFN5jh46fcusXxeRHsnIGz9rcg==
+X-Received: by 2002:adf:dc87:0:b0:21e:ecad:a6bc with SMTP id
+ r7-20020adfdc87000000b0021eecada6bcmr5440902wrj.218.1659198121799; 
+ Sat, 30 Jul 2022 09:22:01 -0700 (PDT)
+Received: from [192.168.0.103] (bras-109-160-30-111.comnet.bg.
+ [109.160.30.111]) by smtp.gmail.com with ESMTPSA id
+ t13-20020adfdc0d000000b0021e4bc9edbfsm6606501wri.112.2022.07.30.09.22.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 30 Jul 2022 09:22:01 -0700 (PDT)
+Message-ID: <f7ede054-f0b3-558a-091f-04b4f7139564@blackwall.org>
+Date: Sat, 30 Jul 2022 19:21:52 +0300
 MIME-Version: 1.0
-References: <Yr2LFI1dx6Oc7QBo@shredder>
- <CAKUejP6LTFuw7d_1C18VvxXDuYaboD-PvSkk_ANSFjjfhyDGkg@mail.gmail.com>
- <Yr778K/7L7Wqwws2@shredder>
- <CAKUejP5w0Dn8y9gyDryNYy7LOUytqZsG+qqqC8JhRcvyC13=hQ@mail.gmail.com>
- <20220717134610.k3nw6mam256yxj37@skbuf>
- <20220717140325.p5ox5mhqedbyyiz4@skbuf>
- <CAKUejP6g3HxS=Scj-2yhsQRJApxnq1e31Nkcc995s7gzfMJOew@mail.gmail.com>
- <20220717183852.oi6yg4tgc5vonorp@skbuf>
- <CAKUejP7WyL2r03EiZU4hA63u2e=Wz3KM4X=rDdji5pdZ0ptaZg@mail.gmail.com>
- <20220721114540.ovm22rtnwqs77nfb@skbuf>
- <CAKUejP6xR81p1QeSCnDP_3uh9owafdYr1pifeCzekzUvU3_dPw@mail.gmail.com>
-In-Reply-To: <CAKUejP6xR81p1QeSCnDP_3uh9owafdYr1pifeCzekzUvU3_dPw@mail.gmail.com>
-From: Hans S <schultz.hans@gmail.com>
-Date: Fri, 29 Jul 2022 07:23:19 +0200
-Message-ID: <CAKUejP5FGqJZ3HNUANsi4VzM5VRGYmDBRQt3Ohvd90wxyEhEqA@mail.gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
- Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
- Roopa Prabhu <roopa@nvidia.com>, Hans Schultz <schultz.hans+netdev@gmail.com>,
- Vivien Didelot <vivien.didelot@gmail.com>, Eric Dumazet <edumazet@google.com>,
- linux-kselftest@vger.kernel.org, netdev@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Content-Language: en-US
+To: Sevinj Aghayeva <sevinj.aghayeva@gmail.com>, aroulin@nvidia.com
+References: <cover.1659195179.git.sevinj.aghayeva@gmail.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <cover.1659195179.git.sevinj.aghayeva@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, sbrivio@redhat.com,
+ Eric Dumazet <edumazet@google.com>, roopa@nvidia.com,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Shuah Khan <shuah@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- linux-kernel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH net-next v1 1/1] net: bridge: ensure that
- link-local traffic cannot unlock a locked port
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next 0/3] net: vlan: fix bridge binding
+ behavior and add selftests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -117,27 +114,54 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, Jul 24, 2022 at 10:09 AM Hans S <schultz.hans@gmail.com> wrote:
->
-> On Thu, Jul 21, 2022 at 1:45 PM Vladimir Oltean <olteanv@gmail.com> wrote:
-> >
-> > On Sun, Jul 17, 2022 at 09:20:57PM +0200, Hans S wrote:
-> >
-> > I'm only pointing out the obvious here, we need an opt in for MAB, and
-> > the implemented behavior I've seen here kind of points to mapping this
-> > to "+learning +locked", where the learning process creates locked FDB entries.
->
-> I can go with the reasoning for the opt in for MAB, but disabling link
-> local learning system wide I don't think is a good idea, unless
-> someone can ensure me that it does not impact something else.
-> In general locked ports should never learn from link local, which is a
-> problem if they do, which suggests to me that this patch should
-> eventually be accepted as the best solution.
+On 7/30/22 19:03, Sevinj Aghayeva wrote:
+> When bridge binding is enabled for a vlan interface, it is expected
+> that the link state of the vlan interface will track the subset of the
+> ports that are also members of the corresponding vlan, rather than
+> that of all ports.
+> 
+> Currently, this feature works as expected when a vlan interface is
+> created with bridge binding enabled:
+> 
+>    ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
+>          bridge_binding on
+> 
+> However, the feature does not work when a vlan interface is created
+> with bridge binding disabled, and then enabled later:
+> 
+>    ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
+>          bridge_binding off
+>    ip link set vlan10 type vlan bridge_binding on
+> 
+> After these two commands, the link state of the vlan interface
+> continues to track that of all ports, which is inconsistent and
+> confusing to users. This series fixes this bug and introduces two
+> tests for the valid behavior.
+> 
+> Sevinj Aghayeva (3):
+>    net: bridge: export br_vlan_upper_change
+>    net: 8021q: fix bridge binding behavior for vlan interfaces
+>    selftests: net: tests for bridge binding behavior
+> 
+>   include/linux/if_bridge.h                     |   9 ++
+>   net/8021q/vlan.h                              |   2 +-
+>   net/8021q/vlan_dev.c                          |  21 ++-
+>   net/bridge/br_vlan.c                          |   7 +-
+>   tools/testing/selftests/net/Makefile          |   1 +
+>   .../selftests/net/bridge_vlan_binding_test.sh | 143 ++++++++++++++++++
+>   6 files changed, 176 insertions(+), 7 deletions(-)
+>   create mode 100755 tools/testing/selftests/net/bridge_vlan_binding_test.sh
+> 
 
-Hi Vladimir,
-sorry, I forget myself. We cannot use +learning as an opt in for MAB
-with this driver, as there will be no HW refresh and other interrupts
-like the age out violation will not occur either, which will be needed
-further on.
-If we really need an opt in for MAB, I think it will have to be a new flag.
-Hans
+Hmm.. I don't like this and don't think this bridge function should be 
+exported at all.
+
+Calling bridge state changing functions from 8021q module is not the 
+proper way to solve this. The problem is that the bridge doesn't know 
+that the state has changed, so you can process NETDEV_CHANGE events and 
+check for the bridge vlan which got its state changed and react based on 
+it. I haven't checked in detail, but I think it should be doable. So all
+the logic is kept inside the bridge.
+
+Cheers,
+  Nik
