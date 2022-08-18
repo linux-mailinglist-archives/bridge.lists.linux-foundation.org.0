@@ -2,76 +2,77 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7BC599BBC
-	for <lists.bridge@lfdr.de>; Fri, 19 Aug 2022 14:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5B5259AC5F
+	for <lists.bridge@lfdr.de>; Sat, 20 Aug 2022 10:04:07 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 2528C415CA;
-	Fri, 19 Aug 2022 12:19:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2528C415CA
+	by smtp2.osuosl.org (Postfix) with ESMTP id C735D408F3;
+	Sat, 20 Aug 2022 08:04:01 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org C735D408F3
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=RN7z5/75
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id R_AxvvsFyqk1; Fri, 19 Aug 2022 12:19:18 +0000 (UTC)
+	with ESMTP id Uv3jtkGrzzOW; Sat, 20 Aug 2022 08:04:01 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id A9523415D0;
-	Fri, 19 Aug 2022 12:19:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A9523415D0
+	by smtp2.osuosl.org (Postfix) with ESMTPS id F10F4408E1;
+	Sat, 20 Aug 2022 08:03:59 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org F10F4408E1
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 360B8C0078;
-	Fri, 19 Aug 2022 12:19:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C3746C0078;
+	Sat, 20 Aug 2022 08:03:58 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5B6DDC002D
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 12:19:16 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0AADEC002D
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Aug 2022 21:20:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 2A3DB83E62
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 12:19:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2A3DB83E62
+ by smtp3.osuosl.org (Postfix) with ESMTP id CB9D760A46
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Aug 2022 21:20:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CB9D760A46
+Authentication-Results: smtp3.osuosl.org; dkim=pass (1024-bit key,
+ unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com
+ header.a=rsa-sha256 header.s=k1 header.b=RN7z5/75
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jUUHMdRXe8pl for <bridge@lists.linux-foundation.org>;
- Fri, 19 Aug 2022 12:19:15 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CA38E82E19
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp1.osuosl.org (Postfix) with ESMTPS id CA38E82E19
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 12:19:14 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 6AB43188488D;
- Fri, 19 Aug 2022 12:18:34 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id B357F2503313;
- Fri, 19 Aug 2022 12:18:23 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 02302A1A5E40; Fri, 19 Aug 2022 09:51:11 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id nSP0CXaOUkEP for <bridge@lists.linux-foundation.org>;
+ Thu, 18 Aug 2022 21:20:27 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8FA08607EC
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 8FA08607EC
+ for <bridge@lists.linux-foundation.org>; Thu, 18 Aug 2022 21:20:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+ from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=k1; bh=Pu930IAe/AYCg8Oap5bmCJ32MkT
+ AAiu9pRH3YePSC4E=; b=RN7z5/75Ie/+RG/Uj4zpOfHWaZltdHhdnjx53b60RHh
+ R0rjwBFAShGPJcUbURxwYUamgmYbnymY2BzsJ0FAvP20KDq336J5etnpCMAd54hG
+ ZEzZVsHe82UB45xh80eBlVYEWLySnXM0JK12rQHdnDxubdZnSHD9cdWEJlBQvKi0
+ =
+Received: (qmail 3962995 invoked from network); 18 Aug 2022 23:02:13 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted,
+ authenticated); 18 Aug 2022 23:02:13 +0200
+X-UD-Smtp-Session: l3s3148p1@JXWsS4rmHKYucref
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-kernel@vger.kernel.org
+Date: Thu, 18 Aug 2022 23:02:12 +0200
+Message-Id: <20220818210212.8347-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Date: Fri, 19 Aug 2022 11:51:11 +0200
-From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <YvkM7UJ0SX+jkts2@shredder>
-References: <5a4cfc6246f621d006af69d4d1f61ed1@kapio-technology.com>
- <YvkM7UJ0SX+jkts2@shredder>
-User-Agent: Gigahost Webmail
-Message-ID: <34dd1318a878494e7ab595f8727c7d7d@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- linux-kselftest@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Vladimir Oltean <olteanv@gmail.com>,
- Shuah Khan <shuah@kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v4 net-next 3/6] drivers: net: dsa: add locked
- fdb entry flag to drivers
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 20 Aug 2022 08:03:57 +0000
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Florian Westphal <fw@strlen.de>,
+ Jozsef Kadlecsik <kadlec@netfilter.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Eric Dumazet <edumazet@google.com>, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: [Bridge] [PATCH] bridge: move from strlcpy with unused retval to
+	strscpy
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -86,79 +87,72 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-08-14 16:55, Ido Schimmel wrote:
-> On Fri, Aug 12, 2022 at 02:29:48PM +0200, netdev@kapio-technology.com 
-> wrote:
->> On 2022-08-11 13:28, Ido Schimmel wrote:
->> 
->> > > > I'm talking about roaming, not forwarding. Let's say you have a locked
->> > > > entry with MAC X pointing to port Y. Now you get a packet with SMAC X
->> > > > from port Z which is unlocked. Will the FDB entry roam to port Z? I
->> > > > think it should, but at least in current implementation it seems that
->> > > > the "locked" flag will not be reset and having locked entries pointing
->> > > > to an unlocked port looks like a bug.
+Follow the advice of the below link and prefer 'strscpy' in this
+subsystem. Conversion is 1:1 because the return value is not used.
+Generated by a coccinelle script.
 
-I have made the locked entries sticky in the bridge, so that they don't 
-move to other ports.
+Link: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ net/bridge/br_device.c          | 8 ++++----
+ net/bridge/br_sysfs_if.c        | 4 ++--
+ net/bridge/netfilter/ebtables.c | 2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
->> > > >
->> > >
->> 
->> In general I have been thinking that the said setup is a network
->> configuration error as I was arguing in an earlier conversation with
->> Vladimir. In this setup we must remember that SMAC X becomes DMAC X in 
->> the
->> return traffic on the open port. But the question arises to me why MAC 
->> X
->> would be behind the locked port without getting authed while being 
->> behind an
->> open port too?
->> In a real life setup, I don't think you would want random hosts behind 
->> a
->> locked port in the MAB case, but only the hosts you will let through. 
->> Other
->> hosts should be regarded as intruders.
->> 
->> If we are talking about a station move, then the locked entry will age 
->> out
->> and MAC X will function normally on the open port after the timeout, 
->> which
->> was a case that was taken up in earlier discussions.
->> 
->> But I will anyhow do some testing with this 'edge case' (of being 
->> behind
->> both a locked and an unlocked port) if I may call it so, and see to 
->> that the
->> offloaded and non-offloaded cases correspond to each other, and will 
->> work
->> satisfactory.
-> 
-> It would be best to implement these as additional test cases in the
-> current selftest. Then you can easily test with both veth pairs and
-> loopbacks and see that the hardware and software data paths behave the
-> same.
-> 
+diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
+index 58a4f70e01e3..b82906fc999a 100644
+--- a/net/bridge/br_device.c
++++ b/net/bridge/br_device.c
+@@ -251,10 +251,10 @@ static int br_set_mac_address(struct net_device *dev, void *p)
+ 
+ static void br_getinfo(struct net_device *dev, struct ethtool_drvinfo *info)
+ {
+-	strlcpy(info->driver, "bridge", sizeof(info->driver));
+-	strlcpy(info->version, BR_VERSION, sizeof(info->version));
+-	strlcpy(info->fw_version, "N/A", sizeof(info->fw_version));
+-	strlcpy(info->bus_info, "N/A", sizeof(info->bus_info));
++	strscpy(info->driver, "bridge", sizeof(info->driver));
++	strscpy(info->version, BR_VERSION, sizeof(info->version));
++	strscpy(info->fw_version, "N/A", sizeof(info->fw_version));
++	strscpy(info->bus_info, "N/A", sizeof(info->bus_info));
+ }
+ 
+ static int br_get_link_ksettings(struct net_device *dev,
+diff --git a/net/bridge/br_sysfs_if.c b/net/bridge/br_sysfs_if.c
+index 07fa76080512..74fdd8105dca 100644
+--- a/net/bridge/br_sysfs_if.c
++++ b/net/bridge/br_sysfs_if.c
+@@ -384,7 +384,7 @@ int br_sysfs_addif(struct net_bridge_port *p)
+ 			return err;
+ 	}
+ 
+-	strlcpy(p->sysfs_name, p->dev->name, IFNAMSIZ);
++	strscpy(p->sysfs_name, p->dev->name, IFNAMSIZ);
+ 	return sysfs_create_link(br->ifobj, &p->kobj, p->sysfs_name);
+ }
+ 
+@@ -406,7 +406,7 @@ int br_sysfs_renameif(struct net_bridge_port *p)
+ 		netdev_notice(br->dev, "unable to rename link %s to %s",
+ 			      p->sysfs_name, p->dev->name);
+ 	else
+-		strlcpy(p->sysfs_name, p->dev->name, IFNAMSIZ);
++		strscpy(p->sysfs_name, p->dev->name, IFNAMSIZ);
+ 
+ 	return err;
+ }
+diff --git a/net/bridge/netfilter/ebtables.c b/net/bridge/netfilter/ebtables.c
+index f2dbefb61ce8..3c3ecd4cddb5 100644
+--- a/net/bridge/netfilter/ebtables.c
++++ b/net/bridge/netfilter/ebtables.c
+@@ -1446,7 +1446,7 @@ static inline int ebt_obj_to_user(char __user *um, const char *_name,
+ 	/* ebtables expects 31 bytes long names but xt_match names are 29 bytes
+ 	 * long. Copy 29 bytes and fill remaining bytes with zeroes.
+ 	 */
+-	strlcpy(name, _name, sizeof(name));
++	strscpy(name, _name, sizeof(name));
+ 	if (copy_to_user(um, name, EBT_EXTENSION_MAXNAMELEN) ||
+ 	    put_user(revision, (u8 __user *)(um + EBT_EXTENSION_MAXNAMELEN)) ||
+ 	    put_user(datasize, (int __user *)(um + EBT_EXTENSION_MAXNAMELEN + 1)) ||
+-- 
+2.35.1
 
-How many loops would be needed to have a selftest with a HUB and a MAC 
-on both a locked and an unlocked port?
-
->> 
->> I think it will be good to have a flag to enable the mac-auth/MAB 
->> feature,
->> and I suggest just calling the flag 'mab', as it is short.
-
-I have now created the flag to enable Mac-Auth/MAB with iproute2:
-bridge link set dev DEV macauth on|off
-
-with the example output from 'bridge -d link show dev DEV' when macauth 
-is enabled:
-1: ethX: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 master br0 state 
-forwarding priority 32 cost 19
-     hairpin off guard off root_block off fastleave off learning on flood 
-off mcast_flood on bcast_flood on mcast_router 1 mcast_to_unicast off 
-neigh_suppress off vlan_tunnel off isolated off locked mab on
-
-The flag itself in the code is called BR_PORT_MACAUTH.
-
-> 
-> Fine by me, but I'm not sure everyone agrees.
