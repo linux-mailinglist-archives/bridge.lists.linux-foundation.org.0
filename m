@@ -1,104 +1,78 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id E990F59990E
-	for <lists.bridge@lfdr.de>; Fri, 19 Aug 2022 11:56:08 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB37D599C19
+	for <lists.bridge@lfdr.de>; Fri, 19 Aug 2022 14:44:05 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 2370884266;
-	Fri, 19 Aug 2022 09:56:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2370884266
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=vuKJeSl9
+	by smtp1.osuosl.org (Postfix) with ESMTP id 06458842D9;
+	Fri, 19 Aug 2022 12:44:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 06458842D9
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id SxNfIb49Os2M; Fri, 19 Aug 2022 09:56:04 +0000 (UTC)
+	with ESMTP id nR9rjBE8XXUf; Fri, 19 Aug 2022 12:44:03 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 83EE083F5E;
-	Fri, 19 Aug 2022 09:56:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 83EE083F5E
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 4950581B36;
+	Fri, 19 Aug 2022 12:44:02 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4950581B36
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0D698C0078;
-	Fri, 19 Aug 2022 09:56:03 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F179CC0032;
+	Fri, 19 Aug 2022 12:44:01 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8BE20C002D
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 09:56:01 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C4032C0032
+ for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 12:44:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 72D0784266
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 09:56:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 72D0784266
+ by smtp1.osuosl.org (Postfix) with ESMTP id B0F0181B36
+ for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 12:43:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B0F0181B36
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Jwq-vEn5r-V6 for <bridge@lists.linux-foundation.org>;
- Fri, 19 Aug 2022 09:56:00 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5794183F5E
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
- [IPv6:2a00:1450:4864:20::52d])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 5794183F5E
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 09:56:00 +0000 (UTC)
-Received: by mail-ed1-x52d.google.com with SMTP id w3so5031775edc.2
- for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 02:56:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc; bh=t6W9x+WyR9aEmeKvb5RR9lUuSahG1sgA3A2JFCHzAnw=;
- b=vuKJeSl9JaPfAzsNJQ1aTpwqs71OASgH95FDetNyeGm+4UteAQukVux8PoDlviDBfZ
- VdNlqmv0Ig9/AzO7NQ9JTXNjaJ5wNtodagQ6jqj+iZrG3J8KwJf3YEWUh/wmjW1OUgjw
- yDlPsaLdE2KlVIpXAEamJcfjtdaO6HpVU7fEB0qdak/lOSLAwlO82fE7Tj6+3PqcxdeX
- Np1aoXVZCw8WUm/FSdOuhwKo6PGAv6Zf9y3yLFvAqW3XOuOLVxNu661oxgKLn0Q3QpLn
- DkOmldvHiNoUrcT4oDB+5QX1Vqwlje2G8LZBPR5O5VGQ46dC2YnD7ynFglYda+aRJFcb
- 4+1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc;
- bh=t6W9x+WyR9aEmeKvb5RR9lUuSahG1sgA3A2JFCHzAnw=;
- b=n/TsasoVhai6HKUCoD/xmkpxiHOaET6ILgD6mHW6SORxCWXpoEaXfTQdMiiOVuWzAb
- j2pcqCpjRmrXnGJxr9IGy5KYIkRFJMzx9CWsMBopt6ME7JZrjSj1YpM8e99JKmT87aPo
- iCqwnX93h0vay82LAG2cfpRNen5Wj1EuPQL1+H2GvxSyR+uoegKgTCozytOdVJTQP1Fq
- MTCJzeuvI+4vlTl5RYJFgRsddElvrO5c3CIIbM4J3Htlj7URHKc/ig8ir/mKbz9AMoJB
- tkUJ9Aj60UtdRIXZJX2VTjXyD+Mrqed7PHX/L+vglFoOjWhkb8w++0FL/yb/YdxEWFwY
- MtTg==
-X-Gm-Message-State: ACgBeo1+A2W3nCUopFqJWMJjIZeSWrJ0UbKb1n8VJkciemtBuoRxz4q6
- BOwt7JgqQRCpbvM/LFkTCZcbMg==
-X-Google-Smtp-Source: AA6agR7wtKqyRGfnjcuvxsrl/dlt1fADSTrCDXQsKf/bE0fFyZzXgvCiscSIepGAJJArj7TFfEl6HA==
-X-Received: by 2002:a05:6402:369:b0:445:d379:d233 with SMTP id
- s9-20020a056402036900b00445d379d233mr5469265edw.395.1660902958421; 
- Fri, 19 Aug 2022 02:55:58 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- ss2-20020a170907c00200b007309f007d3asm2022802ejc.128.2022.08.19.02.55.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 19 Aug 2022 02:55:57 -0700 (PDT)
-Message-ID: <4a6120dc-6a7a-a718-86a4-6fd8bd9a8ed4@blackwall.org>
-Date: Fri, 19 Aug 2022 12:55:56 +0300
+ with ESMTP id K_aA9w8XyeTa for <bridge@lists.linux-foundation.org>;
+ Fri, 19 Aug 2022 12:43:56 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4B5D7813C2
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 4B5D7813C2
+ for <bridge@lists.linux-foundation.org>; Fri, 19 Aug 2022 12:43:56 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id D00811884F89;
+ Fri, 19 Aug 2022 12:43:27 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 980F72503314;
+ Fri, 19 Aug 2022 12:43:24 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 18BE8A1A5528; Fri, 19 Aug 2022 08:28:10 +0000 (UTC)
+X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Content-Language: en-US
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-kernel@vger.kernel.org
-References: <20220818210212.8347-1-wsa+renesas@sang-engineering.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20220818210212.8347-1-wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset=UTF-8
+Date: Fri, 19 Aug 2022 10:28:09 +0200
+From: netdev@kapio-technology.com
+To: Vladimir Oltean <olteanv@gmail.com>
+In-Reply-To: <20220717004725.ngix64ou2mz566is@skbuf>
+References: <20220707152930.1789437-1-netdev@kapio-technology.com>
+ <20220707152930.1789437-6-netdev@kapio-technology.com>
+ <20220717004725.ngix64ou2mz566is@skbuf>
+User-Agent: Gigahost Webmail
+Message-ID: <b6d95362926772bb513022ad8a45282d@kapio-technology.com>
+X-Sender: netdev@kapio-technology.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Florian Westphal <fw@strlen.de>, Jozsef Kadlecsik <kadlec@netfilter.org>,
- Eric Dumazet <edumazet@google.com>, coreteam@netfilter.org,
- netfilter-devel@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>,
- Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: Re: [Bridge] [PATCH] bridge: move from strlcpy with unused retval
-	to strscpy
+Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
+ Daniel Borkmann <daniel@iogearbox.net>, netdev@vger.kernel.org,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, Ido Schimmel <idosch@nvidia.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>, Eric Dumazet <edumazet@google.com>,
+ linux-kselftest@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ Shuah Khan <shuah@kernel.org>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v4 net-next 5/6] net: dsa: mv88e6xxx:
+ mac-auth/MAB implementation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -113,20 +87,298 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 19/08/2022 00:02, Wolfram Sang wrote:
-> Follow the advice of the below link and prefer 'strscpy' in this
-> subsystem. Conversion is 1:1 because the return value is not used.
-> Generated by a coccinelle script.
+On 2022-07-17 02:47, Vladimir Oltean wrote:
+>> @@ -1721,11 +1735,11 @@ static int mv88e6xxx_vtu_get(struct 
+>> mv88e6xxx_chip *chip, u16 vid,
+>>  	return err;
+>>  }
+>> 
+>>  int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
+>>  			    bool locked)
+>>  {
+>> @@ -1257,13 +1270,18 @@ int mv88e6xxx_port_set_lock(struct 
+>> mv88e6xxx_chip *chip, int port,
+>>  	if (err)
+>>  		return err;
+>> 
+>> -	err = mv88e6xxx_port_read(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, 
+>> &reg);
+>> -	if (err)
+>> -		return err;
+>> +	if (!locked) {
+>> +		err = mv88e6xxx_atu_locked_entry_flush(chip->ds, port);
 > 
-> Link: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->  net/bridge/br_device.c          | 8 ++++----
->  net/bridge/br_sysfs_if.c        | 4 ++--
->  net/bridge/netfilter/ebtables.c | 2 +-
->  3 files changed, 7 insertions(+), 7 deletions(-)
+> Did you re-run the selftest with v4? Because this deadlocks due to the
+> double reg_lock illustrated below:
+
+I did some selftest, but I didn't experience the problem of the double 
+chip lock as it only happens on unlock which is only called where the 
+MAB test ends.
+
 > 
+> + vrf_name=vlan1
+> + ip vrf exec vlan1 ping 192.0.2.2 -c 10 -i 0.1 -w 5
+> + check_err 1 'Ping did not work after locking port and adding FDB 
+> entry'
+> + local err=1
+> + local 'msg=Ping did not work after locking port and adding FDB entry'
+> + [[ 0 -eq 0 ]]
+> + [[ 1 -ne 0 ]]
+> + RET=1
+> + retmsg='Ping did not work after locking port and adding FDB entry'
+> + bridge link set dev lan2 locked off
+> [  733.273994]
+> [  733.275515] ============================================
+> [  733.280823] WARNING: possible recursive locking detected
+> [  733.286133] 5.19.0-rc6-07010-ga9b9500ffaac-dirty #3293 Not tainted
+> [  733.292311] --------------------------------------------
+> [  733.297613] kworker/0:0/601 is trying to acquire lock:
+> [  733.302751] ffff00000213c110 (&chip->reg_lock){+.+.}-{4:4}, at:
+> mv88e6xxx_atu_locked_entry_purge+0x70/0x1a4
+> [  733.312524]
+> [  733.312524] but task is already holding lock:
+> [  733.318351] ffff00000213c110 (&chip->reg_lock){+.+.}-{4:4}, at:
+> mv88e6xxx_port_bridge_flags+0x48/0x234
+> [  733.327674]
+> [  733.327674] other info that might help us debug this:
+> [  733.334198]  Possible unsafe locking scenario:
+> [  733.334198]
+> [  733.340109]        CPU0
+> [  733.342549]        ----
+> [  733.344990]   lock(&chip->reg_lock);
+> [  733.348567]   lock(&chip->reg_lock);
+> [  733.352149]
+> [  733.352149]  *** DEADLOCK ***
+> [  733.352149]
+> [  733.358063]  May be due to missing lock nesting notation
+> [  733.358063]
+> [  733.364846] 6 locks held by kworker/0:0/601:
+> [  733.369115]  #0: ffff00000000b748
+> ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x1f4/0x6c4
+> [  733.378541]  #1: ffff80000c43bdc8
+> (deferred_process_work){+.+.}-{0:0}, at: process_one_work+0x1f4/0x6c4
+> [  733.387966]  #2: ffff80000b020cb0 (rtnl_mutex){+.+.}-{4:4}, at:
+> rtnl_lock+0x1c/0x30
+> [  733.395660]  #3: ffff80000b073370
+> ((switchdev_blocking_notif_chain).rwsem){++++}-{4:4}, at:
+> blocking_notifier_call_chain+0x34/0xa0
+> [  733.407432]  #4: ffff00000213c110 (&chip->reg_lock){+.+.}-{4:4},
+> at: mv88e6xxx_port_bridge_flags+0x48/0x234
+> [  733.417202]  #5: ffff00000213e0f0 (&p->ale_list_lock){+.+.}-{4:4},
+> at: mv88e6xxx_atu_locked_entry_flush+0x4c/0xc0
+> [  733.427495]
+> [  733.427495] stack backtrace:
+> [  733.431858] CPU: 0 PID: 601 Comm: kworker/0:0 Not tainted
+> 5.19.0-rc6-07010-ga9b9500ffaac-dirty #3293
+> [  733.440992] Hardware name: CZ.NIC Turris Mox Board (DT)
+> [  733.446219] Workqueue: events switchdev_deferred_process_work
+> [  733.451982] Call trace:
+> [  733.454424]  dump_backtrace.part.0+0xcc/0xe0
+> [  733.458702]  show_stack+0x18/0x6c
+> [  733.462028]  dump_stack_lvl+0x8c/0xb8
+> [  733.465703]  dump_stack+0x18/0x34
+> [  733.469029]  __lock_acquire+0x1074/0x1fd0
+> [  733.473052]  lock_acquire.part.0+0xe4/0x220
+> [  733.477244]  lock_acquire+0x68/0x8c
+> [  733.480744]  __mutex_lock+0x9c/0x460
+> [  733.484332]  mutex_lock_nested+0x40/0x50
+> [  733.488268]  mv88e6xxx_atu_locked_entry_purge+0x70/0x1a4
+> [  733.493592]  mv88e6xxx_atu_locked_entry_flush+0x7c/0xc0
+> [  733.498827]  mv88e6xxx_port_set_lock+0xfc/0x10c
+> [  733.503374]  mv88e6xxx_port_bridge_flags+0x200/0x234
+> [  733.508351]  dsa_port_bridge_flags+0x44/0xe0
+> [  733.512635]  dsa_slave_port_attr_set+0x1ec/0x230
+> [  733.517268]  __switchdev_handle_port_attr_set+0x58/0x100
+> [  733.522594]  switchdev_handle_port_attr_set+0x10/0x24
+> [  733.527659]  dsa_slave_switchdev_blocking_event+0x8c/0xd4
+> [  733.533074]  blocking_notifier_call_chain+0x6c/0xa0
+> [  733.537968]  switchdev_port_attr_notify.constprop.0+0x4c/0xb0
+> [  733.543729]  switchdev_port_attr_set_deferred+0x24/0x80
+> [  733.548967]  switchdev_deferred_process+0x90/0x164
+> [  733.553774]  switchdev_deferred_process_work+0x14/0x2c
+> [  733.558926]  process_one_work+0x28c/0x6c4
+> [  733.562949]  worker_thread+0x74/0x450
+> [  733.566623]  kthread+0x118/0x11c
+> [  733.569860]  ret_from_fork+0x10/0x20
+> ++ mac_get lan1
+> ++ local if_name=lan1
+> ++ jq -r '.[]["address"]'
+> ++ ip -j link show dev lan1
+> 
+> I've tentatively fixed this in my tree by taking the register lock more
+> localized to the sub-functions of mv88e6xxx_port_bridge_flags(), and 
+> not
+> taking it at caller side for mv88e6xxx_port_set_lock(), but rather
+> letting the callee take it:
 
-Looks good, but should be targeted at net-next.
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+Yes, the double chip lock came from calling 
+mv88e6xxx_atu_locked_entry_flush() in mv88e6xxx_port_set_lock() that is 
+called from mv88e6xxx_port_bridge_flags() whic has the lock taken. I 
+have fixed this now, but when I unlock a port with locked entries, I 
+cannot have notify the bridge to clear the same locked entries by having 
+mv88e6xxx_atu_locked_entry_flush() calling with the notify on, thus 
+taking the rtnl lock, as this also results in a double lock.
+To remove the locked entries in the bridge FDB it is then necessary as I 
+see it, to take the link down or have a userspace daemon clear them. I 
+hope that is okay if documented?
 
+> 
+> diff --git a/drivers/net/dsa/mv88e6xxx/chip.c 
+> b/drivers/net/dsa/mv88e6xxx/chip.c
+> index 7b57ac121589..ec5954f32774 100644
+> --- a/drivers/net/dsa/mv88e6xxx/chip.c
+> +++ b/drivers/net/dsa/mv88e6xxx/chip.c
+> @@ -6557,41 +6557,47 @@ static int mv88e6xxx_port_bridge_flags(struct
+> dsa_switch *ds, int port,
+>  	struct mv88e6xxx_chip *chip = ds->priv;
+>  	int err = -EOPNOTSUPP;
+> 
+> -	mv88e6xxx_reg_lock(chip);
+> -
+>  	if (flags.mask & BR_LEARNING) {
+>  		bool learning = !!(flags.val & BR_LEARNING);
+>  		u16 pav = learning ? (1 << port) : 0;
+> 
+> +		mv88e6xxx_reg_lock(chip);
+>  		err = mv88e6xxx_port_set_assoc_vector(chip, port, pav);
+> +		mv88e6xxx_reg_unlock(chip);
+>  		if (err)
+> -			goto out;
+> +			return err;
+>  	}
+> 
+>  	if (flags.mask & BR_FLOOD) {
+>  		bool unicast = !!(flags.val & BR_FLOOD);
+> 
+> +		mv88e6xxx_reg_lock(chip);
+>  		err = chip->info->ops->port_set_ucast_flood(chip, port,
+>  							    unicast);
+> +		mv88e6xxx_reg_unlock(chip);
+>  		if (err)
+> -			goto out;
+> +			return err;
+>  	}
+> 
+>  	if (flags.mask & BR_MCAST_FLOOD) {
+>  		bool multicast = !!(flags.val & BR_MCAST_FLOOD);
+> 
+> +		mv88e6xxx_reg_lock(chip);
+>  		err = chip->info->ops->port_set_mcast_flood(chip, port,
+>  							    multicast);
+> +		mv88e6xxx_reg_unlock(chip);
+>  		if (err)
+> -			goto out;
+> +			return err;
+>  	}
+> 
+>  	if (flags.mask & BR_BCAST_FLOOD) {
+>  		bool broadcast = !!(flags.val & BR_BCAST_FLOOD);
+> 
+> +		mv88e6xxx_reg_lock(chip);
+>  		err = mv88e6xxx_port_broadcast_sync(chip, port, broadcast);
+> +		mv88e6xxx_reg_unlock(chip);
+>  		if (err)
+> -			goto out;
+> +			return err;
+>  	}
+> 
+>  	if (flags.mask & BR_PORT_LOCKED) {
+> @@ -6599,10 +6605,8 @@ static int mv88e6xxx_port_bridge_flags(struct
+> dsa_switch *ds, int port,
+> 
+>  		err = mv88e6xxx_port_set_lock(chip, port, locked);
+>  		if (err)
+> -			goto out;
+> +			return err;
+>  	}
+> -out:
+> -	mv88e6xxx_reg_unlock(chip);
+> 
+>  	return err;
+>  }
+> diff --git a/drivers/net/dsa/mv88e6xxx/port.c 
+> b/drivers/net/dsa/mv88e6xxx/port.c
+> index 5e4d5e9265a4..2a60aded6fbe 100644
+> --- a/drivers/net/dsa/mv88e6xxx/port.c
+> +++ b/drivers/net/dsa/mv88e6xxx/port.c
+> @@ -1222,15 +1222,19 @@ int mv88e6xxx_port_set_lock(struct
+> mv88e6xxx_chip *chip, int port,
+>  	u16 reg;
+>  	int err;
+> 
+> +	mv88e6xxx_reg_lock(chip);
+>  	err = mv88e6xxx_port_read(chip, port, MV88E6XXX_PORT_CTL0, &reg);
+> -	if (err)
+> +	if (err) {
+> +		mv88e6xxx_reg_unlock(chip);
+>  		return err;
+> +	}
+> 
+>  	reg &= ~MV88E6XXX_PORT_CTL0_SA_FILT_MASK;
+>  	if (locked)
+>  		reg |= MV88E6XXX_PORT_CTL0_SA_FILT_DROP_ON_LOCK;
+> 
+>  	err = mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_CTL0, reg);
+> +	mv88e6xxx_reg_unlock(chip);
+>  	if (err)
+>  		return err;
+> 
+> @@ -1247,7 +1251,11 @@ int mv88e6xxx_port_set_lock(struct
+> mv88e6xxx_chip *chip, int port,
+>  			MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
+>  	}
+> 
+> -	return mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, 
+> reg);
+> +	mv88e6xxx_reg_lock(chip);
+> +	err = mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, 
+> reg);
+> +	mv88e6xxx_reg_unlock(chip);
+> +
+> +	return err;
+>  }
+> 
+>  int mv88e6xxx_port_set_8021q_mode(struct mv88e6xxx_chip *chip, int 
+> port,
+> 
+>> +		if (err)
+>> +			return err;
+>> +	}
+>> 
+>> -	reg &= ~MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
+>> -	if (locked)
+>> -		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
+>> +	reg = 0;
+>> +	if (locked) {
+>> +		reg = (1 << port);
+>> +		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_IGNORE_WRONG |
+>> +			MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
+>> +	}
+>> 
+>>  	return mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, 
+>> reg);
+>>  }
+>> diff --git a/drivers/net/dsa/mv88e6xxx/port.h 
+>> b/drivers/net/dsa/mv88e6xxx/port.h
+>> index e0a705d82019..5c1d485e7442 100644
+>> --- a/drivers/net/dsa/mv88e6xxx/port.h
+>> +++ b/drivers/net/dsa/mv88e6xxx/port.h
+>> @@ -231,6 +231,7 @@
+>>  #define MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT		0x2000
+>>  #define MV88E6XXX_PORT_ASSOC_VECTOR_IGNORE_WRONG	0x1000
+>>  #define MV88E6XXX_PORT_ASSOC_VECTOR_REFRESH_LOCKED	0x0800
+>> +#define MV88E6XXX_PORT_ASSOC_VECTOR_PAV_MASK		0x07ff
+>> 
+>>  /* Offset 0x0C: Port ATU Control */
+>>  #define MV88E6XXX_PORT_ATU_CTL		0x0c
+>> @@ -374,6 +375,7 @@ int mv88e6xxx_port_set_fid(struct mv88e6xxx_chip 
+>> *chip, int port, u16 fid);
+>>  int mv88e6xxx_port_get_pvid(struct mv88e6xxx_chip *chip, int port, 
+>> u16 *pvid);
+>>  int mv88e6xxx_port_set_pvid(struct mv88e6xxx_chip *chip, int port, 
+>> u16 pvid);
+>> 
+>> +bool mv88e6xxx_port_is_locked(struct mv88e6xxx_chip *chip, int port);
+>>  int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
+>>  			    bool locked);
+>> 
