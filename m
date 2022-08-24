@@ -1,71 +1,64 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D28359F3EE
-	for <lists.bridge@lfdr.de>; Wed, 24 Aug 2022 09:07:37 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEAA65A02B9
+	for <lists.bridge@lfdr.de>; Wed, 24 Aug 2022 22:29:32 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id C2FCD81394;
-	Wed, 24 Aug 2022 07:07:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C2FCD81394
+	by smtp1.osuosl.org (Postfix) with ESMTP id 350E4828DE;
+	Wed, 24 Aug 2022 20:29:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 350E4828DE
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id o-vh5CM4DlGd; Wed, 24 Aug 2022 07:07:34 +0000 (UTC)
+	with ESMTP id VAlepO0jXMyB; Wed, 24 Aug 2022 20:29:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 585E08132E;
-	Wed, 24 Aug 2022 07:07:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 585E08132E
+	by smtp1.osuosl.org (Postfix) with ESMTPS id C52A58290B;
+	Wed, 24 Aug 2022 20:29:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C52A58290B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E51BFC0078;
-	Wed, 24 Aug 2022 07:07:32 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6C539C0078;
+	Wed, 24 Aug 2022 20:29:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5EAC5C002D
- for <bridge@lists.linux-foundation.org>; Wed, 24 Aug 2022 07:07:31 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B90FFC002D
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Aug 2022 20:29:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 32A174055D
- for <bridge@lists.linux-foundation.org>; Wed, 24 Aug 2022 07:07:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 32A174055D
+ by smtp4.osuosl.org (Postfix) with ESMTP id 8B7FB417C3
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Aug 2022 20:29:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8B7FB417C3
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9MwXZmEKcS2R for <bridge@lists.linux-foundation.org>;
- Wed, 24 Aug 2022 07:07:28 +0000 (UTC)
+ with ESMTP id ujSHIXrNK8s8 for <bridge@lists.linux-foundation.org>;
+ Wed, 24 Aug 2022 20:29:24 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AD63740544
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8332F417B8
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id AD63740544
- for <bridge@lists.linux-foundation.org>; Wed, 24 Aug 2022 07:07:28 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 8332F417B8
+ for <bridge@lists.linux-foundation.org>; Wed, 24 Aug 2022 20:29:24 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 84B0B1884C76;
- Wed, 24 Aug 2022 07:07:23 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id C7A9E188444D;
+ Wed, 24 Aug 2022 20:29:20 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 6880E25032B8;
- Wed, 24 Aug 2022 07:07:23 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id BEA8025032B7;
+ Wed, 24 Aug 2022 20:29:20 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 5802FA1A0052; Wed, 24 Aug 2022 07:07:23 +0000 (UTC)
+ id B7D589EC0004; Wed, 24 Aug 2022 20:29:20 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Wed, 24 Aug 2022 09:07:23 +0200
+Date: Wed, 24 Aug 2022 22:29:20 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <YwTJ5f5RzkC/DSdi@shredder>
-References: <YvkM7UJ0SX+jkts2@shredder>
+In-Reply-To: <YwHZ1J9DZW00aJDU@shredder>
+References: <5a4cfc6246f621d006af69d4d1f61ed1@kapio-technology.com>
+ <YvkM7UJ0SX+jkts2@shredder>
  <34dd1318a878494e7ab595f8727c7d7d@kapio-technology.com>
  <YwHZ1J9DZW00aJDU@shredder>
- <ce4266571b2b47ae8d56bd1f790cb82a@kapio-technology.com>
- <YwMW4iGccDu6jpaZ@shredder>
- <c2822d6dd66a1239ff8b7bfd06019008@kapio-technology.com>
- <YwR4MQ2xOMlvKocw@shredder>
- <9dcb4db4a77811308c56fe5b9b7c5257@kapio-technology.com>
- <YwSAtgS7fgHNLMEy@shredder>
- <553c573ad6a2ddfccfc47c7847cc5fb7@kapio-technology.com>
- <YwTJ5f5RzkC/DSdi@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <5390cb1d1485db40a71bb3fbf674b67a@kapio-technology.com>
+Message-ID: <7016ed2ce9a30537e4278e37878900d8@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -95,31 +88,45 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-08-23 14:36, Ido Schimmel wrote:
-> On Tue, Aug 23, 2022 at 09:37:54AM +0200, netdev@kapio-technology.com 
-> wrote:
+On 2022-08-21 09:08, Ido Schimmel wrote:
 > 
-> "learning on locked on" is really a misconfiguration, but it can also
-> happen today and entries do not roam with the "locked" flag for the
-> simple reason that it does not exist. I see two options:
+> I assume you want a hub to simulate multiple MACs behind the same port.
+> You don't need a hub for that. You can set the MAC using mausezahn. See
+> '-a' option:
 > 
-> 1. Do not clear / set "locked" flag during roaming. Given learning
-> should be disabled on locked ports, then the only half interesting case
-> is roaming to an unlocked port. Keeping the "locked" flag basically
-> means "if you were to lock the port, then the presence of this entry is
-> not enough to let traffic with the SA be forwarded by the bridge".
-> Unlikely that anyone will do that.
+> "
+>    -a <src-mac|keyword>
+>        Use specified source MAC address with hexadecimal notation such
+> as 00:00:aa:bb:cc:dd.  By default the interface MAC address will be
+> used. The  keywords  ''rand''
+>        and  ''own''  refer to a random MAC address (only unicast
+> addresses are created) and the own address, respectively. You can also
+> use the keywords mentioned below
+>        although broadcast-type source addresses are officially invalid.
+> "
 > 
-> 2. Always set "locked" flag for learned entries (new & roamed) on 
-> locked
-> ports and clear it for learned entries on unlocked ports.
-> 
-> Both options are consistent in how they treat the "locked" flag (either
-> always do nothing or always set/clear) and both do not impact the
-> integrity of the solution when configured correctly (disabling learning
-> on locked ports). I guess users will find option 2 easier to understand
-> / work with.
 
-Roaming to a locked port with an entry without the locked bit set would 
-open the port for said MAC without necessary authorization. Thus I think 
-that the only real option is the 2. case.
+
+Ido, I am not so known to the selftests, so I am wondering why I don't 
+see either check_err or check_fail fail, whichever I use, when I think 
+they should and then they are not really checking...
+
+
+         local mac=10:20:30:30:20:10
+
+
+         $MZ $h1 -t udp -a $mac -b rand
+         bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0 
+locked"
+         check_err $? "MAB station move: no locked entry on first 
+injection"
+
+         $MZ $h2 -t udp -a $mac -b rand
+         bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0 
+locked"
+         check_err $? "MAB station move: locked entry did not move"
+
+What is wrong here?
+
+For a mv88e6xxx test I guess I can make a check to verify that this 
+driver is in use?
