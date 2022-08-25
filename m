@@ -1,68 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBCE5A1285
-	for <lists.bridge@lfdr.de>; Thu, 25 Aug 2022 15:42:08 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFEF5A155D
+	for <lists.bridge@lfdr.de>; Thu, 25 Aug 2022 17:15:13 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id C616A40C79;
-	Thu, 25 Aug 2022 13:42:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org C616A40C79
+	by smtp1.osuosl.org (Postfix) with ESMTP id 256D8813A4;
+	Thu, 25 Aug 2022 15:15:12 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 256D8813A4
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 39to_Q4cC7Hd; Thu, 25 Aug 2022 13:42:05 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 59A42400CB;
-	Thu, 25 Aug 2022 13:42:04 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 59A42400CB
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Rh3nN5To2vXI; Thu, 25 Aug 2022 15:15:11 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id B2E87830E2;
+	Thu, 25 Aug 2022 15:15:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B2E87830E2
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0295DC007B;
-	Thu, 25 Aug 2022 13:42:04 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3E8F5C007B;
+	Thu, 25 Aug 2022 15:15:10 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 164BDC002D
- for <bridge@lists.linux-foundation.org>; Thu, 25 Aug 2022 13:42:02 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 30024C002D
+ for <bridge@lists.linux-foundation.org>; Thu, 25 Aug 2022 15:15:06 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id D68CB418A7
- for <bridge@lists.linux-foundation.org>; Thu, 25 Aug 2022 13:42:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D68CB418A7
+ by smtp3.osuosl.org (Postfix) with ESMTP id 1814A60C12
+ for <bridge@lists.linux-foundation.org>; Thu, 25 Aug 2022 15:15:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1814A60C12
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PTBWGq7ZahLJ for <bridge@lists.linux-foundation.org>;
- Thu, 25 Aug 2022 13:41:55 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id dYPsQNoHeNmV for <bridge@lists.linux-foundation.org>;
+ Thu, 25 Aug 2022 15:15:05 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 88EBE418C0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org C7EA960D9D
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 88EBE418C0
- for <bridge@lists.linux-foundation.org>; Thu, 25 Aug 2022 13:41:55 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id C7EA960D9D
+ for <bridge@lists.linux-foundation.org>; Thu, 25 Aug 2022 15:15:04 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 7BDFC1884D63;
- Thu, 25 Aug 2022 13:41:49 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 86EDA1884D53;
+ Thu, 25 Aug 2022 15:14:59 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 733B225032B7;
- Thu, 25 Aug 2022 13:41:49 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 6224C25032B7;
+ Thu, 25 Aug 2022 15:14:59 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 571599EC0002; Thu, 25 Aug 2022 13:41:49 +0000 (UTC)
+ id 4F2C09EC0002; Thu, 25 Aug 2022 15:14:59 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Thu, 25 Aug 2022 15:41:49 +0200
+Date: Thu, 25 Aug 2022 17:14:59 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <Ywdj2+mIQFR6+drZ@shredder>
+In-Reply-To: <YwdCovUbVpmHfl39@shredder>
 References: <5a4cfc6246f621d006af69d4d1f61ed1@kapio-technology.com>
  <YvkM7UJ0SX+jkts2@shredder>
  <34dd1318a878494e7ab595f8727c7d7d@kapio-technology.com>
  <YwHZ1J9DZW00aJDU@shredder>
- <7016ed2ce9a30537e4278e37878900d8@kapio-technology.com>
- <Ywc/qTNqVbS4E7zS@shredder>
- <7dfe15571370dfb5348a3d0e5478f62c@kapio-technology.com>
- <Ywdj2+mIQFR6+drZ@shredder>
+ <ce4266571b2b47ae8d56bd1f790cb82a@kapio-technology.com>
+ <YwMW4iGccDu6jpaZ@shredder>
+ <c2822d6dd66a1239ff8b7bfd06019008@kapio-technology.com>
+ <YwR4MQ2xOMlvKocw@shredder>
+ <15407e4b247e91fd8326b1013d1a8640@kapio-technology.com>
+ <YwdCovUbVpmHfl39@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <6fa538a1489a73fdf8b1fa92785185aa@kapio-technology.com>
+Message-ID: <824eda8a76f36c8e211289e4ed3d2118@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -92,40 +94,30 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-08-25 13:58, Ido Schimmel wrote:
-> On Thu, Aug 25, 2022 at 12:27:01PM +0200, netdev@kapio-technology.com 
+On 2022-08-25 11:36, Ido Schimmel wrote:
+> On Tue, Aug 23, 2022 at 01:41:51PM +0200, netdev@kapio-technology.com 
 > wrote:
-> 
-> Instead of skipping it you can check that roaming fails when "sticky" 
-> is
-> set.
-> 
-
-I think that the sticky flag topic generally is beyond the MAB feature, 
-and it doesn't really fit into the bridge_locked_port.sh.
-But anyhow I guess I can add it to the bridge_sticky_fdb.sh tests.
-
+>> On 2022-08-23 08:48, Ido Schimmel wrote:
+>> >
+>> > I'm not good at naming, but "blackhole" is at least consistent with what
+>> > we already have for routes and nexthop objects.
+>> >
 >> 
->> The bridge_locked_port.sh test is linked in
->> tools/testing/selftests/drivers/net/dsa/, but if I cannot check if the
->> mv88e6xxx driver or other switchcores are in use, I cannot do more.
+>> I have changed it the name "masked", as that is also the term used in 
+>> the
+>> documentation for the zero-DPV entries, and I think that it will 
+>> generally
+>> be a more accepted term.
 > 
-> Since the behavior of the HW data path is reflected to the software
-> bridge and user space via "sticky" / "blackhole" / "extern_learn", you
-> should be able to add test cases to the generic selftest. For example,
-> if "blackhole" is set, then simple ping is expected to fail. Otherwise
-> it is expected to pass.
+> "blackhole" is an already accepted term and at least to me it is much
+> more clear than "masked". Keep in mind that both L2 neighbours (FDB) 
+> and
+> L3 neighbours share the same uAPI and eventually we might want to 
+> extend
+> the use of this flag for L3 neighbours (at least Spectrum supports it),
+> so it needs to make sense for both.
 
-The problem here is that the "blackhole" flag can only be set now from 
-the mv88e6xxx driver under a locked port, and the locked port itself 
-will not allow ping to work anyhow without a FDB entry free of the 
-"locked" flag, as the MAB tests verify.
-And disabling MAB on the locked port on the mv88e6xxx will clean the 
-locked entries.
-
-So I see it as a flag for future use, otherwise I will have to add a 
-userspace command to enable the "blackhole" flag.
-
-
-I have now made station move tests for both the locked port and MAB 
-cases.
+I have changed the name of the flag to 'blackhole', but the struct entry 
+in switchdev_notifier_fdb_info and a function input parameter is still 
+named 'masked'. If that should be changed before I send out V5, please 
+let me know as I hope to get this patch set accepted.
