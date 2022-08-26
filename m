@@ -1,64 +1,62 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A735A2750
-	for <lists.bridge@lfdr.de>; Fri, 26 Aug 2022 14:02:43 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4171C5A27C2
+	for <lists.bridge@lfdr.de>; Fri, 26 Aug 2022 14:25:31 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 01979832AA;
-	Fri, 26 Aug 2022 12:02:42 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 01979832AA
+	by smtp2.osuosl.org (Postfix) with ESMTP id 80EDD40D93;
+	Fri, 26 Aug 2022 12:25:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 80EDD40D93
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fyGkcCQFXO6U; Fri, 26 Aug 2022 12:02:40 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Lo_bNy4A-RPj; Fri, 26 Aug 2022 12:25:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 8856883280;
-	Fri, 26 Aug 2022 12:02:39 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8856883280
+	by smtp2.osuosl.org (Postfix) with ESMTPS id D0C1440FCA;
+	Fri, 26 Aug 2022 12:25:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D0C1440FCA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 57330C0078;
-	Fri, 26 Aug 2022 12:02:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 782B3C0078;
+	Fri, 26 Aug 2022 12:25:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 64F63C002D
- for <bridge@lists.linux-foundation.org>; Fri, 26 Aug 2022 12:02:37 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C8F40C002D
+ for <bridge@lists.linux-foundation.org>; Fri, 26 Aug 2022 12:25:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 4A10B419F6
- for <bridge@lists.linux-foundation.org>; Fri, 26 Aug 2022 12:02:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4A10B419F6
+ by smtp4.osuosl.org (Postfix) with ESMTP id 94EA6419ED
+ for <bridge@lists.linux-foundation.org>; Fri, 26 Aug 2022 12:25:24 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 94EA6419ED
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id r3ST4hMwW6rS for <bridge@lists.linux-foundation.org>;
- Fri, 26 Aug 2022 12:02:35 +0000 (UTC)
+ with ESMTP id gziFP_UVA6SA for <bridge@lists.linux-foundation.org>;
+ Fri, 26 Aug 2022 12:25:23 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8F9E6419F4
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 5018A4192E
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 8F9E6419F4
- for <bridge@lists.linux-foundation.org>; Fri, 26 Aug 2022 12:02:34 +0000 (UTC)
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 5018A4192E
+ for <bridge@lists.linux-foundation.org>; Fri, 26 Aug 2022 12:25:23 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 83A1F1888676;
- Fri, 26 Aug 2022 12:02:30 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 9CEDD188A411;
+ Fri, 26 Aug 2022 12:25:21 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 7AA6425032BD;
- Fri, 26 Aug 2022 12:02:30 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 7296725032BA;
+ Fri, 26 Aug 2022 12:25:21 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 21D369EC0004; Fri, 26 Aug 2022 11:46:14 +0000 (UTC)
+ id 50A509EC00AD; Fri, 26 Aug 2022 11:45:51 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 Received: from wse-c0127.beijerelectronics.com (unknown [208.127.141.28])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id DB2899EC0009;
- Fri, 26 Aug 2022 11:46:11 +0000 (UTC)
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 3836A9EC0008;
+ Fri, 26 Aug 2022 11:45:49 +0000 (UTC)
 From: Hans Schultz <netdev@kapio-technology.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Fri, 26 Aug 2022 13:45:38 +0200
-Message-Id: <20220826114538.705433-7-netdev@kapio-technology.com>
+Date: Fri, 26 Aug 2022 13:45:32 +0200
+Message-Id: <20220826114538.705433-1-netdev@kapio-technology.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220826114538.705433-1-netdev@kapio-technology.com>
-References: <20220826114538.705433-1-netdev@kapio-technology.com>
 MIME-Version: 1.0
 Organization: Westermo Network Technologies AB
 Content-Transfer-Encoding: 8bit
@@ -81,8 +79,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  Matthias Brugger <matthias.bgg@gmail.com>, Yuwei Wang <wangyuweihx@gmail.com>,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>
-Subject: [Bridge] [PATCH v5 net-next 6/6] selftests: forwarding: add test of
-	MAC-Auth Bypass to locked port tests
+Subject: [Bridge] [PATCH v5 net-next 0/6] Extend locked port feature with
+	FDB locked flag (MAC-Auth/MAB)
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,182 +95,120 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Verify that the MAC-Auth mechanism works by adding a FDB entry with the
-locked flag set, denying access until the FDB entry is replaced with a
-FDB entry without the locked flag set.
+This patch set extends the locked port feature for devices
+that are behind a locked port, but do not have the ability to
+authorize themselves as a supplicant using IEEE 802.1X.
+Such devices can be printers, meters or anything related to
+fixed installations. Instead of 802.1X authorization, devices
+can get access based on their MAC addresses being whitelisted.
 
-Also add a test that verifies that sticky FDB entries cannot roam.
+For an authorization daemon to detect that a device is trying
+to get access through a locked port, the bridge will add the
+MAC address of the device to the FDB with a locked flag to it.
+Thus the authorization daemon can catch the FDB add event and
+check if the MAC address is in the whitelist and if so replace
+the FDB entry without the locked flag enabled, and thus open
+the port for the device.
 
-Signed-off-by: Hans Schultz <netdev@kapio-technology.com>
----
- .../net/forwarding/bridge_locked_port.sh      | 107 +++++++++++++++++-
- .../net/forwarding/bridge_sticky_fdb.sh       |  21 +++-
- 2 files changed, 126 insertions(+), 2 deletions(-)
+This feature is known as MAC-Auth or MAC Authentication Bypass
+(MAB) in Cisco terminology, where the full MAB concept involves
+additional Cisco infrastructure for authorization. There is no
+real authentication process, as the MAC address of the device
+is the only input the authorization daemon, in the general
+case, has to base the decision if to unlock the port or not.
 
-diff --git a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-index 5b02b6b60ce7..b763b3b9fdf0 100755
---- a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-+++ b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-@@ -1,7 +1,15 @@
- #!/bin/bash
- # SPDX-License-Identifier: GPL-2.0
- 
--ALL_TESTS="locked_port_ipv4 locked_port_ipv6 locked_port_vlan"
-+ALL_TESTS="
-+	locked_port_ipv4
-+	locked_port_ipv6
-+	locked_port_vlan
-+	locked_port_mab
-+	locked_port_station_move
-+	locked_port_mab_station_move
-+"
-+
- NUM_NETIFS=4
- CHECK_TC="no"
- source lib.sh
-@@ -166,6 +174,103 @@ locked_port_ipv6()
- 	log_test "Locked port ipv6"
- }
- 
-+locked_port_mab()
-+{
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	ping_do $h1 192.0.2.2
-+	check_err $? "MAB: Ping did not work before locking port"
-+
-+	bridge link set dev $swp1 locked on
-+	bridge link set dev $swp1 learning on
-+	if ! bridge link set dev $swp1 mab on 2>/dev/null; then
-+		echo "SKIP: iproute2 too old; MacAuth feature not supported."
-+		return $ksft_skip
-+	fi
-+
-+	ping_do $h1 192.0.2.2
-+	check_fail $? "MAB: Ping worked on locked port without FDB entry"
-+
-+	bridge fdb show | grep `mac_get $h1` | grep -q "locked"
-+	check_err $? "MAB: No locked fdb entry after ping on locked port"
-+
-+	bridge fdb replace `mac_get $h1` dev $swp1 master static
-+
-+	ping_do $h1 192.0.2.2
-+	check_err $? "MAB: Ping did not work with fdb entry without locked flag"
-+
-+	bridge fdb del `mac_get $h1` dev $swp1 master
-+	bridge link set dev $swp1 learning off
-+	bridge link set dev $swp1 locked off
-+
-+	log_test "Locked port MAB"
-+}
-+
-+# No roaming allowed to a simple locked port
-+locked_port_station_move()
-+{
-+	local mac=a0:b0:c0:c0:b0:a0
-+
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	bridge link set dev $swp1 locked on
-+	bridge link set dev $swp1 learning on
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0"
-+	check_fail $? "Locked port station move: FDB entry on first injection"
-+
-+	$MZ $h2 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp2 | grep -q "$mac vlan 1 master br0"
-+	check_err $? "Locked port station move: Entry not found on unlocked port"
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0"
-+	check_fail $? "Locked port station move: entry roamed to locked port"
-+
-+	log_test "Locked port station move"
-+}
-+
-+# Roaming to and from a MAB enabled port should work if sticky flag is not set
-+locked_port_mab_station_move()
-+{
-+	local mac=10:20:30:30:20:10
-+
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	bridge link set dev $swp1 locked on
-+	bridge link set dev $swp1 learning on
-+	if ! bridge link set dev $swp1 mab on 2>/dev/null; then
-+		echo "SKIP: iproute2 too old; MacAuth feature not supported."
-+		return $ksft_skip
-+	fi
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	if bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0" | grep -q sticky; then
-+		echo "SKIP: Roaming not possible with sticky flag, run sticky flag roaming test"
-+		return $ksft_skip
-+	fi
-+
-+	bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0 locked"
-+	check_err $? "MAB station move: no locked entry on first injection"
-+
-+	$MZ $h2 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0 locked"
-+	check_fail $? "MAB station move: locked entry did not move"
-+
-+	bridge fdb show dev $swp2 | grep -q "$mac vlan 1 master br0"
-+	check_err $? "MAB station move: roamed entry not found"
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep -q "$mac vlan 1 master br0 locked"
-+	check_err $? "MAB station move: entry did not roam back to locked port"
-+
-+	log_test "Locked port MAB station move"
-+}
-+
- trap cleanup EXIT
- 
- setup_prepare
-diff --git a/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh b/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh
-index 1f8ef0eff862..bca77bc3fe09 100755
---- a/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh
-+++ b/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh
-@@ -1,7 +1,7 @@
- #!/bin/bash
- # SPDX-License-Identifier: GPL-2.0
- 
--ALL_TESTS="sticky"
-+ALL_TESTS="sticky sticky_no_roaming"
- NUM_NETIFS=4
- TEST_MAC=de:ad:be:ef:13:37
- source lib.sh
-@@ -59,6 +59,25 @@ sticky()
- 	log_test "Sticky fdb entry"
- }
- 
-+# No roaming allowed with the sticky flag set
-+sticky_no_roaming()
-+{
-+	local mac=a8:b4:c2:c2:b4:a8
-+
-+	RET=0
-+
-+	bridge link set dev $swp2 learning on
-+	bridge fdb add $mac dev $swp1 master static sticky
-+	bridge fdb show dev $swp1 | grep "$mac master br0" | grep -q sticky
-+	check_err $? "Sticky no roaming: No sticky FDB entry found after adding"
-+
-+	$MZ $h2 -q -t udp -c 10 -d 100msec -a $mac -b rand
-+	bridge fdb show dev $swp2 | grep "$mac master br0" | grep -q sticky
-+	check_fail $? "Sticky no roaming: Sticky entry roamed"
-+
-+	log_test "Sticky no roaming"
-+}
-+
- trap cleanup EXIT
- 
- setup_prepare
+With this patch set, an implementation of the offloaded case is
+supplied for the mv88e6xxx driver. When a packet ingresses on
+a locked port, an ATU miss violation event will occur. When
+handling such ATU miss violation interrupts, the MAC address of
+the device is added to the FDB with a zero destination port
+vector (DPV) and the MAC address is communicated through the
+switchdev layer to the bridge, so that a FDB entry with the
+locked flag enabled can be added.
+
+Log:
+        v3:     Added timers and lists in the driver (mv88e6xxx)
+                to keep track of and remove locked entries.
+
+        v4:     Leave out enforcing a limit to the number of
+                locked entries in the bridge.
+                Removed the timers in the driver and use the
+                worker only. Add locked FDB flag to all drivers
+                using port_fdb_add() from the dsa api and let
+                all drivers ignore entries with this flag set.
+                Change how to get the ageing timeout of locked
+                entries. See global1_atu.c and switchdev.c.
+                Use struct mv88e6xxx_port for locked entries
+                variables instead of struct dsa_port.
+
+	v5:	Added 'mab' flag to enable MAB/MacAuth feature,
+		in a similar way to the locked feature flag.
+
+		In these implementations for the mv88e6xxx, the
+		switchport must be configured with learning on.
+
+		To tell userspace about the behavior of the
+		locked entries in the driver, a 'blackhole'
+		FDB flag has been added, which locked FDB
+		entries coming from the driver gets. Also the
+		'sticky' flag comes with those locked entries,
+		as the drivers locked entries cannot roam.
+
+		Fixed issues with taking mutex locks, and added
+		a function to read the fid, that supports all
+		versions of the chipset family.
+		
+
+Hans Schultz (6):
+  net: bridge: add locked entry fdb flag to extend locked port feature
+  net: switchdev: add support for offloading of fdb locked flag
+  drivers: net: dsa: add locked fdb entry flag to drivers
+  net: dsa: mv88e6xxx: allow reading FID when handling ATU violations
+  net: dsa: mv88e6xxx: MacAuth/MAB implementation
+  selftests: forwarding: add test of MAC-Auth Bypass to locked port
+    tests
+
+ drivers/net/dsa/b53/b53_common.c              |   5 +
+ drivers/net/dsa/b53/b53_priv.h                |   1 +
+ drivers/net/dsa/hirschmann/hellcreek.c        |   5 +
+ drivers/net/dsa/lan9303-core.c                |   5 +
+ drivers/net/dsa/lantiq_gswip.c                |   5 +
+ drivers/net/dsa/microchip/ksz_common.c        |   5 +
+ drivers/net/dsa/mt7530.c                      |   5 +
+ drivers/net/dsa/mv88e6xxx/Makefile            |   1 +
+ drivers/net/dsa/mv88e6xxx/chip.c              |  81 ++++-
+ drivers/net/dsa/mv88e6xxx/chip.h              |  19 ++
+ drivers/net/dsa/mv88e6xxx/global1.h           |   1 +
+ drivers/net/dsa/mv88e6xxx/global1_atu.c       |  76 ++++-
+ drivers/net/dsa/mv88e6xxx/port.c              |  15 +-
+ drivers/net/dsa/mv88e6xxx/port.h              |   6 +
+ drivers/net/dsa/mv88e6xxx/switchdev.c         | 285 ++++++++++++++++++
+ drivers/net/dsa/mv88e6xxx/switchdev.h         |  37 +++
+ drivers/net/dsa/ocelot/felix.c                |   5 +
+ drivers/net/dsa/qca/qca8k-common.c            |   5 +
+ drivers/net/dsa/qca/qca8k.h                   |   1 +
+ drivers/net/dsa/sja1105/sja1105_main.c        |   7 +-
+ include/linux/if_bridge.h                     |   1 +
+ include/net/dsa.h                             |   1 +
+ include/net/switchdev.h                       |   3 +
+ include/uapi/linux/if_link.h                  |   1 +
+ include/uapi/linux/neighbour.h                |   4 +-
+ net/bridge/br.c                               |   5 +-
+ net/bridge/br_fdb.c                           |  43 ++-
+ net/bridge/br_input.c                         |  16 +-
+ net/bridge/br_netlink.c                       |   9 +-
+ net/bridge/br_private.h                       |   7 +-
+ net/bridge/br_switchdev.c                     |   5 +-
+ net/dsa/dsa_priv.h                            |   4 +-
+ net/dsa/port.c                                |   7 +-
+ net/dsa/slave.c                               |   4 +-
+ net/dsa/switch.c                              |  10 +-
+ .../net/forwarding/bridge_locked_port.sh      | 107 ++++++-
+ .../net/forwarding/bridge_sticky_fdb.sh       |  21 +-
+ 37 files changed, 768 insertions(+), 50 deletions(-)
+ create mode 100644 drivers/net/dsa/mv88e6xxx/switchdev.c
+ create mode 100644 drivers/net/dsa/mv88e6xxx/switchdev.h
+
 -- 
 2.30.2
 
