@@ -1,77 +1,76 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41BBB5A4A1D
-	for <lists.bridge@lfdr.de>; Mon, 29 Aug 2022 13:34:30 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 976C55A4A95
+	for <lists.bridge@lfdr.de>; Mon, 29 Aug 2022 13:43:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 0BC39410B4;
-	Mon, 29 Aug 2022 11:34:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0BC39410B4
+	by smtp2.osuosl.org (Postfix) with ESMTP id B817F40C11;
+	Mon, 29 Aug 2022 11:43:24 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B817F40C11
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id DYYmmmKs7RNF; Mon, 29 Aug 2022 11:34:27 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 16XFS3V6WMHR; Mon, 29 Aug 2022 11:43:24 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 32C0D4148F;
-	Mon, 29 Aug 2022 11:34:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 32C0D4148F
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 6068140C0B;
+	Mon, 29 Aug 2022 11:43:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6068140C0B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CEB1EC0078;
-	Mon, 29 Aug 2022 11:34:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 07295C0078;
+	Mon, 29 Aug 2022 11:43:23 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 730EAC002D
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 11:34:24 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0160CC002D
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 11:43:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 4E39260AF4
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 11:34:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4E39260AF4
+ by smtp2.osuosl.org (Postfix) with ESMTP id BD58940C11
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 11:43:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BD58940C11
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SfbMKk2BphCj for <bridge@lists.linux-foundation.org>;
- Mon, 29 Aug 2022 11:34:23 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ppSxgPcuZxH5 for <bridge@lists.linux-foundation.org>;
+ Mon, 29 Aug 2022 11:43:20 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8FCD460ACE
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 14E7440C0B
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 8FCD460ACE
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 11:34:23 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 14E7440C0B
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 11:43:20 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id A21921884505;
- Mon, 29 Aug 2022 11:34:21 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 5AC4E1884942;
+ Mon, 29 Aug 2022 11:43:18 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 9954B25032B7;
- Mon, 29 Aug 2022 11:34:21 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 4B03125032B7;
+ Mon, 29 Aug 2022 11:43:18 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 8D1D49EC0003; Mon, 29 Aug 2022 11:34:21 +0000 (UTC)
+ id 42CC79EC0001; Mon, 29 Aug 2022 11:43:18 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Mon, 29 Aug 2022 13:34:21 +0200
+Date: Mon, 29 Aug 2022 13:43:18 +0200
 From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <Ywo16vHMqxxszWzX@shredder>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <e9eb5b72-073a-f182-13b7-37fc53611d5f@blackwall.org>
 References: <20220826114538.705433-1-netdev@kapio-technology.com>
  <20220826114538.705433-2-netdev@kapio-technology.com>
- <Ywo16vHMqxxszWzX@shredder>
+ <e9eb5b72-073a-f182-13b7-37fc53611d5f@blackwall.org>
 User-Agent: Gigahost Webmail
-Message-ID: <ae1fb003f7e1abdecaa36243e3b1a16c@kapio-technology.com>
+Message-ID: <e1e07c4ebdcc494d9a20d1a8ec398b48@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
  Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
  linux-kselftest@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
  Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
- linux-arm-kernel@lists.infradead.org, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- Vivien Didelot <vivien.didelot@gmail.com>,
+ Daniel Borkmann <daniel@iogearbox.net>, Ido Schimmel <idosch@nvidia.com>,
+ bridge@lists.linux-foundation.org, linux-arm-kernel@lists.infradead.org,
+ Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
+ Paolo Abeni <pabeni@redhat.com>, Vivien Didelot <vivien.didelot@gmail.com>,
  Woojung Huh <woojung.huh@microchip.com>,
  Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
  Christian Marangi <ansuelsmth@gmail.com>, Hauke Mehrtens <hauke@hauke-m.de>,
@@ -97,49 +96,36 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-08-27 17:19, Ido Schimmel wrote:
-> 
-> How about the below (untested):
-> 
-> diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-> index 68b3e850bcb9..9143a94a1c57 100644
-> --- a/net/bridge/br_input.c
-> +++ b/net/bridge/br_input.c
-> @@ -109,9 +109,18 @@ int br_handle_frame_finish(struct net *net,
-> struct sock *sk, struct sk_buff *skb
->                 struct net_bridge_fdb_entry *fdb_src =
->                         br_fdb_find_rcu(br, eth_hdr(skb)->h_source, 
-> vid);
-> 
-> -               if (!fdb_src || READ_ONCE(fdb_src->dst) != p ||
-> -                   test_bit(BR_FDB_LOCAL, &fdb_src->flags))
-> +               if (!fdb_src) {
-> +                       if (p->flags & BR_PORT_MAB) {
-> +                               __set_bit(BR_FDB_ENTRY_LOCKED, &flags);
-> +                               br_fdb_update(br, p, 
-> eth_hdr(skb)->h_source,
-> +                                             vid, flags);
-> +                       }
-> +                       goto drop;
-> +               } else if (READ_ONCE(fdb_src->dst) != p ||
-> +                          test_bit(BR_FDB_LOCAL, &fdb_src->flags) ||
-> +                          test_bit(BR_FDB_LOCKED, &fdb_src->flags)) {
->                         goto drop;
-> +               }
->         }
-> 
-> The semantics are very clear, IMO. On FDB miss, add a locked FDB entry
-> and drop the packet. On FDB mismatch, drop the packet.
-> 
-> Entry can roam from an unauthorized port to an authorized port, but not
-> the other way around. Not sure what is the use case for allowing 
-> roaming
-> between unauthorized ports.
-> 
-> Note that with the above, locked entries are not refreshed and will
-> therefore age out unless replaced by user space.
+> On 2022-08-27 13:30, Nikolay Aleksandrov wrote:
+>> @@ -879,6 +888,10 @@ void br_fdb_update(struct net_bridge *br, struct 
+>> net_bridge_port *source,
+>>  						      &fdb->flags)))
+>>  					clear_bit(BR_FDB_ADDED_BY_EXT_LEARN,
+>>  						  &fdb->flags);
+>> +				if (source->flags & BR_PORT_MAB)
+>> +					set_bit(BR_FDB_ENTRY_LOCKED, &fdb->flags);
+>> +				else
+>> +					clear_bit(BR_FDB_ENTRY_LOCKED, &fdb->flags);
+> Please add a test for that bit and only then change it.
 > 
 
-Okay, I got the semantics (locked/unlocked vs unauthorized/authorized) 
-reversed, so I will go with your suggestion.
+Okay, I have revised this part now. I hope that it is suitable?
+
+@@ -749,6 +756,10 @@ void br_fdb_update(struct net_bridge *br, struct 
+net_bridge_port *source,
+                                                       &fdb->flags)))
+                                         
+clear_bit(BR_FDB_ADDED_BY_EXT_LEARN,
+                                                   &fdb->flags);
++                               /* Allow roaming from an unauthorized 
+port to an
++                                * authorized port */
++                               if 
+(unlikely(test_bit(BR_FDB_ENTRY_LOCKED, &fdb->flags)))
++                                       clear_bit(BR_FDB_ENTRY_LOCKED, 
+&fdb->flags);
+                         }
+
+                         if (unlikely(test_bit(BR_FDB_ADDED_BY_USER, 
+&flags)))
 
