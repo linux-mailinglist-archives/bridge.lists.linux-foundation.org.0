@@ -1,65 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D1B5A4479
-	for <lists.bridge@lfdr.de>; Mon, 29 Aug 2022 10:04:33 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3795A4587
+	for <lists.bridge@lfdr.de>; Mon, 29 Aug 2022 10:55:24 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 50A8181406;
-	Mon, 29 Aug 2022 08:04:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 50A8181406
+	by smtp3.osuosl.org (Postfix) with ESMTP id CF15860F15;
+	Mon, 29 Aug 2022 08:55:21 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CF15860F15
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0KtlYCq2AHhh; Mon, 29 Aug 2022 08:04:30 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id U_cjRyHDr_Xc; Mon, 29 Aug 2022 08:55:21 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id E8CB681407;
-	Mon, 29 Aug 2022 08:04:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E8CB681407
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 54A9A60EFD;
+	Mon, 29 Aug 2022 08:55:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 54A9A60EFD
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 74CDEC007B;
-	Mon, 29 Aug 2022 08:04:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E674FC0078;
+	Mon, 29 Aug 2022 08:55:19 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5C385C002D
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 08:04:28 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BF7D9C002D
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 08:55:18 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 443F381407
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 08:04:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 443F381407
+ by smtp1.osuosl.org (Postfix) with ESMTP id 8CFFB823F6
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 08:55:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8CFFB823F6
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id y4pC5ebJpKWU for <bridge@lists.linux-foundation.org>;
- Mon, 29 Aug 2022 08:04:27 +0000 (UTC)
+ with ESMTP id oKZ3r5xLa7JW for <bridge@lists.linux-foundation.org>;
+ Mon, 29 Aug 2022 08:55:18 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 94DCC81406
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C0A9F81CAD
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 94DCC81406
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 08:04:27 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id C0A9F81CAD
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 08:55:17 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 8D99C1883996;
- Mon, 29 Aug 2022 08:04:25 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 00ECB18848CB;
+ Mon, 29 Aug 2022 08:55:16 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 82C7625032B7;
- Mon, 29 Aug 2022 08:04:25 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id EC9B325032B7;
+ Mon, 29 Aug 2022 08:55:15 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 72B209EC0004; Mon, 29 Aug 2022 08:04:25 +0000 (UTC)
+ id DE5709EC0003; Mon, 29 Aug 2022 08:55:15 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Mon, 29 Aug 2022 10:04:25 +0200
+Date: Mon, 29 Aug 2022 10:55:15 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <YwxwPJOx/n5SHZM5@shredder>
+In-Reply-To: <YwxtVhlPjq+M9QMY@shredder>
 References: <20220826114538.705433-1-netdev@kapio-technology.com>
- <20220826114538.705433-2-netdev@kapio-technology.com>
- <Ywo16vHMqxxszWzX@shredder>
- <dd9a4156fe421f6be3a49f5b928ef77e@kapio-technology.com>
- <YwxwPJOx/n5SHZM5@shredder>
+ <20220826114538.705433-7-netdev@kapio-technology.com>
+ <YwpgvkojEdytzCAB@shredder>
+ <7654860e4d7d43c15d482c6caeb6a773@kapio-technology.com>
+ <YwxtVhlPjq+M9QMY@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <7e4b58a75ece9cce4c841c33d7d66265@kapio-technology.com>
+Message-ID: <c1123f1b242ea037867a5ec7130232f4@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -83,8 +83,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
  davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v5 net-next 1/6] net: bridge: add locked entry
- fdb flag to extend locked port feature
+Subject: Re: [Bridge] [PATCH v5 net-next 6/6] selftests: forwarding: add
+ test of MAC-Auth Bypass to locked port tests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,36 +99,53 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-08-29 09:52, Ido Schimmel wrote:
-> On Sun, Aug 28, 2022 at 12:23:30PM +0200, netdev@kapio-technology.com 
+On 2022-08-29 09:40, Ido Schimmel wrote:
+> On Sun, Aug 28, 2022 at 02:00:29PM +0200, netdev@kapio-technology.com 
 > wrote:
->> On 2022-08-27 17:19, Ido Schimmel wrote:
->> > On Fri, Aug 26, 2022 at 01:45:33PM +0200, Hans Schultz wrote:
->> > >
->> > >  	nbp_switchdev_frame_mark(p, skb);
->> > > @@ -943,6 +946,10 @@ static int br_setport(struct net_bridge_port
->> > > *p, struct nlattr *tb[],
->> > >  	br_set_port_flag(p, tb, IFLA_BRPORT_NEIGH_SUPPRESS,
->> > > BR_NEIGH_SUPPRESS);
->> > >  	br_set_port_flag(p, tb, IFLA_BRPORT_ISOLATED, BR_ISOLATED);
->> > >  	br_set_port_flag(p, tb, IFLA_BRPORT_LOCKED, BR_PORT_LOCKED);
->> > > +	br_set_port_flag(p, tb, IFLA_BRPORT_MAB, BR_PORT_MAB);
->> > > +
->> > > +	if (!(p->flags & BR_PORT_LOCKED))
->> > > +		p->flags &= ~BR_PORT_MAB;
+>> On 2022-08-27 20:21, Ido Schimmel wrote:
+>> > "locked on learning on" is counter intuitive and IMO very much a
+>> > misconfiguration that we should have disallowed when the "locked" option
+>> > was introduced. It is my understanding that the only reason we are even
+>> > talking about it is because mv88e6xxx needs it for MAB for some reason.
 >> 
->> The reason for this is that I wanted it to be so that if you have MAB
->> enabled (and locked of course) and unlock the port, it will 
->> automatically
->> clear both flags instead of having to first disable MAB and then 
->> unlock the
->> port.
+>> As the way mv88e6xxx implements "learning off" is to remove port 
+>> association
+>> for ingress packets on a port, but that breaks many other things such 
+>> as
+>> refreshing ATU entries and violation interrupts, so it is needed and 
+>> the
+>> question is then what is the worst to have 'learning on' on a locked 
+>> port or
+>> to have the locked port enabling learning in the driver silently?
+>> 
+>> Opinions seem to differ. Note that even on locked ports without MAB, 
+>> port
+>> association on ingress is still needed in future as I have a dynamic 
+>> ATU
+>> patch set coming, that uses age out violation and hardware refreshing 
+>> to let
+>> the hardware keep the dynamic entries as long as the authorized 
+>> station is
+>> sending, but will age the entry out if the station keeps silent for 
+>> the
+>> ageing time. But that patch set is dependent on this patch set, and I 
+>> don't
+>> think I can send it before this is accepted...
 > 
-> User space can just do:
-> 
-> # bridge link set dev swp1 locked off mab off
-> 
-> I prefer not to push such logic into the kernel and instead fail
-> explicitly. I won't argue if more people are in favor.
 
-I shall do it as you suggest. It sounds fair. :-)
+> # bridge link set dev swp1 learning on locked on
+> # bridge link set dev swp2 learning on locked on
+
+As we must think in how most drivers work, which I am not knowledgeable 
+of, I think that it is probably the best to think of the way mv88e6xxx 
+works as an outlier.
+If that is true, then I think the best option is to go with:
+#bridge link set dev $swp1 learning off locked on
+#bridge link set dev $swp2 learning off locked on
+
+Then the cleanup side will just be:
+#bridge link set dev $swp1 locked off
+#bridge link set dev $swp2 locked off
+
+The state 'learning off' is then consistent with the behavior of both 
+the bridge and driver after the cleanup.
