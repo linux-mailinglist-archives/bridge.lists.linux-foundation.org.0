@@ -1,71 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD995A512F
-	for <lists.bridge@lfdr.de>; Mon, 29 Aug 2022 18:13:30 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2047F5A51AE
+	for <lists.bridge@lfdr.de>; Mon, 29 Aug 2022 18:26:51 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 93F08607FE;
-	Mon, 29 Aug 2022 16:13:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 93F08607FE
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RJ7KV5GhDOb8; Mon, 29 Aug 2022 16:13:27 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 9972260AAA;
-	Mon, 29 Aug 2022 16:13:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9972260AAA
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 4E5E0C0078;
-	Mon, 29 Aug 2022 16:13:26 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8A091C002D
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 16:13:24 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 57292400E9
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 16:13:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 57292400E9
+	by smtp4.osuosl.org (Postfix) with ESMTP id 0DD3B4049F;
+	Mon, 29 Aug 2022 16:26:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0DD3B4049F
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HqwrnC9CxqIU for <bridge@lists.linux-foundation.org>;
- Mon, 29 Aug 2022 16:13:18 +0000 (UTC)
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id nB0Nlf5FugJD; Mon, 29 Aug 2022 16:26:48 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 291E7404EB;
+	Mon, 29 Aug 2022 16:26:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 291E7404EB
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C3A09C0078;
+	Mon, 29 Aug 2022 16:26:46 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 01B42C002D
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 16:26:44 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp1.osuosl.org (Postfix) with ESMTP id CA5D5813E3
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 16:26:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CA5D5813E3
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id w3cFJC2BD9qy for <bridge@lists.linux-foundation.org>;
+ Mon, 29 Aug 2022 16:26:44 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C31E840053
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E330080D69
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id C31E840053
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 16:13:17 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id E330080D69
+ for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 16:26:43 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 3FDD418848CD;
- Mon, 29 Aug 2022 16:13:15 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id C6634188488E;
+ Mon, 29 Aug 2022 16:26:41 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 36E6B25032B7;
- Mon, 29 Aug 2022 16:13:15 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id BD87425032B7;
+ Mon, 29 Aug 2022 16:26:41 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 26D919EC0004; Mon, 29 Aug 2022 16:13:15 +0000 (UTC)
+ id B1D6C9EC0002; Mon, 29 Aug 2022 16:26:41 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Mon, 29 Aug 2022 18:13:14 +0200
+Date: Mon, 29 Aug 2022 18:26:41 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <YwzjPcQjfLPk3q/k@shredder>
+In-Reply-To: <Ywzlfzns/vDDiKB1@shredder>
 References: <20220826114538.705433-1-netdev@kapio-technology.com>
- <20220826114538.705433-7-netdev@kapio-technology.com>
- <YwpgvkojEdytzCAB@shredder>
- <7654860e4d7d43c15d482c6caeb6a773@kapio-technology.com>
- <YwxtVhlPjq+M9QMY@shredder>
- <2967ccc234bb672f5440a4b175b73768@kapio-technology.com>
- <Ywyj1VF1wlYqlHb6@shredder>
- <9e1a9eb218bbaa0d36cb98ff5d4b97d7@kapio-technology.com>
- <YwzPJ2oCYJQHOsXD@shredder>
- <69db7606896c77924c11a6c175c4b1a6@kapio-technology.com>
- <YwzjPcQjfLPk3q/k@shredder>
+ <20220826114538.705433-2-netdev@kapio-technology.com>
+ <e9eb5b72-073a-f182-13b7-37fc53611d5f@blackwall.org>
+ <972663825881d135d19f9e391b2b7587@kapio-technology.com>
+ <Ywzlfzns/vDDiKB1@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <f1a17512266ac8b61444e7f0e568aca7@kapio-technology.com>
+Message-ID: <1bfb557cbae4a640b7e042d202c677cb@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -89,8 +83,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
  davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v5 net-next 6/6] selftests: forwarding: add
- test of MAC-Auth Bypass to locked port tests
+Subject: Re: [Bridge] [PATCH v5 net-next 1/6] net: bridge: add locked entry
+ fdb flag to extend locked port feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,36 +99,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-08-29 18:03, Ido Schimmel wrote:
-> On Mon, Aug 29, 2022 at 05:08:23PM +0200, netdev@kapio-technology.com 
+On 2022-08-29 18:12, Ido Schimmel wrote:
+> On Mon, Aug 29, 2022 at 04:02:46PM +0200, netdev@kapio-technology.com 
 > wrote:
->> On 2022-08-29 16:37, Ido Schimmel wrote:
->> > On Mon, Aug 29, 2022 at 02:04:42PM +0200, netdev@kapio-technology.com
->> > wrote:
->> > > On 2022-08-29 13:32, Ido Schimmel wrote:
->> > > Port association is needed for MAB to work at all on mv88e6xxx, but
->> > > for
->> > > 802.1X port association is only needed for dynamic ATU entries.
+>> On 2022-08-27 13:30, Nikolay Aleksandrov wrote:
+>> > On 26/08/2022 14:45, Hans Schultz wrote:
 >> >
->> > Ageing of dynamic entries in the bridge requires learning to be on as
->> > well, but in these test cases you are only using static entries and
->> > there is no reason to enable learning in the bridge for that. I prefer
->> > not to leak this mv88e6xxx implementation detail to user space and
->> > instead have the driver enable port association based on whether
->> > "learning" or "mab" is on.
+>> > Hi,
+>> > Please add the blackhole flag in a separate patch.
+>> > A few more comments and questions below..
 >> >
 >> 
->> Then it makes most sense to have the mv88e6xxx driver enable port
->> association when then port is locked, as it does now.
+>> Hi,
+>> if userspace is to set this flag I think I need to change stuff in
+>> rtnetlink.c, as I will need to extent struct ndmsg with a new u32 
+>> entry as
+>> the old u8 flags is full.
 > 
-> As you wish, but like you wrote "802.1X port association is only needed
-> for dynamic ATU entries" and in this case user space needs to enable
-> learning (for refresh only) so you can really key off learning on
-> "learning || mab". User space can decide to lock the port and work with
-> static entries and then learning is not required.
+> You cannot extend 'struct ndmsg'. That's why 'NDA_FLAGS_EXT' was
+> introduced. See:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2c611ad97a82b51221bb0920cc6cac0b1d4c0e52
+> 
+> 'NTF_EXT_BLACKHOLE' belongs in 'NDA_FLAGS_EXT' like you have it now, 
+> but
+> the kernel should not reject it in br_fdb_add().
+> 
+>> Maybe this is straight forward, but I am not so sure as I don't know 
+>> that
+>> code too well. Maybe someone can give me a hint...?
 
-I will of course remove all "learning on" in the selftests, which is 
-what I think you are referring to. In the previous I am referring to the 
-code in the driver itself which I understand shall turn on port 
-association with locked ports, e.g. no need for "learning on" when using 
-the feature in general outside selftests...
+Thanks! I see that I was in trouble there... :D
