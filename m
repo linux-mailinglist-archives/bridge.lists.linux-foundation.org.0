@@ -1,200 +1,158 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6375AAFE1
-	for <lists.bridge@lfdr.de>; Fri,  2 Sep 2022 14:45:20 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 130DE5ABF5A
+	for <lists.bridge@lfdr.de>; Sat,  3 Sep 2022 16:27:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 0A6F160B4F;
-	Fri,  2 Sep 2022 12:45:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0A6F160B4F
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=oracle.com header.i=@oracle.com header.a=rsa-sha256 header.s=corp-2022-7-12 header.b=dDFVQLk6;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-oracle-onmicrosoft-com header.b=nhf+ppKn
+	by smtp2.osuosl.org (Postfix) with ESMTP id ADA3D408DD;
+	Sat,  3 Sep 2022 14:27:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org ADA3D408DD
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=ZunKZ7m1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Zo1CG-7VQscj; Fri,  2 Sep 2022 12:45:17 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 5E1C360BAA;
-	Fri,  2 Sep 2022 12:45:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5E1C360BAA
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vEKo8XAMWGw7; Sat,  3 Sep 2022 14:27:38 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id F369F409F3;
+	Sat,  3 Sep 2022 14:27:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org F369F409F3
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 21A3CC0081;
-	Fri,  2 Sep 2022 12:45:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 80653C007C;
+	Sat,  3 Sep 2022 14:27:37 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 42B70C002D
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 14:10:19 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1AD86C002D
+ for <bridge@lists.linux-foundation.org>; Sat,  3 Sep 2022 14:27:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 2A2C140500
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 14:10:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2A2C140500
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com
- header.a=rsa-sha256 header.s=corp-2022-7-12 header.b=dDFVQLk6; 
- dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com
- header.i=@oracle.onmicrosoft.com header.a=rsa-sha256
- header.s=selector2-oracle-onmicrosoft-com header.b=nhf+ppKn
+ by smtp2.osuosl.org (Postfix) with ESMTP id D8D9D408D2
+ for <bridge@lists.linux-foundation.org>; Sat,  3 Sep 2022 14:27:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D8D9D408D2
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xziEzS-slmHk for <bridge@lists.linux-foundation.org>;
- Mon, 29 Aug 2022 14:10:18 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3144F40393
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 3144F40393
- for <bridge@lists.linux-foundation.org>; Mon, 29 Aug 2022 14:10:18 +0000 (UTC)
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27TDulTu027736;
- Mon, 29 Aug 2022 14:10:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=corp-2022-7-12;
- bh=l/tBgtJyJCZLT12iTT1EGC0oCGlKMDMft4Y/dpweAzs=;
- b=dDFVQLk6MUXotBNjy3y+M4KOGKgiA3MUMJ+C/SZVEadG4jp/PCQU03jzcZlZEAiCXREz
- d8A1Q08x2Nq9GWJdtPu5R8wdYsyExWXaGLWA3WB2NZZYF0DG8bf4LGKKf4vjURL/Bq0r
- xUWiS5yxU/PBxL1lABdRLcHXwJ678FS5WFaAvYncOv50jfsTJHeouS4QyMeV992CIYhi
- uWpGhKAeM6LZ+8e4dIDXkX+ap8JLm4f6PxyoUNa8HOEYk2w9EJcvJAAMi58kXzgZBL20
- C0o09ds0IVg7gNwKC3NOfWlhIIMDVMC/vP6HocgJDAXwtcc8Xa1DzYaxIELE+vyjJBn6 JQ== 
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com
- (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3j7b59ueqv-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 29 Aug 2022 14:10:16 +0000
-Received: from pps.filterd
- (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
- by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.5/8.17.1.5)
- with ESMTP id 27TD18v2019404; Mon, 29 Aug 2022 14:10:16 GMT
-Received: from nam11-bn8-obe.outbound.protection.outlook.com
- (mail-bn8nam11lp2168.outbound.protection.outlook.com [104.47.58.168])
- by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
- 3j79q2muy9-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 29 Aug 2022 14:10:16 +0000
+ with ESMTP id GapD_BW74jIb for <bridge@lists.linux-foundation.org>;
+ Sat,  3 Sep 2022 14:27:34 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2EE9340283
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2073.outbound.protection.outlook.com [40.107.220.73])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 2EE9340283
+ for <bridge@lists.linux-foundation.org>; Sat,  3 Sep 2022 14:27:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n5Vx1d3vsbFUQ6Ae8ZRxaGburl89e0VGGFFtDs0w7zqsAXICCxc7T5S6ME2CB0IUCZ+b3L3zxE36LV+B2cBdL7aAGYC1nUc6BFAWSBra9qbsw14oW1mNlBSN7pu/46MPZ38iZWhGw/ACRXDFiDh+kMV8XKZIDzaJja4f3uNC8dm5RGysusrWezYiT9xjrw6F3bDzizbK8O10fJvbOj25Af6W8uRaThCPfcY4fF/7defUUS2Yo6PGjDaNCzS1PVDkA/+roe1sUBsQlBcGKGZmovfH7IizF+alULVGigk53fqr3cNV1l9VuXpVuTXDDqtiQZTybqCLVI/imV50uEWk4g==
+ b=J3BqDwWV5jndyHorQLlkuBTqMARP5mtjkiaEdP4G5bl6bBj3gx7bSJtcUGkBvam2ygEEbBkXa4hbMVlFGvCQZc9tZ8V2MJm2OkLZz0cxsbxJ50DW39i2b0eImfY2fn6SWRNH/dIfFikvjh2Iz66KMemu5tOPcwpz2Vl4jSfVA2VVLoQ6Nr0ZOkAt393EeCUZ1DLFD6ee428TyKWs0wEHRAWlGMntqwrL6kJscpqWm0pAS+sQo16whSrIRQ21+XkMo8Aw0LDc5TCHvmp5/UI7oAJQv4sb0xJTUKH7F6J4mOGffQrlzuAqIOYbegP5ciiSFtn/1TdO1uJjfZUVQSP2EQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l/tBgtJyJCZLT12iTT1EGC0oCGlKMDMft4Y/dpweAzs=;
- b=Yw/l4DssJmuGjnW802pwHafCNqW9zmdiLnLGXg8xo8oZbALeU68bFZb49ui6LHtN8ry6rm1+pBNC5mDHU0ukp7cYM8WKgdM3n8tOLGhdEgUyTGZuJZpUfyRwOFP/y50kWzh7FTYwakNyICqTFozDU8SfFuHZdXCQRKwvS/xG3cPH+oyVLQv+UIcGml7wbWDn+K+A3c4i0eQzHker7X/sZjjW/8sAz7jGjb99V15EjnLXl0RNZNSz0npDBPeEBalhvRQdTz4xyxoYXReOtlIoEQ28RpdBMdD4EXna+hYJUmzlz5s8WHcJe34YLQn/lkXztRasfSIRhc4Cj4wgUjNwQw==
+ bh=WHAKHgWjZAOaaPp2HHLGjzbEtlsjTXqeR6A1s5GRr4c=;
+ b=m8iXRwa0jXO+NJQ/NAn0nTCcyKl4NZfuAwrVHw1MwwITWVFmyp7UYy4GPHyM4mC7yNOyOXymsPn0pik+eSt/b9p4eZ4hYYLH87jsjJGSpKyhxBX8KpSAmW12LyPSwL6f7uMTcbsdOXjjTRwfjb+5ZxKsd8rhQX0yCfF1doQ/jQPpx0ezKO3vS3Tw+P26KwAYCepSAxJ8deu+2jUCZoJxe+/14bTcp3Rl1zttMuUEsaXzPNgbqrbsHKGGQipYcpyKL8N+TCuUu14nx2ipiVuE7SmILo6LM2moF7mh11cesPD7ynjZeQw6oO6eMdVjlY2DR3uUnW3bXgIUYsH3cCvHIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l/tBgtJyJCZLT12iTT1EGC0oCGlKMDMft4Y/dpweAzs=;
- b=nhf+ppKnYINmgVMNPI1dj8u7oksJvfHwYWChI8d/aVkTkGxQTs9u6L4K7AgII1IX8XD6F9EDkpYVkg7aAqFu1/BkliaOrSs4715P0aoGwhzUsEGfKoFChujMrfjXZmUc7MOgUopG+TH+i6EGraU5G9jyWOJnhyqciPJuipyqLLI=
-Received: from CO1PR10MB4722.namprd10.prod.outlook.com (2603:10b6:303:9e::12)
- by PH7PR10MB5699.namprd10.prod.outlook.com (2603:10b6:510:127::12)
+ bh=WHAKHgWjZAOaaPp2HHLGjzbEtlsjTXqeR6A1s5GRr4c=;
+ b=ZunKZ7m1QohTUL/Ww3q/sFCuKC1YP9l0QpgkUEnwh21DBf5nDFJhToJGm7AuUUnOGKVnYUY9tfV0ma5VZr9zZjNYMpNXSvtNEIwuBSi9Z8kweiQp+sCMLDHL+S2g8YVIQs9L8OvRQ0WrQfk8DUuP+qZEhH9z7O9Bgr/jqaqQbeQUvUWjQ8KiuUxOWHhNy0pfBe/Wpp2Lsb7LNm8YHqi9HTeAkebQUNEZm3jYl9pB/Gl9i7hHHDhdk8gFc4+4e5VEzT6NxEaL8JXUOcwAMiZblCXVLjJauvfD192ebK8w37ZBniYrz1b5BLbpOQZ3Am0/7EEJUf6ytJ0vz0RgZZygSA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH7SPRMB0001.namprd12.prod.outlook.com (2603:10b6:510:13c::20)
+ by LV2PR12MB5800.namprd12.prod.outlook.com (2603:10b6:408:178::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.21; Mon, 29 Aug
- 2022 14:10:13 +0000
-Received: from CO1PR10MB4722.namprd10.prod.outlook.com
- ([fe80::d0c6:fa96:addf:6112]) by CO1PR10MB4722.namprd10.prod.outlook.com
- ([fe80::d0c6:fa96:addf:6112%9]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
- 14:10:13 +0000
-Message-ID: <bda042e0-8054-41f3-5df6-c39ad424cde2@oracle.com>
-Date: Mon, 29 Aug 2022 09:10:10 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.11.0
-Content-Language: en-US
-To: Florian Westphal <fw@strlen.de>
-References: <20220820070331.48817-1-harshit.m.mogalapalli@oracle.com>
- <20220820173555.131326-1-fw@strlen.de>
- <93eca5ab-46ee-241a-b01c-a6131b28ba29@oracle.com>
- <20220829140320.GB27814@breakpoint.cc>
-From: john.p.donnelly@oracle.com
-In-Reply-To: <20220829140320.GB27814@breakpoint.cc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR21CA0014.namprd21.prod.outlook.com
- (2603:10b6:a03:114::24) To CO1PR10MB4722.namprd10.prod.outlook.com
- (2603:10b6:303:9e::12)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Sat, 3 Sep
+ 2022 14:27:31 +0000
+Received: from PH7SPRMB0001.namprd12.prod.outlook.com
+ ([fe80::3ca6:ba11:2893:980e]) by PH7SPRMB0001.namprd12.prod.outlook.com
+ ([fe80::3ca6:ba11:2893:980e%6]) with mapi id 15.20.5504.025; Sat, 3 Sep 2022
+ 14:27:30 +0000
+Date: Sat, 3 Sep 2022 17:27:24 +0300
+To: netdev@kapio-technology.com
+Message-ID: <YxNkTIYg5eZR6o79@shredder>
+References: <20220826114538.705433-1-netdev@kapio-technology.com>
+ <20220826114538.705433-2-netdev@kapio-technology.com>
+ <e9eb5b72-073a-f182-13b7-37fc53611d5f@blackwall.org>
+ <972663825881d135d19f9e391b2b7587@kapio-technology.com>
+ <Ywzlfzns/vDDiKB1@shredder>
+ <c9f474f0761f77d093db88da05d536cb@kapio-technology.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c9f474f0761f77d093db88da05d536cb@kapio-technology.com>
+X-ClientProxiedBy: VI1PR04CA0083.eurprd04.prod.outlook.com
+ (2603:10a6:803:64::18) To PH7SPRMB0001.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ac7ea77-88db-4ca7-ea09-08da89c8310a
-X-MS-TrafficTypeDiagnostic: PH7PR10MB5699:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce7d7b87-cb03-4be7-e836-08da8db86f38
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5800:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oMlUB2cNBVdzqIpt1R075giVv2Wq7/PNtHW9ytRiU07xJD7raLMvJkB1JWmrS7TW9Revp1fBgVNaTD/jqaY8cOsFwfjiMJe9cz9kxKQNyYKNcCv0NgDeYIMPhVptmDBlJvOirUJT+fFbV4QfFfG55QxWynJRfjMw+Y9xumECnWmTtLRuR8FXfwBFuT6zYe/js/2WTuNjrKFa86VHUnuw15D2wO77B5e+I0RH/S11twP2zie+0geS1lH1Kred01EQe49q+VlNP9q6Y2bjFTpCzXpLQNrP9HhJlkbKQrxzmM9OXRcVrRvsV6QrCeovSN8RhPmTPeJaPPudYgP7Rof7lej7WC53IpolqKbvV35YxTRW3WPfksH1O4kZXESx9i/FzcDOlP4oap5j8Wmd8xKao/WwKuuGecPcbTLJt1NKxWhJU3QfVlbRQe1xHZrwhF2q8txByqGynMJMWGdByb3Q9Y/lQZAOEMmTYwf+j+rhLvJtwQRYZkBrUp/yaKzVEN2J4nrcWfgXVI4wXOYeJBfj26JKUf8pQRjTZzSRvwuMNUVYaFGT/vg3C5jRxV2hc0PpIqV5QWGvvyRSiOMmvDBRV7w48mfLUkZZW81PndLioBq0h8ONuPkCPgvLhQcI6DkeFdwsS1apx210hvv7O/DsKa6EjPqAtBejwso+SezNSSoYwFFVCDwtJ9hTJT2244yENi8XMlpsznUQsvhxGTLZxnPYtoP+OZMQPsKQ3kaR3uVmc1LgcfKOLYPQ/Dqu+GIJ45D2zkEgD9x4N5Ck+SwHaSf+9UUwP4xCOv3MTAyYoCE=
+X-Microsoft-Antispam-Message-Info: SabiY0UnTzVKsN6PSH/NjywdRMA3RfGtbOwC1nibYIZJBOcbvAXKolMzOTWAi0GiYzsvOMHHEkkRNObczFenMwuWeM2KvCaGLjecnZ4J984Z2LAl3kVMGka7QeoDrd1XZbbkMaIe24UgjJTDKFHjG6+VGPMJlAYOG5qZx7e+HVj9I0b1EHCN/alSKZg+w+grKtPB/gPEpkcoL5AYoOX19n1DyoVZoboliTlUnexnvA5u4ztVouSZ+0RGNXC5+3lf495WN+zI5MfqIj22ZPNI8Io2flFfzjJza7s+lV8FzaXl4c+p8Y3YuHFssBNezNaYlMsKUwZSXQSj1EcMSx2MEHr24fXFAAB2wC5PJWfW7jEoPR8qhtBhjNkE9chTVdmvW1OXm/BcDJHKhEanlbQZeD8azANdckKeICcxDL8dP6LM6RZmv35s9ozEUS1aCtdr/B7i2UKmvSL6zvLJia7r6/TKvtBAinw33WF9zKA/y58ZuDUwtxgZwiTP+ePvN73a0jJ3RJ1U0JLUE7qajm9ItovFgeGvxe1iamrFcU28dVGLtlB4MUSmZ/UI7yJEGLIGRsv1FuZAESqW9OoZ4406EtDOYtl2B9lKbAD8AXpH57mFKOxYop1UjJzjr2te2ITSa1yKcck6VlJsua1Ynyfn+dRjQNf2oN2qm9VsuVnG4+o/Tbljsbq/7C05IYOxe1RK+i55ksLLE8c/41U4nKn9P8HBPQO+xg8Y4FCmjM1FUZoXiKKlrXr8gkk/I4NmAn2Z8RxoBAnBMSehZ6wx4aheNw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR10MB4722.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(39860400002)(346002)(366004)(136003)(376002)(396003)(6916009)(2616005)(31686004)(316002)(36756003)(38100700002)(186003)(86362001)(31696002)(66476007)(2906002)(53546011)(66946007)(8676002)(4326008)(66556008)(6486002)(966005)(107886003)(478600001)(9686003)(6506007)(6512007)(41300700001)(26005)(8936002)(5660300002)(43740500002);
+ IPV:NLI; SFV:NSPM; H:PH7SPRMB0001.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(7916004)(39860400002)(376002)(346002)(136003)(396003)(366004)(7406005)(5660300002)(38100700002)(8936002)(186003)(4326008)(66556008)(66946007)(2906002)(66476007)(7416002)(86362001)(6916009)(8676002)(966005)(316002)(33716001)(6506007)(6512007)(6666004)(53546011)(83380400001)(478600001)(9686003)(54906003)(26005)(41300700001)(6486002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3pkanNaaHN0VzlNUDF1ZGtDZytlcVpOcGxmVG1ob2kydHNrR2ZIMFo1bkly?=
- =?utf-8?B?eURNM1B4ZDE3L2NpWnFTbDhkUjh6ak0zUjJySG92QjV1TzhwajJhR3ArU0Nm?=
- =?utf-8?B?NWNaNTY3dS9TWmZMSFJOUGlpT3BhK0dzYWZnbmFuSTNwT1FJV2w5UE5TSmI4?=
- =?utf-8?B?cFNkLzhNZW5HdlFlbXdnYlM5MC9YN01RZXJ5NXd1dGc2VTQvYjR3eEdOTlBB?=
- =?utf-8?B?UG5PRFd0L013M1VVa3ZBY3FSSkZ3OXpEREFCY3JzeW41TVZQVzdLUTI5bnlW?=
- =?utf-8?B?NzlrUk5NWFBnb2hmTW0xSHJqSXFGRmtFMnJoN0RtRTZTRlJKZ2dDRVo2ai95?=
- =?utf-8?B?RWtENkJHblRtK1RzQVR1VzNYMEhqVWwwRkRoMXRFeGgwUGxzOUpJQzQ2SDF4?=
- =?utf-8?B?Wktuc0JCT0NyNjgxRnVYWDBVaG42b3VHR0JYMmtwcytkR29ucTlRM1NDdHN3?=
- =?utf-8?B?UW9GYy91UFRnQ1VNRVFJVHNFc0tUbFNoWEc4VFYxM0VCT1JvOGZlUXFNeXJi?=
- =?utf-8?B?ZlFVMkdUNllQV2xqZG1hRENGWTJIR2huL3JJRFdaMUUzT0ZyYnVHdU9iU0lM?=
- =?utf-8?B?Y21DOFRwL1h2RWd1d0crREs4VFBZUW1NdGJlbk0yNEVsSkVBMUl0bUhTUWp2?=
- =?utf-8?B?T3VRLzV4SmN2MTR0WWtObEM3UVVDT2xnSEFFckpjSlpJTHhqN2tRdGltY2o0?=
- =?utf-8?B?bFAzTWZudisxYkEyQVBhdDlzajNPanJ5TUpySEtoczcxdG92eXJ2dUtZRkFl?=
- =?utf-8?B?NFVScnJTcTdXbU9mOHBqaXlVcU9GKzVBckwwUVBxT1ZvQmpaODQzaitDT1RS?=
- =?utf-8?B?SmNNVXRiUldEQzRSNFJWSjhacmdHZ0d3UzF2c0JUaE9ZeForR3doZEM4bjhv?=
- =?utf-8?B?NGdsVVY4M1lNaktRc2IwMFBWUndSb2FuSnBsZVdmUlRJaVhFdUZaMDlHM3Br?=
- =?utf-8?B?QnkxcG5ydlBReHlJNUxFSDh6dW9zSlBLR0VsZ3B2b0RPTjIyR21aQzdwSyto?=
- =?utf-8?B?aDJ1dXNkTmFGZ1JEN21jVVJ3OXZMalVyUjZ3Ly9LdmZ0UnhIT2NjTEk5RVM2?=
- =?utf-8?B?WnRkeGZOZzMzNjNGWXdtNDR5Vkt2ZSttMzhsQ3VLV0xQMG0rUE1MSEo2Y3Nq?=
- =?utf-8?B?ektNUmxOc05KcytXNlliMkNEbFVjQlEzNjlESXdoZG0wZk8yRkJqOG56Zy9B?=
- =?utf-8?B?dVFDYXZLOUdvQmszWGlYYjZIQjRBYjhyRkprMllIQmZESGtyK1ZSdlFNa3c0?=
- =?utf-8?B?UzJBWXVUTWVQM0ttZy9qU3FrbTJVckM1M210dzZaNVJnOGlIOW8yMnZIZktU?=
- =?utf-8?B?N0ZFYXpqMmxDTUJjbDhzamIxc0poQ2NhN0tlUjZva3dMRHUyWS9vTE91ZWQr?=
- =?utf-8?B?M2Q1c24yeHAySUp3RHN0ZE9lNWpQeHg1bVJGTHhvQlBxL2dBaFhzM05yczVB?=
- =?utf-8?B?MG4rMU8ybEViRStUS0ZOb2tUWGl5WUNWU01POHhyRkMxNWZzRk10cmE5c28x?=
- =?utf-8?B?ZW5LL0JKVEJ6S01LdVFTcTdrWG9iczFwV1RYa0Y3dHlyQWRCUUkzL29OYjRt?=
- =?utf-8?B?NUpnUWJtQktGb1RONndiZWZlYVNNOUFWb1pXMFhmV1BKZ0s3LytieGZUY2JL?=
- =?utf-8?B?eUtNclA4eC9nak5aS1BpMzkwZjhaT2M3YmpEbUxwNHVIOGM3cXBNSGUyMkZT?=
- =?utf-8?B?aDh2UjZpTmtxWTJqSEI3c25Ob0Y2NkFOY1haeGRvM3BZc01lU2dhZ1lIVE96?=
- =?utf-8?B?U1FpbFhUOGpzSjhGWDF6dmlBeUh0VkJQMGNMdVRhK2NHWkR6c09wZU1SRUlK?=
- =?utf-8?B?ekt4TzNWMDdPUUVyNGVSTmIzaW1qaGt4TWNzOGNQOWZDZzNRUjZ6TUVkTDZ3?=
- =?utf-8?B?K01sWDcyc0JkZDA1K25VSHBQUUxNR0JvRzZDTXRqSlRCREk3UEVGbjJsekw2?=
- =?utf-8?B?azZtSnZNNWJSOWtIRUJEbXFUdjgzcmk4czdpSTdQbHdUd3J3QTFPQjRscWVq?=
- =?utf-8?B?YjJNNlVvczNwcmRIODRjdlp0RWNUNUVWSTkrNDFNcEo4eHc3OWdLUmllVUc5?=
- =?utf-8?B?WWVvd0F1cUFzaXFwdW1LZm50MGJnVFUrRnNrVHlTN3o1Z2ZtUHBNclRyemJL?=
- =?utf-8?B?dFpGSDBLYStCQklFL1g4MzM1dHE4RGUxSnVDcVNRblhxdEFwV3VsOFVYemxj?=
- =?utf-8?B?cHc9PQ==?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ac7ea77-88db-4ca7-ea09-08da89c8310a
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR10MB4722.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ze7P5EUqGM/+Kzf8ftn7A/d8R/jH3BxO3VDn0zGPhf3PxxuREvIdmcsdvD4P?=
+ =?us-ascii?Q?2UrpCZpQHyAw0zAleEUuguseFNPKsj7Imgbk5qNazKTQdRJ7C0Nn/t52ZQFQ?=
+ =?us-ascii?Q?NCYH81LJWtSrwkJ3Jxt3sMXHcMln7iEvwMXCzgJkhNBQ0kzkoQC/dZCxCUnh?=
+ =?us-ascii?Q?OTFTDFcSj+ZkY7dOHofDu32aWxDp9Wm6XvwIFTjvZH3FnavXPTlm6LXi2ev8?=
+ =?us-ascii?Q?MUG5PsajgJ0JwHrtpBiV0kD+E5j4Kq5HCOn6UaCitkXmpraFyzfBW/CyrLDc?=
+ =?us-ascii?Q?UNR5gkpMXiAGk1zdBwELAy20w5NTsbfKFC6BDOD8WQR0nRN14DbliAZ1yxeA?=
+ =?us-ascii?Q?ygepWyIBk57ceMVuwPky/NX9/olg3RxiyjCWCOgVMJUqZLQjYRoIkIlzIVfX?=
+ =?us-ascii?Q?Vpy+8ekfOf8PDgiSSKHLoj0X5pn3N88ypSYitnC3qZ5ZIxHU8mAYAIZGi+9c?=
+ =?us-ascii?Q?rvrH3MCtgj2akXjqHYqw7NRhFla/cNlxzj3q3YWMV/wxEPTL4ojut2W9wmHx?=
+ =?us-ascii?Q?vAX0867SVqpIRrotHOyURSKIU8d6c1BvlTOVWwgdTQiqSxKZXMKrUUYRZO8d?=
+ =?us-ascii?Q?L3WJ5pQrkHCo7c7CU+f1jKyJkDKo3a72oHwcgQx8RvjkI+8EFQ3B42ovIDlh?=
+ =?us-ascii?Q?d1DMD1uXrJjd0Le5kGcAcApCESajoF3493dlz/zQiLF5gBvL5zQrVgXDoYnP?=
+ =?us-ascii?Q?19l9VIs/8ZxG67Jc0y5Radifmh2/XbQNAHlCap3a3F9REscgbfBQ64Ic++3K?=
+ =?us-ascii?Q?FiNcFdVizP+GS3PXZIxm67bWvRnf3mID9A5exbH1WjW6hs1OMi2c7lxX+Dyz?=
+ =?us-ascii?Q?u/S6gJZhuiRWbqcopwRgPS8lHUIINMCMfAarLbXFMPF5lchynyao1ieboWN0?=
+ =?us-ascii?Q?3J/dKZydoE4CVS9f9a0B7xRG4pAHyeX4qB4cgA9x30/n3vBiA8D5KITPFZCV?=
+ =?us-ascii?Q?fBhA3dHV13lwU5JxOWSxiRL6mtYDdi35ImHFvOybLFBR1LZTxtCcd75859LI?=
+ =?us-ascii?Q?F7801KgmIlB9AMa89gfBBWglst6BLsj2oWDCG2rHmAeQ4M0qBVgbfzvnI87N?=
+ =?us-ascii?Q?8y8Pux9Ts2E1ko/ZDku/yMSH7BRVtoGHjjpgx0GpiBt5UrqOftnkO57a+LD1?=
+ =?us-ascii?Q?UW3zrt6Fm/eStq8xsfo2+X0AHbQSOG8aI/L5GxISxumYXIMmznZztH2vnJVU?=
+ =?us-ascii?Q?trLALW1RD3IPrkWSSuWMZ+gBZadglXQBFd6a+QsHUoZx2wD9kbPQFOLgcPAX?=
+ =?us-ascii?Q?VoeIyc506976bjtXAOjWXNxkZcRtkDPNc9VS0x2ODULpD+ZquzccVyEMB46X?=
+ =?us-ascii?Q?+aD93SksjG1ziWDWiJeZsi06IF3lgt9ENAdxpUpCPwjJdUdpv765bd9xBIoe?=
+ =?us-ascii?Q?2NANzPGHiFm2Cm8WZLG0qWCiBpN6DrgLlHgJ0/zjl7om7s3UXHZJGqD7T1vu?=
+ =?us-ascii?Q?+KNdbmPCGBnhaVnlQij3d22l78m56JhQT4ceoL0VgMe3iGDk6CT9CbDmYZPr?=
+ =?us-ascii?Q?x5jNftVn6PD3Gbzzj/Xz8jk6nuGvnlI8/TrOBpi8378p5l+nPURGjKxBVq9v?=
+ =?us-ascii?Q?6HqQ2/w5W82ndwBPZMYHrThLpUmoR+vYE9OTKK9Z?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce7d7b87-cb03-4be7-e836-08da8db86f38
+X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0001.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2022 14:10:13.7172 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2022 14:27:30.8345 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1LUVIZOrjOqFQWvKq9OYr4g0F5RTpxTH0Yllg/bIgx7lLYYI7XVsxyISN+psR0bDbRgFUlXLTxbbpXiaFoS1/r8SEVtVeBNif6kRE/WX/2M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB5699
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-29_07,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- malwarescore=0 spamscore=0
- adultscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2208290065
-X-Proofpoint-ORIG-GUID: xFN1EZlbrFU_96ibnkeX0WHAarfRvwN8
-X-Proofpoint-GUID: xFN1EZlbrFU_96ibnkeX0WHAarfRvwN8
-X-Mailman-Approved-At: Fri, 02 Sep 2022 12:45:13 +0000
-Cc: vegard.nossum@oracle.com, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- george.kennedy@oracle.com, syzkaller@googlegroups.com,
- netfilter-devel@vger.kernel.org,
- Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-Subject: Re: [Bridge] [PATCH nf] netfilter: ebtables: reject blobs that
- don't provide all entry points
+X-MS-Exchange-CrossTenant-UserPrincipalName: vl4YXdQNRVlSblRqkMr5tvg3OJwy8TGlB8kXkgUQXEFKuaQG6F4TRucEupphAjRVv3qdCk+Ru3WbzKoz1GtBhw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5800
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ linux-kselftest@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
+ linux-arm-kernel@lists.infradead.org, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
+ Christian Marangi <ansuelsmth@gmail.com>, Hauke Mehrtens <hauke@hauke-m.de>,
+ Sean Wang <sean.wang@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>, Yuwei Wang <wangyuweihx@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v5 net-next 1/6] net: bridge: add locked entry
+ fdb flag to extend locked port feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -206,40 +164,43 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 8/29/22 9:03 AM, Florian Westphal wrote:
-> john.p.donnelly@oracle.com <john.p.donnelly@oracle.com> wrote:
->> On 8/20/22 12:35 PM, Florian Westphal wrote:
->>> For some reason ebtables reject blobs that provide entry points that are
->>> not supported by the table.
->>>
->>> What it should instead reject is the opposite, i.e. rulesets that
->>> DO NOT provide an entry point that is supported by the table.
->>>
->>> t->valid_hooks is the bitmask of hooks (input, forward ...) that will
->>> see packets.  So, providing an entry point that is not support is
->>> harmless (never called/used), but the reverse is NOT, this will cause
->>> crash because the ebtables traverser doesn't expect a NULL blob for
->>> a location its receiving packets for.
->>>
->>> Instead of fixing all the individual checks, do what iptables is doing and
->>> reject all blobs that doesn't provide the expected hooks.
->>>
->>> Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
->>> Reported-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
->>> Signed-off-by: Florian Westphal <fw@strlen.de>
->>
->> Hi,
->>
->>   Could you please add the panic stack mentioned above  and syzkaller
->> reproducer ID to the commit text ?
+On Tue, Aug 30, 2022 at 04:19:16PM +0200, netdev@kapio-technology.com wrote:
+> On 2022-08-29 18:12, Ido Schimmel wrote:
+> > On Mon, Aug 29, 2022 at 04:02:46PM +0200, netdev@kapio-technology.com
+> > wrote:
+> > > On 2022-08-27 13:30, Nikolay Aleksandrov wrote:
+> > > > On 26/08/2022 14:45, Hans Schultz wrote:
+> > > >
+> > > > Hi,
+> > > > Please add the blackhole flag in a separate patch.
+> > > > A few more comments and questions below..
+> > > >
+> > > 
+> > > Hi,
+> > > if userspace is to set this flag I think I need to change stuff in
+> > > rtnetlink.c, as I will need to extent struct ndmsg with a new u32
+> > > entry as
+> > > the old u8 flags is full.
+> > 
+> > You cannot extend 'struct ndmsg'. That's why 'NDA_FLAGS_EXT' was
+> > introduced. See:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2c611ad97a82b51221bb0920cc6cac0b1d4c0e52
+> > 
+> > 'NTF_EXT_BLACKHOLE' belongs in 'NDA_FLAGS_EXT' like you have it now, but
+> > the kernel should not reject it in br_fdb_add().
+> > 
+> > > Maybe this is straight forward, but I am not so sure as I don't know
+> > > that
+> > > code too well. Maybe someone can give me a hint...?
 > 
-> I did not see a reproducer ID.  What ended up in the tree is this:
-> 
-> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7997eff82828304b780dc0a39707e1946d6f1ebf__;!!ACWV5N9M2RV99hQ!JxonjgQUi7Mbcd-ouxRwPgu8Jwl6ej2rO4pTvYMtteWexclV5-hciu9e5rgtkXoB7dyAdLCyZ4EQ9HQj$
+> The question I have is if I can use nlh_flags to send the extended flags
+> further on to fdb_add_entry(), where I expect to need it?
 
-Thank you !
+A separate argument looks cleaner to me.
 
-
+> (the extended flags are u32, while nlh_flags are u16)
