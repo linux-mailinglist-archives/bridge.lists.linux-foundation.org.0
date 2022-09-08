@@ -2,60 +2,78 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F24D5B0EEA
-	for <lists.bridge@lfdr.de>; Wed,  7 Sep 2022 23:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 887BC5B161F
+	for <lists.bridge@lfdr.de>; Thu,  8 Sep 2022 09:59:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 7B2D5416F2;
-	Wed,  7 Sep 2022 21:10:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7B2D5416F2
+	by smtp4.osuosl.org (Postfix) with ESMTP id CE1F94192C;
+	Thu,  8 Sep 2022 07:59:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org CE1F94192C
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=rq9YY7xd
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9QGYbkpDcSVQ; Wed,  7 Sep 2022 21:10:15 +0000 (UTC)
+	with ESMTP id qJZuziUlp4rN; Thu,  8 Sep 2022 07:59:26 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 92EEC416E3;
-	Wed,  7 Sep 2022 21:10:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 92EEC416E3
+	by smtp4.osuosl.org (Postfix) with ESMTPS id EA41541B50;
+	Thu,  8 Sep 2022 07:59:25 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org EA41541B50
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 39429C007C;
-	Wed,  7 Sep 2022 21:10:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 933ECC0078;
+	Thu,  8 Sep 2022 07:59:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9846EC002D
- for <bridge@lists.linux-foundation.org>; Wed,  7 Sep 2022 21:10:12 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 98465C002D
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Sep 2022 07:59:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 6BFFA83372
- for <bridge@lists.linux-foundation.org>; Wed,  7 Sep 2022 21:10:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 6BFFA83372
+ by smtp2.osuosl.org (Postfix) with ESMTP id 54EF6411AB
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Sep 2022 07:59:24 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 54EF6411AB
+Authentication-Results: smtp2.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=rq9YY7xd
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id sky-bi8IEaGj for <bridge@lists.linux-foundation.org>;
- Wed,  7 Sep 2022 21:10:11 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 20BFB81D35
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 20BFB81D35
- for <bridge@lists.linux-foundation.org>; Wed,  7 Sep 2022 21:10:10 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id E956A1884A6C;
- Wed,  7 Sep 2022 21:10:07 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id CD0D525032B7;
- Wed,  7 Sep 2022 21:10:07 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id BF8139EC0006; Wed,  7 Sep 2022 21:10:07 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
-MIME-Version: 1.0
-Date: Wed, 07 Sep 2022 23:10:07 +0200
-From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <YxNo/0+/Sbg9svid@shredder>
-References: <YwpgvkojEdytzCAB@shredder>
- <7654860e4d7d43c15d482c6caeb6a773@kapio-technology.com>
- <YwxtVhlPjq+M9QMY@shredder>
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id sLL3ZH6pLA1H for <bridge@lists.linux-foundation.org>;
+ Thu,  8 Sep 2022 07:59:20 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BCD3B411A6
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2066.outbound.protection.outlook.com [40.107.244.66])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id BCD3B411A6
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Sep 2022 07:59:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RNrsQHz7ru4iM1mT1CUHGFgpZOdhEKt2aq5XVN8BqucyCId+mz6THXfM+dCEnDqDOq8RBAgCTReDMsCtT/iuyElfIPsg4a+x/bzIfM/BK4HvKwl7EJnd32siyJrUWUreQ3mKC4wuyLuNkPclZ3xBsYOGRe2QF5Wmln53eEtef4vI0ATpTtu0FZYbUOlNpx58DMlCS+BJMfvHWz/O9lQiJjZ2wauEzOxPYwICGsaOKwAXAEhEcLDKAAeafy+RpEZEAtJq7Rq/ZSOftzO2vhLO23kw269XFPwRAGoJZ3/qFkP6MyEIngXqlH20YSG40Q8bIev8Ix2m2rJ67J1Vx0saJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HaA/vhJtZKpr0s2EktWOS6qma2h9xSmkonCZoNVig+Y=;
+ b=WqI4bKeWg13i/tusJ0jBoUgYH0pdCg5Ja64CdUC0JD2aBu0yYO3y4khro1lebta3VDevji4DCtXzwR0+ISCiKtBQv8tV5aMjo0vmTaJkehnqck/thw6jjnl2TXIjt2MBSvsYTOg5IiQ1HhvOB4WNc7Rqc7AJfeB1ojHHn5y+nOOZaWnRnbE90gyh/kTqopAS75lYNjAxvI5BodPOfELtjllaPvomX0ttb8v9rwtGBJsGcr8wLmJbx3ZeZZy5u2VG49mxBUnuvwS+n90+kTqAvtjHANWRc4v+7lTNxO5I8jFly+SK7Z6EkouyXzFe3kdRR+8LGSrR0lpBTEVtZp9i1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HaA/vhJtZKpr0s2EktWOS6qma2h9xSmkonCZoNVig+Y=;
+ b=rq9YY7xdCtPuLb7jSOdeoODdqz9rwMH3Wwi/V0WBpEyCRF3jguvXRsQyKwqOSwB+5dI/WJ5h46R314ejAPAN5/Kd/xMZfK2rqwSTm+zCGNb5aXLn7CYdLWEcnxwc2aFxxM3mvhfhXkYBSekynGEaNPW8gcR3rkh37m26cygIQ/Q4Ipq2S8Cm0n1832iDr7JiqtMst5FpMB+oJX7WrGV4gjCf4pNn8PiJKpcapfnuOWJHG+2v+W8Rc9wPIjxFKXZU/AoepTRO+dpVgforfx4uSQxhHsYS48rLvABMbOcMt3szwLQCriyL+Pjuveg3yj9pOhLUPyad47hTRRmUNfXDmA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
+ by SN7PR12MB7022.namprd12.prod.outlook.com (2603:10b6:806:261::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Thu, 8 Sep
+ 2022 07:59:17 +0000
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::4d61:5da2:6bbb:790]) by CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::4d61:5da2:6bbb:790%6]) with mapi id 15.20.5612.016; Thu, 8 Sep 2022
+ 07:59:16 +0000
+Date: Thu, 8 Sep 2022 10:59:08 +0300
+To: netdev@kapio-technology.com
+Message-ID: <Yxmgs7Du62V1zyjK@shredder>
+References: <YwxtVhlPjq+M9QMY@shredder>
  <2967ccc234bb672f5440a4b175b73768@kapio-technology.com>
  <Ywyj1VF1wlYqlHb6@shredder>
  <9e1a9eb218bbaa0d36cb98ff5d4b97d7@kapio-technology.com>
@@ -64,12 +82,63 @@ References: <YwpgvkojEdytzCAB@shredder>
  <YwzjPcQjfLPk3q/k@shredder>
  <f1a17512266ac8b61444e7f0e568aca7@kapio-technology.com>
  <YxNo/0+/Sbg9svid@shredder>
-User-Agent: Gigahost Webmail
-Message-ID: <5cee059b65f6f7671e099150f9da79c1@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+ <5cee059b65f6f7671e099150f9da79c1@kapio-technology.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5cee059b65f6f7671e099150f9da79c1@kapio-technology.com>
+X-ClientProxiedBy: VI1PR07CA0204.eurprd07.prod.outlook.com
+ (2603:10a6:802:3f::28) To CY5PR12MB6179.namprd12.prod.outlook.com
+ (2603:10b6:930:24::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|SN7PR12MB7022:EE_
+X-MS-Office365-Filtering-Correlation-Id: 30bc5113-d31c-4e72-e8fe-08da917005c4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6w6/0Ej21WZcggbHZMOSYK0uekNrIo3t9ZFOo6djdJJoL3qK0COwAay3xjI1o8/r24adNlw6fc0w77CuCaeGqOYx90H3GU6uvr7V2GLWA8jZVAGrKJN8PrA1X8AXoVBgKu3+iYyiTaaC64TjQa/Nfcw67EC/3PP3tnqtvtNdj/HCIfF5kuG1u2yq0TLGDenjBebICQW/e1c5jukxIy5TfzmdDVPH+vwPwoobvNNMNG+g0lkAbhBv7BVeGS/u4KwVC4hcUSAVLGmmzO3Jb+SwsJHebhDZL+ci/qZJmwEXz/0jWuObPc6OiKbaO41vU+DzGmPut9cq1kEQxK6Px6RtO+u+xq9F8B0OGjKOZLEuUWjwC9nPNtX5i5oyPvDe+7yL7UN5saLbe/fsyI7gGfTP/PT2DrjKn7QOL5iLt7Ul1wRUDy5UTpgiGLEy9G5fynDYjvnDchC5k9YvQ6gpq/NRiOKBEB9JF3/JbvBhkPMtP2/oraNh9LnQrrMuc4hSwVw6+s3ZpG6Y5p9db7qRNgIrV//76g8Wfj3QiXeiRlHGps/hXIsYXh0CDHlQ5BrU2Sa/MNyOLlpcRuS5LBMc7goWLaAtSM/Ab6Ih8vnLwk40BBRPn/Jk4sA56JfdzsF35TbeH8XZNx6gERopzliELe5O2UbzqZjw0J86LoVLL6xIr/x74Tqd9Ev477tgqkpJ5q07oKvmYyFtK+VqBTRz7coipQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(7916004)(4636009)(396003)(376002)(366004)(136003)(346002)(39860400002)(316002)(86362001)(54906003)(6916009)(38100700002)(7416002)(66476007)(7406005)(8676002)(5660300002)(66556008)(8936002)(33716001)(66946007)(2906002)(4326008)(186003)(41300700001)(9686003)(478600001)(4744005)(6666004)(6512007)(6486002)(6506007)(26005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ewY4n8Oh9PQb21Uj6j6d1e2JER1G+sCI22Le1PgtbYHzrq2XNhsrm2qGyAyX?=
+ =?us-ascii?Q?vOE36t6LqkwUWRBf+Io47Wk6ZcXlCsdX7HDEt155tJgQ5LUIDc0Dl1uHe3uy?=
+ =?us-ascii?Q?sSspl8D6fVi3k3d89etQlNlT1KG87c3AIEnBcXrkhgj+8N5awira9DaEoezG?=
+ =?us-ascii?Q?9yMZk677g2TKkhlncOO0gLlR5xNTviqKuBeIbkXaxUzJkJ8YzEhwAgg5PIeB?=
+ =?us-ascii?Q?N2gQmIaJQpN+Byeg7sFXCVadOZQ9WVgrwaLSIKJ3pdD+7CvinOC8OlBwa7ah?=
+ =?us-ascii?Q?7j3C4sItYpKEdB18B0JAlDH0XqKZBsDsAzvE5mo+xrjKNUcIAPVfc9pYk8hN?=
+ =?us-ascii?Q?f7UCChKSwuicwgDu90GNRhslhNCHjasRjYFzHtnrydTnkNNgy5UlB5jhK3hp?=
+ =?us-ascii?Q?5SfZEbuGlS5iC/uHmOOtlelloDBZ8YXrPZukqmB84rtOOikCHQcyJ8fQYDrA?=
+ =?us-ascii?Q?oI9AlyzonZ7ozYFuObwN20bQnOe2sTqvDbfFJxXvSulAj4NVw+rc8N/yL7gx?=
+ =?us-ascii?Q?iNMe5p4YfNYE31D6+YnjivkeOe9GtxWSsKe021Tm8SmUZ/CvBRxHocjuCaRr?=
+ =?us-ascii?Q?yCJ3U6BXykPGuwpfPrDhWs0t/fMDcV4cGv+L+34qg2W0oK7xo2ttquFtcyhn?=
+ =?us-ascii?Q?J5fksCIUJc714X/1+WWIrpkv6imo7W06hm0KmyxDhhpN9spLPBwDo7P9nVA4?=
+ =?us-ascii?Q?aLGdGKKYZF4W2NvhB7SoA0SuvUHfNPXp6kFaPBZoHz3h/heXvVjM3bW+ETH+?=
+ =?us-ascii?Q?MVWeLlpwJmwCb2dxKU3yDGMoe+Dz/ETBE9Se1oND33IcSwhvIKX6BGHNf9CY?=
+ =?us-ascii?Q?HALCelvfvP6ByRbS5tsZgtpynEJMI1FUDBaV1T9hzI37OZ07qxTPjIEUGFwH?=
+ =?us-ascii?Q?NRdDQJuZR9yn1Zo6nQbJhl0/qPv/pf8gZoFO4NtjVxTr89MwLAzRun/5Yq90?=
+ =?us-ascii?Q?VyclrLnjVpfvAXXsCuhhLIAOj5neOMj+RQhWEyvv+t6hcZA9NDGCNc7EKuYo?=
+ =?us-ascii?Q?SydSMb9Idrj9PW8sjc7tmm6rE1oFEweT8YBLTMJzeRoQpkfjkpKPwDRAZBS/?=
+ =?us-ascii?Q?xW0AE22iIW49qkN7DnFjLvQhtMEWs/PYkI+0cgkY6jPFxhDD93nwQIhjm/cu?=
+ =?us-ascii?Q?OPepwmwrRBpNvdvH+KMYJVFUV75SGqzB4w/ygG/LgsTy8i5EL18dB08eBBeq?=
+ =?us-ascii?Q?aySeqXPlSwGly+tgcJ0h3fWUXqqYJKBJPzPaxi5Blm/yXF2LYap2UOttPSRb?=
+ =?us-ascii?Q?YeB+tnwjubAx63H3NzUWWY33JKkWq+SdUCu17o2uX0cgSk4oLS8Afc6XlVBI?=
+ =?us-ascii?Q?eFGKhAteEVruc2p2e/UExxdt3HlLGtvDyhDI4rxVwNHcUzzzCkd/63vTkgEo?=
+ =?us-ascii?Q?xSY2//etAZih+wb05ooKq6k+XpYJN4ZlZ3UeHY7UiJeyOoYSm2EXnX2t0RLw?=
+ =?us-ascii?Q?v3EEBzHv9YVcDe/MDyN0ZlUfKLFx1EZ8zMGjD35f42tEllfbanLopL8/J9cZ?=
+ =?us-ascii?Q?w3mTUHMKjfxSSIzBFz41iVw/wPYI/LqLlFvFi8ia+5Vs8Bi6cRmoshfAbxWI?=
+ =?us-ascii?Q?bFYmuXby3tHbjy69AbVpOyeUTsgVTVdtRCqtM/TO?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30bc5113-d31c-4e72-e8fe-08da917005c4
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 07:59:16.2686 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F/hhdlvuykF9nWt5WISu8wen66WbuX3bckq83yZYiYhMG3a0uVM8MOdP9DM0qvp5i36Y1HS7FqqphsKrv2boQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7022
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
@@ -102,78 +171,18 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-09-03 16:47, Ido Schimmel wrote:
-> On Mon, Aug 29, 2022 at 06:13:14PM +0200, netdev@kapio-technology.com 
-> wrote:
->> On 2022-08-29 18:03, Ido Schimmel wrote:
->> > On Mon, Aug 29, 2022 at 05:08:23PM +0200, netdev@kapio-technology.com
->> > wrote:
->> > > On 2022-08-29 16:37, Ido Schimmel wrote:
->> > > > On Mon, Aug 29, 2022 at 02:04:42PM +0200, netdev@kapio-technology.com
->> > > > wrote:
->> > > > > On 2022-08-29 13:32, Ido Schimmel wrote:
->> > > > > Port association is needed for MAB to work at all on mv88e6xxx, but
->> > > > > for
->> > > > > 802.1X port association is only needed for dynamic ATU entries.
->> > > >
->> > > > Ageing of dynamic entries in the bridge requires learning to be on as
->> > > > well, but in these test cases you are only using static entries and
->> > > > there is no reason to enable learning in the bridge for that. I prefer
->> > > > not to leak this mv88e6xxx implementation detail to user space and
->> > > > instead have the driver enable port association based on whether
->> > > > "learning" or "mab" is on.
->> > > >
->> > >
->> > > Then it makes most sense to have the mv88e6xxx driver enable port
->> > > association when then port is locked, as it does now.
->> >
->> > As you wish, but like you wrote "802.1X port association is only needed
->> > for dynamic ATU entries" and in this case user space needs to enable
->> > learning (for refresh only) so you can really key off learning on
->> > "learning || mab". User space can decide to lock the port and work with
->> > static entries and then learning is not required.
->> 
->> I will of course remove all "learning on" in the selftests, which is 
->> what I
->> think you are referring to. In the previous I am referring to the code 
->> in
->> the driver itself which I understand shall turn on port association 
->> with
->> locked ports, e.g. no need for "learning on" when using the feature in
->> general outside selftests...
-> 
-> "learning on" is needed when dynamic FDB entries are used to authorize
-> hosts. Without learning being enabled, the bridge driver (or the
-> underlying hardware) will not refresh the entries during forwarding and
-> they will age out, resulting in packet loss until the hosts are
-> re-authorized.
-> 
-> Given the current test cases only use static entries, there is no need
-> to enable learning on locked ports. This will change when test cases 
-> are
-> added with dynamic entries.
-> 
-> Regarding mv88e6xxx, my understanding is that you also need learning
-> enabled for MAB (I assume for the violation interrupts). Therefore, for
-> mv88e6xxx, learning can be enabled if learning is on or MAB is on.
-> Enabling it based on whether the port is locked or not seems 
-> inaccurate.
+On Wed, Sep 07, 2022 at 11:10:07PM +0200, netdev@kapio-technology.com wrote:
+> I am at the blackhole driver implementation now, as I suppose that the
+> iproute2 command should work with the mv88e6xxx driver when adding blackhole
+> entries (with a added selftest)?
+> I decided to add the blackhole feature as new ops for drivers with functions
+> blackhole_fdb_add() and blackhole_fdb_del(). Do you agree with that
+> approach?
 
-Given that 'learning on' is needed for hardware refreshing of ATU 
-entries (mv88e6xxx), and that will in the future be needed in general, I 
-think it is best to enable it when a port is locked. Also the matter is 
-that the locked feature needs to modify the register that contains the 
-PAV. So I see it as natural that it is done there, as it will eventually 
-have to be done there.
-That the selftests do not need it besides when activating MAB, I think, 
-is a special case.
-
-I am at the blackhole driver implementation now, as I suppose that the 
-iproute2 command should work with the mv88e6xxx driver when adding 
-blackhole entries (with a added selftest)?
-I decided to add the blackhole feature as new ops for drivers with 
-functions blackhole_fdb_add() and blackhole_fdb_del(). Do you agree with 
-that approach?
+I assume you are talking about extending 'dsa_switch_ops'? If so, it's
+up to the DSA maintainers to decide.
