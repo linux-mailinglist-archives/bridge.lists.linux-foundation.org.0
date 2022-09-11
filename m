@@ -1,61 +1,84 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248FC5B38AC
-	for <lists.bridge@lfdr.de>; Fri,  9 Sep 2022 15:12:19 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A355B4AF6
+	for <lists.bridge@lfdr.de>; Sun, 11 Sep 2022 02:14:04 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 98FCF41765;
-	Fri,  9 Sep 2022 13:12:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 98FCF41765
+	by smtp1.osuosl.org (Postfix) with ESMTP id EDB458195D;
+	Sun, 11 Sep 2022 00:13:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EDB458195D
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=I/dbdccp
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9iCOKH7qjhmM; Fri,  9 Sep 2022 13:12:13 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id W04i3w4wm6OJ; Sun, 11 Sep 2022 00:13:58 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 04AA8418DC;
-	Fri,  9 Sep 2022 13:12:13 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 04AA8418DC
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 75F0F81DBF;
+	Sun, 11 Sep 2022 00:13:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 75F0F81DBF
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 99EB8C007C;
-	Fri,  9 Sep 2022 13:12:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A5465C007C;
+	Sun, 11 Sep 2022 00:13:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B4F72C002D
- for <bridge@lists.linux-foundation.org>; Fri,  9 Sep 2022 13:12:10 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 6BE9DC002D
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Sep 2022 00:13:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 67B1141D03
- for <bridge@lists.linux-foundation.org>; Fri,  9 Sep 2022 13:12:10 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 67B1141D03
+ by smtp1.osuosl.org (Postfix) with ESMTP id 407778195D
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Sep 2022 00:13:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 407778195D
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 6zwSPDYIW8f1 for <bridge@lists.linux-foundation.org>;
- Fri,  9 Sep 2022 13:12:07 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 303F141901
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 303F141901
- for <bridge@lists.linux-foundation.org>; Fri,  9 Sep 2022 13:12:05 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id F0F37188528F;
- Fri,  9 Sep 2022 13:11:56 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id E8A0725032B7;
- Fri,  9 Sep 2022 13:11:56 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id DDD2B9EC0002; Fri,  9 Sep 2022 13:11:56 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
-MIME-Version: 1.0
-Date: Fri, 09 Sep 2022 15:11:56 +0200
-From: netdev@kapio-technology.com
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20220908112044.czjh3xkzb4r27ohq@skbuf>
-References: <Ywyj1VF1wlYqlHb6@shredder>
- <9e1a9eb218bbaa0d36cb98ff5d4b97d7@kapio-technology.com>
- <YwzPJ2oCYJQHOsXD@shredder>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id LSH1sAQ8zv-B for <bridge@lists.linux-foundation.org>;
+ Sun, 11 Sep 2022 00:13:53 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1AAF4818B5
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 1AAF4818B5
+ for <bridge@lists.linux-foundation.org>; Sun, 11 Sep 2022 00:13:53 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id z97so7831632ede.8
+ for <bridge@lists.linux-foundation.org>; Sat, 10 Sep 2022 17:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date;
+ bh=bppXW6VDR+pb+O0s/GBMgHjeo0dyk4Z19CwR9nRdUqY=;
+ b=I/dbdccpmFyof6NN2fUQMmS80Kye7WCB0cQOnWsCWr6kbYBSqsVNXYvpajN4WTXs5N
+ PXhbKdVGq8qaZvgMB0u24QvcgieMU5sZBUZfzJF2amKkSCjUsiAOitoc/N3eYjx4+nbU
+ UkvrRIvjsJnsPK6sjy/HtdP6xSLhmtUOAOXnyRclsyX3fiW0yb7AKTCDLDXVMQdlnFWk
+ mil8xpZZTzvqkglqCqTqsMJxVx8FC4xg6utVXrjwvfOZdCzMwfSKP+sa1fb1IAQfgDPQ
+ pESQws6EXy9LgJ4AVvyxftq7I/HfsvAzi5cWrDfXOlqoYDBtxh9cVpuCsIrL0Hca4ds+
+ PlOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+ bh=bppXW6VDR+pb+O0s/GBMgHjeo0dyk4Z19CwR9nRdUqY=;
+ b=hsvx+PVD5R8HzRcBVXLQwJ0ACv0CVwicf7WQB5ZmsxJ06DBm4CCg56cpuOsnsF3IvY
+ ewvpu9ORMJFbB2jC1O33fL9ZOwPlPsIbWPreDeJbZfhc9JPU0sBfOC9q8/YBV5aHCfw0
+ GeMzw0XGxo1aQWyiGnXGha64ZU0+BfXHiccbSlIEphHvwzPDE8jIGU/WL65ezOeHRbHl
+ bH7ii/UCsfsRwtsygnn5TxijagNzL5uMySlLZr+xRcKrOOH0FLdTnlmthhNyL4GNzCrp
+ 0zLZKvdr9OGQt20B3YFvCRktkVYkZbOKvFRg9Zk5+KFkW1Vd8ItLGcyB/cW7lFUGZQgh
+ lrzg==
+X-Gm-Message-State: ACgBeo0GeUX3mHl30Pb4Un0QkZ/dUmz6UCkipOq6CZbUMgZ4AD7yrx6H
+ 14+K9aIb11NfYGTVwecwJ5g=
+X-Google-Smtp-Source: AA6agR52fycHpO9WU3O4tQqWIpSfhUKG2OMNd9yKS0R5NgefgysDjUnyzSr5YsGH9u2uheidlYIZ6Q==
+X-Received: by 2002:a05:6402:110d:b0:451:9fc5:fe7f with SMTP id
+ u13-20020a056402110d00b004519fc5fe7fmr346191edv.200.1662855231160; 
+ Sat, 10 Sep 2022 17:13:51 -0700 (PDT)
+Received: from skbuf ([188.27.184.197]) by smtp.gmail.com with ESMTPSA id
+ c18-20020a17090618b200b00773f3ccd989sm2265945ejf.68.2022.09.10.17.13.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 10 Sep 2022 17:13:50 -0700 (PDT)
+Date: Sun, 11 Sep 2022 03:13:46 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: netdev@kapio-technology.com
+Message-ID: <20220911001346.qno33l47i6nvgiwy@skbuf>
+References: <YwzPJ2oCYJQHOsXD@shredder>
  <69db7606896c77924c11a6c175c4b1a6@kapio-technology.com>
  <YwzjPcQjfLPk3q/k@shredder>
  <f1a17512266ac8b61444e7f0e568aca7@kapio-technology.com>
@@ -64,12 +87,11 @@ References: <Ywyj1VF1wlYqlHb6@shredder>
  <Yxmgs7Du62V1zyjK@shredder>
  <8dfc9b525f084fa5ad55019f4418a35e@kapio-technology.com>
  <20220908112044.czjh3xkzb4r27ohq@skbuf>
-User-Agent: Gigahost Webmail
-Message-ID: <152c0ceadefbd742331c340bec2f50c0@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+ <152c0ceadefbd742331c340bec2f50c0@kapio-technology.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <152c0ceadefbd742331c340bec2f50c0@kapio-technology.com>
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
@@ -105,26 +127,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-09-08 13:20, Vladimir Oltean wrote:
-> On Thu, Sep 08, 2022 at 01:14:59PM +0200, netdev@kapio-technology.com 
-> wrote:
->> On 2022-09-08 09:59, Ido Schimmel wrote:
->> > On Wed, Sep 07, 2022 at 11:10:07PM +0200, netdev@kapio-technology.com wrote:
->> > > I am at the blackhole driver implementation now, as I suppose that the
->> > > iproute2 command should work with the mv88e6xxx driver when adding blackhole
->> > > entries (with a added selftest)?
->> > > I decided to add the blackhole feature as new ops for drivers with functions
->> > > blackhole_fdb_add() and blackhole_fdb_del(). Do you agree with that approach?
->> >
->> > I assume you are talking about extending 'dsa_switch_ops'?
->> 
->> Yes, that is the idea.
->> 
->> > If so, it's up to the DSA maintainers to decide.
+On Fri, Sep 09, 2022 at 03:11:56PM +0200, netdev@kapio-technology.com wrote:
+> > > > On Wed, Sep 07, 2022 at 11:10:07PM +0200, netdev@kapio-technology.com wrote:
+> > > > > I am at the blackhole driver implementation now, as I suppose that the
+> > > > > iproute2 command should work with the mv88e6xxx driver when adding blackhole
+> > > > > entries (with a added selftest)?
+> > > > > I decided to add the blackhole feature as new ops for drivers with functions
+> > > > > blackhole_fdb_add() and blackhole_fdb_del(). Do you agree with that approach?
+> > > >
+> > > > I assume you are talking about extending 'dsa_switch_ops'?
+> > > 
+> > > Yes, that is the idea.
+> > > 
+> > > > If so, it's up to the DSA maintainers to decide.
+> > 
+> > What will be the usefulness of adding a blackhole FDB entry from user
+> > space?
 > 
-> What will be the usefulness of adding a blackhole FDB entry from user 
-> space?
+> With the software bridge it could be used to signal a untrusted host in
+> connection with a locked port entry attempt. I don't see so much use other
+> that test purposes with the driver though.
 
-With the software bridge it could be used to signal a untrusted host in 
-connection with a locked port entry attempt. I don't see so much use 
-other that test purposes with the driver though.
+Not a huge selling point, to be honest. Can't the blackhole flag remain
+settable only in the device -> bridge direction, with user space just
+reading it?
