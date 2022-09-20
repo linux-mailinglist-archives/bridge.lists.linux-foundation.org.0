@@ -2,95 +2,81 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E40285BEF23
-	for <lists.bridge@lfdr.de>; Tue, 20 Sep 2022 23:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EACAB5BF112
+	for <lists.bridge@lfdr.de>; Wed, 21 Sep 2022 01:30:06 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 2411E418F7;
-	Tue, 20 Sep 2022 21:29:23 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2411E418F7
+	by smtp4.osuosl.org (Postfix) with ESMTP id AFB4140A02;
+	Tue, 20 Sep 2022 23:30:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AFB4140A02
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=BfwBkfqb
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HdJ38Xytivxu; Tue, 20 Sep 2022 21:29:22 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 3450241916;
-	Tue, 20 Sep 2022 21:29:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3450241916
+	with ESMTP id EK9F-2OAr2PS; Tue, 20 Sep 2022 23:30:03 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id EC0B04176C;
+	Tue, 20 Sep 2022 23:30:02 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org EC0B04176C
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B6EA9C0077;
-	Tue, 20 Sep 2022 21:29:20 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 8AAAFC0077;
+	Tue, 20 Sep 2022 23:30:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CB5D9C002D
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 21:29:18 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4B9BEC002D
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 23:30:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 89CCA41916
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 21:29:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 89CCA41916
+ by smtp2.osuosl.org (Postfix) with ESMTP id 03E7940C1B
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 23:30:01 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 03E7940C1B
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=BfwBkfqb
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RI4Tzf45iMy4 for <bridge@lists.linux-foundation.org>;
- Tue, 20 Sep 2022 21:29:17 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id q6PBqWH_mVpT for <bridge@lists.linux-foundation.org>;
+ Tue, 20 Sep 2022 23:29:59 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0F39F418F7
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 0F39F418F7
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 21:29:16 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id E87CF18845FF;
- Tue, 20 Sep 2022 21:29:12 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id D3A51250007B;
- Tue, 20 Sep 2022 21:29:12 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id C5ED9A0A1E65; Tue, 20 Sep 2022 21:29:12 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 991D840129
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 991D840129
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 23:29:59 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id E34E6B82C0A;
+ Tue, 20 Sep 2022 23:29:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FB2CC433B5;
+ Tue, 20 Sep 2022 23:29:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1663716595;
+ bh=nD4QLliR2Fg9W839ij/O4HSyRbpGyiFLDJtkdeZ/HeY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=BfwBkfqbihYRed6NuVk9N/7VrgAlWrxMTTnaQQMPx7cebYpFkqsE/ktZQWEHBiYaX
+ cwb7Y3AEkerp3zVtNY/ziEbnaENtxPrhGS2KNFOpI3iXxcnGhMvgX70B+w7J7FZ7Qa
+ gyI9tRxfZgHOF677hYUGAYQ6JwTXL76IREzWK8r+S2mxTeINADcF+H3zunuUqAWrR0
+ aX9eX8dtdd4RMautD7Rb4Nl0d45XaSRDRwrxVHc0ijebPXXz9ay9zNlH78gp7F9lj9
+ F37xn7mSvuyaRC4CLmwhHztTmpzkWd8eXwN79QyBkJSDeLNm5wQE7HPnfkuPhJlNC4
+ vsHKvmKaq4Txg==
+Date: Tue, 20 Sep 2022 16:29:54 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <20220920162954.1f4aaf7b@kernel.org>
+In-Reply-To: <78bd0e54-4ee3-bd3c-2154-9eb8b9a70497@blackwall.org>
+References: <cover.1663445339.git.sevinj.aghayeva@gmail.com>
+ <78bd0e54-4ee3-bd3c-2154-9eb8b9a70497@blackwall.org>
 MIME-Version: 1.0
-Date: Tue, 20 Sep 2022 23:29:12 +0200
-From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <Yx73FOpN5uhPQhFl@shredder>
-References: <YwzjPcQjfLPk3q/k@shredder>
- <f1a17512266ac8b61444e7f0e568aca7@kapio-technology.com>
- <YxNo/0+/Sbg9svid@shredder>
- <5cee059b65f6f7671e099150f9da79c1@kapio-technology.com>
- <Yxmgs7Du62V1zyjK@shredder>
- <8dfc9b525f084fa5ad55019f4418a35e@kapio-technology.com>
- <20220908112044.czjh3xkzb4r27ohq@skbuf>
- <152c0ceadefbd742331c340bec2f50c0@kapio-technology.com>
- <20220911001346.qno33l47i6nvgiwy@skbuf>
- <15ee472a68beca4a151118179da5e663@kapio-technology.com>
- <Yx73FOpN5uhPQhFl@shredder>
-User-Agent: Gigahost Webmail
-Message-ID: <086704ce7f323cc1b3cca78670b42095@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- linux-kselftest@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
- Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
- linux-arm-kernel@lists.infradead.org, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- Vivien Didelot <vivien.didelot@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Christian Marangi <ansuelsmth@gmail.com>, Hauke Mehrtens <hauke@hauke-m.de>,
- Sean Wang <sean.wang@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, linux-mediatek@lists.infradead.org,
- Matthias Brugger <matthias.bgg@gmail.com>, Yuwei Wang <wangyuweihx@gmail.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v5 net-next 6/6] selftests: forwarding: add
- test of MAC-Auth Bypass to locked port tests
+Cc: aroulin@nvidia.com, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ sbrivio@redhat.com, Eric Dumazet <edumazet@google.com>,
+ Sevinj Aghayeva <sevinj.aghayeva@gmail.com>, roopa@nvidia.com,
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH RFC net-next 0/5] net: vlan: fix bridge binding
+ behavior and add selftests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,94 +91,24 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-09-12 11:08, Ido Schimmel wrote:
-> On Sun, Sep 11, 2022 at 11:23:55AM +0200, netdev@kapio-technology.com 
-> wrote:
->> On 2022-09-11 02:13, Vladimir Oltean wrote:
->> > On Fri, Sep 09, 2022 at 03:11:56PM +0200, netdev@kapio-technology.com
->> > wrote:
->> > > > > > On Wed, Sep 07, 2022 at 11:10:07PM +0200, netdev@kapio-technology.com wrote:
->> > > > > > > I am at the blackhole driver implementation now, as I suppose that the
->> > > > > > > iproute2 command should work with the mv88e6xxx driver when adding blackhole
->> > > > > > > entries (with a added selftest)?
->> > > > > > > I decided to add the blackhole feature as new ops for drivers with functions
->> > > > > > > blackhole_fdb_add() and blackhole_fdb_del(). Do you agree with that approach?
->> > > > > >
->> > > > > > I assume you are talking about extending 'dsa_switch_ops'?
->> > > > >
->> > > > > Yes, that is the idea.
->> > > > >
->> > > > > > If so, it's up to the DSA maintainers to decide.
->> > > >
->> > > > What will be the usefulness of adding a blackhole FDB entry from user
->> > > > space?
->> > >
->> > > With the software bridge it could be used to signal a untrusted host
->> > > in
->> > > connection with a locked port entry attempt. I don't see so much use
->> > > other
->> > > that test purposes with the driver though.
->> >
->> > Not a huge selling point, to be honest. Can't the blackhole flag remain
->> > settable only in the device -> bridge direction, with user space just
->> > reading it?
->> 
->> That is possible, but it would of course not make sense to have 
->> selftests of
->> the feature as that would not work unless there is a driver with this
->> capability (now just mv88e6xxx).
-> 
-> The new "blackhole" flag requires changes in the bridge driver and
-> without allowing user space to add such entries, the only way to test
-> these changes is with mv88e6xxx which many of us do not have...
+On Tue, 20 Sep 2022 12:16:26 +0300 Nikolay Aleksandrov wrote:
+> The set looks good to me, the bridge and vlan direct dependency is gone and
+> the new notification type is used for passing link type specific info.
 
-I am now building from new system (comp), and the kernel selftests are 
-not being installed correctly, so I haven't been able to run the 
-selftests yet.
+IDK, vlan knows it's calling the bridge:
 
-I have made a blackhole selftest, which looks like this:
++	if ((vlan->flags ^ old_flags) & VLAN_FLAG_BRIDGE_BINDING &&
++	    netif_is_bridge_master(vlan->real_dev)) {
 
-test_blackhole_fdb()
-{
-         RET=0
+bridge knows it's vlan calling:
 
-         check_blackhole_fdb_support || return 0
++	if (is_vlan_dev(dev)) {
++		br_vlan_device_event(dev, event, ptr);
 
-         tcpdump_start $h2
-         $MZ $h1 -q -t udp -a $h1 -b $h2
-         tcpdump_stop
-         tcpdump_show | grep -q udp
-         check_err $? "test_blackhole_fdb: No packet seen on initial"
-         tcpdump_cleanup
+going thru the generic NETDEV notifier seems odd.
 
-         bridge fdb add `mac_get $h2` dev br0 blackhole
-         bridge fdb show dev br0 | grep -q "blackhole"
-         check_err $? "test_blackhole_fdb: No blackhole FDB entry found"
+If this is just to avoid the dependency we can perhaps add a stub 
+like net/ipv4/udp_tunnel_stub.c ?
 
-         tcpdump_start $h2
-         $MZ $h1 -q -t udp -a $h1 -b $h2
-         tcpdump_stop
-         tcpdump_show | grep -q udp
-         check_fail $? "test_blackhole_fdb: packet seen with blackhole 
-fdb entry"
-         tcpdump_cleanup
-
-         bridge fdb del `mac_get $h2` dev br0 blackhole
-         bridge fdb show dev br0 | grep -q "blackhole"
-         check_fail $? "test_blackhole_fdb: Blackhole FDB entry not 
-deleted"
-
-         tcpdump_start $h2
-         $MZ $h1 -q -t udp -a $h1 -b $h2
-         tcpdump_stop
-         tcpdump_show | grep -q udp
-         check_err $? "test_blackhole_fdb: No packet seen after removing 
-blackhole FDB entry"
-         tcpdump_cleanup
-
-         log_test "Blackhole FDB entry test"
-}
-
-the setup is simple and is the same as in bridge_sticky_fdb.sh.
-
-Does the test look sound or is there obvious mistakes?
+> If the others are ok with it I think you can send it as non-RFC, but I'd give it
+> a few more days at least. :)
