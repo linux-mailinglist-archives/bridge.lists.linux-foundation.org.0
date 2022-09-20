@@ -1,98 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8AB25BE1B2
-	for <lists.bridge@lfdr.de>; Tue, 20 Sep 2022 11:16:35 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB6E5BE7CC
+	for <lists.bridge@lfdr.de>; Tue, 20 Sep 2022 15:57:34 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id BC767823E3;
-	Tue, 20 Sep 2022 09:16:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BC767823E3
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=oWXQ6TZy
+	by smtp2.osuosl.org (Postfix) with ESMTP id DF56740395;
+	Tue, 20 Sep 2022 13:57:30 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org DF56740395
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=HtPNPTze
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id YU0dqVbNrVFB; Tue, 20 Sep 2022 09:16:33 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ceRHPn8tNBeg; Tue, 20 Sep 2022 13:57:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 5109B81D5F;
-	Tue, 20 Sep 2022 09:16:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5109B81D5F
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 4DE7540C25;
+	Tue, 20 Sep 2022 13:57:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4DE7540C25
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DDB74C0077;
-	Tue, 20 Sep 2022 09:16:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F40B3C0077;
+	Tue, 20 Sep 2022 13:57:28 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1788AC002D
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 09:16:31 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 33674C002D
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 13:57:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id D31BE81B69
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 09:16:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D31BE81B69
+ by smtp2.osuosl.org (Postfix) with ESMTP id EF50340C24
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 13:57:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org EF50340C24
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5SGKqE4TXCpJ for <bridge@lists.linux-foundation.org>;
- Tue, 20 Sep 2022 09:16:30 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id M47JufN0jopA for <bridge@lists.linux-foundation.org>;
+ Tue, 20 Sep 2022 13:57:27 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 0E6BF81ADE
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 0E6BF81ADE
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 09:16:29 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id lc7so4747375ejb.0
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 02:16:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date;
- bh=v6Fmj83hx1h9EOaSFrL3lfhYXbz4XGnMveaMkf6jjPQ=;
- b=oWXQ6TZyU38Tt6B0tB5xoeC2txaV/i23+XquBsZIHUlTTdtqpu/uE5zzD2jzVvE+Vf
- WzCR1/U7ZsjhW8WtBnrtoJiP70wvf0AuxhL3i9qedEDUVGMWVGw4N9gRiiUDXYjS3++/
- 4flXzd2anBcOIY2h7liTEQb2eNCop6Ymvn29azgWeIx4F8b7viSUyVrZ89YRgpSM35pU
- b4j5EA/AO4GanUxm7eAIIVGMfAWHXxpxTav64KglJnpoMOA3ALHlJpHHmpacUrTkl1po
- wY19mQYdyX7TiiTOKtCqM21IGN5fvYkzdlcnPb8kdOD4eD7PBvqDYiq3siRnzbUhf64t
- eENg==
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2ACDB40C11
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 2ACDB40C11
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 13:57:27 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id
+ o70-20020a17090a0a4c00b00202f898fa86so2566933pjo.2
+ for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 06:57:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date;
+ bh=lE9IeWt4ZfEIoMLs40uJOg+qZ5mr3mjtBbGAjXersxA=;
+ b=HtPNPTze+/mlVdMUy7NMwg2BBNtvBxPyyW23YOMbux8VewqcNCx2/1H9Eo+Oo6qEzF
+ la4o5yMKCw9k3JHG9ozBXwz9fovn1q1ELrK+bTf4LUHooYHHu22/I7d9bTGEx9ot0615
+ trrKWnzg5FDi49lLYXGpMkA+Xr8B68elVV5ijzSb8GnI+CUSCW5dmgRjIcP3bzRxmVOE
+ jE3U+BmSz+CmgM8fMmKfYzioHmHVLBTll1eyNPQQarQJKySIWWKxDH7GFRZZTsm5NTHT
+ W2Rh+dda8iLbSKDvtleGCXJ2bqeHTZiC/FPywy5Jl44hOFPC/HbOUHkjJ0HiSrC6ha51
+ ACfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=v6Fmj83hx1h9EOaSFrL3lfhYXbz4XGnMveaMkf6jjPQ=;
- b=sZMSFkq1Vw0iSm6TQsQKCOoQt//iEHTDf08a1WKOV/2xwtRthgWLcGX86FVfYtAGfq
- acXQMq+RYJLjIQ8NjraZ6Caqo5VsaCiU5kKvXk7pd1id4DPjhp+pHbTCxVgB94xJfh27
- FW+oCouzJeFEktffiLyIuD1Vyas16X1CvOFR1d1r/SOxck8yVQxXePrWPHGYu4aogbJ7
- bxhtjtguKEgTkxQeSNd4MK10dlLu1BSwGaHUo//BNXcOrg1Ux7cgQsi0MsKoKLFbXui7
- /4YNaHYxgW+5BwOXeH8XsZKXg0i8xKvko2EmUmnwglDfWOtS9v3DZdltPl4cQiv1PXWr
- S0Fw==
-X-Gm-Message-State: ACrzQf3wFI4e1yt6rk8AkZdf4DxX61BaeThgTHJg6YAeb2s4VyVbKvtN
- MMor0dFzzRN8JC2tHR9kt85T2w==
-X-Google-Smtp-Source: AMsMyM7b7VV/V1SL9IvuRs1rPa+v63PClIaBQ47XAmsdBXtP5r3aIFHV7tonD0iqESAjbN0/c5bXig==
-X-Received: by 2002:a17:907:628f:b0:72f:58fc:3815 with SMTP id
- nd15-20020a170907628f00b0072f58fc3815mr16179909ejc.719.1663665387996; 
- Tue, 20 Sep 2022 02:16:27 -0700 (PDT)
-Received: from [192.168.0.111] (87-243-81-1.ip.btc-net.bg. [87.243.81.1])
- by smtp.gmail.com with ESMTPSA id
- u9-20020aa7d0c9000000b0043ba7df7a42sm912888edo.26.2022.09.20.02.16.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 20 Sep 2022 02:16:27 -0700 (PDT)
-Message-ID: <78bd0e54-4ee3-bd3c-2154-9eb8b9a70497@blackwall.org>
-Date: Tue, 20 Sep 2022 12:16:26 +0300
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date;
+ bh=lE9IeWt4ZfEIoMLs40uJOg+qZ5mr3mjtBbGAjXersxA=;
+ b=lxx/PFV+gLYQ14RJDoCB416DcsVFo9RB7qKJmeDq6FnAZPsDuZlP7GgLacdSPCFHaB
+ /OWu/zw7furW2RN7Yqj+nUxEsvDmD3ymwISzfeeYngbL9N7a4zuwGSE8+NCb5AKlToe5
+ UmJGlQkhJicUoqXprkDbHQF3ehwZybt5+0MmAG873mq5hXSuiL75d8y+C+2l5m5nkGsD
+ AWnIHoIHc7cnirIqeBJIQmQGS+/kD0aT4FVVQCvE7qNeot+gyhW68Mvuszcml/BUqQJ2
+ WdF4FbKrQg55vpZx71uO4AHpRuE97bIU/3GVy0MiEpTxS+fl9xvzX7LFuI64cJEZXTO0
+ uxiA==
+X-Gm-Message-State: ACrzQf3cRN5x246ltICDuyibWSaNhPVMRwxs5oqxvo9fsq00HidwbWko
+ fqiupNgaff+nxy7rHpxZcOf6V+odM9GnBmfbWMc=
+X-Google-Smtp-Source: AMsMyM7s7Yp9h3EaqTne8RjtOGu5ECJ4bCoLOXkWxRK1rWToUel1jBWm5+HbcVNyhel4s6VN0/DkiOpDZoFd7QmIG84=
+X-Received: by 2002:a17:903:2442:b0:176:c8ee:a5d6 with SMTP id
+ l2-20020a170903244200b00176c8eea5d6mr4877882pls.20.1663682246481; Tue, 20 Sep
+ 2022 06:57:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Content-Language: en-US
-To: Sevinj Aghayeva <sevinj.aghayeva@gmail.com>, netdev@vger.kernel.org
 References: <cover.1663445339.git.sevinj.aghayeva@gmail.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <cover.1663445339.git.sevinj.aghayeva@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Cc: aroulin@nvidia.com, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, sbrivio@redhat.com,
- Eric Dumazet <edumazet@google.com>, roopa@nvidia.com,
+ <78bd0e54-4ee3-bd3c-2154-9eb8b9a70497@blackwall.org>
+In-Reply-To: <78bd0e54-4ee3-bd3c-2154-9eb8b9a70497@blackwall.org>
+From: Sevinj Aghayeva <sevinj.aghayeva@gmail.com>
+Date: Tue, 20 Sep 2022 09:57:15 -0400
+Message-ID: <CAMWRUK7GSKOuAw_suryDCoq45VnKKy-yu36pAaR++2TxpZQ3Fw@mail.gmail.com>
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Content-Type: multipart/alternative; boundary="000000000000521a6b05e91c3576"
+Cc: aroulin@nvidia.com, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ sbrivio@redhat.com, Eric Dumazet <edumazet@google.com>, roopa@nvidia.com,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH RFC net-next 0/5] net: vlan: fix bridge binding
@@ -111,59 +101,178 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 17/09/2022 23:17, Sevinj Aghayeva wrote:
-> When bridge binding is enabled for a vlan interface, it is expected
-> that the link state of the vlan interface will track the subset of the
-> ports that are also members of the corresponding vlan, rather than
-> that of all ports.
-> 
-> Currently, this feature works as expected when a vlan interface is
-> created with bridge binding enabled:
-> 
->   ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
->         bridge_binding on
-> 
-> However, the feature does not work when a vlan interface is created
-> with bridge binding disabled, and then enabled later:
-> 
->   ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
->         bridge_binding off
->   ip link set vlan10 type vlan bridge_binding on
-> 
-> After these two commands, the link state of the vlan interface
-> continues to track that of all ports, which is inconsistent and
-> confusing to users. This series fixes this bug and introduces two
-> tests for the valid behavior.
-> 
-> Sevinj Aghayeva (5):
->   net: core: export call_netdevice_notifiers_info
->   net: core: introduce a new notifier for link-type-specific changes
->   net: 8021q: notify bridge module of bridge-binding flag change
->   net: bridge: handle link-type-specific changes in the bridge module
->   selftests: net: tests for bridge binding behavior
-> 
->  include/linux/if_vlan.h                       |   4 +
->  include/linux/netdevice.h                     |   3 +
->  include/linux/notifier_info.h                 |  21 +++
->  net/8021q/vlan.h                              |   2 +-
->  net/8021q/vlan_dev.c                          |  20 ++-
->  net/bridge/br.c                               |   5 +
->  net/bridge/br_private.h                       |   7 +
->  net/bridge/br_vlan.c                          |  18 +++
->  net/core/dev.c                                |   7 +-
->  tools/testing/selftests/net/Makefile          |   1 +
->  .../selftests/net/bridge_vlan_binding_test.sh | 143 ++++++++++++++++++
->  11 files changed, 223 insertions(+), 8 deletions(-)
->  create mode 100644 include/linux/notifier_info.h
->  create mode 100755 tools/testing/selftests/net/bridge_vlan_binding_test.sh
-> 
+--000000000000521a6b05e91c3576
+Content-Type: text/plain; charset="UTF-8"
 
-The set looks good to me, the bridge and vlan direct dependency is gone and
-the new notification type is used for passing link type specific info.
+On Tue, Sep 20, 2022 at 5:16 AM Nikolay Aleksandrov <razor@blackwall.org>
+wrote:
 
-If the others are ok with it I think you can send it as non-RFC, but I'd give it
-a few more days at least. :)
+> On 17/09/2022 23:17, Sevinj Aghayeva wrote:
+> > When bridge binding is enabled for a vlan interface, it is expected
+> > that the link state of the vlan interface will track the subset of the
+> > ports that are also members of the corresponding vlan, rather than
+> > that of all ports.
+> >
+> > Currently, this feature works as expected when a vlan interface is
+> > created with bridge binding enabled:
+> >
+> >   ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
+> >         bridge_binding on
+> >
+> > However, the feature does not work when a vlan interface is created
+> > with bridge binding disabled, and then enabled later:
+> >
+> >   ip link add link br name vlan10 type vlan id 10 protocol 802.1q \
+> >         bridge_binding off
+> >   ip link set vlan10 type vlan bridge_binding on
+> >
+> > After these two commands, the link state of the vlan interface
+> > continues to track that of all ports, which is inconsistent and
+> > confusing to users. This series fixes this bug and introduces two
+> > tests for the valid behavior.
+> >
+> > Sevinj Aghayeva (5):
+> >   net: core: export call_netdevice_notifiers_info
+> >   net: core: introduce a new notifier for link-type-specific changes
+> >   net: 8021q: notify bridge module of bridge-binding flag change
+> >   net: bridge: handle link-type-specific changes in the bridge module
+> >   selftests: net: tests for bridge binding behavior
+> >
+> >  include/linux/if_vlan.h                       |   4 +
+> >  include/linux/netdevice.h                     |   3 +
+> >  include/linux/notifier_info.h                 |  21 +++
+> >  net/8021q/vlan.h                              |   2 +-
+> >  net/8021q/vlan_dev.c                          |  20 ++-
+> >  net/bridge/br.c                               |   5 +
+> >  net/bridge/br_private.h                       |   7 +
+> >  net/bridge/br_vlan.c                          |  18 +++
+> >  net/core/dev.c                                |   7 +-
+> >  tools/testing/selftests/net/Makefile          |   1 +
+> >  .../selftests/net/bridge_vlan_binding_test.sh | 143 ++++++++++++++++++
+> >  11 files changed, 223 insertions(+), 8 deletions(-)
+> >  create mode 100644 include/linux/notifier_info.h
+> >  create mode 100755
+> tools/testing/selftests/net/bridge_vlan_binding_test.sh
+> >
+>
+> The set looks good to me, the bridge and vlan direct dependency is gone and
+> the new notification type is used for passing link type specific info.
+>
+> If the others are ok with it I think you can send it as non-RFC, but I'd
+> give it
+> a few more days at least. :)
+>
 
-Thanks,
- Nik
+Okay, I will wait until the end of the week.
 
+Thanks!
+
+
+>
+> Thanks,
+>  Nik
+>
+>
+
+-- 
+
+Sevinj.Aghayeva
+
+--000000000000521a6b05e91c3576
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 20, 2022 at 5:16 AM Nikol=
+ay Aleksandrov &lt;<a href=3D"mailto:razor@blackwall.org">razor@blackwall.o=
+rg</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">On 17/09/2022 23:17, Sevinj Aghayeva wrote:<br>
+&gt; When bridge binding is enabled for a vlan interface, it is expected<br=
+>
+&gt; that the link state of the vlan interface will track the subset of the=
+<br>
+&gt; ports that are also members of the corresponding vlan, rather than<br>
+&gt; that of all ports.<br>
+&gt; <br>
+&gt; Currently, this feature works as expected when a vlan interface is<br>
+&gt; created with bridge binding enabled:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0ip link add link br name vlan10 type vlan id 10 protocol 8=
+02.1q \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bridge_binding on<br>
+&gt; <br>
+&gt; However, the feature does not work when a vlan interface is created<br=
+>
+&gt; with bridge binding disabled, and then enabled later:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0ip link add link br name vlan10 type vlan id 10 protocol 8=
+02.1q \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bridge_binding off<br>
+&gt;=C2=A0 =C2=A0ip link set vlan10 type vlan bridge_binding on<br>
+&gt; <br>
+&gt; After these two commands, the link state of the vlan interface<br>
+&gt; continues to track that of all ports, which is inconsistent and<br>
+&gt; confusing to users. This series fixes this bug and introduces two<br>
+&gt; tests for the valid behavior.<br>
+&gt; <br>
+&gt; Sevinj Aghayeva (5):<br>
+&gt;=C2=A0 =C2=A0net: core: export call_netdevice_notifiers_info<br>
+&gt;=C2=A0 =C2=A0net: core: introduce a new notifier for link-type-specific=
+ changes<br>
+&gt;=C2=A0 =C2=A0net: 8021q: notify bridge module of bridge-binding flag ch=
+ange<br>
+&gt;=C2=A0 =C2=A0net: bridge: handle link-type-specific changes in the brid=
+ge module<br>
+&gt;=C2=A0 =C2=A0selftests: net: tests for bridge binding behavior<br>
+&gt; <br>
+&gt;=C2=A0 include/linux/if_vlan.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A04 +<br>
+&gt;=C2=A0 include/linux/netdevice.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A03 +<br>
+&gt;=C2=A0 include/linux/notifier_info.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 21 +++<br>
+&gt;=C2=A0 net/8021q/vlan.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A02 +-=
+<br>
+&gt;=C2=A0 net/8021q/vlan_dev.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 20 ++-<br>
+&gt;=C2=A0 net/bridge/br.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=
+=A05 +<br>
+&gt;=C2=A0 net/bridge/br_private.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A07 +<br>
+&gt;=C2=A0 net/bridge/br_vlan.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 18 +++<br>
+&gt;=C2=A0 net/core/dev.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=
+=A07 +-<br>
+&gt;=C2=A0 tools/testing/selftests/net/Makefile=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 |=C2=A0 =C2=A01 +<br>
+&gt;=C2=A0 .../selftests/net/bridge_vlan_binding_test.sh | 143 ++++++++++++=
+++++++<br>
+&gt;=C2=A0 11 files changed, 223 insertions(+), 8 deletions(-)<br>
+&gt;=C2=A0 create mode 100644 include/linux/notifier_info.h<br>
+&gt;=C2=A0 create mode 100755 tools/testing/selftests/net/bridge_vlan_bindi=
+ng_test.sh<br>
+&gt; <br>
+<br>
+The set looks good to me, the bridge and vlan direct dependency is gone and=
+<br>
+the new notification type is used for passing link type specific info.<br>
+<br>
+If the others are ok with it I think you can send it as non-RFC, but I&#39;=
+d give it<br>
+a few more days at least. :)<br></blockquote><div><br></div><div>Okay, I wi=
+ll wait until the end of the week.</div><div><br></div><div>Thanks!</div><d=
+iv>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Thanks,<br>
+=C2=A0Nik<br>
+<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><div><br></div><div>Sevinj.Agha=
+yeva</div></div></div></div>
+
+--000000000000521a6b05e91c3576--
