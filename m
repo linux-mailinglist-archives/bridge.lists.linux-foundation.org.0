@@ -1,103 +1,165 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436B35BF690
-	for <lists.bridge@lfdr.de>; Wed, 21 Sep 2022 08:43:48 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409435BF765
+	for <lists.bridge@lfdr.de>; Wed, 21 Sep 2022 09:15:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 0F814607FF;
-	Wed, 21 Sep 2022 06:43:46 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0F814607FF
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=6wind.com header.i=@6wind.com header.a=rsa-sha256 header.s=google header.b=FXGNEyoJ
+	by smtp4.osuosl.org (Postfix) with ESMTP id 0F5E74190F;
+	Wed, 21 Sep 2022 07:15:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0F5E74190F
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=NKyrNGGx
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 5LYGuGY8FO12; Wed, 21 Sep 2022 06:43:45 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 55599606EC;
-	Wed, 21 Sep 2022 06:43:44 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 55599606EC
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ITLjof1dUPto; Wed, 21 Sep 2022 07:15:33 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id B904A4191F;
+	Wed, 21 Sep 2022 07:15:32 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B904A4191F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E299DC0077;
-	Wed, 21 Sep 2022 06:43:43 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5D966C0077;
+	Wed, 21 Sep 2022 07:15:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0CA21C002D
- for <bridge@lists.linux-foundation.org>; Wed, 21 Sep 2022 06:43:43 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 609DEC002D
+ for <bridge@lists.linux-foundation.org>; Wed, 21 Sep 2022 07:15:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id D5B04607FF
- for <bridge@lists.linux-foundation.org>; Wed, 21 Sep 2022 06:43:42 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D5B04607FF
+ by smtp1.osuosl.org (Postfix) with ESMTP id 06E2982AF5
+ for <bridge@lists.linux-foundation.org>; Wed, 21 Sep 2022 07:15:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 06E2982AF5
+Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=NKyrNGGx
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SwIFubjxjVt0 for <bridge@lists.linux-foundation.org>;
- Wed, 21 Sep 2022 06:43:41 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id yFEiSNsU2dPd for <bridge@lists.linux-foundation.org>;
+ Wed, 21 Sep 2022 07:15:29 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 61314606EC
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 61314606EC
- for <bridge@lists.linux-foundation.org>; Wed, 21 Sep 2022 06:43:41 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id cc5so8210411wrb.6
- for <bridge@lists.linux-foundation.org>; Tue, 20 Sep 2022 23:43:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6wind.com; s=google;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:reply-to:user-agent:mime-version
- :date:message-id:from:to:cc:subject:date;
- bh=rUO6t6C3l9V7+NJRQvXy0uGhA6vMbQwppUZNMvDDpV8=;
- b=FXGNEyoJ6TsxJT/6jnwzdEYEYt1X515xt7/Jhk/45XOE+8eGOFiXA/Hpb+Uj5wjO4k
- dpvq2t2OrrobHCE3A1uLZq4sJ85dpbR/4O6LW73t0CVSUWoR3HtPjmHd4yiz/T65PQhb
- 1S08uTdvI2ZRtrJHrAYuz+UJS6QnnnaloiOMVuqhPvpAd+i7Q1WlihyBPbQdy2lcYTrs
- d/Bc7XNHJC1bBj7STOS6tkrZ/r/EUXbRRyNe/sBulywi/NzOD6r0ZoY6IHx4Abax1vVa
- wQOh1QX8K3zoEjUnYP3am1l0Fhjuqk2WLTMKUSiS/2bgq5cMXALRiKKzJLAHNdyCcGQM
- KhzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:reply-to:user-agent:mime-version
- :date:message-id:x-gm-message-state:from:to:cc:subject:date;
- bh=rUO6t6C3l9V7+NJRQvXy0uGhA6vMbQwppUZNMvDDpV8=;
- b=mPUvebdz88++HQqkmkI1y8KOUxwY+4u5zOIbfs0zVp26uiOILIa72RaIHSPB5hXNPm
- I2V3NNOABD2nqk+T7JDG5riV2fwdo8jRmwximLC8ux+/BzLoaA38U4FWtZoBrO4/NSlp
- S7NnCjSCD1uMTJCu/dPwNJVz7lCQ1NL3SdcZSJKx3mNe9d5lSHms0pF9AxLyVcf2sffT
- t8NQ0SNo7h+pPPGuh6shSnsq39AH7fc3kLGOOq5x4aqgPdk58r0JeM2GsTGXA9nXNMOQ
- 5WlHI2ueAYroWjB5LYDDcg7gpMB6q1c1AwTMMqa0/33/kOPm51v4EKTGGCnYWOvF3TiL
- tJBg==
-X-Gm-Message-State: ACrzQf2hlskb4o2bkVzZC1gHGSuptiyfDBYm0AZWTym6xnWozDryCi3N
- kaq5j4RMLeuuDL16nnGopLI7mw==
-X-Google-Smtp-Source: AMsMyM4jYnJHLvtAJQjCSLHXhWg95c/lHNeFctxmznAxybidyvgTk+r20eLliLQ5Hppi6odo8gRrVg==
-X-Received: by 2002:a5d:598f:0:b0:22a:f74d:ae24 with SMTP id
- n15-20020a5d598f000000b0022af74dae24mr10211658wri.544.1663742619299; 
- Tue, 20 Sep 2022 23:43:39 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:b41:c160:d6f:4b37:41db:866e?
- ([2a01:e0a:b41:c160:d6f:4b37:41db:866e])
- by smtp.gmail.com with ESMTPSA id
- e6-20020a05600c4b8600b003b4de550e34sm1649852wmp.40.2022.09.20.23.43.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 20 Sep 2022 23:43:38 -0700 (PDT)
-Message-ID: <99b9a532-5feb-fe00-3d4e-29d560d34dc0@6wind.com>
-Date: Wed, 21 Sep 2022 08:43:37 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 48ECA82907
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2053.outbound.protection.outlook.com [40.107.92.53])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 48ECA82907
+ for <bridge@lists.linux-foundation.org>; Wed, 21 Sep 2022 07:15:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fK7//yh16g2K/6f+itOeDh87J054WEqL0l9WXyatAvyqdfbjNn7XsMcl9ibuZOxRX4QwiI80hZyquuTmOcPt2TlxpaXEwJEns4LUEieE6P8sXknKhDjaWwxeRUmu05pPOhbuSzLv7+tFQSo194AAVI6Gbwu04gqc0SIaM+4XqbWH3n4Xblll1u9oXqialuUdbIXiL2ybku4GmixYQD16YpLwHBiSF6luYTyx8/wAF38u/AmJtz7xsDIiKPraoMTFBSnchPQsBZFUW9oVyZ+S6Q0WIFti/udrXNo0noXdrDZ2nnzQnJVIShEtuNvufTkmksLMVL2uq6Czdw0SJpDaPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lw6682kc/DZV9ZI9Esqa7vHuDGcKIwUBWoAk25d563U=;
+ b=dqbHgOLq24b2B//eznJeyE+Y0DHiXe+wDP7vI1OE3ataR2UzIOCQvl33u9Q18voC/KDQ1mkEArDybvJXgwKXHY0727hTGtCknhTdv9jBQPUF+YXOnGt/tvA3HFeTsFEluovLg77ryRicaGJcxdvs5AyiXjqV5nIQikJF5kklUH/bsrzj823zmYoRnisxAEWeyGpVNV7530dSYOs9Gv4cLpS0oll54d9lyLAkVxBFxAuwS8leV0RCxSag0my3XhfOEyDnV4e7h1gjjtX8VGq3ghyM3nHsFUku19cGlbdFXe/UzKRbxr6YNVpvBdemJpjoeR993ddYtmorIpQrFSjMVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lw6682kc/DZV9ZI9Esqa7vHuDGcKIwUBWoAk25d563U=;
+ b=NKyrNGGxT9N3Dnzr355DK6Ldr611OyyJ4mKMIlWAP+NKamVvhyp4vsaVk05bWPHblagfNTbAYtYsDzLfgplgTxI05uATQgOwipXBTXqACTKUkvPaqIHcgJoQt6JY+LrEGF4+AclVpyq2EpMun0ZFAeblcK14CUGDTYtk11rNroKOaYrkXWwvblPgxnh7HQFluXzbqP/+nnOK7QP76a45IbIy5kPoryiBTrLZK3igWEo7PksGod4nrZ4uYTDJYW93p6O3U3PehVx6a70b9GfCg1Ef0QSH1dddvUxtUn76Q8yJB28/upuSjaI3kFO7F8fOBHdVIkr8qtfO3qnw9ZUuCw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
+ by BL1PR12MB5174.namprd12.prod.outlook.com (2603:10b6:208:31c::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.16; Wed, 21 Sep
+ 2022 07:15:25 +0000
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::2f04:b3e6:43b5:c532]) by CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::2f04:b3e6:43b5:c532%6]) with mapi id 15.20.5654.014; Wed, 21 Sep 2022
+ 07:15:25 +0000
+Date: Wed, 21 Sep 2022 10:15:18 +0300
+To: netdev@kapio-technology.com
+Message-ID: <Yyq6BnUfctLeerqE@shredder>
+References: <YxNo/0+/Sbg9svid@shredder>
+ <5cee059b65f6f7671e099150f9da79c1@kapio-technology.com>
+ <Yxmgs7Du62V1zyjK@shredder>
+ <8dfc9b525f084fa5ad55019f4418a35e@kapio-technology.com>
+ <20220908112044.czjh3xkzb4r27ohq@skbuf>
+ <152c0ceadefbd742331c340bec2f50c0@kapio-technology.com>
+ <20220911001346.qno33l47i6nvgiwy@skbuf>
+ <15ee472a68beca4a151118179da5e663@kapio-technology.com>
+ <Yx73FOpN5uhPQhFl@shredder>
+ <086704ce7f323cc1b3cca78670b42095@kapio-technology.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <086704ce7f323cc1b3cca78670b42095@kapio-technology.com>
+X-ClientProxiedBy: VI1PR08CA0238.eurprd08.prod.outlook.com
+ (2603:10a6:802:15::47) To CY5PR12MB6179.namprd12.prod.outlook.com
+ (2603:10b6:930:24::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Nikolay Aleksandrov <razor@blackwall.org>, netdev@vger.kernel.org
-References: <20220413105202.2616106-1-razor@blackwall.org>
- <20220413105202.2616106-5-razor@blackwall.org>
- <0198618f-7b52-3023-5e9f-b38c49af1677@6wind.com>
- <f26fa81a-dc13-6a27-2e63-74b13359756e@blackwall.org>
-From: Nicolas Dichtel <nicolas.dichtel@6wind.com>
-Organization: 6WIND
-In-Reply-To: <f26fa81a-dc13-6a27-2e63-74b13359756e@blackwall.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Cc: dsahern@kernel.org, bridge@lists.linux-foundation.org, idosch@idosch.org,
- roopa@nvidia.com, kuba@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v4 04/12] net: netlink: add NLM_F_BULK
- delete request modifier
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|BL1PR12MB5174:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63352899-a26f-441d-20b3-08da9ba10de7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: o68tOdoeJ1w7azU+a82i/YksBYfWLZVBd5WT9l7xbVrQBR/6KuVmcCVGIIIodArctv4cri57t0ez6K3Bd9TLOZUoKrfGd4cG/9OsgIxVAZ1A3dpIXmWBpMKsewA8BORVJ4G28AlExrKWO7GdOyyXb+p/UFpdt6FMfwpsLVHk/mKvOh9ZR1n1UM5ObhMPQN+Se670N+wbP3iNhYz4zhyR3WSzbYb/wr7BoDv47fBut5s6daygjK2jVA6HWDtdODWDqGWpV8y3gHn93mVQ9soeVrRbH9Vf8Op0S64Mur/59kmqj29/9Oio3BD7vHwGSfvv0ux9kK2eC9l8e1GrVS/z8ZvPr+bNyIfEYRx9G9tSXpu0raqaolUAGmiPz3+vtsDrnrbYRH499vB2cVrNsoIlqmZyRwdrXklbfYrDyGulpyFmvtY52e60j3sd7u+RcjrYmDPuYEwDOjB9AggEpmb2e4BT6JTGE0k2V/L0RmVrbc1eJU7bB01Bd/sD+1VB+dxp4Kgj4qtbwktNvgk7ecuSYgXlCy6IZB+4sHfX4QW+EBntM8cnxj1B53Fv5V9tbDtQ47dMdXs6hRzv9hj7ThHP1vYcSMkeO3uKDwYn985b3Vvs941JPbVgFyq//VrhuYOqLOqLzNRyviXlVKCTV7wto4eGjqmsjWAR+d0k1H8Whzw2kc6r7q7K0g33hIZuWEXt
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(7916004)(396003)(366004)(39860400002)(136003)(346002)(376002)(451199015)(83380400001)(186003)(41300700001)(38100700002)(6512007)(26005)(7416002)(7406005)(5660300002)(9686003)(6486002)(478600001)(6666004)(6506007)(8936002)(33716001)(86362001)(4326008)(8676002)(66946007)(66556008)(66476007)(6916009)(54906003)(316002)(2906002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?L49Gr+uY3EID1KHBjPHpFm3YicvYYC1fpR//tv8+1J7ERYE4R9xdXNLfuj0Z?=
+ =?us-ascii?Q?NXhpcoW78Z5nQQuxl076YwDHhgexLKFkYuW5CAVnjH793dJ0eZ4T9bUixHcN?=
+ =?us-ascii?Q?hvP0VQlgGDjyoL/IRWojb6i5aZDmQgllhZGwl5I6NYlI3wWeOtv33C/zhe9K?=
+ =?us-ascii?Q?WWGzciYiovpsWrJXqDAaSrnrr0uiL5rf7rvyp8kk2CPke9ra+yAjfK0LbZib?=
+ =?us-ascii?Q?eNJrLGK4x7TU4qYjjDwk2adF2SmD6nWIEILNdRrN1QnL2DnZkH9H+KmZXrpQ?=
+ =?us-ascii?Q?Kr+Zn8JwAVERc8zOJ3JRCBSJsRDip/lGRCC1uD89iRXMszZ3awdqP8hCw2K9?=
+ =?us-ascii?Q?Uja+N6yqhzRb1cDWioVVwMh8B3LSfteaFW7KHnjsQaO2evDW1KeQYbUhCeGL?=
+ =?us-ascii?Q?C5mNiS/w9W1qV/Sv+pz3LaysVNNeaJYIEyqk4WQAZDlblUdM7nLUcuXvLM4v?=
+ =?us-ascii?Q?JWFG0XM9Rg5ZN72Qp7rj8tLxjJT5IGYRH7e3PdrFERmra4ZWBe2V9ZfURLil?=
+ =?us-ascii?Q?xPECILcUQNzXKVXjIqGr2eAKv34lds6j1yAnlR8wgFO8CXED/Gfn34j9vK4K?=
+ =?us-ascii?Q?ENP8cwXzUHnONKDLkx+C+EDYaWVKAeRRbUgshdJ0rILLud5R9ALqv+XZXMnx?=
+ =?us-ascii?Q?Pc5+7tTkcrmqxp+y6NcWQO8QjW1uYy/f1GpmjQ/4A2xgXiLE9ra1WQdlavjv?=
+ =?us-ascii?Q?bupGeF5YHOaS3ENWaV+D9wMbXl99vX7wkX82mEPESy8yyRrQEMrQAMvsJS87?=
+ =?us-ascii?Q?6YDu3E15oC9ZWfEFHdAkrk4l2MwytHKq2s1ievWOJNEOB8VMZ0itDZ+60ZcX?=
+ =?us-ascii?Q?se8hG7w64gsJmBmAf6zY3NhdeFCDpIL9SDRQZUkp5KVJ4FGtBnI6EP08TAbE?=
+ =?us-ascii?Q?9h2aW5NbAI8DWsLGlYBvXRh3vOOBV6cjh7ZvDCZSFztTkKH+2DbjJG7BgDhF?=
+ =?us-ascii?Q?OaWoYrwl4qXd24cl5SoaK6D7mcpboWdoItuRWNC/lBA5cl4PzEh53LW7mY2g?=
+ =?us-ascii?Q?TkaYem6TPL7pGOODHfYNVHWv4c7Nvedcexv9RU7MozkNQjpevtQ3uYEMtX+H?=
+ =?us-ascii?Q?wo94Hs5TEgR99L7PFuTHzQB6ESd2UslTwLHWSwULLAbWs0NI0NBZmGhWd4jj?=
+ =?us-ascii?Q?gIvWEtNcx4NUeOlFY944Ouw9i3PqnRw7dSICMPK8rc0m2GPEK7nGQahumu8r?=
+ =?us-ascii?Q?leDM+x+FHjuxeyVhXL/240rM4OBGINfNyJ3+CCkG6tnGJ34PIZ5eUSG45/JX?=
+ =?us-ascii?Q?Ih0EI7LW6SDbKjIJuqpl3MQhDjPenUd7YZ493F8XGrU0ZUABTHOKQ75Zu16a?=
+ =?us-ascii?Q?/cSHu9Na9HvWTa0tgnZS7UzhXFpsrQ6TMdQN+kolpxPyTQZS6sN2tU1gcEnT?=
+ =?us-ascii?Q?zHhFXq5f2Gy1xxgPyL/GkW1g7nUYXe3E3FQyxxbKydesfQdqVjhyWdUmaeG5?=
+ =?us-ascii?Q?yWLYPiOdgT1co4j/Xh/L7/CmO4o+jBqcfrlIKrHsYtArVsaQyqiXW4kaEMCb?=
+ =?us-ascii?Q?UKz38Z9ReR7G7cAE0TOdO+BosISreYoG6ZBNGMYCgCSmWW+h3mOjiO/uY7pu?=
+ =?us-ascii?Q?4SSMzLFZzqiEheexAr/ws6W+aOqU/NrDzNF4gmHj?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63352899-a26f-441d-20b3-08da9ba10de7
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2022 07:15:25.4293 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jEcz5Y6GlqKWfAlUv3G0tEWo3vBh3jMU8usopCuul4yhIMdGavWkMbNzsL3wFl+I8hXzSZaBPGaiYhS0Muz5xg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5174
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ linux-kselftest@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
+ linux-arm-kernel@lists.infradead.org, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
+ Christian Marangi <ansuelsmth@gmail.com>, Hauke Mehrtens <hauke@hauke-m.de>,
+ Sean Wang <sean.wang@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>, Yuwei Wang <wangyuweihx@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v5 net-next 6/6] selftests: forwarding: add
+ test of MAC-Auth Bypass to locked port tests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -109,69 +171,112 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-Reply-To: nicolas.dichtel@6wind.com
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-
-Le 20/09/2022 à 11:05, Nikolay Aleksandrov a écrit :
-> On 20/09/2022 10:49, Nicolas Dichtel wrote:
->>
->> Le 13/04/2022 à 12:51, Nikolay Aleksandrov a écrit :
->>> Add a new delete request modifier called NLM_F_BULK which, when
->>> supported, would cause the request to delete multiple objects. The flag
->>> is a convenient way to signal that a multiple delete operation is
->>> requested which can be gradually added to different delete requests. In
->>> order to make sure older kernels will error out if the operation is not
->>> supported instead of doing something unintended we have to break a
->>> required condition when implementing support for this flag, f.e. for
->>> neighbors we will omit the mandatory mac address attribute.
->>> Initially it will be used to add flush with filtering support for bridge
->>> fdbs, but it also opens the door to add similar support to others.
->>>
->>> Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
->>> ---
->>>  include/uapi/linux/netlink.h | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/include/uapi/linux/netlink.h b/include/uapi/linux/netlink.h
->>> index 4c0cde075c27..855dffb4c1c3 100644
->>> --- a/include/uapi/linux/netlink.h
->>> +++ b/include/uapi/linux/netlink.h
->>> @@ -72,6 +72,7 @@ struct nlmsghdr {
->>>  
->>>  /* Modifiers to DELETE request */
->>>  #define NLM_F_NONREC	0x100	/* Do not delete recursively	*/
->>> +#define NLM_F_BULK	0x200	/* Delete multiple objects	*/
->> Sorry to reply to an old patch, but FWIW, this patch broke the uAPI.
->> One of our applications was using NLM_F_EXCL with RTM_DELTFILTER. This is
->> conceptually wrong but it was working. After this patch, the kernel returns an
->> error (EOPNOTSUPP).
->>
->> Here is the patch series:
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/?h=92716869375b
->>
->> We probably can't do anything now, but to avoid this in the future, I see only
->> two options:
->>  - enforce flags validation depending on the operation (but this may break some
->>    existing apps)
->>  - stop adding new flags that overlap between NEW and DEL operations (by adding
->>    a comment or defining dummy flags).
->>
->> Any thoughts?
->>
+On Tue, Sep 20, 2022 at 11:29:12PM +0200, netdev@kapio-technology.com wrote:
+> I have made a blackhole selftest, which looks like this:
 > 
-> Personally I'd prefer to enforce validation so we don't lose the flags because of buggy user-space
-> applications, but we can break someone (who arguably should fix their app though). We already had
-> that discussion while the set was under review[1] and just to be a bit more confident I also
-Thanks for the link. Finally, someone has (almost) complained :D
+> test_blackhole_fdb()
+> {
+>         RET=0
+> 
+>         check_blackhole_fdb_support || return 0
+> 
+>         tcpdump_start $h2
+>         $MZ $h1 -q -t udp -a $h1 -b $h2
 
-> tried searching for open-source buggy users, but didn't find any.
-The trend seems to let someone else add another specific flag if needed. Thus,
-it seems that checking flags is the way to go.
-The pro is that if someone complains, the patch could be reverted, which is not
-the case for a new feature like this bulk for example.
+I don't think you can give an interface name to '-a' and '-b'?
 
+>         tcpdump_stop
+>         tcpdump_show | grep -q udp
+>         check_err $? "test_blackhole_fdb: No packet seen on initial"
+>         tcpdump_cleanup
+> 
+>         bridge fdb add `mac_get $h2` dev br0 blackhole
+>         bridge fdb show dev br0 | grep -q "blackhole"
 
-Regards,
-Nicolas
+Make this grep more specific so that we are sure it is the entry user
+space installed. Something like this:
+
+bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
+
+>         check_err $? "test_blackhole_fdb: No blackhole FDB entry found"
+> 
+>         tcpdump_start $h2
+>         $MZ $h1 -q -t udp -a $h1 -b $h2
+>         tcpdump_stop
+>         tcpdump_show | grep -q udp
+>         check_fail $? "test_blackhole_fdb: packet seen with blackhole fdb
+> entry"
+>         tcpdump_cleanup
+
+The tcpdump filter is not specific enough. It can catch other UDP
+packets (e.g., multicast) being received by $h2. Anyway, to be sure the
+feature works as expected we need to make sure that the packets are not
+even egressing $swp2. Checking that they are not received by $h2 is not
+enough. See this (untested) suggestion [1] that uses a tc filter on the
+egress of $swp2.
+
+> 
+>         bridge fdb del `mac_get $h2` dev br0 blackhole
+>         bridge fdb show dev br0 | grep -q "blackhole"
+>         check_fail $? "test_blackhole_fdb: Blackhole FDB entry not deleted"
+> 
+>         tcpdump_start $h2
+>         $MZ $h1 -q -t udp -a $h1 -b $h2
+>         tcpdump_stop
+>         tcpdump_show | grep -q udp
+>         check_err $? "test_blackhole_fdb: No packet seen after removing
+> blackhole FDB entry"
+>         tcpdump_cleanup
+> 
+>         log_test "Blackhole FDB entry test"
+> }
+> 
+> the setup is simple and is the same as in bridge_sticky_fdb.sh.
+> 
+> Does the test look sound or is there obvious mistakes?
+
+[1]
+blackhole_fdb()
+{
+	RET=0
+
+	tc filter add dev $swp2 egress protocol ip pref 1 handle 1 flower \
+		dst_ip 192.0.2.2 ip_proto udp dst_port 12345 action pass
+
+	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
+		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
+
+	tc_check_packets "dev $swp2 egress" 1 1
+	check_err $? "Packet not seen on egress before adding blackhole entry"
+
+	bridge fdb add `mac_get $h2` dev br0 blackhole
+	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
+	check_err $? "Blackhole entry not found"
+
+	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
+		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
+
+	tc_check_packets "dev $swp2 egress" 1 1
+	check_err $? "Packet seen on egress after adding blackhole entry"
+
+	# Check blackhole entries can be replaced.
+	bridge fdb replace `mac_get $h2` dev $swp2 master static
+	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
+	check_fail $? "Blackhole entry found after replacement"
+
+	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
+		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
+
+	tc_check_packets "dev $swp2 egress" 1 2
+	check_err $? "Packet not seen on egress after replacing blackhole entry"
+
+	bridge fdb del `mac_get $h2` dev $swp2 master static
+	tc filter del dev $swp2 egress protocol ip pref 1 handle 1 flower
+
+	log_test "Blackhole FDB entry"
+}
