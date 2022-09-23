@@ -1,78 +1,96 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A725E7560
-	for <lists.bridge@lfdr.de>; Fri, 23 Sep 2022 10:04:36 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE0A55E79A7
+	for <lists.bridge@lfdr.de>; Fri, 23 Sep 2022 13:34:37 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id ED00B404B2;
-	Fri, 23 Sep 2022 08:04:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org ED00B404B2
+	by smtp4.osuosl.org (Postfix) with ESMTP id C67D3408E1;
+	Fri, 23 Sep 2022 11:34:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C67D3408E1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kaw8XG2_ehRW; Fri, 23 Sep 2022 08:04:33 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 3BEB340185;
-	Fri, 23 Sep 2022 08:04:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3BEB340185
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id bmZpHvrFh8vI; Fri, 23 Sep 2022 11:34:35 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 1B3744092E;
+	Fri, 23 Sep 2022 11:34:34 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1B3744092E
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EE0C2C0077;
-	Fri, 23 Sep 2022 08:04:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AA602C0077;
+	Fri, 23 Sep 2022 11:34:33 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C718BC002D
- for <bridge@lists.linux-foundation.org>; Mon, 19 Sep 2022 23:27:41 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EB38AC0032
+ for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 11:34:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 9CCF140241
- for <bridge@lists.linux-foundation.org>; Mon, 19 Sep 2022 23:27:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9CCF140241
+ by smtp3.osuosl.org (Postfix) with ESMTP id C012B60DFF
+ for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 11:34:32 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org C012B60DFF
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XSUgMPUOq5Di for <bridge@lists.linux-foundation.org>;
- Mon, 19 Sep 2022 23:27:39 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9282140140
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 9282140140
- for <bridge@lists.linux-foundation.org>; Mon, 19 Sep 2022 23:27:39 +0000 (UTC)
-Received: by mail-il1-f200.google.com with SMTP id
- g1-20020a92cda1000000b002f612391d5bso548458ild.2
- for <bridge@lists.linux-foundation.org>; Mon, 19 Sep 2022 16:27:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=to:from:subject:message-id:date:mime-version:x-gm-message-state
- :from:to:cc:subject:date;
- bh=QcDADadZBFn2stVq46mmrKDcyHCKkZFC4s8yQUc8C/I=;
- b=s1z2sJ70xDPyWYEfYCchwGNubI37oPv8pImQ26DSzq0HAbKAQejvQnA4xVdtnoDtSO
- I+s4+34MvxRx7KAVPUsdqtRCznUAvMClf2A7SWbB42yhPIShz7sWnJ4BWPccy3dBysFH
- Go+su8mMXWSp/AqAi3y51EJU/g8pyk4ofgm0si/DbpPWXVqCWbDxdQ3j2G7qDJouNKvq
- GRJ0FEYgT3rEyEYZDR+fkQe2xCkMld/dO7uBhdehf5NvzO+9ACgj11o+IRKJobP7FRcs
- n3B9GKbSwQJ5ZMuVbVF4X+0H/PMbi4IYbgi5dgd7Aykl+aFu9+1v2zva45tIwE+jpeC8
- /8YA==
-X-Gm-Message-State: ACrzQf1TTIxQAJg8Ew2yfX0teT/deniu5lJpWboofgbk7MbSYsz1oTl1
- +CrutDe8PXMLcVyBUFK52L1fqOc2ujHDYoJBVhKILUJRO6vM
-X-Google-Smtp-Source: AMsMyM7PZX8XNoVmOsMUB4zWdDvfVHmxf5heips0o6pfeb/pk5VnKxrKYxlVA0hTE6CeIhPMImoiFa665BtAybSm9ylUDI5LaRsv
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id qrhDvTwZ-UI3 for <bridge@lists.linux-foundation.org>;
+ Fri, 23 Sep 2022 11:34:26 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5358860B3F
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 5358860B3F
+ for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 11:34:26 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id AAA691883FE5;
+ Fri, 23 Sep 2022 11:34:20 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 96BC42500261;
+ Fri, 23 Sep 2022 11:34:20 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 89B6B9EC0005; Fri, 23 Sep 2022 11:34:15 +0000 (UTC)
+X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-X-Received: by 2002:a05:6602:490:b0:678:d781:446d with SMTP id
- y16-20020a056602049000b00678d781446dmr8343778iov.115.1663630058719; Mon, 19
- Sep 2022 16:27:38 -0700 (PDT)
-Date: Mon, 19 Sep 2022 16:27:38 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000b010bd05e9100e11@google.com>
-From: syzbot <syzbot+a24c5252f3e3ab733464@syzkaller.appspotmail.com>
-To: bridge@lists.linux-foundation.org, coreteam@netfilter.org, 
- davem@davemloft.net, edumazet@google.com, fw@strlen.de, kadlec@netfilter.org, 
- kuba@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- netfilter-devel@vger.kernel.org, pabeni@redhat.com, pablo@netfilter.org, 
- razor@blackwall.org, roopa@nvidia.com, syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 23 Sep 2022 08:04:29 +0000
-Subject: [Bridge] [syzbot] memory leak in do_replace
+Date: Fri, 23 Sep 2022 13:34:15 +0200
+From: netdev@kapio-technology.com
+To: Ido Schimmel <idosch@nvidia.com>
+In-Reply-To: <Yyq6BnUfctLeerqE@shredder>
+References: <YxNo/0+/Sbg9svid@shredder>
+ <5cee059b65f6f7671e099150f9da79c1@kapio-technology.com>
+ <Yxmgs7Du62V1zyjK@shredder>
+ <8dfc9b525f084fa5ad55019f4418a35e@kapio-technology.com>
+ <20220908112044.czjh3xkzb4r27ohq@skbuf>
+ <152c0ceadefbd742331c340bec2f50c0@kapio-technology.com>
+ <20220911001346.qno33l47i6nvgiwy@skbuf>
+ <15ee472a68beca4a151118179da5e663@kapio-technology.com>
+ <Yx73FOpN5uhPQhFl@shredder>
+ <086704ce7f323cc1b3cca78670b42095@kapio-technology.com>
+ <Yyq6BnUfctLeerqE@shredder>
+User-Agent: Gigahost Webmail
+Message-ID: <546f96aa592aec4d64bdfc45d4618c05@kapio-technology.com>
+X-Sender: netdev@kapio-technology.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ linux-kselftest@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Daniel Borkmann <daniel@iogearbox.net>, bridge@lists.linux-foundation.org,
+ linux-arm-kernel@lists.infradead.org, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
+ Christian Marangi <ansuelsmth@gmail.com>, Hauke Mehrtens <hauke@hauke-m.de>,
+ Sean Wang <sean.wang@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>, Yuwei Wang <wangyuweihx@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v5 net-next 6/6] selftests: forwarding: add
+ test of MAC-Auth Bypass to locked port tests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -87,86 +105,14 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello,
+On 2022-09-21 09:15, Ido Schimmel wrote:
 
-syzbot found the following issue on:
+> 	# Check blackhole entries can be replaced.
+> 	bridge fdb replace `mac_get $h2` dev $swp2 master static
+> 	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
+> 	check_fail $? "Blackhole entry found after replacement"
 
-HEAD commit:    3245cb65fd91 Merge tag 'devicetree-fixes-for-6.0-2' of git..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=17a88ef7080000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=a4afe4efcad47dde
-dashboard link: https://syzkaller.appspot.com/bug?extid=a24c5252f3e3ab733464
-compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=14b0e87f080000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1100f1d8880000
+There seems to be a problem with replacing blackhole fdb entries as 
+fdb_find_rcu() does not find the associated fdb entry (addr, vid) and I 
+don't know why that is the case?
 
-Downloadable assets:
-disk image: https://storage.googleapis.com/2d6c9d59c55a/disk-3245cb65.raw.xz
-vmlinux: https://storage.googleapis.com/0f52632026ad/vmlinux-3245cb65.xz
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+a24c5252f3e3ab733464@syzkaller.appspotmail.com
-
-executing program
-executing program
-executing program
-executing program
-BUG: memory leak
-unreferenced object 0xffffc90000ded000 (size 4096):
-  comm "syz-executor317", pid 3615, jiffies 4294946120 (age 22.550s)
-  hex dump (first 32 bytes):
-    90 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-  backtrace:
-    [<ffffffff8153105f>] __vmalloc_node_range+0xb3f/0xbd0 mm/vmalloc.c:3224
-    [<ffffffff81531239>] __vmalloc_node mm/vmalloc.c:3261 [inline]
-    [<ffffffff81531239>] __vmalloc+0x49/0x50 mm/vmalloc.c:3275
-    [<ffffffff83e28027>] do_replace+0x197/0x340 net/bridge/netfilter/ebtables.c:1131
-    [<ffffffff83e2880c>] do_ebt_set_ctl+0x22c/0x310 net/bridge/netfilter/ebtables.c:2520
-    [<ffffffff83a3fb68>] nf_setsockopt+0x68/0xa0 net/netfilter/nf_sockopt.c:101
-    [<ffffffff83bb5d69>] ip_setsockopt+0x259/0x2040 net/ipv4/ip_sockglue.c:1444
-    [<ffffffff83bcbe10>] tcp_setsockopt+0x70/0x1430 net/ipv4/tcp.c:3789
-    [<ffffffff8425d1d8>] smc_setsockopt+0xd8/0x5c0 net/smc/af_smc.c:2941
-    [<ffffffff8386dd2b>] __sys_setsockopt+0x1ab/0x380 net/socket.c:2252
-    [<ffffffff8386df22>] __do_sys_setsockopt net/socket.c:2263 [inline]
-    [<ffffffff8386df22>] __se_sys_setsockopt net/socket.c:2260 [inline]
-    [<ffffffff8386df22>] __x64_sys_setsockopt+0x22/0x30 net/socket.c:2260
-    [<ffffffff845eab35>] do_syscall_x64 arch/x86/entry/common.c:50 [inline]
-    [<ffffffff845eab35>] do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
-    [<ffffffff84800087>] entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-BUG: memory leak
-unreferenced object 0xffffc90000df5000 (size 4096):
-  comm "syz-executor317", pid 3615, jiffies 4294946120 (age 22.550s)
-  hex dump (first 32 bytes):
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-  backtrace:
-    [<ffffffff8153105f>] __vmalloc_node_range+0xb3f/0xbd0 mm/vmalloc.c:3224
-    [<ffffffff81531239>] __vmalloc_node mm/vmalloc.c:3261 [inline]
-    [<ffffffff81531239>] __vmalloc+0x49/0x50 mm/vmalloc.c:3275
-    [<ffffffff83e28071>] do_replace+0x1e1/0x340 net/bridge/netfilter/ebtables.c:1138
-    [<ffffffff83e2880c>] do_ebt_set_ctl+0x22c/0x310 net/bridge/netfilter/ebtables.c:2520
-    [<ffffffff83a3fb68>] nf_setsockopt+0x68/0xa0 net/netfilter/nf_sockopt.c:101
-    [<ffffffff83bb5d69>] ip_setsockopt+0x259/0x2040 net/ipv4/ip_sockglue.c:1444
-    [<ffffffff83bcbe10>] tcp_setsockopt+0x70/0x1430 net/ipv4/tcp.c:3789
-    [<ffffffff8425d1d8>] smc_setsockopt+0xd8/0x5c0 net/smc/af_smc.c:2941
-    [<ffffffff8386dd2b>] __sys_setsockopt+0x1ab/0x380 net/socket.c:2252
-    [<ffffffff8386df22>] __do_sys_setsockopt net/socket.c:2263 [inline]
-    [<ffffffff8386df22>] __se_sys_setsockopt net/socket.c:2260 [inline]
-    [<ffffffff8386df22>] __x64_sys_setsockopt+0x22/0x30 net/socket.c:2260
-    [<ffffffff845eab35>] do_syscall_x64 arch/x86/entry/common.c:50 [inline]
-    [<ffffffff845eab35>] do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
-    [<ffffffff84800087>] entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-syzbot can test patches for this issue, for details see:
-https://goo.gl/tpsmEJ#testing-patches
