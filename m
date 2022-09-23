@@ -1,55 +1,55 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0A55E79A7
-	for <lists.bridge@lfdr.de>; Fri, 23 Sep 2022 13:34:37 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id C591D5E7A16
+	for <lists.bridge@lfdr.de>; Fri, 23 Sep 2022 14:01:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id C67D3408E1;
-	Fri, 23 Sep 2022 11:34:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C67D3408E1
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bmZpHvrFh8vI; Fri, 23 Sep 2022 11:34:35 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 1B3744092E;
-	Fri, 23 Sep 2022 11:34:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1B3744092E
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id AA602C0077;
-	Fri, 23 Sep 2022 11:34:33 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id EB38AC0032
- for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 11:34:32 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id C012B60DFF
- for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 11:34:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org C012B60DFF
+	by smtp3.osuosl.org (Postfix) with ESMTP id E54ED60E39;
+	Fri, 23 Sep 2022 12:01:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E54ED60E39
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id qrhDvTwZ-UI3 for <bridge@lists.linux-foundation.org>;
- Fri, 23 Sep 2022 11:34:26 +0000 (UTC)
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 9gxq1OnVxhE2; Fri, 23 Sep 2022 12:01:50 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 7DE1360E37;
+	Fri, 23 Sep 2022 12:01:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7DE1360E37
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2FC3DC0077;
+	Fri, 23 Sep 2022 12:01:49 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 18A34C0033
+ for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 12:01:48 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp2.osuosl.org (Postfix) with ESMTP id E8B25408D8
+ for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 12:01:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E8B25408D8
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id klhg3CC5PrbX for <bridge@lists.linux-foundation.org>;
+ Fri, 23 Sep 2022 12:01:47 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5358860B3F
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E58D440189
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 5358860B3F
- for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 11:34:26 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id E58D440189
+ for <bridge@lists.linux-foundation.org>; Fri, 23 Sep 2022 12:01:46 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id AAA691883FE5;
- Fri, 23 Sep 2022 11:34:20 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 2E9BD1884FE3;
+ Fri, 23 Sep 2022 12:01:44 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 96BC42500261;
- Fri, 23 Sep 2022 11:34:20 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 1D698250064E;
+ Fri, 23 Sep 2022 12:01:44 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 89B6B9EC0005; Fri, 23 Sep 2022 11:34:15 +0000 (UTC)
+ id 0C3EC9EC0005; Fri, 23 Sep 2022 12:01:44 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Fri, 23 Sep 2022 13:34:15 +0200
+Date: Fri, 23 Sep 2022 14:01:43 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
 In-Reply-To: <Yyq6BnUfctLeerqE@shredder>
@@ -65,7 +65,7 @@ References: <YxNo/0+/Sbg9svid@shredder>
  <086704ce7f323cc1b3cca78670b42095@kapio-technology.com>
  <Yyq6BnUfctLeerqE@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <546f96aa592aec4d64bdfc45d4618c05@kapio-technology.com>
+Message-ID: <60d7733e1134dfeebf82306d44209f14@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -111,8 +111,11 @@ On 2022-09-21 09:15, Ido Schimmel wrote:
 > 	bridge fdb replace `mac_get $h2` dev $swp2 master static
 > 	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
 > 	check_fail $? "Blackhole entry found after replacement"
+> 
 
-There seems to be a problem with replacing blackhole fdb entries as 
-fdb_find_rcu() does not find the associated fdb entry (addr, vid) and I 
-don't know why that is the case?
-
+I am quite in doubt if the driver will be able to overwrite a blackhole 
+entry added by userspace as the replace action must be to delete and 
+then add the replacement afaics, but a NEWNEIGH event using 
+port_fdb_add() will not succeed with that using the ops I use now. 
+Otherwise it has be all with port_fb_add() with new lists keeping the 
+userspace added blackhole fdb entries.
