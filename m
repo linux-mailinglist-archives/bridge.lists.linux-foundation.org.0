@@ -1,55 +1,55 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF025ED9EB
-	for <lists.bridge@lfdr.de>; Wed, 28 Sep 2022 12:16:34 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB22A5ED9F2
+	for <lists.bridge@lfdr.de>; Wed, 28 Sep 2022 12:19:54 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 768624151D;
-	Wed, 28 Sep 2022 10:16:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 768624151D
+	by smtp4.osuosl.org (Postfix) with ESMTP id A918B403CC;
+	Wed, 28 Sep 2022 10:19:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A918B403CC
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id oF9aXyhIf5f7; Wed, 28 Sep 2022 10:16:28 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id AD2EE415D3;
-	Wed, 28 Sep 2022 10:16:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AD2EE415D3
+	with ESMTP id htd3gWBEPWrz; Wed, 28 Sep 2022 10:19:52 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id F01D94088D;
+	Wed, 28 Sep 2022 10:19:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org F01D94088D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 584F7C0078;
-	Wed, 28 Sep 2022 10:16:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 91D80C0078;
+	Wed, 28 Sep 2022 10:19:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DFE14C002D
- for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 10:16:26 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 28159C002D
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 10:19:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id C21B740541
- for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 10:16:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org C21B740541
+ by smtp2.osuosl.org (Postfix) with ESMTP id 0391740541
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 10:19:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0391740541
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id BcdljI1mOfmM for <bridge@lists.linux-foundation.org>;
- Wed, 28 Sep 2022 10:16:26 +0000 (UTC)
+ with ESMTP id g0MpoZQpPe2q for <bridge@lists.linux-foundation.org>;
+ Wed, 28 Sep 2022 10:19:48 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D6B49404B2
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 54801404B2
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp2.osuosl.org (Postfix) with ESMTPS id D6B49404B2
- for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 10:16:25 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 54801404B2
+ for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 10:19:48 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id C8A0C1884BBF;
- Wed, 28 Sep 2022 10:16:21 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 053E518842DD;
+ Wed, 28 Sep 2022 10:19:46 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id B328C2500370;
- Wed, 28 Sep 2022 10:16:21 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id F04072500370;
+ Wed, 28 Sep 2022 10:19:45 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id A55E89EC000D; Wed, 28 Sep 2022 10:16:21 +0000 (UTC)
+ id D62909EC0009; Wed, 28 Sep 2022 10:19:45 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Wed, 28 Sep 2022 12:16:21 +0200
+Date: Wed, 28 Sep 2022 12:19:45 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
 In-Reply-To: <YzQJ5MRSL/ShRSgP@shredder>
@@ -65,7 +65,7 @@ References: <20220908112044.czjh3xkzb4r27ohq@skbuf>
  <0c6b93c828d9b52346ddb3d445446734@kapio-technology.com>
  <YzQJ5MRSL/ShRSgP@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <7a1683c86e02305e90f7b1ceaaabdabe@kapio-technology.com>
+Message-ID: <cc0f4d54e8c24d6d496ea617e654b661@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -108,16 +108,12 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 On 2022-09-28 10:46, Ido Schimmel wrote:
 > On Wed, Sep 28, 2022 at 09:47:42AM +0200, netdev@kapio-technology.com 
 > wrote:
+>> On 2022-09-28 08:59, Ido Schimmel wrote:
+>> 
 
-> It needs "master" keyword:
-> 
+BTW, I have added FDB flags in the DSA layer as a u16, so that now 
+port_fdb_add() is as:
 
-I must have forgotten it when I tested at some point...
-
-It seems to be working, only that I am at a loss to why port_fdb_add() 
-is called for each port after going through the DSA layer. I understand 
-that all slave devices are listening on events, but I think the ops 
-should only be called when the port matches?
-Also for some reason the blackhole (zero-DPV) ATU entry is not added on 
-my device in case of no vlan (vid = 0), but there is also some phy 
-problems that are unrelated to this patch set.
+         int     (*port_fdb_add)(struct dsa_switch *ds, int port,
+                                 const unsigned char *addr, u16 vid,
+                                 u16 fdb_flags, struct dsa_db db);
