@@ -1,71 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7BF5EE413
-	for <lists.bridge@lfdr.de>; Wed, 28 Sep 2022 20:15:56 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FFE5EF89E
+	for <lists.bridge@lfdr.de>; Thu, 29 Sep 2022 17:25:02 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id DDAC541897;
-	Wed, 28 Sep 2022 18:15:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DDAC541897
+	by smtp2.osuosl.org (Postfix) with ESMTP id 4D93D4105F;
+	Thu, 29 Sep 2022 15:25:00 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4D93D4105F
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PPs7Q0MWsUgx; Wed, 28 Sep 2022 18:15:51 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HAY04U5EPmS6; Thu, 29 Sep 2022 15:24:59 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 2ADF94088D;
-	Wed, 28 Sep 2022 18:15:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2ADF94088D
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 708D14104E;
+	Thu, 29 Sep 2022 15:24:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 708D14104E
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B1259C0078;
-	Wed, 28 Sep 2022 18:15:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4C670C007F;
+	Thu, 29 Sep 2022 15:24:58 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C901EC002D
- for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 18:15:46 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8CBECC002D
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Sep 2022 15:24:56 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 97AB940B38
- for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 18:15:46 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 97AB940B38
+ by smtp2.osuosl.org (Postfix) with ESMTP id 6724A40B90
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Sep 2022 15:24:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6724A40B90
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2_y2p2LIIH1g for <bridge@lists.linux-foundation.org>;
- Wed, 28 Sep 2022 18:15:45 +0000 (UTC)
+ with ESMTP id DHawkDlED3vF for <bridge@lists.linux-foundation.org>;
+ Thu, 29 Sep 2022 15:24:55 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E30AA40B55
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org EDF5E4016F
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp2.osuosl.org (Postfix) with ESMTPS id E30AA40B55
- for <bridge@lists.linux-foundation.org>; Wed, 28 Sep 2022 18:15:44 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id EDF5E4016F
+ for <bridge@lists.linux-foundation.org>; Thu, 29 Sep 2022 15:24:54 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 42E951884BE5;
- Wed, 28 Sep 2022 18:15:41 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id A2C4A18848E5;
+ Thu, 29 Sep 2022 15:24:50 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 39ED02500709;
- Wed, 28 Sep 2022 18:15:41 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 0)
- id 269CF9EC000D; Wed, 28 Sep 2022 18:15:41 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 97A542500370;
+ Thu, 29 Sep 2022 15:24:50 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 894CA9EC0005; Thu, 29 Sep 2022 15:24:50 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 Received: from fujitsu.vestervang (2-104-116-184-cable.dk.customer.tdc.net
  [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 26EAA9120FED;
- Wed, 28 Sep 2022 17:52:14 +0000 (UTC)
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 875B69120FED;
+ Thu, 29 Sep 2022 15:24:49 +0000 (UTC)
 From: Hans Schultz <netdev@kapio-technology.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Wed, 28 Sep 2022 19:49:04 +0200
-Message-Id: <20220928174904.117131-1-netdev@kapio-technology.com>
+Date: Thu, 29 Sep 2022 17:21:36 +0200
+Message-Id: <20220929152137.167626-1-netdev@kapio-technology.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Organization: Westermo Network Technologies AB
 Content-Transfer-Encoding: 8bit
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
  Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- linux-kselftest@vger.kernel.org,
- "Hans J. Schultz" <netdev@kapio-technology.com>,
+ linux-kselftest@vger.kernel.org, Hans Schultz <netdev@kapio-technology.com>,
  Joachim Wiberg <troglobit@gmail.com>, Shuah Khan <shuah@kernel.org>,
  Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
  Daniel Borkmann <daniel@iogearbox.net>, Ido Schimmel <idosch@nvidia.com>,
@@ -83,8 +83,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
  Vladimir Oltean <olteanv@gmail.com>,
  Florent Fourcot <florent.fourcot@wifirst.fr>
-Subject: [Bridge] [PATCH v6 net-next 9/9] selftests: forwarding: add test of
-	MAC-Auth Bypass to locked port tests
+Subject: [Bridge] [PATCH iproute2-next 1/2] bridge: link: enable MacAuth/MAB
+	feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -99,329 +99,282 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: "Hans J. Schultz" <netdev@kapio-technology.com>
+The MAB feature can be enabled on a locked port with the command:
+bridge link set dev <DEV> mab on
 
-Verify that the MAC-Auth mechanism works by adding a FDB entry with the
-locked flag set, denying access until the FDB entry is replaced with a
-FDB entry without the locked flag set.
-
-Add test of blackhole fdb entries, verifying that there is no forwarding
-to a blackhole entry from any port, and that the blackhole entry can be
-replaced.
-
-Also add a test that verifies that sticky FDB entries cannot roam (this
-is not needed for now, but should in general be present anyhow for future
-applications).
-
-Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
+Signed-off-by: Hans Schultz <netdev@kapio-technology.com>
 ---
- .../net/forwarding/bridge_blackhole_fdb.sh    | 102 +++++++++++++++++
- .../net/forwarding/bridge_locked_port.sh      | 106 +++++++++++++++++-
- .../net/forwarding/bridge_sticky_fdb.sh       |  21 +++-
- tools/testing/selftests/net/forwarding/lib.sh |  18 +++
- 4 files changed, 245 insertions(+), 2 deletions(-)
- create mode 100755 tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh
+ bridge/fdb.c                   | 17 +++++++++++++++--
+ bridge/link.c                  | 21 ++++++++++++++++++---
+ include/uapi/linux/if_link.h   |  1 +
+ include/uapi/linux/neighbour.h |  7 ++++++-
+ ip/iplink_bridge_slave.c       | 16 +++++++++++++---
+ man/man8/bridge.8              | 10 ++++++++++
+ man/man8/ip-link.8.in          |  8 ++++++++
+ 7 files changed, 71 insertions(+), 9 deletions(-)
 
-diff --git a/tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh b/tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh
-new file mode 100755
-index 000000000000..54b1a51e1ed6
---- /dev/null
-+++ b/tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh
-@@ -0,0 +1,102 @@
-+#!/bin/bash
-+# SPDX-License-Identifier: GPL-2.0
-+
-+ALL_TESTS="blackhole_fdb"
-+NUM_NETIFS=4
-+source lib.sh
-+
-+switch_create()
-+{
-+        ip link add dev br0 type bridge
-+
-+        ip link set dev $swp1 master br0
-+        ip link set dev $swp2 master br0
-+
-+        ip link set dev br0 up
-+        ip link set dev $h1 up
-+        ip link set dev $swp1 up
-+        ip link set dev $h2 up
-+        ip link set dev $swp2 up
-+
-+	tc qdisc add dev $swp2 clsact
-+}
-+
-+switch_destroy()
-+{
-+	tc qdisc del dev $swp2 clsact
-+
-+        ip link set dev $swp2 down
-+        ip link set dev $h2 down
-+        ip link set dev $swp1 down
-+        ip link set dev $h1 down
-+
-+        ip link del dev br0
-+}
-+
-+setup_prepare()
-+{
-+        h1=${NETIFS[p1]}
-+        swp1=${NETIFS[p2]}
-+        h2=${NETIFS[p3]}
-+        swp2=${NETIFS[p4]}
-+
-+        switch_create
-+}
-+
-+cleanup()
-+{
-+        pre_cleanup
-+        switch_destroy
-+}
-+
-+# Check that there is no egress with blackhole entry and that blackhole entries can be replaced
-+blackhole_fdb()
-+{
-+        RET=0
-+
-+	check_blackhole_fdb_support || return 0
-+
-+	tc filter add dev $swp2 egress protocol ip pref 1 handle 1 flower \
-+		dst_ip 192.0.2.2 ip_proto udp dst_port 12345 action pass
-+
-+	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
-+		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
-+
-+	tc_check_packets "dev $swp2 egress" 1 1
-+	check_err $? "Packet not seen on egress before adding blackhole entry"
-+
-+	bridge fdb add `mac_get $h2` dev br0 blackhole
-+	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
-+	check_err $? "Blackhole entry not found"
-+
-+	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
-+		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
-+
-+	tc_check_packets "dev $swp2 egress" 1 1
-+	check_err $? "Packet seen on egress after adding blackhole entry"
-+
-+	# Check blackhole entries can be replaced.
-+	bridge fdb replace `mac_get $h2` dev $swp2 master static
-+	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
-+	check_fail $? "Blackhole entry found after replacement"
-+
-+	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
-+		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
-+
-+	tc_check_packets "dev $swp2 egress" 1 2
-+	check_err $? "Packet not seen on egress after replacing blackhole entry"
-+
-+	bridge fdb del `mac_get $h2` dev $swp2 master static
-+	tc filter del dev $swp2 egress protocol ip pref 1 handle 1 flower
-+
-+        log_test "Blackhole FDB entry"
-+}
-+
-+trap cleanup EXIT
-+
-+setup_prepare
-+setup_wait
-+
-+tests_run
-+
-+exit $EXIT_STATUS
-diff --git a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-index 5b02b6b60ce7..59b8b7666eab 100755
---- a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-+++ b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
-@@ -1,7 +1,15 @@
- #!/bin/bash
- # SPDX-License-Identifier: GPL-2.0
- 
--ALL_TESTS="locked_port_ipv4 locked_port_ipv6 locked_port_vlan"
-+ALL_TESTS="
-+	locked_port_ipv4
-+	locked_port_ipv6
-+	locked_port_vlan
-+	locked_port_mab
-+	locked_port_station_move
-+	locked_port_mab_station_move
-+"
-+
- NUM_NETIFS=4
- CHECK_TC="no"
- source lib.sh
-@@ -166,6 +174,102 @@ locked_port_ipv6()
- 	log_test "Locked port ipv6"
+diff --git a/bridge/fdb.c b/bridge/fdb.c
+index 5f71bde0..0fbe9bd3 100644
+--- a/bridge/fdb.c
++++ b/bridge/fdb.c
+@@ -93,7 +93,7 @@ static int state_a2n(unsigned int *s, const char *arg)
+ 	return 0;
  }
  
-+locked_port_mab()
-+{
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	ping_do $h1 192.0.2.2
-+	check_err $? "MAB: Ping did not work before locking port"
-+
-+	bridge link set dev $swp1 locked on
-+	check_port_mab_support $swp1 || return 0
-+
-+	ping_do $h1 192.0.2.2
-+	check_fail $? "MAB: Ping worked on locked port without FDB entry"
-+
-+	bridge fdb show | grep `mac_get $h1` | grep -q "locked"
-+	check_err $? "MAB: No locked fdb entry after ping on locked port"
-+
-+	bridge fdb replace `mac_get $h1` dev $swp1 master static
-+
-+	ping_do $h1 192.0.2.2
-+	check_err $? "MAB: Ping did not work with fdb entry without locked flag"
-+
-+	bridge fdb del `mac_get $h1` dev $swp1 master
-+	bridge link set dev $swp1 locked off mab off
-+
-+	log_test "Locked port MAB"
-+}
-+
-+# No roaming allowed to a simple locked port
-+locked_port_station_move()
-+{
-+	local mac=a0:b0:c0:c0:b0:a0
-+
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	bridge link set dev $swp1 locked on
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "master br0"
-+	check_fail $? "Locked port station move: FDB entry on first injection"
-+
-+	$MZ $h2 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp2 | grep "$mac vlan 1" | grep -q "master br0"
-+	check_err $? "Locked port station move: Entry not found on unlocked port"
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "master br0"
-+	check_fail $? "Locked port station move: entry roamed to locked port"
-+
-+	bridge link set dev $swp1 locked off
-+
-+	log_test "Locked port station move"
-+}
-+
-+# Roaming to and from a MAB enabled port should work if sticky flag is not set
-+locked_port_mab_station_move()
-+{
-+	local mac=10:20:30:30:20:10
-+
-+	RET=0
-+	check_locked_port_support || return 0
-+
-+	bridge link set dev $swp1 locked on
-+
-+	check_port_mab_support $swp1 || return 0
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	if bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "permanent"; then
-+		echo "SKIP: Roaming not possible with local flag, skipping test..."
-+		bridge link set dev $swp1 locked off mab off
-+		return $ksft_skip
-+	fi
-+
-+	bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "locked"
-+	check_err $? "MAB station move: no locked entry on first injection"
-+
-+	$MZ $h2 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "locked"
-+	check_fail $? "MAB station move: locked entry did not move"
-+
-+	bridge fdb show dev $swp2 | grep "$mac vlan 1" | grep -q "locked"
-+	check_fail $? "MAB station move: roamed entry to unlocked port had locked flag on"
-+
-+	bridge fdb show dev $swp2 | grep "$mac vlan 1" | grep -q "master br0"
-+	check_err $? "MAB station move: roamed entry not found"
-+
-+	$MZ $h1 -q -t udp -a $mac -b rand
-+	bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep "master br0" | grep -q "locked"
-+	check_fail $? "MAB station move: entry roamed back to locked port"
-+
-+	bridge link set dev $swp1 locked off mab off
-+
-+	log_test "Locked port MAB station move"
-+}
-+
- trap cleanup EXIT
+-static void fdb_print_flags(FILE *fp, unsigned int flags)
++static void fdb_print_flags(FILE *fp, unsigned int flags, __u8 ext_flags)
+ {
+ 	open_json_array(PRINT_JSON,
+ 			is_json_context() ?  "flags" : "");
+@@ -116,6 +116,9 @@ static void fdb_print_flags(FILE *fp, unsigned int flags)
+ 	if (flags & NTF_STICKY)
+ 		print_string(PRINT_ANY, NULL, "%s ", "sticky");
  
- setup_prepare
-diff --git a/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh b/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh
-index 1f8ef0eff862..bca77bc3fe09 100755
---- a/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh
-+++ b/tools/testing/selftests/net/forwarding/bridge_sticky_fdb.sh
-@@ -1,7 +1,7 @@
- #!/bin/bash
- # SPDX-License-Identifier: GPL-2.0
- 
--ALL_TESTS="sticky"
-+ALL_TESTS="sticky sticky_no_roaming"
- NUM_NETIFS=4
- TEST_MAC=de:ad:be:ef:13:37
- source lib.sh
-@@ -59,6 +59,25 @@ sticky()
- 	log_test "Sticky fdb entry"
++	if (ext_flags & NTF_EXT_LOCKED)
++		print_string(PRINT_ANY, NULL, "%s ", "locked");
++
+ 	close_json_array(PRINT_JSON, NULL);
  }
  
-+# No roaming allowed with the sticky flag set
-+sticky_no_roaming()
-+{
-+	local mac=a8:b4:c2:c2:b4:a8
-+
-+	RET=0
-+
-+	bridge link set dev $swp2 learning on
-+	bridge fdb add $mac dev $swp1 master static sticky
-+	bridge fdb show dev $swp1 | grep "$mac master br0" | grep -q sticky
-+	check_err $? "Sticky no roaming: No sticky FDB entry found after adding"
-+
-+	$MZ $h2 -q -t udp -c 10 -d 100msec -a $mac -b rand
-+	bridge fdb show dev $swp2 | grep "$mac master br0" | grep -q sticky
-+	check_fail $? "Sticky no roaming: Sticky entry roamed"
-+
-+	log_test "Sticky no roaming"
-+}
-+
- trap cleanup EXIT
+@@ -144,6 +147,7 @@ int print_fdb(struct nlmsghdr *n, void *arg)
+ 	struct ndmsg *r = NLMSG_DATA(n);
+ 	int len = n->nlmsg_len;
+ 	struct rtattr *tb[NDA_MAX+1];
++	__u32 ext_flags = 0;
+ 	__u16 vid = 0;
  
- setup_prepare
-diff --git a/tools/testing/selftests/net/forwarding/lib.sh b/tools/testing/selftests/net/forwarding/lib.sh
-index 3ffb9d6c0950..642fbf217c20 100755
---- a/tools/testing/selftests/net/forwarding/lib.sh
-+++ b/tools/testing/selftests/net/forwarding/lib.sh
-@@ -137,6 +137,24 @@ check_locked_port_support()
- 	fi
+ 	if (n->nlmsg_type != RTM_NEWNEIGH && n->nlmsg_type != RTM_DELNEIGH) {
+@@ -170,6 +174,9 @@ int print_fdb(struct nlmsghdr *n, void *arg)
+ 	parse_rtattr(tb, NDA_MAX, NDA_RTA(r),
+ 		     n->nlmsg_len - NLMSG_LENGTH(sizeof(*r)));
+ 
++	if (tb[NDA_FLAGS_EXT])
++		ext_flags = rta_getattr_u32(tb[NDA_FLAGS_EXT]);
++
+ 	if (tb[NDA_VLAN])
+ 		vid = rta_getattr_u16(tb[NDA_VLAN]);
+ 
+@@ -266,7 +273,7 @@ int print_fdb(struct nlmsghdr *n, void *arg)
+ 	if (show_stats && tb[NDA_CACHEINFO])
+ 		fdb_print_stats(fp, RTA_DATA(tb[NDA_CACHEINFO]));
+ 
+-	fdb_print_flags(fp, r->ndm_flags);
++	fdb_print_flags(fp, r->ndm_flags, ext_flags);
+ 
+ 
+ 	if (tb[NDA_MASTER])
+@@ -414,6 +421,7 @@ static int fdb_modify(int cmd, int flags, int argc, char **argv)
+ 	char *endptr;
+ 	short vid = -1;
+ 	__u32 nhid = 0;
++	__u32 ext_flags = 0;
+ 
+ 	while (argc > 0) {
+ 		if (strcmp(*argv, "dev") == 0) {
+@@ -527,6 +535,11 @@ static int fdb_modify(int cmd, int flags, int argc, char **argv)
+ 	if (dst_ok)
+ 		addattr_l(&req.n, sizeof(req), NDA_DST, &dst.data, dst.bytelen);
+ 
++	if (ext_flags &&
++	    addattr_l(&req.n, sizeof(req), NDA_FLAGS_EXT, &ext_flags,
++		      sizeof(ext_flags)) < 0)
++		return -1;
++
+ 	if (vid >= 0)
+ 		addattr16(&req.n, sizeof(req), NDA_VLAN, vid);
+ 	if (nhid > 0)
+diff --git a/bridge/link.c b/bridge/link.c
+index 3810fa04..dd69d7c3 100644
+--- a/bridge/link.c
++++ b/bridge/link.c
+@@ -181,9 +181,14 @@ static void print_protinfo(FILE *fp, struct rtattr *attr)
+ 		if (prtb[IFLA_BRPORT_ISOLATED])
+ 			print_on_off(PRINT_ANY, "isolated", "isolated %s ",
+ 				     rta_getattr_u8(prtb[IFLA_BRPORT_ISOLATED]));
+-		if (prtb[IFLA_BRPORT_LOCKED])
+-			print_on_off(PRINT_ANY, "locked", "locked %s ",
+-				     rta_getattr_u8(prtb[IFLA_BRPORT_LOCKED]));
++		if (prtb[IFLA_BRPORT_LOCKED]) {
++			if (prtb[IFLA_BRPORT_MAB] && rta_getattr_u8(prtb[IFLA_BRPORT_MAB]))
++				print_on_off(PRINT_ANY, "locked mab", "locked mab %s ",
++					     rta_getattr_u8(prtb[IFLA_BRPORT_LOCKED]));
++			else
++				print_on_off(PRINT_ANY, "locked", "locked %s ",
++					     rta_getattr_u8(prtb[IFLA_BRPORT_LOCKED]));
++		}
+ 	} else
+ 		print_stp_state(rta_getattr_u8(attr));
  }
+@@ -281,6 +286,7 @@ static void usage(void)
+ 		"                               [ vlan_tunnel {on | off} ]\n"
+ 		"                               [ isolated {on | off} ]\n"
+ 		"                               [ locked {on | off} ]\n"
++		"                               [ mab {on | off} ]\n"
+ 		"                               [ hwmode {vepa | veb} ]\n"
+ 		"                               [ backup_port DEVICE ] [ nobackup_port ]\n"
+ 		"                               [ self ] [ master ]\n"
+@@ -312,6 +318,7 @@ static int brlink_modify(int argc, char **argv)
+ 	__s8 bcast_flood = -1;
+ 	__s8 mcast_to_unicast = -1;
+ 	__s8 locked = -1;
++	__s8 macauth = -1;
+ 	__s8 isolated = -1;
+ 	__s8 hairpin = -1;
+ 	__s8 bpdu_guard = -1;
+@@ -437,6 +444,11 @@ static int brlink_modify(int argc, char **argv)
+ 			locked = parse_on_off("locked", *argv, &ret);
+ 			if (ret)
+ 				return ret;
++		} else if (strcmp(*argv, "mab") == 0) {
++			NEXT_ARG();
++			macauth = parse_on_off("mab", *argv, &ret);
++			if (ret)
++				return ret;
+ 		} else if (strcmp(*argv, "backup_port") == 0) {
+ 			NEXT_ARG();
+ 			backup_port_idx = ll_name_to_index(*argv);
+@@ -520,6 +532,9 @@ static int brlink_modify(int argc, char **argv)
+ 	if (locked >= 0)
+ 		addattr8(&req.n, sizeof(req), IFLA_BRPORT_LOCKED, locked);
  
-+check_port_mab_support()
-+{
-+	local dev=$1;
++	if (macauth >= 0)
++		addattr8(&req.n, sizeof(req), IFLA_BRPORT_MAB, macauth);
 +
-+	if ! bridge link set dev $dev mab on 2>/dev/null; then
-+		echo "SKIP: iproute2 too old; MacAuth feature not supported."
-+		return $ksft_skip
-+	fi
-+}
+ 	if (backup_port_idx != -1)
+ 		addattr32(&req.n, sizeof(req), IFLA_BRPORT_BACKUP_PORT,
+ 			  backup_port_idx);
+diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+index 7494cffb..58a002de 100644
+--- a/include/uapi/linux/if_link.h
++++ b/include/uapi/linux/if_link.h
+@@ -559,6 +559,7 @@ enum {
+ 	IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
+ 	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
+ 	IFLA_BRPORT_LOCKED,
++	IFLA_BRPORT_MAB,
+ 	__IFLA_BRPORT_MAX
+ };
+ #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
+diff --git a/include/uapi/linux/neighbour.h b/include/uapi/linux/neighbour.h
+index a998bf76..4dda051b 100644
+--- a/include/uapi/linux/neighbour.h
++++ b/include/uapi/linux/neighbour.h
+@@ -52,7 +52,8 @@ enum {
+ #define NTF_STICKY	(1 << 6)
+ #define NTF_ROUTER	(1 << 7)
+ /* Extended flags under NDA_FLAGS_EXT: */
+-#define NTF_EXT_MANAGED	(1 << 0)
++#define NTF_EXT_MANAGED		(1 << 0)
++#define NTF_EXT_LOCKED		(1 << 1)
+ 
+ /*
+  *	Neighbor Cache Entry States.
+@@ -86,6 +87,10 @@ enum {
+  * NTF_EXT_MANAGED flagged neigbor entries are managed by the kernel on behalf
+  * of a user space control plane, and automatically refreshed so that (if
+  * possible) they remain in NUD_REACHABLE state.
++ *
++ * NTF_EXT_LOCKED flagged FDB entries are placeholder entries used with the
++ * locked port feature, that ensures that an entry exists while at the same
++ * time dropping packets on ingress with src MAC and VID matching the entry.
+  */
+ 
+ struct nda_cacheinfo {
+diff --git a/ip/iplink_bridge_slave.c b/ip/iplink_bridge_slave.c
+index 98d17213..0c0894eb 100644
+--- a/ip/iplink_bridge_slave.c
++++ b/ip/iplink_bridge_slave.c
+@@ -44,6 +44,7 @@ static void print_explain(FILE *f)
+ 		"			[ vlan_tunnel {on | off} ]\n"
+ 		"			[ isolated {on | off} ]\n"
+ 		"			[ locked {on | off} ]\n"
++		"                       [ mab {on | off} ]\n"
+ 		"			[ backup_port DEVICE ] [ nobackup_port ]\n"
+ 	);
+ }
+@@ -284,9 +285,14 @@ static void bridge_slave_print_opt(struct link_util *lu, FILE *f,
+ 		print_on_off(PRINT_ANY, "isolated", "isolated %s ",
+ 			     rta_getattr_u8(tb[IFLA_BRPORT_ISOLATED]));
+ 
+-	if (tb[IFLA_BRPORT_LOCKED])
+-		print_on_off(PRINT_ANY, "locked", "locked %s ",
+-			     rta_getattr_u8(tb[IFLA_BRPORT_LOCKED]));
++	if (tb[IFLA_BRPORT_LOCKED]) {
++		if (tb[IFLA_BRPORT_MAB] && rta_getattr_u8(tb[IFLA_BRPORT_MAB]))
++			print_on_off(PRINT_ANY, "locked mab", "locked mab %s ",
++				     rta_getattr_u8(tb[IFLA_BRPORT_LOCKED]));
++		else
++			print_on_off(PRINT_ANY, "locked", "locked %s ",
++				     rta_getattr_u8(tb[IFLA_BRPORT_LOCKED]));
++	}
+ 
+ 	if (tb[IFLA_BRPORT_BACKUP_PORT]) {
+ 		int backup_p = rta_getattr_u32(tb[IFLA_BRPORT_BACKUP_PORT]);
+@@ -411,6 +417,10 @@ static int bridge_slave_parse_opt(struct link_util *lu, int argc, char **argv,
+ 			NEXT_ARG();
+ 			bridge_slave_parse_on_off("locked", *argv, n,
+ 						  IFLA_BRPORT_LOCKED);
++		} else if (matches(*argv, "mab") == 0) {
++			NEXT_ARG();
++			bridge_slave_parse_on_off("mab", *argv, n,
++						  IFLA_BRPORT_MAB);
+ 		} else if (matches(*argv, "backup_port") == 0) {
+ 			int ifindex;
+ 
+diff --git a/man/man8/bridge.8 b/man/man8/bridge.8
+index d4df772e..40250477 100644
+--- a/man/man8/bridge.8
++++ b/man/man8/bridge.8
+@@ -54,6 +54,7 @@ bridge \- show / manipulate bridge addresses and devices
+ .BR vlan_tunnel " { " on " | " off " } ] [ "
+ .BR isolated " { " on " | " off " } ] [ "
+ .BR locked " { " on " | " off " } ] [ "
++.BR mab " { " on " | " off " } ] [ "
+ .B backup_port
+ .IR  DEVICE " ] ["
+ .BR nobackup_port " ] [ "
+@@ -580,6 +581,15 @@ The common use is that hosts are allowed access through authentication
+ with the IEEE 802.1X protocol or based on whitelists or like setups.
+ By default this flag is off.
+ 
++.TP
++.RB "mab on " or " mab off "
++Enables or disables the MAB/MacAuth feature. This feature can only be
++activated on a port that is in locked mode, and when enabled it extends the
++locked port feature so that MAC address can get access through a locked
++port based on acceptlists, thus it is a much simpler procedure for a
++device to become authorized than f.ex. the 802.1X protocol, and is used
++for devices that are not capable of password or crypto based authorization
++methods.
+ 
+ .TP
+ .BI backup_port " DEVICE"
+diff --git a/man/man8/ip-link.8.in b/man/man8/ip-link.8.in
+index fc9d62fc..187ca7ca 100644
+--- a/man/man8/ip-link.8.in
++++ b/man/man8/ip-link.8.in
+@@ -2454,6 +2454,9 @@ the following additional arguments are supported:
+ .BR isolated " { " on " | " off " }"
+ ] [
+ .BR locked " { " on " | " off " }"
++] [
++.BR mab " { " on " | " off " }"
++] [
+ .BR backup_port " DEVICE"
+ ] [
+ .BR nobackup_port " ]"
+@@ -2560,6 +2563,11 @@ default this flag is off.
+ behind the port cannot communicate through the port unless a FDB entry
+ representing the host is in the FDB. By default this flag is off.
+ 
++.BR mab " { " on " | " off " }"
++- enables or disables the MAB/MacAuth feature on a locked port. It is
++thus possible for a device to gain authorization on a locked port based
++on acceptlists.
 +
-+check_blackhole_fdb_support()
-+{
-+	if ! bridge fdb help | grep -q "blackhole"; then
-+		echo "SKIP: Blackhole fdb feature not supported."
-+		return $ksft_skip
-+	fi
-+}
-+
- if [[ "$(id -u)" -ne 0 ]]; then
- 	echo "SKIP: need root privileges"
- 	exit $ksft_skip
+ .BI backup_port " DEVICE"
+ - if the port loses carrier all traffic will be redirected to the
+ configured backup port
 -- 
 2.34.1
 
