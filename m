@@ -2,79 +2,76 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58735F3584
-	for <lists.bridge@lfdr.de>; Mon,  3 Oct 2022 20:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 372F15F467F
+	for <lists.bridge@lfdr.de>; Tue,  4 Oct 2022 17:20:56 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id E74E783145;
-	Mon,  3 Oct 2022 18:23:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E74E783145
+	by smtp1.osuosl.org (Postfix) with ESMTP id 2CE9C83366;
+	Tue,  4 Oct 2022 15:20:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2CE9C83366
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hw-oId-Oqqjb; Mon,  3 Oct 2022 18:23:14 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 04C0583187;
-	Mon,  3 Oct 2022 18:23:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 04C0583187
+	with ESMTP id EvGXan_ziSwc; Tue,  4 Oct 2022 15:20:52 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 99E6483339;
+	Tue,  4 Oct 2022 15:20:51 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 99E6483339
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 959DDC0078;
-	Mon,  3 Oct 2022 18:23:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5C57CC007B;
+	Tue,  4 Oct 2022 15:20:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BE86AC002D
- for <bridge@lists.linux-foundation.org>; Mon,  3 Oct 2022 18:23:11 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 98C0BC002D
+ for <bridge@lists.linux-foundation.org>; Tue,  4 Oct 2022 15:20:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 9572C60E02
- for <bridge@lists.linux-foundation.org>; Mon,  3 Oct 2022 18:23:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9572C60E02
+ by smtp2.osuosl.org (Postfix) with ESMTP id 7405E40B63
+ for <bridge@lists.linux-foundation.org>; Tue,  4 Oct 2022 15:20:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 7405E40B63
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3waRZB8yGHZw for <bridge@lists.linux-foundation.org>;
- Mon,  3 Oct 2022 18:23:10 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pbFv541mYjDU for <bridge@lists.linux-foundation.org>;
+ Tue,  4 Oct 2022 15:20:49 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 388C160E0D
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5B3FD40462
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 388C160E0D
- for <bridge@lists.linux-foundation.org>; Mon,  3 Oct 2022 18:23:09 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 5B3FD40462
+ for <bridge@lists.linux-foundation.org>; Tue,  4 Oct 2022 15:20:49 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 3303218847DA;
- Mon,  3 Oct 2022 18:23:05 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 274A918847D5;
+ Tue,  4 Oct 2022 15:20:46 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 2131F25002BC;
- Mon,  3 Oct 2022 18:23:05 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 1C11425002BC;
+ Tue,  4 Oct 2022 15:20:46 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 039A69EC0002; Mon,  3 Oct 2022 18:23:04 +0000 (UTC)
+ id 1361F9EC000E; Tue,  4 Oct 2022 15:20:46 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+Received: from fujitsu.vestervang (2-104-116-184-cable.dk.customer.tdc.net
+ [2.104.116.184])
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 2858B9EC000C;
+ Tue,  4 Oct 2022 15:20:45 +0000 (UTC)
+From: Hans Schultz <netdev@kapio-technology.com>
+To: davem@davemloft.net,
+	kuba@kernel.org
+Date: Tue,  4 Oct 2022 17:20:33 +0200
+Message-Id: <20221004152036.7848-1-netdev@kapio-technology.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Date: Mon, 03 Oct 2022 20:23:04 +0200
-From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <YzhfDgqjBvhqNUHX@shredder>
-References: <20220929152137.167626-1-netdev@kapio-technology.com>
- <20220929152137.167626-2-netdev@kapio-technology.com>
- <YzhfDgqjBvhqNUHX@shredder>
-User-Agent: Gigahost Webmail
-Message-ID: <d4d110223244b27ade43fa50326be2d7@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Organization: Westermo Network Technologies AB
+Content-Transfer-Encoding: 8bit
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
  Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- linux-kselftest@vger.kernel.org, Joachim Wiberg <troglobit@gmail.com>,
- Shuah Khan <shuah@kernel.org>, Ivan Vecera <ivecera@redhat.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Daniel Borkmann <daniel@iogearbox.net>,
- Florent Fourcot <florent.fourcot@wifirst.fr>,
+ linux-kselftest@vger.kernel.org, Hans Schultz <netdev@kapio-technology.com>,
+ Joachim Wiberg <troglobit@gmail.com>, Shuah Khan <shuah@kernel.org>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Daniel Borkmann <daniel@iogearbox.net>, Ido Schimmel <idosch@nvidia.com>,
  bridge@lists.linux-foundation.org, Russell King <linux@armlinux.org.uk>,
  linux-arm-kernel@lists.infradead.org, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- Vivien Didelot <vivien.didelot@gmail.com>,
+ Paolo Abeni <pabeni@redhat.com>, Vivien Didelot <vivien.didelot@gmail.com>,
  Woojung Huh <woojung.huh@microchip.com>,
  Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
  Amit Cohen <amcohen@nvidia.com>, Christian Marangi <ansuelsmth@gmail.com>,
@@ -84,9 +81,10 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  Matthias Brugger <matthias.bgg@gmail.com>, Yuwei Wang <wangyuweihx@gmail.com>,
  Petr Machata <petrm@nvidia.com>, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
- Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH iproute2-next 2/2] bridge: fdb: enable FDB
- blackhole feature
+ Vladimir Oltean <olteanv@gmail.com>,
+ Florent Fourcot <florent.fourcot@wifirst.fr>
+Subject: [Bridge] [PATCH v2 iproute2-next 1/4] include: uapi: MacAuth and
+	Blackhole feature header changes
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,13 +99,53 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-10-01 17:38, Ido Schimmel wrote:
-> 
-> Need to patch the "SYNOPSIS" section as well
-> 
+Signed-off-by: Hans Schultz <netdev@kapio-technology.com>
+---
+ include/uapi/linux/if_link.h   |  1 +
+ include/uapi/linux/neighbour.h | 11 ++++++++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-Does this look right to you for the addition to the "SYNOPSIS"?...
-
-bridge fdb { add | del } LLADR dev BRDEV [ self ] [ local ] [ blackhole 
-]
+diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+index 7494cffb..58a002de 100644
+--- a/include/uapi/linux/if_link.h
++++ b/include/uapi/linux/if_link.h
+@@ -559,6 +559,7 @@ enum {
+ 	IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
+ 	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
+ 	IFLA_BRPORT_LOCKED,
++	IFLA_BRPORT_MAB,
+ 	__IFLA_BRPORT_MAX
+ };
+ #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
+diff --git a/include/uapi/linux/neighbour.h b/include/uapi/linux/neighbour.h
+index a998bf76..cc7d540e 100644
+--- a/include/uapi/linux/neighbour.h
++++ b/include/uapi/linux/neighbour.h
+@@ -52,7 +52,9 @@ enum {
+ #define NTF_STICKY	(1 << 6)
+ #define NTF_ROUTER	(1 << 7)
+ /* Extended flags under NDA_FLAGS_EXT: */
+-#define NTF_EXT_MANAGED	(1 << 0)
++#define NTF_EXT_MANAGED		(1 << 0)
++#define NTF_EXT_LOCKED		(1 << 1)
++#define NTF_EXT_BLACKHOLE	(1 << 2)
+ 
+ /*
+  *	Neighbor Cache Entry States.
+@@ -86,6 +88,13 @@ enum {
+  * NTF_EXT_MANAGED flagged neigbor entries are managed by the kernel on behalf
+  * of a user space control plane, and automatically refreshed so that (if
+  * possible) they remain in NUD_REACHABLE state.
++ *
++ * NTF_EXT_LOCKED flagged FDB entries are placeholder entries used with the
++ * locked port feature, that ensures that an entry exists while at the same
++ * time dropping packets on ingress with src MAC and VID matching the entry.
++ *
++ * NTF_EXT_BLACKHOLE flagged FDB entries ensure that no forwarding is allowed
++ * from any port to the destination MAC, VID pair associated with it.
+  */
+ 
+ struct nda_cacheinfo {
+-- 
+2.34.1
 
