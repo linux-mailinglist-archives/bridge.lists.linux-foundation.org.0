@@ -1,62 +1,62 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 642E85F9785
-	for <lists.bridge@lfdr.de>; Mon, 10 Oct 2022 06:56:17 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 628CB5F9789
+	for <lists.bridge@lfdr.de>; Mon, 10 Oct 2022 06:56:19 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id CFFBA40A13;
-	Mon, 10 Oct 2022 04:56:13 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CFFBA40A13
+	by smtp4.osuosl.org (Postfix) with ESMTP id BB64E415D5;
+	Mon, 10 Oct 2022 04:56:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org BB64E415D5
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 2ZvE6r_JngPr; Mon, 10 Oct 2022 04:56:13 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id a8a46izq8qI5; Mon, 10 Oct 2022 04:56:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 2C0F640227;
-	Mon, 10 Oct 2022 04:56:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2C0F640227
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 38B2841601;
+	Mon, 10 Oct 2022 04:56:13 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 38B2841601
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 94355C007C;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 01F29C002D;
 	Mon, 10 Oct 2022 04:56:11 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BE8F2C002D
- for <bridge@lists.linux-foundation.org>; Mon, 10 Oct 2022 04:56:08 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5CCA6C002D
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Oct 2022 04:56:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 8AE0D829B6
- for <bridge@lists.linux-foundation.org>; Mon, 10 Oct 2022 04:56:08 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8AE0D829B6
+ by smtp1.osuosl.org (Postfix) with ESMTP id 298ED8276E
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Oct 2022 04:56:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 298ED8276E
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mG2B0wUPYNbq for <bridge@lists.linux-foundation.org>;
+ with ESMTP id dcwn4tHL3m36 for <bridge@lists.linux-foundation.org>;
  Mon, 10 Oct 2022 04:56:07 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 326C38276E
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EF2A0826C8
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 326C38276E
- for <bridge@lists.linux-foundation.org>; Mon, 10 Oct 2022 04:56:07 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id EF2A0826C8
+ for <bridge@lists.linux-foundation.org>; Mon, 10 Oct 2022 04:56:06 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 5811418843CD;
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 5FC9F1884529;
  Mon, 10 Oct 2022 04:56:03 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 1C041250556A;
+ by mailout.gigahost.dk (Postfix) with ESMTP id 562D4250556D;
  Mon, 10 Oct 2022 04:56:03 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 0)
- id 0EB5F9EC0001; Mon, 10 Oct 2022 04:56:03 +0000 (UTC)
+ id 404A89EC0001; Mon, 10 Oct 2022 04:56:03 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 Received: from fujitsu.vestervang (2-104-116-184-cable.dk.customer.tdc.net
  [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id CCB289120FED;
- Sun,  9 Oct 2022 17:41:35 +0000 (UTC)
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 983979120FED;
+ Sun,  9 Oct 2022 17:41:37 +0000 (UTC)
 From: "Hans J. Schultz" <netdev@kapio-technology.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
-Date: Sun,  9 Oct 2022 19:40:51 +0200
-Message-Id: <20221009174052.1927483-9-netdev@kapio-technology.com>
+Date: Sun,  9 Oct 2022 19:40:52 +0200
+Message-Id: <20221009174052.1927483-10-netdev@kapio-technology.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221009174052.1927483-1-netdev@kapio-technology.com>
 References: <20221009174052.1927483-1-netdev@kapio-technology.com>
@@ -86,8 +86,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
  Vladimir Oltean <olteanv@gmail.com>,
  Florent Fourcot <florent.fourcot@wifirst.fr>
-Subject: [Bridge] [PATCH v7 net-next 8/9] net: dsa: mv88e6xxx: add blackhole
-	ATU entries
+Subject: [Bridge] [PATCH v7 net-next 9/9] selftests: forwarding: add test of
+	MAC-Auth Bypass to locked port tests
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,101 +102,339 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Blackhole FDB entries can now be added, deleted or replaced in the
-driver ATU.
+Verify that the MAC-Auth mechanism works by adding a FDB entry with the
+locked flag set, denying access until the FDB entry is replaced with a
+FDB entry without the locked flag set.
+
+Add test of blackhole fdb entries, verifying that there is no forwarding
+to a blackhole entry from any port, and that the blackhole entry can be
+replaced.
+
+Also add a test that verifies that sticky FDB entries cannot roam (this
+is not needed for now, but should in general be present anyhow for future
+applications).
 
 Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
 ---
- drivers/net/dsa/mv88e6xxx/chip.c | 60 +++++++++++++++++++++++++++++---
- 1 file changed, 56 insertions(+), 4 deletions(-)
+ .../selftests/drivers/net/dsa/Makefile        |   1 +
+ .../testing/selftests/net/forwarding/Makefile |   1 +
+ .../net/forwarding/bridge_blackhole_fdb.sh    | 134 ++++++++++++++++++
+ .../net/forwarding/bridge_locked_port.sh      | 101 ++++++++++++-
+ tools/testing/selftests/net/forwarding/lib.sh |  17 +++
+ 5 files changed, 253 insertions(+), 1 deletion(-)
+ create mode 100755 tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh
 
-diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
-index 71843fe87f77..3c4ebb2a5301 100644
---- a/drivers/net/dsa/mv88e6xxx/chip.c
-+++ b/drivers/net/dsa/mv88e6xxx/chip.c
-@@ -2735,6 +2735,56 @@ static int mv88e6xxx_vlan_msti_set(struct dsa_switch *ds,
- 	return err;
+diff --git a/tools/testing/selftests/drivers/net/dsa/Makefile b/tools/testing/selftests/drivers/net/dsa/Makefile
+index c393e7b73805..c0a75d869763 100644
+--- a/tools/testing/selftests/drivers/net/dsa/Makefile
++++ b/tools/testing/selftests/drivers/net/dsa/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0+ OR MIT
+ 
+ TEST_PROGS = bridge_locked_port.sh \
++	bridge_blackhole_fdb.sh \
+ 	bridge_mdb.sh \
+ 	bridge_mld.sh \
+ 	bridge_vlan_aware.sh \
+diff --git a/tools/testing/selftests/net/forwarding/Makefile b/tools/testing/selftests/net/forwarding/Makefile
+index a9c5c1be5088..7d832020937f 100644
+--- a/tools/testing/selftests/net/forwarding/Makefile
++++ b/tools/testing/selftests/net/forwarding/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0+ OR MIT
+ 
+ TEST_PROGS = bridge_igmp.sh \
++	bridge_blackhole_fdb.sh \
+ 	bridge_locked_port.sh \
+ 	bridge_mdb.sh \
+ 	bridge_mdb_port_down.sh \
+diff --git a/tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh b/tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh
+new file mode 100755
+index 000000000000..77d166180bc4
+--- /dev/null
++++ b/tools/testing/selftests/net/forwarding/bridge_blackhole_fdb.sh
+@@ -0,0 +1,134 @@
++#!/bin/bash
++# SPDX-License-Identifier: GPL-2.0
++
++ALL_TESTS="blackhole_fdb"
++NUM_NETIFS=4
++source tc_common.sh
++source lib.sh
++
++h1_create()
++{
++	simple_if_init $h1 192.0.2.1/24 2001:db8:1::1/64
++	vlan_create $h1 100 v$h1 198.51.100.1/24
++}
++
++h1_destroy()
++{
++	vlan_destroy $h1 100
++	simple_if_fini $h1 192.0.2.1/24 2001:db8:1::1/64
++}
++
++h2_create()
++{
++	simple_if_init $h2 192.0.2.2/24 2001:db8:1::2/64
++	vlan_create $h2 100 v$h2 198.51.100.2/24
++}
++
++h2_destroy()
++{
++	vlan_destroy $h2 100
++	simple_if_fini $h2 192.0.2.2/24 2001:db8:1::2/64
++}
++
++switch_create()
++{
++	ip link add dev br0 type bridge vlan_filtering 1
++
++	ip link set dev $swp1 master br0
++	ip link set dev $swp2 master br0
++
++	ip link set dev br0 up
++	ip link set dev $swp1 up
++	ip link set dev $swp2 up
++
++	tc qdisc add dev $swp2 clsact
++}
++
++switch_destroy()
++{
++	tc qdisc del dev $swp2 clsact
++
++	ip link set dev $swp2 down
++	ip link set dev $swp1 down
++
++	ip link del dev br0
++}
++
++setup_prepare()
++{
++	h1=${NETIFS[p1]}
++	swp1=${NETIFS[p2]}
++	h2=${NETIFS[p3]}
++	swp2=${NETIFS[p4]}
++
++	vrf_prepare
++
++	h1_create
++	h2_create
++
++	switch_create
++}
++
++cleanup()
++{
++	pre_cleanup
++
++	switch_destroy
++
++	h2_destroy
++	h1_destroy
++
++	vrf_cleanup
++}
++
++# Check that there is no egress with blackhole entry and that blackhole entries can be replaced
++blackhole_fdb()
++{
++	RET=0
++
++	check_blackhole_fdb_support || return 0
++
++	tc filter add dev $swp2 egress protocol ip pref 1 handle 1 flower \
++		dst_ip 192.0.2.2 ip_proto udp dst_port 12345 action pass
++
++	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
++		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
++
++	tc_check_packets "dev $swp2 egress" 1 1
++	check_err $? "Packet not seen on egress before adding blackhole entry"
++
++	bridge fdb replace `mac_get $h2` dev br0 blackhole
++	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
++	check_err $? "Blackhole entry not found"
++
++	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
++		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
++
++	tc_check_packets "dev $swp2 egress" 1 1
++	check_err $? "Packet seen on egress after adding blackhole entry"
++
++	# Check blackhole entries can be replaced.
++	bridge fdb replace `mac_get $h2` dev $swp2 master static
++	bridge fdb get `mac_get $h2` br br0 | grep -q blackhole
++	check_fail $? "Blackhole entry found after replacement"
++
++	$MZ $h1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
++		-a own -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
++
++	tc_check_packets "dev $swp2 egress" 1 2
++	check_err $? "Packet not seen on egress after replacing blackhole entry"
++
++	bridge fdb del `mac_get $h2` dev $swp2 master static
++	tc filter del dev $swp2 egress protocol ip pref 1 handle 1 flower
++
++	log_test "Blackhole FDB entry"
++}
++
++trap cleanup EXIT
++
++setup_prepare
++setup_wait
++
++tests_run
++
++exit $EXIT_STATUS
+diff --git a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
+index 5b02b6b60ce7..fbe558f25e44 100755
+--- a/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
++++ b/tools/testing/selftests/net/forwarding/bridge_locked_port.sh
+@@ -1,7 +1,15 @@
+ #!/bin/bash
+ # SPDX-License-Identifier: GPL-2.0
+ 
+-ALL_TESTS="locked_port_ipv4 locked_port_ipv6 locked_port_vlan"
++ALL_TESTS="
++	locked_port_ipv4
++	locked_port_ipv6
++	locked_port_vlan
++	locked_port_mab
++	locked_port_station_move
++	locked_port_mab_station_move
++"
++
+ NUM_NETIFS=4
+ CHECK_TC="no"
+ source lib.sh
+@@ -166,6 +174,97 @@ locked_port_ipv6()
+ 	log_test "Locked port ipv6"
  }
  
-+static int mv88e6xxx_blackhole_fdb_loadpurge(struct dsa_switch *ds,
-+					     const unsigned char *addr, u16 vid, u8 state)
++locked_port_mab()
 +{
-+	struct mv88e6xxx_chip *chip = ds->priv;
-+	struct mv88e6xxx_atu_entry entry;
-+	struct mv88e6xxx_vtu_entry vlan;
++	RET=0
++	check_port_mab_support || return 0
 +
-+	u16 fid = 0;
-+	int err;
++	ping_do $h1 192.0.2.2
++	check_err $? "MAB: Ping did not work before locking port"
 +
-+	if (vid == 0) {
-+		fid = MV88E6XXX_FID_BRIDGED;
-+	} else {
-+		mv88e6xxx_reg_lock(chip);
-+		err = mv88e6xxx_vtu_get(chip, vid, &vlan);
-+		mv88e6xxx_reg_unlock(chip);
-+		if (err)
-+			return err;
++	bridge link set dev $swp1 locked on mab on
 +
-+		/* switchdev expects -EOPNOTSUPP to honor software VLANs */
-+		if (!vlan.valid)
-+			return -EOPNOTSUPP;
++	ping_do $h1 192.0.2.2
++	check_fail $? "MAB: Ping worked on mab enabled port without FDB entry"
 +
-+		fid = vlan.fid;
-+	}
++	bridge fdb get `mac_get $h1` vlan 1 dev $swp1 | grep "dev $swp1 vlan 1" | grep -q "locked"
++	check_err $? "MAB: No locked FDB entry after ping on mab enabled port"
 +
-+	ether_addr_copy(entry.mac, addr);
-+	entry.portvec = MV88E6XXX_G1_ATU_DATA_PORT_VECTOR_NO_EGRESS;
-+	entry.state = state;
-+	entry.trunk = false;
++	bridge fdb replace `mac_get $h1` dev $swp1 master static
 +
-+	mv88e6xxx_reg_lock(chip);
-+	err = mv88e6xxx_g1_atu_loadpurge(chip, fid, &entry);
-+	mv88e6xxx_reg_unlock(chip);
++	ping_do $h1 192.0.2.2
++	check_err $? "MAB: Ping did not work with FDB entry without locked flag"
 +
-+	return err;
++	bridge fdb del `mac_get $h1` dev $swp1 master
++	bridge link set dev $swp1 locked off mab off
++
++	log_test "Locked port MAB"
 +}
 +
-+int mv88e6xxx_blackhole_fdb_add(struct dsa_switch *ds, const unsigned char *addr, u16 vid)
++# Check that entries cannot roam from an unlocked port to a locked port.
++locked_port_station_move()
 +{
-+	return mv88e6xxx_blackhole_fdb_loadpurge(ds, addr, vid,
-+						 MV88E6XXX_G1_ATU_DATA_STATE_UC_STATIC);
++	local mac=a0:b0:c0:c0:b0:a0
++
++	RET=0
++	check_locked_port_support || return 0
++
++	bridge link set dev $swp1 locked on learning on
++
++	$MZ $h1 -q -c 5 -d 100msec -t udp -a $mac -b rand
++	bridge fdb show dev $swp1 | grep -q $mac
++	check_fail $? "Locked port station move: FDB entry on first injection"
++
++	$MZ $h2 -q -c 5 -d 100msec -t udp -a $mac -b rand
++	bridge fdb get $mac vlan 1 dev $swp2 | grep "dev $swp2 vlan 1" | grep -q "master br0"
++	check_err $? "Locked port station move: Entry not found on unlocked port"
++
++	$MZ $h1 -q -c 5 -d 100msec -t udp -a $mac -b rand
++	bridge fdb get $mac vlan 1 dev $swp1 | grep "dev $swp1 vlan 1" | grep -q "master br0"
++	check_fail $? "Locked port station move: entry roamed to locked port"
++
++	bridge fdb del $mac vlan 1 dev $swp2 master
++	bridge link set dev $swp1 locked off learning off
++
++	log_test "Locked port station move"
 +}
 +
-+int mv88e6xxx_blackhole_fdb_del(struct dsa_switch *ds, const unsigned char *addr, u16 vid)
++# Roaming to and from a MAB enabled port should work if blackhole flag is not set
++locked_port_mab_station_move()
 +{
-+	return mv88e6xxx_blackhole_fdb_loadpurge(ds, addr, vid,
-+						 MV88E6XXX_G1_ATU_DATA_STATE_UC_UNUSED);
++	local mac=10:20:30:30:20:10
++
++	RET=0
++	check_port_mab_support || return 0
++
++	bridge link set dev $swp1 locked on mab on
++
++	$MZ $h1 -q -c 5 -d 100 mesc -t udp -a $mac -b rand
++	if bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "blackhole"; then
++		echo "SKIP: Roaming not possible with blackhole flag, skipping test..."
++		bridge link set dev $swp1 locked off mab off
++		return $ksft_skip
++	fi
++
++	bridge fdb show dev $swp1 | grep "$mac vlan 1" | grep -q "locked"
++	check_err $? "MAB station move: no locked entry on first injection"
++
++	$MZ $h2 -q -c 5 -d 100msec -t udp -a $mac -b rand
++	bridge fdb get $mac vlan 1 dev $swp1 | grep "dev $swp1 vlan 1" | grep -q "locked"
++	check_fail $? "MAB station move: locked entry did not move"
++
++	bridge fdb get $mac vlan 1 dev $swp2 | grep "dev $swp2 vlan 1" | grep -q "locked"
++	check_fail $? "MAB station move: roamed entry to unlocked port had locked flag on"
++
++	bridge fdb get $mac vlan 1 dev $swp2 | grep "dev $swp2 vlan 1" | grep -q "master br0"
++	check_err $? "MAB station move: roamed entry not found"
++
++	bridge fdb del $mac vlan 1 dev $swp2 master
++	bridge link set dev $swp1 locked off mab off
++
++	log_test "Locked port MAB station move"
 +}
 +
- static int mv88e6xxx_port_fdb_add(struct dsa_switch *ds, int port,
- 				  const unsigned char *addr, u16 vid,
- 				  u16 fdb_flags, struct dsa_db db)
-@@ -2742,9 +2792,10 @@ static int mv88e6xxx_port_fdb_add(struct dsa_switch *ds, int port,
- 	struct mv88e6xxx_chip *chip = ds->priv;
- 	int err;
+ trap cleanup EXIT
  
--	/* Ignore entries with flags set */
--	if (fdb_flags)
-+	if (fdb_flags & DSA_FDB_FLAG_LOCKED)
- 		return 0;
-+	if (fdb_flags & DSA_FDB_FLAG_BLACKHOLE)
-+		return mv88e6xxx_blackhole_fdb_add(ds, addr, vid);
+ setup_prepare
+diff --git a/tools/testing/selftests/net/forwarding/lib.sh b/tools/testing/selftests/net/forwarding/lib.sh
+index 3ffb9d6c0950..d6abe873665c 100755
+--- a/tools/testing/selftests/net/forwarding/lib.sh
++++ b/tools/testing/selftests/net/forwarding/lib.sh
+@@ -137,6 +137,23 @@ check_locked_port_support()
+ 	fi
+ }
  
- 	if (mv88e6xxx_port_is_locked(chip, port))
- 		mv88e6xxx_atu_locked_entry_find_purge(ds, port, addr, vid);
-@@ -2765,9 +2816,10 @@ static int mv88e6xxx_port_fdb_del(struct dsa_switch *ds, int port,
- 	bool locked_found = false;
- 	int err = 0;
- 
--	/* Ignore entries with flags set */
--	if (fdb_flags)
-+	if (fdb_flags & DSA_FDB_FLAG_LOCKED)
- 		return 0;
-+	if (fdb_flags & DSA_FDB_FLAG_BLACKHOLE)
-+		return mv88e6xxx_blackhole_fdb_del(ds, addr, vid);
- 
- 	if (mv88e6xxx_port_is_locked(chip, port))
- 		locked_found = mv88e6xxx_atu_locked_entry_find_purge(ds, port, addr, vid);
++check_port_mab_support()
++{
++	if ! bridge -d link show | grep -q "mab"; then
++		echo "SKIP: iproute2 too old; MacAuth feature not supported."
++		return $ksft_skip
++	fi
++}
++
++check_blackhole_fdb_support()
++{
++	bridge fdb help 2>&1|grep blackhole &> /dev/null
++	if [[ $? -ne 0 ]]; then
++		echo "SKIP: Blackhole fdb feature not supported."
++		return $ksft_skip
++	fi
++}
++
+ if [[ "$(id -u)" -ne 0 ]]; then
+ 	echo "SKIP: need root privileges"
+ 	exit $ksft_skip
 -- 
 2.34.1
 
