@@ -1,69 +1,95 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6231606A11
-	for <lists.bridge@lfdr.de>; Thu, 20 Oct 2022 23:09:52 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 4E34B84314;
-	Thu, 20 Oct 2022 21:09:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4E34B84314
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id nHv3KkyM1Dv3; Thu, 20 Oct 2022 21:09:50 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id BC6EE84321;
-	Thu, 20 Oct 2022 21:09:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BC6EE84321
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 38705C0078;
-	Thu, 20 Oct 2022 21:09:49 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4F0F0C002D
- for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 21:09:47 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42292606B65
+	for <lists.bridge@lfdr.de>; Fri, 21 Oct 2022 00:43:47 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 1F93441955
- for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 21:09:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1F93441955
+	by smtp4.osuosl.org (Postfix) with ESMTP id A8B4E41675;
+	Thu, 20 Oct 2022 22:43:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A8B4E41675
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=UVFcLtLR
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id otDLpdXGIWmM for <bridge@lists.linux-foundation.org>;
- Thu, 20 Oct 2022 21:09:45 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9ABC941936
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 9ABC941936
- for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 21:09:44 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id F066718849CE;
- Thu, 20 Oct 2022 21:09:40 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id D1DD725001FA;
- Thu, 20 Oct 2022 21:09:40 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id C9D209EC0002; Thu, 20 Oct 2022 21:09:40 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
-MIME-Version: 1.0
-Date: Thu, 20 Oct 2022 23:09:40 +0200
-From: netdev@kapio-technology.com
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20221020132538.reirrskemcjwih2m@skbuf>
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2JnokVBNu0Hb; Thu, 20 Oct 2022 22:43:43 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id B5F01415F8;
+	Thu, 20 Oct 2022 22:43:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B5F01415F8
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3F715C0078;
+	Thu, 20 Oct 2022 22:43:42 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8E2A2C002D
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 22:43:41 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp2.osuosl.org (Postfix) with ESMTP id 60F8740483
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 22:43:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 60F8740483
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=UVFcLtLR
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id eHQR1tnNxo1N for <bridge@lists.linux-foundation.org>;
+ Thu, 20 Oct 2022 22:43:40 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 735C0400A6
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
+ [IPv6:2a00:1450:4864:20::533])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 735C0400A6
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 22:43:40 +0000 (UTC)
+Received: by mail-ed1-x533.google.com with SMTP id r14so1703721edc.7
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 15:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=JglhUSuAsvyo/02iuoDdhbFLRdL0c14GOno7/e71c6I=;
+ b=UVFcLtLRlFJ23BO5nFdHnG4XQRcYTdnQfD3m/QakLfwgOixkkCd7UJlVA+CHErZDSK
+ yqcpu2eHqMGfmTPApN2EotBAlWuycXT2OjFAFM1+5hggxKMnxWXGuezOaAd4WEJlzw/E
+ QwfCAicGgtNoOd8NE+jP3QuxiLJQ5qMyH/pDBuCnlZYt4z3r6VCKUlsfCNk+YLZNLAOA
+ jZfpDE2kC2IhtsQcsYya9US9kOGVA9O8AzfTEwo/8FQZKplzXol7D+K0m8g9+ZJMdMlA
+ 7qnuH1rqNqLEFKQ+7QqHXn3BuFaESpqJ+j9E4Q1RUqqQor0Pmd9ogjMf6JpK5JbYc/PN
+ U2Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JglhUSuAsvyo/02iuoDdhbFLRdL0c14GOno7/e71c6I=;
+ b=H8Qs3zB0HtDgm6/ezbJXiy/HJ22/QHmwO/ej9tmMJB+94hExS3yLtNAvYB34FkU+it
+ OQcf8tYMAeUyWqXA6RCn6gmJc8V/gNadNgXaxOjmBK6i86s+8ncqbD/zeS5XU8XnLF5u
+ JK1dusncI96QcjKBY/Q7bG4oYoehb/yxjVM+hSG92RlSio6r8FROBdt9jz7DgKlHRWVi
+ X13WFgL/NiUmPc1nwgvshVaG9nnXqLvdWASXrA6RAKug/R82WEJsfiAJ6u/LEmmBqWjT
+ Ikg0zVkmgxNTkJ30NELNLZx0gvmRvOqfG9a+aBE9C9Zcz3y3VefwyvBeEl2imnh7uu+R
+ Sfag==
+X-Gm-Message-State: ACrzQf1UIQQJnewmbH84quzlhrMGUv4+ru4ylozHQJFRqfu7juyZ4QtP
+ dSoVL2JGT8tK934npnSHyr8=
+X-Google-Smtp-Source: AMsMyM5MjXkVhqFJ0DzPxQqFB+bWxrQP/KKt/X60NxMrSXVU8VHjgZ1HhV+RGAF8iAk/TVSu8j+SmA==
+X-Received: by 2002:a05:6402:518b:b0:45d:9a19:66d2 with SMTP id
+ q11-20020a056402518b00b0045d9a1966d2mr14121112edd.43.1666305818360; 
+ Thu, 20 Oct 2022 15:43:38 -0700 (PDT)
+Received: from skbuf ([188.27.184.197]) by smtp.gmail.com with ESMTPSA id
+ w14-20020a170906384e00b0078246b1360fsm10790195ejc.131.2022.10.20.15.43.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 Oct 2022 15:43:37 -0700 (PDT)
+Date: Fri, 21 Oct 2022 01:43:34 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: netdev@kapio-technology.com
+Message-ID: <20221020224334.ksh4xciad7yro3cj@skbuf>
 References: <20221018165619.134535-1-netdev@kapio-technology.com>
- <20221018165619.134535-1-netdev@kapio-technology.com>
- <20221018165619.134535-11-netdev@kapio-technology.com>
- <20221018165619.134535-11-netdev@kapio-technology.com>
- <20221020132538.reirrskemcjwih2m@skbuf>
-User-Agent: Gigahost Webmail
-Message-ID: <3e58594c1223f4591e56409cd5061de7@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+ <20221018165619.134535-4-netdev@kapio-technology.com>
+ <20221020125549.v6kls2lk7etvay7c@skbuf>
+ <e1184c879642c35e4ff6f19e0fd5de46@kapio-technology.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e1184c879642c35e4ff6f19e0fd5de46@kapio-technology.com>
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
@@ -86,8 +112,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  Petr Machata <petrm@nvidia.com>, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, Florent Fourcot <florent.fourcot@wifirst.fr>,
  UNGLinuxDriver@microchip.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v8 net-next 10/12] net: dsa: mv88e6xxx:
- mac-auth/MAB implementation
+Subject: Re: [Bridge] [PATCH v8 net-next 03/12] net: bridge: enable bridge
+ to install locked fdb entries from drivers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -102,74 +128,34 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-10-20 15:25, Vladimir Oltean wrote:
+On Thu, Oct 20, 2022 at 09:29:06PM +0200, netdev@kapio-technology.com wrote:
+> On 2022-10-20 14:55, Vladimir Oltean wrote:
+> > On Tue, Oct 18, 2022 at 06:56:10PM +0200, Hans J. Schultz wrote:
+> > > diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+> > > index 8f3d76c751dd..c6b938c01a74 100644
+> > > --- a/net/bridge/br_switchdev.c
+> > > +++ b/net/bridge/br_switchdev.c
+> > > @@ -136,6 +136,7 @@ static void br_switchdev_fdb_populate(struct
+> > > net_bridge *br,
+> > >  	item->added_by_user = test_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
+> > >  	item->offloaded = test_bit(BR_FDB_OFFLOADED, &fdb->flags);
+> > >  	item->is_local = test_bit(BR_FDB_LOCAL, &fdb->flags);
+> > > +	item->locked = test_bit(BR_FDB_LOCKED, &fdb->flags);
+> > 
+> > Shouldn't this be set to 0 here, since it is the bridge->driver
+> > direction?
 > 
-> This would not have been needed if dsa_port_set_state() would have
-> called dsa_port_fast_age().
-> 
-> Currently it only does that if dp->learning is true. From previous
-> conversations I get the idea that with MAB, port learning will be 
-> false.
-> But I don't understand why; isn't MAB CPU-assisted learning? I'm 
-> looking
-> at the ocelot hardware support for this and I think it could be
-> implemented using a similar mechanism, but I certainly don't want to 
-> add
-> more workarounds such as this in other drivers.
-> 
-> Are there any other ways to implement MAB other than through CPU
-> assisted learning?
-> 
-> We could add one more dp->mab flag which tracks the "mab" brport flag,
-> and extend dsa_port_set_state() to also call dsa_port_fast_age() in 
-> that
-> case, but I want to make sure there isn't something extremely obvious
-> I'm missing about the "learning" flag.
-> 
+> Wouldn't it be a good idea to allow drivers to add what corresponds to a blackhole
+> entry when using the bridge input chain to activate the MAB feature, or in general
+> to leave the decision of what to do to the driver implementation?
 
-As learning is off on locked ports, see other response, your dp->mab 
-flag
-idea might be a way to go, just need confirmation that this is needed.
+The patch doesn't propose that. It proposes:
 
+| net: bridge: enable bridge to install locked fdb entries from drivers
+| 
+| The bridge will be able to install locked entries when receiving
+| SWITCHDEV_FDB_ADD_TO_BRIDGE notifications from drivers.
 
->> @@ -6572,8 +6604,10 @@ static int mv88e6xxx_port_bridge_flags(struct 
->> dsa_switch *ds, int port,
->>  	if (flags.mask & BR_MCAST_FLOOD) {
->>  		bool multicast = !!(flags.val & BR_MCAST_FLOOD);
->> 
->> +		mv88e6xxx_reg_lock(chip);
->>  		err = chip->info->ops->port_set_mcast_flood(chip, port,
->>  							    multicast);
->> +		mv88e6xxx_reg_unlock(chip);
->>  		if (err)
->>  			goto out;
->>  	}
->> @@ -6581,20 +6615,34 @@ static int mv88e6xxx_port_bridge_flags(struct 
->> dsa_switch *ds, int port,
->>  	if (flags.mask & BR_BCAST_FLOOD) {
->>  		bool broadcast = !!(flags.val & BR_BCAST_FLOOD);
->> 
->> +		mv88e6xxx_reg_lock(chip);
->>  		err = mv88e6xxx_port_broadcast_sync(chip, port, broadcast);
->> +		mv88e6xxx_reg_unlock(chip);
->>  		if (err)
->>  			goto out;
->>  	}
->> 
->> +	if (flags.mask & BR_PORT_MAB) {
->> +		chip->ports[port].mab = !!(flags.val & BR_PORT_MAB);
->> +
->> +		if (!chip->ports[port].mab)
->> +			err = mv88e6xxx_atu_locked_entry_flush(ds, port);
->> +		else
->> +			err = 0;
-> 
-> Again, dsa_port_fast_age() is also called when dp->learning is turned
-> off in dsa_port_bridge_flags(). I don't want to see the mv88e6xxx 
-> driver
-> doing this manually.
-> 
-
-Maybe I am wrong, but I have only been able to trigger fast ageing by 
-setting
-the STP state of the port to blocked...
+Please write patches which make just one logical change, and explain the
+justification for that change and precisely that change in the commit
+message.
