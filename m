@@ -1,63 +1,63 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7696068F4
-	for <lists.bridge@lfdr.de>; Thu, 20 Oct 2022 21:34:13 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id CD5908434A;
-	Thu, 20 Oct 2022 19:34:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CD5908434A
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id xTU9UPB1mxMi; Thu, 20 Oct 2022 19:34:11 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 5CFEB84002;
-	Thu, 20 Oct 2022 19:34:10 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5CFEB84002
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0CC2FC0078;
-	Thu, 20 Oct 2022 19:34:10 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DE1C5C002D
- for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 19:34:08 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD70606902
+	for <lists.bridge@lfdr.de>; Thu, 20 Oct 2022 21:37:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 7BFD96FB14
- for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 19:34:08 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7BFD96FB14
+	by smtp3.osuosl.org (Postfix) with ESMTP id 0CCD36FB14;
+	Thu, 20 Oct 2022 19:37:24 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0CCD36FB14
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id o9MeYsUxauhk for <bridge@lists.linux-foundation.org>;
- Thu, 20 Oct 2022 19:34:07 +0000 (UTC)
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id QqeEuZnI8qFk; Thu, 20 Oct 2022 19:37:23 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 94CEF6FABF;
+	Thu, 20 Oct 2022 19:37:22 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 94CEF6FABF
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 20465C0078;
+	Thu, 20 Oct 2022 19:37:22 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4026EC002D
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 19:37:20 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp1.osuosl.org (Postfix) with ESMTP id D31D68436F
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 19:37:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D31D68436F
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 6WBXYi3mzBMS for <bridge@lists.linux-foundation.org>;
+ Thu, 20 Oct 2022 19:37:19 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B97A86FABF
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 191CF8435A
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B97A86FABF
- for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 19:34:07 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 191CF8435A
+ for <bridge@lists.linux-foundation.org>; Thu, 20 Oct 2022 19:37:19 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 495FE18838CD;
- Thu, 20 Oct 2022 19:34:05 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 6A2B11884C9D;
+ Thu, 20 Oct 2022 19:37:17 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 3A4F125001FA;
- Thu, 20 Oct 2022 19:34:05 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 4A5F225001FA;
+ Thu, 20 Oct 2022 19:37:17 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 2AE929EC0002; Thu, 20 Oct 2022 19:34:05 +0000 (UTC)
+ id 4377E9EC0002; Thu, 20 Oct 2022 19:37:17 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Thu, 20 Oct 2022 21:34:05 +0200
+Date: Thu, 20 Oct 2022 21:37:17 +0200
 From: netdev@kapio-technology.com
 To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <Y1FHuXE+X/V9aRvh@shredder>
+In-Reply-To: <Y1FE6WFnsH8hcFY2@shredder>
 References: <20221018165619.134535-1-netdev@kapio-technology.com>
- <20221018165619.134535-3-netdev@kapio-technology.com>
- <Y1FHuXE+X/V9aRvh@shredder>
+ <20221018165619.134535-2-netdev@kapio-technology.com>
+ <Y1FE6WFnsH8hcFY2@shredder>
 User-Agent: Gigahost Webmail
-Message-ID: <40edb67ac71ba7eef428c8366753ae94@kapio-technology.com>
+Message-ID: <1c71e62ee5d6c0a7fc54d3e666aca619@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -85,8 +85,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  Petr Machata <petrm@nvidia.com>, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
  Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v8 net-next 02/12] net: bridge: add blackhole
- fdb entry flag
+Subject: Re: [Bridge] [PATCH v8 net-next 01/12] net: bridge: add locked
+ entry fdb flag to extend locked port feature
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,43 +101,62 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2022-10-20 15:06, Ido Schimmel wrote:
-> On Tue, Oct 18, 2022 at 06:56:09PM +0200, Hans J. Schultz wrote:
->> Add a 'blackhole' fdb flag, ensuring that no forwarding from any port
->> to a destination MAC that has a FDB entry with this flag on will 
->> occur.
->> The packets will thus be dropped.
->> 
->> When the blackhole fdb flag is set, the 'local' flag will also be 
->> enabled
->> as blackhole entries are not associated with any port.
+On 2022-10-20 14:54, Ido Schimmel wrote:
+> On Tue, Oct 18, 2022 at 06:56:08PM +0200, Hans J. Schultz wrote:
+>> Add an intermediate state for clients behind a locked port to allow 
+>> for
+>> possible opening of the port for said clients. The clients mac address
+>> will be added with the locked flag set, denying access through the 
+>> port
 > 
-> It reads as if the kernel will enable the 'local' flag automatically,
-> which is not true anymore. The bridge driver enforces that
-> 'NUD_PERMANENT' is set if 'NTF_EXT_BLACKHOLE' is specified.
+> The entry itself is not denying the access through the port, but
+> rather the fact that the port is locked and there is no matching FDB
+> entry.
+> 
+>> for the mac address, but also creating a new FDB add event giving
+>> userspace daemons the ability to unlock the mac address. This feature
+>> corresponds to the Mac-Auth and MAC Authentication Bypass (MAB) named
+>> features. The latter defined by Cisco.
+> 
+> Worth mentioning that the feature is enabled via the 'mab' bridge port
+> option (BR_PORT_MAB).
 > 
 >> 
->> Thus the command will be alike to:
->> bridge fdb add MAC dev br0 local blackhole
+>> Only the kernel can set this FDB entry flag, while userspace can read
+>> the flag and remove it by replacing or deleting the FDB entry.
+>> 
+>> Locked entries will age out with the set bridge ageing time.
 >> 
 >> Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
 > 
-> Looks OK to me. See one comment below.
+> Overall looks OK to me. See one comment below.
 > 
 > Reviewed-by: Ido Schimmel <idosch@nvidia.com>
 > 
 > [...]
 > 
->> @@ -1140,7 +1148,7 @@ static int __br_fdb_add(struct ndmsg *ndm, 
->> struct net_bridge *br,
->>  		err = br_fdb_external_learn_add(br, p, addr, vid, true);
->>  	} else {
->>  		spin_lock_bh(&br->hash_lock);
->> -		err = fdb_add_entry(br, p, addr, ndm, nlh_flags, vid, nfea_tb);
->> +		err = fdb_add_entry(br, p, addr, ndm, nlh_flags, vid, ext_flags, 
->> nfea_tb);
+>> @@ -1178,6 +1192,14 @@ int br_fdb_add(struct ndmsg *ndm, struct nlattr 
+>> *tb[],
+>>  		vg = nbp_vlan_group(p);
+>>  	}
+>> 
+>> +	if (tb[NDA_FLAGS_EXT])
+>> +		ext_flags = nla_get_u32(tb[NDA_FLAGS_EXT]);
+>> +
+>> +	if (ext_flags & NTF_EXT_LOCKED) {
+>> +		pr_info("bridge: RTM_NEWNEIGH has invalid extended flags\n");
 > 
-> I believe the preference is to wrap to 80 columns when possible.
+> I understand this function makes use of pr_info(), but it already gets
+> extack and it's a matter of time until the pr_info() instances will be
+> converted to extack. I would just use extack here like you are doing in
+> the next patch.
+> 
+> Also, I find this message more helpful:
+> 
+> "Cannot add FDB entry with \"locked\" flag set"
+> 
 
-Ok, I only have knowledge of 100 columns as a limit.
+Okay, since Jakub says that this patch set must be resent, the question 
+remains
+to me if I shall make these changes and resend the patch set as v8?
 
