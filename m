@@ -1,84 +1,88 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B46C608A50
-	for <lists.bridge@lfdr.de>; Sat, 22 Oct 2022 10:50:35 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id AF33B60BC0;
-	Sat, 22 Oct 2022 08:50:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AF33B60BC0
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=plvision.eu header.i=@plvision.eu header.a=rsa-sha256 header.s=selector2 header.b=MOfwVini
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t7NwNmjvCYgk; Sat, 22 Oct 2022 08:50:32 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id D4AE1607E3;
-	Sat, 22 Oct 2022 08:50:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D4AE1607E3
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 616F4C007C;
-	Sat, 22 Oct 2022 08:50:31 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 85D32C002D
- for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 08:50:29 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 221AC608CB0
+	for <lists.bridge@lfdr.de>; Sat, 22 Oct 2022 13:32:53 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 2A0F6416F3
- for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 08:50:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2A0F6416F3
-Authentication-Results: smtp4.osuosl.org; dkim=pass (1024-bit key,
- unprotected) header.d=plvision.eu header.i=@plvision.eu header.a=rsa-sha256
- header.s=selector2 header.b=MOfwVini
+	by smtp4.osuosl.org (Postfix) with ESMTP id 82A21416CE;
+	Sat, 22 Oct 2022 11:32:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 82A21416CE
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=V9pZGPnt
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wsvHkNPXaWM9 for <bridge@lists.linux-foundation.org>;
- Sat, 22 Oct 2022 08:50:27 +0000 (UTC)
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id CbVfafmuo0Ni; Sat, 22 Oct 2022 11:32:49 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 59943416D6;
+	Sat, 22 Oct 2022 11:32:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 59943416D6
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DD1B0C007C;
+	Sat, 22 Oct 2022 11:32:47 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 719AAC002D
+ for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 11:32:46 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp1.osuosl.org (Postfix) with ESMTP id 4FF4B83403
+ for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 11:32:46 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4FF4B83403
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=V9pZGPnt
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 11JVqsuK3hlN for <bridge@lists.linux-foundation.org>;
+ Sat, 22 Oct 2022 11:32:45 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org F2E13416E7
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com
- (mail-db8eur05on2121.outbound.protection.outlook.com [40.107.20.121])
- by smtp4.osuosl.org (Postfix) with ESMTPS id F2E13416E7
- for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 08:50:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cmh3hdopKzOri7aOa6/CqvWLZPqH3RQeOkRTCfSKrcuw+B6IqaaPQvz18z4b0ebPDDG5bpq9NFnOzZ5u7D5pS4zgQEWCBrnEFIXM/uQu7yenJP2YSqFojmGIsPIMTX+5zq5IdCp8IpBfA6Sf4ydjwezGKazUb6ogusdzfmbFnZlaORSV6UGagyeYotjrmhG1DXIb5MPH4p2vhg219F5vireCDF7qs7X1JHo3MsCBavNCmr9t6lsBp6xSGhE0j2st7hFG/J5ghgzkozcLxLiyrZJZ1u/dE19MI4kMQC6ZicfrQ5FJN8RVL/kSYuisTDi0NjtuKkVgb3F4tuyl7JvT+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=giJfGDLtqc2o+ahaFbLTwbplaYbC2dMlAFVID8Z/3bM=;
- b=YFZArvM86zSEhlj2egn2uaUC4nrOOwI+YPUf35JHTQ1PkAJuGdty30yWD33lwXTBqDRcEhuIFkf7WBQwCRbAaAT15/AC6eaXg8/buE/xhCLNGX3tPAxC/uE3Ua4Cnto2wRytHc9zpIgyXWaAonDPXAyqjRls9Apm3KVRIL7j5nNOAoTXetT3D0wtGPZ4J5StEgKLgPZsFri22+WM9MevOHXf01MOkgdTR10woEs085sCYg9L8CLdkM6S0oaUgwKr3DZPGb4OtNM7D2wfBDrT5EwCJX1Kv3XjPOhJpxAgI1dgB7PBRzz5AzAcQuXGyJGujqzdkjZhEl+eU2rb013k1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
- dkim=pass header.d=plvision.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=giJfGDLtqc2o+ahaFbLTwbplaYbC2dMlAFVID8Z/3bM=;
- b=MOfwVinifEVmZswwTgK3Pa7RpL0XlfvYBZmiFoAZ1hEfQOFZgIQxUYrLob1/iBo4oyMqtd9ZrJETPynOszbhXRKf1zT+793p2UwiYkIdgREzA81B5gZM/6aJA00Fwdr0RsJWl7a+M4A3WuB9TQcmo3gmcK/TIWgMVTL3KeQvzF8=
-Received: from GV1P190MB2019.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:5b::20)
- by AS8P190MB1863.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:520::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Sat, 22 Oct
- 2022 08:50:21 +0000
-Received: from GV1P190MB2019.EURP190.PROD.OUTLOOK.COM
- ([fe80::ad3f:a290:9b:a47f]) by GV1P190MB2019.EURP190.PROD.OUTLOOK.COM
- ([fe80::ad3f:a290:9b:a47f%9]) with mapi id 15.20.5723.032; Sat, 22 Oct 2022
- 08:50:20 +0000
-From: Oleksandr Mazur <oleksandr.mazur@plvision.eu>
-To: Vladimir Oltean <olteanv@gmail.com>, "netdev@kapio-technology.com"
- <netdev@kapio-technology.com>
-Thread-Topic: [PATCH v8 net-next 10/12] net: dsa: mv88e6xxx: mac-auth/MAB
- implementation
-Thread-Index: AQHY5Xjxdu313+3SqEWfDCgfC808Q64aFd2I
-Date: Sat, 22 Oct 2022 08:50:20 +0000
-Message-ID: <GV1P190MB2019CFA0EB9B5E717F39B621E42C9@GV1P190MB2019.EURP190.PROD.OUTLOOK.COM>
-References: <20221020132538.reirrskemcjwih2m@skbuf>
- <2565c09bb95d69142522c3c3bcaa599e@kapio-technology.com>
- <20221020225719.l5iw6vndmm7gvjo3@skbuf>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 14AB5833A3
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 14AB5833A3
+ for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 11:32:45 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id a67so14837346edf.12
+ for <bridge@lists.linux-foundation.org>; Sat, 22 Oct 2022 04:32:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=FNcxlcjmRlhNk+bv6B7cAEGwdM5R0LeaFhjoH03CG4E=;
+ b=V9pZGPntNZAfrt4tMjcaBvXFuvvPLtmeJTcdaWDR7LnKHyBKe+xcoKmr9zwywSRmL2
+ rDnJ/X3kqlYKBPsPVcK0RUBTFKGgoWRJyq1A1S847kwjwcR657PUZiIaZRRYB5CIVp5v
+ Hh2av0UR0oVek9j3FPR/CLfnU1mxF+vPLWccqkzVntDy4MKHodTfdcyFbQrTjdNKQ5ak
+ pQO/ToUnoRapcVvJ2ZaCb759vqW+gPUneB6/UAyC4hls31hnD48Ilxq1V584B1G5y0Ka
+ 08AnrQXLvIhyZ4ingsiHj+lHef6L4OPiMoAzZno/Jjwl6kQEJCAITgI8+BL8UlDBktb9
+ ALjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FNcxlcjmRlhNk+bv6B7cAEGwdM5R0LeaFhjoH03CG4E=;
+ b=kop4ZnJoz3QrwijvMsOllskbfqe9K6SqSCQJe5HHbQWg8auNmDjGbGZ1mT0JQBPQe3
+ LYZVgkTwb4UYaZsM2loFxMkN1hYCzZKEFE5bp7lEKJ391jra8+0gQWfXg1VyftGDFYHJ
+ AHzQEUSsQiTiHx81Tqa/Ng0bT7SFJKyZjYXJngkPfMGTxTPfVmtjGBNkMg3SQkvqFpDZ
+ SedxsFgw1NZ7utEpIE1JEVvKq3u9ky7p6G9a33DwVWf1riFBsokUANwFNk26w7nf1mIo
+ ZJFxxkp1Ps8iaxoIG9D+I+kSOW+KmTG4r+fTJUlFzITTFPWog/F76l2hKtF2z3WLZyhm
+ uH4Q==
+X-Gm-Message-State: ACrzQf0siaRVDVOVOeuPd7Kx3vFOz5mXwouCT3Eb7pBezcFNVtTvml1M
+ BM1k18uQ3dkiVmkKLRG+YMA=
+X-Google-Smtp-Source: AMsMyM7gsD7G5B+ulzHBeDwhpF+5tFa+eEHmDw3n38Q+gnTfGu7G78wB84BnPaUM3/ZANesdFCHtkg==
+X-Received: by 2002:a05:6402:34d0:b0:460:96c4:94af with SMTP id
+ w16-20020a05640234d000b0046096c494afmr12126869edc.365.1666438362909; 
+ Sat, 22 Oct 2022 04:32:42 -0700 (PDT)
+Received: from skbuf ([188.27.184.197]) by smtp.gmail.com with ESMTPSA id
+ t5-20020a056402524500b0045726e8a22bsm15277836edd.46.2022.10.22.04.32.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 22 Oct 2022 04:32:42 -0700 (PDT)
+Date: Sat, 22 Oct 2022 14:32:38 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Oleksandr Mazur <oleksandr.mazur@plvision.eu>
+Message-ID: <20221022113238.beo5zhufl2x645lf@skbuf>
+References: <20221020225719.l5iw6vndmm7gvjo3@skbuf>
  <82d23b100b8d2c9e4647b8a134d5cbbf@kapio-technology.com>
  <20221021112216.6bw6sjrieh2znlti@skbuf>
  <7bfaae46b1913fe81654a4cd257d98b1@kapio-technology.com>
@@ -87,72 +91,17 @@ References: <20221020132538.reirrskemcjwih2m@skbuf>
  <20221021173014.oit3qmpkrsjwzbgu@skbuf>
  <b88e331e016ad3801f1bf1a0dec507f3@kapio-technology.com>
  <20221021181411.sv52q4yxr5r7urab@skbuf>
-In-Reply-To: <20221021181411.sv52q4yxr5r7urab@skbuf>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=plvision.eu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GV1P190MB2019:EE_|AS8P190MB1863:EE_
-x-ms-office365-filtering-correlation-id: 221281fd-32ff-4998-e23e-08dab40a73a1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ZlwDh+osN5y/q692TYuHDrsZ9OP58upTcs4gfqaAeeREexoFAAlknbFgYPjz64n+cKQjVDPQjrwUYUE3ffeYMWf3U/Xxbvukn6lc+gjVib+1vMdh6jbJLePawL8gQ2eZtd0o3T9ZcUtvs21BzUmS98KY9q+8iuGxEJ2F5AQ6zmChlPt356ElyBNe4gPDonC9Q0eLzqLb+0FJBq9UeMT6qNGtW4Id5sAsxKNXBzUQF4QPsT0SihRb1VFZ9OKakvv8u5L/y5kTSToFkaAB9dvJg5nei170L/GjXveLn+bFmow+a9mX2jJTvxl6oZxQrB2L3dv/dnoUVYvR2ASAhYy0aKvhVtZXKYiqn9pceMwk8M5IQLmFW0Ll6Ni25SWcF3dAkliOJy10SSwtknht+B4MRVGoFfgZm/ZUcJqUNgjwzE5XVTR/jUpYOxADSSatWc+BbuxZKFK082z2P4vyGO75Jc8T9xBsAnoeTodS+T1IIa/JOdHMChnA7Qu66Buu2Jnu9B9FvazQ/9Ucc2lHLgxIT0/Qte+3eKSpEoZF/gSu80Ll8G/h0HrXdEYiR4/synApG8Y2DjO+kcmFcKqTaT6m+6IGa1FE1VYpIDrojeMD4EEXmdph6FATaBAfsi1rb9qFYWNdrISyyUSJTO2YLK4rLK6EvGFuuuStEzoenufWTi9//VuNr8reH8QvVboO/W/fWENKIi4UnxVM3UTFNfYJ8y5NLAch3Gfv1BCzdGksJKYi9ljAMD9TTYnaOCxWFEvHzb/zJbRv2k2UxLTe8M6yvtrxTknKzJWKu9SsbquZZ30=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:GV1P190MB2019.EURP190.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(346002)(136003)(366004)(34036004)(376002)(39830400003)(451199015)(186003)(66899015)(33656002)(2906002)(71200400001)(38100700002)(122000001)(508600001)(38070700005)(8676002)(76116006)(54906003)(41320700001)(4326008)(66476007)(66556008)(64756008)(66446008)(44832011)(110136005)(41300700001)(66946007)(26005)(7416002)(86362001)(7696005)(83380400001)(9686003)(6506007)(7406005)(316002)(91956017)(55016003)(5660300002)(8936002)(52536014);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?q+BGQJrduyl2tWwTHG46FB/xkY+qkFhhHN40Fc+6iXiguUaCbU8AVjkABh?=
- =?iso-8859-1?Q?d8sOq9b4iX0nMa7F87dwfclpxYOjUAapOGy+EBybVrJvAjXa7XxtefVPIj?=
- =?iso-8859-1?Q?h2qPU8kALfWbRUVpWHV62orbaa1Zd9LjB2uTIUl8uk4xOIgn1J0lu/NeC/?=
- =?iso-8859-1?Q?JotLXm7QRbs0rQ5o04Eb9ZVHL2pl9gqaUxsGNtoHAbfzp90tLBc5pMwUAJ?=
- =?iso-8859-1?Q?Xh16Ih0CQopHdAQrqnB4EH0cgqIm3cMANAGzH3Na+CZ6I1tpb07Pl7lpZU?=
- =?iso-8859-1?Q?ROztCYFgQyxaxXU3FwsFg+sP2PXYmcx4FTP91yFFivb8XQ0iftTYC7HN+H?=
- =?iso-8859-1?Q?BTTaIbVYbEeFuq+p4r1ULddMvhKcNRFdlMF4rwgovb+HKa2L6St7Tcm8lu?=
- =?iso-8859-1?Q?lqJx1eYqwfDC7hj/vBEyNlOkoR0jP9t443p6dR7k8ZOgO6qANUS5XynpBa?=
- =?iso-8859-1?Q?LsPp6GiNpF15M4I6mVRLQmqGJ4lv15AjfIdW4vrGbOEsc69ykii7TAcRfy?=
- =?iso-8859-1?Q?FthbKgAvPlGGaDAT9+K35Z2f0kpu3BF7ZHyMqZiHBqxzkuaQCJpBa/C1uS?=
- =?iso-8859-1?Q?2lwj8H/ZkqcDZLdBUKGcdYampVXj0lmY8gv52V6ZSQ2dfrvCua5VG/e9Wk?=
- =?iso-8859-1?Q?MlcQ4HzAYIisSDO08sFPr8/W7T/70v8NwCESU2JXI4ZbPwXkQ7jOMvIMdt?=
- =?iso-8859-1?Q?+UbJTwCsmZrvJBFHJdbBuJN1dqzYrfnoWtRZ2kaVXmPfj3XENnsl3j4DZa?=
- =?iso-8859-1?Q?LaVcjKd6u1fgsjPRYfNDMmIcvLRqFUxY7r7Rn4CAsYeXyGhtH5/dVgdmIP?=
- =?iso-8859-1?Q?AU2XhMBcIyUgnL/yDFqJ1jJW0m/bg4pWAe3Gxowsa34cM5oowL8P2kxR4t?=
- =?iso-8859-1?Q?dcmfo7vv4zOKTE/y+ihAVWO+9+vdfDM/DI8tUA3yMZk1J62qnV6uqeaXDN?=
- =?iso-8859-1?Q?HNRA0VmVM2wHu8k+pq/kfBqW/43Zzn3tRba6JcCC5wE7UP+P4y68GRZ6FB?=
- =?iso-8859-1?Q?efB58/KTc44whDHUsS+nKTmIuZA2cCVUSoE44p6PoZNIaMI9Dem3OInZsC?=
- =?iso-8859-1?Q?ZHQ9QXa9mQIB/mApPsFsleVxsq2o+iTiZCQkVPvHyYXIA0Anei4rRqdIbK?=
- =?iso-8859-1?Q?NpgEROVUYfWu4f1AfelikaZyCECh7O4WepJ4xZ/GVXRMaT2r174DU7kBRs?=
- =?iso-8859-1?Q?Cj5eqMhcCUXDKWwBwj3UQs4+fTxcj37oY5DaBkU3Lk+B1rACSiZT+bTxRJ?=
- =?iso-8859-1?Q?5fbb4sjmfpPxLytqxWzX8Ncpt0SNoVyF07ccjLHR0AOJQIRqU8ga+q0L4c?=
- =?iso-8859-1?Q?fjzpRZgjWr3pBXRR2D/ZsbvhMEKTopANMkzH03j/58v1s/iJnAa5tv0U2z?=
- =?iso-8859-1?Q?14KzGQNl8oqzzmPS1Hz2hMovWnUjSyKrqmuPCX50O2btHWuSRkpESw5mTg?=
- =?iso-8859-1?Q?MXKBoJ/g56Rau9BDcQHdrKOK+h5JHiC7F9+wrWQVotSJqi/DOs846EId4j?=
- =?iso-8859-1?Q?M6ojZhl0SiCxtTMduBgILSZ2zYwnieICuFKczXVSjYY1NRBYk458QMYT58?=
- =?iso-8859-1?Q?Q/ZFOWirXOg+7kW547qwP0kdNjNghpTP/QNwYBX7RguMWGKbhwnS3YfDor?=
- =?iso-8859-1?Q?6jSKQl2VvilCrTsib8ABTuM8cp8Z11F/J4?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ <GV1P190MB2019CFA0EB9B5E717F39B621E42C9@GV1P190MB2019.EURP190.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-X-OriginatorOrg: plvision.eu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV1P190MB2019.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 221281fd-32ff-4998-e23e-08dab40a73a1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2022 08:50:20.8383 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: D51UvtVc5giU+mobzRZKLWqZvBmP/zhvUT/6v6Zg1tPudDReuY+8snQjH+5lMRTFU6MRYKe6UVVOO7Y3aDGV3XRCG6/tKSUqTgTIImdGrgs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1863
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <GV1P190MB2019CFA0EB9B5E717F39B621E42C9@GV1P190MB2019.EURP190.PROD.OUTLOOK.COM>
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
  Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
  "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+ "netdev@kapio-technology.com" <netdev@kapio-technology.com>,
  Joachim Wiberg <troglobit@gmail.com>, Shuah Khan <shuah@kernel.org>,
  Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
  Daniel Borkmann <daniel@iogearbox.net>, Ido Schimmel <idosch@nvidia.com>,
@@ -191,63 +140,89 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-=0A=
-On Fri, Oct 21, 2022 at 07:39:34PM +0200, netdev@kapio-technology.com wrote=
-:=0A=
->> Well, with this change, to have MAB working, the bridge would need learn=
-ing on=0A=
->> of course, but how things work with the bridge according to the flags, t=
-hey=0A=
->> should also work in the offloaded case if you ask me. There should be no=
-=0A=
->> difference between the two, thus MAB in drivers would have to be with=0A=
->> learning on.=0A=
-=0A=
->Am I proposing for things to work differently in the offload and=0A=
->software case, and not realizing it? :-/=0A=
-=0A=
->The essence of my proposal was to send a bug fix now which denies=0A=
->BR_LEARNING to be set together with BR_PORT_LOCKED. The fact that=0A=
->link-local traffic is learned by the software bridge is something=0A=
->unintended as far as I understand.=0A=
-=0A=
->You tried to fix it here, and as far as I could search in my inbox, that=
-=0A=
->didn't go anywhere:=0A=
->https://lore.kernel.org/netdev/47d8d747-54ef-df52-3b9c-acb9a77fa14a@blackw=
-all.org/T/#u=0A=
-=0A=
->I thought only mv88e6xxx offloads BR_PORT_LOCKED, but now, after=0A=
->searching, I also see prestera has support for it, so let me add=0A=
->Oleksandr Mazur to the discussion as well. I wonder how they deal with=0A=
->this? Has somebody come to rely on learning being enabled on a locked=0A=
->port?=0A=
-=0A=
-Hello,=0A=
-=0A=
->The fact that=0A=
->link-local traffic is learned by the software bridge is something=0A=
->unintended as far as I understand.=0A=
-=0A=
-In prestera driver, if port is in blocked state only the PAE frames can be =
-trapped, so i'm not sure where other traffic might come from that you are t=
-alking. Or maybe i didn't get the issue here right, sorry?=0A=
-=0A=
-Also, basically, prestera driver does not rely on the learning flag if the =
-port's flag BR_PORT_LOCKED is set. What this means, is that we discard any =
-learning changes on the port if LOCKED is still set (done inside firmware, =
-if i recall correctly). E.g. learning is always off, if port is in BR_PORT_=
-LOCKED state, or in a block state but also has a static fdb entry (aka mac-=
-auth entry).=0A=
-=0A=
-The concept we follow is basically:=0A=
-  - some userspace daemon blocks the port;=0A=
-  - speaks with the <auth-center> (PAE traffic);=0A=
-  - the daemon itself populates the FDB with authenticated MACs (adding sta=
-tic FDB MACs);=0A=
-  - forces learning flag disable, disables the PORT_LOCKED flag. At this po=
-int switch can basically receive only the traffic from authorized addresses=
- (fdb still has static entries; learning disabled).=0A=
-=0A=
-Hope that helps.=0A=
-Cheers.=
+Hi Oleksandr,
+
+On Sat, Oct 22, 2022 at 08:50:20AM +0000, Oleksandr Mazur wrote:
+> >The essence of my proposal was to send a bug fix now which denies
+> >BR_LEARNING to be set together with BR_PORT_LOCKED. The fact that
+> >link-local traffic is learned by the software bridge is something
+> >unintended as far as I understand.
+> 
+> >You tried to fix it here, and as far as I could search in my inbox, that
+> >didn't go anywhere:
+> >https://lore.kernel.org/netdev/47d8d747-54ef-df52-3b9c-acb9a77fa14a@blackwall.org/T/#u
+> 
+> >I thought only mv88e6xxx offloads BR_PORT_LOCKED, but now, after
+> >searching, I also see prestera has support for it, so let me add
+> >Oleksandr Mazur to the discussion as well. I wonder how they deal with
+> >this? Has somebody come to rely on learning being enabled on a locked
+> >port?
+> 
+> Hello,
+> 
+> >The fact that
+> >link-local traffic is learned by the software bridge is something
+> >unintended as far as I understand.
+> 
+> In prestera driver, if port is in blocked state only the PAE frames
+> can be trapped, so i'm not sure where other traffic might come from
+> that you are talking. Or maybe i didn't get the issue here right,
+> sorry?
+
+I hope the following script will exemplify what I mean.
+
+#!/bin/bash
+
+ip netns add ns0
+ip -n ns0 link add br0 type bridge
+ip -n ns0 link add veth0 type veth peer name veth1
+ip -n ns0 link set veth1 master br0
+ip -n ns0 link set veth1 type bridge_slave locked on learning on
+ip -n ns0 link set veth0 up
+ip -n ns0 link set veth1 up
+ip -n ns0 link set br0 up
+addr=$(ip -j -n ns0 link show dev veth0 | jq -r '.[]["address"]')
+ip netns exec ns0 mausezahn veth0 -q -c 1 -p 64 -b 01:80:c2:00:00:0e -t ip
+sleep 1
+ip netns exec ns0 bridge fdb show dev veth1 master | grep ${addr}
+ip netns del ns0
+
+It will print:
+
+6e:71:0a:8d:85:9e master br0
+
+or in other words, the brport veth1 has learned the MAC SA of veth0 as a
+dynamic FDB entry even with no user space daemon to handle the
+authentication protocol.
+
+In turn, having this MAC SA present in the bridge FDB means that
+communication with this station is now allowed. As far as I can tell,
+this is *not* intended. Only the authentication protocol should create
+the FDB entry.
+
+Compare this with the same script, but with "locked on learning off".
+No FDB entry will be printed.
+
+> 
+> Also, basically, prestera driver does not rely on the learning flag if
+> the port's flag BR_PORT_LOCKED is set. What this means, is that we
+> discard any learning changes on the port if LOCKED is still set (done
+> inside firmware, if i recall correctly). E.g. learning is always off,
+> if port is in BR_PORT_LOCKED state, or in a block state but also has a
+> static fdb entry (aka mac-auth entry).
+
+So I take this as meaning that we could deny BR_LEARNING on ports with
+BR_PORT_LOCKED set, and prestera wouldn't be adversely affected. Ok.
+
+> The concept we follow is basically:
+>   - some userspace daemon blocks the port;
+>   - speaks with the <auth-center> (PAE traffic);
+>   - the daemon itself populates the FDB with authenticated MACs (adding static FDB MACs);
+>   - forces learning flag disable, disables the PORT_LOCKED flag. At
+>   this point switch can basically receive only the traffic from
+>   authorized addresses (fdb still has static entries; learning
+>   disabled).
+
+I don't understand the last step. Why is the BR_PORT_LOCKED flag disabled?
+If disabled, the port will receive frames with any unknown MAC SA,
+not just the authorized ones.
