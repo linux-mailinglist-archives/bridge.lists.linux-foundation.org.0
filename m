@@ -1,100 +1,64 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908226121E6
-	for <lists.bridge@lfdr.de>; Sat, 29 Oct 2022 11:38:12 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3AC6121E9
+	for <lists.bridge@lfdr.de>; Sat, 29 Oct 2022 11:38:15 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 69AD060B13;
+	by smtp3.osuosl.org (Postfix) with ESMTP id DE12460EA5;
 	Sat, 29 Oct 2022 09:38:10 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 69AD060B13
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.a=rsa-sha256 header.s=google header.b=AiYRsbNP
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DE12460EA5
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id BA6tEYEW1Xha; Sat, 29 Oct 2022 09:38:09 +0000 (UTC)
+	with ESMTP id 26IDXnCvSy2N; Sat, 29 Oct 2022 09:38:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 4EF5860B14;
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 929CD60B8E;
 	Sat, 29 Oct 2022 09:38:08 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4EF5860B14
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 929CD60B8E
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D11EDC0088;
-	Sat, 29 Oct 2022 09:38:06 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 09FF8C0033;
+	Sat, 29 Oct 2022 09:38:07 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4CB6AC002D
- for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 20:15:54 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8D5CEC002D
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 20:34:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 12DBE410C1
- for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 20:15:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 12DBE410C1
-Authentication-Results: smtp4.osuosl.org;
- dkim=pass (1024-bit key) header.d=linux-foundation.org
- header.i=@linux-foundation.org header.a=rsa-sha256 header.s=google
- header.b=AiYRsbNP
+ by smtp3.osuosl.org (Postfix) with ESMTP id 6856F6076C
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 20:34:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6856F6076C
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nHTCnM9B3Hdy for <bridge@lists.linux-foundation.org>;
- Thu, 27 Oct 2022 20:15:53 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 14D48410B7
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com
- [IPv6:2607:f8b0:4864:20::931])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 14D48410B7
- for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 20:15:52 +0000 (UTC)
-Received: by mail-ua1-x931.google.com with SMTP id e22so1050448uar.5
- for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 13:15:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=PkxtUHaGFDycP6D2luIHLSXJkXOzlvpiMUNbGq0VIDw=;
- b=AiYRsbNPUrZt3HPq+xtJfDrvafoV3sgbBvDsYvDt8alNybjtz3OkR1xymRkE3QILqj
- mmJ4n9e+K/PVts3cQ2eJ5htk2mJ+mPxzhWMdsaeW6GINZP2CIccvVT49FekPjg7PRFXI
- 92WGHwoPAVqBkaMzcdjnmCw5MEE1uFvTm34eA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=PkxtUHaGFDycP6D2luIHLSXJkXOzlvpiMUNbGq0VIDw=;
- b=z7hwOmJqo+TsgOqOCqOLvxVc2+OPW7zJWgxHdQ84+HtnqiLXucQ67n1+AUldZUfOf3
- ObxIc8azYR+SiEXMbMCqK7v/or6SXPKHxsCnZ0rvg5oI2tnDif3xEbRFewl4zKCd0Q9g
- CibMxoeb9DohOJocjllZF7Aj28DT/QJjyAbSLXnerH2IfWLnGGzG6jA8PvkNzhDnMGrk
- Nrr5F5IMYbg3cfYJXaNW/h9FCnJdmdnz35QhZAJIaOuOSnOVEeRvGArxcLh1M04x6LLw
- boAUkPyT1ipLkWCl6djBJMw8ITA4PCli/IFIIQP/ZbiHcwven6j7QV3BDFaCIvEkDefV
- vYsQ==
-X-Gm-Message-State: ACrzQf00omp7RF03IA8TtPWbkUKYWh1mAMfkpaDxX2ugmFrZy5BnzjqV
- Odikks6GWYC9bpzwkMwZjJJc9Djw3SCFixAv
-X-Google-Smtp-Source: AMsMyM6WRbYPCNK4lYJgn16Zrw/c89ETsB7X5ZWSIcjERncz8lkedxdD9y9LJV6eaC5z1sa0Qm4HUA==
-X-Received: by 2002:a9f:3d88:0:b0:3e2:f8c6:90ca with SMTP id
- c8-20020a9f3d88000000b003e2f8c690camr30411739uai.29.1666901751626; 
- Thu, 27 Oct 2022 13:15:51 -0700 (PDT)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com.
- [209.85.222.44]) by smtp.gmail.com with ESMTPSA id
- w140-20020a1f9492000000b003aea62272d1sm237551vkd.34.2022.10.27.13.15.51
- for <bridge@lists.linux-foundation.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 Oct 2022 13:15:51 -0700 (PDT)
-Received: by mail-ua1-f44.google.com with SMTP id c31so1039074uae.10
- for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 13:15:51 -0700 (PDT)
-X-Received: by 2002:a81:d34c:0:b0:349:1e37:ce4e with SMTP id
- d12-20020a81d34c000000b003491e37ce4emr46057341ywl.112.1666901739776; Thu, 27
- Oct 2022 13:15:39 -0700 (PDT)
-MIME-Version: 1.0
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 6Cg6zEicRkzj for <bridge@lists.linux-foundation.org>;
+ Thu, 27 Oct 2022 20:34:47 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0318A605A1
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 0318A605A1
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Oct 2022 20:34:46 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0147DB827D2;
+ Thu, 27 Oct 2022 20:34:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7EBAC433D7;
+ Thu, 27 Oct 2022 20:34:39 +0000 (UTC)
+Date: Thu, 27 Oct 2022 16:34:53 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20221027163453.383bbf8e@gandalf.local.home>
+In-Reply-To: <CAHk-=wjAjW2P5To82+CAM0Rx8RexQBHPTVZBWBPHyEPGm37oFA@mail.gmail.com>
 References: <20221027150525.753064657@goodmis.org>
  <20221027150928.780676863@goodmis.org>
  <20221027155513.60b211e2@gandalf.local.home>
-In-Reply-To: <20221027155513.60b211e2@gandalf.local.home>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 27 Oct 2022 13:15:23 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjAjW2P5To82+CAM0Rx8RexQBHPTVZBWBPHyEPGm37oFA@mail.gmail.com>
-Message-ID: <CAHk-=wjAjW2P5To82+CAM0Rx8RexQBHPTVZBWBPHyEPGm37oFA@mail.gmail.com>
-To: Steven Rostedt <rostedt@goodmis.org>
-Content-Type: text/plain; charset="UTF-8"
+ <CAHk-=wjAjW2P5To82+CAM0Rx8RexQBHPTVZBWBPHyEPGm37oFA@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sat, 29 Oct 2022 09:38:05 +0000
 Cc: Alexei Starovoitov <ast@kernel.org>, Eric Dumazet <edumazet@google.com>,
  Tony Nguyen <anthony.l.nguyen@intel.com>, linux-afs@lists.infradead.org,
@@ -125,38 +89,53 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Oct 27, 2022 at 12:55 PM Steven Rostedt <rostedt@goodmis.org> wrote:
+On Thu, 27 Oct 2022 13:15:23 -0700
+Linus Torvalds <torvalds@linux-foundation.org> wrote:
+
+> On Thu, Oct 27, 2022 at 12:55 PM Steven Rostedt <rostedt@goodmis.org> wrote:
+> >
+> > I think we need to update this code to squeeze in a del_timer_shutdown() to
+> > make sure that the timers are never restarted.  
+> 
+> So the reason the networking code does this is that it can't just do
+> the old 'sync()' thing, the timers are deleted in contexts where that
+> isn't valid.
+> 
+> Which is also afaik why the networking code does that whole "timer
+> implies a refcount to the socket" and then does the
+> 
+>     if (del_timer(timer))
+>            sock_put()
+> 
+> thing (ie if the del_timer failed - possibly because it was already
+> running - you leave the refcount alone).
+
+OK, so the above is assuming that the timer is always active, and
+del_timer() returns if it successfully removed it (where it can call
+sock_put()), but if del_timer() returns 0, that means the timer is
+currently running (or about to be), so it doesn't call sock_put().
+
+> 
+> So the networking code cannot do the del_timer_shutdown() for the same
+> reason it cannot do the del_timer_sync(): it can't afford to wait for
+> the timer to stop running.
+> 
+> I suspect it needs something like a new "del_timer_shutdown_async()"
+> that isn't synchronous, but does that
+> 
+>  - acts as del_timer in that it doesn't wait, and returns a success if
+> it could just remove the pending case
+> 
+>  - does that "mark timer for shutdown" in that success case
+> 
+> or something similar.
 >
-> I think we need to update this code to squeeze in a del_timer_shutdown() to
-> make sure that the timers are never restarted.
 
-So the reason the networking code does this is that it can't just do
-the old 'sync()' thing, the timers are deleted in contexts where that
-isn't valid.
+What about del_timer_try_shutdown(), that if it removes the timer, it sets
+the function to NULL (making it equivalent to a successful shutdown),
+otherwise it does nothing. Allowing the the timer to be rearmed.
 
-Which is also afaik why the networking code does that whole "timer
-implies a refcount to the socket" and then does the
+I think this would work in this case.
 
-    if (del_timer(timer))
-           sock_put()
+-- Steve
 
-thing (ie if the del_timer failed - possibly because it was already
-running - you leave the refcount alone).
-
-So the networking code cannot do the del_timer_shutdown() for the same
-reason it cannot do the del_timer_sync(): it can't afford to wait for
-the timer to stop running.
-
-I suspect it needs something like a new "del_timer_shutdown_async()"
-that isn't synchronous, but does that
-
- - acts as del_timer in that it doesn't wait, and returns a success if
-it could just remove the pending case
-
- - does that "mark timer for shutdown" in that success case
-
-or something similar.
-
-But the networking people will know better.
-
-               Linus
