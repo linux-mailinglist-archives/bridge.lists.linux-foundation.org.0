@@ -1,89 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC1D616399
-	for <lists.bridge@lfdr.de>; Wed,  2 Nov 2022 14:17:09 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CA2061639A
+	for <lists.bridge@lfdr.de>; Wed,  2 Nov 2022 14:17:29 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 862418175B;
-	Wed,  2 Nov 2022 13:17:07 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 862418175B
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=Co9RGYZG
+	by smtp4.osuosl.org (Postfix) with ESMTP id C81A3414FA;
+	Wed,  2 Nov 2022 13:17:22 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C81A3414FA
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=DFPfB3M7
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bLcv_Z4WA_7d; Wed,  2 Nov 2022 13:17:06 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id mZJ4g5m15PmW; Wed,  2 Nov 2022 13:17:21 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id E3C6181DCB;
-	Wed,  2 Nov 2022 13:17:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E3C6181DCB
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 012B440934;
+	Wed,  2 Nov 2022 13:17:21 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 012B440934
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6840CC007B;
-	Wed,  2 Nov 2022 13:17:05 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B535BC007B;
+	Wed,  2 Nov 2022 13:17:20 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DF42FC002D
- for <bridge@lists.linux-foundation.org>; Wed,  2 Nov 2022 13:17:03 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 46E04C002D
+ for <bridge@lists.linux-foundation.org>; Wed,  2 Nov 2022 13:17:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id B9D69409D8
- for <bridge@lists.linux-foundation.org>; Wed,  2 Nov 2022 13:17:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B9D69409D8
-Authentication-Results: smtp2.osuosl.org;
+ by smtp3.osuosl.org (Postfix) with ESMTP id 2F5A860EC4
+ for <bridge@lists.linux-foundation.org>; Wed,  2 Nov 2022 13:17:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2F5A860EC4
+Authentication-Results: smtp3.osuosl.org;
  dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
  header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
- header.s=20210112 header.b=Co9RGYZG
+ header.s=20210112 header.b=DFPfB3M7
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 7mjVkDxUTzkk for <bridge@lists.linux-foundation.org>;
- Wed,  2 Nov 2022 13:16:58 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id jpbfYQTuKK1f for <bridge@lists.linux-foundation.org>;
+ Wed,  2 Nov 2022 13:17:18 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CEA3540168
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6BEDD60E89
 Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
  [IPv6:2a00:1450:4864:20::62d])
- by smtp2.osuosl.org (Postfix) with ESMTPS id CEA3540168
- for <bridge@lists.linux-foundation.org>; Wed,  2 Nov 2022 13:16:57 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id b2so45231636eja.6
- for <bridge@lists.linux-foundation.org>; Wed, 02 Nov 2022 06:16:57 -0700 (PDT)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 6BEDD60E89
+ for <bridge@lists.linux-foundation.org>; Wed,  2 Nov 2022 13:17:18 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id f5so23664614ejc.5
+ for <bridge@lists.linux-foundation.org>; Wed, 02 Nov 2022 06:17:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20210112.gappssmtp.com; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=L0plc7VTbxlANYhpRBuv1ctV0TdjHiSqfJ6g/74SBJk=;
- b=Co9RGYZGKjU8rVmpuqVho98QclNwo0dnaNPCnN5tkRYlqskj6sWoKlaY8XBnMX0Do1
- tiHteVDhFcix1rJdO7NG8/RZms+RYbGkRnrkPwnI5y7EwG5ied2KO3C1jiWu08dxA7Nh
- 5iRF1CUAkvNzpZis6wrokRPKcJPqxJXLMuhZ/CXV/31bJT9zD7NuYiQfhXnH8emk39x2
- fq6kK1C9Sh7eChaTfwopAdMhL5Q2eUQ/D081YtqRAV/POPuY/+TRth8PI3dyjmDi7TEp
- LC5GL/RafG/tHvKxiZrqBp7bm7tU8khOtiWGtpu92+ZTH7Tv8mnDwgFUxynd9TuyKR/J
- pz8A==
+ bh=W2GcMv8pOvaPEAMnxR0b2BFRXC3cBLDvdSpZBuBV1Jo=;
+ b=DFPfB3M7oAMC8PkVivnCzgQtBs8Kl+Kxm4iFZUX85i3y/zxbsp8GJBbkwbWC8zs9/6
+ wDFSpVDIgIEcow+viNHpAUcg3A1zbBJ0Anchwb+GpDiRKpHNYTuBQtahpx97MliiwYxc
+ 6UzOySWlUatBjH7Br9tfPFD2HSaKcJgwfEgYftIzLHH61aKu3JzVXnn/Dvk3JBYp5Sev
+ RVMgJ0IUizD9ETrAltXjTdBocmplkPH4/A+fGsXQKxsXZfiK8ysuhTrYC7klDFV6eU32
+ 3shOmCpL0VEJKeiRgSoxHdhS5cGgy4P9QgG95C8iNK/no8IDlHDFhs/o+cNvcwB9NUwo
+ YIOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=L0plc7VTbxlANYhpRBuv1ctV0TdjHiSqfJ6g/74SBJk=;
- b=OofyoNVyVawtga2y966eIpUA0iIHHXmlzzyXx2efgm3hksswRklqVYeWTQ2uTyyN+r
- avTO+x29FvSLCSRap6z1CrbMgLxJ2JREXI+UxfPLJ6WsWz7P/LEU+kzdbBt4+OzKD3wN
- lJJWbn5l7pOsH3rn/ApRy/CspMQCa0MG3iu7WOkVE0/wtRYNhRQ2ds+hX9ZV/WLXLLWn
- 46Qj1snSSVYA4b6e2gcW0KLmxHTqLaE+B91k1mWUXSOYq+TGzBUj553X8lCZbv2j9VGl
- DYdDYc4ekl/iyud7e/i10i18Na0r+6ytXoZg3EB3qs2U3+hf7AQ3gskFkSDeoFG4Yr5f
- Bj5g==
-X-Gm-Message-State: ACrzQf3jxHzNGL8bqiX1y5qP3/Z5na5NjqHmsCxve+o7aIpgyOMZ27TS
- 3B07SmXqO/wZAB2bGVb6NJibPA==
-X-Google-Smtp-Source: AMsMyM68AVqZxcsFj3pbl2xDjPeLZKLMMG+TtNXblD1VZpS6wjP9E5z/8pIiMjC04/bUcHLm8xtaKg==
-X-Received: by 2002:a17:907:c19:b0:7ad:e10b:c415 with SMTP id
- ga25-20020a1709070c1900b007ade10bc415mr11873778ejc.537.1667395015990; 
- Wed, 02 Nov 2022 06:16:55 -0700 (PDT)
+ bh=W2GcMv8pOvaPEAMnxR0b2BFRXC3cBLDvdSpZBuBV1Jo=;
+ b=AfCHuYpJGd1vO4gR3znzCLNNp7GpXehYcWP/ufojd7qQfeA6k09zWurwoef5jpkOd7
+ 8l3G0I2/8tedeI8epZHgbKDHvAUP1URrZ7hLRguiT/aLfY0GQn9KZmHklT8NYvuJVu7T
+ OmMdjZWHFTozJ//cyfFXZLHoLQ6BjfP4rRiUmiYBjPlH8UPpdRXgzyvAbBEdVS0qIRN7
+ oxkj7/jilabwR5rwt5rSVUim5fOuYt1u5JsVBA1jegMEy8AiZgTPaGmHyeeZnhqo5wsl
+ Rh54DYYQi6nxGUc+jrXb1AVcIc/FVZJ9s5Vnuyb8rFc+9J+7Yjw0rBKMUXLUEOBtBOcL
+ C/2A==
+X-Gm-Message-State: ACrzQf2v8PhxUboBPh0pWAzcRiK0O2+zhc04cbQAO7xGWHaN+0X0Oxn6
+ UXJYSZaCtDkMct5xsBQmabcbbQ==
+X-Google-Smtp-Source: AMsMyM6txEVEJeNLSxpDnBkjqJ2yO8QGYeyGgGIMZVVy2WqGO9znnisGLd6jZDtsLN19HuuCNXqKwg==
+X-Received: by 2002:a17:907:7e87:b0:78e:1a4:130 with SMTP id
+ qb7-20020a1709077e8700b0078e01a40130mr24314284ejc.101.1667395036455; 
+ Wed, 02 Nov 2022 06:17:16 -0700 (PDT)
 Received: from [192.168.0.161] (79-100-144-200.ip.btc-net.bg. [79.100.144.200])
  by smtp.gmail.com with ESMTPSA id
- u1-20020a1709064ac100b0078df26efb7dsm445959ejt.107.2022.11.02.06.16.55
+ s14-20020a056402014e00b00463a83ce063sm2253048edu.96.2022.11.02.06.17.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Nov 2022 06:16:55 -0700 (PDT)
-Message-ID: <c2c74974-22f3-46b5-b821-2f2b98ebe9b4@blackwall.org>
-Date: Wed, 2 Nov 2022 15:16:54 +0200
+ Wed, 02 Nov 2022 06:17:16 -0700 (PDT)
+Message-ID: <b3d528d1-a7b7-9e8c-c7d0-3f658c0162c0@blackwall.org>
+Date: Wed, 2 Nov 2022 15:17:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.1
@@ -91,16 +91,16 @@ Content-Language: en-US
 To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org
 References: <20221101193922.2125323-1-idosch@nvidia.com>
- <20221101193922.2125323-2-idosch@nvidia.com>
+ <20221101193922.2125323-3-idosch@nvidia.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20221101193922.2125323-2-idosch@nvidia.com>
+In-Reply-To: <20221101193922.2125323-3-idosch@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Cc: vladimir.oltean@nxp.com, roopa@nvidia.com, edumazet@google.com,
  mlxsw@nvidia.com, netdev@kapio-technology.com, kuba@kernel.org,
  pabeni@redhat.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add MAC Authentication
- Bypass (MAB) support
+Subject: Re: [Bridge] [PATCH net-next 2/2] selftests: forwarding: Add MAC
+ Authentication Bypass (MAB) test cases
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -118,63 +118,21 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 On 01/11/2022 21:39, Ido Schimmel wrote:
 > From: "Hans J. Schultz" <netdev@kapio-technology.com>
 > 
-> Hosts that support 802.1X authentication are able to authenticate
-> themselves by exchanging EAPOL frames with an authenticator (Ethernet
-> bridge, in this case) and an authentication server. Access to the
-> network is only granted by the authenticator to successfully
-> authenticated hosts.
+> Add four test cases to verify MAB functionality:
 > 
-> The above is implemented in the bridge using the "locked" bridge port
-> option. When enabled, link-local frames (e.g., EAPOL) can be locally
-> received by the bridge, but all other frames are dropped unless the host
-> is authenticated. That is, unless the user space control plane installed
-> an FDB entry according to which the source address of the frame is
-> located behind the locked ingress port. The entry can be dynamic, in
-> which case learning needs to be enabled so that the entry will be
-> refreshed by incoming traffic.
+> * Verify that a locked FDB entry can be generated by the bridge,
+>   preventing a host from communicating via the bridge. Test that user
+>   space can clear the "locked" flag by replacing the entry, thereby
+>   authenticating the host and allowing it to communicate via the bridge.
 > 
-> There are deployments in which not all the devices connected to the
-> authenticator (the bridge) support 802.1X. Such devices can include
-> printers and cameras. One option to support such deployments is to
-> unlock the bridge ports connecting these devices, but a slightly more
-> secure option is to use MAB. When MAB is enabled, the MAC address of the
-> connected device is used as the user name and password for the
-> authentication.
+> * Test that an entry cannot roam to a locked port, but that it can roam
+>   to an unlocked port.
 > 
-> For MAB to work, the user space control plane needs to be notified about
-> MAC addresses that are trying to gain access so that they will be
-> compared against an allow list. This can be implemented via the regular
-> learning process with the sole difference that learned FDB entries are
-> installed with a new "locked" flag indicating that the entry cannot be
-> used to authenticate the device. The flag cannot be set by user space,
-> but user space can clear the flag by replacing the entry, thereby
-> authenticating the device.
+> * Test that MAB can only be enabled on a port that is both locked and
+>   has learning enabled.
 > 
-> Locked FDB entries implement the following semantics with regards to
-> roaming, aging and forwarding:
-> 
-> 1. Roaming: Locked FDB entries can roam to unlocked (authorized) ports,
->    in which case the "locked" flag is cleared. FDB entries cannot roam
->    to locked ports regardless of MAB being enabled or not. Therefore,
->    locked FDB entries are only created if an FDB entry with the given {MAC,
->    VID} does not already exist. This behavior prevents unauthenticated
->    devices from disrupting traffic destined to already authenticated
->    devices.
-> 
-> 2. Aging: Locked FDB entries age and refresh by incoming traffic like
->    regular entries.
-> 
-> 3. Forwarding: Locked FDB entries forward traffic like regular entries.
->    If user space detects an unauthorized MAC behind a locked port and
->    wishes to prevent traffic with this MAC DA from reaching the host, it
->    can do so using tc or a different mechanism.
-> 
-> Enable the above behavior using a new bridge port option called "mab".
-> It can only be enabled on a bridge port that is both locked and has
-> learning enabled. Locked FDB entries are flushed from the port once MAB
-> is disabled. A new option is added because there are pure 802.1X
-> deployments that are not interested in notifications about locked FDB
-> entries.
+> * Test that locked FDB entries are flushed from a port when MAB is
+>   disabled.
 > 
 > Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
 > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
@@ -182,28 +140,20 @@ On 01/11/2022 21:39, Ido Schimmel wrote:
 > 
 > Notes:
 >     v1:
->     * Extend commit message.
->     * Adjust extack message.
->     * Flush locked FDB entries when MAB is disabled.
->     * Refresh locked FDB entries.
->     * Add comments in br_handle_frame_finish().
+>     * Adjust commit message.
+>     * Add FDB flushing test case.
 >     
 >     Changes made by me:
 >     * Reword commit message.
->     * Reword comment regarding 'NTF_EXT_LOCKED'.
->     * Use extack in br_fdb_add().
->     * Forbid MAB when learning is disabled.
+>     * Remove blackhole tests as they are not relevant for this series.
+>     * Add configuration test case.
+>     * Add a few additional test cases.
 > 
->  include/linux/if_bridge.h      |  1 +
->  include/uapi/linux/if_link.h   |  1 +
->  include/uapi/linux/neighbour.h |  8 +++++++-
->  net/bridge/br_fdb.c            | 24 ++++++++++++++++++++++++
->  net/bridge/br_input.c          | 21 +++++++++++++++++++--
->  net/bridge/br_netlink.c        | 21 ++++++++++++++++++++-
->  net/bridge/br_private.h        |  3 ++-
->  net/core/rtnetlink.c           |  5 +++++
->  8 files changed, 79 insertions(+), 5 deletions(-)
+>  .../net/forwarding/bridge_locked_port.sh      | 155 +++++++++++++++++-
+>  tools/testing/selftests/net/forwarding/lib.sh |   8 +
+>  2 files changed, 162 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+
 
