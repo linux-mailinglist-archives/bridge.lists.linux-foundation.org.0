@@ -1,87 +1,159 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA99618AD6
-	for <lists.bridge@lfdr.de>; Thu,  3 Nov 2022 22:51:36 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6876618B90
+	for <lists.bridge@lfdr.de>; Thu,  3 Nov 2022 23:32:04 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9CAE66102D;
-	Thu,  3 Nov 2022 21:51:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9CAE66102D
+	by smtp4.osuosl.org (Postfix) with ESMTP id 0539641863;
+	Thu,  3 Nov 2022 22:32:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0539641863
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=FLCCbNDU
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id heMabFGJCSBu; Thu,  3 Nov 2022 21:51:34 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 2CC6E6103B;
-	Thu,  3 Nov 2022 21:51:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2CC6E6103B
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LoXr1d_M6AyA; Thu,  3 Nov 2022 22:32:00 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id D0ED94186A;
+	Thu,  3 Nov 2022 22:31:59 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D0ED94186A
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B9882C007B;
-	Thu,  3 Nov 2022 21:51:32 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 53D39C007B;
+	Thu,  3 Nov 2022 22:31:59 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3B0C7C002D
- for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 21:51:31 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 37FF4C002D
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 22:31:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 162BD81E68
- for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 21:51:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 162BD81E68
+ by smtp3.osuosl.org (Postfix) with ESMTP id 1889761048
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 22:31:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1889761048
+Authentication-Results: smtp3.osuosl.org; dkim=pass (1024-bit key,
+ unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
+ header.s=selector2 header.b=FLCCbNDU
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 6qbCX0azqzIz for <bridge@lists.linux-foundation.org>;
- Thu,  3 Nov 2022 21:51:30 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EA6BE81E63
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by smtp1.osuosl.org (Postfix) with ESMTPS id EA6BE81E63
- for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 21:51:29 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 05632B82A3F;
- Thu,  3 Nov 2022 21:51:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D00C6C433D6;
- Thu,  3 Nov 2022 21:51:24 +0000 (UTC)
-Date: Thu, 3 Nov 2022 17:51:23 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Paolo Abeni <pabeni@redhat.com>
-Message-ID: <20221103175123.744d0f37@rorschach.local.home>
-In-Reply-To: <27a6a587fee5e9172e41acd16ae1bc1f556fdbd7.camel@redhat.com>
-References: <20221027150525.753064657@goodmis.org>
- <20221027150928.780676863@goodmis.org>
- <20221027155513.60b211e2@gandalf.local.home>
- <CAHk-=wjAjW2P5To82+CAM0Rx8RexQBHPTVZBWBPHyEPGm37oFA@mail.gmail.com>
- <20221027163453.383bbf8e@gandalf.local.home>
- <CAHk-=whoS+krLU7JNe=hMp2VOcwdcCdTXhdV8qqKoViwzzJWfA@mail.gmail.com>
- <20221027170720.31497319@gandalf.local.home>
- <20221027183511.66b058c4@gandalf.local.home>
- <20221028183149.2882a29b@gandalf.local.home>
- <20221028154617.3c63ba68@kernel.org>
- <27a6a587fee5e9172e41acd16ae1bc1f556fdbd7.camel@redhat.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id NQNjGAG_3xRk for <bridge@lists.linux-foundation.org>;
+ Thu,  3 Nov 2022 22:31:56 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 293E261027
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com
+ (mail-am7eur03on2081.outbound.protection.outlook.com [40.107.105.81])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 293E261027
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 22:31:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eZoafPnv7iG3TH6umuFhm9Cjo6KS9LTsSatgR6TR6UcJP/MXE+lSCcT4zAVsNgpcxag1TVLVmMZIEl/7uOSaFBRTjhZTKCpPNLoOOtt2GZR58U4ubRA4P5kQkRfQwTWP0WLXo9R7INmgJ4y17Psfs2QM77e8Apqd7cpJywqQbDUQV6lki2ejP0zXOYcGROhXlpXDHZIzIjG7dCwE0SagHrEZRTE4/+dd2DftQL54GlBPa2dhTUSN2QEy3sYLBH1SttbUzHegDVgkfrYDYKjFDqUE596SuZjEA8oyANcvZYblZDnT7OyihY1xzY01sLB7Jx25K9TnXzlxjr6iMRQMxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qYPVAx00pruXWCdYLN3zWIHZveGr8VlYBMy2AuGBMd0=;
+ b=YGWILvRS1/izj7+/XDg0f2UO/XufB48a3dwXj38Jzja7NraSGeZVhM4Fc0eTk2xuENtiR02sEHKV8ExFTog4tKAELdulCF0oWu3IDlkYnoqwfjTD3OjFjIYdXbXvOkJkJnHB4hErYF5npqIw2gLd3QukihxcbQ5STpY/J9lpimUUcdI97fujx74RRlVqs1lt39MXcZkJRovT/YjGEK+fbCFBNb4MQhH8eh7K3WIo2y1cO3wnBLj9vxnJVUFsueM8amhxtaN/F/DqL6vOf5elnOLC0qTK1isjMjpuD1O1RhuW6r3z9dHfs56lvdseMk93vgvRp906Amw2NW+7j4ek1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qYPVAx00pruXWCdYLN3zWIHZveGr8VlYBMy2AuGBMd0=;
+ b=FLCCbNDUO7vhfJJ6/DkiQrQjcyThY0NYOtdUnzV1UWpbJt0mUw/TX5/RFDdgGjCBbWX9D0SvAzjMtxNswXRKKJLRff77T5O0mN/B+wATbv5f6Y752zmWJ6i0e+MGMfelUwWKUzskjdDU0m5YJ/CxgbGf01atG7Map0qn7Bb1hlI=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by AS8PR04MB8818.eurprd04.prod.outlook.com (2603:10a6:20b:42d::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.20; Thu, 3 Nov
+ 2022 22:31:52 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::df5b:6133:6d4c:a336]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::df5b:6133:6d4c:a336%7]) with mapi id 15.20.5769.022; Thu, 3 Nov 2022
+ 22:31:52 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Ido Schimmel <idosch@nvidia.com>
+Thread-Topic: [RFC PATCH net-next 10/16] mlxsw: spectrum_switchdev: Add
+ support for locked FDB notifications
+Thread-Index: AQHY6FjUVuDB5/kMGkqgz4g+zKbN+K4moPuAgAGU3ACABaGZgA==
+Date: Thu, 3 Nov 2022 22:31:52 +0000
+Message-ID: <20221103223151.cnmlvgnz3maj75iv@skbuf>
+References: <20221025100024.1287157-1-idosch@nvidia.com>
+ <20221025100024.1287157-1-idosch@nvidia.com>
+ <20221025100024.1287157-11-idosch@nvidia.com>
+ <20221025100024.1287157-11-idosch@nvidia.com>
+ <20221027233939.x5jtqwiic2kmwonk@skbuf> <Y140a2DqcCaT/5uL@shredder>
+ <20221031083210.fxitourrquc4bo6p@skbuf>
+In-Reply-To: <20221031083210.fxitourrquc4bo6p@skbuf>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|AS8PR04MB8818:EE_
+x-ms-office365-filtering-correlation-id: 8521477b-834f-4ea9-8016-08dabdeb34b6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: plb79DAE/LpLx6KfnA9eL8lJ8ZNTuovKw2nbTNoaCR28Hr7JphAHyEa+wCJmXl8ZY2JrFrWNn8csrqLiCBEH39/ooy8AJruY11VMP7U/H4abFXMVZacek2xFrOounXjrPyMHzyk6hQvwAudRQFgXn4djPCufoaN3W7sIGo6ScROpTQwOz25p2kIDZeEXXNQd5co1/n+kODwjzns6yRIgIkgd2LIrgBuP3wb4OGSoDxpCp5Lw2cCrQpCMBmRzBVETWLuqSPmEy7UbeTvjMNsd0rlAq4XQXSYIb8yHIjZHmegn/6SgIo3qbpI4zfQ4ROHkfrGyWcLTDO2EI2Z6fQIv1uXwEnufrzYraVVemAYC0i9G4JXjOJ/kNQlVw/fywNVoZWC97q2tHPIzyM2InZhKTThCQi799hm1VX0ORYalOkumZ0I7K3UJsHExMVHymoVxclg9WU0OZPI/Dqu3EKnZMKKPBP7gtZJKAdXw6w850HqgBHYsXly0L9DUKTYjTT0r9wSmHa/C7EW+LxYU7A6MtOdJuctk5gxKu65XjyEyw96ZRwtQYuBk5ZeLrEk/B2qACSVk3na+JJ0gj3Mobm9Ogt8f1Pqm/uAibPHNodPK+AIC8lNhXBzdAK9Mo0C7+BwjUY5bpeh+rn5zMnwQgJrmk07Uc4AL7mYvmcymgCKLpNZ3NamE+g/jmPX9cHurBY48hYvMWtVy6ZwNQo7lUBCdfKADAARBAUJfB3riCWRO4OlmDI5yBeXVodcqQrnC/D40e+vEC8/y5jXS/bjbiglj7Q==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(7916004)(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(451199015)(2906002)(38070700005)(64756008)(83380400001)(7416002)(5660300002)(44832011)(91956017)(6506007)(4326008)(8676002)(41300700001)(6512007)(8936002)(86362001)(6486002)(478600001)(66446008)(54906003)(66476007)(26005)(9686003)(1076003)(122000001)(66556008)(38100700002)(316002)(186003)(33716001)(76116006)(66946007)(6916009)(71200400001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JmKA0ZMFT87qYwb5gQ7xB4zpqUJJ3oJPXG8qPbKN+CHakZep1LoLkYa3q/AD?=
+ =?us-ascii?Q?n7gjJJ8Ak2Cj0ebql1WMjvXPZ0G/yQNu+rSas4mZ4/AivaYYY9Q0xbm/9M7b?=
+ =?us-ascii?Q?YeLST9OwNSP62FeOBFDfi3odaRuCHBykyvwgZ/4WL7zrWN+MdoOV2enyh0ML?=
+ =?us-ascii?Q?di4NZcfLOIFHhQATOiaCvAkSkK0+tyIf0A6mZFD6VcODNOOCDTfq3fX6X4KA?=
+ =?us-ascii?Q?q3AfMNo8Sw2dRaj+CDqVb369kEg4KW9i0+TunjR23hJfBIM9tCgY/FQ+WUuT?=
+ =?us-ascii?Q?1z19AGsbThVlF0GHVu5ueUASnZBOqx32yBpSPDaocCHapbIG3In2g3zCpH/V?=
+ =?us-ascii?Q?gBaF2tbIXhSHrMTbOVNGVmXeCkA8bnyMkeLfYZN0gOKBqAilh5aj4NFBcgyj?=
+ =?us-ascii?Q?FWKrMJzywOHvw92+kfnjxEDf7GqEpibaQN9yBy4rbehHO9m6qKNN5DxGb6lD?=
+ =?us-ascii?Q?ZfVYprZtn1b3M7MnAeu25uTZo7EM4pnE2DyFhrjT7l+3HPOYFrfPMLOCtRgS?=
+ =?us-ascii?Q?QBHgkolZNTqKUwXiWc3qJTsRxfFA6YorlUJOEPz1t1RRZT4RJIaOB+XWbb0H?=
+ =?us-ascii?Q?3A3nSFTNPeJt8QfK3vqaCRVt/a3S3KyTgcJJG3bWWQdqFMJloLg9UoLlsULn?=
+ =?us-ascii?Q?HEKjtX068MDLA0wtiaa7lW8WSiN21FMK9J2KVgFL6VdVDDbEeyqtOp/o7Oqx?=
+ =?us-ascii?Q?pCnQi5TDXhrFbTi1vcRgilTQRQW7vvSwoS87zGJrIbetvXHvWmqJMSZz++Dr?=
+ =?us-ascii?Q?NzmRLowPkhzV2XP9qs9SnivUcrF68BrocE39ufeYK5e2bKfzg5VXVhCTeYGX?=
+ =?us-ascii?Q?/8kiHMnxcchBr6q8c4CIpQYBKaZ9HRPm2NpWoLFPYYcnUCSaHnQ+Cu2ChRYr?=
+ =?us-ascii?Q?BEUNCTAFjLFn5aFh+59HUKaStNvJMWNCbGK3i+41Mff1wpuhxcgc7EAah8AT?=
+ =?us-ascii?Q?D/q21wtpI6YAlQdoOHxo2xS2LcIuA1AJvTOQsDfHpswNjaVmmhwBeVPbg3CB?=
+ =?us-ascii?Q?aaHOBi0q4K0Kpp8HNLMhihN8jRG46qP6M3B+1Lq9jxymHNYW4U4nevgwMF2D?=
+ =?us-ascii?Q?r0jLzM4JdSyXWj3w66e37uHgCs/0hc/MppaxudUSW9HSmKgJcdFTHMsO79cC?=
+ =?us-ascii?Q?hAuqWH0aWGGZ325QLczN5Th98wBvL9qTVETorY5JV4X/74m7D+sM0qgpQ+RG?=
+ =?us-ascii?Q?eU/aqdqiwVLbFttQTdlm6rXF8zvOIkveZ2hpHCWjpAeuyYZRJvGeYM0OETU7?=
+ =?us-ascii?Q?tqYdOU0YhBrtdEJINYgtQF7vDUttHgZ8ZV39MDdKpoD/VWnfbnQbVQQjlq06?=
+ =?us-ascii?Q?mL8VLlJZrnoBL9ozosoMNgARJ33mfB/8DL4pjCp9fSPH9MNF04SoLh1wG2lf?=
+ =?us-ascii?Q?Ywyb35mDvcUpvt/PhrYDfjQCsRFv4i9FTITs2gFwmhas82NrjlL9m2x1LFOD?=
+ =?us-ascii?Q?Mk37dExYjJmLtl/MzdN1op/XOrS2J5qApicr2vctFfeciIAioOqkhdKqZp9f?=
+ =?us-ascii?Q?yAF1c72dWpWlfH/gLI3KV0c2J6s+xRajUKdP+alHUCRYYixjqYrXlCrOF0ix?=
+ =?us-ascii?Q?kiNH6CBTonKrgDQW3kH1/Sh/LJP/Za2C7z9yGZKG+WMsFpoMpZ6hCBeJ+H33?=
+ =?us-ascii?Q?SA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <B6F645F835A7934F8F5F062CF56253DD@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: Alexei Starovoitov <ast@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>, linux-afs@lists.infradead.org,
- Menglong Dong <imagedong@tencent.com>, bridge@lists.linux-foundation.org,
- Jesse Brandeburg <jesse.brandeburg@intel.com>, lvs-devel@vger.kernel.org,
- coreteam@netfilter.org, Jakub Kicinski <kuba@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>, Martin KaFai Lau <martin.lau@kernel.org>,
- Kuniyuki Iwashima <kuniyu@amazon.com>, Thomas Gleixner <tglx@linutronix.de>,
- Mirko Lindner <mlindner@marvell.com>, linux-nfs@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, Stephen Boyd <sboyd@kernel.org>,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- netfilter-devel@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Pavel Begunkov <asml.silence@gmail.com>
-Subject: Re: [Bridge] [RFC][PATCH v2 19/31] timers: net: Use
- del_timer_shutdown() before freeing timer
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8521477b-834f-4ea9-8016-08dabdeb34b6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2022 22:31:52.5373 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uFTH+pqizUEidhrmtPP795IuThS4gR3tWl+gk/32zpRXdMAksc8XJtjkaEpsK9kD4MVrCtRJ+WVjXeHh8/RQKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8818
+Cc: "petrm@nvidia.com" <petrm@nvidia.com>,
+ "ivecera@redhat.com" <ivecera@redhat.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "razor@blackwall.org" <razor@blackwall.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "roopa@nvidia.com" <roopa@nvidia.com>,
+ "netdev@kapio-technology.com" <netdev@kapio-technology.com>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "mlxsw@nvidia.com" <mlxsw@nvidia.com>, "jiri@nvidia.com" <jiri@nvidia.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+ "davem@davemloft.net" <davem@davemloft.net>
+Subject: Re: [Bridge] [RFC PATCH net-next 10/16] mlxsw: spectrum_switchdev:
+ Add support for locked FDB notifications
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,75 +168,31 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sun, 30 Oct 2022 18:22:03 +0100
-Paolo Abeni <pabeni@redhat.com> wrote:
+Hi Ido,
 
-> On the positive side, I think converting the sk_stop_timer in 
-> inet_csk_clear_xmit_timers() should be safe and should cover the issue
-> reported by Guenter
+On Mon, Oct 31, 2022 at 10:32:10AM +0200, Vladimir Oltean wrote:
+> On Sun, Oct 30, 2022 at 10:23:07AM +0200, Ido Schimmel wrote:
+> > Right. I'm quite reluctant to add the MAB flag to
+> > BR_PORT_FLAGS_HW_OFFLOAD as part of this patchset for the simple reason
+> > that it is not really needed. I'm not worried about someone adding it
+> > later when it is actually needed. We will probably catch the omission
+> > during code review. Worst case, we have a selftest that will break,
+> > notifying us that a bug fix is needed.
+>=20
+> For drivers which don't emit SWITCHDEV_FDB_ADD_TO_BRIDGE but do offload
+> BR_PORT_LOCKED (like mv88e6xxx), things will not work correctly on day 1
+> of BR_PORT_MAB because they are not told MAB is enabled, so they have no
+> way of rejecting it until things work properly with the offload in place.
+>=20
+> It's the same reason for which we have BR_HAIRPIN_MODE | BR_ISOLATED |
+> BR_MULTICAST_TO_UNICAST in BR_PORT_FLAGS_HW_OFFLOAD, even if nobody acts
+> upon them.
 
-Would something like this be OK? 
+Do you have any comment on this? You resent the BR_PORT_MAB patches
+without even an ack that yes, mv88e6xxx will not support MAB being
+enabled on a bridge port, and will not reject the configuration either,
+and that's ok/intended.
 
-[ Note, talking with Thomas Gleixner, we agreed that we are changing the
-  name to: time_shutdown_sync() and timer_shutdown() (no wait version).
-  I'll be posting new patches soon. ]
-
--- Steve
-
-diff --git a/include/net/sock.h b/include/net/sock.h
-index 22f8bab583dd..0ef58697d4e5 100644
---- a/include/net/sock.h
-+++ b/include/net/sock.h
-@@ -2439,6 +2439,8 @@ void sk_stop_timer(struct sock *sk, struct timer_list *timer);
- 
- void sk_stop_timer_sync(struct sock *sk, struct timer_list *timer);
- 
-+void sk_shutdown_timer(struct sock *sk, struct timer_list *timer);
-+
- int __sk_queue_drop_skb(struct sock *sk, struct sk_buff_head *sk_queue,
- 			struct sk_buff *skb, unsigned int flags,
- 			void (*destructor)(struct sock *sk,
-diff --git a/net/core/sock.c b/net/core/sock.c
-index a3ba0358c77c..82124862b594 100644
---- a/net/core/sock.c
-+++ b/net/core/sock.c
-@@ -3357,6 +3357,13 @@ void sk_stop_timer_sync(struct sock *sk, struct timer_list *timer)
- }
- EXPORT_SYMBOL(sk_stop_timer_sync);
- 
-+void sk_shutdown_timer(struct sock *sk, struct timer_list* timer)
-+{
-+	if (timer_shutdown(timer))
-+		__sock_put(sk);
-+}
-+EXPORT_SYMBOL(sk_shutdown_timer);
-+
- void sock_init_data(struct socket *sock, struct sock *sk)
- {
- 	sk_init_common(sk);
-diff --git a/net/ipv4/inet_connection_sock.c b/net/ipv4/inet_connection_sock.c
-index 5e70228c5ae9..71f398f51958 100644
---- a/net/ipv4/inet_connection_sock.c
-+++ b/net/ipv4/inet_connection_sock.c
-@@ -722,15 +722,15 @@ void inet_csk_clear_xmit_timers(struct sock *sk)
- 
- 	icsk->icsk_pending = icsk->icsk_ack.pending = 0;
- 
--	sk_stop_timer(sk, &icsk->icsk_retransmit_timer);
--	sk_stop_timer(sk, &icsk->icsk_delack_timer);
--	sk_stop_timer(sk, &sk->sk_timer);
-+	sk_shutdown_timer(sk, &icsk->icsk_retransmit_timer);
-+	sk_shutdown_timer(sk, &icsk->icsk_delack_timer);
-+	sk_shutdown_timer(sk, &sk->sk_timer);
- }
- EXPORT_SYMBOL(inet_csk_clear_xmit_timers);
- 
- void inet_csk_delete_keepalive_timer(struct sock *sk)
- {
--	sk_stop_timer(sk, &sk->sk_timer);
-+	sk_shutdown_timer(sk, &sk->sk_timer);
- }
- EXPORT_SYMBOL(inet_csk_delete_keepalive_timer);
- 
-
-
+Do you think this is not true? Irrelevant? The "fix" (to implement offloadi=
+ng)
+might come in this development cycle, or it might not.=
