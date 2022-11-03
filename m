@@ -1,85 +1,85 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id F207C618CA4
-	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 00:15:17 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47743618CAF
+	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 00:18:50 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 818B161038;
-	Thu,  3 Nov 2022 23:15:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 818B161038
+	by smtp3.osuosl.org (Postfix) with ESMTP id 6CD1D6104C;
+	Thu,  3 Nov 2022 23:18:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6CD1D6104C
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=k6uUTmDH
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=KSu+v/we
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id CxaOeWp9xslr; Thu,  3 Nov 2022 23:15:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 0CEA46104C;
-	Thu,  3 Nov 2022 23:15:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0CEA46104C
+	with ESMTP id eW6fOuh-ZJQ0; Thu,  3 Nov 2022 23:18:47 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id B7EC96104D;
+	Thu,  3 Nov 2022 23:18:46 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B7EC96104D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A2854C007B;
-	Thu,  3 Nov 2022 23:15:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 41E24C007B;
+	Thu,  3 Nov 2022 23:18:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C8158C002D
- for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 23:15:12 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C518BC002D
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 23:18:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 8F59340BD3
- for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 23:15:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8F59340BD3
+ by smtp2.osuosl.org (Postfix) with ESMTP id 8B28A40BD8
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 23:18:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8B28A40BD8
 Authentication-Results: smtp2.osuosl.org; dkim=pass (1024-bit key,
  unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
- header.s=selector2 header.b=k6uUTmDH
+ header.s=selector2 header.b=KSu+v/we
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id AOB1dnpzp4EP for <bridge@lists.linux-foundation.org>;
- Thu,  3 Nov 2022 23:15:10 +0000 (UTC)
+ with ESMTP id QOynAUL898Jy for <bridge@lists.linux-foundation.org>;
+ Thu,  3 Nov 2022 23:18:43 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 7A19F40BCE
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8483C40BCE
 Received: from EUR04-HE1-obe.outbound.protection.outlook.com
- (mail-eopbgr70083.outbound.protection.outlook.com [40.107.7.83])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 7A19F40BCE
- for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 23:15:10 +0000 (UTC)
+ (mail-eopbgr70082.outbound.protection.outlook.com [40.107.7.82])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 8483C40BCE
+ for <bridge@lists.linux-foundation.org>; Thu,  3 Nov 2022 23:18:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cGuUiJq7cm+TQFHb5KDfm90GYzi/3aHj87W9v3MJgsli5w31KfUjntLTZG0Q4c5FTi9wi9NWf1JOlFQa0gTDXfmSzBDMyNpikw3c/gGen8bf4wu09FH3O3xWraELeOE1gCDau5/fmKz0/pR1Kp2p0lpSSNLk6wHQCFZiKklyQp6T8FO4zLZrRdidho7zDxHI64r9nAB1IPNOyps8E9XonnUo333myFXBIwmk8e4+B1Ntkp5iD+I9tcBKIrTCERNSWc0tM9Q30UQUnwVrAD/swDjKZSWA9fQJaQa+JjPDrwdlK2jtMF/DqDvbe+3L9Rl4VBuPvOdcBjqvyyh+djDe/g==
+ b=XORttKCzQAyL45Radp1N4dFbhAX5jB3jM8H2RjYjWqO0EqWizCU3pJHh/9tdo1VtvCSHrhqaoe9wTtubpIkBcPxGnchb5FF8KyPIJoKvzx+fRtMUpEf+AAuEH0EbM5cTqzRKK0Om9o3NrpJNfSLJsOJDJrw2US3iZy+7Sa7/GIoA3GLIpPBKFa0y1uhe3lURC1KqzpMXYR7HogyPYdSQPqhMk4wnqJOBulCSYAZJPll1KNNg+bqrFmnCE/oLvJVSLda1oP9OUUXnvhV5BAJuK1tt302UvXJSFD3RgtKPWuK85vFbKcXRBiZqHSw6WtqTf/dFk+w3GPPb6RzWtISOfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h93TOatG9CaedH+ymgRkyIJAECWIfJzvAlu9+SVqKh8=;
- b=lX02a5/uqz0HfTjLG4aRHPsBesTgPNujnM/HmdLT2HRS28vb2AtEwwjH9O7mDQL8vNlVWLZx6Vtarnk/YdcxgXZqJ/OAdbK0zpQ7E/ETiY0DOWP0n1y8JXrxFztQD1Fo2xi9RC3hVdl/d6exiA/ZxkXJBZqajcjnwKoq4//oerUih772mZ8O2YWrkL0m4BYAyp24NB/uSu/WRp2GRmN6sDcuxU42FRG321C/qlSaLBP+wUF+q5s0qBBpspwspnRPVM3ZnlErRUQXk0K98Mb4XxNhD9my4jVljEOejlCW5IG0K4PFmoGjr6BDmx2RAHoDktPfzC9QKWBtEmec10m9+g==
+ bh=ybf34Ai1eF54rD+9wrUA75b/u2ARhK3JRMm9zemXFZw=;
+ b=WZfVQ1vfVpwZVsq4G/3nPYjf/vwjR7Mlo3UaQTKOZ/mwwd2ekzaZwOGodV8xNLKcJpAGB17L+ThoS4IUzwd7Y2kCfgbNAD/G49q5NQvRWLKIXwhjg8OFmF9/MZkHJxgR+0porVjbs6KKWmpk92V1bb+2fyncxOxt20RULO0sg3zHdPGEoG6YYFxXQwJjNs+zgE6ZqijA+2aa4bWKduxViUykWJpierFmFYajCnkfBTeu0wJUSGqru+v7CxeqUEc55sHh2410Yi5GP8+Y2OA/ZUjG8u6Taqxxpzbqh3nwfBWEzjpFF/O7iEfpTfqA1FcgyYYf9nevdcKjPCSWWBYdCw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h93TOatG9CaedH+ymgRkyIJAECWIfJzvAlu9+SVqKh8=;
- b=k6uUTmDH62qQQImoQBUDnlRO7u+i6SqsDviylLI32Q122XSP5AcVn6Or3SNiNx7Etkpf8DF86VCy01yytcLebQgfJZXz+4VprnvcBDFEPsldsPVahUWNr1733alm6bW3gM8h5TzKItpVBLon5r7z5yg7lL9rjgK+cR22y0dcuMY=
+ bh=ybf34Ai1eF54rD+9wrUA75b/u2ARhK3JRMm9zemXFZw=;
+ b=KSu+v/weoBWGo/3WnZFO9YYq+naSajmkRYrPobPPfHSKzdBCBzEqzwZ0OtL3Bl5aRpSWCieV8a4srHmloS4q5ZkoknqLdpjBo8zJH59kGlZih/O2br0cWMRBawrpkx7SWzRWKflZ3sv137YqJqQ16tG0dwbHzr7Cx6jQ7UCi98E=
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
  by AS4PR04MB9412.eurprd04.prod.outlook.com (2603:10a6:20b:4eb::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19; Thu, 3 Nov
- 2022 23:15:06 +0000
+ 2022 23:18:39 +0000
 Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::df5b:6133:6d4c:a336]) by VI1PR04MB5136.eurprd04.prod.outlook.com
  ([fe80::df5b:6133:6d4c:a336%7]) with mapi id 15.20.5769.022; Thu, 3 Nov 2022
- 23:15:06 +0000
+ 23:18:39 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 To: Ido Schimmel <idosch@nvidia.com>
-Thread-Topic: [PATCH net-next 2/2] selftests: forwarding: Add MAC
- Authentication Bypass (MAB) test cases
-Thread-Index: AQHY7inGn5/MmOY400i6bSLBouMGKA==
-Date: Thu, 3 Nov 2022 23:15:05 +0000
-Message-ID: <20221103231505.7ftg2zcfoa7rzwtw@skbuf>
+Thread-Topic: [PATCH net-next 1/2] bridge: Add MAC Authentication Bypass (MAB)
+ support
+Thread-Index: AQHY7inCrbPCJEIs3UaHPF1x4C21mw==
+Date: Thu, 3 Nov 2022 23:18:39 +0000
+Message-ID: <20221103231838.fp5nh5g3kv7cz2d2@skbuf>
 References: <20221101193922.2125323-1-idosch@nvidia.com>
  <20221101193922.2125323-1-idosch@nvidia.com>
- <20221101193922.2125323-3-idosch@nvidia.com>
- <20221101193922.2125323-3-idosch@nvidia.com>
-In-Reply-To: <20221101193922.2125323-3-idosch@nvidia.com>
- <20221101193922.2125323-3-idosch@nvidia.com>
+ <20221101193922.2125323-2-idosch@nvidia.com>
+ <20221101193922.2125323-2-idosch@nvidia.com>
+In-Reply-To: <20221101193922.2125323-2-idosch@nvidia.com>
+ <20221101193922.2125323-2-idosch@nvidia.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -88,57 +88,57 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|AS4PR04MB9412:EE_
-x-ms-office365-filtering-correlation-id: 310ca47d-8164-4e28-fbce-08dabdf13e8f
+x-ms-office365-filtering-correlation-id: 5c5b03d6-2d7a-467f-3906-08dabdf1bdee
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dwq5JPsRct4Wl6w1OR8spWomtrX0CCpM1ut1qNTBGUh4fb1zV/GCYUYLcD+1sRC1m2+wQeLCN1hOGBjoZ/sLCwaq/HdoXFlPpDM/qdXpTv7vAygG6bO537BLBDQq01etRNE/f0Ti0XGtCtKTXUnnnzkSdaarlTaLXR4MOcgZWaejlh8cPdnG0+LEm0dD2q3+O7fOlHHQEH501Av9gieeSamZ0wwkm61O00/d8CGmD5jsTyfVhBiLrVrjN0TUmgPa5lIP5+ZGlZD2ddB7dNgs7V5jwAhvrjlQaflWL9mcju2XLF4etCkJFFNAY+HujpJMv8xwJR9CCchmveOFwxe7y+bnT5IXqeNPptedTNxPSAFyMR4oey/GfIUppCHTOm4URS9MF2oBIAjXOH4WqUxQR5Jp8wNekm6A9LRFf6e8FIvpm4aMLFwdRxuz1r7vPXdZtkpJsiye7CpRFigslB/QlqgwVWw7WpRb2p9oh/SKLAsme0qBRT/bY0pqJ+DxVo0CmveDGyfUpd1rnIx/YnzPHu4VZUJQyRFWjEvHud4puyfK4RWEjQV0QLwKC9ugtBXlGEwiD7LgZvw9NHi7avtoU5P4jh7s/rDiNpuCvroIV7x+5KpnVyqR9WZKPa5lL8tI5K9s9MBtSVoTU+VzuXtlDfzYpM0/F7Q/btdZ7muHy2crYepFeYpi8kvuSo7+dYBVzvb/roc4b2qfBA8An7Wq6/bh/1W1XMLVPV96eWIcRgX0juII02WdalT2MNlv1VFm1ybftKTY7IxFB4ZHulW3zg==
+x-microsoft-antispam-message-info: 9X1KRHLi1znEIC/2JjHMP+EvDUlicQInnWbPAp5Mlpsr9IrPo8aXJy3WnxOAmdBCssJB5QqOgaPO+VbkEPlcbdScKZ8M2QaZXl1H2PjDZawtDUN0BF8gePfVkx87cQPtXvQChc2DF/MEJq0hWZvnBR7b58+3lccfSQsAfPx+GOqH0+9oDE1fSCbBUadh9U27QqEY0V42DYzOsM+mqBQy4q/8pHdEasIzP/OIjxfhBhKuesOlabTpy+prYZdKwb7EZrJwKEWCBh/6sNsBZ9f+J2PnwPs22dlzj3ZVhO03P7dNwEY5Ju6pNOVVO+SMxBR/ksJKSb8yqW1DATNgfLfu+hKvha4uhbqRZBjFYH16bANQKQP1MmKe6iegLoQyrkBfK3ufzYLd4P7iqrVPbROmUgLGLDxiyScou5cOXYnBTSKCeYbpIZkdS+1GAE9E+LfJ/qHGW+Cf1W3pHmwklBnU87LtlEX6w0YNB2lwL5Ld2y6YNxoYK+BD3HaKGF45f0fIGREKED+FCgJctivXI7v30OSeb1WWHhfjxHuye60sS8Ggrmyu6yQIeCAdlcZMLLRFvS/CYI/QYfpz2tl1lIFgq7BIV+pr2QTUXPZwwvQtsrbPQu12AyK7OR+G6s6fVpFXnAphpK+8aGCaQLUXIh9A7PA6woGQx8d4Q41NjlVoSGFXK8KJpZvc8o1Dqr8xAyZx5HjDRk28JBa7rau/KPI7C/rDK9IQAnfrlrK18sfXso9ihNJwME0rOHDUoDsMfRPSD+vkwOgtEMvPjs1B2os0OQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(7916004)(366004)(39860400002)(376002)(136003)(396003)(346002)(451199015)(6916009)(4744005)(54906003)(91956017)(316002)(44832011)(5660300002)(4326008)(478600001)(33716001)(86362001)(6486002)(8676002)(6506007)(71200400001)(7416002)(186003)(2906002)(83380400001)(38100700002)(66446008)(122000001)(66476007)(38070700005)(26005)(66946007)(64756008)(6512007)(9686003)(76116006)(66556008)(8936002)(41300700001)(1076003);
+ SFS:(13230022)(4636009)(7916004)(366004)(39860400002)(376002)(136003)(396003)(346002)(451199015)(6916009)(54906003)(91956017)(316002)(44832011)(5660300002)(4326008)(478600001)(33716001)(86362001)(6486002)(8676002)(6506007)(71200400001)(7416002)(186003)(2906002)(83380400001)(38100700002)(66446008)(122000001)(66476007)(38070700005)(26005)(66946007)(64756008)(6512007)(9686003)(76116006)(66556008)(8936002)(41300700001)(1076003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?l/SDbY/NtJwyI/0VyTm4UqIhVvEMidQCt79oP/oPE6YCD7ZQSN0AHQY4HGo4?=
- =?us-ascii?Q?hKQcOTS3OUN7XMmKZRBreUW1qBtzS3O3jl6LKYlJSWfO9Ieq+hxP5315UuyO?=
- =?us-ascii?Q?zjf6unByOVWGMdKyJbKR1Sk2SSpF3uWXgGCa3Mfhcc0pUpCo4PaxuMCQItxF?=
- =?us-ascii?Q?8CSUFqibYuVD0DBwRTadO5YqkxMF2Mr3epiKM+hZcPyX852qmUuOE51x0I9x?=
- =?us-ascii?Q?Hb7Hzdxl1fHFH0yiZ69/K6MxfeCq8tPRAjk9cAfNK5XFWi5kwQdN+lnQa1uY?=
- =?us-ascii?Q?qTPxXkHldHgpQekLWgTy2u9liQBfA8+o+4tMn3aqXnRKMHnmV6ymNQBA8qa2?=
- =?us-ascii?Q?6qyV5Zdv8DqFRVpcohsngxjNf8OHoA9QUmJH8jasKmvnlRDwVvsyW5fdrJYN?=
- =?us-ascii?Q?Qa6zjLNz+0bSjwdvMf5Sr4axlr83putNeJfEa5tsaAhZzSRsHTnVlt8NY4QZ?=
- =?us-ascii?Q?bFpQCDXP3g87XWgIdln3zQ2zMCnGIFMfzW3J6zCSRMvbmFB7sXN8BEIJ25lR?=
- =?us-ascii?Q?e4WmMwLlj4VZO7L6MTTl56/t3giVTIVJGyOZFeehfx/LC9eTUZUkirEMCM3B?=
- =?us-ascii?Q?f99TsOhzByfEjiHzCKiIYz5TrSpQ5D58vd7HTu8GP8IEdYMhHXL/9ja4JvTq?=
- =?us-ascii?Q?imhs7na/37M3lcORDN4JC5UpyHowk0Zg5W0GZuWaKHTFeMDajV5yKVenuVn3?=
- =?us-ascii?Q?O2A/D5mCozSDqoLKx8WK2ZjvCix+IH38LzgYOmFc4KDTV7IWbCECoYySyXum?=
- =?us-ascii?Q?uEqzmIysFoh9GkIPLcZkciKjcUvbLAqKaWw6eU3Fp9BB8UDikjjVvZM31cfr?=
- =?us-ascii?Q?Rplnj/ItjmDRNAey6cPMneEYYCp6xfRRZBgNWrsXVDY/spJyeDul2JBuep7s?=
- =?us-ascii?Q?9wLuF7vMS+aa2SuXcxHF2VTch12c60sMpefyRmWiJtPUygrnMQWqhgfoALcz?=
- =?us-ascii?Q?oK5LD5tPO3/gTtaXmurLKy0H8Dz28/DpkNgzfXVL09eRoNp3KE2myz/CqvGw?=
- =?us-ascii?Q?Z7k0k8nvwfsgfJvVN/arAsRWqm+v7tOp72AWmaMvQynrlM9oE3aYugCFcGCr?=
- =?us-ascii?Q?6qgSd3Barkh6Y4uGNNiEL3WvO0bWfDklnb3An8IgFMQEIDicCZ73DysAZEO5?=
- =?us-ascii?Q?IUyRmxW/RFj05ah5tFvRVbgwSflLV/QC5sZA31f+fjOS+bd25vH4Wm3QrvQW?=
- =?us-ascii?Q?TXCTvSqaBwY+vcFcwzjiTlJr54rqwHt7gi1JRU+5tKG5EbZq1xp1Pz/yvwmG?=
- =?us-ascii?Q?Eb5VPF1Yd7pHaGHGkx1aVq9n1x5pAYVKSZN2gklG7sVJp8Oe+uZpCTA4IaWw?=
- =?us-ascii?Q?LRmXaOdr/Ftehbz7j6DyWjU0L3B/mtGUXUgDcFNbrevdzdW8y86klzIymvRG?=
- =?us-ascii?Q?WjHJBRMnlBlt69XyKXAtgq25kk5GHzUyAg5vXjBNiKyJm9/DB5dDJRw1JpNR?=
- =?us-ascii?Q?nHG/jnsjPybpaQbTGBlCSVbEglSSuWkiQz1AODGErUM9PxsDlHl+h1frStWl?=
- =?us-ascii?Q?tlw6cwp+9RU0sx6j2FH3PQgmssM91Ve/ZoQQfTAwLpz6gaU5y3KsWnMrH1eP?=
- =?us-ascii?Q?j7GZYcZpJBEVj+eE4iMLOf9H/jUdjfqq23XIXhmXuHdgXOI9h4Ja8rxb4vG1?=
- =?us-ascii?Q?Rw=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0hni9jjqAkkLucqykTtIk1LJJY9PJ6gOgJhjGDBtpw6DTGfi9ckW/MLTKvyv?=
+ =?us-ascii?Q?H8wkWsO9EPLfUuzRZtpHe8o/1fQkZ58/xB6cbDatUrS4AboqGI836OANTRxW?=
+ =?us-ascii?Q?BisVcY0d6NyjjwTN70HWzM1iJZAGZMv9j1o9bXQBsiQvrZWmYzwpmUtR4tOg?=
+ =?us-ascii?Q?tfY+Wf0BlsSE2m+OROIqhLcs2btwfOewIEWMuoiso6rPdMdcHnzpm/u+B7Qr?=
+ =?us-ascii?Q?U8eMldhENCfJUC2uOY7C4giNVOvxCuProIVnuoueP/qSu6zuRKyYlhlBNo+K?=
+ =?us-ascii?Q?typLmP7ap9j9iuGrYwxn4mwPYqz1oP0xCDUzc9k0fz5kctKuugOro3nmPgUD?=
+ =?us-ascii?Q?h2BKOdCVXrty/ANF+S1lJ3PCcEDWC/51QV2S4S9891ghqX7azHMhte7egrck?=
+ =?us-ascii?Q?pMx1tnqECjG9bMa//7Lt3VidhKaOdIzeCvA3WV4/k6Ox3rsC1k2SLma6JcQa?=
+ =?us-ascii?Q?KPeL5CQq/fQtIEcGJqk5C/9QKpxCgQWuVDoWM4m+IQ1l46PQYJp7fgwrCFzE?=
+ =?us-ascii?Q?biLz/eLVwy3NvQwU5T8DG84U9OmaGOv1gxrz5wQm7RHl0lk7ldnVeio0snXu?=
+ =?us-ascii?Q?vuQWz32lr3DMPqjBL2PPtmqeK88c8D4POGxl9p0Ku9xM/p8L4I7r3SYOvKrG?=
+ =?us-ascii?Q?U+51oQeMl8j81oMHtA8cW/GUaywmlbD/SHBRDsiSLYFhmMAKxM7WqJ6IXL3A?=
+ =?us-ascii?Q?0rVNMIFhGrEumLDrFp0v5/KAodWIf5YS471SRHAm3McCCMxEZkrLVqSDpbwL?=
+ =?us-ascii?Q?cdvs/x2cUA9FMyPBa1cn/MwkpxY4EsF7+3tOj+vkiiDMklxmX4ecCTZd9J2A?=
+ =?us-ascii?Q?tH2lZQF3FGjsK4hgs7PjT7PCyNr7EloNqDb6uZT4RTG2BAeWARjDZN10WYps?=
+ =?us-ascii?Q?xDj5/lY+aPNnzlMmqr+HxcjxaVWngF7Lx0giWFElOXl3RlMkyly098kLdEcg?=
+ =?us-ascii?Q?MPWnDBWoCgeXTUpvmKwUGUlGyF1ttyQjKVLwcji8UiaZUvOBk44H1GQ6A7dx?=
+ =?us-ascii?Q?ttZhMyziwR/bTZt8FlMMnc5xsX07aHOZN79Cs1nUc7PeXKwUw/ku6EDkInme?=
+ =?us-ascii?Q?XvwotuJbbxv8VdDRb30v5tiMNbLOJg69I+5P9CswcLs/2gTtQfOtRuWsCUKv?=
+ =?us-ascii?Q?MijL0Bawi1tbOHe8DXsBftj+dHNbWMbYy5fhjiRxXlLOWxyPryjn3Tt2WRvv?=
+ =?us-ascii?Q?K3ILfSMjI15sbVX6qxaVTEhTKgAB2OfwS7a4v4gbZJDKcGflwmDGu16frtPv?=
+ =?us-ascii?Q?Egj/UfnYnocU+RWDd0S6CuI/M0GkWRBqEnYU8dJhwDsDrrW8xYN+o5qBdkTk?=
+ =?us-ascii?Q?9LFXz15yuXLvfGhK0dvvBg76GG30SIningvVTHgr37kFX1OVgpPy0mZOJMu5?=
+ =?us-ascii?Q?/6sVhYqwc96vKlk/RjFv18qZTwbolKOq1iYBdt9Jt8nfEAstvTmHpKZE6ec7?=
+ =?us-ascii?Q?4N2vpOxAWlGQqEmHTip8vCH7pXxhsYR98gXtGILhM6mSi/Pv2/KqBSBo8YJK?=
+ =?us-ascii?Q?jQcvWV5xzKmqKeL7kDgajpWnIWEKlcsjjM7hOdBn4ynWFcIaIIryWio/te56?=
+ =?us-ascii?Q?GyfF/DAvDB9x42t2aTdXhepL4GkKNHOVo1U1kue4IW72Pa6CQXK47E+9kMrT?=
+ =?us-ascii?Q?Jw=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <F75D7CDCDF160F46A232BE9AF14B666E@eurprd04.prod.outlook.com>
+Content-ID: <C3B0EC894D80D647882DF483137FCEB8@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 310ca47d-8164-4e28-fbce-08dabdf13e8f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2022 23:15:06.0269 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c5b03d6-2d7a-467f-3906-08dabdf1bdee
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2022 23:18:39.6995 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: z/C6L3VfAFxiDSavso/S+SBmlD4B92ooqNpSANf/e8/8WFPyXZ3uHK41zc+s29KqwjLhrWJ2ftMxityb8zRrnA==
+X-MS-Exchange-CrossTenant-userprincipalname: pfFqSy2Zhl3fsVQLS1FKUGqTLsGd4SVn7RKoNrK2l9r5kZWNRzV3Mlee54MR3NN8Xpg6LMJ5YM06YAu2sH+CHQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9412
 Cc: "netdev@kapio-technology.com" <netdev@kapio-technology.com>,
  "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
@@ -148,8 +148,8 @@ Cc: "netdev@kapio-technology.com" <netdev@kapio-technology.com>,
  "mlxsw@nvidia.com" <mlxsw@nvidia.com>, "roopa@nvidia.com" <roopa@nvidia.com>,
  "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
  "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 2/2] selftests: forwarding: Add MAC
- Authentication Bypass (MAB) test cases
+Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add MAC Authentication
+ Bypass (MAB) support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -164,24 +164,71 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Nov 01, 2022 at 09:39:22PM +0200, Ido Schimmel wrote:
+On Tue, Nov 01, 2022 at 09:39:21PM +0200, Ido Schimmel wrote:
 > From: "Hans J. Schultz" <netdev@kapio-technology.com>
 >=20
-> Add four test cases to verify MAB functionality:
+> Hosts that support 802.1X authentication are able to authenticate
+> themselves by exchanging EAPOL frames with an authenticator (Ethernet
+> bridge, in this case) and an authentication server. Access to the
+> network is only granted by the authenticator to successfully
+> authenticated hosts.
 >=20
-> * Verify that a locked FDB entry can be generated by the bridge,
->   preventing a host from communicating via the bridge. Test that user
->   space can clear the "locked" flag by replacing the entry, thereby
->   authenticating the host and allowing it to communicate via the bridge.
+> The above is implemented in the bridge using the "locked" bridge port
+> option. When enabled, link-local frames (e.g., EAPOL) can be locally
+> received by the bridge, but all other frames are dropped unless the host
+> is authenticated. That is, unless the user space control plane installed
+> an FDB entry according to which the source address of the frame is
+> located behind the locked ingress port. The entry can be dynamic, in
+> which case learning needs to be enabled so that the entry will be
+> refreshed by incoming traffic.
 >=20
-> * Test that an entry cannot roam to a locked port, but that it can roam
->   to an unlocked port.
+> There are deployments in which not all the devices connected to the
+> authenticator (the bridge) support 802.1X. Such devices can include
+> printers and cameras. One option to support such deployments is to
+> unlock the bridge ports connecting these devices, but a slightly more
+> secure option is to use MAB. When MAB is enabled, the MAC address of the
+> connected device is used as the user name and password for the
+> authentication.
 >=20
-> * Test that MAB can only be enabled on a port that is both locked and
->   has learning enabled.
+> For MAB to work, the user space control plane needs to be notified about
+> MAC addresses that are trying to gain access so that they will be
+> compared against an allow list. This can be implemented via the regular
+> learning process with the sole difference that learned FDB entries are
+> installed with a new "locked" flag indicating that the entry cannot be
+> used to authenticate the device. The flag cannot be set by user space,
+> but user space can clear the flag by replacing the entry, thereby
+> authenticating the device.
 >=20
-> * Test that locked FDB entries are flushed from a port when MAB is
->   disabled.
+> Locked FDB entries implement the following semantics with regards to
+> roaming, aging and forwarding:
+>=20
+> 1. Roaming: Locked FDB entries can roam to unlocked (authorized) ports,
+>    in which case the "locked" flag is cleared. FDB entries cannot roam
+>    to locked ports regardless of MAB being enabled or not. Therefore,
+>    locked FDB entries are only created if an FDB entry with the given {MA=
+C,
+>    VID} does not already exist. This behavior prevents unauthenticated
+>    devices from disrupting traffic destined to already authenticated
+>    devices.
+>=20
+> 2. Aging: Locked FDB entries age and refresh by incoming traffic like
+>    regular entries.
+>=20
+> 3. Forwarding: Locked FDB entries forward traffic like regular entries.
+>    If user space detects an unauthorized MAC behind a locked port and
+>    wishes to prevent traffic with this MAC DA from reaching the host, it
+>    can do so using tc or a different mechanism.
+
+In other words, a user space MAB daemon has a lot of extra work to do.
+I'm willing to bet it's going to cut 90% of those corners ;) anyway...
+
+>=20
+> Enable the above behavior using a new bridge port option called "mab".
+> It can only be enabled on a bridge port that is both locked and has
+> learning enabled. Locked FDB entries are flushed from the port once MAB
+> is disabled. A new option is added because there are pure 802.1X
+> deployments that are not interested in notifications about locked FDB
+> entries.
 >=20
 > Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
 > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
