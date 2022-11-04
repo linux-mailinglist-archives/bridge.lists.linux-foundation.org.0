@@ -1,154 +1,118 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A568619729
-	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 14:11:16 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2031F619CC9
+	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 17:14:56 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id A2219418CF;
-	Fri,  4 Nov 2022 13:11:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A2219418CF
+	by smtp4.osuosl.org (Postfix) with ESMTP id 9A4F64193E;
+	Fri,  4 Nov 2022 16:14:54 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9A4F64193E
 Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=hzX5/x9z
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=ZXT4b7xG
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id UiJJwOqomyjN; Fri,  4 Nov 2022 13:11:13 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id C338A418BB;
-	Fri,  4 Nov 2022 13:11:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C338A418BB
+	with ESMTP id cUTdv9A_9f3y; Fri,  4 Nov 2022 16:14:53 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id D84B64189B;
+	Fri,  4 Nov 2022 16:14:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D84B64189B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5D5C8C0077;
-	Fri,  4 Nov 2022 13:11:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 73CCEC0077;
+	Fri,  4 Nov 2022 16:14:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 01970C002D
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 13:11:11 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1B777C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 16:14:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id A6843418CF
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 13:11:10 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A6843418CF
+ by smtp3.osuosl.org (Postfix) with ESMTP id E691E60AE8
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 16:14:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E691E60AE8
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=ZXT4b7xG
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KYVrnjABHMWu for <bridge@lists.linux-foundation.org>;
- Fri,  4 Nov 2022 13:11:09 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id nGjY7Mo0ODGv for <bridge@lists.linux-foundation.org>;
+ Fri,  4 Nov 2022 16:14:49 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0AC62418BB
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
- (mail-eopbgr80053.outbound.protection.outlook.com [40.107.8.53])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 0AC62418BB
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 13:11:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fa35QmtLdUnRG4r5XFyAXZxB/CUyTp8rWzaaruF4g8FHuSEjnkLjYtxnJT5QLJgXD5r9IvTjSeYySYKzyIRoKNWMjjY+mrIWA3NipaB6KEDVmTnioNUdmVKUIcJEvjW1xihFWwky6nf55IzFuvCZbo/XBjH2rRBcuf1M5IsiNW9W1erA2eVRKP0KEIcMoCmIT3ZO5zkdZp4f1DdhA8vHsWZ1FIvnEk/xO3oTBBk1xtJSdBgLa93VIHf9eqM5BTgLsmwbok0jbi684AWwN/SqecO7DUWIf4HrOXeu0GhyE4mIWJfaXHCju2Fom3T0ihOhAJpXE/PqDAuf5COO2rSOtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2LT1/+dZKzYfztIxqlQ1kLxlfG7NwIKOnBvdUFXrDWo=;
- b=dAJ4rAgtf5rqSbqAO4gOvP9j6UMhe8Yz2utPAtu9zrEahSizFWop2VEy1c+xj0aHS7ENS0ULuq8pJdxLXXDdZ1UzHDEnqhjsqmK2r0KvWOIWLoh6hMKRcj8npp/j2cE/9p3r9CyXCnFtVelFVFjJhsNULREt4bM4b44nQBzicXHh9oBCgM3yxQ7HvFfXQk38EtFgK0ePl7Z+gZEBlxxK73agb5o6F9nAcS52Kv31r1R6tCOrN2yto4HCeyn5ptxHFBROteZijhyxWJ7KAt9g0/KwnVC5KUbOrrJS6MSwLkjEaYFlb302zmCprl5OHOqwqkRPCfR7k6uttY0SMuALjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2LT1/+dZKzYfztIxqlQ1kLxlfG7NwIKOnBvdUFXrDWo=;
- b=hzX5/x9zGgJ6g1ddKyZG3VzAQSWAheTr3qtLViLKpauAzRh1rZDBiVTD4wrySUYg3BCuQQTu8p4VRZOOvS1RGH7J4IyXhhCLEHlDBKJiKY8a27jdLcftakuG8HOTq3Hj0lZ50l//BGy6YcC+Mq7V5TiLL7V8vheuXO+u/s4UsZA=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by AS8PR04MB8545.eurprd04.prod.outlook.com (2603:10a6:20b:420::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Fri, 4 Nov
- 2022 13:11:05 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::df5b:6133:6d4c:a336]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::df5b:6133:6d4c:a336%7]) with mapi id 15.20.5769.022; Fri, 4 Nov 2022
- 13:11:05 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: "netdev@kapio-technology.com" <netdev@kapio-technology.com>
-Thread-Topic: [PATCH net-next 1/2] bridge: Add MAC Authentication Bypass (MAB)
- support
-Thread-Index: AQHY7inCrbPCJEIs3UaHPF1x4C21m64uo0yAgAAeKQA=
-Date: Fri, 4 Nov 2022 13:11:05 +0000
-Message-ID: <20221104131104.4qvnx5rarvsyrpe4@skbuf>
-References: <20221101193922.2125323-1-idosch@nvidia.com>
- <20221101193922.2125323-1-idosch@nvidia.com>
- <20221101193922.2125323-2-idosch@nvidia.com>
- <20221101193922.2125323-2-idosch@nvidia.com>
- <20221103231838.fp5nh5g3kv7cz2d2@skbuf>
- <ce9f4095b216187c1dd5c14cdf4ae9cc@kapio-technology.com>
-In-Reply-To: <ce9f4095b216187c1dd5c14cdf4ae9cc@kapio-technology.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|AS8PR04MB8545:EE_
-x-ms-office365-filtering-correlation-id: 721de0bf-962e-439c-3aff-08dabe66080e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iWUtgbOhckPxauX5bSKY6poFE7VoksGEnOYn2jDkmLwNAKFJi50uZCyewhzwpwwd1oOPd6OkvrmO5d+i9FVsWhnnGwQFe10awJKNlDlzLAOI/mzwXLDkIN2dxPMFL+R5HPLtPC9JeRgJX0VCCiEJBmLWJJTn7/AWxbqkj0tDxf9j1ahoKwH6FpD/EFixH2sNfqMVpTXxgztxf5yJYaokKohFXiWDPQ8gXY+JY+Uz4G9OqF1VB75Vnxrxl6tt0EiqkNtw0kNWsP+yy1Nxp5B6UEGH9q3Wj4Hr7jDhXj49Dl7yzarCfB268YJiccSKr8NnIocRxolR2tZp6W43Bpg4Z9qLBgAtj16nX0i5iDCJDHLcgQQD8kRHoNS50028t9h2ZcfdtTtzDTb83jYs3fXMYudX0SKWc2Jf5zCvtFuToT8p1pl742zLpt4FXLpj+6p7OJs9jfey2aIDs3W2qRURPturUk08eY5ESP4NR/gy435/G/eS4fOmYid7pzG4VIjZ+4ib1NinB65bqQ/y4RTCv4BQFPFDgaWRuTXRy1Yt+1qkVh5FLn7SLkvHy39EkFytDgPLp2mK5d0uXRs3UDEBik7cP9BkWJeTXVbvnsDbuOQYjlw2XH1jemLVTu2Jj1OXHoOYdBF3CYj1nr4PeUPEF7Hvmjn+dmCkfcCPQyyaNR9ykqqAlqATaqnPsNcYVcXkwZo4aZkbfDVeBcHJsN/j+8tA3zM7+IkM+waivL7E0yA6shP02oX0dsw8ZCKj2e/z4Fb4Zo71Us9h1IzArcyYrQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:VI1PR04MB5136.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(7916004)(376002)(136003)(39860400002)(396003)(346002)(366004)(451199015)(186003)(6506007)(53546011)(1076003)(7416002)(9686003)(66556008)(66446008)(64756008)(316002)(76116006)(66476007)(4326008)(54906003)(41300700001)(8676002)(26005)(6916009)(91956017)(66946007)(83380400001)(6512007)(5660300002)(86362001)(38070700005)(44832011)(71200400001)(2906002)(478600001)(122000001)(8936002)(6486002)(33716001)(38100700002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?X+B72ezccF/adu50Vd0nTfa7XniQWVcKECf+i4Iz/yeaESmbsrpyqJyuEeeP?=
- =?us-ascii?Q?XKPhAL2tN6r9vKfr6RI78qixzxVIUUS2kEk+NJF4e0Wu9g98/03pH7dqxl36?=
- =?us-ascii?Q?OC1oD/6FbISFG/QKHx7H7HfkpJTX3B/XLf+2/DSu+8xzlBtNcKkws5VbMUD/?=
- =?us-ascii?Q?528rXt7PEO9Q4o34H6eLE6RciN5Ei+H4jxwUTkZPYp5id5/k3Kb7esx5iS6p?=
- =?us-ascii?Q?320YIrzPSIp8YeM6iuNM8NdDI4CczlloB7Yu+eWIlPm2xy0LGH3GNgQGPGsO?=
- =?us-ascii?Q?3qKXWWQ1RMRPwoR5ULIk2vvY30x89aOLe6La4oU0cBroymC4CQg458EK0qua?=
- =?us-ascii?Q?REq6y7JSYkonCjm69xq1t3qmIVyZAJ86CNywFBvKJxFVvgdFk+XQVUgDxHZu?=
- =?us-ascii?Q?TbJ/XhJMH4jfjsdxC1QCHyqTFMkXQp4kTvu62EjdRCrl8CIrb7penKd/uuWJ?=
- =?us-ascii?Q?zT/u6db0/6sV6478vD8a3Qk5T27ahOSQUIJHuzR0MhXVqeD7+U4quwaYB0VZ?=
- =?us-ascii?Q?lYIx6fPjJY7Pdu3H6TLQSarfvtrzo6+mrvZHtMe5H47ULAGVOW4WCDx7axQv?=
- =?us-ascii?Q?pS9fGh1Bqe7kIuzIDmFN34xvu0hOvxfTVWQNUx/iiiY2gaQ7ZC94epowp0Cg?=
- =?us-ascii?Q?djuxmvhkz7U84eaY+RNTQn+FDUfUv/6tMo7FV6Spk6cVrFTh/JkLLKv8f9iM?=
- =?us-ascii?Q?cfEIXGmq47Uj+Db3M1zpLdvXM4lx60TCRMUa1HxjQohjABZHz8H6OZgZQ1xe?=
- =?us-ascii?Q?jCqcHOGxvmJKowGyNJjc26Becr7YrMdn1MFvcv3xUAMds7LBVfx9f/hmEBTo?=
- =?us-ascii?Q?jnv6xJymIf8OE02D8XqvktQvNjKXTGeTqBgrmVeub5vt6chzK9d4amJOUKaf?=
- =?us-ascii?Q?YhXZkqqtnHzbVllW+mQPvZrsz/yNq1TXgc4FpPwXx0kWzANb1IU1H0WRpJ4j?=
- =?us-ascii?Q?o4rz0qa/69MfilmoswSykNG47rGOKDcpF7b5FQ2xjoZ+mqwqqJDi6hNcmV63?=
- =?us-ascii?Q?TEooJadQDUp6paQ6Q8RRFtVi5Zp2VBul04zRNpor/0heHiZpvNpps1xKinGn?=
- =?us-ascii?Q?anxwmnzYkIOpzPKB3PGyOpLki3d2gktN3iDTS+RTN4O+oJvf/sxuwXdVeWlw?=
- =?us-ascii?Q?d/P2EuxCxeduT3DEzkhE50CXWs2Qoek7lSNI+DbVSy352cy+hoMl6PTf5mFh?=
- =?us-ascii?Q?F1/lv5X1Hrro4UhRIFjq+zV5QaF5t4PI8H3/RYkPKVPZc6b6DoD2/mzS83t2?=
- =?us-ascii?Q?i4c9ToCqMkX1ZWlj+nWvWj/elp7eiTZHyFDwknCv3WCg9RT2O53ntpzi6XrU?=
- =?us-ascii?Q?rLacmHS5FwG85bnALErFi2cYaIeozRUcCec7ZLjfaUrmzmxn5dXEIkIsvJwu?=
- =?us-ascii?Q?ABELsvAoKLWKNxyjxyavirMTo+XuDnjRnxe1gcthwpETIM6FOj0uqMrhTArQ?=
- =?us-ascii?Q?KmNWcesPs5bu9W3eHjqv96QlcrUyTWSk1CsdrLO+phSm7Xxrl+pgKnZmIvlF?=
- =?us-ascii?Q?5L2HWtOhI5UwcIlb92TASbs6oUtfA9GNIiCjhiY7N8wub8hhERPmNGEMlPc8?=
- =?us-ascii?Q?48cZzHTSB5I6qPND35KxAqXEWgpi0FX1Tl4XofKTbIBmPgbnu+GddO8e31/w?=
- =?us-ascii?Q?Bw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <DEEEE89226DE2F4DB60A9CF020EB9A10@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 30BA5608D8
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 30BA5608D8
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 16:14:49 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id r83so5671116oih.2
+ for <bridge@lists.linux-foundation.org>; Fri, 04 Nov 2022 09:14:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=vkBGgKFgg4QPXCpHtMi6j0J3ZcIgUdwyTJWClmiO8n8=;
+ b=ZXT4b7xGHkwhtyRx7V1geQfUresoJ3Ad36AKxZcA+hYEkLlZTMmJdsg3FLF6RZb4Bm
+ /Th2KOsiFM+wv4AFPnrljoJs2GpR7KNawydYt2C5cew9YFo+qW0UidzKrk4BDuG1u7w+
+ m3w563eSaiPwL3l4sGKZaD+ak6hpgQhlR7eGCpJqdUtIM7CX7IVrS9HVCezWAA8wIfI4
+ tbWxHgw8jm41jK3k3dRhGJKkPfEdX95COskXHfzG/e/VIoBDLovAFvOX7zEd4Utr1gQo
+ 7jv8BY+ymXeC+5KaWJgeXULPlc8QwCY2a+1Wc4m/cSjP0OKV+9XQ8V5888RvdMmc7n4q
+ obpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=vkBGgKFgg4QPXCpHtMi6j0J3ZcIgUdwyTJWClmiO8n8=;
+ b=hB7c7aaRB7IN8L+iYaAMF3iFESFUzDveCOACSIHP0UDUkZXP/qKfhxIcg60UB1meLr
+ mua37r9u+cYKmOBq5xBrWKo8lM9yoDFakgnSNPEJDHgud86sWKdkXIQgnSn0IYZ2g2wq
+ 2D4W1+uPVE/A9xF7hoL/727citek1GE64Hsv8dTyQz+AFE6DoQ8JQbZgH53Yzoq4XsT2
+ WmjO8TTFoYc816G1wMgwMW1exqsYQsESUolTvGOt3X+3HrrZ3K9eLRZ/cqxBUFZXA2Z8
+ FN+YNOh8OFY1DKkr4lgLoHTkSMFEPFQD+jBgnr9PVgFrzszt0pHWl70Oc1jLuEpoXWEK
+ 7Zfw==
+X-Gm-Message-State: ACrzQf1NQXyxlpuKMXtdnRYX4l1pIOZGTEreP7rZd7s5JTl4u9S5IzuT
+ r3lMdBswxCTCUdF8XARPJJ0=
+X-Google-Smtp-Source: AMsMyM7iFweEsB11T8MsAxnRkCeRKLOBdX0O0x9jUekHKEg87JfqIXfJu5mpVtFVdszEhc175Hq8Tw==
+X-Received: by 2002:aca:d841:0:b0:35a:5959:590d with SMTP id
+ p62-20020acad841000000b0035a5959590dmr2855416oig.120.1667578488108; 
+ Fri, 04 Nov 2022 09:14:48 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ p36-20020a05687056a400b0013b1301ce42sm1894684oao.47.2022.11.04.09.14.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Nov 2022 09:14:47 -0700 (PDT)
+Date: Fri, 4 Nov 2022 09:14:45 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Steven Rostedt <rostedt@goodmis.org>
+Message-ID: <20221104161445.GA1866159@roeck-us.net>
+References: <20221027163453.383bbf8e@gandalf.local.home>
+ <CAHk-=whoS+krLU7JNe=hMp2VOcwdcCdTXhdV8qqKoViwzzJWfA@mail.gmail.com>
+ <20221027170720.31497319@gandalf.local.home>
+ <20221027183511.66b058c4@gandalf.local.home>
+ <20221028183149.2882a29b@gandalf.local.home>
+ <20221028154617.3c63ba68@kernel.org>
+ <27a6a587fee5e9172e41acd16ae1bc1f556fdbd7.camel@redhat.com>
+ <20221103175123.744d0f37@rorschach.local.home>
+ <CANn89iLv9cak6_vXJG5t=Kq+eiMPdMxF8w4AAuAuFB5sOsy2zg@mail.gmail.com>
+ <20221104015139.58f17730@rorschach.local.home>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 721de0bf-962e-439c-3aff-08dabe66080e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2022 13:11:05.6813 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mfi9XI7H2rnU4U1MfJyBFxPg0GL2w1AG8/hP98KOSTyz8YxnIOTtUWTOr6PYdbMioFurT43rGKStEOmQ1rt1JQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8545
-Cc: Ido Schimmel <idosch@nvidia.com>,
- "razor@blackwall.org" <razor@blackwall.org>,
- "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
- "roopa@nvidia.com" <roopa@nvidia.com>,
- "edumazet@google.com" <edumazet@google.com>,
- "mlxsw@nvidia.com" <mlxsw@nvidia.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
- "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add MAC Authentication
- Bypass (MAB) support
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221104015139.58f17730@rorschach.local.home>
+Cc: Alexei Starovoitov <ast@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, linux-afs@lists.infradead.org,
+ Menglong Dong <imagedong@tencent.com>, bridge@lists.linux-foundation.org,
+ Jesse Brandeburg <jesse.brandeburg@intel.com>, lvs-devel@vger.kernel.org,
+ coreteam@netfilter.org, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Martin KaFai Lau <martin.lau@kernel.org>,
+ Kuniyuki Iwashima <kuniyu@amazon.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Mirko Lindner <mlindner@marvell.com>, linux-nfs@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, Stephen Boyd <sboyd@kernel.org>,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ netfilter-devel@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Pavel Begunkov <asml.silence@gmail.com>
+Subject: Re: [Bridge] [RFC][PATCH v2 19/31] timers: net: Use
+ del_timer_shutdown() before freeing timer
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -163,50 +127,50 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Nov 04, 2022 at 12:23:07PM +0100, netdev@kapio-technology.com wrote=
-:
-> On 2022-11-04 00:18, Vladimir Oltean wrote:
-> > > 3. Forwarding: Locked FDB entries forward traffic like regular entrie=
-s.
-> > >    If user space detects an unauthorized MAC behind a locked port and
-> > >    wishes to prevent traffic with this MAC DA from reaching the host,=
- it
-> > >    can do so using tc or a different mechanism.
-> >=20
-> > In other words, a user space MAB daemon has a lot of extra work to do.
-> > I'm willing to bet it's going to cut 90% of those corners ;) anyway...
->=20
-> I would like to know your (Vladimir) take on the approach of the
-> implementation for the mv88e6xxx that I have made and which will also be
-> the basis for how the WesterMo hostapd fork will be afaik...
->=20
-> Is it in general a good idea to use TC filters for specific MACs instead
-> of having the driver installing blocking entries, which I know the Marvel=
-l
-> XCat switchcore will also have (switchcore installed blockig entries)?
+On Fri, Nov 04, 2022 at 01:51:39AM -0400, Steven Rostedt wrote:
+> On Thu, 3 Nov 2022 17:00:20 -0700
+> Eric Dumazet <edumazet@google.com> wrote:
+> 
+> >  inet_csk_clear_xmit_timers() can be called multiple times during TCP
+> > socket lifetime.
+> > 
+> > (See tcp_disconnect(), which can be followed by another connect() ... and loop)
+> > 
+> > Maybe add a second parameter, or add a new
+> > inet_csk_shutdown_xmit_timers() only called from tcp_v4_destroy_sock() ?
+> > 
+> 
+> I guess.
+> 
+> > >
+> > >  void inet_csk_delete_keepalive_timer(struct sock *sk)
+> > >  {
+> > > -       sk_stop_timer(sk, &sk->sk_timer);
+> > > +       sk_shutdown_timer(sk, &sk->sk_timer);  
+> > 
+> > SO_KEEPALIVE can be called multiple times in a TCP socket lifetime,
+> > on/off/on/off/...
+> > 
+> > I suggest leaving sk_stop_timer() here.
+> > 
+> > Eventually  inet_csk_clear_xmit_timers( sk, destroy=true) (or
+> > inet_csk_shutdown_xmit_timers(())
+> >    will  be called before the socket is destroyed.
+> 
+> OK. 
+> 
+> Guenter,
+> 
+> I posted a new series, but did not include this change. If you want to
+> test that other series, I would suggest to at least add the first part
+> of this patch, otherwise it will trigger. But we want to see if there's
+> other locations of issue that we should care about.
+> 
 
-Well, the mv88e6xxx driver does not offload tc filters in general, so
-let's keep that in mind.
+I'll run a test on the other series without change first. We'll see what
+happens. If necessary I'll add [parts of] this patch and re-test, but
+before doing that I would like to get a sense for the status of your
+series as-is.
 
-Achieving the behavior of not forwarding traffic to a BR_FDB_LOCKED
-entry can be done in a variety of ways using tc. Simplest would be to
-put an "action drop" filter on the egress chain of the port where the
-BR_FDB_LOCKED entry is located. Although that's probably least amenable
-to offloading. I think "action drop" is more popular as an offload
-action on ingress chains, which means you'd either have to (a) put an
-"action drop" on the ingress chain of every other bridge port, or
-(b) create a shared tc block and put all bridge ports in that. The
-problem with (b) is that it doesn't play all that well with bridge ports
-belonging to different hardware blocks.
-
-All in all, I think the yet-to-be-introduced 'blackhole' FDB flag makes
-the most sense for this behavior. Its scope is the entire bridge
-forwarding domain by definition (no need to attach it as filter to the
-egress or ingress block of one/multiple bridge ports), and it's also
-easily offloadable.
-
-I think it could make a lot of sense for the MAB daemon to do one of 2
-things: replace the BR_FDB_LOCKED entry with a static/dynamic FDB entry
-if it's going to authorize it, or with a blackhole entry on br0 if it's
-going to deny it. So you wouldn't have to manually add the blackhole
-entry from the mv88e6xxx driver; user space would do it.=
+Thanks,
+Guenter
