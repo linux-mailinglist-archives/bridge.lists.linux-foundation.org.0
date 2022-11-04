@@ -1,90 +1,61 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id E674161A0CC
-	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 20:22:41 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2E161A151
+	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 20:42:22 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 418A282188;
-	Fri,  4 Nov 2022 19:22:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 418A282188
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=f7SabvhE
+	by smtp2.osuosl.org (Postfix) with ESMTP id 89223403EA;
+	Fri,  4 Nov 2022 19:42:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 89223403EA
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id SmqxWO9So9qH; Fri,  4 Nov 2022 19:22:39 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Fgc-r85Gh_aa; Fri,  4 Nov 2022 19:42:20 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id D2AB382186;
-	Fri,  4 Nov 2022 19:22:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D2AB382186
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 2097D40184;
+	Fri,  4 Nov 2022 19:42:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2097D40184
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6C733C0077;
-	Fri,  4 Nov 2022 19:22:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A6084C0077;
+	Fri,  4 Nov 2022 19:42:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 068BEC002D
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 19:22:37 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 65B94C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 19:42:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id C757C82182
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 19:22:36 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C757C82182
+ by smtp1.osuosl.org (Postfix) with ESMTP id 329B482168
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 19:42:17 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 329B482168
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id bzNRnMvvZGbA for <bridge@lists.linux-foundation.org>;
- Fri,  4 Nov 2022 19:22:36 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2176A82181
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
- [IPv6:2607:f8b0:4864:20::232])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 2176A82181
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 19:22:36 +0000 (UTC)
-Received: by mail-oi1-x232.google.com with SMTP id b124so6173283oia.4
- for <bridge@lists.linux-foundation.org>; Fri, 04 Nov 2022 12:22:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=+CrrtBZaWaBIBfDEz9a9BacRZtXiPhURWnCTyiBknKU=;
- b=f7SabvhELt4tvu58wD/HGUQtx2q3c42bp4689l/poRMwjHONs2y+uJybLQ6btnBic8
- iSYK/T680hWQ8YubanyiQ/jk4TxtOOSgyzZyzTjBStaumbjkRAc3PTfrEP9z1ET4ppjL
- os0cjm+F8kyIi27l3gX1TCu+EYDnb6I6sC6rEheSVAEJvEJuF1rkSUHHVYhQ9PjtWNZC
- /KoHUhscmHo/jN1PCMTUxC8NT4KR3QukfsWt+gbIkumzBVh1p3Sny9bKzJeet5110tpk
- HzVFo5k5iKj3j88DvNf1ucVPdH/av+bU0vEDu76g9bGVlHfWhJDUhqHlYTifQBH3QuBi
- oWFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=+CrrtBZaWaBIBfDEz9a9BacRZtXiPhURWnCTyiBknKU=;
- b=6vbJqhvEi9uXfUsrgs1nBSw24AigDjPVxWT5lEPAjxEmZ91Sin8ZUgVWbapHI3u40a
- IRRKcuO8DTUhuINjc7i5Hr+r0r5jXm6Ra3mppk2j3mjX2ir6XmcSTSRhqcieR7WWDhFo
- bnjJ3RcukBNJVDCy7dT80QsfIHV30QXgnpnVUQRO3bVLYXDGg5C+YLbUHpBZqu7BHe2D
- i8M79mzjf1PMPQjZDFI7r2dulE8QsdMO14f+G98TkaOnia98NZBVEDzhtb+9sfVjpr+n
- rRbdHw+ExDbreoyu7OJCidzjctG5XX5fBMPenqrOvmQENR5o2Bpv8yHOr9d4Upt3sVvy
- o2Nw==
-X-Gm-Message-State: ACrzQf0OYAObX8FfZbFn9HHXEWrd79wIw8P0wVptyDcTUb8tTLtecEZS
- aOPHyJ6jF9FzxmQ2lilu18s=
-X-Google-Smtp-Source: AMsMyM5j57nGJ6ihP9Jnolnn5vAnBZp3njFzbqkVuO45h5Gs91zBtM7qMBV3ZTA/jEfxwCmFGOBzYQ==
-X-Received: by 2002:aca:2819:0:b0:359:f8a7:c88 with SMTP id
- 25-20020aca2819000000b00359f8a70c88mr260428oix.278.1667589755023; 
- Fri, 04 Nov 2022 12:22:35 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- n132-20020acabd8a000000b003547a3401e6sm1729901oif.43.2022.11.04.12.22.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Nov 2022 12:22:34 -0700 (PDT)
-Date: Fri, 4 Nov 2022 12:22:32 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <20221104192232.GA2520396@roeck-us.net>
+ with ESMTP id OvloB_VK0EEa for <bridge@lists.linux-foundation.org>;
+ Fri,  4 Nov 2022 19:42:16 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1FAF5820F8
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 1FAF5820F8
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 19:42:16 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 02FAFB82DCA;
+ Fri,  4 Nov 2022 19:42:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32A74C433D6;
+ Fri,  4 Nov 2022 19:42:11 +0000 (UTC)
+Date: Fri, 4 Nov 2022 15:42:09 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <20221104154209.21b26782@rorschach.local.home>
+In-Reply-To: <20221104192232.GA2520396@roeck-us.net>
 References: <20221104054053.431922658@goodmis.org>
+ <20221104192232.GA2520396@roeck-us.net>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221104054053.431922658@goodmis.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
  linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linaro-mm-sig@lists.linaro.org, Thomas Gleixner <tglx@linutronix.de>,
@@ -122,31 +93,50 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Nov 04, 2022 at 01:40:53AM -0400, Steven Rostedt wrote:
+On Fri, 4 Nov 2022 12:22:32 -0700
+Guenter Roeck <linux@roeck-us.net> wrote:
+
+> Unfortunately the renaming caused some symbol conflicts.
 > 
-> Back in April, I posted an RFC patch set to help mitigate a common issue
-> where a timer gets armed just before it is freed, and when the timer
-> goes off, it crashes in the timer code without any evidence of who the
-> culprit was. I got side tracked and never finished up on that patch set.
-> Since this type of crash is still our #1 crash we are seeing in the field,
-> it has become a priority again to finish it.
+> Global definition: timer_shutdown
 > 
-> This is v3 of that patch set. Thomas Gleixner posted an untested version
-> that makes timer->function NULL as the flag that it is shutdown. I took that
-> code, tested it (fixed it up), added more comments, and changed the
-> name to timer_shutdown_sync(). I also converted it to use WARN_ON_ONCE()
-> instead of just WARN_ON() as Linus asked for.
-> 
+>   File             Line
+> 0 time.c            93 static inline void timer_shutdown(struct clock_event_device *evt)
+> 1 arm_arch_timer.c 690 static __always_inline int timer_shutdown(const int access,
+> 2 timer-fttmr010.c 105 int (*timer_shutdown)(struct clock_event_device *evt);
+> 3 timer-sp804.c    158 static inline void timer_shutdown(struct clock_event_device *evt)
+> 4 timer.h          239 static inline int timer_shutdown(struct timer_list *timer)
 
-Unfortunately the renaming caused some symbol conflicts.
+$ git grep '\btimer_shutdown'
+arch/arm/mach-spear/time.c:static inline void timer_shutdown(struct clock_event_device *evt)
+arch/arm/mach-spear/time.c:     timer_shutdown(evt);
+arch/arm/mach-spear/time.c:     timer_shutdown(evt);
+arch/arm/mach-spear/time.c:     timer_shutdown(evt);
+drivers/clocksource/arm_arch_timer.c:static __always_inline int timer_shutdown(const int access,
+drivers/clocksource/arm_arch_timer.c:   return timer_shutdown(ARCH_TIMER_VIRT_ACCESS, clk);
+drivers/clocksource/arm_arch_timer.c:   return timer_shutdown(ARCH_TIMER_PHYS_ACCESS, clk);
+drivers/clocksource/arm_arch_timer.c:   return timer_shutdown(ARCH_TIMER_MEM_VIRT_ACCESS, clk);
+drivers/clocksource/arm_arch_timer.c:   return timer_shutdown(ARCH_TIMER_MEM_PHYS_ACCESS, clk);
+drivers/clocksource/timer-fttmr010.c:   int (*timer_shutdown)(struct clock_event_device *evt);
+drivers/clocksource/timer-fttmr010.c:   fttmr010->timer_shutdown(evt);
+drivers/clocksource/timer-fttmr010.c:   fttmr010->timer_shutdown(evt);
+drivers/clocksource/timer-fttmr010.c:   fttmr010->timer_shutdown(evt);
+drivers/clocksource/timer-fttmr010.c:           fttmr010->timer_shutdown = ast2600_timer_shutdown;
+drivers/clocksource/timer-fttmr010.c:           fttmr010->timer_shutdown = fttmr010_timer_shutdown;
+drivers/clocksource/timer-fttmr010.c:   fttmr010->clkevt.set_state_shutdown = fttmr010->timer_shutdown;
+drivers/clocksource/timer-fttmr010.c:   fttmr010->clkevt.tick_resume = fttmr010->timer_shutdown;
+drivers/clocksource/timer-sp804.c:static inline void timer_shutdown(struct clock_event_device *evt)
+drivers/clocksource/timer-sp804.c:      timer_shutdown(evt);
+drivers/clocksource/timer-sp804.c:      timer_shutdown(evt);
 
-Global definition: timer_shutdown
+Honestly, I think these need to be renamed, as "timer_shutdown()"
+should be specific to the timer code, and not individual timers.
 
-  File             Line
-0 time.c            93 static inline void timer_shutdown(struct clock_event_device *evt)
-1 arm_arch_timer.c 690 static __always_inline int timer_shutdown(const int access,
-2 timer-fttmr010.c 105 int (*timer_shutdown)(struct clock_event_device *evt);
-3 timer-sp804.c    158 static inline void timer_shutdown(struct clock_event_device *evt)
-4 timer.h          239 static inline int timer_shutdown(struct timer_list *timer)
+I'll start making a patch set that starts by renaming these timers,
+then adds the timer_shutdown() API, and finished with the trivial
+updates, and that will be a real "PATCH" (non RFC).
 
-Guenter
+Linus, should I also add any patches that has already been acked by the
+respective maintainer?
+
+-- Steve
