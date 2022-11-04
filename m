@@ -2,117 +2,118 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2031F619CC9
-	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 17:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B15619E21
+	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 18:07:11 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 9A4F64193E;
-	Fri,  4 Nov 2022 16:14:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9A4F64193E
+	by smtp4.osuosl.org (Postfix) with ESMTP id 0E71541813;
+	Fri,  4 Nov 2022 17:07:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0E71541813
 Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=ZXT4b7xG
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.a=rsa-sha256 header.s=google header.b=TyCMiI4A
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id cUTdv9A_9f3y; Fri,  4 Nov 2022 16:14:53 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id D84B64189B;
-	Fri,  4 Nov 2022 16:14:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D84B64189B
+	with ESMTP id Gf59QjKDykhS; Fri,  4 Nov 2022 17:07:08 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 562C34181B;
+	Fri,  4 Nov 2022 17:07:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 562C34181B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 73CCEC0077;
-	Fri,  4 Nov 2022 16:14:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B3C38C0077;
+	Fri,  4 Nov 2022 17:07:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1B777C002D
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 16:14:50 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 68711C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 17:07:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id E691E60AE8
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 16:14:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E691E60AE8
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=ZXT4b7xG
+ by smtp4.osuosl.org (Postfix) with ESMTP id 3BF8341817
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 17:07:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3BF8341817
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nGjY7Mo0ODGv for <bridge@lists.linux-foundation.org>;
- Fri,  4 Nov 2022 16:14:49 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id oAciXtVtMzjm for <bridge@lists.linux-foundation.org>;
+ Fri,  4 Nov 2022 17:07:04 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 30BA5608D8
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
- [IPv6:2607:f8b0:4864:20::231])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 30BA5608D8
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 16:14:49 +0000 (UTC)
-Received: by mail-oi1-x231.google.com with SMTP id r83so5671116oih.2
- for <bridge@lists.linux-foundation.org>; Fri, 04 Nov 2022 09:14:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=vkBGgKFgg4QPXCpHtMi6j0J3ZcIgUdwyTJWClmiO8n8=;
- b=ZXT4b7xGHkwhtyRx7V1geQfUresoJ3Ad36AKxZcA+hYEkLlZTMmJdsg3FLF6RZb4Bm
- /Th2KOsiFM+wv4AFPnrljoJs2GpR7KNawydYt2C5cew9YFo+qW0UidzKrk4BDuG1u7w+
- m3w563eSaiPwL3l4sGKZaD+ak6hpgQhlR7eGCpJqdUtIM7CX7IVrS9HVCezWAA8wIfI4
- tbWxHgw8jm41jK3k3dRhGJKkPfEdX95COskXHfzG/e/VIoBDLovAFvOX7zEd4Utr1gQo
- 7jv8BY+ymXeC+5KaWJgeXULPlc8QwCY2a+1Wc4m/cSjP0OKV+9XQ8V5888RvdMmc7n4q
- obpw==
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DA37A41813
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com
+ [IPv6:2001:4860:4864:20::2e])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id DA37A41813
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 17:07:03 +0000 (UTC)
+Received: by mail-oa1-x2e.google.com with SMTP id
+ 586e51a60fabf-13bd19c3b68so6183896fac.7
+ for <bridge@lists.linux-foundation.org>; Fri, 04 Nov 2022 10:07:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=/jNIi3NLp/0QE0eLEgGhnlZnXslRxZtVSsauwMnJ52A=;
+ b=TyCMiI4ARMPxd18RVlEv+qm2LWR7zC104Hlivn40qb5lZJslIeDFuCNMNvjneFE/Nj
+ LFwCX5vAwmEX/R8qjGO9x9K9/hgdwoRd2q59WUqMzWoiDvISQjer+tTT1jJ7UfSLA8Vn
+ fR3VeAjk206NeR5DC2lSXJH82ZME8JVM9jplc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=vkBGgKFgg4QPXCpHtMi6j0J3ZcIgUdwyTJWClmiO8n8=;
- b=hB7c7aaRB7IN8L+iYaAMF3iFESFUzDveCOACSIHP0UDUkZXP/qKfhxIcg60UB1meLr
- mua37r9u+cYKmOBq5xBrWKo8lM9yoDFakgnSNPEJDHgud86sWKdkXIQgnSn0IYZ2g2wq
- 2D4W1+uPVE/A9xF7hoL/727citek1GE64Hsv8dTyQz+AFE6DoQ8JQbZgH53Yzoq4XsT2
- WmjO8TTFoYc816G1wMgwMW1exqsYQsESUolTvGOt3X+3HrrZ3K9eLRZ/cqxBUFZXA2Z8
- FN+YNOh8OFY1DKkr4lgLoHTkSMFEPFQD+jBgnr9PVgFrzszt0pHWl70Oc1jLuEpoXWEK
- 7Zfw==
-X-Gm-Message-State: ACrzQf1NQXyxlpuKMXtdnRYX4l1pIOZGTEreP7rZd7s5JTl4u9S5IzuT
- r3lMdBswxCTCUdF8XARPJJ0=
-X-Google-Smtp-Source: AMsMyM7iFweEsB11T8MsAxnRkCeRKLOBdX0O0x9jUekHKEg87JfqIXfJu5mpVtFVdszEhc175Hq8Tw==
-X-Received: by 2002:aca:d841:0:b0:35a:5959:590d with SMTP id
- p62-20020acad841000000b0035a5959590dmr2855416oig.120.1667578488108; 
- Fri, 04 Nov 2022 09:14:48 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- p36-20020a05687056a400b0013b1301ce42sm1894684oao.47.2022.11.04.09.14.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Nov 2022 09:14:47 -0700 (PDT)
-Date: Fri, 4 Nov 2022 09:14:45 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Steven Rostedt <rostedt@goodmis.org>
-Message-ID: <20221104161445.GA1866159@roeck-us.net>
-References: <20221027163453.383bbf8e@gandalf.local.home>
- <CAHk-=whoS+krLU7JNe=hMp2VOcwdcCdTXhdV8qqKoViwzzJWfA@mail.gmail.com>
- <20221027170720.31497319@gandalf.local.home>
- <20221027183511.66b058c4@gandalf.local.home>
- <20221028183149.2882a29b@gandalf.local.home>
- <20221028154617.3c63ba68@kernel.org>
- <27a6a587fee5e9172e41acd16ae1bc1f556fdbd7.camel@redhat.com>
- <20221103175123.744d0f37@rorschach.local.home>
- <CANn89iLv9cak6_vXJG5t=Kq+eiMPdMxF8w4AAuAuFB5sOsy2zg@mail.gmail.com>
- <20221104015139.58f17730@rorschach.local.home>
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=/jNIi3NLp/0QE0eLEgGhnlZnXslRxZtVSsauwMnJ52A=;
+ b=fxV7U8R3dme06XrwzidJqoYd3NfhSOgcLV920G0hi82ksXs+7Nwu9jsbRRIvdKVQH1
+ lyTZK3thbuLg8yOQQy364afPtUjJYE5yGgAybrQAUgAxBPeiDxlzab1elBtXdXK51SWM
+ 8g7e2qdjHWgrJQs4cHnD/QJQJ+s4XGnf4jLiTrdrIBHudYn2ifnc5LUG485FXNrog3Jk
+ yzstBrT4dIIRJw2wAeBzurnaomshC+ZdcRoegBlSsN8xEtwAXrQX/hO0l3qIACnmKEPd
+ J7+eK53QvMMksWSdCs9fTDDDDt5AP575tLXxEyhjL8moZeNVwFYEvC0TwCCeXUmBHlro
+ AoMw==
+X-Gm-Message-State: ACrzQf2lNM+ofIXL2PAg+Oq/zsXxge9Blo7dlVgGJM8tMq6p3l9xCytP
+ nw3djeZJBaLJkSXpHloieLP5devg7kSpPNX1
+X-Google-Smtp-Source: AMsMyM52bAXhMCvsRXQW5IXf9jaD9jA8nljFm1iYHIhqKFYR7T7koW2AjMHm5x5wo2CdPBagtEJ4Og==
+X-Received: by 2002:a05:6870:ea8f:b0:13b:8dad:5895 with SMTP id
+ s15-20020a056870ea8f00b0013b8dad5895mr32033550oap.233.1667581622576; 
+ Fri, 04 Nov 2022 10:07:02 -0700 (PDT)
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com.
+ [209.85.210.44]) by smtp.gmail.com with ESMTPSA id
+ n5-20020a4a9545000000b0044b47bb023fsm1322144ooi.37.2022.11.04.10.07.02
+ for <bridge@lists.linux-foundation.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 04 Nov 2022 10:07:02 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id
+ br15-20020a056830390f00b0061c9d73b8bdso2999007otb.6
+ for <bridge@lists.linux-foundation.org>; Fri, 04 Nov 2022 10:07:02 -0700 (PDT)
+X-Received: by 2002:a81:8241:0:b0:370:5fad:47f0 with SMTP id
+ s62-20020a818241000000b003705fad47f0mr27409344ywf.441.1667581219811; Fri, 04
+ Nov 2022 10:00:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221104015139.58f17730@rorschach.local.home>
-Cc: Alexei Starovoitov <ast@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>, linux-afs@lists.infradead.org,
- Menglong Dong <imagedong@tencent.com>, bridge@lists.linux-foundation.org,
- Jesse Brandeburg <jesse.brandeburg@intel.com>, lvs-devel@vger.kernel.org,
- coreteam@netfilter.org, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Martin KaFai Lau <martin.lau@kernel.org>,
- Kuniyuki Iwashima <kuniyu@amazon.com>, Thomas Gleixner <tglx@linutronix.de>,
- Mirko Lindner <mlindner@marvell.com>, linux-nfs@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, Stephen Boyd <sboyd@kernel.org>,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- netfilter-devel@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Pavel Begunkov <asml.silence@gmail.com>
-Subject: Re: [Bridge] [RFC][PATCH v2 19/31] timers: net: Use
- del_timer_shutdown() before freeing timer
+References: <20221104054053.431922658@goodmis.org>
+In-Reply-To: <20221104054053.431922658@goodmis.org>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Fri, 4 Nov 2022 10:00:03 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whKE5UL+AuCC2wK8oq8D_ueSO_T7-9Acx4POouqVi8ZHg@mail.gmail.com>
+Message-ID: <CAHk-=whKE5UL+AuCC2wK8oq8D_ueSO_T7-9Acx4POouqVi8ZHg@mail.gmail.com>
+To: Steven Rostedt <rostedt@goodmis.org>
+Content-Type: text/plain; charset="UTF-8"
+Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Thomas Gleixner <tglx@linutronix.de>, linux-leds@vger.kernel.org,
+ drbd-dev@lists.linbit.com, linux-s390@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
+ linux-afs@lists.infradead.org, lvs-devel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, linux-ext4@vger.kernel.org,
+ Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org,
+ bridge@lists.linux-foundation.org, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, rcu@vger.kernel.org, cgroups@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ Anna-Maria Gleixner <anna-maria@linutronix.de>, linux-edac@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-parisc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linaro-mm-sig@lists.linaro.org
+Subject: Re: [Bridge] [RFC][PATCH v3 00/33] timers: Use timer_shutdown*()
+ before freeing timers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -127,50 +128,32 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Nov 04, 2022 at 01:51:39AM -0400, Steven Rostedt wrote:
-> On Thu, 3 Nov 2022 17:00:20 -0700
-> Eric Dumazet <edumazet@google.com> wrote:
-> 
-> >  inet_csk_clear_xmit_timers() can be called multiple times during TCP
-> > socket lifetime.
-> > 
-> > (See tcp_disconnect(), which can be followed by another connect() ... and loop)
-> > 
-> > Maybe add a second parameter, or add a new
-> > inet_csk_shutdown_xmit_timers() only called from tcp_v4_destroy_sock() ?
-> > 
-> 
-> I guess.
-> 
-> > >
-> > >  void inet_csk_delete_keepalive_timer(struct sock *sk)
-> > >  {
-> > > -       sk_stop_timer(sk, &sk->sk_timer);
-> > > +       sk_shutdown_timer(sk, &sk->sk_timer);  
-> > 
-> > SO_KEEPALIVE can be called multiple times in a TCP socket lifetime,
-> > on/off/on/off/...
-> > 
-> > I suggest leaving sk_stop_timer() here.
-> > 
-> > Eventually  inet_csk_clear_xmit_timers( sk, destroy=true) (or
-> > inet_csk_shutdown_xmit_timers(())
-> >    will  be called before the socket is destroyed.
-> 
-> OK. 
-> 
-> Guenter,
-> 
-> I posted a new series, but did not include this change. If you want to
-> test that other series, I would suggest to at least add the first part
-> of this patch, otherwise it will trigger. But we want to see if there's
-> other locations of issue that we should care about.
-> 
+On Thu, Nov 3, 2022 at 10:48 PM Steven Rostedt <rostedt@goodmis.org> wrote:
+>
+> Ideally, I would have the first patch go into this rc cycle, which is mostly
+> non functional as it will allow the other patches to come in via the respective
+> subsystems in the next merge window.
 
-I'll run a test on the other series without change first. We'll see what
-happens. If necessary I'll add [parts of] this patch and re-test, but
-before doing that I would like to get a sense for the status of your
-series as-is.
+Ack.
 
-Thanks,
-Guenter
+I also wonder if we could do the completely trivially correct
+conversions immediately.
+
+I'm talking about the scripted ones where it's currently a
+"del_timer_sync()", and the very next action is freeing whatever data
+structure the timer is in (possibly with something like free_irq() in
+between - my point is that there's an unconditional free that is very
+clear and unambiguous), so that there is absolutely no question about
+whether they should use "timer_shutdown_sync()" or not.
+
+IOW, things like patches 03, 17 and 31, and at least parts others in
+this series.
+
+This series clearly has several much more complex cases that need
+actual real code review, and I think it would help to have the
+completely unambiguous cases out of the way, just to get rid of noise.
+
+So I'd take that first patch, and a scripted set of "this cannot
+change any semantics" patches early.
+
+                Linus
