@@ -1,89 +1,75 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 655F161907E
-	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 06:51:52 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07BE861954F
+	for <lists.bridge@lfdr.de>; Fri,  4 Nov 2022 12:23:23 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id C2F274186A;
-	Fri,  4 Nov 2022 05:51:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C2F274186A
+	by smtp2.osuosl.org (Postfix) with ESMTP id E80FF40C0A;
+	Fri,  4 Nov 2022 11:23:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E80FF40C0A
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 81z4hjUv5L19; Fri,  4 Nov 2022 05:51:49 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 2A74B41864;
-	Fri,  4 Nov 2022 05:51:48 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2A74B41864
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id PbOVr0Dd81c9; Fri,  4 Nov 2022 11:23:15 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 0BA2440BDB;
+	Fri,  4 Nov 2022 11:23:15 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0BA2440BDB
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C35A9C007B;
-	Fri,  4 Nov 2022 05:51:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A242EC0077;
+	Fri,  4 Nov 2022 11:23:14 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3E9D4C002D
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 05:51:46 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 997D7C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 11:23:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 0CA8461038
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 05:51:46 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0CA8461038
+ by smtp2.osuosl.org (Postfix) with ESMTP id 6663D4036F
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 11:23:13 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6663D4036F
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5uH5uzcsN6yl for <bridge@lists.linux-foundation.org>;
- Fri,  4 Nov 2022 05:51:45 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id CjyWR-kYf1ON for <bridge@lists.linux-foundation.org>;
+ Fri,  4 Nov 2022 11:23:12 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 3EB5160A8A
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 3EB5160A8A
- for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 05:51:45 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 9E472B82BE5;
- Fri,  4 Nov 2022 05:51:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F079C433D6;
- Fri,  4 Nov 2022 05:51:41 +0000 (UTC)
-Date: Fri, 4 Nov 2022 01:51:39 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Eric Dumazet <edumazet@google.com>
-Message-ID: <20221104015139.58f17730@rorschach.local.home>
-In-Reply-To: <CANn89iLv9cak6_vXJG5t=Kq+eiMPdMxF8w4AAuAuFB5sOsy2zg@mail.gmail.com>
-References: <20221027150525.753064657@goodmis.org>
- <20221027150928.780676863@goodmis.org>
- <20221027155513.60b211e2@gandalf.local.home>
- <CAHk-=wjAjW2P5To82+CAM0Rx8RexQBHPTVZBWBPHyEPGm37oFA@mail.gmail.com>
- <20221027163453.383bbf8e@gandalf.local.home>
- <CAHk-=whoS+krLU7JNe=hMp2VOcwdcCdTXhdV8qqKoViwzzJWfA@mail.gmail.com>
- <20221027170720.31497319@gandalf.local.home>
- <20221027183511.66b058c4@gandalf.local.home>
- <20221028183149.2882a29b@gandalf.local.home>
- <20221028154617.3c63ba68@kernel.org>
- <27a6a587fee5e9172e41acd16ae1bc1f556fdbd7.camel@redhat.com>
- <20221103175123.744d0f37@rorschach.local.home>
- <CANn89iLv9cak6_vXJG5t=Kq+eiMPdMxF8w4AAuAuFB5sOsy2zg@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 007084028D
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 007084028D
+ for <bridge@lists.linux-foundation.org>; Fri,  4 Nov 2022 11:23:11 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id A06FA1883880;
+ Fri,  4 Nov 2022 11:23:07 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 681AF25002E1;
+ Fri,  4 Nov 2022 11:23:07 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 4E2B691201E4; Fri,  4 Nov 2022 11:23:07 +0000 (UTC)
+X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Date: Fri, 04 Nov 2022 12:23:07 +0100
+From: netdev@kapio-technology.com
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+In-Reply-To: <20221103231838.fp5nh5g3kv7cz2d2@skbuf>
+References: <20221101193922.2125323-1-idosch@nvidia.com>
+ <20221101193922.2125323-1-idosch@nvidia.com>
+ <20221101193922.2125323-2-idosch@nvidia.com>
+ <20221101193922.2125323-2-idosch@nvidia.com>
+ <20221103231838.fp5nh5g3kv7cz2d2@skbuf>
+User-Agent: Gigahost Webmail
+Message-ID: <ce9f4095b216187c1dd5c14cdf4ae9cc@kapio-technology.com>
+X-Sender: netdev@kapio-technology.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Cc: Alexei Starovoitov <ast@kernel.org>,
- Tony Nguyen <anthony.l.nguyen@intel.com>, linux-afs@lists.infradead.org,
- Menglong Dong <imagedong@tencent.com>, bridge@lists.linux-foundation.org,
- Jesse Brandeburg <jesse.brandeburg@intel.com>, lvs-devel@vger.kernel.org,
- coreteam@netfilter.org, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Guenter Roeck <linux@roeck-us.net>,
- Martin KaFai Lau <martin.lau@kernel.org>,
- Kuniyuki Iwashima <kuniyu@amazon.com>, Thomas Gleixner <tglx@linutronix.de>,
- Mirko Lindner <mlindner@marvell.com>, linux-nfs@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, Stephen Boyd <sboyd@kernel.org>,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- netfilter-devel@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Pavel Begunkov <asml.silence@gmail.com>
-Subject: Re: [Bridge] [RFC][PATCH v2 19/31] timers: net: Use
- del_timer_shutdown() before freeing timer
+Cc: Ido Schimmel <idosch@nvidia.com>, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, roopa@nvidia.com, edumazet@google.com,
+ mlxsw@nvidia.com, netdev@vger.kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add MAC Authentication
+ Bypass (MAB) support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,42 +84,95 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, 3 Nov 2022 17:00:20 -0700
-Eric Dumazet <edumazet@google.com> wrote:
-
->  inet_csk_clear_xmit_timers() can be called multiple times during TCP
-> socket lifetime.
+On 2022-11-04 00:18, Vladimir Oltean wrote:
+> On Tue, Nov 01, 2022 at 09:39:21PM +0200, Ido Schimmel wrote:
+>> From: "Hans J. Schultz" <netdev@kapio-technology.com>
+>> 
+>> Hosts that support 802.1X authentication are able to authenticate
+>> themselves by exchanging EAPOL frames with an authenticator (Ethernet
+>> bridge, in this case) and an authentication server. Access to the
+>> network is only granted by the authenticator to successfully
+>> authenticated hosts.
+>> 
+>> The above is implemented in the bridge using the "locked" bridge port
+>> option. When enabled, link-local frames (e.g., EAPOL) can be locally
+>> received by the bridge, but all other frames are dropped unless the 
+>> host
+>> is authenticated. That is, unless the user space control plane 
+>> installed
+>> an FDB entry according to which the source address of the frame is
+>> located behind the locked ingress port. The entry can be dynamic, in
+>> which case learning needs to be enabled so that the entry will be
+>> refreshed by incoming traffic.
+>> 
+>> There are deployments in which not all the devices connected to the
+>> authenticator (the bridge) support 802.1X. Such devices can include
+>> printers and cameras. One option to support such deployments is to
+>> unlock the bridge ports connecting these devices, but a slightly more
+>> secure option is to use MAB. When MAB is enabled, the MAC address of 
+>> the
+>> connected device is used as the user name and password for the
+>> authentication.
+>> 
+>> For MAB to work, the user space control plane needs to be notified 
+>> about
+>> MAC addresses that are trying to gain access so that they will be
+>> compared against an allow list. This can be implemented via the 
+>> regular
+>> learning process with the sole difference that learned FDB entries are
+>> installed with a new "locked" flag indicating that the entry cannot be
+>> used to authenticate the device. The flag cannot be set by user space,
+>> but user space can clear the flag by replacing the entry, thereby
+>> authenticating the device.
+>> 
+>> Locked FDB entries implement the following semantics with regards to
+>> roaming, aging and forwarding:
+>> 
+>> 1. Roaming: Locked FDB entries can roam to unlocked (authorized) 
+>> ports,
+>>    in which case the "locked" flag is cleared. FDB entries cannot roam
+>>    to locked ports regardless of MAB being enabled or not. Therefore,
+>>    locked FDB entries are only created if an FDB entry with the given 
+>> {MAC,
+>>    VID} does not already exist. This behavior prevents unauthenticated
+>>    devices from disrupting traffic destined to already authenticated
+>>    devices.
+>> 
+>> 2. Aging: Locked FDB entries age and refresh by incoming traffic like
+>>    regular entries.
+>> 
+>> 3. Forwarding: Locked FDB entries forward traffic like regular 
+>> entries.
+>>    If user space detects an unauthorized MAC behind a locked port and
+>>    wishes to prevent traffic with this MAC DA from reaching the host, 
+>> it
+>>    can do so using tc or a different mechanism.
 > 
-> (See tcp_disconnect(), which can be followed by another connect() ... and loop)
-> 
-> Maybe add a second parameter, or add a new
-> inet_csk_shutdown_xmit_timers() only called from tcp_v4_destroy_sock() ?
+> In other words, a user space MAB daemon has a lot of extra work to do.
+> I'm willing to bet it's going to cut 90% of those corners ;) anyway...
 > 
 
-I guess.
+I would like to know your (Vladimir) take on the approach of the
+implementation for the mv88e6xxx that I have made and which will also be
+the basis for how the WesterMo hostapd fork will be afaik...
 
-> >
-> >  void inet_csk_delete_keepalive_timer(struct sock *sk)
-> >  {
-> > -       sk_stop_timer(sk, &sk->sk_timer);
-> > +       sk_shutdown_timer(sk, &sk->sk_timer);  
+Is it in general a good idea to use TC filters for specific MACs instead
+of having the driver installing blocking entries, which I know the 
+Marvell
+XCat switchcore will also have (switchcore installed blockig entries)?
+
+
+>> 
+>> Enable the above behavior using a new bridge port option called "mab".
+>> It can only be enabled on a bridge port that is both locked and has
+>> learning enabled. Locked FDB entries are flushed from the port once 
+>> MAB
+>> is disabled. A new option is added because there are pure 802.1X
+>> deployments that are not interested in notifications about locked FDB
+>> entries.
+>> 
+>> Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
+>> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
+>> ---
 > 
-> SO_KEEPALIVE can be called multiple times in a TCP socket lifetime,
-> on/off/on/off/...
-> 
-> I suggest leaving sk_stop_timer() here.
-> 
-> Eventually  inet_csk_clear_xmit_timers( sk, destroy=true) (or
-> inet_csk_shutdown_xmit_timers(())
->    will  be called before the socket is destroyed.
-
-OK. 
-
-Guenter,
-
-I posted a new series, but did not include this change. If you want to
-test that other series, I would suggest to at least add the first part
-of this patch, otherwise it will trigger. But we want to see if there's
-other locations of issue that we should care about.
-
--- Steve
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
