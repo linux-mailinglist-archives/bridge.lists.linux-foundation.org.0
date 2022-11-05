@@ -1,54 +1,55 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D0861DEC8
-	for <lists.bridge@lfdr.de>; Sat,  5 Nov 2022 22:45:56 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD3A61DEE0
+	for <lists.bridge@lfdr.de>; Sat,  5 Nov 2022 22:48:06 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 69F4260A7D;
-	Sat,  5 Nov 2022 21:45:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 69F4260A7D
+	by smtp1.osuosl.org (Postfix) with ESMTP id BFB9B817AC;
+	Sat,  5 Nov 2022 21:48:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BFB9B817AC
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TNmepvh-yjew; Sat,  5 Nov 2022 21:45:54 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 07CD8607CE;
-	Sat,  5 Nov 2022 21:45:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 07CD8607CE
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hhJJiOtQeo9O; Sat,  5 Nov 2022 21:48:04 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 5D95981E30;
+	Sat,  5 Nov 2022 21:48:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5D95981E30
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A0962C0077;
-	Sat,  5 Nov 2022 21:45:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 07E18C0077;
+	Sat,  5 Nov 2022 21:48:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 40261C002D
- for <bridge@lists.linux-foundation.org>; Sat,  5 Nov 2022 21:45:52 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 21D0CC002D
+ for <bridge@lists.linux-foundation.org>; Sat,  5 Nov 2022 21:48:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 145114032A
- for <bridge@lists.linux-foundation.org>; Sat,  5 Nov 2022 21:45:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 145114032A
+ by smtp4.osuosl.org (Postfix) with ESMTP id DC081408CB
+ for <bridge@lists.linux-foundation.org>; Sat,  5 Nov 2022 21:48:01 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DC081408CB
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HY-gnt-9Puak for <bridge@lists.linux-foundation.org>;
- Sat,  5 Nov 2022 21:45:51 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id aEe3RDGTkssF for <bridge@lists.linux-foundation.org>;
+ Sat,  5 Nov 2022 21:48:01 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 45CFD400D9
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 45CFD400D9
- for <bridge@lists.linux-foundation.org>; Sat,  5 Nov 2022 21:45:51 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 24418408BD
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 24418408BD
+ for <bridge@lists.linux-foundation.org>; Sat,  5 Nov 2022 21:48:01 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 8A73FCE069C;
- Sat,  5 Nov 2022 21:45:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74BDDC433D6;
- Sat,  5 Nov 2022 21:45:44 +0000 (UTC)
-Date: Sat, 5 Nov 2022 17:45:42 -0400
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 383BD60B9E;
+ Sat,  5 Nov 2022 21:48:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37383C433D6;
+ Sat,  5 Nov 2022 21:47:58 +0000 (UTC)
+Date: Sat, 5 Nov 2022 17:47:56 -0400
 From: Steven Rostedt <rostedt@goodmis.org>
 To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <20221105174542.21bd7e86@rorschach.local.home>
+Message-ID: <20221105174756.38062fce@rorschach.local.home>
 In-Reply-To: <CAHk-=wjkkomrdcrAxxFijs-Lih6vHze+A2TgM+v7-Z7ZkXT+WA@mail.gmail.com>
 References: <20221105060024.598488967@goodmis.org>
  <CAHk-=wi95dGkg7DiuOZ27gGW+mxJipn9ykB6LHB-HrbbLG6OMQ@mail.gmail.com>
@@ -99,42 +100,21 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 On Sat, 5 Nov 2022 14:13:14 -0700
 Linus Torvalds <torvalds@linux-foundation.org> wrote:
 
-> And trying "when != ptr->timer" actually does the right thing in that
-> it gets rid of the case where the timer is modified outside of the
-> del_timer() case, *but* it also causes odd other changes to the
-> output.
-> 
-> Look at what it generates for that
-> 
->    drivers/media/usb/pvrusb2/pvrusb2-hdw.c
-> 
-> file, which finds a lot of triggers with the "when !=  ptr->timer",
-> but only does one without it.
+> (Comparing output is also fun because the ordering of the patches is
+> random, so consecutive runs with the same rule will give different
+> patches. I assume that it's just because it's done in parallel, but it
+> doesn't help the "try to see what changes when you change the script"
+> ;)
 
-I added an expression, and it appears to work:
+What I do to compare is:
 
-At least for this case.
+ patch -p1 < cocci1.patch
+ git commit -a
+ git show | patch -p1 -R
+ patch -p1 < cocci2.patch
+ git diff
 
-@@
-expression E;
-identifier ptr, timer, rfield, slab;
-@@
-(
--       del_timer(&ptr->timer);
-+       timer_shutdown(&ptr->timer);
-|
--       del_timer_sync(&ptr->timer);
-+       timer_shutdown_sync(&ptr->timer);
-)
-  ... when != ptr->timer.function = E;
-(
-        kfree_rcu(ptr, rfield);
-|
-        kmem_cache_free(slab, ptr);
-|
-        kfree(ptr);
-)
-
-Now I need to add return and goto cases here.
+Then I see how things changed. This is how I was able to show you the
+tweaks I made.
 
 -- Steve
