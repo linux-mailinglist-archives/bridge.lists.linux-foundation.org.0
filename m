@@ -1,59 +1,59 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79C1861E682
-	for <lists.bridge@lfdr.de>; Sun,  6 Nov 2022 22:26:42 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84CFE61E9B4
+	for <lists.bridge@lfdr.de>; Mon,  7 Nov 2022 04:33:08 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 6A66C40438;
-	Sun,  6 Nov 2022 21:26:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6A66C40438
+	by smtp1.osuosl.org (Postfix) with ESMTP id 6C2D081435;
+	Mon,  7 Nov 2022 03:33:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 6C2D081435
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Nr-hwcNAAH-N; Sun,  6 Nov 2022 21:26:37 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id DWWt6ilSeZli; Mon,  7 Nov 2022 03:33:05 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 635EB40425;
-	Sun,  6 Nov 2022 21:26:36 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 635EB40425
+	by smtp1.osuosl.org (Postfix) with ESMTPS id ADBE281433;
+	Mon,  7 Nov 2022 03:33:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org ADBE281433
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EEFE6C007B;
-	Sun,  6 Nov 2022 21:26:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3D94EC007B;
+	Mon,  7 Nov 2022 03:33:04 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7A7B9C002D
- for <bridge@lists.linux-foundation.org>; Sun,  6 Nov 2022 21:26:34 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D274AC002D
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Nov 2022 03:33:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 61B2C81351
- for <bridge@lists.linux-foundation.org>; Sun,  6 Nov 2022 21:26:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 61B2C81351
+ by smtp1.osuosl.org (Postfix) with ESMTP id A32A481433
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Nov 2022 03:33:02 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A32A481433
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FYGdC5mJAEkm for <bridge@lists.linux-foundation.org>;
- Sun,  6 Nov 2022 21:26:33 +0000 (UTC)
+ with ESMTP id UJz_xqKlyOoC for <bridge@lists.linux-foundation.org>;
+ Mon,  7 Nov 2022 03:33:01 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1FE3E81348
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5FC018141A
 Received: from dfw.source.kernel.org (dfw.source.kernel.org
  [IPv6:2604:1380:4641:c500::1])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 1FE3E81348
- for <bridge@lists.linux-foundation.org>; Sun,  6 Nov 2022 21:26:33 +0000 (UTC)
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 5FC018141A
+ for <bridge@lists.linux-foundation.org>; Mon,  7 Nov 2022 03:33:01 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 11DF460DBE;
- Sun,  6 Nov 2022 21:26:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C35DC433C1;
- Sun,  6 Nov 2022 21:26:31 +0000 (UTC)
-Received: from rostedt by gandalf.local.home with local (Exim 4.96)
- (envelope-from <rostedt@goodmis.org>) id 1ornAT-008Cga-2Z;
- Sun, 06 Nov 2022 16:27:01 -0500
-Message-ID: <20221106212427.739928660@goodmis.org>
-User-Agent: quilt/0.66
-Date: Sun, 06 Nov 2022 16:24:27 -0500
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 626B960E94;
+ Mon,  7 Nov 2022 03:33:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780BFC433C1;
+ Mon,  7 Nov 2022 03:32:58 +0000 (UTC)
+Date: Sun, 6 Nov 2022 22:32:56 -0500
 From: Steven Rostedt <rostedt@goodmis.org>
-To: linux-kernel@vger.kernel.org
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20221106223256.4bbdb018@rorschach.local.home>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
  linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-afs@lists.infradead.org, linux-leds@vger.kernel.org,
@@ -71,10 +71,9 @@ Cc: alsa-devel@alsa-project.org, linux-staging@lists.linux.dev,
  linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
  linux-kernel@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>,
  linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Subject: [Bridge] [PATCH v6a 0/5] timers: Use timer_shutdown*() before
-	freeing timers
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: [Bridge] [GIT PULL] treewide: timers: Use timer_shutdown*() before
+ freeing timers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,26 +88,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-del_timer_sync() is often called before the object that owns the timer is
-freed. But sometimes there's a race that enables the timer again before it is
-freed and causes a use after free when that timer triggers. This patch set
-adds a new "shutdown" timer state, which is set on the new timer_shutdown()
-API. Once a timer is in this state, it can not be re-armed and if it is, it
-will warn.
 
-The first three patches change existing timer_shutdown() functions used
-locally in ARM and some drivers to better namespace names.
 
-The fourth patch implements the new API.
+Linus,
 
-The fifth patch is now a treewide patch that uses a coccinelle script to
-convert the trivial locations where a del_timer*() is called on a timer of an
-object that is freed immediately afterward (or at least in the same function).
+As discussed here:
 
-Changes since v5a: https://lore.kernel.org/all/20221106054535.709068702@goodmis.org/
+  https://lore.kernel.org/all/20221106212427.739928660@goodmis.org/
 
- - Updated the script to make ptr and slab into expressions instead of
-   using identifiers (Julia Lawall and Linus Torvalds)
+Add a "shutdown" state for timers. This is performed by the new
+timer_shutdown_sync() and timer_shutdown() function calls. When this is
+called on a timer, it will no longer be able to be re-armed. This should
+be called before a timer is freed to prevent it from being re-armed after
+being removed from the timer queue and then causing a crash in the timer
+code when the timer triggers.
+
+This required renaming some functions that were using the name
+timer_shutdown() statically to something more appropriate.
+
+Then a coccinelle script was executed on the entire kernel tree to find
+the trivial locations that remove the timer and then frees the object that
+the timer exists on.
+
+These changes are not enough to solve all the locations where timers may
+be of an issue. But by adding the shutdown infrastructure and the obvious
+cases, the more complex cases can be added after they have been reviewed
+more closely.
+
+
+Please pull the following tree, which can be found at:
+
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/linux-trace.git
+add-timer-shutdown
+
+Tag SHA1: 7685328352dfd2908e23048f563e328dbd3526e9
+Head SHA1: 870556da63870e01ade9bb8418ac5a21862f2f10
+
 
 Steven Rostedt (Google) (5):
       ARM: spear: Do not use timer namespace for timer_shutdown() function
@@ -197,3 +213,4 @@ Steven Rostedt (Google) (5):
  sound/i2c/other/ak4117.c                           |  2 +-
  sound/synth/emux/emux.c                            |  2 +-
  78 files changed, 207 insertions(+), 148 deletions(-)
+---------------------------
