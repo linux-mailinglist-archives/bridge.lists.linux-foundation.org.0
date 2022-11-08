@@ -1,101 +1,97 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5FB1620D9C
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36EEA620D9B
 	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 11:48:22 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 3EEDC401C9;
-	Tue,  8 Nov 2022 10:48:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3EEDC401C9
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=Dt/WQJLs
+	by smtp4.osuosl.org (Postfix) with ESMTP id 8B88A410A0;
+	Tue,  8 Nov 2022 10:48:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8B88A410A0
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=g6wOCHPS
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id odOhemhkTG9M; Tue,  8 Nov 2022 10:48:20 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 4ZBXOHjdoY4c; Tue,  8 Nov 2022 10:48:19 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id AEFDE402DC;
-	Tue,  8 Nov 2022 10:48:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org AEFDE402DC
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 847D841484;
+	Tue,  8 Nov 2022 10:48:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 847D841484
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8CAF6C0080;
-	Tue,  8 Nov 2022 10:48:19 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3FBF9C007D;
+	Tue,  8 Nov 2022 10:48:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E8E15C002D
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:48:17 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C581DC002D
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:48:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id BFD7240919
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:48:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org BFD7240919
-Authentication-Results: smtp4.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=Dt/WQJLs
+ by smtp4.osuosl.org (Postfix) with ESMTP id 8C4AA40915
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:48:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8C4AA40915
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nB9X3g-7ikrc for <bridge@lists.linux-foundation.org>;
- Tue,  8 Nov 2022 10:48:16 +0000 (UTC)
+ with ESMTP id htv1WhX8e-VL for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Nov 2022 10:48:15 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B15D2410A0
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2042.outbound.protection.outlook.com [40.107.101.42])
- by smtp4.osuosl.org (Postfix) with ESMTPS id B15D2410A0
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:48:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 32168409B3
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2086.outbound.protection.outlook.com [40.107.212.86])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 32168409B3
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:48:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K74hUc62GKaAWrecC/mAq1abyMYS2CJ804jLOmWeFjPYysYRsbnA3tJHEl4lkzLEE8EoLx6FjkSKB/Hq0UGyxXqh8/a5+g5vqJdRcE91jC0uWRmWzlcRCrZI0V+1Fjwc8AQQoQZBXAyLUViHu24STPimaIfWJinTn7h17gA+tbRrNteVrMqGZ5vwXz/FGPp1R1noZPq+d9j3taSsJsq8VKc1d62Q7eWq1mWwKaRLc1GUKaCIGsnhCwjJTnkQWjQIvpjAZwVih3YgdGmtOnTA6tPfu9Lfq4oMR2YCOCotsyztOKallgiW/r9U966ccYhhvr0nMpG1iF3tokpD9AWcyQ==
+ b=XYeuy8pykpAJhAaHdwaB1Pknpz0lmtco/72jqNPiXNvudhllZrlOfNYbJf4QTLCkTaXiRJ8fqPRJaN13Y0g504VK1kzBXY4GuhZ48ovQfIPs/NFLrbB5zoQ/IB4jLPorWFWp+MgxYIPBsLdw2/yB7j+FUxjjICzezXMiuKgABjLIFI/XdGxiUNQpZDac+5eAancoyI73G7ZH8WxY06p9Ve+R5pILdha9vxDDqtMVb9OxFIb+/dQm1AqEvYu0I0tIaw/eofFcly4WqRjAAZi7zppIfgP5BO6nyR7U6VWbzxCVCClBbZ9G4aMhfstR8uspt7Z2vtk3rtcZzLDfobvJlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kq5Oq8fcOFcPYTjwT1aMU/D8S+XTSuUQicYnQIZzCLM=;
- b=YgrFQG3y3uLr4YSVtXArzlPAVPF7+bYvcxxXM/6dhXSJj/CfGM25MhloT2r+fqEWB2y0MejPvhBqBqviEllxuHKYPMDNsKsWnZwraHpgYocrr4TcehYeRxketRk6yfNYXMHZQRfd7JAY5sjssVefcaBbRtUGpp25oxgV2jV3iHqMHV/4xDolgNB+gGCkvRJB7CQvE0ulmudoVAv9Ri8JBiPDASyORP8HQLGnAjGE6NuZCcNrb1xrWM/3D9HxZod/9eXRcEZzxlcxhN6dskjv+Ug5/7W5KVRafsDJ7xRf6o4iDRtibmiS8bqIsF8vn5ZvtRoO9eA2k3ovaqzN5es7rw==
+ bh=+vXV0EscbKjPvtQz+Z5GoGH51yAqxSK2mKdAlmDf4A8=;
+ b=ZKcJ/RjQz4f9AqTAK4y0XmKLi8N2Hhm+xYB5lC3gATeUMakFOWPehUr0lG58O6054BtUOEdCNjBxNP/omSDFKkpANp2i4ugKxX/pIkL6LtMGzfhSVB6f5bxHmyL6K4UyN/MvAP/4GXtOJVoP0tpm11esbgfDQQVIttH+M97U+k7V9V8P885WuHwyrVWoDc8FC/RMTSRrJ40D8LmgmHrdJ3LLm2ZitaFDpaJBaLxDOkGbWllpj1WKUSYEXNPwm8rpwRq0M4El9hDzQWllY/AiHTKJlLMxPwRVPpSpYR+2CMYQeEw/c25FZIqwcGLm/qWBWZMkBIbH2Hsd5wqG1GlMwQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=davemloft.net smtp.mailfrom=nvidia.com;
+ 216.228.117.160) smtp.rcpttodomain=davemloft.net smtp.mailfrom=nvidia.com;
  dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kq5Oq8fcOFcPYTjwT1aMU/D8S+XTSuUQicYnQIZzCLM=;
- b=Dt/WQJLsQ+YLhwVM37poPiMS2c0uuzOLo2dCUDxKSMTILKxmFO8sbhsABykuHF75U9wd9gaO4LxvNOtS/9F4ljRkbphpseQGKn9WFu1o01TW2Oz3tcYVxlmu86rdKM6LXfKMyHN/Iq0nqZZhOU0u/llAh/yCNKkGNGaxLSO0NJWXNw1x3AFILixxHIQ9AHHIoUw0xKnBmemGSbbgTUARXvD0dN7BxYOmxGs8BBPWSZs/IgQG7G3VyDn3VOCuzLQKvBOrgTI4mWdwT3b9A54zIB7SZYs9MD+oGfsGqB286Ugg3bRE2DpAm9LAKjp6awom9tEHd2MjraKWzZwJ6kU6ww==
-Received: from BN1PR12CA0008.namprd12.prod.outlook.com (2603:10b6:408:e1::13)
- by DM4PR12MB6086.namprd12.prod.outlook.com (2603:10b6:8:b2::16) with
+ bh=+vXV0EscbKjPvtQz+Z5GoGH51yAqxSK2mKdAlmDf4A8=;
+ b=g6wOCHPSRf4d10ZXr87/oRqmGIKx6lclk59YbYBq29xW5crEqk09VYGOdaWlMlRud1owY4fFuGvlEzpTlp8OJEBe6SjpH8ACwJAGm1ZntunIDnvqLd4cwvzI1LroqrXGRsVcRrepOvdyW8nI/Ef0f2yB2ytB+9VHPB7ighsTDgtlqO66VsKAGdTGHPHfG2XAHMlBK0cI5l54q+IomFScXTMaBghrTS0ssxnXMJpnI5f5q7674N5y+stir9wk/jFnQneQBg7k73SsosBq1ih42gttU0bTWxzGeonaKGxco5TPwZStg+UPDFcIlC2hsjCTOmWtdq+uGp2zp5lX54WimQ==
+Received: from DS7PR05CA0049.namprd05.prod.outlook.com (2603:10b6:8:2f::27) by
+ SJ0PR12MB6784.namprd12.prod.outlook.com (2603:10b6:a03:44f::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.25; Tue, 8 Nov
- 2022 10:48:14 +0000
-Received: from BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e1:cafe::f6) by BN1PR12CA0008.outlook.office365.com
- (2603:10b6:408:e1::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.27 via Frontend
- Transport; Tue, 8 Nov 2022 10:48:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Tue, 8 Nov
+ 2022 10:48:12 +0000
+Received: from DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2f:cafe::ff) by DS7PR05CA0049.outlook.office365.com
+ (2603:10b6:8:2f::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.9 via Frontend
+ Transport; Tue, 8 Nov 2022 10:48:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BN8NAM11FT020.mail.protection.outlook.com (10.13.176.223) with Microsoft SMTP
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT057.mail.protection.outlook.com (10.13.172.252) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5791.20 via Frontend Transport; Tue, 8 Nov 2022 10:48:14 +0000
+ 15.20.5791.20 via Frontend Transport; Tue, 8 Nov 2022 10:48:12 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 8 Nov 2022
- 02:48:00 -0800
+ 02:48:03 -0800
 Received: from yaviefel.vdiclient.nvidia.com (10.126.230.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 8 Nov 2022 02:47:56 -0800
-From: Petr Machata <petrm@nvidia.com>
+ 15.2.986.29; Tue, 8 Nov 2022 02:48:00 -0800
 To: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
  <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
  <pabeni@redhat.com>, Ivan Vecera <ivecera@redhat.com>,
  <netdev@vger.kernel.org>
-Date: Tue, 8 Nov 2022 11:47:12 +0100
-Message-ID: <acba123f510d401a7eda4536caa33218767b75d9.1667902754.git.petrm@nvidia.com>
+Date: Tue, 8 Nov 2022 11:47:13 +0100
+Message-ID: <69d965463badfb2f1d714869cb4a86fd252e2114.1667902754.git.petrm@nvidia.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <cover.1667902754.git.petrm@nvidia.com>
 References: <cover.1667902754.git.petrm@nvidia.com>
@@ -107,32 +103,32 @@ X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT020:EE_|DM4PR12MB6086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5387c680-7158-4207-c2db-08dac176bcc1
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT057:EE_|SJ0PR12MB6784:EE_
+X-MS-Office365-Filtering-Correlation-Id: 770847e0-de07-47a3-f73e-08dac176bba7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4Bl7TFQHr+UhCW0IZeAEgdSkVqn//Wh6uyBQcSwHsJchtQLSf9WHXrejwRnVoPiayzlG4/eKjz7c22LPOwRM2FL9lupb1wasjPJBEopbgzZpg53nAg0NTSDWQiSCzu/YMcGqc4oDCBNX2hb/xkXbYgZ+GENDk8nuxvuRyZMIJmtUjtl0x2uDJ9vW8X1l3njdQw5yWFyuE1WsoLGtMunFR/J5lnvwpDA91wzkRWQ2qMk2XwVCtdB26MXICxUZdjGblgQe+PFfdO8B8v1rnEmwmU/O1WFKKA1bL+TjTCgPzWy4RPqYWHxLkbWQ9w7Jqw6Gm3g46pFCv3HZXRqqZeQ8U0TPWeVMBODzRjXcLf5H2He9QBZ09Z5GD7duQb/vtYbfBZn90IeaVP3uGUb+0lqQ1znGWUSrKnPAlb/MOG5hNs8uHAcFzOMfFllyn4hZwAbWNkyUqM/9mmgIxL6d7DkZiLUlsW+foOcqTm3scoYnxS4DKsp741RP+X4anYAvW/oTN+iVbhNDcBgMGrno8CYWe4x/PJfFcNGB/0FbWYRwfM52heNu8ZxJ37j6fmmof/D2yW+54Lxy95Qx3RnQsmFAmB91L2lM8Byt/9omatWgeyE6hjR9kIuRIX5LkenK6n+RJiofz6Z+INkrPuCsiazdGouCuaAmu7/Td4fb3Km43H92aqAlzzjX/QncGkSz4ufpEMqmfc/hULzdhh3mBSF15OwD+2BfcmRz37Ili5gaFiedEGhp1u4IZsDYAXQQVNkrq8Bmj1SxUJO660vKGpbnEg==
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(136003)(396003)(39860400002)(346002)(451199015)(46966006)(40470700004)(36840700001)(86362001)(186003)(2616005)(54906003)(6666004)(426003)(107886003)(110136005)(26005)(36756003)(316002)(47076005)(336012)(7696005)(82740400003)(8936002)(2906002)(356005)(40460700003)(7636003)(15650500001)(70206006)(5660300002)(70586007)(16526019)(36860700001)(8676002)(83380400001)(41300700001)(4326008)(82310400005)(40480700001)(478600001);
+X-Microsoft-Antispam-Message-Info: m+iEGVNB7xWo9WLkIF2N8GDr8nP1OBZqczsV1bXZRYM+Ar4hPLhj97a6+ff7qpit9Difnv7dqYXvvM0XhkCm7FD6CU5SR7BdstmJ1tGE6NUCzkfF3b5vPJFH/5W0+e4yYenso2Otjr1FqalZ8ev/+I42cc2/f4kMKVT9R1l7o6euT5uaWFoVBuGFa8fEcnf2kxc9TwavyuUd9rCF6NbXFMF5jEdv8bV1yTqzRgXC/Lt1IsRQtKg0o2MSu5sWp4IhgUV2yg43g7jbPNE79jYAFBV9DJOoR3eWXl6dx/FaPWhy9Eo5S1nwShW38e5jWwOEBX1Ym/nsGvcuwkccnu5xzlBxsb5omHvn/HlrHO0mTXuLMIaF7gmJo0GjD2de3YlMkngscKcM5MpbMUedffDBi8NzNviJc9PsClw13Qddqw8jCAOsiS9uIDWPrAI2x7s5xaLs8HIwEUxOByEZtUHs2AVAKW4G1OOevF0oRenBC3B7afym0h5gr6N47EdJAbPTGLZAFpsBQjBDOhgY7J1JubvV6iCHSBOGwCnXYR/gx/8xqKlF9NqXntWpNnpv1g+svtBo6xW6AY2wS4o09Bqd8SWLK+Rb5xhMPeRPiAEpnMRwI+6bZhyyiZHLTZFqi9WMJ9uYkJNy3TaTuy5Y3Rr++6ax5M1EhfCvEbxoHSXiD0RhUzXtW5b2DzlWWjiPw8SVBrC6es8CdFwYgMDy+RQnGS7QpwSgdsDyKFubqf+myBXoFNgOPuOwzRfolC/lVNuTyo/HFHxjIXn2dVwPQX/mFw==
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230022)(4636009)(346002)(376002)(136003)(39860400002)(396003)(451199015)(36840700001)(40470700004)(46966006)(36756003)(82740400003)(86362001)(7636003)(356005)(107886003)(40460700003)(40480700001)(15650500001)(47076005)(186003)(426003)(336012)(16526019)(2906002)(26005)(6666004)(83380400001)(36860700001)(7696005)(2616005)(8676002)(4326008)(478600001)(54906003)(82310400005)(110136005)(70586007)(316002)(70206006)(8936002)(41300700001)(5660300002);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 10:48:14.1275 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5387c680-7158-4207-c2db-08dac176bcc1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 10:48:12.3432 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 770847e0-de07-47a3-f73e-08dac176bba7
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6086
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6784
 Cc: Petr Machata <petrm@nvidia.com>, Ido Schimmel <idosch@nvidia.com>,
  Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
  Roopa Prabhu <roopa@nvidia.com>, mlxsw@nvidia.com,
  Jiri Pirko <jiri@nvidia.com>, "Hans J . Schultz" <netdev@kapio-technology.com>
-Subject: [Bridge] [PATCH net-next 06/15] mlxsw: reg: Add Switch Port FDB
-	Security Register
+Subject: [Bridge] [PATCH net-next 07/15] mlxsw: spectrum: Add an API to
+	configure security checks
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -144,74 +140,76 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Petr Machata via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Petr Machata <petrm@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 From: Ido Schimmel <idosch@nvidia.com>
 
-Add the Switch Port FDB Security Register (SPFSR) that allows enabling
-and disabling security checks on a given local port. In Linux terms, it
-allows locking / unlocking a port.
+Add an API to enable or disable security checks on a local port. It will
+be used by subsequent patches when the 'BR_PORT_LOCKED' flag is toggled.
 
 Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 Reviewed-by: Petr Machata <petrm@nvidia.com>
 Signed-off-by: Petr Machata <petrm@nvidia.com>
 ---
- drivers/net/ethernet/mellanox/mlxsw/reg.h | 34 +++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ drivers/net/ethernet/mellanox/mlxsw/spectrum.c | 18 ++++++++++++++++++
+ drivers/net/ethernet/mellanox/mlxsw/spectrum.h |  5 ++++-
+ 2 files changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/mellanox/mlxsw/reg.h b/drivers/net/ethernet/mellanox/mlxsw/reg.h
-index 7240af45ade5..f2d6f8654e04 100644
---- a/drivers/net/ethernet/mellanox/mlxsw/reg.h
-+++ b/drivers/net/ethernet/mellanox/mlxsw/reg.h
-@@ -2046,6 +2046,39 @@ static inline void mlxsw_reg_spvmlr_pack(char *payload, u16 local_port,
- 	}
+diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum.c b/drivers/net/ethernet/mellanox/mlxsw/spectrum.c
+index 04dc79da6024..b34366521914 100644
+--- a/drivers/net/ethernet/mellanox/mlxsw/spectrum.c
++++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum.c
+@@ -466,6 +466,24 @@ int mlxsw_sp_port_vid_learning_set(struct mlxsw_sp_port *mlxsw_sp_port, u16 vid,
+ 	return err;
  }
  
-+/* SPFSR - Switch Port FDB Security Register
-+ * -----------------------------------------
-+ * Configures the security mode per port.
-+ */
-+#define MLXSW_REG_SPFSR_ID 0x2023
-+#define MLXSW_REG_SPFSR_LEN 0x08
-+
-+MLXSW_REG_DEFINE(spfsr, MLXSW_REG_SPFSR_ID, MLXSW_REG_SPFSR_LEN);
-+
-+/* reg_spfsr_local_port
-+ * Local port.
-+ * Access: Index
-+ *
-+ * Note: not supported for CPU port.
-+ */
-+MLXSW_ITEM32_LP(reg, spfsr, 0x00, 16, 0x00, 12);
-+
-+/* reg_spfsr_security
-+ * Security checks.
-+ * 0: disabled (default)
-+ * 1: enabled
-+ * Access: RW
-+ */
-+MLXSW_ITEM32(reg, spfsr, security, 0x04, 31, 1);
-+
-+static inline void mlxsw_reg_spfsr_pack(char *payload, u16 local_port,
-+					bool security)
++int mlxsw_sp_port_security_set(struct mlxsw_sp_port *mlxsw_sp_port, bool enable)
 +{
-+	MLXSW_REG_ZERO(spfsr, payload);
-+	mlxsw_reg_spfsr_local_port_set(payload, local_port);
-+	mlxsw_reg_spfsr_security_set(payload, security);
++	struct mlxsw_sp *mlxsw_sp = mlxsw_sp_port->mlxsw_sp;
++	char spfsr_pl[MLXSW_REG_SPFSR_LEN];
++	int err;
++
++	if (mlxsw_sp_port->security == enable)
++		return 0;
++
++	mlxsw_reg_spfsr_pack(spfsr_pl, mlxsw_sp_port->local_port, enable);
++	err = mlxsw_reg_write(mlxsw_sp->core, MLXSW_REG(spfsr), spfsr_pl);
++	if (err)
++		return err;
++
++	mlxsw_sp_port->security = enable;
++	return 0;
 +}
 +
- /* SPVC - Switch Port VLAN Classification Register
-  * -----------------------------------------------
-  * Configures the port to identify packets as untagged / single tagged /
-@@ -12762,6 +12795,7 @@ static const struct mlxsw_reg_info *mlxsw_reg_infos[] = {
- 	MLXSW_REG(svpe),
- 	MLXSW_REG(sfmr),
- 	MLXSW_REG(spvmlr),
-+	MLXSW_REG(spfsr),
- 	MLXSW_REG(spvc),
- 	MLXSW_REG(spevet),
- 	MLXSW_REG(smpe),
+ int mlxsw_sp_ethtype_to_sver_type(u16 ethtype, u8 *p_sver_type)
+ {
+ 	switch (ethtype) {
+diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum.h b/drivers/net/ethernet/mellanox/mlxsw/spectrum.h
+index c8ff2a6d7e90..bbc73324451d 100644
+--- a/drivers/net/ethernet/mellanox/mlxsw/spectrum.h
++++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum.h
+@@ -321,7 +321,8 @@ struct mlxsw_sp_port {
+ 	struct mlxsw_sp *mlxsw_sp;
+ 	u16 local_port;
+ 	u8 lagged:1,
+-	   split:1;
++	   split:1,
++	   security:1;
+ 	u16 pvid;
+ 	u16 lag_id;
+ 	struct {
+@@ -687,6 +688,8 @@ int mlxsw_sp_port_vid_stp_set(struct mlxsw_sp_port *mlxsw_sp_port, u16 vid,
+ int mlxsw_sp_port_vp_mode_set(struct mlxsw_sp_port *mlxsw_sp_port, bool enable);
+ int mlxsw_sp_port_vid_learning_set(struct mlxsw_sp_port *mlxsw_sp_port, u16 vid,
+ 				   bool learn_enable);
++int mlxsw_sp_port_security_set(struct mlxsw_sp_port *mlxsw_sp_port,
++			       bool enable);
+ int mlxsw_sp_ethtype_to_sver_type(u16 ethtype, u8 *p_sver_type);
+ int mlxsw_sp_port_egress_ethtype_set(struct mlxsw_sp_port *mlxsw_sp_port,
+ 				     u16 ethtype);
 -- 
 2.35.3
 
