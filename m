@@ -1,90 +1,93 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2DFD621620
-	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 15:22:54 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCB076216EA
+	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 15:38:12 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 83F4560D6A;
-	Tue,  8 Nov 2022 14:22:53 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 83F4560D6A
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=Lob1t9kB
+	by smtp1.osuosl.org (Postfix) with ESMTP id 4E42B8176D;
+	Tue,  8 Nov 2022 14:38:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4E42B8176D
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=KTfLvqiS
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rntQ9jNZDuuD; Tue,  8 Nov 2022 14:22:53 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 6ctInk6yIcbc; Tue,  8 Nov 2022 14:38:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 2D06D60D67;
-	Tue,  8 Nov 2022 14:22:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2D06D60D67
+	by smtp1.osuosl.org (Postfix) with ESMTPS id E92D9817B0;
+	Tue,  8 Nov 2022 14:38:08 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E92D9817B0
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CCC55C0077;
-	Tue,  8 Nov 2022 14:22:51 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9A2C9C0077;
+	Tue,  8 Nov 2022 14:38:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BDE8FC002D
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:22:50 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 61612C002D
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:38:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 98AFD60D67
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:22:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 98AFD60D67
+ by smtp1.osuosl.org (Postfix) with ESMTP id 3935081761
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:38:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3935081761
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id e1E2GNaf_Xq3 for <bridge@lists.linux-foundation.org>;
- Tue,  8 Nov 2022 14:22:49 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Sz7lhdvBLTIl for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Nov 2022 14:38:06 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 27FB360D66
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 27FB360D66
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:22:49 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id b2so39013644eja.6
- for <bridge@lists.linux-foundation.org>; Tue, 08 Nov 2022 06:22:49 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 462B18176D
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 462B18176D
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:38:05 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id f5so39157475ejc.5
+ for <bridge@lists.linux-foundation.org>; Tue, 08 Nov 2022 06:38:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=I/2XrmdghbmaaNa8DlOtVmiZ6wnxuyN0Gwxqhrv9NWE=;
- b=Lob1t9kBBiWI2SJB+VBPSsmDx3w9cLYoa/XYK5DPyPLjn2NW1BilVWMW4gVJOLeLpB
- 3NwRl39PRdmdpR/aimOMTtw1u8xfCs3WMXLc5F+aPdHEgJHNgcKZN/S4LLdTNReEt5P6
- hJ+z0NUcQ/UfvZ1YWSEGQv0qG4TfLF57zEDfViihTEH1JbqXcvMpvrSeiiBC+uq4PcFA
- Zk9WwtvmRC8X3RKcXYDqJNxVcuic2vLmjSR2RXyH5fWvJp++Mhm/WaSKSxn0JB7QzA1j
- UkTQ1F5C3hC1Q7GW6rxT7s8dWug1PbB4v1X87r849cazqyMaNg62KWhIfEaB1Cos4WRj
- UpQg==
+ bh=/YbHJ4ibpE0FQ4BHuZdNaBU3FcOkLHnK8mt3jJ2tQt8=;
+ b=KTfLvqiSu2CcpT1y/20uKajI43NPbw82QWz6SxA0Lir3LFhIVCreDjd17jJiA/SaGm
+ AcNAaQpUcrMIX7H5HInQwsM5uEUZ0BBQLzmufcqbGiTPMcWhxrQoIimZtNeNWLUPx3v3
+ OkgdSlwRJ4mo9VjQEUIKVbPM8olU9MN+RaF/55nEuHtdh33jvWV0N8Lmj9U77VXBULcd
+ mB8r4PzXH87nFtyZ3ALFRNfdqWB8ek/SBpF5rzG5YrYyYUdagOxSQmM5EAn+KYYr/YAp
+ UE4AJCRu1+MuxTMDHIj0AossrJjIZpLvMrDrtpNUi88EfacEokhe7sbj/tiZOYhS0GVd
+ A1OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=I/2XrmdghbmaaNa8DlOtVmiZ6wnxuyN0Gwxqhrv9NWE=;
- b=vISTuRd6EV0aMwKGYJiFyUcf9y3Lc028Po7t6bkX7kaza1KLLm4lJ2fJLI82HFTryo
- 8CRs423eRHComHzEBaAdWiQJYrrFviSrGjKLZtETg8YVX/UaetbWJW+s1+d5SnOWRsoW
- rtSmeA9GFQqOmcpu2g8P+GFupBEtDHSNFnJDUFxffe6IoYeSPsDOHxL144be0deW4Gsv
- /tp3rkjHe/p0yx5UXj2BZv6tApXcUDdVUpD641bnhFfU/qCTFzA5QitKIVfWDugqX3ax
- mogO/XZJrgg+mZOI6c4aR6Dpn0CR3V4DW2S9rlu2DFItmzXEVpcnH87VfoBVtaVRx3t3
- J2Ow==
-X-Gm-Message-State: ACrzQf1MH7I4WFOcs29p9pW1mDXejhkngSc5fhcq7PfbI0XSxM7w1m4C
- BewK6cqfKA1wNNT3d+ysCfY=
-X-Google-Smtp-Source: AMsMyM7eqIWfGlREyktBYHU4Mu59xyQRNn8ghLb+HacV99Jy45Vk5chEOOqFML2mz3qh98tz5Gu/7g==
-X-Received: by 2002:a17:906:9bed:b0:7a6:a68b:9697 with SMTP id
- de45-20020a1709069bed00b007a6a68b9697mr52009042ejc.218.1667917367256; 
- Tue, 08 Nov 2022 06:22:47 -0800 (PST)
+ bh=/YbHJ4ibpE0FQ4BHuZdNaBU3FcOkLHnK8mt3jJ2tQt8=;
+ b=hjua69fyjTm9KNFCeRRuiYsNJi7H/rNFFwW4QRHqYsdEHwjnJ0A8oZY7CwIiKspGLn
+ g8xhCdDAShN2/ZJSGg4q8M0TwAorMZi3U9fmKExJYK5sE6m1MLIr95u3tKiRhUakX1+p
+ QAAHrZfaJ9ReKAkrs+M/rOcpvvri4zW0QSet6+vtCwdn65G7wZlHwBoeqiuDSJqXla/U
+ 4WmGDKuCBN5kUp/sxMn9dBrrJbBlfcskvT1QwlNTwLE0sZ4KbSCS9xjTIE9RmPAi7QYD
+ lU8mCGUdwXPY1Pc6RONc2HSUcEiIo4D8iM3nwC0+dC5yA6ONyL/6+ixuB/tseaRAUzqK
+ sXnQ==
+X-Gm-Message-State: ACrzQf0NS/gxwbIYYJ2ZPB4ZwnUtZesleWbQM3x4iqUVs10rhBEheML6
+ m0bxbX/YuNCh1vG5mCsCUg4=
+X-Google-Smtp-Source: AMsMyM6BJQaQkCs8iviKLy1mFElapHYnAwJIx487QHMTByllRJi4gCAegc69C5Cfm2RRt9bfrQUajA==
+X-Received: by 2002:a17:906:24cd:b0:78d:4cb3:f65d with SMTP id
+ f13-20020a17090624cd00b0078d4cb3f65dmr990263ejb.79.1667918284086; 
+ Tue, 08 Nov 2022 06:38:04 -0800 (PST)
 Received: from skbuf ([188.27.184.197]) by smtp.gmail.com with ESMTPSA id
- c26-20020aa7c99a000000b00462bd673453sm5622772edt.39.2022.11.08.06.22.46
+ i28-20020a1709067a5c00b0077f20a722dfsm4680287ejo.165.2022.11.08.06.38.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Nov 2022 06:22:46 -0800 (PST)
-Date: Tue, 8 Nov 2022 16:22:44 +0200
+ Tue, 08 Nov 2022 06:38:03 -0800 (PST)
+Date: Tue, 8 Nov 2022 16:38:01 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Petr Machata <petrm@nvidia.com>
-Message-ID: <20221108142244.r5polveqve3ckr7j@skbuf>
+Message-ID: <20221108143801.42rqnrtprjxurgqh@skbuf>
 References: <cover.1667902754.git.petrm@nvidia.com>
- <2db3f3f1eff65e42c92a8e3a5626d64f46e68edc.1667902754.git.petrm@nvidia.com>
+ <cover.1667902754.git.petrm@nvidia.com>
+ <ec42c7bf37d9a5e05096c409dd96c1c582747b24.1667902754.git.petrm@nvidia.com>
+ <ec42c7bf37d9a5e05096c409dd96c1c582747b24.1667902754.git.petrm@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2db3f3f1eff65e42c92a8e3a5626d64f46e68edc.1667902754.git.petrm@nvidia.com>
+In-Reply-To: <ec42c7bf37d9a5e05096c409dd96c1c582747b24.1667902754.git.petrm@nvidia.com>
+ <ec42c7bf37d9a5e05096c409dd96c1c582747b24.1667902754.git.petrm@nvidia.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, bridge@lists.linux-foundation.org,
  netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
  Jiri Pirko <jiri@nvidia.com>, Ido Schimmel <idosch@nvidia.com>,
@@ -92,8 +95,8 @@ Cc: Ivan Vecera <ivecera@redhat.com>, bridge@lists.linux-foundation.org,
  Eric Dumazet <edumazet@google.com>, mlxsw@nvidia.com,
  Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 03/15] bridge: switchdev: Reflect MAB
- bridge port flag to device drivers
+Subject: Re: [Bridge] [PATCH net-next 04/15] devlink: Add packet traps for
+ 802.1X operation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -108,17 +111,17 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Nov 08, 2022 at 11:47:09AM +0100, Petr Machata wrote:
-> From: Ido Schimmel <idosch@nvidia.com>
-> 
-> Reflect the 'BR_PORT_MAB' flag to device drivers so that:
-> 
-> * Drivers that support MAB could act upon the flag being toggled.
-> * Drivers that do not support MAB will prevent MAB from being enabled.
-> 
-> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
-> Reviewed-by: Petr Machata <petrm@nvidia.com>
-> Signed-off-by: Petr Machata <petrm@nvidia.com>
-> ---
+On Tue, Nov 08, 2022 at 11:47:10AM +0100, Petr Machata wrote:
+> The "locked_port" drop trap can be enabled to gain visibility into
+> packets that were dropped by the device due to the locked bridge port
+> check.
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Pretty cool.
+
+The action of all devlink DROP traps can be changed to e.g. CONTROL, right?
+This doesn't functionally affect an offloading driver, because what
+won't be dropped in hw on a locked port will still be dropped by the
+bridge, correct?
+
+I'm not familiar with devlink traps. Is there another way to see the
+dropped packets except to do what I said (change the action type)?
