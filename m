@@ -1,105 +1,99 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id A72A5621844
-	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 16:30:20 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 824EA62184B
+	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 16:31:22 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id BF644401F4;
-	Tue,  8 Nov 2022 15:30:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org BF644401F4
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=DSqKxORe
+	by smtp1.osuosl.org (Postfix) with ESMTP id C4EA08129E;
+	Tue,  8 Nov 2022 15:31:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C4EA08129E
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=eKNRxNVD
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EyVnVVpZZLFr; Tue,  8 Nov 2022 15:30:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 26252401CB;
-	Tue,  8 Nov 2022 15:30:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 26252401CB
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ycvUrVW5w9QT; Tue,  8 Nov 2022 15:31:20 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 4CDA080DB9;
+	Tue,  8 Nov 2022 15:31:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4CDA080DB9
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A6CEBC0077;
-	Tue,  8 Nov 2022 15:30:14 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E4091C0077;
+	Tue,  8 Nov 2022 15:31:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CF166C002D
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 15:30:13 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D89A1C002D
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 15:31:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id AA189605AE
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 15:30:13 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AA189605AE
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=DSqKxORe
+ by smtp1.osuosl.org (Postfix) with ESMTP id A64928129E
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 15:31:17 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A64928129E
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8bXErpNusJ9S for <bridge@lists.linux-foundation.org>;
- Tue,  8 Nov 2022 15:30:10 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 19uZpuUXuhI7 for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Nov 2022 15:31:16 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A367560D8C
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by smtp3.osuosl.org (Postfix) with ESMTPS id A367560D8C
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 15:30:10 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id kt23so39519989ejc.7
- for <bridge@lists.linux-foundation.org>; Tue, 08 Nov 2022 07:30:10 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org ABC2580DB9
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
+ [IPv6:2a00:1450:4864:20::533])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id ABC2580DB9
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 15:31:16 +0000 (UTC)
+Received: by mail-ed1-x533.google.com with SMTP id s12so13423406edd.5
+ for <bridge@lists.linux-foundation.org>; Tue, 08 Nov 2022 07:31:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=FpLiGaXhotQZ8b2nqHMo2ysie9FYsoam/Xs2nB2FQwI=;
- b=DSqKxORe+HHRIvWQTmqEOWX7uJ+Bog3bxbKTF2CX1y3k0sLtXjrT49HSo8EnDml9yz
- Cql1c9yQozM1lmZCl9QgxvGYpEk43cOuUi7piWpWCKc7VjEEBUZa9ooamxw2bD0xYtE8
- jSnU+wg3G58OTskD78IJllcxnpQmVJ9Z0F5cAHnOrNUFly4Y4X6OlhUzgeZJ4HHZcaiS
- Ea5TNEcVOHU/al1AS96Gqy3pQwPK88njNFhLLFmQIo/XYcD7CHAhH7kyJZPtxJlllvRn
- 9GeoY4dr7BOfM4EXDHpQt/lJZ5mPdWI6uRSHfqg/5F6dDwZCfExSBMCB+/uUBDQzWWjk
- Zzug==
+ bh=77MlvYrSo2GNKJVGomS31FpqZbhx0yNZ6IAPQdhRuvE=;
+ b=eKNRxNVDQhX53Qn4SGuahJRXIOuG1FJ4gw6S+uoiOkDIjuhaWTQjcr3tKyOOz618lR
+ x0HefKtXnQFMyyfCTLapRDkzUJE4Kpe3s9zllRYhl6o+7tEvByAcqr7II6MI8C8kqOee
+ +R2oo6jwxNw+NIwSOV0/sBRk1WePr8XU5rd4LTfzH/ijqOrWdTDFkxDNCPUBBSaPwGld
+ 8MrfhrDIymXCcVtH8I1Qdw5MBJuqSFI+latc0n7Y2mNlfVU070SkjKBX/GrKV+Q89moG
+ fuQ8JXxzeP4YjIGAFg1U4ntsDIDgurxLxnw02zTe/wBOLnsEr7rPmTEYYMSVSveoKMSS
+ YVog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=FpLiGaXhotQZ8b2nqHMo2ysie9FYsoam/Xs2nB2FQwI=;
- b=UB8YBrlJM4b0NqczkxT/EWffbDf9IQXUItyaHUupzaeSlmpKqK+ycPc9aXHTOoH8Ed
- z9SgLE0thDtXlIbJPE33e+b3rN7nb9GWNr1DtklwFO0uTOr9XJK+dIpwl/82zND9UW4X
- ocuJjiV7QDmBDG3b1iDhrwM+7NXJggeVpX1hMkv3/YhcyQT+YkBxdpANKI8sKyMLgraC
- hVh1jJndnfI6+vQqnjnwd1atyeBRvKIT99nC0AyHPcPvC9bvZgmY7SbgnhoAo/Uro/JM
- /Zr47xSrYMcdLhc4S3fMm1mjw3l6R091q+B9ga7nhImSkxJMZ5IPe5yQxSLXilsYTUSZ
- 7YmA==
-X-Gm-Message-State: ACrzQf2B9RCCDy7bCyCb4wf4v+TdLYztfdXbmm3pAZEkC3LzWuwea8By
- vEAw6O1wxXj5Q9xTOG6itVc=
-X-Google-Smtp-Source: AMsMyM5LSnf+Pf3Owy39GhVGMBlevi8XhExQOJ/9qPL7Z7WDtKsrKPTC5uLosSkAeln7ysL8LBrxtg==
-X-Received: by 2002:a17:906:eeca:b0:730:6880:c398 with SMTP id
- wu10-20020a170906eeca00b007306880c398mr54399922ejb.706.1667921408806; 
- Tue, 08 Nov 2022 07:30:08 -0800 (PST)
+ bh=77MlvYrSo2GNKJVGomS31FpqZbhx0yNZ6IAPQdhRuvE=;
+ b=c/3xvPr4MJHjjO3A+vVl6U5jqTNhANTbN5jEQ2DuB2yR/hFv/cwqXLJpTNp56KUGXJ
+ jKvWqfzZdfutJZkaUzI602FWymqy43l7atSnvtfo/4YRWjgQGkFOMcvp9EvRTcZeyF00
+ dkK95IEnOE11gGIAJmHzl3MlaUPTzyeqmRJiRBXz8wOBzsUKUvbX4SFGy19UJytBN9L5
+ A6n0jAZLyHn1dTZloq9LE6S3YFupiEY0Bcfr5RSQ4/0Lek/06+/9rUVMjFvTl+tU1Wfo
+ zoicl0jeD1m3YaeoiKX9Vwp8BYqCyDbC8zKJw97gdty0m756RyUVZ0NUxhpEz78k9dV6
+ PYCw==
+X-Gm-Message-State: ACrzQf1Bu9GDRFJpauoRTZtzHimtMsvs1cxvbavV+0uwqrHXUU3+AlgA
+ +/9oBI55k6j9MGaLJlsN424=
+X-Google-Smtp-Source: AMsMyM6oI3ybSm1UPu85xQM+oOQKADRoVo1IKGpZBzQ2zADP6gIEQhPV8OPEII1yLpP1EKXDm0M5nA==
+X-Received: by 2002:aa7:d8c4:0:b0:461:8d31:41fc with SMTP id
+ k4-20020aa7d8c4000000b004618d3141fcmr56233732eds.202.1667921474791; 
+ Tue, 08 Nov 2022 07:31:14 -0800 (PST)
 Received: from skbuf ([188.27.184.197]) by smtp.gmail.com with ESMTPSA id
- ku15-20020a170907788f00b007ae1ab8f887sm4865360ejc.14.2022.11.08.07.30.07
+ kx5-20020a170907774500b007add62dafb7sm4805681ejc.5.2022.11.08.07.31.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Nov 2022 07:30:08 -0800 (PST)
-Date: Tue, 8 Nov 2022 17:30:06 +0200
+ Tue, 08 Nov 2022 07:31:14 -0800 (PST)
+Date: Tue, 8 Nov 2022 17:31:11 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
-To: Petr Machata <petrm@nvidia.com>
-Message-ID: <20221108153006.githtup7oisty4qb@skbuf>
-References: <cover.1667902754.git.petrm@nvidia.com>
- <cover.1667902754.git.petrm@nvidia.com>
- <61b030c0932726657eff1ac545d1904a2ee930ea.1667902754.git.petrm@nvidia.com>
- <61b030c0932726657eff1ac545d1904a2ee930ea.1667902754.git.petrm@nvidia.com>
+To: Ido Schimmel <idosch@nvidia.com>
+Message-ID: <20221108153111.vlyb2lxo7rm2i3kk@skbuf>
+References: <cover.1667902754.git.petrm@nvidia.com> <Y2o2dB+k+yDHRVtA@shredder>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <61b030c0932726657eff1ac545d1904a2ee930ea.1667902754.git.petrm@nvidia.com>
- <61b030c0932726657eff1ac545d1904a2ee930ea.1667902754.git.petrm@nvidia.com>
-Cc: Ivan Vecera <ivecera@redhat.com>, bridge@lists.linux-foundation.org,
- netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- Jiri Pirko <jiri@nvidia.com>, Ido Schimmel <idosch@nvidia.com>,
+In-Reply-To: <Y2o2dB+k+yDHRVtA@shredder>
+Cc: Petr Machata <petrm@nvidia.com>, Ivan Vecera <ivecera@redhat.com>,
+ bridge@lists.linux-foundation.org, vladimir.oltean@nxp.com,
+ Nikolay Aleksandrov <razor@blackwall.org>, Roopa Prabhu <roopa@nvidia.com>,
  "Hans J . Schultz" <netdev@kapio-technology.com>,
  Eric Dumazet <edumazet@google.com>, mlxsw@nvidia.com,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 14/15] selftests: mlxsw: Add a test
- for locked port trap
+ Jiri Pirko <jiri@nvidia.com>, netdev@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next 00/15] mlxsw: Add 802.1X and MAB
+	offload support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -114,19 +108,12 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Nov 08, 2022 at 11:47:20AM +0100, Petr Machata wrote:
-> From: Ido Schimmel <idosch@nvidia.com>
+On Tue, Nov 08, 2022 at 12:59:00PM +0200, Ido Schimmel wrote:
+> + Vladimir
 > 
-> Test that packets received via a locked bridge port whose {SMAC, VID}
-> does not appear in the bridge's FDB or appears with a different port,
-> trigger the "locked_port" packet trap.
-> 
-> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
-> Reviewed-by: Petr Machata <petrm@nvidia.com>
-> Signed-off-by: Petr Machata <petrm@nvidia.com>
-> ---
+> You weren't copied on the patches by mistake. They are available here:
+> https://lore.kernel.org/netdev/cover.1667902754.git.petrm@nvidia.com/
 
-Pretty impressively designed. I liked the extensive checks (for example
-that traps stop counting after port security is disabled).
-
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Thanks for copying me. The patches look great to my eyes. I didn't go
+into details into the mlxsw details, just because I really have no clue
+there.
