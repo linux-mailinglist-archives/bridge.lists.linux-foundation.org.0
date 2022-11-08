@@ -2,142 +2,99 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07D9620DF0
-	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 11:59:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2CAE6215E3
+	for <lists.bridge@lfdr.de>; Tue,  8 Nov 2022 15:16:37 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 1D59B40104;
-	Tue,  8 Nov 2022 10:59:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1D59B40104
+	by smtp2.osuosl.org (Postfix) with ESMTP id 0836C402F3;
+	Tue,  8 Nov 2022 14:16:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0836C402F3
 Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=nJiNsdru
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=n3e/n0SR
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lIMqrwRaVgXt; Tue,  8 Nov 2022 10:59:13 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 479D3401D2;
-	Tue,  8 Nov 2022 10:59:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 479D3401D2
+	with ESMTP id mHe82SS8llYQ; Tue,  8 Nov 2022 14:16:35 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 34B3B4025D;
+	Tue,  8 Nov 2022 14:16:34 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 34B3B4025D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E28F5C0077;
-	Tue,  8 Nov 2022 10:59:11 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C4D09C0077;
+	Tue,  8 Nov 2022 14:16:33 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BD826C002D
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:59:10 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 50B45C002D
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:16:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 841FF60B74
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:59:10 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 841FF60B74
-Authentication-Results: smtp3.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=nJiNsdru
+ by smtp2.osuosl.org (Postfix) with ESMTP id 1E2FC4025D
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:16:32 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1E2FC4025D
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id VgoPSjodQDP6 for <bridge@lists.linux-foundation.org>;
- Tue,  8 Nov 2022 10:59:09 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id L6TjUd6BnTPn for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Nov 2022 14:16:31 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6611E607F6
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 6611E607F6
- for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 10:59:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jwG+q/Ex3dRR1k+jvEBs9tBX6caxC7tBRmzZy/l+0/wO+D7S9y0Iw7OKfuR64vwBE1JKeDm0xoryjZKxm9U4+EgHqisC9UOe0d7BSvRvuV+wDo/qu6SEgmX07D3QiMO0GkwWfzKOo7lxdeQrjWrmWtl/NyJe6Wpz/+tC4YXOZ5tXXI/538mOaTkaQtKiUN3LHYPORQ1fFgGA/D9CsLzRxYJpsIqPQ6Z5PVyxqBsYN0KES6hnDdkpr4zwkuPcw9dOybjINVgXxXOxz3qzo/G3aUAZalSWhX4POH49SYBgKTyh5MzUM3AaFtZ06Jzats0dRR8TmR9/46QZ5a0jS3wnDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t4AthPWbMfFaYPs4+NGIwulHWDc0XnUxiNJWN8M35SI=;
- b=DoT1PB1biSqrcuBnID/BBVUta6Nqkr2TdP4DsrrPD5UDA79bQs9/jvTpLrF+oFrRYPFsu+Ltyl0Mh7M5Dn4rDKsLcuOiVnO+mREkP+kx5IEPvjrKg/YPBEPbo4k7LNVDwEDieLn3BHbM6Vejund08EhJ6biTnYZiNfWJnWagZ1zkvWCfXvcHJRZILpub8uuL3Uph6vbcE9lGHyqjnvR0qQKnuoiFv9dHP5N2Y/0g7YWMMpwa+lkPnBNLOs4tsEnatkQHPwD/C/HL+TfhTmEIYdl5PcQhH53oz/jnP2Qj61wonKUpLe/InWh7DRL0chsKslv42VHV0EPdEDwmkMAq8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t4AthPWbMfFaYPs4+NGIwulHWDc0XnUxiNJWN8M35SI=;
- b=nJiNsdruHppkZxMr48/fYsBe/Oeqr2xpoLaLQVbQM8uIoC+/Jcpx66/Jymr63O8BiXar2q2Xl2/zMGl3mm+DVMX4U0HAtEKDWwJT0z8ziTcB79pHV+88ureSK61717EptzEnYp/fohZ5Kl2V5yZmBF2cQte9OARBwolkwWSjZkL/JSOmP2K3tOTVh0DvSEaFnJRUb0Z0BkJpSKuRHosOYkSkeIZQKlQSeHwVVZ/KPel/4fibbigsMOKQssv70GJD0gmHzSQvvcrSrLKt32fP2HXdsdHCBmmoMsKDbowycYJ7Zv8l5qX1g2vPRLyDR7WMzYylsSjeLGAi/c9gtI2HIA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
- by SN7PR12MB7419.namprd12.prod.outlook.com (2603:10b6:806:2a6::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.25; Tue, 8 Nov
- 2022 10:59:07 +0000
-Received: from CY5PR12MB6179.namprd12.prod.outlook.com
- ([fe80::3409:6c36:1a7f:846e]) by CY5PR12MB6179.namprd12.prod.outlook.com
- ([fe80::3409:6c36:1a7f:846e%4]) with mapi id 15.20.5791.027; Tue, 8 Nov 2022
- 10:59:06 +0000
-Date: Tue, 8 Nov 2022 12:59:00 +0200
-To: Petr Machata <petrm@nvidia.com>, vladimir.oltean@nxp.com
-Message-ID: <Y2o2dB+k+yDHRVtA@shredder>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 37807401A0
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 37807401A0
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Nov 2022 14:16:31 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id ud5so38997997ejc.4
+ for <bridge@lists.linux-foundation.org>; Tue, 08 Nov 2022 06:16:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=5+moI56BVGSpSI7NRhPLKmv5unmEMYSjuvcZ0Mb6yFY=;
+ b=n3e/n0SREsvjcgxpduufQ2rlt6toRTNhJcM8JrQeukA4/U+lHZXB9kDA1SzJCqKoT0
+ uzMvbfUa4yBKehzvw6CpQ0/+RGtr98Q+GlVJCLx7kMTL0j/ch+07wVR8eDcezjZh5Pu3
+ mu9Gv5XMXYG476C5JuGodX3JWHum1X4GtHuB/Wg1pTUINexkXK3cTo3XxG9Q+wFobBm4
+ C1F1DY0WLuplv+d+DUK/C9xZay8xesM+HxCckaUeaF4KNzMkLOGtg9QILXHcmmRTjbdk
+ EhsEldZIGzvL90+ifSyKLnLUn58oegecqiu/pPXG8zkAv6DAG6WT530qcPmhcgujw9Td
+ VQ3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5+moI56BVGSpSI7NRhPLKmv5unmEMYSjuvcZ0Mb6yFY=;
+ b=g4BM3k90Ro9QwplUp6QDR7c29SvYlq8u0TXoH6oTVzvUD2BYZvgHiymq1Hs3vWK56k
+ BuPlH8nIKuALAQNadXeUU3lBcd8F2Qy2QneqT+UAUqtWM0aAQqD6/ORvrpJYsWsqOYXc
+ +67icc7/YPM1jhg2r1bgTTmnAwCdSgDMkKMkPPJUjL/CGHgKgGZs8pzy43mtsyzlvuRQ
+ 7c4qz3hF16fR6rrNnxb/nihXnDRvvXGh0bNxLgj1iFmcs++8cIqDz9/8d9xgtC1oFg4b
+ svEY9p6xyPnFjyzfu5BIKk8jICqwWPWWdxlsY0dAy8qO+zU+3X3zHBrBcSuxHGS7G+rC
+ 0Ccw==
+X-Gm-Message-State: ANoB5plzxwRl1pKoUrN5+sY6R0A6jE224qOKsfuQ7URdg/D0rPP0M8Ur
+ /cmDOi964A+naU5eJlj3q+E=
+X-Google-Smtp-Source: AA0mqf5SczXPn92m5329abAbaWcF8Ig8g9SjzgZbZxIP09gzKT9hyIOvyA4RobWfnegiHsbjDU7fTA==
+X-Received: by 2002:a17:906:7e55:b0:7ae:4bfc:ef45 with SMTP id
+ z21-20020a1709067e5500b007ae4bfcef45mr15823740ejr.94.1667916989236; 
+ Tue, 08 Nov 2022 06:16:29 -0800 (PST)
+Received: from skbuf ([188.27.184.197]) by smtp.gmail.com with ESMTPSA id
+ 1-20020a170906308100b007a97a616f3fsm4678111ejv.196.2022.11.08.06.16.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Nov 2022 06:16:28 -0800 (PST)
+From: Vladimir Oltean <olteanv@gmail.com>
+X-Google-Original-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+Date: Tue, 8 Nov 2022 16:16:26 +0200
+To: Petr Machata <petrm@nvidia.com>
+Message-ID: <20221108141626.eymqr6lomtppeaek@skbuf>
 References: <cover.1667902754.git.petrm@nvidia.com>
+ <b266dcf6d647684a10984d12f98549f93fd378ab.1667902754.git.petrm@nvidia.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1667902754.git.petrm@nvidia.com>
-X-ClientProxiedBy: VI1PR07CA0228.eurprd07.prod.outlook.com
- (2603:10a6:802:58::31) To CY5PR12MB6179.namprd12.prod.outlook.com
- (2603:10b6:930:24::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|SN7PR12MB7419:EE_
-X-MS-Office365-Filtering-Correlation-Id: d39d0bd8-ecb3-4580-6fac-08dac178417c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G5zj+89bkZfciWK8n7aiHjgF7n1gltMCpRzDT0mW4QliC8DpuvyLMTXf+ZMI0UeUIZ6WP9y/EUwSBZ4CJh5wNAhrg54eTymcbWYpfJMJk0eLiKGAXInrnRgrTP1ryLgg+jfSTl0ZVc3vQAQAlfrEW43zAci6g7b+QpYsXN+gD1Qc7zQTmUWr8CTUDIvSJN6bLHH2N3JuxX8fAFG5RkixEy5GT1jxEJlwquct8gECrpNop592fzTpnQySz/bsi2DDixz3pGDSfGE04hx4SzotMqwGx9UywDWkmdazVcoLeEEL0Ve2weCF5V+8ZAGhYVCATxr5kD1T1AtwRab/oZBj7RzcSvASCywlGlomL2NuiqJv58IE6xYeF5Tq2kz/26Jsu4IMy25bdN7a90ja2f1s12/YW40/yQbK6jyEHRFFHcIZ0u88AWDrgR8RgwidFUSi8aM1gKqlH06zAHcsx2k80PxNLH2PYqJU2Zv01f2b1MNRwBOBpNH8oBwHkMFahmHhkE3iBg2snvGaAvi/HXdAhCjN9eK9c54safnO0F3m09PTXbOAYCleILXvsFfuZZP01tKsrkrzTe88KTA0THT8UbIeNRfyM0wXSUG4xcV5R6MC+HnbTFKqlXUqeOBvGR8I5t/Y2K5dsO0lN1BopoAlaEqYsFg5bjYlM1van+DxL5qSs/D9j0qx56zMiNT+oBP4tdhBmEK71b2+B6/KWE1AfHN4OSkn1lFJGuII6Qjo2tJQL092yAYFWD/X8Rju1D8xmk6h3vbL57C5z60PV3WOCR4EOvAdg9e9jSRqpODkmU7s6GhX53rpalLbAToHKBWn7fmAeKaJJEyQ/RxFqGkiIw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(7916004)(39860400002)(136003)(376002)(366004)(346002)(396003)(451199015)(478600001)(8936002)(9686003)(966005)(6486002)(5660300002)(4326008)(2906002)(316002)(7416002)(66556008)(8676002)(66946007)(54906003)(83380400001)(41300700001)(38100700002)(107886003)(6506007)(6666004)(86362001)(186003)(26005)(6512007)(33716001)(66476007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DcIdkmgxe9kknkqmmNFvsBkDBxZBZ+ujpxCWlH9O7ge/T66EoIHKlkbGhmU7?=
- =?us-ascii?Q?3T45hnsfghrBpvx/esaj7jp4PzMU0Wg6LdvqxPhV8Uir5HX4bHcZv/p0jb/G?=
- =?us-ascii?Q?2MVH+EElyxVPUJ9BgyoGqYjyXfpfovmlgFQMo2Nw4T+R6C1v8D3p4IB7Qh1i?=
- =?us-ascii?Q?CpV6TXe4ux65KCBN9Ww9zD2t+dQg+Mqx6QrWbUE/t+TwaZ5fgse9PMffHsf9?=
- =?us-ascii?Q?C/Z3sujwmb3wfk7Q1VTPFkxM8peJNhU5LORjliUD72L6U3X6+SOTsOsQTmVU?=
- =?us-ascii?Q?4WQIq66Axh0GxKN0j7PX7wHKtQ6nifMhHRPCqBmLG5S/0gSiBkS4OxOp9EHi?=
- =?us-ascii?Q?y3fuy+F2MhsUBr4v2Gtf0yC62W4d63b8pTuhp8mMofS7uDVarLojQR4EDGth?=
- =?us-ascii?Q?tzdaak0QqWiJNLQGCF6CgrhxbTtbMODfHqdJPVAS2Sxm7u6MoA0Vc0+aTizF?=
- =?us-ascii?Q?P7Cz/b7WpdtkJounzKpntcDgGgEjPYcgq/CUb/ggH9Ngtu4fM4fGTUDUbVLc?=
- =?us-ascii?Q?DXwe941+Ow45hxHah5Oui0Fg8ZZKKvc1avSVoktlbH16Pj11+RmfmfcQuZru?=
- =?us-ascii?Q?ysyLiiHxJA3M2YXzUN9dWY0DhYc0KmaDg+FxWEWg9W2JYlwQCnef76tjBcRo?=
- =?us-ascii?Q?Uxsu84joASMG8rt0aMATLUtLCPo9RxT1N70jV2/O0JwWFC/uMzcUB+wkLOUO?=
- =?us-ascii?Q?JI91nqmzAC2cc47aX86sdDxz1vWfzZswRn9fxVW6mAgwu1/ujNoWBaKWJMbu?=
- =?us-ascii?Q?s+P8Xva9SkFLWn7loogBh9MtPVcSJlRRX4dGPhuDgNNTzdK1WM1lsCwaigwT?=
- =?us-ascii?Q?2h3mX4pB9ZOGtwj5Fuwe+6fd+X9whzC7DFeFotsZ4OO3BFo+JGo3s3NJBzLU?=
- =?us-ascii?Q?+yYO6GPA9DMGBmZc58fd/jGN3wHxXLZrKGcZZHw16fp5q+076Zxrndoouhgf?=
- =?us-ascii?Q?X4IPKaf6kAQa9xZlCUBvkJa882UpHolcKYtNmKIALlhEwWjXuFmAOGNVnMW9?=
- =?us-ascii?Q?y5OTG8v9faNEvktRqipw5SBdpf27Syo0HxL6nBbkKIky1ri5uwJlgKZYMjOU?=
- =?us-ascii?Q?ctzWdGFOl55z3UYqgGBHCQzJGmzLKgq0lKplZbkbPisXT2Thucsmts0GFvKg?=
- =?us-ascii?Q?1X3hmehn4KK3waCRFvSMSAwFXzwcmlTH4ZxkpwX5akD3YJJ3IgyUziY0ZP4F?=
- =?us-ascii?Q?ovX8iWLpwpRqU+sUtnBO1P1uxkODFZhdxMlS98RWVA/a2/XLCWVB81qycjZm?=
- =?us-ascii?Q?l3Qtp7uwLdjcdXG4mu4R8q0CyHqj5Q7rBdUUdpfEbb6BojSJm9WlwxHFJJa2?=
- =?us-ascii?Q?eSwB9D+7DBGIEQ/Ov47YvvNOSknCIvjFZPV7hewP+ddwJBtf+HcFo0NbycL/?=
- =?us-ascii?Q?1ALQOobDwpawTTYse7tApX7Gqcgl1Zb1YcWzSSV7x3G+zAoCfnoAusMUqUdu?=
- =?us-ascii?Q?UZzVFfriv6yr7TDOrdReIrxGoEwWyrOjw4o+IOrMlBMy5nRQ9sWBUivG78MT?=
- =?us-ascii?Q?47L0TtdkTYhXHhDViuTcg/OQtKoCM3t3z5QLuRVjciKh5byyYbwywVi05WmB?=
- =?us-ascii?Q?mhe4Y1v67KITwGKEVmPGhn6vBKF9+z2H6c1JohNz?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d39d0bd8-ecb3-4580-6fac-08dac178417c
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 10:59:06.7756 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UiuIhkJEfEjwS84NVpn+Xr/7+Yiqe2CdBlJLpjstHxN7ikaIv3k/P5xbahAjzNn74YgulAOG7odzJT5g+V9cNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7419
+In-Reply-To: <b266dcf6d647684a10984d12f98549f93fd378ab.1667902754.git.petrm@nvidia.com>
 Cc: Ivan Vecera <ivecera@redhat.com>, bridge@lists.linux-foundation.org,
  netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- Jiri Pirko <jiri@nvidia.com>, "Hans J . Schultz" <netdev@kapio-technology.com>,
+ Jiri Pirko <jiri@nvidia.com>, Ido Schimmel <idosch@nvidia.com>,
+ "Hans J . Schultz" <netdev@kapio-technology.com>,
  Eric Dumazet <edumazet@google.com>, mlxsw@nvidia.com,
  Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 00/15] mlxsw: Add 802.1X and MAB
-	offload support
+Subject: Re: [Bridge] [PATCH net-next 01/15] bridge: switchdev: Let device
+ drivers determine FDB offload indication
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -149,75 +106,25 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-+ Vladimir
+On Tue, Nov 08, 2022 at 11:47:07AM +0100, Petr Machata wrote:
+> From: Ido Schimmel <idosch@nvidia.com>
+> 
+> Currently, FDB entries that are notified to the bridge via
+> 'SWITCHDEV_FDB_ADD_TO_BRIDGE' are always marked as offloaded. With MAB
+> enabled, this will no longer be universally true. Device drivers will
+> report locked FDB entries to the bridge to let it know that the
+> corresponding hosts required authorization, but it does not mean that
+> these entries are necessarily programmed in the underlying hardware.
+> 
+> Solve this by determining the offload indication based of the
+> 'offloaded' bit in the FDB notification.
+> 
+> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
+> Reviewed-by: Petr Machata <petrm@nvidia.com>
+> Signed-off-by: Petr Machata <petrm@nvidia.com>
+> ---
 
-You weren't copied on the patches by mistake. They are available here:
-https://lore.kernel.org/netdev/cover.1667902754.git.petrm@nvidia.com/
-
-On Tue, Nov 08, 2022 at 11:47:06AM +0100, Petr Machata wrote:
-> Ido Schimmel <idosch@nvidia.com> writes:
-> 
-> This patchset adds 802.1X [1] and MAB [2] offload support in mlxsw.
-> 
-> Patches #1-#3 add the required switchdev interfaces.
-> 
-> Patches #4-#5 add the required packet traps for 802.1X.
-> 
-> Patches #6-#10 are small preparations in mlxsw.
-> 
-> Patch #11 adds locked bridge port support in mlxsw.
-> 
-> Patches #12-#15 add mlxsw selftests. The patchset was also tested with
-> the generic forwarding selftest ('bridge_locked_port.sh').
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=a21d9a670d81103db7f788de1a4a4a6e4b891a0b
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/commit/?id=a35ec8e38cdd1766f29924ca391a01de20163931
-> 
-> Hans J. Schultz (1):
->   bridge: switchdev: Allow device drivers to install locked FDB entries
-> 
-> Ido Schimmel (14):
->   bridge: switchdev: Let device drivers determine FDB offload indication
->   bridge: switchdev: Reflect MAB bridge port flag to device drivers
->   devlink: Add packet traps for 802.1X operation
->   mlxsw: spectrum_trap: Register 802.1X packet traps with devlink
->   mlxsw: reg: Add Switch Port FDB Security Register
->   mlxsw: spectrum: Add an API to configure security checks
->   mlxsw: spectrum_switchdev: Prepare for locked FDB notifications
->   mlxsw: spectrum_switchdev: Add support for locked FDB notifications
->   mlxsw: spectrum_switchdev: Use extack in bridge port flag validation
->   mlxsw: spectrum_switchdev: Add locked bridge port support
->   selftests: devlink_lib: Split out helper
->   selftests: mlxsw: Add a test for EAPOL trap
->   selftests: mlxsw: Add a test for locked port trap
->   selftests: mlxsw: Add a test for invalid locked bridge port
->     configurations
-> 
->  .../networking/devlink/devlink-trap.rst       |  13 +++
->  drivers/net/ethernet/mellanox/mlxsw/reg.h     |  35 ++++++
->  .../net/ethernet/mellanox/mlxsw/spectrum.c    |  22 ++++
->  .../net/ethernet/mellanox/mlxsw/spectrum.h    |   5 +-
->  .../mellanox/mlxsw/spectrum_switchdev.c       |  64 +++++++++--
->  .../ethernet/mellanox/mlxsw/spectrum_trap.c   |  25 +++++
->  drivers/net/ethernet/mellanox/mlxsw/trap.h    |   2 +
->  include/net/devlink.h                         |   9 ++
->  include/net/switchdev.h                       |   1 +
->  net/bridge/br.c                               |   5 +-
->  net/bridge/br_fdb.c                           |  22 +++-
->  net/bridge/br_private.h                       |   2 +-
->  net/bridge/br_switchdev.c                     |   6 +-
->  net/core/devlink.c                            |   3 +
->  .../drivers/net/mlxsw/devlink_trap_control.sh |  22 ++++
->  .../net/mlxsw/devlink_trap_l2_drops.sh        | 105 ++++++++++++++++++
->  .../selftests/drivers/net/mlxsw/rtnetlink.sh  |  31 ++++++
->  .../selftests/net/forwarding/devlink_lib.sh   |  19 ++--
->  18 files changed, 366 insertions(+), 25 deletions(-)
-> 
-> -- 
-> 2.35.3
-> 
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
