@@ -1,95 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF22623436
-	for <lists.bridge@lfdr.de>; Wed,  9 Nov 2022 21:09:09 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AD79623A71
+	for <lists.bridge@lfdr.de>; Thu, 10 Nov 2022 04:30:32 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 078F560675;
-	Wed,  9 Nov 2022 20:09:07 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 078F560675
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=networkplumber-org.20210112.gappssmtp.com header.i=@networkplumber-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=S0En1H5U
+	by smtp1.osuosl.org (Postfix) with ESMTP id 8C6F581326;
+	Thu, 10 Nov 2022 03:30:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8C6F581326
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=WeFd2Yjz
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t2DxRjR-TE0Z; Wed,  9 Nov 2022 20:09:06 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 572CE6066D;
-	Wed,  9 Nov 2022 20:09:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 572CE6066D
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ei6tofKZWCQA; Thu, 10 Nov 2022 03:30:28 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id C9CB1812C1;
+	Thu, 10 Nov 2022 03:30:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C9CB1812C1
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E7E68C0077;
-	Wed,  9 Nov 2022 20:09:04 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 66A19C007B;
+	Thu, 10 Nov 2022 03:30:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D969EC002D
- for <bridge@lists.linux-foundation.org>; Wed,  9 Nov 2022 20:09:02 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3D8DAC002D
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Nov 2022 03:30:26 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id B4D1F6066D
- for <bridge@lists.linux-foundation.org>; Wed,  9 Nov 2022 20:09:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B4D1F6066D
+ by smtp3.osuosl.org (Postfix) with ESMTP id 1845960AC4
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Nov 2022 03:30:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1845960AC4
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=WeFd2Yjz
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HSktTaUWAfwA for <bridge@lists.linux-foundation.org>;
- Wed,  9 Nov 2022 20:09:01 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D7F3560625
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
- [IPv6:2607:f8b0:4864:20::102b])
- by smtp3.osuosl.org (Postfix) with ESMTPS id D7F3560625
- for <bridge@lists.linux-foundation.org>; Wed,  9 Nov 2022 20:09:01 +0000 (UTC)
-Received: by mail-pj1-x102b.google.com with SMTP id gw22so17736151pjb.3
- for <bridge@lists.linux-foundation.org>; Wed, 09 Nov 2022 12:09:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=networkplumber-org.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=KRa3zLSl7ee1yGVNAAzjY5vpjyV6wqckozbmKlHsMfQ=;
- b=S0En1H5UJdZt5oSh6Ts0Qh4obRmUNA/FNjgSqzMXSV926VMcwoorELQn8nu8gxzRor
- KPrKpDTTsV/bJjXke862cHchAB+yBAz4s+8xfxvO0szFRYal4AV91g648gBDCuxWN0XR
- cPQywR7t75xcTLRvC+DyJVFharWFfssxBZNcA0jei/xhiZlYxjYk6M+HC+AdXAvqHdnX
- DS9ibrxOruofjoNZxGvSPFj5FeDMem/MugJPfwW1TzdvAXs+67xVqPVtowImnl2F1KCJ
- /CgcpxakOxaqJe+TebrnH4es6lwY1Xbh7PKnf0n1ubQy07JVAS9i3Fn+LSbq0qTebmKr
- wyag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=KRa3zLSl7ee1yGVNAAzjY5vpjyV6wqckozbmKlHsMfQ=;
- b=wdSbWxsrNE5/b1QtLF4KqgDe7Pai814vLOgqh1Fj/LhIxCNxrMSJhv7fQkkVGS2Ur9
- R9cnwJVurBN52Sx7vwiziXuUXTQ+8BWFEuUJSTjai8K6u52igzQpuxuYpBy6QFL5veH4
- 4MW68ODS6qEdUxH631k4dhCk9XZSv1v4OMuBrxLmHbQyGZaCqEpcNQ6LqocZXL6wolAI
- RFTE9TvjESkq6HhfUbJcm/AKaNfcl3M+cQ4D4vNZy8tUphxqYDF+2X7iqLMUZlW+yNMV
- BmSRLkeAzpA/XwH3LZ2Gf7FAyh2hE8Sc4vGecTMyKcSCQu8Zb5/PpU8dX07SWp8fT1t5
- 7bWA==
-X-Gm-Message-State: ACrzQf2jurNYVdv3Nw0UmD8V1temD1kbiSRf0kSrJZZogjfccoT7kvG+
- GiSpKgVnlZ4KAYKqVjCTIhpIUi5/q/VXPA==
-X-Google-Smtp-Source: AMsMyM6wA623ekl7heTsfGt7YOryB3UudMiyc+vuV7zmTf4MLEBa1XLMt3V3R8DlcTY1fysYF0zmgA==
-X-Received: by 2002:a17:902:b086:b0:187:27b3:74e8 with SMTP id
- p6-20020a170902b08600b0018727b374e8mr50481304plr.140.1668024541208; 
- Wed, 09 Nov 2022 12:09:01 -0800 (PST)
-Received: from hermes.local (204-195-120-218.wavecable.com. [204.195.120.218])
- by smtp.gmail.com with ESMTPSA id
- t125-20020a625f83000000b0056e8ce106d1sm8661609pfb.132.2022.11.09.12.09.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Nov 2022 12:09:00 -0800 (PST)
-Date: Wed, 9 Nov 2022 12:08:58 -0800
-To: Ali Shirvani <alishirv@protonmail.com>
-Message-ID: <20221109120858.52e5a0aa@hermes.local>
-In-Reply-To: <pPm5jFjNYHBUzqlDouAIg2v7XTQZJnHIVSWXoYOaTijreJ22xAZOSAcwJXHJiTLN8jIAQCs-LeX7hp9hp-FaxW-HGjn69fc6-eG3Kv6lxc4=@protonmail.com>
-References: <nWfVbvdboX65r0xMXv0iZCj8TH7c8vStvilCD3Ilx5Y42yoHh34rJHJBMy8y4HhqXWXM0n3tLhLD870c863UjI20HBSxM8qwJlLMxuPjg0g=@protonmail.com>
- <20221109085109.6b0f87d3@hermes.local>
- <pPm5jFjNYHBUzqlDouAIg2v7XTQZJnHIVSWXoYOaTijreJ22xAZOSAcwJXHJiTLN8jIAQCs-LeX7hp9hp-FaxW-HGjn69fc6-eG3Kv6lxc4=@protonmail.com>
+ with ESMTP id lwWvTaiKJvlh for <bridge@lists.linux-foundation.org>;
+ Thu, 10 Nov 2022 03:30:20 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 63FA960AC2
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 63FA960AC2
+ for <bridge@lists.linux-foundation.org>; Thu, 10 Nov 2022 03:30:20 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 55CCC61D62;
+ Thu, 10 Nov 2022 03:30:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B1D91C433D6;
+ Thu, 10 Nov 2022 03:30:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1668051018;
+ bh=K+8a66hs8qAIAe/6tZ9tl3yQ2XhnG4uFdwh/r7DvqNo=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=WeFd2Yjzi/5eYvTaMuyEua8jd+tCzL3wCoXpYUX5fqOt94XV88kpPN23+ioUW8YVx
+ 182+rWgk4qI6owhTCf1QqMxRaLzmqpTPUbIpOYd3dV2mxc1gAEPHrj8l8Y+y9AD0c5
+ kqivFBKyIPoNt2BSRQmIC6aOvBegYgd1H1VabPrJXYoweQ6B9CHBYTJ6CJozg0dohj
+ t2vUJnL8lN8CsXeOpHy2CfRjulwyGm75sFyrZKNGqyWthPWbEXt7Xvx1U14Xuc2dA7
+ utL8fhVBoczAxxZqHfiKbaDSxVpSoAMuRaOYxpPOmee4nvNW3HdWWGCFzL6WHunGtf
+ dtJnMR7SKKLCQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
+ 9933AC395FE; Thu, 10 Nov 2022 03:30:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: Ali Shirvani via Bridge <bridge@lists.linux-foundation.org>
-Subject: Re: [Bridge] How to connect more than 200 interfaces to a bridge
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166805101862.26797.801225756307788281.git-patchwork-notify@kernel.org>
+Date: Thu, 10 Nov 2022 03:30:18 +0000
+References: <cover.1667902754.git.petrm@nvidia.com>
+In-Reply-To: <cover.1667902754.git.petrm@nvidia.com>
+To: Petr Machata <petrm@nvidia.com>
+Cc: ivecera@redhat.com, bridge@lists.linux-foundation.org,
+ netdev@vger.kernel.org, razor@blackwall.org, jiri@nvidia.com,
+ idosch@nvidia.com, netdev@kapio-technology.com, edumazet@google.com,
+ mlxsw@nvidia.com, roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 00/15] mlxsw: Add 802.1X and MAB
+	offload support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,46 +92,60 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Stephen Hemminger via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Stephen Hemminger <stephen@networkplumber.org>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, 09 Nov 2022 19:25:32 +0000
-Ali Shirvani <alishirv@protonmail.com> wrote:
+Hello:
 
-> Sent with Proton Mail secure email.
-> 
-> ------- Original Message -------
-> On Wednesday, November 9th, 2022 at 8:21 PM, Stephen Hemminger <stephen@networkplumber.org> wrote:
-> 
-> 
-> > On Wed, 09 Nov 2022 10:51:27 +0000
-> > Ali Shirvani via Bridge bridge@lists.linux-foundation.org wrote:
-> >   
-> > > Hello everyone,
-> > > 
-> > > It seems we reach the Linux bridge limitation on the number of interfaces in a single bridge. Currently, we have 210 tap interface in a bridge, and we suffer from more than 50% packet loss when we ping the IP address of the virtual machine that uses one of the tap interfaces in the bridge.
-> > > Do you know how we can connect more than 200 VMs virtual interfaces to a bridge?
-> > > 
-> > > Best regards,
-> > > Ali
-> > > 
-> > > Sent with Proton Mail secure email.  
-> > 
-> > 
-> > The upper limit on interfaces per bridge should be 1023.
-> > That limitation comes from spanning tree.
-> > 
-> > You might bet able to improve performance by disabling flooding to those tap devices.
-> > Normally, any broadcast/unknown/multicast must be copied and flooded to each interface.  
-> 
-> Thanks a lot for your guidance. I disabled the spanning tree on the bridge with `brctl stp br0 off` but the issue does not resolve. Would you please elaborate more about disabling flooding on tap devices, I don't know how I should disable flooding on tap devices.
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Look at the documentation of the bridge command which describes per-port options:
-https://man7.org/linux/man-pages/man8/bridge.8.html
+On Tue, 8 Nov 2022 11:47:06 +0100 you wrote:
+> Ido Schimmel <idosch@nvidia.com> writes:
+> 
+> This patchset adds 802.1X [1] and MAB [2] offload support in mlxsw.
+> 
+> Patches #1-#3 add the required switchdev interfaces.
+> 
+> Patches #4-#5 add the required packet traps for 802.1X.
+> 
+> [...]
 
-You do want to leave flooding on for the downstream bridge port.
+Here is the summary with links:
+  - [net-next,01/15] bridge: switchdev: Let device drivers determine FDB offload indication
+    https://git.kernel.org/netdev/net-next/c/9baedc3c8780
+  - [net-next,02/15] bridge: switchdev: Allow device drivers to install locked FDB entries
+    https://git.kernel.org/netdev/net-next/c/27fabd02abf3
+  - [net-next,03/15] bridge: switchdev: Reflect MAB bridge port flag to device drivers
+    https://git.kernel.org/netdev/net-next/c/9c0ca02bace4
+  - [net-next,04/15] devlink: Add packet traps for 802.1X operation
+    https://git.kernel.org/netdev/net-next/c/2640a82bbc08
+  - [net-next,05/15] mlxsw: spectrum_trap: Register 802.1X packet traps with devlink
+    https://git.kernel.org/netdev/net-next/c/d85be0f5fd7c
+  - [net-next,06/15] mlxsw: reg: Add Switch Port FDB Security Register
+    https://git.kernel.org/netdev/net-next/c/0b31fb9ba2b5
+  - [net-next,07/15] mlxsw: spectrum: Add an API to configure security checks
+    https://git.kernel.org/netdev/net-next/c/dc0d1a8b7f84
+  - [net-next,08/15] mlxsw: spectrum_switchdev: Prepare for locked FDB notifications
+    https://git.kernel.org/netdev/net-next/c/b72cb660b26b
+  - [net-next,09/15] mlxsw: spectrum_switchdev: Add support for locked FDB notifications
+    https://git.kernel.org/netdev/net-next/c/5a660e43f8b9
+  - [net-next,10/15] mlxsw: spectrum_switchdev: Use extack in bridge port flag validation
+    https://git.kernel.org/netdev/net-next/c/136b8dfbd784
+  - [net-next,11/15] mlxsw: spectrum_switchdev: Add locked bridge port support
+    https://git.kernel.org/netdev/net-next/c/25ed80884ce1
+  - [net-next,12/15] selftests: devlink_lib: Split out helper
+    https://git.kernel.org/netdev/net-next/c/da23a713d1de
+  - [net-next,13/15] selftests: mlxsw: Add a test for EAPOL trap
+    https://git.kernel.org/netdev/net-next/c/25a26f0c2015
+  - [net-next,14/15] selftests: mlxsw: Add a test for locked port trap
+    https://git.kernel.org/netdev/net-next/c/fb398432db2f
+  - [net-next,15/15] selftests: mlxsw: Add a test for invalid locked bridge port configurations
+    https://git.kernel.org/netdev/net-next/c/cdbde7edf0e5
 
-You can also add some security by limiting where/when STP comes from and disable
-learning on the TAP devices so that if VM sends bogus packets, the bridge won't get DoS.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
