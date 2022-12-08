@@ -1,143 +1,143 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE9D6472FE
-	for <lists.bridge@lfdr.de>; Thu,  8 Dec 2022 16:30:22 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id D273C6472FF
+	for <lists.bridge@lfdr.de>; Thu,  8 Dec 2022 16:30:29 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 94DEC61147;
-	Thu,  8 Dec 2022 15:30:20 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 94DEC61147
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=fBZE7WZF
+	by smtp4.osuosl.org (Postfix) with ESMTP id 5265A4193C;
+	Thu,  8 Dec 2022 15:30:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 5265A4193C
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=hGBaRyGo
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id V1Z8KrC7MVJA; Thu,  8 Dec 2022 15:30:20 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LUMq4Wa3unXv; Thu,  8 Dec 2022 15:30:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id D15006114B;
-	Thu,  8 Dec 2022 15:30:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D15006114B
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 4CC654184A;
+	Thu,  8 Dec 2022 15:30:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4CC654184A
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 98D71C007D;
-	Thu,  8 Dec 2022 15:30:18 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0470DC007D;
+	Thu,  8 Dec 2022 15:30:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8ADBAC0070
- for <bridge@lists.linux-foundation.org>; Thu,  8 Dec 2022 15:30:16 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2F6DEC002D
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Dec 2022 15:30:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 53F92820B1
- for <bridge@lists.linux-foundation.org>; Thu,  8 Dec 2022 15:30:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 53F92820B1
+ by smtp1.osuosl.org (Postfix) with ESMTP id 91DC6820A3
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Dec 2022 15:30:22 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 91DC6820A3
 Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
  unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=fBZE7WZF
+ header.s=selector2 header.b=hGBaRyGo
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RuoG3mtX7k5R for <bridge@lists.linux-foundation.org>;
- Thu,  8 Dec 2022 15:30:15 +0000 (UTC)
+ with ESMTP id bVqm31dHRu5B for <bridge@lists.linux-foundation.org>;
+ Thu,  8 Dec 2022 15:30:21 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 64872820AD
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 90CC9820BE
 Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2060f.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8c::60f])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 64872820AD
- for <bridge@lists.linux-foundation.org>; Thu,  8 Dec 2022 15:30:15 +0000 (UTC)
+ (mail-mw2nam04on20619.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8c::619])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 90CC9820BE
+ for <bridge@lists.linux-foundation.org>; Thu,  8 Dec 2022 15:30:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PCEToS4rZl7BKG6/o6udh5t/bssbbiP9mvSffJrrV6KxeVZqACzeP4t01cOkcwc4mlhrdMEsIMY3/cq9v9xUrTLtTKolTyI7sgg/wrl09EYxpihE3quxIxfKImUy6x/oRYgq68SdvQqym6G/h8UoII1lXuDyoN5j2j0kuzenTvAQHaeJE6l3ym4630J4V3g9S5HUibvkvOgr5m/GTentRT5/NX/tGXp5KV/tPTILFIB0QIBWbk04QyipeftYNsMkv/F6bNWAs0lrXczIvhfkPWGXcPIlPLUc71hl8srk7m+yVIo4ze7WN2hdSwSMDiDIIczcR322YcSaF/K2S82vWA==
+ b=C7qodJh+1CthwB8/8bm87PKgZyrjWQ2GRSfGC4hx70ph178YP+eyfCICXHscMD2/rleIyU+LB7vTXbnLq/cxl4vHNQoSi+W5/eOZkKwEDITRsXPkFmlwZuTFihree5qhgzErPbcKlj8ZP8H7CLYIESfMLHBqxR5GO6qQnJc5K1P5dK/aKhlxyCfXkpRFeUCq3Ph4q7Mo3Bjl2RYJuZ1fJfqiMS/sU5K8zvCgCZ5mlYVSRN7tfCNALYeEVpBjdsdnjkgVJNBWjyuvbUvPSxVMp89/A9Iblv1LFWkP+aLfcIIjDsYvbMH46E0zop//HLAI7hIpCs9FU/DhWbpHfCrKKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j9o/bF6xuTdH6T3TYMYoUxE4lUviYjclDl822kTUzak=;
- b=EC8Op3hwF5TuXbDZUIcpTL6hkthVd0sZXanxc2Jb0SMPNqedcdwK1oaDNdVI8fLe36/UV0JaqlyqBhy2KIt4a7hP/Nb+uTplW1t7HnueIfzNKv62juyVq90mWNO43dq7urIH72m/xkM8xD76lRUeB554WXCi0GCu+1z8Qry771v9OthS0J7sZCfK9CJOhXCQcefDnTeUKRnaa9ebifnVX5814Z2QRlV2PHK6iXHqpfJXq97D1B7+0r9LY5ZbNxa/OaO1YPxddOsN4haLodLAzjVXBuIKwxqcZwc+IJ0hz9IlBHpaVaOqEiZmdBrHowjRlyJgXeFbrU6t1xUiy5zjKw==
+ bh=4soViMJUb22F2vazP9wlvyc2PLRw0/kLOnzMWY0GrJA=;
+ b=LyWDgA37IJm5U3vyh1zCkyN1zzMsC5pAkWGtqWfJYuELZbrJSOLB8+sRUSL1Vcdtkv30GW5emxJ7kkG4WjfFsCm0Fiqkg4/XbPntD2rHPkoO2NYuEldjssA1vdpcMtQaYeKyhZU/vmB9RjlFwPZMBa0gpicSGpRCBwJuiCMV/SdFwJ2qYdCMXstQds2MjdzT2NPH8ywo5RxQp/ti6iZFnve3/dVRjvpU6wrEhnz1vADyKjLALRagw5Pu4fr0V/RDZH67Y/bnvLapwn/A42X4TxxZFRpLYwMXaW/kxjO3XnmxI8E2/DoK67DOWp2ZvGSAD7FJukGd2FX6wpv3LoMtnw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j9o/bF6xuTdH6T3TYMYoUxE4lUviYjclDl822kTUzak=;
- b=fBZE7WZFS4WYMZTPz8e2UcgJ3vbMCDjpi1HKPpyS15K25I0a3bMu++3FyG3g5QPvuek2pu7Yhhi74EyeSDGfBQMKKPJgWI5ohYoZ/a07/Y1hULcC0c0q7MYnGujJIWEJl7oIjVfm0kAatn+1L+dsxI+yknDzgfOEo5MkNwx4yBOjaHLDf6P2zOcPoStKnvbgKMUh7F5Se+qg59aRRluAjelcAaki9rtttqnyvDmX+yQqkEj5m+aRg2/I93QT/GKY8rFxEYGMeX31Dvenj6S7DOwS2FFkSM/NICIHvmAc0m5NM9YFqQGEmvE7CAZDt0CDhCjCREW8++k57LCcJ1F5ag==
+ bh=4soViMJUb22F2vazP9wlvyc2PLRw0/kLOnzMWY0GrJA=;
+ b=hGBaRyGo6FfD2FkwM65FLee2e3Tv4viau/4RD+4Lp6RpHCtPpbfIcsCZR8hgw6Gsv2IIee0ya8FJZDRp3vkl3KYJNcwUZZZ7r+oMYQxq9iABhbaWVhEhnbbPeLh286pjXkR7SQHhDUwCyNLgpI+PcoqyN1kkE5w6Ni2NVzQlaABqRoTLUg9IHlg1tzI6I5OS4OlbXKJ2NctempMosUZ+fLuwI//pF5K7rovFCGoOpppRidsLAxEMj3JZ+VlfpVXJPU11v6bSOF5Miv8BHWTNcO62inzI25q3AHEPcIXxYA0p61MBfV7xgFHYvvtMM4PrZu9BUIfihc4uat0SSbaT8g==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
  by CH0PR12MB5370.namprd12.prod.outlook.com (2603:10b6:610:d5::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Thu, 8 Dec
- 2022 15:30:13 +0000
+ 2022 15:30:20 +0000
 Received: from CY5PR12MB6179.namprd12.prod.outlook.com
  ([fe80::a600:9252:615:d31a]) by CY5PR12MB6179.namprd12.prod.outlook.com
  ([fe80::a600:9252:615:d31a%3]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
- 15:30:13 +0000
+ 15:30:19 +0000
 To: netdev@vger.kernel.org,
 	bridge@lists.linux-foundation.org
-Date: Thu,  8 Dec 2022 17:28:36 +0200
-Message-Id: <20221208152839.1016350-12-idosch@nvidia.com>
+Date: Thu,  8 Dec 2022 17:28:37 +0200
+Message-Id: <20221208152839.1016350-13-idosch@nvidia.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221208152839.1016350-1-idosch@nvidia.com>
 References: <20221208152839.1016350-1-idosch@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: VI1PR0701CA0026.eurprd07.prod.outlook.com
- (2603:10a6:800:90::12) To CY5PR12MB6179.namprd12.prod.outlook.com
+X-ClientProxiedBy: VI1P190CA0043.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:800:1bb::6) To CY5PR12MB6179.namprd12.prod.outlook.com
  (2603:10b6:930:24::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|CH0PR12MB5370:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81d685b2-db5c-44d3-0a2b-08dad931195d
+X-MS-Office365-Filtering-Correlation-Id: ff5bb8cc-450a-4f37-ac32-08dad9311d33
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v7M9fyOyagwe8Hse2vfAg8e5OmMg+nkn584X2InzYCgF+ktA/nwD05S8QlMWyUDkLYX9Vyq7ZZ/ravZzGLVaa9rpKhQMyQCm5V+5AXu9hjzCHB0Qugpj5OiJT9sqW48xjqt+doqUcD5CuvquGl6PrhiJ2Czt+7uveTpwDufmN6FvcrhvMBbCSnVJH30JN9fBCKj837qLuNwoQi2FE1kj+8fz6I6nqEZy7OAW4fxmaPJq8tDHn46dCdLfJlFYOaBcUUXlK+dkqgNOSce9LPItYNPf1FL/mishSEs1j1a4hzEaS2AJ8Z4iI928M3fZdvzKHYumbD5GfqApaGBmPN02Yu43nRIbYKPgjSX9PdUN759R7D/c2orSje1sq9EaIOM/Fj2/Geoh1QkID21WN2TZLNeYRdo0z+yFSPna3CPtlSG3NkM/f7UA6bgDG6DI1bKhYBMt4l0fu6XIZDiQ9Fg2x7oc0bCxBEhow7MW+exRBrA5PQcVpuUzDsjRsPBR+lAmNcY4K2MkS7jxMfpZ5BQGZaNJQk3UkzzCpGEOMv2cWkFuek08+zXXBgixtjy7YnCEpAAqIG1LGdCsKvoXfWcg6aAYUmUuRSrjto7GSEltJsaj1LY1QeljYlLnFnfF2jnVznZkDw/S3AK5JxBikMr47g==
+X-Microsoft-Antispam-Message-Info: P37+4rkFvLrAwXL2i7D074+dOXg95dONnK+G7D8kjxCYJ31DoGTLTkn7/UlwhP3cig8pP8GUzCL93dOWyB0+7Pwc9fOACKU2mekgh+vJgfUiW41B2COZgpjtnibwdJqXHtR8o0yKchXmsZblPWQjkBPiImxM1aMjvSyGQcH74B371HNP29pOF9asfb1r4SnNQ4sVg1RzLJ4vJ7S9UnstB+Jojc/LlyzGdcjc1eBBDgqlrG0kHotjK56Qt77uHxHHA8gW6dhOuSt5c9pyfb9VzIR9JoHvKRgxongwfAc0hyQa2D/SvavV1AmjDo6rbvOTcpEmKMhhbb7vHvqhLxH2ZHZPNWZjo59KiNwj7TptOHLlCCJ7pFI3EpZu/4heqVOxjKjwmKg78LEdlxcOhIIZ+J4bCFDHFocU9kuZVVzglIvqRnCkmGKVoq7TwzRvdKSJq7jzFJfpc9staFxsXDLuyFqJrkH+sQUYYL97prsFFvBUrwjgtP3q1eQ3pgtcjyy3TiKcb192qSOiIlJe4UVwabD7KUEGBUO1bb2CmVZzyQE0AcckjZdT2T9ML9feZQstqmLUI3G6SNBtxZLJTRBLh+bjVmYPrUlGo/cWSruLjgi1VeHgwOVASm2H2SCuPZSeG2mdkkJDZitxFCDXUYzGvA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230022)(4636009)(366004)(39860400002)(136003)(376002)(396003)(346002)(451199015)(36756003)(86362001)(41300700001)(8936002)(66476007)(66946007)(4326008)(2906002)(66556008)(8676002)(38100700002)(83380400001)(107886003)(2616005)(316002)(478600001)(6486002)(1076003)(6666004)(6512007)(5660300002)(6506007)(186003)(26005);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hL9AhsqCjzrQmvgS301vmOA3I/ssP95IhzPBaJBuslaWt7clUc/qAI33YMDf?=
- =?us-ascii?Q?C1+2XeaY6bUwsr1F55fS9eVtosf6T+L9NSstYSSlvxR3AmUw5xQYtHtaLr1J?=
- =?us-ascii?Q?8p6QMNJ5fsDA08ukeJ/Opi1tMclxl7i/a8yX9e8gQo5hi5rldsAU5ob86apn?=
- =?us-ascii?Q?d3uxpPjli7YUEq7WjWuhXDPpuG+mFATXgrITzydk2/4lPJ+FTuZlMwSQ9NiB?=
- =?us-ascii?Q?ZdpQ25g5gVFVmeRkhE3hlpFAt5ye6rN4lwry4HP1fmczkYyYgNuKUASBWJAc?=
- =?us-ascii?Q?lLFUWOXxv105HGaHhq5M8l9JpdwJKa9CKIj0oWiY9DdnmtaZ5SXnGTHrcGhA?=
- =?us-ascii?Q?W+nOGwDo/LZdlQXkWgQSGuqPY2ANU3Wy6wLCxmOrSYCKHhgqkEX3xw3cWVdS?=
- =?us-ascii?Q?+hCwMve/M7+EYqHzpaHLy2kUpXgN/LE3LFsvwFBC65Dg6MYL/9L30cLLQAHH?=
- =?us-ascii?Q?B6RI/XuoYP0vjke9PBUvu/tQyDpPU+zXzlymazL9XEwp1+VefnSlkH9Uf05B?=
- =?us-ascii?Q?hzm7WHUJR4a1gWRrs1vDb8RQ7ThAhV4++Q7GkS7uZZsSgOchvCOzlY4RN1Zm?=
- =?us-ascii?Q?3MX3qwyYhEYMTx4BlepgT8IDYioJjujlVFZidDD7XpFVUFzBz4nJQrRTiuku?=
- =?us-ascii?Q?TCRsAt/A51FHUJ+mGFM9KYnrcLIw4jwcXkuwaEUKP+TLnHQz35qdDYKD++gU?=
- =?us-ascii?Q?xy9XNz02T55zDuHj406cfDPUz73eHvCOaGmSgM90GoUJp/cYKGefI4w+51zz?=
- =?us-ascii?Q?W9OAzSVt0IPP7iQw8HzCNlGLliSvAgw4262kN3dSobK4o42UUBqvVZjX1cSs?=
- =?us-ascii?Q?crrult0cTNfuw4ckdGs2oRE4QQfOmbNyaEoUtTODRJ6FfOK0E8yyr0Ttbi+M?=
- =?us-ascii?Q?A0v7XpM63ahqbwHPxSzKlfd2VAZYm9+LBpvsJhe1jrzlFXPNGXvRUCDCV0s8?=
- =?us-ascii?Q?r6rrnbj/gwNswccgjNHYVISHWjmtgt/N7OPgcOD8jdBsORQ4pboPrP+Hzxf9?=
- =?us-ascii?Q?8K9yBOoV7WkGT8qcxp3H4CXcXDPV5inKlxBkLnqGB5BLN+7RIDsMOX4vNhmY?=
- =?us-ascii?Q?y2mG0ZZs3qIXOtmmO4/dFsS3uqKPzhR02MxYSCy+ZVD+2qYWCZ6l+NVxKH1J?=
- =?us-ascii?Q?pcN6gFVIJXY1xTbE9/QrlaP1Hx9cKaA7LlXziL9C94W5Cy2n1fUPeiS+eUdC?=
- =?us-ascii?Q?z96f8bDNLkIm/1oc9i9aI2tyBKfzjhFhS2Nh6cJ3z6o52+FLIYva93IFd8UC?=
- =?us-ascii?Q?RwEjfQp05d31QBJE9OIDCKxqlfzYRHqHCC0z8AgQzXsKWY5bzudxMjH1+FBN?=
- =?us-ascii?Q?1veU8JpwXwJmMkLG/fOn2LKbDEzVAoPQTtcBW8DSEIMUSxh++E4exfufxQR1?=
- =?us-ascii?Q?5p+YSL2oLikThYNjk5/VaN6roRfqe4a3KFh7IwrjanyEkVOiwK5VCi9jSKC8?=
- =?us-ascii?Q?RkbZQJryP45Q9mOT3j7/cBThgTTpDOX5RWaCi90L2JzR4u6Gr3RZBlGchVNb?=
- =?us-ascii?Q?b1WAHaQeuNWnwANszd4IlKuVCFaahpAUiJvdJH2gYImfHqZtOGo0totuADGs?=
- =?us-ascii?Q?ETHAbh9WVnqbdhGnTUOYhPyvYD/C5HWerRGdIXT2?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YXgU75Bx4tgOW0QInmxq8wgnhC+P2DesoJjCQ2fWQ04lu+GS6SBGSTcan3T4?=
+ =?us-ascii?Q?nwgx3bnaxyZDxe6d1sPywBOjAbfkFb3w5lAH2uieLJ/gm9QLALBVP41Cz+no?=
+ =?us-ascii?Q?FMa80O9K7N2+lDNYaw2aKwQ2dbJkLi6cjr5NDZu0X3L/Atvyt/3S0Um+0Xz3?=
+ =?us-ascii?Q?/JZRLqiWE7onYSTguyU8A7tnsHXh/H6DYqkkh3KrGmHOKjQUJZE8896MPxKu?=
+ =?us-ascii?Q?RGgfz9ISe2vsmhtzM3KP3HN2JG67T+Uk5vxj62qVdQzKGb6GOse6SVR3kQoR?=
+ =?us-ascii?Q?Xo9hH3bTidQQzlkngwrfdEVlKKPjEN5HrTFlhL9Zd9eJjVJFdsp9KMwk21Vv?=
+ =?us-ascii?Q?kyzwifxl4qBjGCROr3LvUwpiinORo0W7hLS6pNxuG0nnEp7MlQWkxqj2+OXa?=
+ =?us-ascii?Q?tGw4JUskdW1rlCl0tYziOwfEsjN+WrefJd681LVxgu1YrSOpvJGCjdrlYdZM?=
+ =?us-ascii?Q?zUEbyII1tOGPZa7cqV+5v4GEXXnRVvvic8Z+MDnDEuWTrwv1bHcdeeEJWtTi?=
+ =?us-ascii?Q?RAyOCWqm2F5L9s772+dTnrpS4dz+6d+URrfXKVM4o6jf8OyCYBlus+Jy15iw?=
+ =?us-ascii?Q?xe9Y/AqMRhtYec9aoMrigFifCaVSl23Hda+u7Cu+cggIJnqidEpgbxqUPWrU?=
+ =?us-ascii?Q?ULF2PzWID2JH6c2hQoz4Zk2XvB4s9HbcjAiR08o57vK7SO256nNEHgshIwvA?=
+ =?us-ascii?Q?riIeB/uQKkWUfW9prc3Rdukf4nJblv/t1KYG3x/duzmgn0LariBYt1Wb7Khf?=
+ =?us-ascii?Q?Mu0RE7i97lmAelvR0ht8B6+LCVeeTn0AJ3wK5Natx23qBkH22DwRQTTbPDIZ?=
+ =?us-ascii?Q?6ba9BQNPC8yYLeswsx9e4VJy9x2998m9+hfQFTPpdUYN6T5hKDuy7usk1O/9?=
+ =?us-ascii?Q?9DKvVx9s3+doFAJ3xr/x1l9jiFvB52V1jWPR6SEcDKKAMWNc+h2m3+e55xAC?=
+ =?us-ascii?Q?yEHY2QvNmd+5FUNBaSc5Wlew3cmEpAz2rA+wvmbdoktcDNg3JbDrnKxj9sXO?=
+ =?us-ascii?Q?SjucIIMpYGfDNGbfbROA10+lDezaguRwol+Laq1uJGWmP9pOU7TnjR9D0ohG?=
+ =?us-ascii?Q?wvpptIDk2MTgTlVDXFofKgk0LotJQmE40wBFfxCM5tfRNT7J0HLmh6TZasoY?=
+ =?us-ascii?Q?n30/fV3I2CDEsBobupAnVDVVprlFCtzNw4UR7L31/GFuOxGQx75b4IX0JqDw?=
+ =?us-ascii?Q?NHGRcfk33+IoXfbb4/CeRtwAkQhkADOAoYzpZdXa1pH6uO/SjHGCAy/thj87?=
+ =?us-ascii?Q?YPn0esnoBqa/HoLLcP+oc3FFjyUGsUHcoqDQ0h0jNOGgIo/QfB3GzfnWXA+s?=
+ =?us-ascii?Q?xpkfT2rB80L3lYwsLUK3gIzTC9BrYfgnml/K51ZsvPpquGAFX+49b1CI6wI0?=
+ =?us-ascii?Q?Y92dl8t1KLnInhGPxOdNbAa8PDk9aZNl8DtFg0dDiVWf9W0KR5ZOKDGy/so/?=
+ =?us-ascii?Q?HY1VfbwJE7QLr/Y9vlkTh3cruEnReJSevs4lwzdkjJK88XNe2Sz1NmsCVw7t?=
+ =?us-ascii?Q?Ui0xdHRg/m40Pvg3I/exDL8cJlivWjNODQpPvyNVIlNt7SYL6TfXrUkn5gcR?=
+ =?us-ascii?Q?HPzR5Xh1PpRjTioyXTXHia5eMehIzV4TJw0PyomY?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81d685b2-db5c-44d3-0a2b-08dad931195d
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff5bb8cc-450a-4f37-ac32-08dad9311d33
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 15:30:13.2260 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 15:30:19.6177 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bthkLPrugq0xdajcRlH+oWagenLReZbMgFNmmvftF0g2Lo8XmPxNoRrE1ulrg1YdvgrQB9480ROdvQFgsliI+Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: uCFgsqnlXx+Vu6vMIuz37lGU2N5J4ekpO9nn6goW1pvadykaqUyMIscSU9LWLbAPHkzaVwl7tc8qcg64yfsCHg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5370
 Cc: mlxsw@nvidia.com, razor@blackwall.org, Ido Schimmel <idosch@nvidia.com>,
  edumazet@google.com, roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com,
  davem@davemloft.net
-Subject: [Bridge] [PATCH net-next 11/14] bridge: mcast: Allow user space to
-	specify MDB entry routing protocol
+Subject: [Bridge] [PATCH net-next 12/14] bridge: mcast: Support replacement
+	of MDB port group entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -154,132 +154,211 @@ Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add the 'MDBE_ATTR_RTPORT' attribute to allow user space to specify the
-routing protocol of the MDB port group entry. Enforce a minimum value of
-'RTPROT_STATIC' to prevent user space from using protocol values that
-should only be set by the kernel (e.g., 'RTPROT_KERNEL'). Maintain
-backward compatibility by defaulting to 'RTPROT_STATIC'.
+Now that user space can specify additional attributes of port group
+entries such as filter mode and source list, it makes sense to allow
+user space to atomically modify these attributes by replacing entries
+instead of forcing user space to delete the entries and add them back.
 
-The protocol is already visible to user space in RTM_NEWMDB responses
-and notifications via the 'MDBA_MDB_EATTR_RTPROT' attribute.
+Replace MDB port group entries when the 'NLM_F_REPLACE' flag is
+specified in the netlink message header.
 
-The routing protocol allows a routing daemon to distinguish between
-entries configured by it and those configured by the administrator. Once
-MDB flush is supported, the protocol can be used as a criterion
-according to which the flush is performed.
+When a (*, G) entry is replaced, update the following attributes: Source
+list, state, filter mode, protocol and flags. If the entry is temporary
+and in EXCLUDE mode, reset the group timer to the group membership
+interval. If the entry is temporary and in INCLUDE mode, reset the
+source timers of associated sources to the group membership interval.
 
 Examples:
 
- # bridge mdb add dev br0 port dummy10 grp 239.1.1.1 permanent proto kernel
- Error: integer out of range.
+ # bridge mdb replace dev br0 port dummy10 grp 239.1.1.1 permanent source_list 192.0.2.1,192.0.2.2 filter_mode include
+ # bridge -d -s mdb show
+ dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.2 permanent filter_mode include proto static     0.00
+ dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent filter_mode include proto static     0.00
+ dev br0 port dummy10 grp 239.1.1.1 permanent filter_mode include source_list 192.0.2.2/0.00,192.0.2.1/0.00 proto static     0.00
 
- # bridge mdb add dev br0 port dummy10 grp 239.1.1.1 permanent proto static
+ # bridge mdb replace dev br0 port dummy10 grp 239.1.1.1 permanent source_list 192.0.2.1,192.0.2.3 filter_mode exclude proto zebra
+ # bridge -d -s mdb show
+ dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.3 permanent filter_mode include proto zebra  blocked    0.00
+ dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent filter_mode include proto zebra  blocked    0.00
+ dev br0 port dummy10 grp 239.1.1.1 permanent filter_mode exclude source_list 192.0.2.3/0.00,192.0.2.1/0.00 proto zebra     0.00
 
- # bridge mdb add dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent proto zebra
-
- # bridge mdb add dev br0 port dummy10 grp 239.1.1.2 permanent source_list 198.51.100.1,198.51.100.2 filter_mode include proto 250
-
- # bridge -d mdb show
- dev br0 port dummy10 grp 239.1.1.2 src 198.51.100.2 permanent filter_mode include proto 250
- dev br0 port dummy10 grp 239.1.1.2 src 198.51.100.1 permanent filter_mode include proto 250
- dev br0 port dummy10 grp 239.1.1.2 permanent filter_mode include source_list 198.51.100.2/0.00,198.51.100.1/0.00 proto 250
- dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent filter_mode include proto zebra
- dev br0 port dummy10 grp 239.1.1.1 permanent filter_mode exclude proto static
+ # bridge mdb replace dev br0 port dummy10 grp 239.1.1.1 temp source_list 192.0.2.4,192.0.2.3 filter_mode include proto bgp
+ # bridge -d -s mdb show
+ dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.4 temp filter_mode include proto bgp     0.00
+ dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.3 temp filter_mode include proto bgp     0.00
+ dev br0 port dummy10 grp 239.1.1.1 temp filter_mode include source_list 192.0.2.4/259.44,192.0.2.3/259.44 proto bgp     0.00
 
 Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 ---
+ net/bridge/br_mdb.c     | 103 ++++++++++++++++++++++++++++++++++++++--
+ net/bridge/br_private.h |   1 +
+ 2 files changed, 99 insertions(+), 5 deletions(-)
 
-Notes:
-    v1:
-    * Reject protocol for host entries.
-
- include/uapi/linux/if_bridge.h |  1 +
- net/bridge/br_mdb.c            | 15 +++++++++++++--
- net/bridge/br_private.h        |  1 +
- 3 files changed, 15 insertions(+), 2 deletions(-)
-
-diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
-index 0d9fe73fc48c..d9de241d90f9 100644
---- a/include/uapi/linux/if_bridge.h
-+++ b/include/uapi/linux/if_bridge.h
-@@ -725,6 +725,7 @@ enum {
- 	MDBE_ATTR_SOURCE,
- 	MDBE_ATTR_SRC_LIST,
- 	MDBE_ATTR_GROUP_MODE,
-+	MDBE_ATTR_RTPROT,
- 	__MDBE_ATTR_MAX,
- };
- #define MDBE_ATTR_MAX (__MDBE_ATTR_MAX - 1)
 diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-index 61d46b0a31b6..72d4e53193e5 100644
+index 72d4e53193e5..98d899427c03 100644
 --- a/net/bridge/br_mdb.c
 +++ b/net/bridge/br_mdb.c
-@@ -682,6 +682,7 @@ static const struct nla_policy br_mdbe_attrs_pol[MDBE_ATTR_MAX + 1] = {
- 	[MDBE_ATTR_GROUP_MODE] = NLA_POLICY_RANGE(NLA_U8, MCAST_EXCLUDE,
- 						  MCAST_INCLUDE),
- 	[MDBE_ATTR_SRC_LIST] = NLA_POLICY_NESTED(br_mdbe_src_list_pol),
-+	[MDBE_ATTR_RTPROT] = NLA_POLICY_MIN(NLA_U8, RTPROT_STATIC),
- };
+@@ -802,6 +802,28 @@ __br_mdb_choose_context(struct net_bridge *br,
+ 	return brmctx;
+ }
  
- static bool is_valid_mdb_entry(struct br_mdb_entry *entry,
-@@ -823,7 +824,7 @@ static int br_mdb_add_group_sg(const struct br_mdb_config *cfg,
- 	}
- 
- 	p = br_multicast_new_port_group(cfg->p, &cfg->group, *pp, flags, NULL,
--					MCAST_INCLUDE, RTPROT_STATIC);
-+					MCAST_INCLUDE, cfg->rt_protocol);
- 	if (unlikely(!p)) {
- 		NL_SET_ERR_MSG_MOD(extack, "Couldn't allocate new (S, G) port group");
- 		return -ENOMEM;
-@@ -881,6 +882,7 @@ static int br_mdb_add_group_src_fwd(const struct br_mdb_config *cfg,
- 	sg_cfg.group = sg_ip;
++static int br_mdb_replace_group_sg(const struct br_mdb_config *cfg,
++				   struct net_bridge_mdb_entry *mp,
++				   struct net_bridge_port_group *pg,
++				   struct net_bridge_mcast *brmctx,
++				   unsigned char flags,
++				   struct netlink_ext_ack *extack)
++{
++	unsigned long now = jiffies;
++
++	pg->flags = flags;
++	pg->rt_protocol = cfg->rt_protocol;
++	if (!(flags & MDB_PG_FLAGS_PERMANENT) && !cfg->src_entry)
++		mod_timer(&pg->timer,
++			  now + brmctx->multicast_membership_interval);
++	else
++		del_timer(&pg->timer);
++
++	br_mdb_notify(cfg->br->dev, mp, pg, RTM_NEWMDB);
++
++	return 0;
++}
++
+ static int br_mdb_add_group_sg(const struct br_mdb_config *cfg,
+ 			       struct net_bridge_mdb_entry *mp,
+ 			       struct net_bridge_mcast *brmctx,
+@@ -816,8 +838,12 @@ static int br_mdb_add_group_sg(const struct br_mdb_config *cfg,
+ 	     (p = mlock_dereference(*pp, cfg->br)) != NULL;
+ 	     pp = &p->next) {
+ 		if (p->key.port == cfg->p) {
+-			NL_SET_ERR_MSG_MOD(extack, "(S, G) group is already joined by port");
+-			return -EEXIST;
++			if (!(cfg->nlflags & NLM_F_REPLACE)) {
++				NL_SET_ERR_MSG_MOD(extack, "(S, G) group is already joined by port");
++				return -EEXIST;
++			}
++			return br_mdb_replace_group_sg(cfg, mp, p, brmctx,
++						       flags, extack);
+ 		}
+ 		if ((unsigned long)p->key.port < (unsigned long)cfg->p)
+ 			break;
+@@ -883,6 +909,7 @@ static int br_mdb_add_group_src_fwd(const struct br_mdb_config *cfg,
  	sg_cfg.src_entry = true;
  	sg_cfg.filter_mode = MCAST_INCLUDE;
-+	sg_cfg.rt_protocol = cfg->rt_protocol;
+ 	sg_cfg.rt_protocol = cfg->rt_protocol;
++	sg_cfg.nlflags = cfg->nlflags;
  	return br_mdb_add_group_sg(&sg_cfg, sgmp, brmctx, flags, extack);
  }
  
-@@ -982,7 +984,7 @@ static int br_mdb_add_group_star_g(const struct br_mdb_config *cfg,
+@@ -903,7 +930,7 @@ static int br_mdb_add_group_src(const struct br_mdb_config *cfg,
+ 			NL_SET_ERR_MSG_MOD(extack, "Failed to add new source entry");
+ 			return -ENOSPC;
+ 		}
+-	} else {
++	} else if (!(cfg->nlflags & NLM_F_REPLACE)) {
+ 		NL_SET_ERR_MSG_MOD(extack, "Source entry already exists");
+ 		return -EEXIST;
  	}
- 
- 	p = br_multicast_new_port_group(cfg->p, &cfg->group, *pp, flags, NULL,
--					cfg->filter_mode, RTPROT_STATIC);
-+					cfg->filter_mode, cfg->rt_protocol);
- 	if (unlikely(!p)) {
- 		NL_SET_ERR_MSG_MOD(extack, "Couldn't allocate new (*, G) port group");
- 		return -ENOMEM;
-@@ -1193,6 +1195,14 @@ static int br_mdb_config_attrs_init(struct nlattr *set_attrs,
- 		return -EINVAL;
- 	}
- 
-+	if (mdb_attrs[MDBE_ATTR_RTPROT]) {
-+		if (!cfg->p) {
-+			NL_SET_ERR_MSG_MOD(extack, "Protocol cannot be set for host groups");
-+			return -EINVAL;
-+		}
-+		cfg->rt_protocol = nla_get_u8(mdb_attrs[MDBE_ATTR_RTPROT]);
-+	}
-+
- 	return 0;
+@@ -961,6 +988,67 @@ static int br_mdb_add_group_srcs(const struct br_mdb_config *cfg,
+ 	return err;
  }
  
-@@ -1212,6 +1222,7 @@ static int br_mdb_config_init(struct net *net, const struct nlmsghdr *nlh,
- 
++static int br_mdb_replace_group_srcs(const struct br_mdb_config *cfg,
++				     struct net_bridge_port_group *pg,
++				     struct net_bridge_mcast *brmctx,
++				     struct netlink_ext_ack *extack)
++{
++	struct net_bridge_group_src *ent;
++	struct hlist_node *tmp;
++	int err;
++
++	hlist_for_each_entry(ent, &pg->src_list, node)
++		ent->flags |= BR_SGRP_F_DELETE;
++
++	err = br_mdb_add_group_srcs(cfg, pg, brmctx, extack);
++	if (err)
++		goto err_clear_delete;
++
++	hlist_for_each_entry_safe(ent, tmp, &pg->src_list, node) {
++		if (ent->flags & BR_SGRP_F_DELETE)
++			br_multicast_del_group_src(ent, false);
++	}
++
++	return 0;
++
++err_clear_delete:
++	hlist_for_each_entry(ent, &pg->src_list, node)
++		ent->flags &= ~BR_SGRP_F_DELETE;
++	return err;
++}
++
++static int br_mdb_replace_group_star_g(const struct br_mdb_config *cfg,
++				       struct net_bridge_mdb_entry *mp,
++				       struct net_bridge_port_group *pg,
++				       struct net_bridge_mcast *brmctx,
++				       unsigned char flags,
++				       struct netlink_ext_ack *extack)
++{
++	unsigned long now = jiffies;
++	int err;
++
++	err = br_mdb_replace_group_srcs(cfg, pg, brmctx, extack);
++	if (err)
++		return err;
++
++	pg->flags = flags;
++	pg->filter_mode = cfg->filter_mode;
++	pg->rt_protocol = cfg->rt_protocol;
++	if (!(flags & MDB_PG_FLAGS_PERMANENT) &&
++	    cfg->filter_mode == MCAST_EXCLUDE)
++		mod_timer(&pg->timer,
++			  now + brmctx->multicast_membership_interval);
++	else
++		del_timer(&pg->timer);
++
++	br_mdb_notify(cfg->br->dev, mp, pg, RTM_NEWMDB);
++
++	if (br_multicast_should_handle_mode(brmctx, cfg->group.proto))
++		br_multicast_star_g_handle_mode(pg, cfg->filter_mode);
++
++	return 0;
++}
++
+ static int br_mdb_add_group_star_g(const struct br_mdb_config *cfg,
+ 				   struct net_bridge_mdb_entry *mp,
+ 				   struct net_bridge_mcast *brmctx,
+@@ -976,8 +1064,12 @@ static int br_mdb_add_group_star_g(const struct br_mdb_config *cfg,
+ 	     (p = mlock_dereference(*pp, cfg->br)) != NULL;
+ 	     pp = &p->next) {
+ 		if (p->key.port == cfg->p) {
+-			NL_SET_ERR_MSG_MOD(extack, "(*, G) group is already joined by port");
+-			return -EEXIST;
++			if (!(cfg->nlflags & NLM_F_REPLACE)) {
++				NL_SET_ERR_MSG_MOD(extack, "(*, G) group is already joined by port");
++				return -EEXIST;
++			}
++			return br_mdb_replace_group_star_g(cfg, mp, p, brmctx,
++							   flags, extack);
+ 		}
+ 		if ((unsigned long)p->key.port < (unsigned long)cfg->p)
+ 			break;
+@@ -1223,6 +1315,7 @@ static int br_mdb_config_init(struct net *net, const struct nlmsghdr *nlh,
  	memset(cfg, 0, sizeof(*cfg));
  	cfg->filter_mode = MCAST_EXCLUDE;
-+	cfg->rt_protocol = RTPROT_STATIC;
+ 	cfg->rt_protocol = RTPROT_STATIC;
++	cfg->nlflags = nlh->nlmsg_flags;
  
  	bpm = nlmsg_data(nlh);
  	if (!bpm->ifindex) {
 diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 368f5f6fa42b..cdc9e040f1f6 100644
+index cdc9e040f1f6..2473add41e16 100644
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -106,6 +106,7 @@ struct br_mdb_config {
- 	u8				filter_mode;
+@@ -107,6 +107,7 @@ struct br_mdb_config {
  	struct br_mdb_src_entry		*src_entries;
  	int				num_src_entries;
-+	u8				rt_protocol;
+ 	u8				rt_protocol;
++	u32				nlflags;
  };
  #endif
  
