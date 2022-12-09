@@ -1,89 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29DCE647ECE
-	for <lists.bridge@lfdr.de>; Fri,  9 Dec 2022 08:54:05 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 290EE647EFA
+	for <lists.bridge@lfdr.de>; Fri,  9 Dec 2022 09:09:01 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id B2CC24014B;
-	Fri,  9 Dec 2022 07:54:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B2CC24014B
+	by smtp2.osuosl.org (Postfix) with ESMTP id EB6774023F;
+	Fri,  9 Dec 2022 08:08:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org EB6774023F
 Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=uMUfs0Yh
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=C0/uDINp
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id I_mLITSH6X4D; Fri,  9 Dec 2022 07:54:03 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 51AAE40127;
-	Fri,  9 Dec 2022 07:54:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 51AAE40127
+	with ESMTP id wmfXh2i7XMbN; Fri,  9 Dec 2022 08:08:58 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 55C58403AC;
+	Fri,  9 Dec 2022 08:08:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 55C58403AC
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EE0BAC007C;
-	Fri,  9 Dec 2022 07:54:01 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 009BAC007C;
+	Fri,  9 Dec 2022 08:08:57 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1C744C002D
- for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 07:54:00 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 37981C002D
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 08:08:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id DC988605F6
- for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 07:53:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DC988605F6
-Authentication-Results: smtp3.osuosl.org;
+ by smtp4.osuosl.org (Postfix) with ESMTP id 103AA414A2
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 08:08:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 103AA414A2
+Authentication-Results: smtp4.osuosl.org;
  dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
  header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
- header.s=20210112 header.b=uMUfs0Yh
+ header.s=20210112 header.b=C0/uDINp
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jEc4aLj9WO0T for <bridge@lists.linux-foundation.org>;
- Fri,  9 Dec 2022 07:53:59 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id e-SO3dSFNFFA for <bridge@lists.linux-foundation.org>;
+ Fri,  9 Dec 2022 08:08:52 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0732860593
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 0732860593
- for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 07:53:58 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id o5so4379226wrm.1
- for <bridge@lists.linux-foundation.org>; Thu, 08 Dec 2022 23:53:58 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 0903F410D6
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 0903F410D6
+ for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 08:08:51 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id
+ c65-20020a1c3544000000b003cfffd00fc0so5190832wma.1
+ for <bridge@lists.linux-foundation.org>; Fri, 09 Dec 2022 00:08:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=blackwall-org.20210112.gappssmtp.com; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=DYM+UIuymwma5G6DYkw7/MsYdvWysx8+7uyf+N85amo=;
- b=uMUfs0YhOECmMRpcaDtjHP0b5MCQYz0N2jamvkr0m5+tMEmHdCAOTRPIdrqV+X0ad/
- kMYd0PKNMjmhPJoVj0+xI76eArlkMFfFR/HiwfOJxEc78IMQ9TXJuNqf/WHy2QNiJtPp
- jVOywPlD45qkPWzxa5aK+qvXB8/OfhqQeJXOz0gFq0jAcbzsMQMHldLz5yrQWAakxv2o
- GxoPM1SusHpUKNHgtI6ufT8l2vlEhk3mwuHR/+A7NOOf7hhaWu5YavN7cQxphZs5a+66
- BRWrrL3wX2Q/aTgVqo90FN5DLFIS/t68kTx3sTTrV4gTP0AgZ/cpuH2xYnLDDzKyczPB
- Sw4A==
+ bh=sInxKAvWLrMiI4fj8yMPqsC6tYHDJ+LuR9I4DU3L8N4=;
+ b=C0/uDINpzs13oxx0s5AE72rKVpMHz0zuD3NZ9ti5IZ6TL4EumMAJ+YO8DWegNoILKJ
+ pEfV8UwZ59XNbeHBrG//Eo7m1KM9+Y5aUj3rUj81RDYaDbsetkUD6TSMskO7ZkPtzebn
+ PUxHKoT3owEDE/O35e8vt+82aGJNm70nUwL4P4/t4prX1Qg6pP1C2c9V9ZkMPpdpD8ud
+ FPo6pE0WVbRlaF3nyAnzh2IpQu8XmkA6te8nzGCuPTSU2S0a5xSNhY3/ln5WKotzwzn5
+ yWKWqz5T6qUNKZwF9K/S9nVnBsppwDBE+WinzzXSaVJxAtd7edX8S2EFNbAov24AXhrU
+ fpSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=DYM+UIuymwma5G6DYkw7/MsYdvWysx8+7uyf+N85amo=;
- b=ulr87icThetfmYArlowaletiLQDhv1eGGymN8kzsNnTckFfE1Q+XyDkZh+T87Hb/4m
- wKfwE0L78r9xYhbZKWCoCHoKmlAXSy72MRCyBUk8UVXj8p4iI4+Gzad9S08rcrKdTAuq
- 9oyu95E+ICNhBeOLNwfEMaJqD9XKsCMHvm4+fbzt8fN2C8tnBNQqIuFegY+lOTzDKDFQ
- ebNNssRewptdcVGjc8qSmq19upPbC5prpyyfQx+H95F6ptHggKNz0+9TX4MuCPY6FJYE
- MZfTjgt2VNEAQsb4ROac831t0kVOHpaK8TZBJZUBqY2AmBClDKMLlYqEaHM6M+6VHBqr
- br5g==
-X-Gm-Message-State: ANoB5pl5xh6SvCzhXSeNg0tKL73v9dm8H3vxEhCQKVO7ZYcAQfS5HdmT
- SclsqiBlieY6XotDztyI3kLXkg==
-X-Google-Smtp-Source: AA0mqf6gj9OAClEPjKYJmCOrnMh0jFtlMDQWO8Mgo7y/sLRBAoPOZUaHYyYEenY5M2bTJefq+H/OMw==
-X-Received: by 2002:adf:eccd:0:b0:242:102c:c571 with SMTP id
- s13-20020adfeccd000000b00242102cc571mr3126504wro.19.1670572437027; 
- Thu, 08 Dec 2022 23:53:57 -0800 (PST)
+ bh=sInxKAvWLrMiI4fj8yMPqsC6tYHDJ+LuR9I4DU3L8N4=;
+ b=Lxh4QKA/J+mQ+l+uBDD2Y3msAxTOWbtHMDSvma2/S1w2BRAVEbM/Nx0cVpz2XwE0vI
+ brCA5FwgJ134dHR/gd0iWBx5t27m4u/InPNbllUmaO+HHLY4svUZtejmUsSKF7cE/tnU
+ aQq0z1F6QJlsAdUdMK1HSb0hqla+Sqx9nvUUt4b8hgOXYrC9TvNggTr0bryKhRPutg/m
+ j5oh8Pb+78GeSX3IlzBFFybLTHapnpL4WHocaRObI4JSqxH9fHRKxFF84MsHtaZf7wtx
+ pYw7WPDgU68KediDpq2SJv1wMZRh10zNGRsP+yEwpZSmRkn+xa0gB0hmETcixSbr+1T2
+ VwPw==
+X-Gm-Message-State: ANoB5pmp5v9d/B3aJNq3J+wqyuF59l7rDG6S/D/yszvcc7tDXzolxb+9
+ vuxCKREtn38QW96hOFrIgsSd/g==
+X-Google-Smtp-Source: AA0mqf7t3oeNURel+lWMdzu3MPG7iMqZFhl65PnQWInUfiEQAcn3d7W6cN+DOrn0TXkeDRRGvxTSrw==
+X-Received: by 2002:a05:600c:1c87:b0:3cf:ae53:9193 with SMTP id
+ k7-20020a05600c1c8700b003cfae539193mr4291964wms.39.1670573330140; 
+ Fri, 09 Dec 2022 00:08:50 -0800 (PST)
 Received: from [192.168.0.161] (79-100-144-200.ip.btc-net.bg. [79.100.144.200])
  by smtp.gmail.com with ESMTPSA id
- o11-20020a5d4a8b000000b002425be3c9e2sm682374wrq.60.2022.12.08.23.53.56
+ fc18-20020a05600c525200b003d04e4ed873sm8263495wmb.22.2022.12.09.00.08.49
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 08 Dec 2022 23:53:56 -0800 (PST)
-Message-ID: <8cbaccf9-2ca3-b15e-dd1e-85e344a89561@blackwall.org>
-Date: Fri, 9 Dec 2022 09:53:55 +0200
+ Fri, 09 Dec 2022 00:08:49 -0800 (PST)
+Message-ID: <38bcf2b8-83eb-1df7-b836-d2de4db851a0@blackwall.org>
+Date: Fri, 9 Dec 2022 10:08:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
@@ -91,15 +92,15 @@ Content-Language: en-US
 To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org
 References: <20221208152839.1016350-1-idosch@nvidia.com>
- <20221208152839.1016350-12-idosch@nvidia.com>
+ <20221208152839.1016350-13-idosch@nvidia.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20221208152839.1016350-12-idosch@nvidia.com>
+In-Reply-To: <20221208152839.1016350-13-idosch@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Cc: mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com, kuba@kernel.org,
  pabeni@redhat.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 11/14] bridge: mcast: Allow user space
- to specify MDB entry routing protocol
+Subject: Re: [Bridge] [PATCH net-next 12/14] bridge: mcast: Support
+ replacement of MDB port group entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -115,51 +116,96 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 08/12/2022 17:28, Ido Schimmel wrote:
-> Add the 'MDBE_ATTR_RTPORT' attribute to allow user space to specify the
-> routing protocol of the MDB port group entry. Enforce a minimum value of
-> 'RTPROT_STATIC' to prevent user space from using protocol values that
-> should only be set by the kernel (e.g., 'RTPROT_KERNEL'). Maintain
-> backward compatibility by defaulting to 'RTPROT_STATIC'.
+> Now that user space can specify additional attributes of port group
+> entries such as filter mode and source list, it makes sense to allow
+> user space to atomically modify these attributes by replacing entries
+> instead of forcing user space to delete the entries and add them back.
 > 
-> The protocol is already visible to user space in RTM_NEWMDB responses
-> and notifications via the 'MDBA_MDB_EATTR_RTPROT' attribute.
+> Replace MDB port group entries when the 'NLM_F_REPLACE' flag is
+> specified in the netlink message header.
 > 
-> The routing protocol allows a routing daemon to distinguish between
-> entries configured by it and those configured by the administrator. Once
-> MDB flush is supported, the protocol can be used as a criterion
-> according to which the flush is performed.
+> When a (*, G) entry is replaced, update the following attributes: Source
+> list, state, filter mode, protocol and flags. If the entry is temporary
+> and in EXCLUDE mode, reset the group timer to the group membership
+> interval. If the entry is temporary and in INCLUDE mode, reset the
+> source timers of associated sources to the group membership interval.
 > 
 > Examples:
 > 
->  # bridge mdb add dev br0 port dummy10 grp 239.1.1.1 permanent proto kernel
->  Error: integer out of range.
+>  # bridge mdb replace dev br0 port dummy10 grp 239.1.1.1 permanent source_list 192.0.2.1,192.0.2.2 filter_mode include
+>  # bridge -d -s mdb show
+>  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.2 permanent filter_mode include proto static     0.00
+>  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent filter_mode include proto static     0.00
+>  dev br0 port dummy10 grp 239.1.1.1 permanent filter_mode include source_list 192.0.2.2/0.00,192.0.2.1/0.00 proto static     0.00
 > 
->  # bridge mdb add dev br0 port dummy10 grp 239.1.1.1 permanent proto static
+>  # bridge mdb replace dev br0 port dummy10 grp 239.1.1.1 permanent source_list 192.0.2.1,192.0.2.3 filter_mode exclude proto zebra
+>  # bridge -d -s mdb show
+>  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.3 permanent filter_mode include proto zebra  blocked    0.00
+>  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent filter_mode include proto zebra  blocked    0.00
+>  dev br0 port dummy10 grp 239.1.1.1 permanent filter_mode exclude source_list 192.0.2.3/0.00,192.0.2.1/0.00 proto zebra     0.00
 > 
->  # bridge mdb add dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent proto zebra
-> 
->  # bridge mdb add dev br0 port dummy10 grp 239.1.1.2 permanent source_list 198.51.100.1,198.51.100.2 filter_mode include proto 250
-> 
->  # bridge -d mdb show
->  dev br0 port dummy10 grp 239.1.1.2 src 198.51.100.2 permanent filter_mode include proto 250
->  dev br0 port dummy10 grp 239.1.1.2 src 198.51.100.1 permanent filter_mode include proto 250
->  dev br0 port dummy10 grp 239.1.1.2 permanent filter_mode include source_list 198.51.100.2/0.00,198.51.100.1/0.00 proto 250
->  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.1 permanent filter_mode include proto zebra
->  dev br0 port dummy10 grp 239.1.1.1 permanent filter_mode exclude proto static
+>  # bridge mdb replace dev br0 port dummy10 grp 239.1.1.1 temp source_list 192.0.2.4,192.0.2.3 filter_mode include proto bgp
+>  # bridge -d -s mdb show
+>  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.4 temp filter_mode include proto bgp     0.00
+>  dev br0 port dummy10 grp 239.1.1.1 src 192.0.2.3 temp filter_mode include proto bgp     0.00
+>  dev br0 port dummy10 grp 239.1.1.1 temp filter_mode include source_list 192.0.2.4/259.44,192.0.2.3/259.44 proto bgp     0.00
 > 
 > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 > ---
+>  net/bridge/br_mdb.c     | 103 ++++++++++++++++++++++++++++++++++++++--
+>  net/bridge/br_private.h |   1 +
+>  2 files changed, 99 insertions(+), 5 deletions(-)
 > 
-> Notes:
->     v1:
->     * Reject protocol for host entries.
-> 
->  include/uapi/linux/if_bridge.h |  1 +
->  net/bridge/br_mdb.c            | 15 +++++++++++++--
->  net/bridge/br_private.h        |  1 +
->  3 files changed, 15 insertions(+), 2 deletions(-)
-> 
+> diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
+> index 72d4e53193e5..98d899427c03 100644
+> --- a/net/bridge/br_mdb.c
+> +++ b/net/bridge/br_mdb.c
+> @@ -802,6 +802,28 @@ __br_mdb_choose_context(struct net_bridge *br,
+>  	return brmctx;
+>  }
+>  
+> +static int br_mdb_replace_group_sg(const struct br_mdb_config *cfg,
+> +				   struct net_bridge_mdb_entry *mp,
+> +				   struct net_bridge_port_group *pg,
+> +				   struct net_bridge_mcast *brmctx,
+> +				   unsigned char flags,
+> +				   struct netlink_ext_ack *extack)
 
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+extack seems unused here
 
+> +{
+> +	unsigned long now = jiffies;
+> +
+> +	pg->flags = flags;
+> +	pg->rt_protocol = cfg->rt_protocol;
+> +	if (!(flags & MDB_PG_FLAGS_PERMANENT) && !cfg->src_entry)
+> +		mod_timer(&pg->timer,
+> +			  now + brmctx->multicast_membership_interval);
+> +	else
+> +		del_timer(&pg->timer);
+> +
+> +	br_mdb_notify(cfg->br->dev, mp, pg, RTM_NEWMDB);
+> +
+> +	return 0;
+> +}
+> +
+>  static int br_mdb_add_group_sg(const struct br_mdb_config *cfg,
+>  			       struct net_bridge_mdb_entry *mp,
+>  			       struct net_bridge_mcast *brmctx,
+[snip]
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index cdc9e040f1f6..2473add41e16 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -107,6 +107,7 @@ struct br_mdb_config {
+>  	struct br_mdb_src_entry		*src_entries;
+>  	int				num_src_entries;
+>  	u8				rt_protocol;
+> +	u32				nlflags;
+
+nlmsg_flags is u16 (__u16), also I'd add it before rt_protocol
+
+>  };
+>  #endif
+>  
 
