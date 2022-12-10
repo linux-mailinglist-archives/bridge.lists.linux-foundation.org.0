@@ -1,105 +1,142 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1A7647EFF
-	for <lists.bridge@lfdr.de>; Fri,  9 Dec 2022 09:10:04 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A62648EE0
+	for <lists.bridge@lfdr.de>; Sat, 10 Dec 2022 14:33:25 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 8599181971;
-	Fri,  9 Dec 2022 08:10:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8599181971
+	by smtp1.osuosl.org (Postfix) with ESMTP id 6C8EA817ED;
+	Sat, 10 Dec 2022 13:33:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 6C8EA817ED
 Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=1VWPNBAA
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=mNkpkNP1
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8TKCJ4DkD6mh; Fri,  9 Dec 2022 08:10:01 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 07D1181991;
-	Fri,  9 Dec 2022 08:10:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 07D1181991
+	with ESMTP id ACDYDjYN9zGg; Sat, 10 Dec 2022 13:33:22 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id C7B1B817F2;
+	Sat, 10 Dec 2022 13:33:21 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C7B1B817F2
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8C24BC007C;
-	Fri,  9 Dec 2022 08:10:00 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 74D19C007C;
+	Sat, 10 Dec 2022 13:33:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DED68C002D
- for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 08:09:59 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3FC97C0033
+ for <bridge@lists.linux-foundation.org>; Sat, 10 Dec 2022 13:33:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id AB1B04021C
- for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 08:09:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org AB1B04021C
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
- header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
- header.s=20210112 header.b=1VWPNBAA
+ by smtp4.osuosl.org (Postfix) with ESMTP id E0CC84090F
+ for <bridge@lists.linux-foundation.org>; Sat, 10 Dec 2022 13:33:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org E0CC84090F
+Authentication-Results: smtp4.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=mNkpkNP1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zydex_DGloKS for <bridge@lists.linux-foundation.org>;
- Fri,  9 Dec 2022 08:09:59 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id QqoelwUMzfw3 for <bridge@lists.linux-foundation.org>;
+ Sat, 10 Dec 2022 13:33:18 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CA1774014A
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by smtp2.osuosl.org (Postfix) with ESMTPS id CA1774014A
- for <bridge@lists.linux-foundation.org>; Fri,  9 Dec 2022 08:09:58 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id bx10so4423204wrb.0
- for <bridge@lists.linux-foundation.org>; Fri, 09 Dec 2022 00:09:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=YCP7yxwum67RO4mEmEfrq5efv1zflTsiTTb912/2Cfo=;
- b=1VWPNBAAOBd8w1VrQChHA0FhUz/nP/HQtm/dEuGg4NC0jn5kKCgyqPgAwrjvF5de2d
- 1P/tjbrdPGHukbd3bFmy2oQmeh8E9Si4WPMhcICddwdyrq/aJ1kGgXOXNUhbzd6kjsWx
- AUnWRkN1xIn6Hy2Wxf63rlc67d3RjlZo4b5O5te2FCCUKuiaL2m+VChM4GPQe5YKWjla
- huxFM4+WuUDNNz2FA8YrZnnM7hIzzZEgYRONYGF7iPyha0bIFBwk5r4x8BPW46nvUkYg
- Yy/lUAwCFZS8amN+HSkMVa/afBXp2HM3II3ji46a2/VLL+bIMiYCNa5wzoOwqTKdFW6X
- 08PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=YCP7yxwum67RO4mEmEfrq5efv1zflTsiTTb912/2Cfo=;
- b=ZIEqe7EWeJO36AnHS3tOWv74HulXZ9rVwD+Ex7/Ym+9fSMXIyLwlxSFVA6OvQXyjES
- AcpBYZWUIEFdEOh5KucNvde2zpbZPSRWbF/SOAbz8pftE9+d+jS0vSSmwzbxYJ/Y6tLN
- CWlHkqEX3FAvskeLebXjnPQdhJQ+aGEOcj5IJw6uiuiA6rHQy0VoK91mnpPMahgzntPv
- ETQRK20ZhFm2Jy9JESjvLjGUsd2Q2Pp7TqZsHqm/Z+KEyNsrV61U03ceuqajL8HaI48g
- YWDUd1RryYilX77GV7LKALfbQN1F0NABuNH9e9YQ7UYMEbm3GF5+osmnsSDQhaMdwPtE
- rcNg==
-X-Gm-Message-State: ANoB5pmnprCH+0T+JMOvvBQ6JFnlaluJlTGZ6Z9RnoRMcX38uoGj6z3L
- 6KHrO/OPPArvrgxLCdkMK9eTOriODg6pLiRYjSk=
-X-Google-Smtp-Source: AA0mqf69fghliXej6rg2YSUODN2Wz3GNtWmZ+vswMD6SZ/B4Vq907+sdJ7mgNp7y5Ik+O09d19SZiQ==
-X-Received: by 2002:adf:e64c:0:b0:242:2445:4a42 with SMTP id
- b12-20020adfe64c000000b0024224454a42mr3089985wrn.9.1670573396936; 
- Fri, 09 Dec 2022 00:09:56 -0800 (PST)
-Received: from [192.168.0.161] (79-100-144-200.ip.btc-net.bg. [79.100.144.200])
- by smtp.gmail.com with ESMTPSA id
- m13-20020a056000180d00b002366f9bd717sm897086wrh.45.2022.12.09.00.09.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 09 Dec 2022 00:09:56 -0800 (PST)
-Message-ID: <23a7a5b5-1fba-b1e0-cbe1-8b1e3b9dbab9@blackwall.org>
-Date: Fri, 9 Dec 2022 10:09:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D23C7408C5
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2063.outbound.protection.outlook.com [40.107.96.63])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id D23C7408C5
+ for <bridge@lists.linux-foundation.org>; Sat, 10 Dec 2022 13:33:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O6a+nD6y+0k8hSmoj4wNCEG9F9mZ2g5aJw3jblSNhgKoNSYVAeQ3w6c5JdiUGZ9xX6DyICHE1vBSIFxEUnhfdHA55yviZ16GX2BmEdPjNjpOh4sBlXy8zkSQ/pzH/fbvNnAYxHiUfqx444bgp+hrl2hXhyCN/2qnGGpEjfCX9Tq9z8J8Ttxeg5gkckvfWu7kE7Sco7vHoqDNsB4Bd0V93RVOTLCIalw/LGQzqZhoSWRAkuh8f4nWQBPS7K9jAA9NLwKhOj9gXGTN7XTvYUTdRns2kHe9ymJVbb5QCxc1e17lFpNmavlmUGPq1KyzS4GskJ7hesblhFJ/VFoo5Don7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JuCMPih4pfutIhIHC0yYlTVOYFxEPhnD0DIBx8tym7M=;
+ b=QfcJLPIQrgckU0q7HrLble5drOgerYQ5sp+m+dKPPYipYgmtB3KgoUtW3VAu/0eue8qH4xji0Br74xK1jR/YUtGE488u9nBUhYEY8gbmLrFawr2h4ndXgMNMX/QB9ALepQGXU2QfAetMJo1FCxEul7BleTJbG1N7UeSYha/Of5biwehIMv4aWsVEBi3pfl9eC5mQa6gKCJbtJV2aeVgzZ5pE2F5i5ADYPKuv5cl47RDPRnVL+1RRzpD+syBzbLiFgj+BNK/Q6NB+Yjk+xe558r4yfYhfIn71pN9DrV6vkFmk2KvaDpBo5u+tx5GK1IET/RANV45RyHwYLnUEay+QGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JuCMPih4pfutIhIHC0yYlTVOYFxEPhnD0DIBx8tym7M=;
+ b=mNkpkNP1AWlGeXSDY82hBN2wkR4a6TDS6O5B1KeOxC7cvvcA0VnUOzo4IF0pfmpix3ea3MOxUqSMA3QdGGQTJL47PKD8TyJULNUQbnofAO7G1Q3uK9KAL2sPuwBnnbwcumMV7wPZk19X3Z5m9kjd6RNmc5pGVV+7dwzXjlYYrIFYQ/jdsLeSLlIgOF4ONxl27ieaD5fMHjixxyF0/x1NKj63AWJdHXfH7ZIFyhU96480Xz0htriw6jzY5Oc/Ey/dYCv/4z4cyg/yidmazK1eErm81zMA1Ah43EZpr9prtlcCZ40UnSZhZPuy/YaqtPYjafGl0iPyZPBI5njF56SY8A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
+ by SN7PR12MB7107.namprd12.prod.outlook.com (2603:10b6:806:2a2::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Sat, 10 Dec
+ 2022 13:33:15 +0000
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::a600:9252:615:d31a]) by CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::a600:9252:615:d31a%3]) with mapi id 15.20.5880.014; Sat, 10 Dec 2022
+ 13:33:15 +0000
+Date: Sat, 10 Dec 2022 15:33:09 +0200
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <Y5SKlVl6cuSp1Ib1@shredder>
 References: <20221208152839.1016350-1-idosch@nvidia.com>
- <20221208152839.1016350-15-idosch@nvidia.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20221208152839.1016350-15-idosch@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Cc: mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com, kuba@kernel.org,
+ <20221208152839.1016350-10-idosch@nvidia.com>
+ <22583106-8f39-0c7e-1c61-47ec5c614418@blackwall.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <22583106-8f39-0c7e-1c61-47ec5c614418@blackwall.org>
+X-ClientProxiedBy: VI1PR07CA0197.eurprd07.prod.outlook.com
+ (2603:10a6:802:3f::21) To CY5PR12MB6179.namprd12.prod.outlook.com
+ (2603:10b6:930:24::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|SN7PR12MB7107:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a43527d-b487-450c-33fb-08dadab31710
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +SNt/qBgeUeNJj3TeFy8+v8Snuhs/l5GcggzSnUEAFS29vUJk8ti1neULLZPpnT88QGoWl69IHmkITGy/wojVopRUxnEe+qwgya3myCb6k6piPLk5DcVq63ycNaTDoe/Yc0ba2Gc5hfYWAAdaQjnOvDvdVl24y1ID8gf7aHiYok6PWMXXX8Q4NliT2erYA78nKBy2QKOx3Hui84NDaPsvmMjaF22BqwoL26y55kXMkPGV4PBlODycGttC7e2Gi1yfXDunUmievLKpn0pphv2FIeaMKY66K4+qmN7sc7x9aodbW1E6aKlHikHwmi2pcvETdLXWVUdsZGuSP+K1+8f2aibzMGGqmhVQwUdbXvVWhJxq1WYlelIyKTims0MaBap4DolfxTwsg0MFou3rd7JmifzD88k+Am+NiMied5KJtuXy5rZSU6CXqyr8li/JG8uEwl0bZZVjFabrKhnOv/fjd3MnTkrm/OSjFGoH5EGIsOZfju3Euwpr5cQli5flp152l/fy13nRSeB73x4Q3ekJbIqIh5Aoqi5NYrAeysE2BDA4w0j7b4hTIcLWOV2AZDi95RTlqj4kAD3ApfvgouSthTlkjZOdbANPOsjOj7F6ph2wgvxfmnHNi8Od4PeOsUg6QRryGedJXqcrodt43RZdg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(7916004)(346002)(366004)(396003)(136003)(39860400002)(376002)(451199015)(86362001)(83380400001)(41300700001)(107886003)(53546011)(6512007)(6506007)(2906002)(6666004)(8936002)(186003)(478600001)(5660300002)(9686003)(26005)(6486002)(316002)(6916009)(38100700002)(66476007)(8676002)(4326008)(66556008)(33716001)(66946007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mKrULLc6gCpcyxhNAJjmci5ntd8F393qQmlOvljM2SWADJqk2jdm4amHSmYK?=
+ =?us-ascii?Q?aDWB9ZU3rubrteolce5yZGHVxUoY0zyoSBueltFKdfDkT5KuTOaVmBnl0eFV?=
+ =?us-ascii?Q?OVwV6amEIk5qg9AscrXfU01ro4rBkVKZ5Ioc0ayEqKySxUb6cIixP+8EjlEf?=
+ =?us-ascii?Q?Lma//QLRNYpkwfk0MAmfa1XAAviRxQzbYzFq/oCu8wQTmxiUGmiRwyyYzi8M?=
+ =?us-ascii?Q?LSsLTBKd39m1clsUwaakX06VT+3Grcxo1HJcHBNmPi/UbNQ02yZV0fp42Au0?=
+ =?us-ascii?Q?OsCgIEvdW7btcA1eXPZvnVAf/wWJgdJW5D+vuJJ1NsYRyJuSWGoATbaaZrZD?=
+ =?us-ascii?Q?CFzjyxYu5E+6lIHTL3x70U9bKaSD2UxiIVe7q+Kcuph1bBJ+nfGxPnXFk1dT?=
+ =?us-ascii?Q?NHOVVyopG/6IgMrw4EmKjNF0bmPZjZ84PHcKfLiENkkAWOtO/rGakrSAMhQY?=
+ =?us-ascii?Q?3Sz4evWaPyXkt7K8tb9y7DX6zc4H1gEt4LL2I0kLcIE4Y7LUVUIBZqkPpCgo?=
+ =?us-ascii?Q?z2FnJ+5is4eZrPJL2QeARSngdbaV8q+xm13edpMehmOVukVaaI1Gtbz3vdR2?=
+ =?us-ascii?Q?j6LnT5YruVY3oNstNW/Evpx5PHxbC647W+TptGeXqeUmZ3LxEzxo/JUQqnS+?=
+ =?us-ascii?Q?b8FXL6fhEK2XWcv3K3pDeif0zeoCuOQniTGL3pbyE9oPlgtPnaamfe9LU3cA?=
+ =?us-ascii?Q?pUuLDwq1loqUjOn/TD95nCPevBZvdB87kX+TMEmJ3N1QZetC06HYPHw4N0hV?=
+ =?us-ascii?Q?FyF4knH4y4XosCIl4u+ZRvnrvk/pOE6yPvo00OLWuGQUFGqL2slbQzSBEyr0?=
+ =?us-ascii?Q?XlkDlOVW20qdb3aGP4vaLJSgsHiMbeYScCfA5WmCeCaG5V3zB1gP9xRjLOlj?=
+ =?us-ascii?Q?AUG4aiiPR1hvZ6Rb5J8/lIHL0kgnR3RLtvd2Ru6wH9IpSuqnH1G57Ob5Smf7?=
+ =?us-ascii?Q?/lsB/30JlP/zOOawgE1uASsdXYP2D1UUxgaWDKm2StBLt8CZMY4I5M6p+Wxf?=
+ =?us-ascii?Q?T3QLOLRjuY4wvD7YDmjtDhJOC67+kRnebh8WiqLYqXgLGly/iFnKVM8YZUdq?=
+ =?us-ascii?Q?xAjSRP/ZRtS0ps3t5tOwGpHkdODXFZ2UP3DN07DUlx9qb30qRpsGhHv9yUqp?=
+ =?us-ascii?Q?Jk7CAlhCQAPIGz7fdXT4bhuAITPiNnpBDGmu3Qsj2Rmi15ZAexNsIofzv1Hv?=
+ =?us-ascii?Q?N2z8H1mQX6Xa10KnRxcYK9HX+oNFO/cpNDKIKC8wJ74jLMCrWZyC8u7ajEEH?=
+ =?us-ascii?Q?69Y2YJJcsyMfGZSSp1SkYYPAZ4XBulWJMSto+v29bHPTHVVcsD6vSblKqyAr?=
+ =?us-ascii?Q?KvupPTIlPgUKr4Dm1mQ4UK1hutvmIrr6ngIgj6LZt1FVSMonyulmzOaxuXj9?=
+ =?us-ascii?Q?PqMc8XdWPSGP9HpqfzczEr7CqMoGbcFqQmm6HTBOHCJC+kBeglykLOC0PvlT?=
+ =?us-ascii?Q?2OIXyTbklEU69Hm29eu82CwYxfl7jLkfU68WHc3GZzXfOehU1wCNSXplR3Xv?=
+ =?us-ascii?Q?hdRIFDXITGq2Iy/sbW12aEmZnq1dj4kvJ1uyf9T4NjDyDJrHfCAf1o+C240A?=
+ =?us-ascii?Q?DBVyFBesUCP54Q0zIlx/e7Jo4yS7tcr68fDYEmme?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a43527d-b487-450c-33fb-08dadab31710
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2022 13:33:15.0097 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZYHQYKTP6xiUwXExIDZHuyO+oRZK7F2ayI2LFRm44vaH0YwAYH2T0cDxjWEXGZqZr3EsR24UjXdu8Okq2ILf3A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7107
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ edumazet@google.com, mlxsw@nvidia.com, roopa@nvidia.com, kuba@kernel.org,
  pabeni@redhat.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 14/14] selftests: forwarding: Add
-	bridge MDB test
+Subject: Re: [Bridge] [PATCH net-next 09/14] bridge: mcast: Add support for
+ (*, G) with a source list and filter mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,67 +148,65 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 08/12/2022 17:28, Ido Schimmel wrote:
-> Add a selftests that includes the following test cases:
+On Fri, Dec 09, 2022 at 09:41:05AM +0200, Nikolay Aleksandrov wrote:
+> On 08/12/2022 17:28, Ido Schimmel wrote:
+> > In preparation for allowing user space to add (*, G) entries with a
+> > source list and associated filter mode, add the necessary plumbing to
+> > handle such requests.
+> > 
+> > Extend the MDB configuration structure with a currently empty source
+> > array and filter mode that is currently hard coded to EXCLUDE.
+> > 
+> > Add the source entries and the corresponding (S, G) entries before
+> > making the new (*, G) port group entry visible to the data path.
+> > 
+> > Handle the creation of each source entry in a similar fashion to how it
+> > is created from the data path in response to received Membership
+> > Reports: Create the source entry, arm the source timer (if needed), add
+> > a corresponding (S, G) forwarding entry and finally mark the source
+> > entry as installed (by user space).
+> > 
+> > Add the (S, G) entry by populating an MDB configuration structure and
+> > calling br_mdb_add_group_sg() as if a new entry is created by user
+> > space, with the sole difference that the 'src_entry' field is set to
+> > make sure that the group timer of such entries is never armed.
+> > 
+> > Note that it is not currently possible to add more than 32 source
+> > entries to a port group entry. If this proves to be a problem we can
+> > either increase 'PG_SRC_ENT_LIMIT' or avoid forcing a limit on entries
+> > created by user space.
+> > 
 > 
-> 1. Configuration tests. Both valid and invalid configurations are
->    tested across all entry types (e.g., L2, IPv4).
-> 
-> 2. Forwarding tests. Both host and port group entries are tested across
->    all entry types.
-> 
-> 3. Interaction between user installed MDB entries and IGMP / MLD control
->    packets.
-> 
-> Example output:
-> 
-> INFO: # Host entries configuration tests
-> TEST: Common host entries configuration tests (IPv4)                [ OK ]
-> TEST: Common host entries configuration tests (IPv6)                [ OK ]
-> TEST: Common host entries configuration tests (L2)                  [ OK ]
-> 
-> INFO: # Port group entries configuration tests - (*, G)
-> TEST: Common port group entries configuration tests (IPv4 (*, G))   [ OK ]
-> TEST: Common port group entries configuration tests (IPv6 (*, G))   [ OK ]
-> TEST: IPv4 (*, G) port group entries configuration tests            [ OK ]
-> TEST: IPv6 (*, G) port group entries configuration tests            [ OK ]
-> 
-> INFO: # Port group entries configuration tests - (S, G)
-> TEST: Common port group entries configuration tests (IPv4 (S, G))   [ OK ]
-> TEST: Common port group entries configuration tests (IPv6 (S, G))   [ OK ]
-> TEST: IPv4 (S, G) port group entries configuration tests            [ OK ]
-> TEST: IPv6 (S, G) port group entries configuration tests            [ OK ]
-> 
-> INFO: # Port group entries configuration tests - L2
-> TEST: Common port group entries configuration tests (L2 (*, G))     [ OK ]
-> TEST: L2 (*, G) port group entries configuration tests              [ OK ]
-> 
-> INFO: # Forwarding tests
-> TEST: IPv4 host entries forwarding tests                            [ OK ]
-> TEST: IPv6 host entries forwarding tests                            [ OK ]
-> TEST: L2 host entries forwarding tests                              [ OK ]
-> TEST: IPv4 port group "exclude" entries forwarding tests            [ OK ]
-> TEST: IPv6 port group "exclude" entries forwarding tests            [ OK ]
-> TEST: IPv4 port group "include" entries forwarding tests            [ OK ]
-> TEST: IPv6 port group "include" entries forwarding tests            [ OK ]
-> TEST: L2 port entries forwarding tests                              [ OK ]
-> 
-> INFO: # Control packets tests
-> TEST: IGMPv3 MODE_IS_INCLUE tests                                   [ OK ]
-> TEST: MLDv2 MODE_IS_INCLUDE tests                                   [ OK ]
-> 
-> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
-> ---
->  .../testing/selftests/net/forwarding/Makefile |    1 +
->  .../selftests/net/forwarding/bridge_mdb.sh    | 1164 +++++++++++++++++
->  2 files changed, 1165 insertions(+)
->  create mode 100755 tools/testing/selftests/net/forwarding/bridge_mdb.sh
-> 
+> That can be tricky wrt EHT. If the limit is increased we have to consider the
+> complexity and runtime, we might have to optimize it. In practice I think it's
+> rare to have so many sources, but evpn might change that. :)
 
-Nice set of tests!
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+Yea, we don't currently have data as to whether this limit is OK or not.
+Once we do we can make a more informed decision. Some options:
 
+1. Slightly increase the current limit.
+2. Remove the limit and move to an RB tree instead of a list.
+3. Only install (*, G) EXCLUDE entries on the VXLAN port and let the
+VXLAN MDB do more fine-grained filtering.
 
+> 
+> > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
+> > ---
+> > 
+> > Notes:
+> >     v1:
+> >     * Use an array instead of a list to store source entries.
+> > 
+> >  net/bridge/br_mdb.c     | 128 +++++++++++++++++++++++++++++++++++++++-
+> >  net/bridge/br_private.h |   7 +++
+> >  2 files changed, 132 insertions(+), 3 deletions(-)
+> > 
+> 
+> Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+
+Thanks!
