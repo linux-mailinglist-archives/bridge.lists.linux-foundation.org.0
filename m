@@ -1,104 +1,92 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A3E66258C
-	for <lists.bridge@lfdr.de>; Mon,  9 Jan 2023 13:29:18 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id E251F66E693
+	for <lists.bridge@lfdr.de>; Tue, 17 Jan 2023 20:09:08 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id D553060784;
-	Mon,  9 Jan 2023 12:29:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D553060784
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=P/IIjdLg
+	by smtp1.osuosl.org (Postfix) with ESMTP id BB84F8205E;
+	Tue, 17 Jan 2023 19:09:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BB84F8205E
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Sxk-QNA3ysjZ; Mon,  9 Jan 2023 12:29:16 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yYaQHyLrlNmq; Tue, 17 Jan 2023 19:09:05 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 6949B60C33;
-	Mon,  9 Jan 2023 12:29:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6949B60C33
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 2BD79812C9;
+	Tue, 17 Jan 2023 19:09:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2BD79812C9
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0CC60C007B;
-	Mon,  9 Jan 2023 12:29:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AF937C0083;
+	Tue, 17 Jan 2023 19:09:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D3ABFC002D
- for <bridge@lists.linux-foundation.org>; Mon,  9 Jan 2023 12:29:13 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AD779C0032
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Jan 2023 19:09:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id AE93F60C33
- for <bridge@lists.linux-foundation.org>; Mon,  9 Jan 2023 12:29:13 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AE93F60C33
+ by smtp1.osuosl.org (Postfix) with ESMTP id CE8B98128B
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Jan 2023 19:09:01 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CE8B98128B
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8EhIQ9Fig6Tr for <bridge@lists.linux-foundation.org>;
- Mon,  9 Jan 2023 12:29:13 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D9F8A60784
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by smtp3.osuosl.org (Postfix) with ESMTPS id D9F8A60784
- for <bridge@lists.linux-foundation.org>; Mon,  9 Jan 2023 12:29:12 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id cf18so13322732ejb.5
- for <bridge@lists.linux-foundation.org>; Mon, 09 Jan 2023 04:29:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=crINwX8GG7oE7iuw+Z+Wz82V7aegfStJZU7gXgsc5Qc=;
- b=P/IIjdLg2bouOSQCv2Z03ysTzM8CtExWpKYVGm7RPVyMZ5cRimFFXovhV98OwKeeVh
- 0vaMYwLL5eqTRXLPGb5jcal0YgpDAOPnzOarn3RsCTNO5G71T+I0vcyt+YoXMOml73wH
- L16uIdbW/mUIj2anFkl6Ww8a0UyZS0sRDliaK50B0PKFQGXP+H8rO612B5zsbLM5R5vS
- 6OMJflVKJlUYYDqGVpOl5p/UVVqsqxV96XHkJM1QY8pQSU5XbHXPt9ahGS/1zZ5sSMHm
- 0ptuSn6+n5+jCFD893QTFZsfZdBiYbY1HCYkDJhx3U600CgdfBJDnCa/untfcTWby19Z
- ucqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=crINwX8GG7oE7iuw+Z+Wz82V7aegfStJZU7gXgsc5Qc=;
- b=TKN647o43fYlUDvsm67KZlfzBwVGOD1bhq5aRUC1JbMbTttXL0Jh1eFQ8HnwSZ9ZcM
- TZFm2hTQN1ocPpDFXrCc56xT5LlV5L+wEg2x7vu/CedKPrFMgIL1qK0YKpNlSKgS/uXy
- 4Es07QCHjeeR9JHnNB7AuzyquBYBH20Qqh0y1eCwcytrnHPBxOy82HZ5p3CLpb/+OOCK
- smhlsNHcUmZ91WbZNafVdgGYPFn3+u5r9MGXViAinmBFrZgiqzlJb+4v+EtN3zUOamrd
- Yr09ZsNtcDsRjs/eszFwZwzKsIDt0mbvC1LDF+7xs5zf9EXvQapZvc4EOB6qM/1WagZD
- ix2Q==
-X-Gm-Message-State: AFqh2kpUIHqZm4gQxSGT3SL7Wgp0XvgezC3Lx57jLruyDqVhI8p5tSje
- ZdL/le/181O5nXFYI9BZctc=
-X-Google-Smtp-Source: AMrXdXu+jN1Z5u4gvx/HeqOmEL5odydFz75WSlfwSrwQ+II0GJyIu1O/oM6oeG4mZPvmWt34FYk30g==
-X-Received: by 2002:a17:906:8447:b0:7c4:fa17:7203 with SMTP id
- e7-20020a170906844700b007c4fa177203mr48361852ejy.63.1673267350944; 
- Mon, 09 Jan 2023 04:29:10 -0800 (PST)
-Received: from skbuf ([188.27.185.38]) by smtp.gmail.com with ESMTPSA id
- 18-20020a170906201200b00846734faa9asm3633540ejo.164.2023.01.09.04.29.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Jan 2023 04:29:10 -0800 (PST)
-Date: Mon, 9 Jan 2023 14:29:08 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <20230109122908.dn2xlzlbcvfxgeii@skbuf>
-References: <20220316150857.2442916-1-tobias@waldekranz.com>
- <20220316150857.2442916-2-tobias@waldekranz.com>
- <Y7vK4T18pOZ9KAKE@shredder> <20230109100236.euq7iaaorqxrun7u@skbuf>
- <Y7v98s8lC1WUvsSO@shredder> <20230109115653.6yjijaj63n2v35lw@skbuf>
- <Y7wGct6VWmbuWs5F@shredder>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Z5cuVESFROA2 for <bridge@lists.linux-foundation.org>;
+ Tue, 17 Jan 2023 19:09:01 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 123AB8129E
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 123AB8129E
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Jan 2023 19:09:00 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 6717018835E1;
+ Tue, 17 Jan 2023 18:59:12 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 55926250007B;
+ Tue, 17 Jan 2023 18:59:12 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 4C2739EC000B; Tue, 17 Jan 2023 18:59:12 +0000 (UTC)
+X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+Received: from fujitsu.vestervang (2-104-116-184-cable.dk.customer.tdc.net
+ [2.104.116.184])
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id A051B91201DF;
+ Tue, 17 Jan 2023 18:59:11 +0000 (UTC)
+From: "Hans J. Schultz" <netdev@kapio-technology.com>
+To: davem@davemloft.net,
+	kuba@kernel.org
+Date: Tue, 17 Jan 2023 19:57:09 +0100
+Message-Id: <20230117185714.3058453-1-netdev@kapio-technology.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y7wGct6VWmbuWs5F@shredder>
-Cc: Ivan Vecera <ivecera@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Jiri Pirko <jiri@resnulli.us>,
- Petr Machata <petrm@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Russell King <linux@armlinux.org.uk>,
- Vivien Didelot <vivien.didelot@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
- netdev@vger.kernel.org, Cooper Lees <me@cooperlees.com>,
- Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
- Matt Johnston <matt@codeconstruct.com.au>, davem@davemloft.net,
- linux-kernel@vger.kernel.org, Tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [Bridge] [PATCH v5 net-next 01/15] net: bridge: mst: Multiple
- Spanning Tree (MST) mode
+Organization: Westermo Network Technologies AB
+Content-Transfer-Encoding: 8bit
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ "Hans J. Schultz" <netdev@kapio-technology.com>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
+ Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
+ Paolo Abeni <pabeni@redhat.com>,
+ =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+ Christian Marangi <ansuelsmth@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
+ DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
+ open list <linux-kernel@vger.kernel.org>,
+ "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
+ <UNGLinuxDriver@microchip.com>,
+ "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
+ <linux-renesas-soc@vger.kernel.org>, Vladimir Oltean <olteanv@gmail.com>
+Subject: [Bridge] [RFC PATCH net-next 0/5] ATU and FDB synchronization on
+	locked ports
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -113,51 +101,78 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jan 09, 2023 at 02:20:02PM +0200, Ido Schimmel wrote:
-> On Mon, Jan 09, 2023 at 01:56:53PM +0200, Vladimir Oltean wrote:
-> > On Mon, Jan 09, 2023 at 01:43:46PM +0200, Ido Schimmel wrote:
-> > > OK, thanks for confirming. Will send a patch later this week if Tobias
-> > > won't take care of it by then. First patch will probably be [1] to make
-> > > sure we dump the correct MST state to user space. It will also make it
-> > > easier to show the problem and validate the fix.
-> > > 
-> > > [1]
-> > > diff --git a/net/bridge/br.c b/net/bridge/br.c
-> > > index 4f5098d33a46..f02a1ad589de 100644
-> > > --- a/net/bridge/br.c
-> > > +++ b/net/bridge/br.c
-> > > @@ -286,7 +286,7 @@ int br_boolopt_get(const struct net_bridge *br, enum br_boolopt_id opt)
-> > >  	case BR_BOOLOPT_MCAST_VLAN_SNOOPING:
-> > >  		return br_opt_get(br, BROPT_MCAST_VLAN_SNOOPING_ENABLED);
-> > >  	case BR_BOOLOPT_MST_ENABLE:
-> > > -		return br_opt_get(br, BROPT_MST_ENABLED);
-> > > +		return br_mst_is_enabled(br);
-> > 
-> > Well, this did report the correct MST state despite the incorrect static
-> > branch state, no? The users of br_mst_is_enabled(br) are broken, not
-> > those of br_opt_get(br, BROPT_MST_ENABLED).
-> 
-> I should have said "actual"/"effective" instead of "correct". IMO, it's
-> better to use the same conditional in the both the data and control
-> paths to eliminate discrepancies. Without the patch, a user will see
-> that MST is supposedly enabled when it is actually disabled in the data
-> path.
+This patch set makes it possible to have synchronized dynamic ATU and FDB
+entries on locked ports. As locked ports are not able to automatically
+learn, they depend on userspace added entries, where userspace can add
+static or dynamic entries. The lifetime of static entries are completely
+dependent on userspace intervention, and thus not of interest here. We
+are only concerned with dynamic entries, which can be added with a
+command like:
 
-The discussion is about to get philosophical, but I don't know if it's
-necessary to make a bug more widespread before fixing it..
-The br_mst_used is an optimization to avoid calling br_opt_get() when
-surely MST is not enabled. There should be no discrepancy between using
-and not using it, if the static branch works correctly (not the case here).
-I would also expect that consolidation to be part of net-next though.
+bridge fdb replace ADDR dev <DEV> master dynamic
 
-> > Anyway, I see there's a br_mst_is_enabled() and also a br_mst_enabled()?!
-> > One is used in the fast path and the other in the slow path. They should
-> > probably be merged, I guess. They both exist probably because somebody
-> > thought that the "if (!netif_is_bridge_master(dev))" test is redundant
-> > in the fast path.
-> 
-> The single user of br_mst_enabled() (DSA) is not affected by the bug
-> (only the SW data path is), so I suggest making this consolidation in
-> net-next after the bug is fixed. OK?
+We choose only to support this feature on locked ports, as it involves
+utilizing the CPU to handle ATU related switchcore events (typically
+interrupts) and thus can result in significant performance loss if
+exposed to heavy traffic.
 
-Yes, net-next, sure.
+On locked ports it is important for userspace to know when an authorized
+station has become silent, hence not breaking the communication of a
+station that has been authorized based on the MAC-Authentication Bypass
+(MAB) scheme. Thus if the station keeps being active after authorization,
+it will continue to have an open port as long as it is active. Only after
+a silent period will it have to be reauthorized. As the ageing process in
+the ATU is dependent on incoming traffic to the switchcore port, it is
+necessary for the ATU to signal that an entry has aged out, so that the
+FDB can be updated at the correct time.
+
+This patch set includes a solution for the Marvell mv88e6xxx driver, where
+for this driver we use the Hold-At-One feature so that an age-out
+violation interrupt occurs when a station has been silent for the
+system-set age time. The age out violation interrupt allows the switchcore
+driver to remove both the ATU and the FDB entry at the same time.
+
+It is up to the maintainers of other switchcore drivers to implement the
+feature for their specific driver.
+
+Hans J. Schultz (5):
+  net: bridge: add dynamic flag to switchdev notifier
+  net: dsa: propagate flags down towards drivers
+  drivers: net: dsa: add fdb entry flags incoming to switchcore drivers
+  net: bridge: ensure FDB offloaded flag is handled as needed
+  net: dsa: mv88e6xxx: implementation of dynamic ATU entries
+
+ drivers/net/dsa/b53/b53_common.c        | 12 ++++-
+ drivers/net/dsa/b53/b53_priv.h          |  4 +-
+ drivers/net/dsa/hirschmann/hellcreek.c  | 12 ++++-
+ drivers/net/dsa/lan9303-core.c          | 12 ++++-
+ drivers/net/dsa/lantiq_gswip.c          | 12 ++++-
+ drivers/net/dsa/microchip/ksz9477.c     |  8 ++--
+ drivers/net/dsa/microchip/ksz9477.h     |  8 ++--
+ drivers/net/dsa/microchip/ksz_common.c  | 14 ++++--
+ drivers/net/dsa/mt7530.c                | 12 ++++-
+ drivers/net/dsa/mv88e6xxx/chip.c        | 24 ++++++++--
+ drivers/net/dsa/mv88e6xxx/global1_atu.c | 21 +++++++++
+ drivers/net/dsa/mv88e6xxx/port.c        |  6 ++-
+ drivers/net/dsa/mv88e6xxx/switchdev.c   | 61 +++++++++++++++++++++++++
+ drivers/net/dsa/mv88e6xxx/switchdev.h   |  5 ++
+ drivers/net/dsa/mv88e6xxx/trace.h       |  5 ++
+ drivers/net/dsa/ocelot/felix.c          | 12 ++++-
+ drivers/net/dsa/qca/qca8k-common.c      | 12 ++++-
+ drivers/net/dsa/qca/qca8k.h             |  4 +-
+ drivers/net/dsa/rzn1_a5psw.c            | 12 ++++-
+ drivers/net/dsa/sja1105/sja1105_main.c  | 19 ++++++--
+ include/net/dsa.h                       |  6 ++-
+ include/net/switchdev.h                 |  1 +
+ net/bridge/br_fdb.c                     |  5 +-
+ net/bridge/br_switchdev.c               |  1 +
+ net/dsa/port.c                          | 28 +++++++-----
+ net/dsa/port.h                          |  8 ++--
+ net/dsa/slave.c                         | 17 +++++--
+ net/dsa/switch.c                        | 30 ++++++++----
+ net/dsa/switch.h                        |  1 +
+ 29 files changed, 298 insertions(+), 74 deletions(-)
+
+-- 
+2.34.1
+
