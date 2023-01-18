@@ -1,63 +1,63 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E984672B27
-	for <lists.bridge@lfdr.de>; Wed, 18 Jan 2023 23:14:11 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECC3672B60
+	for <lists.bridge@lfdr.de>; Wed, 18 Jan 2023 23:35:16 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 9B77E81EDF;
-	Wed, 18 Jan 2023 22:14:09 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9B77E81EDF
+	by smtp1.osuosl.org (Postfix) with ESMTP id DC3CC820B1;
+	Wed, 18 Jan 2023 22:35:14 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org DC3CC820B1
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ymto7jox4Wpo; Wed, 18 Jan 2023 22:14:09 +0000 (UTC)
+	with ESMTP id ISZU_UPM4Huv; Wed, 18 Jan 2023 22:35:14 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 3731E81E7A;
-	Wed, 18 Jan 2023 22:14:08 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3731E81E7A
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 5C99D820C1;
+	Wed, 18 Jan 2023 22:35:13 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5C99D820C1
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E3063C0078;
-	Wed, 18 Jan 2023 22:14:07 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F1E65C0078;
+	Wed, 18 Jan 2023 22:35:12 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 22149C002D
- for <bridge@lists.linux-foundation.org>; Wed, 18 Jan 2023 22:14:06 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 41C9BC002D
+ for <bridge@lists.linux-foundation.org>; Wed, 18 Jan 2023 22:35:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id DC4B7610AB
- for <bridge@lists.linux-foundation.org>; Wed, 18 Jan 2023 22:14:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DC4B7610AB
+ by smtp3.osuosl.org (Postfix) with ESMTP id 2334A610AD
+ for <bridge@lists.linux-foundation.org>; Wed, 18 Jan 2023 22:35:12 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2334A610AD
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id hMRuH0jKVc0T for <bridge@lists.linux-foundation.org>;
- Wed, 18 Jan 2023 22:14:04 +0000 (UTC)
+ with ESMTP id EB1SXn_dMjUv for <bridge@lists.linux-foundation.org>;
+ Wed, 18 Jan 2023 22:35:11 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9F7DD60F5D
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 48A7660E71
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 9F7DD60F5D
- for <bridge@lists.linux-foundation.org>; Wed, 18 Jan 2023 22:14:04 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 48A7660E71
+ for <bridge@lists.linux-foundation.org>; Wed, 18 Jan 2023 22:35:11 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id CB2F818837A5;
- Wed, 18 Jan 2023 22:14:00 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 3957518839F7;
+ Wed, 18 Jan 2023 22:35:09 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id BAF2B25003AB;
- Wed, 18 Jan 2023 22:14:00 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id D5A7B25003AB;
+ Wed, 18 Jan 2023 22:35:08 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id A73C791201E4; Wed, 18 Jan 2023 22:14:00 +0000 (UTC)
+ id BD31391201E4; Wed, 18 Jan 2023 22:35:08 +0000 (UTC)
 X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Date: Wed, 18 Jan 2023 23:14:00 +0100
+Date: Wed, 18 Jan 2023 23:35:08 +0100
 From: netdev@kapio-technology.com
 To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20230117230806.ipwcbnq4jcc4qs7z@skbuf>
+In-Reply-To: <20230117231750.r5jr4hwvpadgopmf@skbuf>
 References: <20230117185714.3058453-1-netdev@kapio-technology.com>
- <20230117185714.3058453-2-netdev@kapio-technology.com>
- <20230117230806.ipwcbnq4jcc4qs7z@skbuf>
+ <20230117185714.3058453-3-netdev@kapio-technology.com>
+ <20230117231750.r5jr4hwvpadgopmf@skbuf>
 User-Agent: Gigahost Webmail
-Message-ID: <a3bba3eb856a00b5e5e0c1e2ffe8749a@kapio-technology.com>
+Message-ID: <e4acb7edb300d41a9459890133b928b4@kapio-technology.com>
 X-Sender: netdev@kapio-technology.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -85,8 +85,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  "maintainer:MICROCHIP KSZ SERIES ETHERNET
  SWITCH DRIVER" <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
  A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [RFC PATCH net-next 1/5] net: bridge: add dynamic flag
- to switchdev notifier
+Subject: Re: [Bridge] [RFC PATCH net-next 2/5] net: dsa: propagate flags
+ down towards drivers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,56 +101,87 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2023-01-18 00:08, Vladimir Oltean wrote:
-> On Tue, Jan 17, 2023 at 07:57:10PM +0100, Hans J. Schultz wrote:
->> To be able to add dynamic FDB entries to drivers from userspace, the
->> dynamic flag must be added when sending RTM_NEWNEIGH events down.
+On 2023-01-18 00:17, Vladimir Oltean wrote:
+> On Tue, Jan 17, 2023 at 07:57:11PM +0100, Hans J. Schultz wrote:
+>> Dynamic FDB flag needs to be propagated through the DSA layer to be
+>> added to drivers.
+>> Use a u16 for fdb flags for future use, so that other flags can also 
+>> be
+>> sent the same way without having to change function interfaces.
 >> 
 >> Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
 >> ---
->>  include/net/switchdev.h   | 1 +
->>  net/bridge/br_switchdev.c | 1 +
->>  2 files changed, 2 insertions(+)
+>> @@ -3364,6 +3368,7 @@ static int dsa_slave_fdb_event(struct net_device 
+>> *dev,
+>>  	struct dsa_port *dp = dsa_slave_to_port(dev);
+>>  	bool host_addr = fdb_info->is_local;
+>>  	struct dsa_switch *ds = dp->ds;
+>> +	u16 fdb_flags = 0;
 >> 
->> diff --git a/include/net/switchdev.h b/include/net/switchdev.h
->> index ca0312b78294..aaf918d4ba67 100644
->> --- a/include/net/switchdev.h
->> +++ b/include/net/switchdev.h
->> @@ -249,6 +249,7 @@ struct switchdev_notifier_fdb_info {
->>  	u8 added_by_user:1,
->>  	   is_local:1,
->>  	   locked:1,
->> +	   is_dyn:1,
->>  	   offloaded:1;
->>  };
+>>  	if (ctx && ctx != dp)
+>>  		return 0;
+>> @@ -3410,6 +3415,9 @@ static int dsa_slave_fdb_event(struct net_device 
+>> *dev,
+>>  		   orig_dev->name, fdb_info->addr, fdb_info->vid,
+>>  		   host_addr ? " as host address" : "");
 >> 
->> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
->> index 7eb6fd5bb917..60c05a00a1df 100644
->> --- a/net/bridge/br_switchdev.c
->> +++ b/net/bridge/br_switchdev.c
->> @@ -136,6 +136,7 @@ static void br_switchdev_fdb_populate(struct 
->> net_bridge *br,
->>  	item->added_by_user = test_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
->>  	item->offloaded = test_bit(BR_FDB_OFFLOADED, &fdb->flags);
->>  	item->is_local = test_bit(BR_FDB_LOCAL, &fdb->flags);
->> +	item->is_dyn = !test_bit(BR_FDB_STATIC, &fdb->flags);
+>> +	if (fdb_info->is_dyn)
+>> +		fdb_flags |= DSA_FDB_FLAG_DYNAMIC;
+>> +
 > 
-> Why reverse logic? Why not just name this "is_static" and leave any
-> further interpretations up to the consumer?
+> Hmm, I don't think this is going to work with the 
+> assisted_learning_on_cpu_port
+> feature ("if (switchdev_fdb_is_dynamically_learned(fdb_info))"). The
+> reason being
+> that a "dynamically learned" FDB entry (defined as this):
 > 
+> static inline bool
+> switchdev_fdb_is_dynamically_learned(const struct
+> switchdev_notifier_fdb_info *fdb_info)
+> {
+> 	return !fdb_info->added_by_user && !fdb_info->is_local;
+> }
+> 
+> is also dynamic in the DSA_FDB_FLAG_DYNAMIC sense. But we install a
+> static FDB entry for it on the CPU port.
+> 
+> And in your follow-up patch 3/5, you make all drivers except mv88e6xxx
+> ignore all DSA_FDB_FLAG_DYNAMIC entries (including the ones snooped 
+> from
+> address learning on software interfaces). So this breaks those drivers
+> which don't implement DSA_FDB_FLAG_DYNAMIC but do set
+> ds->assisted_learning_on_cpu_port
+> to true.
 
-My reasoning for this is that the common case is to have static entries, 
-thus is_dyn=false, so whenever someone uses a 
-switchdev_notifier_fdb_info struct the common case does not need to be 
-entered.
-Otherwise it might also break something when someone uses this struct 
-and if it was 'is_static' and they forget to code is_static=true they 
-will get dynamic entries without wanting it and it can be hard to find 
-such an error.
+I am not sure I understand you entirely.
+ From my standpoint I see it as so: that until now any fdb entry coming 
+to port_fdb_add() (or port_fdb_del()) are seen as static entries. And 
+this changes nothing with respect to those static entries as how drivers 
+handle them.
+When the new dynamic flag is true, all drivers will ignore it in patch 
+#3, so basically nothing will change by that. Then in patch #5 the 
+dynamic flag is handled by the mv88e6xxx driver.
 
->>  	item->locked = false;
->>  	item->info.dev = (!p || item->is_local) ? br->dev : p->dev;
->>  	item->info.ctx = ctx;
->> --
->> 2.34.1
+I don't know the assisted_learning_on_cpu_port feature you mention, but 
+there has still not been anything but static entries going towards 
+port_fdb_add() yet...
+
+> 
+> I think you also want to look at the added_by_user flag to disambiguate
+> between a dynamic FDB entry added from learning (which it's ok to
+> offload as static, because software ageing will remove it) and one 
+> added
+> by the user.
+> 
+>>  	INIT_WORK(&switchdev_work->work, dsa_slave_switchdev_event_work);
+>>  	switchdev_work->event = event;
+>>  	switchdev_work->dev = dev;
+>> @@ -3418,6 +3426,7 @@ static int dsa_slave_fdb_event(struct net_device 
+>> *dev,
+>>  	ether_addr_copy(switchdev_work->addr, fdb_info->addr);
+>>  	switchdev_work->vid = fdb_info->vid;
+>>  	switchdev_work->host_addr = host_addr;
+>> +	switchdev_work->fdb_flags = fdb_flags;
+>> 
+>>  	dsa_schedule_work(&switchdev_work->work);
 >> 
