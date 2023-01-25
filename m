@@ -1,94 +1,67 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1FE4676C3B
-	for <lists.bridge@lfdr.de>; Sun, 22 Jan 2023 12:08:52 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC5467B8E6
+	for <lists.bridge@lfdr.de>; Wed, 25 Jan 2023 18:59:13 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 698E360B09;
-	Sun, 22 Jan 2023 11:08:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 698E360B09
+	by smtp2.osuosl.org (Postfix) with ESMTP id 3B424415B9;
+	Wed, 25 Jan 2023 17:59:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3B424415B9
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=GzJWXVTv
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PMA7_f1oN0oR; Sun, 22 Jan 2023 11:08:50 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 15A7E60E30;
-	Sun, 22 Jan 2023 11:08:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 15A7E60E30
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id kwdX-VlXxhfH; Wed, 25 Jan 2023 17:59:08 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 1A810415BA;
+	Wed, 25 Jan 2023 17:59:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1A810415BA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C5428C0077;
-	Sun, 22 Jan 2023 11:08:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B1746C0077;
+	Wed, 25 Jan 2023 17:59:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 51918C002D
- for <bridge@lists.linux-foundation.org>; Sun, 22 Jan 2023 11:08:48 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D35B5C002D
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Jan 2023 17:59:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 1FAF560E30
- for <bridge@lists.linux-foundation.org>; Sun, 22 Jan 2023 11:08:48 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1FAF560E30
+ by smtp3.osuosl.org (Postfix) with ESMTP id A7CB661179
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Jan 2023 17:59:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A7CB661179
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
+ header.a=rsa-sha256 header.s=protonmail3 header.b=GzJWXVTv
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id kgzqXkLWEaOp for <bridge@lists.linux-foundation.org>;
- Sun, 22 Jan 2023 11:08:47 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0567360B09
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 0567360B09
- for <bridge@lists.linux-foundation.org>; Sun, 22 Jan 2023 11:08:46 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 5FB2618839B5;
- Sun, 22 Jan 2023 11:08:43 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 44DED2500261;
- Sun, 22 Jan 2023 11:08:43 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 3727B9EC000B; Sun, 22 Jan 2023 11:08:43 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+ with ESMTP id PXepONnUdFsL for <bridge@lists.linux-foundation.org>;
+ Wed, 25 Jan 2023 17:59:03 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DF95560DA0
+Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id DF95560DA0
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Jan 2023 17:59:02 +0000 (UTC)
+Date: Wed, 25 Jan 2023 17:58:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1674669540; x=1674928740;
+ bh=TZDZSw1lqaA6jzVudj4TVSY9S4Pl4MRpr6LbLyFgMu8=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=GzJWXVTvWhRX4GwKkSctOfbgpJZKHUwsUnq6FnyrBDKgYrOEkwFoTQOG7uxkOiTml
+ Ix+aIZd7ckTNufbvxgVbQgBFLsQ0mHAKekhqA3lx+SBCR7fBOtC/nzoDsoWfdL81pB
+ 1x4l5txfI4Bol4/Ijd60HSD8NPPMuxxhFRxoeojJ2G4sgw8c5nh9Qv4rjVD2c1u0DY
+ 92VOpa32QM8TByBmpBmZ48O/q+FctymHwWjr4FCmqhaPS8zkHFCgLj0C/aR3HBOlu+
+ v7QXQQRduEByS7eiReMGbPkZx4qGqU7Bf1Z2BcArqJIMyFzoFfrn7q6siIwDIxk8cW
+ nFtMSsWBjUjsw==
+To: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>
+Message-ID: <QN_UgY3rBNWFL2DBKZbkL7M7cmBq9mW5TmbuPxERfKBw5TsF_2fMsywMm3GZyRW5t7vdj2qLwJVtMozgj_dLJSLxuvSnQ28tmsX8iEKwQJU=@protonmail.com>
+Feedback-ID: 33196921:user:proton
 MIME-Version: 1.0
-Date: Sun, 22 Jan 2023 12:08:42 +0100
-From: netdev@kapio-technology.com
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20230118230135.szu6a7kvt2mjb3i5@skbuf>
-References: <20230117185714.3058453-1-netdev@kapio-technology.com>
- <20230117185714.3058453-3-netdev@kapio-technology.com>
- <20230117231750.r5jr4hwvpadgopmf@skbuf>
- <e4acb7edb300d41a9459890133b928b4@kapio-technology.com>
- <20230118230135.szu6a7kvt2mjb3i5@skbuf>
-User-Agent: Gigahost Webmail
-Message-ID: <746b27d5f83b95f17eca18e22843951a@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- =?UTF-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
- open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET
- SWITCH DRIVER" <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [RFC PATCH net-next 2/5] net: dsa: propagate flags
- down towards drivers
+Content-Type: multipart/alternative;
+ boundary="b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog"
+Subject: [Bridge] Packet loss when ~400 virtual machine connected to a bridge
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -100,26 +73,79 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ali Shirvani via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ali Shirvani <alishirv@protonmail.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2023-01-19 00:01, Vladimir Oltean wrote:
-> On Wed, Jan 18, 2023 at 11:35:08PM +0100, netdev@kapio-technology.com 
-> wrote:
+This is a multi-part message in MIME format.
 
->> When the new dynamic flag is true, all drivers will ignore it in patch 
->> #3,
->> so basically nothing will change by that.
-> 
-> This is not true, because it assumes that DSA never called 
-> port_fdb_add()
-> up until now for bridge FDB entries with the BR_FDB_STATIC flag unset,
-> which is incorrect (it did).
-> 
-> So what will change is that drivers which used to react to those bridge
-> FDB entries will stop doing so.
-> 
+--b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-So the solution to this problem could be to only set the is_dyn flag in 
-combination with the added_by_user flag. So an 'and' operation with the 
-two in br_switchdev_fdb_populate()?
+SGVsbG8gZXZlcnlvbmUsCgpXZSBoYXZlIGEgcGh5c2ljYWwgc2VydmVyIHRoYXQgaG9zdHMgYWJv
+dXQgNDAwIHZpcnR1YWwgbWFjaGluZXMuIEVhY2ggdmlydHVhbCBtYWNoaW5lIGhhcyBhIFRBUCBk
+ZXZpY2UgY29ubmVjdGVkIHRvIGEgTGludXggYnJpZGdlLiBXZSB0cmllZCB0byB1c2UgTGludXgt
+S1ZNIHN1Z2dlc3Rpb25zIGZvciBRRU1VIG5ldHdvcmtpbmcgYWNjb3JkaW5nIHRvIHRoaXMgbGlu
+ayBodHRwczovL3d3dy5saW51eC1rdm0ub3JnL3BhZ2UvMTBHX05JQ19wZXJmb3JtYW5jZTpfVkZJ
+T192c192aXJ0aW8KClVuZm9ydHVuYXRlbHksIHdlIGhhdmUgYSBwYWNrZXQgbG9zcyB3aGVuIHBp
+bmdpbmcgdmlydHVhbCBtYWNoaW5lcycgSVAgYWRkcmVzc2VzLiBQaW5pbmcgdGhlIHBoeXNpY2Fs
+IHNlcnZlciBpcyBvaywgYW5kIHRoZXJlIGlzIG5vIHBhY2tldCBsb3NzLiBXb3VsZCB5b3UgcGxl
+YXNlIGd1aWRlIG1lIG9uIGhvdyBJIHNob3VsZCBmaW5kIHRoZSByb290IGNhdXNlIG9mIHRoZSBw
+YWNrZXQgbG9zcz8gQWxzbywgaXQgd291bGQgYmUgZ3JlYXQgaWYgeW91IHNoYXJlIHlvdXIgZXhw
+ZXJpZW5jZSBvZiBjb25uZWN0aW5nIH40MDAgVk1zIHRvIGEgTGludXggYnJpZGdlIGFuZCBpZiBp
+dCByZXF1aXJlcyBhbnkgdHVuaW5nIGZvciBoYW5kbGluZyB0aGlzIG51bWJlciBvZiBWTXMuCgpC
+ZXN0IHJlZ2FyZHMsCgpTZW50IHdpdGggW1Byb3RvbiBNYWlsXShodHRwczovL3Byb3Rvbi5tZS8p
+IHNlY3VyZSBlbWFpbC4=
+
+--b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij48L2Rpdj48
+cCBzdHlsZT0iY29sb3I6cmdiKDE0LCAxNiwgMjYpO2JhY2tncm91bmQ6dHJhbnNwYXJlbnQ7bWFy
+Z2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kOnRy
+YW5zcGFyZW50IiBkYXRhLXByZXNlcnZlci1zcGFjZXM9InRydWUiPkhlbGxvIGV2ZXJ5b25lLDwv
+c3Bhbj48L3A+PHAgc3R5bGU9ImNvbG9yOnJnYigxNCwgMTYsIDI2KTtiYWNrZ3JvdW5kOnRyYW5z
+cGFyZW50O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iYmFj
+a2dyb3VuZDp0cmFuc3BhcmVudCIgZGF0YS1wcmVzZXJ2ZXItc3BhY2VzPSJ0cnVlIj5XZSBoYXZl
+IGEgcGh5c2ljYWwgc2VydmVyIHRoYXQgaG9zdHMgYWJvdXQgNDAwIHZpcnR1YWwgbWFjaGluZXMu
+IEVhY2ggdmlydHVhbCBtYWNoaW5lIGhhcyBhIFRBUCBkZXZpY2UgY29ubmVjdGVkIHRvIGEgTGlu
+dXggYnJpZGdlLiBXZSB0cmllZCB0byB1c2UgTGludXgtS1ZNIHN1Z2dlc3Rpb25zIGZvciBRRU1V
+IG5ldHdvcmtpbmcgYWNjb3JkaW5nIHRvIHRoaXMgbGluayZuYnNwOzwvc3Bhbj48YSBzdHlsZT0i
+Y29sb3I6IzRhNmVlMDtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50IiB0YXJnZXQ9Il9ibGFuayIgaHJl
+Zj0iaHR0cHM6Ly93d3cubGludXgta3ZtLm9yZy9wYWdlLzEwR19OSUNfcGVyZm9ybWFuY2U6X1ZG
+SU9fdnNfdmlydGlvIj48c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp0cmFuc3BhcmVudCIgZGF0YS1w
+cmVzZXJ2ZXItc3BhY2VzPSJ0cnVlIj5odHRwczovL3d3dy5saW51eC1rdm0ub3JnL3BhZ2UvMTBH
+X05JQ19wZXJmb3JtYW5jZTpfVkZJT192c192aXJ0aW88L3NwYW4+PC9hPjwvcD48cCBzdHlsZT0i
+Y29sb3I6cmdiKDE0LCAxNiwgMjYpO2JhY2tncm91bmQ6dHJhbnNwYXJlbnQ7bWFyZ2luLXRvcDow
+cHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxicj48L3A+PHAgc3R5bGU9ImNvbG9yOnJnYigxNCwgMTYs
+IDI2KTtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206
+MHB0Ij48c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp0cmFuc3BhcmVudCIgZGF0YS1wcmVzZXJ2ZXIt
+c3BhY2VzPSJ0cnVlIj5VbmZvcnR1bmF0ZWx5LCB3ZSBoYXZlIGEgcGFja2V0IGxvc3Mgd2hlbiBw
+aW5naW5nIHZpcnR1YWwgbWFjaGluZXMnIElQIGFkZHJlc3Nlcy4gUGluaW5nIHRoZSBwaHlzaWNh
+bCBzZXJ2ZXIgaXMgb2ssIGFuZCB0aGVyZSBpcyBubyBwYWNrZXQgbG9zcy4gV291bGQgeW91IHBs
+ZWFzZSBndWlkZSBtZSBvbiBob3cgSSBzaG91bGQgZmluZCB0aGUgcm9vdCBjYXVzZSBvZiB0aGUg
+cGFja2V0IGxvc3M/IEFsc28sIGl0IHdvdWxkIGJlIGdyZWF0IGlmIHlvdSBzaGFyZSB5b3VyIGV4
+cGVyaWVuY2Ugb2YgY29ubmVjdGluZyB+NDAwIFZNcyB0byBhIExpbnV4IGJyaWRnZSBhbmQgaWYg
+aXQgcmVxdWlyZXMgYW55IHR1bmluZyBmb3IgaGFuZGxpbmcgdGhpcyBudW1iZXIgb2YgVk1zLjwv
+c3Bhbj48L3A+PHAgc3R5bGU9ImNvbG9yOnJnYigxNCwgMTYsIDI2KTtiYWNrZ3JvdW5kOnRyYW5z
+cGFyZW50O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48YnI+PC9wPjxwIHN0eWxl
+PSJjb2xvcjpyZ2IoMTQsIDE2LCAyNik7YmFja2dyb3VuZDp0cmFuc3BhcmVudDttYXJnaW4tdG9w
+OjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQ6dHJhbnNwYXJl
+bnQiIGRhdGEtcHJlc2VydmVyLXNwYWNlcz0idHJ1ZSI+QmVzdCByZWdhcmRzLDwvc3Bhbj48L3A+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9k
+aXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij48YnI+
+PC9kaXY+DQo8ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jayIgc3R5bGU9ImZv
+bnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4OyI+DQogICAgPGRpdiBjbGFzcz0icHJv
+dG9ubWFpbF9zaWduYXR1cmVfYmxvY2stdXNlciBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1l
+bXB0eSI+DQogICAgICAgIA0KICAgICAgICAgICAgPC9kaXY+DQogICAgDQogICAgICAgICAgICA8
+ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1wcm90b24iPg0KICAgICAgICBT
+ZW50IHdpdGggPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vcHJvdG9uLm1lLyIgcmVs
+PSJub29wZW5lciBub3JlZmVycmVyIj5Qcm90b24gTWFpbDwvYT4gc2VjdXJlIGVtYWlsLg0KICAg
+IDwvZGl2Pg0KPC9kaXY+DQo=
+
+
+--b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog--
+
