@@ -1,67 +1,134 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC5467B8E6
-	for <lists.bridge@lfdr.de>; Wed, 25 Jan 2023 18:59:13 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9241B67D25A
+	for <lists.bridge@lfdr.de>; Thu, 26 Jan 2023 18:02:18 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 3B424415B9;
-	Wed, 25 Jan 2023 17:59:09 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3B424415B9
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=GzJWXVTv
+	by smtp4.osuosl.org (Postfix) with ESMTP id B879941A3D;
+	Thu, 26 Jan 2023 17:02:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B879941A3D
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=IfQCA9wY
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id kwdX-VlXxhfH; Wed, 25 Jan 2023 17:59:08 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 3WFfu8yJTX4h; Thu, 26 Jan 2023 17:02:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 1A810415BA;
-	Wed, 25 Jan 2023 17:59:07 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1A810415BA
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 3F92841A3B;
+	Thu, 26 Jan 2023 17:02:14 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3F92841A3B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B1746C0077;
-	Wed, 25 Jan 2023 17:59:06 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 767B8C0081;
+	Thu, 26 Jan 2023 17:02:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D35B5C002D
- for <bridge@lists.linux-foundation.org>; Wed, 25 Jan 2023 17:59:05 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 69FE4C0033
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 17:02:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id A7CB661179
- for <bridge@lists.linux-foundation.org>; Wed, 25 Jan 2023 17:59:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A7CB661179
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com
- header.a=rsa-sha256 header.s=protonmail3 header.b=GzJWXVTv
+ by smtp2.osuosl.org (Postfix) with ESMTP id 44CB6414EE
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 17:02:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 44CB6414EE
+Authentication-Results: smtp2.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=IfQCA9wY
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id PXepONnUdFsL for <bridge@lists.linux-foundation.org>;
- Wed, 25 Jan 2023 17:59:03 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DF95560DA0
-Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
- by smtp3.osuosl.org (Postfix) with ESMTPS id DF95560DA0
- for <bridge@lists.linux-foundation.org>; Wed, 25 Jan 2023 17:59:02 +0000 (UTC)
-Date: Wed, 25 Jan 2023 17:58:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1674669540; x=1674928740;
- bh=TZDZSw1lqaA6jzVudj4TVSY9S4Pl4MRpr6LbLyFgMu8=;
- h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=GzJWXVTvWhRX4GwKkSctOfbgpJZKHUwsUnq6FnyrBDKgYrOEkwFoTQOG7uxkOiTml
- Ix+aIZd7ckTNufbvxgVbQgBFLsQ0mHAKekhqA3lx+SBCR7fBOtC/nzoDsoWfdL81pB
- 1x4l5txfI4Bol4/Ijd60HSD8NPPMuxxhFRxoeojJ2G4sgw8c5nh9Qv4rjVD2c1u0DY
- 92VOpa32QM8TByBmpBmZ48O/q+FctymHwWjr4FCmqhaPS8zkHFCgLj0C/aR3HBOlu+
- v7QXQQRduEByS7eiReMGbPkZx4qGqU7Bf1Z2BcArqJIMyFzoFfrn7q6siIwDIxk8cW
- nFtMSsWBjUjsw==
-To: "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>
-Message-ID: <QN_UgY3rBNWFL2DBKZbkL7M7cmBq9mW5TmbuPxERfKBw5TsF_2fMsywMm3GZyRW5t7vdj2qLwJVtMozgj_dLJSLxuvSnQ28tmsX8iEKwQJU=@protonmail.com>
-Feedback-ID: 33196921:user:proton
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id fNjCytWqW5tW for <bridge@lists.linux-foundation.org>;
+ Thu, 26 Jan 2023 17:02:09 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CA2BF40A01
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on20607.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::607])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id CA2BF40A01
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 17:02:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Uvco43R5s6ZT/WK5xe3hYFinwNqchTNpnD0rpuWDpZ9gqqgcbWIfvICEl2OAzJHONpMoUhk3RjaDfGVLGpQo3+SFCjkstepoxpFUD+QryaWaDKbapAUMWpX6H0Z/5muvdTVGOPhantMNPsC4lD7gdUp6oiuRc1QNJd3N3nkcTlTJte8O2UFn7+gqulidEC8KG7ycB6J3O45zWVG0KS4JmJSMFIRs5Rmcs3FNDFyPIv1Ypo5STd7PpHRE+IevP6JrQNG+VdJLjzylnqrtZW8MHVpEt5opIKYg1seJE+Kyt/QpttCcbMNwRQLAVQH3vHi0ruxeAkjxEFv+EEofoNEYYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xOCr523mzKItGXdE26z8vzFu+vo9cyaFmxTQOXoHOig=;
+ b=jtJyP4zY++ExFWZClne7SdNRsxoc/33oNd8IlXizVx18zvf5W4VSPeKj09hxyqs36ZpNK4fDZdNWx7KpMEbCBvyNxK+bcFhpim/j8l6rI5KLYLrZN7C6a8dI4pH9/1l2F6RstcQT2/m5QId0LD7FDq/0/VHh2mARA4Iw1DO65h8duJiGZw9DSinL3Z7tqlu+0GibkZieJjl3ZQi/7nxzpkZHffnSOYYX6FmC30E0SYmrsjoLOZs7O8IQoK03pIfGeIVoCIYf8RbhYIR0PqtRRNh6ufdZBxgAEvltsDWTR4XXjcy9sPjYH1QwMsl1IKCrHvhCXd+YO4eVaHb8/Bu96A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=davemloft.net smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xOCr523mzKItGXdE26z8vzFu+vo9cyaFmxTQOXoHOig=;
+ b=IfQCA9wYM91om3IYaHtBHaK4+vW8IX8kQvyQYYkV8IaFeozIf7D6lrjuHzh3Eu//vh16MbTYgEKRIzRdBgJzTTaW4N55ZDVea4/FlYjZ3JBfqUdvBsTLp37gfDSWIG17c/TLwtTw/Eyw2yS0gcM/BDTjH5CsOtnbJvbIohVRuSIcsjW9WtCjBX5SRFlBSQNoPw9Ylz/rD9coboTU2t/42pHo0h4OXky3QnkZasvzKg2lP38RNiVqKohjXB+nGmX/cJCCPwo63q5jVxrVb/xN3EG7n1XQ0/rPjGQ5pOCVAqyiX11c058IHxQ1WLgPHR09W9oc0ZzSBUtyubvmZYtlDQ==
+Received: from MW4PR04CA0294.namprd04.prod.outlook.com (2603:10b6:303:89::29)
+ by DS0PR12MB6581.namprd12.prod.outlook.com (2603:10b6:8:d3::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Thu, 26 Jan
+ 2023 17:02:04 +0000
+Received: from CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:89:cafe::13) by MW4PR04CA0294.outlook.office365.com
+ (2603:10b6:303:89::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
+ Transport; Thu, 26 Jan 2023 17:02:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CO1NAM11FT035.mail.protection.outlook.com (10.13.175.36) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6043.17 via Frontend Transport; Thu, 26 Jan 2023 17:02:03 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 26 Jan
+ 2023 09:01:51 -0800
+Received: from localhost.localdomain (10.126.231.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 26 Jan
+ 2023 09:01:48 -0800
+To: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov
+ <razor@blackwall.org>, <netdev@vger.kernel.org>
+Date: Thu, 26 Jan 2023 18:01:08 +0100
+Message-ID: <cover.1674752051.git.petrm@nvidia.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog"
-Subject: [Bridge] Packet loss when ~400 virtual machine connected to a bridge
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.126.231.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT035:EE_|DS0PR12MB6581:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa7066f3-44d5-4b3b-a52f-08daffbf0c70
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: djdaTDD8Mdd3vA5xxSoJBfWQAbXKRP9L3wx465AvGDTRHC+aIw2dszPWcb+QKZQ536l78laSDsSocz7yaLWHzjhPvZX6UloYTbcI9amP7amTo3iV8ZEjSelOQYQHZyGvryYqAery3ih4sMRpLgd+zObOBoLcuJcf7qLowQO173XNNwih/AGakOY9XFTPTFNhJcAFM6tWCuUfmT6KV3dV4YMOVyIOi+5FG3E4jGXXFwM082177shMVo0znXDiC16yCqKqOJKqD/YFqYadH9KZH+NoH+yZrHpgtAnzf6tLbhHDiOnlHsGOztM/Xhk13MKCvfgUSbl7aeZgXURb/BMbdVs7g6aVeBN1t6x92TLsPQv2rtmGCqHgk2g6EfPsMJr+Fxcnuv1vy798bfxDEaATx14w+CnCWW8x63ltTa+Umn+wm/8MP0NA9h6vwnk7ko+4+EZ8g3WVtdDs4LFWMM7IDaMi0Yi2pYl3dyUvrI/MV7r01e97md+95XbWk5TFMZMnxoiM+JloNdwbw/GnNCJXCuq9FUx0bdqb+0WFb1K2Ek/CUsfNsmEwBBx41wm1QODpYM1T41F5ijOFAZCJBWmmmfcGTJly72tOUZ2yWBHRnvBHEtKp1QIyR6ORKnsN4OoBinZ4w6lE1e40dPQnW5ddP0w8NpmHV6IWZdAq6Da1eoPRlOOwejuJVmZeKe+pQvAzGgVl7LY9N/2TBECAgcNwSA==
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230025)(4636009)(346002)(396003)(136003)(39860400002)(376002)(451199018)(36840700001)(46966006)(40470700004)(5660300002)(70206006)(2906002)(26005)(316002)(82310400005)(478600001)(186003)(110136005)(4326008)(2616005)(336012)(40460700003)(83380400001)(8936002)(8676002)(16526019)(86362001)(36860700001)(356005)(70586007)(40480700001)(7636003)(6666004)(36756003)(54906003)(107886003)(47076005)(41300700001)(82740400003)(426003)(66899018);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2023 17:02:03.7798 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa7066f3-44d5-4b3b-a52f-08daffbf0c70
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6581
+Cc: Petr Machata <petrm@nvidia.com>, Ido
+ Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org
+Subject: [Bridge] [PATCH net-next 00/16] bridge: Limit number of MDB entries
+	per port, port-vlan
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -73,79 +140,139 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ali Shirvani via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ali Shirvani <alishirv@protonmail.com>
+From: Petr Machata via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Petr Machata <petrm@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This is a multi-part message in MIME format.
+The MDB maintained by the bridge is limited. When the bridge is configured
+for IGMP / MLD snooping, a buggy or malicious client can easily exhaust its
+capacity. In SW datapath, the capacity is configurable through the
+IFLA_BR_MCAST_HASH_MAX parameter, but ultimately is finite. Obviously a
+similar limit exists in the HW datapath for purposes of offloading.
 
---b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+In order to prevent the issue of unilateral exhaustion of MDB resources,
+introduce two parameters in each of two contexts:
 
-SGVsbG8gZXZlcnlvbmUsCgpXZSBoYXZlIGEgcGh5c2ljYWwgc2VydmVyIHRoYXQgaG9zdHMgYWJv
-dXQgNDAwIHZpcnR1YWwgbWFjaGluZXMuIEVhY2ggdmlydHVhbCBtYWNoaW5lIGhhcyBhIFRBUCBk
-ZXZpY2UgY29ubmVjdGVkIHRvIGEgTGludXggYnJpZGdlLiBXZSB0cmllZCB0byB1c2UgTGludXgt
-S1ZNIHN1Z2dlc3Rpb25zIGZvciBRRU1VIG5ldHdvcmtpbmcgYWNjb3JkaW5nIHRvIHRoaXMgbGlu
-ayBodHRwczovL3d3dy5saW51eC1rdm0ub3JnL3BhZ2UvMTBHX05JQ19wZXJmb3JtYW5jZTpfVkZJ
-T192c192aXJ0aW8KClVuZm9ydHVuYXRlbHksIHdlIGhhdmUgYSBwYWNrZXQgbG9zcyB3aGVuIHBp
-bmdpbmcgdmlydHVhbCBtYWNoaW5lcycgSVAgYWRkcmVzc2VzLiBQaW5pbmcgdGhlIHBoeXNpY2Fs
-IHNlcnZlciBpcyBvaywgYW5kIHRoZXJlIGlzIG5vIHBhY2tldCBsb3NzLiBXb3VsZCB5b3UgcGxl
-YXNlIGd1aWRlIG1lIG9uIGhvdyBJIHNob3VsZCBmaW5kIHRoZSByb290IGNhdXNlIG9mIHRoZSBw
-YWNrZXQgbG9zcz8gQWxzbywgaXQgd291bGQgYmUgZ3JlYXQgaWYgeW91IHNoYXJlIHlvdXIgZXhw
-ZXJpZW5jZSBvZiBjb25uZWN0aW5nIH40MDAgVk1zIHRvIGEgTGludXggYnJpZGdlIGFuZCBpZiBp
-dCByZXF1aXJlcyBhbnkgdHVuaW5nIGZvciBoYW5kbGluZyB0aGlzIG51bWJlciBvZiBWTXMuCgpC
-ZXN0IHJlZ2FyZHMsCgpTZW50IHdpdGggW1Byb3RvbiBNYWlsXShodHRwczovL3Byb3Rvbi5tZS8p
-IHNlY3VyZSBlbWFpbC4=
+- Per-port and (when BROPT_MCAST_VLAN_SNOOPING_ENABLED is enabled)
+  per-port-VLAN number of MDB entries that the port is member in.
 
---b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+- Per-port and (when BROPT_MCAST_VLAN_SNOOPING_ENABLED is enabled)
+  per-port-VLAN maximum permitted number of MDB entries, or 0 for
+  no limit.
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij48L2Rpdj48
-cCBzdHlsZT0iY29sb3I6cmdiKDE0LCAxNiwgMjYpO2JhY2tncm91bmQ6dHJhbnNwYXJlbnQ7bWFy
-Z2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kOnRy
-YW5zcGFyZW50IiBkYXRhLXByZXNlcnZlci1zcGFjZXM9InRydWUiPkhlbGxvIGV2ZXJ5b25lLDwv
-c3Bhbj48L3A+PHAgc3R5bGU9ImNvbG9yOnJnYigxNCwgMTYsIDI2KTtiYWNrZ3JvdW5kOnRyYW5z
-cGFyZW50O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iYmFj
-a2dyb3VuZDp0cmFuc3BhcmVudCIgZGF0YS1wcmVzZXJ2ZXItc3BhY2VzPSJ0cnVlIj5XZSBoYXZl
-IGEgcGh5c2ljYWwgc2VydmVyIHRoYXQgaG9zdHMgYWJvdXQgNDAwIHZpcnR1YWwgbWFjaGluZXMu
-IEVhY2ggdmlydHVhbCBtYWNoaW5lIGhhcyBhIFRBUCBkZXZpY2UgY29ubmVjdGVkIHRvIGEgTGlu
-dXggYnJpZGdlLiBXZSB0cmllZCB0byB1c2UgTGludXgtS1ZNIHN1Z2dlc3Rpb25zIGZvciBRRU1V
-IG5ldHdvcmtpbmcgYWNjb3JkaW5nIHRvIHRoaXMgbGluayZuYnNwOzwvc3Bhbj48YSBzdHlsZT0i
-Y29sb3I6IzRhNmVlMDtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50IiB0YXJnZXQ9Il9ibGFuayIgaHJl
-Zj0iaHR0cHM6Ly93d3cubGludXgta3ZtLm9yZy9wYWdlLzEwR19OSUNfcGVyZm9ybWFuY2U6X1ZG
-SU9fdnNfdmlydGlvIj48c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp0cmFuc3BhcmVudCIgZGF0YS1w
-cmVzZXJ2ZXItc3BhY2VzPSJ0cnVlIj5odHRwczovL3d3dy5saW51eC1rdm0ub3JnL3BhZ2UvMTBH
-X05JQ19wZXJmb3JtYW5jZTpfVkZJT192c192aXJ0aW88L3NwYW4+PC9hPjwvcD48cCBzdHlsZT0i
-Y29sb3I6cmdiKDE0LCAxNiwgMjYpO2JhY2tncm91bmQ6dHJhbnNwYXJlbnQ7bWFyZ2luLXRvcDow
-cHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxicj48L3A+PHAgc3R5bGU9ImNvbG9yOnJnYigxNCwgMTYs
-IDI2KTtiYWNrZ3JvdW5kOnRyYW5zcGFyZW50O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206
-MHB0Ij48c3BhbiBzdHlsZT0iYmFja2dyb3VuZDp0cmFuc3BhcmVudCIgZGF0YS1wcmVzZXJ2ZXIt
-c3BhY2VzPSJ0cnVlIj5VbmZvcnR1bmF0ZWx5LCB3ZSBoYXZlIGEgcGFja2V0IGxvc3Mgd2hlbiBw
-aW5naW5nIHZpcnR1YWwgbWFjaGluZXMnIElQIGFkZHJlc3Nlcy4gUGluaW5nIHRoZSBwaHlzaWNh
-bCBzZXJ2ZXIgaXMgb2ssIGFuZCB0aGVyZSBpcyBubyBwYWNrZXQgbG9zcy4gV291bGQgeW91IHBs
-ZWFzZSBndWlkZSBtZSBvbiBob3cgSSBzaG91bGQgZmluZCB0aGUgcm9vdCBjYXVzZSBvZiB0aGUg
-cGFja2V0IGxvc3M/IEFsc28sIGl0IHdvdWxkIGJlIGdyZWF0IGlmIHlvdSBzaGFyZSB5b3VyIGV4
-cGVyaWVuY2Ugb2YgY29ubmVjdGluZyB+NDAwIFZNcyB0byBhIExpbnV4IGJyaWRnZSBhbmQgaWYg
-aXQgcmVxdWlyZXMgYW55IHR1bmluZyBmb3IgaGFuZGxpbmcgdGhpcyBudW1iZXIgb2YgVk1zLjwv
-c3Bhbj48L3A+PHAgc3R5bGU9ImNvbG9yOnJnYigxNCwgMTYsIDI2KTtiYWNrZ3JvdW5kOnRyYW5z
-cGFyZW50O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48YnI+PC9wPjxwIHN0eWxl
-PSJjb2xvcjpyZ2IoMTQsIDE2LCAyNik7YmFja2dyb3VuZDp0cmFuc3BhcmVudDttYXJnaW4tdG9w
-OjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQ6dHJhbnNwYXJl
-bnQiIGRhdGEtcHJlc2VydmVyLXNwYWNlcz0idHJ1ZSI+QmVzdCByZWdhcmRzLDwvc3Bhbj48L3A+
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9k
-aXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij48YnI+
-PC9kaXY+DQo8ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jayIgc3R5bGU9ImZv
-bnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4OyI+DQogICAgPGRpdiBjbGFzcz0icHJv
-dG9ubWFpbF9zaWduYXR1cmVfYmxvY2stdXNlciBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1l
-bXB0eSI+DQogICAgICAgIA0KICAgICAgICAgICAgPC9kaXY+DQogICAgDQogICAgICAgICAgICA8
-ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1wcm90b24iPg0KICAgICAgICBT
-ZW50IHdpdGggPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vcHJvdG9uLm1lLyIgcmVs
-PSJub29wZW5lciBub3JlZmVycmVyIj5Qcm90b24gTWFpbDwvYT4gc2VjdXJlIGVtYWlsLg0KICAg
-IDwvZGl2Pg0KPC9kaXY+DQo=
+Per-port number of entries keeps track of the total number of MDB entries
+configured on a given port. The per-port-VLAN value then keeps track of the
+subset of MDB entries configured specifically for the given VLAN, on that
+port. The number is adjusted as port_groups are created and deleted, and
+therefore under multicast lock.
 
+A maximum value, if non-zero, then places a limit on the number of entries
+that can be configured in a given context. Attempts to add entries above
+the maximum are rejected.
 
---b1_4l0xoylVaQYBIL8mpBzpd80Hrpkjw5P2yCLEDX0Vwog--
+Rejection reason of netlink-based requests to add MDB entries is
+communicated through extack. This channel is unavailable for rejections
+triggered from the control path. To address this lack of visibility, the
+patchset adds a tracepoint, bridge:br_mdb_full:
+
+	# perf record -e bridge:br_mdb_full &
+	# [...]
+	# perf script | cut -d: -f4-
+	 dev v2 af 2 src 192.0.2.1/:: grp 239.1.1.1/::/00:00:00:00:00:00 vid 0
+	 dev v2 af 10 src 0.0.0.0/2001:db8:1::1 grp 0.0.0.0/ff0e::1/00:00:00:00:00:00 vid 0
+	 dev v2 af 2 src 192.0.2.1/:: grp 239.1.1.1/::/00:00:00:00:00:00 vid 10
+	 dev v2 af 10 src 0.0.0.0/2001:db8:1::1 grp 0.0.0.0/ff0e::1/00:00:00:00:00:00 vid 10
+
+This tracepoint is triggered for mcast_hash_max exhaustions as well.
+
+The following is an example of how the feature is used. A more extensive
+example is available in patch #8:
+
+	# bridge vlan set dev v1 vid 1 mcast_max_groups 1
+	# bridge mdb add dev br port v1 grp 230.1.2.3 temp vid 1
+	# bridge mdb add dev br port v1 grp 230.1.2.4 temp vid 1
+	Error: bridge: Port-VLAN is already a member in mcast_max_groups (1) groups.
+
+The patchset progresses as follows:
+
+- In patch #1, set strict_start_type at two bridge-related policies. The
+  reason is we are adding a new attribute to one of these, and want the new
+  attribute to be parsed strictly. The other was adjusted for completeness'
+  sake.
+
+- In patches #2 to #5, br_mdb and br_multicast code is adjusted to make the
+  following additions smoother.
+
+- In patch #6, add the tracepoint.
+
+- In patch #7, the code to maintain number of MDB entries is added as
+  struct net_bridge_mcast_port::mdb_n_entries. The maximum is added, too,
+  as struct net_bridge_mcast_port::mdb_max_entries, however at this point
+  there is no way to set the value yet, and since 0 is treated as "no
+  limit", the functionality doesn't change at this point. Note however,
+  that mcast_hash_max violations already do trigger at this point.
+
+- In patch #8, netlink plumbing is added: reading of number of entries, and
+  reading and writing of maximum.
+
+  The per-port values are passed through RTM_NEWLINK / RTM_GETLINK messages
+  in IFLA_BRPORT_MCAST_N_GROUPS and _MAX_GROUPS, inside IFLA_PROTINFO nest.
+
+  The per-port-vlan values are passed through RTM_GETVLAN / RTM_NEWVLAN
+  messages in BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS, _MAX_GROUPS, inside
+  BRIDGE_VLANDB_ENTRY.
+
+The following patches deal with the selftest:
+
+- Patches #9 and #10 clean up and move around some selftest code.
+
+- Patches #11 to #14 add helpers and generalize the existing IGMP / MLD
+  support to allow generating packets with configurable group addresses and
+  varying source lists for (S,G) memberships.
+
+- Patch #15 adds code to generate IGMP leave and MLD done packets.
+
+- Patch #16 finally adds the selftest itself.
+
+Petr Machata (16):
+  net: bridge: Set strict_start_type at two policies
+  net: bridge: Add extack to br_multicast_new_port_group()
+  net: bridge: Move extack-setting to br_multicast_new_port_group()
+  net: bridge: Add br_multicast_del_port_group()
+  net: bridge: Change a cleanup in br_multicast_new_port_group() to goto
+  net: bridge: Add a tracepoint for MDB overflows
+  net: bridge: Maintain number of MDB entries in net_bridge_mcast_port
+  net: bridge: Add netlink knobs for number / maximum MDB entries
+  selftests: forwarding: Move IGMP- and MLD-related functions to lib
+  selftests: forwarding: bridge_mdb: Fix a typo
+  selftests: forwarding: lib: Add helpers for IP address handling
+  selftests: forwarding: lib: Add helpers for checksum handling
+  selftests: forwarding: lib: Parameterize IGMPv3/MLDv2 generation
+  selftests: forwarding: lib: Allow list of IPs for IGMPv3/MLDv2
+  selftests: forwarding: lib: Add helpers to build IGMP/MLD leave
+    packets
+  selftests: forwarding: bridge_mdb_max: Add a new selftest
+
+ include/trace/events/bridge.h                 |  67 ++
+ include/uapi/linux/if_bridge.h                |   2 +
+ include/uapi/linux/if_link.h                  |   2 +
+ net/bridge/br_mdb.c                           |  17 +-
+ net/bridge/br_multicast.c                     | 255 ++++-
+ net/bridge/br_netlink.c                       |  21 +-
+ net/bridge/br_netlink_tunnel.c                |   3 +
+ net/bridge/br_private.h                       |  22 +-
+ net/bridge/br_vlan.c                          |  11 +-
+ net/bridge/br_vlan_options.c                  |  33 +-
+ net/core/net-traces.c                         |   1 +
+ net/core/rtnetlink.c                          |   2 +-
+ .../testing/selftests/net/forwarding/Makefile |   1 +
+ .../selftests/net/forwarding/bridge_mdb.sh    |  60 +-
+ .../net/forwarding/bridge_mdb_max.sh          | 970 ++++++++++++++++++
+ tools/testing/selftests/net/forwarding/lib.sh | 216 ++++
+ 16 files changed, 1604 insertions(+), 79 deletions(-)
+ create mode 100755 tools/testing/selftests/net/forwarding/bridge_mdb_max.sh
+
+-- 
+2.39.0
 
