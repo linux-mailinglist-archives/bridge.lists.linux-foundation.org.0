@@ -1,77 +1,99 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2131567D532
-	for <lists.bridge@lfdr.de>; Thu, 26 Jan 2023 20:15:16 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB7E67D53F
+	for <lists.bridge@lfdr.de>; Thu, 26 Jan 2023 20:18:52 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9CC2F607B0;
-	Thu, 26 Jan 2023 19:15:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9CC2F607B0
+	by smtp3.osuosl.org (Postfix) with ESMTP id CDEFC60B88;
+	Thu, 26 Jan 2023 19:18:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CDEFC60B88
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=eQxlDlSV
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=networkplumber-org.20210112.gappssmtp.com header.i=@networkplumber-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=q4mwlr5n
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id teJI9ECZMRqk; Thu, 26 Jan 2023 19:15:13 +0000 (UTC)
+	with ESMTP id D3TbP90AgBLU; Thu, 26 Jan 2023 19:18:50 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 019C960B14;
-	Thu, 26 Jan 2023 19:15:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 019C960B14
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 7292F60B1B;
+	Thu, 26 Jan 2023 19:18:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7292F60B1B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A4F7BC0077;
-	Thu, 26 Jan 2023 19:15:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 29492C0077;
+	Thu, 26 Jan 2023 19:18:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 602C1C002D
- for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 19:15:11 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AF3C4C002D
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 19:18:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 2D8B460B14
- for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 19:15:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2D8B460B14
+ by smtp3.osuosl.org (Postfix) with ESMTP id 83D8560B14
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 19:18:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 83D8560B14
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jmYut24RJSnf for <bridge@lists.linux-foundation.org>;
- Thu, 26 Jan 2023 19:15:10 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 14D73607B0
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 14D73607B0
- for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 19:15:10 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 014C46192D;
- Thu, 26 Jan 2023 19:15:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AC80C433EF;
- Thu, 26 Jan 2023 19:15:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1674760508;
- bh=+5HLhRI8AkEOxcQiIJRwMRWzbDgjs1QJYrUcgCLqylU=;
- h=From:To:Cc:Subject:Date:From;
- b=eQxlDlSVKupDt+VyFWICDrzOgdDZlt27JVVxUJUFF6nEqFRQCkzrKjh8U57fCQFyw
- cRXDi7BIhvV0xSR0z29JMUrWLs58JuRm1AFt/sj6HjXk/rYDoE92kBS4pWDPQ6GJzS
- RsPnOVZwQEn/h/Wa51H+O+XnIJhfk0a8AyAM6/O+OTbR4UYVlpd8/fbjsMptQ9h6YN
- i06SRdth8vWz8SwW7F4TusVTp7NJwnMktOW34CkxyBwU8pSB5uQxGHRJ6d7KrR1VBp
- GXmwTjCvAIpAA5vTVBBANjLq+Vvw09I9fZTZ5jOUoDtH0SlVfabUWy1r8j4cUw6iSM
- b6HEYZHrxkGLw==
-From: Leon Romanovsky <leon@kernel.org>
-To: "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
-Date: Thu, 26 Jan 2023 21:15:03 +0200
-Message-Id: <2919eb55e2e9b92265a3ba600afc8137a901ae5f.1674760340.git.leon@kernel.org>
-X-Mailer: git-send-email 2.39.1
+ with ESMTP id nthb4_PKyVWX for <bridge@lists.linux-foundation.org>;
+ Thu, 26 Jan 2023 19:18:46 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 814F960A64
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
+ [IPv6:2607:f8b0:4864:20::633])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 814F960A64
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 19:18:46 +0000 (UTC)
+Received: by mail-pl1-x633.google.com with SMTP id jm10so2716724plb.13
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Jan 2023 11:18:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20210112.gappssmtp.com; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RDU0jrNVQ4Bx2dNkHpgBN29LnYUs6yNV5udmthSaank=;
+ b=q4mwlr5nEI0etnmuPLJgbcMHZDwf7lSfWfc4jHHdBlXQtZbEzqntm+VHMUTQGJV6GP
+ XqwGbWmkklfDDdhT8UOqQ3TrtGJtDfcZ+p621saVuAb7rsCrSQFsz9Hm5Y942IjAnAM0
+ YCd38GBd/cGV3FOEwfj1zmwBfv69ImR55tVKV85e5Bhpwf883U1rEu0LwxPFAKfLQ6ba
+ If46yJUg/nJcUgZMrQK8AAw4ytMm9yvVDpuZT/pr05NLd0EGRH7qnuve9tG9BPcT1tf2
+ QMf5sjoaeMHaH4AMpQN2V3dspAbrdHD0d34sINR1FoCqIKZgXiion7E7e1C4moM/p5Nk
+ Kxgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=RDU0jrNVQ4Bx2dNkHpgBN29LnYUs6yNV5udmthSaank=;
+ b=o2wTbRBlRPc9o4L/AGGUyRwwg9/DFg+W9UfVkpG1U621aKNtkSBCj5jVqqjuoeMU4z
+ N6AbmibtWjLXblcWtNeikyz0s9AW4q4gUNfxHUnuEgg0NLNsJKV2OKwIQP7yEcE8HkwU
+ 3nFH0DA9UEZb0MYWVndbH6i+13Jx5lyyMD4hKc22LrTvZnMStpbI5/sZKcwlLBdhUT2s
+ PcVPr0uyZ4fdZE5LWP9LphYhryWVm6SrHfDiuEqnE9tJK7WG0XnEkm2X0Hx3VXcX5Vq6
+ lJxX3AVfPBgzoQwErydneBcQ0ga8KBQ2gDVQZHk9zOHlfmKgG9eJn1EKGfIpW1PQZ7v2
+ DT7Q==
+X-Gm-Message-State: AO0yUKUis7kTa0UEjRMjavnN8ycRnoGsI8TNNwIuIlqUWB2qFwEB+N1N
+ K0QVF8OwB73ZHfSJNytLqALL4A==
+X-Google-Smtp-Source: AK7set9B8Q1J1wSLeoK466yZOda2aOiXBB8Z7V29/zYEoH/NJEEZWHwJwHamC+M68ZIeAVqqWh2PWQ==
+X-Received: by 2002:a17:902:f684:b0:196:3232:f495 with SMTP id
+ l4-20020a170902f68400b001963232f495mr7145375plg.16.1674760725519; 
+ Thu, 26 Jan 2023 11:18:45 -0800 (PST)
+Received: from hermes.local (204-195-120-218.wavecable.com. [204.195.120.218])
+ by smtp.gmail.com with ESMTPSA id
+ je5-20020a170903264500b001896522a23bsm1345894plb.39.2023.01.26.11.18.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Jan 2023 11:18:45 -0800 (PST)
+Date: Thu, 26 Jan 2023 11:18:43 -0800
+To: Petr Machata <petrm@nvidia.com>
+Message-ID: <20230126111843.2544f7d1@hermes.local>
+In-Reply-To: <8886e11bde5874305a26c0b7dc397923a1d5a794.1674752051.git.petrm@nvidia.com>
+References: <cover.1674752051.git.petrm@nvidia.com>
+ <8886e11bde5874305a26c0b7dc397923a1d5a794.1674752051.git.petrm@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Eric Dumazet <edumazet@google.com>,
- Vladimir Oltean <olteanv@gmail.com>, Roopa Prabhu <roopa@nvidia.com>,
- Paolo Abeni <pabeni@redhat.com>, Leon Romanovsky <leonro@nvidia.com>
-Subject: [Bridge] [PATCH net-next] netlink: provide an ability to set
-	default extack message
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Ido Schimmel <idosch@nvidia.com>,
+ Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next 01/16] net: bridge: Set
+ strict_start_type at two policies
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -83,109 +105,16 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Stephen Hemminger via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Stephen Hemminger <stephen@networkplumber.org>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+On Thu, 26 Jan 2023 18:01:09 +0100
+Petr Machata <petrm@nvidia.com> wrote:
 
-In netdev common pattern, xxtack pointer is forwarded to the drivers
-to be filled with error message. However, the caller can easily
-overwrite the filled message.
+>  static const struct nla_policy br_port_policy[IFLA_BRPORT_MAX + 1] = {
+> +	[IFLA_BRPORT_UNSPEC]	= { .strict_start_type =
+> +					IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT + 1 },
 
-Instead of adding multiple "if (!extack->_msg)" checks before any
-NL_SET_ERR_MSG() call, which appears after call to the driver, let's
-add this check to common code.
-
-[1] https://lore.kernel.org/all/Y9Irgrgf3uxOjwUm@unreal
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
----
- include/linux/netlink.h   |  4 ++--
- net/bridge/br_switchdev.c | 10 ++++------
- net/dsa/master.c          |  4 +---
- net/dsa/slave.c           |  5 ++---
- 4 files changed, 9 insertions(+), 14 deletions(-)
-
-diff --git a/include/linux/netlink.h b/include/linux/netlink.h
-index 38f6334f408c..87d2900cb448 100644
---- a/include/linux/netlink.h
-+++ b/include/linux/netlink.h
-@@ -101,7 +101,7 @@ struct netlink_ext_ack {
- 							\
- 	do_trace_netlink_extack(__msg);			\
- 							\
--	if (__extack)					\
-+	if (__extack && !__extack->_msg)		\
- 		__extack->_msg = __msg;			\
- } while (0)
- 
-@@ -111,7 +111,7 @@ struct netlink_ext_ack {
- #define NL_SET_ERR_MSG_FMT(extack, fmt, args...) do {			       \
- 	struct netlink_ext_ack *__extack = (extack);			       \
- 									       \
--	if (!__extack)							       \
-+	if (!__extack || __extack->_msg)				       \
- 		break;							       \
- 	if (snprintf(__extack->_msg_buf, NETLINK_MAX_FMTMSG_LEN,	       \
- 		     "%s" fmt "%s", "", ##args, "") >=			       \
-diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-index 7eb6fd5bb917..9f7ff63ef853 100644
---- a/net/bridge/br_switchdev.c
-+++ b/net/bridge/br_switchdev.c
-@@ -104,9 +104,8 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 		return 0;
- 
- 	if (err) {
--		if (extack && !extack->_msg)
--			NL_SET_ERR_MSG_MOD(extack,
--					   "bridge flag offload is not supported");
-+		NL_SET_ERR_MSG_MOD(extack,
-+				   "bridge flag offload is not supported");
- 		return -EOPNOTSUPP;
- 	}
- 
-@@ -115,9 +114,8 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
- 
- 	err = switchdev_port_attr_set(p->dev, &attr, extack);
- 	if (err) {
--		if (extack && !extack->_msg)
--			NL_SET_ERR_MSG_MOD(extack,
--					   "error setting offload flag on port");
-+		NL_SET_ERR_MSG_MOD(extack,
-+				   "error setting offload flag on port");
- 		return err;
- 	}
- 
-diff --git a/net/dsa/master.c b/net/dsa/master.c
-index 26d90140d271..bcf39c524664 100644
---- a/net/dsa/master.c
-+++ b/net/dsa/master.c
-@@ -464,9 +464,7 @@ int dsa_master_lag_setup(struct net_device *lag_dev, struct dsa_port *cpu_dp,
- 
- 	err = dsa_port_lag_join(cpu_dp, lag_dev, uinfo, extack);
- 	if (err) {
--		if (extack && !extack->_msg)
--			NL_SET_ERR_MSG_MOD(extack,
--					   "CPU port failed to join LAG");
-+		NL_SET_ERR_MSG_MOD(extack, "CPU port failed to join LAG");
- 		goto out_master_teardown;
- 	}
- 
-diff --git a/net/dsa/slave.c b/net/dsa/slave.c
-index 6014ac3aad34..c5527aa2c403 100644
---- a/net/dsa/slave.c
-+++ b/net/dsa/slave.c
-@@ -2692,9 +2692,8 @@ static int dsa_slave_changeupper(struct net_device *dev,
- 			if (!err)
- 				dsa_bridge_mtu_normalization(dp);
- 			if (err == -EOPNOTSUPP) {
--				if (extack && !extack->_msg)
--					NL_SET_ERR_MSG_MOD(extack,
--							   "Offloading not supported");
-+				NL_SET_ERR_MSG_MOD(extack,
-+						   "Offloading not supported");
- 				err = 0;
- 			}
- 			err = notifier_from_errno(err);
--- 
-2.39.1
-
+Is the original IFLA_BRPORT a typo? ETH not EHT
