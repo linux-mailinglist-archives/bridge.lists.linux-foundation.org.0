@@ -1,100 +1,137 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7BC67DFF9
-	for <lists.bridge@lfdr.de>; Fri, 27 Jan 2023 10:22:53 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80AC67E88A
+	for <lists.bridge@lfdr.de>; Fri, 27 Jan 2023 15:44:44 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id A16616122E;
-	Fri, 27 Jan 2023 09:22:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A16616122E
+	by smtp3.osuosl.org (Postfix) with ESMTP id 255AC612AD;
+	Fri, 27 Jan 2023 14:44:43 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 255AC612AD
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=XOWnbPeH
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=Ujivl0FQ
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TwovNI5fARuk; Fri, 27 Jan 2023 09:22:51 +0000 (UTC)
+	with ESMTP id t9vdWnugWMhh; Fri, 27 Jan 2023 14:44:42 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 476F260BF7;
-	Fri, 27 Jan 2023 09:22:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 476F260BF7
+	by smtp3.osuosl.org (Postfix) with ESMTPS id AD90B612B2;
+	Fri, 27 Jan 2023 14:44:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AD90B612B2
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E0840C007C;
-	Fri, 27 Jan 2023 09:22:49 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 4369AC007C;
+	Fri, 27 Jan 2023 14:44:41 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A7A80C002D
- for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 09:22:48 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A8013C002D
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 14:44:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 6DF8341CB5
- for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 09:22:48 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6DF8341CB5
-Authentication-Results: smtp4.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=XOWnbPeH
+ by smtp2.osuosl.org (Postfix) with ESMTP id 4746D417CD
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 14:44:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4746D417CD
+Authentication-Results: smtp2.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=Ujivl0FQ
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JMC4t05V9-wi for <bridge@lists.linux-foundation.org>;
- Fri, 27 Jan 2023 09:22:47 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id y9v0KuZ606UE for <bridge@lists.linux-foundation.org>;
+ Fri, 27 Jan 2023 14:44:38 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7707341CB3
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 7707341CB3
- for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 09:22:47 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id gs13so1284120ejc.0
- for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 01:22:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=7q//eWD7kpKVjwkvP9sSwP1duHlI8w+YBBfIBpjcKsU=;
- b=XOWnbPeHK869eG5NgRyxRRIGBWXGJksAbHxR5YyTn4BIx6+j+VvSQiBjgC3IN9kLM6
- AIo37Y0Rc444kkJFPhPJ6euTVgyNThZCA2oJb2LzDS/1SVriuTTi8EvYecyC8eIdiBEA
- la8iyZFBSWntYG3t4RdeHYi2TDDpBZODccGCEEg9KztzkAhrwpRR4+oZ8vRrEH6hfG1I
- +R2LKV3N6AglJsS27FLGOe6VHMW4SFpYZRrG1BWdBlBxB0tdFUCbmlrjFalVdDQAPvUE
- UZjgytkW2zekKT3kN+TYRvzQJK4PsaCiyRzKlKREKYukuda1NuaZ59TM9s4yuM4laT8M
- VHYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=7q//eWD7kpKVjwkvP9sSwP1duHlI8w+YBBfIBpjcKsU=;
- b=yIkxWXPnxosO7wa2oENXTIKADR6mlV+oCC4c8ruOB/00DlzPU6UfHlGcGJeUnxRcYu
- dz5Y5Rg6ZS5VinkTv4U06JYvCCUWdKu56ZzZeuRBh5ba71ySA84B00CGnJ754eEoOxoQ
- LewCuTrfNY1AOwHaJZuufiQFhcBCwMF62HwydFAfVEODOaw/foBMHb3r4oPFkDGj/rb9
- K8p5Ws8PsWOBwJXu0Nj/N0ZDd1xKe7e17ucRhFFUDF6llabBLRh5tIbDuGQgqhhZwe9P
- Smg4rvYYzRd2zfmSjPkgaTXzrtiyUFO66IJllUG6uRe7ttTp6HZjRCYO+cBEFHL6rKPY
- 7J2Q==
-X-Gm-Message-State: AFqh2kogaQSQPco0Dvt1bj1ZtxjP87+b+WorvGns8Y5duLaBn6ef6nEO
- 2hBXHkVQmNNeWVw02fSP174=
-X-Google-Smtp-Source: AMrXdXsI0jN67mGYaa42H82OuSgQ4JsGdf/ChsuoiIeoIX5rV8ZZhPMBjBwTpMW0C2YxZ8KtVkdWQw==
-X-Received: by 2002:a17:907:8e86:b0:84d:43c3:a897 with SMTP id
- tx6-20020a1709078e8600b0084d43c3a897mr57904255ejc.2.1674811365461; 
- Fri, 27 Jan 2023 01:22:45 -0800 (PST)
-Received: from skbuf ([188.27.185.85]) by smtp.gmail.com with ESMTPSA id
- x26-20020a1709060a5a00b00877f2b842fasm1898006ejf.67.2023.01.27.01.22.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 27 Jan 2023 01:22:45 -0800 (PST)
-Date: Fri, 27 Jan 2023 11:22:42 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Leon Romanovsky <leon@kernel.org>
-Message-ID: <20230127092242.ajwlo3tivxsjsul7@skbuf>
-References: <2919eb55e2e9b92265a3ba600afc8137a901ae5f.1674760340.git.leon@kernel.org>
- <20230126223213.riq6i2gdztwuinwi@skbuf> <Y9NfkgRbWAbrxQ1G@unreal>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1A1D4400D0
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2072.outbound.protection.outlook.com [40.107.95.72])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 1A1D4400D0
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Jan 2023 14:44:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DrnnBSBMZFm5ZTQxoH3l1TNQFV7hXCDi4lm6q16DiOFgM/ewBuK7AqYiwyidttV28qDlNAJNPkXS7wOciawKL2lZjAdDakYY+dv/ih6kcz0WsmRxl0qU8cda2+NXjzKpC7ncmRYOIU2wu6V+kv5705OkBVgoDCwFwUzLT8Ext8F952foH4hq0bI2AbPPq2U1YQ51Dc3A8i2qo09tBv3waNMtOt4atv4lwibZp1PUFN8ef0o4qvZ4lleLmy/kd5NP2m4+isTAVo35QZPlvzMS+k5qf420pkJAj5Oa7/1L6t1Q/9e8WHw6yqCV8n0jNLITXBdHpfITiXSa+pSuBxTyLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yIq/f+MlrXemkUn2KwP3Vd5EB4Af8Ean9vt4f2VAZjA=;
+ b=mk8DSXsb4tGnE8YZPwUhvkGFkUBtV/IzE+VwJ3bvBUBJlUZdyTINI3weddBHQHvloh0O7O6EWUkZVLuMaGVkkBGBbY5LqjQmS3bcqCu5ZDb6vZPhab+K6/dRilLDyRt4oBeicPji0WGCbwBED3q4KazmKHhaehHnIsDt2yxOPL529O+WHvwQAH7s3ogrsqdR75MnUkvD/9dX33XxVX5s1/nn3VsCtvYVyWAT++YCZMGQmAmNqw5PS8txdSFLKv04cnh8evHRweFjmHQjPjOPo83U6rmoyH3+NbmSaHNdvjSFsTE5PSM8X+0wmCu/MKaFniwW2FygdoVhlEabdsyGCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yIq/f+MlrXemkUn2KwP3Vd5EB4Af8Ean9vt4f2VAZjA=;
+ b=Ujivl0FQ02eWUptu2R8Pfho+ZCFpg2y/MCcseDN0hB8GWXcsB/iW9GwS6CmNP8BgOer7seRrzjoyPRvuNKmmFguauUP/BbJCKBaylztVYep9R/6Gy3HB+NnFYmY+1fdIDAh7og51XO0R4oaTD49rYoRXb351P6qfyXsRlexpYr6TBU7eQI1t1RWQ8JriOFemDUmx+yrq50d27M/09c+Hzupojeukh8GXGUeLHTH1Tj+a7omv9JKm1M3bkVbmDqcgcxZlh5WDljJE4vpGYOeHXx/CgWiYeCugb6nNj1cpILIUZlbTTLybKLvJ5jw6MgFvLSvgkc6RDVLKjfQojyrgSA==
+Received: from BL0PR02CA0087.namprd02.prod.outlook.com (2603:10b6:208:51::28)
+ by SA0PR12MB4400.namprd12.prod.outlook.com (2603:10b6:806:95::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.23; Fri, 27 Jan
+ 2023 14:44:35 +0000
+Received: from BL02EPF000108EA.namprd05.prod.outlook.com
+ (2603:10b6:208:51:cafe::18) by BL0PR02CA0087.outlook.office365.com
+ (2603:10b6:208:51::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.25 via Frontend
+ Transport; Fri, 27 Jan 2023 14:44:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BL02EPF000108EA.mail.protection.outlook.com (10.167.241.203) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6043.13 via Frontend Transport; Fri, 27 Jan 2023 14:44:35 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
+ 2023 06:44:21 -0800
+Received: from yaviefel (10.126.230.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 27 Jan
+ 2023 06:44:18 -0800
+References: <cover.1674752051.git.petrm@nvidia.com>
+ <ed2e2e305dd49423745b62c0152a0b85bc84a767.1674752051.git.petrm@nvidia.com>
+ <20230126125344.1b7b34e2@gandalf.local.home>
+User-agent: mu4e 1.6.6; emacs 28.1
+To: Steven Rostedt <rostedt@goodmis.org>
+Date: Fri, 27 Jan 2023 15:29:19 +0100
+In-Reply-To: <20230126125344.1b7b34e2@gandalf.local.home>
+Message-ID: <87h6wc3um7.fsf@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y9NfkgRbWAbrxQ1G@unreal>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Eric Dumazet <edumazet@google.com>,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, "David S . Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next] netlink: provide an ability to set
- default extack message
+Content-Type: text/plain
+X-Originating-IP: [10.126.230.37]
+X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF000108EA:EE_|SA0PR12MB4400:EE_
+X-MS-Office365-Filtering-Correlation-Id: 872ff41b-fb92-4125-1378-08db0075029d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cZsZzyvAjV00LF+bJK7k5kr8FgS8P5fTDIOGAJKpBM4Nvy2yYLL9B97b+zuAzs5GECj4j+/mX7CuBX6E1Kz5r0B50g8gAJTIAAk2YbaTbiiIzOoabRG9h4IBZ0oxJRCbV/xvxAbfG5BAcJe2T2P3pmbL1RDl75AjL8UOcJgFXhaBRkZ8BDb3haLoPB+YM/9K5Lrfdn/BTDUkw2kJRIrNr8x2eEHyxJy6QNZB3FfytPd2AdITgiKUAZU5+6JUwNYV3SSWoSQI0fmqRqCCIZncjvLWkdHQM1BsgyZpHc0jkjyULM/oaLpZNLSwiHuhEObmFRpNstGFmr74xeiBv31z2ubgNN6+J2QYpFD3CNbcScKFY9l9tp3/MK3KEbz9fpyDDfjtZMy2TxCrsTElsHhPt8oV+e8ZdLZS1ys5UKCj5XDQTU4mIFUI87/W7GNhQRnLjkExospz/qF/VbbGcD3DC9Es+IOZsP5oIyn2EezESh6xkm777wtwPj24xsJEoq1ncv0D7PTGAyQuea94UpUc/GK+e17acwxSKLTBFBFrlER8WnEWz0iXkb8VEBmS1SGzwMS8MaWjoJEa8OUA+GY3HtsxAjdc8XSKAUEsk5yAfzSp/wCMht6Urrk46mvO/lwuG9yNpVBtBLRiE7KP17xaUNSRXhr0W5+gEwcJgVfdRQbH5GVUO3XajmlOQS9iJz0r8Ra5j0vrQQfmDKC1p+DOSQ==
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(136003)(346002)(396003)(376002)(451199018)(46966006)(40470700004)(36840700001)(4326008)(8676002)(41300700001)(6916009)(83380400001)(70206006)(70586007)(54906003)(8936002)(316002)(40460700003)(26005)(36756003)(186003)(16526019)(356005)(47076005)(426003)(36860700001)(40480700001)(2906002)(5660300002)(336012)(7636003)(82740400003)(86362001)(478600001)(82310400005)(2616005);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2023 14:44:35.5891 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 872ff41b-fb92-4125-1378-08db0075029d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000108EA.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4400
+Cc: Petr Machata <petrm@nvidia.com>, netdev@vger.kernel.org, Nikolay
+ Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ Ido Schimmel <idosch@nvidia.com>, Eric Dumazet <edumazet@google.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>,
+ linux-trace-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH net-next 06/16] net: bridge: Add a tracepoint
+ for MDB overflows
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,49 +143,114 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Petr Machata via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Petr Machata <petrm@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Jan 27, 2023 at 07:22:26AM +0200, Leon Romanovsky wrote:
-> It means changing ALL error unwind places where extack was forwarded
-> before to subfunctions.
-> 
-> Places like this:
->  ret = func(..., extack)
->  if (ret) {
->    NL_SET_ERR_MSG_MOD...
->    return ret;
->  }
-> 
-> will need to be changed to something like this:
->  ret = func(..., extack)
->  if (ret) {
->    NL_SET_ERR_MSG_WEAK...
->    return ret;
->  }
 
-Yeah, but my point is that you inspect the code that you plan to convert,
-rather than converting it in bulk and inspecting later...
+Steven Rostedt <rostedt@goodmis.org> writes:
 
-> Can we please discuss current code and not over-engineered case which
-> doesn't exist in the reality?
-> 
-> Even for your case, I would like to see NL_SET_ERR_MSG_FORCE() to
-> explicitly say that message will be overwritten.
+>> diff --git a/include/trace/events/bridge.h b/include/trace/events/bridge.h
+>> index 6b200059c2c5..00d5e2dcb3ad 100644
+>> --- a/include/trace/events/bridge.h
+>> +++ b/include/trace/events/bridge.h
+>> @@ -122,6 +122,73 @@ TRACE_EVENT(br_fdb_update,
+>>  		  __entry->flags)
+>>  );
+>>  
+>> +TRACE_EVENT(br_mdb_full,
+>> +
+>> +	TP_PROTO(const struct net_device *dev,
+>> +		 const struct br_ip *group),
+>> +
+>> +	TP_ARGS(dev, group),
+>> +
+>> +	TP_STRUCT__entry(
+>> +		__string(dev, dev->name)
+>> +		__field(int, af)
+>> +		__field(u16, vid)
+>> +		__array(__u8, src4, 4)
+>> +		__array(__u8, src6, 16)
+>> +		__array(__u8, grp4, 4)
+>> +		__array(__u8, grp6, 16)
+>> +		__array(__u8, grpmac, ETH_ALEN) /* For af == 0. */
+>
+> Instead of wasting ring buffer space, why not just have:
+>
+> 		__array(__u8, src, 16)
+> 		__array(__u8, grp, 16)
+>
+>> +	),
+>> +
+>> +	TP_fast_assign(
+>> +		__assign_str(dev, dev->name);
+>> +		__entry->vid = group->vid;
+>> +
+>> +		if (!group->proto) {
+>> +			__entry->af = 0;
+>> +
+>> +			memset(__entry->src4, 0, sizeof(__entry->src4));
+>> +			memset(__entry->src6, 0, sizeof(__entry->src6));
+>> +			memset(__entry->grp4, 0, sizeof(__entry->grp4));
+>> +			memset(__entry->grp6, 0, sizeof(__entry->grp6));
+>> +			memcpy(__entry->grpmac, group->dst.mac_addr, ETH_ALEN);
+>> +		} else if (group->proto == htons(ETH_P_IP)) {
+>> +			__be32 *p32;
+>> +
+>> +			__entry->af = AF_INET;
+>> +
+>> +			p32 = (__be32 *) __entry->src4;
+>> +			*p32 = group->src.ip4;
+>> +
+>> +			p32 = (__be32 *) __entry->grp4;
+>> +			*p32 = group->dst.ip4;
+>
+> 			struct in6_addr *in6;
+>
+> 			in6 = (struct in6_addr *)__entry->src;
+> 			ipv6_addr_set_v4mapped(group->src.ip4, in6);
+>
+> 			in6 = (struct in6_addr *)__entry->grp;
+> 			ipv6_addr_set_v4mapped(group->grp.ip4, in6);
+>
+>> +
+>> +			memset(__entry->src6, 0, sizeof(__entry->src6));
+>> +			memset(__entry->grp6, 0, sizeof(__entry->grp6));
+>> +			memset(__entry->grpmac, 0, ETH_ALEN);
+>> +#if IS_ENABLED(CONFIG_IPV6)
+>> +		} else {
+>> +			struct in6_addr *in6;
+>> +
+>> +			__entry->af = AF_INET6;
+>> +
+>> +			in6 = (struct in6_addr *)__entry->src6;
+>> +			*in6 = group->src.ip6;
+>> +
+>> +			in6 = (struct in6_addr *)__entry->grp6;
+>> +			*in6 = group->dst.ip6;
+>> +
+>> +			memset(__entry->src4, 0, sizeof(__entry->src4));
+>> +			memset(__entry->grp4, 0, sizeof(__entry->grp4));
+>> +			memset(__entry->grpmac, 0, ETH_ALEN);
+>> +#endif
+>> +		}
+>> +	),
+>> +
+>> +	TP_printk("dev %s af %u src %pI4/%pI6c grp %pI4/%pI6c/%pM vid %u",
+>> +		  __get_str(dev), __entry->af, __entry->src4, __entry->src6,
+>> +		  __entry->grp4, __entry->grp6, __entry->grpmac, __entry->vid)
+>
+> And just have: 
+>
+> 	TP_printk("dev %s af %u src %pI6c grp %pI6c/%pM vid %u",
+> 		  __get_str(dev), __entry->af, __entry->src, __entry->grp,
+> 		  __entry->grpmac, __entry->vid)
+>
+> As the %pI6c should detect that it's a ipv4 address and show that.
 
-__nla_validate_parse()
+So the reason I split the fields was that %pI4, %pI6c, %pM do not seem
+to work with buffers of wrong size.
 
-	if (unlikely(rem > 0)) {
-		pr_warn_ratelimited("netlink: %d bytes leftover after parsing attributes in process `%s'.\n",
-				    rem, current->comm);
-		NL_SET_ERR_MSG(extack, "bytes leftover after parsing attributes");
-		if (validate & NL_VALIDATE_TRAILING)
-			return -EINVAL;
-	}
-
-	return 0;
-
-called by nla_validate_deprecated() with validate == NL_VALIDATE_LIBERAL
-
-followed by other extack setting in tunnel_key_copy_opts(), which will
-not overwrite the initial warning message.
+But I can consolidate 4/6 by changing the address to IPv6 like you
+propose. I'll do this for v2. Thanks!
