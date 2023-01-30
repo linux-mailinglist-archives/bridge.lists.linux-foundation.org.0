@@ -1,94 +1,70 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8046817BD
-	for <lists.bridge@lfdr.de>; Mon, 30 Jan 2023 18:36:34 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2C3D681F91
+	for <lists.bridge@lfdr.de>; Tue, 31 Jan 2023 00:23:36 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 887F061001;
-	Mon, 30 Jan 2023 17:36:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 887F061001
+	by smtp3.osuosl.org (Postfix) with ESMTP id F20F3701ED;
+	Mon, 30 Jan 2023 23:23:33 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F20F3701ED
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9NdhryreVrjo; Mon, 30 Jan 2023 17:36:30 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 070FB60F9E;
-	Mon, 30 Jan 2023 17:36:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 070FB60F9E
+	with ESMTP id AJkAFfABxZIb; Mon, 30 Jan 2023 23:23:32 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 5C9E3709E3;
+	Mon, 30 Jan 2023 23:23:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5C9E3709E3
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 50863C0081;
-	Mon, 30 Jan 2023 17:36:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C8E28C007C;
+	Mon, 30 Jan 2023 23:23:27 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B034DC0077
- for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 17:36:26 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D8248C002B
+ for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 23:23:26 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 7485C60DDF
- for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 17:36:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7485C60DDF
+ by smtp4.osuosl.org (Postfix) with ESMTP id A4A0942D18
+ for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 23:23:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A4A0942D18
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cU08LyKxVn_b for <bridge@lists.linux-foundation.org>;
- Mon, 30 Jan 2023 17:36:25 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5C39160D76
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 5C39160D76
- for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 17:36:25 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id B5236188381C;
- Mon, 30 Jan 2023 17:36:23 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id AFAAE250007B;
- Mon, 30 Jan 2023 17:36:23 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id A4BF99B403E6; Mon, 30 Jan 2023 17:36:23 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
-Received: from fujitsu.vestervang (2-104-116-184-cable.dk.customer.tdc.net
- [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 0BCF99B403E5;
- Mon, 30 Jan 2023 17:36:23 +0000 (UTC)
-From: "Hans J. Schultz" <netdev@kapio-technology.com>
-To: davem@davemloft.net,
-	kuba@kernel.org
-Date: Mon, 30 Jan 2023 18:34:29 +0100
-Message-Id: <20230130173429.3577450-6-netdev@kapio-technology.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230130173429.3577450-1-netdev@kapio-technology.com>
-References: <20230130173429.3577450-1-netdev@kapio-technology.com>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id nW-0mUQ3YHpH for <bridge@lists.linux-foundation.org>;
+ Mon, 30 Jan 2023 23:23:25 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8386142D9B
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 8386142D9B
+ for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 23:23:25 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 52248CE1779;
+ Mon, 30 Jan 2023 23:23:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51DD1C433EF;
+ Mon, 30 Jan 2023 23:23:18 +0000 (UTC)
+Date: Mon, 30 Jan 2023 18:23:16 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Petr Machata <petrm@nvidia.com>
+Message-ID: <20230130182316.53d787ac@gandalf.local.home>
+In-Reply-To: <87ilgof20x.fsf@nvidia.com>
+References: <cover.1674752051.git.petrm@nvidia.com>
+ <ed2e2e305dd49423745b62c0152a0b85bc84a767.1674752051.git.petrm@nvidia.com>
+ <20230126125344.1b7b34e2@gandalf.local.home>
+ <87ilgof20x.fsf@nvidia.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Organization: Westermo Network Technologies AB
-Content-Transfer-Encoding: 8bit
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- "Hans J. Schultz" <netdev@kapio-technology.com>,
- Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
- Paolo Abeni <pabeni@redhat.com>,
- =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
- open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>,
- "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
- <linux-renesas-soc@vger.kernel.org>, Vladimir Oltean <olteanv@gmail.com>
-Subject: [Bridge] [PATCH net-next 5/5] net: dsa: mv88e6xxx: implementation
-	of dynamic ATU entries
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Ido Schimmel <idosch@nvidia.com>,
+ Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>, linux-trace-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH net-next 06/16] net: bridge: Add a tracepoint
+ for MDB overflows
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -103,237 +79,40 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-For 802.1X or MAB security authed hosts we want to have these hosts authed
-by adding dynamic FDB entries, so that if an authed host goes silent for
-a time period it's FDB entry will be removed and it must reauth when
-wanting to communicate again.
-In the mv88e6xxx offloaded case, we can use the HoldAt1 feature, that
-gives an age out interrupt when the FDB entry is about to age out, so
-that userspace can be notified of the entry being deleted with the help
-of an SWITCHDEV_FDB_DEL_TO_BRIDGE event.
-When adding a dynamic entry the bridge must be informed that the driver
-takes care of the ageing be sending an SWITCHDEV_FDB_OFFLOADED event,
-telling the bridge that this added FDB entry will be handled by the
-driver.
-With this implementation, trace events for age out interrupts are also
-added.
+On Mon, 30 Jan 2023 16:50:32 +0100
+Petr Machata <petrm@nvidia.com> wrote:
 
-note: A special case arises with the age out interrupt, as the entry
-state/spid (source port id) value read from the registers will be zero.
-Thus we need to extract the source port from the port vector instead.
+> Steven Rostedt <rostedt@goodmis.org> writes:
+> 
+> > On Thu, 26 Jan 2023 18:01:14 +0100
+> > Petr Machata <petrm@nvidia.com> wrote:
+> >  
+> >> +	TP_printk("dev %s af %u src %pI4/%pI6c grp %pI4/%pI6c/%pM vid %u",
+> >> +		  __get_str(dev), __entry->af, __entry->src4, __entry->src6,
+> >> +		  __entry->grp4, __entry->grp6, __entry->grpmac, __entry->vid)  
+> >
+> > And just have: 
+> >
+> > 	TP_printk("dev %s af %u src %pI6c grp %pI6c/%pM vid %u",
+> > 		  __get_str(dev), __entry->af, __entry->src, __entry->grp,
+> > 		  __entry->grpmac, __entry->vid)
+> >
+> > As the %pI6c should detect that it's a ipv4 address and show that.  
+> 
+> This means the IP addresses will always be IPv6, even for an IPv4 MDB
+> entries. One can still figure out the true protocol from the address
+> family field, but it might not be obvious. Plus the IPv4-mapped IPv6
+> addresses are not really formatted as IPv4, though yeah, IPv4 notation
+> is embedded in that.
+> 
+> All the information is still there, but... scrambled? Not sure the
+> reduction in clarity is worth the 8 bytes that we save. The tracepoint
+> is unlikely to trigger often.
 
-Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
----
- drivers/net/dsa/mv88e6xxx/chip.c        | 18 ++++++--
- drivers/net/dsa/mv88e6xxx/global1_atu.c | 21 +++++++++
- drivers/net/dsa/mv88e6xxx/port.c        |  6 ++-
- drivers/net/dsa/mv88e6xxx/switchdev.c   | 61 +++++++++++++++++++++++++
- drivers/net/dsa/mv88e6xxx/switchdev.h   |  5 ++
- drivers/net/dsa/mv88e6xxx/trace.h       |  5 ++
- 6 files changed, 110 insertions(+), 6 deletions(-)
+8 bytes per event, and yes, ring buffer real estate is expensive.
 
-diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
-index 61d5dc4680e3..a0007d96b2a3 100644
---- a/drivers/net/dsa/mv88e6xxx/chip.c
-+++ b/drivers/net/dsa/mv88e6xxx/chip.c
-@@ -42,6 +42,7 @@
- #include "ptp.h"
- #include "serdes.h"
- #include "smi.h"
-+#include "switchdev.h"
- 
- static void assert_reg_lock(struct mv88e6xxx_chip *chip)
- {
-@@ -2726,18 +2727,25 @@ static int mv88e6xxx_port_fdb_add(struct dsa_switch *ds, int port,
- 				  const unsigned char *addr, u16 vid,
- 				  u16 fdb_flags, struct dsa_db db)
- {
-+	bool is_dynamic = !!(fdb_flags & DSA_FDB_FLAG_DYNAMIC);
- 	struct mv88e6xxx_chip *chip = ds->priv;
-+	u8 state;
- 	int err;
- 
--	/* Ignore entries with flags set */
--	if (fdb_flags)
--		return 0;
-+	state = MV88E6XXX_G1_ATU_DATA_STATE_UC_STATIC;
-+	if (is_dynamic)
-+		state = MV88E6XXX_G1_ATU_DATA_STATE_UC_AGE_7_NEWEST;
-+	else
-+		if (fdb_flags)
-+			return 0;
- 
- 	mv88e6xxx_reg_lock(chip);
--	err = mv88e6xxx_port_db_load_purge(chip, port, addr, vid,
--					   MV88E6XXX_G1_ATU_DATA_STATE_UC_STATIC);
-+	err = mv88e6xxx_port_db_load_purge(chip, port, addr, vid, state);
- 	mv88e6xxx_reg_unlock(chip);
- 
-+	if (is_dynamic && !err)
-+		mv88e6xxx_set_fdb_offloaded(ds, port, addr, vid);
-+
- 	return err;
- }
- 
-diff --git a/drivers/net/dsa/mv88e6xxx/global1_atu.c b/drivers/net/dsa/mv88e6xxx/global1_atu.c
-index ce3b3690c3c0..c95f8cffba41 100644
---- a/drivers/net/dsa/mv88e6xxx/global1_atu.c
-+++ b/drivers/net/dsa/mv88e6xxx/global1_atu.c
-@@ -432,6 +432,27 @@ static irqreturn_t mv88e6xxx_g1_atu_prob_irq_thread_fn(int irq, void *dev_id)
- 
- 	spid = entry.state;
- 
-+	if (val & MV88E6XXX_G1_ATU_OP_AGE_OUT_VIOLATION) {
-+		unsigned long port = 0;
-+		unsigned long portvec = entry.portvec;
-+
-+		port = find_first_bit(&portvec, MV88E6XXX_MAX_PVT_PORTS);
-+		if (port >= MV88E6XXX_MAX_PVT_PORTS) {
-+			dev_err(chip->dev,
-+				"ATU err: mac: %pM. Port not in portvec: %x\n",
-+				entry.mac, entry.portvec);
-+			goto out;
-+		}
-+
-+		spid = port;
-+		trace_mv88e6xxx_atu_age_out_violation(chip->dev, spid,
-+						      entry.portvec, entry.mac,
-+						      fid);
-+
-+		err = mv88e6xxx_handle_age_out_violation(chip, spid,
-+							 &entry, fid);
-+	}
-+
- 	if (val & MV88E6XXX_G1_ATU_OP_MEMBER_VIOLATION) {
- 		trace_mv88e6xxx_atu_member_violation(chip->dev, spid,
- 						     entry.portvec, entry.mac,
-diff --git a/drivers/net/dsa/mv88e6xxx/port.c b/drivers/net/dsa/mv88e6xxx/port.c
-index f79cf716c541..5225971b9a33 100644
---- a/drivers/net/dsa/mv88e6xxx/port.c
-+++ b/drivers/net/dsa/mv88e6xxx/port.c
-@@ -1255,7 +1255,11 @@ int mv88e6xxx_port_set_lock(struct mv88e6xxx_chip *chip, int port,
- 
- 	reg &= ~MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
- 	if (locked)
--		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT;
-+		reg |= MV88E6XXX_PORT_ASSOC_VECTOR_LOCKED_PORT |
-+			MV88E6XXX_PORT_ASSOC_VECTOR_REFRESH_LOCKED |
-+			MV88E6XXX_PORT_ASSOC_VECTOR_IGNORE_WRONG |
-+			MV88E6XXX_PORT_ASSOC_VECTOR_INT_AGE_OUT |
-+			MV88E6XXX_PORT_ASSOC_VECTOR_HOLD_AT_1;
- 
- 	return mv88e6xxx_port_write(chip, port, MV88E6XXX_PORT_ASSOC_VECTOR, reg);
- }
-diff --git a/drivers/net/dsa/mv88e6xxx/switchdev.c b/drivers/net/dsa/mv88e6xxx/switchdev.c
-index 4c346a884fb2..76f7f8cc1835 100644
---- a/drivers/net/dsa/mv88e6xxx/switchdev.c
-+++ b/drivers/net/dsa/mv88e6xxx/switchdev.c
-@@ -12,6 +12,25 @@
- #include "global1.h"
- #include "switchdev.h"
- 
-+void mv88e6xxx_set_fdb_offloaded(struct dsa_switch *ds, int port,
-+				 const unsigned char *addr, u16 vid)
-+{
-+	struct switchdev_notifier_fdb_info info = {
-+		.addr = addr,
-+		.vid = vid,
-+		.offloaded = true,
-+	};
-+	struct net_device *brport;
-+	struct dsa_port *dp;
-+
-+	dp = dsa_to_port(ds, port);
-+	brport = dsa_port_to_bridge_port(dp);
-+
-+	if (brport)
-+		call_switchdev_notifiers(SWITCHDEV_FDB_OFFLOADED,
-+					 brport, &info.info, NULL);
-+}
-+
- struct mv88e6xxx_fid_search_ctx {
- 	u16 fid_search;
- 	u16 vid_found;
-@@ -81,3 +100,45 @@ int mv88e6xxx_handle_miss_violation(struct mv88e6xxx_chip *chip, int port,
- 
- 	return err;
- }
-+
-+int mv88e6xxx_handle_age_out_violation(struct mv88e6xxx_chip *chip, int port,
-+				       struct mv88e6xxx_atu_entry *entry,
-+				       u16 fid)
-+{
-+	struct switchdev_notifier_fdb_info info = {
-+		.addr = entry->mac,
-+	};
-+	struct net_device *brport;
-+	struct dsa_port *dp;
-+	u16 vid;
-+	int err;
-+
-+	err = mv88e6xxx_find_vid(chip, fid, &vid);
-+	if (err)
-+		return err;
-+
-+	info.vid = vid;
-+	entry->portvec &= ~BIT(port);
-+	entry->state = MV88E6XXX_G1_ATU_DATA_STATE_UC_UNUSED;
-+	entry->trunk = false;
-+
-+	mv88e6xxx_reg_lock(chip);
-+	err = mv88e6xxx_g1_atu_loadpurge(chip, fid, entry);
-+	mv88e6xxx_reg_unlock(chip);
-+	if (err)
-+		return err;
-+
-+	dp = dsa_to_port(chip->ds, port);
-+
-+	rtnl_lock();
-+	brport = dsa_port_to_bridge_port(dp);
-+	if (!brport) {
-+		rtnl_unlock();
-+		return -ENODEV;
-+	}
-+	err = call_switchdev_notifiers(SWITCHDEV_FDB_DEL_TO_BRIDGE,
-+				       brport, &info.info, NULL);
-+	rtnl_unlock();
-+
-+	return err;
-+}
-diff --git a/drivers/net/dsa/mv88e6xxx/switchdev.h b/drivers/net/dsa/mv88e6xxx/switchdev.h
-index 62214f9d62b0..5af6ac6a490a 100644
---- a/drivers/net/dsa/mv88e6xxx/switchdev.h
-+++ b/drivers/net/dsa/mv88e6xxx/switchdev.h
-@@ -12,8 +12,13 @@
- 
- #include "chip.h"
- 
-+void mv88e6xxx_set_fdb_offloaded(struct dsa_switch *ds, int port,
-+				 const unsigned char *addr, u16 vid);
- int mv88e6xxx_handle_miss_violation(struct mv88e6xxx_chip *chip, int port,
- 				    struct mv88e6xxx_atu_entry *entry,
- 				    u16 fid);
-+int mv88e6xxx_handle_age_out_violation(struct mv88e6xxx_chip *chip, int port,
-+				       struct mv88e6xxx_atu_entry *entry,
-+				       u16 fid);
- 
- #endif /* _MV88E6XXX_SWITCHDEV_H_ */
-diff --git a/drivers/net/dsa/mv88e6xxx/trace.h b/drivers/net/dsa/mv88e6xxx/trace.h
-index f59ca04768e7..c6b32abf68a5 100644
---- a/drivers/net/dsa/mv88e6xxx/trace.h
-+++ b/drivers/net/dsa/mv88e6xxx/trace.h
-@@ -40,6 +40,11 @@ DECLARE_EVENT_CLASS(mv88e6xxx_atu_violation,
- 		  __entry->addr, __entry->fid)
- );
- 
-+DEFINE_EVENT(mv88e6xxx_atu_violation, mv88e6xxx_atu_age_out_violation,
-+	     TP_PROTO(const struct device *dev, int spid, u16 portvec,
-+		      const unsigned char *addr, u16 fid),
-+	     TP_ARGS(dev, spid, portvec, addr, fid));
-+
- DEFINE_EVENT(mv88e6xxx_atu_violation, mv88e6xxx_atu_member_violation,
- 	     TP_PROTO(const struct device *dev, int spid, u16 portvec,
- 		      const unsigned char *addr, u16 fid),
--- 
-2.34.1
+And if you use trace-cmd or perf, we can always add a plugin to
+libtraceevent that can format this much nicer based on the information that
+is there.
 
+-- Steve
