@@ -1,115 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DBB0682BC4
-	for <lists.bridge@lfdr.de>; Tue, 31 Jan 2023 12:47:19 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEFD3682DF5
+	for <lists.bridge@lfdr.de>; Tue, 31 Jan 2023 14:32:28 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id B0A2A40253;
-	Tue, 31 Jan 2023 11:47:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B0A2A40253
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=Fo7vvvq4
+	by smtp3.osuosl.org (Postfix) with ESMTP id 0767160B09;
+	Tue, 31 Jan 2023 13:32:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0767160B09
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=qIjOb2BO
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XbaP2eq0Bqtc; Tue, 31 Jan 2023 11:47:15 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 24CB440241;
-	Tue, 31 Jan 2023 11:47:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 24CB440241
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id RavbZ3teFrDJ; Tue, 31 Jan 2023 13:32:26 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 2E72B60B01;
+	Tue, 31 Jan 2023 13:32:25 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2E72B60B01
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id BD813C0078;
-	Tue, 31 Jan 2023 11:47:13 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CCB37C0078;
+	Tue, 31 Jan 2023 13:32:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D0227C002B
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 11:47:11 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 83997C002B
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 13:32:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id A9670404B6
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 11:47:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A9670404B6
-Authentication-Results: smtp4.osuosl.org;
- dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com
- header.a=rsa-sha256 header.s=mimecast20190719 header.b=Fo7vvvq4
+ by smtp1.osuosl.org (Postfix) with ESMTP id 496378151E
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 13:32:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 496378151E
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=qIjOb2BO
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4-RMnL4EZlPx for <bridge@lists.linux-foundation.org>;
- Tue, 31 Jan 2023 11:47:10 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id mLCud2kRVeWG for <bridge@lists.linux-foundation.org>;
+ Tue, 31 Jan 2023 13:32:22 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 42FB14040B
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 42FB14040B
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 11:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1675165629;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=viqpHWhPo/KOVRQlm6/EPChg5qrOk8FiTFF1q6ZWvFs=;
- b=Fo7vvvq4cpC5wiS0VrPOv8sP5i1DrF54KkajQJKGbiPyd7MGHZxrBN/rkdvrO790Ey1FKK
- mwlY3bIksYIXnhj8QH7g0cEzkDsqkUzhoTU4B7Hrzg74AasLOoa1FFAa8e5axeHP6hykjz
- re+5rbbz7s1tUBepjx9HEdSaW15mr88=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-441-0V7aQ6NiM4yi25_0bY8i4Q-1; Tue, 31 Jan 2023 06:47:08 -0500
-X-MC-Unique: 0V7aQ6NiM4yi25_0bY8i4Q-1
-Received: by mail-qk1-f199.google.com with SMTP id
- v7-20020a05620a0f0700b006faffce43b2so8851892qkl.9
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 03:47:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=viqpHWhPo/KOVRQlm6/EPChg5qrOk8FiTFF1q6ZWvFs=;
- b=l2JLbQDBk2YGjiLs8mye6R7f6OC1FcQ8BT9uYW41wmE9Mheu3OtS34jiMX8jFI7B96
- B4I6jfbFNE12vTVoQIeHNikdSjXrdorZJuxL7Bx2bmAQoZhlS3qCLWfGoTIsIAe0FHkx
- ovOm9/1O1BZ0c74C0d7/TbbUJ8cMzqCPezEGV+uEJYIxeo65KiMgAB/CPE02f7WXNOJr
- z2hmXPU8w6pxZ3tBX2mcjxfZNFVucI33B0xN4PMBHD3wDDUhuslP3NiLelDMsQYh2FsB
- YQkBKx0nv77v23Bu/FWCSdGW1PQPqoNXayacgaGyrkC2+JhSrhTjHXrr0T6ogeBhUAdR
- TxUw==
-X-Gm-Message-State: AO0yUKXsNRaNeRsiGLbWw1dLiaV3L2aHq/94zgFqMKFkMRRYvnQ80dpV
- FxaXiAslyh39/mLqVMucUoEu7ddV8bJ8A4Z/LU6TDNJfNHyMpEf6NMypxD81G93BAPxzvsXNhIL
- ibM3vYh/fyjH9w8ftpnQuE5wN0lleJRo=
-X-Received: by 2002:a05:622a:1b26:b0:3b9:b608:15ff with SMTP id
- bb38-20020a05622a1b2600b003b9b60815ffmr151749qtb.6.1675165627640; 
- Tue, 31 Jan 2023 03:47:07 -0800 (PST)
-X-Google-Smtp-Source: AK7set+OsvoMJaKEdiMO0IGIX2KVcCVugOQ5znDioMvtByElXVrSz1WJKmPFg6/YhgJO2QufL2FSxA==
-X-Received: by 2002:a05:622a:1b26:b0:3b9:b608:15ff with SMTP id
- bb38-20020a05622a1b2600b003b9b60815ffmr151733qtb.6.1675165627386; 
- Tue, 31 Jan 2023 03:47:07 -0800 (PST)
-Received: from gerbillo.redhat.com (146-241-113-28.dyn.eolo.it.
- [146.241.113.28]) by smtp.gmail.com with ESMTPSA id
- k8-20020ac80208000000b003b1546ee6absm9792989qtg.11.2023.01.31.03.47.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Jan 2023 03:47:06 -0800 (PST)
-Message-ID: <801a4a44f0fb6e37f79037eae9a3db50191cdb12.camel@redhat.com>
-From: Paolo Abeni <pabeni@redhat.com>
-To: Leon Romanovsky <leon@kernel.org>, "David S . Miller"
- <davem@davemloft.net>,  Jakub Kicinski <kuba@kernel.org>
-Date: Tue, 31 Jan 2023 12:47:03 +0100
-In-Reply-To: <c1a88f471a8aa6d780dde690e76b73ba15618b6d.1675010984.git.leon@kernel.org>
-References: <c1a88f471a8aa6d780dde690e76b73ba15618b6d.1675010984.git.leon@kernel.org>
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1201381518
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 1201381518
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 13:32:21 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 7DA63B81C96;
+ Tue, 31 Jan 2023 13:32:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 546D7C4339C;
+ Tue, 31 Jan 2023 13:32:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1675171938;
+ bh=JF+ktoQfs4f/a3cCO0S0At1kMyQdPLkrYW9hhNHrSsA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=qIjOb2BOwK3sYi7G40kUm8i/P3EphKFlxIMfdD9UO0uMibSgJIhIkatQe+oWhlm7h
+ r/8RWhnt2KXFtMZr3r0dSyfoemdkvDNJg/EwQePWTwkz1oHfW7jq206h44O3PJWDdq
+ p99kNHmkUl9P32JRNT8En0TJk3AEo8QPKIGwmlw3cpmTk7Ock756NIuMMMj4PbZeIG
+ lGcSooNzh+OFI1J9xErVaEulo6dWuH5o7lQ3ff7FXqlK5dQA17/3V8dL0kzfGUloFP
+ uIxGspp18yShVdLZcl5hvOu6Hrne7YS5/xwKMvTfY9Kf9utoBN11FU1V4zGOfUJCOu
+ ts4/U22+q9oQw==
+From: Leon Romanovsky <leon@kernel.org>
+To: "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
+Date: Tue, 31 Jan 2023 15:31:57 +0200
+Message-Id: <6993fac557a40a1973dfa0095107c3d03d40bec1.1675171790.git.leon@kernel.org>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Cc: Steffen Klassert <steffen.klassert@secunet.com>,
  Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Herbert Xu <herbert@gondor.apana.org.au>, netdev@vger.kernel.org,
  Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
- Vladimir Oltean <olteanv@gmail.com>
-Subject: Re: [Bridge] [PATCH net-next v2] netlink: provide an ability to set
- default extack message
+ Eric Dumazet <edumazet@google.com>, Vladimir Oltean <olteanv@gmail.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Simon Horman <simon.horman@corigine.com>,
+ Paolo Abeni <pabeni@redhat.com>, Leon Romanovsky <leonro@nvidia.com>
+Subject: [Bridge] [PATCH net-next v3] netlink: provide an ability to set
+	default extack message
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -124,25 +90,142 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello,
+From: Leon Romanovsky <leonro@nvidia.com>
 
-On Sun, 2023-01-29 at 18:51 +0200, Leon Romanovsky wrote:
-> In netdev common pattern, extack pointer is forwarded to the drivers
-> to be filled with error message. However, the caller can easily
-> overwrite the filled message.
->=20
-> Instead of adding multiple "if (!extack->_msg)" checks before any
-> NL_SET_ERR_MSG() call, which appears after call to the driver, let's
-> add new macro to common code.
->=20
-> [1] https://lore.kernel.org/all/Y9Irgrgf3uxOjwUm@unreal
-> Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+In netdev common pattern, extack pointer is forwarded to the drivers
+to be filled with error message. However, the caller can easily
+overwrite the filled message.
 
-I'm sorry for nit-picking, but checkpatch complains the author
-(leon@kernel.org) does not match the SoB tag. A v3 with a suitable
-From: tag should fix that.
+Instead of adding multiple "if (!extack->_msg)" checks before any
+NL_SET_ERR_MSG() call, which appears after call to the driver, let's
+add new macro to common code.
 
-Thanks,
+[1] https://lore.kernel.org/all/Y9Irgrgf3uxOjwUm@unreal
+Reviewed-by: Simon Horman <simon.horman@corigine.com>
+Reviewed-by: Nikolay Aleksandrov <razor@blackwall.org>
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+---
+Changelog:
+v3:
+ * Changed From field
+v2: https://lore.kernel.org/all/c1a88f471a8aa6d780dde690e76b73ba15618b6d.1675010984.git.leon@kernel.org
+ * Removed () brackets around msg to fix compilation error.
+v1: https://lore.kernel.org/all/d4843760219f20367c27472f084bd8aa729cf321.1674995155.git.leon@kernel.org
+ * Added special *_WEAK() macro instead of embedding same check in
+   NL_SET_ERR_MSG_MOD/NL_SET_ERR_MSG_FMT.
+ * Reuse same macro for XFRM code which triggered this patch.
+v0: https://lore.kernel.org/all/2919eb55e2e9b92265a3ba600afc8137a901ae5f.1674760340.git.leon@kernel.org
+---
+ include/linux/netlink.h   | 10 ++++++++++
+ net/bridge/br_switchdev.c | 10 ++++------
+ net/dsa/master.c          |  4 +---
+ net/dsa/slave.c           |  4 +---
+ net/xfrm/xfrm_device.c    |  5 ++++-
+ 5 files changed, 20 insertions(+), 13 deletions(-)
 
-Paolo
+diff --git a/include/linux/netlink.h b/include/linux/netlink.h
+index fa4d86da0ec7..c43ac7690eca 100644
+--- a/include/linux/netlink.h
++++ b/include/linux/netlink.h
+@@ -130,6 +130,16 @@ struct netlink_ext_ack {
+ #define NL_SET_ERR_MSG_FMT_MOD(extack, fmt, args...)	\
+ 	NL_SET_ERR_MSG_FMT((extack), KBUILD_MODNAME ": " fmt, ##args)
+ 
++#define NL_SET_ERR_MSG_WEAK(extack, msg) do {		\
++	if ((extack) && !(extack)->_msg)		\
++		NL_SET_ERR_MSG((extack), msg);		\
++} while (0)
++
++#define NL_SET_ERR_MSG_WEAK_MOD(extack, msg) do {	\
++	if ((extack) && !(extack)->_msg)		\
++		NL_SET_ERR_MSG_MOD((extack), msg);	\
++} while (0)
++
+ #define NL_SET_BAD_ATTR_POLICY(extack, attr, pol) do {	\
+ 	if ((extack)) {					\
+ 		(extack)->bad_attr = (attr);		\
+diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+index 7eb6fd5bb917..de18e9c1d7a7 100644
+--- a/net/bridge/br_switchdev.c
++++ b/net/bridge/br_switchdev.c
+@@ -104,9 +104,8 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
+ 		return 0;
+ 
+ 	if (err) {
+-		if (extack && !extack->_msg)
+-			NL_SET_ERR_MSG_MOD(extack,
+-					   "bridge flag offload is not supported");
++		NL_SET_ERR_MSG_WEAK_MOD(extack,
++					"bridge flag offload is not supported");
+ 		return -EOPNOTSUPP;
+ 	}
+ 
+@@ -115,9 +114,8 @@ int br_switchdev_set_port_flag(struct net_bridge_port *p,
+ 
+ 	err = switchdev_port_attr_set(p->dev, &attr, extack);
+ 	if (err) {
+-		if (extack && !extack->_msg)
+-			NL_SET_ERR_MSG_MOD(extack,
+-					   "error setting offload flag on port");
++		NL_SET_ERR_MSG_WEAK_MOD(extack,
++					"error setting offload flag on port");
+ 		return err;
+ 	}
+ 
+diff --git a/net/dsa/master.c b/net/dsa/master.c
+index 26d90140d271..1507b8cdb360 100644
+--- a/net/dsa/master.c
++++ b/net/dsa/master.c
+@@ -464,9 +464,7 @@ int dsa_master_lag_setup(struct net_device *lag_dev, struct dsa_port *cpu_dp,
+ 
+ 	err = dsa_port_lag_join(cpu_dp, lag_dev, uinfo, extack);
+ 	if (err) {
+-		if (extack && !extack->_msg)
+-			NL_SET_ERR_MSG_MOD(extack,
+-					   "CPU port failed to join LAG");
++		NL_SET_ERR_MSG_WEAK_MOD(extack, "CPU port failed to join LAG");
+ 		goto out_master_teardown;
+ 	}
+ 
+diff --git a/net/dsa/slave.c b/net/dsa/slave.c
+index 6014ac3aad34..26c458f50ac6 100644
+--- a/net/dsa/slave.c
++++ b/net/dsa/slave.c
+@@ -2692,9 +2692,7 @@ static int dsa_slave_changeupper(struct net_device *dev,
+ 			if (!err)
+ 				dsa_bridge_mtu_normalization(dp);
+ 			if (err == -EOPNOTSUPP) {
+-				if (extack && !extack->_msg)
+-					NL_SET_ERR_MSG_MOD(extack,
+-							   "Offloading not supported");
++				NL_SET_ERR_MSG_WEAK_MOD(extack, "Offloading not supported");
+ 				err = 0;
+ 			}
+ 			err = notifier_from_errno(err);
+diff --git a/net/xfrm/xfrm_device.c b/net/xfrm/xfrm_device.c
+index 562b9d951598..95f1436bf6a2 100644
+--- a/net/xfrm/xfrm_device.c
++++ b/net/xfrm/xfrm_device.c
+@@ -325,8 +325,10 @@ int xfrm_dev_state_add(struct net *net, struct xfrm_state *x,
+ 		 * authors to do not return -EOPNOTSUPP in packet offload mode.
+ 		 */
+ 		WARN_ON(err == -EOPNOTSUPP && is_packet_offload);
+-		if (err != -EOPNOTSUPP || is_packet_offload)
++		if (err != -EOPNOTSUPP || is_packet_offload) {
++			NL_SET_ERR_MSG_WEAK(extack, "Device failed to offload this state");
+ 			return err;
++		}
+ 	}
+ 
+ 	return 0;
+@@ -388,6 +390,7 @@ int xfrm_dev_policy_add(struct net *net, struct xfrm_policy *xp,
+ 		xdo->type = XFRM_DEV_OFFLOAD_UNSPECIFIED;
+ 		xdo->dir = 0;
+ 		netdev_put(dev, &xdo->dev_tracker);
++		NL_SET_ERR_MSG_WEAK(extack, "Device failed to offload this policy");
+ 		return err;
+ 	}
+ 
+-- 
+2.39.1
 
