@@ -1,70 +1,115 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C3D681F91
-	for <lists.bridge@lfdr.de>; Tue, 31 Jan 2023 00:23:36 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DBB0682BC4
+	for <lists.bridge@lfdr.de>; Tue, 31 Jan 2023 12:47:19 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id F20F3701ED;
-	Mon, 30 Jan 2023 23:23:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F20F3701ED
+	by smtp2.osuosl.org (Postfix) with ESMTP id B0A2A40253;
+	Tue, 31 Jan 2023 11:47:15 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B0A2A40253
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=Fo7vvvq4
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id AJkAFfABxZIb; Mon, 30 Jan 2023 23:23:32 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 5C9E3709E3;
-	Mon, 30 Jan 2023 23:23:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5C9E3709E3
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XbaP2eq0Bqtc; Tue, 31 Jan 2023 11:47:15 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 24CB440241;
+	Tue, 31 Jan 2023 11:47:14 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 24CB440241
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C8E28C007C;
-	Mon, 30 Jan 2023 23:23:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id BD813C0078;
+	Tue, 31 Jan 2023 11:47:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D8248C002B
- for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 23:23:26 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D0227C002B
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 11:47:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id A4A0942D18
- for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 23:23:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A4A0942D18
+ by smtp4.osuosl.org (Postfix) with ESMTP id A9670404B6
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 11:47:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A9670404B6
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com
+ header.a=rsa-sha256 header.s=mimecast20190719 header.b=Fo7vvvq4
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nW-0mUQ3YHpH for <bridge@lists.linux-foundation.org>;
- Mon, 30 Jan 2023 23:23:25 +0000 (UTC)
+ with ESMTP id 4-RMnL4EZlPx for <bridge@lists.linux-foundation.org>;
+ Tue, 31 Jan 2023 11:47:10 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8386142D9B
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 8386142D9B
- for <bridge@lists.linux-foundation.org>; Mon, 30 Jan 2023 23:23:25 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 52248CE1779;
- Mon, 30 Jan 2023 23:23:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51DD1C433EF;
- Mon, 30 Jan 2023 23:23:18 +0000 (UTC)
-Date: Mon, 30 Jan 2023 18:23:16 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Petr Machata <petrm@nvidia.com>
-Message-ID: <20230130182316.53d787ac@gandalf.local.home>
-In-Reply-To: <87ilgof20x.fsf@nvidia.com>
-References: <cover.1674752051.git.petrm@nvidia.com>
- <ed2e2e305dd49423745b62c0152a0b85bc84a767.1674752051.git.petrm@nvidia.com>
- <20230126125344.1b7b34e2@gandalf.local.home>
- <87ilgof20x.fsf@nvidia.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 42FB14040B
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 42FB14040B
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 11:47:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1675165629;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=viqpHWhPo/KOVRQlm6/EPChg5qrOk8FiTFF1q6ZWvFs=;
+ b=Fo7vvvq4cpC5wiS0VrPOv8sP5i1DrF54KkajQJKGbiPyd7MGHZxrBN/rkdvrO790Ey1FKK
+ mwlY3bIksYIXnhj8QH7g0cEzkDsqkUzhoTU4B7Hrzg74AasLOoa1FFAa8e5axeHP6hykjz
+ re+5rbbz7s1tUBepjx9HEdSaW15mr88=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-441-0V7aQ6NiM4yi25_0bY8i4Q-1; Tue, 31 Jan 2023 06:47:08 -0500
+X-MC-Unique: 0V7aQ6NiM4yi25_0bY8i4Q-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ v7-20020a05620a0f0700b006faffce43b2so8851892qkl.9
+ for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 03:47:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=viqpHWhPo/KOVRQlm6/EPChg5qrOk8FiTFF1q6ZWvFs=;
+ b=l2JLbQDBk2YGjiLs8mye6R7f6OC1FcQ8BT9uYW41wmE9Mheu3OtS34jiMX8jFI7B96
+ B4I6jfbFNE12vTVoQIeHNikdSjXrdorZJuxL7Bx2bmAQoZhlS3qCLWfGoTIsIAe0FHkx
+ ovOm9/1O1BZ0c74C0d7/TbbUJ8cMzqCPezEGV+uEJYIxeo65KiMgAB/CPE02f7WXNOJr
+ z2hmXPU8w6pxZ3tBX2mcjxfZNFVucI33B0xN4PMBHD3wDDUhuslP3NiLelDMsQYh2FsB
+ YQkBKx0nv77v23Bu/FWCSdGW1PQPqoNXayacgaGyrkC2+JhSrhTjHXrr0T6ogeBhUAdR
+ TxUw==
+X-Gm-Message-State: AO0yUKXsNRaNeRsiGLbWw1dLiaV3L2aHq/94zgFqMKFkMRRYvnQ80dpV
+ FxaXiAslyh39/mLqVMucUoEu7ddV8bJ8A4Z/LU6TDNJfNHyMpEf6NMypxD81G93BAPxzvsXNhIL
+ ibM3vYh/fyjH9w8ftpnQuE5wN0lleJRo=
+X-Received: by 2002:a05:622a:1b26:b0:3b9:b608:15ff with SMTP id
+ bb38-20020a05622a1b2600b003b9b60815ffmr151749qtb.6.1675165627640; 
+ Tue, 31 Jan 2023 03:47:07 -0800 (PST)
+X-Google-Smtp-Source: AK7set+OsvoMJaKEdiMO0IGIX2KVcCVugOQ5znDioMvtByElXVrSz1WJKmPFg6/YhgJO2QufL2FSxA==
+X-Received: by 2002:a05:622a:1b26:b0:3b9:b608:15ff with SMTP id
+ bb38-20020a05622a1b2600b003b9b60815ffmr151733qtb.6.1675165627386; 
+ Tue, 31 Jan 2023 03:47:07 -0800 (PST)
+Received: from gerbillo.redhat.com (146-241-113-28.dyn.eolo.it.
+ [146.241.113.28]) by smtp.gmail.com with ESMTPSA id
+ k8-20020ac80208000000b003b1546ee6absm9792989qtg.11.2023.01.31.03.47.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 31 Jan 2023 03:47:06 -0800 (PST)
+Message-ID: <801a4a44f0fb6e37f79037eae9a3db50191cdb12.camel@redhat.com>
+From: Paolo Abeni <pabeni@redhat.com>
+To: Leon Romanovsky <leon@kernel.org>, "David S . Miller"
+ <davem@davemloft.net>,  Jakub Kicinski <kuba@kernel.org>
+Date: Tue, 31 Jan 2023 12:47:03 +0100
+In-Reply-To: <c1a88f471a8aa6d780dde690e76b73ba15618b6d.1675010984.git.leon@kernel.org>
+References: <c1a88f471a8aa6d780dde690e76b73ba15618b6d.1675010984.git.leon@kernel.org>
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Ido Schimmel <idosch@nvidia.com>,
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Cc: Steffen Klassert <steffen.klassert@secunet.com>,
+ Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, netdev@vger.kernel.org,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
  Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>, linux-trace-kernel@vger.kernel.org
-Subject: Re: [Bridge] [PATCH net-next 06/16] net: bridge: Add a tracepoint
- for MDB overflows
+ Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [Bridge] [PATCH net-next v2] netlink: provide an ability to set
+ default extack message
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -79,40 +124,25 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, 30 Jan 2023 16:50:32 +0100
-Petr Machata <petrm@nvidia.com> wrote:
+Hello,
 
-> Steven Rostedt <rostedt@goodmis.org> writes:
-> 
-> > On Thu, 26 Jan 2023 18:01:14 +0100
-> > Petr Machata <petrm@nvidia.com> wrote:
-> >  
-> >> +	TP_printk("dev %s af %u src %pI4/%pI6c grp %pI4/%pI6c/%pM vid %u",
-> >> +		  __get_str(dev), __entry->af, __entry->src4, __entry->src6,
-> >> +		  __entry->grp4, __entry->grp6, __entry->grpmac, __entry->vid)  
-> >
-> > And just have: 
-> >
-> > 	TP_printk("dev %s af %u src %pI6c grp %pI6c/%pM vid %u",
-> > 		  __get_str(dev), __entry->af, __entry->src, __entry->grp,
-> > 		  __entry->grpmac, __entry->vid)
-> >
-> > As the %pI6c should detect that it's a ipv4 address and show that.  
-> 
-> This means the IP addresses will always be IPv6, even for an IPv4 MDB
-> entries. One can still figure out the true protocol from the address
-> family field, but it might not be obvious. Plus the IPv4-mapped IPv6
-> addresses are not really formatted as IPv4, though yeah, IPv4 notation
-> is embedded in that.
-> 
-> All the information is still there, but... scrambled? Not sure the
-> reduction in clarity is worth the 8 bytes that we save. The tracepoint
-> is unlikely to trigger often.
+On Sun, 2023-01-29 at 18:51 +0200, Leon Romanovsky wrote:
+> In netdev common pattern, extack pointer is forwarded to the drivers
+> to be filled with error message. However, the caller can easily
+> overwrite the filled message.
+>=20
+> Instead of adding multiple "if (!extack->_msg)" checks before any
+> NL_SET_ERR_MSG() call, which appears after call to the driver, let's
+> add new macro to common code.
+>=20
+> [1] https://lore.kernel.org/all/Y9Irgrgf3uxOjwUm@unreal
+> Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 
-8 bytes per event, and yes, ring buffer real estate is expensive.
+I'm sorry for nit-picking, but checkpatch complains the author
+(leon@kernel.org) does not match the SoB tag. A v3 with a suitable
+From: tag should fix that.
 
-And if you use trace-cmd or perf, we can always add a plugin to
-libtraceevent that can format this much nicer based on the information that
-is there.
+Thanks,
 
--- Steve
+Paolo
+
