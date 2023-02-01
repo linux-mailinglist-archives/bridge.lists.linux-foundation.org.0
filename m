@@ -1,68 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4C3686DAE
-	for <lists.bridge@lfdr.de>; Wed,  1 Feb 2023 19:10:26 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id F22EF686DDB
+	for <lists.bridge@lfdr.de>; Wed,  1 Feb 2023 19:25:07 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id B3096403EA;
-	Wed,  1 Feb 2023 18:10:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B3096403EA
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=Td6xyFKY
+	by smtp1.osuosl.org (Postfix) with ESMTP id 086DA8135E;
+	Wed,  1 Feb 2023 18:25:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 086DA8135E
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=CV7kgIE3
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bAU4PIj7pLpi; Wed,  1 Feb 2023 18:10:24 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id zzo_L7sIoX-0; Wed,  1 Feb 2023 18:25:05 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 0E20740A95;
-	Wed,  1 Feb 2023 18:10:23 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0E20740A95
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 86FD5812E6;
+	Wed,  1 Feb 2023 18:25:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 86FD5812E6
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A0506C007C;
-	Wed,  1 Feb 2023 18:10:22 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 25ABAC007C;
+	Wed,  1 Feb 2023 18:25:04 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 926DFC002B
- for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:10:21 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 78396C002B
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 679DE40A95
- for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:10:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 679DE40A95
+ by smtp4.osuosl.org (Postfix) with ESMTP id 25B534091C
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:02 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 25B534091C
+Authentication-Results: smtp4.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=messagingengine.com header.i=@messagingengine.com
+ header.a=rsa-sha256 header.s=fm3 header.b=CV7kgIE3
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 19_eg5WPHVz8 for <bridge@lists.linux-foundation.org>;
- Wed,  1 Feb 2023 18:10:20 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id yZ_msNCY5q2S for <bridge@lists.linux-foundation.org>;
+ Wed,  1 Feb 2023 18:25:01 +0000 (UTC)
 X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 88E0B403EA
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3DB6140739
 Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
  [64.147.123.19])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 88E0B403EA
- for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:10:20 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
- by mailout.west.internal (Postfix) with ESMTP id 3073532009A4;
- Wed,  1 Feb 2023 13:10:17 -0500 (EST)
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 3DB6140739
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:01 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.west.internal (Postfix) with ESMTP id 32BA732009B8;
+ Wed,  1 Feb 2023 13:24:57 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Wed, 01 Feb 2023 13:10:19 -0500
+ by compute5.internal (MEProxy); Wed, 01 Feb 2023 13:24:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
  :feedback-id:from:from:in-reply-to:in-reply-to:message-id
  :mime-version:references:reply-to:sender:subject:subject:to:to
  :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1675275016; x=1675361416; bh=wZVarq9wJ5kZO9X2EgYSaB6n3mMF
- V5UjT+9T/Nr3jsU=; b=Td6xyFKYYh4elevf9+Mw/pA8go+44leCjtjeWZklrO1+
- 4BrZXCstdlGJDdZu/SAeJh3nbzrXAnBKx0YT39lLJj2+L6yc5xAGQPpk+9idNTiv
- 5Qw7hx1DILUzjA1W8Ei0jI3Ckam/V4Vua82q+qedXNCvYKRnKSMqLiaZmD+PkRp6
- 5pCpGZJ55AzYnrCvwBdZsla4sekjsutMsCgCbpp97fXzImo9trUHzk2nHW8ejqjR
- XIiqWxpIFWSwhsjwi/a7XoOi3GItxG7x30lq8WRXm1sOeu//YH5nZOpzHmjm+ZTS
- EeNYIQ/3dvjqmEDln+fmhLFu+lpYH4nINVYayVzl4Q==
-X-ME-Sender: <xms:B6vaYxSD-nV-pt_zeRp-FTtw9kuMRvlre1p3m0P37WyaOr5sbyI15g>
- <xme:B6vaY6zj08MRF5BSmYEgChj3EXEMMSnknzzbgSeC1dFiaKbIGuunY0Tj8NgUmSuuR
- XATRxHvgqKCsJU>
-X-ME-Received: <xmr:B6vaY23QtMFusVrpOn0sNr8gvJMDxocCt6BKZPifO2v_-X0cgOAWQUN3C1t3_7eUubIwaIppiXF7iQDYWZ6p_uNKy8E>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefiedgudduudcutefuodetggdotefrod
+ fm3; t=1675275896; x=1675362296; bh=rdu/cSdrf95lHEkaUXGHj3bo8fqo
+ VL5yH9BapQUMiuo=; b=CV7kgIE3AZZdHao+BNdk6vds8PWdGb3GcGOmZzU7IXG4
+ MRbrZZesw1p98Ub/ppz8lTBdsxADyPJkU3A9oOBRlmSLnUYYEfawHosLNeGs3Vvt
+ j4B92h9sAxP7TiHk+PTutosjwxnvfNEOmHLThojboAcyjXR/PMp5gTv4n/HbF2Jq
+ ixgm+8poal0ku5r9xnqFLtZFDEMxMCzHVsTJLmrqmPPxnaVCL3WJr5Drpsqo6ysq
+ VoAI/Zc8yXnKhBAWv+FKOW+a7rYlchL/I4Hq6+0/599vXq6rlD7ez8PQAsW/9nQZ
+ qo0Sx2oLBor+Jo8j9S37B16eohf7/INduBpNSUOUXQ==
+X-ME-Sender: <xms:d67aYy4qxwFGX87O-G2B7M5zxfNZ74Y9mtMbxo8516e9D8bhKTKFzQ>
+ <xme:d67aY75lEMCPrxc4H9pul-2v-J1jgKXwNmZZXLgBjL380mj4lQ3INXR-fJtD_gBjc
+ aqayBisF96gOgI>
+X-ME-Received: <xmr:d67aYxde7AhmFYf5geMb6OVzl7TZpePk5m93x3K5Karc8BF_O6hFyvRjtMlSh9bC0gMvlifcnI-6pA7b1CCjIPnZnTU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefiedguddufecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
  enucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefkugho
@@ -70,23 +73,23 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefiedgudduudcutefuodetgg
  htthgvrhhnpedvudefveekheeugeeftddvveefgfduieefudeifefgleekheegleegjeej
  geeghfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
  hiughoshgthhesihguohhstghhrdhorhhg
-X-ME-Proxy: <xmx:B6vaY5AYntxM3JbCGrkiTY-SP8l93nuMf2GkowdIYRdNUlwvWOaVJA>
- <xmx:B6vaY6iZZbp7lwPGG_VorYF8uWUp7WlbS9x3Rw2EITUz0rCL-6PWXQ>
- <xmx:B6vaY9r4FX1IU69Yon0ybTRpxOauT8yDm_Jmr_Zhw-Ch40rI1JG2nQ>
- <xmx:CKvaY4PX6Rn369eXdfF4yXYFbMjpjA7tUeNmXPlgeYMduC9ybtiV1Q>
+X-ME-Proxy: <xmx:d67aY_IlRB3S5TvZlz0o0JCqGYk-kekSFXHC1k4gLs57JEDGrwOmHA>
+ <xmx:d67aY2JYd8Oqu_8vARdEyvRdvd2bj94vUMckvqhcmT51VKOrxJJe9w>
+ <xmx:d67aYwxKd2oRs3vn-UItsemryABabt3_l0YJN5FmVULsC7yP393h_w>
+ <xmx:eK7aY81CA2_3n8FClr5BuI9CkoGQUyvdWQ8klVgJX5u4IrRI1wOKpw>
 Feedback-ID: i494840e7:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Feb 2023 13:10:14 -0500 (EST)
-Date: Wed, 1 Feb 2023 20:10:10 +0200
+ 1 Feb 2023 13:24:54 -0500 (EST)
+Date: Wed, 1 Feb 2023 20:24:51 +0200
 From: Ido Schimmel <idosch@idosch.org>
 To: "Hans J. Schultz" <netdev@kapio-technology.com>
-Message-ID: <Y9qrAup9Xt/ZDEG0@shredder>
+Message-ID: <Y9qucziByvXsx5Q0@shredder>
 References: <20230130173429.3577450-1-netdev@kapio-technology.com>
- <20230130173429.3577450-2-netdev@kapio-technology.com>
+ <20230130173429.3577450-5-netdev@kapio-technology.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230130173429.3577450-2-netdev@kapio-technology.com>
+In-Reply-To: <20230130173429.3577450-5-netdev@kapio-technology.com>
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
@@ -111,8 +114,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
  <linux-renesas-soc@vger.kernel.org>, Vladimir Oltean <olteanv@gmail.com>,
  davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 1/5] net: bridge: add dynamic flag to
- switchdev notifier
+Subject: Re: [Bridge] [PATCH net-next 4/5] net: bridge: ensure FDB offloaded
+ flag is handled as needed
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -127,53 +130,47 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jan 30, 2023 at 06:34:25PM +0100, Hans J. Schultz wrote:
-> To be able to add dynamic FDB entries to drivers from userspace, the
-> dynamic flag must be added when sending RTM_NEWNEIGH events down.
+On Mon, Jan 30, 2023 at 06:34:28PM +0100, Hans J. Schultz wrote:
+> Since user added entries in the bridge FDB will get the BR_FDB_OFFLOADED
+> flag set, we do not want the bridge to age those entries and we want the
+> entries to be deleted in the bridge upon an SWITCHDEV_FDB_DEL_TO_BRIDGE
+> event.
 > 
 > Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
 > ---
->  include/net/switchdev.h   | 1 +
->  net/bridge/br_switchdev.c | 2 ++
->  2 files changed, 3 insertions(+)
+>  net/bridge/br_fdb.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/include/net/switchdev.h b/include/net/switchdev.h
-> index ca0312b78294..aaf918d4ba67 100644
-> --- a/include/net/switchdev.h
-> +++ b/include/net/switchdev.h
-> @@ -249,6 +249,7 @@ struct switchdev_notifier_fdb_info {
->  	u8 added_by_user:1,
->  	   is_local:1,
->  	   locked:1,
-> +	   is_dyn:1,
->  	   offloaded:1;
->  };
+> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
+> index e69a872bfc1d..b0c23a72bc76 100644
+> --- a/net/bridge/br_fdb.c
+> +++ b/net/bridge/br_fdb.c
+> @@ -537,6 +537,7 @@ void br_fdb_cleanup(struct work_struct *work)
+>  		unsigned long this_timer = f->updated + delay;
 >  
-> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-> index 7eb6fd5bb917..4420fcbbfdb2 100644
-> --- a/net/bridge/br_switchdev.c
-> +++ b/net/bridge/br_switchdev.c
-> @@ -136,6 +136,8 @@ static void br_switchdev_fdb_populate(struct net_bridge *br,
->  	item->added_by_user = test_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
->  	item->offloaded = test_bit(BR_FDB_OFFLOADED, &fdb->flags);
->  	item->is_local = test_bit(BR_FDB_LOCAL, &fdb->flags);
-> +	item->is_dyn = !test_bit(BR_FDB_STATIC, &fdb->flags) &&
+>  		if (test_bit(BR_FDB_STATIC, &f->flags) ||
+> +		    test_bit(BR_FDB_OFFLOADED, &f->flags) ||
+>  		    test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &f->flags)) {
+>  			if (test_bit(BR_FDB_NOTIFY, &f->flags)) {
+>  				if (time_after(this_timer, now))
 
-Why not 'is_static' and be consistent with the bridge flag like all the
-other fields?
+Looks correct
 
-Regardless of how you name this field, it is irrelevant for
-'SWITCHDEV_FDB_ADD_TO_BRIDGE' notifications that all add FDB entries
-with the 'BR_FDB_ADDED_BY_EXT_LEARN' flag set, which makes
-'BR_FDB_STATIC' irrelevant.
+> @@ -1465,7 +1466,9 @@ int br_fdb_external_learn_del(struct net_bridge *br, struct net_bridge_port *p,
+>  	spin_lock_bh(&br->hash_lock);
+>  
+>  	fdb = br_fdb_find(br, addr, vid);
+> -	if (fdb && test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags))
+> +	if (fdb &&
+> +	    (test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags) ||
+> +	     test_bit(BR_FDB_OFFLOADED, &fdb->flags)))
 
-> +		item->added_by_user;
+This also looks correct, but the function name is not really accurate
+anymore. I guess you can keep it as-is unless someone has a better name
 
-Unclear why this is needed...
-
->  	item->locked = false;
->  	item->info.dev = (!p || item->is_local) ? br->dev : p->dev;
->  	item->info.ctx = ctx;
+>  		fdb_delete(br, fdb, swdev_notify);
+>  	else
+>  		err = -ENOENT;
 > -- 
 > 2.34.1
 > 
