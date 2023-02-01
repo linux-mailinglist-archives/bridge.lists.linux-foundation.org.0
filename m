@@ -1,121 +1,81 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22EF686DDB
-	for <lists.bridge@lfdr.de>; Wed,  1 Feb 2023 19:25:07 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF18686DDF
+	for <lists.bridge@lfdr.de>; Wed,  1 Feb 2023 19:25:59 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 086DA8135E;
-	Wed,  1 Feb 2023 18:25:06 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 086DA8135E
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=CV7kgIE3
+	by smtp3.osuosl.org (Postfix) with ESMTP id 2363361044;
+	Wed,  1 Feb 2023 18:25:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2363361044
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=jCsQxnDv
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zzo_L7sIoX-0; Wed,  1 Feb 2023 18:25:05 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 86FD5812E6;
-	Wed,  1 Feb 2023 18:25:04 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 86FD5812E6
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id p2cvRL_fLvEE; Wed,  1 Feb 2023 18:25:57 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id B69C36102D;
+	Wed,  1 Feb 2023 18:25:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B69C36102D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 25ABAC007C;
-	Wed,  1 Feb 2023 18:25:04 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5D5CEC007C;
+	Wed,  1 Feb 2023 18:25:56 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 78396C002B
- for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:02 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 57C86C002B
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 25B534091C
- for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 25B534091C
-Authentication-Results: smtp4.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=messagingengine.com header.i=@messagingengine.com
- header.a=rsa-sha256 header.s=fm3 header.b=CV7kgIE3
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2C8FB4091C
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:54 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2C8FB4091C
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=jCsQxnDv
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id yZ_msNCY5q2S for <bridge@lists.linux-foundation.org>;
- Wed,  1 Feb 2023 18:25:01 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3DB6140739
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
- [64.147.123.19])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 3DB6140739
- for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:01 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id 32BA732009B8;
- Wed,  1 Feb 2023 13:24:57 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Wed, 01 Feb 2023 13:24:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
- :feedback-id:from:from:in-reply-to:in-reply-to:message-id
- :mime-version:references:reply-to:sender:subject:subject:to:to
- :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1675275896; x=1675362296; bh=rdu/cSdrf95lHEkaUXGHj3bo8fqo
- VL5yH9BapQUMiuo=; b=CV7kgIE3AZZdHao+BNdk6vds8PWdGb3GcGOmZzU7IXG4
- MRbrZZesw1p98Ub/ppz8lTBdsxADyPJkU3A9oOBRlmSLnUYYEfawHosLNeGs3Vvt
- j4B92h9sAxP7TiHk+PTutosjwxnvfNEOmHLThojboAcyjXR/PMp5gTv4n/HbF2Jq
- ixgm+8poal0ku5r9xnqFLtZFDEMxMCzHVsTJLmrqmPPxnaVCL3WJr5Drpsqo6ysq
- VoAI/Zc8yXnKhBAWv+FKOW+a7rYlchL/I4Hq6+0/599vXq6rlD7ez8PQAsW/9nQZ
- qo0Sx2oLBor+Jo8j9S37B16eohf7/INduBpNSUOUXQ==
-X-ME-Sender: <xms:d67aYy4qxwFGX87O-G2B7M5zxfNZ74Y9mtMbxo8516e9D8bhKTKFzQ>
- <xme:d67aY75lEMCPrxc4H9pul-2v-J1jgKXwNmZZXLgBjL380mj4lQ3INXR-fJtD_gBjc
- aqayBisF96gOgI>
-X-ME-Received: <xmr:d67aYxde7AhmFYf5geMb6OVzl7TZpePk5m93x3K5Karc8BF_O6hFyvRjtMlSh9bC0gMvlifcnI-6pA7b1CCjIPnZnTU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudefiedguddufecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefkugho
- ucfutghhihhmmhgvlhcuoehiughoshgthhesihguohhstghhrdhorhhgqeenucggtffrrg
- htthgvrhhnpedvudefveekheeugeeftddvveefgfduieefudeifefgleekheegleegjeej
- geeghfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- hiughoshgthhesihguohhstghhrdhorhhg
-X-ME-Proxy: <xmx:d67aY_IlRB3S5TvZlz0o0JCqGYk-kekSFXHC1k4gLs57JEDGrwOmHA>
- <xmx:d67aY2JYd8Oqu_8vARdEyvRdvd2bj94vUMckvqhcmT51VKOrxJJe9w>
- <xmx:d67aYwxKd2oRs3vn-UItsemryABabt3_l0YJN5FmVULsC7yP393h_w>
- <xmx:eK7aY81CA2_3n8FClr5BuI9CkoGQUyvdWQ8klVgJX5u4IrRI1wOKpw>
-Feedback-ID: i494840e7:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Feb 2023 13:24:54 -0500 (EST)
-Date: Wed, 1 Feb 2023 20:24:51 +0200
-From: Ido Schimmel <idosch@idosch.org>
-To: "Hans J. Schultz" <netdev@kapio-technology.com>
-Message-ID: <Y9qucziByvXsx5Q0@shredder>
-References: <20230130173429.3577450-1-netdev@kapio-technology.com>
- <20230130173429.3577450-5-netdev@kapio-technology.com>
+ with ESMTP id k8dbtg8SD5ey for <bridge@lists.linux-foundation.org>;
+ Wed,  1 Feb 2023 18:25:53 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3168540739
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 3168540739
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Feb 2023 18:25:53 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 36FE5CE250A;
+ Wed,  1 Feb 2023 18:25:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209E2C433D2;
+ Wed,  1 Feb 2023 18:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1675275947;
+ bh=+ysKNM/qX+vUFh7ls46wGK+gSEJSUWfzN8v7hHVOH0g=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=jCsQxnDvbkdPXr3c/jbkTbdPBO5OjzBe2P2sADtfmFOt5CYeqCV0kAMpICSZu+snk
+ pY/Fuf5kE/fjnZ03HopADqksMCchKJIUYeWr1pknUFZo9o6zFRFtEZwxJdY8zmvllH
+ wHCEoBHWha3YrGRDwbSBRhD3Q1Jb/yfjhZl2zjtR4iH4Wmd40cNlM/DjTzyvLdUJxg
+ pGImQZJKDjSHPVcZa0Rdf4CKErmjcLk85YqMeE8Vxy9ZsDozcwMuix8/fLRggJ0HEQ
+ DokvVRHaiFhpp2gYMYgJx2KADGULReG8jNq0OXvF3GEu4OeTkK/dy/3PORCENUbYm6
+ tL9yZV45YVQ/A==
+Date: Wed, 1 Feb 2023 10:25:46 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Petr Machata <petrm@nvidia.com>
+Message-ID: <20230201102546.1d1722ae@kernel.org>
+In-Reply-To: <cover.1675271084.git.petrm@nvidia.com>
+References: <cover.1675271084.git.petrm@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230130173429.3577450-5-netdev@kapio-technology.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
- open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>,
- "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
- <linux-renesas-soc@vger.kernel.org>, Vladimir Oltean <olteanv@gmail.com>,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 4/5] net: bridge: ensure FDB offloaded
- flag is handled as needed
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Ido
+ Schimmel <idosch@nvidia.com>, Eric Dumazet <edumazet@google.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next mlxsw v2 00/16] bridge: Limit number
+ of MDB entries per port, port-vlan
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -130,47 +90,8 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jan 30, 2023 at 06:34:28PM +0100, Hans J. Schultz wrote:
-> Since user added entries in the bridge FDB will get the BR_FDB_OFFLOADED
-> flag set, we do not want the bridge to age those entries and we want the
-> entries to be deleted in the bridge upon an SWITCHDEV_FDB_DEL_TO_BRIDGE
-> event.
-> 
-> Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
-> ---
->  net/bridge/br_fdb.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-> index e69a872bfc1d..b0c23a72bc76 100644
-> --- a/net/bridge/br_fdb.c
-> +++ b/net/bridge/br_fdb.c
-> @@ -537,6 +537,7 @@ void br_fdb_cleanup(struct work_struct *work)
->  		unsigned long this_timer = f->updated + delay;
->  
->  		if (test_bit(BR_FDB_STATIC, &f->flags) ||
-> +		    test_bit(BR_FDB_OFFLOADED, &f->flags) ||
->  		    test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &f->flags)) {
->  			if (test_bit(BR_FDB_NOTIFY, &f->flags)) {
->  				if (time_after(this_timer, now))
+On Wed, 1 Feb 2023 18:28:33 +0100 Petr Machata wrote:
+> Subject: [PATCH net-next mlxsw v2 00/16] bridge: Limit number of MDB entries per port, port-vlan
 
-Looks correct
-
-> @@ -1465,7 +1466,9 @@ int br_fdb_external_learn_del(struct net_bridge *br, struct net_bridge_port *p,
->  	spin_lock_bh(&br->hash_lock);
->  
->  	fdb = br_fdb_find(br, addr, vid);
-> -	if (fdb && test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags))
-> +	if (fdb &&
-> +	    (test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags) ||
-> +	     test_bit(BR_FDB_OFFLOADED, &fdb->flags)))
-
-This also looks correct, but the function name is not really accurate
-anymore. I guess you can keep it as-is unless someone has a better name
-
->  		fdb_delete(br, fdb, swdev_notify);
->  	else
->  		err = -ENOENT;
-> -- 
-> 2.34.1
-> 
+What do you mean by "net-next mlxsw"?
+Is there a tree called "net-next mlxsw" somewhere?
