@@ -1,94 +1,69 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89433688401
-	for <lists.bridge@lfdr.de>; Thu,  2 Feb 2023 17:19:18 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id B176640FF6;
-	Thu,  2 Feb 2023 16:19:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B176640FF6
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6EJAWbbal_wp; Thu,  2 Feb 2023 16:19:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 4F58540FFF;
-	Thu,  2 Feb 2023 16:19:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4F58540FFF
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0BA24C0078;
-	Thu,  2 Feb 2023 16:19:15 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 34E9CC002B
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 16:19:13 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE90268843E
+	for <lists.bridge@lfdr.de>; Thu,  2 Feb 2023 17:22:33 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 08BAD60B65
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 16:19:13 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 08BAD60B65
+	by smtp3.osuosl.org (Postfix) with ESMTP id 5B3D760C04;
+	Thu,  2 Feb 2023 16:22:32 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5B3D760C04
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 2Dnonwn6ndlg for <bridge@lists.linux-foundation.org>;
- Thu,  2 Feb 2023 16:19:12 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F1DB960B50
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id F1DB960B50
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 16:19:11 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id C5A801883528;
- Thu,  2 Feb 2023 16:19:07 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id BABFF250007B;
- Thu,  2 Feb 2023 16:19:07 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id B0E8191201E4; Thu,  2 Feb 2023 16:19:07 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id OFeZX4xPFc3Y; Thu,  2 Feb 2023 16:22:31 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id E457560BA7;
+	Thu,  2 Feb 2023 16:22:30 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E457560BA7
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 95103C0078;
+	Thu,  2 Feb 2023 16:22:30 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 594A9C002B
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 16:22:29 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2C9DC41CB1
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 16:22:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2C9DC41CB1
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Fe43qjN4hmDU for <bridge@lists.linux-foundation.org>;
+ Thu,  2 Feb 2023 16:22:28 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 19B3F41CAA
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 19B3F41CAA
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 16:22:27 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 01B6761BEA;
+ Thu,  2 Feb 2023 16:22:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D32EAC4339B;
+ Thu,  2 Feb 2023 16:22:24 +0000 (UTC)
+Date: Thu, 2 Feb 2023 11:22:22 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Petr Machata <petrm@nvidia.com>
+Message-ID: <20230202112222.327d3a79@rorschach.local.home>
+In-Reply-To: <008620de41985a3a757c7099bc712ae75739db27.1675271084.git.petrm@nvidia.com>
+References: <cover.1675271084.git.petrm@nvidia.com>
+ <008620de41985a3a757c7099bc712ae75739db27.1675271084.git.petrm@nvidia.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Date: Thu, 02 Feb 2023 17:19:07 +0100
-From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@idosch.org>
-In-Reply-To: <Y9vaIOefIf/gI0BR@shredder>
-References: <20230130173429.3577450-1-netdev@kapio-technology.com>
- <Y9lrIWMnWLqGreZL@shredder>
- <e2535b002be9044958ab0003d8bd6966@kapio-technology.com>
- <Y9vaIOefIf/gI0BR@shredder>
-User-Agent: Gigahost Webmail
-Message-ID: <3cecf4425b0e6f38646e25e40fd8f0fd@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- =?UTF-8?Q?Cl=C3=A9m?= =?UTF-8?Q?ent_L=C3=A9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
- open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>,
- Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/5] ATU and FDB synchronization on
-	locked ports
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Ido Schimmel <idosch@nvidia.com>,
+ Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>, linux-trace-kernel@vger.kernel.org
+Subject: Re: [Bridge] [PATCH net-next mlxsw v2 06/16] net: bridge: Add a
+ tracepoint for MDB overflows
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -103,30 +78,50 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2023-02-02 16:43, Ido Schimmel wrote:
-> On Thu, Feb 02, 2023 at 08:37:08AM +0100, netdev@kapio-technology.com 
-> wrote:
->> On 2023-01-31 20:25, Ido Schimmel wrote:
->> >
->> > Will try to review tomorrow, but it looks like this set is missing
->> > selftests. What about extending bridge_locked_port.sh?
->> 
->> I knew you would take this up. :-)
->> But I am not sure that it's so easy to have selftests here as it is 
->> timing
->> based and it would take the 5+ minutes just waiting to test in the 
->> stadard
->> case, and there is opnly support for mv88e6xxx driver with this patch 
->> set.
-> 
-> The ageing time is configurable: See commit 081197591769 ("selftests:
-> net: bridge: Parameterize ageing timeout"). Please add test cases in 
-> the
-> next version.
+On Wed, 1 Feb 2023 18:28:39 +0100
+Petr Machata <petrm@nvidia.com> wrote:
 
-When I was looking at configuring the ageing time last time, my finding 
-was that the ageing time could not be set very low as there was some 
-part in the DSA layer etc, and confusion wrt units. I think the minimum 
-secured was like around 2 min. (not validated), which is not that much 
-of an improvement for fast testing. If you know what would be a good low 
-timeout to set, I would like to know.
+> The following patch will add two more maximum MDB allowances to the global
+> one, mcast_hash_max, that exists today. In all these cases, attempts to a=
+dd
+> MDB entries above the configured maximums through netlink, fail noisily a=
+nd
+> obviously. Such visibility is missing when adding entries through the
+> control plane traffic, by IGMP or MLD packets.
+>=20
+> To improve visibility in those cases, add a trace point that reports the
+> violation, including the relevant netdevice (be it a slave or the bridge
+> itself), and the MDB entry parameters:
+>=20
+> 	# perf record -e bridge:br_mdb_full &
+> 	# [...]
+> 	# perf script | cut -d: -f4-
+> 	 dev v2 af 2 src ::ffff:0.0.0.0 grp ::ffff:239.1.1.112/00:00:00:00:00:00=
+ vid 0
+> 	 dev v2 af 10 src :: grp ff0e::112/00:00:00:00:00:00 vid 0
+> 	 dev v2 af 2 src ::ffff:0.0.0.0 grp ::ffff:239.1.1.112/00:00:00:00:00:00=
+ vid 10
+> 	 dev v2 af 10 src 2001:db8:1::1 grp ff0e::1/00:00:00:00:00:00 vid 10
+> 	 dev v2 af 2 src ::ffff:192.0.2.1 grp ::ffff:239.1.1.1/00:00:00:00:00:00=
+ vid 10
+>=20
+> CC: Steven Rostedt <rostedt@goodmis.org>
+> CC: linux-trace-kernel@vger.kernel.org
+> Signed-off-by: Petr Machata <petrm@nvidia.com>
+> ---
+>=20
+> Notes:
+>     v2:
+>     - Report IPv4 as an IPv6-mapped address through the IPv6 buffer
+>       as well, to save ring buffer space.
+>=20
+>  include/trace/events/bridge.h | 58 +++++++++++++++++++++++++++++++++++
+>  net/core/net-traces.c         |  1 +
+>  2 files changed, 59 insertions(+)
+>=20
+
+=46rom the tracing point of view:
+
+Reviewed-by: Steven Rostedt (Google) <rostedt@goodmis.org>
+
+-- Steve
