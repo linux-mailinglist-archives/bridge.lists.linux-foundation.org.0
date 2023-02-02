@@ -2,136 +2,134 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3AEA687BC5
-	for <lists.bridge@lfdr.de>; Thu,  2 Feb 2023 12:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C4B688100
+	for <lists.bridge@lfdr.de>; Thu,  2 Feb 2023 16:04:06 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 7008E61171;
-	Thu,  2 Feb 2023 11:11:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7008E61171
+	by smtp3.osuosl.org (Postfix) with ESMTP id BE54061008;
+	Thu,  2 Feb 2023 15:04:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BE54061008
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=tREmWIqT
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=JqvGXHxH
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 69Mls7YGsp7i; Thu,  2 Feb 2023 11:11:54 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id BF87D61167;
-	Thu,  2 Feb 2023 11:11:53 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BF87D61167
+	with ESMTP id K0kLwU73ta8r; Thu,  2 Feb 2023 15:04:04 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 5F29B6110E;
+	Thu,  2 Feb 2023 15:04:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5F29B6110E
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 686BAC0070;
-	Thu,  2 Feb 2023 11:11:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C32BEC0078;
+	Thu,  2 Feb 2023 15:04:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 03CC8C002B
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 11:11:52 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 65902C002B
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 15:04:01 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id AF80B41CC0
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 11:11:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AF80B41CC0
-Authentication-Results: smtp4.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=tREmWIqT
+ by smtp3.osuosl.org (Postfix) with ESMTP id 385D961008
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 15:04:01 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 385D961008
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id acy-POUTe7Et for <bridge@lists.linux-foundation.org>;
- Thu,  2 Feb 2023 11:11:07 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id KsPKDopDApAk for <bridge@lists.linux-foundation.org>;
+ Thu,  2 Feb 2023 15:03:59 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4F87F41C87
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on20624.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8b::624])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 4F87F41C87
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 11:11:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 509FB60B1E
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam02on2060f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eb2::60f])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 509FB60B1E
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 15:03:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZoEZQlb/GK96Hj+9Gmq98120rcW/TSQ3UQKF4MxFuiEtKCHZ6wBb0GCCpuZ61uFZNZFHTbwXb45JsHxLhRlT23iqPQA5pZMyKQ66voThRSi0PylJTUEiPB95aOHWoXPtZ6cHfqq6qh3JSRsolAnDkirhKuJBAYKfQRMMBYV503c47fzKJcLrS93Abcu6UmbvJNCpkT3d7hPxOpt63RtCDCQVQKSQtJAl0hS0kowfm/zDvuGjV0hfP9PoR7JoG7nmOLE19mn7nGnD348DhEcSe5k9NdfCvi0zdozhUaQ5aQdKsGRkiZzNv8lgVHdnWZ4+Q6Bv4QKPieyBcImj1NoRnQ==
+ b=IoMjQ3LHbhC8fA+zIq5So0gon+axZ4SWMtAj2dUA5viqXAoWxAdBSMoTjIEci3vz/fKVuhshZErrUxC2ZtE4dm+uLXG50W6RZVLyquQxbA9tvvkakexCxC/BTLGW9hb9poUYhAITMNAb5ClNAmQ9J7/P48vKaxFUFwwV3V2FLjUtqJ7JQ8kQbG4gGgVhEUH0QNfOJzTJeKdyQOZ3CWkA2SkmRcLqqO1Lo7SWfKsUMzHs/xaHhdE2O+ROukmJ+wurv9jcP6rIEeTDlCofY9AH0vpp508F1iwQNaNL40Ml290hpiwUZyWs12t7vBwqvmjPugghKsQFBKUcUG0iXXse8g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wKnfzw/ViIlREqwjQaW/erWOkesMY9oYi+bz2iUs/0Y=;
- b=eCmlSLDdNOwBAZoTLjAioeKWd7ZIdWC6JpwE1HZc/fwiez3+ZzM9+3tGJO2HTO6gIUnb2lpWXq9lBpvqLYuYxiwRvLT4nqZ9XqEJnVnGzqC/DuWZq+QNoHtAjfFVwjZ8643wkGvwAnL89BiZiLna2rsVd8UWBVWy5Op6NEQvJmYyMjDxXZ8SWQf1tT1UE4LZytlY19KbEMYA9IEKbn4JRxZ+Y80OW/9Mjn71OxPhflidENq5dJ+TL/vQNE3+z9mx8O2QMVGvirj4YVqZ2FgRBvMa1t4bDHK/Z6w8KDd0sPsMkFwFxC8hfMaV/S656q26garHwc4SFw7h1EnJQDitOg==
+ bh=XCv5mcp3OevYDuEm0DKpLYtXIRHAu25i6v4vZIFYA7Y=;
+ b=He/RYDgPwWbeHDy62vt/C+PnKnRl5oJ/67zoCbXg+G5kMs4k56Bdkb6io3YzBJBi7P4hd/dQJsF9Ml1ar2kQnJH7lFOPsHY0kaiIrPaNIA9FIJo8fCEfDB/YalgLY7Rzm90IXYAI6WE9r/MJzsPC3uanP2tJAyDvHRox+8MAe1DdjMmS/t/5APURTolSzL+hBk5pdUQWrJ3xbpffk/dKlq2NYbxmwg5o02GZHzzoHYHkeD+TEFHilAdYwiMLa0w+b7bjbURIjuEUyxWHFKevmPmd2tdYuirFHq5P5o/zy2R9IF3n8CWTkXbchpEudVtd4phoCiYfqXttuomku7Ih+g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=lists.linux-foundation.org
+ 216.228.117.161) smtp.rcpttodomain=lists.linux-foundation.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
  header.from=nvidia.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wKnfzw/ViIlREqwjQaW/erWOkesMY9oYi+bz2iUs/0Y=;
- b=tREmWIqTEJs+68i9aFFssv5LzhyYKBOfroMf80Qt/YvcvH9a2n4QV1Ewbelby7XD2HbYFYI6xsHdQ3GMGL/P+jKq/iJR+J6+UIonSfbYwRSs03mUpPkpOMIcfTrSrzs5R/QJF31ARLMmBLPSJwGwO59QzqheMgwwGi6xR+O11eBZ5gKB2ak8HN7coG8TAzeh78vj8CTTV9/Z4m7viSUcgO2n0L/LpJ2qM8WmrhnBUZ+3fCN/32N3o0P3IYkWpuTP7KEj61VasEXZQEHnq//lbAqDbmvQU7gtmQ8ah1js5I/ziu0XMf+ZL5Lumj0sciqqYrPxb/PutnrHk3vN8uweQQ==
-Received: from DM5PR07CA0050.namprd07.prod.outlook.com (2603:10b6:4:ad::15) by
- SJ0PR12MB5664.namprd12.prod.outlook.com (2603:10b6:a03:42b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.25; Thu, 2 Feb
- 2023 11:11:05 +0000
-Received: from DM6NAM11FT016.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ad:cafe::3a) by DM5PR07CA0050.outlook.office365.com
- (2603:10b6:4:ad::15) with Microsoft SMTP Server (version=TLS1_2,
+ bh=XCv5mcp3OevYDuEm0DKpLYtXIRHAu25i6v4vZIFYA7Y=;
+ b=JqvGXHxHYSpeHyu4hSymUs6BQs2wg3kX160P1ZNky+iKq6Q/wniyj1vUi4t2AAxsr1OfKhrXEW+mQ4UDaKd1tKeYWnIgxqZeDTME2gF7f5NVI6ya2ZlZhN1Unsx6IhDfVcu/8ntQHvUU2nxGbTWGRYrZRQwnL40Pf5wScJCHY0ALAO89iDIqqbKa20dDYAcEnYDwTW577aJ1C+dVLUaJDQrs+Ctw/gDN5GP9Q/0Cy0PEoJT7z8BlCg4WF2SNeicsGn9AxGLuaoeD0jjDuTO6TIWdXJr/RVcEJdOES6/qJqyNdy7RPf+/+NKx5uiU+Zx8NXuGbpn921dvPentkWQdRw==
+Received: from MW4PR04CA0036.namprd04.prod.outlook.com (2603:10b6:303:6a::11)
+ by PH7PR12MB6718.namprd12.prod.outlook.com (2603:10b6:510:1b1::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27; Thu, 2 Feb
+ 2023 15:03:56 +0000
+Received: from CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6a:cafe::96) by MW4PR04CA0036.outlook.office365.com
+ (2603:10b6:303:6a::11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27 via Frontend
- Transport; Thu, 2 Feb 2023 11:11:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ Transport; Thu, 2 Feb 2023 15:03:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DM6NAM11FT016.mail.protection.outlook.com (10.13.173.139) with Microsoft SMTP
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CO1NAM11FT052.mail.protection.outlook.com (10.13.174.225) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6064.25 via Frontend Transport; Thu, 2 Feb 2023 11:11:04 +0000
+ 15.20.6064.28 via Frontend Transport; Thu, 2 Feb 2023 15:03:54 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 2 Feb 2023
- 03:10:55 -0800
-Received: from yaviefel (10.126.230.37) by rnnvmail201.nvidia.com
+ 07:03:42 -0800
+Received: from yaviefel (10.126.231.37) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 2 Feb 2023
- 03:10:52 -0800
+ 07:03:39 -0800
 References: <cover.1675271084.git.petrm@nvidia.com>
- <706d902460b69454ffeb57908beb8dce46e9b064.1675271084.git.petrm@nvidia.com>
- <18e82e5a-1ee9-94ee-78a7-15bc08b62978@blackwall.org>
+ <7b9f6524716a9e2ce33b9383e3216fed2f432201.1675271084.git.petrm@nvidia.com>
+ <4ce2042b-26f7-00df-a035-567475add7f6@blackwall.org>
+ <14fac71d-dc43-bc5c-4d77-3187e066cfc0@blackwall.org>
 User-agent: mu4e 1.6.6; emacs 28.1
 To: Nikolay Aleksandrov <razor@blackwall.org>
-Date: Thu, 2 Feb 2023 11:09:30 +0100
-In-Reply-To: <18e82e5a-1ee9-94ee-78a7-15bc08b62978@blackwall.org>
-Message-ID: <87v8kke30l.fsf@nvidia.com>
+Date: Thu, 2 Feb 2023 16:02:20 +0100
+In-Reply-To: <14fac71d-dc43-bc5c-4d77-3187e066cfc0@blackwall.org>
+Message-ID: <87r0v8ds8m.fsf@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.126.230.37]
+X-Originating-IP: [10.126.231.37]
 X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT016:EE_|SJ0PR12MB5664:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4932ef26-27cc-4563-4bac-08db050e2d42
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT052:EE_|PH7PR12MB6718:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e845c01-8b7b-4a8b-28c3-08db052eb3a8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u+xUy1oHeqCkluiN0bD1t+cBgf6SBKbrf06HBGDGDUXJLuNJaSzieuWN4JX4L8cvmFH6/GtBNc/Ji74NDaT6vPbP+oMY4EV835F6lP5ToPlT/8Q17dmJGafgi6sgXZu7I9be3r0HamSXnBoeUPIwiNGuZmXZrgJ0IkqXtZElDiuK4/07M+BmavcPBnknEdmj4QekBCvEJr3/WFvfqPwOrylXsD5Ev3Lw+pVSpWHE0Hm/PBReK7b4BoP18Xzu8MY3ElL1qQLkyZJpXDzCUP82q2qXPVneINOibh2DKn8PHjDRWQA+blsnBTlK30glf31B8wTjAOgbYQAdRswwE5RbBS2qO2X5xlZaeE14epUvR5CIhGb44YDk5Czpeaz4IZw5A3B4CpuHsNfGKlRP3YZPVKzsfjdERA7CXb40Xa+vo4F+13gXkt5+ss4T6X8AWmeA/gz7xvTrV66/Q7xoLQG7/RPgrMAe4OAjcDzwhvOwPd0Lz0alStKJunfc2LVuShY92qgjwFH46MuZU3xrCf1KVH90l9NfJyOQCoC2neTAy59CLA0L325G4TAYHtANn1iw3DsPCOJClm5YSH2wCfz6qacTVvTn0+8Ws9kW9LvOjpn9EHO+PbkYs2vch1Kcr5hBXXxJrl2cJaZ9i/ecAiuP9iwi45gXZ8ou1ksEitGIZ5t3yNqp1kT4CTy3FOpTGoVBiRFj/+qewq51FmugVS1BDQ==
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230025)(4636009)(346002)(376002)(396003)(136003)(39860400002)(451199018)(36840700001)(46966006)(40470700004)(8936002)(4744005)(2616005)(54906003)(5660300002)(4326008)(2906002)(316002)(41300700001)(8676002)(70586007)(70206006)(6916009)(6666004)(107886003)(26005)(478600001)(53546011)(186003)(16526019)(83380400001)(336012)(426003)(82310400005)(356005)(47076005)(7636003)(40480700001)(86362001)(40460700003)(36756003)(36860700001)(82740400003);
+X-Microsoft-Antispam-Message-Info: bsMl/as9UPJkToACzsulx05aRWO7nODb2lipqKBoFsF3zEfzZOacuIq7v/+42wKqYM0xMpDH2DeOcMwgBf/5/qFKq+zTU60/D+6I2LEMY3SLByzaXg6WrxCw/24Mgswysarkxjq/FkyKRPLPvv3IgcHsIyfOQ4dQrkTtm9CaGnX8N4SLcRReNDyVdUP+FVIoPlMcxdUoJqUXyP+viCQjx2vG3r5/sjh+bMeeCBlYRT+mVGlPJoufuXl1WtptPo+r5ZatoGtdbMlTI6wYC8X8jWXA7iMYUCWVROX0YZLmzLwY/pU87utOjInbpl/7OtpQ21chgbsWnkaE0cwqlqzC7WoCuqeX+EgPNl1g/o5+O8Z+5ciGioAo4QpVrKp+SfiACFY+k3kcsQkB5FcBLfG5GF09NAeNvfN8rY2C191kgkaEm45FgRsuHABDl4eq84PcmDXhDHX7EcB+ms3V0ANP8+1/+KBNyn3VzyLzvGmIsrDjMYaqbJPJDoh9nexI2mQWVbl0/7sJ4IPa3yqFnpvg/IHMKRv4Qd2/bs03k8XtoYoTnNFjz2eQsguJti8KZVdT58ycVtRJ2/cCwplrl64c1aHd45t/Ih38Jb+rZrSH3wVRypuDDy9uEydNzdfjEfnu3smYOOBgvS+jzWTPJ5yGGT1btfTQKDKP3msqkaOzNw8SW5lZKYD2+0Ji58wJxDLR01wyE+10cEvMPZiJ11gbZg==
+X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
+ SFS:(13230025)(4636009)(376002)(136003)(346002)(396003)(39860400002)(451199018)(36840700001)(46966006)(40470700004)(36756003)(70586007)(478600001)(4326008)(83380400001)(6916009)(8676002)(36860700001)(54906003)(82740400003)(7636003)(316002)(70206006)(82310400005)(53546011)(107886003)(6666004)(26005)(186003)(40460700003)(4744005)(16526019)(5660300002)(41300700001)(47076005)(40480700001)(426003)(356005)(2616005)(8936002)(336012)(86362001)(2906002);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2023 11:11:04.8651 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4932ef26-27cc-4563-4bac-08db050e2d42
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2023 15:03:54.2271 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e845c01-8b7b-4a8b-28c3-08db052eb3a8
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT016.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5664
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6718
 Cc: Petr Machata <petrm@nvidia.com>, netdev@vger.kernel.org,
  Ido Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org,
  Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo
  Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next mlxsw v2 07/16] net: bridge: Maintain
- number of MDB entries in net_bridge_mcast_port
+Subject: Re: [Bridge] [PATCH net-next mlxsw v2 08/16] net: bridge: Add
+ netlink knobs for number / maximum MDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -151,20 +149,20 @@ Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 Nikolay Aleksandrov <razor@blackwall.org> writes:
 
-> On 01/02/2023 19:28, Petr Machata wrote:
->> @@ -668,6 +692,82 @@ void br_multicast_del_group_src(struct net_bridge_group_src *src,
->>  	__br_multicast_del_group_src(src);
->>  }
->>  
->> +static int
->> +br_multicast_port_ngroups_inc_one(struct net_bridge_mcast_port *pmctx,
->> +				  struct netlink_ext_ack *extack)
->> +{
->> +	if (pmctx->mdb_max_entries &&
->> +	    pmctx->mdb_n_entries >= pmctx->mdb_max_entries)
+> On 02/02/2023 10:52, Nikolay Aleksandrov wrote:
+>> On 01/02/2023 19:28, Petr Machata wrote:
+>>> +int br_multicast_vlan_ngroups_set_max(struct net_bridge *br,
+>>> +				      struct net_bridge_vlan *v, u32 max,
+>>> +				      struct netlink_ext_ack *extack)
+>>> +{
+>>> +	if (br_multicast_port_ctx_vlan_disabled(&v->port_mcast_ctx)) {
+>>> +		NL_SET_ERR_MSG_MOD(extack, "Multicast snooping disabled on this VLAN");
+>>> +		return -EINVAL;
+>>> +	}
+>> 
+>> same comment about the check
 >
-> These should be using *_ONCE() because of the next patch.
-> KCSAN might be sad otherwise. :)
+> Ok, not exactly the same. I see that for the max case this check is used, please pull it
+> in the vlan code and just drop this helper. Both read/write will be doing the same then.
 
-I didn't see any (relevant) KCSAN warnings on x86_64. But yeah, it
-(and the others you cited) should be *_ONCE.
+OK. This actually simplifies the code quite a bit.
