@@ -1,92 +1,102 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE297687672
-	for <lists.bridge@lfdr.de>; Thu,  2 Feb 2023 08:37:16 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FCF6877E6
+	for <lists.bridge@lfdr.de>; Thu,  2 Feb 2023 09:52:12 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id B8D20410E1;
-	Thu,  2 Feb 2023 07:37:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B8D20410E1
+	by smtp2.osuosl.org (Postfix) with ESMTP id 0F68E40BD4;
+	Thu,  2 Feb 2023 08:52:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0F68E40BD4
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=lngnWuax
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id qLBTc701ulRI; Thu,  2 Feb 2023 07:37:14 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id CdLmbvt1L1Yj; Thu,  2 Feb 2023 08:52:10 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 235EC418BC;
-	Thu,  2 Feb 2023 07:37:13 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 235EC418BC
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 1F20540AC9;
+	Thu,  2 Feb 2023 08:52:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1F20540AC9
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C4EADC007C;
-	Thu,  2 Feb 2023 07:37:12 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 35EEAC007C;
+	Thu,  2 Feb 2023 08:52:08 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4AC6FC002B
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 07:37:11 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2471FC002B
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 08:52:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 1F0B9408E2
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 07:37:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1F0B9408E2
+ by smtp2.osuosl.org (Postfix) with ESMTP id ED85240BD4
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 08:52:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org ED85240BD4
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Dwvife1C5Fhe for <bridge@lists.linux-foundation.org>;
- Thu,  2 Feb 2023 07:37:10 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 7CA5B40220
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 7CA5B40220
- for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 07:37:10 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 08E871883898;
- Thu,  2 Feb 2023 07:37:09 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id E85CB250007B;
- Thu,  2 Feb 2023 07:37:08 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id DBA529B403E1; Thu,  2 Feb 2023 07:37:08 +0000 (UTC)
-X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
+ with ESMTP id 3Lp1tlRprEP8 for <bridge@lists.linux-foundation.org>;
+ Thu,  2 Feb 2023 08:52:05 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5F76A40AC9
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 5F76A40AC9
+ for <bridge@lists.linux-foundation.org>; Thu,  2 Feb 2023 08:52:05 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id dr8so3834744ejc.12
+ for <bridge@lists.linux-foundation.org>; Thu, 02 Feb 2023 00:52:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=SbMCZ38lwnN+ruIM2Gj+9uaY0VSOhX+LQYJn8VH5Lh8=;
+ b=lngnWuaxNw84+JHgx+wMmcz/CzfxlJi1IE70e7PJnUH1+yip1Z34qbq/9U8bhJ46TE
+ ZAq5Ov2Gd1aghV1jh0Jy223DHuodMichBfYbnV1Eq/Ns/dDrhWmdVlV4Uvj3eNRX6qEI
+ LuotBFdEMgtbm9ovPyS2k6mtZl9DTIRX+4oz4ph8XflAr/6OZnesYAIFWS1g6xSxwO7r
+ yjrKlxmkqBmOCRE2ft2oQhwG/+MrfHc54cegc69v2xa3JhBRJSnp6O0vdqHju9fr/E08
+ neK3ku/S+8HdoRpKKTWcgZ8u8tP2cZMoTe4KpFQ83gkbepZZw+9o4y4VIOxElq2QEEUz
+ NZhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=SbMCZ38lwnN+ruIM2Gj+9uaY0VSOhX+LQYJn8VH5Lh8=;
+ b=XF0OjhBC+T8dm0AOgWEFBkB8j13R19liL4CgGgAfMep9isuVkOz3N3hCDtAqCjti5c
+ ZFu7nLgV8VKimKsMihAWKNXXM09pTpNzehaCzQ6UwXfhEzD8oUEQYe7qUAS/ezNMYBpv
+ hAImo0iiw2MC9le5tYVoHcFpwh8Pg0R/nXRVePorDwe3u/j4CfPwEaQAG6EIxR6h68B0
+ /6DhbCfesWGSVjMpCT4nL4Gc4KIscluvHapXfutetynfI2Va8SYhmnAsQBDdHAFtj127
+ XtpWAqImWeLXc2Vmp7G8fLotdEMS6Dx9ypIe/GTBNRoIoYvjWj5uQZTkHrQOPE92kbba
+ emLg==
+X-Gm-Message-State: AO0yUKXBPA6qJm4defHEqthm47WY6JnXV8/kkmRkBhZr5T1FAAdkZ0of
+ 3TM7hC8JIfx9By4pBbthqSz+tQ==
+X-Google-Smtp-Source: AK7set9Fg2qhdR5lgneh9X3fKtsvCWZOChigpzgv3L7E3Wi8T4q3mYvQMQS4Z/D5rZLc5UcfVAbYLA==
+X-Received: by 2002:a17:907:995a:b0:88a:673e:3669 with SMTP id
+ kl26-20020a170907995a00b0088a673e3669mr5662289ejc.15.1675327923331; 
+ Thu, 02 Feb 2023 00:52:03 -0800 (PST)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ w20-20020a170906d21400b008897858bb06sm5542234ejz.119.2023.02.02.00.52.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 02 Feb 2023 00:52:03 -0800 (PST)
+Message-ID: <4ce2042b-26f7-00df-a035-567475add7f6@blackwall.org>
+Date: Thu, 2 Feb 2023 10:52:02 +0200
 MIME-Version: 1.0
-Date: Thu, 02 Feb 2023 08:37:08 +0100
-From: netdev@kapio-technology.com
-To: Ido Schimmel <idosch@idosch.org>
-In-Reply-To: <Y9lrIWMnWLqGreZL@shredder>
-References: <20230130173429.3577450-1-netdev@kapio-technology.com>
- <Y9lrIWMnWLqGreZL@shredder>
-User-Agent: Gigahost Webmail
-Message-ID: <e2535b002be9044958ab0003d8bd6966@kapio-technology.com>
-X-Sender: netdev@kapio-technology.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: Petr Machata <petrm@nvidia.com>, "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Roopa Prabhu <roopa@nvidia.com>,
+ netdev@vger.kernel.org
+References: <cover.1675271084.git.petrm@nvidia.com>
+ <7b9f6524716a9e2ce33b9383e3216fed2f432201.1675271084.git.petrm@nvidia.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <7b9f6524716a9e2ce33b9383e3216fed2f432201.1675271084.git.petrm@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
- "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
- kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- =?UTF-8?Q?Cl=C3=A9m?= =?UTF-8?Q?ent_L=C3=A9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
- open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>,
- Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/5] ATU and FDB synchronization on
-	locked ports
+Cc: Ido Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org
+Subject: Re: [Bridge] [PATCH net-next mlxsw v2 08/16] net: bridge: Add
+ netlink knobs for number / maximum MDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -101,13 +111,389 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2023-01-31 20:25, Ido Schimmel wrote:
+On 01/02/2023 19:28, Petr Machata wrote:
+> The previous patch added accounting for number of MDB entries per port and
+> per port-VLAN, and the logic to verify that these values stay within
+> configured bounds. However it didn't provide means to actually configure
+> those bounds or read the occupancy. This patch does that.
 > 
-> Will try to review tomorrow, but it looks like this set is missing
-> selftests. What about extending bridge_locked_port.sh?
+> Two new netlink attributes are added for the MDB occupancy:
+> IFLA_BRPORT_MCAST_N_GROUPS for the per-port occupancy and
+> BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS for the per-port-VLAN occupancy.
+> And another two for the maximum number of MDB entries:
+> IFLA_BRPORT_MCAST_MAX_GROUPS for the per-port maximum, and
+> BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS for the per-port-VLAN one.
+> 
+> Note that the two new IFLA_BRPORT_ attributes prompt bumping of
+> RTNL_SLAVE_MAX_TYPE to size the slave attribute tables large enough.
+> 
+> The new attributes are used like this:
+> 
+>  # ip link add name br up type bridge vlan_filtering 1 mcast_snooping 1 \
+>                                       mcast_vlan_snooping 1 mcast_querier 1
+>  # ip link set dev v1 master br
+>  # bridge vlan add dev v1 vid 2
+> 
+>  # bridge vlan set dev v1 vid 1 mcast_max_groups 1
+>  # bridge mdb add dev br port v1 grp 230.1.2.3 temp vid 1
+>  # bridge mdb add dev br port v1 grp 230.1.2.4 temp vid 1
+>  Error: bridge: Port-VLAN is already a member in mcast_max_groups (1) groups.
+> 
+>  # bridge link set dev v1 mcast_max_groups 1
+>  # bridge mdb add dev br port v1 grp 230.1.2.3 temp vid 2
+>  Error: bridge: Port is already a member in mcast_max_groups (1) groups.
+> 
+>  # bridge -d link show
+>  5: v1@v2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 master br [...]
+>      [...] mcast_n_groups 1 mcast_max_groups 1
+> 
+>  # bridge -d vlan show
+>  port              vlan-id
+>  br                1 PVID Egress Untagged
+>                      state forwarding mcast_router 1
+>  v1                1 PVID Egress Untagged
+>                      [...] mcast_n_groups 1 mcast_max_groups 1
+>                    2
+>                      [...] mcast_n_groups 0 mcast_max_groups 0
+> 
+> Signed-off-by: Petr Machata <petrm@nvidia.com>
+> ---
+> 
+> Notes:
+>     v2:
+>     - Drop locks around accesses in
+>       br_multicast_{port,vlan}_ngroups_{get,set_max}(),
+>     - Drop bounces due to max<n in
+>       br_multicast_{port,vlan}_ngroups_set_max().
+> 
+>  include/uapi/linux/if_bridge.h |  2 ++
+>  include/uapi/linux/if_link.h   |  2 ++
+>  net/bridge/br_multicast.c      | 50 ++++++++++++++++++++++++++++++++++
+>  net/bridge/br_netlink.c        | 17 +++++++++++-
+>  net/bridge/br_private.h        | 15 +++++++++-
+>  net/bridge/br_vlan.c           | 11 +++++---
+>  net/bridge/br_vlan_options.c   | 33 +++++++++++++++++++++-
+>  net/core/rtnetlink.c           |  2 +-
+>  8 files changed, 124 insertions(+), 8 deletions(-)
+> 
+> diff --git a/include/uapi/linux/if_bridge.h b/include/uapi/linux/if_bridge.h
+> index d9de241d90f9..d60c456710b3 100644
+> --- a/include/uapi/linux/if_bridge.h
+> +++ b/include/uapi/linux/if_bridge.h
+> @@ -523,6 +523,8 @@ enum {
+>  	BRIDGE_VLANDB_ENTRY_TUNNEL_INFO,
+>  	BRIDGE_VLANDB_ENTRY_STATS,
+>  	BRIDGE_VLANDB_ENTRY_MCAST_ROUTER,
+> +	BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS,
+> +	BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS,
+>  	__BRIDGE_VLANDB_ENTRY_MAX,
+>  };
+>  #define BRIDGE_VLANDB_ENTRY_MAX (__BRIDGE_VLANDB_ENTRY_MAX - 1)
+> diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
+> index 1021a7e47a86..1bed3a72939c 100644
+> --- a/include/uapi/linux/if_link.h
+> +++ b/include/uapi/linux/if_link.h
+> @@ -564,6 +564,8 @@ enum {
+>  	IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
+>  	IFLA_BRPORT_LOCKED,
+>  	IFLA_BRPORT_MAB,
+> +	IFLA_BRPORT_MCAST_N_GROUPS,
+> +	IFLA_BRPORT_MCAST_MAX_GROUPS,
+>  	__IFLA_BRPORT_MAX
+>  };
+>  #define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
+> diff --git a/net/bridge/br_multicast.c b/net/bridge/br_multicast.c
+> index e7ae339a8757..393ffc21c3e8 100644
+> --- a/net/bridge/br_multicast.c
+> +++ b/net/bridge/br_multicast.c
+> @@ -768,6 +768,56 @@ static void br_multicast_port_ngroups_dec(struct net_bridge_port *port, u16 vid)
+>  	br_multicast_port_ngroups_dec_one(&port->multicast_ctx);
+>  }
+>  
+> +u32 br_multicast_port_ngroups_get(const struct net_bridge_port *port)
+> +{
+> +	return READ_ONCE(port->multicast_ctx.mdb_n_entries);
+> +}
+> +
+> +int br_multicast_vlan_ngroups_get(struct net_bridge *br,
+> +				  const struct net_bridge_vlan *v,
+> +				  u32 *n)
+> +{
+> +	if (br_multicast_port_ctx_vlan_disabled(&v->port_mcast_ctx))
+> +		return -EINVAL;
 
-I knew you would take this up. :-)
-But I am not sure that it's so easy to have selftests here as it is 
-timing based and it would take the 5+ minutes just waiting to test in 
-the stadard case, and there is opnly support for mv88e6xxx driver with 
-this patch set.
+This check seems unnecessary since the helper is used only if !br_multicast_port_ctx_vlan_disabled()
+below.
+
+> +
+> +	*n = READ_ONCE(v->port_mcast_ctx.mdb_n_entries);
+> +	return 0;
+> +}
+> +
+> +void br_multicast_port_ngroups_set_max(struct net_bridge_port *port, u32 max)
+> +{
+> +	WRITE_ONCE(port->multicast_ctx.mdb_max_entries, max);
+> +}
+> +
+> +int br_multicast_vlan_ngroups_set_max(struct net_bridge *br,
+> +				      struct net_bridge_vlan *v, u32 max,
+> +				      struct netlink_ext_ack *extack)
+> +{
+> +	if (br_multicast_port_ctx_vlan_disabled(&v->port_mcast_ctx)) {
+> +		NL_SET_ERR_MSG_MOD(extack, "Multicast snooping disabled on this VLAN");
+> +		return -EINVAL;
+> +	}
+
+same comment about the check
+
+> +
+> +	WRITE_ONCE(v->port_mcast_ctx.mdb_max_entries, max);
+> +	return 0;
+> +}
+> +
+> +u32 br_multicast_port_ngroups_get_max(const struct net_bridge_port *port)
+> +{
+> +	return READ_ONCE(port->multicast_ctx.mdb_max_entries);
+> +}
+> +
+> +int br_multicast_vlan_ngroups_get_max(struct net_bridge *br,
+> +				      const struct net_bridge_vlan *v,
+> +				      u32 *max)
+> +{
+> +	if (br_multicast_port_ctx_vlan_disabled(&v->port_mcast_ctx))
+> +		return -EINVAL;
+> +
+> +	*max = READ_ONCE(v->port_mcast_ctx.mdb_max_entries);
+> +	return 0;
+> +}
+
+So I don't think we need special flavours for vlan and port, the point of using common
+port_mcast_ctx for both was to unify the code as much as possible. If the reason was
+to add that check then we already have it below before calling that code, no?
+Could we instead add one helper for each action that takes pmctx pointers and works on them?
+
+Thanks,
+ Nik
+
+> +
+>  static void br_multicast_destroy_port_group(struct net_bridge_mcast_gc *gc)
+>  {
+>  	struct net_bridge_port_group *pg;
+> diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+> index a6133d469885..968d0963d9a9 100644
+> --- a/net/bridge/br_netlink.c
+> +++ b/net/bridge/br_netlink.c
+> @@ -202,6 +202,8 @@ static inline size_t br_port_info_size(void)
+>  		+ nla_total_size_64bit(sizeof(u64)) /* IFLA_BRPORT_HOLD_TIMER */
+>  #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
+>  		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MULTICAST_ROUTER */
+> +		+ nla_total_size(sizeof(u32))	/* IFLA_BRPORT_MCAST_N_GROUPS */
+> +		+ nla_total_size(sizeof(u32))	/* IFLA_BRPORT_MCAST_MAX_GROUPS */
+>  #endif
+>  		+ nla_total_size(sizeof(u16))	/* IFLA_BRPORT_GROUP_FWD_MASK */
+>  		+ nla_total_size(sizeof(u8))	/* IFLA_BRPORT_MRP_RING_OPEN */
+> @@ -298,7 +300,11 @@ static int br_port_fill_attrs(struct sk_buff *skb,
+>  	    nla_put_u32(skb, IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT,
+>  			p->multicast_eht_hosts_limit) ||
+>  	    nla_put_u32(skb, IFLA_BRPORT_MCAST_EHT_HOSTS_CNT,
+> -			p->multicast_eht_hosts_cnt))
+> +			p->multicast_eht_hosts_cnt) ||
+> +	    nla_put_u32(skb, IFLA_BRPORT_MCAST_N_GROUPS,
+> +			br_multicast_port_ngroups_get(p)) ||
+> +	    nla_put_u32(skb, IFLA_BRPORT_MCAST_MAX_GROUPS,
+> +			br_multicast_port_ngroups_get_max(p)))
+>  		return -EMSGSIZE;
+>  #endif
+>  
+> @@ -883,6 +889,8 @@ static const struct nla_policy br_port_policy[IFLA_BRPORT_MAX + 1] = {
+>  	[IFLA_BRPORT_MAB] = { .type = NLA_U8 },
+>  	[IFLA_BRPORT_BACKUP_PORT] = { .type = NLA_U32 },
+>  	[IFLA_BRPORT_MCAST_EHT_HOSTS_LIMIT] = { .type = NLA_U32 },
+> +	[IFLA_BRPORT_MCAST_N_GROUPS] = { .type = NLA_REJECT },
+> +	[IFLA_BRPORT_MCAST_MAX_GROUPS] = { .type = NLA_U32 },
+>  };
+>  
+>  /* Change the state of the port and notify spanning tree */
+> @@ -1017,6 +1025,13 @@ static int br_setport(struct net_bridge_port *p, struct nlattr *tb[],
+>  		if (err)
+>  			return err;
+>  	}
+> +
+> +	if (tb[IFLA_BRPORT_MCAST_MAX_GROUPS]) {
+> +		u32 max_groups;
+> +
+> +		max_groups = nla_get_u32(tb[IFLA_BRPORT_MCAST_MAX_GROUPS]);
+> +		br_multicast_port_ngroups_set_max(p, max_groups);
+> +	}
+>  #endif
+>  
+>  	if (tb[IFLA_BRPORT_GROUP_FWD_MASK]) {
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index 49f411a0a1f1..98f3836efb84 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -978,6 +978,18 @@ void br_multicast_uninit_stats(struct net_bridge *br);
+>  void br_multicast_get_stats(const struct net_bridge *br,
+>  			    const struct net_bridge_port *p,
+>  			    struct br_mcast_stats *dest);
+> +u32 br_multicast_port_ngroups_get(const struct net_bridge_port *port);
+> +int br_multicast_vlan_ngroups_get(struct net_bridge *br,
+> +				  const struct net_bridge_vlan *v,
+> +				  u32 *n);
+> +void br_multicast_port_ngroups_set_max(struct net_bridge_port *port, u32 max);
+> +int br_multicast_vlan_ngroups_set_max(struct net_bridge *br,
+> +				      struct net_bridge_vlan *v, u32 max,
+> +				      struct netlink_ext_ack *extack);
+> +u32 br_multicast_port_ngroups_get_max(const struct net_bridge_port *port);
+> +int br_multicast_vlan_ngroups_get_max(struct net_bridge *br,
+> +				      const struct net_bridge_vlan *v,
+> +				      u32 *max);
+>  void br_mdb_init(void);
+>  void br_mdb_uninit(void);
+>  void br_multicast_host_join(const struct net_bridge_mcast *brmctx,
+> @@ -1761,7 +1773,8 @@ static inline u16 br_vlan_flags(const struct net_bridge_vlan *v, u16 pvid)
+>  #ifdef CONFIG_BRIDGE_VLAN_FILTERING
+>  bool br_vlan_opts_eq_range(const struct net_bridge_vlan *v_curr,
+>  			   const struct net_bridge_vlan *range_end);
+> -bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v);
+> +bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v,
+> +		       const struct net_bridge_port *p);
+>  size_t br_vlan_opts_nl_size(void);
+>  int br_vlan_process_options(const struct net_bridge *br,
+>  			    const struct net_bridge_port *p,
+> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
+> index bc75fa1e4666..8a3dbc09ba38 100644
+> --- a/net/bridge/br_vlan.c
+> +++ b/net/bridge/br_vlan.c
+> @@ -1816,6 +1816,7 @@ static bool br_vlan_stats_fill(struct sk_buff *skb,
+>  /* v_opts is used to dump the options which must be equal in the whole range */
+>  static bool br_vlan_fill_vids(struct sk_buff *skb, u16 vid, u16 vid_range,
+>  			      const struct net_bridge_vlan *v_opts,
+> +			      const struct net_bridge_port *p,
+>  			      u16 flags,
+>  			      bool dump_stats)
+>  {
+> @@ -1842,7 +1843,7 @@ static bool br_vlan_fill_vids(struct sk_buff *skb, u16 vid, u16 vid_range,
+>  		goto out_err;
+>  
+>  	if (v_opts) {
+> -		if (!br_vlan_opts_fill(skb, v_opts))
+> +		if (!br_vlan_opts_fill(skb, v_opts, p))
+>  			goto out_err;
+>  
+>  		if (dump_stats && !br_vlan_stats_fill(skb, v_opts))
+> @@ -1925,7 +1926,7 @@ void br_vlan_notify(const struct net_bridge *br,
+>  		goto out_kfree;
+>  	}
+>  
+> -	if (!br_vlan_fill_vids(skb, vid, vid_range, v, flags, false))
+> +	if (!br_vlan_fill_vids(skb, vid, vid_range, v, p, flags, false))
+>  		goto out_err;
+>  
+>  	nlmsg_end(skb, nlh);
+> @@ -2030,7 +2031,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
+>  
+>  			if (!br_vlan_fill_vids(skb, range_start->vid,
+>  					       range_end->vid, range_start,
+> -					       vlan_flags, dump_stats)) {
+> +					       p, vlan_flags, dump_stats)) {
+>  				err = -EMSGSIZE;
+>  				break;
+>  			}
+> @@ -2056,7 +2057,7 @@ static int br_vlan_dump_dev(const struct net_device *dev,
+>  		else if (!dump_global &&
+>  			 !br_vlan_fill_vids(skb, range_start->vid,
+>  					    range_end->vid, range_start,
+> -					    br_vlan_flags(range_start, pvid),
+> +					    p, br_vlan_flags(range_start, pvid),
+>  					    dump_stats))
+>  			err = -EMSGSIZE;
+>  	}
+> @@ -2131,6 +2132,8 @@ static const struct nla_policy br_vlan_db_policy[BRIDGE_VLANDB_ENTRY_MAX + 1] =
+>  	[BRIDGE_VLANDB_ENTRY_STATE]	= { .type = NLA_U8 },
+>  	[BRIDGE_VLANDB_ENTRY_TUNNEL_INFO] = { .type = NLA_NESTED },
+>  	[BRIDGE_VLANDB_ENTRY_MCAST_ROUTER]	= { .type = NLA_U8 },
+> +	[BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS]	= { .type = NLA_REJECT },
+> +	[BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS]	= { .type = NLA_U32 },
+>  };
+>  
+>  static int br_vlan_rtm_process_one(struct net_device *dev,
+> diff --git a/net/bridge/br_vlan_options.c b/net/bridge/br_vlan_options.c
+> index a2724d03278c..43d8f11ce79c 100644
+> --- a/net/bridge/br_vlan_options.c
+> +++ b/net/bridge/br_vlan_options.c
+> @@ -48,7 +48,8 @@ bool br_vlan_opts_eq_range(const struct net_bridge_vlan *v_curr,
+>  	       curr_mc_rtr == range_mc_rtr;
+>  }
+>  
+> -bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v)
+> +bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v,
+> +		       const struct net_bridge_port *p)
+>  {
+>  	if (nla_put_u8(skb, BRIDGE_VLANDB_ENTRY_STATE, br_vlan_get_state(v)) ||
+>  	    !__vlan_tun_put(skb, v))
+> @@ -58,6 +59,20 @@ bool br_vlan_opts_fill(struct sk_buff *skb, const struct net_bridge_vlan *v)
+>  	if (nla_put_u8(skb, BRIDGE_VLANDB_ENTRY_MCAST_ROUTER,
+>  		       br_vlan_multicast_router(v)))
+>  		return false;
+> +	if (p && !br_multicast_port_ctx_vlan_disabled(&v->port_mcast_ctx)) {
+> +		u32 mdb_max_entries;
+> +		u32 mdb_n_entries;
+> +
+> +		if (br_multicast_vlan_ngroups_get(p->br, v, &mdb_n_entries) ||
+> +		    nla_put_u32(skb, BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS,
+> +				mdb_n_entries))
+> +			return false;
+> +		if (br_multicast_vlan_ngroups_get_max(p->br, v,
+> +						      &mdb_max_entries) ||
+> +		    nla_put_u32(skb, BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS,
+> +				mdb_max_entries))
+> +			return false;
+> +	}
+>  #endif
+>  
+>  	return true;
+> @@ -70,6 +85,8 @@ size_t br_vlan_opts_nl_size(void)
+>  	       + nla_total_size(sizeof(u32)) /* BRIDGE_VLANDB_TINFO_ID */
+>  #ifdef CONFIG_BRIDGE_IGMP_SNOOPING
+>  	       + nla_total_size(sizeof(u8)) /* BRIDGE_VLANDB_ENTRY_MCAST_ROUTER */
+> +	       + nla_total_size(sizeof(u32)) /* BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS */
+> +	       + nla_total_size(sizeof(u32)) /* BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS */
+>  #endif
+>  	       + 0;
+>  }
+> @@ -212,6 +229,20 @@ static int br_vlan_process_one_opts(const struct net_bridge *br,
+>  			return err;
+>  		*changed = true;
+>  	}
+> +	if (tb[BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS]) {
+> +		u32 val;
+> +
+> +		if (!p) {
+> +			NL_SET_ERR_MSG_MOD(extack, "Can't set mcast_max_groups for non-port vlans");
+> +			return -EINVAL;
+> +		}
+> +
+> +		val = nla_get_u32(tb[BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS]);
+> +		err = br_multicast_vlan_ngroups_set_max(p->br, v, val, extack);
+> +		if (err)
+> +			return err;
+> +		*changed = true;
+> +	}
+>  #endif
+>  
+>  	return 0;
+> diff --git a/net/core/rtnetlink.c b/net/core/rtnetlink.c
+> index 64289bc98887..e786255a8360 100644
+> --- a/net/core/rtnetlink.c
+> +++ b/net/core/rtnetlink.c
+> @@ -58,7 +58,7 @@
+>  #include "dev.h"
+>  
+>  #define RTNL_MAX_TYPE		50
+> -#define RTNL_SLAVE_MAX_TYPE	40
+> +#define RTNL_SLAVE_MAX_TYPE	42
+>  
+>  struct rtnl_link {
+>  	rtnl_doit_func		doit;
+
