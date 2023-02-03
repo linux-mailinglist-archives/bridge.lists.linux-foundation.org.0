@@ -1,137 +1,139 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF26968AECA
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8016A68AEC8
 	for <lists.bridge@lfdr.de>; Sun,  5 Feb 2023 09:03:52 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id E296F81FC1;
-	Sun,  5 Feb 2023 08:03:48 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E296F81FC1
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=corigine.onmicrosoft.com header.i=@corigine.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-corigine-onmicrosoft-com header.b=qafPc18d
+	by smtp4.osuosl.org (Postfix) with ESMTP id 2673541728;
+	Sun,  5 Feb 2023 08:03:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2673541728
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=corigine.onmicrosoft.com header.i=@corigine.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-corigine-onmicrosoft-com header.b=mJeB1Opn
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id IEEspVuuu5O1; Sun,  5 Feb 2023 08:03:48 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 1D3EC81FBB;
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id dC84U5kcdSKg; Sun,  5 Feb 2023 08:03:48 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 761D541729;
 	Sun,  5 Feb 2023 08:03:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1D3EC81FBB
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 761D541729
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E3370C0085;
-	Sun,  5 Feb 2023 08:03:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 25405C0088;
+	Sun,  5 Feb 2023 08:03:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BC3C3C002B
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 18:56:46 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5C4F5C002B
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 08:17:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 8A59E81002
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 18:56:46 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8A59E81002
+ by smtp4.osuosl.org (Postfix) with ESMTP id 22330429B1
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 08:17:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 22330429B1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id iest4xuTDmjL for <bridge@lists.linux-foundation.org>;
- Tue, 31 Jan 2023 18:56:45 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 1fniBDMK-rWc for <bridge@lists.linux-foundation.org>;
+ Fri,  3 Feb 2023 08:17:26 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 958E881000
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20700.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::700])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 958E881000
- for <bridge@lists.linux-foundation.org>; Tue, 31 Jan 2023 18:56:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C729741C5F
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on20702.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::702])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id C729741C5F
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 08:17:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XjFoHw0XTsK1on4EUxQxG6jUMnpiJqnjtnXFzp59BpBZ96ck6Z5xo1FEfg/CiUUU+TbW5vYGXEoUSdEsxTBbzWMfDh4OkKDqOFszc2mmNJakM/tpoQysRNoYMiNEDaGn/s+Xbf50Jd0Jup/7xLXQ+76Lq3++wFI+AJRGMXld/uYef820dEMvomzZQ+gzqTHtpEWWQrq7c38WNfHdazlPEy7Mo9MzuwpKUilsWF6pfgy1l0a/cnHSR3KOGGeJzqmZDU8Gbqq/6DujahMuWtlbhY8pczLPSgfcK064DeyZIiXxmNuV/Phf2iVp/GRfMhI7CFCCLkfL0BGihV4sK71y0Q==
+ b=fAG4zvHqLHiCLRITKN9yA+o2rimG11NcU6GjSLSBXqgCWG0WMu34uLM978I3GJNLyS20lBhh7D3dNob8ziVQ72awNSzaGH/XCWj7dJQ99c+oQcykzzI8pe3GuvEa9XBW2ss3gTlffX0IN6o+Hc0rJnPOxa6Dgu5HhIMP8S1LoCbRe0qkExv0TILtdIkBW1g7Tonqf5bLsymtpBbI3LzEqjCQv2Oz+mcJeWUp+tj3KPADLcBWDa8blUGoiyUO7jNc7a561ZO18j217alLerW9lRLaoAVwi3yAGoVlwQ6y2a2t7JdpofjvkBqDDfT7bcqu47L6ZcHKO8aM4ab2mnxCug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AHk3pMR+0Uj/ZMILRMhFD+mriNUTFOk1hGqQBC4zbQ0=;
- b=Pu9T6/jm96Qq6L+BHDpX1UUeJfFtdZ7IBo1eIrEV03GUV+mep7yTk5jD5sLx5pss7Ioq1+jwEOcH7rXqHSuXWyAguulnQhnSogQBBjjo+EF7Iojekf/LkviX+3p+alK0nB/SD4FwDYQgoG6kTNLTjs+eCAV9haUY4yuCa2sPXbyAVjhO+wnN13StoUFplsLXF0bgiQp1QVuBQ/sU8FG46kgT3Y10mGfYx/in42y9YIkvqwD91AhPZsNtR4essCetq8o0Hto7AKhgLw6r7wXQgZa0J2EOyYRMtNjaS34P6qCtTttEcSls4N3RMnY7oi5xqfXVugcyLEzeiK6AFiBWwA==
+ bh=mqGXl5Wv3G9fLahc+geuWHLtMDU+xGZqI0CTVLVftUI=;
+ b=KfcaBpB75cgaDDXrKOZbd8B+EHHqdaY4k+bLV62haiL9WnCbKJegxH+VUaSyxhE0tq6TuUacpbo+K3JndeGfMLDXLi6FmUToHe5vtt4pptn2Ahe/F4NCrQ/uZ4Q1ELS7oiJ6yX8nU9Lj8NIl8DYpnNAxvTADmWMRxDtkgianS6qY2T+0N7TK35P8EQdt16M1i1xr/nZGUKYfUXkLtXZSrVgMlKHolZwgK8pSax1a9gdvMs/UZxPyd9Qb1i7o7077o0wiS8We86/pjbgWWQNJ/naNu3qtCKRMgbbW/kpAfAL6pxdLh+Hcqc3PDDXM7npY4S7A1oT5DZNu9TCFhUQx1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
  dkim=pass header.d=corigine.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AHk3pMR+0Uj/ZMILRMhFD+mriNUTFOk1hGqQBC4zbQ0=;
- b=qafPc18dlr39oXm7P0pr1VDY2sX3trHfcDsKcXyWuWyj4Pu3kB7O1n0/cGCtsbx84sp1LjfN4Z+6/PsvktQifayK7EOgfGQBcOdn77UNpynXWWBCR0fk9v5f1d8F6KEwriZlRA47k7V+tOIfZ3rKDBV2+AGaXj57NjYilRZaa0E=
+ bh=mqGXl5Wv3G9fLahc+geuWHLtMDU+xGZqI0CTVLVftUI=;
+ b=mJeB1OpnUjI7OWkrAwmikHMCogbxeVpoXsY8gRWSYvbvgjxD+0hWRn1do61XeJxw68FbV7JpRNB1Q34iXwisczewQ0ZnQ/bfU7j3zqOGOsJbsE6oRFXeOfHRW7kENz5T0ovFYDLzNJ8MuuHHjQJpK40EVBzRL9AThmoLe2Qzfp0=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=corigine.com;
 Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by SN4PR13MB5775.namprd13.prod.outlook.com (2603:10b6:806:217::6) with
+ by DS7PR13MB4654.namprd13.prod.outlook.com (2603:10b6:5:3a0::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.36; Tue, 31 Jan
- 2023 18:56:41 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.24; Fri, 3 Feb
+ 2023 08:17:21 +0000
 Received: from PH0PR13MB4842.namprd13.prod.outlook.com
  ([fe80::eb5c:910f:3730:fd65]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65%7]) with mapi id 15.20.6043.038; Tue, 31 Jan 2023
- 18:56:41 +0000
-Date: Tue, 31 Jan 2023 19:56:30 +0100
+ ([fe80::eb5c:910f:3730:fd65%5]) with mapi id 15.20.6064.027; Fri, 3 Feb 2023
+ 08:17:21 +0000
+Date: Fri, 3 Feb 2023 09:17:06 +0100
 From: Simon Horman <simon.horman@corigine.com>
-To: "Hans J. Schultz" <netdev@kapio-technology.com>
-Message-ID: <Y9lkXlyXg1d1D0j3@corigine.com>
+To: netdev@kapio-technology.com
+Message-ID: <Y9zDApc6nDO2RzOb@corigine.com>
 References: <20230130173429.3577450-1-netdev@kapio-technology.com>
- <20230130173429.3577450-6-netdev@kapio-technology.com>
+ <20230130173429.3577450-4-netdev@kapio-technology.com>
+ <Y9lj7RJgyMJfjtGp@corigine.com>
+ <0b021777dfc1825b6565c0d9dbd6dbef@kapio-technology.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230130173429.3577450-6-netdev@kapio-technology.com>
-X-ClientProxiedBy: AM4PR0302CA0030.eurprd03.prod.outlook.com
- (2603:10a6:205:2::43) To PH0PR13MB4842.namprd13.prod.outlook.com
+In-Reply-To: <0b021777dfc1825b6565c0d9dbd6dbef@kapio-technology.com>
+X-ClientProxiedBy: AM3PR07CA0138.eurprd07.prod.outlook.com
+ (2603:10a6:207:8::24) To PH0PR13MB4842.namprd13.prod.outlook.com
  (2603:10b6:510:78::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|SN4PR13MB5775:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0498741e-0211-4ed2-55e9-08db03bce3a8
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|DS7PR13MB4654:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca453dc9-6b20-448b-cfb4-08db05bf12a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Dmkw2G3vXwWdacGJ8UmsCiy8oEMWRq+laNrD0UF3x2Gr56xUxVwKtv7dxVVyzGXDYYoHW0JAbCcdpJ8xsIDIAMwe40hjw+3ZYpDT8/YP0UhBhgVlQC74McuKYQJYL6Z3IOdK7O2MFsFSHhV2RLoqpMO+XrCva6eijwG/ux71Qmqh1eXU/4YfiRgreOxnMTr4zWkumyOQi7OOdmz1KJSnCPvwRsv2ZJE4WwudseN/XGPXdohKdRaMSFBGBIb0MOrrN2LRaIWDhXvUVaLjXvDElgO2q5MXzYDZ1yl3JSDwwYqgoEqKDdlKsbi2v5h366PG6BTk8HaCoWy3zZhp6u5BV4ohIh868l605Bqh4but2jEsx4Cjeg9D5PjUu8TouQu0hsqTT/+KDij4iqcTvHCz3s3e9rK9N/vE5RMArsNiKJ2cgkReXHtoJkLUzBzaLqJd4s0YjpVrsfNGl4l8mnXja0VHLgqXNIIwcY95N6zkD7+IzEObdtJGkTfw8jC+Ey2GlG1o5vZhSCadmp1OxqWyz7C5dJvkwIets6YMgc0v1EqZeLVPi44d2kqSfdi0TeK2o+xtLrLBMXikh4kW4nnZfct6daTuoTC1eHgW+zwoyPf06lqjMIaIRY0n2j4BWMRLb1DeU2uwFWsdH+tv5VzV+BiGiq2uM7fSxLexaZVaKcxDMhRvXjHENYO3tfylcUYO
+X-Microsoft-Antispam-Message-Info: Vs7c+kQ9oaiekn4X2Rjbic2Q0BA2JviQYKXtcbxDGGU2ieCHKPBV7k2ZJihL2DCKgLi85PDkAP1NCuFmUtHfPfitxFO8OETnZwS8H9sXs6kTyWuHNvjy5W1I/lgM2no+9KeFnqizVPgOhWSST6ZG4IA9rpbjAAEBQoHISYiO+hxqF9HA3D7t9iDM6+g0G7gA0BzXxF9f20RN6hoOLA98CI0JNEoM+kiRo+XxMTayU5+9bKII17KeQM/I8+UT5oTM3AUpqFyJ73Di+xJ9J7hrzdhpD7dQnXs0UWZcDMYw1/lRdT+w/JCKsCb14a46l4dKdPaqt0iOjNeb6rHGDcecZBTRrTFDDtmBV203W2YaCyw+qWI3SaDT3vLErag7gutG2S+7De0h+gXEbu6Gj7i7U/VHP6WaKTJnTjX0ohaHiNjjKHWr6ZvUpHne5T+6XxmOvdTDHAOASK6D1Fzm9CUqRH6JPczwt7hzmqgR92lxp5YSKRWBOLBjeI0pLgRB2YZA0NvTRKXAsHuJu86OrP1nDwxTAN1UMkCa9yfcxitKuRHt/3BG3IXT2nyZ0wFiswgI/lLeQ75uFNs+ptoNfGfOrrmWyY2d7W/8JP4ry5G6lQ/o/tAd7dz2z6L3mEUeY4B4JsPvR3R6ImJTo9GRnAvmYxSP6m0vfjMmn0UnFClk1zVBB+QOKMfh34sgEX1tLGep
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH0PR13MB4842.namprd13.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(366004)(136003)(396003)(39840400004)(346002)(376002)(451199018)(44832011)(7416002)(7406005)(83380400001)(2616005)(38100700002)(86362001)(36756003)(2906002)(186003)(6506007)(6512007)(478600001)(6666004)(8936002)(66476007)(66556008)(6916009)(8676002)(41300700001)(66946007)(4326008)(6486002)(5660300002)(54906003)(316002);
+ SFS:(13230025)(4636009)(39840400004)(396003)(376002)(366004)(346002)(136003)(451199018)(6666004)(53546011)(6506007)(38100700002)(86362001)(5660300002)(6512007)(36756003)(2616005)(41300700001)(44832011)(7406005)(186003)(6486002)(7416002)(2906002)(316002)(8936002)(66946007)(4326008)(54906003)(66556008)(66476007)(478600001)(6916009)(8676002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?59CTpl4TQV/v720D2tBpKYjSs/4oq31pISbjOsrdQbIXVTbQ34ME/6Szf0fs?=
- =?us-ascii?Q?Ogln8IXnJ5VPlziw1IueeN9rC1aDUw22m97nqz1kz2C6ImYh/YGIWPYCcrgQ?=
- =?us-ascii?Q?6+Yb4Qnp/QcqpFfGK6TcJhls35gfXGT2cs53RY0WmZVFASoA5ut0vxbsydzN?=
- =?us-ascii?Q?+DJngslK8w+lKBdj7skrVdgGaMZHusqywu2mBar5awTuSVw6L6ClJr20XeeC?=
- =?us-ascii?Q?dwk6C8GZCSpT+5dinUeLvws7laXP20vcHThfe9iJ+PNCJApnVAJCukzB4xvZ?=
- =?us-ascii?Q?0X0hBJXVvz075biZDmzKeKsONzVsVTQl7AHHkfNKctISnUwWdNg4iG6WXg1M?=
- =?us-ascii?Q?B2BFKOU3TaIX7dun56/5mLxrFMj9SnLDeLABlapQHnoQ6SLceCgZutuZYr49?=
- =?us-ascii?Q?3GBya/rzTAHEwpgQ1j2a6YYpb+AVyb/NIfUvK1xlTY0jnm6U+ZAphp89Cnwu?=
- =?us-ascii?Q?3RH5OanyxLklXN/FFidqRkLNK5T9/fGZoAXRdhg4B1xrKp2yf1T4E9ZBGyZq?=
- =?us-ascii?Q?307ai39zRd/ZxDAnrklQ6Oe3CHqyG/ZuqR0iTOPkkvvg77zS9X7qxo1Y2XsC?=
- =?us-ascii?Q?tbx1JZldlfoXgDlOZRSFPOKzPt7eJ+QpZ2ETO/ktP0YXcXJx9OnUL3HSUPpg?=
- =?us-ascii?Q?EDJPr2kyeqtdEZxq+1DUCOJx4gwVNTxC8xUU792VhRrPL0ZnZkv1IKr8NkU4?=
- =?us-ascii?Q?i1J9AhG+ps08hd/kjBKD7Qr0YlVJ5dGNCPiXt9s458fT2xyh6peW/c+M9Jly?=
- =?us-ascii?Q?34Vns9lyo4NlHn5P97lJPpjpogAceIz7hhaRH+tIHAoeDF4AGkxW7ZXGYrXW?=
- =?us-ascii?Q?UVZd6jp3dgKjpmqbLb2sHXTFXQOFypelfeqE4vsgdqeYoD//JjL0iz/I2ro8?=
- =?us-ascii?Q?D7DMl4P0HcX+k6C0csQv5dDYjHBf0B/+R68NopJYvqYkZqISSf82s1NQVna/?=
- =?us-ascii?Q?cs0tdn5ZUuUQ9vmmKDiB68Xxl/JOpParMa5Sl98zS4mQoq3p8lM0H4+eQwnh?=
- =?us-ascii?Q?/wCokgva8O1yZoXvhjTgttHK8pGV5BnKTCf58WiHqW/p7wK36n/QUJlXTimW?=
- =?us-ascii?Q?SUn6Oztpdxzmg7EmlA/EWmYMR90efHT+l79kCzMxLCcxY7i1xN92oPc3ZqD4?=
- =?us-ascii?Q?CRjHmfWk2BSalSeZix3Q7lQwyH04GF0IuoOnyYmBXCNCEcAtSHmHV2+xXjwP?=
- =?us-ascii?Q?zlcyo2LivTMtjBnqfvtPnu6zmJ3NLkS14ua8mtPrnb9PuT1SUBECACifqosU?=
- =?us-ascii?Q?y4AyQV3maQ6Ks/3kw0LCDeh7oPvmujqdzp7g8jCXivFuGUcfdpYlMUV62wbH?=
- =?us-ascii?Q?u/1l6NbAbwgJ49XpdtApZy73sEuEExNjMKA0Ju/ltl8sLRPRQ3jfSbXVy7bJ?=
- =?us-ascii?Q?BfeeEgDIC30gPHvmJVljV7chrrbwc1KPNfHTTPNBGJDVEZEoAmCbfhJLXI8B?=
- =?us-ascii?Q?AfV96IH/AgHTVICGueHq8MDTCSNgxxR6zLicXewSVK8gMo+HLCCNTL7Y+1v2?=
- =?us-ascii?Q?VDQpj/VNdasAqi96gQagpl0RyU1GoChkiHmWChXw6IrjxWRpIeVK/H7YK2B4?=
- =?us-ascii?Q?QM0x2eWK4ldj1+979ae/EWNg+ymVIhdsWWKvA3FADF4U5Btu6uzQj1w/O5y4?=
- =?us-ascii?Q?FrSEjKTzj2iFmM/YL/QKkKN2xhwlluS1K1Rw0lSxG2054IMoMKNVwPFf1fBz?=
- =?us-ascii?Q?kklb5Q=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+N4SqAH3LoXLXhdV4Dq6/lXyOfaqsFinmCQeC7JuTZ8qnvniAorA5z6+Kk/C?=
+ =?us-ascii?Q?YG6rmVcOQTq62hX40WrdLRbkuelGT6e2VuTFupGmN+npGtVVInlr1/OHKncU?=
+ =?us-ascii?Q?6Yfru3IiCONJLU7/NuVAfOZEOKpHgB6wm6ei1uvPVDw0Zc6vFwKRzC3O48ev?=
+ =?us-ascii?Q?qzh63xHxihqkDleGM5OQzRs+UMzEPEoY7+pjMAX0WM44nlSnl7EjYPnQntN3?=
+ =?us-ascii?Q?NesFvra4RE7H8UI/acREWikkbsnzdPmLzq6mhqBbRFY7AJnv99Lpdh3NrUlX?=
+ =?us-ascii?Q?1MS3atSRuESrwBUQEbh/v4YY11ZNo0CCfTfQ7XgcmJjqRyFANEVqKdvAELJO?=
+ =?us-ascii?Q?b4hoZkT1pniTKoQjbkshmxhPnO6/6BAi8XFI4xbwENzrr2iSpUBEO5jcPmqx?=
+ =?us-ascii?Q?Sc/pAQMoDFTk/qAh+4yVEBu2Q6zcnVrfQQsymSEcSxG0rxxt5OW75Gh1gl2Y?=
+ =?us-ascii?Q?6xAs7HiCTFyNnp2rPjSkMAsSqLEbljlMj+DpBzGJnacKNZSr9JV4VMqySJ9E?=
+ =?us-ascii?Q?7LlxxgZX3Esr4qtEGn1E69iw05lByrO0u7R/EmZQ4GfF5UjWyOUuUVefCd42?=
+ =?us-ascii?Q?iRzyR3xc8QuLwPau7L0RdsyFkohn6IUWmv4tAviefoSeu93/RJcReJpBwpDt?=
+ =?us-ascii?Q?iDhgugHwiUpStJ7XB/0N7F0RZmnjheyRI2GQYTIFDOeNxV3GfS3C2HU9O/k0?=
+ =?us-ascii?Q?ROj5ZbYIevZOjh3UqwQcc20KVlU+TeSEg5w17yCiKLqslaW6yHB3nqOiznT1?=
+ =?us-ascii?Q?CoRzyaD06QbLOTgzbo4pKuDDzgzo9qajTaE18yJ05wm1k/yqRHxrXpmLxGNx?=
+ =?us-ascii?Q?arnFNTzDI4txx4n3zjzqp9+TpFXAMOTmfL2mmyoySUlrHPefl/UCSceHrXCp?=
+ =?us-ascii?Q?s+R2QVrN5J91n5+LL5LoswjJCw/Hz/0KGzzNizZ3SWsblC/as8bA8FIfdSCF?=
+ =?us-ascii?Q?/a3t6Lvh77/B0M7dVtCdfhMjkpg4fkshhFr2EBY0pH68ZdbTgOj/yGoOA0Fr?=
+ =?us-ascii?Q?s48L6KoRn/1Nz2oShORfxfu0jocuCdr1847jzr7s6y1bmMEgV/uXAaFz7P+n?=
+ =?us-ascii?Q?Zak6h6FQ6Te9CRooR0RlSvUYGW7UdzPOEsHq5IYYWIFDycqaOyTTYdBQWL3L?=
+ =?us-ascii?Q?KE0eHlRDcrBKK53GGDsFqsYrZfembYr8ip60tr8VOy8E3TN53ehhYnWXHvb5?=
+ =?us-ascii?Q?xbJQrF4E7PtKSMEvrh7dd4WwanLZW1kE8s5NhgRC/QL5ckr1IEqd0XNIVyW+?=
+ =?us-ascii?Q?4g3bo9paQvuDKCP1SzlQGNUvtii772cWf0OO/2gFcJTb9MfhSbhQKsMr9fzg?=
+ =?us-ascii?Q?nach4qr/C3JA3Pt1a0KE5DfwhFTYduy6bkw0B7Wzk3FkzUFbIcEPigZSnl9u?=
+ =?us-ascii?Q?unjHVMKkak36vam8KX4GHwfjRIZY4dkYUT7in3hResexwRfO+F8tbp3PwHYH?=
+ =?us-ascii?Q?1q/4u5Sg/aZkzQsr3+gh1YB0KhWQGV7U8V+IF6unqd/woUXiNSyDWzRum/n5?=
+ =?us-ascii?Q?bBXPJFH930YkpmYzIiYZZYXzst0kXBkUL+pZkhpf3d7L/cjwH17HStPKFQlk?=
+ =?us-ascii?Q?R0I8f0T8JInajI7S0e284Eiz9LwUIT4ktfzJpA/4OaRlmFuNFO/af+WLzXbO?=
+ =?us-ascii?Q?dx0NOQox70genbDfdm2orE4vcuDDyUCafOvps44Dy+OObabVjdBAaztJBIqu?=
+ =?us-ascii?Q?fLmeXg=3D=3D?=
 X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0498741e-0211-4ed2-55e9-08db03bce3a8
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca453dc9-6b20-448b-cfb4-08db05bf12a4
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2023 18:56:41.3439 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 08:17:21.5083 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hd6ym8lC5j1YRE9xYmLJPB2pi8VfqXVFfS2iglmlGbwujUo8nXuYScB0sxPGMza8AP8vDLNZ3GUeOEeMuz+iBo9YANCY2+a+2Q7hDfpZA8A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR13MB5775
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6jyyP0bBMILBC+GqfNMEGViAr9Y7thRwar4WZnDVYTwTJeNvb553rkcpTALvS1uLKv88K7dIxXJm/VV2NBs6aP9Ez+SWtz0R+G+d4yhGnKI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR13MB4654
 X-Mailman-Approved-At: Sun, 05 Feb 2023 08:03:44 +0000
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
@@ -157,8 +159,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
  <linux-renesas-soc@vger.kernel.org>, Vladimir Oltean <olteanv@gmail.com>,
  davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 5/5] net: dsa: mv88e6xxx:
- implementation of dynamic ATU entries
+Subject: Re: [Bridge] [PATCH net-next 3/5] drivers: net: dsa: add fdb entry
+ flags incoming to switchcore drivers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -173,72 +175,44 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jan 30, 2023 at 06:34:29PM +0100, Hans J. Schultz wrote:
-> For 802.1X or MAB security authed hosts we want to have these hosts authed
-> by adding dynamic FDB entries, so that if an authed host goes silent for
-> a time period it's FDB entry will be removed and it must reauth when
-> wanting to communicate again.
-> In the mv88e6xxx offloaded case, we can use the HoldAt1 feature, that
-> gives an age out interrupt when the FDB entry is about to age out, so
-> that userspace can be notified of the entry being deleted with the help
-> of an SWITCHDEV_FDB_DEL_TO_BRIDGE event.
-> When adding a dynamic entry the bridge must be informed that the driver
-> takes care of the ageing be sending an SWITCHDEV_FDB_OFFLOADED event,
-> telling the bridge that this added FDB entry will be handled by the
-> driver.
-> With this implementation, trace events for age out interrupts are also
-> added.
+On Thu, Feb 02, 2023 at 05:45:56PM +0100, netdev@kapio-technology.com wrote:
+> On 2023-01-31 19:54, Simon Horman wrote:
+> > > --- a/drivers/net/dsa/b53/b53_common.c
+> > > +++ b/drivers/net/dsa/b53/b53_common.c
+> > > @@ -1684,11 +1684,15 @@ static int b53_arl_op(struct b53_device
+> > > *dev, int op, int port,
+> > > 
+> > >  int b53_fdb_add(struct dsa_switch *ds, int port,
+> > >  		const unsigned char *addr, u16 vid,
+> > > -		struct dsa_db db)
+> > > +		u16 fdb_flags, struct dsa_db db)
+> > >  {
+> > >  	struct b53_device *priv = ds->priv;
+> > >  	int ret;
+> > > 
+> > > +	/* Ignore entries with set flags */
+> > > +	if (fdb_flags)
+> > > +		return 0;
+> > 
+> > 
+> > 	Would returning -EOPNOTSUPP be more appropriate?
+> > 
+> > ...
 > 
-> note: A special case arises with the age out interrupt, as the entry
-> state/spid (source port id) value read from the registers will be zero.
-> Thus we need to extract the source port from the port vector instead.
+> I don't think that would be so good, as the command
 > 
-> Signed-off-by: Hans J. Schultz <netdev@kapio-technology.com>
-> ---
->  drivers/net/dsa/mv88e6xxx/chip.c        | 18 ++++++--
->  drivers/net/dsa/mv88e6xxx/global1_atu.c | 21 +++++++++
->  drivers/net/dsa/mv88e6xxx/port.c        |  6 ++-
->  drivers/net/dsa/mv88e6xxx/switchdev.c   | 61 +++++++++++++++++++++++++
->  drivers/net/dsa/mv88e6xxx/switchdev.h   |  5 ++
->  drivers/net/dsa/mv88e6xxx/trace.h       |  5 ++
->  6 files changed, 110 insertions(+), 6 deletions(-)
+> bridge fdb replace ADDR dev <DEV> master dynamic
 > 
-> diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
-> index 61d5dc4680e3..a0007d96b2a3 100644
-> --- a/drivers/net/dsa/mv88e6xxx/chip.c
-> +++ b/drivers/net/dsa/mv88e6xxx/chip.c
-> @@ -42,6 +42,7 @@
->  #include "ptp.h"
->  #include "serdes.h"
->  #include "smi.h"
-> +#include "switchdev.h"
->  
->  static void assert_reg_lock(struct mv88e6xxx_chip *chip)
->  {
-> @@ -2726,18 +2727,25 @@ static int mv88e6xxx_port_fdb_add(struct dsa_switch *ds, int port,
->  				  const unsigned char *addr, u16 vid,
->  				  u16 fdb_flags, struct dsa_db db)
->  {
-> +	bool is_dynamic = !!(fdb_flags & DSA_FDB_FLAG_DYNAMIC);
->  	struct mv88e6xxx_chip *chip = ds->priv;
-> +	u8 state;
->  	int err;
->  
-> -	/* Ignore entries with flags set */
-> -	if (fdb_flags)
-> -		return 0;
-> +	state = MV88E6XXX_G1_ATU_DATA_STATE_UC_STATIC;
-> +	if (is_dynamic)
-> +		state = MV88E6XXX_G1_ATU_DATA_STATE_UC_AGE_7_NEWEST;
+> is a valid command and should not generate errors. When ignored by the
+> driver, it will just install a dynamic FDB entry in the bridge, and the
+> bridge will age it.
 
-What if flags other than DSA_FDB_FLAG_DYNAMIC are set (in future)?
+Sure, I agree that it's not necessarily an error that needs
+to propagate to the user.
 
-> +	else
-> +		if (fdb_flags)
+My assumption, which I now see is likely false, is that drivers
+could return -EOPNOTSUPP, to indicate to higher layers that the operation
+is not supported. But the higher layers may not propagate that.
 
-nit: else if (fdb_flags)
-
-> +			return 0;
->  
-
-...
+But it seems that is not the case here. So I think return 0 is fine
+after all. Sorry for the noise.
