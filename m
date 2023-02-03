@@ -1,143 +1,143 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED685689BF7
-	for <lists.bridge@lfdr.de>; Fri,  3 Feb 2023 15:36:50 +0100 (CET)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95A3689C06
+	for <lists.bridge@lfdr.de>; Fri,  3 Feb 2023 15:39:33 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 43E664018E;
-	Fri,  3 Feb 2023 14:36:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 43E664018E
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=TKeGkwMm
+	by smtp2.osuosl.org (Postfix) with ESMTP id 6AD84403D6;
+	Fri,  3 Feb 2023 14:39:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6AD84403D6
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=Xosl8u09
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 41OMJI4bKu4G; Fri,  3 Feb 2023 14:36:48 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id bYZ0XOnzA_Wa; Fri,  3 Feb 2023 14:39:30 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 664BD4018F;
-	Fri,  3 Feb 2023 14:36:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 664BD4018F
+	by smtp2.osuosl.org (Postfix) with ESMTPS id D260040520;
+	Fri,  3 Feb 2023 14:39:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D260040520
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F0515C007C;
-	Fri,  3 Feb 2023 14:36:46 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 612B6C007C;
+	Fri,  3 Feb 2023 14:39:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 18848C002B
- for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 14:36:45 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B520DC002B
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 14:39:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id D364B60ACE
- for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 14:36:44 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D364B60ACE
-Authentication-Results: smtp3.osuosl.org; dkim=pass (2048-bit key,
+ by smtp1.osuosl.org (Postfix) with ESMTP id 4A484821AE
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 14:39:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4A484821AE
+Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
  unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=TKeGkwMm
+ header.s=selector2 header.b=Xosl8u09
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id shv0_mNcsUMJ for <bridge@lists.linux-foundation.org>;
- Fri,  3 Feb 2023 14:36:44 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id V4eYAJa25-Sb for <bridge@lists.linux-foundation.org>;
+ Fri,  3 Feb 2023 14:39:26 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 09D2760AAD
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on20613.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eab::613])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 09D2760AAD
- for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 14:36:43 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 65C62821A6
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2062d.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::62d])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 65C62821A6
+ for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 14:39:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TlQjXWy4QhkPhfyOfY8MtItXnLtWDga64VEIJozJEkMfL3HuXmDb4zdcTZN5FbDpFG3e+g8KWr31/mkvOoaRdXhSdy0rLu+aJ9AckAZlEEZEIIJlzrIGMwH6HydlAK3cz0HKUsRW21h3hMnRPQ6B+CzcLC6XTPvtScWBrxzoUYBBIPOdgcw32Avw9eoIA2xuDbh+3l2pX0QYiuobOuqP+bL46Mxr+o1WxG3NkGH9RPBWtzcxa+h3LV760Zp84S9sKlqBlcEDjq+nLpQW8mBbrWKDIDHSLWDMy/EGb3jncRGQ4xujDC9xezsgYIyhSRIKzdy0cvz6sgcR47A/hQgAUw==
+ b=j//NV0LGy8pM716kDphFHRbbXTbCzBM/AKGIYx9zd1ZynccmqkQiB9vRHVmpJsdJEqW79LwuaGoQlDuPC8kIYU2QsrIjXDDy7ZCJAwHZIyFHbnrw49DaILckpVc+GR/VozjLzRBcdSGgngCsTueRP7r+dj5m7j/M0RTU6j7uE6m5wYcGpfbOqzAJ9SiUhrxjdvDaVyT0hmoVclKr4tqQlD9zQr4djudxv+b+faoOp3LufQvlTDuqVnWRBwQYFH65eByDE9W2lVAdfSm9EYt6pSFhH8ETBeaUr++snp04Mu+iPfSaqNXnGJKqEvFoHeGaoz1vacx42VEN/E5i+wbCng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6/lmLLloHhsdEfQXRcg4PVn/QIW5TJiGcR+O5zx1K0M=;
- b=hbJWhHHV4Zmbb91ZfTc5AjrG00G//jWCrExMxd0djcv2B5vHmO1GjyjnD0gKmkiCvWWUtgj0S4pEZc6ATTgm0T3eR+NdSvuuekxynoPTYQwH0z/Lkw7DUNCpktd/u+ycoKCWi7FgWs/NAFl7zUin30CGmFxhAxKNzlL8w9nCjm2PG63oOIpBuEs1ujOx96Y39QXe5BhOoxc2LPSuVCDCBIBtHcrCwxZLBv7ZZkwRzIRajvEeorr4L/2egJ9HYs6S4MeOqAeH8LqG1awL6l5YsRGjQIf1BqX3QRlcDOPOzbYn1Ut3gk8a27I1L55REw6jLj9I/YYKCbzys2etb75wfg==
+ bh=pcPpoSiSaGxNIfnuIIRDoLKO9CGyQ76D8Xx9uyJRWWA=;
+ b=l1iMVaiY+HypL9kA37IMxo+8rSa9MrU/B6fHBXWubfs8EUn6i4eKdf5FPx+U4LGDok/WqH0+mC2ybnnfhIacNK+ni+BzP+LXoHh+qJSZNKgJ9g3YHfnEmo3Fk3G3Zoipr54eGJNWb9Kq2/64DhSqj12ruMGCP4YmF7B1btPJHKGs2oyeY/ZZ1nZhJS8XBx9Q6OHF0DO6vjJBrZJgRXBSrsHST9DbI7BbtYMGE6p8RhQ2XpoB8dCGpY7GNb0m2ziUxBPeFdK/2I65f2JxrUZd/UWz3FoMufRtrSZ1z7VxPdZoor7AvA6RxCkPeiOMadnWyiEErbiigp867xa/E1l+4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6/lmLLloHhsdEfQXRcg4PVn/QIW5TJiGcR+O5zx1K0M=;
- b=TKeGkwMmO9v2lh9AN8VoyGTLsyes326bgHx3DywPd4MrmkaKPz7TvAV0e4d7GbuBp2w7YPcq127c3/b90uo4v04xJ1buxWUTlxuSGj9xb8AdcKfgljQjFT6gzn0BiMUhik5+gY6jQuwGiw5cKmriCheDBGvTuNG1U7jBR2HgRsSCfWlKO9e9vDG5vak0fPyCCicRSVlKAZ7sLbO1mKutqmMcNnIY0+fXiRF4ior3f3at7JOVDasaVlmINA0wlTE40b25RwBfIvrkGbQHq4uu4OJqirpwUfb+ab15ZCBCH+vxSGX0Qtj8WgmrgnBo7iR000B1sBBoM8ggQX2n+2DTvQ==
+ bh=pcPpoSiSaGxNIfnuIIRDoLKO9CGyQ76D8Xx9uyJRWWA=;
+ b=Xosl8u09r8DyYKvTrif9/ScUiBtZm2QEceLMRH3L6pSRsRzAIQDWWA0wEAH2EFz+SluBrPIMa+dKmEnSXBQ+htFpTBkrdnNkG4p9aLC9NH/lZTgelMhu6EBAYsuY8pfub2WxVtsZwUhAqKP2rbDwU3xhDkp2xic2HCH77GdRsCXYfz3+jCfrWDjS8tiDTaxFji7OzFPxWwS3UwQAjH/8mlAxLuGm/KqtWpV2f/+8mzYuz24O8W1asa2ljYFhrwdTRMZjxnb4WrYXsq3+9MZ7pL40A/gyFjO5ggvfbXJa5fx2GXrk+d3JxNba+7+W2vKg7yqDv8vhG0bnSansMN+H/A==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
- by IA0PR12MB7649.namprd12.prod.outlook.com (2603:10b6:208:437::17)
+ by BL0PR12MB4865.namprd12.prod.outlook.com (2603:10b6:208:17c::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.27; Fri, 3 Feb
- 2023 14:36:41 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.25; Fri, 3 Feb
+ 2023 14:39:22 +0000
 Received: from CY5PR12MB6179.namprd12.prod.outlook.com
  ([fe80::7d2c:828f:5cae:7eab]) by CY5PR12MB6179.namprd12.prod.outlook.com
  ([fe80::7d2c:828f:5cae:7eab%9]) with mapi id 15.20.6064.025; Fri, 3 Feb 2023
- 14:36:41 +0000
-Date: Fri, 3 Feb 2023 16:36:33 +0200
+ 14:39:22 +0000
+Date: Fri, 3 Feb 2023 16:39:16 +0200
 To: Petr Machata <petrm@nvidia.com>
-Message-ID: <Y90b8QvITvsIiYfS@shredder>
+Message-ID: <Y90clBUNv2c8ScHl@shredder>
 References: <cover.1675359453.git.petrm@nvidia.com>
- <8bd6e90beed928790059134471ecbb9c3d327894.1675359453.git.petrm@nvidia.com>
+ <ad5b9a4a971f7a38951cb8475ca3c9a16057b0fd.1675359453.git.petrm@nvidia.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8bd6e90beed928790059134471ecbb9c3d327894.1675359453.git.petrm@nvidia.com>
-X-ClientProxiedBy: VI1PR06CA0130.eurprd06.prod.outlook.com
- (2603:10a6:803:a0::23) To CY5PR12MB6179.namprd12.prod.outlook.com
+In-Reply-To: <ad5b9a4a971f7a38951cb8475ca3c9a16057b0fd.1675359453.git.petrm@nvidia.com>
+X-ClientProxiedBy: VI1PR04CA0122.eurprd04.prod.outlook.com
+ (2603:10a6:803:f0::20) To CY5PR12MB6179.namprd12.prod.outlook.com
  (2603:10b6:930:24::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|IA0PR12MB7649:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9db2b362-d946-45ad-b379-08db05f41067
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|BL0PR12MB4865:EE_
+X-MS-Office365-Filtering-Correlation-Id: b5d02e75-287f-49fb-577b-08db05f470aa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Lge+9zHnMVe0BOAqH3t7cNr4UC4OZmHlS1Zt04VeQIwkW4TtVHc8LjnthjOl9Q+1YT6gX7QZovF/EQyvnrkxQxpCSC/P4HziynnkkYgA0WMAVxJ70Npm177mZ6Y2CfzXwEhp/+sBby3eYjwSGEJcKwxFaRUrvr7G94QzkdQJDkugsIcnUkYE1QqWfZiB+ZuAftubXyj3QMPKg5fYQfU7hqTnzvbXKtM39aTVkeTIwXrjXL+tT7c+cC+Yu2EDG2BHQRafaL00ylyVx77p02HJAB/l/6iDoFEExCPFnwB/cwPcAzA2DIfSAfAqR2Sd5B3Yg8cUzMkcN5kNYBHMR+WjOu8tlyQjSpMWOei6p+6u/Fs94RzXmbUd9tJiVlKkNkSORC3+nb5/c+8W7x11ZumucdkiM1uk+MeVbecXZxaAEJxZYO50XTaq4LvAm3y9Z8WgpSp04zlb9h26PfDXdxkdermNaYKwFpPxGxOSOp/UE7mtIh2xWrBI1WcMb0jFaJef0mNpVV4A5ooVe3DAIQfYEQzPAemj3IRhE5EPd8vfPdbJUXgclD2plX0MwqycyJ03ragfLuslZvxFQ6ZYWFcEkLFdGqyV2TWzkRowei6bMMdfmqo/704WUd6qMWv0AKOxJn9j6hJOso1v0MM3GqyowA==
+X-Microsoft-Antispam-Message-Info: vpIseCE7lFvegtEX1j5TWD4s1FXg4h7lLSGseyekT4MKBSvGz9ZZN/k378h71V1aZaWuvAnhg8C4RxUQURB13dq3Qe2bj4Iepe2vwBrbkfGRnwLsW1/JjSBFOjIr1ZLOCIIBJNJDH9amdkw+u6do4h9tbJT7JwehxlSiZVAbLXcLIl32fBF0NckyNF7Yrg2UK1gzmcW4wq5e5qQ+6KrzAgHS52p7T0v17kig2OKXHKs23htEqqAu+fE1q9adpZQT39e0EFkEebMpuVzq7vETDPD7X6n5dJzYDbhRwgMJRY37NaXNoVu45mfezR4CaB9MKdXj3ayjJ8+UAw3wJNlw+0kEc9FWtlwUl6RKzqxMNf6ZGdgV06H/AqTfCuN2KDrnGutE47jIfWpklYdJ7ufiw/h3KQfpm+7lL9fwUzs+fUMptpJ1442H7dvxdpT/6IViVowN6WP36gjtQIu5p4NFIom5PLKtRtxqSPMoV/0NJndrlGu70jtKOquyNPFyA4XAd+2IdfmvSv4R8WRseytyoJoT7nxf8PiQV6PVrtt8QIgZGlhIuKjiPU8HcrU6fRHaRDArVdX6jiHXh8OSLVu0JGEkRqhhyJFZY+uwqRZhbb/NF/XxOLP0I22V1G1RTGDPIg66V2DGqhwOGU8gcaIHXg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(7916004)(376002)(346002)(366004)(39860400002)(396003)(136003)(451199018)(2906002)(66946007)(4326008)(5660300002)(478600001)(6486002)(6506007)(33716001)(6512007)(6666004)(9686003)(26005)(186003)(83380400001)(6862004)(8936002)(66556008)(86362001)(41300700001)(38100700002)(8676002)(66476007)(6636002)(316002)(54906003);
+ SFS:(13230025)(7916004)(4636009)(396003)(39860400002)(376002)(346002)(136003)(366004)(451199018)(5660300002)(41300700001)(2906002)(316002)(66946007)(66476007)(66556008)(4326008)(54906003)(8676002)(6636002)(6486002)(66574015)(6512007)(6666004)(9686003)(478600001)(26005)(186003)(33716001)(8936002)(6862004)(86362001)(83380400001)(38100700002)(6506007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ux84cB8Jwo/IOF+hI5aeKwTth07qQg6/Z9WiYNOxhkvKniWWofTOeG/z8fE9?=
- =?us-ascii?Q?8NbmWy3oaFtFW5ulgyg98d9kEJZl8RCcXpTyVNz/UXieQkX1dMuvt0fIYQ9c?=
- =?us-ascii?Q?C+GY2+LShWu31nV0RS3OAx0AgrKpLbx6s4rVUjkhrwlWt1P55B2YfaJHg75P?=
- =?us-ascii?Q?iTVQKkli0wksj/s4wfdcyxemAab41kFrZrSKCi7kO9Y9zSUMQRdr0z8vdfmj?=
- =?us-ascii?Q?7397JCFC0ed9pv/YBpDamzsEdTTUYXHA3fAAJJIniPIFmQvN6H4Tn3rO15ZY?=
- =?us-ascii?Q?vFbqitTyc9WLc0t2cV3H/QO/R74ThFftY7/Sap9Wuws20tUx81HTewEN9/+w?=
- =?us-ascii?Q?RS3Z5qZKZ87hEajZEHSX1J3T3qx7HGtw8TEkeFEuHFZYfpbTd4cZQGrK6iYV?=
- =?us-ascii?Q?b+T4AnWcct09LwHpk0qRXHvkxvyXtzz9xZnkfdG5e6my+b+R4rbMA6QORYJd?=
- =?us-ascii?Q?5Qc4N52R9RAvlFmFZAmhY72RFeAr83VxC/GMDe65BFLXDzE8dNjhrxIRZfJX?=
- =?us-ascii?Q?2D8HKM6XgiyYoQO99fuNtSlHKffp0fnzUpvmgCF5auyQCAxghQJ7P7OgoHkW?=
- =?us-ascii?Q?oRNhkVHRSBB8qI8DaolnMq0op+P5C/IeS/X1EWgESadvkue8JYI2c5PZrav/?=
- =?us-ascii?Q?+0YPluSJwlPGJrBqhZmbeYt1EA/VOBaZNYv0RNcqsrQToG1K+R1z/YeDkahE?=
- =?us-ascii?Q?qPzA+0ySk/OSMZItGBcDToQa3wbnM7hGQyGVunIo4/f/Tse5ub9CmZyhNMXK?=
- =?us-ascii?Q?bKfduk1ztdWGklNIYZmjDl54WKvMbCP2+3UCMU1ejtV+/Ao/sENHeIULzs75?=
- =?us-ascii?Q?eX6kpfguPQmUcFfVEW2V45P5ubrV4Xxic/2tFjN05+fR+LrCi65McbeUu60P?=
- =?us-ascii?Q?hDHOgC8y/CL38INX8eVKV0iYb/ek84WgpvHXOMVJKnjixX4WiZiH95Mg+6xP?=
- =?us-ascii?Q?AU+r9h4qpAYKPO0HmL208FL3PY+TlWwnnPICmiiDEFM//HUaDw+rGfwFV05z?=
- =?us-ascii?Q?gNV4JlUvxKYZCaPY5LjR/1tA97jj+h3BIgZxiA0PpVzp5FFVOxH7u7jTTORu?=
- =?us-ascii?Q?jBxmW620x58ETeRjU6YWsERIpyCcI/BNP+Em+IWRmjZ58j9G9bXxBgkJpFMB?=
- =?us-ascii?Q?/fPr8AzR0RQ3+TFJnVbyLYx13Ads/CEimz/tV8Tzb07nh85rNDNlPlBnx0Wk?=
- =?us-ascii?Q?c2V4Ws1jtyDxjEffFjK/vL6GdF4UTtGipAB3YtY9ZxrLu1Zn+qB1NV3o3/09?=
- =?us-ascii?Q?4NPtDjpH0JjLhZISETf1ayR4G2UE7uI8AFX6R1fjwDVrPyBNVNyG9CDTzPdB?=
- =?us-ascii?Q?ZdxsErLRL+y+gDK1iVjBnpYQNzUn890bv7Fn4EWPmC7tgrQtoATKo5st0+3Q?=
- =?us-ascii?Q?KOPz3XwvviXmjEflmaoK5vhR1IJDsAwLXjsGwB3J/frmSqFc3MMpdNGAMqRL?=
- =?us-ascii?Q?rlkoIYkiUw8zzPidjN6fSFrgP80ii6SK1Be3onRdB8iClSDSZtfyOPkpFTKH?=
- =?us-ascii?Q?6Rau4RaBKZgtnYlIKftjNBUIN8Dw4ysm5XSMWIy/4E39EYjtj7JthPP3/qUK?=
- =?us-ascii?Q?i3f7wzZBULhA3fY/EahItRGbUtXFT5rsU0mWD5oI?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5n+xtVPDkPtzLceLpEDXSl2HUOuN+EMRlVP1AWPDkZZBTnziOGemANFkQUHN?=
+ =?us-ascii?Q?FH1BBqLFbtfxe1wHQ1pMPzLyho6qQ8wF21pFe5tX7VXhJjpx3IAL2CCOE1eX?=
+ =?us-ascii?Q?d82HCo5WfmsuIq0m2jggBU7K6zuBHVnPyN4skZZSUeW0l/FL/zYiUiwBO3LN?=
+ =?us-ascii?Q?zKmXXA3rFEBSi9VPJ76h4YHZuxCMMySn5u48oUQ518H7pXYgQ9hST0JAzoe3?=
+ =?us-ascii?Q?NXteK2XGZQ1rVud4Own/VXej9rEGNR7dGdb75GwinX/2iSU/D8xMV8m1d1sT?=
+ =?us-ascii?Q?DIoue/7rwgz+jPpoWED3ICG6PSWxi3ypAfMLqZA+lruKqT8yo+85ih/0177x?=
+ =?us-ascii?Q?cHT+qDsoxm2aqIyGgRQu2A4AFzd+MJJn59BFiOj2X7bDiBAf/n6eHEUo8Tso?=
+ =?us-ascii?Q?uZqvV7ZlusGOYtom3iUFk0L0PZUJ5HhbHp3H018CmNNW2RV9iJk4q5nG7X81?=
+ =?us-ascii?Q?GGlSIvgnUg/Ahv7pEz7A3j1FHI0WytIJ2ZEAm9osDVU6lnSsBxQG6pMrXadR?=
+ =?us-ascii?Q?CU5quXG6BaRbTmJRtf3QNqC59Al8uhU/+gGNI13moAe40hPAKDyHZM12fL2Z?=
+ =?us-ascii?Q?Qj+xp6/+w9PMU1UQ2aCXJZfZYagfSispSPV+CGyibwDxPTe7pu3HabunIx5T?=
+ =?us-ascii?Q?IuJXgiI377HgM6+WgBfO+4mifsSfhnaSnrzU+T614C36Tw/C4dvR/v/Esj7I?=
+ =?us-ascii?Q?BQarQFg/9/1ELK3jbDpFzZ+3KYIMK0XF8Y0CBHXJEftUfWp82KzPn2ZqdkA9?=
+ =?us-ascii?Q?0w/+NvVCXVzfJDWp+ree7Z04OU8iZMPLDKB4ajNrWenN/7b0ba43lsiyiYu+?=
+ =?us-ascii?Q?h+POTgyWe8cC372oYQ7Mpsr5GdYB/xJVmokOyAtynf/Cf4m2K2Kd13o1dgVF?=
+ =?us-ascii?Q?BeJ4sbaSDelLmfDUUlic50jNmeHj6yHB/Vk78tARhfzqCjdrmVdb5jttWuY1?=
+ =?us-ascii?Q?YoxvaxIYZgt7qWgpniR1R00rFq7m5DZEEpjttCdzuCxHHH1VMjSvTwCykhyX?=
+ =?us-ascii?Q?DHvcYeq7bvzabyIWGKvJOJEjU32RhLuxgr7t0f4PSPZZurndkK48QN2Q7rml?=
+ =?us-ascii?Q?IMorAqgSVo5hA7WzgNAoH4u8Vf0LGKwh0HfJevgwtBbYRzO4ACJMnJkJ11Qp?=
+ =?us-ascii?Q?COD40Cc1Plr1ApTSO/yWOfhAZxO+eXD1Csk7p8tRr7QVz+SpCDX0pectCm4U?=
+ =?us-ascii?Q?kpMJUU5+Nq0Dmgol1CQ6JHfM14r8aPnrtAz0mBLf5G2u8uSigX2cfJkjxOse?=
+ =?us-ascii?Q?FEG+OP1rTAwsdq20eZgl7nvGF7EFHqTQxqOGIExSOMZnEUfWpXLVsyW7FDa3?=
+ =?us-ascii?Q?X2M/l2SEZMLZ2pGiv7SNSO17Lp6j6iFivsY7EjQ42JHgkBgel9F1XLQ2zMeX?=
+ =?us-ascii?Q?apk9syc4IjvrzxgS0sfKQf/ltGHcP2vNJD3u8PCocm8ylW1mJSsuNgdxt6ZT?=
+ =?us-ascii?Q?floCi83yw4ypyWNo+jlDnpaWuUW49JvqMeTA5DnwT6r9pwuxgJt8/rRehply?=
+ =?us-ascii?Q?mP0HWsnu2eLmNJvuDieTLtdmWONM+kUsRY4Ky81WDpTbKmybQBh3y6T/+Ybj?=
+ =?us-ascii?Q?+x1E3C6dhWZnNMXCyscnR9UbFe1jJknCzoCGeAzb?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9db2b362-d946-45ad-b379-08db05f41067
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5d02e75-287f-49fb-577b-08db05f470aa
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 14:36:40.9853 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 14:39:22.4817 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fg0dJDlivN4EoCEGAH2Y6TFtZQZyAXI5JfxJP24Hvd82u3uoykC+XtLNIvWOSs7E8hiXbM+FfQxILl75A5g1SQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7649
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1EAQ32Q4x7PuHr3ZG20aTfeWL5NL3/CQMNqiUeoZltDvH107i5EmgU/+cbgrGd5WZAVZYAIG3nEWa5xdkbz4VQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4865
 Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
  bridge@lists.linux-foundation.org, Eric Dumazet <edumazet@google.com>,
  Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next v3 07/16] net: bridge: Maintain number
- of MDB entries in net_bridge_mcast_port
+Subject: Re: [Bridge] [PATCH net-next v3 08/16] net: bridge: Add netlink
+ knobs for number / maximum MDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -154,40 +154,50 @@ Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Feb 02, 2023 at 06:59:25PM +0100, Petr Machata wrote:
-> The MDB maintained by the bridge is limited. When the bridge is configured
-> for IGMP / MLD snooping, a buggy or malicious client can easily exhaust its
-> capacity. In SW datapath, the capacity is configurable through the
-> IFLA_BR_MCAST_HASH_MAX parameter, but ultimately is finite. Obviously a
-> similar limit exists in the HW datapath for purposes of offloading.
+On Thu, Feb 02, 2023 at 06:59:26PM +0100, Petr Machata wrote:
+> The previous patch added accounting for number of MDB entries per port and
+> per port-VLAN, and the logic to verify that these values stay within
+> configured bounds. However it didn't provide means to actually configure
+> those bounds or read the occupancy. This patch does that.
 > 
-> In order to prevent the issue of unilateral exhaustion of MDB resources,
-> introduce two parameters in each of two contexts:
+> Two new netlink attributes are added for the MDB occupancy:
+> IFLA_BRPORT_MCAST_N_GROUPS for the per-port occupancy and
+> BRIDGE_VLANDB_ENTRY_MCAST_N_GROUPS for the per-port-VLAN occupancy.
+> And another two for the maximum number of MDB entries:
+> IFLA_BRPORT_MCAST_MAX_GROUPS for the per-port maximum, and
+> BRIDGE_VLANDB_ENTRY_MCAST_MAX_GROUPS for the per-port-VLAN one.
 > 
-> - Per-port and per-port-VLAN number of MDB entries that the port
->   is member in.
+> Note that the two new IFLA_BRPORT_ attributes prompt bumping of
+> RTNL_SLAVE_MAX_TYPE to size the slave attribute tables large enough.
 > 
-> - Per-port and (when BROPT_MCAST_VLAN_SNOOPING_ENABLED is enabled)
->   per-port-VLAN maximum permitted number of MDB entries, or 0 for
->   no limit.
+> The new attributes are used like this:
 > 
-> The per-port multicast context is used for tracking of MDB entries for the
-> port as a whole. This is available for all bridges.
+>  # ip link add name br up type bridge vlan_filtering 1 mcast_snooping 1 \
+>                                       mcast_vlan_snooping 1 mcast_querier 1
+>  # ip link set dev v1 master br
+>  # bridge vlan add dev v1 vid 2
 > 
-> The per-port-VLAN multicast context is then only available on
-> VLAN-filtering bridges on VLANs that have multicast snooping on.
+>  # bridge vlan set dev v1 vid 1 mcast_max_groups 1
+>  # bridge mdb add dev br port v1 grp 230.1.2.3 temp vid 1
+>  # bridge mdb add dev br port v1 grp 230.1.2.4 temp vid 1
+>  Error: bridge: Port-VLAN is already in 1 groups, and mcast_max_groups=1.
 > 
-> With these changes in place, it will be possible to configure MDB limit for
-> bridge as a whole, or any one port as a whole, or any single port-VLAN.
+>  # bridge link set dev v1 mcast_max_groups 1
+>  # bridge mdb add dev br port v1 grp 230.1.2.3 temp vid 2
+>  Error: bridge: Port is already in 1 groups, and mcast_max_groups=1.
 > 
-> Note that unlike the global limit, exhaustion of the per-port and
-> per-port-VLAN maximums does not cause disablement of multicast snooping.
-> It is also permitted to configure the local limit larger than hash_max,
-> even though that is not useful.
+>  # bridge -d link show
+>  5: v1@v2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 master br [...]
+>      [...] mcast_n_groups 1 mcast_max_groups 1
 > 
-> In this patch, introduce only the accounting for number of entries, and the
-> max field itself, but not the means to toggle the max. The next patch
-> introduces the netlink APIs to toggle and read the values.
+>  # bridge -d vlan show
+>  port              vlan-id
+>  br                1 PVID Egress Untagged
+>                      state forwarding mcast_router 1
+>  v1                1 PVID Egress Untagged
+>                      [...] mcast_n_groups 1 mcast_max_groups 1
+>                    2
+>                      [...] mcast_n_groups 0 mcast_max_groups 0
 > 
 > Signed-off-by: Petr Machata <petrm@nvidia.com>
 
