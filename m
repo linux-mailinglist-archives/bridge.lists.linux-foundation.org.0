@@ -1,120 +1,96 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id A396668A467
-	for <lists.bridge@lfdr.de>; Fri,  3 Feb 2023 22:15:07 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A9968A90B
+	for <lists.bridge@lfdr.de>; Sat,  4 Feb 2023 09:48:35 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id BBCC282261;
-	Fri,  3 Feb 2023 21:15:05 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BBCC282261
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=pd4JdGeG
+	by smtp3.osuosl.org (Postfix) with ESMTP id 275BA60D78;
+	Sat,  4 Feb 2023 08:48:33 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 275BA60D78
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rVbqbjrCdbDL; Fri,  3 Feb 2023 21:15:05 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 420FE821C8;
-	Fri,  3 Feb 2023 21:15:04 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 420FE821C8
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 6U038yp32kTU; Sat,  4 Feb 2023 08:48:32 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id B945960D52;
+	Sat,  4 Feb 2023 08:48:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B945960D52
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E2B02C007C;
-	Fri,  3 Feb 2023 21:15:03 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5B26EC007C;
+	Sat,  4 Feb 2023 08:48:31 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5CBEFC002B
- for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 21:15:02 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A56BBC002B
+ for <bridge@lists.linux-foundation.org>; Sat,  4 Feb 2023 08:48:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 3069A82262
- for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 21:15:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3069A82262
+ by smtp3.osuosl.org (Postfix) with ESMTP id 792E060D52
+ for <bridge@lists.linux-foundation.org>; Sat,  4 Feb 2023 08:48:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 792E060D52
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id BBhsgB4gIQLp for <bridge@lists.linux-foundation.org>;
- Fri,  3 Feb 2023 21:14:57 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 786C3821C8
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 786C3821C8
- for <bridge@lists.linux-foundation.org>; Fri,  3 Feb 2023 21:14:57 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id y1so5784584wru.2
- for <bridge@lists.linux-foundation.org>; Fri, 03 Feb 2023 13:14:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=v8UifT5o8QIL+1ZOw+vxMKGXi/nfDw7qQB6T6ClS8Ic=;
- b=pd4JdGeGvQ+bwoWBkvvdDb0hhyE/Bxhta6bcG3jxt0dWu7ZCdJQHLjZUYh/neaf8kv
- E2vN7hCsLGKW2de3K6muUrxk3KJCGwOsziVlBtiWxe9afhV1sVgLOZTGjzEZ986sCAQE
- fKtMsX5U/ln9C0+q5QNHGuB2n94r0ojW3gCL6ueoVBlSVA0i1kk9DA76BLAopPpz5a+r
- +w+xc49sVxrSI6XphvcS8f9anBNzfLSR2DfW9+hI22SIZJYNLUdgyFra+/+vBm50At92
- l5Es6QjHbL5/d/8HlTu0B/cTjn6/Uqmc6dzhzy8HEN0z3ioILJcKrb0mAt/0BQo+hytZ
- 2vtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=v8UifT5o8QIL+1ZOw+vxMKGXi/nfDw7qQB6T6ClS8Ic=;
- b=grX8aW87KUvWJeE6J2uwtsXmvg+A3SGgNfdCcmBIgDEgI8GCHu1ZXsUK63RqXxmOds
- LaBI73pQ/A0RJSSrbkvMyuRLZwd0jciAav6ZlC/EiOCi0+Qa5Z3hNBQQC/RBqPU3oRJR
- Pr16YLTpyIkLSrorl5KQ1z6DbYYhT5KzTJ1yrvrCcz0/ZLaI+/zttkQqAqPcTF+3s4YH
- WqmXNUmpy4y0ijKxQKYitQeng9JBolpbpGRKmyrSxJPuXjPdBYyvoqsBJygU3mNTnBwE
- GybdATOI/+wT2FmAVsJrGz+CshLVxusLYnm7LQ6L8bTTIhEjzz3DGTWMFQabGrkVQAA4
- Zcng==
-X-Gm-Message-State: AO0yUKXMnJCBrScK8W2sduQEjwWQt1uAhDIgWEGVLapM2IYnkZz6N43X
- 0tpmmhOP+08py9VYFw2z5YY=
-X-Google-Smtp-Source: AK7set+hBed4Vs81Op6a8Moc0ZYf2TGrkIyuIwn9zkILCDF+4akhZ0fn2PUit7H3sH6BdDxxPfJo6w==
-X-Received: by 2002:a05:6000:1f0f:b0:2bf:bbd1:1db3 with SMTP id
- bv15-20020a0560001f0f00b002bfbbd11db3mr10247467wrb.44.1675458895502; 
- Fri, 03 Feb 2023 13:14:55 -0800 (PST)
-Received: from skbuf ([188.26.57.116]) by smtp.gmail.com with ESMTPSA id
- w7-20020adff9c7000000b002be546f947asm2835380wrr.61.2023.02.03.13.14.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Feb 2023 13:14:55 -0800 (PST)
-Date: Fri, 3 Feb 2023 23:14:51 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ido Schimmel <idosch@idosch.org>
-Message-ID: <20230203211451.3rhg2kg6tjmmhfmp@skbuf>
-References: <20230130173429.3577450-1-netdev@kapio-technology.com>
- <Y9lrIWMnWLqGreZL@shredder>
- <e2535b002be9044958ab0003d8bd6966@kapio-technology.com>
- <Y9vaIOefIf/gI0BR@shredder>
- <3cecf4425b0e6f38646e25e40fd8f0fd@kapio-technology.com>
- <Y9vmfoaFxPdKvgxt@shredder>
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id AqnT-_RVO28H for <bridge@lists.linux-foundation.org>;
+ Sat,  4 Feb 2023 08:48:28 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5031260BAA
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 5031260BAA
+ for <bridge@lists.linux-foundation.org>; Sat,  4 Feb 2023 08:48:27 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 0664718839AA;
+ Sat,  4 Feb 2023 08:48:25 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id E1FE9250007B;
+ Sat,  4 Feb 2023 08:48:24 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id D3B8191201E4; Sat,  4 Feb 2023 08:48:24 +0000 (UTC)
+X-Screener-Id: 413d8c6ce5bf6eab4824d0abaab02863e8e3f662
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y9vmfoaFxPdKvgxt@shredder>
+Date: Sat, 04 Feb 2023 09:48:24 +0100
+From: netdev@kapio-technology.com
+To: Simon Horman <simon.horman@corigine.com>
+In-Reply-To: <Y94TebdRQRHMMj/c@corigine.com>
+References: <20230130173429.3577450-1-netdev@kapio-technology.com>
+ <20230130173429.3577450-6-netdev@kapio-technology.com>
+ <Y9lkXlyXg1d1D0j3@corigine.com>
+ <9b12275969a204739ccfab972d90f20f@kapio-technology.com>
+ <Y9zDxlwSn1EfCTba@corigine.com> <20230203204422.4wrhyathxfhj6hdt@skbuf>
+ <Y94TebdRQRHMMj/c@corigine.com>
+User-Agent: Gigahost Webmail
+Message-ID: <4abbe32d007240b9c3aea9c8ca936fa3@kapio-technology.com>
+X-Sender: netdev@kapio-technology.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
  Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
- netdev@kapio-technology.com, Ivan Vecera <ivecera@redhat.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
  "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
  Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
  kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
- =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ =?UTF-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
  Christian Marangi <ansuelsmth@gmail.com>,
  Woojung Huh <woojung.huh@microchip.com>,
  Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
  Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
  DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC
+ support" <linux-mediatek@lists.infradead.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  "moderated list:ARM/Mediatek SoC support"
  <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
  open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>,
- "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
- <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 0/5] ATU and FDB synchronization on
-	locked ports
+ "maintainer:MICROCHIP KSZ SERIES ETHERNET
+ SWITCH DRIVER" <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
+ A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>,
+ Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 5/5] net: dsa: mv88e6xxx:
+ implementation of dynamic ATU entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -129,54 +105,40 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Feb 02, 2023 at 06:36:14PM +0200, Ido Schimmel wrote:
-> On Thu, Feb 02, 2023 at 05:19:07PM +0100, netdev@kapio-technology.com wrote:
-> > On 2023-02-02 16:43, Ido Schimmel wrote:
-> > > On Thu, Feb 02, 2023 at 08:37:08AM +0100, netdev@kapio-technology.com wrote:
-> > > > On 2023-01-31 20:25, Ido Schimmel wrote:
-> > > > >
-> > > > > Will try to review tomorrow, but it looks like this set is missing
-> > > > > selftests. What about extending bridge_locked_port.sh?
-> > > > 
-> > > > I knew you would take this up. :-)
-> > > > But I am not sure that it's so easy to have selftests here as it is timing
-> > > > based and it would take the 5+ minutes just waiting to test in the stadard
-> > > > case, and there is opnly support for mv88e6xxx driver with this
-> > > > patch set.
-> > > 
-> > > The ageing time is configurable: See commit 081197591769 ("selftests:
-> > > net: bridge: Parameterize ageing timeout"). Please add test cases in the
-> > > next version.
-> > 
-> > When I was looking at configuring the ageing time last time, my finding was
-> > that the ageing time could not be set very low as there was some part in the
-> > DSA layer etc, and confusion wrt units. I think the minimum secured was like
-> > around 2 min. (not validated), which is not that much of an improvement for
-> > fast testing. If you know what would be a good low timeout to set, I would
-> > like to know.
+On 2023-02-04 09:12, Simon Horman wrote:
+> On Fri, Feb 03, 2023 at 10:44:22PM +0200, Vladimir Oltean wrote:
+>> On Fri, Feb 03, 2023 at 09:20:22AM +0100, Simon Horman wrote:
+>> > > else if (someflag)
+>> > >         dosomething();
+>> > >
+>> > > For now only one flag will actually be set and they are mutually exclusive,
+>> > > as they will not make sense together with the potential flags I know, but
+>> > > that can change at some time of course.
+>> >
+>> > Yes, I see that is workable. I do feel that checking for other flags would
+>> > be a bit more robust. But as you say, there are none. So whichever
+>> > approach you prefer is fine by me.
+>> 
+>> The model we have for unsupported bits in the 
+>> SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS
+>> and SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS handlers is essentially this:
+>> 
+>> 	if (flags & ~(supported_flag_mask))
+>> 		return -EOPNOTSUPP;
+>> 
+>> 	if (flags & supported_flag_1)
+>> 		...
+>> 
+>> 	if (flags & supported_flag_2)
+>> 		...
+>> 
+>> I suppose applying this model here would address Simon's extensibility 
+>> concern.
 > 
-> My point is that the ageing time is parametrized via 'LOW_AGEING_TIME'
-> in forwarding.config so just use '$LOW_AGEING_TIME' in the selftest and
-> set it as high as it needs to be for mv88e6xxx in your own
-> forwarding.config.
+> Yes, that is the model I had in mind.
 
-FWIW, we have a forwarding.config file in tools/testing/selftests/drivers/net/dsa/.
-So you could cd to that folder, edit the file with your variable, and run the symlinked
-script from there.
-
-> as there was some part in the DSA layer etc
-
-	if (ds->ageing_time_min && ageing_time < ds->ageing_time_min)
-		return -ERANGE;
-
-High tech, advanced software.....
-
-You could print the ds->ageing_time_min variable. For mv88e6xxx, my 6390
-and 6190 report 3750. I have to admit the ageing time units are confusing,
-but Tobias Waldekranz kindly explained in one of those commit messages
-that Ido linked to that these represent "centiseconds" (or 37.5 seconds).
-And I think we discussed the units with you before. And in general, it's
-not hard to find the answer if you search for it, I know I could find it.
-
-Please stop trying to find silly excuses to always go through the path
-of minimal resistance.
+The only thing is that we actually need to return both 0 and -EOPNOTSUPP 
+for unsupported flags. The dynamic flag requires 0 when not supported 
+(and supported) AFAICS.
+Setting a mask as 'supported' for a feature that is not really supported 
+defeats the notion of 'supported' IMHO.
