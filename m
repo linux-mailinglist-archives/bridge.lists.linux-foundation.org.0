@@ -1,98 +1,140 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64D368CA7E
-	for <lists.bridge@lfdr.de>; Tue,  7 Feb 2023 00:24:36 +0100 (CET)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id A566D68D2BC
+	for <lists.bridge@lfdr.de>; Tue,  7 Feb 2023 10:25:54 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 9ED024174A;
-	Mon,  6 Feb 2023 23:24:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9ED024174A
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=F6SIdhRS
+	by smtp1.osuosl.org (Postfix) with ESMTP id 7C16B81516;
+	Tue,  7 Feb 2023 09:25:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7C16B81516
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=S56lhUA0
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id H__EofFq39oK; Mon,  6 Feb 2023 23:24:33 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 144704174B;
-	Mon,  6 Feb 2023 23:24:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 144704174B
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 0kqnscRBbYdS; Tue,  7 Feb 2023 09:25:51 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id DDB9B81442;
+	Tue,  7 Feb 2023 09:25:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org DDB9B81442
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 949B6C0078;
-	Mon,  6 Feb 2023 23:24:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 880ACC007C;
+	Tue,  7 Feb 2023 09:25:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 6A404C002B
- for <bridge@lists.linux-foundation.org>; Mon,  6 Feb 2023 23:24:30 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 26D56C002B
+ for <bridge@lists.linux-foundation.org>; Tue,  7 Feb 2023 09:25:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 33B974174B
- for <bridge@lists.linux-foundation.org>; Mon,  6 Feb 2023 23:24:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 33B974174B
+ by smtp4.osuosl.org (Postfix) with ESMTP id B165041754
+ for <bridge@lists.linux-foundation.org>; Tue,  7 Feb 2023 09:25:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B165041754
+Authentication-Results: smtp4.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=S56lhUA0
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id e9auctkAHM67 for <bridge@lists.linux-foundation.org>;
- Mon,  6 Feb 2023 23:24:28 +0000 (UTC)
+ with ESMTP id guNNXPa9tT_0 for <bridge@lists.linux-foundation.org>;
+ Tue,  7 Feb 2023 09:25:47 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 856404174A
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 856404174A
- for <bridge@lists.linux-foundation.org>; Mon,  6 Feb 2023 23:24:28 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id q8so9847659wmo.5
- for <bridge@lists.linux-foundation.org>; Mon, 06 Feb 2023 15:24:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=hXrFo+KeQWDPJTUmHvqK6UwaGP0y77GYlkmmu+Bmrvw=;
- b=F6SIdhRSD01zOomuDLBjGM9ozwU9Ah+xNbQ6FZPtmnZYZstNYK3wfr2zcbVarTWsG/
- eF0zW0zRncI4vUihj6tRyOtOhPq31tsDW4qiKUKqAyuZFh8D+TeBDuQm9+CIRvWyXM5w
- 9YdZeP06EY3Ek2FUw01uBoV5w/PGc5lkVdZ9Sq9l9QjmlZydoUguqBPjDPCBF3jdceAE
- ovLyJWqIM7yK/WDdzq4AGxa1LCltOs+PVJGpWzfh8MEbDTrvY+dRZEl6WUr3lrlgu8s7
- cr6sPCLeOZGlkGR4VvgTgo+xBBjm+zNm+L7bi7B8OJ1klJSWrLWRTgEyc4zX/tW5qSbu
- 1JrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=hXrFo+KeQWDPJTUmHvqK6UwaGP0y77GYlkmmu+Bmrvw=;
- b=UOYXIPrSTLb6Zlj4HpdbzUuUIQybnj/WfvKL7w+qdr3WDtqjQe+5TYWoj7YEwMAqLQ
- 6lA5g2SOT5uI9AwupgwfOD7kGbxJLWl74q3JO5fMqY9FynBJw7t2ayp0SXqcZXM4ehdX
- KxcdX8WN5147JZl0NrfJWHLm5GjJSn5JhMnPJIJhUnCbiy+4ph3GEJlcPreo9mmC/ZQq
- fHkA72OIIH1Nj9NiKhMAvunxFkv3X0kkacFZMN0bvZaFdKm1VDZOVnevNz8UvvDsvYvi
- QYeZ8GUlfa6UM7TypWmMhVqx31h8MCcTTZwDtqncrcWaXZa/ZTQ1xw6Yq6KqN0RNCu+z
- N1Gg==
-X-Gm-Message-State: AO0yUKWXtdBq/HP/KFGQ02EIZ8rUIg91iY8CU1nV7JnT2eB/1UokaBoT
- 7LjzMkTOp6M1sNbW9j17O75pzw==
-X-Google-Smtp-Source: AK7set/sOJcLtndJQJrkW1rXlROyhDStoEfqFKtDyQci05cCesHQ7jJF7WO8EwSH/LOQojYD4u4slA==
-X-Received: by 2002:a05:600c:1817:b0:3df:e54a:4ac5 with SMTP id
- n23-20020a05600c181700b003dfe54a4ac5mr1222391wmp.27.1675725866386; 
- Mon, 06 Feb 2023 15:24:26 -0800 (PST)
-Received: from [192.168.100.228] (212-147-51-13.fix.access.vtx.ch.
- [212.147.51.13]) by smtp.gmail.com with ESMTPSA id
- z4-20020a05600c0a0400b003dfdeb57027sm15575815wmp.38.2023.02.06.15.24.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 06 Feb 2023 15:24:25 -0800 (PST)
-Message-ID: <3d7387d0-cff6-f403-55fc-1cb41e87db1a@blackwall.org>
-Date: Tue, 7 Feb 2023 00:24:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3118C41751
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on20600.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eae::600])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 3118C41751
+ for <bridge@lists.linux-foundation.org>; Tue,  7 Feb 2023 09:25:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hx1smbOYjhsifrNYSuS3zcAv2a72mRQxMyf6xZDNrH3Ynq+53ap0dRVUvx2fcw63T2WK02s3hmrofueYFo5JZjLWApyacHkxu4rEVg7rRDmCg9I8WOPUUh2rkIrIHMIWs6DJMeBrNNaN7OpUsTLWPkTwiObk4Jd00KjKe+masyuC8YOtYwxBQjW46UlaCrhoA+f+h+QcMgFZpUVhPFKygwWg1ISUJVzBqJYAjaz6MpuvzfsRb61OKfrviV+3RLcn+tpZtYKtz0FHxTUARDJ0dl49wDQeX/0aKaNQzxIbl47Qv+MI4nSn6ZvRcMTJ6kEFAQ/iaaHVbSJJMjAnhT69sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WOa+Kqn1wIq8P4WE7dtQrdMzw4uknucIa9WP/8Ju2Hk=;
+ b=GA4EUQxoRJNi6Srx3ygz/bhfiQdtcKg3+Q9JdujkmpQk34X0TmIoHwPKm7FOiKGmqyiczshcYBt6Qc0cO/LMYbax1Ng4ifjtrktudmx7dwwMdUuMMiPYIchD7gUgH5ET2Cr/ORTp+fEbRypx5jJb+/G7gHdu5IOWQRVA/IUUcer1GqQzQUqOgdP/tY5unwQtlsYCLocOp9jyVNXSDNS0j9zM+4AWysFaSKr7wUqvrdoXO0aU/AUe5k1UuN1GFlCzj9ReL/RErL44YmFbeYSKRyHFrWNUZW+cypGrV9CjtpAfrOgPsxwvTHVUJERr843VCkVMkqdjgZHA3R1XhlAeCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WOa+Kqn1wIq8P4WE7dtQrdMzw4uknucIa9WP/8Ju2Hk=;
+ b=S56lhUA0tACEC44J6CHhidIAqcGL9Q7kRMOecJ/FdMuCGx2wp6x44f4335Fl+PjBredbmJy+2jHYGyNQi5bMuKt8DEeC0Ll5GqUcAc2zzbkWLy5tTP1YyNbdQgK+ygAgV0oScIkqLlJjQO9hZglQUH4UIWECZcv+v+XLClSJ94GGog9onSfaAOyH0rbcfo+o/Wdx548ggcXW9/C0IXqLosdR3IMBZFGOGV2VsJnBDVjJuo+jCXaV5kruCNYbUa5V3MA9WXH0hS4JcE/Mu96UYkr/MIjNylLrJzj/fmIxVG+kbSOGKr4h85AU0OTHRczgYIJTQ5joZVzc4UGei258Jw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
+ by SJ1PR12MB6073.namprd12.prod.outlook.com (2603:10b6:a03:488::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.34; Tue, 7 Feb
+ 2023 09:25:44 +0000
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::7d2c:828f:5cae:7eab]) by CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::7d2c:828f:5cae:7eab%9]) with mapi id 15.20.6064.035; Tue, 7 Feb 2023
+ 09:25:43 +0000
+Date: Tue, 7 Feb 2023 11:25:36 +0200
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <Y+IZEJSwNZLH2aXN@shredder>
 References: <20230204170801.3897900-1-idosch@nvidia.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230204170801.3897900-1-idosch@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: petrm@nvidia.com, mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com,
- kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
+ <3d7387d0-cff6-f403-55fc-1cb41e87db1a@blackwall.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3d7387d0-cff6-f403-55fc-1cb41e87db1a@blackwall.org>
+X-ClientProxiedBy: VI1P18901CA0022.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:801::32) To CY5PR12MB6179.namprd12.prod.outlook.com
+ (2603:10b6:930:24::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|SJ1PR12MB6073:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15a96d08-8f22-4722-0b64-08db08ed4973
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: N88KtKiTSRvWm+xSRGF3k/9jWhPgwhLwm7Q+POiTraXxeZ615cpXzFhh0AtLfoJy27QRjnUbtKtyWqAIjiAODJvOKLbBh+H9kdyJARyGftlR3eylkUNXUqY3lxJlwSqcKwP8gVVLWB2pV9aovWIIvaNQkf5Ztv7yQ0BeiILsmESK5Wp7J6t3WhPXkbqBUYcAr5HOExX/84kylS6zcYC9YLiqmbVjJJDLmiM7SXAHV9HvwsZAR6l7qFdrG/fuwM3J10GUdO/vb34kwjNjo62GQg66Z31jIHaaJIG2NGoVMk9EbQ7Lr1eydGA60aKCl5y+TnbmHQahy1vp9XfWoTKSGI/Eylk27a4x0cA2XdUMS3+k+x18HDP29lkqj1JurW9t+p8M4KDno4X4ICEmUoCs1RksnIe6qTqmeC2ito8lwa3lEraIOUuHiNmik0g7oS8rt3BA3LL8w6EJ5rh6lGUcram68NyiMHwIPZSRMIDlkGJyxIQ03KgcXkOesXxNzt1KuurR3o0o9p7F+3zdtcQCqjeO78LdfBVPsC2h5GLB08uJY0VCdchDnVE5Yv9gMYyD5w8JhsMTuj2RO7UMniIfPTE6Jw4qhPpEolLJW87j96UoCwhQoLEWGvMzWannIw20wfOu1qdYUTNM7i3qwaAeRxJ+5Mpv0nYjqACFK4wfcBAWWwYrUcXinENIOXRdJ8Jc
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(7916004)(4636009)(376002)(366004)(136003)(39860400002)(346002)(396003)(451199018)(86362001)(33716001)(38100700002)(478600001)(6486002)(316002)(2906002)(66946007)(41300700001)(5660300002)(66556008)(4326008)(8676002)(66476007)(8936002)(107886003)(66574015)(9686003)(26005)(186003)(6512007)(6916009)(6506007)(6666004)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2BQLZhS2atqSJIwrRP4oSsMVVqkzGsKtQyPLCrKaPm/v8tH+jCB94STKJy8W?=
+ =?us-ascii?Q?KNE9IYqOktQy09ckpNcecPiQjMq+9t/Fd4ULoA65AJ4LPMgGAF2rB1zbR+mm?=
+ =?us-ascii?Q?nURYhEO8263Cta9ErGiBaCDJqZHtnv/jh0/IlXtvqT6mnPTTsjHJiv1X7abW?=
+ =?us-ascii?Q?dQYI6YePeeNTy8v68fO0l8faKSm0K4J0MACxFL3bKsBe44OTyePMV+aTjMqL?=
+ =?us-ascii?Q?pYs2z4RpKnjICdC7PszpNXa7ad2yrft/pZUOFzi37qGQc6/ReFBVqJCfcLxi?=
+ =?us-ascii?Q?xRYU4/TxeIUIQQ6tXjUe96Mdh9v28Q+nPGpoHXjrqeG2pqMBiQ6pgp11xmIl?=
+ =?us-ascii?Q?rfEJ6krRAfquwcFGte5JocJwaVFynNSRAK5qLbRw+nlDW35wm9bLjN/QiV0x?=
+ =?us-ascii?Q?dSpaBtJHnwGQ4hr+cONZ764/ICiv9j/B609w5S8GU26aooThpALSoPt+or6Y?=
+ =?us-ascii?Q?BsAAX5GnuhtmofpCeWrc0bq1f/5ysiiqRZokpyr60Ug+0+53TuAISt4mYwJY?=
+ =?us-ascii?Q?PCHU0TsVDbClED7U9tmyysk/Nh3FsTJX2XnIumywP4kadtbe18G8UPa5o8RV?=
+ =?us-ascii?Q?kHBudXSmLbq8XZ2bNuPTlFXqPWQuHpHloGJNVb+b2DW5LFF0yhfuaAUZOLHa?=
+ =?us-ascii?Q?+hmgwNzPA+/PkZ7/+joBxW/7rM7ZokWETihJvvUR6+mMhZMANvJA018LlMc3?=
+ =?us-ascii?Q?QUhxA45zKjEPXQnRZgpYTiTmhp3KBAzkWcrq/W+TIQNn3K0ajqV4LuxhwlMf?=
+ =?us-ascii?Q?X2nSLG6tudsA/LnADiOjdiL7w897FcYE5yva+Pat7WbMn5TD9RAg9xW+blgA?=
+ =?us-ascii?Q?7s9Hy5zT52X5XmfOJptyrBC1L5CWf6PS6ylyRgpuJ/dfEA3yHyb1lw8tixgZ?=
+ =?us-ascii?Q?rSsA42itWB+g8brLvUH6zrEf7PNVE90U+tCHqQOcrOon/KjHXBaf/fkaVnTO?=
+ =?us-ascii?Q?tGhgexjh0OtVMsaThyouldnyio1XWs1d9LThe9qZkIw6iScDHtk/0CW74dgx?=
+ =?us-ascii?Q?sZlZUVhh7dQeDAdBbpPXpXu8uW3o6CTx8woGttdd7Y8xpFpuVW8I33SK2y3a?=
+ =?us-ascii?Q?t0SeL5mIk5Hj34K0elCx5Fkq47MJAj4cGtweFRj6ENjdw0Zjaw4JkbS88Prc?=
+ =?us-ascii?Q?fxogOW8JoUU2D8hPlNdmCFsl595/4WvtD8lEuyVvYU1v0C9Vf93cJEami5DQ?=
+ =?us-ascii?Q?ItAmLtmAvg+jHEG1FVgi3qbNA1MXtARwnxhmwD1BWled+5V1v+0wa6BoZFic?=
+ =?us-ascii?Q?BIkWdZeKWFAyYZDwNhrswdMYyCQFPeMJ0DUYgUxf+gshEGV0Lq6MXZdaUz2+?=
+ =?us-ascii?Q?YqWFccWfYwp8u7F9VQ3mF0d3Bo7smnXjgq/Zz3AZIbzNKomshZtKtPEB4qcr?=
+ =?us-ascii?Q?PWw/64+BMwCUAIs2KNZM7isxyCw6HJYJh/2f5kdA+eSB1wRECqrf2UkCd2rK?=
+ =?us-ascii?Q?JbtmKVmiyCzoPMH83eY+R9OChqedp5K0Wn036LMtujGBjno46JfWssMV13c9?=
+ =?us-ascii?Q?lf474m7lmQOO87MZ/4jiZEA+SN3HucL8vHJ6wxkWGH+AwUfxucuWUi2Pl4tC?=
+ =?us-ascii?Q?RtXxovhFpeaE02fwZxOCd6OczndmJDxtwY+l1u6s?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15a96d08-8f22-4722-0b64-08db08ed4973
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2023 09:25:43.8273 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bHWEwrVaCorH+u4Xolz3Yc0UixMu72KS9OqACdJUaYBPl1lgjVyQNlibUj3kXMeRpQBzBPleoRKAejmQSkAkog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6073
+Cc: petrm@nvidia.com, netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ edumazet@google.com, mlxsw@nvidia.com, roopa@nvidia.com, kuba@kernel.org,
+ pabeni@redhat.com, davem@davemloft.net
 Subject: Re: [Bridge] [RFC PATCH net-next 00/13] vxlan: Add MDB support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -105,181 +147,49 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 2/4/23 19:07, Ido Schimmel wrote:
-> tl;dr
-> =====
+On Tue, Feb 07, 2023 at 12:24:25AM +0100, Nikolay Aleksandrov wrote:
+> Hmm, while I agree that having the control plane in user-space is nice,
+> I do like having a relatively straight-forward and well maintained
+> protocol implementation in the kernel too, similar to its IGMPv3 client
+> support which doesn't need third party packages or external software
+> libraries to work. That being said, I do have (an unfinished) patch-set
+> that adds a bridge daemon to FRR, I think we can always add a knob to
+> switch to some more advanced user-space daemon which can snoop.
 > 
-> This patchset implements MDB support in the VXLAN driver, allowing it to
-> selectively forward IP multicast traffic to VTEPs with interested
-> receivers instead of flooding it to all the VTEPs as BUM. The motivating
-> use case is intra and inter subnet multicast forwarding using EVPN
-> [1][2], which means that MDB entries are only installed by the user
-> space control plane and no snooping is implemented, thereby avoiding a
-> lot of unnecessary complexity in the kernel.
-> 
-> Background
-> ==========
-> 
-> Both the bridge and VXLAN drivers have an FDB that allows them to
-> forward Ethernet frames based on their destination MAC addresses and
-> VLAN/VNI. These FDBs are managed using the same PF_BRIDGE/RTM_*NEIGH
-> netlink messages and bridge(8) utility.
-> 
-> However, only the bridge driver has an MDB that allows it to selectively
-> forward IP multicast packets to bridge ports with interested receivers
-> behind them, based on (S, G) and (*, G) MDB entries. When these packets
-> reach the VXLAN driver they are flooded using the "all-zeros" FDB entry
-> (00:00:00:00:00:00). The entry either includes the list of all the VTEPs
-> in the tenant domain (when ingress replication is used) or the multicast
-> address of the BUM tunnel (when P2MP tunnels are used), to which all the
-> VTEPs join.
-> 
-> Networks that make heavy use of multicast in the overlay can benefit
-> from a solution that allows them to selectively forward IP multicast
-> traffic only to VTEPs with interested receivers. Such a solution is
-> described in the next section.
-> 
-> Motivation
-> ==========
-> 
-> RFC 7432 [3] defines a "MAC/IP Advertisement route" (type 2) [4] that
-> allows VTEPs in the EVPN network to advertise and learn reachability
-> information for unicast MAC addresses. Traffic destined to a unicast MAC
-> address can therefore be selectively forwarded to a single VTEP behind
-> which the MAC is located.
-> 
-> The same is not true for IP multicast traffic. Such traffic is simply
-> flooded as BUM to all VTEPs in the broadcast domain (BD) / subnet,
-> regardless if a VTEP has interested receivers for the multicast stream
-> or not. This is especially problematic for overlay networks that make
-> heavy use of multicast.
-> 
-> The issue is addressed by RFC 9251 [1] that defines a "Selective
-> Multicast Ethernet Tag Route" (type 6) [5] which allows VTEPs in the
-> EVPN network to advertise multicast streams that they are interested in.
-> This is done by having each VTEP suppress IGMP/MLD packets from being
-> transmitted to the NVE network and instead communicate the information
-> over BGP to other VTEPs.
-> 
-> The draft in [2] further extends RFC 9251 with procedures to allow
-> efficient forwarding of IP multicast traffic not only in a given subnet,
-> but also between different subnets in a tenant domain.
-> 
-> The required changes in the bridge driver to support the above were
-> already merged in merge commit 8150f0cfb24f ("Merge branch
-> 'bridge-mcast-extensions-for-evpn'"). However, full support entails MDB
-> support in the VXLAN driver so that it will be able to selectively
-> forward IP multicast traffic only to VTEPs with interested receivers.
-> The implementation of this MDB is described in the next section.
-> 
-> Implementation
-> ==============
-> 
-> The user interface is extended to allow user space to specify the
-> destination VTEP(s) and related parameters. Example usage:
-> 
->   # bridge mdb add dev vxlan0 port vxlan0 grp 239.1.1.1 permanent dst 198.51.100.1
->   # bridge mdb add dev vxlan0 port vxlan0 grp 239.1.1.1 permanent dst 192.0.2.1
-> 
->   $ bridge -d -s mdb show
->   dev vxlan0 port vxlan0 grp 239.1.1.1 permanent filter_mode exclude proto static dst 192.0.2.1    0.00
->   dev vxlan0 port vxlan0 grp 239.1.1.1 permanent filter_mode exclude proto static dst 198.51.100.1    0.00
-> 
-> Since the MDB is fully managed by user space and since snooping is not
-> implemented, only permanent entries can be installed and temporary
-> entries are rejected by the kernel.
-> 
-> The netlink interface is extended with a few new attributes in the
-> RTM_NEWMDB / RTM_DELMDB request messages:
-> 
-> [ struct nlmsghdr ]
-> [ struct br_port_msg ]
-> [ MDBA_SET_ENTRY ]
-> 	struct br_mdb_entry
-> [ MDBA_SET_ENTRY_ATTRS ]
-> 	[ MDBE_ATTR_SOURCE ]
-> 		struct in_addr / struct in6_addr
-> 	[ MDBE_ATTR_SRC_LIST ]
-> 		[ MDBE_SRC_LIST_ENTRY ]
-> 			[ MDBE_SRCATTR_ADDRESS ]
-> 				struct in_addr / struct in6_addr
-> 		[ ...]
-> 	[ MDBE_ATTR_GROUP_MODE ]
-> 		u8
-> 	[ MDBE_ATTR_RTPORT ]
-> 		u8
-> 	[ MDBE_ATTR_DST ]	// new
-> 		struct in_addr / struct in6_addr
-> 	[ MDBE_ATTR_DST_PORT ]	// new
-> 		u16
-> 	[ MDBE_ATTR_VNI ]	// new
-> 		u32
-> 	[ MDBE_ATTR_IFINDEX ]	// new
-> 		s32
-> 	[ MDBE_ATTR_SRC_VNI ]	// new
-> 		u32
-> 
-> RTM_NEWMDB / RTM_DELMDB responses and notifications are extended with
-> corresponding attributes.
-> 
-> One MDB entry that can be installed in the VXLAN MDB, but not in the
-> bridge MDB is the catchall entry (0.0.0.0 / ::). It is used to transmit
-> unregistered multicast traffic that is not link-local and is especially
-> useful when inter-subnet multicast forwarding is required. See patch #12
-> for a detailed explanation and motivation. It is similar to the
-> "all-zeros" FDB entry that can be installed in the VXLAN FDB, but not
-> the bridge FDB.
-> 
-> "added_by_star_ex" entries?
-> ---------------------------
-> 
-> The bridge driver automatically installs (S, G) MDB port group entries
-> marked as "added_by_star_ex" whenever it detects that an (S, G) entry
-> can prevent traffic from being forwarded via a port associated with an
-> EXCLUDE (*, G) entry. The bridge will add the port to the port group of
-> the (S, G) entry, thereby creating a new port group entry. The
-> complexity associated with these entries is not trivial, but it needs to
-> reside in the bridge driver because it automatically installs MDB
-> entries in response to snooped IGMP / MLD packets.
-> 
-> The same in not true for the VXLAN MDB which is entirely managed by user
-> space who is fully capable of forming the correct replication lists on
-> its own. In addition, the complexity associated with the
-> "added_by_star_ex" entries in the VXLAN driver is higher compared to the
-> bridge: Whenever a remote VTEP is added to the catchall entry, it needs
-> to be added to all the existing MDB entries, as such a remote requested
-> all the multicast traffic to be forwarded to it. Similarly, whenever an
-> (*, G) or (S, G) entry is added, all the remotes associated with the
-> catchall entry need to be added to it.
-> 
-> Given the above, this RFC does not implement support for such entries.
-> One argument against this decision can be that in the future someone
-> might want to populate the VXLAN MDB in response to decapsulated IGMP /
-> MLD packets and not according to EVPN routes. Regardless of my doubts
-> regarding this possibility, it is unclear to me why the snooping
-> functionality cannot be implemented in user space by opening an
-> AF_PACKET socket on the VXLAN device and sniffing IGMP / MLD packets.
-> 
-> I believe that the decision to place snooping functionality in the
-> bridge driver was made without appreciation for the complexity that
-> IGMPv3 support would bring and that a more informed decision should be
-> made for the VXLAN driver.
-> 
+> Anyway to the point - this patch-set looks ok to me, from bridge PoV
+> it's mostly code shuffling, and the new vxlan code is fairly straight-
+> forward.
 
-Hmm, while I agree that having the control plane in user-space is nice,
-I do like having a relatively straight-forward and well maintained
-protocol implementation in the kernel too, similar to its IGMPv3 client
-support which doesn't need third party packages or external software
-libraries to work. That being said, I do have (an unfinished) patch-set
-that adds a bridge daemon to FRR, I think we can always add a knob to
-switch to some more advanced user-space daemon which can snoop.
+Thanks for taking a look. I was hoping you would comment on this
+section... :)
 
-Anyway to the point - this patch-set looks ok to me, from bridge PoV
-it's mostly code shuffling, and the new vxlan code is fairly straight-
-forward.
+After sending the RFC I realized that what I wrote about the user space
+implementation is not accurate. An AF_PACKET socket opened on the VXLAN
+device will only give you the decapsulated IGMP / MLD packets. You
+wouldn't know from which remote VTEP they arrived. However, my point
+still stands: As long as the kernel is not performing snooping we can
+defer the forming of the replication lists to user space and avoid the
+complexity of the "added_by_star_ex" entries (among many other things).
+If in the future we need to implement snooping in the kernel, then we
+will expose a new knob (e.g., "mcast_snooping", default off), which will
+also enable the "added_by_star_ex" entries.
 
-Cheers,
-  Nik
+I tried looking what other implementations are doing and my impression
+is that by "VXLAN IGMP snooping" they all refer to the snooping done in
+the bridge driver. That is, instead of treating the VXLAN port as a
+router port, the bridge will only forward specific groups to the VXLAN
+port, but this multicast traffic will be forwarded to all the VTEPs.
+This is already supported by the kernel.
+
+Regarding what you wrote about a new knob in the bridge driver, you mean
+that this knob will enable MDB lookup regardless of "mcast_snooping"?
+Currently this knob enables both snooping and MDB lookup. Note that I
+didn't add a new knob to the VXLAN device because I figured that if user
+space doesn't want MDB lookup, then it will not configure MDB entries.
+
+Thanks!
