@@ -1,82 +1,66 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC226957C0
-	for <lists.bridge@lfdr.de>; Tue, 14 Feb 2023 05:11:43 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B27F695D4F
+	for <lists.bridge@lfdr.de>; Tue, 14 Feb 2023 09:41:29 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 6471D40A91;
-	Tue, 14 Feb 2023 04:11:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6471D40A91
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=W0QU6Meh
+	by smtp4.osuosl.org (Postfix) with ESMTP id 63E06416E3;
+	Tue, 14 Feb 2023 08:41:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 63E06416E3
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QE0AtqGKJEFX; Tue, 14 Feb 2023 04:11:40 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 09D65400D0;
-	Tue, 14 Feb 2023 04:11:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 09D65400D0
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id i-WG947IAUmC; Tue, 14 Feb 2023 08:41:25 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id BB124416C4;
+	Tue, 14 Feb 2023 08:41:24 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org BB124416C4
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id AAB39C0078;
-	Tue, 14 Feb 2023 04:11:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 82B56C0078;
+	Tue, 14 Feb 2023 08:41:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 74B5BC002B
- for <bridge@lists.linux-foundation.org>; Tue, 14 Feb 2023 04:11:38 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0536BC002B
+ for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 00:56:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 3B16381DFE
- for <bridge@lists.linux-foundation.org>; Tue, 14 Feb 2023 04:11:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3B16381DFE
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
- header.a=rsa-sha256 header.s=k20201202 header.b=W0QU6Meh
+ by smtp1.osuosl.org (Postfix) with ESMTP id C1FE981D7D
+ for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 00:56:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C1FE981D7D
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5oJXAulsSdFe for <bridge@lists.linux-foundation.org>;
- Tue, 14 Feb 2023 04:11:37 +0000 (UTC)
+ with ESMTP id FU3z1M9S4322 for <bridge@lists.linux-foundation.org>;
+ Wed,  8 Feb 2023 00:56:34 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 70CE081DFA
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 70CE081DFA
- for <bridge@lists.linux-foundation.org>; Tue, 14 Feb 2023 04:11:37 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 93F18B81B1F;
- Tue, 14 Feb 2023 04:11:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF508C433D2;
- Tue, 14 Feb 2023 04:11:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1676347893;
- bh=llJZR7pK98/emAvHoO6xCRuI8lj7T3XJRXFwIvfYO9Y=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=W0QU6Meho9pQJ8b8exCiXRy6k20TLCCCZOT3xwU1SC/WBE2Dy8+ZNJz0EG0w3FvAr
- d/p71BdHJBcsl+V14RK0zxshK4SNWDjPM7SnA2C5c7XfFWOe5hKeoWyd8Qzua+Ui9+
- 1fGH1WVRkOZ1K5uPR9fXyUBI9D4zyU+goEdGC35VYv52KT+kYNCklVav6JpVGsJUXU
- c6Xj0nd9/yqVgkkVgODVfcj0SGBwPOosODiy9rMM4VMdQRHfQJbvQIhcOClxfkpOY3
- ACkguakfAMrFsgqo+ijiyNbCHl9bLMVbMovPnaIH7oooT9VUaciW/dX4zL57aTeP1o
- iE82zjFxCJWng==
-Date: Mon, 13 Feb 2023 20:11:31 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Thomas =?UTF-8?B?V2Vpw59zY2h1aA==?= <linux@weissschuh.net>
-Message-ID: <20230213201131.7ed238f9@kernel.org>
-In-Reply-To: <20230211-kobj_type-net-v1-0-e3bdaa5d8a78@weissschuh.net>
-References: <20230211-kobj_type-net-v1-0-e3bdaa5d8a78@weissschuh.net>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EB2A681CFE
+Received: from out30-118.freemail.mail.aliyun.com
+ (out30-118.freemail.mail.aliyun.com [115.124.30.118])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id EB2A681CFE
+ for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 00:56:33 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046049;
+ MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=11; SR=0;
+ TI=SMTPD_---0Vb92B8B_1675817787; 
+Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
+ fp:SMTPD_---0Vb92B8B_1675817787) by smtp.aliyun-inc.com;
+ Wed, 08 Feb 2023 08:56:28 +0800
+From: Yang Li <yang.lee@linux.alibaba.com>
+To: davem@davemloft.net
+Date: Wed,  8 Feb 2023 08:56:26 +0800
+Message-Id: <20230208005626.56847-1-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Cc: linux-nfs@vger.kernel.org, netdev@vger.kernel.org,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Chuck Lever <chuck.lever@oracle.com>, Anna Schumaker <anna@kernel.org>,
- Roopa Prabhu <roopa@nvidia.com>, Paolo Abeni <pabeni@redhat.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>
-Subject: Re: [Bridge] [PATCH 0/3] net: make kobj_type structures constant
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 14 Feb 2023 08:41:23 +0000
+Cc: netdev@vger.kernel.org, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, edumazet@google.com,
+ Yang Li <yang.lee@linux.alibaba.com>, roopa@nvidia.com, kuba@kernel.org,
+ pabeni@redhat.com
+Subject: [Bridge] [PATCH -next] net: bridge: clean up one inconsistent
+	indenting
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -91,12 +75,28 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Sat, 11 Feb 2023 03:32:28 +0000 Thomas Wei=C3=9Fschuh wrote:
-> Since commit ee6d3dd4ed48 ("driver core: make kobj_type constant.")
-> the driver core allows the usage of const struct kobj_type.
->=20
-> Take advantage of this to constify the structure definitions to prevent
-> modification at runtime.
+./net/bridge/br_netlink_tunnel.c:317:4-27: code aligned with following code on line 318
 
-Could you resend just the first two with [PATCH net-next] in the
-subject? Patch 3 needs to go to a different tree.
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3977
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+---
+ net/bridge/br_netlink_tunnel.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/bridge/br_netlink_tunnel.c b/net/bridge/br_netlink_tunnel.c
+index 17abf092f7ca..eff949bfdd83 100644
+--- a/net/bridge/br_netlink_tunnel.c
++++ b/net/bridge/br_netlink_tunnel.c
+@@ -315,7 +315,7 @@ int br_process_vlan_tunnel_info(const struct net_bridge *br,
+ 
+ 			if (curr_change)
+ 				*changed = curr_change;
+-			 __vlan_tunnel_handle_range(p, &v_start, &v_end, v,
++			__vlan_tunnel_handle_range(p, &v_start, &v_end, v,
+ 						    curr_change);
+ 		}
+ 		if (v_start && v_end)
+-- 
+2.20.1.7.g153144c
+
