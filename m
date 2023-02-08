@@ -1,140 +1,105 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2464C68EF79
-	for <lists.bridge@lfdr.de>; Wed,  8 Feb 2023 14:04:29 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A9F68EFBC
+	for <lists.bridge@lfdr.de>; Wed,  8 Feb 2023 14:30:54 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 989C940157;
-	Wed,  8 Feb 2023 13:04:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 989C940157
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=corigine.onmicrosoft.com header.i=@corigine.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-corigine-onmicrosoft-com header.b=MUnl4PP0
+	by smtp4.osuosl.org (Postfix) with ESMTP id 45B674091C;
+	Wed,  8 Feb 2023 13:30:51 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 45B674091C
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=vsG6o0+N
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zgMkBfFBa0dM; Wed,  8 Feb 2023 13:04:25 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id DDF3740B3B;
-	Wed,  8 Feb 2023 13:04:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org DDF3740B3B
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id CweUdrzpe6UW; Wed,  8 Feb 2023 13:30:50 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 4375140940;
+	Wed,  8 Feb 2023 13:30:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4375140940
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 88C50C007C;
-	Wed,  8 Feb 2023 13:04:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D9252C007C;
+	Wed,  8 Feb 2023 13:30:48 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9CBADC002B
- for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 13:04:22 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id BEC6BC002B
+ for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 13:30:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 8475140157
- for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 13:04:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8475140157
+ by smtp2.osuosl.org (Postfix) with ESMTP id 939E540B5A
+ for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 13:30:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 939E540B5A
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
+ header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
+ header.s=20210112 header.b=vsG6o0+N
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 3caN5B27CLAc for <bridge@lists.linux-foundation.org>;
- Wed,  8 Feb 2023 13:04:21 +0000 (UTC)
+ with ESMTP id 5Hx_xvy8SrBr for <bridge@lists.linux-foundation.org>;
+ Wed,  8 Feb 2023 13:30:46 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 65D1E400F2
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2072b.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8a::72b])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 65D1E400F2
- for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 13:04:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GxETobLHU688hREXFucYVohZ+u/CimJdhueWTB8jxZEZ5dNP7fPJt3Kid9TJPPpOTiurd07duuHLqBRyNgr8lJacmjYnBLkpiC5GdM9GsBgdzbTqNWZQByctKB9v8dYTwYswRn/grTAxVPOayvL/V96+gmSqVWR+I7K4Tr3165B5KnEDNP1QWBHdEzyS4JaebtV63k4cmR+rHq9lSRShkk+k3AO+61qDetGBie/LfC0q8W5I6ntnWvupiJl1a9sny14i1qTa7rRAATdHIV6SAok8rD1GAzvfITHG+244AaLRi5oVl95nWolrRCQIKT8nI4/VmKP+xPkZSJDnYwFLvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GJDGOrESqVw7O/6115CebnbOEq+KHWZ2tAT8wWIZs98=;
- b=hZGx6BByRhLIKpMVXQY856LAABnb89gyGCMlB+2IuOqLnN8xnNEBOOBO4JIQV1ATOuHN+LRfPOAKQxg/3FoWVWE/D0cRbWWqT9jD0RsKijE/Yqlk/IsuZ3Wm7c0jcxkdHuFi3hrrTErcgTAwb8HVutZV7BGY9FBR6WMDUGn8EDExJUEy4D9ZQFOGGKm4nkyQMc7bv6wrUmiSW3kZqFWLrxUU52qU5zOgTtglNkO5cMQ+HZ9X05i8lpX9XmKDsJknYAylFOoJ8oJblPWg7YjkentBj06iBsae2icqM0ADJVUsCP/NtR0b3o6Jn0P8+A68PHpuV3KaUuH9yZja72zJwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 63AA6400F2
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 63AA6400F2
+ for <bridge@lists.linux-foundation.org>; Wed,  8 Feb 2023 13:30:46 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id m2so51215950ejb.8
+ for <bridge@lists.linux-foundation.org>; Wed, 08 Feb 2023 05:30:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GJDGOrESqVw7O/6115CebnbOEq+KHWZ2tAT8wWIZs98=;
- b=MUnl4PP0gqu/BA3PB29P88G+CZcVmSWMUn2mt7Flzn83LslcVhpCS8J/kTOUvWKu/scVvgn1OMNIX7IVOEPQTbM7NFstW4oOitZGxxYzmF/ddC0Hd9gTse/NwLfGZgvqMURS5Y3VkxviM4IG8kFfBYuhL1h4c3VoATO2JgsiUNg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by PH0PR13MB5699.namprd13.prod.outlook.com (2603:10b6:510:116::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.17; Wed, 8 Feb
- 2023 13:04:16 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb5c:910f:3730:fd65%7]) with mapi id 15.20.6086.017; Wed, 8 Feb 2023
- 13:04:16 +0000
-Date: Wed, 8 Feb 2023 14:04:10 +0100
-From: Simon Horman <simon.horman@corigine.com>
-To: Yang Li <yang.lee@linux.alibaba.com>
-Message-ID: <Y+OdyiQpz7lIBfh3@corigine.com>
-References: <20230208005626.56847-1-yang.lee@linux.alibaba.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230208005626.56847-1-yang.lee@linux.alibaba.com>
-X-ClientProxiedBy: AM8P191CA0005.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:21a::10) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=bghcBSVVjOnDSTu4fI5Fr851/TGgxU6OXRrvvQvz/M8=;
+ b=vsG6o0+N006tv5j5AVuAR9PdyHfVEk7j/0/wj2XKjodhe4nFVNeA+CleK3E0rN4D/R
+ iWcVumwXa5V3cxpg2fw6SzUH2dj3TPAyXz06UqOaVR2MJ4RAChiSIDUC3wZfKDw7uauD
+ pVlutxhJIDu/9s3AYCxnRFcW0N0xg7I5/7D0r14o4JKHmOTK0IQLHBpEPi+CJMaJ9uaP
+ DhFOQ4Q4t8HY44yv0xvu+fjCMcSb38w/B0poS+i6xOGpyFVSNNII0Gco8/HKvXBSDMoG
+ eqAYskyI9EK01cc3mgND4cfHVk6zj4qJhukbL1bjZtTn7IgyGJH57p02pPDYCuWVgLSr
+ u+7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=bghcBSVVjOnDSTu4fI5Fr851/TGgxU6OXRrvvQvz/M8=;
+ b=e/tW8rvrw6OeCzUcjC+hTSQ0THA4xsEM/CxT02dd0myJZwuBXHt1dr3BU6/AkoCakd
+ 0NOGR/Wt8gixg5bjk5FydRQLUQOkSuTKwISN61B8zNRDL0FwXXZ+TZvMrR4wpXniAOQr
+ PAplh+iG/L65SAHGookx8w2VTAMLBkxnV8Z8rP2minsiHgxj4AZnwuHlelTD/4j0nN6r
+ oeY+SrIKTTgkxYrkf+vHwNOc4u8gKkBcBd/T9IfZgTHCcfgw7XcUX1PODGJEI63/nvhR
+ uh84fj306P+Wd1lSjK4Navt5NNUcPx7ULVZaKhEmxwYfkXYY7Dj8f2a7oRsZPsdZWMJe
+ KNbg==
+X-Gm-Message-State: AO0yUKWL6mTXPO7ihlXMvGxlm9T8WZ9lW/+xs7W2/fh9GK2gb3yh/hki
+ wABVgtkgYocF0crIHZTxaadXgw==
+X-Google-Smtp-Source: AK7set+3bEtDssHH7Nx7ZO0qprJo0mrpmZnd2ui3ik3JXFQ7TcjyC2d4jN2azLEGKuAtcuSnhKuGFA==
+X-Received: by 2002:a17:906:1ec8:b0:88d:5fd1:3197 with SMTP id
+ m8-20020a1709061ec800b0088d5fd13197mr7478243ejj.50.1675863044339; 
+ Wed, 08 Feb 2023 05:30:44 -0800 (PST)
+Received: from [192.168.3.225] ([81.6.34.132])
+ by smtp.gmail.com with ESMTPSA id
+ bl3-20020a170906c24300b007bff9fb211fsm8345526ejb.57.2023.02.08.05.30.43
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 08 Feb 2023 05:30:44 -0800 (PST)
+Message-ID: <1a71f6f8-09f6-9208-7368-6b2e3bb4af87@blackwall.org>
+Date: Wed, 8 Feb 2023 14:30:43 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|PH0PR13MB5699:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f1b531b-4a0d-4f67-9dfe-08db09d4fb4a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FkoMkAwgUkYrRcpYEryELrT1EaGQw9LeUDkeotqUv2C4MCQ0YjXYhz8zHLjXDXPGHTdTIIUF8GRrLHNmZX6besDM688s0nl1Yhq6msTzvuiZGAZr9z1Hsm9RIfi1LdVH3TujkSV3xwG4dHGUz2o52dDXY+JkZUpD7/U/H/gDmNX+8iFQkW8n+BUeIQcYpeSBAfgrcIcEhWI6PLWgQJRrENkDKFU7g2hv0BrczyUHENV/5E/+3I0B0SeDQ/M2OkUcs01KvZ4GejNT7rF1M+PnvjRpUzRQt9EtQF5/J5Ul7PlJtH3G7FrbQEvLdUW4qJgIRtBSZ8xVEmrQH0LeE430aqWIDhpwqVipyP7Obd03SgQQ0RWFjCJ3MOO4wltBgThGZKKoAJ7rXftIAkGcwfdidzzDrMLpTFxfe0YZKHmxNadprcVjo9teo1YrpzOADA0XP1q0WEMaWUYGt/6y/RXqtmP3lKwNLWVdlSKR35cYsCoYIzJc7L6HRuAWH3Cqliqz4viBengB+Fh/9+u5GgfyoWxz9vvdk2lp8vlPqAvaSOrFBnjExxSCu6xDGV9Rtb2Wu0QWwalMUZD/m/rpJo3VNoy4ZVSiSUXK+ctmK8cQYbS10JVCI9wxRBmAhXa3sWaOPFUOi/haUMNTSIg0NzDG18Jmp05EyHLUBb3iMRZU5WQxDzGee/5fG3nfyPwy8dWbqUxwuR6SwctFNayJjD6/p3HyIH2z9K+UtXYSbRimOps=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR13MB4842.namprd13.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(366004)(136003)(396003)(39840400004)(346002)(451199018)(44832011)(6512007)(186003)(6506007)(2906002)(6666004)(36756003)(966005)(7416002)(5660300002)(478600001)(6486002)(41300700001)(8936002)(2616005)(8676002)(66946007)(66476007)(4326008)(6916009)(83380400001)(66556008)(86362001)(316002)(38100700002)(67856001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8bL1kISOqAMEpPcZbd/ckGAY1AK77Wf0Q5wK5YKFrhRH6uXF4MIWaSfqBpBm?=
- =?us-ascii?Q?LST5QoPUXGtfaexHMzE5SnGyc9vYD65vTHLHdpn2nJltH3YpdktHPkjdnMO+?=
- =?us-ascii?Q?73qxiikDGpOwik9kzbQ0Keul9PpHD1ulS5nI2Q7SmzV1jE9qh3smS4GhiPPO?=
- =?us-ascii?Q?PpwnJcaUWrmfI46oNImcUN61HKF+e3TyCITgTkuoVyH7XfLON6Rcxh+xv81v?=
- =?us-ascii?Q?LEapPYgAp7pYhcM4zMNJ7NfGsE3rYjO2Iu9IXNesppsnfYTUHYwgIdOoBvQX?=
- =?us-ascii?Q?+4a69MMknhgRZnPkoYO7n6CrxQUe6fXmpzRacdAFKa0dgPNUdXInrfW4imsu?=
- =?us-ascii?Q?PAgBtNxs1owiMa/YaUg5r0KmxMRIEqQe2IBkbsAWpJXE9Vnfvt6Rp0XBT+gy?=
- =?us-ascii?Q?gqdxyzxuVIClF8vu8M/OiP+Vt6LftMGb/pb65XBf3/kJ1e2OzewW6PZSoyym?=
- =?us-ascii?Q?RAG7FakQA/NHdhXE/JMqaH8Lv46OsSRzut5NnSpbpJgKmY7Lxq6brqo2fx33?=
- =?us-ascii?Q?mJvKl/CKwFisb7hARED6kD9RDnw9fn82BSREPHJ+SMjRQnIsdxg9I032mBhw?=
- =?us-ascii?Q?FZ3Q8OIVB8Fet4Q0lUyyBrTFM7JLRZEUsERplwzH9Oo72fVVFPASVhV/tSM0?=
- =?us-ascii?Q?FaMh56eMfeZTlvDH/UuIfi/wUVn0R2RaQ57J6cIsIUmi/0Fgoh/In4FGX2ma?=
- =?us-ascii?Q?+VuaxX7/+tgldOQgn5/FSUSvGJGcEw0HJ+69i4xBF2nxZOL1dLI4tmB76wFD?=
- =?us-ascii?Q?i6BuMgdpme7p9PBK313RlghCRSdaB8WStxvIVXKBBIeB8fau72juOT4EEGwX?=
- =?us-ascii?Q?DcQ91F5+s5IIbKjB5jrxWiOi6jGXKLYWECq5ecshAgo/1XrXPc5fWydh7cRK?=
- =?us-ascii?Q?MxLq6dOgBgVeYEbaUDzzMN+9l5o/pejq+CRxEa2jgmiEDcirJ0kE71QRaKN4?=
- =?us-ascii?Q?MxfOqKcX3PQVvFu9ZZBOQ3ZfgUmKtaQ1VYZw5f72ftswtnO/gWcZEoY9T1lS?=
- =?us-ascii?Q?KnrxO2FSvgO27EjDGw6Nn996qWB9SXUG5PbBU+3GH+jt11yQLqdHXq3NtPCZ?=
- =?us-ascii?Q?KG1VgzfSo7nzA3p/bZ/Nr3ZLY1wUYMvnEnEaWpuQZtbk5nxhEsZEqMxVnpNQ?=
- =?us-ascii?Q?GqffT8Nl3BKToPqaIUsAAL//tT/rDbfguQBj8lxg25p29juRzeZwM6zWjHTC?=
- =?us-ascii?Q?b+8nOImanjmk9r1nGJC0ltOJZ1s2jFuEH02MB1cbQrKicWILOsxFwwFNIhbL?=
- =?us-ascii?Q?BFeVFwhNJEPj8LpjZ8xn5Notr8XI7g3ADoFZxcT1gwHbbwHM76NDNCfrny1c?=
- =?us-ascii?Q?8R/6Ucyq+v+iPUQXum0wMwjzMGO301Nj8rVtCt4qtIqT9IUeV079ujUH7x0t?=
- =?us-ascii?Q?5ZdTP3pBxDmMfR1AlEQV9jOE1DC61wwscme4Sa3NUBRQHZ6AbcINZeVS8ezd?=
- =?us-ascii?Q?1PDHid6f6vOZ36xlMcMndQ3VVLuX4rwO6h3xLUgtjSY00M9Dymg/dbqyUM+e?=
- =?us-ascii?Q?TW/y86q/G7Z9SlFRXl5B5NAASrdx3rSB2H5IIRT1O3RQ4Pf7JJkscDuUqHmG?=
- =?us-ascii?Q?bvQVTTwtu9tpirqkZV7/wcSTbsLjuu3vurR7VIDudnGC1+FxMFwxm8cuZD+H?=
- =?us-ascii?Q?K8uLcgQhylX5Ko1IB+ZacSsvkqmBbWAUqF3TblQau3QVtqDtuPXY9DMLG/Cu?=
- =?us-ascii?Q?9OVuhw=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f1b531b-4a0d-4f67-9dfe-08db09d4fb4a
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2023 13:04:15.9100 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4mLuzE/dprq6LKDgNXamXpOMw14UeBuZ6eHPaMq2gZBeYD+PHSwO69n2H08M5WC0EJbMxtEnErS799ZhDFf/fc9z8gC4b4gLR26Tp09f4NM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR13MB5699
-Cc: netdev@vger.kernel.org, razor@blackwall.org,
- bridge@lists.linux-foundation.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, edumazet@google.com, roopa@nvidia.com,
- kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Simon Horman <simon.horman@corigine.com>,
+ Yang Li <yang.lee@linux.alibaba.com>
+References: <20230208005626.56847-1-yang.lee@linux.alibaba.com>
+ <Y+OdyiQpz7lIBfh3@corigine.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <Y+OdyiQpz7lIBfh3@corigine.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
+ edumazet@google.com, roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com,
+ davem@davemloft.net
 Subject: Re: [Bridge] [PATCH -next] net: bridge: clean up one inconsistent
 	indenting
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -151,40 +116,46 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Feb 08, 2023 at 08:56:26AM +0800, Yang Li wrote:
-> ./net/bridge/br_netlink_tunnel.c:317:4-27: code aligned with following code on line 318
+On 2/8/23 15:04, Simon Horman wrote:
+> On Wed, Feb 08, 2023 at 08:56:26AM +0800, Yang Li wrote:
+>> ./net/bridge/br_netlink_tunnel.c:317:4-27: code aligned with following code on line 318
+>>
+>> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+>> Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3977
+>> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 > 
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3977
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
-
-As you may need to respin this:
-
-Assuming this is targeting net-next, which seems likely to me,
-the subject should denote that. Something like this:
-
-[PATCH net-next] net: bridge: clean up one inconsistent indenting
-
-> ---
->  net/bridge/br_netlink_tunnel.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> As you may need to respin this:
 > 
-> diff --git a/net/bridge/br_netlink_tunnel.c b/net/bridge/br_netlink_tunnel.c
-> index 17abf092f7ca..eff949bfdd83 100644
-> --- a/net/bridge/br_netlink_tunnel.c
-> +++ b/net/bridge/br_netlink_tunnel.c
-> @@ -315,7 +315,7 @@ int br_process_vlan_tunnel_info(const struct net_bridge *br,
->  
->  			if (curr_change)
->  				*changed = curr_change;
-> -			 __vlan_tunnel_handle_range(p, &v_start, &v_end, v,
-> +			__vlan_tunnel_handle_range(p, &v_start, &v_end, v,
->  						    curr_change);
-
-I think you also need to adjust the line immediately above.
-
->  		}
->  		if (v_start && v_end)
-> -- 
-> 2.20.1.7.g153144c
+> Assuming this is targeting net-next, which seems likely to me,
+> the subject should denote that. Something like this:
 > 
+> [PATCH net-next] net: bridge: clean up one inconsistent indenting
+> 
+>> ---
+>>   net/bridge/br_netlink_tunnel.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/net/bridge/br_netlink_tunnel.c b/net/bridge/br_netlink_tunnel.c
+>> index 17abf092f7ca..eff949bfdd83 100644
+>> --- a/net/bridge/br_netlink_tunnel.c
+>> +++ b/net/bridge/br_netlink_tunnel.c
+>> @@ -315,7 +315,7 @@ int br_process_vlan_tunnel_info(const struct net_bridge *br,
+>>   
+>>   			if (curr_change)
+>>   				*changed = curr_change;
+>> -			 __vlan_tunnel_handle_range(p, &v_start, &v_end, v,
+>> +			__vlan_tunnel_handle_range(p, &v_start, &v_end, v,
+>>   						    curr_change);
+> 
+> I think you also need to adjust the line immediately above.
+
+You meant below, right? :) i.e. "curr_change)", that seems to get
+misaligned after the change and needs to be adjusted as well.
+
+> 
+>>   		}
+>>   		if (v_start && v_end)
+>> -- 
+>> 2.20.1.7.g153144c
+>>
+
