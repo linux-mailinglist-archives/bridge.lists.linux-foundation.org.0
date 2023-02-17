@@ -2,104 +2,127 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id A640069AD31
-	for <lists.bridge@lfdr.de>; Fri, 17 Feb 2023 14:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE2B269B1F8
+	for <lists.bridge@lfdr.de>; Fri, 17 Feb 2023 18:44:42 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 787F48140A;
-	Fri, 17 Feb 2023 13:53:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 787F48140A
+	by smtp1.osuosl.org (Postfix) with ESMTP id 24FEC81C18;
+	Fri, 17 Feb 2023 17:44:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 24FEC81C18
 Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=bCo4B0Q5
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=kPts36a0
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id D7g6F3DldSMe; Fri, 17 Feb 2023 13:53:50 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 1BC0681EBF;
-	Fri, 17 Feb 2023 13:53:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1BC0681EBF
+	with ESMTP id ed7FdGDFt8x6; Fri, 17 Feb 2023 17:44:40 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 88EFE81747;
+	Fri, 17 Feb 2023 17:44:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 88EFE81747
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B8418C0078;
-	Fri, 17 Feb 2023 13:53:48 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 392D8C0078;
+	Fri, 17 Feb 2023 17:44:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0FA27C002B
- for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 13:53:48 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C7C44C002B
+ for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 17:44:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id D8EA060608
- for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 13:53:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D8EA060608
+ by smtp3.osuosl.org (Postfix) with ESMTP id 9595F61AD5
+ for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 17:44:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9595F61AD5
 Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
- header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
- header.s=20210112 header.b=bCo4B0Q5
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=kPts36a0
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id WB9ffeFnNHkT for <bridge@lists.linux-foundation.org>;
- Fri, 17 Feb 2023 13:53:46 +0000 (UTC)
+ with ESMTP id OQRThJ8BfW6d for <bridge@lists.linux-foundation.org>;
+ Fri, 17 Feb 2023 17:44:37 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6C1A960009
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
- [IPv6:2a00:1450:4864:20::534])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 6C1A960009
- for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 13:53:46 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id h14so4795469edz.10
- for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 05:53:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=/QW0mj2OAwfXeURyYtHmXL5vROau39LeBC17qnk7LD0=;
- b=bCo4B0Q5rTWvnptIaqqrFHU0ozKR8b6G2NtIoKP/rXOM5kYGhY/9MgG+9Dk5ob5X1x
- uP8SxSMwBE9MEAa1nMLnlVfdVrkLMXfqvEa+hLxmkLNrUprgDi4i9V6TZhEM4uZcddVN
- qmvutDpS3yBHWXzzom6bp6mo8zrhq1q65Zb9JQuTIYMeq6/3WKvsDG9VgVew99q+iAL3
- aH3r9lG39mpvX2gL5x2UPttzDH3jP8pFTX61xxSWsFFfSNgjRjwfPsBDaayFh54Zam2Q
- U3ArUvoMZKzdh1XqQMv1YnXa1vqrfVH4ddkWU/bUDMamoRg6xvRa+PqpfnppxqVnUMKc
- xXpg==
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AF96360E71
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id AF96360E71
+ for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 17:44:36 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id
+ t6-20020a7bc3c6000000b003dc57ea0dfeso1498230wmj.0
+ for <bridge@lists.linux-foundation.org>; Fri, 17 Feb 2023 09:44:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=auVrVbOSTA9pQeJfPXz91TlriegzpUKwC2EMUID2gPE=;
+ b=kPts36a0DOfrWbE5EDMVM8XUTfPhcct1+Wh6iYrEUNULUaJQQ940e2QgPodOvnNQ3O
+ PYVdDfrIzrIPE0Vc2g/vfe89g2tIAWRInxGmIeY2ABwKLrTGnwzSZXS4/ClMgmErrlyZ
+ 2VJyFiXyf6FXfFu8h4TAk5sbo9ObWj2hpaMsr5iTHYK0yLpQeXx/71BXJmUTcn6Wvk9c
+ PmQQIK6oRsnk/d8C/SuDJEsTzFKhOVo3Uq5HnXasc+0Bv5iNajhahka3DZoCuSzV0nXu
+ U1ZgVBV32o0fJltdnu8cEis7bX2g96yWawZ5DbL8oya33c0Sw88227zU/BpoJxCJOwQD
+ DEAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/QW0mj2OAwfXeURyYtHmXL5vROau39LeBC17qnk7LD0=;
- b=3JIMePgoCrErZ9nO+QB9l1lPN+IjSC4gkv2JmJiN6uJmOQ0caEVt0St6gq+l1xzTAn
- MzwLF/2nhk8gOG1lqHR2gIN5R2FyD6Tve1DlX/eJ4/q6bg24+6WhCg+1j3JoG6coaRuT
- Q+yLEvaVnlRUY9lQvD6k2UK9SuPqJ5FkfnT1Sms4yDJ9dlSp/CnSPkVSFbgCpfL5nVlo
- 1ib+nD3U9L9pTKxhjQSzleCGRBy3paHvKaR/ZXteDTLf8JNA/q37tklVh3RkXFd2lTwp
- Vd1Cay9IoRKu3YbVdEXKzMGfKnHyddxLP2GUMZuSV53oSoKs8RgaAWqtOC/+OwGwDEEr
- MZHw==
-X-Gm-Message-State: AO0yUKU1k38eUWETcmeA/YrhBe2DfCXzOU536q9GcLKlA4Fy0QNX37bQ
- f1sxunM6pG5UUcY9HBefYPwTQA==
-X-Google-Smtp-Source: AK7set8WnNQRokhh3f4p2tA8kO1L7bydhK5WNBEkMBrcDrUpnWHpUemEoXtA4/LfrZ7tzcRD706OWw==
-X-Received: by 2002:aa7:c695:0:b0:4ad:66b:84a8 with SMTP id
- n21-20020aa7c695000000b004ad066b84a8mr2008729edq.6.1676642024370; 
- Fri, 17 Feb 2023 05:53:44 -0800 (PST)
-Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
- by smtp.gmail.com with ESMTPSA id
- i28-20020a50d75c000000b004acde0a1ae5sm2321073edj.89.2023.02.17.05.53.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 17 Feb 2023 05:53:44 -0800 (PST)
-Message-ID: <a7cef78d-81fb-7de6-1f6e-a948cca1b46b@blackwall.org>
-Date: Fri, 17 Feb 2023 15:53:43 +0200
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=auVrVbOSTA9pQeJfPXz91TlriegzpUKwC2EMUID2gPE=;
+ b=dKkDCBpFhTS5ANbv2myo+D+4Qk3XBxldu7FegFBn2S9IVmbn6Mu8M+fZyL8XXi9yCn
+ risyUf25Sl7ZfrbrZtm8k09hUBnfmfN21y6PtZPpiqBuMk2FUSQ0KyoJIplzkLpebrip
+ xgNsDunX+NY9eb/dY+XPR9f2TxccAWTOesaZRMVZleCzXrc+k+Dozj8kfErj0s1Qp3Hp
+ 5q47OtphtHVzum75vhiLXdjAWNnGZ2yfvW/Nus7wNMSZ4/J2NZ7qpzuItsK9MZal3N8j
+ VIrjMKTS+cMgVlaal3y9HC3FK+PywUaWUI+wUdwQJZhG+rnUXWW1nHvODoGqAwmXFlbS
+ IDiw==
+X-Gm-Message-State: AO0yUKU2TTJ03q5KgrRjfTGoR3JZ1XiIBc2HIVk+kKdz3pH+yz3k0bDc
+ MFRTO7sItKe0wnMRIWJK4DY=
+X-Google-Smtp-Source: AK7set/fy/Eb7Sue92rcdrDm3lCCSH8M5LFbef1BLFLsabLm+s8mqQPhJsjPKF5bbxALYzTFXwfvuA==
+X-Received: by 2002:a05:600c:30ca:b0:3d5:365b:773e with SMTP id
+ h10-20020a05600c30ca00b003d5365b773emr1835463wmn.39.1676655874493; 
+ Fri, 17 Feb 2023 09:44:34 -0800 (PST)
+Received: from skbuf ([188.25.231.176]) by smtp.gmail.com with ESMTPSA id
+ x14-20020a1c7c0e000000b003e20970175dsm6651711wmc.32.2023.02.17.09.44.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 17 Feb 2023 09:44:34 -0800 (PST)
+Date: Fri, 17 Feb 2023 19:44:31 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Hans Schultz <netdev@kapio-technology.com>
+Message-ID: <20230217174431.bkkvfmtno56mfh5a@skbuf>
+References: <20230130173429.3577450-1-netdev@kapio-technology.com>
+ <20230130173429.3577450-6-netdev@kapio-technology.com>
+ <Y9lkXlyXg1d1D0j3@corigine.com>
+ <9b12275969a204739ccfab972d90f20f@kapio-technology.com>
+ <Y9zDxlwSn1EfCTba@corigine.com>
+ <20230203204422.4wrhyathxfhj6hdt@skbuf>
+ <Y94TebdRQRHMMj/c@corigine.com>
+ <4abbe32d007240b9c3aea9c8ca936fa3@kapio-technology.com>
+ <Y+EkiAyexZrPoCpP@corigine.com>
+ <87fsb83q5s.fsf@kapio-technology.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To: Alexander Sapozhnikov <alsp705@gmail.com>, Roopa Prabhu <roopa@nvidia.com>
-References: <20230217131657.12649-1-alsp705@gmail.com>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230217131657.12649-1-alsp705@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Cc: lvc-project@linuxtesting.org, netdev@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH] net-bridge: fix unsafe dereference of
- potential null ptr in __vlan_del()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87fsb83q5s.fsf@kapio-technology.com>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Simon Horman <simon.horman@corigine.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ Ivan Vecera <ivecera@redhat.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
+ Russell King <linux@armlinux.org.uk>, Roopa Prabhu <roopa@nvidia.com>,
+ kuba@kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+ Christian Marangi <ansuelsmth@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
+ DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-arm-kernel@lists.infradead.org>, netdev@vger.kernel.org,
+ open list <linux-kernel@vger.kernel.org>,
+ "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
+ <UNGLinuxDriver@microchip.com>,
+ "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
+ <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next 5/5] net: dsa: mv88e6xxx:
+ implementation of dynamic ATU entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -114,38 +137,75 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 17/02/2023 15:16, Alexander Sapozhnikov wrote:
-> After having been compared to NULL value at br_vlan.c:399,
-> pointer 'p' is passed as 1st parameter in call to function
-> 'nbp_vlan_set_vlan_dev_state' at br_vlan.c:420, 
-> where it is dereferenced at br_vlan.c:1722.
+On Tue, Feb 14, 2023 at 10:14:55PM +0100, Hans Schultz wrote:
+> On Mon, Feb 06, 2023 at 17:02, Simon Horman <simon.horman@corigine.com> wrote:
+> >
+> > Just to clarify my suggestion one last time, it would be along the lines
+> > of the following (completely untested!). I feel that it robustly covers
+> > all cases for fdb_flags. And as a bonus doesn't need to be modified
+> > if other (unsupported) flags are added in future.
+> >
+> > 	if (fdb_flags & ~(DSA_FDB_FLAG_DYNAMIC))
+> > 		return -EOPNOTSUPP;
+> >
+> > 	is_dynamic = !!(fdb_flags & DSA_FDB_FLAG_DYNAMIC)
+> > 	if (is_dynamic)
+> > 		state = MV88E6XXX_G1_ATU_DATA_STATE_UC_AGE_7_NEWEST;
+> >
+> >
+> > And perhaps for other drivers:
+> >
+> > 	if (fdb_flags & ~(DSA_FDB_FLAG_DYNAMIC))
+> > 		return -EOPNOTSUPP;
+> > 	if (fdb_flags)
+> > 		return 0;
+> >
+> > Perhaps a helper would be warranted for the above.
 > 
-> Found by Linux Verification Center (linuxtesting.org) with SVACE.
+> How would such a helper look? Inline function is not clean.
 > 
-> Signed-off-by: Alexander Sapozhnikov <alsp705@gmail.com>
-> ---
->  net/bridge/br_vlan.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > But in writing this I think that, perhaps drivers could return -EOPNOTSUPP
+> > for the DSA_FDB_FLAG_DYNAMIC case and the caller can handle, rather tha
+> > propagate, -EOPNOTSUPP.
 > 
-> diff --git a/net/bridge/br_vlan.c b/net/bridge/br_vlan.c
-> index bc75fa1e4666..87091e270adf 100644
-> --- a/net/bridge/br_vlan.c
-> +++ b/net/bridge/br_vlan.c
-> @@ -417,7 +417,8 @@ static int __vlan_del(struct net_bridge_vlan *v)
->  		rhashtable_remove_fast(&vg->vlan_hash, &v->vnode,
->  				       br_vlan_rht_params);
->  		__vlan_del_list(v);
-> -		nbp_vlan_set_vlan_dev_state(p, v->vid);
-> +		if (p)
-> +			nbp_vlan_set_vlan_dev_state(p, v->vid);
->  		br_multicast_toggle_one_vlan(v, false);
->  		br_multicast_port_ctx_deinit(&v->port_mcast_ctx);
->  		call_rcu(&v->rcu, nbp_vlan_rcu_free);
+> I looked at that, but changing the caller is also a bit ugly.
 
-This cannot happen, read the code more carefully.
-If you have a trace or have hit a bug, please provide the log.
-Thanks,
+Answering on behalf of Simon, and hoping he will agree.
 
-Nacked-by: Nikolay Aleksandrov <razor@blackwall.org>
+You are missing a big opportunity to make the kernel avoid doing useless work.
+The dsa_slave_fdb_event() function runs in atomic switchdev notifier context,
+and schedules a deferred workqueue item - dsa_schedule_work() - to get sleepable
+context to program hardware.
 
+Only that scheduling a deferred work item is not exactly cheap, so we try to
+avoid doing that unless we know that we'll end up doing something with that
+FDB entry once the deferred work does get scheduled:
 
+	/* Check early that we're not doing work in vain.
+	 * Host addresses on LAG ports still require regular FDB ops,
+	 * since the CPU port isn't in a LAG.
+	 */
+	if (dp->lag && !host_addr) {
+		if (!ds->ops->lag_fdb_add || !ds->ops->lag_fdb_del)
+			return -EOPNOTSUPP;
+	} else {
+		if (!ds->ops->port_fdb_add || !ds->ops->port_fdb_del)
+			return -EOPNOTSUPP;
+	}
+
+What you should be doing is you should be using the pahole tool to find
+a good place for a new unsigned long field in struct dsa_switch, and add
+a new field ds->supported_fdb_flags. You should extend the early checking
+from dsa_slave_fdb_event() and exit without doing anything if the
+(fdb->flags & ~ds->supported_fdb_flags) expression is non-zero.
+
+This way you would kill 2 birds with 1 stone, since individual drivers
+would no longer need to check the flags; DSA would guarantee not calling
+them with unsupported flags.
+
+It would be also very good to reach an agreement with switchdev
+maintainers regarding the naming of the is_static/is_dyn field.
+
+It would also be excellent if you could rename "fdb_flags" to just
+"flags" within DSA.
