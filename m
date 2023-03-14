@@ -1,89 +1,89 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 974EE6B91EB
-	for <lists.bridge@lfdr.de>; Tue, 14 Mar 2023 12:43:21 +0100 (CET)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id D702D6B9217
+	for <lists.bridge@lfdr.de>; Tue, 14 Mar 2023 12:51:24 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 25807418D0;
-	Tue, 14 Mar 2023 11:43:20 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 25807418D0
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=mRixeqMf
+	by smtp3.osuosl.org (Postfix) with ESMTP id 0B10461098;
+	Tue, 14 Mar 2023 11:51:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0B10461098
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=tytzsvmh
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NOnTpH7YL5Ue; Tue, 14 Mar 2023 11:43:19 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 77CDB418CC;
-	Tue, 14 Mar 2023 11:43:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 77CDB418CC
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5MZobFDKSyrn; Tue, 14 Mar 2023 11:51:22 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 9634D61099;
+	Tue, 14 Mar 2023 11:51:21 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9634D61099
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2F609C008A;
-	Tue, 14 Mar 2023 11:43:18 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2DF1BC008A;
+	Tue, 14 Mar 2023 11:51:21 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id ECAC0C0032
- for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 11:43:16 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9BFF4C0032
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 11:51:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id BA79940919
- for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 11:43:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BA79940919
-Authentication-Results: smtp2.osuosl.org;
+ by smtp4.osuosl.org (Postfix) with ESMTP id 7B8A2418BB
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 11:51:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7B8A2418BB
+Authentication-Results: smtp4.osuosl.org;
  dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
  header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
- header.s=20210112 header.b=mRixeqMf
+ header.s=20210112 header.b=tytzsvmh
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jMY2Bnm719nL for <bridge@lists.linux-foundation.org>;
- Tue, 14 Mar 2023 11:43:14 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Smu_0Xi5NVGg for <bridge@lists.linux-foundation.org>;
+ Tue, 14 Mar 2023 11:51:16 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8BB6140354
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 8BB6140354
- for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 11:43:14 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id i9so5035651wrp.3
- for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 04:43:14 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DCFDC410C9
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id DCFDC410C9
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 11:51:15 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id p16so10082092wmq.5
+ for <bridge@lists.linux-foundation.org>; Tue, 14 Mar 2023 04:51:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20210112.gappssmtp.com; s=20210112; t=1678794192;
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112; t=1678794674;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=MCrsF1Bkt9UxCTo/05ahhMR6IA2FanOVtp8JvR2CXcc=;
- b=mRixeqMfSYUD/Ww8F7phJ61EE22o699N+ef7bjGAnnpvqg78eN/3vGhiV/g1Ak7qyJ
- EgObHJqU9BxCXL3+eu11BJBn62LAr0sNifx1p2Iudhx5lAIK1Kz3+HRBg2XLWoDVzqmC
- IHW+P9HQje9rVz8XbDBi+tfyCs6Z/qV1OH7EzBFNOdvHBfrYwrdN/0BobmqzVj5HDnpn
- 9Tryc8C7qp8ACWJ2j+3STRCtSQO8X4qdF4QU0TqpdYIPJSy/TobUn98OlpLpqc+X8ckq
- /yB4fwRZSuc9B6pPlZTv4NXbQcwdKaOtEU6xXfvQHoLwuWGSB4LAqwg97KAA7oXt09hw
- xJnA==
+ bh=RDVVUR+sXeSTSSTr5N1GxIRd1v5VKh3gMAujp5AXOCw=;
+ b=tytzsvmhA7PbupttINkYDa2kvVAiTmURa5SS/dWCfHmzmYutlP5ay9czU9bk6VD3FD
+ RfUL7nNjFhVqAu8WIvVQpwT3UZpUPZu6b0hm3G7C1dPGoL8aaY38WRLzaf75Aie8k2Ux
+ DJx26v8VzoBe3EOWU1Y2M7zT2Q+E2H2nw+QRARGGPKbQzl+Ez/QoVkle7ajCtgETIzMI
+ mPET47b+z1hPmQSrVc95VGksAnQi9hlXHbCdqC37Ye3+isbaqtbpv+f2DFD0Vd2bE1oc
+ 2CvQgIb8O8ayJyVe5oWvP45vxJkTpTxB12sAQm4/1J/lFlHZbBjQn0CyZSTBLWZ5+l61
+ tErg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678794192;
+ d=1e100.net; s=20210112; t=1678794674;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=MCrsF1Bkt9UxCTo/05ahhMR6IA2FanOVtp8JvR2CXcc=;
- b=KcfEoY0sBfumrmbnublMxS5Z9Fo2SV99MVetvyvjROWppH8H28pdRrYoQubLF8Bg03
- VCmwicWukQNhKuB/Y8hUOelV+BNOhB0WpFSz3b3t4vkjs2Z90kh2JaVnO3ts9cvmvfOI
- DUo3r+YTSxA8QdBvduoHos6DPdThREagMmgs8xquxSJmXur58jKQ9vLGXoMyvmFV+Qho
- jzOtQ7018cPVWzwNdNCZdtcvSJt41kEBZhCgjPrfdmgaFFfwUKq5duKQgguo5aKsjl1G
- 3tM60S8xnO47ZTeRkB8NSKJgSMs110PkgRSTbr/OajeRMjeu+HrI5A5A9ltCwQlbMGUe
- Xmrw==
-X-Gm-Message-State: AO0yUKUR2wPq9k0WCY++yZMHyOIjkFIgy+cW1PiH15JVi6RPDrZuPyAf
- Ip3hJ14FoCgZG0Xb8Tcq+Yu76w==
-X-Google-Smtp-Source: AK7set9/7mFutLCjFLkQdwPNg7UOCH5RjV1NNkq8p0eHzVDka8cX3XPm06RYa/8xSb94GCko7azR4A==
-X-Received: by 2002:a5d:6504:0:b0:2ce:3e8d:1e3 with SMTP id
- x4-20020a5d6504000000b002ce3e8d01e3mr25849977wru.46.1678794192618; 
- Tue, 14 Mar 2023 04:43:12 -0700 (PDT)
+ bh=RDVVUR+sXeSTSSTr5N1GxIRd1v5VKh3gMAujp5AXOCw=;
+ b=CP6sPY5wAU4OP7pYAd6oHC129b/uMIBcqbst0CSoU/htzStYnebq6//5GMrqOwnM/u
+ bX6EHD05cnp05mi2kYc6DU9V4BB1k6Nlawxs8ZYxvgxTp6N+JRO+lsEhtz/wcMLRvKwn
+ KLN75sSIxAIC+WDhM3x4QMuYk8zw/ufhrMePfJYeyi7FQxw4Q+QtFjtTeGymk+mU3C8U
+ 5SuHik3lKJq201dkmjKHYtWUrDUbJmE47Yt2/ZMl8EDFGFpnIXcbHLKtbi+g7ZWBrJ9V
+ zJP11dIqAxxoUVWswsRd51zrJUt5YVpNPpoFYmv8PPBeNlycS3hQMGYWaZQLXeponnEh
+ U+og==
+X-Gm-Message-State: AO0yUKX25weIGh9prjZcJFtCRVPkBh2wSMQcq1te5Y12AuS0I/9bUO46
+ HaAZj7lQhzIrFcDX1tAVS6bd0A==
+X-Google-Smtp-Source: AK7set+Dmb73QxFZOvG+Cj9vuj9692XHJVHML0b6UoNMNGZ9FIouknDT3Ww1hrO8OTJQMb3OTZa9tQ==
+X-Received: by 2002:a05:600c:548e:b0:3eb:2708:86ca with SMTP id
+ iv14-20020a05600c548e00b003eb270886camr15415319wmb.28.1678794673763; 
+ Tue, 14 Mar 2023 04:51:13 -0700 (PDT)
 Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
  by smtp.gmail.com with ESMTPSA id
- c15-20020adfef4f000000b002c55ec7f661sm1984443wrp.5.2023.03.14.04.43.11
+ l17-20020a7bc351000000b003e21f959453sm2579991wmj.32.2023.03.14.04.51.13
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 14 Mar 2023 04:43:12 -0700 (PDT)
-Message-ID: <d4a39646-ed81-d900-6cd7-a87c561f8049@blackwall.org>
-Date: Tue, 14 Mar 2023 13:43:11 +0200
+ Tue, 14 Mar 2023 04:51:13 -0700 (PDT)
+Message-ID: <dc4b2eb0-2478-7e26-4292-b8856494fae2@blackwall.org>
+Date: Tue, 14 Mar 2023 13:51:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
@@ -91,15 +91,15 @@ Content-Language: en-US
 To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org
 References: <20230313145349.3557231-1-idosch@nvidia.com>
- <20230313145349.3557231-3-idosch@nvidia.com>
+ <20230313145349.3557231-4-idosch@nvidia.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230313145349.3557231-3-idosch@nvidia.com>
+In-Reply-To: <20230313145349.3557231-4-idosch@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Cc: petrm@nvidia.com, mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com,
  kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 02/11] bridge: mcast: Implement MDB
- net device operations
+Subject: Re: [Bridge] [PATCH net-next 03/11] rtnetlink: bridge: mcast: Move
+ MDB handlers out of bridge driver
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -115,30 +115,38 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 13/03/2023 16:53, Ido Schimmel wrote:
-> Implement the previously added MDB net device operations in the bridge
-> driver so that they could be invoked by core rtnetlink code in the next
-> patch.
+> Currently, the bridge driver registers handlers for MDB netlink
+> messages, making it impossible for other drivers to implement MDB
+> support.
 > 
-> The operations are identical to the existing br_mdb_{dump,add,del}
-> functions. The '_new' suffix will be removed in the next patch. The
-> functions are re-implemented in this patch to make the conversion in the
-> next patch easier to review.
+> As a preparation for VXLAN MDB support, move the MDB handlers out of the
+> bridge driver to the core rtnetlink code. The rtnetlink code will call
+> into individual drivers by invoking their previously added MDB net
+> device operations.
 > 
-> Add dummy implementations when 'CONFIG_BRIDGE_IGMP_SNOOPING' is
-> disabled, so that an error will be returned to user space when it is
-> trying to add or delete an MDB entry. This is consistent with existing
-> behavior where the bridge driver does not even register rtnetlink
-> handlers for RTM_{NEW,DEL,GET}MDB messages when this Kconfig option is
-> disabled.
+> Note that while the diffstat is large, the change is mechanical. It
+> moves code out of the bridge driver to rtnetlink code. Also note that a
+> similar change was made in 2012 with commit 77162022ab26 ("net: add
+> generic PF_BRIDGE:RTM_ FDB hooks") that moved FDB handlers out of the
+> bridge driver to the core rtnetlink code.
 > 
 > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 > ---
->  net/bridge/br_device.c  |   3 +
->  net/bridge/br_mdb.c     | 124 ++++++++++++++++++++++++++++++++++++++++
->  net/bridge/br_private.h |  25 ++++++++
->  3 files changed, 152 insertions(+)
+> 
+> Notes:
+>     v1:
+>     * Use NL_ASSERT_DUMP_CTX_FITS().
+>     * memset the entire context when moving to the next device.
+>     * Reset sequence counters when moving to the next device.
+>     * Use NL_SET_ERR_MSG_ATTR() in rtnl_validate_mdb_entry().
+> 
+>  net/bridge/br_device.c  |   6 +-
+>  net/bridge/br_mdb.c     | 301 ++--------------------------------------
+>  net/bridge/br_netlink.c |   3 -
+>  net/bridge/br_private.h |  35 ++---
+>  net/core/rtnetlink.c    | 217 +++++++++++++++++++++++++++++
+>  5 files changed, 244 insertions(+), 318 deletions(-)
 > 
 
 Reviewed-by: Nikolay Aleksandrov <razor@blackwall.org>
-
 
