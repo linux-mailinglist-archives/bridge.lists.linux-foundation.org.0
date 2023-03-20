@@ -1,89 +1,103 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 942346C1110
-	for <lists.bridge@lfdr.de>; Mon, 20 Mar 2023 12:45:20 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 43DBC81836;
-	Mon, 20 Mar 2023 11:45:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 43DBC81836
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=C8obbCNO
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hIi3eI5dy4QQ; Mon, 20 Mar 2023 11:45:17 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id CD8EF8187F;
-	Mon, 20 Mar 2023 11:45:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CD8EF8187F
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 64191C0089;
-	Mon, 20 Mar 2023 11:45:16 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CED64C0032
- for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 11:45:14 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB7A6C117E
+	for <lists.bridge@lfdr.de>; Mon, 20 Mar 2023 13:08:31 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id B709C4156A
- for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 11:45:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B709C4156A
+	by smtp4.osuosl.org (Postfix) with ESMTP id 84B6E40322;
+	Mon, 20 Mar 2023 12:08:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 84B6E40322
 Authentication-Results: smtp4.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=C8obbCNO
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256 header.s=20210112 header.b=ob0cCOvH
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CNQtbtgGK4fu for <bridge@lists.linux-foundation.org>;
- Mon, 20 Mar 2023 11:45:13 +0000 (UTC)
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id U4N1A6JTLtb8; Mon, 20 Mar 2023 12:08:28 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id CB072403C5;
+	Mon, 20 Mar 2023 12:08:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org CB072403C5
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 80261C0089;
+	Mon, 20 Mar 2023 12:08:27 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 295C7C0032
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 12:08:26 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp1.osuosl.org (Postfix) with ESMTP id 04ABC81990
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 12:08:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 04ABC81990
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20210112.gappssmtp.com
+ header.i=@blackwall-org.20210112.gappssmtp.com header.a=rsa-sha256
+ header.s=20210112 header.b=ob0cCOvH
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id bxx9TZz1aN_M for <bridge@lists.linux-foundation.org>;
+ Mon, 20 Mar 2023 12:08:25 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 59A7F415DC
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
- [IPv6:2607:f8b0:4864:20::102b])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 59A7F415DC
- for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 11:45:13 +0000 (UTC)
-Received: by mail-pj1-x102b.google.com with SMTP id
- qe8-20020a17090b4f8800b0023f07253a2cso12079479pjb.3
- for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 04:45:13 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1085481975
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 1085481975
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 12:08:24 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ i5-20020a05600c354500b003edd24054e0so2253754wmq.4
+ for <bridge@lists.linux-foundation.org>; Mon, 20 Mar 2023 05:08:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1679312713;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=2EdCdWaxl6aSDm2/QNnErzsl1SoS7RrMeG7Y44iKUtc=;
- b=C8obbCNO7LejGk5rUhOzu1LitH8G2CvYqXpW3dW3Oedqzodtr0rk41gi7CdYDAge5j
- oVRhkfHNTWVF07feFWtcK4fjvG1Cw8xPjJ/yb+jwE9eQmxViwPZfCvWGAuSHWMEnGQyh
- w2nkV8EndlS0GjJNT/xy16JZhB9KQE9tqA8EwY5UajOpBYbi8M6u3UCtR9BTu8sQR030
- v48qDfGg0zjHpIl1yLuMfT44LUxd8c/BOvTMkR7myfFgdhFt1oll9MAwbyP8j1s9Wv2+
- +ta6yfTTS9m0S57Yxsl5jpMXMUs+tzI3oQdq/xwBLpeDdbYvBcVY6KwZnC1nE9NrOi6m
- 3rew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679312713;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+ d=blackwall-org.20210112.gappssmtp.com; s=20210112; t=1679314103;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=2EdCdWaxl6aSDm2/QNnErzsl1SoS7RrMeG7Y44iKUtc=;
- b=Zdbqq0fTbrPUBEaU4s60VAyBWBkoAxwOK25iJgyFMXpJpCULCQkVX2RVERhwLpA4a4
- yCjUOqj6eAyInXuxuqiOW09Ze9VY+Vs4j8Zxyyiu6h0KgbtRYED1Nen/f8AaBM96GRka
- noNmONwQaUp5AEv9cnEmyny2s5DTmxfbVSehKD8fz/wHlFC4+xwEbqiIgdwSImi9Ae1c
- 2S9MJtOayH2XrNJ4orLt6xZBYTKB8J0qhzyoDVd0h9hzcuIHcoewfZZrvjkcAYTOYI5l
- N9AMtkwsLjCAZ0iuE+3PUmTpB8evjLgXPfNKbT3XXE/5ExvWoJ4mkiQwk19FLecvDf4R
- WXIw==
-X-Gm-Message-State: AO0yUKVPS8mJ/jirwDH8AG0CgwLrSsnpeK1T5NGEQlVCgzHlhstuqOH/
- tXbgMMK7y4WM8pf3sEa1+BS/5jsJvj5vDh477PI=
-X-Google-Smtp-Source: AK7set9lsKgECwAaF4Mi4ekuWPRLfs3oBAOMq5N51WI+PAYsScCs3n44HDIOR65QZyUd8NRcpIYl4X0qyGp2Zd9869A=
-X-Received: by 2002:a17:90a:e38b:b0:23d:33e5:33ec with SMTP id
- b11-20020a17090ae38b00b0023d33e533ecmr4781688pjz.1.1679312712605; Mon, 20 Mar
- 2023 04:45:12 -0700 (PDT)
+ bh=0DX4qBiGcGPtOV8eO23GpfgYZaEoud4OZh0owe5T4Xc=;
+ b=ob0cCOvHCgx+sWCZcQWup1xlVWDWoiFVDCN3lJ5IhUATuzhYyZIUey29e8g18Js2WI
+ g41ZkxBkZni+Bdb+IrhCVneXhRxHfRPkXKCCFNB0DVSs6duRKr1ngXfmHVvIfzsXBG1L
+ 6VU/SrBQnPlHWS24n4AjmKzpUaky/lmrXXDkwQDJ5CT2Db8wZ/3utkVonf8uZWZofizx
+ pUNfNYcIeCZ/bwQx2NGnc/dWUqnl1sjZsTNSU3nPldjC45GW4uDUalitIiq4wK9hfS/E
+ M9XhTCFkT06Tzwi1eYzBNDe11812UszSD2W/mwlqxbJO0j8belRghMoYiAiDPCQW1wiD
+ pxUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679314103;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0DX4qBiGcGPtOV8eO23GpfgYZaEoud4OZh0owe5T4Xc=;
+ b=G8we22NJhWLJ6Ezi8NG6h+w2jYKtaSBVmqAqOehMHoWTy3ib3GU/+zdQvG8Ja1l7D2
+ yMiKBUGIq3C3WnmHS6U8xN0+kUlS/m50iLtiMLFnZ1B0yQgEFn8gc4dV2URwf4CmyXH+
+ ymxt/bJWc6UiChxb2AVf0Vq0K/LP20b92sVy1ilLthOHf2CrPaAUCjSVIgp5MFKl8ZlT
+ Pk/SBctFzvuce07m8F/1bZxl7OVWvBv43niM4y2EoJ95vgc8YBbVfHJLptXycBlMmIqq
+ Zp75stBi1vrqg8irZ/CU1V+9lnfXpHawZ5Emi/Tt5yUpnC6FzjLKGYHHfWBROuDStE5x
+ ZpUg==
+X-Gm-Message-State: AO0yUKWznLIx3fzjWptLKWCi8m/h1RZVt23guIXflLcibxuGarhCDDX2
+ XPF/e/Gs2VLd7eeBzBvyYEbVyw==
+X-Google-Smtp-Source: AK7set9zj56CK4RoYFMbxlpgRSHefoSnagjvKRQ+Bu/IgqPh9O6mCqTZ5j3rbxvhvYdQvXNtJGM9mg==
+X-Received: by 2002:a05:600c:4510:b0:3dc:4fd7:31f7 with SMTP id
+ t16-20020a05600c451000b003dc4fd731f7mr31077298wmo.41.1679314102839; 
+ Mon, 20 Mar 2023 05:08:22 -0700 (PDT)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ c24-20020a05600c0ad800b003e22508a343sm10251629wmr.12.2023.03.20.05.08.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 20 Mar 2023 05:08:22 -0700 (PDT)
+Message-ID: <a4ce2c34-eabe-a11f-682a-4cecf6c3462b@blackwall.org>
+Date: Mon, 20 Mar 2023 14:08:21 +0200
 MIME-Version: 1.0
-From: Ujjal Roy <royujjal@gmail.com>
-Date: Mon, 20 Mar 2023 17:15:00 +0530
-Message-ID: <CAE2MWkm=zvkF_Ge1MH7vn+dmMboNt+pOEEVSgSeNNPRY5VmroA@mail.gmail.com>
-To: roopa@nvidia.com, razor@blackwall.org, nikolay@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+To: Ujjal Roy <royujjal@gmail.com>, roopa@nvidia.com, nikolay@nvidia.com
+References: <CAE2MWkm=zvkF_Ge1MH7vn+dmMboNt+pOEEVSgSeNNPRY5VmroA@mail.gmail.com>
+Content-Language: en-US
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <CAE2MWkm=zvkF_Ge1MH7vn+dmMboNt+pOEEVSgSeNNPRY5VmroA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  Kernel <linux-kernel@vger.kernel.org>
-Subject: [Bridge] Multicast: handling of STA disconnect
+Subject: Re: [Bridge] Multicast: handling of STA disconnect
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,21 +112,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Nikolay,
+On 20/03/2023 13:45, Ujjal Roy wrote:
+> Hi Nikolay,
+> 
+> I have some query on multicast. When streams running on an STA and STA
+> disconnected due to some reason. So, until the MDB is timed out the
+> stream will be forwarded to the port and in turn to the driver and
+> dropps there as no such STA.
+> 
+> So, is the multicast_eht handling this scenario to take any action
+> immediately? If not, can we do this to take quick action to reduce
+> overhead of memory and driver?
+> 
+> I have an idea on this. Can we mark this port group (MDB entry) as
+> INACTIVE from the WiFi disconnect event and skip forwarding the stream
+> to this port in br_multicast_flood by applying the check? I can share
+> the patch on this.
+> 
+> Thanks,
+> UjjaL Roy
 
-I have some query on multicast. When streams running on an STA and STA
-disconnected due to some reason. So, until the MDB is timed out the
-stream will be forwarded to the port and in turn to the driver and
-dropps there as no such STA.
+Hi,
+Fast leave and EHT (as that's v3's fast leave version) are about quickly converging when
+a leave is received (e.g. when there are no listeners to quickly remove the mdb). They
+don't deal with interface states (IIUC). Why don't you just flush the port's mdb entries
+on disconnect? That would stop fwding.
 
-So, is the multicast_eht handling this scenario to take any action
-immediately? If not, can we do this to take quick action to reduce
-overhead of memory and driver?
+Cheers,
+ Nik
 
-I have an idea on this. Can we mark this port group (MDB entry) as
-INACTIVE from the WiFi disconnect event and skip forwarding the stream
-to this port in br_multicast_flood by applying the check? I can share
-the patch on this.
 
-Thanks,
-UjjaL Roy
