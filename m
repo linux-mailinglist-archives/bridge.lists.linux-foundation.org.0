@@ -1,65 +1,65 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53AB26C7E6E
-	for <lists.bridge@lfdr.de>; Fri, 24 Mar 2023 14:07:31 +0100 (CET)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F5B6C9639
+	for <lists.bridge@lfdr.de>; Sun, 26 Mar 2023 17:43:56 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 7A916841F2;
-	Fri, 24 Mar 2023 13:07:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7A916841F2
+	by smtp4.osuosl.org (Postfix) with ESMTP id 83E7C41516;
+	Sun, 26 Mar 2023 15:43:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 83E7C41516
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6bCXzGYa2wgE; Fri, 24 Mar 2023 13:07:29 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 2AED284188;
-	Fri, 24 Mar 2023 13:07:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2AED284188
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id z0c7u6u7xDd4; Sun, 26 Mar 2023 15:43:52 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id C0AAA414E5;
+	Sun, 26 Mar 2023 15:43:51 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org C0AAA414E5
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B37ACC008A;
-	Fri, 24 Mar 2023 13:07:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5BA08C008A;
+	Sun, 26 Mar 2023 15:43:51 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8981FC0032
- for <bridge@lists.linux-foundation.org>; Fri, 24 Mar 2023 13:07:26 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EA6E8C0032
+ for <bridge@lists.linux-foundation.org>; Sun, 26 Mar 2023 15:43:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 5370D61605
- for <bridge@lists.linux-foundation.org>; Fri, 24 Mar 2023 13:07:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5370D61605
+ by smtp3.osuosl.org (Postfix) with ESMTP id B155660E82
+ for <bridge@lists.linux-foundation.org>; Sun, 26 Mar 2023 15:43:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B155660E82
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Yp4xrWmFpUql for <bridge@lists.linux-foundation.org>;
- Fri, 24 Mar 2023 13:07:25 +0000 (UTC)
+ with ESMTP id tg1oSCedfivV for <bridge@lists.linux-foundation.org>;
+ Sun, 26 Mar 2023 15:43:48 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7A1B560FAA
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 911E1600B5
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 7A1B560FAA
- for <bridge@lists.linux-foundation.org>; Fri, 24 Mar 2023 13:07:24 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 911E1600B5
+ for <bridge@lists.linux-foundation.org>; Sun, 26 Mar 2023 15:43:48 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id B303418837C2;
- Fri, 24 Mar 2023 13:07:21 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id DD21F188397D;
+ Sun, 26 Mar 2023 15:43:44 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id ACC3F2500B57;
- Fri, 24 Mar 2023 13:07:21 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id C9D3025002FD;
+ Sun, 26 Mar 2023 15:43:44 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id A23749B403F4; Fri, 24 Mar 2023 13:07:21 +0000 (UTC)
+ id BBDAA9B403E2; Sun, 26 Mar 2023 15:43:44 +0000 (UTC)
 X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
 Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
  [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id B3AEB9B403E2;
- Fri, 24 Mar 2023 13:07:20 +0000 (UTC)
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id C4E5391201E3;
+ Sun, 26 Mar 2023 15:43:43 +0000 (UTC)
 From: Hans Schultz <netdev@kapio-technology.com>
 To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <ZBgd1mgO36umXqoj@shredder>
+In-Reply-To: <ZBgdAo8mxwnl+pEE@shredder>
 References: <20230318141010.513424-1-netdev@kapio-technology.com>
- <20230318141010.513424-2-netdev@kapio-technology.com>
- <ZBgd1mgO36umXqoj@shredder>
-Date: Fri, 24 Mar 2023 14:04:45 +0100
-Message-ID: <87h6ua5mhe.fsf@kapio-technology.com>
+ <20230318141010.513424-7-netdev@kapio-technology.com>
+ <ZBgdAo8mxwnl+pEE@shredder>
+Date: Sun, 26 Mar 2023 17:41:06 +0200
+Message-ID: <87a5zzh65p.fsf@kapio-technology.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Andrew Lunn <andrew@lunn.ch>,
@@ -89,8 +89,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
  A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>,
  Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v2 net-next 1/6] net: bridge: add dynamic flag
- to switchdev notifier
+Subject: Re: [Bridge] [PATCH v2 net-next 6/6] selftests: forwarding: add
+ dynamic FDB test
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -105,16 +105,20 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Mar 20, 2023 at 10:48, Ido Schimmel <idosch@nvidia.com> wrote:
+On Mon, Mar 20, 2023 at 10:44, Ido Schimmel <idosch@nvidia.com> wrote:
+>> +	$MZ $swp1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
+>> +		-a $mac -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
+>> +	tc_check_packets "dev $swp2 egress" 1 1
+>> +	check_fail $? "Dynamic FDB entry did not age out"
 >
-> I was under the impression that the consensus was to rename this to
-> 'is_static' so that it is consistent with other flags.
+> Shouldn't this be check_err()? After the FDB entry was aged you want to
+> make sure that packets received via $swp1 with SMAC being $mac are no
+> longer forwarded by the bridge.
+
+I was thinking that check_fail() will pass when tc_check_packets() does
+not see any packets, thus the test passing here when no packets are forwarded?
+
 >
-
-I think the consensus was that the bridge maintainers would decide if it
-should be changed, this according to Oltean. I still think that
-is_dyn is more secure codewise in the long run and it is logical as that
-is what the feature the flag concerns.
-
-When you say consistent with other flags, I don't understand the
-inconsistency. Could you please explain.
+> Also, I suggest executing 'bridge fdb get' to make sure the entry is no
+> longer present in the bridge FDB.
+>
