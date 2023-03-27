@@ -1,69 +1,98 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A306CB107
-	for <lists.bridge@lfdr.de>; Mon, 27 Mar 2023 23:52:46 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939686CB210
+	for <lists.bridge@lfdr.de>; Tue, 28 Mar 2023 00:59:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 5AE4481FFA;
-	Mon, 27 Mar 2023 21:52:44 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5AE4481FFA
+	by smtp1.osuosl.org (Postfix) with ESMTP id 87ED081490;
+	Mon, 27 Mar 2023 22:59:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 87ED081490
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=kFSkbnLq
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uVo2MgSIP-ti; Mon, 27 Mar 2023 21:52:43 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id DFD5481FFB;
-	Mon, 27 Mar 2023 21:52:42 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org DFD5481FFB
+	with ESMTP id kxvUyFTIzhyz; Mon, 27 Mar 2023 22:59:43 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id BBAD081501;
+	Mon, 27 Mar 2023 22:59:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BBAD081501
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 71EB5C008C;
-	Mon, 27 Mar 2023 21:52:42 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5FF68C008C;
+	Mon, 27 Mar 2023 22:59:42 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 976FFC007A
- for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 21:52:40 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B8091C007A
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 22:59:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 78624610D7
- for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 21:52:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 78624610D7
+ by smtp4.osuosl.org (Postfix) with ESMTP id 9EFFE408B7
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 22:59:40 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9EFFE408B7
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=kFSkbnLq
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id BefcI-EnEePE for <bridge@lists.linux-foundation.org>;
- Mon, 27 Mar 2023 21:52:39 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 481C2610C8
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 481C2610C8
- for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 21:52:37 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 0E9AE1884564;
- Mon, 27 Mar 2023 21:52:35 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 02FC225042EC;
- Mon, 27 Mar 2023 21:52:35 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id ED01F9B403E2; Mon, 27 Mar 2023 21:52:34 +0000 (UTC)
-X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
-Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
- [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 38ACD91201E3;
- Mon, 27 Mar 2023 21:52:34 +0000 (UTC)
-From: Hans Schultz <netdev@kapio-technology.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20230327160009.bdswnalizdv2u77z@skbuf>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id vIgZYTG06qEv for <bridge@lists.linux-foundation.org>;
+ Mon, 27 Mar 2023 22:59:39 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 35E0C408B6
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 35E0C408B6
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 22:59:38 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id t10so42386566edd.12
+ for <bridge@lists.linux-foundation.org>; Mon, 27 Mar 2023 15:59:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1679957977;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=vs0lU2V659xfolR59bwYcxi0Nnjs4lVJmYEM9MkDucs=;
+ b=kFSkbnLqBTXNziv2ifVthZxzOmPB3NbYEkyApURx8Oas8cCHPoSS+CWMJMLfkMaLxQ
+ w3sBU0oRxauj492NqBP2NgItJC1pPYs7kn8NrUixuqvWmRXRZQ8HPHYwcIjs96dXvWjp
+ kCc8POpRIpAim8K2sBnk1cfPBh1RbpSBOJBYwmF8yJbYD8hs5Zs0qFy7EGFZTsaQtx/u
+ pwVF8TdXHKwGg54Yl6dKMbsFS4C54UWykPKT4U9BWOAjMgUl2eoKbpSU2uEIQmQwLbd0
+ BYfxpA3JXHG6Y8LZgt14VH7NdJl6oasHvJPk4YHThi6kd+oe59qgKHgCPPRy1yxb4dR7
+ CyOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679957977;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vs0lU2V659xfolR59bwYcxi0Nnjs4lVJmYEM9MkDucs=;
+ b=zpYlSfXNw7L8kdYR8yJOtPnajXVLXUc+uTPmDH3cYvRZS+9dBLLU71e0+oki6GnAqT
+ wGOlRDrTHcEO0mVPxC221PzA6MJ0HMBfT6XbpeI7Ugp6La3ipBNVnG7XC6gQVSgjGKin
+ /c971q6XS+cGO4Ndf6J82HbKYjC1Z0zzcmmBuPph+WxL7w4QXfhvLkeBbNkO+rIeRA4u
+ g300IJZ/QRq6upf7GmHUBqxy2hQNWswPrRyfNXALMl7mNcFEvRJW2I10h+zMXSuG0sC6
+ H0BDTx62aZhbE4kIDcYcxKa8FCp1Gd5yYmH0dnrj8OPVxef1iwrOgP+YTh5MYIwcdLUK
+ KnuQ==
+X-Gm-Message-State: AAQBX9f4n4oAfdcNkdPuJ+TM+7EvEbUZd8pCH5CCMoECrOUQaV1yqkgc
+ ScM3gBpvEpQ9Nh2OyQYk1ZM=
+X-Google-Smtp-Source: AKy350b6kGzMoS+bwt1A2kOGbDUdu6Vqdtl4eu30Fw6DBeW6d1ptJzEXveDDR/mfkjoYxSRiG6GAlQ==
+X-Received: by 2002:a17:906:e0c5:b0:931:4f2c:4e83 with SMTP id
+ gl5-20020a170906e0c500b009314f2c4e83mr13534033ejb.63.1679957976838; 
+ Mon, 27 Mar 2023 15:59:36 -0700 (PDT)
+Received: from skbuf ([188.27.184.189]) by smtp.gmail.com with ESMTPSA id
+ z13-20020a1709064e0d00b009351565d1f5sm10994040eju.52.2023.03.27.15.59.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Mar 2023 15:59:36 -0700 (PDT)
+Date: Tue, 28 Mar 2023 01:59:33 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Hans Schultz <netdev@kapio-technology.com>
+Message-ID: <20230327225933.plm5raegywbe7g2a@skbuf>
 References: <20230318141010.513424-1-netdev@kapio-technology.com>
  <20230318141010.513424-3-netdev@kapio-technology.com>
  <20230327115206.jk5q5l753aoelwus@skbuf>
  <87355qb48h.fsf@kapio-technology.com>
  <20230327160009.bdswnalizdv2u77z@skbuf>
-Date: Mon, 27 Mar 2023 23:49:58 +0200
-Message-ID: <87pm8tooe1.fsf@kapio-technology.com>
+ <87pm8tooe1.fsf@kapio-technology.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87pm8tooe1.fsf@kapio-technology.com>
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
@@ -74,23 +103,22 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
  Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
  Paolo Abeni <pabeni@redhat.com>,
- =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
+ =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
  Christian Marangi <ansuelsmth@gmail.com>,
  Woojung Huh <woojung.huh@microchip.com>,
  Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
  Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
  DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  "moderated list:ARM/Mediatek SoC support"
  <linux-arm-kernel@lists.infradead.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  netdev@vger.kernel.org, open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES
- ETHERNET SWITCH DRIVER" <UNGLinuxDriver@microchip.com>,
- "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
+ "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
+ <UNGLinuxDriver@microchip.com>,
+ "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
+ <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
 Subject: Re: [Bridge] [PATCH v2 net-next 2/6] net: dsa: propagate flags down
  towards drivers
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -107,35 +135,39 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Mar 27, 2023 at 19:00, Vladimir Oltean <olteanv@gmail.com> wrote:
-> A reasonable question you could ask yourself is: why do my BR_FDB_OFFLOADED
-> entries have this flag in the software bridge in the first place?
-> Did I add code for it? Is it because there is some difference between
-> mv88e6xxx and ocelot/felix, or is it because dsa_fdb_offload_notify()
-> gets called in both cases from generic code just the same?
->
-> And if dsa_fdb_offload_notify() gets called in both cases just the same,
-> but no other driver except for mv88e6xxx emits the SWITCHDEV_FDB_DEL_TO_BRIDGE
-> which you've patched the bridge to expect in this series, then what exactly
-> is surprising in the fact that offloaded and dynamic FDB entries now become
-> stale, but are not removed from the software bridge as they were before?
+On Mon, Mar 27, 2023 at 11:49:58PM +0200, Hans Schultz wrote:
+> My first approach was to use the SWITCHDEV_FDB_ADD_TO_BRIDGE event
+> and not the SWITCHDEV_FDB_OFFLOADED event as the first would set the
+> external learned flag which is not aged out by the bridge.
 
-Yes, I see I have missed that the dsa layer already adds the offloaded
-flag in dsa_slave_switchdev_event_work() in slave.c.
+Link to patch? I don't see any SWITCHDEV_FDB_ADD_TO_BRIDGE call in
+either the v1:
+https://lore.kernel.org/netdev/20230130173429.3577450-6-netdev@kapio-technology.com/
+or the RFC:
+https://lore.kernel.org/netdev/20230117185714.3058453-6-netdev@kapio-technology.com/
+and the change log does not mention it either.
 
-My first approach was to use the SWITCHDEV_FDB_ADD_TO_BRIDGE event
-and not the SWITCHDEV_FDB_OFFLOADED event as the first would set the
-external learned flag which is not aged out by the bridge.
-I have at some point earlier asked why there would be two quite
-equivalent flags and what the difference between them are, but I didn't
-get a response.
+> I have at some point earlier asked why there would be two quite
+> equivalent flags and what the difference between them are, but I didn't
+> get a response.
 
-Now I see the difference and that I cannot use the offloaded flag
-without changing the behaviour of the system as I actually change the
-behaviour of the offloaded flag in this version of the patch-set.
+Actually, the part which you are now posing as a question (what is the
+difference?) was part of the premise of your earlier question (there is
+no difference => why do we have both?).
+https://lore.kernel.org/netdev/d972e76bed896b229d9df4da81ad8eb4@kapio-technology.com/
 
-So if the idea of a 'synthetically' learned fdb entry from the driver
-using the SWITCHDEV_FDB_ADD_TO_BRIDGE event from the driver towards the
-bridge instead is accepted, I can go with that?
-(thus removing all the changes in the patch-set regarding the offloaded
-flag ofcourse)
+I believe that no one answered because the question was confused and it
+wasn't really clear what you were asking.
+
+> 
+> Now I see the difference and that I cannot use the offloaded flag
+> without changing the behaviour of the system as I actually change the
+> behaviour of the offloaded flag in this version of the patch-set.
+> 
+> So if the idea of a 'synthetically' learned fdb entry from the driver
+> using the SWITCHDEV_FDB_ADD_TO_BRIDGE event from the driver towards the
+> bridge instead is accepted, I can go with that?
+> (thus removing all the changes in the patch-set regarding the offloaded
+> flag ofcourse)
+
+which idea is that, again?
