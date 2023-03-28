@@ -1,66 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798F56CCAA7
-	for <lists.bridge@lfdr.de>; Tue, 28 Mar 2023 21:32:56 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1B06CCAED
+	for <lists.bridge@lfdr.de>; Tue, 28 Mar 2023 21:48:18 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 251CE60DC2;
-	Tue, 28 Mar 2023 19:32:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 251CE60DC2
+	by smtp2.osuosl.org (Postfix) with ESMTP id A9DEC417F1;
+	Tue, 28 Mar 2023 19:48:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A9DEC417F1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jkCdHtQ4yvB0; Tue, 28 Mar 2023 19:32:53 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id uyhztk6xpmRV; Tue, 28 Mar 2023 19:48:11 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id AD0906131A;
-	Tue, 28 Mar 2023 19:32:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AD0906131A
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 5EB4E40439;
+	Tue, 28 Mar 2023 19:48:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5EB4E40439
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 46C8BC007E;
-	Tue, 28 Mar 2023 19:32:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EEA73C007E;
+	Tue, 28 Mar 2023 19:48:09 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A9252C002F
- for <bridge@lists.linux-foundation.org>; Tue, 28 Mar 2023 19:32:50 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B97ACC002F
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Mar 2023 19:48:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 4D9E660DC2
- for <bridge@lists.linux-foundation.org>; Tue, 28 Mar 2023 19:32:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4D9E660DC2
+ by smtp3.osuosl.org (Postfix) with ESMTP id 94A9B61419
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Mar 2023 19:48:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 94A9B61419
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id KJ5D_XOKSYjA for <bridge@lists.linux-foundation.org>;
- Tue, 28 Mar 2023 19:32:49 +0000 (UTC)
+ with ESMTP id byYYA0p0BtjS for <bridge@lists.linux-foundation.org>;
+ Tue, 28 Mar 2023 19:48:04 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DA50B60B9E
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BACA161417
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp3.osuosl.org (Postfix) with ESMTPS id DA50B60B9E
- for <bridge@lists.linux-foundation.org>; Tue, 28 Mar 2023 19:32:48 +0000 (UTC)
+ by smtp3.osuosl.org (Postfix) with ESMTPS id BACA161417
+ for <bridge@lists.linux-foundation.org>; Tue, 28 Mar 2023 19:48:04 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 9589D18839ED;
- Tue, 28 Mar 2023 19:32:45 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 3DEC318839E9;
+ Tue, 28 Mar 2023 19:48:03 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 73D132500389;
- Tue, 28 Mar 2023 19:32:45 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id 369182500389;
+ Tue, 28 Mar 2023 19:48:03 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 6502E9B403E2; Tue, 28 Mar 2023 19:32:45 +0000 (UTC)
+ id 2E8489B403E2; Tue, 28 Mar 2023 19:48:03 +0000 (UTC)
 X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
 Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
  [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 975A691201E3;
- Tue, 28 Mar 2023 19:32:44 +0000 (UTC)
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 7BA9491201E3;
+ Tue, 28 Mar 2023 19:48:02 +0000 (UTC)
 From: Hans Schultz <netdev@kapio-technology.com>
-To: Ido Schimmel <idosch@nvidia.com>
-In-Reply-To: <ZCMYbRqd+qZaiHfu@shredder>
+To: Vladimir Oltean <olteanv@gmail.com>
+In-Reply-To: <20230328114943.4mibmn2icutcio4m@skbuf>
 References: <20230318141010.513424-1-netdev@kapio-technology.com>
- <20230318141010.513424-7-netdev@kapio-technology.com>
- <ZBgdAo8mxwnl+pEE@shredder> <87a5zzh65p.fsf@kapio-technology.com>
- <ZCMYbRqd+qZaiHfu@shredder>
-Date: Tue, 28 Mar 2023 21:30:08 +0200
-Message-ID: <87fs9ollmn.fsf@kapio-technology.com>
+ <20230318141010.513424-3-netdev@kapio-technology.com>
+ <20230327115206.jk5q5l753aoelwus@skbuf>
+ <87355qb48h.fsf@kapio-technology.com>
+ <20230327160009.bdswnalizdv2u77z@skbuf>
+ <87pm8tooe1.fsf@kapio-technology.com>
+ <20230327225933.plm5raegywbe7g2a@skbuf>
+ <87ileljfwo.fsf@kapio-technology.com>
+ <20230328114943.4mibmn2icutcio4m@skbuf>
+Date: Tue, 28 Mar 2023 21:45:26 +0200
+Message-ID: <87cz4slkx5.fsf@kapio-technology.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Andrew Lunn <andrew@lunn.ch>,
@@ -69,8 +74,8 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
  "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
  Shuah Khan <shuah@kernel.org>, Ivan Vecera <ivecera@redhat.com>,
- Florian Fainelli <f.fainelli@gmail.com>, "moderated
- list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
+ Florian Fainelli <f.fainelli@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
+ "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
  Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
  Paolo Abeni <pabeni@redhat.com>,
  =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
@@ -86,12 +91,12 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  <linux-arm-kernel@lists.infradead.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  netdev@vger.kernel.org, open list <linux-kernel@vger.kernel.org>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>,
- Vladimir Oltean <olteanv@gmail.com>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v2 net-next 6/6] selftests: forwarding: add
- dynamic FDB test
+ "maintainer:MICROCHIP KSZ SERIES
+ ETHERNET SWITCH DRIVER" <UNGLinuxDriver@microchip.com>,
+ "open list:RENESAS RZ/N1
+ A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v2 net-next 2/6] net: dsa: propagate flags down
+ towards drivers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,31 +111,31 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Mar 28, 2023 at 19:40, Ido Schimmel <idosch@nvidia.com> wrote:
-> On Sun, Mar 26, 2023 at 05:41:06PM +0200, Hans Schultz wrote:
->> On Mon, Mar 20, 2023 at 10:44, Ido Schimmel <idosch@nvidia.com> wrote:
->> >> +	$MZ $swp1 -c 1 -p 128 -t udp "sp=54321,dp=12345" \
->> >> +		-a $mac -b `mac_get $h2` -A 192.0.2.1 -B 192.0.2.2 -q
->> >> +	tc_check_packets "dev $swp2 egress" 1 1
->> >> +	check_fail $? "Dynamic FDB entry did not age out"
+On Tue, Mar 28, 2023 at 14:49, Vladimir Oltean <olteanv@gmail.com> wrote:
+> On Tue, Mar 28, 2023 at 01:04:23PM +0200, Hans Schultz wrote:
+>> On Tue, Mar 28, 2023 at 01:59, Vladimir Oltean <olteanv@gmail.com> wrote:
 >> >
->> > Shouldn't this be check_err()? After the FDB entry was aged you want to
->> > make sure that packets received via $swp1 with SMAC being $mac are no
->> > longer forwarded by the bridge.
+>> > which idea is that, again?
 >> 
->> I was thinking that check_fail() will pass when tc_check_packets() does
->> not see any packets, thus the test passing here when no packets are forwarded?
+>> So I cannot us the offloaded flag as it is added by DSA in the common
+>> case when using 'bridge fdb replace ... dynamic'.
 >
-> What do you mean by "I was *thinking*"? How is it possible that you are
-> submitting a selftest that you didn't bother running?!
+> Why not? I find it reasonable that the software bridge does not age out
+> a dynamic FDB entry that is offloaded to hardware... the hardware should
+> do that ("dynamic" being the key).
+
+So the solution would be to not let the DSA layer send the
+SWITCHDEV_FDB_OFFLOADED event in the case when the new dynamic flag is
+set?
+Thus other drivers that don't support the flag yet will install a
+static entry in HW and the bridge will age it out as there is no offloaded
+flag on. For the mv88e6xxx it will set the offloaded flag and HW will
+age it.
+
+> At least, I find it more reasonable
+> than the current behavior, where the bridge notifies dynamic FDB entries
+> to switchdev, but doesn't say they're dynamic, and switchdev treats them
+> as static, so they don't roam from one bridge port to another until
+> software sees a packet with that MAC DA, and they have the potential of
+> blocking traffic because of that.
 >
-
-Sorry, but I have sent you several emails telling you about the problems
-I have with running the selftests due to changes in the phy etc. Maybe
-you have just not received all those emails?
-
-Have you checked spamfilters?
-
-With the kernels now, I cannot even test with the software bridge and
-selftests as the compile fails - probably due to changes in uapi headers
-compared to what the packages my system uses expects.
