@@ -1,57 +1,57 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F2D6D18E1
-	for <lists.bridge@lfdr.de>; Fri, 31 Mar 2023 09:46:25 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F016D196F
+	for <lists.bridge@lfdr.de>; Fri, 31 Mar 2023 10:09:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 9447D60F23;
-	Fri, 31 Mar 2023 07:46:23 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9447D60F23
+	by smtp4.osuosl.org (Postfix) with ESMTP id 9C6A1421E0;
+	Fri, 31 Mar 2023 08:09:20 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9C6A1421E0
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id FQFvOzdfiKf5; Fri, 31 Mar 2023 07:46:23 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id dh4yPy9bVYAZ; Fri, 31 Mar 2023 08:09:19 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 3E9A0616C0;
-	Fri, 31 Mar 2023 07:46:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 3E9A0616C0
+	by smtp4.osuosl.org (Postfix) with ESMTPS id EA458421DA;
+	Fri, 31 Mar 2023 08:09:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org EA458421DA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EEAAEC007E;
-	Fri, 31 Mar 2023 07:46:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 99493C007E;
+	Fri, 31 Mar 2023 08:09:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id B00E5C002F
- for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 07:46:20 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B8D63C002F
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 08:09:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 7F099844B6
- for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 07:46:20 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7F099844B6
+ by smtp2.osuosl.org (Postfix) with ESMTP id 877B541FB8
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 08:09:17 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 877B541FB8
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Be3EsoD1uiOX for <bridge@lists.linux-foundation.org>;
- Fri, 31 Mar 2023 07:46:19 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id hliftb7hy5Bi for <bridge@lists.linux-foundation.org>;
+ Fri, 31 Mar 2023 08:09:17 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C4F67844B5
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D7E6F41FAF
 Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
  [46.183.139.199])
- by smtp1.osuosl.org (Postfix) with ESMTPS id C4F67844B5
- for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 07:46:18 +0000 (UTC)
+ by smtp2.osuosl.org (Postfix) with ESMTPS id D7E6F41FAF
+ for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 08:09:16 +0000 (UTC)
 Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 63BFC188443E;
- Fri, 31 Mar 2023 07:46:15 +0000 (UTC)
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id E758E18844A7;
+ Fri, 31 Mar 2023 08:09:14 +0000 (UTC)
 Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 3241325038AA;
- Fri, 31 Mar 2023 07:46:15 +0000 (UTC)
+ by mailout.gigahost.dk (Postfix) with ESMTP id C2F5F2503962;
+ Fri, 31 Mar 2023 08:09:14 +0000 (UTC)
 Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 21C839B403F4; Fri, 31 Mar 2023 07:46:15 +0000 (UTC)
+ id B5F069B403E2; Fri, 31 Mar 2023 08:09:14 +0000 (UTC)
 X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
 Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
  [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 6920D91201E3;
- Fri, 31 Mar 2023 07:46:14 +0000 (UTC)
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id C9DC291201E3;
+ Fri, 31 Mar 2023 08:09:13 +0000 (UTC)
 From: Hans Schultz <netdev@kapio-technology.com>
 To: Vladimir Oltean <olteanv@gmail.com>
 In-Reply-To: <20230330192714.oqosvifrftirshej@skbuf>
@@ -60,8 +60,8 @@ References: <20230318141010.513424-1-netdev@kapio-technology.com>
  <ZBgdAo8mxwnl+pEE@shredder> <87a5zzh65p.fsf@kapio-technology.com>
  <ZCMYbRqd+qZaiHfu@shredder> <874jq22h2u.fsf@kapio-technology.com>
  <20230330192714.oqosvifrftirshej@skbuf>
-Date: Fri, 31 Mar 2023 09:43:34 +0200
-Message-ID: <874jq1mkm1.fsf@kapio-technology.com>
+Date: Fri, 31 Mar 2023 10:06:34 +0200
+Message-ID: <871ql5mjjp.fsf@kapio-technology.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Cc: Andrew Lunn <andrew@lunn.ch>,
@@ -131,7 +131,9 @@ On Thu, Mar 30, 2023 at 22:27, Vladimir Oltean <olteanv@gmail.com> wrote:
 > (where it's easy to add missing packages to the rootfs) or with a more
 > embedded-oriented Buildroot.
 
-I am not entirely clear of your idea. You need somehow to boot into a
-system with the patched net-next kernel or you have a virtual machine
-boot into a virtual OS. I guess it is the last option you refer to using
-Debian?
+The memory problems are of course on the embedded target. In that case I
+think it would be a very good idea to do something to design the system
+better, so that it frees memory between the subtests.
+
+If all tests are always run on the bridge only, I think they don't make
+much sense as these patchsets are directed towards switchcores.
