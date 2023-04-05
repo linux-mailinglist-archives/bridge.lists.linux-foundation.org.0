@@ -1,100 +1,71 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CD116D20B1
-	for <lists.bridge@lfdr.de>; Fri, 31 Mar 2023 14:46:08 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E096D7CC2
+	for <lists.bridge@lfdr.de>; Wed,  5 Apr 2023 14:36:50 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id ECD5142243;
-	Fri, 31 Mar 2023 12:46:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org ECD5142243
+	by smtp2.osuosl.org (Postfix) with ESMTP id 1326340BAC;
+	Wed,  5 Apr 2023 12:36:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1326340BAC
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=jusst.de header.i=@jusst.de header.a=rsa-sha256 header.s=dkim header.b=TX2cBFmb
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id k0HTx4moaTZG; Fri, 31 Mar 2023 12:46:03 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 42D084225C;
-	Fri, 31 Mar 2023 12:46:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 42D084225C
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pGZ5dKluckuH; Wed,  5 Apr 2023 12:36:46 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 6CF6C40BAA;
+	Wed,  5 Apr 2023 12:36:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6CF6C40BAA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DBD0FC007C;
-	Fri, 31 Mar 2023 12:46:01 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 165F6C0089;
+	Wed,  5 Apr 2023 12:36:45 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 04535C002F
- for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 12:46:00 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 217D3C002F
+ for <bridge@lists.linux-foundation.org>; Wed,  5 Apr 2023 12:36:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id CD09E42243
- for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 12:45:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org CD09E42243
+ by smtp1.osuosl.org (Postfix) with ESMTP id E4A9681F47
+ for <bridge@lists.linux-foundation.org>; Wed,  5 Apr 2023 12:36:43 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E4A9681F47
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=jusst.de header.i=@jusst.de
+ header.a=rsa-sha256 header.s=dkim header.b=TX2cBFmb
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id jgz7kY0JR7no for <bridge@lists.linux-foundation.org>;
- Fri, 31 Mar 2023 12:45:58 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D144742226
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp4.osuosl.org (Postfix) with ESMTPS id D144742226
- for <bridge@lists.linux-foundation.org>; Fri, 31 Mar 2023 12:45:57 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 920C21883AFB;
- Fri, 31 Mar 2023 12:45:52 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 83E4D25004E1;
- Fri, 31 Mar 2023 12:45:52 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 757369B403F7; Fri, 31 Mar 2023 12:45:52 +0000 (UTC)
-X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
-Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
- [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id C93F09B403E4;
- Fri, 31 Mar 2023 12:45:51 +0000 (UTC)
-From: Hans Schultz <netdev@kapio-technology.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20230331093732.s6loozkdhehewlm4@skbuf>
-References: <20230318141010.513424-1-netdev@kapio-technology.com>
- <20230318141010.513424-7-netdev@kapio-technology.com>
- <ZBgdAo8mxwnl+pEE@shredder> <87a5zzh65p.fsf@kapio-technology.com>
- <ZCMYbRqd+qZaiHfu@shredder> <874jq22h2u.fsf@kapio-technology.com>
- <20230330192714.oqosvifrftirshej@skbuf>
- <871ql5mjjp.fsf@kapio-technology.com>
- <20230331093732.s6loozkdhehewlm4@skbuf>
-Date: Fri, 31 Mar 2023 14:43:11 +0200
-Message-ID: <87tty1nlb4.fsf@kapio-technology.com>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id LaTKh3tdhDZA for <bridge@lists.linux-foundation.org>;
+ Wed,  5 Apr 2023 12:36:41 +0000 (UTC)
+X-Greylist: delayed 00:09:55 by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E04D581F29
+Received: from mail.jusst.de (mail.jusst.de [94.16.123.19])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id E04D581F29
+ for <bridge@lists.linux-foundation.org>; Wed,  5 Apr 2023 12:36:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 772E754C28B; Wed,  5 Apr 2023 14:24:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jusst.de; s=dkim;
+ t=1680697452; h=from:subject:date:message-id:to:mime-version:content-type:
+ content-transfer-encoding:content-language;
+ bh=INuSPqZWxJYEI4jKMV7zGzhUZ5jYXb1XWxD6oaynKVw=;
+ b=TX2cBFmbxN9/W7EAaELqbKj10880M39Gn/l58TDnmBnUa7lf/6sE84QbuidDDpnRYxnobC
+ BIpIFJ6agOVaspCp2CAOYbV95Xi2CkZ3vkn1Phj6h/xelSBwqqr5zLSxusQlrlBaDngNvE
+ DtDubxYFWOuhIXhUCG7GbYy/TdNv5sH2DQhwRyiVPFE/T6PlCG9BMO9YauNDPDk3Fr7zHW
+ mBvrw+tHZ57w12WCFhYj3QQasiLPbw1g7Y+ROA67HZ4nTkh7vdqbR1Nm/6yPo897k2VxrB
+ r7gM62c+NgpRJq2brM5o3hZL/IfLyVtlvx4I16Ql6YHiEQ7B1fJmRfRo122vcQ==
+Message-ID: <9faba0b5-b7e5-5779-4249-1e01419e51c5@jusst.de>
+Date: Wed, 5 Apr 2023 14:26:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, open list <linux-kernel@vger.kernel.org>,
- Eric Dumazet <edumazet@google.com>, "open
- list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- Shuah Khan <shuah@kernel.org>, Ivan Vecera <ivecera@redhat.com>,
- Florian Fainelli <f.fainelli@gmail.com>, "moderated
- list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Ido Schimmel <idosch@nvidia.com>, kuba@kernel.org,
- Paolo Abeni <pabeni@redhat.com>,
- =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- netdev@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v2 net-next 6/6] selftests: forwarding: add
- dynamic FDB test
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+To: Nikolay Aleksandrov <nikolay@nvidia.com>, bridge@lists.linux-foundation.org
+Content-Language: en-US
+Organization: jusst.engineering
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+Subject: [Bridge] VLAN-aware multicast querier after if link up
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -106,35 +77,62 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Dennis Hamester via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Dennis Hamester <dhamester@jusst.de>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Fri, Mar 31, 2023 at 12:37, Vladimir Oltean <olteanv@gmail.com> wrote:
->
-> So, by running the command I posted in the earlier email, you actually
-> run it on the physical DSA user port interfaces, and it should pass
-> there too.
+Hi Nikolay,
 
-Okay, that sounds like a good idea which I have not done before. I am
-seeing how I can install Debian in an Qemu or VMWare setup to be able to
-test that way.
+I'd like your input on an issue I'm running into at the moment.
 
-> This is based on the equivalency principle between the
-> software and the hardware data paths that I was talking about.
->
-> If you're actively and repeatedly making an effort to work with your eyes
-> closed, and then build strawmen around the fact that you don't see, then
-> you're not going to get very friendly reactions from people, me included,
-> who explain things to you that pertain to your due diligence. This is
-> because these people know the things that they're explaining to you out
-> of their own due diligence, and, as a result, are not easily fooled by
-> your childish excuses.
+I setup a bridge to do multicast querying for some vid. This then does 
+not work for ports that come up later. It works only for those ports 
+that were already up when I set the global vlan options.
 
-I am not coming with excuses here, and certainly not childish ones at
-that either. I am just pointing out that on my device the tests don't
-run well because of memory shortage and my reasoning why I think it is
-so.
-I will as long as the system is as it is with these selftests, just run
-single subtests at a time on target, but if I have new phy problems like
-the one you have seen I have had before, then testing on target becomes
-off limits.
+Debugging through the kernel I can see that the timers are simply never 
+started. Unless I disable and re-enable the querier for that particular vid.
+
+Admittedly, I'm working with 5.15 at the moment. But even on mainline, I 
+do not see any relevant changes that would make this work.
+
+I have a simple-ish patch, but I'm wondering whether I'm missing 
+something? Is maybe some action from userspace expected when a port 
+comes up?
+
+Best
+Dennis Hamester
+
+
+-- 
+Dennis Hamester
+Software Engineering Lead
+
+jusst.engineering
+Wrangelstraße 111
+D - 20253 Hamburg
+
+tel: +49 40 521 600 10
+fax: +49 40 1800 86 76
+mobil: +49 152 310 698 27
+mail: dhamester@jusst.de
+
+https://jusst.engineering/
+
+jusst technologies GmbH, Ohlstedter Straße 12, D - 22397 Hamburg
+Vertretungsberechtigte Geschäftsführer: Julian Scheel, Sebastian Scheel
+Registergericht: Amtsgericht Hamburg
+Registernummer: HRB 94300
+
+-
+
+Confidentiality notice:
+
+The content of this email is confidential.
+If you are not the intended addressee, or if the information provided in 
+this
+email or in its attachments is evidently not destined for you, please notify
+us immediately and delete the message received in error including all its
+attachments. Any unauthorized review, processing, distribution, copying,
+storage, printout or other use of this message or its attachments is 
+prohibited.
