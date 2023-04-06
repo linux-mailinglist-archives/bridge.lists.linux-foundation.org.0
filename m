@@ -1,111 +1,111 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11416D9C21
-	for <lists.bridge@lfdr.de>; Thu,  6 Apr 2023 17:22:13 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B1E16D9C2A
+	for <lists.bridge@lfdr.de>; Thu,  6 Apr 2023 17:24:54 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 0CE1141D1E;
-	Thu,  6 Apr 2023 15:22:10 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0CE1141D1E
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=oZwLocsV
+	by smtp1.osuosl.org (Postfix) with ESMTP id 54D17843BC;
+	Thu,  6 Apr 2023 15:24:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 54D17843BC
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=mOLwUplH
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 1HPXJRsQ1C90; Thu,  6 Apr 2023 15:22:09 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HtEb531Ph0_I; Thu,  6 Apr 2023 15:24:51 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 5ED2A41D46;
-	Thu,  6 Apr 2023 15:22:08 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5ED2A41D46
+	by smtp1.osuosl.org (Postfix) with ESMTPS id F20D484304;
+	Thu,  6 Apr 2023 15:24:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org F20D484304
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0D857C008C;
-	Thu,  6 Apr 2023 15:22:08 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 97882C008C;
+	Thu,  6 Apr 2023 15:24:50 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 23ECBC002A
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:22:07 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8090DC002A
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:24:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 089DA41EE1
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:22:07 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 089DA41EE1
-Authentication-Results: smtp4.osuosl.org;
+ by smtp2.osuosl.org (Postfix) with ESMTP id 4E3FD41D46
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:24:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4E3FD41D46
+Authentication-Results: smtp2.osuosl.org;
  dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=oZwLocsV
+ header.a=rsa-sha256 header.s=20210112 header.b=mOLwUplH
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8TwayDt48f5r for <bridge@lists.linux-foundation.org>;
- Thu,  6 Apr 2023 15:22:04 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id dDIVix5sOiq0 for <bridge@lists.linux-foundation.org>;
+ Thu,  6 Apr 2023 15:24:48 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9FC1041EDF
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 9FC1041EDF
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:22:04 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id qb20so2261103ejc.6
- for <bridge@lists.linux-foundation.org>; Thu, 06 Apr 2023 08:22:04 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 78CF641D38
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 78CF641D38
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:24:48 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id
+ a640c23a62f3a-947cd8b2de3so155755466b.0
+ for <bridge@lists.linux-foundation.org>; Thu, 06 Apr 2023 08:24:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680794523;
+ d=gmail.com; s=20210112; t=1680794686;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=W8yHOaVQ4mahqDoWUZZ0X3+twLrUdiCW/OQNIgPHkpM=;
- b=oZwLocsV6/myf95tPXquC5P3/ayH6gAbBmWdKPVSUnZn6kRTeDqScnnIn5GIxlwbz8
- nJZGvjOLRNAUgjKN8PXwWDCRcZdQQt4RZRHWNK89ycCHgppu7C7O4ozWDeJaf41K61Uh
- XCHSLNMP4ONIQjVBXkMf3l59MTq8pFp/jjC78wzeOS3zutEYhIVWmg4bj8p5L5DGPRsg
- 0AOgBoukthw2oMSbXy0UwTa90FzkZqEBtvZJoMFgwYe2I8IudvnqJLxGrI48c+S2ONUQ
- rMDe4Q+9Kvi+Z/zD00KMVwCpG6F+iLyt51C8aFhkLH0FITM+kp655rE19bJGxaKHTUQ5
- YXNw==
+ bh=cOMO4X0KkT1wLKp3ZzLuqJYBOcq707+YpxHq0zavOgw=;
+ b=mOLwUplHv9h7ct3oUi+VgdSBSfJfcHSz4omCFqbZjtcuXZHY1U4ilN33bGUgNEML1d
+ Hjq7TbyKj4CJpjX2aYIhMpGOdWYEmKO/C293HsORhRG+hHjWFl30PxsM/93zkWlpk8lC
+ R93xYEJiKmwfBwiccG8Qtkg09sf55JI7q8wuLs0blN9F/xMZYbUWJXHcGoXFlX6ATnp3
+ 2NOgQ3U7nnw2BBVkH+GM4uOAnLsCSM/U2wL9x/JpWe9suZa+OawzhG/gpICCvUkNwGR9
+ 3mDNsEgVogbvJdbZt8mKUnYQEY2TV3tWC5PUAfU/wajZEWpW4OikShq4SToCCxH61U6/
+ zqdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680794523;
+ d=1e100.net; s=20210112; t=1680794686;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=W8yHOaVQ4mahqDoWUZZ0X3+twLrUdiCW/OQNIgPHkpM=;
- b=7dE6lIU/EMHvhMHUtxYfV2E5FQhGLAUe21qCbh837iihs6JAlmPkuehhf7UsMFi2Ha
- cpL/0TXXoYc4DUwcTDGWbi+vvZ9UU6845UpguTqR3wF7fqkIKx+APoNC8P9r3BxSsYtg
- 149CngiuUByUrsSVghyd22x792M4b+DaPztP3yg5+r0N4/H/XjCvZQDDjdnEY0boXPRy
- eEkWnajlmX4rlS3V9XFK8ng8RnAmYCmNcS86JimOTA0gdSYr7Y9l3904Oqr2tfzZT5G5
- Ju2qs8kg87G2i/H2A8b5ywHJwHKHr5zX85gkixVeZqdf18to2xuxKgaWq4rg0t8sogFr
- 3NMA==
-X-Gm-Message-State: AAQBX9dYxN06ejL87mjxw2ohPijpJ82kQQRHCI7vNa6Bsd303rx6senM
- KpOdbniM6zh4UfJcg68t3tg=
-X-Google-Smtp-Source: AKy350YlpYZ/5WyZfEsJM9r0STUEnAAOWTh66kJerlTJdTbxs18L9N8B47hs1vImrQMlTMzWf6mr9A==
-X-Received: by 2002:a17:907:a413:b0:92f:43a2:bf7d with SMTP id
- sg19-20020a170907a41300b0092f43a2bf7dmr7965899ejc.73.1680794522609; 
- Thu, 06 Apr 2023 08:22:02 -0700 (PDT)
+ bh=cOMO4X0KkT1wLKp3ZzLuqJYBOcq707+YpxHq0zavOgw=;
+ b=C7jcjCTrpf5rTF7Qh72QDbbdsfO6LobK6OLIu7Sb1Zf/QAscDnq7oNXnzHJ2YZC+zj
+ vudYUSHu6gWgYM19ZuphHCwVIS0OI0/cH+RAD+APsYMxkMz9r2UNK6SWCWSxhCMNbVTL
+ 446n0UWTZ4r0WfdgLqDIoLbMNHgVZxWopY7chN79JQqwQFoVeSxEWyFlTvyLXkOd8pao
+ 0bf+4qIhQVmPSeutzYGF8t+6lL9pWIlku0ZhGEuIXeSJ/stxox9xG1DQc/76O1bLBSZQ
+ NzUErdLlAUf2gNQFWieH1z6MHt0lyzRgjAzXOn57Equ3okkzK2kG5B9x11cy8yFEKqvJ
+ NGzQ==
+X-Gm-Message-State: AAQBX9e8oIVgynV2Pme/eig8uFxGbK3NmWEh+nUR4/ccyznJ3SwnIhVp
+ 9x+I8lQnBBDCzhNRA5s8Om8=
+X-Google-Smtp-Source: AKy350bMKcJuUrKHxCynmrWlEri+wOd6BUJcWjnjfAUKYwzm18cdb+f7ZMxFTWEmAIFudRqwzqdrSg==
+X-Received: by 2002:aa7:da06:0:b0:502:8f49:2552 with SMTP id
+ r6-20020aa7da06000000b005028f492552mr5597291eds.27.1680794686523; 
+ Thu, 06 Apr 2023 08:24:46 -0700 (PDT)
 Received: from skbuf ([188.27.184.189]) by smtp.gmail.com with ESMTPSA id
- dd20-20020a1709069b9400b009475bf82935sm937459ejc.31.2023.04.06.08.22.00
+ b15-20020a50cccf000000b004c10b4f9ebesm878829edj.15.2023.04.06.08.24.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Apr 2023 08:22:02 -0700 (PDT)
-Date: Thu, 6 Apr 2023 18:21:59 +0300
+ Thu, 06 Apr 2023 08:24:46 -0700 (PDT)
+Date: Thu, 6 Apr 2023 18:24:43 +0300
 From: Vladimir Oltean <olteanv@gmail.com>
 To: Hans Schultz <netdev@kapio-technology.com>
-Message-ID: <20230406152159.zfg6kxuimulnpops@skbuf>
-References: <20230327225933.plm5raegywbe7g2a@skbuf>
- <87ileljfwo.fsf@kapio-technology.com>
- <20230328114943.4mibmn2icutcio4m@skbuf>
- <87cz4slkx5.fsf@kapio-technology.com>
- <20230330124326.v5mqg7do25tz6izk@skbuf>
- <87wn2yxunb.fsf@kapio-technology.com>
- <20230330130936.hxme34qrqwolvpsh@skbuf>
- <875yaimgro.fsf@kapio-technology.com>
- <20230330150752.gdquw5kudtrqgzyz@skbuf>
- <87o7o1ox9h.fsf@kapio-technology.com>
+Message-ID: <20230406152443.b3ps4x7e4kz4aes2@skbuf>
+References: <20230318141010.513424-1-netdev@kapio-technology.com>
+ <20230318141010.513424-7-netdev@kapio-technology.com>
+ <ZBgdAo8mxwnl+pEE@shredder> <87a5zzh65p.fsf@kapio-technology.com>
+ <ZCMYbRqd+qZaiHfu@shredder> <874jq22h2u.fsf@kapio-technology.com>
+ <20230330192714.oqosvifrftirshej@skbuf>
+ <871ql5mjjp.fsf@kapio-technology.com>
+ <20230331093732.s6loozkdhehewlm4@skbuf>
+ <87tty1nlb4.fsf@kapio-technology.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87o7o1ox9h.fsf@kapio-technology.com>
+In-Reply-To: <87tty1nlb4.fsf@kapio-technology.com>
 Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ Kurt Kanzenbach <kurt@linutronix.de>, open list <linux-kernel@vger.kernel.org>,
+ Eric Dumazet <edumazet@google.com>,
  "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
  Shuah Khan <shuah@kernel.org>, Ivan Vecera <ivecera@redhat.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
  "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
+ Ido Schimmel <idosch@nvidia.com>, kuba@kernel.org,
  Paolo Abeni <pabeni@redhat.com>,
  =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
  Christian Marangi <ansuelsmth@gmail.com>,
@@ -118,13 +118,13 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
  "moderated list:ARM/Mediatek SoC support"
  <linux-arm-kernel@lists.infradead.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- netdev@vger.kernel.org, open list <linux-kernel@vger.kernel.org>,
+ netdev@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
  "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
  <UNGLinuxDriver@microchip.com>,
  "open list:RENESAS RZ/N1 A5PSW SWITCH DRIVER"
  <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v2 net-next 2/6] net: dsa: propagate flags down
- towards drivers
+Subject: Re: [Bridge] [PATCH v2 net-next 6/6] selftests: forwarding: add
+ dynamic FDB test
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -139,16 +139,13 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Apr 06, 2023 at 05:17:46PM +0200, Hans Schultz wrote:
-> On Thu, Mar 30, 2023 at 18:07, Vladimir Oltean <olteanv@gmail.com> wrote:
-> > As a bug fix, stop reporting to switchdev those FDB entries with
-> > BR_FDB_ADDED_BY_USER && !BR_FDB_STATIC. Then, after "net" is merged into
-> > "net-next" next Thursday (the ship has sailed for today), add "bool static"
-> 
-> It is probably too late today (now I have a Debian based VM that can do
-> the selftests), but with this bug fix I have 1) not submitted bug fixes
-> before and 2) it probably needs an appropriate explanation, where I
-> don't know the problem well enough for general switchcores to submit
-> with a suitable text.
+On Fri, Mar 31, 2023 at 02:43:11PM +0200, Hans Schultz wrote:
+> I will as long as the system is as it is with these selftests, just run
+> single subtests at a time on target, but if I have new phy problems like
+> the one you have seen I have had before, then testing on target becomes
+> off limits.
 
-Do you want me to try to submit this change as a bug fix?
+Please open a dedicated communication channel (separate email thread on
+netdev@vger.kernel.org) with the appropriate maintainers for the PHY
+code that is failing for you in To:, and you will get the help that you
+need to resolve that and to be able to test on the target board.
