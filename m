@@ -1,91 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09DF26DD4B7
-	for <lists.bridge@lfdr.de>; Tue, 11 Apr 2023 10:01:32 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB466D9970
+	for <lists.bridge@lfdr.de>; Thu,  6 Apr 2023 16:17:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 4D42260F27;
-	Tue, 11 Apr 2023 08:01:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4D42260F27
+	by smtp4.osuosl.org (Postfix) with ESMTP id 65DBB417BA;
+	Thu,  6 Apr 2023 14:17:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 65DBB417BA
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=AEdRrM5s
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jBStf6Dutb0v; Tue, 11 Apr 2023 08:01:30 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id PwD70L4IDjR5; Thu,  6 Apr 2023 14:17:47 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 927D060F28;
-	Tue, 11 Apr 2023 08:01:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 927D060F28
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 9450041E31;
+	Thu,  6 Apr 2023 14:17:46 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9450041E31
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1BAC2C008C;
-	Tue, 11 Apr 2023 08:01:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1F62FC002A;
+	Thu,  6 Apr 2023 14:17:46 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1E14BC002A
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 11:38:38 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9BB13C002A
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 14:17:45 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id D94ED8201C
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 11:38:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D94ED8201C
+ by smtp3.osuosl.org (Postfix) with ESMTP id 6952C60F0D
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 14:17:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6952C60F0D
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20210112 header.b=AEdRrM5s
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id OotKGO9V_ZpP for <bridge@lists.linux-foundation.org>;
- Thu,  6 Apr 2023 11:38:36 +0000 (UTC)
-X-Greylist: delayed 00:07:13 by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 745AD81F67
-Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 745AD81F67
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 11:38:36 +0000 (UTC)
-Received: from mxde.zte.com.cn (unknown [10.35.20.165])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxct.zte.com.cn (FangMail) with ESMTPS id 4PsfTN2bY5zjnT
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 19:31:20 +0800 (CST)
-Received: from mxus.zte.com.cn (unknown [10.36.20.194])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxde.zte.com.cn (FangMail) with ESMTPS id 4PsfSm5zyDz54hxy
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 19:30:48 +0800 (CST)
-Received: from mxhk.zte.com.cn (unknown [192.168.250.137])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mxus.zte.com.cn (FangMail) with ESMTPS id 4PsfSj61P1z52XHH
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 19:30:45 +0800 (CST)
-Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mxhk.zte.com.cn (FangMail) with ESMTPS id 4PsfSY64Yfz8R040;
- Thu,  6 Apr 2023 19:30:37 +0800 (CST)
-Received: from szxlzmapp02.zte.com.cn ([10.5.231.79])
- by mse-fl1.zte.com.cn with SMTP id 336BUVXP094943;
- Thu, 6 Apr 2023 19:30:31 +0800 (+08)
- (envelope-from yang.yang29@zte.com.cn)
-Received: from mapi (szxlzmapp01[null]) by mapi (Zmail) with MAPI id mid14;
- Thu, 6 Apr 2023 19:30:34 +0800 (CST)
-Date: Thu, 6 Apr 2023 19:30:34 +0800 (CST)
-X-Zmail-TransId: 2b03642ead5affffffffdc9-cfc64
-X-Mailer: Zmail v1.0
-Message-ID: <202304061930349843930@zte.com.cn>
-Mime-Version: 1.0
-From: <yang.yang29@zte.com.cn>
-To: <davem@davemloft.net>
-Content-Type: text/plain;
-	charset="UTF-8"
-X-MAIL: mse-fl1.zte.com.cn 336BUVXP094943
-X-FangMail-Miltered: at esgde01-1.novalocal with ID 642EAD68.000 by FangMail
- milter!
-X-FangMail-Envelope: 1680780649/4PsfSm5zyDz54hxy/642EAD68.000/10.36.20.194/[10.36.20.194]/mxus.zte.com.cn/<yang.yang29@zte.com.cn>
-X-Fangmail-Gw-Spam-Type: 0
-X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 642EAD87.000/4PsfTN2bY5zjnT
-X-Mailman-Approved-At: Tue, 11 Apr 2023 08:01:27 +0000
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, edumazet@google.com, zhang.yunkai@zte.com.cn,
- jiang.xuexin@zte.com.cn, roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com
-Subject: [Bridge] =?utf-8?q?=5BPATCH_net-next=5D_net/bridge=3A_add_drop_re?=
-	=?utf-8?q?asons_for_bridge_forwarding?=
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id tffKRir8dMz6 for <bridge@lists.linux-foundation.org>;
+ Thu,  6 Apr 2023 14:17:44 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 05D9F60E29
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com
+ [IPv6:2607:f8b0:4864:20::835])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 05D9F60E29
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 14:17:43 +0000 (UTC)
+Received: by mail-qt1-x835.google.com with SMTP id h3so11391344qtu.1
+ for <bridge@lists.linux-foundation.org>; Thu, 06 Apr 2023 07:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1680790662;
+ h=content-disposition:mime-version:message-id:subject:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=7vagdoWVLs74/YSjQDxpvM8aXKUgVP/cIPrMpvJRI3U=;
+ b=AEdRrM5sx5wSpH/Jo7wv8lWa6/vwAix2RC/BI6EHQ0zoLks9Xls9n/l3R7E5rJoF9a
+ fMmftNB7rQIK9dgkYMUSm1rg6v2oQhrSbdcNwwYQwM6CoLyNsZiKV9U2xiyUyQ+T8aKs
+ j5vYJM07vPNKsAmQFF4MggGWw0X+f2/TSHkhkcECSByJBTJJ39FCzg5Y4SaOr3Fq3sVS
+ jSPFhCcPNKgTeOGHVKnQdPhK7lvZOVylUuBEJzZtX/SgqdjhROVvj069Etzt7sjL3ncL
+ 4fAwz1Hhw/0TZJR8AHAW+ZYTde9vbvV6ssitGwh0UMxCtMPKfIoBoATgFcGD10d3JJaP
+ CBWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680790662;
+ h=content-disposition:mime-version:message-id:subject:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=7vagdoWVLs74/YSjQDxpvM8aXKUgVP/cIPrMpvJRI3U=;
+ b=oAbwt9yM88HTSL+qJwk4mzOikPuhfxuvt33LVqkWHrplUOGR52zsvTjRAw2MAirqQl
+ ei9olBvzZFxao6eOiZSWtQcY/ZWm29yt4hkOaZglt36bnwl54VGupvH5H8TWUFfrLvCW
+ O7DfivLUdgHBwuSahNcDfAjUix8jRY5Kjwyej9/oDbPad+iVdE3akiuoGYM8h30/DqOU
+ EY9KJoP+OUPZOsapaTGuovDO9aQ1cY8AdRY/B+in7DLw2ed+qr52QA31qOoDTKrjkBIy
+ x48Eatxy2Zvku7cVjBqh3G/F0W4Q5v5pQkpjjKru6ilMOVu3XOgSAzj84PCqEncGxRXM
+ 1tbw==
+X-Gm-Message-State: AAQBX9fqPTP+8V0HYF0J9UB390LBc6M6Dpir2bx6Voel+xtXcUadscB7
+ RK3RBk4wKvyYr79MK5L9FocHYuO5ED4=
+X-Google-Smtp-Source: AKy350Y2sEaLuNLxznQXWjMtnE3fvJSimN02UyX+/JFwOrcOpiQGYHxopwakiDNYRZEli0IbeDnqYw==
+X-Received: by 2002:ac8:5e08:0:b0:3dc:ac3b:ca6c with SMTP id
+ h8-20020ac85e08000000b003dcac3bca6cmr10883258qtx.6.1680790662370; 
+ Thu, 06 Apr 2023 07:17:42 -0700 (PDT)
+Received: from errol.ini.cmu.edu (pool-72-77-81-136.pitbpa.fios.verizon.net.
+ [72.77.81.136]) by smtp.gmail.com with ESMTPSA id
+ g189-20020a37b6c6000000b00745a78b0b3asm480857qkf.130.2023.04.06.07.17.41
+ for <bridge@lists.linux-foundation.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Apr 2023 07:17:41 -0700 (PDT)
+Date: Thu, 6 Apr 2023 10:17:40 -0400
+From: "Gabriel L. Somlo" <gsomlo@gmail.com>
+To: bridge@lists.linux-foundation.org
+Message-ID: <ZC7UhHW8+82OQ5oL@errol.ini.cmu.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Clacks-Overhead: GNU Terry Pratchett
+Subject: [Bridge] Option to forward *unconditionally* on a bridge?
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -100,192 +103,65 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: xu xin <xu.xin16@zte.com.cn>
+TL;DR: Is there a way to force a bridge to forward anything and
+everything on all ports (except the ingress port) *regardles* of
+any permanent FDB entries (such as the MAC addresses of interfaces
+acting as bridge ports)?
 
-This creates six drop reasons as follows, which will help users know the
-specific reason why bridge drops the packets when forwarding.
+For context, I'm using a network-namespace (container) based simulator
+(think GNS3 or CORE), which allow me to run multiple FRR instances
+in their own dedicated netns, connected together by veth pairs and
+bridges.
 
-1) SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT: failed to get a backup
-   port link when the destination port is down.
+To bridge this simulation outside the machine hosting it, the
+simulators allow host machine interfaces to be bridged to bridges
+and veth pairs that belong to the simulation, e.g.:
 
-2) SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT: destination port is the same
-   with originating port when forwarding by a bridge.
+ -----------------------------
+ VM running simulation       |
+                             |
+ sim. node,                  |
+ (container),                |
+ dflt gateway                |
+ -----------    - br0 -      |             -----------------
+           |   /       \     |  inter-VM   | External VM   |
+      eth0 + veth0    ens32  +-- vswitch --+ using in-sim  |
+   Sim.MAC |          VM.MAC |             | dflt. gateway |
+ -----------                 |             -----------------
+ -----------------------------
 
-3) SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE: the bridge's state is
-   not forwarding.
+This requires the vswitch outside of the vm hosting the simulation to
+allow promiscuous mode (so that containers can send/receive Ethernet
+frames through the hosting VM's interface (e.g., ens32).
 
-4) SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS: the packet is not allowed
-   to go out through the port due to vlan filtering.
+It turns out that at least on one "cloudy" hosted solution the guest
+VMs are forbidden from sending "spoofed" ethernet traffic, i.e. the
+ens32 "vm.mac" address is strictly enforced outside the VM (on the
+inter-vm vswitch).
 
-5) SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS: the packet is not
-   allowed to go out through the port which is offloaded by a hardware
-   switchdev, checked by nbp_switchdev_allowed_egress().
+The obvious solution would be to assign ens32's VM.MAC as the mac
+address of eth0 inside the container, which would allow it to talk
+on the ethernet broadcast domain bridged via br0 and the inter-vm
+vswitch (assuming we only have *one* such container on the "inside").
 
-6) SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED: both source port and dest
-   port are in BR_ISOLATED state when bridge forwarding.
+Trouble is, br0 won't forward frames *to* VM.MAC received from
+external sources, since that is a permanent FDB entry associated 
+with the "ingress interface".
 
-Signed-off-by: xu xin <xu.xin16@zte.com.cn>
-Reviewed-by: Zhang Yunkai <zhang.yunkai@zte.com.cn>
-Reviewed-by: Yang Yang <yang.yang19@zte.com.cn>
-Cc: Xuexin Jiang <jiang.xuexin@zte.com.cn>
----
- include/net/dropreason.h | 33 ++++++++++++++++++++++++++++++++
- net/bridge/br_forward.c  | 49 +++++++++++++++++++++++++++++++++++++-----------
- 2 files changed, 71 insertions(+), 11 deletions(-)
+I'm looking to turn br0 into a "dumb hub". Typically, the closest
+approximation to "hub behavior" is accomplished by disabling MAC
+learning on the bridge interface(s), which will force permanent
+flooding.
 
-diff --git a/include/net/dropreason.h b/include/net/dropreason.h
-index c0a3ea806cd5..888039fd01c9 100644
---- a/include/net/dropreason.h
-+++ b/include/net/dropreason.h
-@@ -78,6 +78,12 @@
- 	FN(IPV6_NDISC_BAD_CODE)		\
- 	FN(IPV6_NDISC_BAD_OPTIONS)	\
- 	FN(IPV6_NDISC_NS_OTHERHOST)	\
-+	FN(BRIDGE_FWD_NO_BACKUP_PORT) \
-+	FN(BRIDGE_FWD_SAME_PORT) \
-+	FN(BRIDGE_NON_FORWARDING_STATE) \
-+	FN(BRIDGE_NOT_ALLOWED_EGRESS) \
-+	FN(BRIDGE_SWDEV_NOT_ALLOWED_EGRESS) \
-+	FN(BRIDGE_BOTH_PORT_ISOLATED) \
- 	FNe(MAX)
+Turns out, the exception to that is if a mac address associated with
+one of the bridge ports is involved -- no "hub" behavior in that case,
+because those FDB entries aren't learned, but rather permanently
+installed during bridge set-up.
 
- /**
-@@ -338,6 +344,33 @@ enum skb_drop_reason {
- 	 * for another host.
- 	 */
- 	SKB_DROP_REASON_IPV6_NDISC_NS_OTHERHOST,
-+	/** @SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT: failed to get a backup
-+	 * port link when the destination port is down.
-+	 */
-+	SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT,
-+	/** @SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT: destination port is the same
-+	 * with originating port when forwarding by a bridge.
-+	 */
-+	SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT,
-+	/** @SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE: the bridge's state is
-+	 * not forwarding.
-+	 */
-+	SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE,
-+	/** @SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS: the packet is not allowed
-+	 * to go out through the port due to vlan filtering.
-+	 */
-+	SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS,
-+	/** @SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS: the packet is not
-+	 * allowed to go out through the port which is offloaded by a hardware
-+	 * switchdev, checked by nbp_switchdev_allowed_egress(). E.g, the source
-+	 * switchdev is the same with the switchdev by which the dest port is
-+	 * offloaded.
-+	 */
-+	SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS,
-+	/** @SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED: both source port and dest
-+	 * port are in BR_ISOLATED state when bridge forwarding.
-+	 */
-+	SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED,
- 	/**
- 	 * @SKB_DROP_REASON_MAX: the maximum of drop reason, which shouldn't be
- 	 * used as a real 'reason'
-diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index 02bb620d3b8d..7ebdf9937125 100644
---- a/net/bridge/br_forward.c
-+++ b/net/bridge/br_forward.c
-@@ -18,16 +18,39 @@
- #include "br_private.h"
+Any way to override that (and ignore permanent FDB) entries would save
+me a lot of effort to "hack" my way around this restriction using
+multiple bridges and ebtables NAT :)
 
- /* Don't forward packets to originating port or forwarding disabled */
--static inline int should_deliver(const struct net_bridge_port *p,
--				 const struct sk_buff *skb)
-+static inline bool should_deliver(const struct net_bridge_port *p, const struct sk_buff *skb,
-+					 enum skb_drop_reason *need_reason)
- {
- 	struct net_bridge_vlan_group *vg;
-+	enum skb_drop_reason reason;
+Thanks for any clue, pointers, or advice.
 
- 	vg = nbp_vlan_group_rcu(p);
--	return ((p->flags & BR_HAIRPIN_MODE) || skb->dev != p->dev) &&
--		p->state == BR_STATE_FORWARDING && br_allowed_egress(vg, skb) &&
--		nbp_switchdev_allowed_egress(p, skb) &&
--		!br_skb_isolated(p, skb);
-+	if (!(p->flags & BR_HAIRPIN_MODE) && skb->dev == p->dev) {
-+		reason = SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT;
-+		goto undeliverable;
-+	}
-+	if (p->state != BR_STATE_FORWARDING) {
-+		reason = SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE;
-+		goto undeliverable;
-+	}
-+	if (!br_allowed_egress(vg, skb)) {
-+		reason = SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS;
-+		goto undeliverable;
-+	}
-+	if (!nbp_switchdev_allowed_egress(p, skb)) {
-+		reason = SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS;
-+		goto undeliverable;
-+	}
-+	if (br_skb_isolated(p, skb)) {
-+		reason = SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED;
-+		goto undeliverable;
-+	}
-+	return true;
-+
-+undeliverable:
-+	if (need_reason)
-+		*need_reason = reason;
-+	return false;
- }
-
- int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb)
-@@ -144,6 +167,8 @@ static int deliver_clone(const struct net_bridge_port *prev,
- void br_forward(const struct net_bridge_port *to,
- 		struct sk_buff *skb, bool local_rcv, bool local_orig)
- {
-+	enum skb_drop_reason reason = SKB_DROP_REASON_NOT_SPECIFIED;
-+
- 	if (unlikely(!to))
- 		goto out;
-
-@@ -152,12 +177,14 @@ void br_forward(const struct net_bridge_port *to,
- 		struct net_bridge_port *backup_port;
-
- 		backup_port = rcu_dereference(to->backup_port);
--		if (unlikely(!backup_port))
-+		if (unlikely(!backup_port)) {
-+			reason = SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT;
- 			goto out;
-+		}
- 		to = backup_port;
- 	}
-
--	if (should_deliver(to, skb)) {
-+	if (should_deliver(to, skb, &reason)) {
- 		if (local_rcv)
- 			deliver_clone(to, skb, local_orig);
- 		else
-@@ -167,7 +194,7 @@ void br_forward(const struct net_bridge_port *to,
-
- out:
- 	if (!local_rcv)
--		kfree_skb(skb);
-+		kfree_skb_reason(skb, reason);
- }
- EXPORT_SYMBOL_GPL(br_forward);
-
-@@ -178,7 +205,7 @@ static struct net_bridge_port *maybe_deliver(
- 	u8 igmp_type = br_multicast_igmp_type(skb);
- 	int err;
-
--	if (!should_deliver(p, skb))
-+	if (!should_deliver(p, skb, NULL))
- 		return prev;
-
- 	nbp_switchdev_frame_mark_tx_fwd_to_hwdom(p, skb);
-@@ -254,7 +281,7 @@ static void maybe_deliver_addr(struct net_bridge_port *p, struct sk_buff *skb,
- 	struct net_device *dev = BR_INPUT_SKB_CB(skb)->brdev;
- 	const unsigned char *src = eth_hdr(skb)->h_source;
-
--	if (!should_deliver(p, skb))
-+	if (!should_deliver(p, skb, NULL))
- 		return;
-
- 	/* Even with hairpin, no soliloquies - prevent breaking IPv6 DAD */
--- 
-2.15.2
+--Gabriel
