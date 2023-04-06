@@ -1,71 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E096D7CC2
-	for <lists.bridge@lfdr.de>; Wed,  5 Apr 2023 14:36:50 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09DF26DD4B7
+	for <lists.bridge@lfdr.de>; Tue, 11 Apr 2023 10:01:32 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 1326340BAC;
-	Wed,  5 Apr 2023 12:36:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1326340BAC
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=jusst.de header.i=@jusst.de header.a=rsa-sha256 header.s=dkim header.b=TX2cBFmb
+	by smtp3.osuosl.org (Postfix) with ESMTP id 4D42260F27;
+	Tue, 11 Apr 2023 08:01:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4D42260F27
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pGZ5dKluckuH; Wed,  5 Apr 2023 12:36:46 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 6CF6C40BAA;
-	Wed,  5 Apr 2023 12:36:45 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6CF6C40BAA
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jBStf6Dutb0v; Tue, 11 Apr 2023 08:01:30 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 927D060F28;
+	Tue, 11 Apr 2023 08:01:29 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 927D060F28
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 165F6C0089;
-	Wed,  5 Apr 2023 12:36:45 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1BAC2C008C;
+	Tue, 11 Apr 2023 08:01:29 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 217D3C002F
- for <bridge@lists.linux-foundation.org>; Wed,  5 Apr 2023 12:36:44 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1E14BC002A
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 11:38:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id E4A9681F47
- for <bridge@lists.linux-foundation.org>; Wed,  5 Apr 2023 12:36:43 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E4A9681F47
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=jusst.de header.i=@jusst.de
- header.a=rsa-sha256 header.s=dkim header.b=TX2cBFmb
+ by smtp1.osuosl.org (Postfix) with ESMTP id D94ED8201C
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 11:38:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D94ED8201C
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id LaTKh3tdhDZA for <bridge@lists.linux-foundation.org>;
- Wed,  5 Apr 2023 12:36:41 +0000 (UTC)
-X-Greylist: delayed 00:09:55 by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E04D581F29
-Received: from mail.jusst.de (mail.jusst.de [94.16.123.19])
- by smtp1.osuosl.org (Postfix) with ESMTPS id E04D581F29
- for <bridge@lists.linux-foundation.org>; Wed,  5 Apr 2023 12:36:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 772E754C28B; Wed,  5 Apr 2023 14:24:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jusst.de; s=dkim;
- t=1680697452; h=from:subject:date:message-id:to:mime-version:content-type:
- content-transfer-encoding:content-language;
- bh=INuSPqZWxJYEI4jKMV7zGzhUZ5jYXb1XWxD6oaynKVw=;
- b=TX2cBFmbxN9/W7EAaELqbKj10880M39Gn/l58TDnmBnUa7lf/6sE84QbuidDDpnRYxnobC
- BIpIFJ6agOVaspCp2CAOYbV95Xi2CkZ3vkn1Phj6h/xelSBwqqr5zLSxusQlrlBaDngNvE
- DtDubxYFWOuhIXhUCG7GbYy/TdNv5sH2DQhwRyiVPFE/T6PlCG9BMO9YauNDPDk3Fr7zHW
- mBvrw+tHZ57w12WCFhYj3QQasiLPbw1g7Y+ROA67HZ4nTkh7vdqbR1Nm/6yPo897k2VxrB
- r7gM62c+NgpRJq2brM5o3hZL/IfLyVtlvx4I16Ql6YHiEQ7B1fJmRfRo122vcQ==
-Message-ID: <9faba0b5-b7e5-5779-4249-1e01419e51c5@jusst.de>
-Date: Wed, 5 Apr 2023 14:26:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: Nikolay Aleksandrov <nikolay@nvidia.com>, bridge@lists.linux-foundation.org
-Content-Language: en-US
-Organization: jusst.engineering
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-Subject: [Bridge] VLAN-aware multicast querier after if link up
+ with ESMTP id OotKGO9V_ZpP for <bridge@lists.linux-foundation.org>;
+ Thu,  6 Apr 2023 11:38:36 +0000 (UTC)
+X-Greylist: delayed 00:07:13 by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 745AD81F67
+Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 745AD81F67
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 11:38:36 +0000 (UTC)
+Received: from mxde.zte.com.cn (unknown [10.35.20.165])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxct.zte.com.cn (FangMail) with ESMTPS id 4PsfTN2bY5zjnT
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 19:31:20 +0800 (CST)
+Received: from mxus.zte.com.cn (unknown [10.36.20.194])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxde.zte.com.cn (FangMail) with ESMTPS id 4PsfSm5zyDz54hxy
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 19:30:48 +0800 (CST)
+Received: from mxhk.zte.com.cn (unknown [192.168.250.137])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxus.zte.com.cn (FangMail) with ESMTPS id 4PsfSj61P1z52XHH
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 19:30:45 +0800 (CST)
+Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxhk.zte.com.cn (FangMail) with ESMTPS id 4PsfSY64Yfz8R040;
+ Thu,  6 Apr 2023 19:30:37 +0800 (CST)
+Received: from szxlzmapp02.zte.com.cn ([10.5.231.79])
+ by mse-fl1.zte.com.cn with SMTP id 336BUVXP094943;
+ Thu, 6 Apr 2023 19:30:31 +0800 (+08)
+ (envelope-from yang.yang29@zte.com.cn)
+Received: from mapi (szxlzmapp01[null]) by mapi (Zmail) with MAPI id mid14;
+ Thu, 6 Apr 2023 19:30:34 +0800 (CST)
+Date: Thu, 6 Apr 2023 19:30:34 +0800 (CST)
+X-Zmail-TransId: 2b03642ead5affffffffdc9-cfc64
+X-Mailer: Zmail v1.0
+Message-ID: <202304061930349843930@zte.com.cn>
+Mime-Version: 1.0
+From: <yang.yang29@zte.com.cn>
+To: <davem@davemloft.net>
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL: mse-fl1.zte.com.cn 336BUVXP094943
+X-FangMail-Miltered: at esgde01-1.novalocal with ID 642EAD68.000 by FangMail
+ milter!
+X-FangMail-Envelope: 1680780649/4PsfSm5zyDz54hxy/642EAD68.000/10.36.20.194/[10.36.20.194]/mxus.zte.com.cn/<yang.yang29@zte.com.cn>
+X-Fangmail-Gw-Spam-Type: 0
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 642EAD87.000/4PsfTN2bY5zjnT
+X-Mailman-Approved-At: Tue, 11 Apr 2023 08:01:27 +0000
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, edumazet@google.com, zhang.yunkai@zte.com.cn,
+ jiang.xuexin@zte.com.cn, roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com
+Subject: [Bridge] =?utf-8?q?=5BPATCH_net-next=5D_net/bridge=3A_add_drop_re?=
+	=?utf-8?q?asons_for_bridge_forwarding?=
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -77,62 +97,195 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Dennis Hamester via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Dennis Hamester <dhamester@jusst.de>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hi Nikolay,
+From: xu xin <xu.xin16@zte.com.cn>
 
-I'd like your input on an issue I'm running into at the moment.
+This creates six drop reasons as follows, which will help users know the
+specific reason why bridge drops the packets when forwarding.
 
-I setup a bridge to do multicast querying for some vid. This then does 
-not work for ports that come up later. It works only for those ports 
-that were already up when I set the global vlan options.
+1) SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT: failed to get a backup
+   port link when the destination port is down.
 
-Debugging through the kernel I can see that the timers are simply never 
-started. Unless I disable and re-enable the querier for that particular vid.
+2) SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT: destination port is the same
+   with originating port when forwarding by a bridge.
 
-Admittedly, I'm working with 5.15 at the moment. But even on mainline, I 
-do not see any relevant changes that would make this work.
+3) SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE: the bridge's state is
+   not forwarding.
 
-I have a simple-ish patch, but I'm wondering whether I'm missing 
-something? Is maybe some action from userspace expected when a port 
-comes up?
+4) SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS: the packet is not allowed
+   to go out through the port due to vlan filtering.
 
-Best
-Dennis Hamester
+5) SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS: the packet is not
+   allowed to go out through the port which is offloaded by a hardware
+   switchdev, checked by nbp_switchdev_allowed_egress().
 
+6) SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED: both source port and dest
+   port are in BR_ISOLATED state when bridge forwarding.
 
+Signed-off-by: xu xin <xu.xin16@zte.com.cn>
+Reviewed-by: Zhang Yunkai <zhang.yunkai@zte.com.cn>
+Reviewed-by: Yang Yang <yang.yang19@zte.com.cn>
+Cc: Xuexin Jiang <jiang.xuexin@zte.com.cn>
+---
+ include/net/dropreason.h | 33 ++++++++++++++++++++++++++++++++
+ net/bridge/br_forward.c  | 49 +++++++++++++++++++++++++++++++++++++-----------
+ 2 files changed, 71 insertions(+), 11 deletions(-)
+
+diff --git a/include/net/dropreason.h b/include/net/dropreason.h
+index c0a3ea806cd5..888039fd01c9 100644
+--- a/include/net/dropreason.h
++++ b/include/net/dropreason.h
+@@ -78,6 +78,12 @@
+ 	FN(IPV6_NDISC_BAD_CODE)		\
+ 	FN(IPV6_NDISC_BAD_OPTIONS)	\
+ 	FN(IPV6_NDISC_NS_OTHERHOST)	\
++	FN(BRIDGE_FWD_NO_BACKUP_PORT) \
++	FN(BRIDGE_FWD_SAME_PORT) \
++	FN(BRIDGE_NON_FORWARDING_STATE) \
++	FN(BRIDGE_NOT_ALLOWED_EGRESS) \
++	FN(BRIDGE_SWDEV_NOT_ALLOWED_EGRESS) \
++	FN(BRIDGE_BOTH_PORT_ISOLATED) \
+ 	FNe(MAX)
+
+ /**
+@@ -338,6 +344,33 @@ enum skb_drop_reason {
+ 	 * for another host.
+ 	 */
+ 	SKB_DROP_REASON_IPV6_NDISC_NS_OTHERHOST,
++	/** @SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT: failed to get a backup
++	 * port link when the destination port is down.
++	 */
++	SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT,
++	/** @SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT: destination port is the same
++	 * with originating port when forwarding by a bridge.
++	 */
++	SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT,
++	/** @SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE: the bridge's state is
++	 * not forwarding.
++	 */
++	SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE,
++	/** @SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS: the packet is not allowed
++	 * to go out through the port due to vlan filtering.
++	 */
++	SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS,
++	/** @SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS: the packet is not
++	 * allowed to go out through the port which is offloaded by a hardware
++	 * switchdev, checked by nbp_switchdev_allowed_egress(). E.g, the source
++	 * switchdev is the same with the switchdev by which the dest port is
++	 * offloaded.
++	 */
++	SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS,
++	/** @SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED: both source port and dest
++	 * port are in BR_ISOLATED state when bridge forwarding.
++	 */
++	SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED,
+ 	/**
+ 	 * @SKB_DROP_REASON_MAX: the maximum of drop reason, which shouldn't be
+ 	 * used as a real 'reason'
+diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+index 02bb620d3b8d..7ebdf9937125 100644
+--- a/net/bridge/br_forward.c
++++ b/net/bridge/br_forward.c
+@@ -18,16 +18,39 @@
+ #include "br_private.h"
+
+ /* Don't forward packets to originating port or forwarding disabled */
+-static inline int should_deliver(const struct net_bridge_port *p,
+-				 const struct sk_buff *skb)
++static inline bool should_deliver(const struct net_bridge_port *p, const struct sk_buff *skb,
++					 enum skb_drop_reason *need_reason)
+ {
+ 	struct net_bridge_vlan_group *vg;
++	enum skb_drop_reason reason;
+
+ 	vg = nbp_vlan_group_rcu(p);
+-	return ((p->flags & BR_HAIRPIN_MODE) || skb->dev != p->dev) &&
+-		p->state == BR_STATE_FORWARDING && br_allowed_egress(vg, skb) &&
+-		nbp_switchdev_allowed_egress(p, skb) &&
+-		!br_skb_isolated(p, skb);
++	if (!(p->flags & BR_HAIRPIN_MODE) && skb->dev == p->dev) {
++		reason = SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT;
++		goto undeliverable;
++	}
++	if (p->state != BR_STATE_FORWARDING) {
++		reason = SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE;
++		goto undeliverable;
++	}
++	if (!br_allowed_egress(vg, skb)) {
++		reason = SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS;
++		goto undeliverable;
++	}
++	if (!nbp_switchdev_allowed_egress(p, skb)) {
++		reason = SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS;
++		goto undeliverable;
++	}
++	if (br_skb_isolated(p, skb)) {
++		reason = SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED;
++		goto undeliverable;
++	}
++	return true;
++
++undeliverable:
++	if (need_reason)
++		*need_reason = reason;
++	return false;
+ }
+
+ int br_dev_queue_push_xmit(struct net *net, struct sock *sk, struct sk_buff *skb)
+@@ -144,6 +167,8 @@ static int deliver_clone(const struct net_bridge_port *prev,
+ void br_forward(const struct net_bridge_port *to,
+ 		struct sk_buff *skb, bool local_rcv, bool local_orig)
+ {
++	enum skb_drop_reason reason = SKB_DROP_REASON_NOT_SPECIFIED;
++
+ 	if (unlikely(!to))
+ 		goto out;
+
+@@ -152,12 +177,14 @@ void br_forward(const struct net_bridge_port *to,
+ 		struct net_bridge_port *backup_port;
+
+ 		backup_port = rcu_dereference(to->backup_port);
+-		if (unlikely(!backup_port))
++		if (unlikely(!backup_port)) {
++			reason = SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT;
+ 			goto out;
++		}
+ 		to = backup_port;
+ 	}
+
+-	if (should_deliver(to, skb)) {
++	if (should_deliver(to, skb, &reason)) {
+ 		if (local_rcv)
+ 			deliver_clone(to, skb, local_orig);
+ 		else
+@@ -167,7 +194,7 @@ void br_forward(const struct net_bridge_port *to,
+
+ out:
+ 	if (!local_rcv)
+-		kfree_skb(skb);
++		kfree_skb_reason(skb, reason);
+ }
+ EXPORT_SYMBOL_GPL(br_forward);
+
+@@ -178,7 +205,7 @@ static struct net_bridge_port *maybe_deliver(
+ 	u8 igmp_type = br_multicast_igmp_type(skb);
+ 	int err;
+
+-	if (!should_deliver(p, skb))
++	if (!should_deliver(p, skb, NULL))
+ 		return prev;
+
+ 	nbp_switchdev_frame_mark_tx_fwd_to_hwdom(p, skb);
+@@ -254,7 +281,7 @@ static void maybe_deliver_addr(struct net_bridge_port *p, struct sk_buff *skb,
+ 	struct net_device *dev = BR_INPUT_SKB_CB(skb)->brdev;
+ 	const unsigned char *src = eth_hdr(skb)->h_source;
+
+-	if (!should_deliver(p, skb))
++	if (!should_deliver(p, skb, NULL))
+ 		return;
+
+ 	/* Even with hairpin, no soliloquies - prevent breaking IPv6 DAD */
 -- 
-Dennis Hamester
-Software Engineering Lead
-
-jusst.engineering
-Wrangelstraße 111
-D - 20253 Hamburg
-
-tel: +49 40 521 600 10
-fax: +49 40 1800 86 76
-mobil: +49 152 310 698 27
-mail: dhamester@jusst.de
-
-https://jusst.engineering/
-
-jusst technologies GmbH, Ohlstedter Straße 12, D - 22397 Hamburg
-Vertretungsberechtigte Geschäftsführer: Julian Scheel, Sebastian Scheel
-Registergericht: Amtsgericht Hamburg
-Registernummer: HRB 94300
-
--
-
-Confidentiality notice:
-
-The content of this email is confidential.
-If you are not the intended addressee, or if the information provided in 
-this
-email or in its attachments is evidently not destined for you, please notify
-us immediately and delete the message received in error including all its
-attachments. Any unauthorized review, processing, distribution, copying,
-storage, printout or other use of this message or its attachments is 
-prohibited.
+2.15.2
