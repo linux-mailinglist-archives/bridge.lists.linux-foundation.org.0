@@ -1,94 +1,104 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB466D9970
-	for <lists.bridge@lfdr.de>; Thu,  6 Apr 2023 16:17:52 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386576D9C17
+	for <lists.bridge@lfdr.de>; Thu,  6 Apr 2023 17:20:51 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 65DBB417BA;
-	Thu,  6 Apr 2023 14:17:48 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 65DBB417BA
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20210112 header.b=AEdRrM5s
+	by smtp1.osuosl.org (Postfix) with ESMTP id 8131D842B4;
+	Thu,  6 Apr 2023 15:20:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8131D842B4
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PwD70L4IDjR5; Thu,  6 Apr 2023 14:17:47 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 9450041E31;
-	Thu,  6 Apr 2023 14:17:46 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9450041E31
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id JCVNgijkkXZ2; Thu,  6 Apr 2023 15:20:49 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 25112843BA;
+	Thu,  6 Apr 2023 15:20:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 25112843BA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1F62FC002A;
-	Thu,  6 Apr 2023 14:17:46 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B6C2CC008C;
+	Thu,  6 Apr 2023 15:20:47 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9BB13C002A
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 14:17:45 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id F1D85C002A
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:20:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 6952C60F0D
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 14:17:45 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6952C60F0D
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20210112 header.b=AEdRrM5s
+ by smtp1.osuosl.org (Postfix) with ESMTP id DA192843BA
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:20:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org DA192843BA
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id tffKRir8dMz6 for <bridge@lists.linux-foundation.org>;
- Thu,  6 Apr 2023 14:17:44 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 05D9F60E29
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com
- [IPv6:2607:f8b0:4864:20::835])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 05D9F60E29
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 14:17:43 +0000 (UTC)
-Received: by mail-qt1-x835.google.com with SMTP id h3so11391344qtu.1
- for <bridge@lists.linux-foundation.org>; Thu, 06 Apr 2023 07:17:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680790662;
- h=content-disposition:mime-version:message-id:subject:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=7vagdoWVLs74/YSjQDxpvM8aXKUgVP/cIPrMpvJRI3U=;
- b=AEdRrM5sx5wSpH/Jo7wv8lWa6/vwAix2RC/BI6EHQ0zoLks9Xls9n/l3R7E5rJoF9a
- fMmftNB7rQIK9dgkYMUSm1rg6v2oQhrSbdcNwwYQwM6CoLyNsZiKV9U2xiyUyQ+T8aKs
- j5vYJM07vPNKsAmQFF4MggGWw0X+f2/TSHkhkcECSByJBTJJ39FCzg5Y4SaOr3Fq3sVS
- jSPFhCcPNKgTeOGHVKnQdPhK7lvZOVylUuBEJzZtX/SgqdjhROVvj069Etzt7sjL3ncL
- 4fAwz1Hhw/0TZJR8AHAW+ZYTde9vbvV6ssitGwh0UMxCtMPKfIoBoATgFcGD10d3JJaP
- CBWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680790662;
- h=content-disposition:mime-version:message-id:subject:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=7vagdoWVLs74/YSjQDxpvM8aXKUgVP/cIPrMpvJRI3U=;
- b=oAbwt9yM88HTSL+qJwk4mzOikPuhfxuvt33LVqkWHrplUOGR52zsvTjRAw2MAirqQl
- ei9olBvzZFxao6eOiZSWtQcY/ZWm29yt4hkOaZglt36bnwl54VGupvH5H8TWUFfrLvCW
- O7DfivLUdgHBwuSahNcDfAjUix8jRY5Kjwyej9/oDbPad+iVdE3akiuoGYM8h30/DqOU
- EY9KJoP+OUPZOsapaTGuovDO9aQ1cY8AdRY/B+in7DLw2ed+qr52QA31qOoDTKrjkBIy
- x48Eatxy2Zvku7cVjBqh3G/F0W4Q5v5pQkpjjKru6ilMOVu3XOgSAzj84PCqEncGxRXM
- 1tbw==
-X-Gm-Message-State: AAQBX9fqPTP+8V0HYF0J9UB390LBc6M6Dpir2bx6Voel+xtXcUadscB7
- RK3RBk4wKvyYr79MK5L9FocHYuO5ED4=
-X-Google-Smtp-Source: AKy350Y2sEaLuNLxznQXWjMtnE3fvJSimN02UyX+/JFwOrcOpiQGYHxopwakiDNYRZEli0IbeDnqYw==
-X-Received: by 2002:ac8:5e08:0:b0:3dc:ac3b:ca6c with SMTP id
- h8-20020ac85e08000000b003dcac3bca6cmr10883258qtx.6.1680790662370; 
- Thu, 06 Apr 2023 07:17:42 -0700 (PDT)
-Received: from errol.ini.cmu.edu (pool-72-77-81-136.pitbpa.fios.verizon.net.
- [72.77.81.136]) by smtp.gmail.com with ESMTPSA id
- g189-20020a37b6c6000000b00745a78b0b3asm480857qkf.130.2023.04.06.07.17.41
- for <bridge@lists.linux-foundation.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Apr 2023 07:17:41 -0700 (PDT)
-Date: Thu, 6 Apr 2023 10:17:40 -0400
-From: "Gabriel L. Somlo" <gsomlo@gmail.com>
-To: bridge@lists.linux-foundation.org
-Message-ID: <ZC7UhHW8+82OQ5oL@errol.ini.cmu.edu>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id DKyNMLppD_N2 for <bridge@lists.linux-foundation.org>;
+ Thu,  6 Apr 2023 15:20:41 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BFF60842B4
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id BFF60842B4
+ for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 15:20:41 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 55C7918837A6;
+ Thu,  6 Apr 2023 15:20:32 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 1E16725002FD;
+ Thu,  6 Apr 2023 15:20:32 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id F1F5A9B403F4; Thu,  6 Apr 2023 15:20:31 +0000 (UTC)
+X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
+Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
+ [2.104.116.184])
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 5442891201E3;
+ Thu,  6 Apr 2023 15:20:31 +0000 (UTC)
+From: Hans Schultz <netdev@kapio-technology.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+In-Reply-To: <20230330150752.gdquw5kudtrqgzyz@skbuf>
+References: <20230327160009.bdswnalizdv2u77z@skbuf>
+ <87pm8tooe1.fsf@kapio-technology.com>
+ <20230327225933.plm5raegywbe7g2a@skbuf>
+ <87ileljfwo.fsf@kapio-technology.com>
+ <20230328114943.4mibmn2icutcio4m@skbuf>
+ <87cz4slkx5.fsf@kapio-technology.com>
+ <20230330124326.v5mqg7do25tz6izk@skbuf>
+ <87wn2yxunb.fsf@kapio-technology.com>
+ <20230330130936.hxme34qrqwolvpsh@skbuf>
+ <875yaimgro.fsf@kapio-technology.com>
+ <20230330150752.gdquw5kudtrqgzyz@skbuf>
+Date: Thu, 06 Apr 2023 17:17:46 +0200
+Message-ID: <87o7o1ox9h.fsf@kapio-technology.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Clacks-Overhead: GNU Terry Pratchett
-Subject: [Bridge] Option to forward *unconditionally* on a bridge?
+Content-Type: text/plain
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Kurt Kanzenbach <kurt@linutronix.de>, Eric Dumazet <edumazet@google.com>,
+ "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
+ Shuah Khan <shuah@kernel.org>, Ivan Vecera <ivecera@redhat.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
+ "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
+ Roopa Prabhu <roopa@nvidia.com>, kuba@kernel.org,
+ Paolo Abeni <pabeni@redhat.com>,
+ =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
+ Christian Marangi <ansuelsmth@gmail.com>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
+ DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
+ "moderated list:ARM/Mediatek SoC
+ support" <linux-mediatek@lists.infradead.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ netdev@vger.kernel.org, open list <linux-kernel@vger.kernel.org>,
+ "maintainer:MICROCHIP KSZ SERIES
+ ETHERNET SWITCH DRIVER" <UNGLinuxDriver@microchip.com>,
+ "open list:RENESAS RZ/N1
+ A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH v2 net-next 2/6] net: dsa: propagate flags down
+ towards drivers
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -103,65 +113,13 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-TL;DR: Is there a way to force a bridge to forward anything and
-everything on all ports (except the ingress port) *regardles* of
-any permanent FDB entries (such as the MAC addresses of interfaces
-acting as bridge ports)?
+On Thu, Mar 30, 2023 at 18:07, Vladimir Oltean <olteanv@gmail.com> wrote:
+> As a bug fix, stop reporting to switchdev those FDB entries with
+> BR_FDB_ADDED_BY_USER && !BR_FDB_STATIC. Then, after "net" is merged into
+> "net-next" next Thursday (the ship has sailed for today), add "bool static"
 
-For context, I'm using a network-namespace (container) based simulator
-(think GNS3 or CORE), which allow me to run multiple FRR instances
-in their own dedicated netns, connected together by veth pairs and
-bridges.
-
-To bridge this simulation outside the machine hosting it, the
-simulators allow host machine interfaces to be bridged to bridges
-and veth pairs that belong to the simulation, e.g.:
-
- -----------------------------
- VM running simulation       |
-                             |
- sim. node,                  |
- (container),                |
- dflt gateway                |
- -----------    - br0 -      |             -----------------
-           |   /       \     |  inter-VM   | External VM   |
-      eth0 + veth0    ens32  +-- vswitch --+ using in-sim  |
-   Sim.MAC |          VM.MAC |             | dflt. gateway |
- -----------                 |             -----------------
- -----------------------------
-
-This requires the vswitch outside of the vm hosting the simulation to
-allow promiscuous mode (so that containers can send/receive Ethernet
-frames through the hosting VM's interface (e.g., ens32).
-
-It turns out that at least on one "cloudy" hosted solution the guest
-VMs are forbidden from sending "spoofed" ethernet traffic, i.e. the
-ens32 "vm.mac" address is strictly enforced outside the VM (on the
-inter-vm vswitch).
-
-The obvious solution would be to assign ens32's VM.MAC as the mac
-address of eth0 inside the container, which would allow it to talk
-on the ethernet broadcast domain bridged via br0 and the inter-vm
-vswitch (assuming we only have *one* such container on the "inside").
-
-Trouble is, br0 won't forward frames *to* VM.MAC received from
-external sources, since that is a permanent FDB entry associated 
-with the "ingress interface".
-
-I'm looking to turn br0 into a "dumb hub". Typically, the closest
-approximation to "hub behavior" is accomplished by disabling MAC
-learning on the bridge interface(s), which will force permanent
-flooding.
-
-Turns out, the exception to that is if a mac address associated with
-one of the bridge ports is involved -- no "hub" behavior in that case,
-because those FDB entries aren't learned, but rather permanently
-installed during bridge set-up.
-
-Any way to override that (and ignore permanent FDB) entries would save
-me a lot of effort to "hack" my way around this restriction using
-multiple bridges and ebtables NAT :)
-
-Thanks for any clue, pointers, or advice.
-
---Gabriel
+It is probably too late today (now I have a Debian based VM that can do
+the selftests), but with this bug fix I have 1) not submitted bug fixes
+before and 2) it probably needs an appropriate explanation, where I
+don't know the problem well enough for general switchcores to submit
+with a suitable text.
