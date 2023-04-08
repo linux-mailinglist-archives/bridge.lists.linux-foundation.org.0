@@ -1,102 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37426D9D8B
-	for <lists.bridge@lfdr.de>; Thu,  6 Apr 2023 18:29:57 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99F3B6DB86E
+	for <lists.bridge@lfdr.de>; Sat,  8 Apr 2023 05:03:30 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id AB71A41EC3;
-	Thu,  6 Apr 2023 16:29:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AB71A41EC3
+	by smtp2.osuosl.org (Postfix) with ESMTP id 65A14400EC;
+	Sat,  8 Apr 2023 03:03:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 65A14400EC
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=rsmamPDt
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ViO86dQqrwAT; Thu,  6 Apr 2023 16:29:53 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id iekFo1I1GjLc; Sat,  8 Apr 2023 03:03:27 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id E683541D87;
-	Thu,  6 Apr 2023 16:29:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org E683541D87
+	by smtp2.osuosl.org (Postfix) with ESMTPS id A9ECB4048D;
+	Sat,  8 Apr 2023 03:03:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A9ECB4048D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A2BC1C008C;
-	Thu,  6 Apr 2023 16:29:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 38E31C0089;
+	Sat,  8 Apr 2023 03:03:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C4D00C002A
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 16:29:51 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 60108C002A
+ for <bridge@lists.linux-foundation.org>; Sat,  8 Apr 2023 03:03:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 92D74843B3
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 16:29:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 92D74843B3
+ by smtp4.osuosl.org (Postfix) with ESMTP id 2523341F59
+ for <bridge@lists.linux-foundation.org>; Sat,  8 Apr 2023 03:03:25 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2523341F59
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=rsmamPDt
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id s078csQwofll for <bridge@lists.linux-foundation.org>;
- Thu,  6 Apr 2023 16:29:51 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id WSVhwKV_gmIn for <bridge@lists.linux-foundation.org>;
+ Sat,  8 Apr 2023 03:03:22 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E0DF0843AB
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp1.osuosl.org (Postfix) with ESMTPS id E0DF0843AB
- for <bridge@lists.linux-foundation.org>; Thu,  6 Apr 2023 16:29:50 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 2805518835E0;
- Thu,  6 Apr 2023 16:29:44 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 178B125002BB;
- Thu,  6 Apr 2023 16:29:44 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 0DE709B403E2; Thu,  6 Apr 2023 16:29:44 +0000 (UTC)
-X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
-Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
- [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 56BB791201E3;
- Thu,  6 Apr 2023 16:29:43 +0000 (UTC)
-From: Hans Schultz <netdev@kapio-technology.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-In-Reply-To: <20230406152443.b3ps4x7e4kz4aes2@skbuf>
-References: <20230318141010.513424-1-netdev@kapio-technology.com>
- <20230318141010.513424-7-netdev@kapio-technology.com>
- <ZBgdAo8mxwnl+pEE@shredder> <87a5zzh65p.fsf@kapio-technology.com>
- <ZCMYbRqd+qZaiHfu@shredder> <874jq22h2u.fsf@kapio-technology.com>
- <20230330192714.oqosvifrftirshej@skbuf>
- <871ql5mjjp.fsf@kapio-technology.com>
- <20230331093732.s6loozkdhehewlm4@skbuf>
- <87tty1nlb4.fsf@kapio-technology.com>
- <20230406152443.b3ps4x7e4kz4aes2@skbuf>
-Date: Thu, 06 Apr 2023 18:26:58 +0200
-Message-ID: <87wn2pj7sd.fsf@kapio-technology.com>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1D46641EFC
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 1D46641EFC
+ for <bridge@lists.linux-foundation.org>; Sat,  8 Apr 2023 03:03:22 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6B95765377;
+ Sat,  8 Apr 2023 03:03:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF3CC433D2;
+ Sat,  8 Apr 2023 03:03:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1680923000;
+ bh=Qf5obg+kL73O79EP37quol4/OI6cp1moqLG2S8Dpxws=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=rsmamPDtsh4Efg7NE67BKnZ0i0b5Rf4UZmYjmvrwQF5g5vN6lRJmdxJZ3KgatruuJ
+ iYlFpEKBJ+DnSutf6kimjmyfDQ0ZSdRLpVJfQ6quNLiIAt1fKFHOOEUqyIE0nuaWoH
+ qMP3TUG9O4R6VygrURyNJ1BINKABFdq/16OVQ/9O1P+338aEeWxyObnJDS0BXMhHSH
+ ucR0UlJ/H0NP9HagRVhKwC+sQVWnsqp934Oe6Q4maBj2d6sQpn96ddwbeFL6tTCPk1
+ d6YcbuAXyHK9owauYuDJBsmUTJbdAQQ6vuG0wyfDQigd8bmUWewPU8R46vRr5Z/lcE
+ yll5YHTeRN1qQ==
+Date: Fri, 7 Apr 2023 20:03:19 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: <yang.yang29@zte.com.cn>
+Message-ID: <20230407200319.72fd763f@kernel.org>
+In-Reply-To: <202304061930349843930@zte.com.cn>
+References: <202304061930349843930@zte.com.cn>
 MIME-Version: 1.0
-Content-Type: text/plain
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Kurt Kanzenbach <kurt@linutronix.de>, open list <linux-kernel@vger.kernel.org>,
- Eric Dumazet <edumazet@google.com>, "open
- list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- Shuah Khan <shuah@kernel.org>, Ivan Vecera <ivecera@redhat.com>,
- Florian Fainelli <f.fainelli@gmail.com>, "moderated
- list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
- Ido Schimmel <idosch@nvidia.com>, kuba@kernel.org,
- Paolo Abeni <pabeni@redhat.com>,
- =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Woojung Huh <woojung.huh@microchip.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Jiri Pirko <jiri@resnulli.us>,
- Hauke Mehrtens <hauke@hauke-m.de>, Sean Wang <sean.wang@mediatek.com>,
- DENG Qingfang <dqfext@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>,
- "moderated list:ARM/Mediatek SoC
- support" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "moderated list:ARM/Mediatek SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- netdev@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>,
- "maintainer:MICROCHIP KSZ SERIES ETHERNET SWITCH DRIVER"
- <UNGLinuxDriver@microchip.com>, "open list:RENESAS RZ/N1
- A5PSW SWITCH DRIVER" <linux-renesas-soc@vger.kernel.org>, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH v2 net-next 6/6] selftests: forwarding: add
- dynamic FDB test
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org, edumazet@google.com, zhang.yunkai@zte.com.cn,
+ jiang.xuexin@zte.com.cn, roopa@nvidia.com, pabeni@redhat.com,
+ davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next] net/bridge: add drop reasons for
+ bridge forwarding
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -111,18 +89,87 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Apr 06, 2023 at 18:24, Vladimir Oltean <olteanv@gmail.com> wrote:
-> On Fri, Mar 31, 2023 at 02:43:11PM +0200, Hans Schultz wrote:
->> I will as long as the system is as it is with these selftests, just run
->> single subtests at a time on target, but if I have new phy problems like
->> the one you have seen I have had before, then testing on target becomes
->> off limits.
->
-> Please open a dedicated communication channel (separate email thread on
-> netdev@vger.kernel.org) with the appropriate maintainers for the PHY
-> code that is failing for you in To:, and you will get the help that you
-> need to resolve that and to be able to test on the target board.
+On Thu, 6 Apr 2023 19:30:34 +0800 (CST) yang.yang29@zte.com.cn wrote:
+> From: xu xin <xu.xin16@zte.com.cn>
+> 
+> This creates six drop reasons as follows, which will help users know the
+> specific reason why bridge drops the packets when forwarding.
+> 
+> 1) SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT: failed to get a backup
+>    port link when the destination port is down.
+> 
+> 2) SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT: destination port is the same
+>    with originating port when forwarding by a bridge.
+> 
+> 3) SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE: the bridge's state is
+>    not forwarding.
+> 
+> 4) SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS: the packet is not allowed
+>    to go out through the port due to vlan filtering.
+> 
+> 5) SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS: the packet is not
+>    allowed to go out through the port which is offloaded by a hardware
+>    switchdev, checked by nbp_switchdev_allowed_egress().
+> 
+> 6) SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED: both source port and dest
+>    port are in BR_ISOLATED state when bridge forwarding.
 
-The errors from the phy I saw in February. Maybe something was fixed in
-the meantime as I did not see the same warning and exception last I
-tried to run the newest kernel on target a little over a week ago.
+> @@ -338,6 +344,33 @@ enum skb_drop_reason {
+>  	 * for another host.
+>  	 */
+>  	SKB_DROP_REASON_IPV6_NDISC_NS_OTHERHOST,
+> +	/** @SKB_DROP_REASON_BRIDGE_FWD_NO_BACKUP_PORT: failed to get a backup
+> +	 * port link when the destination port is down.
+> +	 */
+
+That's not valid kdoc. Text can be on the same line as the value only
+in one-line comments. Otherwise:
+	/**
+	 * @VALUE: bla bla bla
+	 *	more blas.
+	 */
+
+> +static inline bool should_deliver(const struct net_bridge_port *p, const struct sk_buff *skb,
+> +					 enum skb_drop_reason *need_reason)
+>  {
+>  	struct net_bridge_vlan_group *vg;
+> +	enum skb_drop_reason reason;
+> 
+>  	vg = nbp_vlan_group_rcu(p);
+> -	return ((p->flags & BR_HAIRPIN_MODE) || skb->dev != p->dev) &&
+> -		p->state == BR_STATE_FORWARDING && br_allowed_egress(vg, skb) &&
+> -		nbp_switchdev_allowed_egress(p, skb) &&
+> -		!br_skb_isolated(p, skb);
+> +	if (!(p->flags & BR_HAIRPIN_MODE) && skb->dev == p->dev) {
+> +		reason = SKB_DROP_REASON_BRIDGE_FWD_SAME_PORT;
+> +		goto undeliverable;
+> +	}
+> +	if (p->state != BR_STATE_FORWARDING) {
+> +		reason = SKB_DROP_REASON_BRIDGE_NON_FORWARDING_STATE;
+> +		goto undeliverable;
+> +	}
+> +	if (!br_allowed_egress(vg, skb)) {
+> +		reason = SKB_DROP_REASON_BRIDGE_NOT_ALLOWED_EGRESS;
+> +		goto undeliverable;
+> +	}
+> +	if (!nbp_switchdev_allowed_egress(p, skb)) {
+> +		reason = SKB_DROP_REASON_BRIDGE_SWDEV_NOT_ALLOWED_EGRESS;
+> +		goto undeliverable;
+> +	}
+> +	if (br_skb_isolated(p, skb)) {
+> +		reason = SKB_DROP_REASON_BRIDGE_BOTH_PORT_ISOLATED;
+> +		goto undeliverable;
+> +	}
+> +	return true;
+> +
+> +undeliverable:
+> +	if (need_reason)
+> +		*need_reason = reason;
+> +	return false;
+
+You can return the reason from this function. That's the whole point of
+SKB_NOT_DROPPED_YET existing and being equal to 0.
+
+Which is not to say that I know whether the reasons are worth adding
+here. We'll need to hear from bridge experts on that.
+
