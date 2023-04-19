@@ -1,146 +1,104 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399E96E68C9
-	for <lists.bridge@lfdr.de>; Tue, 18 Apr 2023 17:59:43 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CAF56E79C6
+	for <lists.bridge@lfdr.de>; Wed, 19 Apr 2023 14:30:22 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id D0C1841E0B;
-	Tue, 18 Apr 2023 15:59:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D0C1841E0B
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=FI48v2y7
+	by smtp1.osuosl.org (Postfix) with ESMTP id 9109683B03;
+	Wed, 19 Apr 2023 12:30:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9109683B03
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=3yjuxArV
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id SCNsBhdhQ-YG; Tue, 18 Apr 2023 15:59:38 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fQaz96ChbIKa; Wed, 19 Apr 2023 12:30:17 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id DD0F941E11;
-	Tue, 18 Apr 2023 15:59:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org DD0F941E11
+	by smtp1.osuosl.org (Postfix) with ESMTPS id C6B8C82255;
+	Wed, 19 Apr 2023 12:30:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C6B8C82255
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 82386C0089;
-	Tue, 18 Apr 2023 15:59:37 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 65E74C008C;
+	Wed, 19 Apr 2023 12:30:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 4D25EC002A
- for <bridge@lists.linux-foundation.org>; Tue, 18 Apr 2023 15:59:35 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7FEB5C002A
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Apr 2023 12:30:15 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 24EA6409A4
- for <bridge@lists.linux-foundation.org>; Tue, 18 Apr 2023 15:59:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 24EA6409A4
-Authentication-Results: smtp4.osuosl.org; dkim=pass (1024-bit key,
- unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
- header.s=selector2 header.b=FI48v2y7
+ by smtp4.osuosl.org (Postfix) with ESMTP id 6233B41EED
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Apr 2023 12:30:15 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6233B41EED
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
+ header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=3yjuxArV
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 59VvAhIivV4Z for <bridge@lists.linux-foundation.org>;
- Tue, 18 Apr 2023 15:59:33 +0000 (UTC)
+ with ESMTP id RZt021A7yJLo for <bridge@lists.linux-foundation.org>;
+ Wed, 19 Apr 2023 12:30:13 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7FFAB40932
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com
- (mail-db5eur02on20623.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe12::623])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 7FFAB40932
- for <bridge@lists.linux-foundation.org>; Tue, 18 Apr 2023 15:59:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nUYovfm9I5QEZxEsakTEMqhrgz44WFQEb6C+dCejlB+5IVCeUisgqW2tMD1XeFXB/kkNQ8C1tVFLlmgA1N24MNHbU3XeRBoTZTtL5gWMELtfZ3u4wt6Wsh/O0IRQF+cNF0GqIhcnyCYv7BlqJtv5Hf/NDVGLC8rY+/gfajP+J0yYLTu+RFBPb0Dg7TEJdqPBIEpB3b7phCV2tXGqd0X+2ng5i696p5AuWCnAT5MA1KE0NazuODLGlp3Z0w/RDb6gMgiJXI65zHSH+2YdpMC96RVZam0fglJmNdbETvdQkW/bZWlFQPvDaqw79K9zyl5nbas+ZxPgvU3BdU6aZN8kPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VIE5MC3JDvBtov+GVA64V3kJKYZxPb0Umu2mK4UsGOI=;
- b=YBP9j9LMPwYN6ieOjaAohZ3UJ2+nWT0YlGETrQyH3Mv0bU1FRoE0fRCLFxIXWj+HZGUVPnZZbvbAQNnrD2Peexhrsxa2ScSCwerD788dqp4PFqZnirVS1AnII7Eo0eoYhyrErjS/Af9BomNzfqaAzAzPO2rpqtjTHzaR/reli+ztFHIJCMDIogILV8gbs96rluJIevYyx08IeohSWgqLvepsc0gwgXbsO9micEY3jwNIjg/SohFvNwZQH4kf5FNFVSKgjP3TxBOZbU1S2HlPPGh+MH8X1/1LigbFfjLnMrBkO5f6s7XjwuXkNyGNqkWIZ6gN4sh1dLxQsbb1JzvkHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VIE5MC3JDvBtov+GVA64V3kJKYZxPb0Umu2mK4UsGOI=;
- b=FI48v2y7CIgwe+Rk5rIwqGdBVy5oaG6SUsPRNy0jflsPYsjQklCLhVgsJioudE2qhynh9gFtHhE+dZEgBgRV14Cy9eWs1xe0f+dJINtn1ZwuyCnkRbJooqZEXA44C1DvFyCNn2DsTaoqXwgaCKX+xlZZfiDJrj0o8UaJzNVE+Os=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by VI1PR04MB7024.eurprd04.prod.outlook.com (2603:10a6:800:124::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Tue, 18 Apr
- 2023 15:59:30 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::55b1:d2dd:4327:912b]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::55b1:d2dd:4327:912b%5]) with mapi id 15.20.6298.028; Tue, 18 Apr 2023
- 15:59:30 +0000
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: netdev@vger.kernel.org
-Date: Tue, 18 Apr 2023 18:59:02 +0300
-Message-Id: <20230418155902.898627-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR0P281CA0119.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a8::17) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org F34A841DDB
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
+ [IPv6:2a00:1450:4864:20::636])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id F34A841DDB
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Apr 2023 12:30:12 +0000 (UTC)
+Received: by mail-ej1-x636.google.com with SMTP id fy21so38234863ejb.9
+ for <bridge@lists.linux-foundation.org>; Wed, 19 Apr 2023 05:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1681907411; x=1684499411;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=avqNslnB4KohY2YwvfuPOO2n1lMtgBQmzRxlc74gZbM=;
+ b=3yjuxArVmI5nyCoyJTDePB0cVEtEM++DI8nVuePKhdy1/WOQha+f+sFpnpHAgeA/cl
+ alU672tyBuIVWDO7VkC++qB4zQcNYvwDdotIHoPO7I7zJe4+VWrS1n5etxbjS9DjqEc/
+ q98DFJK2bD2GW+Rk8Kulf8uEU+prtBEnYhfcDe+zQ96RdhixRRwqbirj2rgpbAQ5tYsm
+ OIJGGtKi8pdD20iqJ1oP9Xw9GTsikAY1BOC79SCxoisBGGP4iVzrP9Kav7tX+4KcinfA
+ f70joN+3jGmdFemC3Ev2ZGfi1N5NjKUbQok6YGCIdiHMV5uxcf0WoV8BdMXib8uwBKKg
+ +Hgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681907411; x=1684499411;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=avqNslnB4KohY2YwvfuPOO2n1lMtgBQmzRxlc74gZbM=;
+ b=OwU4jp4CV00+kiPftfpxptzYxKuroGUEr8RS8l7t7bOqvJRWdfsGivcSidCCI6Lg31
+ Kj7cZ1uhOl5P6LrTKAQv1ST0Sg2GebPv2uMPmS9BM96y9LlFyZbleHqwUIziAG4x10ye
+ D4bCsZ5duIZVhqCQzSKKJrLXlPuKtmOqQt4Bn07InWyr9kb+7dhelMidnB6sf1pJ0yWS
+ 0wM27HLazq9/Lh01dNj2LIiGDfIdu/0U4Mftd89KSRp2pUCTZ5fG3G1EOE3FsmHV34Q/
+ 72rzQXQii764qyWOOrbDMo/jle8iYjZT0w48aVDvZCZVDDYoP1zPlR8bdy6YnHWizV0Y
+ ZB6Q==
+X-Gm-Message-State: AAQBX9caIKwb1SIp26JY8o/nHUx6ZDI6GP77J40Q5+U8P5n0frcb9j6X
+ yAb53Bbemedr3vyDjOfq7bTiFA==
+X-Google-Smtp-Source: AKy350bZNbwe0z00tAsXhj8W1ZPY/I+8QRfEW5wXUnH2LbVAQiU8ZADoB+3/Jhpx7yvVyN4hjlw9Lg==
+X-Received: by 2002:a17:906:b197:b0:94f:788:6bc with SMTP id
+ w23-20020a170906b19700b0094f078806bcmr14249974ejy.37.1681907410733; 
+ Wed, 19 Apr 2023 05:30:10 -0700 (PDT)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ x2-20020a1709064a8200b0094f49f58019sm5200046eju.27.2023.04.19.05.30.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Apr 2023 05:30:09 -0700 (PDT)
+Message-ID: <95a773f6-5f88-712e-c494-9414d7090144@blackwall.org>
+Date: Wed, 19 Apr 2023 15:30:07 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|VI1PR04MB7024:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2565b12-426c-46ce-1881-08db4025e496
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bgE8laYMe2IpRlsu93xvMTEkWh0KPwu5uptZqdT+5IJiLddPkkcphAIbCMZyRnjDYPdZwFxWqF8jyEtzpOXjlq2FfjTe8P5KIIuL8XpirEc+XQpOF7e85ravnyxYUaJ/VbJ8cQfZe6dCfihO+lGyBCcA0B21NWJCyTkvkejioi5Z1RzpmTR+tlKuZiGCsPVPlfgop2frqTB2XepHm/HtyRo52dnY78EaVE5gMicK7suwTaSuY7Bcq0/F6kUidmAUjknAdJoziPBq30vekdiLC89J3FRaZHvrks8UPqlYtkOEoKG99Rj0Flc/93d4m/GlPvjC57txnu3tqJZpZBccJnyvrt//eSsKuF0kLGbOE85WI9wdnJhpMibAnKGRko1/WgZDxRFgbZKISmU/YiN8vmY3o65M8Owo4ZVevA59FbneaPPNWlaymtNpN6YGJYF1Xy1UNzVNcFXc4zkIPo8R6YNANoxmdfy9nr55wlp6Uu9bnB3YxzGmnBVMWKXSRIz5KC1gAjuttJan6LDwU7vZrzTabMlafIsceJYqBsNoeDH9LAxMidg07qp/ZRjii9YXCEH8Rhn2x9PO0Vwaa38VUaQybVBbnorIEGrhFa4LqVxEdawXxAruFHiP1IjNPt0wCj2EW3AwfqjOOuCaCBUBcw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR04MB6452.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(451199021)(7416002)(5660300002)(44832011)(86362001)(2616005)(6512007)(83380400001)(966005)(1076003)(26005)(6506007)(38100700002)(38350700002)(8676002)(186003)(8936002)(478600001)(54906003)(6666004)(6486002)(316002)(52116002)(41300700001)(36756003)(66476007)(66556008)(4326008)(6916009)(66946007)(2906002)(66899021);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/YB5oQ5cUjf+lfTgwpQBML5oYEcULyHU/Fbr+Y5i4d4iYzkCgYMaA3hdJ5Ek?=
- =?us-ascii?Q?r98MMNEJGvUH6fa+dZQv3sog51+kn/YuPWKHE/EZCKSwj4Bk5mEneEMDfX0Q?=
- =?us-ascii?Q?nZpNJdtZPh1GN3kFytV01Qovto6y9smzW1yiGHLvpeeiNB0SaS2QpJVYmBof?=
- =?us-ascii?Q?68hwErWu6FTFmygVnPjZwyz0ldBQ3KO0HDIVU5WHQONk/gaTzi/yNthlAz8L?=
- =?us-ascii?Q?5RAjsyvRrAFxS6RFYMLTzPr+fIS0q58hF4EtwYzMnM+QF+wOtn8ABH4qxqHb?=
- =?us-ascii?Q?rhYz5xBQCeo3NgN2G/ufpgVB0qKyC3cSR4NULxNqnkVFzwtfxVTN7UVDPDgC?=
- =?us-ascii?Q?eGUVvClqkLru164cJAdjEdtvsvoWpoo3GVSFRcbogDrIf0CuE9PWgNuI3oTk?=
- =?us-ascii?Q?IcVFY9RDpDCRMRKJf5oiNgt4MbLR4O3sSmkhJYLsGVe6Sh3WAm2GNKyxy0WV?=
- =?us-ascii?Q?l5aKhXy/7j4YTuSf5Ad0tY/qJTSZNPedDa1MAA0mKyg6l3VPrWRJMOxLQPfL?=
- =?us-ascii?Q?t36faJv78K+uC2oTCxQ+A0c5UsVDndcFMxqRgvhaERAkPjgePnQkhXFlZc8E?=
- =?us-ascii?Q?GWq6RYwhT/mdjaWi0V2h/NEQta5wsYlNjqYav2kuYIfVz42WekQCKXmSl3eA?=
- =?us-ascii?Q?irJk27TdmpL0uV0QSI70K2i6cOymaMWiyfJWmrN2lnKn57FmJEBjQKZfsGw/?=
- =?us-ascii?Q?P7yO1okDaF2UUi+CZEKkQOGiQ6CtvrjY4Uk9EI+KwZWymhfTYAIGC2YXAjQM?=
- =?us-ascii?Q?V/8JV6KAH0Gk4wozaTFx69CHpecprttd801+kr+RmW102JHodZil00w+HieN?=
- =?us-ascii?Q?c3qL8aoD1h3wdnw+LuJNYVEC+Lir9IgNktNqXQSMkCkDtJcJWba/Ve9QTYrH?=
- =?us-ascii?Q?RCUnDh4/NwKfex5olmwQh//iOoQzdkNYnuRcZbnkkI89N74qA9dohTP3hJS3?=
- =?us-ascii?Q?XdV/Gp/k9FCfFkcbyIYzzAw3QbaXpbR4Csj4Xl1dNtXVRuLdaQOWJovk80og?=
- =?us-ascii?Q?HtZXSBFgQ2ROgzwpaDeh6Ite0pvXazfZmBvkNkf6IBnP5A+vNVRRXdTMu3ql?=
- =?us-ascii?Q?JQIxAnDmGBjwnyyAhGmCIwJZekblCaTzAqCKg48orJRY8YIQe12QE9Kdyykd?=
- =?us-ascii?Q?EtgrYtkAlGKdtiPcnLwszPSDX+ho6OlK7Ue7Kl6gwGYW1+88pCqst9ja0rrc?=
- =?us-ascii?Q?88M0mS8e8dwC7B4yi96z9IPQnPQClIqQj4xBbUqKX6uidrxZ/tkj3vgTZBOe?=
- =?us-ascii?Q?8h9E4v8sZlrlI1buEp1bSJz4tfZfE8lvrll3vE4jrCywU9/NdyJ1XzjihO+j?=
- =?us-ascii?Q?+psMtvk80H/UzvYMScG6ZbOXtxUk1CH5+qJ/HbYZ40HZPfUo/5hGo61pqY+2?=
- =?us-ascii?Q?obg8ku0ljXMfQlk5sCkL+9Bvfb7uF/aa4OMF1fLIbni4GtRvBEcpcS/ZV2uk?=
- =?us-ascii?Q?kDcn9ooT+JptVC9mVNxfRqTsiBzhswCcH/De2RkofrE5TPK0/EjrdR9b1lUf?=
- =?us-ascii?Q?7204BRo4AgfryVLj6vPbBwiNUFLF0WWwQMIbVlklVIH76Z55Z3tZ9y7zhJB0?=
- =?us-ascii?Q?qHSGRgWaDU3Hg6vB0+/2nJ5Ceba228ovISBVxnFckr3ukX8CLXQSh4u/3ebj?=
- =?us-ascii?Q?+g=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2565b12-426c-46ce-1881-08db4025e496
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2023 15:59:29.8354 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q1akqEanKdZYtCsjQIFvAJf2/Hmycqz2T+9ot+dYAiKSmUyRmT32uOvSXllUvhK/acpmHk5rGXGiXFS0tjNXFA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7024
-Cc: Ivan Vecera <ivecera@redhat.com>, bridge@lists.linux-foundation.org,
- Jiri Pirko <jiri@resnulli.us>, Ido Schimmel <idosch@nvidia.com>,
- Nikolay Aleksandrov <razor@blackwall.org>, Roopa Prabhu <roopa@nvidia.com>,
- Jesse Brandeburg <jesse.brandeburg@intel.com>, linux-kernel@vger.kernel.org,
- Eric Dumazet <edumazet@google.com>,
- "Hans J. Schultz" <netdev@kapio-technology.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH v2 net] net: bridge: switchdev: don't notify FDB
-	entries with "master dynamic"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org
+References: <20230413095830.2182382-1-idosch@nvidia.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20230413095830.2182382-1-idosch@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Cc: petrm@nvidia.com, mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com,
+ kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
+Subject: Re: [Bridge] [RFC PATCH net-next 0/9] bridge: Add per-{Port,
+ VLAN} neighbor suppression
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -155,96 +113,111 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-There is a structural problem in switchdev, where the flag bits in
-struct switchdev_notifier_fdb_info (added_by_user, is_local etc) only
-represent a simplified / denatured view of what's in struct
-net_bridge_fdb_entry :: flags (BR_FDB_ADDED_BY_USER, BR_FDB_LOCAL etc).
-Each time we want to pass more information about struct
-net_bridge_fdb_entry :: flags to struct switchdev_notifier_fdb_info
-(here, BR_FDB_STATIC), we find that FDB entries were already notified to
-switchdev with no regard to this flag, and thus, switchdev drivers had
-no indication whether the notified entries were static or not.
+On 13/04/2023 12:58, Ido Schimmel wrote:
+> Background
+> ==========
+> 
+> In order to minimize the flooding of ARP and ND messages in the VXLAN
+> network, EVPN includes provisions [1] that allow participating VTEPs to
+> suppress such messages in case they know the MAC-IP binding and can
+> reply on behalf of the remote host. In Linux, the above is implemented
+> in the bridge driver using a per-port option called "neigh_suppress"
+> that was added in kernel version 4.15 [2].
+> 
+> Motivation
+> ==========
+> 
+> Some applications use ARP messages as keepalives between the application
+> nodes in the network. This works perfectly well when two nodes are
+> connected to the same VTEP. When a node goes down it will stop
+> responding to ARP requests and the other node will notice it
+> immediately.
+> 
+> However, when the two nodes are connected to different VTEPs and
+> neighbor suppression is enabled, the local VTEP will reply to ARP
+> requests even after the remote node went down, until certain timers
+> expire and the EVPN control plane decides to withdraw the MAC/IP
+> Advertisement route for the address. Therefore, some users would like to
+> be able to disable neighbor suppression on VLANs where such applications
+> reside and keep it enabled on the rest.
+> 
+> Implementation
+> ==============
+> 
+> The proposed solution is to allow user space to control neighbor
+> suppression on a per-{Port, VLAN} basis, in a similar fashion to other
+> per-port options that gained per-{Port, VLAN} counterparts such as
+> "mcast_router". This allows users to benefit from the operational
+> simplicity and scalability associated with shared VXLAN devices (i.e.,
+> external / collect-metadata mode), while still allowing for per-VLAN/VNI
+> neighbor suppression control.
+> 
+> The user interface is extended with a new "neigh_vlan_suppress" bridge
+> port option that allows user space to enable per-{Port, VLAN} neighbor
+> suppression on the bridge port. When enabled, the existing
+> "neigh_suppress" option has no effect and neighbor suppression is
+> controlled using a new "neigh_suppress" VLAN option. Example usage:
+> 
+>  # bridge link set dev vxlan0 neigh_vlan_suppress on
+>  # bridge vlan add vid 10 dev vxlan0
+>  # bridge vlan set vid 10 dev vxlan0 neigh_suppress on
+> 
+> Testing
+> =======
+> 
+> Tested using existing bridge selftests. Added a dedicated selftest in
+> the last patch.
+> 
+> Patchset overview
+> =================
+> 
+> Patches #1-#5 are preparations.
+> 
+> Patch #6 adds per-{Port, VLAN} neighbor suppression support to the
+> bridge's data path.
+> 
+> Patches #7-#8 add the required netlink attributes to enable the feature.
+> 
+> Patch #9 adds a selftest.
+> 
+> iproute2 patches can be found here [3].
+> 
+> [1] https://www.rfc-editor.org/rfc/rfc7432#section-10
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=a42317785c898c0ed46db45a33b0cc71b671bf29
+> [3] https://github.com/idosch/iproute2/tree/submit/neigh_suppress_v1
+> 
+> Ido Schimmel (9):
+>   bridge: Reorder neighbor suppression check when flooding
+>   bridge: Pass VLAN ID to br_flood()
+>   bridge: Add internal flags for per-{Port, VLAN} neighbor suppression
+>   bridge: Take per-{Port, VLAN} neighbor suppression into account
+>   bridge: Encapsulate data path neighbor suppression logic
+>   bridge: Add per-{Port, VLAN} neighbor suppression data path support
+>   bridge: vlan: Allow setting VLAN neighbor suppression state
+>   bridge: Allow setting per-{Port, VLAN} neighbor suppression state
+>   selftests: net: Add bridge neighbor suppression test
+> 
+>  include/linux/if_bridge.h                     |   1 +
+>  include/uapi/linux/if_bridge.h                |   1 +
+>  include/uapi/linux/if_link.h                  |   1 +
+>  net/bridge/br_arp_nd_proxy.c                  |  33 +-
+>  net/bridge/br_device.c                        |   8 +-
+>  net/bridge/br_forward.c                       |   8 +-
+>  net/bridge/br_if.c                            |   2 +-
+>  net/bridge/br_input.c                         |   2 +-
+>  net/bridge/br_netlink.c                       |   8 +-
+>  net/bridge/br_private.h                       |   5 +-
+>  net/bridge/br_vlan.c                          |   1 +
+>  net/bridge/br_vlan_options.c                  |  20 +-
+>  net/core/rtnetlink.c                          |   2 +-
+>  tools/testing/selftests/net/Makefile          |   1 +
+>  .../net/test_bridge_neigh_suppress.sh         | 862 ++++++++++++++++++
+>  15 files changed, 936 insertions(+), 19 deletions(-)
+>  create mode 100755 tools/testing/selftests/net/test_bridge_neigh_suppress.sh
+> 
 
-For example, this command:
+The set looks good to me, nicely split and pretty straight-forward.
+For the set:
+Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
 
-ip link add br0 type bridge && ip link set swp0 master br0
-bridge fdb add dev swp0 00:01:02:03:04:05 master dynamic
-
-has never worked as intended with switchdev. It causes a struct
-net_bridge_fdb_entry to be passed to br_switchdev_fdb_notify() which has
-a single flag set: BR_FDB_ADDED_BY_USER.
-
-This is further passed to the switchdev notifier chain, where interested
-drivers have no choice but to assume this is a static (does not age) and
-sticky (does not migrate) FDB entry. So currently, all drivers offload
-it to hardware as such, as can be seen below ("offload" is set).
-
-bridge fdb get 00:01:02:03:04:05 dev swp0 master
-00:01:02:03:04:05 dev swp0 offload master br0
-
-The software FDB entry expires $ageing_time centiseconds after the
-kernel last sees a packet with this MAC SA, and the bridge notifies its
-deletion as well, so it eventually disappears from hardware too.
-
-This is a problem, because it is actually desirable to start offloading
-"master dynamic" FDB entries correctly - they should expire $ageing_time
-centiseconds after the *hardware* port last sees a packet with this
-MAC SA - and this is how the current incorrect behavior was discovered.
-With an offloaded data plane, it can be expected that software only sees
-exception path packets, so an otherwise active dynamic FDB entry would
-be aged out by software sooner than it should.
-
-With the change in place, these FDB entries are no longer offloaded:
-
-bridge fdb get 00:01:02:03:04:05 dev swp0 master
-00:01:02:03:04:05 dev swp0 master br0
-
-and this also constitutes a better way (assuming a backport to stable
-kernels) for user space to determine whether the kernel has the
-capability of doing something sane with these or not.
-
-As opposed to "master dynamic" FDB entries, on the current behavior of
-which no one currently depends on (which can be deduced from the lack of
-kselftests), Ido Schimmel explains that entries with the "extern_learn"
-flag (BR_FDB_ADDED_BY_EXT_LEARN) should still be notified to switchdev,
-since the spectrum driver listens to them (and this is kind of okay,
-because although they are treated identically to "static", they are
-expected to not age, and to roam).
-
-Fixes: 6b26b51b1d13 ("net: bridge: Add support for notifying devices about FDB add/del")
-Link: https://lore.kernel.org/netdev/20230327115206.jk5q5l753aoelwus@skbuf/
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Reviewed-by: Jesse Brandeburg <jesse.brandeburg@intel.com>
----
-v1->v2: let extern_learn entries still pass through to switchdev
-v1 at:
-https://lore.kernel.org/netdev/20230410204951.1359485-1-vladimir.oltean@nxp.com/
-
- net/bridge/br_switchdev.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-index de18e9c1d7a7..ba95c4d74a60 100644
---- a/net/bridge/br_switchdev.c
-+++ b/net/bridge/br_switchdev.c
-@@ -148,6 +148,17 @@ br_switchdev_fdb_notify(struct net_bridge *br,
- 	if (test_bit(BR_FDB_LOCKED, &fdb->flags))
- 		return;
- 
-+	/* Entries with these flags were created using ndm_state == NUD_REACHABLE,
-+	 * ndm_flags == NTF_MASTER( | NTF_STICKY), ext_flags == 0 by something
-+	 * equivalent to 'bridge fdb add ... master dynamic (sticky)'.
-+	 * Drivers don't know how to deal with these, so don't notify them to
-+	 * avoid confusing them.
-+	 */
-+	if (test_bit(BR_FDB_ADDED_BY_USER, &fdb->flags) &&
-+	    !test_bit(BR_FDB_STATIC, &fdb->flags) &&
-+	    !test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags))
-+		return;
-+
- 	br_switchdev_fdb_populate(br, &item, fdb, NULL);
- 
- 	switch (type) {
--- 
-2.34.1
 
