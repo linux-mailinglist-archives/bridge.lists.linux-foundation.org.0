@@ -1,83 +1,74 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D5C6EA53C
-	for <lists.bridge@lfdr.de>; Fri, 21 Apr 2023 09:50:40 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FABD6EBE17
+	for <lists.bridge@lfdr.de>; Sun, 23 Apr 2023 10:50:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8103F42812;
-	Fri, 21 Apr 2023 07:50:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8103F42812
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=UOgmSicv
+	by smtp2.osuosl.org (Postfix) with ESMTP id 95E2E403F8;
+	Sun, 23 Apr 2023 08:50:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 95E2E403F8
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QwNIlaHn9yGg; Fri, 21 Apr 2023 07:50:36 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 619A0415F5;
-	Fri, 21 Apr 2023 07:50:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 619A0415F5
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5_oW-d7C_PIH; Sun, 23 Apr 2023 08:50:26 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 3C36140B94;
+	Sun, 23 Apr 2023 08:50:25 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3C36140B94
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id F370EC008A;
-	Fri, 21 Apr 2023 07:50:34 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D65EBC008A;
+	Sun, 23 Apr 2023 08:50:24 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 7B495C002A
- for <bridge@lists.linux-foundation.org>; Fri, 21 Apr 2023 07:50:33 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 2F3F6C002A
+ for <bridge@lists.linux-foundation.org>; Sun, 23 Apr 2023 08:50:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 494E8841F0
- for <bridge@lists.linux-foundation.org>; Fri, 21 Apr 2023 07:50:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 494E8841F0
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
- header.a=rsa-sha256 header.s=k20201202 header.b=UOgmSicv
+ by smtp2.osuosl.org (Postfix) with ESMTP id F1D7040BCB
+ for <bridge@lists.linux-foundation.org>; Sun, 23 Apr 2023 08:50:22 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org F1D7040BCB
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Z_wM_yLhoLiK for <bridge@lists.linux-foundation.org>;
- Fri, 21 Apr 2023 07:50:32 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id r3Fo2pXzz0G5 for <bridge@lists.linux-foundation.org>;
+ Sun, 23 Apr 2023 08:50:21 +0000 (UTC)
 X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 51244841F3
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 51244841F3
- for <bridge@lists.linux-foundation.org>; Fri, 21 Apr 2023 07:50:32 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 142B761386;
- Fri, 21 Apr 2023 07:50:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6B8BFC4339B;
- Fri, 21 Apr 2023 07:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1682063430;
- bh=6/y8G0ZiqPAifVh+i5PDY7VpETrfy1glOu1IyKXJtnA=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=UOgmSicvboaxb7lj0j+c2vpcta80Fwxh3175QxIhJq1cMJj4taQBfY5hcLH50oR4v
- 4bQ9MPXU63G9zLBtVFT1sN0MDJLiw+FAh6QOb3EnVGLA41N10es7RPuAHpWSBDxYsG
- ygXnTDlKwrWoC09NCADZAJihpsmkgmVkiRlvPIOgl6dx65v8xo+65eYVTa7n3sUxmh
- 1zAXIc6dGzoCMxT2WDeughA+zEg/X4Hor3pUv5RoasA5zp8CFX6BAmcj9NYaDYI8pk
- /csAwyLvML6J9cmhaZmQ+T/NaBj3FcuYq9DlgDwNkbSmMBpeNeMSSDeCnOzNq5JoqU
- Eo8sSYW8ZOITg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 4D543E501E2; Fri, 21 Apr 2023 07:50:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 00BAB403F8
+Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
+ [46.183.139.199])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 00BAB403F8
+ for <bridge@lists.linux-foundation.org>; Sun, 23 Apr 2023 08:50:20 +0000 (UTC)
+Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
+ by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 245ED1883692;
+ Sun, 23 Apr 2023 08:50:16 +0000 (UTC)
+Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
+ by mailout.gigahost.dk (Postfix) with ESMTP id 2043E25003AB;
+ Sun, 23 Apr 2023 08:50:16 +0000 (UTC)
+Received: by smtp.gigahost.dk (Postfix, from userid 1000)
+ id 1060F9B403E2; Sun, 23 Apr 2023 08:50:16 +0000 (UTC)
+X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
+Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
+ [2.104.116.184])
+ by smtp.gigahost.dk (Postfix) with ESMTPSA id 94AB891201E3;
+ Sun, 23 Apr 2023 08:50:15 +0000 (UTC)
+From: Hans Schultz <netdev@kapio-technology.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
+In-Reply-To: <20230418155902.898627-1-vladimir.oltean@nxp.com>
+References: <20230418155902.898627-1-vladimir.oltean@nxp.com>
+Date: Sun, 23 Apr 2023 10:47:15 +0200
+Message-ID: <875y9nt27g.fsf@kapio-technology.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168206343031.30967.17590346122475626236.git-patchwork-notify@kernel.org>
-Date: Fri, 21 Apr 2023 07:50:30 +0000
-References: <20230419153500.2655036-1-idosch@nvidia.com>
-In-Reply-To: <20230419153500.2655036-1-idosch@nvidia.com>
-To: Ido Schimmel <idosch@nvidia.com>
-Cc: netdev@vger.kernel.org, razor@blackwall.org,
- bridge@lists.linux-foundation.org, edumazet@google.com, mlxsw@nvidia.com,
- roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v2 0/9] bridge: Add per-{Port,
- VLAN} neighbor suppression
+Content-Type: text/plain
+Cc: Ivan Vecera <ivecera@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
+ Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org,
+ Jesse Brandeburg <jesse.brandeburg@intel.com>, linux-kernel@vger.kernel.org,
+ Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH v2 net] net: bridge: switchdev: don't notify
+ FDB entries with "master dynamic"
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -92,47 +83,33 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+On Tue, Apr 18, 2023 at 18:59, Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
+> index de18e9c1d7a7..ba95c4d74a60 100644
+> --- a/net/bridge/br_switchdev.c
+> +++ b/net/bridge/br_switchdev.c
+> @@ -148,6 +148,17 @@ br_switchdev_fdb_notify(struct net_bridge *br,
+>  	if (test_bit(BR_FDB_LOCKED, &fdb->flags))
+>  		return;
+>  
+> +	/* Entries with these flags were created using ndm_state == NUD_REACHABLE,
+> +	 * ndm_flags == NTF_MASTER( | NTF_STICKY), ext_flags == 0 by something
+> +	 * equivalent to 'bridge fdb add ... master dynamic (sticky)'.
+> +	 * Drivers don't know how to deal with these, so don't notify them to
+> +	 * avoid confusing them.
+> +	 */
+> +	if (test_bit(BR_FDB_ADDED_BY_USER, &fdb->flags) &&
+> +	    !test_bit(BR_FDB_STATIC, &fdb->flags) &&
+> +	    !test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags))
+> +		return;
+> +
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+I do not understand this patch. It seems to me that it basically blocks
+any future use of dynamic fdb entries from userspace towards drivers.
 
-On Wed, 19 Apr 2023 18:34:51 +0300 you wrote:
-> Background
-> ==========
-> 
-> In order to minimize the flooding of ARP and ND messages in the VXLAN
-> network, EVPN includes provisions [1] that allow participating VTEPs to
-> suppress such messages in case they know the MAC-IP binding and can
-> reply on behalf of the remote host. In Linux, the above is implemented
-> in the bridge driver using a per-port option called "neigh_suppress"
-> that was added in kernel version 4.15 [2].
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v2,1/9] bridge: Reorder neighbor suppression check when flooding
-    https://git.kernel.org/netdev/net-next/c/013a7ce81dd8
-  - [net-next,v2,2/9] bridge: Pass VLAN ID to br_flood()
-    https://git.kernel.org/netdev/net-next/c/e408336a693e
-  - [net-next,v2,3/9] bridge: Add internal flags for per-{Port, VLAN} neighbor suppression
-    https://git.kernel.org/netdev/net-next/c/a714e3ec2308
-  - [net-next,v2,4/9] bridge: Take per-{Port, VLAN} neighbor suppression into account
-    https://git.kernel.org/netdev/net-next/c/6be42ed0a5f4
-  - [net-next,v2,5/9] bridge: Encapsulate data path neighbor suppression logic
-    https://git.kernel.org/netdev/net-next/c/3aca683e0654
-  - [net-next,v2,6/9] bridge: Add per-{Port, VLAN} neighbor suppression data path support
-    https://git.kernel.org/netdev/net-next/c/412614b1457a
-  - [net-next,v2,7/9] bridge: vlan: Allow setting VLAN neighbor suppression state
-    https://git.kernel.org/netdev/net-next/c/83f6d600796c
-  - [net-next,v2,8/9] bridge: Allow setting per-{Port, VLAN} neighbor suppression state
-    https://git.kernel.org/netdev/net-next/c/160656d7201d
-  - [net-next,v2,9/9] selftests: net: Add bridge neighbor suppression test
-    https://git.kernel.org/netdev/net-next/c/7648ac72dcd7
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+I would have expected that something would be done in the DSA layer,
+where (switchcore) drivers would be able to set some flags to indicate
+which features are supported by the driver, including non-static
+fdb entries. But as the placement here is earlier in the datapath from
+userspace towards drivers it's not possible to do any such thing in the
+DSA layer wrt non-static fdb entries.
