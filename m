@@ -1,74 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FABD6EBE17
-	for <lists.bridge@lfdr.de>; Sun, 23 Apr 2023 10:50:29 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id C21556EC8CD
+	for <lists.bridge@lfdr.de>; Mon, 24 Apr 2023 11:25:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 95E2E403F8;
-	Sun, 23 Apr 2023 08:50:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 95E2E403F8
+	by smtp1.osuosl.org (Postfix) with ESMTP id 1515681DE1;
+	Mon, 24 Apr 2023 09:25:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1515681DE1
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=BNlwlnuV
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 5_oW-d7C_PIH; Sun, 23 Apr 2023 08:50:26 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 3C36140B94;
-	Sun, 23 Apr 2023 08:50:25 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3C36140B94
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fAvwD2oWoaUA; Mon, 24 Apr 2023 09:25:19 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 9414D81D9F;
+	Mon, 24 Apr 2023 09:25:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9414D81D9F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id D65EBC008A;
-	Sun, 23 Apr 2023 08:50:24 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 462F9C008A;
+	Mon, 24 Apr 2023 09:25:18 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2F3F6C002A
- for <bridge@lists.linux-foundation.org>; Sun, 23 Apr 2023 08:50:23 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DAFDAC002A
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Apr 2023 09:25:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id F1D7040BCB
- for <bridge@lists.linux-foundation.org>; Sun, 23 Apr 2023 08:50:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org F1D7040BCB
+ by smtp2.osuosl.org (Postfix) with ESMTP id A846E40292
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Apr 2023 09:25:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A846E40292
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20221208 header.b=BNlwlnuV
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id r3Fo2pXzz0G5 for <bridge@lists.linux-foundation.org>;
- Sun, 23 Apr 2023 08:50:21 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 00BAB403F8
-Received: from mailout-taastrup.gigahost.dk (mailout-taastrup.gigahost.dk
- [46.183.139.199])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 00BAB403F8
- for <bridge@lists.linux-foundation.org>; Sun, 23 Apr 2023 08:50:20 +0000 (UTC)
-Received: from mailout.gigahost.dk (mailout.gigahost.dk [89.186.169.112])
- by mailout-taastrup.gigahost.dk (Postfix) with ESMTP id 245ED1883692;
- Sun, 23 Apr 2023 08:50:16 +0000 (UTC)
-Received: from smtp.gigahost.dk (smtp.gigahost.dk [89.186.169.109])
- by mailout.gigahost.dk (Postfix) with ESMTP id 2043E25003AB;
- Sun, 23 Apr 2023 08:50:16 +0000 (UTC)
-Received: by smtp.gigahost.dk (Postfix, from userid 1000)
- id 1060F9B403E2; Sun, 23 Apr 2023 08:50:16 +0000 (UTC)
-X-Screener-Id: e32ae469fa6e394734d05373d3a705875723cf1e
-Received: from fujitsu (2-104-116-184-cable.dk.customer.tdc.net
- [2.104.116.184])
- by smtp.gigahost.dk (Postfix) with ESMTPSA id 94AB891201E3;
- Sun, 23 Apr 2023 08:50:15 +0000 (UTC)
-From: Hans Schultz <netdev@kapio-technology.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
-In-Reply-To: <20230418155902.898627-1-vladimir.oltean@nxp.com>
-References: <20230418155902.898627-1-vladimir.oltean@nxp.com>
-Date: Sun, 23 Apr 2023 10:47:15 +0200
-Message-ID: <875y9nt27g.fsf@kapio-technology.com>
+ with ESMTP id m5aWHLn46s5G for <bridge@lists.linux-foundation.org>;
+ Mon, 24 Apr 2023 09:25:14 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A7BC640025
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com
+ [IPv6:2607:f8b0:4864:20::102b])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id A7BC640025
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Apr 2023 09:25:14 +0000 (UTC)
+Received: by mail-pj1-x102b.google.com with SMTP id
+ 98e67ed59e1d1-246eebbde1cso3641152a91.3
+ for <bridge@lists.linux-foundation.org>; Mon, 24 Apr 2023 02:25:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1682328314; x=1684920314;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=35DRhB75q3wRkebp9DrJb+2dw6nrBa1EQoLcH9Em600=;
+ b=BNlwlnuVqgfas/so+5JH2OtAppwOpVA0nv/LhzX7waApxmjwkXkMMACaqFrsKr8PVt
+ SLuuW2laKLiaSz4ka3ixztRuwnK5TL+k7M3agtcAHQa0t6ZaVvcX82pfQUPQZQMj7avT
+ m7Inxi8adG3ZUVueGfkNz54K1k13bX1230IrX+itNmrOeHzFQAWzf9A19ESD14X3MM9w
+ s0JPHVLwHSagHe+ShaZxv7LDLYKZFjlrChKbTYHr+GIJhBnthxZxDJXmOjV4zq4tQcZi
+ 8TqG2AI2UTNke3z3TgbKer65jqecPvmN42yER8jBrI+c3/gnF9f+YTSIjf0cvD0GNEOz
+ wEvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682328314; x=1684920314;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=35DRhB75q3wRkebp9DrJb+2dw6nrBa1EQoLcH9Em600=;
+ b=AQ1kLh7FVRZYmVZYAcBIiJjmjhHSCmGRFKjnfSVlZGTWu5al/scxH1iYFKn27eqTMa
+ WWbhZfz/YvvlhTM6NkJ/K6fwlA+csEuJh9pIxM1hStn4pA4Ow7rMPzwXHoyxfPyIBwnJ
+ 9BElXeHR4R3guaMhQAbtgBN+xGxxWe33QT1M6+WdyCQD1r0LsaTxGYMgP5tnavnoXhW4
+ w3jdZ/01gFg2uk7hsZytK912OtoXoZtJZ/uhT9nex1mB4+O2YMFWzCzfoxQZhLlO0OH4
+ OAo+Je9NxqJVZz4WKIKIdwO2R5F28GrgOXeswRLP5uBduprwvucMVV8yLVtUVpJC7Lyl
+ vstw==
+X-Gm-Message-State: AAQBX9d0pEGMYmnqMfmN6gMUerMzkwfcof/RsZzSGdzERQE0PURObrfF
+ KU8yRAdzhQ3HI0xCvM0IXaY=
+X-Google-Smtp-Source: AKy350aK4nmwqgILtsdGLYKD9MJBIiMBQ5N2Spb29aoGzvTkWDGc+sDgnCrMvheVAtpWyzWLwRPqpA==
+X-Received: by 2002:a17:90b:310:b0:247:6ead:d0ed with SMTP id
+ ay16-20020a17090b031000b002476eadd0edmr12757044pjb.28.1682328313949; 
+ Mon, 24 Apr 2023 02:25:13 -0700 (PDT)
+Received: from Laptop-X1 ([209.132.188.80]) by smtp.gmail.com with ESMTPSA id
+ f12-20020a170902684c00b001a6d08eb054sm6227226pln.78.2023.04.24.02.25.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 24 Apr 2023 02:25:13 -0700 (PDT)
+Date: Mon, 24 Apr 2023 17:25:08 +0800
+From: Hangbin Liu <liuhangbin@gmail.com>
+To: netdev@vger.kernel.org
+Message-ID: <ZEZK9AkChoOF3Lys@Laptop-X1>
 MIME-Version: 1.0
-Content-Type: text/plain
-Cc: Ivan Vecera <ivecera@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
- Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org,
- Jesse Brandeburg <jesse.brandeburg@intel.com>, linux-kernel@vger.kernel.org,
- Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH v2 net] net: bridge: switchdev: don't notify
- FDB entries with "master dynamic"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Cc: Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@nvidia.com>
+Subject: [Bridge] [Question] Any plan to write/update the bridge doc?
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -83,33 +103,21 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Apr 18, 2023 at 18:59, Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
-> diff --git a/net/bridge/br_switchdev.c b/net/bridge/br_switchdev.c
-> index de18e9c1d7a7..ba95c4d74a60 100644
-> --- a/net/bridge/br_switchdev.c
-> +++ b/net/bridge/br_switchdev.c
-> @@ -148,6 +148,17 @@ br_switchdev_fdb_notify(struct net_bridge *br,
->  	if (test_bit(BR_FDB_LOCKED, &fdb->flags))
->  		return;
->  
-> +	/* Entries with these flags were created using ndm_state == NUD_REACHABLE,
-> +	 * ndm_flags == NTF_MASTER( | NTF_STICKY), ext_flags == 0 by something
-> +	 * equivalent to 'bridge fdb add ... master dynamic (sticky)'.
-> +	 * Drivers don't know how to deal with these, so don't notify them to
-> +	 * avoid confusing them.
-> +	 */
-> +	if (test_bit(BR_FDB_ADDED_BY_USER, &fdb->flags) &&
-> +	    !test_bit(BR_FDB_STATIC, &fdb->flags) &&
-> +	    !test_bit(BR_FDB_ADDED_BY_EXT_LEARN, &fdb->flags))
-> +		return;
-> +
+Hi,
 
-I do not understand this patch. It seems to me that it basically blocks
-any future use of dynamic fdb entries from userspace towards drivers.
+Maybe someone already has asked. The only official Linux bridge document I
+got is a very ancient wiki page[1] or the ip link man page[2][3]. As there are
+many bridge stp/vlan/multicast paramegers. Should we add a detailed kernel
+document about each parameter? The parameter showed in ip link page seems
+a little brief.
 
-I would have expected that something would be done in the DSA layer,
-where (switchcore) drivers would be able to set some flags to indicate
-which features are supported by the driver, including non-static
-fdb entries. But as the placement here is earlier in the datapath from
-userspace towards drivers it's not possible to do any such thing in the
-DSA layer wrt non-static fdb entries.
+I'd like to help do this work. But apparently neither my English nor my
+understanding of the code is good enough. Anyway, if you want, I can help
+write a draft version first and you (bridge maintainers) keep working on this.
+
+[1] https://wiki.linuxfoundation.org/networking/bridge
+[2] https://man7.org/linux/man-pages/man8/bridge.8.html
+[3] https://man7.org/linux/man-pages/man8/ip-link.8.html
+
+Thanks
+Hangbin
