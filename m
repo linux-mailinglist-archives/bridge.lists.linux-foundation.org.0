@@ -1,135 +1,270 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403E66FC009
-	for <lists.bridge@lfdr.de>; Tue,  9 May 2023 09:06:33 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56AB96FF332
+	for <lists.bridge@lfdr.de>; Thu, 11 May 2023 15:40:07 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 525DB4025D;
-	Tue,  9 May 2023 07:06:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 525DB4025D
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=tMfMvr/t
+	by smtp3.osuosl.org (Postfix) with ESMTP id 7463660F40;
+	Thu, 11 May 2023 13:40:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7463660F40
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=marvell.onmicrosoft.com header.i=@marvell.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-marvell-onmicrosoft-com header.b=qPbEdLuh
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id W_fINa5iRrrb; Tue,  9 May 2023 07:06:30 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yQxNHSevE7r0; Thu, 11 May 2023 13:40:04 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 585D141DE2;
-	Tue,  9 May 2023 07:06:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 585D141DE2
+	by smtp3.osuosl.org (Postfix) with ESMTPS id DE21A60FD3;
+	Thu, 11 May 2023 13:40:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DE21A60FD3
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9D1CEC008A;
-	Tue,  9 May 2023 07:06:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 927A7C008A;
+	Thu, 11 May 2023 13:40:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CCD48C002A
- for <bridge@lists.linux-foundation.org>; Tue,  9 May 2023 07:06:27 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 88254C002A
+ for <bridge@lists.linux-foundation.org>; Wed, 10 May 2023 10:09:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 8E04F6FF4C
- for <bridge@lists.linux-foundation.org>; Tue,  9 May 2023 07:06:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8E04F6FF4C
-Authentication-Results: smtp3.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=tMfMvr/t
+ by smtp3.osuosl.org (Postfix) with ESMTP id 54D3D60B22
+ for <bridge@lists.linux-foundation.org>; Wed, 10 May 2023 10:09:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 54D3D60B22
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 7Ao2Mv3i6qgA for <bridge@lists.linux-foundation.org>;
- Tue,  9 May 2023 07:06:26 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5291961238
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on20626.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::626])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 5291961238
- for <bridge@lists.linux-foundation.org>; Tue,  9 May 2023 07:06:26 +0000 (UTC)
+ with ESMTP id 49hrKKOICZ4z for <bridge@lists.linux-foundation.org>;
+ Wed, 10 May 2023 10:09:43 +0000 (UTC)
+X-Greylist: delayed 00:11:56 by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4208860A88
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com
+ [67.231.156.173])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 4208860A88
+ for <bridge@lists.linux-foundation.org>; Wed, 10 May 2023 10:09:43 +0000 (UTC)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+ by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 34A59Pr0006585; Wed, 10 May 2023 02:57:39 -0700
+Received: from nam10-mw2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10lp2109.outbound.protection.outlook.com [104.47.55.109])
+ by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3qf77s5w7m-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 10 May 2023 02:57:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dswG4b6J6wzIFnjmAsdcHjvBpQp32K2SBwrNRNWJkKzq2R2HFJ/v5fJ4t2nS1CbdnfSIuFC6DySeRAGlGeCKdNMrx/w/NObHC4dbIOtKJsXjbMXqZ83nFsjfCwky4tkEDs4nMMPEC4hCDNk9sgCr/MJHOvGzYgXLNu35g8j/+BEc+yP7oTysOoTCuM7yQmmru2bsbwdK+rywb5/W7n5WBcG58zbsXuSMXoPHUevYH5NUX6qPnxv7CADez++0vQSij3Wwp0X60rueoaxHHriNvC6GPJS/8s676MEnmw/sdq3KdGgoztoz5c61059/R9Wq1zB/2KWjbBcuLuOvNaQnDg==
+ b=jb0dMbdFpXlpUmXsi9+ksfgddmj/HKDBeSPHMuJlGU1ke5iikEzIpjqRbXcr6+6wA8AdGWYDq1pRDRbzgUoykgZ5+yxW9Mm0XBUui3aph9xywI1JYXMxwEh7CDbJbfiEmbSSL4ZmlfNN7bJ/noa9aiE3MD/yABGA7/GbslICH9JUBf+jS94ucridqpGhQMQaNinmDRUUsTrpOxs4eGdAgzPyZqE5RZ69DD/dduRqVzZUNwFFgPcJXs057nc02STSdqJZB/6sePaoZPHYJLT5GKy5ZdKCQDZ3CAmzDn+FkmgeMc8EtRAv5xy8tFDR1sz5WBvcSWDgzNrIAzltvOW0Rg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mKdTRS0ZIQEdAbs+I0FkXntaP1eXB6RVCBy0Hb4d49U=;
- b=a3E/ZNuL1T0URNgobnL5bl9TbyJ9lOp9WzzFN8jVBRJriFXULGhhhz3sAK3yOHKcELKnfPysmxfy/niP/gCqRu0JC6IVSKI4zb157Sletj24CSZ3D5yTLWOpqTcTYRVRF79m9DCUO3VYaE7Qs1EFgLsIIHepDffqbLIh6HSBP/EnWV3F8HAEN/4qJsvyOMlQ6G3ME5DCyQ75Xqo2iOALNvTbYPB01W/3FqQU+xfQuIqO6+PGhAHPHeFMh9tr/X69u2N6oC9S7UADx0o3o/19l5WTTqMdq0PRAnbSjUSXbj+Ww4w8loNkCsopFhqkNRfptjxBpb3nNoZ3gNPTudH2pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=f6qnClrr04Cd26YVnIk3hbt5OaQVuPPK+HG8FIgWTwA=;
+ b=lw398/58pRTgyAk+4QWz/axRk9l1NVoa88aRrwGFVgWAfEJYqGsQiJPa/n1ow0fafapLEuTs1BW6MorT5LA0ZRUeoR4iB4WVYm1jjkipBsL4UKTiODHC3WBCUi4zFvv13XFb1xNfAm2p3z5Ug91uCmHlwVxAIZP6rzFypqIaMvtDJEv64DLci+Vwlgk/GAh+JG+X4BmHJFBasxtAYYeCawpzc8p2koXV/SQ1VVmXqh5R0DaVERAB6Ud4rf7a38vCQvcdXWPvp10VEg9Fr/YTw4BQLbUxS7pgEjsFUe2QSGMLKRXV39JPuk87+vaKbTR884vaMNznp+Xc5RqAZcrnOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mKdTRS0ZIQEdAbs+I0FkXntaP1eXB6RVCBy0Hb4d49U=;
- b=tMfMvr/tPp/QLg7T2Fk3f9sTbO2nQ0GmalSTcqPFvOBiVCfcEbXIUVfG6k2/mG0/68Mr9bNv+JEKE2aEKvQYtiy51X4D1IhOoMPSnAu6IBUgwWzQBY0lLI3cuapUJNcuKnEKmTpqCYJ0AaiIntbVZV+SY/ek0k1nuAyg0qFzL042aB3AQ1W8OD6ikxWi9bUbXP6x5H7W6srXGxvHlU88xHlGpbPNzWPYyOvwG5A4/7Drj4lLEwFblICvJQuz7aWTMwa08ZKrcVM3+Xi71f6GhE2klcA8/Y8jmC0jBaCxpPvli6c+DdZBf40SmyaGXa1JqTu1nXXI7wIBrh9xKvjmpw==
-Received: from BN9PR03CA0217.namprd03.prod.outlook.com (2603:10b6:408:f8::12)
- by CY8PR12MB7337.namprd12.prod.outlook.com (2603:10b6:930:53::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Tue, 9 May
- 2023 07:06:23 +0000
-Received: from BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f8:cafe::cf) by BN9PR03CA0217.outlook.office365.com
- (2603:10b6:408:f8::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
- Transport; Tue, 9 May 2023 07:06:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BN8NAM11FT039.mail.protection.outlook.com (10.13.177.169) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.33 via Frontend Transport; Tue, 9 May 2023 07:06:22 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 9 May 2023
- 00:06:06 -0700
-Received: from dev-r-vrt-155.mtr.labs.mlnx (10.126.230.37) by
- rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.37; Tue, 9 May 2023 00:06:02 -0700
-To: <netdev@vger.kernel.org>, <bridge@lists.linux-foundation.org>
-Date: Tue, 9 May 2023 10:04:46 +0300
-Message-ID: <20230509070446.246088-6-idosch@nvidia.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230509070446.246088-1-idosch@nvidia.com>
+ bh=f6qnClrr04Cd26YVnIk3hbt5OaQVuPPK+HG8FIgWTwA=;
+ b=qPbEdLuhp7WJ8Sh89CMdORrG1z0E8w494r0s3HHtg+UW8LasQ5G0QsyrFB0AoHuGH0oLiwva+l+D0f/ccRr1lOGDfp/1SnxC7e9BDFN1NZSE+m0ajJiEPs+fnu98uwFY43l6797pcF/TObc7xHT11OU8k8csCic9KTiJvasQOx8=
+Received: from BN9PR18MB4251.namprd18.prod.outlook.com (2603:10b6:408:11c::10)
+ by CH2PR18MB3398.namprd18.prod.outlook.com (2603:10b6:610:2c::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.19; Wed, 10 May
+ 2023 09:57:36 +0000
+Received: from BN9PR18MB4251.namprd18.prod.outlook.com
+ ([fe80::ad33:f4a1:f323:2a0d]) by BN9PR18MB4251.namprd18.prod.outlook.com
+ ([fe80::ad33:f4a1:f323:2a0d%3]) with mapi id 15.20.6363.033; Wed, 10 May 2023
+ 09:57:36 +0000
+From: Elad Nachman <enachman@marvell.com>
+To: Ido Schimmel <idosch@nvidia.com>, "netdev@vger.kernel.org"
+ <netdev@vger.kernel.org>, "bridge@lists.linux-foundation.org"
+ <bridge@lists.linux-foundation.org>
+Thread-Topic: [EXT] [RFC PATCH net-next 3/5] flow_offload: Reject matching on
+ layer 2 miss
+Thread-Index: AQHZgkT3dMzzK3y9JE6DR4sgrX7HGa9TRq2w
+Date: Wed, 10 May 2023 09:57:36 +0000
+Message-ID: <BN9PR18MB42515532FEB4A498D39AB073DB779@BN9PR18MB4251.namprd18.prod.outlook.com>
 References: <20230509070446.246088-1-idosch@nvidia.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.126.230.37]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT039:EE_|CY8PR12MB7337:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a878674-6655-47f7-652d-08db505be5cf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v3XPLVwrqiMUShhGEOVIYixOEfhabYZwTUJrDIP4GJ5iQxzBnOvW4An5INAS1AYVgSvxGKTtRWc/mUObGnE1jGfhzCruA1buFOjCJWePR8SUkkO3LfaouNcUongKo5ZNOsIa6/210Kcq/9F+BufhQW5v5k3Hj8C5IWw3K/fhs5xy5RLHV/c1fYTK4b/4bTYEqTqMLG78IziMcuD1YpAMv+hBxRS0Py8aeepa8RhRlmMlzseElHTeSenfP3CPJTtkPqSNuy+lEyWmxRepZqLuy8i/7tA0hGPDVKU6ZJJH/LEkN+aAzKtyyHbAT2zHBPNANBtfp8qhrElmpGO+QYD5OCEHTAaAStQqlBh87VjNWGRg8CbEzZdZ8QoRRx7f6ThfN+mUaoeGBd5Y7o4n06BJd6u7AL3N69Gj6A6b7evwOKCUzetj3oMjMdwxRNa//eKlnngX4GjnrbogxOGyrZPXLfBPZUqoM1x3z/v/rW8cUov76H2ayzMND1jxsh1oY1S/MzCrxvfV5XJf9QtZoma7v86acHVKu4ikPCasWtSk5u97/HJ7c4EnZHFoAIa6CjDEW/mEPUwnrZa5loTUnk5kMQe/vGYcNVywwOrqXWPAdpnaEXN7ism7r9EuE2/VN3Ter7j1FPR7jGn9MrlA9Gjep66fFT8fGbov8uY0Sph6UBkYPFLVzX/1gEAopjRpEe0UFBB4Qp7c9A2DIjcj7Gbo6A==
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(376002)(396003)(346002)(451199021)(46966006)(40470700004)(36840700001)(8676002)(82310400005)(7416002)(8936002)(5660300002)(41300700001)(316002)(30864003)(4326008)(36860700001)(83380400001)(107886003)(16526019)(40460700003)(86362001)(70586007)(70206006)(26005)(1076003)(36756003)(186003)(6666004)(2906002)(478600001)(66574015)(336012)(47076005)(40480700001)(2616005)(426003)(110136005)(356005)(82740400003)(7636003)(54906003);
+ <20230509070446.246088-4-idosch@nvidia.com>
+In-Reply-To: <20230509070446.246088-4-idosch@nvidia.com>
+Accept-Language: he-IL, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcZW5hY2htYW5c?=
+ =?us-ascii?Q?YXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRi?=
+ =?us-ascii?Q?YTI5ZTM1Ylxtc2dzXG1zZy0xNjA4MGZlOC1lZjE5LTExZWQtYjczYi0xOGNj?=
+ =?us-ascii?Q?MTg3OGFiYThcYW1lLXRlc3RcMTYwODBmZWEtZWYxOS0xMWVkLWI3M2ItMThj?=
+ =?us-ascii?Q?YzE4NzhhYmE4Ym9keS50eHQiIHN6PSI0NzQ5IiB0PSIxMzMyODE4NjI1NTEz?=
+ =?us-ascii?Q?MTAwMzAiIGg9InU3UkY1VmF4VmRPOTAzUTI1b1RwdEZFUG5Laz0iIGlkPSIi?=
+ =?us-ascii?Q?IGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk5DZ1VBQUdZTkFB?=
+ =?us-ascii?Q?RE9qbC9ZSllQWkFhU1FwQmRaWTRiSXBKQ2tGMWxqaHNnVkFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFIQUFBQUQyREFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFFQUFRRUJBQUFBYjNidXl3Q0FBUUFBQUFBQUFBQUFBSjRBQUFCaEFHUUFa?=
+ =?us-ascii?Q?QUJ5QUdVQWN3QnpBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR01BZFFCekFIUUFid0J0QUY4QWNB?=
+ =?us-ascii?Q?QmxBSElBY3dCdkFHNEFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
+ =?us-ascii?Q?QUFBQUNlQUFBQVl3QjFBSE1BZEFCdkFHMEFYd0J3QUdnQWJ3QnVBR1VBYmdC?=
+ =?us-ascii?Q?MUFHMEFZZ0JsQUhJQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFKNEFBQUJqQUhV?=
+ =?us-ascii?Q?QWN3QjBBRzhBYlFCZkFITUFjd0J1QUY4QVpBQmhBSE1BYUFCZkFIWUFNQUF5?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+x-dg-rorf: true
+x-dg-refone: =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFH?=
+ =?us-ascii?Q?TUFkUUJ6QUhRQWJ3QnRBRjhBY3dCekFHNEFYd0JyQUdVQWVRQjNBRzhBY2dC?=
+ =?us-ascii?Q?a0FITUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQVFBQUFBQUFBQUFDQUFBQUFBQ2VBQUFBWXdCMUFITUFkQUJ2QUcw?=
+ =?us-ascii?Q?QVh3QnpBSE1BYmdCZkFHNEFid0JrQUdVQWJBQnBBRzBBYVFCMEFHVUFjZ0Jm?=
+ =?us-ascii?Q?QUhZQU1BQXlBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFB?=
+ =?us-ascii?Q?QUFBSUFBQUFBQUo0QUFBQmpBSFVBY3dCMEFHOEFiUUJmQUhNQWN3QnVBRjhB?=
+ =?us-ascii?Q?Y3dCd0FHRUFZd0JsQUY4QWRnQXdBRElBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFFQUFBQUFBQUFBQWdBQUFBQUFuZ0FB?=
+ =?us-ascii?Q?QUdRQWJBQndBRjhBY3dCckFIa0FjQUJsQUY4QVl3Qm9BR0VBZEFCZkFHMEFa?=
+ =?us-ascii?Q?UUJ6QUhNQVlRQm5BR1VBWHdCMkFEQUFNZ0FBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBUUFBQUFBQUFBQUNBQUFBQUFDZUFBQUFaQUJzQUhBQVh3QnpB?=
+ =?us-ascii?Q?R3dBWVFCakFHc0FYd0JqQUdnQVlRQjBBRjhBYlFCbEFITUFjd0JoQUdjQVpR?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+x-dg-reftwo: =?us-ascii?Q?QUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFJQUFBQUFBSjRBQUFCa0FHd0FjQUJm?=
+ =?us-ascii?Q?QUhRQVpRQmhBRzBBY3dCZkFHOEFiZ0JsQUdRQWNnQnBBSFlBWlFCZkFHWUFh?=
+ =?us-ascii?Q?UUJzQUdVQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUVB?=
+ =?us-ascii?Q?QUFBQUFBQUFBZ0FBQUFBQW5nQUFBR1VBYlFCaEFHa0FiQUJmQUdFQVpBQmtB?=
+ =?us-ascii?Q?SElBWlFCekFITUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBRVFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFB?=
+ =?us-ascii?Q?QUNlQUFBQWJRQmhBSElBZGdCbEFHd0FYd0J3QUhJQWJ3QnFBR1VBWXdCMEFG?=
+ =?us-ascii?Q?OEFiZ0JoQUcwQVpRQnpBRjhBY2dCbEFITUFkQUJ5QUdrQVl3QjBBR1VBWkFC?=
+ =?us-ascii?Q?ZkFHRUFiQUJ2QUc0QVpRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFKNEFBQUJ0QUdFQWNn?=
+ =?us-ascii?Q?QjJBR1VBYkFCZkFIQUFjZ0J2QUdvQVpRQmpBSFFBWHdCdUFHRUFiUUJsQUhN?=
+ =?us-ascii?Q?QVh3QnlBR1VBY3dCMEFISUFhUUJqQUhRQVpRQmtBRjhBYUFCbEFIZ0FZd0J2?=
+ =?us-ascii?Q?QUdRQVpRQnpBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?RUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHMEFZUUJ5QUhZQVpRQnNBR3dBWHdC?=
+ =?us-ascii?Q?aEFISUFiUUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFDQUFB?=
+ =?us-ascii?Q?QUFBQ2VBQUFBYlFCaEFISUFkZ0JsQUd3QWJBQmZBSEFBY2dCdkFHb0FaUUJq?=
+ =?us-ascii?Q?QUhRQVh3QmpBRzhBWkFCbEFITUFBQUFBQUFB?=
+x-dg-refthree: =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFB?=
+ =?us-ascii?Q?SUFBQUFBQUo0QUFBQnRBR0VBY2dCMkFHVUFiQUJzQUY4QWNBQnlBRzhBYWdC?=
+ =?us-ascii?Q?bEFHTUFkQUJmQUdNQWJ3QmtBR1VBY3dCZkFHUUFhUUJqQUhRQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFFQUFBQUFBQUFBQWdBQUFBQUFuZ0FBQUcw?=
+ =?us-ascii?Q?QVlRQnlBSFlBWlFCc0FHd0FYd0J3QUhJQWJ3QnFBR1VBWXdCMEFGOEFiZ0Jo?=
+ =?us-ascii?Q?QUcwQVpRQnpBRjhBWXdCdkFHNEFaZ0JwQUdRQVpRQnVBSFFBYVFCaEFHd0FY?=
+ =?us-ascii?Q?d0J0QUdFQWNnQjJBR1VBYkFCc0FGOEFZUUJ1QUdRQVh3QnRBR2tBY0FBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBUUFBQUFBQUFBQUNBQUFBQUFDZUFBQUFiUUJoQUhJQWRnQmxBR3dB?=
+ =?us-ascii?Q?YkFCZkFIQUFjZ0J2QUdvQVpRQmpBSFFBWHdCdUFHRUFiUUJsQUhNQVh3QnlB?=
+ =?us-ascii?Q?R1VBY3dCMEFISUFhUUJqQUhRQVpRQmtBRjhBYlFCaEFISUFkZ0JsQUd3QWJB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQkFBQUFBQUFB?=
+ =?us-ascii?Q?QUFJQUFBQUFBSjRBQUFCdEFHRUFjZ0IyQUdVQWJBQnNBRjhBY0FCeUFHOEFh?=
+ =?us-ascii?Q?Z0JsQUdNQWRBQmZBRzRBWVFCdEFHVUFjd0JmQUhJQVpRQnpBSFFBY2dCcEFH?=
+ =?us-ascii?Q?TUFkQUJsQUdRQVh3QnRBR0VBY2dCMkFHVUFiQUJzQUY4QWJ3QnlBRjhBWVFC?=
+ =?us-ascii?Q?eUFHMEFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFB?=
+ =?us-ascii?Q?RzBBWVFCeUFIWUFaUUJzQUd3QVh3QjBBR1VBY2dCdEFHa0FiZ0IxQUhNQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+x-dg-reffour: QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFBQUNlQUFBQWJRQmhBSElBZGdCbEFHd0FiQUJmQUhjQWJ3QnlBR1FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUZBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21ldGE+
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR18MB4251:EE_|CH2PR18MB3398:EE_
+x-ms-office365-filtering-correlation-id: 37f16b30-d486-4edf-cb5b-08db513cfbb2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7dg1DPLc3l1pKSL8YxWCYZbhCljIzg34QPBYeJt1xoU7BIEP0Q1iQjQdYlZnu6JBHsvPMK/SknB1sUH0g9Bx07f9sL4DGvFO4bPoDLhrl9Udv1ddMRW8VJWZSHlVpdwW7W1ZWudVWYgqwkz3CBInD3UhnoQ8PLqXgTb/Z6lDquImheNpw+PYE8ZNYF8m5SBu7QcjITe6L+CgwRhK2evsw8NZL8c5tcj3omC0kKDsxTKPgXzOEGQZpQw8PsMQb7Aw02G5YUhEo8NMou3ZL8TlQX+jt1LhNK8HicypO5HcZ2vhW7F8BJOsasuoX9V03ncgUVKjEOeInOXX/2f2z2rZvBn9cbRA/HoD0KMcEb2lGK6Ru4Vu5hNvrjdeqy9gPCkMEWvUUvE0PGWED+limwRKFmB3kYt77QYMjm2k59NbgdxqCoL81bxzmAJR9nurumVEzOpmiXwKQKS52E7GRjWi2ywWJ3Uqbio1qMt8vjuIGIejpGrdZwYnRuuCDDTgeR3xoCzK2P+DHn+dY/4OkOrFxeQLHObQ4r1I/fSbFg6qeNpiCXQZQllprcfNQ+1EHqrwZ6ISVKl5vH/Yc+Yh6q6i7ae5ksGTubBoS/7JvkgAAAzR2+EEHrBK6yy4izSjhiXQ
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR18MB4251.namprd18.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(136003)(366004)(39860400002)(396003)(346002)(376002)(451199021)(52536014)(5660300002)(316002)(478600001)(7416002)(54906003)(41300700001)(122000001)(83380400001)(110136005)(66556008)(66476007)(66446008)(66946007)(76116006)(64756008)(4326008)(38100700002)(8936002)(8676002)(38070700005)(6506007)(9686003)(26005)(53546011)(33656002)(86362001)(186003)(55016003)(2906002)(7696005)(71200400001);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 07:06:22.9002 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a878674-6655-47f7-652d-08db505be5cf
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7337
-Cc: petrm@nvidia.com, jiri@resnulli.us, taspelund@nvidia.com,
- xiyou.wangcong@gmail.com, Ido Schimmel <idosch@nvidia.com>,
- razor@blackwall.org, jhs@mojatatu.com, edumazet@google.com, roopa@nvidia.com,
- kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
-Subject: [Bridge] [RFC PATCH net-next 5/5] selftests: forwarding: Add layer
-	2 miss test cases
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?l9HkrEV9E9BVhLnM2gFNUxLqvtpp8darnxrjgzssE9hmKvfRIxitNypRWIox?=
+ =?us-ascii?Q?BTUq4Wd/IANuavox1Nwntem2o8i5G3Y6UVlZAeuEiVl1EPzV1nSu1H2oSUs9?=
+ =?us-ascii?Q?4RaMhlvisynb5fA4gNrohvPewwlxAPNvVcHxsZ8QndZy0xjV9cllNJ+nO6iO?=
+ =?us-ascii?Q?S975WdJ++e2ED63uHbvZEwwBnWaqq7NG7Lp2U2CGo1hGeIGrvCK5+twaKON2?=
+ =?us-ascii?Q?SUEwWwwK0IsW+oolS+fHbc4mW/18aN+OYgGp4rh7MTfYmy2TCOfIs6+BJwko?=
+ =?us-ascii?Q?g6PGB675kRdWKPgv04Fxqon7IdkO3nHKMcNqCZujOvwGPhBAHlnQN5fHBcOq?=
+ =?us-ascii?Q?k9cAM5G5IlwNRlet2uEHb9zT+9r+NIOcRS4ELGW6yVRP2+2a0HbvrM5aPgir?=
+ =?us-ascii?Q?MCmaTklIjO/7GiB9CpjXwSotnq/iiP6fjk23Uo1CQIv3ZU1wk/OHvx8I4tWI?=
+ =?us-ascii?Q?UaNuQi80pMH+lQZu1nEwYuHwQbLfIKxqYGN62628O7tpjfKswJKEbMth66EP?=
+ =?us-ascii?Q?SOOi/SNEtqYbvAH73XqtZUU/nRvxQ583sNz34tXsQgM4zdtTtuGISN0nHR2e?=
+ =?us-ascii?Q?/ImfMdSE2z1q9Rwb1HNcFRCfMNTPeT1Fk5dCA2Vn898mhSAQD2TqcPayyE/9?=
+ =?us-ascii?Q?5PjblXN6Ri3MUWerM/Fb7pGqq6SaFYs1CHyy0gduK+RQ/B4JI8sh7r6g4gg+?=
+ =?us-ascii?Q?Kk1MIVdPmH6QM+wbV1AwNkK82OXXTNpuQV+wX5w5kD4sivQ/lxKnav2V5YCJ?=
+ =?us-ascii?Q?r2DiD4eXkdLYKAt6EKmvkSSots8tBbIcvRa94pPLMNASRIl1k5pu/u+Q+vL7?=
+ =?us-ascii?Q?2aEONpUd9zRqKCLv25OPWWCSH5fKu9JH9gpWEfg34rNz+y9U3grw28+DnS9L?=
+ =?us-ascii?Q?xWk3lKROS1jY89VV46VCGaW6iEDmnhBtiOdXB9Mooj3S+MgbfSq5I4TgnBcp?=
+ =?us-ascii?Q?O48gXhyC97VeNCmkQhhbCI7HQypnE6oUL33qjyEyfS2Jv9L4R8nw3eOFzi5d?=
+ =?us-ascii?Q?CvkFtjWCxIhRPjz1Z7ATdxeJczBtMaFFR+ziID/33AF4318eHYGcSc3wldA/?=
+ =?us-ascii?Q?PqudFz2Pr7XU+pSVPYOHAwN3NmJST4Y2HjVmRwsGCQ2PfhJDq1DZGIHWPuPy?=
+ =?us-ascii?Q?Lhx3PuM8DXElRpMVaTdT9PFLpHw4n4h6b9eXRbpE1psFCrj6X2f3NTMjHoFH?=
+ =?us-ascii?Q?Lz/7lm8N1FaJ9bHlKNeo0cPS4x1QXyB7JYokUO5oA7k4/aW+6ZancOhD1NfB?=
+ =?us-ascii?Q?3jKb1l2IJtcKqv0SycLkWbRfsD4YeHydY0Fg+HM72WEzgMYPbZor1yAMR0ii?=
+ =?us-ascii?Q?iZl8QO44Gzo8HBG5k+acVgUCkrJ9LoBIXfNGAxwlMiHj72gbGqc0Gs1HJY7v?=
+ =?us-ascii?Q?BThHapeMaGzgqRIwUPduXogTJvKNEJBtB+kEpPxYR7k19oXgpqXSYyf3FHFP?=
+ =?us-ascii?Q?A3vZbmFqFyYKxCc/94rM0SKln+pwUw7qAuAbbo59isbEi/xpESkadIIUDVtE?=
+ =?us-ascii?Q?ll7aBSvo75aYArB1O/F7sebP72pSXSGPqSGq8smS17QV2pmCAtD1+nF+viOL?=
+ =?us-ascii?Q?wLGkrLRFZFVoStu6i+XdED9GKYE3oN0ZsZeS6J4L?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: marvell.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR18MB4251.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37f16b30-d486-4edf-cb5b-08db513cfbb2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2023 09:57:36.5666 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: z4c8R5UIc2XjMIyErj7hiDMVDNcEiGT6YNxCSyRFGTPnGBLY7UtAynRLV8cvsTHvQS15LqQWP/xuartsii51yQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR18MB3398
+X-Proofpoint-ORIG-GUID: XREHvIesnU_4JlpEhv3DEtFFoNcSvzW7
+X-Proofpoint-GUID: XREHvIesnU_4JlpEhv3DEtFFoNcSvzW7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-10_04,2023-05-05_01,2023-02-09_01
+X-Mailman-Approved-At: Thu, 11 May 2023 13:40:02 +0000
+Cc: "petrm@nvidia.com" <petrm@nvidia.com>,
+ "jiri@resnulli.us" <jiri@resnulli.us>,
+ "taspelund@nvidia.com" <taspelund@nvidia.com>,
+ "xiyou.wangcong@gmail.com" <xiyou.wangcong@gmail.com>,
+ "razor@blackwall.org" <razor@blackwall.org>,
+ "jhs@mojatatu.com" <jhs@mojatatu.com>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "roopa@nvidia.com" <roopa@nvidia.com>, "kuba@kernel.org" <kuba@kernel.org>,
+ "pabeni@redhat.com" <pabeni@redhat.com>,
+ "davem@davemloft.net" <davem@davemloft.net>
+Subject: Re: [Bridge] [EXT] [RFC PATCH net-next 3/5] flow_offload: Reject
+ matching on layer 2 miss
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -141,393 +276,137 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add test cases to verify that the bridge driver correctly marks layer 2
-misses only when it should and that the flower classifier can match on
-this metadata.
 
-Example output:
 
- # ./tc_flower_l2_miss.sh
- TEST: L2 miss - Unicast                                             [ OK ]
- TEST: L2 miss - Multicast (IPv4)                                    [ OK ]
- TEST: L2 miss - Multicast (IPv6)                                    [ OK ]
- TEST: L2 miss - Link-local multicast (IPv4)                         [ OK ]
- TEST: L2 miss - Link-local multicast (IPv6)                         [ OK ]
- TEST: L2 miss - Broadcast                                           [ OK ]
+> -----Original Message-----
+> From: Ido Schimmel <idosch@nvidia.com>
+> Sent: Tuesday, May 9, 2023 10:05 AM
+> To: netdev@vger.kernel.org; bridge@lists.linux-foundation.org
+> Cc: davem@davemloft.net; kuba@kernel.org; pabeni@redhat.com;
+> edumazet@google.com; razor@blackwall.org; roopa@nvidia.com;
+> jhs@mojatatu.com; xiyou.wangcong@gmail.com; jiri@resnulli.us;
+> petrm@nvidia.com; taspelund@nvidia.com; Ido Schimmel
+> <idosch@nvidia.com>
+> Subject: [EXT] [RFC PATCH net-next 3/5] flow_offload: Reject matching on
+> layer 2 miss
+>=20
+> External Email
+>=20
+> ----------------------------------------------------------------------
+> Adjust drivers that support the 'FLOW_DISSECTOR_KEY_META' key to reject
+> filters that try to match on the newly added layer 2 miss option. Add an
+> extack message to clearly communicate the failure reason to user space.
+>=20
+> Example:
+>=20
+>  # tc filter add dev swp1 egress pref 1 proto all flower skip_sw l2_miss =
+true
+> action drop
+>  Error: mlxsw_spectrum: Can't match on "l2_miss".
+>  We have an error talking to the kernel
+>=20
+> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
+> ---
+>  .../net/ethernet/marvell/prestera/prestera_flower.c    |  6 ++++++
+>  drivers/net/ethernet/mellanox/mlx5/core/en_tc.c        |  6 ++++++
+>  drivers/net/ethernet/mellanox/mlxsw/spectrum_flower.c  |  6 ++++++
+>  drivers/net/ethernet/mscc/ocelot_flower.c              | 10 ++++++++++
+>  4 files changed, 28 insertions(+)
+>=20
+> diff --git a/drivers/net/ethernet/marvell/prestera/prestera_flower.c
+> b/drivers/net/ethernet/marvell/prestera/prestera_flower.c
+> index 91a478b75cbf..3e20e71b0f81 100644
+> --- a/drivers/net/ethernet/marvell/prestera/prestera_flower.c
+> +++ b/drivers/net/ethernet/marvell/prestera/prestera_flower.c
+> @@ -148,6 +148,12 @@ static int prestera_flower_parse_meta(struct
+> prestera_acl_rule *rule,
+>  	__be16 key, mask;
+>=20
+>  	flow_rule_match_meta(f_rule, &match);
+> +
+> +	if (match.mask->l2_miss) {
+> +		NL_SET_ERR_MSG_MOD(f->common.extack, "Can't match on
+> \"l2_miss\"");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+>  	if (match.mask->ingress_ifindex !=3D 0xFFFFFFFF) {
+>  		NL_SET_ERR_MSG_MOD(f->common.extack,
+>  				   "Unsupported ingress ifindex mask"); diff --
+> git a/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
+> b/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
+> index 728b82ce4031..516653568330 100644
+> --- a/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
+> +++ b/drivers/net/ethernet/mellanox/mlx5/core/en_tc.c
+> @@ -2586,6 +2586,12 @@ static int mlx5e_flower_parse_meta(struct
+> net_device *filter_dev,
+>  		return 0;
+>=20
+>  	flow_rule_match_meta(rule, &match);
+> +
+> +	if (match.mask->l2_miss) {
+> +		NL_SET_ERR_MSG_MOD(f->common.extack, "Can't match on
+> \"l2_miss\"");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+>  	if (!match.mask->ingress_ifindex)
+>  		return 0;
+>=20
+> diff --git a/drivers/net/ethernet/mellanox/mlxsw/spectrum_flower.c
+> b/drivers/net/ethernet/mellanox/mlxsw/spectrum_flower.c
+> index 594cdcb90b3d..6fec9223250b 100644
+> --- a/drivers/net/ethernet/mellanox/mlxsw/spectrum_flower.c
+> +++ b/drivers/net/ethernet/mellanox/mlxsw/spectrum_flower.c
+> @@ -294,6 +294,12 @@ static int mlxsw_sp_flower_parse_meta(struct
+> mlxsw_sp_acl_rule_info *rulei,
+>  		return 0;
+>=20
+>  	flow_rule_match_meta(rule, &match);
+> +
+> +	if (match.mask->l2_miss) {
+> +		NL_SET_ERR_MSG_MOD(f->common.extack, "Can't match on
+> \"l2_miss\"");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+>  	if (match.mask->ingress_ifindex !=3D 0xFFFFFFFF) {
+>  		NL_SET_ERR_MSG_MOD(f->common.extack, "Unsupported
+> ingress ifindex mask");
+>  		return -EINVAL;
+> diff --git a/drivers/net/ethernet/mscc/ocelot_flower.c
+> b/drivers/net/ethernet/mscc/ocelot_flower.c
+> index ee052404eb55..e0916afcddfb 100644
+> --- a/drivers/net/ethernet/mscc/ocelot_flower.c
+> +++ b/drivers/net/ethernet/mscc/ocelot_flower.c
+> @@ -592,6 +592,16 @@ ocelot_flower_parse_key(struct ocelot *ocelot, int
+> port, bool ingress,
+>  		return -EOPNOTSUPP;
+>  	}
+>=20
+> +	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_META)) {
+> +		struct flow_match_meta match;
+> +
+> +		flow_rule_match_meta(rule, &match);
+> +		if (match.mask->l2_miss) {
+> +			NL_SET_ERR_MSG_MOD(extack, "Can't match on
+> \"l2_miss\"");
+> +			return -EOPNOTSUPP;
+> +		}
+> +	}
+> +
+>  	/* For VCAP ES0 (egress rewriter) we can match on the ingress port
+> */
+>  	if (!ingress) {
+>  		ret =3D ocelot_flower_parse_indev(ocelot, port, f, filter);
+> --
+> 2.40.1
+>=20
 
-Signed-off-by: Ido Schimmel <idosch@nvidia.com>
----
- .../testing/selftests/net/forwarding/Makefile |   1 +
- .../net/forwarding/tc_flower_l2_miss.sh       | 343 ++++++++++++++++++
- 2 files changed, 344 insertions(+)
- create mode 100755 tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
+I have reviewed the prestera part. Looks straightforward enough.
 
-diff --git a/tools/testing/selftests/net/forwarding/Makefile b/tools/testing/selftests/net/forwarding/Makefile
-index a474c60fe348..9d0062b542e5 100644
---- a/tools/testing/selftests/net/forwarding/Makefile
-+++ b/tools/testing/selftests/net/forwarding/Makefile
-@@ -83,6 +83,7 @@ TEST_PROGS = bridge_igmp.sh \
- 	tc_chains.sh \
- 	tc_flower_router.sh \
- 	tc_flower.sh \
-+	tc_flower_l2_miss.sh \
- 	tc_mpls_l2vpn.sh \
- 	tc_police.sh \
- 	tc_shblocks.sh \
-diff --git a/tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh b/tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
-new file mode 100755
-index 000000000000..fbf0a960b2c8
---- /dev/null
-+++ b/tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
-@@ -0,0 +1,343 @@
-+#!/bin/bash
-+# SPDX-License-Identifier: GPL-2.0
-+
-+# +-----------------------+                             +----------------------+
-+# | H1 (vrf)              |                             | H2 (vrf)             |
-+# |    + $h1              |                             |              $h2 +   |
-+# |    | 192.0.2.1/28     |                             |     192.0.2.2/28 |   |
-+# |    | 2001:db8:1::1/64 |                             | 2001:db8:1::2/64 |   |
-+# +----|------------------+                             +------------------|---+
-+#      |                                                                   |
-+# +----|-------------------------------------------------------------------|---+
-+# | SW |                                                                   |   |
-+# |  +-|-------------------------------------------------------------------|-+ |
-+# |  | + $swp1                       BR                              $swp2 + | |
-+# |  +-----------------------------------------------------------------------+ |
-+# +----------------------------------------------------------------------------+
-+
-+ALL_TESTS="
-+	test_l2_miss_unicast
-+	test_l2_miss_multicast
-+	test_l2_miss_ll_multicast
-+	test_l2_miss_broadcast
-+"
-+
-+NUM_NETIFS=4
-+source lib.sh
-+source tc_common.sh
-+
-+h1_create()
-+{
-+	simple_if_init $h1 192.0.2.1/28 2001:db8:1::1/64
-+}
-+
-+h1_destroy()
-+{
-+	simple_if_fini $h1 192.0.2.1/28 2001:db8:1::1/64
-+}
-+
-+h2_create()
-+{
-+	simple_if_init $h2 192.0.2.2/28 2001:db8:1::2/64
-+}
-+
-+h2_destroy()
-+{
-+	simple_if_fini $h2 192.0.2.2/28 2001:db8:1::2/64
-+}
-+
-+switch_create()
-+{
-+	ip link add name br1 up type bridge
-+	ip link set dev $swp1 master br1
-+	ip link set dev $swp1 up
-+	ip link set dev $swp2 master br1
-+	ip link set dev $swp2 up
-+
-+	tc qdisc add dev $swp2 clsact
-+}
-+
-+switch_destroy()
-+{
-+	tc qdisc del dev $swp2 clsact
-+
-+	ip link set dev $swp2 down
-+	ip link set dev $swp2 nomaster
-+	ip link set dev $swp1 down
-+	ip link set dev $swp1 nomaster
-+	ip link del dev br1
-+}
-+
-+test_l2_miss_unicast()
-+{
-+	local dmac=00:01:02:03:04:05
-+	local dip=192.0.2.2
-+	local sip=192.0.2.1
-+
-+	RET=0
-+
-+	# Unknown unicast.
-+	tc filter add dev $swp2 egress protocol ipv4 handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true dst_mac $dmac src_ip $sip \
-+	   dst_ip $dip action pass
-+	# Known unicast.
-+	tc filter add dev $swp2 egress protocol ipv4 handle 102 pref 1 \
-+	   flower indev $swp1 l2_miss false dst_mac $dmac src_ip $sip \
-+	   dst_ip $dip action pass
-+
-+	# Before adding FDB entry.
-+	$MZ $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unknown unicast filter was not hit before adding FDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 0
-+	check_err $? "Known unicast filter was hit before adding FDB entry"
-+
-+	# Adding FDB entry.
-+	bridge fdb replace $dmac dev $swp2 master static
-+
-+	$MZ $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unknown unicast filter was hit after adding FDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Known unicast filter was not hit after adding FDB entry"
-+
-+	# Deleting FDB entry.
-+	bridge fdb del $dmac dev $swp2 master static
-+
-+	$MZ $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 2
-+	check_err $? "Unknown unicast filter was not hit after deleting FDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Known unicast filter was hit after deleting FDB entry"
-+
-+	tc filter del dev $swp2 egress protocol ipv4 pref 1 handle 102 flower
-+	tc filter del dev $swp2 egress protocol ipv4 pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Unicast"
-+}
-+
-+test_l2_miss_multicast_common()
-+{
-+	local proto=$1; shift
-+	local sip=$1; shift
-+	local dip=$1; shift
-+	local mode=$1; shift
-+	local name=$1; shift
-+
-+	RET=0
-+
-+	# Unregistered multicast.
-+	tc filter add dev $swp2 egress protocol $proto handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true src_ip $sip dst_ip $dip \
-+	   action pass
-+	# Registered multicast.
-+	tc filter add dev $swp2 egress protocol $proto handle 102 pref 1 \
-+	   flower indev $swp1 l2_miss false src_ip $sip dst_ip $dip \
-+	   action pass
-+
-+	# Before adding MDB entry.
-+	$MZ $mode $h1 -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unregistered multicast filter was not hit before adding MDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 0
-+	check_err $? "Registered multicast filter was hit before adding MDB entry"
-+
-+	# Adding MDB entry.
-+	bridge mdb replace dev br1 port $swp2 grp $dip permanent
-+
-+	$MZ $mode $h1 -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unregistered multicast filter was hit after adding MDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Registered multicast filter was not hit after adding MDB entry"
-+
-+	# Deleting MDB entry.
-+	bridge mdb del dev br1 port $swp2 grp $dip
-+
-+	$MZ $mode $h1 -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 2
-+	check_err $? "Unregistered multicast filter was not hit after deleting MDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Registered multicast filter was hit after deleting MDB entry"
-+
-+	tc filter del dev $swp2 egress protocol $proto pref 1 handle 102 flower
-+	tc filter del dev $swp2 egress protocol $proto pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Multicast ($name)"
-+}
-+
-+test_l2_miss_multicast_ipv4()
-+{
-+	local proto="ipv4"
-+	local sip=192.0.2.1
-+	local dip=239.1.1.1
-+	local mode="-4"
-+	local name="IPv4"
-+
-+	test_l2_miss_multicast_common $proto $sip $dip $mode $name
-+}
-+
-+test_l2_miss_multicast_ipv6()
-+{
-+	local proto="ipv6"
-+	local sip=2001:db8:1::1
-+	local dip=ff0e::1
-+	local mode="-6"
-+	local name="IPv6"
-+
-+	test_l2_miss_multicast_common $proto $sip $dip $mode $name
-+}
-+
-+test_l2_miss_multicast()
-+{
-+	# Configure $swp2 as a multicast router port so that it will forward
-+	# both registered and unregistered multicast traffic.
-+	bridge link set dev $swp2 mcast_router 2
-+
-+	# Forwarding according to MDB entries only takes place when the bridge
-+	# detects that there is a valid querier in the network. Set the bridge
-+	# as the querier and assign it a valid IPv6 link-local address to be
-+	# used as the source address for MLD queries.
-+	ip link set dev br1 type bridge mcast_querier 1
-+	ip -6 address add fe80::1/64 nodad dev br1
-+	# Wait the default Query Response Interval (10 seconds) for the bridge
-+	# to determine that there are no other queriers in the network.
-+	sleep 10
-+
-+	test_l2_miss_multicast_ipv4
-+	test_l2_miss_multicast_ipv6
-+
-+	ip -6 address del fe80::1/64 dev br1
-+	ip link set dev br1 type bridge mcast_querier 0
-+	bridge link set dev $swp2 mcast_router 1
-+}
-+
-+test_l2_miss_multicast_common2()
-+{
-+	local name=$1; shift
-+	local dmac=$1; shift
-+	local dip=224.0.0.1
-+	local sip=192.0.2.1
-+
-+}
-+
-+test_l2_miss_ll_multicast_common()
-+{
-+	local proto=$1; shift
-+	local dmac=$1; shift
-+	local sip=$1; shift
-+	local dip=$1; shift
-+	local mode=$1; shift
-+	local name=$1; shift
-+
-+	RET=0
-+
-+	tc filter add dev $swp2 egress protocol $proto handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true dst_mac $dmac src_ip $sip \
-+	   dst_ip $dip action pass
-+
-+	$MZ $mode $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Filter was not hit"
-+
-+	tc filter del dev $swp2 egress protocol $proto pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Link-local multicast ($name)"
-+}
-+
-+test_l2_miss_ll_multicast_ipv4()
-+{
-+	local proto=ipv4
-+	local dmac=01:00:5e:00:00:01
-+	local sip=192.0.2.1
-+	local dip=224.0.0.1
-+	local mode="-4"
-+	local name="IPv4"
-+
-+	test_l2_miss_ll_multicast_common $proto $dmac $sip $dip $mode $name
-+}
-+
-+test_l2_miss_ll_multicast_ipv6()
-+{
-+	local proto=ipv6
-+	local dmac=33:33:00:00:00:01
-+	local sip=2001:db8:1::1
-+	local dip=ff02::1
-+	local mode="-6"
-+	local name="IPv6"
-+
-+	test_l2_miss_ll_multicast_common $proto $dmac $sip $dip $mode $name
-+}
-+
-+test_l2_miss_ll_multicast()
-+{
-+	test_l2_miss_ll_multicast_ipv4
-+	test_l2_miss_ll_multicast_ipv6
-+}
-+
-+test_l2_miss_broadcast()
-+{
-+	local dmac=ff:ff:ff:ff:ff:ff
-+	local smac=00:01:02:03:04:05
-+
-+	RET=0
-+
-+	tc filter add dev $swp2 egress protocol all handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true dst_mac $dmac src_mac $smac \
-+	   action pass
-+
-+	$MZ $h1 -a $smac -b $dmac -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Filter was not hit"
-+
-+	tc filter del dev $swp2 egress protocol all pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Broadcast"
-+}
-+
-+setup_prepare()
-+{
-+	h1=${NETIFS[p1]}
-+	swp1=${NETIFS[p2]}
-+
-+	swp2=${NETIFS[p3]}
-+	h2=${NETIFS[p4]}
-+
-+	vrf_prepare
-+	h1_create
-+	h2_create
-+	switch_create
-+}
-+
-+cleanup()
-+{
-+	pre_cleanup
-+
-+	switch_destroy
-+	h2_destroy
-+	h1_destroy
-+	vrf_cleanup
-+}
-+
-+trap cleanup EXIT
-+
-+setup_prepare
-+setup_wait
-+
-+tests_run
-+
-+exit $EXIT_STATUS
--- 
-2.40.1
+Acked-by: Elad Nachman <enachman@marvell.com>
 
