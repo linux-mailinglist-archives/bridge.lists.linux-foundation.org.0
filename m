@@ -1,102 +1,100 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB6C7028CB
-	for <lists.bridge@lfdr.de>; Mon, 15 May 2023 11:35:58 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE007031F2
+	for <lists.bridge@lfdr.de>; Mon, 15 May 2023 17:56:40 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id CB15A60BBA;
-	Mon, 15 May 2023 09:35:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CB15A60BBA
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=D7GbvBX6
+	by smtp1.osuosl.org (Postfix) with ESMTP id 32BC1840C8;
+	Mon, 15 May 2023 15:56:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 32BC1840C8
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=networkplumber-org.20221208.gappssmtp.com header.i=@networkplumber-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=t42S/uV9
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id xFAbackgeVtz; Mon, 15 May 2023 09:35:55 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id REX1ldJqlbKb; Mon, 15 May 2023 15:56:37 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 5304F60C12;
-	Mon, 15 May 2023 09:35:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5304F60C12
+	by smtp1.osuosl.org (Postfix) with ESMTPS id BF77B840C1;
+	Mon, 15 May 2023 15:56:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BF77B840C1
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 063E5C008A;
-	Mon, 15 May 2023 09:35:54 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 58217C008A;
+	Mon, 15 May 2023 15:56:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 394AEC002A
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 09:35:52 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C3D77C002A
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 15:56:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 1391341C80
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 09:35:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1391341C80
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
- header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
- header.s=20221208 header.b=D7GbvBX6
+ by smtp4.osuosl.org (Postfix) with ESMTP id 8895341F87
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 15:56:34 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8895341F87
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=networkplumber-org.20221208.gappssmtp.com
+ header.i=@networkplumber-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=t42S/uV9
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CEkl7Iyiw_Uq for <bridge@lists.linux-foundation.org>;
- Mon, 15 May 2023 09:35:51 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ajjzfOM1SFmU for <bridge@lists.linux-foundation.org>;
+ Mon, 15 May 2023 15:56:33 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5775B41C73
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 5775B41C73
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 09:35:51 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id
- a640c23a62f3a-96ab81aa68dso573864866b.3
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 02:35:51 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7959C41F86
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com
+ [IPv6:2607:f8b0:4864:20::42f])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 7959C41F86
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 15:56:32 +0000 (UTC)
+Received: by mail-pf1-x42f.google.com with SMTP id
+ d2e1a72fcca58-6436e004954so13419851b3a.0
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 08:56:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684143349; x=1686735349;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=HSSdUyfUPyGYycaIqfuqW/+pghUKLLVTSGYMfpy13LM=;
- b=D7GbvBX6PgLbCDR/Yqdo2kXDxg5n5V1DaOw9R41jA3f2HwW8Qv1g9yHj76/W/q7ZT4
- 7pvp31roCIgy6seejg9uqmy1l//Is7be6P50+9GoKYlgFLdB6fm3DaEHNSUiINYbHmEg
- vHoBo+e/pvj2G155jQwlO1vvz3CavlYZgFmDZ+5MrPN9qj1W29XUt86sdNSsGl4wKozd
- Ndx28demcmGTOz05b1Mq6xWMv0dq6mS4sXNRzgDp9LVhF78Xe8Vrge8DTZap3xlu2nAo
- H3bc1/ig/YC78MTvoXHdH+FhXhcZOw6I4vHtnUOnPrVW3r1tNnTy2cYuD60RLdb38BPh
- +8Tg==
+ d=networkplumber-org.20221208.gappssmtp.com; s=20221208; t=1684166192;
+ x=1686758192; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=OcLsr78EN7rEqPNewa0hKsosvcKEefYu9hxdkOGF9BE=;
+ b=t42S/uV9vuqdYs8egpECgEbmFeiZUT1aZki0nf0JVuoyYW8YQ7ZKnF2tqrcnyPr7tN
+ zKTZqCG0Ct6pqg1xPsUsNSrKV9UO2Um2lH0gXMV11EOx/I/8jhZJK6Lx5NN95JSiZJ6b
+ hKquYr4POpSLvb2pLTFcUZSWmnOc8FXSNtE1WSU+rmUg84cp/rpLx01Q/xH6q9lYzj0z
+ KSh34pKnJ2NZkAPs6J8I6z5ExFaC6N7NdxyXlvT0abEj7yn1hKx0Ad1eYnBvRURXkW+A
+ rDnVClHXDXjhlVLZ2QcNaeczaVVU4FQqLaerj4haqy82hiXNY4PIaxvptlhxqB0TlHbi
+ lcyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684143349; x=1686735349;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HSSdUyfUPyGYycaIqfuqW/+pghUKLLVTSGYMfpy13LM=;
- b=MTpe5LfiP6/3BadrCUMVdLNE1g8ijSXN216o8G5VDq2tBu6qSaaMEehKxdiCWHijl6
- D2a4HSoEw7XKvNXwBDDo9Zt74V3ZbrSGxjxQXrNKEYXwjXzQ591EiT6xIv3BU4E2iX5P
- cJsYf13QgRRhPN1vXdxz6oyi/G2+bf/BdJURJaq0+MQBwMuY1kTf+i6QOI90byJznXrF
- mm1jbxTYwIOYCf/BaXIrxEFjj5vzE0J9yqF9uTTgHycAJ4N61h93gIQejNxd5umTuGXQ
- bmU49qf2PuTJsuud84ukPDwf5slAz7uOKUb88JTMyjzgViEnpD7DhfX3UZVJGLBG9AlI
- UYGQ==
-X-Gm-Message-State: AC+VfDwQX87ffmOXeX+nPBihq5v0kf69Oz2GVEbF+ypMIUceIgoapC4I
- EsjO6Eb70PSOqh0SODYDljRTkQ==
-X-Google-Smtp-Source: ACHHUZ5guZjQyt+ewDulYxDM52KKMRKk8m+mePj3t6ZRQDTy77O/PteUoTkSWv1vLYs8FVpLToDAYA==
-X-Received: by 2002:a17:907:360c:b0:961:800b:3f1e with SMTP id
- bk12-20020a170907360c00b00961800b3f1emr31728686ejc.73.1684143349443; 
- Mon, 15 May 2023 02:35:49 -0700 (PDT)
-Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ d=1e100.net; s=20221208; t=1684166192; x=1686758192;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=OcLsr78EN7rEqPNewa0hKsosvcKEefYu9hxdkOGF9BE=;
+ b=MTPYMwRKaRmLJMwb5LmeaL+GYAHSjjv11lmntGoEKpgqcpr91N8meIQUXKblkQO6mz
+ 81JExv9wvWliiSda4mAcHwTgBnbiUU0dgQT1/1zIaejQYndvWmV+u02Mm97AVVsoiAXR
+ xafmAWHa+W18cn1pZgon7o32cqVn49peD0bZFhpxCZ4qSqOEXSQOecDs8dICpsV6nPrv
+ abfye5jCWSzCpq1J0bz/X8K0UGfiFuzcUr3nB+6YoyNKn4UkkF1doCmg65MKs6JYb22d
+ rvovq2R8E4PlKld1F30j+AbTkhpJJVCaHSnyn+vJdLIa4BJZuJx4oyC6IHmNty9Nu6ON
+ o7Gg==
+X-Gm-Message-State: AC+VfDw9+HW6gFFWNc2mA/AlRfnuSfOlj3ygVXax7TWbu+vvPJtDdvFd
+ sgoyW/T2qW4WPNx+LLEJX8zzhQ==
+X-Google-Smtp-Source: ACHHUZ7guiwS0vhMsPKfkgMtXN5vJAa+blVOCmLC7VwtpLIKmYcJEPs7xTmp7MUXux4OuVm25d2WCg==
+X-Received: by 2002:a05:6a00:b55:b0:648:c1be:496 with SMTP id
+ p21-20020a056a000b5500b00648c1be0496mr26608014pfo.22.1684166192018; 
+ Mon, 15 May 2023 08:56:32 -0700 (PDT)
+Received: from hermes.local (204-195-120-218.wavecable.com. [204.195.120.218])
  by smtp.gmail.com with ESMTPSA id
- hu7-20020a170907a08700b00969fa8a3533sm8421674ejc.165.2023.05.15.02.35.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 15 May 2023 02:35:48 -0700 (PDT)
-Message-ID: <dc8dfe0b-cf22-c4f9-8532-87643a6a9ceb@blackwall.org>
-Date: Mon, 15 May 2023 12:35:47 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Johannes Nixdorf <jnixdorf-oss@avm.de>, netdev@vger.kernel.org
+ f3-20020aa78b03000000b0064385a057dfsm11989225pfd.181.2023.05.15.08.56.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 May 2023 08:56:31 -0700 (PDT)
+Date: Mon, 15 May 2023 08:56:27 -0700
+To: Johannes Nixdorf <jnixdorf-oss@avm.de>
+Message-ID: <20230515085627.5897dab1@hermes.local>
+In-Reply-To: <20230515085046.4457-2-jnixdorf-oss@avm.de>
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
  <20230515085046.4457-2-jnixdorf-oss@avm.de>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230515085046.4457-2-jnixdorf-oss@avm.de>
-Content-Type: text/plain; charset=UTF-8
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Cc: bridge@lists.linux-foundation.org, Eric Dumazet <edumazet@google.com>,
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Eric Dumazet <edumazet@google.com>,
  Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net-next 2/2] bridge: Add a sysctl to limit new
@@ -112,24 +110,22 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Stephen Hemminger via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Stephen Hemminger <stephen@networkplumber.org>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 15/05/2023 11:50, Johannes Nixdorf wrote:
-> This is a convenience setting, which allows the administrator to limit
-> the default limit of FDB entries for all created bridges, instead of
-> having to set it for each created bridge using the netlink property.
-> 
-> The setting is network namespace local, and defaults to 0, which means
-> unlimited, for backwards compatibility reasons.
-> 
-> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
-> ---
->  net/bridge/br.c         | 83 +++++++++++++++++++++++++++++++++++++++++
->  net/bridge/br_device.c  |  4 +-
->  net/bridge/br_private.h |  9 +++++
->  3 files changed, 95 insertions(+), 1 deletion(-)
-> 
+On Mon, 15 May 2023 10:50:46 +0200
+Johannes Nixdorf <jnixdorf-oss@avm.de> wrote:
 
-The bridge doesn't need private sysctls. Netlink is enough.
-Nacked-by: Nikolay Aleksandrov <razor@blackwall.org>
+> +static struct ctl_table br_sysctl_table[] = {
+> +	{
+> +		.procname     = "bridge-fdb-max-entries-default",
+
+
+That name is too long.
+
+Also, all the rest of bridge code does not use sysctl's.  Why is this
+special and why should the property be global and not per bridge?
+
+NAK
