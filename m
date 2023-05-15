@@ -1,83 +1,84 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594FC707B90
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1043707B91
 	for <lists.bridge@lfdr.de>; Thu, 18 May 2023 10:02:33 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 31C1940BE3;
-	Thu, 18 May 2023 08:02:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 31C1940BE3
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=qp0VSVgK
+	by smtp4.osuosl.org (Postfix) with ESMTP id DBB9942841;
+	Thu, 18 May 2023 08:02:31 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org DBB9942841
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=oK3ZKzYc
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PH-isT-VF_Tn; Thu, 18 May 2023 08:02:28 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id J-k2OOfCLR2d; Thu, 18 May 2023 08:02:29 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 8BB3F40111;
-	Thu, 18 May 2023 08:02:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8BB3F40111
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 4F89141EBA;
+	Thu, 18 May 2023 08:02:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4F89141EBA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id CD03AC0090;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id F2836C0094;
 	Thu, 18 May 2023 08:02:26 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D81C1C002A
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 09:00:23 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3E24DC002A
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 11:27:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id A2B7F81F60
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 09:00:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A2B7F81F60
+ by smtp1.osuosl.org (Postfix) with ESMTP id 039ED83BF8
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 11:27:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 039ED83BF8
 Authentication-Results: smtp1.osuosl.org;
  dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256
- header.s=mail header.b=qp0VSVgK
+ header.s=mail header.b=oK3ZKzYc
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id eD2KrC1ZGvZo for <bridge@lists.linux-foundation.org>;
- Mon, 15 May 2023 09:00:21 +0000 (UTC)
-X-Greylist: delayed 00:08:19 by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4066881FA7
+ with ESMTP id JvZexKMJzjPO for <bridge@lists.linux-foundation.org>;
+ Mon, 15 May 2023 11:27:09 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 43AED8195C
 Received: from mail.avm.de (mail.avm.de [IPv6:2001:bf0:244:244::94])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4066881FA7
- for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 09:00:21 +0000 (UTC)
-Received: from mail-auth.avm.de (dovecot-mx-01.avm.de [212.42.244.71])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 43AED8195C
+ for <bridge@lists.linux-foundation.org>; Mon, 15 May 2023 11:27:08 +0000 (UTC)
+Received: from mail-auth.avm.de (unknown [IPv6:2001:bf0:244:244::71])
  by mail.avm.de (Postfix) with ESMTPS;
- Mon, 15 May 2023 10:52:00 +0200 (CEST)
+ Mon, 15 May 2023 13:27:04 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
- t=1684140720; bh=oxYIMnYO7Ypmm/lpcPpl2z/P+Ln/Eg7ecWQ7USx+hCU=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qp0VSVgKIkpoy++GZFJ60Tq/PVL3lK0mLQuKAQHXaee2y8hQUDSGbuY/P+UuaZqz8
- dCt2ZN4zmdofK/Ky6OIl+vjskDuiP/XCRKBpwa+8eMJFxiituZSgLqhPC83vwVsCD9
- nBt2u/3TolebtTkhABCo+/eWmrSSuOBTorR3G59o=
-Received: from u-jnixdorf.avm.de (unknown [172.17.88.63])
- by mail-auth.avm.de (Postfix) with ESMTPA id C14A380C0E;
- Mon, 15 May 2023 10:52:00 +0200 (CEST)
-To: netdev@vger.kernel.org
-Date: Mon, 15 May 2023 10:50:46 +0200
-Message-Id: <20230515085046.4457-2-jnixdorf-oss@avm.de>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230515085046.4457-1-jnixdorf-oss@avm.de>
+ t=1684150024; bh=bcONLAH6knXEHrJvGB7J70yRBg1clKW8Wz9ykyvwfy8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=oK3ZKzYcmUluEMqNNca2Kz/Ij2k2eig4BbmFqsmj+13HW3/R97ahsKogkAmpLDz3n
+ AcM4x4WRdHofipIAN/j2LwMEamGTDiMC24lOotXmEVChJ1fkJ4J9SgqgylFGYE6F6l
+ LJlbkZLSDogGewrnt0mlQGufbLecprRxc1i8tK90=
+Received: from localhost (unknown [172.17.88.63])
+ by mail-auth.avm.de (Postfix) with ESMTPSA id D5C1382176;
+ Mon, 15 May 2023 13:27:03 +0200 (CEST)
+Date: Mon, 15 May 2023 13:27:03 +0200
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <ZGIXB2DYA4sal9eW@u-jnixdorf.ads.avm.de>
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
+ <20230515085046.4457-2-jnixdorf-oss@avm.de>
+ <dc8dfe0b-cf22-c4f9-8532-87643a6a9ceb@blackwall.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-purgate-ID: 149429::1684140720-E443384B-B2D92B77/0/0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc8dfe0b-cf22-c4f9-8532-87643a6a9ceb@blackwall.org>
+X-purgate-ID: 149429::1684150024-E743984B-2F0A3B9E/0/0
 X-purgate-type: clean
-X-purgate-size: 4794
+X-purgate-size: 1831
 X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
 X-purgate: This mail is considered clean (visit http://www.eleven.de for
  further information)
 X-purgate: clean
 X-Mailman-Approved-At: Thu, 18 May 2023 08:02:25 +0000
-Cc: Johannes Nixdorf <jnixdorf-oss@avm.de>,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "David S. Miller" <davem@davemloft.net>
-Subject: [Bridge] [PATCH net-next 2/2] bridge: Add a sysctl to limit new
-	brides FDB entries
+Subject: Re: [Bridge] [PATCH net-next 2/2] bridge: Add a sysctl to limit new
+ brides FDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,170 +95,42 @@ Reply-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This is a convenience setting, which allows the administrator to limit
-the default limit of FDB entries for all created bridges, instead of
-having to set it for each created bridge using the netlink property.
+On Mon, May 15, 2023 at 12:35:47PM +0300, Nikolay Aleksandrov wrote:
+> On 15/05/2023 11:50, Johannes Nixdorf wrote:
+> > This is a convenience setting, which allows the administrator to limit
+> > the default limit of FDB entries for all created bridges, instead of
+> > having to set it for each created bridge using the netlink property.
+> > 
+> > The setting is network namespace local, and defaults to 0, which means
+> > unlimited, for backwards compatibility reasons.
+> > 
+> > Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
+> > ---
+> >  net/bridge/br.c         | 83 +++++++++++++++++++++++++++++++++++++++++
+> >  net/bridge/br_device.c  |  4 +-
+> >  net/bridge/br_private.h |  9 +++++
+> >  3 files changed, 95 insertions(+), 1 deletion(-)
+> > 
+> 
+> The bridge doesn't need private sysctls. Netlink is enough.
+> Nacked-by: Nikolay Aleksandrov <razor@blackwall.org>
 
-The setting is network namespace local, and defaults to 0, which means
-unlimited, for backwards compatibility reasons.
+Fair enough.
 
-Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
----
- net/bridge/br.c         | 83 +++++++++++++++++++++++++++++++++++++++++
- net/bridge/br_device.c  |  4 +-
- net/bridge/br_private.h |  9 +++++
- 3 files changed, 95 insertions(+), 1 deletion(-)
+I originally included the setting so there is a global setting an
+administrator could toggle instead of having to hunt down each process
+that might create a bridge, and teaching them to create them with an
+FDB limit.
 
-diff --git a/net/bridge/br.c b/net/bridge/br.c
-index 4f5098d33a46..e32bb956111c 100644
---- a/net/bridge/br.c
-+++ b/net/bridge/br.c
-@@ -14,6 +14,7 @@
- #include <linux/init.h>
- #include <linux/llc.h>
- #include <net/llc.h>
-+#include <net/netns/generic.h>
- #include <net/stp.h>
- #include <net/switchdev.h>
- 
-@@ -348,6 +349,82 @@ void br_opt_toggle(struct net_bridge *br, enum net_bridge_opts opt, bool on)
- 		clear_bit(opt, &br->options);
- }
- 
-+#ifdef CONFIG_SYSCTL
-+static unsigned int br_net_id __read_mostly;
-+
-+struct br_net {
-+	struct ctl_table_header *ctl_hdr;
-+
-+	unsigned int fdb_max_entries_default;
-+};
-+
-+static int br_proc_rtnl_uintvec(struct ctl_table *table, int write,
-+				void *buffer, size_t *lenp, loff_t *ppos)
-+{
-+	int ret;
-+
-+	rtnl_lock();
-+	ret = proc_douintvec(table, write, buffer, lenp, ppos);
-+	rtnl_unlock();
-+
-+	return ret;
-+}
-+
-+static struct ctl_table br_sysctl_table[] = {
-+	{
-+		.procname     = "bridge-fdb-max-entries-default",
-+		.maxlen	      = sizeof(unsigned int),
-+		.mode	      = 0644,
-+		.proc_handler = br_proc_rtnl_uintvec,
-+	},
-+	{ }
-+};
-+
-+static int __net_init br_net_init(struct net *net)
-+{
-+	struct ctl_table *table = br_sysctl_table;
-+	struct br_net *brnet;
-+
-+	if (!net_eq(net, &init_net)) {
-+		table = kmemdup(table, sizeof(br_sysctl_table), GFP_KERNEL);
-+		if (!table)
-+			return -ENOMEM;
-+	}
-+
-+	brnet = net_generic(net, br_net_id);
-+
-+	brnet->fdb_max_entries_default = 0;
-+
-+	table[0].data = &brnet->fdb_max_entries_default;
-+	brnet->ctl_hdr = register_net_sysctl(net, "net/bridge", table);
-+	if (!brnet->ctl_hdr) {
-+		if (!net_eq(net, &init_net))
-+			kfree(table);
-+
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
-+
-+static void __net_exit br_net_exit(struct net *net)
-+{
-+	struct br_net *brnet = net_generic(net, br_net_id);
-+	struct ctl_table *table = brnet->ctl_hdr->ctl_table_arg;
-+
-+	unregister_net_sysctl_table(brnet->ctl_hdr);
-+	if (!net_eq(net, &init_net))
-+		kfree(table);
-+}
-+
-+unsigned int br_fdb_max_entries_default(struct net *net)
-+{
-+	struct br_net *brnet = net_generic(net, br_net_id);
-+
-+	return brnet->fdb_max_entries_default;
-+}
-+#endif
-+
- static void __net_exit br_net_exit_batch(struct list_head *net_list)
- {
- 	struct net_device *dev;
-@@ -367,6 +444,12 @@ static void __net_exit br_net_exit_batch(struct list_head *net_list)
- }
- 
- static struct pernet_operations br_net_ops = {
-+#ifdef CONFIG_SYSCTL
-+	.init		= br_net_init,
-+	.exit		= br_net_exit,
-+	.id		= &br_net_id,
-+	.size		= sizeof(struct br_net),
-+#endif
- 	.exit_batch	= br_net_exit_batch,
- };
- 
-diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
-index d455a28df7c9..26023f2732e8 100644
---- a/net/bridge/br_device.c
-+++ b/net/bridge/br_device.c
-@@ -117,8 +117,11 @@ static void br_set_lockdep_class(struct net_device *dev)
- static int br_dev_init(struct net_device *dev)
- {
- 	struct net_bridge *br = netdev_priv(dev);
-+	struct net *net = dev_net(dev);
- 	int err;
- 
-+	br->fdb_max_entries = br_fdb_max_entries_default(net);
-+
- 	dev->tstats = netdev_alloc_pcpu_stats(struct pcpu_sw_netstats);
- 	if (!dev->tstats)
- 		return -ENOMEM;
-@@ -529,7 +532,6 @@ void br_dev_setup(struct net_device *dev)
- 	br->bridge_forward_delay = br->forward_delay = 15 * HZ;
- 	br->bridge_ageing_time = br->ageing_time = BR_DEFAULT_AGEING_TIME;
- 	br->fdb_n_entries = 0;
--	br->fdb_max_entries = 0;
- 	dev->max_mtu = ETH_MAX_MTU;
- 
- 	br_netfilter_rtable_init(br);
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 64fb359c6e3e..d4b0f85cc278 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -2223,4 +2223,13 @@ void br_do_suppress_nd(struct sk_buff *skb, struct net_bridge *br,
- 		       u16 vid, struct net_bridge_port *p, struct nd_msg *msg);
- struct nd_msg *br_is_nd_neigh_msg(struct sk_buff *skb, struct nd_msg *m);
- bool br_is_neigh_suppress_enabled(const struct net_bridge_port *p, u16 vid);
-+
-+#ifdef CONFIG_SYSFS
-+unsigned int br_fdb_max_entries_default(struct net *net);
-+#else
-+static inline unsigned int br_fdb_max_entries_default(struct net *net)
-+{
-+	return 0;
-+}
-+#endif
- #endif
--- 
-2.40.1
+Does any of the following alternatives sound acceptable to you?:
+ - Having the default limit (instead of the proposed default to unlimited)
+   configurable in Kbuild. This would solve our problem, as we build
+   our kernels ourselves, but I don't know whether putting a limit there
+   would be acceptable for e.g. distributions.
+ - Hardcoding a default limit != 0. I was afraid I'd break someones
+   use-case with far too large bridged networks if I don't default to
+   unlimited, but if you maintainers have a number in mind with which
+   you don't see a problem, I'd be fine with it as well.
 
+(Sorry for sending this mail twice, I accidentally dropped the list and
+CC on the fist try)
