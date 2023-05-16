@@ -1,100 +1,144 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1147704849
-	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 10:56:52 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDE7704A5B
+	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 12:21:58 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 0A43B408D4;
-	Tue, 16 May 2023 08:56:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0A43B408D4
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=5Hpp8XI5
+	by smtp3.osuosl.org (Postfix) with ESMTP id F41B460FB2;
+	Tue, 16 May 2023 10:21:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F41B460FB2
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=neAB8OZp
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RzAC4D0e4hoP; Tue, 16 May 2023 08:56:48 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 7DF40408C0;
-	Tue, 16 May 2023 08:56:47 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 7DF40408C0
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id L5q-wxb1XFKc; Tue, 16 May 2023 10:21:53 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 7807B60F15;
+	Tue, 16 May 2023 10:21:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7807B60F15
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 271A4C008A;
-	Tue, 16 May 2023 08:56:47 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1785AC008A;
+	Tue, 16 May 2023 10:21:52 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 97D43C002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:56:45 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 05D2DC002A
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:21:50 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 7F616408BF
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:56:45 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 7F616408BF
+ by smtp4.osuosl.org (Postfix) with ESMTP id B3FEB41763
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:21:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B3FEB41763
+Authentication-Results: smtp4.osuosl.org; dkim=pass (1024-bit key,
+ unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
+ header.s=selector2 header.b=neAB8OZp
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Sz-oQhX9_5N9 for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 08:56:44 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id hVyBmLf6w6lJ for <bridge@lists.linux-foundation.org>;
+ Tue, 16 May 2023 10:21:48 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 933E94018F
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 933E94018F
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:56:44 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id
- 4fb4d7f45d1cf-50bc040c7b8so20876733a12.2
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 01:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684227403; x=1686819403;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=oZ2+hh0DnQ/NXjwImsX9ZO3XM0rQ+jTm6Yb7M2fUD9w=;
- b=5Hpp8XI5BZc4LZtMiKQE21xGeEtocrIgXXQoWxbj1j3P4P1xoYfrCjgFF+hpFW73XG
- YjA8g4+2HWQjrSlz6ZiZ4OgwUW0WyFVvTwCQNOIYvYRVAGHzFZVr8k9n58xuFoF2WNRA
- fsiviShfcv8lHCnd37tRKKfeos2jss1nE2I9FOU7H+a31CkNYQfMXgeU+O+Zs4Jx7uzb
- 2DzhwNetMQdAGPMH2myBsWXduB8wDv+Db2t8RfEq7V2EtZXOwABiqeN00b9O98Rrae9p
- yg6YB8kmNPBXpeY2ZhnYxx0TyF2PIAIME0ZEp+f0BtKEwEmWJHtdOBxBhrAoNtVJ5S9u
- Ibtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684227403; x=1686819403;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=oZ2+hh0DnQ/NXjwImsX9ZO3XM0rQ+jTm6Yb7M2fUD9w=;
- b=h5MW1/UmMwUO+pQjAc03GqQ4XtTN2FjfYaIv1BQFGxmuylTM1uVGrMkxdJD2Xu6Vmj
- Koa5xeEJ65SrTaGvM9iFcewgqfHx32+con/7n/bXy1yrLzW3gKhD6Yuz9HQDG0JW6uG4
- VB3q3j/ZZLYMsvUGfGiA4gQz1ituPzPytUIQ4flk8f+s7ykU7MW2YqkJBqICowaKIUIa
- MvW/Mk6skmZgf/Y3hAtvuml7raJn2tJczmqDkKOvOX7+ycwsptrIlikVsB1U2PvniN/L
- hRNBOlSQtWlvbtpybW6wqvtWCBPFoClZQHCUnOSN1XzaBfQONtwf7zj0TxIZYdSDfQir
- nLhA==
-X-Gm-Message-State: AC+VfDwX6tlt7uI/SNyQUUvNnFMYNyq/Jjw2V+R1YbNKS+UmpVnCYakf
- i2ni1D13cXlZ/hWTcM+03B1TSV4HBkscGERnWMmDYA==
-X-Google-Smtp-Source: ACHHUZ7Ik0cpt96Sx4IGaHZmqvBurnRQf4VSfPBclD+Fg0tz0glfiJ+Y+g46KlyobtHXYJKl2nggfA==
-X-Received: by 2002:aa7:c2c4:0:b0:50b:caae:ae6e with SMTP id
- m4-20020aa7c2c4000000b0050bcaaeae6emr25977807edp.17.1684227402569; 
- Tue, 16 May 2023 01:56:42 -0700 (PDT)
-Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
- by smtp.gmail.com with ESMTPSA id
- q22-20020a056402041600b004ad601533a3sm8053101edv.55.2023.05.16.01.56.41
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 16 May 2023 01:56:42 -0700 (PDT)
-Message-ID: <f899f032-b726-7b6d-953d-c7f3f98744ca@blackwall.org>
-Date: Tue, 16 May 2023 11:56:41 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6235E4170B
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com
+ (mail-db5eur02on20631.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe12::631])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 6235E4170B
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:21:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cQ2MOyGHEAsCdoWVN0lwPqRRqDKIG8izkiRuSD+U1yz8I5Qd81LoYGwdnvZEUfYto8J3soagZV9LfZmBilRwSYSkc21HRDaVgy2ySAxugGh2qKF9/OP82AnvX2jon0dxEJve7gkLqEyW9w9pSJILXEoOj4IlojVCD398NLwDWzy+cC8AtESc1gufxP6WzdVkS2F46MJu1wEHjNgqn4iMbbfPkvfNRlvBkAgjcrKBXkFv0ZBsJnYL58bmHrouppv0L8bHfGAl5Uev2JUCW0llqDNjjB8MA+FFIGJ9/zvJCkgIhEZboJImee8y7RunL1TTnoPd8x7j6gzdAi0TlEkJUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ohJGSY14DRrbFq2x0nTI34lERLeMvdwFerb37tNaFeU=;
+ b=T+KP08WapQllvVtxKY3QP3xVbRT4PlWKCWM5nsm+0xwTQ4/EBhN1HFJyNA2Ijls+0nGS2v4Y/N3ej8U1Yj6DNRn/KpKydw6WEAvyRo8PFstZjNKfzKwOAFZrn8ZchIBrCwyymUnXkeeuy5yj6AU1BQ9w10l/brX6NcrnlUxkINlj20sWuPhSfAKTs7EqDoEwGykDoFWGCP8GI7cF3KWnZ2piv+YzTVv2HZ7oKZddv6N7CvQlhRqMcgXt/U+m0LWRLoDBPL+8SzG+NGTSoDqMpUvoz1cbROPGbKAU4If3PpXS4VI77xYQZ8fEPoeYfZ37R5mf7/xov04W4LUUs4EIKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ohJGSY14DRrbFq2x0nTI34lERLeMvdwFerb37tNaFeU=;
+ b=neAB8OZpYbTdDXHHd2Feq66Xl1wp5ktH3VLsWHjOR1GUIzXVxTvFFw//R9oiNd+JzW5g59OAxrr0sK+KUow+UA/3LcflX2KZ8JEgp7UBvaM8Whf3CLhiYYJq52ovHgIQZJbssxl2wk75tcnyRImSb2g7Bxv0GAMs8Ur50O/6b2k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by DB9PR04MB8267.eurprd04.prod.outlook.com (2603:10a6:10:24b::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.33; Tue, 16 May
+ 2023 10:21:45 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::b027:17aa:e5f5:4fea]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::b027:17aa:e5f5:4fea%5]) with mapi id 15.20.6387.032; Tue, 16 May 2023
+ 10:21:45 +0000
+Date: Tue, 16 May 2023 13:21:41 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Nikolay Aleksandrov <razor@blackwall.org>, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Oleksij Rempel <linux@rempel-privat.de>
+Message-ID: <20230516102141.w75yh6pdo53ufjur@skbuf>
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
  <a1d13117-a0c5-d06e-86b7-eacf4811102f@blackwall.org>
  <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Cc: netdev@vger.kernel.org, Ido Schimmel <idosch@nvidia.com>,
- bridge@lists.linux-foundation.org, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ <f899f032-b726-7b6d-953d-c7f3f98744ca@blackwall.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f899f032-b726-7b6d-953d-c7f3f98744ca@blackwall.org>
+X-ClientProxiedBy: VI1PR0501CA0009.eurprd05.prod.outlook.com
+ (2603:10a6:800:92::19) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|DB9PR04MB8267:EE_
+X-MS-Office365-Filtering-Correlation-Id: a66f6020-8910-4380-2dd0-08db55f75962
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8HbcGbZoXvO3fif/4uokfWteNwDrTK28iElcPou+2asXf+geb64dn/koyRMdyneu80P9YJiyi8eUR5wnZivW7mHZ1zDa13XHUERMkSrQLZEDwGr9m0rB6TPkrTMyhkQErwEULm0s5TNSzlTSfKe18/ZvWHR7VjEIQ3qsd9wekyHK7p6ZlAnKBoZrQprCGCu2q8ztCxb6CEN8A7slyR9RFXTRGd0+lNbGRUhoyNBAf+hQB1Mdbk4pEsLxDSbttrKeXFQ3OfJZOZmqa76G7R+TOLDreGoFLOlDdGhWJi2KV8weSFNBxra+mLOzk5EHlM0ezQo4MhCVbectqfmj2d760V1ql1xLn4xo+XiiK05ENQlIkanPxd/S01DgAssZydWt/paWn+wi7uc6Nd4Dckj5UnmOvsp4EgwMPsfA89eVO79lm0vRlVr2wZW85cgkrTuFNE2iikLGPE9rtJPk5nzxJWofnVeAuhIYTnWZ8vXrwNXUmBEwMI3+JNCRz3ne1Yv/dKYUvrCLH56kVEEsryUwFEXF4skCkP/mkFpnJuarGTaV06QbiDDQddEgwNEb7WCokPCqdcpPcs1kOHUSBcQUFg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM0PR04MB6452.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(4636009)(396003)(39860400002)(136003)(346002)(366004)(376002)(451199021)(6486002)(6666004)(966005)(54906003)(478600001)(41300700001)(33716001)(9686003)(83380400001)(86362001)(6512007)(6506007)(110136005)(1076003)(186003)(66946007)(26005)(66556008)(66476007)(316002)(7416002)(8676002)(8936002)(5660300002)(4326008)(44832011)(2906002)(38100700002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9Q6ApiVatXI6K/l6ZZ3+9iUJU6lBP6K4sXAJXTPruPI3bazAOHBVpnIVJrD3?=
+ =?us-ascii?Q?Mtc9Yqwn2oKMWaAQnzli9Es7LJh/5VORjcJDsr/oIjiznbUNniaBZSpk1xwb?=
+ =?us-ascii?Q?xiIO6bMSKb+SsdyXnlcParznMwmlmZiqFFn9Gmdlje3cvk/eDnKqEHD1nzPV?=
+ =?us-ascii?Q?7OkgLpxXmfBuZg1NJPzRIuR0gaMcF+RXHn689RKQPEYc252+mYC/DsjgosEM?=
+ =?us-ascii?Q?RrQf3j2QKfEyhZTvFjicZYiMjYfN4ieC1AVwmzLFIwUcsxZB02Cdfb5xijnQ?=
+ =?us-ascii?Q?uqJVENlRRepgRQSGDgxjP3IPLm8QfoGoX4l3YcZLmOo58Y43seWaqSZXt2qG?=
+ =?us-ascii?Q?CfO52oxWoMxfj38dMWveT0D8Zi3kG/LAKX3sLd3IPKBPNqrgFCvLuwOBvNJs?=
+ =?us-ascii?Q?gjAEZr6hi8Dt/ogRHMIgawBwdRkJ4GNz6Eb3PgLe364j4TyuVTVxEnN98Gsa?=
+ =?us-ascii?Q?8frg7WNxpMDhrk5Bo3YPeT2XUatOpiIqU89EGzpPnZO+pBPZZvC3NbarLykr?=
+ =?us-ascii?Q?0/r5zr60UYFv9JNutxBM4sBdOxsfsPht8Cp6hnvomOz6tFkrdlSDhLFHdOXc?=
+ =?us-ascii?Q?d6FeS5ZE7GF2jz7gEVJSN6D2xqc0CkchecXiOTRQSmcg6pp6Xigta0HwpcVG?=
+ =?us-ascii?Q?4DjLV2PWP3fXBNjfGx8TteVqxB707tBysX/ppuD/HUi5025B8RKYwq3KpUOS?=
+ =?us-ascii?Q?gVo8UKvXYWCMgIvjx1KohsrbbBKjrV/SNf7R25/DEaWwLjY2kfTqipTAW7/p?=
+ =?us-ascii?Q?411jdwSlnx36eXLjAQXuPdMBuCVE0tUTCkhHe4+UJFr26JwW1/KA4Rj9wCXu?=
+ =?us-ascii?Q?41OdFImrL5uS0sEMv2m6X+MVcasH4bWFcAW1RUUevk2OjD7n9n60Xflszp/4?=
+ =?us-ascii?Q?lBckW/ru8gCr/3BlQV4PCC8gB7G9BY8uCO9ssITDHqR7TNz6emT44E3hoVEW?=
+ =?us-ascii?Q?Rr21mqIOQRm1fN2jivGrMBrpnDMji0rNQW3RTYBdOXujOKo2ZlI3PXfo3U6J?=
+ =?us-ascii?Q?URS9E2ZACVocq9zAdlazsZs6dil9mGre8BwSbvNE0JjE5Z2LUNzJl2ZJzux3?=
+ =?us-ascii?Q?7y5xcBwg+n19SrrDa3ZkS8E6z82MsZnTezX9aD1mSlz43btc/yU/f80egxPs?=
+ =?us-ascii?Q?M5twkrdbxPJp18knw2QmSghr0BzJnB4BLkKmjIgL7Xfw1uXTs16H6oTR5blL?=
+ =?us-ascii?Q?0m0eIdkNC+nIf5bMC1gBt+H2SCk/nwJijxlnDtaphRzwZciq/Bx7Cut1A2Sl?=
+ =?us-ascii?Q?IBSKAxe2PZkedZnExfrGcD/Ni3wJYbZVmclVB5Mb0YDmFcA+dw/YbRnD7tic?=
+ =?us-ascii?Q?YMU5PCZ5Idjz+ShtdCpfw//8EvN+GX8Q0gv71OVZ0HXru8/BFE9XwtRklTjy?=
+ =?us-ascii?Q?SWitfjxK7VUGKantAbp9q+0b+DpIhi1zdjkIcn2qKPrrr+3mcCjysQ6g/n6c?=
+ =?us-ascii?Q?4a531OO4b3Be2jmLDnBokD4bTqIGIyPk24KgrSiiWZXafX5andgzhNf898BN?=
+ =?us-ascii?Q?PJXk1oDShXYe1ayKPaRT6EZTQT8APOiF3PMwCGZy5VfOG2/hvVsNj0yX5XQz?=
+ =?us-ascii?Q?s3U2b1+7s9If4nXoTYzoR0HzZeDpJRWIz7wPgYjEblZXSGi3kKUzS6xtUBnY?=
+ =?us-ascii?Q?Ug=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a66f6020-8910-4380-2dd0-08db55f75962
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2023 10:21:44.9820 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HATB5gdDSvTC7MK2Hvvvj1has2/ALa4cWE2KPFHGJt/Jn18/x+Dn/iwoHnrmHxlbaB2AD/4Ao6sJ8cGFWiKTCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8267
+Cc: Johannes Nixdorf <jnixdorf-oss@avm.de>, netdev@vger.kernel.org,
+ Ido Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org,
  Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "David S. Miller" <davem@davemloft.net>
@@ -113,92 +157,45 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 16/05/2023 11:53, Johannes Nixdorf wrote:
-> On Tue, May 16, 2023 at 11:38:11AM +0300, Nikolay Aleksandrov wrote:
->> On 15/05/2023 11:50, Johannes Nixdorf wrote:
->>> A malicious actor behind one bridge port may spam the kernel with packets
->>> with a random source MAC address, each of which will create an FDB entry,
->>> each of which is a dynamic allocation in the kernel.
->>>
->>> There are roughly 2^48 different MAC addresses, further limited by the
->>> rhashtable they are stored in to 2^31. Each entry is of the type struct
->>> net_bridge_fdb_entry, which is currently 128 bytes big. This means the
->>> maximum amount of memory allocated for FDB entries is 2^31 * 128B =
->>> 256GiB, which is too much for most computers.
->>>
->>> Mitigate this by adding a bridge netlink setting IFLA_BR_FDB_MAX_ENTRIES,
->>> which, if nonzero, limits the amount of entries to a user specified
->>> maximum.
->>>
->>> For backwards compatibility the default setting of 0 disables the limit.
->>>
->>> All changes to fdb_n_entries are under br->hash_lock, which means we do
->>> not need additional locking. The call paths are (✓ denotes that
->>> br->hash_lock is taken around the next call):
->>>
->>>  - fdb_delete <-+- fdb_delete_local <-+- br_fdb_changeaddr ✓
->>>                 |                     +- br_fdb_change_mac_address ✓
->>>                 |                     +- br_fdb_delete_by_port ✓
->>>                 +- br_fdb_find_delete_local ✓
->>>                 +- fdb_add_local <-+- br_fdb_changeaddr ✓
->>>                 |                  +- br_fdb_change_mac_address ✓
->>>                 |                  +- br_fdb_add_local ✓
->>>                 +- br_fdb_cleanup ✓
->>>                 +- br_fdb_flush ✓
->>>                 +- br_fdb_delete_by_port ✓
->>>                 +- fdb_delete_by_addr_and_port <--- __br_fdb_delete ✓
->>>                 +- br_fdb_external_learn_del ✓
->>>  - fdb_create <-+- fdb_add_local <-+- br_fdb_changeaddr ✓
->>>                 |                  +- br_fdb_change_mac_address ✓
->>>                 |                  +- br_fdb_add_local ✓
->>>                 +- br_fdb_update ✓
->>>                 +- fdb_add_entry <--- __br_fdb_add ✓
->>>                 +- br_fdb_external_learn_add ✓
->>>
->>> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
->>> ---
->>>  include/uapi/linux/if_link.h | 1 +
->>>  net/bridge/br_device.c       | 2 ++
->>>  net/bridge/br_fdb.c          | 6 ++++++
->>>  net/bridge/br_netlink.c      | 9 ++++++++-
->>>  net/bridge/br_private.h      | 2 ++
->>>  5 files changed, 19 insertions(+), 1 deletion(-)
->>>
->>
->> I completely missed the fact that you don't deal with the situation where you already have fdbs created
->> and a limit is set later, then it would be useless because it will start counting from 0 even though
->> there are already entries.
-> 
-> This should not be an issue. The accounting starts with the bridge
-> creation and is never suspended, so if the user sets a limit later we
-> do not restart counting at 0.
-> 
-> The only corner case I can see there is if the user sets a new limit
-> lower than the current number of FDB entries. In that case the code
-> currently leaves the bridge in a state where the limit is violated,
-> but refuses new FDB entries until the total is back below the limit. The
-> alternative of cleaning out old FDB entries until their number is under
-> the limit again seems to be more error prone to me as well, so I'd rather
-> leave it that way.
-> 
+Hi,
 
-Ah, good. That's ok then.
+On Tue, May 16, 2023 at 11:56:41AM +0300, Nikolay Aleksandrov wrote:
+> Hmm.. perhaps we can add a flag mask of entries to count. Initially it can be
+> only dynamic entries. We should include more people in this discussion (+CC Ido and Vladimir).
+> Switchdev folks might have more specific requirements and restrictions, so it'd be nice to get
+> their input as well.
 
->> Also another issue that came to mind is that you don't deal with fdb_create()
->> for "special" entries, i.e. when adding a port. Currently it will print an error, but you should revisit
->> all callers and see where it might be a problem.
-> 
-> I'll have a look again, also to see whether only counting dynamic
-> entries created as a reaction to observed packets might be a viable
-> alternative. If the user creates the entries by adding a port or manually
-> via netlink I see no reason to restrict them to the same limit.
+I have some other things to do until I can take a closer look at this
+discussion, but in principle, switchdev drivers will likely want to
+impose their own limit on FDB entries because the hardware itself is
+inherently limited in size, so I'm thinking there should be another way
+for the software bridge to be informed about this limit other than UAPI.
+Which ports that limit should affect (think bridging between ports of
+different switches with different FDB sizes) I don't know. If we only
+consider switchdev, FDB limits should probably be per hwdom.
 
-Hmm.. perhaps we can add a flag mask of entries to count. Initially it can be
-only dynamic entries. We should include more people in this discussion (+CC Ido and Vladimir).
-Switchdev folks might have more specific requirements and restrictions, so it'd be nice to get
-their input as well.
+Also, in terms of static vs dynamic limits, I've seen hardware
+implementations where static FDB entries go to a different FDB table
+compared to dynamic ones (Microchip KSZ DSA switches), implementations
+where static partitioning between static and dynamic FDB entries is
+possible but configurable, and implementations where they all consume
+from the shared space and you'd have to evict a dynamic entry to install
+a static one. So it's hard to really say what's the size. That, plus not
+to mention, many hardware FDBs are not fully associative, and due to
+hash collisions, you may be unable to install an entry in the 4-way
+associative bin where its {MAC,VID} hash says it should go, even though
+the FDB at large is not full.
 
+It sounds sexy to take switchdev into consideration, but I'm not really
+sure what we want. Something flexible to cater for the above, probably.
+This discussion should probably be merged with:
+https://lore.kernel.org/netdev/20230324144917.32lnpgtw5auuyovy@skbuf/T/#ma600839815582ca61886e83ba533b1dfbe447557
+so I'm CCing Oleksij too, since he probably knows better than me what he
+wants.
 
-
-
-
+In the thread with DSA trace events, there also was a short talk about
+user space theoretically being able to infer FDB sizes and utilization
+degree based on instrumenting with ftrace, which is something we wouldn't
+like to have to maintain. So I'm adding the DSA maintainers too, since
+there is interest for agreeing on a different API.
+https://lore.kernel.org/netdev/2f150ad4-34f4-4af9-b3ce-c1aff208ec7e@lunn.ch/T/#mfa895245fd012e8f66db784fa568109dba396aa7
