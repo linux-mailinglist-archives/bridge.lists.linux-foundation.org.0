@@ -1,106 +1,99 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CDB7047D5
-	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 10:31:03 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59575704800
+	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 10:38:21 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 6C59461117;
-	Tue, 16 May 2023 08:31:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6C59461117
+	by smtp3.osuosl.org (Postfix) with ESMTP id 6C18560C28;
+	Tue, 16 May 2023 08:38:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6C18560C28
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=mIHFwFj4
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=x+AYYlvm
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ulYH1_ATQo8N; Tue, 16 May 2023 08:31:00 +0000 (UTC)
+	with ESMTP id cVdWKZGnr-A5; Tue, 16 May 2023 08:38:18 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 174E560FB2;
-	Tue, 16 May 2023 08:31:00 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 174E560FB2
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 0EA0560ED1;
+	Tue, 16 May 2023 08:38:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0EA0560ED1
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id BA291C008A;
-	Tue, 16 May 2023 08:30:59 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B1C62C008A;
+	Tue, 16 May 2023 08:38:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 47541C002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:30:58 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 63C2DC002A
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:38:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 20D5E83C4D
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:30:58 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 20D5E83C4D
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
- header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
- header.s=20221208 header.b=mIHFwFj4
+ by smtp3.osuosl.org (Postfix) with ESMTP id 303A660C28
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:38:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 303A660C28
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dacNTcPnc042 for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 08:30:57 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id A7l6HDAqtLvU for <bridge@lists.linux-foundation.org>;
+ Tue, 16 May 2023 08:38:15 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 50E0583C4C
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 50E0583C4C
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:30:57 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id
- a640c23a62f3a-965ac4dd11bso2759418866b.2
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 01:30:57 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 39FB960D71
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 39FB960D71
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:38:14 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id
+ a640c23a62f3a-965d2749e2eso2098302166b.1
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 01:38:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684225855; x=1686817855;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684226293; x=1686818293;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=M34/aMKN7ljoeujRQEvpnGsETt4x3AV3rvDr+t0qo4I=;
- b=mIHFwFj4/b/BrjiM1IfcwgiHg2Z25LopZs63qB+UIFWa1KKJvsXiITrff343N6CSOk
- T4DXsjUXNmlWSk07koYZJbuqxQDRRWeYeTTlN+8T3F4lkIwddDNQBI+9gbT/QV8SzONo
- QeYwAHE76QLQevJaR0UsAxCZ6kbtoyIPROFGT+bphLahpBfs0LZrPIYE4BxvjDB2bVNW
- lJJOKhNoVxxcEpOwfWqQvzBDCAPQGuCcVIePNflw9bUYSiimpnRER3doCWo6l4K0R5TE
- 95Imleo5fUwejVkWafhskPgwwZIPQMP/lx2Jv/2m3jI6KjBW9Fy/0qtLC7LGzaCAiFR4
- f0Mg==
+ bh=qoPnstjPrS2tzxEaPLFxVKxPj2WD+daPAFjbj9WTzeA=;
+ b=x+AYYlvmcvoPE6XEGFZ+zXR1dy97/Gjk9/JFLJgq598TT4S2KgCmm7js1PYCuIu2aa
+ BgK6e/PbU25N55S47oUFbt8DQ4RJSpuOYyYOf1QTi3BuRFdSSSrcJnkgzDDzV3lX7Uo4
+ ZuCRK7bEeBkio/9mz3kpnivYgynTlowWBwmnd6Z0jR2frjS+euEznXRhH7wr1/TJ6QLq
+ VDdyZKJttmdjpHvDAzqdFAroThW0zhwWEcLH4NRdbcEGY1FbzjnHSzc8Rm9Lp/A+flMK
+ 2enzAg2BLSXp1asCYWGYxX6zQ2eupJXgV0c/Xooa8maBNLaUOO0FajLMXLjLcnXgTGpl
+ o7dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684225855; x=1686817855;
+ d=1e100.net; s=20221208; t=1684226293; x=1686818293;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=M34/aMKN7ljoeujRQEvpnGsETt4x3AV3rvDr+t0qo4I=;
- b=mDoEVEBSGhMZeQWzxkwA5p2boF8creun5BEWk2dhQs0UiVtI9iGKvIGip6lNXtZjsH
- dapuVGN84/bzkEt2yStjo4Iux3Z3YmczDbh6Lp/aI0M26rDuJNzIUNcjgEzCab/wU4Af
- N+RKoAzHGaxIexamEDXyM/8hyY1lWR0i75B2wr5RzrxfTf8Qsc5Z0aO9Hl2dMkVjdR+5
- x1nlbNkNYmiCMqOBQdrZSOu3qEODqG5hbUskU6SYxqfHqsNmuY2WNhKuCLo7oCX+7aFb
- LWZLKZYMNpKeDE2O9c5zUblTRj9v9TqBD7culjhE269VhxK4uF8vgwfU1Desx7gnbYYH
- IAlw==
-X-Gm-Message-State: AC+VfDwlIqZ0ibVgoFi8sDhc/Z0mON6Na/RxREzv4SXiVvFyNh7fbmQk
- 3Z4akInL1RDsSh6drQMuYy9fHQ==
-X-Google-Smtp-Source: ACHHUZ7iU4fIk9gvLuIZGyu/Ww4Eq91ifhd18J31LOAEojj0tM05/0+W1TCrkhqlZO7NzvJFV32aHg==
-X-Received: by 2002:a17:906:db08:b0:94f:1c90:cb70 with SMTP id
- xj8-20020a170906db0800b0094f1c90cb70mr33953282ejb.66.1684225855192; 
- Tue, 16 May 2023 01:30:55 -0700 (PDT)
+ bh=qoPnstjPrS2tzxEaPLFxVKxPj2WD+daPAFjbj9WTzeA=;
+ b=gXB1kOOl0PKS47KLtzYDw6sJ7yF3M8BxkR9de3k+2VOjnYm/6o7Yat8VaOl4Z7/m9M
+ JSh5HHBDmtlWVxEou4t0KUzbGoAsJsi7l/an/mfNSh7o3DK/suBH4vBHqbExCmHgednq
+ 6HbGvOW+p/fHLpZ4n24ppqPCSFddgs7fvDflwOTQ0nhqQy5EFf9B6nv/N2qcL3VGZ7cH
+ GzQexSOIN+spOm4CXad0Wbn6iVORlY2tk7CT/fcXMuZTTqLhjcZYw3eaZa/OiQsHq8QB
+ pV4bmIosI49l60guQoVJdwHRcj7MjGnQewu7rHCnq50h7wU8L1pXuJaNg6eUuwZB3f2n
+ RfAg==
+X-Gm-Message-State: AC+VfDy/vCfsm4t6eJofaN6u4QLsJVWbwZiNElfqgjdn3HjWRpMdzzYV
+ sHPNfVhwrC3AbyfP+lH6F5rwww==
+X-Google-Smtp-Source: ACHHUZ6Q+QdDd2QgHb7UBFSvM9CUZLslb7mOVHq9gxwNwTBL5U4Ajwc98dA6zarZLWptkeY381IbrA==
+X-Received: by 2002:a17:907:168d:b0:969:f677:11b9 with SMTP id
+ hc13-20020a170907168d00b00969f67711b9mr27436435ejc.54.1684226293002; 
+ Tue, 16 May 2023 01:38:13 -0700 (PDT)
 Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
  by smtp.gmail.com with ESMTPSA id
- l9-20020a170906078900b0094ed0370f8fsm10748836ejc.147.2023.05.16.01.30.54
+ tk13-20020a170907c28d00b0094f185d82dcsm10506975ejc.21.2023.05.16.01.38.12
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 16 May 2023 01:30:54 -0700 (PDT)
-Message-ID: <c4602c0f-76b1-c9a4-f7f1-1f5a02a56564@blackwall.org>
-Date: Tue, 16 May 2023 11:30:53 +0300
+ Tue, 16 May 2023 01:38:12 -0700 (PDT)
+Message-ID: <a1d13117-a0c5-d06e-86b7-eacf4811102f@blackwall.org>
+Date: Tue, 16 May 2023 11:38:11 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Content-Language: en-US
-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
+To: Johannes Nixdorf <jnixdorf-oss@avm.de>, netdev@vger.kernel.org
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
- <e8d98be6-d540-59c6-79eb-353715625ea5@blackwall.org>
- <ZGM64ODoVwK8J4u2@u-jnixdorf.ads.avm.de>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <ZGM64ODoVwK8J4u2@u-jnixdorf.ads.avm.de>
+In-Reply-To: <20230515085046.4457-1-jnixdorf-oss@avm.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
+Content-Transfer-Encoding: 8bit
+Cc: bridge@lists.linux-foundation.org, Eric Dumazet <edumazet@google.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
 Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add a limit on FDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
@@ -116,39 +109,61 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 16/05/2023 11:12, Johannes Nixdorf wrote:
-[snip]
->>>  		return -EMSGSIZE;
->>>  
->>>  #ifdef CONFIG_BRIDGE_VLAN_FILTERING
->>> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
->>> index 2119729ded2b..64fb359c6e3e 100644
->>> --- a/net/bridge/br_private.h
->>> +++ b/net/bridge/br_private.h
->>> @@ -494,6 +494,8 @@ struct net_bridge {
->>>  #endif
->>>  
->>>  	struct rhashtable		fdb_hash_tbl;
->>> +	u32				fdb_n_entries;
->>> +	u32				fdb_max_entries;
->>
->> These are not critical, so I'd use 4 byte holes in net_bridge and pack it better
->> instead of making it larger.
+On 15/05/2023 11:50, Johannes Nixdorf wrote:
+> A malicious actor behind one bridge port may spam the kernel with packets
+> with a random source MAC address, each of which will create an FDB entry,
+> each of which is a dynamic allocation in the kernel.
 > 
-> For a v2 I now moved it into (conditional) holes now in front of
-> CONFIG_BRIDGE_VLAN_FILTERING (only a hole if it is enabled) and
-> CONFIG_SWITCHDEV (only a hole if it is disabled). I could not find any
-> other holes, but please tell me if you had any others in mind.
+> There are roughly 2^48 different MAC addresses, further limited by the
+> rhashtable they are stored in to 2^31. Each entry is of the type struct
+> net_bridge_fdb_entry, which is currently 128 bytes big. This means the
+> maximum amount of memory allocated for FDB entries is 2^31 * 128B =
+> 256GiB, which is too much for most computers.
+> 
+> Mitigate this by adding a bridge netlink setting IFLA_BR_FDB_MAX_ENTRIES,
+> which, if nonzero, limits the amount of entries to a user specified
+> maximum.
+> 
+> For backwards compatibility the default setting of 0 disables the limit.
+> 
+> All changes to fdb_n_entries are under br->hash_lock, which means we do
+> not need additional locking. The call paths are (✓ denotes that
+> br->hash_lock is taken around the next call):
+> 
+>  - fdb_delete <-+- fdb_delete_local <-+- br_fdb_changeaddr ✓
+>                 |                     +- br_fdb_change_mac_address ✓
+>                 |                     +- br_fdb_delete_by_port ✓
+>                 +- br_fdb_find_delete_local ✓
+>                 +- fdb_add_local <-+- br_fdb_changeaddr ✓
+>                 |                  +- br_fdb_change_mac_address ✓
+>                 |                  +- br_fdb_add_local ✓
+>                 +- br_fdb_cleanup ✓
+>                 +- br_fdb_flush ✓
+>                 +- br_fdb_delete_by_port ✓
+>                 +- fdb_delete_by_addr_and_port <--- __br_fdb_delete ✓
+>                 +- br_fdb_external_learn_del ✓
+>  - fdb_create <-+- fdb_add_local <-+- br_fdb_changeaddr ✓
+>                 |                  +- br_fdb_change_mac_address ✓
+>                 |                  +- br_fdb_add_local ✓
+>                 +- br_fdb_update ✓
+>                 +- fdb_add_entry <--- __br_fdb_add ✓
+>                 +- br_fdb_external_learn_add ✓
+> 
+> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
+> ---
+>  include/uapi/linux/if_link.h | 1 +
+>  net/bridge/br_device.c       | 2 ++
+>  net/bridge/br_fdb.c          | 6 ++++++
+>  net/bridge/br_netlink.c      | 9 ++++++++-
+>  net/bridge/br_private.h      | 2 ++
+>  5 files changed, 19 insertions(+), 1 deletion(-)
 > 
 
-Just please don't add them in the first 64 bytes (first cache line) as we use that
-in the hot path and keep it for variables used there. I'd say use any of the other
-4 byte holes and just add both, so another 4 byte hole would be left after the second one.
+I completely missed the fact that you don't deal with the situation where you already have fdbs created
+and a limit is set later, then it would be useless because it will start counting from 0 even though
+there are already entries. Also another issue that came to mind is that you don't deal with fdb_create()
+for "special" entries, i.e. when adding a port. Currently it will print an error, but you should revisit
+all callers and see where it might be a problem.
 
->>>  	struct list_head		port_list;
->>>  #if IS_ENABLED(CONFIG_BRIDGE_NETFILTER)
->>>  	union {
->>
-> 
-> Thanks for your detailed feedback.
+
 
