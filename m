@@ -1,79 +1,95 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351CB704B2D
-	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 12:55:24 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5253A704BAA
+	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 13:04:42 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 6059260BEC;
-	Tue, 16 May 2023 10:55:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6059260BEC
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=HqWpCL7x
+	by smtp1.osuosl.org (Postfix) with ESMTP id 7CD7D81FD4;
+	Tue, 16 May 2023 11:04:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7CD7D81FD4
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=ua9GQGF5
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EsyDL7QpLHJl; Tue, 16 May 2023 10:55:21 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jCKMOPiMOn42; Tue, 16 May 2023 11:04:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id F418C60A98;
-	Tue, 16 May 2023 10:55:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F418C60A98
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 39ACE8209B;
+	Tue, 16 May 2023 11:04:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 39ACE8209B
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A234FC008A;
-	Tue, 16 May 2023 10:55:18 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D4E3EC008A;
+	Tue, 16 May 2023 11:04:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5001EC002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:55:17 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id F2339C002A
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 11:04:35 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 1D8C540A55
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:55:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1D8C540A55
-Authentication-Results: smtp2.osuosl.org; dkim=pass (1024-bit key,
- unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
- header.s=selector2 header.b=HqWpCL7x
+ by smtp3.osuosl.org (Postfix) with ESMTP id CC69160ACA
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 11:04:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CC69160ACA
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
+ header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=ua9GQGF5
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 0ZcLZD1azDCj for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 10:55:16 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 43vgUurmA4Nq for <bridge@lists.linux-foundation.org>;
+ Tue, 16 May 2023 11:04:34 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 60D7C409A6
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com
- (mail-am7eur03on2061c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eaf::61c])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 60D7C409A6
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:55:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OLTV3eFM5kgf/7AQxUAY/0DI+fW9wTt3JAyCY3YSP3ZHnKsYtwzDy789Oz1ZTu+VUFj0FFDTVAYTF52zXc4ykous2ZRWBQptvJ7C8Q5qMFt+s9lHqmx/cU6k3zGjpsGvwUhqCHGCdBYqRCtNMRZIDQhgeQQHg4uUsMP1FyBUYTbNzB8KCqsajG1DhGl92aCCKiM02ZXFh0lKl+6rqBxmvF+UtJ9BtCr0FDmBVhOfGHKuc8nJWwCZiqx+MKrFU3O2ilMchLk7r1dICtf60539RnhzQaGKjCvT5TIhQzY9ClfvpWQ65RAN3IRW/AA4o7hDAztJhQLZE0YlDHdAlGkVZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q2eATHDWfBwliiKsDwyEf6GdLM9NZxOFrZgpWe1cZDo=;
- b=I0NXyMfWhm8IvIUnROuwTTXhkx5MzeWp0RnmwsEpYVtugs9zrHPhlyl0mc6KBAVbxh+uOR9694EiDeeOBLuYCK7MKwhIr0wi4bg6z52omiTB/u7kFJ6YlI1yHNCvuvFKnD4CnJG3i8cbPRCSgNn5CuZMNXrMgOePykPm2XM8aw0qbB42RGkDu2j9Gkb5+rPaJtbSBWD4gzbCekO7h9AOgWtxWYTWRKPFpAPPB4ctf5eiAoFM7eJzPBq7EBkGHujfNwIAxlEYEzYtmC74c5CX9AHT0ym5kRIwGT70UA5yVw6Ngk0hlkhuTMY8WDXtRtnO2qpaTawdSDF4/jJ+BPVB/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q2eATHDWfBwliiKsDwyEf6GdLM9NZxOFrZgpWe1cZDo=;
- b=HqWpCL7x4GGoKPioHC2l5lJueLj0EESgmvqsNWhF7hlkzK36JLRU1spNaYpHh4T2KbCShPfebFQqkEOo9Qiie18iwVnKnkfckzB6Fmw1rGw57DbPpU5hjyZhK6KseKHqCRw4fdt9/gaSuYSfzQLq/3zIQfGjrD9Tg/wZmix5j28=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by AS1PR04MB9697.eurprd04.prod.outlook.com (2603:10a6:20b:480::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.32; Tue, 16 May
- 2023 10:55:13 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::b027:17aa:e5f5:4fea]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::b027:17aa:e5f5:4fea%5]) with mapi id 15.20.6387.032; Tue, 16 May 2023
- 10:55:13 +0000
-Date: Tue, 16 May 2023 13:55:09 +0300
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <20230516105509.xaalfs77vrlr663u@skbuf>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 140E360ABA
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 140E360ABA
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 11:04:34 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id
+ 4fb4d7f45d1cf-50bc4b88998so24542042a12.3
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 04:04:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684235072; x=1686827072;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=kGCJ/W5iGEq3jH2YQIO8Cak7WirO4MEH/2Ql3CIQFcs=;
+ b=ua9GQGF5QP7jIELA0XMiXvgx3sZt6AzmsV8XrnPk36Ych0TKFyhT6BSS05R9m+0spS
+ Q6wrZXSCagxCV5Zl+36GPGtJjuPlERhLECmbnzYLB6SwV2EvJQG0VM9LJ66ZvOFJOCXt
+ 1qVTHkio0XWSyvmPSdOwUyJF2gQCbG65vcq1MNLx8VIB41WKwlCHuPj08JEqiDlvRB7U
+ PB7bEuMiUUtiBkpFGVLPuntP8q4Zi+WLaqEhxP56bMhIKRZL8z3Xxc70foBYCuDoRimW
+ XaJnTp7yDaXIs8Be8XA4oBCCGxgGbirIQpPczctPUQQWVOTceF4E1r6/7mNHiZAz/RE2
+ 814g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684235072; x=1686827072;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=kGCJ/W5iGEq3jH2YQIO8Cak7WirO4MEH/2Ql3CIQFcs=;
+ b=GL7g2Q7HJbte+1lM9s7uUKkuBYn2AdqAzQXV4DJyTeNMUISWUc6PDuIkGWRD80RQUU
+ rwlnWjdOJrmyyN+OtA42Xi9tXcE/Z4tEP3XontrMdA6I/rZK0yqei8uhiwip3Ac2Gn0x
+ RVGjduFknII3vs+N+TOvofBXKfvk1cCbSK6JIsKKD/z8ciAraJrZEMXoZQfMaY7bOBMH
+ RwhRG1QRwjLnuy3jFnLx9abelYw39Lw/IAlcv+7mdEGrm5qEcKBtK3XgjdziCCnwyrKX
+ Kip6jL0iMykR7OehVMf5yBNLtm6WLQiO/H0kNkMTxrPTofcbJcMRwf9UCweIGP44CfiY
+ Bjag==
+X-Gm-Message-State: AC+VfDzPlKYsQzwS8LG+VkkIQ5uUNoqJ0Cou671tBuwetQmi4mAxZjb4
+ ALma0hOfsyIktNlR0/oPTUB3FA==
+X-Google-Smtp-Source: ACHHUZ7lz7AUa6dtlYx3x1UwxBS09jKh2soqnTSrqNwx45qHEa8BXb+sBngmbxQ97qTQBMH8RT4N5A==
+X-Received: by 2002:a05:6402:b03:b0:50b:c4a1:c6c0 with SMTP id
+ bm3-20020a0564020b0300b0050bc4a1c6c0mr29927619edb.16.1684235072183; 
+ Tue, 16 May 2023 04:04:32 -0700 (PDT)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ z24-20020aa7d418000000b0050bfa1905f6sm8429055edq.30.2023.05.16.04.04.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 16 May 2023 04:04:31 -0700 (PDT)
+Message-ID: <6a688292-a7a0-20c9-03b9-cad11a61144f@blackwall.org>
+Date: Tue, 16 May 2023 14:04:30 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
  <a1d13117-a0c5-d06e-86b7-eacf4811102f@blackwall.org>
  <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
@@ -82,63 +98,11 @@ References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
  <ce3835d9-c093-cfcb-3687-3a375236cb8f@blackwall.org>
  <20230516104428.i5ou4ogx7gt2x6gq@skbuf>
  <c05b5623-c096-162f-3a2d-db19ca760098@blackwall.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c05b5623-c096-162f-3a2d-db19ca760098@blackwall.org>
-X-ClientProxiedBy: VI1PR09CA0112.eurprd09.prod.outlook.com
- (2603:10a6:803:78::35) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AS1PR04MB9697:EE_
-X-MS-Office365-Filtering-Correlation-Id: 49676d59-6857-4a19-c261-08db55fc065a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2sX0auUT5ixcF+hAycyQXywXMB3LDWfvR6l7j5cDKSgD/8/BdbTEdlfjYliaAGpcyBDtzlmfiFFNSi8+JQCv7FaNYQRCl4ujoxKjSAmadYQG08Tw0SqSicw9l51LOhlf0f4iOH129VSW3Kp91efgaS5waIrNhn3btu+EvtS3QONZod32D3JeP0jmceK49Ruy8dxJuuYVu2LFSyzBQsWqyPDbvrzWzyfLV2pCyMeCXTXb4NDCDvlseF+mpSAv23MV7ra0knuxG42AopQ5dc4H0NW49NPCvBZlB6in5kBNXaLQ4G4P+wzTqytQLcgfxLLR6xQX1MMfY85y36e+39EVGuXNI/feqNvmazrwepoj4jALPoaAJtbytIkc8fi9pIQcjG4RQ+fOPhCWRz4epfIRFr1ZboGv95es6WWnHekYdOU7uaXlapTjcfnJIhocKJaBIYJ5LMzB9U05sE1yEYLQXkUd9LFb+SCFGNlwzUoXKXNjUGEev+0VH1ZZ0IS06ClqL39bPDzqB3wjfMT3W5/9Fbl9k9h0sR2i+3yNasXjnUaiEXm+zgw8xA8QaK9DczIA
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR04MB6452.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(7916004)(396003)(376002)(366004)(136003)(39860400002)(346002)(451199021)(478600001)(38100700002)(33716001)(9686003)(83380400001)(26005)(6506007)(1076003)(6512007)(6666004)(6486002)(186003)(316002)(41300700001)(4326008)(86362001)(4744005)(6916009)(66556008)(66946007)(2906002)(66476007)(7416002)(5660300002)(44832011)(8676002)(8936002)(54906003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qHpELZXPH+GoNZYxuJWhJSU4mrE8V+GACFoB0AMdroTKg/29NUDvy2UDmIyZ?=
- =?us-ascii?Q?7EfwU9ueJLUBuEvFp/gZcOM38v6dDDh4dHDS5DLTEuOA0PhjahbRj9Yn07qa?=
- =?us-ascii?Q?yNb5mONvKaQGCgYCBFx3J011W3pB7Otv2im6jqj6r9uBdCOT3fF3Bh5aOw8x?=
- =?us-ascii?Q?30XvPTJa44RJWZF+qwzkNbsQkAmDLethgIspfXH8KQKpUdRV/6zpkj+a+762?=
- =?us-ascii?Q?GYldnfnf7ASZD/fndMYMa5xH3Rg3ro/1sKBV3fjjdXt4jNwd5ZBhjBUhAHfw?=
- =?us-ascii?Q?0pZth6on+DxVHZ08FFjV5wYuWC0yqyD6KS9jjiKs7LP81xTj5Ol8yFwnfqS3?=
- =?us-ascii?Q?a4BV70KamYcqniBg7SNnlJXZ/qdEMubH77RZoT2mlGQR8GZsgPay0DlOjKuV?=
- =?us-ascii?Q?GDWFtV03vmXXUg71Msn+SkM/VXTF1y/8bEJmUkY+5nmn15+CAhdlUduJD4aH?=
- =?us-ascii?Q?sirRTLyW4PS2UrXpiuvLzlkr79g1SAcwBtyrjgZGSIKjOpWQy2iDklYYvN+P?=
- =?us-ascii?Q?wEUJA6HmdjWTO7rGwuX4KnUCiq4iRn82ZvygQeF9UFu8v5SKJ4LkjYpfasXL?=
- =?us-ascii?Q?aWubR+hDLMcz22O1otCJ1ApmslP0mzcqwn8Hmz07lBCQ4PB8gN06EyFeWtjf?=
- =?us-ascii?Q?gxWQJOI+PVaVlsLE57u4Di2uzaDFKDYGDxh7lwxMymX6gj+H2Wbetf3JWHvP?=
- =?us-ascii?Q?izZaN4m14z14kytFvuNPXh4EmbguNoBHwQsLdmtCSzGpfhg2AgZYT5leGNd0?=
- =?us-ascii?Q?a/XeVkHr/+XHwy6Fsh7tyC1ubZv5ib8s0cf6Zqmm72U+dmg/hozwdPeSAnoN?=
- =?us-ascii?Q?NBRDpUHYQ2FRfzglD30Z7lBCSsLgRbJKZZlSuBj/frfNriAes6YeUK+9P2yN?=
- =?us-ascii?Q?K9ZDXU6tC7pDp26MYBCy5OQ6OtX/1ljsk8larKMGbObpLVOIydsmSUWZ5udc?=
- =?us-ascii?Q?CuGEwRBO5ZUQ0e8kzX4YtGjFsxqIRfpFqhMn9QaHOt1oBXEmxOimZgGr3KH2?=
- =?us-ascii?Q?jq+ykOT5jcWt2sH5+hXDGN2X65UH9aCaCH0mkkQNO++Vp5BVXSg2J6ZGAMnr?=
- =?us-ascii?Q?4nCuBqfCv8y55eA2Cuwku/2boT4Qm4hiaD5LIvIAzmdBsxvkPCRWWQYtEIvO?=
- =?us-ascii?Q?GR7zGZA139bRuFhKIQjl7cseM6H+g8P7k5904sqL43xGZhv+X+7AUERRe3Z5?=
- =?us-ascii?Q?JbtHx3Fn7mLhwFaDMnzyawdGDhO8fKx/Td5oIbEpXUr6F7gp+ZJej7hwBLic?=
- =?us-ascii?Q?sH0K7dzk690uRcc8vCkhSI0mhcDxZYVimyREErkGON7x0Kw5oAc+byMaFGhM?=
- =?us-ascii?Q?aO/TT4OqjS2psSv9LzWU2zPBdRUNzFgSw+DQS6TfxDL6HLFLOvAdgGCsZb+4?=
- =?us-ascii?Q?yXMZhIgZ8rXeDRXue1iYR2d/5mq20qKLcfU9COTpl021HuL94Q8cfb/Faf+f?=
- =?us-ascii?Q?x2EbCHAKNofszXf6SeklCtKmkLi8PL/lXBbGH/7OMtliAf/lZ/lRPvVWnXMc?=
- =?us-ascii?Q?pxnvh0qCAwj3Hvt7K/IK0NEQygxBTTbJ0UCkjnwAs9NxpTFJx3FyliM7ogpx?=
- =?us-ascii?Q?aD8c+VuzZh7FnsaVCxJGxaUtIekWOBUN0gKkORhWLu7Wj2Ua8qo/X1CSYjz6?=
- =?us-ascii?Q?Dw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49676d59-6857-4a19-c261-08db55fc065a
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2023 10:55:13.1320 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /yFb3Tizt8PiHaxPR8e6ZnlRGT+ui3AodmxOR0meg4u4Pn3RLR5R2gLrX3HChtiO1x+RJjD7rFtaUmkp3eaujQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9697
+ <20230516105509.xaalfs77vrlr663u@skbuf>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20230516105509.xaalfs77vrlr663u@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Johannes Nixdorf <jnixdorf-oss@avm.de>, netdev@vger.kernel.org,
  Ido Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org,
@@ -160,12 +124,20 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, May 16, 2023 at 01:47:47PM +0300, Nikolay Aleksandrov wrote:
-> Having the current count is just a helper, if you have a high limit dumping the table
-> and counting might take awhile. Thanks for the feedback, then we'll polish and move
-> on with the set for a global limit.
+On 16/05/2023 13:55, Vladimir Oltean wrote:
+> On Tue, May 16, 2023 at 01:47:47PM +0300, Nikolay Aleksandrov wrote:
+>> Having the current count is just a helper, if you have a high limit dumping the table
+>> and counting might take awhile. Thanks for the feedback, then we'll polish and move
+>> on with the set for a global limit.
+> 
+> Ok, but to be useful, the current count will have to be directly
+> comparable to the limit, I guess. So the current count will also be for
+> dynamically learned entries? Or is the plan to enforce the global limit
+> for any kind of FDB entries?
 
-Ok, but to be useful, the current count will have to be directly
-comparable to the limit, I guess. So the current count will also be for
-dynamically learned entries? Or is the plan to enforce the global limit
-for any kind of FDB entries?
+That was one of the questions actually. More that I'm thinking about this, the more
+I want to break it apart by type because we discussed being able to specify a flag
+mask for the limit (all, dynamic, dynamic+static etc). If we embed these stats into a
+bridge fdb count attribute, it can be easily extended later if anything new comes along.
+If switchdev doesn't support some of these global limit configs, we can pass the option
+and it can deny setting it later. I think this should be more than enough as a first step.
