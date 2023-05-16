@@ -1,142 +1,106 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7726704AFD
-	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 12:44:42 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD12704B0E
+	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 12:47:57 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id E2DF040C14;
-	Tue, 16 May 2023 10:44:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E2DF040C14
+	by smtp2.osuosl.org (Postfix) with ESMTP id 74CF2402CE;
+	Tue, 16 May 2023 10:47:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 74CF2402CE
 Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=W0JTb3T2
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=L+dTajnQ
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id UAr_9UN0tBJn; Tue, 16 May 2023 10:44:40 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 6C4A2409A6;
-	Tue, 16 May 2023 10:44:39 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6C4A2409A6
+	with ESMTP id R_PwuVMI1gFZ; Tue, 16 May 2023 10:47:54 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 059B1409A6;
+	Tue, 16 May 2023 10:47:54 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 059B1409A6
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 26AD3C008A;
-	Tue, 16 May 2023 10:44:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9F5B1C008A;
+	Tue, 16 May 2023 10:47:53 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D5B7BC002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:44:37 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8CCA7C002A
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:47:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 9D4F741737
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:44:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9D4F741737
-Authentication-Results: smtp4.osuosl.org; dkim=pass (1024-bit key,
- unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
- header.s=selector2 header.b=W0JTb3T2
+ by smtp3.osuosl.org (Postfix) with ESMTP id 6169060F15
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:47:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6169060F15
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
+ header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=L+dTajnQ
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id YQpBl8XT-MqD for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 10:44:36 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Fu1bLt8KkBgE for <bridge@lists.linux-foundation.org>;
+ Tue, 16 May 2023 10:47:51 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org ABC724170E
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (mail-vi1eur05on20627.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7d00::627])
- by smtp4.osuosl.org (Postfix) with ESMTPS id ABC724170E
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:44:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=As3wNXuzfFFhA89aaxXHiRwh4Fbq6V067W17EzX+ieFotg5TjXlDCoDKIh8Ol78P9W8K/2IyGAig8ccMOCR4SyOmgfbsRzRSe8yWmNEimfnov0PZfwsMe7lWoYuzxJWXQDftfQ6Ti1ieQK+oF6ibmV2FTBkw2bxQICcNmtcSnuiSjaEKxIJHa/y6FspvQIxmgJlavD6UoX2jBHwkeScE/J6bomuzVfquKp3bR0oKIXm8/qNePHjy9DigMXaCC5lIxfgvnlmVstGPvjcOh85jJI2+v/MmNShRhbOZafPNCoDUQ7tXTn+qXdcdmibqEMLfZVGWxNWrCTO1KNEacGnKCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IldUzgigZGpLqvOtuZQF8FxGmnj4lSM0S4waVzxMh3E=;
- b=bKUUFRioBteWdSyB0CnMEVs4HhfLGnsnZfwQX2bT4uxZsPtfXUWahhyyPqP52MEPGkTLB7hCi2aZCFXhkQ2ZgpzN9DK6vHOYv8wp+ggzEO9TFy7D6q6MfxGHjaWisfV0h3pEXkFW8ocredYQojeZzKsQ6Vnl/J9kIPEZd+aAHuIe65g1hqvx3rP1j8NJj3N96eiV6klhUcQKLfQbVO7KujJSWshivFHj24dXUOKH35t6U5uSUNAAmcsaFFY3No5JgeEHn61RxS34gbxKnykktreMcYA/0MRp4xdaEN9L6QAvn9ICiKzUhizWQwAizx2PNuMR3LkDzYLtCHyjlJGvtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IldUzgigZGpLqvOtuZQF8FxGmnj4lSM0S4waVzxMh3E=;
- b=W0JTb3T23ACG0KONrYo9g2b2zLcsvhdJQBbTH2isfNFefGQ5+I1OLsKMnSQJEsFXZJtLZ2tWHH0HzPhMf7YXQ10kfL9jVhC1VI/mvNNCL4i9ilsbCW0hb20+sz1KGRtsfdE+61Yw5xj3bLke4UAXF0lLXcwO9Qv9fBvHQR3j+gs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by DB9PR04MB9962.eurprd04.prod.outlook.com (2603:10a6:10:4c4::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Tue, 16 May
- 2023 10:44:32 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::b027:17aa:e5f5:4fea]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::b027:17aa:e5f5:4fea%5]) with mapi id 15.20.6387.032; Tue, 16 May 2023
- 10:44:31 +0000
-Date: Tue, 16 May 2023 13:44:28 +0300
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <20230516104428.i5ou4ogx7gt2x6gq@skbuf>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 88EA460E81
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
+ [IPv6:2a00:1450:4864:20::62c])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 88EA460E81
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 10:47:51 +0000 (UTC)
+Received: by mail-ej1-x62c.google.com with SMTP id
+ a640c23a62f3a-96b4ed40d97so315740766b.0
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 03:47:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684234069; x=1686826069;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Js3YuPgss9QnQgb0ghb/7P0ksUMIVrx2im8eZEBPrko=;
+ b=L+dTajnQeDtHHrVal8YzvGE5uYvGo+QGMEUc2KcrDnIEKFbEUgJEEqW29k+GjRVr2d
+ 35X1YcGFtg5YpAYrzHzORZjhnAS8QgOqQHnlhf4vQDXHVgF61gqErpVXt+aR7fy9Vk2/
+ PZAI1w6yyrzaP+YvYAKRCaS0wi8I4qmkgHNZm1cHNDSIhvT6DHNy7LFa0wEDUPr1wABV
+ XlrAwTt8BBhkC7rTlJW27pgqt3Kai1rKOQaa5EaJnEwS4go/o7cf7yta2SlAN3iRtuzD
+ CFCz4MJ+VsHvH1JljS/Ou5RYgYZDkNoTDStEjglITU6PxrjApNwbg+tl84pcoOPRDsss
+ bDMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684234069; x=1686826069;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Js3YuPgss9QnQgb0ghb/7P0ksUMIVrx2im8eZEBPrko=;
+ b=N+B/vZ934yS6movEN6MrVXPEM4o1enP4GlYkR4nV30fJ7uXT5IQ+FolDllN98Lgrx0
+ 1zJQfbGAwnckDmWr4/peFJU12utMunl5P7A7qqGBMzmP4wFOYHRisOB2NM56s7+htqgC
+ MQKdN7LLzXl1kweKpQeuBhGlV+lY3eMfOLP8Lm2ADTe9JO/l/B1dmnAnsT0vy5ZEdWMG
+ XENMS/SHr4I0ArOPVt5rimT/qOfXtD3bKt7g+foBuHQA9olVj/M+SreoG71mqh1x6LkG
+ gTiVkuJuurAS2ZKNXtdbvdzErRDZo+OvznzBBVdLgETxjbANjUTJeGPjtdWlBJJVJ2SS
+ uR8g==
+X-Gm-Message-State: AC+VfDzHk9mnn+IOExdfYKZ1tHvJoNJISFoflTU2wiYkQsvCPCubv1VZ
+ wH/8kXxPCPhV/YnM3XJuYI1n9Q==
+X-Google-Smtp-Source: ACHHUZ6t4tro4CCIk9USgYXdvc3t+cBkHaGNsbCWjB+hKdA78TGD9pSRG4wLWTiciZP1JzEFEdh5Eg==
+X-Received: by 2002:a17:907:7251:b0:96a:1ab:b4a2 with SMTP id
+ ds17-20020a170907725100b0096a01abb4a2mr26625215ejc.25.1684234069493; 
+ Tue, 16 May 2023 03:47:49 -0700 (PDT)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ z23-20020a17090674d700b0096ac911ecb8sm5375855ejl.55.2023.05.16.03.47.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 16 May 2023 03:47:48 -0700 (PDT)
+Message-ID: <c05b5623-c096-162f-3a2d-db19ca760098@blackwall.org>
+Date: Tue, 16 May 2023 13:47:47 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
  <a1d13117-a0c5-d06e-86b7-eacf4811102f@blackwall.org>
  <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
  <f899f032-b726-7b6d-953d-c7f3f98744ca@blackwall.org>
  <20230516102141.w75yh6pdo53ufjur@skbuf>
  <ce3835d9-c093-cfcb-3687-3a375236cb8f@blackwall.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ce3835d9-c093-cfcb-3687-3a375236cb8f@blackwall.org>
-X-ClientProxiedBy: VI1PR0802CA0021.eurprd08.prod.outlook.com
- (2603:10a6:800:aa::31) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|DB9PR04MB9962:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3df655d8-38b5-4c27-01b6-08db55fa880c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0d/ZFjTWgMy9mM0W24J0BT8ovmJcRiRyE5VGpUM7f1EsMF0fU7C0FMN7LDeiCmvzjC72+c14Gi1WXv+L5g3M9kOduwVqD/5EAhBER37+UEafx0vtV7USs+CEJOaSzvDLeiEwcPeasdqyGRhPBOX1PyLkn7lisE76eaJdhj17oQvEee4NwlxsdEFDVXA6wvjzLBrojUOLbeHb8lYFCyQW4w0AMuv29rNXb9D7hk/F+YY7qU4gUeToPCZSxvOSWwGuNHPzjBsmoN7hg5gFLzPXzk4ozj5AnfukHQRS6jEdULcfG0s6x5FT7L8UQp86yYwpEQLbZ2I2+/+rxkBsSxrrPA1ZID6Tb1zKCPMg2WgfwRBrlSdvYZ6vDvF4we0rDhrSApcdw9uAkrvQvw3mu4yI/4GkqTKBqyPd9Y/xtI4xI/ZTewGk4HE45lxXyHfokHM+ROH4voeKotwa8ppMqXgap2NwiCcX1jPSmE5QkvxaBsLaUr7LAZ86zzAveljZVVVxh7QqzniCrKC3GRu1SaOtwY9EXxav+9SMBiwjvKowJF4ja3ngQRbC0HmX3VKcibhc
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR04MB6452.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(7916004)(396003)(366004)(376002)(39860400002)(136003)(346002)(451199021)(86362001)(54906003)(478600001)(33716001)(9686003)(186003)(6506007)(6512007)(1076003)(6486002)(26005)(6916009)(4326008)(8676002)(66946007)(66476007)(66556008)(83380400001)(8936002)(6666004)(41300700001)(38100700002)(44832011)(316002)(7416002)(5660300002)(4744005)(2906002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oXYut8PQgZvlB8xISyOr3cVn9RS0xinYL0KrY8Ti7HN68DqRBKViGw0Vmg61?=
- =?us-ascii?Q?G1UQZH5D/g5/1AqSc/Z0RtXdkpGMVkHxmOi0kOoH0Q17LehBQOBLER8WA3Hx?=
- =?us-ascii?Q?JVcGYHH4RtzQXtjJ2zWSDKaQaTOjm335LRlZgcUf4GJYd+QGgpvp4lfNjVN1?=
- =?us-ascii?Q?kcacfIAbyzJd6b5vkw/J6Lxd1GQa45QuGGNKxb7gjzODC649LWrQbgFAJNTp?=
- =?us-ascii?Q?hJogwJrvEtLj+HnxAJ/qrCHiO6BF9PDibtkZXReHQD65kCe4kfkPI7jSgqD4?=
- =?us-ascii?Q?RKS78stTwXhyc4IrBuJQA5aExdrCGwtT+1NO0icFV7B1IExhIDWidzuEh15X?=
- =?us-ascii?Q?VxBrCqPqinD29Drrpmqjue1mT1CZQzNuCrzl65qNpNtZ7UY2o1yAZvA3y1Jq?=
- =?us-ascii?Q?QRUhsPoNwlMSsQQ75RBdQbT/hPFc34AWNkE8/9JPUFCnf9dhh0uoqA6N5iGF?=
- =?us-ascii?Q?lubfYag8gXPAphatqsHkelsIGiuUiq86Rgy+ge++AyhY6G5Rl82+sddNl8+t?=
- =?us-ascii?Q?3IRGu9ETzMdj/c14ZQgcIFmlpFkAFrUqdMNmuM8WKqh2rp24jBa/LtYIIZbg?=
- =?us-ascii?Q?ERuL62C00/xP/AiJ5ohCqf1t/j/GdeB8K0R04llanviVidImJEHSfllpsDWe?=
- =?us-ascii?Q?6U8oFneerP9k3s4AFpbRxx/SLzR93eq1KOLDIxFYmxLZrLkNJqzzui/DbA7S?=
- =?us-ascii?Q?SdSizi1lP1bsVVleMy/5Hl069EHkdonyMyS/mxr/+nmZdILiiDY/enL+Y+53?=
- =?us-ascii?Q?Okq87VfLP6AadRg07p2oZ/CAnWdNxSLtOnKZgQZz9QHnTslgraDtU6Te5RXO?=
- =?us-ascii?Q?HHZN5UmqXL9UpDIwU5PcMxG6wtXMzfmw8p4PY48m2AA0rWN/7W79YDLZPbwr?=
- =?us-ascii?Q?OQLlqW9LBtMCJU2xR3EwqE/cUj8nuL1McJGIRgLWTciFS2gw5uarnosGPbT2?=
- =?us-ascii?Q?X+pY448GZU0TT4QrI+B/ruVW1fgqlxEniYm2GjxTj6Y9eIzJI2rPhcgq2vW4?=
- =?us-ascii?Q?Yp3KSVp4vjU3WAoDfxH4bDguR0d/9O0hiNaXsLsDPm26eZ9XH3Iu3DjohofR?=
- =?us-ascii?Q?iLd6s5sh86hdT2sbjqZ6zkEGvDBhJa3LTa0vB16oJx5yhax1ejoip0FdP9aD?=
- =?us-ascii?Q?tXQnUFA3iE2DXmZjSaTC59gS9H3I6JG/XSDzcE2YEyz2Ih2ROx0G8d32MgLn?=
- =?us-ascii?Q?4EoOBkqvjeaAooCkuJ8kU0EmammooVOOrYcTB/pMznNOwUEbnYbBAYbhx4iz?=
- =?us-ascii?Q?DxC06IT5QDn3Qr+k28Pq3XA3NPjBsO9w4miHo7STv3crvZEd67J2cq5rVIJQ?=
- =?us-ascii?Q?JvaxjXSUAT9NysoV834/9v6dEqvPjSXmejaE5LzIe+AndDv3SJCel48qJLiE?=
- =?us-ascii?Q?C2sI3BWz+sDw0eFO9YAhURPg5ku/bvQktyQH/M/xQfF20zRoVAWnrQ7j+7yG?=
- =?us-ascii?Q?nWaIetiLFjBLWPSXbXUVng5oO/AeplqIAt2gDPPMZpi9R8h6awqziFf3mky9?=
- =?us-ascii?Q?KjfbzijC5GF6jjoGivPSi5VF8iGlURXSsgIPZxyab+MPRE4tpm0D9hv7gdo2?=
- =?us-ascii?Q?KmE4mlh1nOS/6p5aSvN3ksbFmMN5lNuF/5iGARWNGoZHMFJoFs8QsNrn1Lsm?=
- =?us-ascii?Q?JA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3df655d8-38b5-4c27-01b6-08db55fa880c
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2023 10:44:31.6871 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: saobof0wdc08oWbG+2V+R/073EoFdoseFGKFMEJqAe7G5CqCYDRiHzuDTFI0UHQre+P7aafXnSzmO/n4Owhdvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9962
+ <20230516104428.i5ou4ogx7gt2x6gq@skbuf>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20230516104428.i5ou4ogx7gt2x6gq@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Johannes Nixdorf <jnixdorf-oss@avm.de>, netdev@vger.kernel.org,
  Ido Schimmel <idosch@nvidia.com>, bridge@lists.linux-foundation.org,
@@ -158,17 +122,22 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, May 16, 2023 at 01:32:05PM +0300, Nikolay Aleksandrov wrote:
-> Let's take a step back, I wasn't suggesting we start with a full-fledged switchdev
-> implementation. :) I meant only to see if the minimum global limit implementation
-> suggested would suffice and would be able to later extend so switchdev can use and
-> potentially modify (e.g. drivers setting limits etc). We can start with a simple
-> support for limits and then extend accordingly. The important part here is to
-> not add any uAPI that can't be changed later which would impact future changes.
+On 16/05/2023 13:44, Vladimir Oltean wrote:
+> On Tue, May 16, 2023 at 01:32:05PM +0300, Nikolay Aleksandrov wrote:
+>> Let's take a step back, I wasn't suggesting we start with a full-fledged switchdev
+>> implementation. :) I meant only to see if the minimum global limit implementation
+>> suggested would suffice and would be able to later extend so switchdev can use and
+>> potentially modify (e.g. drivers setting limits etc). We can start with a simple
+>> support for limits and then extend accordingly. The important part here is to
+>> not add any uAPI that can't be changed later which would impact future changes.
+> 
+> I guess adding a global per-bridge learning limit now makes sense and
+> would not unreasonably hinder switchdev later on. The focus is on
+> "learning limit" and not a limit to user-created entries as Johannes has
+> currently done in v1. I don't necessarily see an urgent need for
+> IFLA_BR_FDB_CUR_ENTRIES, given the fact that user space can dump the FDB
+> and count what it needs, filtering for FDB types accordingly.
 
-I guess adding a global per-bridge learning limit now makes sense and
-would not unreasonably hinder switchdev later on. The focus is on
-"learning limit" and not a limit to user-created entries as Johannes has
-currently done in v1. I don't necessarily see an urgent need for
-IFLA_BR_FDB_CUR_ENTRIES, given the fact that user space can dump the FDB
-and count what it needs, filtering for FDB types accordingly.
+Having the current count is just a helper, if you have a high limit dumping the table
+and counting might take awhile. Thanks for the feedback, then we'll polish and move
+on with the set for a global limit.
