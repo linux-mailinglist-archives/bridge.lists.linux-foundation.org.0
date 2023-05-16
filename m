@@ -1,107 +1,109 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51BF7047A2
-	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 10:21:36 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331517047BF
+	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 10:27:10 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 75ACF416D2;
-	Tue, 16 May 2023 08:21:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 75ACF416D2
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=yfGEdhKD
+	by smtp2.osuosl.org (Postfix) with ESMTP id E6FD640588;
+	Tue, 16 May 2023 08:27:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E6FD640588
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=QBexmk+D
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Ljt-g-EOcTHU; Tue, 16 May 2023 08:21:34 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id VRpOPkEZwXpA; Tue, 16 May 2023 08:27:07 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id CA51A418DE;
-	Tue, 16 May 2023 08:21:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org CA51A418DE
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 6DD3A4018F;
+	Tue, 16 May 2023 08:27:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6DD3A4018F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 61668C008A;
-	Tue, 16 May 2023 08:21:33 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 1E409C008A;
+	Tue, 16 May 2023 08:27:06 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 10EDDC002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:21:32 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7D2E8C002A
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:27:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 0C407610F6
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:21:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0C407610F6
-Authentication-Results: smtp3.osuosl.org;
+ by smtp1.osuosl.org (Postfix) with ESMTP id 4AE1683C2B
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:27:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4AE1683C2B
+Authentication-Results: smtp1.osuosl.org;
  dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
  header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
- header.s=20221208 header.b=yfGEdhKD
+ header.s=20221208 header.b=QBexmk+D
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id grduLUA8a0VJ for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 08:21:28 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id VaYBbVmRdR87 for <bridge@lists.linux-foundation.org>;
+ Tue, 16 May 2023 08:27:04 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9411760FB2
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
- [IPv6:2a00:1450:4864:20::536])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 9411760FB2
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:21:27 +0000 (UTC)
-Received: by mail-ed1-x536.google.com with SMTP id
- 4fb4d7f45d1cf-50bc0ced1d9so20225587a12.0
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 01:21:27 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4D1C28405C
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 4D1C28405C
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:27:04 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id
+ 4fb4d7f45d1cf-50bcae898b2so24289945a12.0
+ for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 01:27:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684225286; x=1686817286;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684225622; x=1686817622;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=XM2gUAmvU4vVBik+mvVxF1HnbcZzyCqA9HaeHIr5I5I=;
- b=yfGEdhKDlVR1agDkKB6PW2Dmq6ztfizmtuI6D+xRT0UfaEi/s0ZRLKY2NMcFM7graD
- 4dRje8oa4VVJdB1onsHyLHorHtbiiBKJFPrHaeXrDf3R5UbzyfUBB2H00RBk1WmIOxsF
- ARoLjw9MdXoOBnb0dp+jM1NfJKe3ELjBjzrrs9buaytLhKvWe353dE8JFUz5AyB0Yeni
- Wqm7yeAU3uFO2Ub5hIqv4/T8IjVlh5uIQKNaKxww+Z46XHj+wmKTIXr9yM6MydWO09dD
- m0j09gLpn8hdjXzrCOwZdXm2n0jSXtKfaZxitqrMjOFsHN4XOTl7uWDDmC3YJzJPhrMZ
- /ZNw==
+ bh=+Q/Wa8M+8uvC4yapXeHr/mR9kOO52paWXj/dqyPoiGY=;
+ b=QBexmk+DMOo6mdKn5THtfjbOH7Fh/sar7zK4I1M/u/4HUWDtu9v8bKl/3t18wSNBro
+ oE12HbynSoEYrSJoElh+Zqa6TVqFxJnUthg+jxikGz9G+0tZm9NG0TzrFjZnaBTsDE3B
+ vF0ucHloTC5lpw0cIFX+5JD1aKa8uqbrHr0rXsqjaGdGLkLxFD2z1nqHiT1TrJM5FaJJ
+ 8U3uLmynbkNmLLlbAV5ZjSote3XXh3ybIrOzP2PTcsCTdgV5QPc7iAJW7oawAOEPBQjQ
+ CP5+zR7nyHQ1HenOE+ibGvpdguNwUmSETmCeALgAl0yuFiDU8IS76OZy6cdtEHTYwB+x
+ lnPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684225286; x=1686817286;
+ d=1e100.net; s=20221208; t=1684225622; x=1686817622;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=XM2gUAmvU4vVBik+mvVxF1HnbcZzyCqA9HaeHIr5I5I=;
- b=Vh6yd+RmPs3fQpjMufqvEuiGw0+GBgzH276iqqgLE/ImYXwvOR+ELtG0muN+7oqXcL
- E8skMtveI/Alsm2svDTx+NnNSyN8B5OwBn1zjIjthMCDycXHUF6ODFj62J0RFucw2du0
- VwmxD3U7b7p6so+j/8nkz2lLZicXdAA4SeyV+sGkH9PnS/hGiow9D6cgrPyuSkU3/iky
- ukAww3YGsmRpXwOcyDIFjVLtVYXi3DtgFbNzunHRfqxp1esrJNoRIl4DPfFvKGDgORwP
- k0wL97lZtM49DWL57YqzaKrea3b1McbUPpEV/hwA8giDHK4BBxoFy73RF8GBmFwh538t
- 042Q==
-X-Gm-Message-State: AC+VfDw8ej5x8PFsTrJuYZuuP2NkkdTORcH2iJDTVYFwGF7SkGJYvelp
- Ze9fmreDlfQU2AbLWHG8N/x3fw==
-X-Google-Smtp-Source: ACHHUZ7ylDIti31B34YDzwxlURwMXIn1e5ZDWaUU3xi9TriekHV4e/mE13dcFQ7hAx4d9/mIlKR2FQ==
-X-Received: by 2002:a50:fe92:0:b0:506:b8ca:e07e with SMTP id
- d18-20020a50fe92000000b00506b8cae07emr25065329edt.11.1684225285448; 
- Tue, 16 May 2023 01:21:25 -0700 (PDT)
+ bh=+Q/Wa8M+8uvC4yapXeHr/mR9kOO52paWXj/dqyPoiGY=;
+ b=R8jtI7zQyDi3EHMbOoQr1rHEEzJXGxdi8XI6p+9d3FHMp44dlmMg8T8xT9ru8ndudf
+ 9nlK0t56GPWGuytT4hboumZLq0y3JmheTBAqyefW140B0xis0fY2ean+ymFKZfOWE8US
+ NJgBAu6gt8EK/wyzzHjfWQ6xuwTRAoIliG22YUYF+cMirAryiHLC31gHRozC69pC6pH9
+ Qx3B/2Nx6d/1G4jyPXFhfqk8ip+Bob9FaBqDstsbp3AUJFMQRbklXc+ZdkzrdfimmIQr
+ 9bVvi5SwFqiG9Q71zGaUkq4DFncB2N6HV1PJb9OLCFr/a+gqvUv2i/vqXu+CcHeNAvK+
+ 9Mxg==
+X-Gm-Message-State: AC+VfDxUfPYlj+VYBMWL1JGOM6h3RRrTFPPtx26+vuZJWropzyazuz0C
+ 635kDbkNbHbgENEvGymLYlitzg==
+X-Google-Smtp-Source: ACHHUZ6NlWOJz275z3obUYiEtP8c/TLdPOFJP2OeK1hzxpP/JQGDLY0gdxUlrMuCCjjRzG9IMUV0nA==
+X-Received: by 2002:a05:6402:b03:b0:50b:c4a1:c6c0 with SMTP id
+ bm3-20020a0564020b0300b0050bc4a1c6c0mr29560885edb.16.1684225622170; 
+ Tue, 16 May 2023 01:27:02 -0700 (PDT)
 Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
  by smtp.gmail.com with ESMTPSA id
- k23-20020a05640212d700b0050c0b9d31a7sm8102665edx.22.2023.05.16.01.21.24
+ i12-20020aa7c70c000000b0050bd7267a5csm7900857edq.58.2023.05.16.01.27.01
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 16 May 2023 01:21:25 -0700 (PDT)
-Message-ID: <5d59f2f8-b211-8914-1793-bfaa299207cd@blackwall.org>
-Date: Tue, 16 May 2023 11:21:24 +0300
+ Tue, 16 May 2023 01:27:01 -0700 (PDT)
+Message-ID: <824ad48b-c419-fd21-1889-23cd94d4b75d@blackwall.org>
+Date: Tue, 16 May 2023 11:27:00 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Content-Language: en-US
 To: Johannes Nixdorf <jnixdorf-oss@avm.de>
 References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
- <e8d98be6-d540-59c6-79eb-353715625ea5@blackwall.org>
- <ZGM64ODoVwK8J4u2@u-jnixdorf.ads.avm.de>
+ <20230515085046.4457-2-jnixdorf-oss@avm.de>
+ <dc8dfe0b-cf22-c4f9-8532-87643a6a9ceb@blackwall.org>
+ <ZGIXB2DYA4sal9eW@u-jnixdorf.ads.avm.de>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <ZGM64ODoVwK8J4u2@u-jnixdorf.ads.avm.de>
+In-Reply-To: <ZGIXB2DYA4sal9eW@u-jnixdorf.ads.avm.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
  Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add a limit on FDB entries
+Subject: Re: [Bridge] [PATCH net-next 2/2] bridge: Add a sysctl to limit new
+ brides FDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -116,219 +118,55 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 16/05/2023 11:12, Johannes Nixdorf wrote:
-> Hi,
-> 
-> On Mon, May 15, 2023 at 12:35:03PM +0300, Nikolay Aleksandrov wrote:
+On 15/05/2023 14:27, Johannes Nixdorf wrote:
+> On Mon, May 15, 2023 at 12:35:47PM +0300, Nikolay Aleksandrov wrote:
 >> On 15/05/2023 11:50, Johannes Nixdorf wrote:
->>> A malicious actor behind one bridge port may spam the kernel with packets
->>> with a random source MAC address, each of which will create an FDB entry,
->>> each of which is a dynamic allocation in the kernel.
+>>> This is a convenience setting, which allows the administrator to limit
+>>> the default limit of FDB entries for all created bridges, instead of
+>>> having to set it for each created bridge using the netlink property.
 >>>
->>> There are roughly 2^48 different MAC addresses, further limited by the
->>> rhashtable they are stored in to 2^31. Each entry is of the type struct
->>> net_bridge_fdb_entry, which is currently 128 bytes big. This means the
->>> maximum amount of memory allocated for FDB entries is 2^31 * 128B =
->>> 256GiB, which is too much for most computers.
->>>
->>> Mitigate this by adding a bridge netlink setting IFLA_BR_FDB_MAX_ENTRIES,
->>> which, if nonzero, limits the amount of entries to a user specified
->>> maximum.
->>>
->>> For backwards compatibility the default setting of 0 disables the limit.
->>>
->>> All changes to fdb_n_entries are under br->hash_lock, which means we do
->>> not need additional locking. The call paths are (✓ denotes that
->>> br->hash_lock is taken around the next call):
->>>
->>>  - fdb_delete <-+- fdb_delete_local <-+- br_fdb_changeaddr ✓
->>>                 |                     +- br_fdb_change_mac_address ✓
->>>                 |                     +- br_fdb_delete_by_port ✓
->>>                 +- br_fdb_find_delete_local ✓
->>>                 +- fdb_add_local <-+- br_fdb_changeaddr ✓
->>>                 |                  +- br_fdb_change_mac_address ✓
->>>                 |                  +- br_fdb_add_local ✓
->>>                 +- br_fdb_cleanup ✓
->>>                 +- br_fdb_flush ✓
->>>                 +- br_fdb_delete_by_port ✓
->>>                 +- fdb_delete_by_addr_and_port <--- __br_fdb_delete ✓
->>>                 +- br_fdb_external_learn_del ✓
->>>  - fdb_create <-+- fdb_add_local <-+- br_fdb_changeaddr ✓
->>>                 |                  +- br_fdb_change_mac_address ✓
->>>                 |                  +- br_fdb_add_local ✓
->>>                 +- br_fdb_update ✓
->>>                 +- fdb_add_entry <--- __br_fdb_add ✓
->>>                 +- br_fdb_external_learn_add ✓
+>>> The setting is network namespace local, and defaults to 0, which means
+>>> unlimited, for backwards compatibility reasons.
 >>>
 >>> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
 >>> ---
->>>  include/uapi/linux/if_link.h | 1 +
->>>  net/bridge/br_device.c       | 2 ++
->>>  net/bridge/br_fdb.c          | 6 ++++++
->>>  net/bridge/br_netlink.c      | 9 ++++++++-
->>>  net/bridge/br_private.h      | 2 ++
->>>  5 files changed, 19 insertions(+), 1 deletion(-)
+>>>  net/bridge/br.c         | 83 +++++++++++++++++++++++++++++++++++++++++
+>>>  net/bridge/br_device.c  |  4 +-
+>>>  net/bridge/br_private.h |  9 +++++
+>>>  3 files changed, 95 insertions(+), 1 deletion(-)
 >>>
 >>
->> Hi,
->> If you're sending a patch series please add a cover letter (--cover-letter) which
->> explains what the series are trying to do and why.
+>> The bridge doesn't need private sysctls. Netlink is enough.
+>> Nacked-by: Nikolay Aleksandrov <razor@blackwall.org>
 > 
-> Thanks for the hint. I'll do that in the future, including a potential v2.
+> Fair enough.
 > 
->> I've had a patch that implements this feature for a while but didn't get to upstreaming it. :)
+> I originally included the setting so there is a global setting an
+> administrator could toggle instead of having to hunt down each process
+> that might create a bridge, and teaching them to create them with an
+> FDB limit.
 > 
-> I'm not too attached to my name on it, so if your patch is further along,
-> I'd be happy if you submitted your version instead.
-> 
+> Does any of the following alternatives sound acceptable to you?:
+>  - Having the default limit (instead of the proposed default to unlimited)
+>    configurable in Kbuild. This would solve our problem, as we build
+>    our kernels ourselves, but I don't know whether putting a limit there
+>    would be acceptable for e.g. distributions.
 
-Nah, just mentioning it. I'd be happy to review and ack your patches. I don't have time
-at the moment to polish and upstream it.
+I don't mind, but it would be useless for everyone else. Kernels would be built
+without that limit set.
 
-Please add a selftest as well.
+>  - Hardcoding a default limit != 0. I was afraid I'd break someones
+>    use-case with far too large bridged networks if I don't default to
+>    unlimited, but if you maintainers have a number in mind with which
+>    you don't see a problem, I'd be fine with it as well.
+> 
+> (Sorry for sending this mail twice, I accidentally dropped the list and
+> CC on the fist try)
 
->> Anyway more comments below,
-> 
->>> diff --git a/include/uapi/linux/if_link.h b/include/uapi/linux/if_link.h
->>> index 4ac1000b0ef2..27cf5f2d8790 100644
->>> --- a/include/uapi/linux/if_link.h
->>> +++ b/include/uapi/linux/if_link.h
->>> @@ -510,6 +510,7 @@ enum {
->>>  	IFLA_BR_VLAN_STATS_PER_PORT,
->>>  	IFLA_BR_MULTI_BOOLOPT,
->>>  	IFLA_BR_MCAST_QUERIER_STATE,
->>> +	IFLA_BR_FDB_MAX_ENTRIES,
->>>  	__IFLA_BR_MAX,
->>>  };
->>>  
->>> diff --git a/net/bridge/br_device.c b/net/bridge/br_device.c
->>> index 8eca8a5c80c6..d455a28df7c9 100644
->>> --- a/net/bridge/br_device.c
->>> +++ b/net/bridge/br_device.c
->>> @@ -528,6 +528,8 @@ void br_dev_setup(struct net_device *dev)
->>>  	br->bridge_hello_time = br->hello_time = 2 * HZ;
->>>  	br->bridge_forward_delay = br->forward_delay = 15 * HZ;
->>>  	br->bridge_ageing_time = br->ageing_time = BR_DEFAULT_AGEING_TIME;
->>> +	br->fdb_n_entries = 0;
->>> +	br->fdb_max_entries = 0;
->>
->> Unnecessary, the private area is already cleared.
-> 
-> This will be taken out in a v2.
-> 
->>>  	dev->max_mtu = ETH_MAX_MTU;
->>>  
->>>  	br_netfilter_rtable_init(br);
->>> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
->>> index e69a872bfc1d..8a833e6dee92 100644
->>> --- a/net/bridge/br_fdb.c
->>> +++ b/net/bridge/br_fdb.c
->>> @@ -329,6 +329,8 @@ static void fdb_delete(struct net_bridge *br, struct net_bridge_fdb_entry *f,
->>>  	hlist_del_init_rcu(&f->fdb_node);
->>>  	rhashtable_remove_fast(&br->fdb_hash_tbl, &f->rhnode,
->>>  			       br_fdb_rht_params);
->>> +	if (!WARN_ON(!br->fdb_n_entries))
->>> +		br->fdb_n_entries--;
->>
->> This is pointless, just put the WARN_ON(!br->fdb_n_entries) above decrementing, if we
->> hit that we are already in trouble and not decrementing doesn't help us.
-> 
-> This will now always be decremented in a v2.
-> 
->>>  	fdb_notify(br, f, RTM_DELNEIGH, swdev_notify);
->>>  	call_rcu(&f->rcu, fdb_rcu_free);
->>>  }
->>> @@ -391,6 +393,9 @@ static struct net_bridge_fdb_entry *fdb_create(struct net_bridge *br,
->>>  	struct net_bridge_fdb_entry *fdb;
->>>  	int err;
->>>  
->>> +	if (unlikely(br->fdb_max_entries && br->fdb_n_entries >= br->fdb_max_entries))
->>> +		return NULL;
->>> +
->>
->> This one needs more work, fdb_create() is also used when user-space is adding new
->> entries, so it would be nice to return a proper error.
-> 
-> The callers usually map this return code to -ENOMEM, which I deemed an
-> appropriate return code for violating the new limit, as I understood it
-> as a memory limit for the FDB table.
-> 
-> Is there a different error return code you had in mind here, or would
-> you rather only count dynamic entries towards the limit at all?
-> 
 
-I think we should be able to tell apart real ENOMEM from out of entries, the callers
-should interpret the returned error and propagate a user-friendly and understandable extack.
-The error could be E2BIG for example. That would require updating callers though.
-Please split these into separate patches so they can be easier to review.
-
->>>  	fdb = kmem_cache_alloc(br_fdb_cache, GFP_ATOMIC);
->>>  	if (!fdb)
->>>  		return NULL;
->>> @@ -408,6 +413,7 @@ static struct net_bridge_fdb_entry *fdb_create(struct net_bridge *br,
->>>  	}
->>>  
->>>  	hlist_add_head_rcu(&fdb->fdb_node, &br->fdb_list);
->>> +	br->fdb_n_entries++;
->>>  
->>>  	return fdb;
->>>  }
->>> diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
->>> index 05c5863d2e20..e5b8d36a3291 100644
->>> --- a/net/bridge/br_netlink.c
->>> +++ b/net/bridge/br_netlink.c
->>> @@ -1527,6 +1527,12 @@ static int br_changelink(struct net_device *brdev, struct nlattr *tb[],
->>>  			return err;
->>>  	}
->>>  
->>> +	if (data[IFLA_BR_FDB_MAX_ENTRIES]) {
->>> +		u32 val = nla_get_u32(data[IFLA_BR_FDB_MAX_ENTRIES]);
->>> +
->>> +		br->fdb_max_entries = val;
->>> +	}
->>> +
->>>  	return 0;
->>>  }
->>>  
->>> @@ -1656,7 +1662,8 @@ static int br_fill_info(struct sk_buff *skb, const struct net_device *brdev)
->>>  	    nla_put_u8(skb, IFLA_BR_TOPOLOGY_CHANGE_DETECTED,
->>>  		       br->topology_change_detected) ||
->>>  	    nla_put(skb, IFLA_BR_GROUP_ADDR, ETH_ALEN, br->group_addr) ||
->>> -	    nla_put(skb, IFLA_BR_MULTI_BOOLOPT, sizeof(bm), &bm))
->>> +	    nla_put(skb, IFLA_BR_MULTI_BOOLOPT, sizeof(bm), &bm) ||
->>> +	    nla_put_u32(skb, IFLA_BR_FDB_MAX_ENTRIES, br->fdb_max_entries))
->>
->> You are not returning the current entry count, that is also needed.
-> 
-> For a v2 this now also returns the current entry count under
-> IFLA_BR_FDB_CUR_ENTRIES.
-> 
->>>  		return -EMSGSIZE;
->>>  
->>>  #ifdef CONFIG_BRIDGE_VLAN_FILTERING
->>> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
->>> index 2119729ded2b..64fb359c6e3e 100644
->>> --- a/net/bridge/br_private.h
->>> +++ b/net/bridge/br_private.h
->>> @@ -494,6 +494,8 @@ struct net_bridge {
->>>  #endif
->>>  
->>>  	struct rhashtable		fdb_hash_tbl;
->>> +	u32				fdb_n_entries;
->>> +	u32				fdb_max_entries;
->>
->> These are not critical, so I'd use 4 byte holes in net_bridge and pack it better
->> instead of making it larger.
-> 
-> For a v2 I now moved it into (conditional) holes now in front of
-> CONFIG_BRIDGE_VLAN_FILTERING (only a hole if it is enabled) and
-> CONFIG_SWITCHDEV (only a hole if it is disabled). I could not find any
-> other holes, but please tell me if you had any others in mind.
-> 
->>>  	struct list_head		port_list;
->>>  #if IS_ENABLED(CONFIG_BRIDGE_NETFILTER)
->>>  	union {
->>
-> 
-> Thanks for your detailed feedback.
-
+Right, that has been discussed before. So far there hasn't been any good
+option, so I'd say for the time being (or unless you have some better idea)
+we should stick with the netlink max attribute and distributions/admins
+would have to set it on bridge creation. We could add a warning when creating
+a bridge without fdb limit to remind people that it's advisable to set it.
+That warning can be removed when we come up with a proper solution.
