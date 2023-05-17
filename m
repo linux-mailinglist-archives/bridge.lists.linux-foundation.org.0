@@ -1,78 +1,106 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1D67057CC
-	for <lists.bridge@lfdr.de>; Tue, 16 May 2023 21:47:01 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B88E706138
+	for <lists.bridge@lfdr.de>; Wed, 17 May 2023 09:33:16 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id A1177616B4;
-	Tue, 16 May 2023 19:46:57 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A1177616B4
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=CYoYaBX+
+	by smtp1.osuosl.org (Postfix) with ESMTP id E9F3083F1B;
+	Wed, 17 May 2023 07:33:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E9F3083F1B
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=VmMAPOyo
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id srt7w319j3k0; Tue, 16 May 2023 19:46:57 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id cJ8EV_l4QBj3; Wed, 17 May 2023 07:33:11 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 35431616B0;
-	Tue, 16 May 2023 19:46:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 35431616B0
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 7EA2883FFA;
+	Wed, 17 May 2023 07:33:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7EA2883FFA
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id DCAD4C008A;
-	Tue, 16 May 2023 19:46:55 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id DB957C008A;
+	Wed, 17 May 2023 07:33:09 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 28BDAC002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 19:46:55 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 51F17C002A
+ for <bridge@lists.linux-foundation.org>; Wed, 17 May 2023 07:33:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id E6368616B1
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 19:46:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E6368616B1
+ by smtp4.osuosl.org (Postfix) with ESMTP id 14F9C42043
+ for <bridge@lists.linux-foundation.org>; Wed, 17 May 2023 07:33:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 14F9C42043
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
+ header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=VmMAPOyo
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JNBBo2Uahn8f for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 19:46:54 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org EEE916169F
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id EEE916169F
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 19:46:53 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4F790632D6;
- Tue, 16 May 2023 19:46:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 832C2C433D2;
- Tue, 16 May 2023 19:46:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1684266412;
- bh=Retqq5JfF+1v3Y0juT8ukUupAtMcuR+tzDBH2kPz0nA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CYoYaBX+m/LPk4VBRp8JNpVscrno+XDoOxsbtT049WnQxI9/kSv1bR5kiaTmgxUUy
- yyC7zNWfHk1n1+Bj8Et1dY92a6p0p51q4zMvCDb9u/iIFhC965iehJ9+OHPWqp9bok
- 8fR9wBQWSjY95WV68eJL+MIsjiuxWDC3uu+Jjzd0BE4+In115Zc1eGavYGPScFq5OB
- 6WFmKjetm6poZK2aA6o+B7/MSKLwV/Sim4gAPGVazWEZDClKW9/9Ibhr3Xv7uzOEp1
- 5qU0+8VwZdehpR7d99IB8cS41Y3EeSlnta9+f3e9RwtJ+zwAvcGzKZJEpKMztEPuVn
- DkgRIf/FWV1mw==
-From: Arnd Bergmann <arnd@kernel.org>
-To: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>
-Date: Tue, 16 May 2023 21:45:35 +0200
-Message-Id: <20230516194625.549249-3-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230516194625.549249-1-arnd@kernel.org>
-References: <20230516194625.549249-1-arnd@kernel.org>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id IIZBKAi5sPTt for <bridge@lists.linux-foundation.org>;
+ Wed, 17 May 2023 07:33:07 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7FD9641D8A
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 7FD9641D8A
+ for <bridge@lists.linux-foundation.org>; Wed, 17 May 2023 07:33:07 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id
+ 4fb4d7f45d1cf-510d6b939bfso343300a12.0
+ for <bridge@lists.linux-foundation.org>; Wed, 17 May 2023 00:33:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684308785; x=1686900785;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=dNSDSFrDFbpPqdYEuN89e9yeuyZne6fiLX09JZpnnaQ=;
+ b=VmMAPOyosODi0Oa3kk/lczgV+F2wFxVZqk/0hszxe6QSeo3ux81DeWhkAFDUa5ku0B
+ EBVL5IutHi6M7si8Vm8aAiOTcMFGFAjk2kxuqfj5x+sT5Wgsu9+Yjj6y0E0+GkB7eV/2
+ FcWAUoD3eg8bs96ntWcLX2TarfzeCS74IoXx8FkajG2BQ+HIC36UoFg/oq4Yl4J/r7eB
+ yxTxC+pJiMcArvLGowXWqL736Ukqmfc4j7mLQYNDCwG8QVYKAAeWyzgOZK/HILnza1fW
+ erNjN9FdiNH4EGuBRrPcKURazxmzSrlDlhDlg9c1cencscueOAOfdJbO3HGQHPACDuZv
+ +vgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684308785; x=1686900785;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=dNSDSFrDFbpPqdYEuN89e9yeuyZne6fiLX09JZpnnaQ=;
+ b=QvmOFkjgCnJ0n4GcP6w/WTsnMYK0yDciReesrgs3G9TslflGFETxS7M30Zj/H30Ccw
+ fYW+5AiqJnQTUB22MM/BxEPK/0Rt565g40G43PELh5q5DbgGst7DadHCjhZymdCLldJE
+ LH9GDbzj2pQ+X/K7akT2JYCJnIX9gmHhq9tc6HZbs2x0oZyjzyf0iLPV8yYMrEhEX1iE
+ AhU9zMtajiGCEVGLBx743bKAGuQspHHyfN03CFy50X/4czZzy3KnN4b+5ZIpFB5WztLs
+ LhdBSTeMZcd8mD15p1jKFAE1ZqVmZiry8lp5RbcYlauYiIvoP4PyLOLpN9VX2agT7SCe
+ 6bVQ==
+X-Gm-Message-State: AC+VfDw8K/gGGEtjSuj+0nRDySU91FKJdwGfQCtmtYPMu/Y5n4JEm/FK
+ SZj4cX+jD2dZZKJG7i/dW2/Iow==
+X-Google-Smtp-Source: ACHHUZ4bKH6nuAL+Av8BpnIu5DQ26jMK8Rn4ZGnWU07q0yJ5uj8FsA7prleEWrWha2M97z1kBLUvMA==
+X-Received: by 2002:a17:907:6d23:b0:96a:349a:6c91 with SMTP id
+ sa35-20020a1709076d2300b0096a349a6c91mr23819008ejc.23.1684308785373; 
+ Wed, 17 May 2023 00:33:05 -0700 (PDT)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ m26-20020a17090677da00b0096ae4451c65sm5850503ejn.157.2023.05.17.00.33.04
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 17 May 2023 00:33:04 -0700 (PDT)
+Message-ID: <63f12ee5-bd7d-a734-af98-e99196d84441@blackwall.org>
+Date: Wed, 17 May 2023 10:33:03 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc: Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Arnd Bergmann <arnd@kernel.org>, netdev@vger.kernel.org,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+References: <20230516194625.549249-1-arnd@kernel.org>
+ <20230516194625.549249-3-arnd@kernel.org>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20230516194625.549249-3-arnd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Cc: bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
  Arnd Bergmann <arnd@arndb.de>, Roopa Prabhu <roopa@nvidia.com>
-Subject: [Bridge] [PATCH 3/4] bridge: always declare tunnel functions
+Subject: Re: [Bridge] [PATCH 3/4] bridge: always declare tunnel functions
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -87,51 +115,35 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+On 16/05/2023 22:45, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> When CONFIG_BRIDGE_VLAN_FILTERING is disabled, two functions are still
+> defined but have no prototype or caller. This causes a W=1 warning for
+> the missing prototypes:
+> 
+> net/bridge/br_netlink_tunnel.c:29:6: error: no previous prototype for 'vlan_tunid_inrange' [-Werror=missing-prototypes]
+> net/bridge/br_netlink_tunnel.c:199:5: error: no previous prototype for 'br_vlan_tunnel_info' [-Werror=missing-prototypes]
+> 
+> The functions are already contitional on CONFIG_BRIDGE_VLAN_FILTERING,
+> and I coulnd't easily figure out the right set of #ifdefs, so just
+> move the declarations out of the #ifdef to avoid the warning,
+> at a small cost in code size over a more elaborate fix.
+> 
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  net/bridge/br_private_tunnel.h | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
-When CONFIG_BRIDGE_VLAN_FILTERING is disabled, two functions are still
-defined but have no prototype or caller. This causes a W=1 warning for
-the missing prototypes:
+This should be for -net.
 
-net/bridge/br_netlink_tunnel.c:29:6: error: no previous prototype for 'vlan_tunid_inrange' [-Werror=missing-prototypes]
-net/bridge/br_netlink_tunnel.c:199:5: error: no previous prototype for 'br_vlan_tunnel_info' [-Werror=missing-prototypes]
+Fixes: 188c67dd1906 ("net: bridge: vlan options: add support for tunnel id dumping")
+Fixes: 569da0822808 ("net: bridge: vlan options: add support for tunnel mapping set/del")
+Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
 
-The functions are already contitional on CONFIG_BRIDGE_VLAN_FILTERING,
-and I coulnd't easily figure out the right set of #ifdefs, so just
-move the declarations out of the #ifdef to avoid the warning,
-at a small cost in code size over a more elaborate fix.
+Thanks,
+ Nik
 
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- net/bridge/br_private_tunnel.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/net/bridge/br_private_tunnel.h b/net/bridge/br_private_tunnel.h
-index 2b053289f016..efb096025151 100644
---- a/net/bridge/br_private_tunnel.h
-+++ b/net/bridge/br_private_tunnel.h
-@@ -27,6 +27,10 @@ int br_process_vlan_tunnel_info(const struct net_bridge *br,
- int br_get_vlan_tunnel_info_size(struct net_bridge_vlan_group *vg);
- int br_fill_vlan_tunnel_info(struct sk_buff *skb,
- 			     struct net_bridge_vlan_group *vg);
-+bool vlan_tunid_inrange(const struct net_bridge_vlan *v_curr,
-+			const struct net_bridge_vlan *v_last);
-+int br_vlan_tunnel_info(const struct net_bridge_port *p, int cmd,
-+			u16 vid, u32 tun_id, bool *changed);
- 
- #ifdef CONFIG_BRIDGE_VLAN_FILTERING
- /* br_vlan_tunnel.c */
-@@ -43,10 +47,6 @@ void br_handle_ingress_vlan_tunnel(struct sk_buff *skb,
- 				   struct net_bridge_vlan_group *vg);
- int br_handle_egress_vlan_tunnel(struct sk_buff *skb,
- 				 struct net_bridge_vlan *vlan);
--bool vlan_tunid_inrange(const struct net_bridge_vlan *v_curr,
--			const struct net_bridge_vlan *v_last);
--int br_vlan_tunnel_info(const struct net_bridge_port *p, int cmd,
--			u16 vid, u32 tun_id, bool *changed);
- #else
- static inline int vlan_tunnel_init(struct net_bridge_vlan_group *vg)
- {
--- 
-2.39.2
 
