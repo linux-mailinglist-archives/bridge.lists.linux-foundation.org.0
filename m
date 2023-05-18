@@ -1,138 +1,110 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA66A707F75
-	for <lists.bridge@lfdr.de>; Thu, 18 May 2023 13:35:45 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 452297085A5
+	for <lists.bridge@lfdr.de>; Thu, 18 May 2023 18:08:59 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 59CC941B4C;
-	Thu, 18 May 2023 11:35:44 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 59CC941B4C
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=FIsm4HPi
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PvKrJKNc86E0; Thu, 18 May 2023 11:35:43 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 22F614097F;
-	Thu, 18 May 2023 11:35:42 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 22F614097F
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B9147C007C;
-	Thu, 18 May 2023 11:35:41 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 38F7FC002A
- for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 11:35:40 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 328DE81B8A
- for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 11:35:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 328DE81B8A
-Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=FIsm4HPi
+	by smtp1.osuosl.org (Postfix) with ESMTP id 161DC8140F;
+	Thu, 18 May 2023 16:08:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 161DC8140F
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=kzLWYsW5
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id nHEPCDHLn8RE for <bridge@lists.linux-foundation.org>;
- Thu, 18 May 2023 11:35:21 +0000 (UTC)
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LO3vKHutj0bX; Thu, 18 May 2023 16:08:56 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 9C9BB813F2;
+	Thu, 18 May 2023 16:08:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9C9BB813F2
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2A8C5C007C;
+	Thu, 18 May 2023 16:08:55 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EDF6AC002A
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 16:08:53 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp2.osuosl.org (Postfix) with ESMTP id BB62E4054B
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 16:08:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BB62E4054B
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
+ header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=kzLWYsW5
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5JhL5eqxN0yU for <bridge@lists.linux-foundation.org>;
+ Thu, 18 May 2023 16:08:53 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 14FA481BB2
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2060d.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7ea9::60d])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 14FA481BB2
- for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 11:35:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=COtAzs0ncf2hODap3uNF0WQ0DPQHfZtRmots5t9F0OSvXEy5Lbt//UJJu9L0V9Y1X/fo05ikQ66v3Xro5I6GvHTOqyQnh6qHLxZyj5VLufc9Z8GMShoIwYKCrw3BGJrGU+yst3dE4V8q2ir3zw9AYsL2TJWnGMVg9lY+ObPdEOozLvNXHPJQb55enYeJBMJYOycdTDgrGsdoimUMmSeqyba4N8aF0tIEYySqqmF272W2Fg/+zHWZS35uK86RtTRKEpSlCtgY5fLKeOw86ZrQvwnrIBePmG+SWoih5Hai4v6YJrhdXD+18gIGg6R1kc5cbb0ceWUgRegOjelIzzy9Tg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mKdTRS0ZIQEdAbs+I0FkXntaP1eXB6RVCBy0Hb4d49U=;
- b=lMTQaBA3UvdCB0jRgEpnLQSsFhp0Y/ZHWdbQ8SZK3GAuCbBwEDkPsvnh6DKx42hwqBCCWd36CX2jkMzn9k9PhE50GiOm8kZCUhdHVRfUk6ZzIulSQ7WjaOAqoS/IZQEBKWf6oN/CYMhwVPqG0AEJIBGUbdieXf6m+Lij0MYL80AqD5CstZoqaIZkL/8M+J4NH/282BF5sML3Oy3xIeP0CS4FUP1NdzNovCu0x82as6ImRQXwQm65zrGdgij9vGHvFmpKWYbhSjyepsPB7nBj5ES46/BNI+spgaV5C51WwvWKJzU7mCH717cyGCljRN5l2FkggyVuKJyzAcUA7Z1DUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mKdTRS0ZIQEdAbs+I0FkXntaP1eXB6RVCBy0Hb4d49U=;
- b=FIsm4HPiqbwLcjyJJmFbNIsRNZevetLXuQFg/cFxkLgR7PWgWVsiSeQ5UbthQG2YDGqVeTihiYTS/Ml9AX26B61HNMUWUyN390cjq3HEJkAJRX6xFkNdYQC+GmkvQXGykbBYXKU/bESimo62zj0f1MOcrxttWoavuezorfka2Kr2f+3IqvG/YAldiFkBmNfmi91qQC7G3kZptcobp1ssA+ChqNfgwOnbF5r//+yemE6UkNsaNKqF36ZRyzrTjONz+RXJJZPsq8FMF+5GIpcL/UBsuZ7RYDwg9AQXJvjbWEDhZAgaaEcTJ76VY9tWzOSZp1B/ZXnbUHL68U+K58lcVA==
-Received: from DM6PR03CA0036.namprd03.prod.outlook.com (2603:10b6:5:40::49) by
- DS0PR12MB7779.namprd12.prod.outlook.com (2603:10b6:8:150::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6411.17; Thu, 18 May 2023 11:35:18 +0000
-Received: from DM6NAM11FT058.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:40::4) by DM6PR03CA0036.outlook.office365.com
- (2603:10b6:5:40::49) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.19 via Frontend
- Transport; Thu, 18 May 2023 11:35:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DM6NAM11FT058.mail.protection.outlook.com (10.13.172.216) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6411.20 via Frontend Transport; Thu, 18 May 2023 11:35:17 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 18 May 2023
- 04:35:06 -0700
-Received: from dev-r-vrt-155.mtr.labs.mlnx (10.126.231.35) by
- rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.37; Thu, 18 May 2023 04:35:00 -0700
-To: <netdev@vger.kernel.org>, <bridge@lists.linux-foundation.org>
-Date: Thu, 18 May 2023 14:33:28 +0300
-Message-ID: <20230518113328.1952135-6-idosch@nvidia.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230518113328.1952135-1-idosch@nvidia.com>
-References: <20230518113328.1952135-1-idosch@nvidia.com>
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org B6AD040106
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id B6AD040106
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 16:08:52 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id
+ a640c23a62f3a-94a342f7c4cso414090166b.0
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 09:08:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1684426131; x=1687018131;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=iyuoVXRwAkG96IRjsmBXEWPPWLN9VCCign9YtDLx2cU=;
+ b=kzLWYsW5n4uheX6EWn13HctN1sZsIT92orviF9/G5tPKzzsBBJlST4z8e52bJTC48D
+ wNd4Qs12HRV/ULmxl+RAaayJilGjmHYnw8h2ijZn/tgAEA1DP74dMTDe5tGnHA/o34BF
+ SoQDvdckzQxFjgGgv50++7rmnWea9MrZfITdHZyyyHmW/6CGhqJCYJpRsC6mH19znuo5
+ 3CVGj1dMhIsaUp5RGhbetdD9KrCAyptFYo7OgI5U+K8MSbc0/tGnSQ2x8aZ8O86H+Oak
+ 5qpCB8JbjUfkAKY4J4NossABK8ME6WuUYbDc5eA+DWk6AVa5sLW7pG9ucqx9MMuuKwb5
+ EnCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684426131; x=1687018131;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=iyuoVXRwAkG96IRjsmBXEWPPWLN9VCCign9YtDLx2cU=;
+ b=iaMIMgKjRbPGP0C/KFXmDpBeY+FSgf3uhM1+NwFtViuGHpKjpvCZC3stvMTeqWXmIN
+ fJXv+XQQKGMms8+cyGErsP8XRHZarZdZp8kz+pa+ka0xWREGtaeKHlLg1SSNLPMI1LNV
+ ZaBejlwVC1r9ssk//JmgK3h4olr5wAiRncKNIDU5cc7ZIMANEHQyojbv69z3Oij35/dl
+ uvAOtCeTtmVcNtdPpflcxj2ZjeaLjw3W6z8Ei2exraL7G6vH+Jge6cU7gAPf8EtlV/Bq
+ 4Cn/y58I2JgP4Vk6C8qWqWRc/wv6vZEXgf1IIJXom+x2M61k6X6CbOAAS5rXO4kCbIhF
+ 86xA==
+X-Gm-Message-State: AC+VfDwDIxlWehSpzPI/AlZEJo3e1QePnujf2ZQabUEYAFJpAm0uIHtN
+ /N+BUVNQxl6eJ88hBs2WkyVkSQ==
+X-Google-Smtp-Source: ACHHUZ5d7GREsGn+BiVykYFE9gOPpFrSYkoCOuHyK3u0f9UtxcQmzqZk1SrBy22elWLHH1l8VamFTw==
+X-Received: by 2002:a17:906:4792:b0:96a:138:c1a0 with SMTP id
+ cw18-20020a170906479200b0096a0138c1a0mr30986419ejc.9.1684426130604; 
+ Thu, 18 May 2023 09:08:50 -0700 (PDT)
+Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
+ by smtp.gmail.com with ESMTPSA id
+ gl19-20020a170906e0d300b009663cf5dc43sm1133077ejb.181.2023.05.18.09.08.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 18 May 2023 09:08:49 -0700 (PDT)
+Message-ID: <1ed139d5-6cb9-90c7-323c-22cf916e96a0@blackwall.org>
+Date: Thu, 18 May 2023 19:08:47 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.126.231.35]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT058:EE_|DS0PR12MB7779:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d678617-ec55-468b-6375-08db5793f4c9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kX8fL58gFEQbsd/if1ir8iXxjtA8I3rrN3K+BlHUQ8uNpyoqzX2eb0FKqGvsw/ascbBVW7De+u/QrOltLBKzBo9ltCHGQ94Whg51xLD7dVOBOu4fOKZMDyMqJTMdjQjJme9Cxlj555GndY/5RG1cb3YqNBglioyg8AQpiTUmJti9Y7TCqTjHtrNWBylRIhDbvHVfHaoLJQSnNGFWs4ZpCA5XZSalK+eHG3CqMT/ftOuwPgdNXfrOCKuZ1ZxmbEXsvghsTQkAjz/KcdSe0gB8wEcj146K6gN/4kJCZjPDx48GJqRfkPsjelBNUgndM3pDd2+Ydta6LakIP56+GIU/zruUmWDqsbFjmnZ00CjdzPq9KfEzwDmxCM/Vho4IjlcIyfVbru0cbvDoMShRZ6jmr/2/QXF5JBziW6KQKWtWdGnNYRYhsKrg7LOXgGhDkbavEqKl8Fw8Q5gmjHGPtn6ldnjXA62SgYhrmha83ZQfJqPJhP3cbP3XMyDGtsf9Kv3W05vJk5pUMzIRgWYo+KdZaFHJnuz+vqQS3SZvrz212CVO9+/tM8EKt/cr5nGT0Tp7LuFfS6aTiphdzyAuJaCcFrQoShPziA7sBgJP6QSvs17TaFC8Eq3j1vhq0o20kxtXfhcKL8UAT9p/7FHmTGf4cK7Z4jcYehM+guLBBXnLlzM9wQKfIjrg0Ge7wUIC7+9FOjBU9t1KnpY8gt3UdjJAkzA0BNQyN76j5Q6T497IZ4U=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(136003)(39860400002)(396003)(376002)(451199021)(36840700001)(46966006)(40470700004)(86362001)(107886003)(40460700003)(26005)(1076003)(36756003)(47076005)(336012)(426003)(36860700001)(2616005)(66574015)(83380400001)(7636003)(82310400005)(40480700001)(82740400003)(356005)(186003)(16526019)(54906003)(110136005)(478600001)(30864003)(2906002)(4326008)(8676002)(8936002)(70586007)(70206006)(316002)(5660300002)(7416002)(6666004)(41300700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2023 11:35:17.9986 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d678617-ec55-468b-6375-08db5793f4c9
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT058.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7779
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org
+References: <20230518113328.1952135-1-idosch@nvidia.com>
+ <20230518113328.1952135-2-idosch@nvidia.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20230518113328.1952135-2-idosch@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
  jiri@resnulli.us, taspelund@nvidia.com, leon@kernel.org,
- vladimir.oltean@nxp.com, razor@blackwall.org, claudiu.manoil@nxp.com,
- Ido Schimmel <idosch@nvidia.com>, UNGLinuxDriver@microchip.com,
- xiyou.wangcong@gmail.com, edumazet@google.com, jhs@mojatatu.com,
+ vladimir.oltean@nxp.com, xiyou.wangcong@gmail.com, claudiu.manoil@nxp.com,
+ UNGLinuxDriver@microchip.com, edumazet@google.com, jhs@mojatatu.com,
  roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com, saeedm@nvidia.com,
  davem@davemloft.net
-Subject: [Bridge] [PATCH net-next 5/5] selftests: forwarding: Add layer 2
-	miss test cases
+Subject: Re: [Bridge] [PATCH net-next 1/5] skbuff: bridge: Add layer 2 miss
+	indication
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -144,393 +116,68 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Add test cases to verify that the bridge driver correctly marks layer 2
-misses only when it should and that the flower classifier can match on
-this metadata.
+On 18/05/2023 14:33, Ido Schimmel wrote:
+> Allow the bridge driver to mark packets that did not match a layer 2
+> entry during forwarding by adding a 'l2_miss' bit to the skb.
+> 
+> Clear the bit whenever a packet enters the bridge (received from a
+> bridge port or transmitted via the bridge) and set it if the packet did
+> not match an FDB/MDB entry.
+> 
+> Subsequent patches will allow the flower classifier to match on this
+> bit. The motivating use case in non-DF (Designated Forwarder) filtering
+> where we would like to prevent decapsulated packets from being flooded
+> to a multi-homed host.
+> 
+> Do not allocate the bit if the kernel was not compiled with bridge
+> support and place it after the two bit fields in accordance with commit
+> 4c60d04c2888 ("net: skbuff: push nf_trace down the bitfield"). The bit
+> does not increase the size of the structure as it is placed at an
+> existing hole. Layout with allmodconfig:
+> 
+> struct sk_buff {
+> [...]
+> 			__u8       csum_not_inet:1;      /*   132: 3  1 */
+> 			__u8       l2_miss:1;            /*   132: 4  1 */
+> 
+> 			/* XXX 3 bits hole, try to pack */
+> 			/* XXX 1 byte hole, try to pack */
+> 
+> 			__u16      tc_index;             /*   134     2 */
+> 			u16        alloc_cpu;            /*   136     2 */
+> [...]
+> } __attribute__((__aligned__(8)));
+> 
+> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
+> ---
+>  include/linux/skbuff.h  | 4 ++++
+>  net/bridge/br_device.c  | 1 +
+>  net/bridge/br_forward.c | 3 +++
+>  net/bridge/br_input.c   | 1 +
+>  4 files changed, 9 insertions(+)
+> 
+[snip]
+>  	while (p || rp) {
+> diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+> index fc17b9fd93e6..d8ab5890cbe6 100644
+> --- a/net/bridge/br_input.c
+> +++ b/net/bridge/br_input.c
+> @@ -334,6 +334,7 @@ static rx_handler_result_t br_handle_frame(struct sk_buff **pskb)
+>  		return RX_HANDLER_CONSUMED;
+>  
+>  	memset(skb->cb, 0, sizeof(struct br_input_skb_cb));
+> +	skb->l2_miss = 0;
+>  
+>  	p = br_port_get_rcu(skb->dev);
+>  	if (p->flags & BR_VLAN_TUNNEL)
 
-Example output:
+Overall looks good, only this part is a bit worrisome and needs some additional
+investigation because now we'll unconditionally dirty a cache line for every
+packet that is forwarded. Could you please check the effect with perf?
 
- # ./tc_flower_l2_miss.sh
- TEST: L2 miss - Unicast                                             [ OK ]
- TEST: L2 miss - Multicast (IPv4)                                    [ OK ]
- TEST: L2 miss - Multicast (IPv6)                                    [ OK ]
- TEST: L2 miss - Link-local multicast (IPv4)                         [ OK ]
- TEST: L2 miss - Link-local multicast (IPv6)                         [ OK ]
- TEST: L2 miss - Broadcast                                           [ OK ]
-
-Signed-off-by: Ido Schimmel <idosch@nvidia.com>
----
- .../testing/selftests/net/forwarding/Makefile |   1 +
- .../net/forwarding/tc_flower_l2_miss.sh       | 343 ++++++++++++++++++
- 2 files changed, 344 insertions(+)
- create mode 100755 tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
-
-diff --git a/tools/testing/selftests/net/forwarding/Makefile b/tools/testing/selftests/net/forwarding/Makefile
-index a474c60fe348..9d0062b542e5 100644
---- a/tools/testing/selftests/net/forwarding/Makefile
-+++ b/tools/testing/selftests/net/forwarding/Makefile
-@@ -83,6 +83,7 @@ TEST_PROGS = bridge_igmp.sh \
- 	tc_chains.sh \
- 	tc_flower_router.sh \
- 	tc_flower.sh \
-+	tc_flower_l2_miss.sh \
- 	tc_mpls_l2vpn.sh \
- 	tc_police.sh \
- 	tc_shblocks.sh \
-diff --git a/tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh b/tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
-new file mode 100755
-index 000000000000..fbf0a960b2c8
---- /dev/null
-+++ b/tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
-@@ -0,0 +1,343 @@
-+#!/bin/bash
-+# SPDX-License-Identifier: GPL-2.0
-+
-+# +-----------------------+                             +----------------------+
-+# | H1 (vrf)              |                             | H2 (vrf)             |
-+# |    + $h1              |                             |              $h2 +   |
-+# |    | 192.0.2.1/28     |                             |     192.0.2.2/28 |   |
-+# |    | 2001:db8:1::1/64 |                             | 2001:db8:1::2/64 |   |
-+# +----|------------------+                             +------------------|---+
-+#      |                                                                   |
-+# +----|-------------------------------------------------------------------|---+
-+# | SW |                                                                   |   |
-+# |  +-|-------------------------------------------------------------------|-+ |
-+# |  | + $swp1                       BR                              $swp2 + | |
-+# |  +-----------------------------------------------------------------------+ |
-+# +----------------------------------------------------------------------------+
-+
-+ALL_TESTS="
-+	test_l2_miss_unicast
-+	test_l2_miss_multicast
-+	test_l2_miss_ll_multicast
-+	test_l2_miss_broadcast
-+"
-+
-+NUM_NETIFS=4
-+source lib.sh
-+source tc_common.sh
-+
-+h1_create()
-+{
-+	simple_if_init $h1 192.0.2.1/28 2001:db8:1::1/64
-+}
-+
-+h1_destroy()
-+{
-+	simple_if_fini $h1 192.0.2.1/28 2001:db8:1::1/64
-+}
-+
-+h2_create()
-+{
-+	simple_if_init $h2 192.0.2.2/28 2001:db8:1::2/64
-+}
-+
-+h2_destroy()
-+{
-+	simple_if_fini $h2 192.0.2.2/28 2001:db8:1::2/64
-+}
-+
-+switch_create()
-+{
-+	ip link add name br1 up type bridge
-+	ip link set dev $swp1 master br1
-+	ip link set dev $swp1 up
-+	ip link set dev $swp2 master br1
-+	ip link set dev $swp2 up
-+
-+	tc qdisc add dev $swp2 clsact
-+}
-+
-+switch_destroy()
-+{
-+	tc qdisc del dev $swp2 clsact
-+
-+	ip link set dev $swp2 down
-+	ip link set dev $swp2 nomaster
-+	ip link set dev $swp1 down
-+	ip link set dev $swp1 nomaster
-+	ip link del dev br1
-+}
-+
-+test_l2_miss_unicast()
-+{
-+	local dmac=00:01:02:03:04:05
-+	local dip=192.0.2.2
-+	local sip=192.0.2.1
-+
-+	RET=0
-+
-+	# Unknown unicast.
-+	tc filter add dev $swp2 egress protocol ipv4 handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true dst_mac $dmac src_ip $sip \
-+	   dst_ip $dip action pass
-+	# Known unicast.
-+	tc filter add dev $swp2 egress protocol ipv4 handle 102 pref 1 \
-+	   flower indev $swp1 l2_miss false dst_mac $dmac src_ip $sip \
-+	   dst_ip $dip action pass
-+
-+	# Before adding FDB entry.
-+	$MZ $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unknown unicast filter was not hit before adding FDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 0
-+	check_err $? "Known unicast filter was hit before adding FDB entry"
-+
-+	# Adding FDB entry.
-+	bridge fdb replace $dmac dev $swp2 master static
-+
-+	$MZ $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unknown unicast filter was hit after adding FDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Known unicast filter was not hit after adding FDB entry"
-+
-+	# Deleting FDB entry.
-+	bridge fdb del $dmac dev $swp2 master static
-+
-+	$MZ $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 2
-+	check_err $? "Unknown unicast filter was not hit after deleting FDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Known unicast filter was hit after deleting FDB entry"
-+
-+	tc filter del dev $swp2 egress protocol ipv4 pref 1 handle 102 flower
-+	tc filter del dev $swp2 egress protocol ipv4 pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Unicast"
-+}
-+
-+test_l2_miss_multicast_common()
-+{
-+	local proto=$1; shift
-+	local sip=$1; shift
-+	local dip=$1; shift
-+	local mode=$1; shift
-+	local name=$1; shift
-+
-+	RET=0
-+
-+	# Unregistered multicast.
-+	tc filter add dev $swp2 egress protocol $proto handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true src_ip $sip dst_ip $dip \
-+	   action pass
-+	# Registered multicast.
-+	tc filter add dev $swp2 egress protocol $proto handle 102 pref 1 \
-+	   flower indev $swp1 l2_miss false src_ip $sip dst_ip $dip \
-+	   action pass
-+
-+	# Before adding MDB entry.
-+	$MZ $mode $h1 -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unregistered multicast filter was not hit before adding MDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 0
-+	check_err $? "Registered multicast filter was hit before adding MDB entry"
-+
-+	# Adding MDB entry.
-+	bridge mdb replace dev br1 port $swp2 grp $dip permanent
-+
-+	$MZ $mode $h1 -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Unregistered multicast filter was hit after adding MDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Registered multicast filter was not hit after adding MDB entry"
-+
-+	# Deleting MDB entry.
-+	bridge mdb del dev br1 port $swp2 grp $dip
-+
-+	$MZ $mode $h1 -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 2
-+	check_err $? "Unregistered multicast filter was not hit after deleting MDB entry"
-+
-+	tc_check_packets "dev $swp2 egress" 102 1
-+	check_err $? "Registered multicast filter was hit after deleting MDB entry"
-+
-+	tc filter del dev $swp2 egress protocol $proto pref 1 handle 102 flower
-+	tc filter del dev $swp2 egress protocol $proto pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Multicast ($name)"
-+}
-+
-+test_l2_miss_multicast_ipv4()
-+{
-+	local proto="ipv4"
-+	local sip=192.0.2.1
-+	local dip=239.1.1.1
-+	local mode="-4"
-+	local name="IPv4"
-+
-+	test_l2_miss_multicast_common $proto $sip $dip $mode $name
-+}
-+
-+test_l2_miss_multicast_ipv6()
-+{
-+	local proto="ipv6"
-+	local sip=2001:db8:1::1
-+	local dip=ff0e::1
-+	local mode="-6"
-+	local name="IPv6"
-+
-+	test_l2_miss_multicast_common $proto $sip $dip $mode $name
-+}
-+
-+test_l2_miss_multicast()
-+{
-+	# Configure $swp2 as a multicast router port so that it will forward
-+	# both registered and unregistered multicast traffic.
-+	bridge link set dev $swp2 mcast_router 2
-+
-+	# Forwarding according to MDB entries only takes place when the bridge
-+	# detects that there is a valid querier in the network. Set the bridge
-+	# as the querier and assign it a valid IPv6 link-local address to be
-+	# used as the source address for MLD queries.
-+	ip link set dev br1 type bridge mcast_querier 1
-+	ip -6 address add fe80::1/64 nodad dev br1
-+	# Wait the default Query Response Interval (10 seconds) for the bridge
-+	# to determine that there are no other queriers in the network.
-+	sleep 10
-+
-+	test_l2_miss_multicast_ipv4
-+	test_l2_miss_multicast_ipv6
-+
-+	ip -6 address del fe80::1/64 dev br1
-+	ip link set dev br1 type bridge mcast_querier 0
-+	bridge link set dev $swp2 mcast_router 1
-+}
-+
-+test_l2_miss_multicast_common2()
-+{
-+	local name=$1; shift
-+	local dmac=$1; shift
-+	local dip=224.0.0.1
-+	local sip=192.0.2.1
-+
-+}
-+
-+test_l2_miss_ll_multicast_common()
-+{
-+	local proto=$1; shift
-+	local dmac=$1; shift
-+	local sip=$1; shift
-+	local dip=$1; shift
-+	local mode=$1; shift
-+	local name=$1; shift
-+
-+	RET=0
-+
-+	tc filter add dev $swp2 egress protocol $proto handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true dst_mac $dmac src_ip $sip \
-+	   dst_ip $dip action pass
-+
-+	$MZ $mode $h1 -a own -b $dmac -t ip -A $sip -B $dip -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Filter was not hit"
-+
-+	tc filter del dev $swp2 egress protocol $proto pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Link-local multicast ($name)"
-+}
-+
-+test_l2_miss_ll_multicast_ipv4()
-+{
-+	local proto=ipv4
-+	local dmac=01:00:5e:00:00:01
-+	local sip=192.0.2.1
-+	local dip=224.0.0.1
-+	local mode="-4"
-+	local name="IPv4"
-+
-+	test_l2_miss_ll_multicast_common $proto $dmac $sip $dip $mode $name
-+}
-+
-+test_l2_miss_ll_multicast_ipv6()
-+{
-+	local proto=ipv6
-+	local dmac=33:33:00:00:00:01
-+	local sip=2001:db8:1::1
-+	local dip=ff02::1
-+	local mode="-6"
-+	local name="IPv6"
-+
-+	test_l2_miss_ll_multicast_common $proto $dmac $sip $dip $mode $name
-+}
-+
-+test_l2_miss_ll_multicast()
-+{
-+	test_l2_miss_ll_multicast_ipv4
-+	test_l2_miss_ll_multicast_ipv6
-+}
-+
-+test_l2_miss_broadcast()
-+{
-+	local dmac=ff:ff:ff:ff:ff:ff
-+	local smac=00:01:02:03:04:05
-+
-+	RET=0
-+
-+	tc filter add dev $swp2 egress protocol all handle 101 pref 1 \
-+	   flower indev $swp1 l2_miss true dst_mac $dmac src_mac $smac \
-+	   action pass
-+
-+	$MZ $h1 -a $smac -b $dmac -c 1 -p 100 -q
-+
-+	tc_check_packets "dev $swp2 egress" 101 1
-+	check_err $? "Filter was not hit"
-+
-+	tc filter del dev $swp2 egress protocol all pref 1 handle 101 flower
-+
-+	log_test "L2 miss - Broadcast"
-+}
-+
-+setup_prepare()
-+{
-+	h1=${NETIFS[p1]}
-+	swp1=${NETIFS[p2]}
-+
-+	swp2=${NETIFS[p3]}
-+	h2=${NETIFS[p4]}
-+
-+	vrf_prepare
-+	h1_create
-+	h2_create
-+	switch_create
-+}
-+
-+cleanup()
-+{
-+	pre_cleanup
-+
-+	switch_destroy
-+	h2_destroy
-+	h1_destroy
-+	vrf_cleanup
-+}
-+
-+trap cleanup EXIT
-+
-+setup_prepare
-+setup_wait
-+
-+tests_run
-+
-+exit $EXIT_STATUS
--- 
-2.40.1
+Thanks,
+ Nik
 
