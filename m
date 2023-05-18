@@ -1,83 +1,136 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64CFA707B8E
-	for <lists.bridge@lfdr.de>; Thu, 18 May 2023 10:02:32 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D53707F74
+	for <lists.bridge@lfdr.de>; Thu, 18 May 2023 13:35:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 990826FF39;
-	Thu, 18 May 2023 08:02:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 990826FF39
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=V2oN7ldN
+	by smtp4.osuosl.org (Postfix) with ESMTP id BAD394087D;
+	Thu, 18 May 2023 11:35:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org BAD394087D
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=naST7rBP
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PuuzY_yico0U; Thu, 18 May 2023 08:02:29 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 019E86FF55;
-	Thu, 18 May 2023 08:02:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 019E86FF55
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id B70XVG7_X8RL; Thu, 18 May 2023 11:35:39 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id A8C714097F;
+	Thu, 18 May 2023 11:35:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A8C714097F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7AA7FC0037;
-	Thu, 18 May 2023 08:02:27 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5E9ABC007C;
+	Thu, 18 May 2023 11:35:38 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 9AEBAC002A
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:53:43 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 5F62CC002A
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 11:35:37 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 7053281A73
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:53:43 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7053281A73
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256
- header.s=mail header.b=V2oN7ldN
+ by smtp1.osuosl.org (Postfix) with ESMTP id E1068813C2
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 11:34:54 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E1068813C2
+Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=naST7rBP
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
  by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id OsF7p1vvw0zq for <bridge@lists.linux-foundation.org>;
- Tue, 16 May 2023 08:53:42 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 76E7D81380
-Received: from mail.avm.de (mail.avm.de [IPv6:2001:bf0:244:244::94])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 76E7D81380
- for <bridge@lists.linux-foundation.org>; Tue, 16 May 2023 08:53:42 +0000 (UTC)
-Received: from mail-auth.avm.de (unknown [IPv6:2001:bf0:244:244::71])
- by mail.avm.de (Postfix) with ESMTPS;
- Tue, 16 May 2023 10:53:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
- t=1684227220; bh=VV1aTdyRlYF0Cbqz2Q4oeSsJ1iE3UDM6RxDiJvHQWZM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=V2oN7ldNczSlpbtWCZKEcWHJ7KbrE5gfu6ksiQH/HrqRedg7F/Wvb20SMAyL8P7WA
- xgGIt/Nl9oylPWMFzXwJqtYtijBQLKFcJgfzk6nOr7cKqLVltrP4mohekm5IOl7Ve0
- pjH74daLXHb/ZXSR1Kfv84mwWAvfV+V3Xhj74aGY=
-Received: from localhost (unknown [172.17.88.63])
- by mail-auth.avm.de (Postfix) with ESMTPSA id E5B1C80C0E;
- Tue, 16 May 2023 10:53:39 +0200 (CEST)
-Date: Tue, 16 May 2023 10:53:39 +0200
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
-References: <20230515085046.4457-1-jnixdorf-oss@avm.de>
- <a1d13117-a0c5-d06e-86b7-eacf4811102f@blackwall.org>
+ with ESMTP id ZX9JKQY0_rmm for <bridge@lists.linux-foundation.org>;
+ Thu, 18 May 2023 11:34:53 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 75F51813BA
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2061f.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e88::61f])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 75F51813BA
+ for <bridge@lists.linux-foundation.org>; Thu, 18 May 2023 11:34:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QJONzYtMz5wRjb7+aWYH/nLr2dGmIakv3MdRWruB41AIE5t1lVgEVu9nygZJOS2M0ChsbT5UFDaUTiAYvqmBXIqRNgTX2zxFdKcKylxmOJgYV7TY4whvxs89HTtBzh6Urixc5awyDSi/rshDJFzXSiQE28E2pM5gQblsc+1wU0Ufhl/+9rPojtmtkhPHN73OHXVimsWP38JAhiiUgVXhC6I+lfHsXzIGowC+zuxK7/MflAtKlQln5wLODvcGepw6XXgws9Fzuu+4xi/+ggxyXej0hnkKLISkd0v5Fb7YY2rS8W8TPjE1ImKGKKK+ID/2oV9gwodFGLaoaS8GJZRP6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UHMleX3m93FznwDBF2y4gCuE6x/7s2Xg1JpdqLhsNtY=;
+ b=G3TskeAL0yeoyNzCk3HXvgql44dBeS9d6EKcuGyvKBvKDNvhwEtmXSRuAFQ+Dt85YUoHYGfALysXO9AdRUlDFbEuEy6JCYsR5voU5F19c2Upv7CJCUCMirL4sNNZ7vABBqb45c6kvc54/YIE+8u6i36sVCc7ud4B1Xk4zKU4nk6K++zkEOjSyrmwgtxWiZgRgCWdmwpLQW70cjQwotSUKUJrXox3VHw6TYsv/5DJYorgTZ5MDtKQCJS1ntNaW5iofPhTlkak+XqWithm4Au0+n9SCxIT2Ezr1n6YIbK7rKP8cwcM2BVD0m0tBam+e8rBkEyMxbqHixY98c1/N6OtAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UHMleX3m93FznwDBF2y4gCuE6x/7s2Xg1JpdqLhsNtY=;
+ b=naST7rBPOuudt4ldSfoKx9yH36EQqP0FKhkd2JrOqxduIlDxJP7NC6NliiWmwqAw2h5fSw2W9cp/4jcR9epySXP9/iv4fic964V/E4VkmmLz/z85gKOPw1UtubuzIbmg/JvefXNI3LC3SN228kCDZCezcPmBsBIzgTz/S3F9ZCT8P1ReeWD1KGvxh5YEpRn0ZGqgdcHKRziS6je0mqZ6qWoyDOVd9rJmsBcKFr/WW2MYEqrkpQ9CeH/BNCP/sBxstRKV6JqFYlFmm8u8ExgqBOJXB/4Zed58OY1x7sWixxPgba3fR36sqSF7UDFsoNuRnCtUvpuiyHWwTQtHtZZpew==
+Received: from MW4PR04CA0058.namprd04.prod.outlook.com (2603:10b6:303:6a::33)
+ by PH7PR12MB6859.namprd12.prod.outlook.com (2603:10b6:510:1b5::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.33; Thu, 18 May
+ 2023 11:34:50 +0000
+Received: from CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6a:cafe::c3) by MW4PR04CA0058.outlook.office365.com
+ (2603:10b6:303:6a::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.19 via Frontend
+ Transport; Thu, 18 May 2023 11:34:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CO1NAM11FT010.mail.protection.outlook.com (10.13.175.88) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6411.19 via Frontend Transport; Thu, 18 May 2023 11:34:50 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 18 May 2023
+ 04:34:39 -0700
+Received: from dev-r-vrt-155.mtr.labs.mlnx (10.126.231.35) by
+ rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Thu, 18 May 2023 04:34:34 -0700
+To: <netdev@vger.kernel.org>, <bridge@lists.linux-foundation.org>
+Date: Thu, 18 May 2023 14:33:23 +0300
+Message-ID: <20230518113328.1952135-1-idosch@nvidia.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a1d13117-a0c5-d06e-86b7-eacf4811102f@blackwall.org>
-X-purgate-ID: 149429::1684227220-F5C5C84B-E96B91CE/0/0
-X-purgate-type: clean
-X-purgate-size: 3999
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
- further information)
-X-purgate: clean
-X-Mailman-Approved-At: Thu, 18 May 2023 08:02:25 +0000
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add a limit on FDB entries
+Content-Type: text/plain
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT010:EE_|PH7PR12MB6859:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f4bac7d-5690-4e1d-0fc3-08db5793e43d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: t5R0h4q7wFfZaYvL5iaZb5E/2TbV89PFhxGFtcRNZgbpKeYwg1kTv9SArA9zvQAl8cLotaKQFRjX1A7b7lWlFpDUrEBwn20MbwADwGQfDgEIsr1TjnjGcL5ULKIhpiaiMtwLmtz3Lp+LE0URNF7Xld39wnxVDSQjKqE8xBsy1CnZNtEZrCGennXuGDnoRKUFMlsP4B3EUYJuUug9QNT0HJ7nsk4jY8aqFrFjpQ0Bwy5WrABHi9+RT4655+ZXxe1h+yl1phJ1L0sgnBFZwMUmU23TlTJKPXgAnQQHfKdxSfwYB1HMdfe2MmwVeYYysj6rvEwVEaNx9/2J2E1VPGt9enbb/cEebMl3vlmVOJQAIbPiSCskXG5/0GFmHA4GZdw//ctQmIFwYufySlYw4O7/bbYULEH2RtTXO7VDQqFsXjINeVvdSB94v2zVviDOD+iVFi/R8eIeQHipyn3Y8soRrgycEh9c6lQnTG+1iLeVAX3rpd7i6QehGmhXnZz7yfIqGIcBW4QmrpF84F1Z2juKluC2LWZdXb6n+keYlCqieT07OYGX9pzk5TPVSdF428NXp/qLmQLcMpp4Y/6u9jwwmVvvvAof1z88qFST5RVAohpBvQY5fcdPt/l8NDFIet0Xh1CUpi0242szzeAvJG6l+cukSjuLab8M0LQlQzaetQhnDTxEbHtNOEguGgCQmBuTczk5gOmtjVSKqtpt0q6JveqHT/nf7blklXB0klJrdSV/kOyC+AFxj0ELjIW3fBW1q3Mm6Ss9G400kaY5yYLDEMItMlz6dKnK/9Fmo1Q43zP1+p/peFVvmt9DX2P9E5Kx
+X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(396003)(376002)(39860400002)(136003)(451199021)(40470700004)(36840700001)(46966006)(5660300002)(8936002)(7416002)(426003)(336012)(107886003)(36860700001)(966005)(83380400001)(47076005)(82310400005)(26005)(1076003)(7636003)(356005)(2616005)(186003)(8676002)(40460700003)(70586007)(41300700001)(478600001)(110136005)(82740400003)(16526019)(6666004)(54906003)(86362001)(4326008)(316002)(40480700001)(70206006)(36756003)(2906002);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2023 11:34:50.2666 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f4bac7d-5690-4e1d-0fc3-08db5793e43d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6859
+Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
+ jiri@resnulli.us, taspelund@nvidia.com, leon@kernel.org,
+ vladimir.oltean@nxp.com, razor@blackwall.org, claudiu.manoil@nxp.com,
+ Ido Schimmel <idosch@nvidia.com>, UNGLinuxDriver@microchip.com,
+ xiyou.wangcong@gmail.com, edumazet@google.com, jhs@mojatatu.com,
+ roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com, saeedm@nvidia.com,
+ davem@davemloft.net
+Subject: [Bridge] [PATCH net-next 0/5] Add layer 2 miss indication and
+	filtering
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,83 +142,150 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Johannes Nixdorf via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, May 16, 2023 at 11:38:11AM +0300, Nikolay Aleksandrov wrote:
-> On 15/05/2023 11:50, Johannes Nixdorf wrote:
-> > A malicious actor behind one bridge port may spam the kernel with packets
-> > with a random source MAC address, each of which will create an FDB entry,
-> > each of which is a dynamic allocation in the kernel.
-> > 
-> > There are roughly 2^48 different MAC addresses, further limited by the
-> > rhashtable they are stored in to 2^31. Each entry is of the type struct
-> > net_bridge_fdb_entry, which is currently 128 bytes big. This means the
-> > maximum amount of memory allocated for FDB entries is 2^31 * 128B =
-> > 256GiB, which is too much for most computers.
-> > 
-> > Mitigate this by adding a bridge netlink setting IFLA_BR_FDB_MAX_ENTRIES,
-> > which, if nonzero, limits the amount of entries to a user specified
-> > maximum.
-> > 
-> > For backwards compatibility the default setting of 0 disables the limit.
-> > 
-> > All changes to fdb_n_entries are under br->hash_lock, which means we do
-> > not need additional locking. The call paths are (✓ denotes that
-> > br->hash_lock is taken around the next call):
-> > 
-> >  - fdb_delete <-+- fdb_delete_local <-+- br_fdb_changeaddr ✓
-> >                 |                     +- br_fdb_change_mac_address ✓
-> >                 |                     +- br_fdb_delete_by_port ✓
-> >                 +- br_fdb_find_delete_local ✓
-> >                 +- fdb_add_local <-+- br_fdb_changeaddr ✓
-> >                 |                  +- br_fdb_change_mac_address ✓
-> >                 |                  +- br_fdb_add_local ✓
-> >                 +- br_fdb_cleanup ✓
-> >                 +- br_fdb_flush ✓
-> >                 +- br_fdb_delete_by_port ✓
-> >                 +- fdb_delete_by_addr_and_port <--- __br_fdb_delete ✓
-> >                 +- br_fdb_external_learn_del ✓
-> >  - fdb_create <-+- fdb_add_local <-+- br_fdb_changeaddr ✓
-> >                 |                  +- br_fdb_change_mac_address ✓
-> >                 |                  +- br_fdb_add_local ✓
-> >                 +- br_fdb_update ✓
-> >                 +- fdb_add_entry <--- __br_fdb_add ✓
-> >                 +- br_fdb_external_learn_add ✓
-> > 
-> > Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
-> > ---
-> >  include/uapi/linux/if_link.h | 1 +
-> >  net/bridge/br_device.c       | 2 ++
-> >  net/bridge/br_fdb.c          | 6 ++++++
-> >  net/bridge/br_netlink.c      | 9 ++++++++-
-> >  net/bridge/br_private.h      | 2 ++
-> >  5 files changed, 19 insertions(+), 1 deletion(-)
-> > 
-> 
-> I completely missed the fact that you don't deal with the situation where you already have fdbs created
-> and a limit is set later, then it would be useless because it will start counting from 0 even though
-> there are already entries.
+tl;dr
+=====
 
-This should not be an issue. The accounting starts with the bridge
-creation and is never suspended, so if the user sets a limit later we
-do not restart counting at 0.
+This patchset adds a single bit to the skb to indicate that a packet
+encountered a layer 2 miss in the bridge and extends flower to match on
+this metadata. This is required for non-DF (Designated Forwarder)
+filtering in EVPN multi-homing which prevents decapsulated BUM packets
+from being forwarded multiple times to the same multi-homed host.
 
-The only corner case I can see there is if the user sets a new limit
-lower than the current number of FDB entries. In that case the code
-currently leaves the bridge in a state where the limit is violated,
-but refuses new FDB entries until the total is back below the limit. The
-alternative of cleaning out old FDB entries until their number is under
-the limit again seems to be more error prone to me as well, so I'd rather
-leave it that way.
+Background
+==========
 
-> Also another issue that came to mind is that you don't deal with fdb_create()
-> for "special" entries, i.e. when adding a port. Currently it will print an error, but you should revisit
-> all callers and see where it might be a problem.
+In a typical EVPN multi-homing setup each host is multi-homed using a
+set of links called ES (Ethernet Segment, i.e., LAG) to multiple leaf
+switches in a rack. These switches act as VTEPs and are not directly
+connected (as opposed to MLAG), but can communicate with each other (as
+well as with VTEPs in remote racks) via spine switches over L3.
 
-I'll have a look again, also to see whether only counting dynamic
-entries created as a reaction to observed packets might be a viable
-alternative. If the user creates the entries by adding a port or manually
-via netlink I see no reason to restrict them to the same limit.
+When a host sends a BUM packet over ES1 to VTEP1, the VTEP will flood it
+to other VTEPs in the network, including those connected to the host
+over ES1. The receiving VTEPs must drop the packet and not forward it
+back to the host. This is called "split-horizon filtering" (SPH) [1].
+
+FRR configures SPH filtering using two tc filters. The first, an ingress
+filter that matches on packets received from VTEP1 and marks them using
+a fwmark (firewall mark). The second, an egress filter configured on the
+LAG interface connected to the host that matches on the fwmark and drops
+the packets. Example:
+
+ # tc filter add dev vxlan0 ingress pref 1 proto all flower enc_src_ip $VTEP1_IP action skbedit mark 101
+ # tc filter add dev bond0 egress pref 1 handle 101 fw action drop
+
+Motivation
+==========
+
+For each ES, only one VTEP is elected by the control plane as the DF.
+The DF is responsible for forwarding decapsulated BUM traffic to the
+host over the ES. The non-DF VTEPs must drop such traffic as otherwise
+the host will receive multiple copies of BUM traffic. This is called
+"non-DF filtering" [2].
+
+Filtering of multicast and broadcast traffic can be achieved using the
+following flower filter:
+
+ # tc filter add dev bond0 egress pref 1 proto all flower indev vxlan0 dst_mac 01:00:00:00:00:00/01:00:00:00:00:00 action drop
+
+Unlike broadcast and multicast traffic, it is not currently possible to
+filter unknown unicast traffic. The classification into unknown unicast
+is performed by the bridge driver, but is not visible to other layers.
+
+Implementation
+==============
+
+The proposed solution is to add a single bit to the skb that is set by
+the bridge for packets that encountered an FDB/MDB miss. The flower
+classifier is extended to be able to match on this new metadata bit in a
+similar fashion to existing metadata options such as 'indev'.
+
+A bit that is set for every flooded packet would also work, but it does
+not allow us to differentiate between registered and unregistered
+multicast traffic which might be useful in the future.
+
+A relatively generic name is chosen for this bit - 'l2_miss' - to allow
+its use to be extended to other layer 2 devices such as VXLAN, should a
+use case arise.
+
+With the above, the control plane can implement a non-DF filter using
+the following tc filters:
+
+ # tc filter add dev bond0 egress pref 1 proto all flower indev vxlan0 dst_mac 01:00:00:00:00:00/01:00:00:00:00:00 action drop
+ # tc filter add dev bond0 egress pref 2 proto all flower indev vxlan0 l2_miss true action drop
+
+The first drops broadcast and multicast traffic and the second drops
+unknown unicast traffic.
+
+Testing
+=======
+
+A test exercising the different permutations of the 'l2_miss' bit is
+added in patch #5.
+
+Patchset overview
+=================
+
+Patch #1 adds the new bit to the skb and sets it in the bridge driver
+for packets that encountered a miss. The new bit is added in an existing
+hole in the skb in order not to inflate this data structure.
+
+Patch #2 extends the flower classifier to be able to match on the new
+layer 2 miss metadata.
+
+Patch #3 rejects matching on the new metadata in drivers that already
+support the 'FLOW_DISSECTOR_KEY_META' key.
+
+Patch #4 extends mlxsw to be able to match on layer 2 miss.
+
+Patch #5 adds a selftest.
+
+iproute2 patches can be found here [3].
+
+Changelog
+=========
+
+Since RFC [4]:
+
+No changes.
+
+[1] https://datatracker.ietf.org/doc/html/rfc7432#section-8.3
+[2] https://datatracker.ietf.org/doc/html/rfc7432#section-8.5
+[3] https://github.com/idosch/iproute2/tree/submit/non_df_filter_v1
+[4] https://lore.kernel.org/netdev/20230509070446.246088-1-idosch@nvidia.com/
+
+Ido Schimmel (5):
+  skbuff: bridge: Add layer 2 miss indication
+  net/sched: flower: Allow matching on layer 2 miss
+  flow_offload: Reject matching on layer 2 miss
+  mlxsw: spectrum_flower: Add ability to match on layer 2 miss
+  selftests: forwarding: Add layer 2 miss test cases
+
+ .../marvell/prestera/prestera_flower.c        |   6 +
+ .../net/ethernet/mellanox/mlx5/core/en_tc.c   |   6 +
+ .../mellanox/mlxsw/core_acl_flex_keys.c       |   1 +
+ .../mellanox/mlxsw/core_acl_flex_keys.h       |   3 +-
+ .../mellanox/mlxsw/spectrum_acl_flex_keys.c   |   5 +
+ .../ethernet/mellanox/mlxsw/spectrum_flower.c |  16 +
+ drivers/net/ethernet/mscc/ocelot_flower.c     |  10 +
+ include/linux/skbuff.h                        |   4 +
+ include/net/flow_dissector.h                  |   2 +
+ include/uapi/linux/pkt_cls.h                  |   2 +
+ net/bridge/br_device.c                        |   1 +
+ net/bridge/br_forward.c                       |   3 +
+ net/bridge/br_input.c                         |   1 +
+ net/core/flow_dissector.c                     |   3 +
+ net/sched/cls_flower.c                        |  14 +-
+ .../testing/selftests/net/forwarding/Makefile |   1 +
+ .../net/forwarding/tc_flower_l2_miss.sh       | 343 ++++++++++++++++++
+ 17 files changed, 418 insertions(+), 3 deletions(-)
+ create mode 100755 tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
+
+-- 
+2.40.1
+
