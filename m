@@ -1,117 +1,145 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E8270D858
-	for <lists.bridge@lfdr.de>; Tue, 23 May 2023 11:04:42 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9225370DB91
+	for <lists.bridge@lfdr.de>; Tue, 23 May 2023 13:37:31 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 6C696418A8;
-	Tue, 23 May 2023 09:04:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6C696418A8
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=Atg44yxE
+	by smtp3.osuosl.org (Postfix) with ESMTP id 051A36120A;
+	Tue, 23 May 2023 11:37:22 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 051A36120A
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=tNIWYqKg
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id eSsPhS8JYz1Y; Tue, 23 May 2023 09:04:39 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 676F141D7D;
-	Tue, 23 May 2023 09:04:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 676F141D7D
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id WzyzkpHSjFnS; Tue, 23 May 2023 11:37:21 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 5739661287;
+	Tue, 23 May 2023 11:36:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5739661287
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 18B19C007A;
-	Tue, 23 May 2023 09:04:38 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9AABCC008F;
+	Tue, 23 May 2023 11:36:45 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 69BBFC002A
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 09:04:37 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 23E50C0036
+ for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 11:36:44 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 321D560B05
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 09:04:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 321D560B05
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com
- header.a=rsa-sha256 header.s=mimecast20190719 header.b=Atg44yxE
+ by smtp3.osuosl.org (Postfix) with ESMTP id E288E6120A
+ for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 11:34:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E288E6120A
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Q0iUlvEv4DcL for <bridge@lists.linux-foundation.org>;
- Tue, 23 May 2023 09:04:36 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 29BE5605BA
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 29BE5605BA
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 09:04:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684832675;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Mh8toiKSONJxpueXVbWPsMK7oHcXlzbD/7oSSgzRjtc=;
- b=Atg44yxELlFgetfXQf95q+h/8jVZlZtgwu8+xOtUWVJxZv0e6oKv5JREG9yH1JUtq+dZUR
- xOg/Kzx/P3r5IZQXG1R538qOa9HBZn89I3EuRIYXy7l5Xsv4YCeYT6JVlPKdICSN7PoyfR
- cK0sc6DgiKxeWlivt5ejpgIf4+X2erU=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-154-rgBPBWLRMeG9r3KzcPtnVg-1; Tue, 23 May 2023 05:04:31 -0400
-X-MC-Unique: rgBPBWLRMeG9r3KzcPtnVg-1
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-3f08900caadso4958645e9.0
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 02:04:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684832670; x=1687424670;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Mh8toiKSONJxpueXVbWPsMK7oHcXlzbD/7oSSgzRjtc=;
- b=Uqhq+QVc8Vc68jcI9dziiI7DOhszkEWzBvuKlOnUTHhfq9y3iUGNvAqZosLU5kmYHQ
- /PQXYM1nPsAiIU6BdBhBCMC3G16/VWLJoUGMW9yk1FTO0Jw0+8WiPMKsHn6FmEy2jJwJ
- TVTkiSAo5Wx1mKO8H05UxmBSUEw9dCYg1QYSmxGhjuVnEMgKsb552EkSQz6u07/bGVU6
- 58Sohl5bm+OGgQkCVvyxCdC1Zb9rCxfzsA6JNG5uUF5fAr0hwpSLHSC/AXL21geXrO2T
- hfMAc08TebH89yf+N/WuTz/k4DxiVfKDyME5rxrSy7cM1wrfL3rn71WW242NGUb+kBfZ
- 1fHg==
-X-Gm-Message-State: AC+VfDxGjILqmqIReVJIibCUkFlu8cmeyrzqmcCpohg83NENBQ88+jSL
- hnd7Xfbw8KovYoqeoQ7LOqNT2eA77YlLx0TyWfH7cjrnla1jk/Z/pL6oILwzBCcGEIcxcfII6lE
- aAK1ZDVGPFE0xAsegsjwdmbYiPnbQPj8=
-X-Received: by 2002:a5d:4109:0:b0:305:ed26:856e with SMTP id
- l9-20020a5d4109000000b00305ed26856emr7803104wrp.4.1684832670602; 
- Tue, 23 May 2023 02:04:30 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ4Qdyz8m4c2KZ0ByEomruT/rDD4o1h49hH+E+Q+j0J/L4RZJ3hQM4OxIcO31NyWdS+H6P0gGQ==
-X-Received: by 2002:a5d:4109:0:b0:305:ed26:856e with SMTP id
- l9-20020a5d4109000000b00305ed26856emr7803067wrp.4.1684832670216; 
- Tue, 23 May 2023 02:04:30 -0700 (PDT)
-Received: from gerbillo.redhat.com (146-241-246-0.dyn.eolo.it. [146.241.246.0])
- by smtp.gmail.com with ESMTPSA id
- f5-20020a5d4dc5000000b002fe13ec49fasm10326528wru.98.2023.05.23.02.04.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 May 2023 02:04:29 -0700 (PDT)
-Message-ID: <de69794bc23a7a019136134cee1e819937f0777a.camel@redhat.com>
-From: Paolo Abeni <pabeni@redhat.com>
-To: Ido Schimmel <idosch@nvidia.com>, Jakub Kicinski <kuba@kernel.org>, 
- razor@blackwall.org
-Date: Tue, 23 May 2023 11:04:27 +0200
-In-Reply-To: <ZGx0/hwPmFFN2ivS@shredder>
+ with ESMTP id UF32caNow7QG for <bridge@lists.linux-foundation.org>;
+ Tue, 23 May 2023 11:34:56 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1FDFA6111A
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2060a.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e89::60a])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 1FDFA6111A
+ for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 11:34:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fj+kg4z0f9D5S8emOazr0fTecJdYPN9zCdICpKvibKGa+Xowpyvt1SbRTVNj6lcKkqlJyr1wGG7Cw6mPs0VCdtclHeuRKzH7WoBQPgTYs016BJ5gEr+0MisRfZv9XPwQ6O5/+0Ta2xaxDu/sZPLkyJGHZawcjr58OFUzzgaH5J5TfyPCL3rGTAxNcWwUnU4vQ0DpL0ihRKqR42L2aGhv58MPnT37C+YkOS1mPsZXyp7/alej+imuTxiN/Wx02cc9s9jA6OyGPhETef6A6VBhAdzBnRA7DKAIn70QnVIHna6NwMz0/MwCpudWAH2HMJx2Z8GWedlMHLovags6/axmUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0vd8KhtWL5F0EsdGFzYWR17p0npLpxD8vu6l4K0Uyi0=;
+ b=VjRim88xzGHmI84BmnyC2RunURLL4Fldijs816/I34PV+nCoYyj4O0Dz9da0JHe2NFPMLVxT7zEDmxMFt+i98JclO/ZwjmvGDLmqgoboWFnVta1uNZueJwjziVHowPQ5DbBO2JpWplUBEwTl1czxKFSwrKX6cAWOVOeD2FXNe2Fc9VMidRi5+jwF+kLdjIggw4O4DUdaQRuuSxQIRky7cpfWVNNpmyIGuay8QdBJa7pB965dNtc3SkC40XJm4Z/6vXw8Ay2ejMTk9+zjK+4ZB5bSO43XA4vJi+yM+Kb70CUvRXpWcdGI3XAGroPk9uh3OptDOkdwTzqC32Rq1ubjZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0vd8KhtWL5F0EsdGFzYWR17p0npLpxD8vu6l4K0Uyi0=;
+ b=tNIWYqKg+YxYkA+mGeEgN23xfQEUGYK4FHY3IgOA4A8xYoSEI8VxWEPegXoda1nDNxw1j/Uvt2pPnkaMQaPKruDvyMtqR8Hk4i+AD4KDHhBZHTiFDGBZWxFnNvu+0wKGRTDMc28KP7QqrNH0bXgSeBIZ5yvZIqvZ4HMIw+KJCLvzeTmM+1LXZ1inj/JLM+3PY29Fd77ZEvmItu+C3CuSbtDeein/ZBjnAGh0hTcfGD9ViowZAO9NV8uMZNEdp+PyJWoLZbizVtQGRKPb8KLatcxsiEwEdzTMA3JUfvNTphMp/tOVNzVni2sn3Yq8wCVxnJ99m//ebrFfI2KgedKGPA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com (2603:10b6:930:24::22)
+ by CH3PR12MB9097.namprd12.prod.outlook.com (2603:10b6:610:1a6::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
+ 2023 11:34:47 +0000
+Received: from CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::66d8:40d2:14ed:7697]) by CY5PR12MB6179.namprd12.prod.outlook.com
+ ([fe80::66d8:40d2:14ed:7697%3]) with mapi id 15.20.6411.028; Tue, 23 May 2023
+ 11:34:46 +0000
+Date: Tue, 23 May 2023 14:34:38 +0300
+To: Paolo Abeni <pabeni@redhat.com>
+Message-ID: <ZGykzh1LgjV+liKh@shredder>
 References: <20230518113328.1952135-1-idosch@nvidia.com>
  <20230518113328.1952135-2-idosch@nvidia.com>
  <1ed139d5-6cb9-90c7-323c-22cf916e96a0@blackwall.org>
  <ZGd+9CUBM+eWG5FR@shredder> <20230519145218.659b0104@kernel.org>
  <ZGx0/hwPmFFN2ivS@shredder>
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37)
+ <de69794bc23a7a019136134cee1e819937f0777a.camel@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <de69794bc23a7a019136134cee1e819937f0777a.camel@redhat.com>
+X-ClientProxiedBy: VI1PR0102CA0087.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803:15::28) To CY5PR12MB6179.namprd12.prod.outlook.com
+ (2603:10b6:930:24::22)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR12MB6179:EE_|CH3PR12MB9097:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c8aa2e5-78a8-45b3-bf61-08db5b81b5de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ef69ZLAsRS2xxeVGm8J+3Y7dcg+Ptww8ZbbjEfHLQ72QAzvC5ovw7nYIPfpkZVhAGq+MTRUB7KIgCASCUKq183KWWLY8Utd+wfgIvPPoZG4Ggd9hNxqvwc34i67Ume9Jm+2aJufIbqn21PJ/C1GWk6ECMW/PqC2l+L526OpOKorGTwp5zryVxvcOuEM1W4FbjwIRoIYtqKg6jMxAlYCFeTSfRCxqgw51tIZw7r1hrS0s1bGsPwxbEJf3kXw3nGnGU4Pvl8vf07zfeWCZN6BgdqaallSTaBLEby88bY3rAOMRr+eStCOTGKnf29F8Lh9koooFfWMkHgwydBw2DZjwNta4uFVjJF1+CKFcOwF5BP9y+CMkSmPjIcIm7jMcJolZUfqdwW/t4/F1ac4EfSeon4rZGkHv96WHpcN8nWOPEdTFmiFqBEk7aMjhV/dPfbpwsfFMpewyPNnFOo6BIWl1mFNC7tgjBHQEyA2RhZ5iFxk7CxVDtOlN8HnN7AHqK/uROZE3gl7KIiYqyahTsyCaYTSPMD+eAQfhmPTrQTUt6t1mWABxnyTQtOnLtVFeCIvn/TSc7QojFEmeHDoxgIHQxwTpxPmrAZevtcIZy8FS1KI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR12MB6179.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(4636009)(376002)(396003)(346002)(366004)(39860400002)(136003)(451199021)(6916009)(4326008)(66946007)(66556008)(66476007)(478600001)(33716001)(86362001)(6666004)(41300700001)(6486002)(316002)(5660300002)(8936002)(8676002)(107886003)(38100700002)(6512007)(6506007)(26005)(9686003)(186003)(7416002)(2906002)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kcR+DrEudEn+g/qJT5iC7jNPVrTZZy2EJY5IPu1ZQt03LDWhsZW0Zt3vodir?=
+ =?us-ascii?Q?znWg/pypgLSn07R85klJkr6YeSSRVgnnxiVKisqiM4zo3ntlo3OHVYv8x7nw?=
+ =?us-ascii?Q?tNq8lSlSXE+ZcNHbGA17R2TqCe+SooZKheKvrBTejJ+hqzFvYX26dZ5KFDhD?=
+ =?us-ascii?Q?cssYXuwADB3FpwAzDvxoyEslAnDjXd9oAyyH/cAJhF2IMv+KCN6DuE8L+6S8?=
+ =?us-ascii?Q?lX/67P52eCE6uTse8D59ikQvcsNyyaCfVNC33P75JlO+qzeE+mm5DPYuxzJk?=
+ =?us-ascii?Q?/pR1e3meQNww19SczGKCSS281ZKttu+Mhh0vBhXiaU2MMU7LI6TQok8vboIx?=
+ =?us-ascii?Q?LP/iicvZIvE+z93RYv4h+dRTE1qBP2mcNQbqJUvFcg4aXRsGuvDdiWSCMzXs?=
+ =?us-ascii?Q?vT9WNAKlWvZyjvSlu9k9+b/TZqMk7npt1vnlfPFof0pzcJf8Y9mu9UHaiXZV?=
+ =?us-ascii?Q?N03ZPhI/fpZ7xLs3HZly6PBOd3JluleJTl5E2zrqaenZW97RiiBEqxwdclk3?=
+ =?us-ascii?Q?TjeFGhF8WDzA8xFe3t1lOc4siUPWKUeg48xvBQjcsqUnfIyF4Qpc+dTAkjuv?=
+ =?us-ascii?Q?F71//ApZsuv/DUU7hEZetUMWot7Xevoi0HmBs86mI3JNFzzOUlE9KNnYa1eY?=
+ =?us-ascii?Q?xYYnmHMFrt+xT+oyhGNFequWXJNB7veVbESxoEcltNThibXgm25BRcPLpwgr?=
+ =?us-ascii?Q?QTdRCUh8Kq2ug8B9zucZZhxF59iiBzMZ2DfYWDG8QpQt0Y+Zt4QeEXS48g33?=
+ =?us-ascii?Q?+DdvkoJUBGPTroDVJ+/EdQSB7pomuPJ/7NVo+8iMKi+hCJfApMxPGZJibXkG?=
+ =?us-ascii?Q?8cxiBTpyxOUjuHw/u52/pWXlULyP6Z5HQxd9mXB8XwStWSs9ybvAztUDpVCZ?=
+ =?us-ascii?Q?cbCko80GkcyMM22S9u1UikQwhnYC+Q+yPyqrfDORdG/+bsVhVrL3/gHEaoH6?=
+ =?us-ascii?Q?cnsbfKJLGytYcIWMSL9POvdvarL6W59wtio6wsdRAlAOaGhyQpS3PrKDSy08?=
+ =?us-ascii?Q?8E1Dr+OaUcWutx2XH7uE4zTEVizYB9qwHSjNgva3hcW8vf6shzaZSwBLsJv6?=
+ =?us-ascii?Q?ridBgmkx8ECLBnJq/D4B1dRAZhvLNDQX1IYd+WkJCAtzwZPlGXxeSOlCEmLO?=
+ =?us-ascii?Q?HWDaQ9+lwfsJoXHvemLQWvjVF4awCGVCXHmuSJ56czejcCpzk1jTJgQVfMah?=
+ =?us-ascii?Q?zSpUE5EV88l43ZJ/+UP/xL8LCoWsjsAffDjT1pfK/SUrSOInIOtigZ8agHnL?=
+ =?us-ascii?Q?X5d4y/CmzECRW/q2AB83g6FUNYh1QHLR4D9EGFY7m6BFKlA3JcDeCx7ED/SK?=
+ =?us-ascii?Q?9Ky33X+g6UPoZD3taw8jp761/8e0dz9XuqUeiQh0UNPnkGmPZ6ELvjRhbdW5?=
+ =?us-ascii?Q?I8EO3fVlzygh5dh2lFvJDjj0O1n9kVVkiRIAU+FMc3dCOyhH8+8JkPXE4wVg?=
+ =?us-ascii?Q?Ch65Cvrwt0dDBPl5ktvoH5SgVqIBkMYispVBb2M2OJ81vwqbfZa8Fv2ZH+du?=
+ =?us-ascii?Q?1DGmJAv+lWvtUp491CCFtjjdA6AbbgEel64tITtnhvoDVyc5rRm2YU8mSMqX?=
+ =?us-ascii?Q?O9GfhqAKDZywEDlA6S9nPVzPTLN3a8OPhzJn1lCl?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c8aa2e5-78a8-45b3-bf61-08db5b81b5de
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6179.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 11:34:46.4951 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MzI3NMsht12u3hFb/N+jAaXY+PYBHN+7M8sJx4QyCuudEfd4KNZ6qAUhX5hhN6hx8G0hqbDsmbwJPIKn8p8HAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9097
 Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
  jiri@resnulli.us, taspelund@nvidia.com, leon@kernel.org,
- netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ netdev@vger.kernel.org, razor@blackwall.org, bridge@lists.linux-foundation.org,
  claudiu.manoil@nxp.com, UNGLinuxDriver@microchip.com, vladimir.oltean@nxp.com,
- edumazet@google.com, jhs@mojatatu.com, roopa@nvidia.com,
- xiyou.wangcong@gmail.com, saeedm@nvidia.com, davem@davemloft.net
+ xiyou.wangcong@gmail.com, edumazet@google.com, jhs@mojatatu.com,
+ roopa@nvidia.com, Jakub Kicinski <kuba@kernel.org>, saeedm@nvidia.com,
+ davem@davemloft.net
 Subject: Re: [Bridge] [PATCH net-next 1/5] skbuff: bridge: Add layer 2 miss
 	indication
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -125,72 +153,47 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 2023-05-23 at 11:10 +0300, Ido Schimmel wrote:
-> On Fri, May 19, 2023 at 02:52:18PM -0700, Jakub Kicinski wrote:
-> > On Fri, 19 May 2023 16:51:48 +0300 Ido Schimmel wrote:
-> > > diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-> > > index fc17b9fd93e6..274e55455b15 100644
-> > > --- a/net/bridge/br_input.c
-> > > +++ b/net/bridge/br_input.c
-> > > @@ -46,6 +46,8 @@ static int br_pass_frame_up(struct sk_buff *skb)
-> > >          */
-> > >         br_switchdev_frame_unmark(skb);
-> > > =20
-> > > +       skb->l2_miss =3D BR_INPUT_SKB_CB(skb)->miss;
-> > > +
-> > >         /* Bridge is just like any other port.  Make sure the
-> > >          * packet is allowed except in promisc mode when someone
-> > >          * may be running packet capture.
-> > >=20
-> > > Ran these changes through the selftest and it seems to work.
-> >=20
-> > Can we possibly put the new field at the end of the CB and then have TC
-> > look at it in the CB? We already do a bit of such CB juggling in strp
-> > (first member of struct sk_skb_cb).
->=20
-> Using the CB between different layers is very fragile and I would like
-> to avoid it. Note that the skb can pass various layers until hitting the
-> classifier, each of which can decide to memset() the CB.
->=20
-> Anyway, I think I have a better alternative. I added the 'l2_miss' bit
-> to the tc skb extension and adjusted the bridge to mark packets via this
-> extension. The entire thing is protected by the existing 'tc_skb_ext_tc'
-> static key, so overhead is kept to a minimum when feature is disabled.
-> Extended flower to enable / disable this key when filters that match on
-> 'l2_miss' are added / removed.
->=20
-> bridge change to mark the packet:
-> https://github.com/idosch/linux/commit/3fab206492fcad9177f2340680f02ced1b=
-9a0dec.patch
->=20
-> flow_dissector change to dissect the info from the extension:
-> https://github.com/idosch/linux/commit/1533c078b02586547817a4e63989a0db62=
-aa5315.patch
->=20
-> flower change to enable / disable the key:
-> https://github.com/idosch/linux/commit/cf84b277511ec80fe565c41271abc6b2e2=
-f629af.patch
->=20
-> Advantages compared to the previous approach are that we do not need a
-> new bit in the skb and that overhead is kept to a minimum when feature
-> is disabled. Disadvantage is that overhead is higher when feature is
-> enabled.
->=20
-> WDYT?
+On Tue, May 23, 2023 at 11:04:27AM +0200, Paolo Abeni wrote:
+> I think you would only need to set/add the extension when l2_miss is
+> true, right? (with no extension l2 hit is assumed). That will avoid
+> unneeded overhead for br_dev_xmit().
 
-Looks good to me.
+If an extension is already present (possibly with 'l2_miss' being 'true'
+because the packet was flooded by a different bridge earlier in the
+pipeline), then we need to clear it when the packet enters the bridge.
+IMO, this is quite unlikely. However, if the extension is missing, then
+you are correct and there is no point in allocating one.
 
-I think you would only need to set/add the extension when l2_miss is
-true, right? (with no extension l2 hit is assumed). That will avoid
-unneeded overhead for br_dev_xmit().
+IOW, I can squash the following diff to the first patch:
 
-All the others involved paths look like slow(er) one, so the occasional
-skb extension overhead should not be a problem.
+diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+index fb6525553a8a..32115d76a6de 100644
+--- a/net/bridge/br_private.h
++++ b/net/bridge/br_private.h
+@@ -764,10 +764,16 @@ static inline void br_tc_skb_miss_set(struct sk_buff *skb, bool miss)
+                return;
+ 
+        ext = skb_ext_find(skb, TC_SKB_EXT);
+-       if (!ext)
+-               ext = tc_skb_ext_alloc(skb);
+-       if (ext)
++       if (ext) {
+                ext->l2_miss = miss;
++               return;
++       }
++       if (!miss)
++               return;
++       ext = tc_skb_ext_alloc(skb);
++       if (!ext)
++               return;
++       ext->l2_miss = miss;
+ }
+ #else
+ static inline void br_tc_skb_miss_set(struct sk_buff *skb, bool miss)
 
-Cheers,
-
-Paolo
-
+Thanks
