@@ -1,87 +1,91 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB9D70E676
-	for <lists.bridge@lfdr.de>; Tue, 23 May 2023 22:30:01 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B8771225F
+	for <lists.bridge@lfdr.de>; Fri, 26 May 2023 10:38:01 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 05DA0613E6;
-	Tue, 23 May 2023 20:30:00 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 05DA0613E6
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=f927S0xc
+	by smtp1.osuosl.org (Postfix) with ESMTP id 6B848843B5;
+	Fri, 26 May 2023 08:37:59 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 6B848843B5
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=OP1h0iU6
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QhW5AVAaCpe0; Tue, 23 May 2023 20:29:59 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id AjCOsxwKl1Da; Fri, 26 May 2023 08:37:58 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 531886149D;
-	Tue, 23 May 2023 20:29:58 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 531886149D
+	by smtp1.osuosl.org (Postfix) with ESMTPS id D5E29843B8;
+	Fri, 26 May 2023 08:37:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D5E29843B8
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E50D3C007C;
-	Tue, 23 May 2023 20:29:57 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 593DDC008C;
+	Fri, 26 May 2023 08:37:57 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A05E6C002A
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 20:29:56 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id CC932C002A
+ for <bridge@lists.linux-foundation.org>; Fri, 26 May 2023 08:37:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 869D341DF3
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 20:29:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 869D341DF3
+ by smtp4.osuosl.org (Postfix) with ESMTP id B0D9D428CC
+ for <bridge@lists.linux-foundation.org>; Fri, 26 May 2023 08:37:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B0D9D428CC
 Authentication-Results: smtp4.osuosl.org;
- dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
- header.a=rsa-sha256 header.s=k20201202 header.b=f927S0xc
+ dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256
+ header.s=mail header.b=OP1h0iU6
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HwLNwVUhXoul for <bridge@lists.linux-foundation.org>;
- Tue, 23 May 2023 20:29:55 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 16ABC41DEE
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 16ABC41DEE
- for <bridge@lists.linux-foundation.org>; Tue, 23 May 2023 20:29:54 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 9051A634A1;
- Tue, 23 May 2023 20:29:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DBFAC433EF;
- Tue, 23 May 2023 20:29:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1684873793;
- bh=IHjbqY3L6Kyfcn6EpLoF0/oL2Mhj/pa0C03BNaUDdRA=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=f927S0xcFxI0gxvFiUOfBlRQurEehM21aLB0J2XqXylNcF4K2tWGunR3CsmaKWnKZ
- HsjK0JEWYUUCJx3qGRXgBdfxOa9p6j3+3UnOCp3uQxeIeGslL8zGOkV7yGLECXoFCU
- EnEtYG0tkE/5yel26sT1dLtezMniy+BGxpSScMU1FZwSvVcrpSTnVG5R18UOqDcElG
- LOKrPwldMCMb/QONgY2/JqVXJCFCh8M8SuVOqpj2ZH0tCXfxg8aLLLucnfckhxROH9
- bUj+nt1hvd0nkxWTeLOJjrELsoyUU9WggNpwGHAlXgyRCM22bU7CyMcCrmfGtsJNZi
- OROB0fJRGbHYQ==
-Date: Tue, 23 May 2023 13:29:51 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Ido Schimmel <idosch@nvidia.com>
-Message-ID: <20230523132951.623288cb@kernel.org>
-In-Reply-To: <ZGx0/hwPmFFN2ivS@shredder>
-References: <20230518113328.1952135-1-idosch@nvidia.com>
- <20230518113328.1952135-2-idosch@nvidia.com>
- <1ed139d5-6cb9-90c7-323c-22cf916e96a0@blackwall.org>
- <ZGd+9CUBM+eWG5FR@shredder> <20230519145218.659b0104@kernel.org>
- <ZGx0/hwPmFFN2ivS@shredder>
+ with ESMTP id CvFS1SutNWKL for <bridge@lists.linux-foundation.org>;
+ Fri, 26 May 2023 08:37:54 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3406D428C3
+Received: from mail.avm.de (mail.avm.de [212.42.244.120])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 3406D428C3
+ for <bridge@lists.linux-foundation.org>; Fri, 26 May 2023 08:37:53 +0000 (UTC)
+Received: from mail-auth.avm.de (unknown [IPv6:2001:bf0:244:244::71])
+ by mail.avm.de (Postfix) with ESMTPS;
+ Fri, 26 May 2023 10:37:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
+ t=1685090268; bh=iLDsmBp/bnLMgnE8s+73OnYsWcOM7tHgbqVUqIPl8tE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=OP1h0iU6vRBkryaGDGTd4+RPn0lqwQWSqtlZ2ar7imwFlnwxVjsfwAs3WL25BFsk0
+ T+flCCAn92GlUDtDDH0fojjj/DXtz4QMeOVB+y8VHavcPxT+V4ai/zgmKTh+68RdeG
+ wcHAYUyq0WUiFHqLVfiAxCW0coRqVYqNfuykpJ/o=
+Received: from localhost (unknown [172.17.88.63])
+ by mail-auth.avm.de (Postfix) with ESMTPSA id 2EB7C80A44;
+ Fri, 26 May 2023 10:37:50 +0200 (CEST)
+Date: Fri, 26 May 2023 10:37:50 +0200
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <ZHBv3l9wnbeJzyO2@u-jnixdorf.ads.avm.de>
+References: <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
+ <f899f032-b726-7b6d-953d-c7f3f98744ca@blackwall.org>
+ <20230516102141.w75yh6pdo53ufjur@skbuf>
+ <ce3835d9-c093-cfcb-3687-3a375236cb8f@blackwall.org>
+ <20230516104428.i5ou4ogx7gt2x6gq@skbuf>
+ <c05b5623-c096-162f-3a2d-db19ca760098@blackwall.org>
+ <20230516105509.xaalfs77vrlr663u@skbuf>
+ <6a688292-a7a0-20c9-03b9-cad11a61144f@blackwall.org>
+ <20230516111005.ni3jygnnxgygoenh@skbuf>
+ <b12a817f-de9f-6d25-f189-67e5e7ef49a4@blackwall.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
- jiri@resnulli.us, taspelund@nvidia.com, leon@kernel.org,
- netdev@vger.kernel.org, razor@blackwall.org, bridge@lists.linux-foundation.org,
- claudiu.manoil@nxp.com, UNGLinuxDriver@microchip.com, vladimir.oltean@nxp.com,
- edumazet@google.com, jhs@mojatatu.com, roopa@nvidia.com,
- xiyou.wangcong@gmail.com, pabeni@redhat.com, saeedm@nvidia.com,
- davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 1/5] skbuff: bridge: Add layer 2 miss
- indication
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b12a817f-de9f-6d25-f189-67e5e7ef49a4@blackwall.org>
+X-purgate-ID: 149429::1685090268-42F8D128-28E51B1A/0/0
+X-purgate-type: clean
+X-purgate-size: 4387
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for
+ further information)
+X-purgate: clean
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, Ido Schimmel <idosch@nvidia.com>,
+ bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@nvidia.com>,
+ Oleksij Rempel <linux@rempel-privat.de>, Eric Dumazet <edumazet@google.com>,
+ netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add a limit on FDB entries
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -93,39 +97,93 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Johannes Nixdorf via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, 23 May 2023 11:10:38 +0300 Ido Schimmel wrote:
-> > Can we possibly put the new field at the end of the CB and then have TC
-> > look at it in the CB? We already do a bit of such CB juggling in strp
-> > (first member of struct sk_skb_cb).  
+On Tue, May 16, 2023 at 02:18:15PM +0300, Nikolay Aleksandrov wrote:
+> On 16/05/2023 14:10, Vladimir Oltean wrote:
+> > On Tue, May 16, 2023 at 02:04:30PM +0300, Nikolay Aleksandrov wrote:
+> >> That was one of the questions actually. More that I'm thinking about this, the more
+> >> I want to break it apart by type because we discussed being able to specify a flag
+> >> mask for the limit (all, dynamic, dynamic+static etc). If we embed these stats into a
+> >> bridge fdb count attribute, it can be easily extended later if anything new comes along.
+> >> If switchdev doesn't support some of these global limit configs, we can pass the option
+> >> and it can deny setting it later. I think this should be more than enough as a first step.
+> > 
+> > Ok, and by "type" you actually mean the impossibly hard to understand
+> > neighbor discovery states used by the bridge UAPI? Like having
 > 
-> Using the CB between different layers is very fragile and I would like
-> to avoid it. Note that the skb can pass various layers until hitting the
-> classifier, each of which can decide to memset() the CB.
+> Yes, that is what I mean. It's not that hard, we can limit it to a few combinations
+> that are well understood and defined.
 > 
-> Anyway, I think I have a better alternative. I added the 'l2_miss' bit
-> to the tc skb extension and adjusted the bridge to mark packets via this
-> extension. The entire thing is protected by the existing 'tc_skb_ext_tc'
-> static key, so overhead is kept to a minimum when feature is disabled.
-> Extended flower to enable / disable this key when filters that match on
-> 'l2_miss' are added / removed.
+> > (overlapping) limits per NUD_REACHABLE, NUD_NOARP etc flags set in
+> > ndm->ndm_state? Or how should the UAPI look like?
 > 
-> bridge change to mark the packet:
-> https://github.com/idosch/linux/commit/3fab206492fcad9177f2340680f02ced1b9a0dec.patch
-> 
-> flow_dissector change to dissect the info from the extension:
-> https://github.com/idosch/linux/commit/1533c078b02586547817a4e63989a0db62aa5315.patch
-> 
-> flower change to enable / disable the key:
-> https://github.com/idosch/linux/commit/cf84b277511ec80fe565c41271abc6b2e2f629af.patch
-> 
-> Advantages compared to the previous approach are that we do not need a
-> new bit in the skb and that overhead is kept to a minimum when feature
-> is disabled. Disadvantage is that overhead is higher when feature is
-> enabled.
-> 
-> WDYT?
+> Hmm, perhaps for the time being and for keeping it simpler it'd be best if the type initially is just about
+> dynamic entries and the count reflects only those. We can add an abstraction later if we want "per-type"/mask limits.
+> Adding such abstraction should be pretty-straight forward if we keep in mind the flags that can change only
+> under lock, otherwise proper counting would have to be revisited.
 
-Sounds good, yup. Thanks!
+Now that I implemented most of v2, except that I kept the netlink API
+roughly the same as v1, I noticed that we probably need to discuss the UAPI
+design more, or else we'd be stuck with the new netlink attributes that
+do not fit the later abstraction design.
+
+I see several options from what was discussed here and what seems to be
+the easiest to implement for me:
+
+ 1. Everything is a separate netlink attribute:
+
+ My current draft of v2 adds 2 netlink attributes -
+ IFLA_BR_FDB_MAX_LEARNED_ENTRIES and IFLA_BR_FDB_CUR_LEARNED_ENTRIES.
+ More generally this would be two u32 netlink attributes for each limit
+ (_MAX_ (RW) and _CUR_ (RO)), which can be differentiated by their name.
+
+ 1.a Each limit is a separate netlink attribute, _CUR_ and _MAX_ are
+     grouped together as a nested message:
+
+ Like 1., but add only one netlink attribute for each limit
+ (e.g. IFLA_BR_FDB_LIMIT_LEARNED), containing a nested message with the
+ _CUR_ and _MAX_ attributes.
+
+ 1.b The same as 1.a, but have one nested message
+     (e.g. IFLA_BR_FDB_LIMITS):
+
+ The message would contain attributes of the form
+ IFLA_BR_FDB_LIMITS_${NAME}_CUR, IFLA_BR_FDB_LIMITS_${NAME}_MAX, initially
+ only for NAME=LEARNED.
+
+ 2. Add a new dynamically sized list of attributes + flag mask:
+
+ Permitt the netlink caller to pass a dynamically sized array
+ (NL_ATTR_TYPE_NESTED_ARRAY?) of pairs of a flag (and state) mask
+ combination and the limit to enforce for them. We'd be rejecting
+ everything but NTF_USE + NUD_NOARP for the first implementation.
+
+ Problems:
+  - Those are the impossibly hard to understand neighbour discovery
+    states. (as in the quoted mail) Having now looked closer at them
+    and the bridge internal flags they translate to, I also would prefer
+    a different approach.
+  - For the general approach of not just rejecting all but one
+    flag combination accounting is more difficult.
+    For the one limit in v1, and the v2 draft, we can just start counting
+    when creating the bridge, and the accounting is up to date when the
+    user sets a limit.
+    For the general approach later we'd probably not want to include
+    separate counters for each combination in the bridge struct. Instead
+    we'd dynamically allocate our counter when the user sets a limit,
+    so for each newly set limit we'd then need to lock the fdb table and
+    count the current fdb entries matching the limit first.
+
+ 2.a Invent new names for the supported limits without exposing their flag
+     (and state) masks:
+
+ Conceptually this is equivalent to putting the names in the netlink
+ attribute namespace as in 1., so I'd prefer to go with one of them
+ instead.
+
+Do you have a preference for an approach from the list, or do you see
+different options I did not include?
