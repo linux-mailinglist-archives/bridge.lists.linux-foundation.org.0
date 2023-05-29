@@ -1,91 +1,136 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72B8771225F
-	for <lists.bridge@lfdr.de>; Fri, 26 May 2023 10:38:01 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180667148D1
+	for <lists.bridge@lfdr.de>; Mon, 29 May 2023 13:49:52 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 6B848843B5;
-	Fri, 26 May 2023 08:37:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 6B848843B5
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=OP1h0iU6
+	by smtp3.osuosl.org (Postfix) with ESMTP id 0B9BB61181;
+	Mon, 29 May 2023 11:49:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0B9BB61181
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=M35m+4rQ
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id AjCOsxwKl1Da; Fri, 26 May 2023 08:37:58 +0000 (UTC)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id RFPmYMDiWm0m; Mon, 29 May 2023 11:49:49 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id D5E29843B8;
-	Fri, 26 May 2023 08:37:57 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D5E29843B8
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 1EEFD61175;
+	Mon, 29 May 2023 11:49:48 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1EEFD61175
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 593DDC008C;
-	Fri, 26 May 2023 08:37:57 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C3BC2C0089;
+	Mon, 29 May 2023 11:49:47 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CC932C002A
- for <bridge@lists.linux-foundation.org>; Fri, 26 May 2023 08:37:55 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 786C1C002A
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 11:49:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id B0D9D428CC
- for <bridge@lists.linux-foundation.org>; Fri, 26 May 2023 08:37:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B0D9D428CC
-Authentication-Results: smtp4.osuosl.org;
- dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256
- header.s=mail header.b=OP1h0iU6
+ by smtp2.osuosl.org (Postfix) with ESMTP id 3E1CA4060B
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 11:49:46 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3E1CA4060B
+Authentication-Results: smtp2.osuosl.org; dkim=pass (2048-bit key,
+ unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
+ header.s=selector2 header.b=M35m+4rQ
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id CvFS1SutNWKL for <bridge@lists.linux-foundation.org>;
- Fri, 26 May 2023 08:37:54 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3406D428C3
-Received: from mail.avm.de (mail.avm.de [212.42.244.120])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 3406D428C3
- for <bridge@lists.linux-foundation.org>; Fri, 26 May 2023 08:37:53 +0000 (UTC)
-Received: from mail-auth.avm.de (unknown [IPv6:2001:bf0:244:244::71])
- by mail.avm.de (Postfix) with ESMTPS;
- Fri, 26 May 2023 10:37:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
- t=1685090268; bh=iLDsmBp/bnLMgnE8s+73OnYsWcOM7tHgbqVUqIPl8tE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OP1h0iU6vRBkryaGDGTd4+RPn0lqwQWSqtlZ2ar7imwFlnwxVjsfwAs3WL25BFsk0
- T+flCCAn92GlUDtDDH0fojjj/DXtz4QMeOVB+y8VHavcPxT+V4ai/zgmKTh+68RdeG
- wcHAYUyq0WUiFHqLVfiAxCW0coRqVYqNfuykpJ/o=
-Received: from localhost (unknown [172.17.88.63])
- by mail-auth.avm.de (Postfix) with ESMTPSA id 2EB7C80A44;
- Fri, 26 May 2023 10:37:50 +0200 (CEST)
-Date: Fri, 26 May 2023 10:37:50 +0200
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <ZHBv3l9wnbeJzyO2@u-jnixdorf.ads.avm.de>
-References: <ZGNEk3F8mcT7nNdB@u-jnixdorf.ads.avm.de>
- <f899f032-b726-7b6d-953d-c7f3f98744ca@blackwall.org>
- <20230516102141.w75yh6pdo53ufjur@skbuf>
- <ce3835d9-c093-cfcb-3687-3a375236cb8f@blackwall.org>
- <20230516104428.i5ou4ogx7gt2x6gq@skbuf>
- <c05b5623-c096-162f-3a2d-db19ca760098@blackwall.org>
- <20230516105509.xaalfs77vrlr663u@skbuf>
- <6a688292-a7a0-20c9-03b9-cad11a61144f@blackwall.org>
- <20230516111005.ni3jygnnxgygoenh@skbuf>
- <b12a817f-de9f-6d25-f189-67e5e7ef49a4@blackwall.org>
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id zfUwPKIoBeiJ for <bridge@lists.linux-foundation.org>;
+ Mon, 29 May 2023 11:49:43 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 16C5140199
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on20622.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe59::622])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 16C5140199
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 11:49:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XPNBfk3HrfhJLjX/SEWJebgn6iLxGKNx+45OPa3zhh1WoHMFYBJen+xJKWJ1eLN91cpQNEsTMGYfnoJ5/+CjMYMA3xdVPpsUNW60+FCCcWkR2wVHLa084uKLnCVxc1XKEiSfIEfWLc1ypfyvmuzRZkzI9R0Y6vaCatvjn0YFPL+qmVaiSNcVyhhTLfAnhr9xavPv7hfU0vm10k4iWkv0nmkwwBk9jb5VcYAYR2w7/JwZ+rfhcjgt+JuKK5BoR68zO9u7oMsfbDf5BWKTdsKGkI42/ZJeHxfBCbS9hNkhvJmrM5zXjfa/YRWsPmNkuTRwMc9UEiRqZ3lP+M1/2lOzNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VsH9Fql3+aFCOAK3ry7SSk9NvxGxNwdm36kEQWltJ1I=;
+ b=OaW3pUp4j0t11T2YJvA3HUC6ZQaCdU5qTgZubW9ldI6AIdepR9o5cSavUMzGwOh9zPaDLgWvO0eroAj/YKT+qrfn1doaSbnB3L6yRQ0ww/CUhcicrdTuTndCcLUnq92AlSFG83Zkq2s68XSljdxltuo/CWQwZ49kA1DkrVKBLcakHAQF3b+p5hxU8fzkyrGtpt/qNXVVKK8D04O/f09gFQnv81Kt4iMcxQQ6FPGhBA0JNau3JjQVSU8lwAdkFXsh59OqXJd+VCdexZUguxpvAB99AL2Aa8xfzcVGhtLqf2A6bbMu8Bo614TjBCI03B4a7Vt9QP8BT2Bv7C8m2bpQHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VsH9Fql3+aFCOAK3ry7SSk9NvxGxNwdm36kEQWltJ1I=;
+ b=M35m+4rQaLu4U6kvllmzG3OpacqyxU3ZfrVAqeq5JWRjP0Ad1NPr9Vgzd7Xf4q6ivXZKV4beTLF5bE7qF3olF1VNnwwVS5V9tbonndavXZV0H3UqZb3F5LxLMHGCPo2BlbkrLqS7LNujTSGpq+LzJVIUkIkuTJiROQGR3CaKoYaUSv4yXpZJuWGcrnwXX2Ep8aYqHrNJAS4zoMPxnWs2bQ8sYUUjq4YdID5k6TXxwv97qlTAlGeDtmF0blRsHPGO8NA20D0vDi9ZSLh3Oc49wwPsS7N+itkJZ2G1QNP54HWmNSLYrAwnIZw/V2SBWm/EZWPOpJ2BY0HsDpd4kXjnlw==
+Received: from SJ0PR05CA0191.namprd05.prod.outlook.com (2603:10b6:a03:330::16)
+ by SN7PR12MB6671.namprd12.prod.outlook.com (2603:10b6:806:26d::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.22; Mon, 29 May
+ 2023 11:49:39 +0000
+Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:a03:330:cafe::c1) by SJ0PR05CA0191.outlook.office365.com
+ (2603:10b6:a03:330::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.19 via Frontend
+ Transport; Mon, 29 May 2023 11:49:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.18 via Frontend Transport; Mon, 29 May 2023 11:49:38 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Mon, 29 May 2023
+ 04:49:25 -0700
+Received: from dev-r-vrt-155.mtr.labs.mlnx (10.126.231.35) by
+ rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Mon, 29 May 2023 04:49:19 -0700
+To: <netdev@vger.kernel.org>, <bridge@lists.linux-foundation.org>
+Date: Mon, 29 May 2023 14:48:27 +0300
+Message-ID: <20230529114835.372140-1-idosch@nvidia.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b12a817f-de9f-6d25-f189-67e5e7ef49a4@blackwall.org>
-X-purgate-ID: 149429::1685090268-42F8D128-28E51B1A/0/0
-X-purgate-type: clean
-X-purgate-size: 4387
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
- further information)
-X-purgate: clean
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Ido Schimmel <idosch@nvidia.com>,
- bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@nvidia.com>,
- Oleksij Rempel <linux@rempel-privat.de>, Eric Dumazet <edumazet@google.com>,
- netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH net-next 1/2] bridge: Add a limit on FDB entries
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT048:EE_|SN7PR12MB6671:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0626534-40e5-414d-869e-08db603ac84a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Kbb4vJCS8v6VXVxmN27+IBtE1Nqsi6r3Qeb3IbVkcRZTSZ2yR/29IGW2xX1g1d44ubrhJwjQvpfNiPMj7cGQO6u4nU7P/akZG3j2CvIoT5KY77S3DMIpm/FGcR4lql4deEGMZkO6Yqg8QYw3yowqbaWf1QVtMXv9xNm4PuUStQM2wTJhNxnCb0iIzZuQm9F/JjN3UkaqXAohU2gXnlxgUmlormkdMlQOFdZ0rwaaxm6yb2PTXm3Z3xHHyUPLYxYlfngp0BYNQPJMLi0mm8JGbmwNRYt6bPY/+1FkQruMWwmlkNV0W1JddeN4vsW0TXdBeIx1oDfd5y15nm9QivHGSZDwksL0dxvwa5WicwE18qU+PghG19mNeWu+qK9xTitnBj/wK/svIiiylfteBriD5iSrENw6eAA0F6rZn83iib1dLvOSx50N+0M8cLLUMeepyCBubVjTsK2T+bGiiSRk/CxYIe4ta42len/og7hHNOEIxvpUlxN+TMe91fM+e5lXRVBb3zeb0/hPxGUXRrUHjJ7SrxpGFZjvdqOjoYhkvU9rDBozDspIH5X8xbcQydFm2QVQwHhb4IDjgMZSUt6GMY014zuJ1VVtP2Ucmya9lnq0ydiP9oS4RRdtI6fkORqHnzWUVX5hSuLz6cFgLaXl3jGoq64xcdZeXDhypqn3ubKcyGTeo8Yi1Rppcf7dJxCPLw2IR7oBRRyGT0wnbbkHC4Csqj0XAT8PmDZxv1ZrdlXCW/7Hkfbn5/niE2LH6lYQW5eTcNIBD9biIQTk9geMuaZoSpdMbkx0dF9ECrxgY0YRwOIRxtITd0MfbPnMKhiE
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(39860400002)(346002)(136003)(396003)(451199021)(46966006)(40470700004)(36840700001)(36860700001)(40460700003)(83380400001)(47076005)(5660300002)(6666004)(316002)(70586007)(70206006)(107886003)(7416002)(4326008)(82310400005)(36756003)(966005)(82740400003)(7636003)(8676002)(8936002)(356005)(41300700001)(86362001)(40480700001)(110136005)(54906003)(2906002)(2616005)(186003)(16526019)(336012)(426003)(478600001)(1076003)(26005);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2023 11:49:38.6191 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0626534-40e5-414d-869e-08db603ac84a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6671
+Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
+ jiri@resnulli.us, leon@kernel.org, vladimir.oltean@nxp.com,
+ razor@blackwall.org, roopa@nvidia.com, claudiu.manoil@nxp.com,
+ Ido Schimmel <idosch@nvidia.com>, UNGLinuxDriver@microchip.com,
+ edumazet@google.com, jhs@mojatatu.com, xiyou.wangcong@gmail.com,
+ simon.horman@corigine.com, kuba@kernel.org, pabeni@redhat.com,
+ saeedm@nvidia.com, davem@davemloft.net
+Subject: [Bridge] [PATCH net-next v2 0/8] Add layer 2 miss indication and
+	filtering
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -97,93 +142,190 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Johannes Nixdorf via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
+From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, May 16, 2023 at 02:18:15PM +0300, Nikolay Aleksandrov wrote:
-> On 16/05/2023 14:10, Vladimir Oltean wrote:
-> > On Tue, May 16, 2023 at 02:04:30PM +0300, Nikolay Aleksandrov wrote:
-> >> That was one of the questions actually. More that I'm thinking about this, the more
-> >> I want to break it apart by type because we discussed being able to specify a flag
-> >> mask for the limit (all, dynamic, dynamic+static etc). If we embed these stats into a
-> >> bridge fdb count attribute, it can be easily extended later if anything new comes along.
-> >> If switchdev doesn't support some of these global limit configs, we can pass the option
-> >> and it can deny setting it later. I think this should be more than enough as a first step.
-> > 
-> > Ok, and by "type" you actually mean the impossibly hard to understand
-> > neighbor discovery states used by the bridge UAPI? Like having
-> 
-> Yes, that is what I mean. It's not that hard, we can limit it to a few combinations
-> that are well understood and defined.
-> 
-> > (overlapping) limits per NUD_REACHABLE, NUD_NOARP etc flags set in
-> > ndm->ndm_state? Or how should the UAPI look like?
-> 
-> Hmm, perhaps for the time being and for keeping it simpler it'd be best if the type initially is just about
-> dynamic entries and the count reflects only those. We can add an abstraction later if we want "per-type"/mask limits.
-> Adding such abstraction should be pretty-straight forward if we keep in mind the flags that can change only
-> under lock, otherwise proper counting would have to be revisited.
+tl;dr
+=====
 
-Now that I implemented most of v2, except that I kept the netlink API
-roughly the same as v1, I noticed that we probably need to discuss the UAPI
-design more, or else we'd be stuck with the new netlink attributes that
-do not fit the later abstraction design.
+This patchset adds a single bit to the tc skb extension to indicate that
+a packet encountered a layer 2 miss in the bridge and extends flower to
+match on this metadata. This is required for non-DF (Designated
+Forwarder) filtering in EVPN multi-homing which prevents decapsulated
+BUM packets from being forwarded multiple times to the same multi-homed
+host.
 
-I see several options from what was discussed here and what seems to be
-the easiest to implement for me:
+Background
+==========
 
- 1. Everything is a separate netlink attribute:
+In a typical EVPN multi-homing setup each host is multi-homed using a
+set of links called ES (Ethernet Segment, i.e., LAG) to multiple leaf
+switches in a rack. These switches act as VTEPs and are not directly
+connected (as opposed to MLAG), but can communicate with each other (as
+well as with VTEPs in remote racks) via spine switches over L3.
 
- My current draft of v2 adds 2 netlink attributes -
- IFLA_BR_FDB_MAX_LEARNED_ENTRIES and IFLA_BR_FDB_CUR_LEARNED_ENTRIES.
- More generally this would be two u32 netlink attributes for each limit
- (_MAX_ (RW) and _CUR_ (RO)), which can be differentiated by their name.
+When a host sends a BUM packet over ES1 to VTEP1, the VTEP will flood it
+to other VTEPs in the network, including those connected to the host
+over ES1. The receiving VTEPs must drop the packet and not forward it
+back to the host. This is called "split-horizon filtering" (SPH) [1].
 
- 1.a Each limit is a separate netlink attribute, _CUR_ and _MAX_ are
-     grouped together as a nested message:
+FRR configures SPH filtering using two tc filters. The first, an ingress
+filter that matches on packets received from VTEP1 and marks them using
+a fwmark (firewall mark). The second, an egress filter configured on the
+LAG interface connected to the host that matches on the fwmark and drops
+the packets. Example:
 
- Like 1., but add only one netlink attribute for each limit
- (e.g. IFLA_BR_FDB_LIMIT_LEARNED), containing a nested message with the
- _CUR_ and _MAX_ attributes.
+ # tc filter add dev vxlan0 ingress pref 1 proto all flower enc_src_ip $VTEP1_IP action skbedit mark 101
+ # tc filter add dev bond0 egress pref 1 handle 101 fw action drop
 
- 1.b The same as 1.a, but have one nested message
-     (e.g. IFLA_BR_FDB_LIMITS):
+Motivation
+==========
 
- The message would contain attributes of the form
- IFLA_BR_FDB_LIMITS_${NAME}_CUR, IFLA_BR_FDB_LIMITS_${NAME}_MAX, initially
- only for NAME=LEARNED.
+For each ES, only one VTEP is elected by the control plane as the DF.
+The DF is responsible for forwarding decapsulated BUM traffic to the
+host over the ES. The non-DF VTEPs must drop such traffic as otherwise
+the host will receive multiple copies of BUM traffic. This is called
+"non-DF filtering" [2].
 
- 2. Add a new dynamically sized list of attributes + flag mask:
+Filtering of multicast and broadcast traffic can be achieved using the
+following flower filter:
 
- Permitt the netlink caller to pass a dynamically sized array
- (NL_ATTR_TYPE_NESTED_ARRAY?) of pairs of a flag (and state) mask
- combination and the limit to enforce for them. We'd be rejecting
- everything but NTF_USE + NUD_NOARP for the first implementation.
+ # tc filter add dev bond0 egress pref 1 proto all flower indev vxlan0 dst_mac 01:00:00:00:00:00/01:00:00:00:00:00 action drop
 
- Problems:
-  - Those are the impossibly hard to understand neighbour discovery
-    states. (as in the quoted mail) Having now looked closer at them
-    and the bridge internal flags they translate to, I also would prefer
-    a different approach.
-  - For the general approach of not just rejecting all but one
-    flag combination accounting is more difficult.
-    For the one limit in v1, and the v2 draft, we can just start counting
-    when creating the bridge, and the accounting is up to date when the
-    user sets a limit.
-    For the general approach later we'd probably not want to include
-    separate counters for each combination in the bridge struct. Instead
-    we'd dynamically allocate our counter when the user sets a limit,
-    so for each newly set limit we'd then need to lock the fdb table and
-    count the current fdb entries matching the limit first.
+Unlike broadcast and multicast traffic, it is not currently possible to
+filter unknown unicast traffic. The classification into unknown unicast
+is performed by the bridge driver, but is not visible to other layers.
 
- 2.a Invent new names for the supported limits without exposing their flag
-     (and state) masks:
+Implementation
+==============
 
- Conceptually this is equivalent to putting the names in the netlink
- attribute namespace as in 1., so I'd prefer to go with one of them
- instead.
+The proposed solution is to add a single bit to the tc skb extension
+that is set by the bridge for packets that encountered an FDB or MDB
+miss. The flower classifier is extended to be able to match on this new
+metadata bit in a similar fashion to existing metadata options such as
+'indev'.
 
-Do you have a preference for an approach from the list, or do you see
-different options I did not include?
+A bit that is set for every flooded packet would also work, but it does
+not allow us to differentiate between registered and unregistered
+multicast traffic which might be useful in the future.
+
+A relatively generic name is chosen for this bit - 'l2_miss' - to allow
+its use to be extended to other layer 2 devices such as VXLAN, should a
+use case arise.
+
+With the above, the control plane can implement a non-DF filter using
+the following tc filters:
+
+ # tc filter add dev bond0 egress pref 1 proto all flower indev vxlan0 dst_mac 01:00:00:00:00:00/01:00:00:00:00:00 action drop
+ # tc filter add dev bond0 egress pref 2 proto all flower indev vxlan0 l2_miss true action drop
+
+The first drops broadcast and multicast traffic and the second drops
+unknown unicast traffic.
+
+Testing
+=======
+
+A test exercising the different permutations of the 'l2_miss' bit is
+added in patch #8.
+
+Patchset overview
+=================
+
+Patch #1 adds the new bit to the tc skb extension and sets it in the
+bridge driver for packets that encountered a miss. The marking of the
+packets and the use of this extension is protected by the
+'tc_skb_ext_tc' static key in order to keep performance impact to a
+minimum when the feature is not in use.
+
+Patch #2 extends the flow dissector to dissect this information from the
+tc skb extension into the 'FLOW_DISSECTOR_KEY_META' key.
+
+Patch #3 extends the flower classifier to be able to match on the new
+layer 2 miss metadata. The classifier enables the 'tc_skb_ext_tc' static
+key upon the installation of the first filter that matches on 'l2_miss'
+and disables the key upon the removal of the last filter that matches on
+it.
+
+Patch #4 rejects matching on the new metadata in drivers that already
+support the 'FLOW_DISSECTOR_KEY_META' key.
+
+Patches #5-#6 are small preparations in mlxsw.
+
+Patch #7 extends mlxsw to be able to match on layer 2 miss.
+
+Patch #8 adds a selftest.
+
+iproute2 patches can be found here [3].
+
+Changelog
+=========
+
+Since v1 [4]:
+
+* Patch #1: Use tc skb extension instead of adding a bit to the skb. Do
+  not mark broadcast packets as they never perform a lookup
+  and therefore never incur a miss.
+
+* Patch #2: Split from flower patch. Use tc skb extension instead of
+  'skb->l2_miss'.
+
+* Patch #3: Split flow_dissector changes to a previous patch. Use tc skb
+  extension instead of 'skb->l2_miss'.
+
+* Patch #4: Expand commit message to explain why some users were not
+  patched.
+
+* Patch #5: New patch.
+
+* Patch #6: New patch.
+
+* Patch #7: Use 'fdb_miss' key element instead of 'dmac_type'.
+
+* Patch #8: Test that broadcast does not hit miss filter.
+
+Since RFC [5]:
+
+No changes.
+
+[1] https://datatracker.ietf.org/doc/html/rfc7432#section-8.3
+[2] https://datatracker.ietf.org/doc/html/rfc7432#section-8.5
+[3] https://github.com/idosch/iproute2/tree/submit/non_df_filter_v1
+[4] https://lore.kernel.org/netdev/20230518113328.1952135-1-idosch@nvidia.com/
+[5] https://lore.kernel.org/netdev/20230509070446.246088-1-idosch@nvidia.com/
+
+Ido Schimmel (8):
+  skbuff: bridge: Add layer 2 miss indication
+  flow_dissector: Dissect layer 2 miss from tc skb extension
+  net/sched: flower: Allow matching on layer 2 miss
+  flow_offload: Reject matching on layer 2 miss
+  mlxsw: spectrum_flower: Split iif parsing to a separate function
+  mlxsw: spectrum_flower: Do not force matching on iif
+  mlxsw: spectrum_flower: Add ability to match on layer 2 miss
+  selftests: forwarding: Add layer 2 miss test cases
+
+ .../marvell/prestera/prestera_flower.c        |   6 +
+ .../net/ethernet/mellanox/mlx5/core/en_tc.c   |   6 +
+ .../mellanox/mlxsw/core_acl_flex_keys.c       |   1 +
+ .../mellanox/mlxsw/core_acl_flex_keys.h       |   3 +-
+ .../mellanox/mlxsw/spectrum_acl_flex_keys.c   |   2 +
+ .../ethernet/mellanox/mlxsw/spectrum_flower.c |  45 ++-
+ drivers/net/ethernet/mscc/ocelot_flower.c     |  10 +
+ include/linux/skbuff.h                        |   1 +
+ include/net/flow_dissector.h                  |   2 +
+ include/uapi/linux/pkt_cls.h                  |   2 +
+ net/bridge/br_device.c                        |   1 +
+ net/bridge/br_forward.c                       |   3 +
+ net/bridge/br_input.c                         |   1 +
+ net/bridge/br_private.h                       |  27 ++
+ net/core/flow_dissector.c                     |  10 +
+ net/sched/cls_flower.c                        |  30 +-
+ .../testing/selftests/net/forwarding/Makefile |   1 +
+ .../net/forwarding/tc_flower_l2_miss.sh       | 350 ++++++++++++++++++
+ 18 files changed, 485 insertions(+), 16 deletions(-)
+ create mode 100755 tools/testing/selftests/net/forwarding/tc_flower_l2_miss.sh
+
+-- 
+2.40.1
+
