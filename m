@@ -2,89 +2,85 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1A4714A20
-	for <lists.bridge@lfdr.de>; Mon, 29 May 2023 15:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CAA4714A22
+	for <lists.bridge@lfdr.de>; Mon, 29 May 2023 15:19:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 2944C41C57;
-	Mon, 29 May 2023 13:19:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2944C41C57
+	by smtp2.osuosl.org (Postfix) with ESMTP id CB2DA40644;
+	Mon, 29 May 2023 13:19:27 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CB2DA40644
 Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=C8HQzWxL
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=KLEPR262
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NBDiIYDHC_CQ; Mon, 29 May 2023 13:19:02 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 96F2540644;
-	Mon, 29 May 2023 13:19:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 96F2540644
+	with ESMTP id X8wEZatEiH4H; Mon, 29 May 2023 13:19:26 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id D20AB4063C;
+	Mon, 29 May 2023 13:19:25 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D20AB4063C
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5C776C0089;
-	Mon, 29 May 2023 13:19:01 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 96D5FC0089;
+	Mon, 29 May 2023 13:19:25 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 55BD2C002A
- for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 13:19:00 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id EF29FC002A
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 13:19:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 306FB8128D
- for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 13:19:00 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 306FB8128D
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
- header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
- header.s=20221208 header.b=C8HQzWxL
+ by smtp2.osuosl.org (Postfix) with ESMTP id BC34340644
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 13:19:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BC34340644
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id mBU51Z7WJSec for <bridge@lists.linux-foundation.org>;
- Mon, 29 May 2023 13:18:59 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Qh2MESHK6G1o for <bridge@lists.linux-foundation.org>;
+ Mon, 29 May 2023 13:19:23 +0000 (UTC)
 X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4CC72821F5
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4CC72821F5
- for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 13:18:58 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id
- 4fb4d7f45d1cf-5147a478c38so4713527a12.0
- for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 06:18:58 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BFA494063C
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id BFA494063C
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 13:19:22 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id
+ 4fb4d7f45d1cf-51475e981f0so5515966a12.1
+ for <bridge@lists.linux-foundation.org>; Mon, 29 May 2023 06:19:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1685366337; x=1687958337;
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1685366361; x=1687958361;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=/vKSVewvvgNmBaS2m89L7HPH8tzhUP9OKuLAcv7eBrA=;
- b=C8HQzWxLngDUWXWbOKeK6W+9+VQlAZu8nbLFYw9lmw75B5y/D+Kvvw0MuIfnEk6JjA
- oBFn4pw/SmXtgL5VNY6i3BxzvYtVbJCLycd2QR1VoXp2jA6iYnQLVumnPY4GT2iIIfYL
- ZMSxLWYf0CQl08haYhgjxGguMPcpqE75T2GwIZHNQvC8H02mHYNn2OPSc3GmY98ha2oB
- InKxNqdaSG2IvB+Und5d1cqintkU9/4Ib5IP25vgEIiUEOwuwAjA95KCf7PcvHd7NuVI
- UcKbNwG5VGEQc1o2DFiGzxR6/UIjexYMM7XsI67iWwXT/DTaDj+yv5jeqon5lVup6Ydc
- y+Hw==
+ bh=7liou2UMGklqRO9dLDDOCk0JRNw6KtAVNVlIZMEBmcs=;
+ b=KLEPR262FOslxo55V+tYUh11CnbmuKwlngkBTAky1p8umNg5QkIQI38Z+WeJjBGE12
+ mTo1wstdR1L3Nc60NQMJ84pybpUYD7b8Qki9ssLYEfDB2lWGw0jpHfVDwGs3T0twMVi/
+ 6ka5i2joKgJKGAltya1QnjrVtLEV6/cKNa+2v4khPlSqLl1NY17cP9b84mtZwbzsO+Qk
+ tcfzeuzvWocAmamqtjZo7aAeew57i4swF3AbZkCZ7Y8U1IfVIgquLHvnMHVzlEb24sUa
+ H1wCIkOEINjeqd6IrFGY8B5WA4yUTRjvJqQIKHcWa/MVAWMCSMBgbiUArnVIzW8N/5S4
+ V2AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685366337; x=1687958337;
+ d=1e100.net; s=20221208; t=1685366361; x=1687958361;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/vKSVewvvgNmBaS2m89L7HPH8tzhUP9OKuLAcv7eBrA=;
- b=f9nQRjuwcSq2W+9i7haAe7tXbhaDwidm51qdwWOeiF5/8Hs5w1D6PXbykTmE61f8jr
- P54D0PsbnmKxZebefFFwJbRjC0olYgIRZxZiEUh9+cetNq+0g+De3fnsJnkuNOE74AWo
- cg5OfLy3A7pLrCIz0giD9UPGL3ULa1FcUh+0XXw3iZyFZhipWzPT7/oYUw6Emc9fckqZ
- 9vdlr1MaliE+yQx/itQKZnIM6otnHwBHoSO1sUI0oqBimEsKDngrGayJbqkPYBqiZYqE
- iPflAYTiIfoN8e2AniTEx+qB9Hpc4T7vwI0UL/8k8gj+GEcRltw4e8jwoBIgHRSS5o6i
- LIuw==
-X-Gm-Message-State: AC+VfDy9TIZn8bQbZYVKK++Plcsp+VdjGblXCThtaMBZ6pTupR1ynYnl
- hMBhIO+7kWibznUmbLZTQHK9CQ==
-X-Google-Smtp-Source: ACHHUZ7jf/qGi2YiFapIE0brjV4aYUJ7L/6oGeZWh4eSAlrBX5XMGklZk5nFgnRPzVhwN1Iwq+DOMQ==
-X-Received: by 2002:aa7:c458:0:b0:514:9904:c8fe with SMTP id
- n24-20020aa7c458000000b005149904c8femr3356861edr.39.1685366337102; 
- Mon, 29 May 2023 06:18:57 -0700 (PDT)
+ bh=7liou2UMGklqRO9dLDDOCk0JRNw6KtAVNVlIZMEBmcs=;
+ b=AAo+3buGP7LAbUthHogOFcsufqUBhp+T2zCoEVzCc+SmqbVXDpd4TGyBUAZethyNiU
+ GIdWu1zd7pnuoQO/B9qLFIAAhvcMM6LGKGAVfMeaGtwW0/hzB1R/tNpFF1e/R6M8m1bL
+ NB3lrDhWsTCzdcNunL0HYPKGwq07lvpuSlOq96pj4oi7vtFrk7OgUKS3icjd+v/kLAf4
+ FjNxHiFm0r+TC+ykzlA/R/BG7oCLLDbOwh+Ohl09QUPY20ebiEtXXpm9CqfbOReHh44f
+ J4MIhtgi7hSOi406bPExnvpWBSM5HNdq5BUKgajSuoNMYQ7VuuruVuDHV9Ax8FZ/cVKq
+ tg9A==
+X-Gm-Message-State: AC+VfDwfAtDe8ENTKLJqNg054pnITPfDtwwsrgXl7oiaRzBEOzswynfv
+ ltbxiVSVoXQBliPa0U/2pgEMRA==
+X-Google-Smtp-Source: ACHHUZ7N/lXymSO4KkAUma1tzAydULDjaCN5ORz1N/mJAB0SGLYVqb1nWG2s9sReyZMjGUKJWPnTsg==
+X-Received: by 2002:aa7:c91a:0:b0:514:94ff:f67e with SMTP id
+ b26-20020aa7c91a000000b0051494fff67emr6307174edt.5.1685366360627; 
+ Mon, 29 May 2023 06:19:20 -0700 (PDT)
 Received: from [192.168.0.161] (62-73-72-43.ip.btc-net.bg. [62.73.72.43])
  by smtp.gmail.com with ESMTPSA id
- v15-20020aa7cd4f000000b005149dc73072sm1318955edw.56.2023.05.29.06.18.55
+ b7-20020aa7dc07000000b0051056dc47e0sm3058753edu.8.2023.05.29.06.19.19
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 29 May 2023 06:18:56 -0700 (PDT)
-Message-ID: <753ea732-2016-36b7-bcc3-4536fa5cd6a4@blackwall.org>
-Date: Mon, 29 May 2023 16:18:55 +0300
+ Mon, 29 May 2023 06:19:20 -0700 (PDT)
+Message-ID: <a6d5285b-641e-16a1-ca29-2d020b628ff8@blackwall.org>
+Date: Mon, 29 May 2023 16:19:18 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
@@ -92,9 +88,9 @@ Content-Language: en-US
 To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org
 References: <20230529114835.372140-1-idosch@nvidia.com>
- <20230529114835.372140-4-idosch@nvidia.com>
+ <20230529114835.372140-5-idosch@nvidia.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230529114835.372140-4-idosch@nvidia.com>
+In-Reply-To: <20230529114835.372140-5-idosch@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
@@ -102,8 +98,8 @@ Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
  claudiu.manoil@nxp.com, UNGLinuxDriver@microchip.com, edumazet@google.com,
  jhs@mojatatu.com, xiyou.wangcong@gmail.com, simon.horman@corigine.com,
  kuba@kernel.org, pabeni@redhat.com, saeedm@nvidia.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v2 3/8] net/sched: flower: Allow
- matching on layer 2 miss
+Subject: Re: [Bridge] [PATCH net-next v2 4/8] flow_offload: Reject matching
+ on layer 2 miss
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -119,57 +115,38 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 29/05/2023 14:48, Ido Schimmel wrote:
-> Add the 'TCA_FLOWER_L2_MISS' netlink attribute that allows user space to
-> match on packets that encountered a layer 2 miss. The miss indication is
-> set as metadata in the tc skb extension by the bridge driver upon FDB or
-> MDB lookup miss and dissected by the flow dissector to the
-> 'FLOW_DISSECTOR_KEY_META' key.
+> Adjust drivers that support the 'FLOW_DISSECTOR_KEY_META' key to reject
+> filters that try to match on the newly added layer 2 miss field. Add an
+> extack message to clearly communicate the failure reason to user space.
 > 
-> The use of this skb extension is guarded by the 'tc_skb_ext_tc' static
-> key. As such, enable / disable this key when filters that match on layer
-> 2 miss are added / deleted.
+> The following users were not patched:
 > 
-> Tested:
+> 1. mtk_flow_offload_replace(): Only checks that the key is present, but
+>    does not do anything with it.
+> 2. mlx5_tc_ct_set_tuple_match(): Used as part of netfilter offload,
+>    which does not make use of the new field, unlike tc.
+> 3. get_netdev_from_rule() in nfp: Likewise.
 > 
->  # cat tc_skb_ext_tc.py
->  #!/usr/bin/env -S drgn -s vmlinux
+> Example:
 > 
->  refcount = prog["tc_skb_ext_tc"].key.enabled.counter.value_()
->  print(f"tc_skb_ext_tc reference count is {refcount}")
+>  # tc filter add dev swp1 egress pref 1 proto all flower skip_sw l2_miss true action drop
+>  Error: mlxsw_spectrum: Can't match on "l2_miss".
+>  We have an error talking to the kernel
 > 
->  # ./tc_skb_ext_tc.py
->  tc_skb_ext_tc reference count is 0
-> 
->  # tc filter add dev swp1 egress proto all handle 101 pref 1 flower src_mac 00:11:22:33:44:55 action drop
->  # tc filter add dev swp1 egress proto all handle 102 pref 2 flower src_mac 00:11:22:33:44:55 l2_miss true action drop
->  # tc filter add dev swp1 egress proto all handle 103 pref 3 flower src_mac 00:11:22:33:44:55 l2_miss false action drop
-> 
->  # ./tc_skb_ext_tc.py
->  tc_skb_ext_tc reference count is 2
-> 
->  # tc filter replace dev swp1 egress proto all handle 102 pref 2 flower src_mac 00:01:02:03:04:05 l2_miss false action drop
-> 
->  # ./tc_skb_ext_tc.py
->  tc_skb_ext_tc reference count is 2
-> 
->  # tc filter del dev swp1 egress proto all handle 103 pref 3 flower
->  # tc filter del dev swp1 egress proto all handle 102 pref 2 flower
->  # tc filter del dev swp1 egress proto all handle 101 pref 1 flower
-> 
->  # ./tc_skb_ext_tc.py
->  tc_skb_ext_tc reference count is 0
-> 
+> Acked-by: Elad Nachman <enachman@marvell.com>
 > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 > ---
 > 
 > Notes:
 >     v2:
->     * Split flow_dissector changes to a previous patch.
->     * Use tc skb extension instead of 'skb->l2_miss'.
+>     * Expand commit message to explain why some users were not patched.
 > 
->  include/uapi/linux/pkt_cls.h |  2 ++
->  net/sched/cls_flower.c       | 30 ++++++++++++++++++++++++++++--
->  2 files changed, 30 insertions(+), 2 deletions(-)
+>  .../net/ethernet/marvell/prestera/prestera_flower.c    |  6 ++++++
+>  drivers/net/ethernet/mellanox/mlx5/core/en_tc.c        |  6 ++++++
+>  drivers/net/ethernet/mellanox/mlxsw/spectrum_flower.c  |  6 ++++++
+>  drivers/net/ethernet/mscc/ocelot_flower.c              | 10 ++++++++++
+>  4 files changed, 28 insertions(+)
+> 
 
 Reviewed-by: Nikolay Aleksandrov <razor@blackwall.org>
 
