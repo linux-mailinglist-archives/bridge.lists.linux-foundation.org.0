@@ -1,88 +1,100 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F36B717767
-	for <lists.bridge@lfdr.de>; Wed, 31 May 2023 09:00:31 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FC971F090
+	for <lists.bridge@lfdr.de>; Thu,  1 Jun 2023 19:22:05 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 17DF04148A;
-	Wed, 31 May 2023 07:00:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 17DF04148A
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=kyAZ1zyI
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id tVCOK61PFeTQ; Wed, 31 May 2023 07:00:28 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 048D04148D;
-	Wed, 31 May 2023 07:00:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 048D04148D
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9465AC008C;
-	Wed, 31 May 2023 07:00:26 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0CBA0C0037
- for <bridge@lists.linux-foundation.org>; Wed, 31 May 2023 07:00:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id DA93760DE5
- for <bridge@lists.linux-foundation.org>; Wed, 31 May 2023 07:00:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DA93760DE5
+	by smtp3.osuosl.org (Postfix) with ESMTP id 39C4A6136F;
+	Thu,  1 Jun 2023 17:22:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 39C4A6136F
 Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
- header.a=rsa-sha256 header.s=k20201202 header.b=kyAZ1zyI
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=networkplumber-org.20221208.gappssmtp.com header.i=@networkplumber-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=KEYx5twP
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RaS-kUnMofxT for <bridge@lists.linux-foundation.org>;
- Wed, 31 May 2023 07:00:24 +0000 (UTC)
-X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E4CBE608D8
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id E4CBE608D8
- for <bridge@lists.linux-foundation.org>; Wed, 31 May 2023 07:00:23 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id B02EB62B56;
- Wed, 31 May 2023 07:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 111E3C4339B;
- Wed, 31 May 2023 07:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1685516422;
- bh=r0KIbdwpgXgFSmC8bPmq5xQixhE9aSHSAEULanS/PDE=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=kyAZ1zyIiYmuPW/lQqknodkW7y/oPHbTrBfiwM7IK1T2kKGmvv+cKFXZx/9XMBhqt
- K1X77qXe23da284Mf69kKyBdIl5XLyTu1sajaQL8QYt3fRMOkZ6Ozw/1o79bDu8MuM
- eNr1mrglJ0nFBO6TDwwdl2mbJu+ctftf1L+9G8pN7rI3ZA1NG36lQpr1zEz0ZiVXhb
- z7m64PcKzLW47hJP2k75sdETnhOBJ5DEF3WP4DZJLuY2Gy8VYTpuK5xFBFQ3TEfmPo
- iGmM3vDH232aDHN4wPJozD78n9oRjmCozbgf1D28RLkcPtwPR/ri6JvZszvGfKCAEe
- VPE2+sM8IhRiA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- E2827E52BFB; Wed, 31 May 2023 07:00:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 12hPv0dyjTBi; Thu,  1 Jun 2023 17:22:02 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id D24D361348;
+	Thu,  1 Jun 2023 17:22:01 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D24D361348
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 77B57C0088;
+	Thu,  1 Jun 2023 17:22:01 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 589BCC0029
+ for <bridge@lists.linux-foundation.org>; Thu,  1 Jun 2023 17:21:59 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp2.osuosl.org (Postfix) with ESMTP id 332CC40610
+ for <bridge@lists.linux-foundation.org>; Thu,  1 Jun 2023 17:21:59 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 332CC40610
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=networkplumber-org.20221208.gappssmtp.com
+ header.i=@networkplumber-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=KEYx5twP
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id UsQkRiGIWd-N for <bridge@lists.linux-foundation.org>;
+ Thu,  1 Jun 2023 17:21:58 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 308834053C
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com
+ [IPv6:2607:f8b0:4864:20::102c])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 308834053C
+ for <bridge@lists.linux-foundation.org>; Thu,  1 Jun 2023 17:21:58 +0000 (UTC)
+Received: by mail-pj1-x102c.google.com with SMTP id
+ 98e67ed59e1d1-25632c99eecso482983a91.2
+ for <bridge@lists.linux-foundation.org>; Thu, 01 Jun 2023 10:21:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20221208.gappssmtp.com; s=20221208; t=1685640117;
+ x=1688232117; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=9j3narrsxe03huzqvKsSsW9jWi72TLYmmQBkxj0a2/Q=;
+ b=KEYx5twPd+O8SA7JfI1OmQDyCGO+RfmBgA8+b1bhzTRsdGE5JXm9ZjX2I3zNs36QNt
+ MSNrFV/EPqv1rlH276g+w3nC3+YVr6lJyuuxhk9kKU1JoY9CqaVxwK9oHiblKSXDGQPV
+ owM5/BpCr71G9me5zvSAZR9S9o98TxxBm/LMCV9DkpRkInxblJ+4c5OcsmNbBsmis4OM
+ 29VL1cZXTCadFvyzP5YoZUwJEVmoSDj5qJgi1IduQcS1CfV9dP+Pe6pKe18fiO4xyA63
+ XquN9N8CWLsSHKOKutjbAOHAQN3O0TNpa9mGasAjYj5j//Bx9knWhHbFEMUDiHFge5sh
+ fSYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685640117; x=1688232117;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=9j3narrsxe03huzqvKsSsW9jWi72TLYmmQBkxj0a2/Q=;
+ b=eHmY8a+15gLu0TGM643fElCtgFL0/l89sxQj4z75m39Tf5kFU5IerxIbu0jKE7i0S4
+ iqpwyjvKUqoAHWIrSGHG01WoBJ24VaS/x/eZ0rien8sSpx5ahlXeJQUKzyIV8C8sgiEX
+ hX4QDzLwKI4/xB8snAnlqSI+ZRDyJ9C1rdVI55YdNbx6BIezgUmf8KwCV8VdpObFMfAc
+ yu9Uso3J9Qnp7ttKuFBQos/vVdJZ7WGYpSOGvPPZYFcHk/RJXWxY4EMUqArb0H2x7bLT
+ 7HjzmY9vgciuV8p/qDiF+7A/innIC7TSO9hL44Ly2kwy50Sl9GwPL4tRZ1FMPgFhtPFQ
+ ExMQ==
+X-Gm-Message-State: AC+VfDyzFE2t04S265iMxSD5J6u71LvndPfBNKer7Wodmm7YssBRqeNE
+ 0a29JveLDJrFOZ3uFh45uiM6FQ==
+X-Google-Smtp-Source: ACHHUZ69Pkn5lUIVNzFfEdC4BcORl/qWiATSJSkJVB+EKH3nAoSMnrs87OUraUJi1/5b3OyEobO9kQ==
+X-Received: by 2002:a17:902:dac7:b0:1ac:8837:de9 with SMTP id
+ q7-20020a170902dac700b001ac88370de9mr134946plx.3.1685640117453; 
+ Thu, 01 Jun 2023 10:21:57 -0700 (PDT)
+Received: from hermes.local (204-195-120-218.wavecable.com. [204.195.120.218])
+ by smtp.gmail.com with ESMTPSA id
+ k6-20020a170902760600b001b1920cffdasm2378945pll.204.2023.06.01.10.21.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Jun 2023 10:21:56 -0700 (PDT)
+To: netdev@vger.kernel.org
+Date: Thu,  1 Jun 2023 10:21:41 -0700
+Message-Id: <20230601172145.51357-4-stephen@networkplumber.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230601172145.51357-1-stephen@networkplumber.org>
+References: <20230601172145.51357-1-stephen@networkplumber.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168551642191.20025.10645289366060748687.git-patchwork-notify@kernel.org>
-Date: Wed, 31 May 2023 07:00:21 +0000
-References: <20230529114835.372140-1-idosch@nvidia.com>
-In-Reply-To: <20230529114835.372140-1-idosch@nvidia.com>
-To: Ido Schimmel <idosch@nvidia.com>
-Cc: taras.chornyi@plvision.eu, petrm@nvidia.com, alexandre.belloni@bootlin.com,
- razor@blackwall.org, jiri@resnulli.us, leon@kernel.org, roopa@nvidia.com,
- netdev@vger.kernel.org, xiyou.wangcong@gmail.com,
- bridge@lists.linux-foundation.org, claudiu.manoil@nxp.com,
- UNGLinuxDriver@microchip.com, edumazet@google.com, jhs@mojatatu.com,
- vladimir.oltean@nxp.com, simon.horman@corigine.com, kuba@kernel.org,
- pabeni@redhat.com, saeedm@nvidia.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next v2 0/8] Add layer 2 miss indication
-	and filtering
+Cc: Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Roopa Prabhu <roopa@nvidia.com>
+Subject: [Bridge] [PATCH iproute2 3/7] bridge: make print_vlan_info static
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -94,48 +106,52 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Stephen Hemminger via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Stephen Hemminger <stephen@networkplumber.org>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Function defined and used in only one file.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Signed-off-by: Stephen Hemminger <stephen@networkplumber.org>
+---
+ bridge/br_common.h | 1 -
+ bridge/vlan.c      | 3 ++-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On Mon, 29 May 2023 14:48:27 +0300 you wrote:
-> tl;dr
-> =====
-> 
-> This patchset adds a single bit to the tc skb extension to indicate that
-> a packet encountered a layer 2 miss in the bridge and extends flower to
-> match on this metadata. This is required for non-DF (Designated
-> Forwarder) filtering in EVPN multi-homing which prevents decapsulated
-> BUM packets from being forwarded multiple times to the same multi-homed
-> host.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v2,1/8] skbuff: bridge: Add layer 2 miss indication
-    https://git.kernel.org/netdev/net-next/c/7b4858df3bf7
-  - [net-next,v2,2/8] flow_dissector: Dissect layer 2 miss from tc skb extension
-    https://git.kernel.org/netdev/net-next/c/d5ccfd90df7f
-  - [net-next,v2,3/8] net/sched: flower: Allow matching on layer 2 miss
-    https://git.kernel.org/netdev/net-next/c/1a432018c0cd
-  - [net-next,v2,4/8] flow_offload: Reject matching on layer 2 miss
-    https://git.kernel.org/netdev/net-next/c/f4356947f029
-  - [net-next,v2,5/8] mlxsw: spectrum_flower: Split iif parsing to a separate function
-    https://git.kernel.org/netdev/net-next/c/d04e26509678
-  - [net-next,v2,6/8] mlxsw: spectrum_flower: Do not force matching on iif
-    https://git.kernel.org/netdev/net-next/c/0b9cd74b8d1e
-  - [net-next,v2,7/8] mlxsw: spectrum_flower: Add ability to match on layer 2 miss
-    https://git.kernel.org/netdev/net-next/c/caa4c58ab5d9
-  - [net-next,v2,8/8] selftests: forwarding: Add layer 2 miss test cases
-    https://git.kernel.org/netdev/net-next/c/8c33266ae26a
-
-You are awesome, thank you!
+diff --git a/bridge/br_common.h b/bridge/br_common.h
+index 1bdee65844c1..704e76b0acb2 100644
+--- a/bridge/br_common.h
++++ b/bridge/br_common.h
+@@ -6,7 +6,6 @@
+ #define MDB_RTR_RTA(r) \
+ 		((struct rtattr *)(((char *)(r)) + RTA_ALIGN(sizeof(__u32))))
+ 
+-void print_vlan_info(struct rtattr *tb, int ifindex);
+ int print_linkinfo(struct nlmsghdr *n, void *arg);
+ int print_mdb_mon(struct nlmsghdr *n, void *arg);
+ int print_fdb(struct nlmsghdr *n, void *arg);
+diff --git a/bridge/vlan.c b/bridge/vlan.c
+index 5b304ea94224..dfc62f83a5df 100644
+--- a/bridge/vlan.c
++++ b/bridge/vlan.c
+@@ -18,6 +18,7 @@
+ 
+ static unsigned int filter_index, filter_vlan;
+ static int vlan_rtm_cur_ifidx = -1;
++static void print_vlan_info(struct rtattr *tb, int ifindex);
+ 
+ enum vlan_show_subject {
+ 	VLAN_SHOW_VLAN,
+@@ -1309,7 +1310,7 @@ static int vlan_global_show(int argc, char **argv)
+ 	return 0;
+ }
+ 
+-void print_vlan_info(struct rtattr *tb, int ifindex)
++static void print_vlan_info(struct rtattr *tb, int ifindex)
+ {
+ 	struct rtattr *i, *list = tb;
+ 	int rem = RTA_PAYLOAD(list);
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.39.2
 
