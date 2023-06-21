@@ -1,131 +1,197 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85E6673B238
-	for <lists.bridge@lfdr.de>; Fri, 23 Jun 2023 10:01:22 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6697673B23C
+	for <lists.bridge@lfdr.de>; Fri, 23 Jun 2023 10:01:26 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 8F58360BDA;
-	Fri, 23 Jun 2023 08:01:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8F58360BDA
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=AIsj2vEd
+	by smtp1.osuosl.org (Postfix) with ESMTP id 5019782909;
+	Fri, 23 Jun 2023 08:01:21 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5019782909
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HLDgmo/A
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HI0LMM_HrHYC; Fri, 23 Jun 2023 08:01:18 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id S0Io4ek5SikF; Fri, 23 Jun 2023 08:01:19 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 7D76860AA7;
-	Fri, 23 Jun 2023 08:01:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7D76860AA7
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 124B382342;
+	Fri, 23 Jun 2023 08:01:18 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 124B382342
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6C401C009D;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C1440C009E;
 	Fri, 23 Jun 2023 08:01:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 34CB4C0029
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 10:50:04 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3BA2CC0029
+ for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 11:18:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id EE7D541620
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 10:50:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org EE7D541620
+ by smtp4.osuosl.org (Postfix) with ESMTP id F3FD841D7B
+ for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 11:18:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org F3FD841D7B
 Authentication-Results: smtp4.osuosl.org;
- dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org
- header.a=rsa-sha256 header.s=google header.b=AIsj2vEd
+ dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com
+ header.a=rsa-sha256 header.s=Intel header.b=HLDgmo/A
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
  by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id P4yh_octL_8J for <bridge@lists.linux-foundation.org>;
- Wed, 21 Jun 2023 10:50:03 +0000 (UTC)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AD22541BA2
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by smtp4.osuosl.org (Postfix) with ESMTPS id AD22541BA2
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 10:50:02 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- 5b1f17b1804b1-3f90b8acefeso38401055e9.0
- for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 03:50:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1687344600; x=1689936600;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=fSRkwHLFq+2I9Xiyi/hU6wMpRwozZdsPaoeIOTE25yg=;
- b=AIsj2vEdz+Fc9Jy19U2Q4+7jk5CdnnBRAq8EU0/qgIBKasDy/i9F7ZXwuxvu/FIk+V
- e/sUJHlgDgR4Qx2Oh1t5R17vdDFqF/9Ly0AVSK9zUVBFtxeRPEJfGRY1Ks9BJsa7NWkf
- GXQKQBgxImLcLHozIYWaaIqJ2GrVDZ8vDZMAG4ZNWlYOBv1zbniTnw6kcMxllyCdLRPM
- ZQ4LPyPa8TOuuqU/g5NEtzVey08OWckHaORybMu3dXpLsx3EAMUOJp98YetCTODsSvBK
- UGnxHZVFuD2xpLdXg7xgTBB0HXflRT1SIPGFL3SgcodXnvQYRGYsUcq+78aAj0lpxCAJ
- /6yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687344600; x=1689936600;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fSRkwHLFq+2I9Xiyi/hU6wMpRwozZdsPaoeIOTE25yg=;
- b=ftUQABLmnPLWpwL0ng7qzRmeIcAnk8TnMv764sOvOBwUfEMHNxREdD1vVdyN6l/D9g
- pwPnIven0yaAqMRox8E1T+AZkeRePkJExJ2VNSKNuUB6GiPTLCT4gnikaBgXn/kP865t
- /istpgARICX/hE0qM21FMLdn9M+pcJtOcMTbsRMAGi7xvnUd4BOL34gdqKS30Ofo0GRb
- wvfy61Ky0aH0ECv/pjqSnzPrr8xgzvvzIO8UHpNtWuPrxYd1DfZlghmrEKrSxYm15tjj
- en6ap/DdMeuMyQG36C0pp1K4yr+XaKexM6e3O1DPozc7H83zq0/6C9AG50mbkXnwk3lx
- m02g==
-X-Gm-Message-State: AC+VfDxLCp1QvA2wduCatz8vNCxzFD7h6aHPMeDmZ54TofveSaIDD5Yb
- l20Myj7dhBL+g+Ruw7cSnjJGHg==
-X-Google-Smtp-Source: ACHHUZ4kGH8qImQSxaCquFokOidLojUiduGNeN6yC7xlAN8t9enaJAidhtFzyKegekb0YEbNp5wSRg==
-X-Received: by 2002:a05:600c:a39f:b0:3f9:8da:bb4b with SMTP id
- hn31-20020a05600ca39f00b003f908dabb4bmr8183476wmb.37.1687344600642; 
- Wed, 21 Jun 2023 03:50:00 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- c9-20020a05600c0ac900b003f7eeec829asm4670229wmr.10.2023.06.21.03.49.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Jun 2023 03:49:58 -0700 (PDT)
-Date: Wed, 21 Jun 2023 13:49:54 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Joel Granados <j.granados@samsung.com>
-Message-ID: <f95b7489-8654-435c-bc74-da1eac479fba@kadam.mountain>
+ with ESMTP id M9DWlgEUlV4t for <bridge@lists.linux-foundation.org>;
+ Wed, 21 Jun 2023 11:18:02 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4917F418E3
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 4917F418E3
+ for <bridge@lists.linux-foundation.org>; Wed, 21 Jun 2023 11:18:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687346281; x=1718882281;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=bNOOeYVCQ7poh+/POpUoy8h5Fc7oKKTV5NlBm31y8T8=;
+ b=HLDgmo/Az6NkgE+D6yL5JMGr2Pp1WVOXbzcdpTFcOQWQMf1scnfKLRsK
+ qcM0pd7y57FmT0H91DPqWk/q3XD7rX73oC4LMk6bQoLGXYxSMfup3x+4N
+ u+WxV2MaqV3ul8KHLuA9plVHlezkS4MxGbiBl56QdBEOxmpsWBotktuca
+ 1xdZUEokxzpOa1y613kxEP3qDv8IBNz03kQMGCsX5X+kKPRaDc8gVBYhs
+ +S035kDarl9rPtjkZEcerIWYUyk2WSAqBMihZ6zJ/jOZbz7HwjJi8AZ7S
+ C5jtYbzTsaaZjtqBaFJpsTIWQ8LaVFEIU8hI731ciYI0TuD88/0uS6qjA Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="339758037"
+X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; d="scan'208";a="339758037"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2023 04:17:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="664623042"
+X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; d="scan'208";a="664623042"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2023 04:16:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Joel Granados <j.granados@samsung.com>, mcgrof@kernel.org, Russell King
+ <linux@armlinux.org.uk>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Michael
+ Ellerman <mpe@ellerman.id.au>, Heiko Carstens <hca@linux.ibm.com>, Vasily
+ Gorbik <gor@linux.ibm.com>, Alexander Gordeev <agordeev@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, Andy Lutomirski
+ <luto@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar
+ <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
+ <dave.hansen@linux.intel.com>, x86@kernel.org, Herbert Xu
+ <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>,
+ Russ Weight <russell.h.weight@intel.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Phillip Potter <phil@philpotter.co.uk>,
+ Clemens Ladisch <clemens@ladisch.de>, Arnd Bergmann <arnd@arndb.de>, Corey
+ Minyard <minyard@acm.org>, Theodore Ts'o <tytso@mit.edu>, "Jason A.
+ Donenfeld" <Jason@zx2c4.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, "K. Y.
+ Srinivasan" <kys@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>,
+ Wei
+ Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>, Jason Gunthorpe
+ <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>, Benjamin Herrenschmidt
+ <benh@kernel.crashing.org>, Song Liu <song@kernel.org>, Robin Holt
+ <robinmholt@gmail.com>, Steve Wahl <steve.wahl@hpe.com>, David Ahern
+ <dsahern@kernel.org>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Sudip Mukherjee
+ <sudipm.mukherjee@gmail.com>, Mark Rutland <mark.rutland@arm.com>, "James
+ E.J. Bottomley" <jejb@linux.ibm.com>, "Martin K. Petersen"
+ <martin.petersen@oracle.com>, Doug Gilbert <dgilbert@interlog.com>, Jiri
+ Slaby <jirislaby@kernel.org>, Juergen Gross <jgross@suse.com>, Stefano
+ Stabellini <sstabellini@kernel.org>, Alexander Viro
+ <viro@zeniv.linux.org.uk>, Christian Brauner <brauner@kernel.org>, Benjamin
+ LaHaise <bcrl@kvack.org>, David Howells <dhowells@redhat.com>, Jan Harkes
+ <jaharkes@cs.cmu.edu>, coda@cs.cmu.edu, Trond Myklebust
+ <trond.myklebust@hammerspace.com>, Anna Schumaker <anna@kernel.org>, Chuck
+ Lever <chuck.lever@oracle.com>, Jeff Layton <jlayton@kernel.org>, Jan Kara
+ <jack@suse.cz>, Anton Altaparmakov <anton@tuxera.com>, Mark Fasheh
+ <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>, Joseph Qi
+ <joseph.qi@linux.alibaba.com>, Kees Cook <keescook@chromium.org>, Iurii
+ Zaikin <yzaikin@google.com>, Eric Biggers <ebiggers@kernel.org>, "Darrick
+ J. Wong" <djwong@kernel.org>, Alexei Starovoitov <ast@kernel.org>, Daniel
+ Borkmann <daniel@iogearbox.net>, Andrii Nakryiko <andrii@kernel.org>,
+ Balbir
+ Singh <bsingharora@gmail.com>, Eric Biederman <ebiederm@xmission.com>,
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>, Anil S Keshavamurthy
+ <anil.s.keshavamurthy@intel.com>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Petr Mladek <pmladek@suse.com>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>, Juri Lelli
+ <juri.lelli@redhat.com>, Vincent Guittot <vincent.guittot@linaro.org>, John
+ Stultz <jstultz@google.com>, Steven Rostedt <rostedt@goodmis.org>, Andrew
+ Morton <akpm@linux-foundation.org>, Mike Kravetz <mike.kravetz@oracle.com>,
+ Muchun Song <muchun.song@linux.dev>, Naoya Horiguchi
+ <naoya.horiguchi@nec.com>, "Matthew Wilcox (Oracle)"
+ <willy@infradead.org>, Joerg Reuter <jreuter@yaina.de>, Ralf Baechle
+ <ralf@linux-mips.org>, Pablo
+ Neira Ayuso <pablo@netfilter.org>, Jozsef Kadlecsik <kadlec@netfilter.org>,
+ Florian Westphal <fw@strlen.de>, Roopa Prabhu <roopa@nvidia.com>, Nikolay
+ Aleksandrov <razor@blackwall.org>, Alexander Aring <alex.aring@gmail.com>,
+ Stefan Schmidt <stefan@datenfreihafen.org>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Steffen Klassert
+ <steffen.klassert@secunet.com>, Matthieu Baerts
+ <matthieu.baerts@tessares.net>, Mat Martineau <martineau@kernel.org>, Simon
+ Horman <horms@verge.net.au>, Julian Anastasov <ja@ssi.bg>, Remi
+ Denis-Courmont <courmisch@gmail.com>, Santosh Shilimkar
+ <santosh.shilimkar@oracle.com>, Marc Dionne <marc.dionne@auristor.com>,
+ Neil Horman <nhorman@tuxdriver.com>, Marcelo Ricardo Leitner
+ <marcelo.leitner@gmail.com>, Xin Long <lucien.xin@gmail.com>, Karsten
+ Graul <kgraul@linux.ibm.com>, Wenjia Zhang <wenjia@linux.ibm.com>, Jan
+ Karcher <jaka@linux.ibm.com>, Jon Maloy <jmaloy@redhat.com>, Ying Xue
+ <ying.xue@windriver.com>, Martin Schiller <ms@dev.tdt.de>, John Johansen
+ <john.johansen@canonical.com>, Paul Moore <paul@paul-moore.com>, James
+ Morris <jmorris@namei.org>, "Serge E. Hallyn" <serge@hallyn.com>, Jarkko
+ Sakkinen <jarkko@kernel.org>
+In-Reply-To: <20230621094817.433842-1-j.granados@samsung.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230621091000.424843-1-j.granados@samsung.com>
- <CGME20230621091022eucas1p1c097da50842b23e902e1a674e117e1aa@eucas1p1.samsung.com>
- <20230621091000.424843-7-j.granados@samsung.com>
- <dab06c20-f8b0-4e34-b885-f3537e442d54@kadam.mountain>
+ <CGME20230621094824eucas1p2b6adfbd3f15ff3665674917f419b25d3@eucas1p2.samsung.com>
+ <20230621094817.433842-1-j.granados@samsung.com>
+Date: Wed, 21 Jun 2023 14:16:55 +0300
+Message-ID: <87o7l92hg8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="ZFMDZBc9cnLbyP1u"
-Content-Disposition: inline
-In-Reply-To: <dab06c20-f8b0-4e34-b885-f3537e442d54@kadam.mountain>
+Content-Type: text/plain
 X-Mailman-Approved-At: Fri, 23 Jun 2023 08:01:14 +0000
-Cc: Alexander Aring <alex.aring@gmail.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- David Howells <dhowells@redhat.com>, Eric Dumazet <edumazet@google.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Marc Dionne <marc.dionne@auristor.com>, Jan Karcher <jaka@linux.ibm.com>,
- Mat Martineau <martineau@kernel.org>, linux-afs@lists.infradead.org,
- Stefan Schmidt <stefan@datenfreihafen.org>,
- Steffen Klassert <steffen.klassert@secunet.com>, linux-s390@vger.kernel.org,
- rds-devel@oss.oracle.com, Xin Long <lucien.xin@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Leon Romanovsky <leon@kernel.org>,
- dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
- bridge@lists.linux-foundation.org, Jozsef Kadlecsik <kadlec@netfilter.org>,
- lvs-devel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
- Julian Anastasov <ja@ssi.bg>, coreteam@netfilter.org,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Pablo Neira Ayuso <pablo@netfilter.org>,
- Martin Schiller <ms@dev.tdt.de>,
- Santosh Shilimkar <santosh.shilimkar@oracle.com>, linux-sctp@vger.kernel.org,
- Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
- Remi Denis-Courmont <courmisch@gmail.com>, linux-hams@vger.kernel.org,
- mptcp@lists.linux.dev, tipc-discussion@lists.sourceforge.net,
- linux-x25@vger.kernel.org, Neil Horman <nhorman@tuxdriver.com>,
- netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
- Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
- Ralf Baechle <ralf@linux-mips.org>, Karsten Graul <kgraul@linux.ibm.com>,
- Jon Maloy <jmaloy@redhat.com>, mcgrof@kernel.org,
- netfilter-devel@vger.kernel.org, Joerg Reuter <jreuter@yaina.de>,
- Ying Xue <ying.xue@windriver.com>,
- Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH 06/11] sysctl: Add size to register_net_sysctl
-	function
+Cc: Joel Granados <j.granados@samsung.com>, Miaohe Lin <linmiaohe@huawei.com>,
+ linux-hyperv@vger.kernel.org, linux-ia64@vger.kernel.org, "Rafael J.
+ Wysocki" <rafael@kernel.org>, linux-aio@kvack.org,
+ Amir Goldstein <amir73il@gmail.com>, mptcp@lists.linux.dev,
+ KP Singh <kpsingh@kernel.org>, dri-devel@lists.freedesktop.org,
+ Ben Segall <bsegall@google.com>, linux-mm@kvack.org,
+ linux-sctp@vger.kernel.org, keyrings@vger.kernel.org,
+ Stanislav Fomichev <sdf@google.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ linux-afs@lists.infradead.org, linux-s390@vger.kernel.org,
+ Valentin Schneider <vschneid@redhat.com>, xen-devel@lists.xenproject.org,
+ linux-scsi@vger.kernel.org, dccp@vger.kernel.org, linux-rdma@vger.kernel.org,
+ bridge@lists.linux-foundation.org, John Fastabend <john.fastabend@gmail.com>,
+ linux-ntfs-dev@lists.sourceforge.net,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, codalist@coda.cs.cmu.edu,
+ lvs-devel@vger.kernel.org, Matthew Bobrowski <repnop@google.com>,
+ linux-cachefs@redhat.com, Mel Gorman <mgorman@suse.de>,
+ tipc-discussion@lists.sourceforge.net, Yonghong Song <yhs@fb.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, linux-crypto@vger.kernel.org,
+ linux-wpan@vger.kernel.org, coreteam@netfilter.org,
+ John Ogness <john.ogness@linutronix.de>, Mike Travis <mike.travis@hpe.com>,
+ Boqun Feng <boqun.feng@gmail.com>, apparmor@lists.ubuntu.com,
+ linuxppc-dev@lists.ozlabs.org, Nicholas Piggin <npiggin@gmail.com>,
+ rds-devel@oss.oracle.com, linux-raid@vger.kernel.org,
+ Waiman Long <longman@redhat.com>, linux-hams@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ linux-arm-kernel@lists.infradead.org, fsverity@lists.linux.dev,
+ Hao Luo <haoluo@google.com>, linux-nfs@vger.kernel.org,
+ Will Drewry <wad@chromium.org>, linux-x25@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>, kexec@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Andy Lutomirski <luto@amacapital.net>,
+ linux-xfs@vger.kernel.org,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ linux-security-module@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ Sven Schnelle <svens@linux.ibm.com>, Jiri Olsa <jolsa@kernel.org>,
+ netdev@vger.kernel.org, linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, Martin KaFai Lau <martin.lau@linux.dev>,
+ ocfs2-devel@oss.oracle.com
+Subject: Re: [Bridge] [PATCH 09/11] sysctl: Remove the end element in sysctl
+ table arrays
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -140,62 +206,65 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+On Wed, 21 Jun 2023, Joel Granados <j.granados@samsung.com> wrote:
+> Remove the empty end element from all the arrays that are passed to the
+> register sysctl calls. In some files this means reducing the explicit
+> array size by one. Also make sure that we are using the size in
+> ctl_table_header instead of evaluating the .procname element.
 
---ZFMDZBc9cnLbyP1u
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Where's the harm in removing the end elements driver by driver? This is
+an unwieldy patch to handle.
 
-On Wed, Jun 21, 2023 at 12:47:30PM +0300, Dan Carpenter wrote:
-> The patchset doesn't include the actual interesting changes, just a
-> bunch of mechanical prep work.
-> 
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index f43950219ffc..e4d7372afb10 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -4884,24 +4884,23 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
+>  
+>  static struct ctl_table oa_table[] = {
+>  	{
+> -	 .procname = "perf_stream_paranoid",
+> -	 .data = &i915_perf_stream_paranoid,
+> -	 .maxlen = sizeof(i915_perf_stream_paranoid),
+> -	 .mode = 0644,
+> -	 .proc_handler = proc_dointvec_minmax,
+> -	 .extra1 = SYSCTL_ZERO,
+> -	 .extra2 = SYSCTL_ONE,
+> -	 },
+> +		.procname = "perf_stream_paranoid",
+> +		.data = &i915_perf_stream_paranoid,
+> +		.maxlen = sizeof(i915_perf_stream_paranoid),
+> +		.mode = 0644,
+> +		.proc_handler = proc_dointvec_minmax,
+> +		.extra1 = SYSCTL_ZERO,
+> +		.extra2 = SYSCTL_ONE,
+> +	},
+>  	{
+> -	 .procname = "oa_max_sample_rate",
+> -	 .data = &i915_oa_max_sample_rate,
+> -	 .maxlen = sizeof(i915_oa_max_sample_rate),
+> -	 .mode = 0644,
+> -	 .proc_handler = proc_dointvec_minmax,
+> -	 .extra1 = SYSCTL_ZERO,
+> -	 .extra2 = &oa_sample_rate_hard_limit,
+> -	 },
+> -	{}
+> +		.procname = "oa_max_sample_rate",
+> +		.data = &i915_oa_max_sample_rate,
+> +		.maxlen = sizeof(i915_oa_max_sample_rate),
+> +		.mode = 0644,
+> +		.proc_handler = proc_dointvec_minmax,
+> +		.extra1 = SYSCTL_ZERO,
+> +		.extra2 = &oa_sample_rate_hard_limit,
+> +	}
+>  };
 
-I was wrong here, the patchset just hadn't all hit the mailing lists.
-I can't apply this patchset to anything.  I tried linux-next, net, and
-net-next.  So it's hard to review.
+The existing indentation is off, but fixing it doesn't really belong in
+this patch.
 
-It looks like ensure_safe_net_sysctl() never got update to use
-table_size...
-
-You could easily write a static checker test to print a warning any time
-that ->procname is checked for NULL.  I have attached a Smatch check.
-You would need to added to check_list.h and recompile.
-
-net/sysctl_net.c:130 ensure_safe_net_sysctl() warn: checking ->procname 'ent->procname'
-
-regards,
-dan carpenter
+BR,
+Jani.
 
 
---ZFMDZBc9cnLbyP1u
-Content-Type: text/x-csrc; charset=us-ascii
-Content-Disposition: attachment; filename="check_checking_procname.c"
-
-#include "smatch.h"
-#include "smatch_slist.h"
-
-static int my_id;
-
-static void match_condition(struct expression *expr)
-{
-	char *member_name;
-
-	if (expr->type == EXPR_COMPARE)
-		return;
-
-	member_name = get_member_name(expr);
-	if (!member_name)
-		return;
-
-	if (strcmp(member_name, "(struct ctl_table)->procname") == 0)
-		sm_warning("checking ->procname '%s'", expr_to_str(expr));
-}
-
-void check_checking_procname(int id)
-{
-	my_id = id;
-
-	add_hook(&match_condition, CONDITION_HOOK);
-}
-
---ZFMDZBc9cnLbyP1u--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
