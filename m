@@ -1,112 +1,144 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9F1273D74F
-	for <lists.bridge@lfdr.de>; Mon, 26 Jun 2023 07:50:31 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7940D743FFB
+	for <lists.bridge@lfdr.de>; Fri, 30 Jun 2023 18:41:40 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 4E6DB8200D;
-	Mon, 26 Jun 2023 05:50:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4E6DB8200D
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.a=rsa-sha256 header.s=s2048 header.b=iSwh70zP
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hSBI9Fom8FB9; Mon, 26 Jun 2023 05:50:29 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id C9F8F81E6A;
-	Mon, 26 Jun 2023 05:50:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C9F8F81E6A
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 6D286C008C;
-	Mon, 26 Jun 2023 05:50:28 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 0AE3FC0029
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jun 2023 05:50:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id D372160B99
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jun 2023 05:50:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org D372160B99
+	by smtp3.osuosl.org (Postfix) with ESMTP id BA9E060F4A;
+	Fri, 30 Jun 2023 16:41:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BA9E060F4A
 Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com
- header.a=rsa-sha256 header.s=s2048 header.b=iSwh70zP
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector2 header.b=OKFHsfap
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id zTXRZ0iWFSme for <bridge@lists.linux-foundation.org>;
- Mon, 26 Jun 2023 05:50:25 +0000 (UTC)
-X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 77A6160B21
-Received: from sonic306-19.consmr.mail.gq1.yahoo.com
- (sonic306-19.consmr.mail.gq1.yahoo.com [98.137.68.82])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 77A6160B21
- for <bridge@lists.linux-foundation.org>; Mon, 26 Jun 2023 05:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1687758624; bh=YSPfpiwOkBQ46XmUoyeSet/T0M+S11yQNJsZwzaMjfg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To;
- b=iSwh70zPOJBOQnKaziyB5LolyzqpikN5M1m9tMyTLVltyv3Cxt+lo3W2+wWpqzbj2bamHgx9gIjE1TLjQSeZpvPy9hbRVofxO0DRBTABPMfcCrwYHBz8QxvmHRPf49VRSAlm3ilnd/ESSvBg7Bsyj8ESKhpgk7nwvTG/12S0g2f7+lOy7+L8mip/vpi7myVihS/Wjp155/ClXDePzmLv+m80J/ikiOWI0RyGODnWx656kC6cbhp49js3Y/Ye4FV/7/TgcellX++wQlbeukXzAOjlhOancO5U2BM1ueOT6P1ZPybm2lNpXGFrx18vsL2pUPnzIZRtd9Y4dYabwoTAGg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1687758624; bh=m3FvznhgHOpvj8k7IEuJ5leuJe78mMgrUbbJzz/+kGp=;
- h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
- b=dWCwyxwVIr0R014B2UkCfse9rORV9nWMbF/438S3UMyDiEgsAvbcYL3+O9A9e6sPBCqnd1C0CAfMFDWOi/aAlQS6J6gJwSUTUE2+/AScdj+xZDTShFbqnM98IW0sNNDn47fG0ZFV5MGKIeGgQdj4MWhv+ZqZQj9udgG6COlx4lSY642OFT6hqzFHaNEtAQfJ7SD7HwmVivI4laVGV192U018tgb5ZnIHnjFrkTWJe9cTpmY4+QDcyeNreJ0n4hHYSnDvtH/i2qDmw+vq64vzDrvqHXzSolPG/86VXoj82vr0fWwBn5d/ILn1i/PEdZq/xNbbaeVXuoE9tfCzAA3JIQ==
-X-YMail-OSG: r0usPE8VM1nYaCvVbAWqc7TrSh2GRlB1hPF3gBnuic.eHpFVJTpv_G8iz__PWfR
- XHjysvHD4Zg7W6x9j9Ojwi.KF9dqXgc27O_5_3O51TaK9IWTooYRFUX7kroq2Cm8Mz3sitxl2LX8
- DWqO39fktnUnwT8kWHenJ.qvBRY8MqHxlF_HEzhaW6cSzveRqAM3tOSFtqewspAinFNkjnGJbkdH
- 49Ei9dct6usZs3ISARXNl9zCR4lZNFwEF_qU4NyhQ0l7BYZ508f2yGHVu.RVlW6e07atJL3T5H8a
- D4HD0QEXnbvojZlJzItO_Q.krX.VcNeD.Hs9YquLv5YNt0e.wX_jaQOiJwvptN42NKYSATQX.GhD
- TpBVE3gwYZvtEIZTe0frhw9Q3DhTQVM.qAd..GGW8hon0WDVGDruj8xn2abhv4vjFnmv3kjPrIAs
- aFi52gEHoXytALWbLtB6tPcckOQhrsfaHrj7jbSffpMItJCv1KJQLPTaryp87O_X4E0MYfGt2jPo
- bypJ2exnmENL2KAAaXAhdAQbwuID55BldC3f0oq.UbMDh9llBL9c0TGz_lznUsr80hWHF94InJ80
- bTKnM49PTOB5eNTA5PpqKmy8sW6uLxbU1.3jYzMT485ZK8x5MBxLxtxpbUrUc2aL.ss65GyT44D4
- jRBxcRuThGFLwRMfyBROEwBpHRvkCY01dTbVO5ihUA9C_omNHaE.fWVT_OghtoQgc1DlM_OrQNCI
- J42kxqd3ad28tIDaCR92i6AWb54Fcn9UrUtQpA1ZnPM0.FF1BT.DiKyBBiJyFYQx3M7Y5TJys5Fy
- DdKDnqUbYwhi1fWUh_z37vS39_bxyinCP05Yc9Q6unfyk5Rrozy2exIPxNpgjuW8RPgyYCwT.pRa
- bNb17uO7d8IhR2OJb.xdaIK33n7SdYi5mn8LaueUFEuFzpJVSCMM9TfDbvggQOTQhXuHuScFaQma
- 7Bq3a8ZxcN3qVBrMsr1MLPFfXfMYjji_t_NgtY7aSPzlNLXoat_fPgr_9zcjcvGsStSIwR1sPqb_
- y64V0D_Xz7VD97fBDUKphVQBXs01wM1d6R6XGHPBx4z3sW6zfEyQXtyRnDgq_.HrRV9rAtdiU1kw
- hQe3ItEkJASUcEYtMxfwhWBXiNhh45We6sr1mPvj709Db80nu.L3CyATk_htgbNEKASvoI5Y5NsP
- SG4zP3.ikJVAdP_fgUdgCjiJhbO0gkjy.XTlAIuzZ5p7HCz0uyIgd.sKNXG9.FZ5teCL5nKc_0SA
- XbJeru5IfeRNLL4AZwvHH9qC_i16CREi3HYr.cvZYQ2v3ZObV5oGcIOPSavzFtiYGnb2UapPgq61
- wVjjQh3fr0yvogIIl5uTG5Xab4OrgX88SOsOq9nj8A6S_Wyd_hyfS4encthpEBy0x9BkMqYUo60n
- mFsqI3oqmC8gOP0qXqj7CQ9FSkSzsuCh1YYIy4PHi9q4ers2JnojuT0Mm0VE3wh75aolS9ZjK_xL
- F8ScYq4EshFw9Umxk.vnLk62GjmrxPk3z0r7zhybKUJbHpWf64bZWVZgA7zACu8bRMo.VL9EdfVH
- 5KvMj_.uxAs37w2xRLSQJxxqoESH2Fsd3dkTKqubVgL2pZYwbOuB5r93etLNyoVzwU6XkPf1f3zS
- 8l_daXL.DCOAB9JS4WpNJHk.JEh4pnUoVPpQA1j3aAtN94qm8rrbjkh0ctM_oJrdo4tFVNFD6.Nr
- 2ueFP9T78wD4XQSoqsXQXKf6vc8zSRphcOM6yt5raAU43XoR4K6pgBN7P5fx.K_mlSJddoWnrp2m
- bkqh95LP1UZvS_kQZZ3VqfCOBIvY0evdqMBYsualgppzRJ0g638P24bPpADx5AtASg_Lc8LY8nJ2
- .PauUxsGMlRNg8W8JbZm4aXqKcj8Q_t0PSOpROvbS4X4DIjcbBzew21SRDLdF7hW2UePtLeAHKXl
- UwhqUopwyCQ6rW6XSESFl0LJUrmjB6z2hsI2L8.rlrEY2XnW_V90oc1_PT5HP4KctfqxK2bmPVOU
- XErcHJxV55RGx2hA_hyi9.52huQIAqyf_KZyN2UenSInA0n6I17h_UgAo.hRKISaJAdU_DsMSASI
- U7WY5FWp6bUrMSOg8jFxE_6zmOnguCgB7Sg1PG98Nqs.6Qq.s8S7DXWGcJwr2zRkpVwqID_z7Jx.
- DNqGcFG0Gj7iHyTMHwqjj6CGfFWDUBznpRhJgqFdRCsDVoqFc5Qi3hwWJqv7R0f5nfA8f0Sk1QDn
- 0xSlMgc42H3GBEl1ziRaZ94U.qZfB1LYWun48wmNchEzia2xBTQU1UMyk.g--
-X-Sonic-MF: <astrajoan@yahoo.com>
-X-Sonic-ID: cf970580-2d62-457c-b04b-30abe5780566
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic306.consmr.mail.gq1.yahoo.com with HTTP; Mon, 26 Jun 2023 05:50:24 +0000
-Received: by hermes--production-ne1-574d4b7954-scd6l (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID c49500d6fa260bb4bc461a6730467256; 
- Mon, 26 Jun 2023 05:50:20 +0000 (UTC)
-To: mudongliangabcd@gmail.com
-Date: Sun, 25 Jun 2023 22:50:04 -0700
-Message-Id: <20230626055004.29303-1-astrajoan@yahoo.com>
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id BYkuV3Xl1giX; Fri, 30 Jun 2023 16:41:37 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 16F9A61224;
+	Fri, 30 Jun 2023 16:41:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 16F9A61224
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 9E739C0DD4;
+	Fri, 30 Jun 2023 16:41:35 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4A39FC007F
+ for <bridge@lists.linux-foundation.org>; Fri, 30 Jun 2023 16:41:34 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp4.osuosl.org (Postfix) with ESMTP id 20CAC41FA9
+ for <bridge@lists.linux-foundation.org>; Fri, 30 Jun 2023 16:41:34 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 20CAC41FA9
+Authentication-Results: smtp4.osuosl.org; dkim=pass (1024-bit key,
+ unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256
+ header.s=selector2 header.b=OKFHsfap
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id uSx1l16votRt for <bridge@lists.linux-foundation.org>;
+ Fri, 30 Jun 2023 16:41:32 +0000 (UTC)
+X-Greylist: whitelisted by SQLgrey-1.8.0
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 57A81415FB
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com
+ (mail-dbaeur03on20620.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe1a::620])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 57A81415FB
+ for <bridge@lists.linux-foundation.org>; Fri, 30 Jun 2023 16:41:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bcUKWia64FdNE9IQ/+IStWf24aV+16UNHhhXrULihFvLih52YxUqbTLZRVzou++Wd5L/Z6ptlEuE6GaeHU92iBEWzBwpb3LPpQ6s0ZwbdBIKoSGcN48dn7U7Jb3iHFf/33wvHpQYNYqEN834DeXHVZK298ZONi/ytUzjWsK3UVW3gDrOimNo1VLYHbFgTbo1Jk9X24nN+s9mSR260zdXZxNGEMvjB2g8kE3hWxe0lJlY2/E+dGz9Te3wnFMzmZJvmRXlNeMH+vhfLAqWV+ZTAM3X/ludSnJlkydygZdam+lZLZzDqbnQe0fnLcTgrbj6YS7bOiDEh3ksxHDbRfUUFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PGI3Ph4oCibP0zHwVh/lsuMMAcY6BSA/FB8Xm+629wc=;
+ b=MVs5BLocPIq1jtYOkpaVRFHC8bErozJiGQxkXeqm/qa8+6UQ0Le6AduOU+CmsXiRa1SwbZED6rTC8pNMh8y3svxMkXRYpz++35yajmXdaixCFyU2lcMnYLu4rw6e3fzQtlHh1A5V2GNmGJMLQO4Eg6g7KoFWE9nMvC9T2m0P+ZFHQmigZlyBE6NeRek6oKz1OzoT1lCySCrlAuafEpqHPg4p6gzcuHCqtS+OFK3Q+DAe/H8leK3Sby6+GvbNYj5zX1FhaXlXfTkbbD7T7sJvCaya9UftHjyzqDZT19QFsqwJVTgDkScKDheCKeXu6TjuncWR+SOJE+ZVnk1ECfYl4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PGI3Ph4oCibP0zHwVh/lsuMMAcY6BSA/FB8Xm+629wc=;
+ b=OKFHsfapCKBI5iOVhc3evBhZxYV2DITwSrbleyOC5BiFE/D4qs1KXwyuW9sX22shx0ljv7/1saUJknwnhPw5//5cAoMSEh75kDWBubRd1xaHtegy/uySrI8N3md6Qebntexr3FYl+YIJhQuZlfKGMTRuo3nCCGnIHpwrGShUrzQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by AS8PR04MB8343.eurprd04.prod.outlook.com (2603:10a6:20b:3f1::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.19; Fri, 30 Jun
+ 2023 16:41:29 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::c40e:d76:fd88:f460]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::c40e:d76:fd88:f460%5]) with mapi id 15.20.6544.019; Fri, 30 Jun 2023
+ 16:41:28 +0000
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: netdev@vger.kernel.org
+Date: Fri, 30 Jun 2023 19:41:18 +0300
+Message-Id: <20230630164118.1526679-1-vladimir.oltean@nxp.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <CAD-N9QXZFMFGp3Vw4449Bx1-ttDVSF3hiwSw=e6+D096UDNfvw@mail.gmail.com>
-References: <CAD-N9QXZFMFGp3Vw4449Bx1-ttDVSF3hiwSw=e6+D096UDNfvw@mail.gmail.com>
-MIME-Version: 1.0
-Reported-by: syzbot+881d65229ca4f9ae8c84@syzkaller.appspotmail.com
 Content-Transfer-Encoding: 8bit
-Cc: ivan.orlov0322@gmail.com, arnd@arndb.de, roopa@nvidia.com,
- astrajoan@yahoo.com, bridge@lists.linux-foundation.org,
- syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
- edumazet@google.com, nikolay@nvidia.com, netdev@vger.kernel.org,
- syzbot+881d65229ca4f9ae8c84@syzkaller.appspotmail.com, kuba@kernel.org,
- skhan@linuxfoundation.org, pabeni@redhat.com, davem@davemloft.net
-Subject: [Bridge] [PATCH] can: j1939: prevent deadlock by changing
-	j1939_socks_lock to rwlock
+Content-Type: text/plain
+X-ClientProxiedBy: FR3P281CA0048.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4a::20) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AS8PR04MB8343:EE_
+X-MS-Office365-Filtering-Correlation-Id: f8fd1bda-d648-4b26-3112-08db7988da02
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rsudGO+RyH8B/4lpbCy4gAk2iIwAkME6fLvtSScJ/2jnN/4SQ4uNNZNyABJthIgUC3I+++sA+fwTiUvNzOnjK6u3LRpQV03u8TX1RMiNZtficE60A3yH8ueh1nfnHnmIz9Simaif0rsODzDUOxM4V3dfkYVD+Uju5gD9PYuTapFjCTo6In0oc5y2INWZS1gyRnq77VPEvEYnJN8tl8qpoB9s4kSTHc8C7TFeUcCeegAAjmV8jpILmJSE7Hj4rb1O/xc6CA24CUH0njzio8DYhtWiHefK1MFfwjif+diOAB26sM8AlzxNYc+Ks1DWKoACZYMrl2trkOr1V8SjeMjkU5wXBNtjIfy+M3WQiA+77dDZTCY36B88TXixevN9i8c8kIC1NDaGNVzVGANWQaKlU6P68ohfr3NarP3yYp/LDmW6tV+7n3U0/mOqLKmSaOOFopWl8XqAWyBWEDOaLuqcRH1rtA5zA4SWlRU1xEZD2KnAWg0RV045rnrJhJRr1lZYJ0kDqRk6bVTsADbkD1WE+nZDX67VAsYaJXFYbRLlLM63AWIX7mX8DIUCsvkswt/wLnZ9YgWxmQas517YLKe7xURpyWgv/lpGU9vTNHLaZyZ7KgEb4NPSSTEJzHccF7j3
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM0PR04MB6452.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(451199021)(54906003)(4326008)(8676002)(8936002)(5660300002)(36756003)(478600001)(6916009)(6486002)(66946007)(6666004)(66476007)(66556008)(52116002)(316002)(6512007)(41300700001)(38350700002)(38100700002)(186003)(2616005)(7416002)(6506007)(26005)(1076003)(44832011)(86362001)(83380400001)(2906002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FdY6HpO6A8162vBUZI1zC07sUdescZkfUM9GW4NJD+wMxP6+aDg2GV/2K/i6?=
+ =?us-ascii?Q?0SxPjiIGQuMr5wFoQulj9O9C3K1iiboikPz2P6EtWkmlxywwdR6rfstHlMZ0?=
+ =?us-ascii?Q?wI8FrOBmccKSRCoWe9h+YjwbRHeY8fSWUUh6UjwHKQiVQg5sw9xrJsPFV5Bd?=
+ =?us-ascii?Q?PfgoxQkU44uOk7hbMjDYRqN83vr023wTfAuZUFaDCpR/ezrNpo6aktKbSROK?=
+ =?us-ascii?Q?dJ8LBMo08WBnHQhPAi6InO/wKMDrI4iym9XB86CoMvm0hv1KvcncNqQRAfb/?=
+ =?us-ascii?Q?9tnIh++SXGoVyY9U/5UtmmvizvVqZ6CCdZwDX6uI/tXwR4NKHlCZKtZaw72W?=
+ =?us-ascii?Q?8JqtmXAEgOoGkt5/+U8jkFHtVXw1EqT3B8NvqmlaTNagAHjc5nZX6YRzQPq8?=
+ =?us-ascii?Q?MnopX2sd8bzfXXReHVtCjO+/LWDZ2HeYi7ZC539iAJc7qPctE0f6inFMjJJY?=
+ =?us-ascii?Q?P3PU/2gnkFSW2QbZqRSN9TJHJgGDBtDiLU3+r5t3cNaeHEDNB0vjFp9PoRTf?=
+ =?us-ascii?Q?WoLPYASv0oTMLBBnUNcRpbUy9UXzHCoPeGwvXGi0F7hzokZ4UlkWjoR0FtRk?=
+ =?us-ascii?Q?FTp00BLO8XQmtsQPUSeo0UOPZ/GXXYsn3EDiqc1pC6ocSqH2a7GLWsG7dAU3?=
+ =?us-ascii?Q?jE1btosVs0UCPpxKy5s7fCMPmKf/hIVtswthIQvhwqjNjYF0tSY1aRfUFWET?=
+ =?us-ascii?Q?vq8aSqI3UCyjd+RV2wS29hXW6Nq8uaInOwDk/naO1WomO8UEIl7fJ0C05+YQ?=
+ =?us-ascii?Q?K9QU4X0XiFXam5A/qd0mF/yBb3EANvuEoFiuNEDduywaLgSNmyRIg9mfviAE?=
+ =?us-ascii?Q?qQ1BUFgNlau70YTsm28iB+eL9lKGQXEwNw6l0I+BVSkvgaWkbP1iq9Pq8DZt?=
+ =?us-ascii?Q?Aozksn2qfTxht9U5r2qaQUB6RpuR4An+TtGsxlbsziCKlo3BqJ3MH+iLpkwy?=
+ =?us-ascii?Q?11ItwyiD5amyomX+UTR2Uxs7hAzADH3ltrui7AR9coEOXGOL7PQSsMoInPeE?=
+ =?us-ascii?Q?YBeEn8XtblhHnKVEB/Ma1B5+LZiayBpp7diPvyOw3YI3mBKXxMPv6AB1IVaW?=
+ =?us-ascii?Q?Er3yd3Zz8VUFt4GGEb6KDJQgjfRK5MWahFaDFvJ0eNAhXB2Ypbn00PsURxDc?=
+ =?us-ascii?Q?DiuLg4YBi1MlkQoQ+60U2zpdica2BCjbV0i3azaHJRAZ+pP0dnY1zoDX3E0i?=
+ =?us-ascii?Q?VuVG9xdthH1p+15S8yzVcie3odc8ogUYZFdcdzgqWsvBwGLoSfy7ZbiLAbaJ?=
+ =?us-ascii?Q?50/vvDr/+61qsRhAIj5Fz5p/iqt25zILkdAbTq9MWqIQE6QONZ/cx9aynW/n?=
+ =?us-ascii?Q?Q5X5ND0RV4lSC5ih+GVwSOpO1OI3VzUfx9L9lzL7kKCaZlnbsurY64qD4LKK?=
+ =?us-ascii?Q?STo2OLDGtvJTpWDlRUv6abFlgegz9g3wK0/ptZBd7K7YPP5ho7CZwyKnQTL+?=
+ =?us-ascii?Q?SvTOKeUP0BNFJJ7NuFIRRM5p7DEb1tNlRPpKFJ1BO2EMO7wEBFJS6ph9kuPi?=
+ =?us-ascii?Q?/w6E2uxz6Zr/W5rp+NWdVCE3RQqeDTwVIXfmUbZtwX1W8wGe33xZGO8Zj0vp?=
+ =?us-ascii?Q?xo42TVUP20a8AG+lI5uAJGDjncmrEp3UGYrLw/lqbgNevHjoGGxr2cOMG+zE?=
+ =?us-ascii?Q?aw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8fd1bda-d648-4b26-3112-08db7988da02
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 16:41:28.4897 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GS1jBw7IPyxaBe2TBvUgL0B9scdeuaXAYZ1qZ/d5HDajFGav1BxnPioDPlOeM5Dm3zs8XUHiA5cYiyffkNanaQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8343
+Cc: Vlad Yasevich <vyasevic@redhat.com>, "Michael S. Tsirkin" <mst@redhat.com>,
+ Ido Schimmel <idosch@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Eric Dumazet <edumazet@google.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [PATCH net] net: bridge: keep ports without
+	IFF_UNICAST_FLT in BR_PROMISC mode
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -118,161 +150,192 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ziqi Zhao via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ziqi Zhao <astrajoan@yahoo.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The following 3 locks would race against each other, causing the
-deadlock situation in the Syzbot bug report:
+According to the synchronization rules for .ndo_get_stats() as seen in
+Documentation/networking/netdevices.rst, acquiring a plain spin_lock()
+should not be illegal, but the bridge driver implementation makes it so.
 
-- j1939_socks_lock
-- active_session_list_lock
-- sk_session_queue_lock
+After running these commands, I am being faced with the following
+lockdep splat:
 
-A reasonable fix is to change j1939_socks_lock to an rwlock, since in
-the rare situations where a write lock is required for the linked list
-that j1939_socks_lock is protecting, the code does not attempt to
-acquire any more locks. This would break the circular lock dependency,
-where, for example, the current thread already locks j1939_socks_lock
-and attempts to acquire sk_session_queue_lock, and at the same time,
-another thread attempts to acquire j1939_socks_lock while holding
-sk_session_queue_lock.
+$ ip link add link swp0 name macsec0 type macsec encrypt on && ip link set swp0 up
+$ ip link add dev br0 type bridge vlan_filtering 1 && ip link set br0 up
+$ ip link set macsec0 master br0 && ip link set macsec0 up
 
-NOTE: This patch along does not fix the unregister_netdevice bug
-reported by Syzbot; instead, it solves a deadlock situation to prepare
-for one or more further patches to actually fix the Syzbot bug, which
-appears to be a reference counting problem within the j1939 codebase.
+  ========================================================
+  WARNING: possible irq lock inversion dependency detected
+  6.4.0-04295-g31b577b4bd4a #603 Not tainted
+  --------------------------------------------------------
+  swapper/1/0 just changed the state of lock:
+  ffff6bd348724cd8 (&br->lock){+.-.}-{3:3}, at: br_forward_delay_timer_expired+0x34/0x198
+  but this lock took another, SOFTIRQ-unsafe lock in the past:
+   (&ocelot->stats_lock){+.+.}-{3:3}
 
-Signed-off-by: Ziqi Zhao <astrajoan@yahoo.com>
+  and interrupts could create inverse lock ordering between them.
+
+  other info that might help us debug this:
+  Chain exists of:
+    &br->lock --> &br->hash_lock --> &ocelot->stats_lock
+
+   Possible interrupt unsafe locking scenario:
+
+         CPU0                    CPU1
+         ----                    ----
+    lock(&ocelot->stats_lock);
+                                 local_irq_disable();
+                                 lock(&br->lock);
+                                 lock(&br->hash_lock);
+    <Interrupt>
+      lock(&br->lock);
+
+   *** DEADLOCK ***
+
+(details about the 3 locks skipped)
+
+swp0 is instantiated by drivers/net/dsa/ocelot/felix.c, and this
+only matters to the extent that its .ndo_get_stats64() method calls
+spin_lock(&ocelot->stats_lock).
+
+Documentation/locking/lockdep-design.rst says:
+
+| A lock is irq-safe means it was ever used in an irq context, while a lock
+| is irq-unsafe means it was ever acquired with irq enabled.
+
+(...)
+
+| Furthermore, the following usage based lock dependencies are not allowed
+| between any two lock-classes::
+|
+|    <hardirq-safe>   ->  <hardirq-unsafe>
+|    <softirq-safe>   ->  <softirq-unsafe>
+
+Lockdep marks br->hash_lock as softirq-safe, because it is sometimes
+taken in softirq context (for example br_fdb_update() which runs in
+NET_RX softirq), and when it's not in softirq context it blocks softirqs
+by using spin_lock_bh().
+
+Lockdep marks ocelot->stats_lock as softirq-unsafe, because it never
+blocks softirqs from running, and it is never taken from softirq
+context. So it can always be interrupted by softirqs.
+
+There is a call path through which a function that holds br->hash_lock:
+fdb_add_hw_addr() will call a function that acquires ocelot->stats_lock:
+ocelot_port_get_stats64(). This can be seen below:
+
+ocelot_port_get_stats64+0x3c/0x1e0
+felix_get_stats64+0x20/0x38
+dsa_slave_get_stats64+0x3c/0x60
+dev_get_stats+0x74/0x2c8
+rtnl_fill_stats+0x4c/0x150
+rtnl_fill_ifinfo+0x5cc/0x7b8
+rtmsg_ifinfo_build_skb+0xe4/0x150
+rtmsg_ifinfo+0x5c/0xb0
+__dev_notify_flags+0x58/0x200
+__dev_set_promiscuity+0xa0/0x1f8
+dev_set_promiscuity+0x30/0x70
+macsec_dev_change_rx_flags+0x68/0x88
+__dev_set_promiscuity+0x1a8/0x1f8
+__dev_set_rx_mode+0x74/0xa8
+dev_uc_add+0x74/0xa0
+fdb_add_hw_addr+0x68/0xd8
+fdb_add_local+0xc4/0x110
+br_fdb_add_local+0x54/0x88
+br_add_if+0x338/0x4a0
+br_add_slave+0x20/0x38
+do_setlink+0x3a4/0xcb8
+rtnl_newlink+0x758/0x9d0
+rtnetlink_rcv_msg+0x2f0/0x550
+netlink_rcv_skb+0x128/0x148
+rtnetlink_rcv+0x24/0x38
+
+the plain English explanation for it is:
+
+The macsec0 bridge port is created without p->flags & BR_PROMISC,
+because it is what br_manage_promisc() decides for a VLAN filtering
+bridge with a single auto port.
+
+As part of the br_add_if() procedure, br_fdb_add_local() is called for
+the MAC address of the device, and this results in a call to
+dev_uc_add() for macsec0 while the softirq-safe br->hash_lock is taken.
+
+Because macsec0 does not have IFF_UNICAST_FLT, dev_uc_add() ends up
+calling __dev_set_promiscuity() for macsec0, which is propagated by its
+implementation, macsec_dev_change_rx_flags(), to the lower device: swp0.
+This triggers the call path:
+
+dev_set_promiscuity(swp0)
+-> rtmsg_ifinfo()
+   -> dev_get_stats()
+      -> ocelot_port_get_stats64()
+
+with a calling context that lockdep doesn't like (br->hash_lock held).
+
+Normally we don't see this, because even though many drivers that can be
+bridge ports don't support IFF_UNICAST_FLT, we need a driver that
+
+(a) doesn't support IFF_UNICAST_FLT, *and*
+(b) it forwards the IFF_PROMISC flag to another driver, and
+(c) *that* driver implements ndo_get_stats64() using a softirq-unsafe
+    spinlock.
+
+Condition (b) is necessary because the first __dev_set_rx_mode() calls
+__dev_set_promiscuity() with "bool notify=false", and thus, the
+rtmsg_ifinfo() code path won't be entered.
+
+The same criteria also hold true for DSA switches which don't report
+IFF_UNICAST_FLT. When the DSA master uses a spin_lock() in its
+ndo_get_stats64() method, the same lockdep splat can be seen.
+
+I think the deadlock possibility is real, even though I didn't reproduce
+it, and I'm thinking of the following situation to support that claim:
+
+fdb_add_hw_addr() runs on a CPU A, in a context with softirqs locally
+disabled and br->hash_lock held, and may end up attempting to acquire
+ocelot->stats_lock.
+
+In parallel, ocelot->stats_lock is currently held by a thread B (say,
+ocelot_check_stats_work()), which is interrupted while holding it by a
+softirq which attempts to lock br->hash_lock.
+
+Thread B cannot make progress because br->hash_lock is held by A. Whereas
+thread A cannot make progress because ocelot->stats_lock is held by B.
+
+When taking the issue at face value, the bridge can avoid that problem
+by simply making the ports promiscuous from a code path with a saner
+calling context (br->hash_lock not held). A bridge port without
+IFF_UNICAST_FLT is going to become promiscuous as soon as we call
+dev_uc_add() on it (which we do unconditionally), so why not be
+preemptive and make it promiscuous right from the beginning, so as to
+not be taken by surprise.
+
+With this, we've broken the links between code that holds br->hash_lock
+or br->lock and code that calls into the ndo_change_rx_flags() or
+ndo_get_stats64() ops of the bridge port.
+
+Fixes: 2796d0c648c9 ("bridge: Automatically manage port promiscuous mode.")
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
- net/can/j1939/j1939-priv.h |  2 +-
- net/can/j1939/main.c       |  2 +-
- net/can/j1939/socket.c     | 25 +++++++++++++------------
- 3 files changed, 15 insertions(+), 14 deletions(-)
+ net/bridge/br_if.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/net/can/j1939/j1939-priv.h b/net/can/j1939/j1939-priv.h
-index 16af1a7f80f6..74f15592d170 100644
---- a/net/can/j1939/j1939-priv.h
-+++ b/net/can/j1939/j1939-priv.h
-@@ -86,7 +86,7 @@ struct j1939_priv {
- 	unsigned int tp_max_packet_size;
- 
- 	/* lock for j1939_socks list */
--	spinlock_t j1939_socks_lock;
-+	rwlock_t j1939_socks_lock;
- 	struct list_head j1939_socks;
- 
- 	struct kref rx_kref;
-diff --git a/net/can/j1939/main.c b/net/can/j1939/main.c
-index ecff1c947d68..a6fb89fa6278 100644
---- a/net/can/j1939/main.c
-+++ b/net/can/j1939/main.c
-@@ -274,7 +274,7 @@ struct j1939_priv *j1939_netdev_start(struct net_device *ndev)
- 		return ERR_PTR(-ENOMEM);
- 
- 	j1939_tp_init(priv);
--	spin_lock_init(&priv->j1939_socks_lock);
-+	rwlock_init(&priv->j1939_socks_lock);
- 	INIT_LIST_HEAD(&priv->j1939_socks);
- 
- 	mutex_lock(&j1939_netdev_lock);
-diff --git a/net/can/j1939/socket.c b/net/can/j1939/socket.c
-index 35970c25496a..6dce9d645116 100644
---- a/net/can/j1939/socket.c
-+++ b/net/can/j1939/socket.c
-@@ -80,16 +80,16 @@ static void j1939_jsk_add(struct j1939_priv *priv, struct j1939_sock *jsk)
- 	jsk->state |= J1939_SOCK_BOUND;
- 	j1939_priv_get(priv);
- 
--	spin_lock_bh(&priv->j1939_socks_lock);
-+	write_lock_bh(&priv->j1939_socks_lock);
- 	list_add_tail(&jsk->list, &priv->j1939_socks);
--	spin_unlock_bh(&priv->j1939_socks_lock);
-+	write_unlock_bh(&priv->j1939_socks_lock);
- }
- 
- static void j1939_jsk_del(struct j1939_priv *priv, struct j1939_sock *jsk)
- {
--	spin_lock_bh(&priv->j1939_socks_lock);
-+	write_lock_bh(&priv->j1939_socks_lock);
- 	list_del_init(&jsk->list);
--	spin_unlock_bh(&priv->j1939_socks_lock);
-+	write_unlock_bh(&priv->j1939_socks_lock);
- 
- 	j1939_priv_put(priv);
- 	jsk->state &= ~J1939_SOCK_BOUND;
-@@ -329,13 +329,13 @@ bool j1939_sk_recv_match(struct j1939_priv *priv, struct j1939_sk_buff_cb *skcb)
- 	struct j1939_sock *jsk;
- 	bool match = false;
- 
--	spin_lock_bh(&priv->j1939_socks_lock);
-+	read_lock_bh(&priv->j1939_socks_lock);
- 	list_for_each_entry(jsk, &priv->j1939_socks, list) {
- 		match = j1939_sk_recv_match_one(jsk, skcb);
- 		if (match)
- 			break;
- 	}
--	spin_unlock_bh(&priv->j1939_socks_lock);
-+	read_unlock_bh(&priv->j1939_socks_lock);
- 
- 	return match;
- }
-@@ -344,11 +344,11 @@ void j1939_sk_recv(struct j1939_priv *priv, struct sk_buff *skb)
- {
- 	struct j1939_sock *jsk;
- 
--	spin_lock_bh(&priv->j1939_socks_lock);
-+	read_lock_bh(&priv->j1939_socks_lock);
- 	list_for_each_entry(jsk, &priv->j1939_socks, list) {
- 		j1939_sk_recv_one(jsk, skb);
- 	}
--	spin_unlock_bh(&priv->j1939_socks_lock);
-+	read_unlock_bh(&priv->j1939_socks_lock);
- }
- 
- static void j1939_sk_sock_destruct(struct sock *sk)
-@@ -484,6 +484,7 @@ static int j1939_sk_bind(struct socket *sock, struct sockaddr *uaddr, int len)
- 
- 		priv = j1939_netdev_start(ndev);
- 		dev_put(ndev);
-+
- 		if (IS_ERR(priv)) {
- 			ret = PTR_ERR(priv);
- 			goto out_release_sock;
-@@ -1078,12 +1079,12 @@ void j1939_sk_errqueue(struct j1939_session *session,
- 	}
- 
- 	/* spread RX notifications to all sockets subscribed to this session */
--	spin_lock_bh(&priv->j1939_socks_lock);
-+	read_lock_bh(&priv->j1939_socks_lock);
- 	list_for_each_entry(jsk, &priv->j1939_socks, list) {
- 		if (j1939_sk_recv_match_one(jsk, &session->skcb))
- 			__j1939_sk_errqueue(session, &jsk->sk, type);
- 	}
--	spin_unlock_bh(&priv->j1939_socks_lock);
-+	read_unlock_bh(&priv->j1939_socks_lock);
- };
- 
- void j1939_sk_send_loop_abort(struct sock *sk, int err)
-@@ -1271,7 +1272,7 @@ void j1939_sk_netdev_event_netdown(struct j1939_priv *priv)
- 	struct j1939_sock *jsk;
- 	int error_code = ENETDOWN;
- 
--	spin_lock_bh(&priv->j1939_socks_lock);
-+	read_lock_bh(&priv->j1939_socks_lock);
- 	list_for_each_entry(jsk, &priv->j1939_socks, list) {
- 		jsk->sk.sk_err = error_code;
- 		if (!sock_flag(&jsk->sk, SOCK_DEAD))
-@@ -1279,7 +1280,7 @@ void j1939_sk_netdev_event_netdown(struct j1939_priv *priv)
- 
- 		j1939_sk_queue_drop_all(priv, jsk, error_code);
- 	}
--	spin_unlock_bh(&priv->j1939_socks_lock);
-+	read_unlock_bh(&priv->j1939_socks_lock);
- }
- 
- static int j1939_sk_no_ioctlcmd(struct socket *sock, unsigned int cmd,
+diff --git a/net/bridge/br_if.c b/net/bridge/br_if.c
+index 3f04b40f6056..2450690f98cf 100644
+--- a/net/bridge/br_if.c
++++ b/net/bridge/br_if.c
+@@ -166,8 +166,9 @@ void br_manage_promisc(struct net_bridge *br)
+ 			 * This lets us disable promiscuous mode and write
+ 			 * this config to hw.
+ 			 */
+-			if (br->auto_cnt == 0 ||
+-			    (br->auto_cnt == 1 && br_auto_port(p)))
++			if ((p->dev->priv_flags & IFF_UNICAST_FLT) &&
++			    (br->auto_cnt == 0 ||
++			     (br->auto_cnt == 1 && br_auto_port(p))))
+ 				br_port_clear_promisc(p);
+ 			else
+ 				br_port_set_promisc(p);
 -- 
 2.34.1
 
