@@ -1,67 +1,84 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2F65763990
-	for <lists.bridge@lfdr.de>; Wed, 26 Jul 2023 16:51:12 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C2B763E11
+	for <lists.bridge@lfdr.de>; Wed, 26 Jul 2023 20:01:44 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 4E870404C2;
-	Wed, 26 Jul 2023 14:51:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4E870404C2
+	by smtp3.osuosl.org (Postfix) with ESMTP id 5A67860EF9;
+	Wed, 26 Jul 2023 18:01:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5A67860EF9
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Iln/whwi
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id h7slBBgGzLIg; Wed, 26 Jul 2023 14:51:10 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id D9C1740105;
-	Wed, 26 Jul 2023 14:51:09 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D9C1740105
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id NhcxnMLXSkDY; Wed, 26 Jul 2023 18:01:41 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id F12FC60EFE;
+	Wed, 26 Jul 2023 18:01:40 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F12FC60EFE
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 687C5C0DD4;
-	Wed, 26 Jul 2023 14:51:09 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 96955C0DD4;
+	Wed, 26 Jul 2023 18:01:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 71623C0032
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:51:07 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 16D0EC0032
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 18:01:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 4ACE641817
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:51:07 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4ACE641817
+ by smtp2.osuosl.org (Postfix) with ESMTP id E612D405CE
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 18:01:38 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E612D405CE
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org
+ header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Iln/whwi
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id aYcR9jaLz4ai for <bridge@lists.linux-foundation.org>;
- Wed, 26 Jul 2023 14:51:04 +0000 (UTC)
-X-Greylist: delayed 1155 seconds by postgrey-1.37 at util1.osuosl.org;
- Wed, 26 Jul 2023 14:51:04 UTC
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8F48D40879
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 8F48D40879
- for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:51:04 +0000 (UTC)
-Received: from canpemm500007.china.huawei.com (unknown [172.30.72.56])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4R9xCH2Vstz1GDFN;
- Wed, 26 Jul 2023 22:30:51 +0800 (CST)
-Received: from localhost (10.174.179.215) by canpemm500007.china.huawei.com
- (7.192.104.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 26 Jul
- 2023 22:31:44 +0800
-To: <roopa@nvidia.com>, <razor@blackwall.org>, <davem@davemloft.net>,
- <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
- <idosch@nvidia.com>
-Date: Wed, 26 Jul 2023 22:31:41 +0800
-Message-ID: <20230726143141.11704-1-yuehaibing@huawei.com>
-X-Mailer: git-send-email 2.10.2.windows.1
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id htHDfM2y_dTo for <bridge@lists.linux-foundation.org>;
+ Wed, 26 Jul 2023 18:01:37 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 862EF405D8
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 18:01:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 862EF405D8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=mOs0FbEX7U/JftVf/7w+izAt0GEtfD+who6ul2jmL1A=; b=Iln/whwi3yb0OCDfnbyBjMdx+m
+ juFI59CritCNSyW6F5D0XpHC0iscqFmdZ00//lCiuYir0a6u4x+Trb0fDiT1I8lWJsP6oU29GK/FQ
+ HnfImdfWz3d/FFVFAVn2c5NvOhMlPOV/jQ9Gw7gF/R+QQhgAxkPBg30gZGpfWe9e6F1g3T860ToDU
+ 3b3igthrZTDls6/w68U1gJwMhAvJIATJevMX85S2LJO5gw+sF1p7LDa7daV4DC/GaXuMpeYo9ezaB
+ YVbkS848bTHFzserKKNJffxnqBuL9rIXky9EaSjRDnBy0AFCo9mO69kFKWdY6Q9jqUcRgtsOlJyZn
+ kzcXs81A==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.96 #2 (Red
+ Hat Linux)) id 1qOip5-00BERo-0b; Wed, 26 Jul 2023 18:01:19 +0000
+Date: Wed, 26 Jul 2023 11:01:19 -0700
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: Joel Granados <j.granados@samsung.com>
+Message-ID: <ZMFfb4bJ6neACe5X@bombadil.infradead.org>
+References: <20230726140635.2059334-1-j.granados@samsung.com>
+ <CGME20230726140706eucas1p1b11e5f0bd17f0de19af9608cbd8d17f3@eucas1p1.samsung.com>
+ <20230726140635.2059334-11-j.granados@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.174.179.215]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- canpemm500007.china.huawei.com (7.192.104.62)
-X-CFilter-Loop: Reflected
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- YueHaibing <yuehaibing@huawei.com>, linux-kernel@vger.kernel.org
-Subject: [Bridge] [PATCH net-next] bridge: Remove unused declaration
-	br_multicast_set_hash_max()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726140635.2059334-11-j.granados@samsung.com>
+Cc: coreteam@netfilter.org, keescook@chromium.org, josh@joshtriplett.org,
+ netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Florian Westphal <fw@strlen.de>,
+ Julian Anastasov <ja@ssi.bg>, willy@infradead.org,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, lvs-devel@vger.kernel.org,
+ David Ahern <dsahern@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Simon Horman <horms@verge.net.au>, netfilter-devel@vger.kernel.org,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: Re: [Bridge] [PATCH 10/14] netfilter: Update to
+	register_net_sysctl_sz
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -73,31 +90,15 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: YueHaibing via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: YueHaibing <yuehaibing@huawei.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Since commit 19e3a9c90c53 ("net: bridge: convert multicast to generic rhashtable")
-this is not used, so can remove it.
+On Wed, Jul 26, 2023 at 04:06:30PM +0200, Joel Granados wrote:
+> This is part of the effort to remove the sentinel (last empty) element
+> from the ctl_table arrays. We update to the new function and pass it the
+> array size. Care is taken to mirror the NULL assignments with a size of
+> zero (for the unprivileged users)
 
-Signed-off-by: YueHaibing <yuehaibing@huawei.com>
----
- net/bridge/br_private.h | 1 -
- 1 file changed, 1 deletion(-)
+Same in this commit, the "why" is missing and size impact, if any.
 
-diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-index 51e4ca54b537..a1f4acfa6994 100644
---- a/net/bridge/br_private.h
-+++ b/net/bridge/br_private.h
-@@ -974,7 +974,6 @@ int br_multicast_set_vlan_router(struct net_bridge_vlan *v, u8 mcast_router);
- int br_multicast_toggle(struct net_bridge *br, unsigned long val,
- 			struct netlink_ext_ack *extack);
- int br_multicast_set_querier(struct net_bridge_mcast *brmctx, unsigned long val);
--int br_multicast_set_hash_max(struct net_bridge *br, unsigned long val);
- int br_multicast_set_igmp_version(struct net_bridge_mcast *brmctx,
- 				  unsigned long val);
- #if IS_ENABLED(CONFIG_IPV6)
--- 
-2.34.1
-
+  Luis
