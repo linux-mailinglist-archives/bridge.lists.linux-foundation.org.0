@@ -1,116 +1,151 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id A684B75DC5C
-	for <lists.bridge@lfdr.de>; Sat, 22 Jul 2023 14:06:35 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 165947638C2
+	for <lists.bridge@lfdr.de>; Wed, 26 Jul 2023 16:15:07 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 060C760DED;
-	Sat, 22 Jul 2023 12:06:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 060C760DED
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (4096-bit key) header.d=quietfountain.com header.i=@quietfountain.com header.a=rsa-sha256 header.s=dkim header.b=hE7jq7w8
+	by smtp4.osuosl.org (Postfix) with ESMTP id 1C65D41D8F;
+	Wed, 26 Jul 2023 14:15:05 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1C65D41D8F
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=pNaW5b8T
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id nprZQYEin1cR; Sat, 22 Jul 2023 12:06:31 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id N8qF7RUGc51a; Wed, 26 Jul 2023 14:15:03 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 82EE260E7A;
-	Sat, 22 Jul 2023 12:06:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 82EE260E7A
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 7595641D9D;
+	Wed, 26 Jul 2023 14:15:02 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7595641D9D
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id AFC56C008D;
-	Sat, 22 Jul 2023 12:06:29 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C1ECCC0DD4;
+	Wed, 26 Jul 2023 14:15:01 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D1FC8C0032
- for <bridge@lists.linux-foundation.org>; Thu, 13 Jul 2023 13:58:26 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id B7911C0032
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:14:59 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 9EFC883CDF
- for <bridge@lists.linux-foundation.org>; Thu, 13 Jul 2023 13:58:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9EFC883CDF
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (4096-bit key) header.d=quietfountain.com
- header.i=@quietfountain.com header.a=rsa-sha256 header.s=dkim
- header.b=hE7jq7w8
+ by smtp2.osuosl.org (Postfix) with ESMTP id 9FAA941748
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:14:59 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9FAA941748
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com
+ header.a=rsa-sha256 header.s=mail20170921 header.b=pNaW5b8T
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 6qUiiSgS7t7m for <bridge@lists.linux-foundation.org>;
- Thu, 13 Jul 2023 13:58:24 +0000 (UTC)
-X-Greylist: delayed 00:07:08 by SQLgrey-1.8.0
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CB24B83CDB
-Received: from mail2-1.quietfountain.com (mail2-1.quietfountain.com
- [64.111.48.224])
- by smtp1.osuosl.org (Postfix) with ESMTPS id CB24B83CDB
- for <bridge@lists.linux-foundation.org>; Thu, 13 Jul 2023 13:58:23 +0000 (UTC)
-Received: from mail2-1.quietfountain.com (localhost [127.0.0.1])
- by mail2-1.quietfountain.com (Postfix) with ESMTP id 4R1wxS5Xw7zshQk
- for <bridge@lists.linux-foundation.org>; Thu, 13 Jul 2023 08:51:08 -0500 (CDT)
-Authentication-Results: mail2-1.quietfountain.com (amavisd-new);
- dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
- header.d=quietfountain.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
- quietfountain.com; h=content-transfer-encoding:content-type
- :in-reply-to:organization:from:references:to:content-language
- :subject:user-agent:mime-version:date:message-id; s=dkim; t=
- 1689256256; x=1691848257; bh=t3KoUQ576nwgQDgQyh6XtUiiZCI2C4INCDa
- FAm36//8=; b=hE7jq7w8Eu2/m+JHQN56PpyfwdyTFGg5g/5SgHjxCUx/ge3V3wy
- cgNchZrfHrZoAHcQg/Q2aNq115c9fFvJw6/sudEDkoDMb3Ri/WlDo71ck4D72OoX
- gAcN537Cq+D194GtY2kqJliJfd/yfI8aHqiJY0x7SmH9SNY2gLyEIXo5cxsE/7KR
- WkkZzEWWdQ0JX0fBeTDJ2+X8srcS17GdAnlbtjk24DMNAtn4yrBvJgPzKHv0zJX0
- YS9BJpXFoW5YQ7rgXEyo5vwdxAEbo/otmLnSkYS40/G9CWQS7UTw2XrYS8FeJLKo
- JmNP5HOmezY9mPs+YVF1uxtx/kV3ESoikHNQr4/cq1cfQQz/4eexYBrtRVJnuwO7
- 7aJRnruuTL5JRLe1LqnR0dMsnL3Oja+v0mIFblY4ifoBTuudId0BXxVfz+Ik7obs
- q9t3c6bE2BJT+mx0GIwGu31yaZUej8176Ir7ptD+j9tqQmmSFC1+N+emor0JJFlX
- yO3bDiOERgWvioF+NKcvQOiXByFOEN3fQ5bAEcM7Pjflg1FdsaVS7l6Rn4gbLMpA
- NAqcju3KWUHO93Nnyhbxr4TCk+yl3jooEktPjSDLFaqPfZ2SBqWX4O/nD9bSu+ce
- SVoQI8nMWERcbG1rzE1Mq0dVdRi5OY28fdOvPpYZOz2tfdFFp+k32KgI=
-X-Virus-Scanned: Debian amavisd-new at email2.1.quietfountain.com
-Received: from mail2-1.quietfountain.com ([127.0.0.1])
- by mail2-1.quietfountain.com (mail2-1.quietfountain.com [127.0.0.1])
- (amavisd-new, port 10026)
- with ESMTP id Wz7w6g2ljSin for <bridge@lists.linux-foundation.org>;
- Thu, 13 Jul 2023 08:50:56 -0500 (CDT)
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-X-Greylist: whitelisted by SQLgrey-1.8.0
-Received: from [10.12.114.193] (unknown [10.12.114.193])
- by mail2-1.quietfountain.com (Postfix) with ESMTPSA id 4R1wxC6C8lzsfvj;
- Thu, 13 Jul 2023 08:50:55 -0500 (CDT)
-Message-ID: <f4f1b9b4-abc9-842a-205a-35588916115d@quietfountain.com>
-Date: Thu, 13 Jul 2023 08:50:44 -0500
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id bh7mJqO0A7fR for <bridge@lists.linux-foundation.org>;
+ Wed, 26 Jul 2023 14:14:58 +0000 (UTC)
+X-Greylist: delayed 468 seconds by postgrey-1.37 at util1.osuosl.org;
+ Wed, 26 Jul 2023 14:14:57 UTC
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 882154176C
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
+ [210.118.77.12])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 882154176C
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:14:57 +0000 (UTC)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20230726140707euoutp02f924f8248e14232939a8523c7f0b541f~1cArXG9gQ1609016090euoutp02F
+ for <bridge@lists.linux-foundation.org>; Wed, 26 Jul 2023 14:07:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20230726140707euoutp02f924f8248e14232939a8523c7f0b541f~1cArXG9gQ1609016090euoutp02F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1690380427;
+ bh=N/tDn9xxgtPj3eeWaK+OzmB4bUzNii0EGpI6o50nYlo=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=pNaW5b8TJXaGTl1SEuaXc3ZPzT0d2nuEoslVgvOznQrgb+q/d3VchRseOWur1yssr
+ +H7P9gKV9QvqmRVOmPMZc8ggqAvdsuCPJ+7OtRJog09Io0I752iv2UyIRr3Ut0VhSW
+ UUxo/Kz5iL/QA6svZHhypp0DmctgIICynw76tBn0=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20230726140706eucas1p24789a1a06dfe1ac64f6f1096b26f3d07~1cAq-VuOC0231902319eucas1p2b;
+ Wed, 26 Jul 2023 14:07:06 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id E8.66.37758.A8821C46; Wed, 26
+ Jul 2023 15:07:06 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20230726140706eucas1p1b11e5f0bd17f0de19af9608cbd8d17f3~1cAqhUQ8V1609216092eucas1p1z;
+ Wed, 26 Jul 2023 14:07:06 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20230726140706eusmtrp2578967f01f9a76cc3d031fa9ca6dff29~1cAqgYz0r2063520635eusmtrp2I;
+ Wed, 26 Jul 2023 14:07:06 +0000 (GMT)
+X-AuditID: cbfec7f5-815ff7000002937e-1f-64c1288a133f
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id F8.57.14344.98821C46; Wed, 26
+ Jul 2023 15:07:05 +0100 (BST)
+Received: from localhost (unknown [106.210.248.223]) by eusmtip1.samsung.com
+ (KnoxPortal) with ESMTPA id
+ 20230726140705eusmtip1a687fd37e974447dc1969db1ddf960e4~1cAqM8dOl0182201822eusmtip1c;
+ Wed, 26 Jul 2023 14:07:05 +0000 (GMT)
+From: Joel Granados <j.granados@samsung.com>
+To: mcgrof@kernel.org, Pablo Neira Ayuso <pablo@netfilter.org>, Jozsef
+ Kadlecsik <kadlec@netfilter.org>, Florian Westphal <fw@strlen.de>, Roopa
+ Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, David Ahern
+ <dsahern@kernel.org>, Simon Horman <horms@verge.net.au>, Julian Anastasov
+ <ja@ssi.bg>
+Date: Wed, 26 Jul 2023 16:06:30 +0200
+Message-Id: <20230726140635.2059334-11-j.granados@samsung.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230726140635.2059334-1-j.granados@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Nikolay Aleksandrov <razor@blackwall.org>,
- Ido Schimmel <idosch@idosch.org>, Kuniyuki Iwashima <kuniyu@amazon.com>
-References: <20230711235415.92166-1-kuniyu@amazon.com>
- <ZK69NDM60+N0TTFh@shredder>
- <caf5bc87-0b5f-cd44-3c1c-5842549c8c6e@blackwall.org>
-Organization: Quiet Fountain LLC / Rock Stable Systems
-In-Reply-To: <caf5bc87-0b5f-cd44-3c1c-5842549c8c6e@blackwall.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 22 Jul 2023 12:06:29 +0000
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- Kuniyuki Iwashima <kuni1840@gmail.com>, Eric Dumazet <edumazet@google.com>,
- "Eric W. Biederman" <ebiederm@xmission.com>, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH v1 net] bridge: Return an error when enabling
- STP in netns.
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf1CTdRzH+z7Ps2c/avg4vPZt/jpX3RnR1MPO753JpVk+kt3sutXh5dmO
+ PQLJGG0galaMCSEKTMWbjBm7ip8D1k0GjCOwdQ0RNqphTPKoEPwFSgEDlHRtPHj53/vz+bze
+ 3/fnc/fl4aJSUsJLTc9ktOnKNCkpIJo99/teKVz7g2r9OddqdKn+dy566PoSR5a+YwRqbMvD
+ 0KhnmIuai2wAGZxBgCo7/wJopGSYg0JWDSorNGCo94Qa/dxczEH+NguJDBWTOAoYRwHyWJ9F
+ xsbLBJrpGQfINH4FR5enQxiasqxF83MW8nUxfc/XDejynF8Iuqn2KkZbHVn0hZoYenBsC+2o
+ O07SZwLVgL47fwmjiwz3SHqi4wpJFzfVAfpUXjug3bNWDm25P0PQU45Vu6k9gtdUTFrqQUa7
+ Lv4jQYp/cIiT0bLp0OScHeSAQlkh4PMgtREWzOvJiBZRNQB6b+4uBIKwngaw0lwK2GIKwJ7v
+ 6sFjh29Wj7ODagB/7GxZpG4D2Dll4kQokoqFfePXFqhllB+HFy39RKTAqa8xeMvzEzdCRVPb
+ oP+P4YV3CepF+Nu/Z/GIFlLx0KM3cdm81TB/wLTA8MP92oZZDssshd1lI0RE42HG4CxfSIPU
+ Az5sH20gWPN2+OArB8bqaHinq2nx0RUw5KrAWMOZ8N6P/uayhQ3AKn1w0bEZHusfCQ944YiX
+ oL1tHdveCktODYJIG1JRMHB3KbtEFDzdbMLZthAW5ItY+gVYXFm6uI4EDvhdJKtp2Dps5hjB
+ GvMT55ifOMf8f64V4HVAzGTp1MmMLi6dyZbplGpdVnqyLEmjdoDwx+151BVsBTV3/pG5AcYD
+ bgB5uHSZcMOHHSqRUKU8fITRavZps9IYnRss5xFSsfDlLd1JIipZmckcYJgMRvt4ivH4khws
+ ZZ+K6h+Quw5+k7vjjY4y2+Y/HQmaZN9Y/7W488FqtFM9etJpObxy17e9Uq8gOuG8euhGaDx/
+ riCx3TWdINsT85yzyJht4x9aSd9wBrzC7igbuUReYe/1vc3IzXmGvs9alyuMZuGF8cQxccGn
+ G+We/ZVxieaPiaGJt7wx1ttJuqr37R79yTJuXK120wfCV8XlMwnBdzTPrLhYYUfvxZ5QbPN2
+ Ibdi18OzvnflqXPnFIHkzxVHV6m+z13yibyrJDpz4pb3+v72kVIt/sX2Nwefyt0q2TtyYIdp
+ b7bj6dDs85IjqbL8yXp9w9WM+I7eo8fXNHZW/Sq+rol11Ky35t083SIldCnKDTG4Vqf8D82I
+ EJEnBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpkleLIzCtJLcpLzFFi42I5/e/4Xd1OjYMpBvO+WVicWHOb3eLvznZm
+ iznnW1gs1u1qZbJ4euwRu8W23tWMFs1bvzJaLN3/kNHiSf8jVov/C/ItZnY1M1mc6c61uLCt
+ j9Xi8q45bBbN8z8xW9yY8JTR4tgCMYsJ606xWHw7/YbRYvqbq8wWp778Z7L4PEfD4vePOWwO
+ 4h7vzp1k9JjdcJHFY8vKm0weCzaVemxeoeVx67Wtx6ZVnWwek28sZ/R4+/sEk0dv8zs2j/f7
+ rrJ59G1ZxegxsXUPo8eh7wtYPeb8/Mbi8XmTXIBAlJ5NUX5pSapCRn5xia1StKGFkZ6hpYWe
+ kYmlnqGxeayVkamSvp1NSmpOZllqkb5dgl7G5Vv3WAu2m1d8+rGesYGxS6+LkZNDQsBE4tz3
+ RuYuRi4OIYGljBJnb69k7WLkAEpISXxfxglRIyzx51oXG0TNc0aJvytOsIAk2AR0JM6/uQPW
+ LCJwn1mi59caJhCHWWANk8TJBe/YQaqEBZwkLt9/xAhiswioSlz7M5UZxOYVsJM41jidHWKF
+ vETb9elgNZxA8ZVrv7OC2EICthI9U5+yQ9QLSpyc+QRsMzNQffPW2cwTGAVmIUnNQpJawMi0
+ ilEktbQ4Nz232EivODG3uDQvXS85P3cTIzAtbDv2c8sOxpWvPuodYmTiYDzEKMHBrCTCaxiz
+ L0WINyWxsiq1KD++qDQntfgQoynQ3ROZpUST84GJKa8k3tDMwNTQxMzSwNTSzFhJnNezoCNR
+ SCA9sSQ1OzW1ILUIpo+Jg1Oqgcl24xGljT4l5bY2mct0O2oEBNdn7La6k/cwsJMtn7OuhF2p
+ vtpDN5spkzFxwqfrN+b9+Dgj4D7v4n9ZwiXRoROF3u2/x5LIbRKWJpp9dofS89Qcke/HA9m2
+ M9w47iCq4mWm4bMhovx6aFzWiQPcheIm5dybr7ifqzWapOIccHxD3OX1UVwP3dPmvpY/pHne
+ JfznZc2S7VOKrY7H1Uc9NHkVP3vLy/o11xiD7q39+5WhNatIOjunatNU7gU/Wu7o/H/E+1Cv
+ odjZ4MPvEy7JAa++xXck6az7yzr148+IaetvM60983DqMWaGl7tXpapkq9iq6oocU2yILV+1
+ LF82rYEv4fcFxvfBomfzrxX8VGIpzkg01GIuKk4EAGwH1juUAwAA
+X-CMS-MailID: 20230726140706eucas1p1b11e5f0bd17f0de19af9608cbd8d17f3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20230726140706eucas1p1b11e5f0bd17f0de19af9608cbd8d17f3
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230726140706eucas1p1b11e5f0bd17f0de19af9608cbd8d17f3
+References: <20230726140635.2059334-1-j.granados@samsung.com>
+ <CGME20230726140706eucas1p1b11e5f0bd17f0de19af9608cbd8d17f3@eucas1p1.samsung.com>
+Cc: Joel Granados <j.granados@samsung.com>, keescook@chromium.org,
+ netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ josh@joshtriplett.org, willy@infradead.org, linux-kernel@vger.kernel.org,
+ lvs-devel@vger.kernel.org, coreteam@netfilter.org,
+ netfilter-devel@vger.kernel.org
+Subject: [Bridge] [PATCH 10/14] netfilter: Update to register_net_sysctl_sz
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -122,118 +157,189 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Harry Coin via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Harry Coin <hcoin@quietfountain.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+This is part of the effort to remove the sentinel (last empty) element
+from the ctl_table arrays. We update to the new function and pass it the
+array size. Care is taken to mirror the NULL assignments with a size of
+zero (for the unprivileged users)
 
-On 7/12/23 09:52, Nikolay Aleksandrov wrote:
-> On 12/07/2023 17:48, Ido Schimmel wrote:
->> On Tue, Jul 11, 2023 at 04:54:15PM -0700, Kuniyuki Iwashima wrote:
->>> When we create an L2 loop on a bridge in netns, we will see packets s=
-torm
->>> even if STP is enabled.
->>>
->>>    # unshare -n
->>>    # ip link add br0 type bridge
->>>    # ip link add veth0 type veth peer name veth1
->>>    # ip link set veth0 master br0 up
->>>    # ip link set veth1 master br0 up
->>>    # ip link set br0 type bridge stp_state 1
->>>    # ip link set br0 up
->>>    # sleep 30
->>>    # ip -s link show br0
->>>    2: br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue s=
-tate UP mode DEFAULT group default qlen 1000
->>>        link/ether b6:61:98:1c:1c:b5 brd ff:ff:ff:ff:ff:ff
->>>        RX: bytes  packets  errors  dropped missed  mcast
->>>        956553768  12861249 0       0       0       12861249  <-. Keep
->>>        TX: bytes  packets  errors  dropped carrier collsns     |  inc=
-reasing
->>>        1027834    11951    0       0       0       0         <-'   ra=
-pidly
->>>
->>> This is because llc_rcv() drops all packets in non-root netns and BPD=
-U
->>> is dropped.
->>>
->>> Let's show an error when enabling STP in netns.
->>>
->>>    # unshare -n
->>>    # ip link add br0 type bridge
->>>    # ip link set br0 type bridge stp_state 1
->>>    Error: bridge: STP can't be enabled in non-root netns.
->>>
->>> Note this commit will be reverted later when we namespacify the whole=
- LLC
->>> infra.
->>>
->>> Fixes: e730c15519d0 ("[NET]: Make packet reception network namespace =
-safe")
->>> Suggested-by: Harry Coin <hcoin@quietfountain.com>
->> I'm not sure that's accurate. I read his response in the link below an=
-d
->> he says "I'd rather be warned than blocked" and "But better warned and
->> awaiting a fix than blocked", which I agree with. The patch has the
->> potential to cause a lot of regressions, but without actually fixing t=
-he
->> problem.
->>
->> How about simply removing the error [1]? Since iproute2 commit
->> 844c37b42373 ("libnetlink: Handle extack messages for non-error case")=
-,
->> it can print extack warnings and not only errors. With the diff below:
->>
->>   # unshare -n
->>   # ip link add name br0 type bridge
->>   # ip link set dev br0 type bridge stp_state 1
->>   Warning: bridge: STP can't be enabled in non-root netns.
->>   # echo $?
->>   0
->>
->> [1]
->> diff --git a/net/bridge/br_stp_if.c b/net/bridge/br_stp_if.c
->> index a807996ac56b..b5143de37938 100644
->> --- a/net/bridge/br_stp_if.c
->> +++ b/net/bridge/br_stp_if.c
->> @@ -201,10 +201,8 @@ int br_stp_set_enabled(struct net_bridge *br, uns=
-igned long val,
->>   {
->>          ASSERT_RTNL();
->>  =20
->> -       if (!net_eq(dev_net(br->dev), &init_net)) {
->> +       if (!net_eq(dev_net(br->dev), &init_net))
->>                  NL_SET_ERR_MSG_MOD(extack, "STP can't be enabled in n=
-on-root netns");
->> -               return -EINVAL;
->> -       }
->>  =20
->>          if (br_mrp_enabled(br)) {
->>                  NL_SET_ERR_MSG_MOD(extack,
->>
-> I'd prefer this approach to changing user-visible behaviour and potenti=
-al regressions.
-> Just change the warning message.
->
-> Thanks,
->   Nik
+Signed-off-by: Joel Granados <j.granados@samsung.com>
+---
+ net/bridge/br_netfilter_hooks.c         |  3 ++-
+ net/ipv6/netfilter/nf_conntrack_reasm.c |  3 ++-
+ net/netfilter/ipvs/ip_vs_ctl.c          |  8 ++++++--
+ net/netfilter/ipvs/ip_vs_lblc.c         | 10 +++++++---
+ net/netfilter/ipvs/ip_vs_lblcr.c        | 10 +++++++---
+ net/netfilter/nf_conntrack_standalone.c |  4 +++-
+ net/netfilter/nf_log.c                  |  7 ++++---
+ 7 files changed, 31 insertions(+), 14 deletions(-)
 
-Remember, the only way it's honest to 'warn but not block' STP in netns=20
-is trust in the Kuniyuki's assertion that the llc will be=20
-'namespacified' in a near term frame.=C2=A0=C2=A0 As STP is not only=20
-non-functional in a netns, but will in fact bring down every connected=20
-system in a packet storm should a L2 loop exist the situation is much=20
-worse than a merely inaccessible extra feature. This as the only reason=20
-STP exists is to avoid crashing sites owing to packet storms arising=20
-from L2 loops.=C2=A0=C2=A0=C2=A0 I think as this bug is a potential 'site=
- killer'=20
-(which in fact happened to me!) The Linux dev community has an=20
-obligation to either hard block this or commit to a fix time frame and=20
-merely warn.
-
-Thanks
-
-Harry Coin
-
+diff --git a/net/bridge/br_netfilter_hooks.c b/net/bridge/br_netfilter_hooks.c
+index 1a801fab9543..15186247b59a 100644
+--- a/net/bridge/br_netfilter_hooks.c
++++ b/net/bridge/br_netfilter_hooks.c
+@@ -1135,7 +1135,8 @@ static int br_netfilter_sysctl_init_net(struct net *net)
+ 
+ 	br_netfilter_sysctl_default(brnet);
+ 
+-	brnet->ctl_hdr = register_net_sysctl(net, "net/bridge", table);
++	brnet->ctl_hdr = register_net_sysctl_sz(net, "net/bridge", table,
++						ARRAY_SIZE(brnf_table));
+ 	if (!brnet->ctl_hdr) {
+ 		if (!net_eq(net, &init_net))
+ 			kfree(table);
+diff --git a/net/ipv6/netfilter/nf_conntrack_reasm.c b/net/ipv6/netfilter/nf_conntrack_reasm.c
+index d13240f13607..b2dd48911c8d 100644
+--- a/net/ipv6/netfilter/nf_conntrack_reasm.c
++++ b/net/ipv6/netfilter/nf_conntrack_reasm.c
+@@ -87,7 +87,8 @@ static int nf_ct_frag6_sysctl_register(struct net *net)
+ 	table[2].data	= &nf_frag->fqdir->high_thresh;
+ 	table[2].extra1	= &nf_frag->fqdir->low_thresh;
+ 
+-	hdr = register_net_sysctl(net, "net/netfilter", table);
++	hdr = register_net_sysctl_sz(net, "net/netfilter", table,
++				     ARRAY_SIZE(nf_ct_frag6_sysctl_table));
+ 	if (hdr == NULL)
+ 		goto err_reg;
+ 
+diff --git a/net/netfilter/ipvs/ip_vs_ctl.c b/net/netfilter/ipvs/ip_vs_ctl.c
+index 62606fb44d02..8d69e4c2d822 100644
+--- a/net/netfilter/ipvs/ip_vs_ctl.c
++++ b/net/netfilter/ipvs/ip_vs_ctl.c
+@@ -4266,6 +4266,7 @@ static int __net_init ip_vs_control_net_init_sysctl(struct netns_ipvs *ipvs)
+ 	struct net *net = ipvs->net;
+ 	struct ctl_table *tbl;
+ 	int idx, ret;
++	size_t ctl_table_size = ARRAY_SIZE(vs_vars);
+ 
+ 	atomic_set(&ipvs->dropentry, 0);
+ 	spin_lock_init(&ipvs->dropentry_lock);
+@@ -4282,8 +4283,10 @@ static int __net_init ip_vs_control_net_init_sysctl(struct netns_ipvs *ipvs)
+ 			return -ENOMEM;
+ 
+ 		/* Don't export sysctls to unprivileged users */
+-		if (net->user_ns != &init_user_ns)
++		if (net->user_ns != &init_user_ns) {
+ 			tbl[0].procname = NULL;
++			ctl_table_size = 0;
++		}
+ 	} else
+ 		tbl = vs_vars;
+ 	/* Initialize sysctl defaults */
+@@ -4353,7 +4356,8 @@ static int __net_init ip_vs_control_net_init_sysctl(struct netns_ipvs *ipvs)
+ #endif
+ 
+ 	ret = -ENOMEM;
+-	ipvs->sysctl_hdr = register_net_sysctl(net, "net/ipv4/vs", tbl);
++	ipvs->sysctl_hdr = register_net_sysctl_sz(net, "net/ipv4/vs", tbl,
++						  ctl_table_size);
+ 	if (!ipvs->sysctl_hdr)
+ 		goto err;
+ 	ipvs->sysctl_tbl = tbl;
+diff --git a/net/netfilter/ipvs/ip_vs_lblc.c b/net/netfilter/ipvs/ip_vs_lblc.c
+index 1b87214d385e..cf78ba4ce5ff 100644
+--- a/net/netfilter/ipvs/ip_vs_lblc.c
++++ b/net/netfilter/ipvs/ip_vs_lblc.c
+@@ -550,6 +550,7 @@ static struct ip_vs_scheduler ip_vs_lblc_scheduler = {
+ static int __net_init __ip_vs_lblc_init(struct net *net)
+ {
+ 	struct netns_ipvs *ipvs = net_ipvs(net);
++	size_t vars_table_size = ARRAY_SIZE(vs_vars_table);
+ 
+ 	if (!ipvs)
+ 		return -ENOENT;
+@@ -562,16 +563,19 @@ static int __net_init __ip_vs_lblc_init(struct net *net)
+ 			return -ENOMEM;
+ 
+ 		/* Don't export sysctls to unprivileged users */
+-		if (net->user_ns != &init_user_ns)
++		if (net->user_ns != &init_user_ns) {
+ 			ipvs->lblc_ctl_table[0].procname = NULL;
++			vars_table_size = 0;
++		}
+ 
+ 	} else
+ 		ipvs->lblc_ctl_table = vs_vars_table;
+ 	ipvs->sysctl_lblc_expiration = DEFAULT_EXPIRATION;
+ 	ipvs->lblc_ctl_table[0].data = &ipvs->sysctl_lblc_expiration;
+ 
+-	ipvs->lblc_ctl_header =
+-		register_net_sysctl(net, "net/ipv4/vs", ipvs->lblc_ctl_table);
++	ipvs->lblc_ctl_header = register_net_sysctl_sz(net, "net/ipv4/vs",
++						       ipvs->lblc_ctl_table,
++						       vars_table_size);
+ 	if (!ipvs->lblc_ctl_header) {
+ 		if (!net_eq(net, &init_net))
+ 			kfree(ipvs->lblc_ctl_table);
+diff --git a/net/netfilter/ipvs/ip_vs_lblcr.c b/net/netfilter/ipvs/ip_vs_lblcr.c
+index ad8f5fea6d3a..9eddf118b40e 100644
+--- a/net/netfilter/ipvs/ip_vs_lblcr.c
++++ b/net/netfilter/ipvs/ip_vs_lblcr.c
+@@ -736,6 +736,7 @@ static struct ip_vs_scheduler ip_vs_lblcr_scheduler =
+ static int __net_init __ip_vs_lblcr_init(struct net *net)
+ {
+ 	struct netns_ipvs *ipvs = net_ipvs(net);
++	size_t vars_table_size = ARRAY_SIZE(vs_vars_table);
+ 
+ 	if (!ipvs)
+ 		return -ENOENT;
+@@ -748,15 +749,18 @@ static int __net_init __ip_vs_lblcr_init(struct net *net)
+ 			return -ENOMEM;
+ 
+ 		/* Don't export sysctls to unprivileged users */
+-		if (net->user_ns != &init_user_ns)
++		if (net->user_ns != &init_user_ns) {
+ 			ipvs->lblcr_ctl_table[0].procname = NULL;
++			vars_table_size = 0;
++		}
+ 	} else
+ 		ipvs->lblcr_ctl_table = vs_vars_table;
+ 	ipvs->sysctl_lblcr_expiration = DEFAULT_EXPIRATION;
+ 	ipvs->lblcr_ctl_table[0].data = &ipvs->sysctl_lblcr_expiration;
+ 
+-	ipvs->lblcr_ctl_header =
+-		register_net_sysctl(net, "net/ipv4/vs", ipvs->lblcr_ctl_table);
++	ipvs->lblcr_ctl_header = register_net_sysctl_sz(net, "net/ipv4/vs",
++							ipvs->lblcr_ctl_table,
++							vars_table_size);
+ 	if (!ipvs->lblcr_ctl_header) {
+ 		if (!net_eq(net, &init_net))
+ 			kfree(ipvs->lblcr_ctl_table);
+diff --git a/net/netfilter/nf_conntrack_standalone.c b/net/netfilter/nf_conntrack_standalone.c
+index 169e16fc2bce..0ee98ce5b816 100644
+--- a/net/netfilter/nf_conntrack_standalone.c
++++ b/net/netfilter/nf_conntrack_standalone.c
+@@ -1106,7 +1106,9 @@ static int nf_conntrack_standalone_init_sysctl(struct net *net)
+ 		table[NF_SYSCTL_CT_BUCKETS].mode = 0444;
+ 	}
+ 
+-	cnet->sysctl_header = register_net_sysctl(net, "net/netfilter", table);
++	cnet->sysctl_header = register_net_sysctl_sz(net, "net/netfilter",
++						     table,
++						     ARRAY_SIZE(nf_ct_sysctl_table));
+ 	if (!cnet->sysctl_header)
+ 		goto out_unregister_netfilter;
+ 
+diff --git a/net/netfilter/nf_log.c b/net/netfilter/nf_log.c
+index 8a29290149bd..8cc52d2bd31b 100644
+--- a/net/netfilter/nf_log.c
++++ b/net/netfilter/nf_log.c
+@@ -487,9 +487,10 @@ static int netfilter_log_sysctl_init(struct net *net)
+ 	for (i = NFPROTO_UNSPEC; i < NFPROTO_NUMPROTO; i++)
+ 		table[i].extra2 = net;
+ 
+-	net->nf.nf_log_dir_header = register_net_sysctl(net,
+-						"net/netfilter/nf_log",
+-						table);
++	net->nf.nf_log_dir_header = register_net_sysctl_sz(net,
++							   "net/netfilter/nf_log",
++							   table,
++							   ARRAY_SIZE(nf_log_sysctl_table));
+ 	if (!net->nf.nf_log_dir_header)
+ 		goto err_reg;
+ 
+-- 
+2.30.2
 
