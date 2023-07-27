@@ -1,142 +1,103 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574C976524D
-	for <lists.bridge@lfdr.de>; Thu, 27 Jul 2023 13:29:40 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 6489E612EB;
-	Thu, 27 Jul 2023 11:29:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6489E612EB
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=corigine.onmicrosoft.com header.i=@corigine.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-corigine-onmicrosoft-com header.b=j6wgjcPR
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JRBnGbZEuxvA; Thu, 27 Jul 2023 11:29:37 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 1611A60EB3;
-	Thu, 27 Jul 2023 11:29:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1611A60EB3
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9C4FFC008D;
-	Thu, 27 Jul 2023 11:29:36 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 52C98C0032
- for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 11:29:35 +0000 (UTC)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8827652C4
+	for <lists.bridge@lfdr.de>; Thu, 27 Jul 2023 13:44:13 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 268E483A80
- for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 11:29:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 268E483A80
+	by smtp1.osuosl.org (Postfix) with ESMTP id 0401E80EA4;
+	Thu, 27 Jul 2023 11:44:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 0401E80EA4
 Authentication-Results: smtp1.osuosl.org;
- dkim=pass (1024-bit key) header.d=corigine.onmicrosoft.com
- header.i=@corigine.onmicrosoft.com header.a=rsa-sha256
- header.s=selector2-corigine-onmicrosoft-com header.b=j6wgjcPR
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256 header.s=20221208 header.b=Bbak6hOs
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id V6rkEfmSHWmT for <bridge@lists.linux-foundation.org>;
- Thu, 27 Jul 2023 11:29:34 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2070c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eab::70c])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 5CAB083A7F
- for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 11:29:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5CAB083A7F
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QxvEXIhfbuju9QH9ry9Fy6C2KfV5+QeNRywLHO3M3G2eE+57Rhq7kfgzwcYDBsZOXJ4sKnHJevpdar0k2yEBSxECn1lTQ6y9npHF6VPqJsiZV5TVfDyLy2OK5tqB9J7kj3xhGBWeJI/ihb5ZEyY5MmeXmBYt64fbNQuhbchU8jAY0uJqP/HTIGcgRheea5eeRMFLZ84hzXkwC9gQg39EL8TNx+flEJECe2ALaZQ0ExnIKa2fWmkovDVfQaOo/kzsE5swM9214B7m+jzkKhel47QgEZHD/Scd6V+jG9Zrv825uistn6aYkYWwROGcJmPfuQZgRyiRIgiuTFq3OxXpLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y1At6ayDDP/04qN+Uus/x8mxoTo98nP1tWBSkoOhmp4=;
- b=lmO2vmHGB6QXQzz9Jws3Qktx0fVgm9mJQ0jWoq0dklvyAmBqWtXEo6Xx9bitzSRuILDyLXepSYBMJFJq2q+TJ2CfB4+XHbCCYWbkeFoRaoOAGfkK2JXX63bopDJBXyer8VhpjAOuvWtsylSB/iX3KSKMrrXsls3GZUf8GJqCnuwr7YESCOQgoSODpe4Oc+SlwkBb4yDuCIoLkm2jf2BeXsTucIumpzpMvKXR6KUTeDJZZwYtzCZUxnO53eZvIRnnT4b/nsheqsiKwz5ow5QPNgQPfJyRwaEZsakoDlLm7L6kJPHomxw424vGxD2dcy4JSmcOOnWLqL1u0sCCfP6y8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GhkOjqctVxgL; Thu, 27 Jul 2023 11:44:10 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id A00FE83AFC;
+	Thu, 27 Jul 2023 11:44:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A00FE83AFC
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 454C0C008D;
+	Thu, 27 Jul 2023 11:44:09 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 90716C0032
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 11:44:07 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp2.osuosl.org (Postfix) with ESMTP id 743B9403AC
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 11:44:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 743B9403AC
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20221208.gappssmtp.com
+ header.i=@blackwall-org.20221208.gappssmtp.com header.a=rsa-sha256
+ header.s=20221208 header.b=Bbak6hOs
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id yTgFhs0snhyK for <bridge@lists.linux-foundation.org>;
+ Thu, 27 Jul 2023 11:44:07 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id ADD4E400D0
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 11:44:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org ADD4E400D0
+Received: by mail-ed1-x532.google.com with SMTP id
+ 4fb4d7f45d1cf-51e619bcbf9so1057586a12.3
+ for <bridge@lists.linux-foundation.org>; Thu, 27 Jul 2023 04:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y1At6ayDDP/04qN+Uus/x8mxoTo98nP1tWBSkoOhmp4=;
- b=j6wgjcPRdCU65stXh66CHEyzp6UKpccLA4uCZb1HVNStLk30EQkbXRraGQ8rF8kgrfo+TBGUJymvl0mabAaVcgOBJuG1cIxcKfkHkO9NuewXKGldOaoEQ6OFB576J5uQQbDZtwICLABXRY1TS+BX3HduFqbSAWdLmulRApDEGFU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by CH2PR13MB3687.namprd13.prod.outlook.com (2603:10b6:610:9c::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Thu, 27 Jul
- 2023 11:29:29 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::fde7:9821:f2d9:101d]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::fde7:9821:f2d9:101d%7]) with mapi id 15.20.6631.026; Thu, 27 Jul 2023
- 11:29:29 +0000
-Date: Thu, 27 Jul 2023 13:29:22 +0200
-From: Simon Horman <simon.horman@corigine.com>
-To: YueHaibing <yuehaibing@huawei.com>
-Message-ID: <ZMJVEjMQ0o/0GOKU@corigine.com>
-References: <20230726143141.11704-1-yuehaibing@huawei.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230726143141.11704-1-yuehaibing@huawei.com>
-X-ClientProxiedBy: AS4P191CA0021.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d9::6) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+ d=blackwall-org.20221208.gappssmtp.com; s=20221208; t=1690458245; x=1691063045;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=0Pd52QAOVtNNbgDqHYQEjCrAzdyOOjihPSFq0M5Ik4Y=;
+ b=Bbak6hOsd1TyATRGYe05W+0/rKMMCiOckHsDdv6SyfQ0uqHMfd3rafUSrblXXzZoyK
+ FHmSWmyL7uuFub/fafa5s6Gam61mZI3IzRKmsHFU0ZiMqKVeVGtqm5DR7DqF7JXKTXUF
+ aH+mx/OTorlYbaLSNJgaozLQQOD+gkVjFPJryET2EKavzdFF74BjnpzS0aMo5Q7aO3++
+ DfWTnOH1fDDHf/iOk1+Vek4v6aZDcu8EJJ/ZEiXBsQtUnj/6LXvYIGvW1+7cYa3iH/aX
+ NNhAbdaKjxHA33v71NGTz73iWZdfrmjAVdhuUqBoLHqsSK82OhCjmn5onGqGbvwAQWUf
+ PGXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1690458245; x=1691063045;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0Pd52QAOVtNNbgDqHYQEjCrAzdyOOjihPSFq0M5Ik4Y=;
+ b=Y20goqpUYXjIGXH5KNuRFO70BF5GiXNa0H8AXN/fgT/SPVHB57KbXlmHUBSNFORLYG
+ svpdsSHxRJI28Ea9iyCFUqvcFNKmEmYjJzxBU6gnkY+TQqFLNGaXa3RkW6cDZY0hrtHW
+ SBVD1Ie1Yq0VeMIL+rgjTMotvnA2xl2FxdbMdO7zxgMT+EVbObQC7jFKXCCjvNB1kcgv
+ Iv1kyK1OJDU2uReHj4kYAobRjcil2W54uHdmv2I+5PgOF48L/Jn5AF/79vRAnvVROnSI
+ oFjkzQZu//RaWdRqy8FM54s/zV0m4jxRR7pePAMDc6yRRTPCzgzc7ZE03vZd4PvNMqnY
+ vMdQ==
+X-Gm-Message-State: ABy/qLaSV/cTM1CEj5FDHNiiYZlLizAMr8D9peNP8gzRcOoWl41DDRbI
+ JaYn7uv+Bl+RFQjkhbZApHfjRg==
+X-Google-Smtp-Source: APBJJlHxaXVKfTJi3HvDwrCK+UddDlp4jZfELrpULv5ukfq77Dm+KA3G/1qp1PoAPSnHwBXlpw+QCA==
+X-Received: by 2002:aa7:d65a:0:b0:518:6a99:cac3 with SMTP id
+ v26-20020aa7d65a000000b005186a99cac3mr1394418edr.31.1690458244681; 
+ Thu, 27 Jul 2023 04:44:04 -0700 (PDT)
+Received: from [192.168.1.2] (handbookness.lineup.volia.net. [93.73.104.44])
+ by smtp.gmail.com with ESMTPSA id
+ d7-20020a056402078700b005221ce96801sm565226edy.35.2023.07.27.04.44.03
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 27 Jul 2023 04:44:04 -0700 (PDT)
+Message-ID: <bd9e39da-088c-976e-982e-f5e2d4f4528b@blackwall.org>
+Date: Thu, 27 Jul 2023 14:44:03 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|CH2PR13MB3687:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4770831b-d895-4670-697e-08db8e94bd70
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SR3dH7kyWE4oycc8EZEanF6DeOL2YTLABe+sw84r7bJO4Y9+mkoBrox9k5WrGUMHamZEAvwZrBneQsbbqxTTMwM0g6jWHfLO++/+UHlvY1rfh9vaxX3W+zNfeQjCoXoNaynMGyxyQKAPzFeH/N1n7focqzp3HU6G2SB80CvRgH431YtSVZRHOGyZVd/UMYl7eoGrgxAZnkYyW3L1cmkgdTL1D8sx+aaqy3/pzkNul7iswMTjSd8yXBX+961SXIkSIirktrmI/CMme9d2bPy71zxj1ldTTFKfsId9ONO/sgkloQIj3uSAg1nHCj1wm6RwkfgSx6Ha9NN3fPUMKbfaLmFakeFh0FmTiG6aV7sJtC97Ui0ZzxJUngEqkgJLFkXQRGn0teAM1VtfdQnGqZzzZBmygbLeEqV6yOyD04hWQ5r8si6ZaaDaLokjcsOhpxdZmB8QtN7aku6YmgBl3NYdiQQXwd1S5AzT5GI7aDNoryZ+7p+jULAUOvVrxOPAVqUzbi8gbIhOqfMWQrFbEeyk+C4yKXpjrBbB3cf9NKW0RFx3XRc+aE58nUWePCPn4h4+Nfr4QKOZdwvRbxRheQajKXPbOBxFE/cBNa8EhPIfM8A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR13MB4842.namprd13.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(396003)(39830400003)(366004)(346002)(376002)(451199021)(6666004)(6486002)(478600001)(6506007)(6512007)(66476007)(66556008)(4326008)(38100700002)(186003)(2616005)(66946007)(6916009)(5660300002)(7416002)(44832011)(316002)(8936002)(8676002)(41300700001)(2906002)(86362001)(558084003)(36756003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0VdOSkp8Nu83RxOJpGgn+MqfGMpM6Mb94QFdvwKEl/5XNlGKbNiMEciNzoOU?=
- =?us-ascii?Q?9AHXPGqK9b6baMpNc0joRDBBhPtltvVI2iVqcmnV2SE6tjgYeqjkd3LqOdio?=
- =?us-ascii?Q?pHlYCmgCYioK/1XAU6Y4gqS9dAW7pU99zLb2klKoxuBI14awq4XRO/UzPBkt?=
- =?us-ascii?Q?71sygpVxpg/vkWSUG8iTcvyaPxnYCkLcCLqS9O6nZUKfG47/MncLH3mtBaq0?=
- =?us-ascii?Q?2hM0iH7qokPBp0eOnV8rfu+7C1Yjd8mPZecvjlqW8zjKc5Z3I+wUtNCDpmBA?=
- =?us-ascii?Q?8yob8xbC8bfwROE0nblFB6sTvhaO3aqBZIsvW5+4AjXFTrVzDemB4APOpa2v?=
- =?us-ascii?Q?G5rmsnh97tX2vqGisgtplRf5krs6+EW2d2Q8a4wQp9XGLcMqoiY5fN+itOHO?=
- =?us-ascii?Q?HtKACYBBkQEE6DVD5PohzOS4Hk8ku2eWkk+MP4dF2On6HKU16wGcOOoclu0G?=
- =?us-ascii?Q?ju7WdusO4W8gbxuQxEBSxLZAgl0b6ijfwavG/i2SjOw9bn+xbzi3Wk0bKQSy?=
- =?us-ascii?Q?kJohVCcIPUPZEIZ/IHQm5R9yQaZ1ItaJ29KjRZaVvmhmDswD5ZYwZLahGtqW?=
- =?us-ascii?Q?z+8Hz+Gcd6MteKDLkxIp99MPLsx6LEQ890Bue06o5IjPgFMFo5VaEXulCTGS?=
- =?us-ascii?Q?kRvXGo7abgseQuokfJ5rX09WRsnJNTKTlEUIYjjLfxzEftLUq2c5E41DKXdX?=
- =?us-ascii?Q?cgRbnEI/kx7kNumU5BePfmPyFOCrYCM5WFXQ2UlDieXI3VtjggnbP43fFrhi?=
- =?us-ascii?Q?LWMiA7LiA4TtUsMK2CU+P0RzTcqgY+2wlwusV89/GJ8E51MAdCeBcjFz8zQX?=
- =?us-ascii?Q?pG1o0XBTamurLuSQPfKR4aNOuHdU6ciNsx9wnLriUF7BgrroUgYGp40GqExk?=
- =?us-ascii?Q?ZuRxb97408vAeP5iEphA4CXyWfyfAYMmrJP3qzNdC68hEUhPe/oPI3l42z8E?=
- =?us-ascii?Q?KiUQA7RMuLu2d4HcMDwLIcian8rCt97YfwdUBa5dvUCLnM4K14Qjuj6jg3up?=
- =?us-ascii?Q?Yv3Qirqq9IfivbYAMtRvvD0FElfQLoiuutLl5h2L1f6+Kc7SzqXXr7VzziMq?=
- =?us-ascii?Q?PxQM36GW0/hCwbP+RXoZO7D9ki7gfGMnInce7bSxAPYQ8uSW7l+zSGW3qifP?=
- =?us-ascii?Q?8rhX0EdLAdvwJB420EwNLL0ASFqBzOSQzze1DqD3RQIay2LeLJOgD9rqTJ/T?=
- =?us-ascii?Q?4gCyZuNx4RSXIOk7ylky8+/ZZr1Lw0dMMQck/UbILp0KTtajoozU50SmJZ7m?=
- =?us-ascii?Q?+/z6Dy7xCm1dS6pO/6uVMcUUlI3hNoijJ1n2YYwqLqHZxMF6AgoXP9VEktED?=
- =?us-ascii?Q?V7CpeZcyZWczHb2ImSqkIwjtZdSTVpRa7+C/RAW/zEfY3kHeyeGY9dwuyS7r?=
- =?us-ascii?Q?XaSgUCpEtNsmHWoY+Zda9Dpj0b+3H7JUZ6LYfJWvUvYP8fcb+Apt5aoK+RsD?=
- =?us-ascii?Q?N8HN5ly1yM+auUCrHkDD8lIzwKpnA8QuCyL7denYmlrbmOqGOhEEUB9onXhT?=
- =?us-ascii?Q?KghnUi1tNZPs6HmmUJ3uAmYTxedkJZr9VE587iXCJ2yDqfcfU9gKQ4eNWUOg?=
- =?us-ascii?Q?edhD8UO1asCBacHfJtD/cZA7ORaJMu5z8Dk1r5gNWyJdeyr9caYBhqlxa5xT?=
- =?us-ascii?Q?gulxB523EInKlKhlqXf7NobkwNVV1BoOvAgjb/NnQMBXXSJLBSgEqzwbVv+2?=
- =?us-ascii?Q?U+JaOQ=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4770831b-d895-4670-697e-08db8e94bd70
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2023 11:29:28.9753 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rSP8d4WM3gQF4BAmUTUPyAblYRETDlucHWtvFDS1aUU0jYvJu0xMqy8hertaeG4VMACAetM15A4oaHNYNFVYA1tcoRGV2C+8uvLf8yIev+8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR13MB3687
-Cc: idosch@nvidia.com, razor@blackwall.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, edumazet@google.com, netdev@vger.kernel.org,
- roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Content-Language: en-US
+To: YueHaibing <yuehaibing@huawei.com>, roopa@nvidia.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, idosch@nvidia.com
+References: <20230726143141.11704-1-yuehaibing@huawei.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20230726143141.11704-1-yuehaibing@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ linux-kernel@vger.kernel.org
 Subject: Re: [Bridge] [PATCH net-next] bridge: Remove unused declaration
  br_multicast_set_hash_max()
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -153,11 +114,27 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Jul 26, 2023 at 10:31:41PM +0800, YueHaibing wrote:
+On 7/26/23 17:31, YueHaibing wrote:
 > Since commit 19e3a9c90c53 ("net: bridge: convert multicast to generic rhashtable")
 > this is not used, so can remove it.
 > 
 > Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+> ---
+>   net/bridge/br_private.h | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
+> index 51e4ca54b537..a1f4acfa6994 100644
+> --- a/net/bridge/br_private.h
+> +++ b/net/bridge/br_private.h
+> @@ -974,7 +974,6 @@ int br_multicast_set_vlan_router(struct net_bridge_vlan *v, u8 mcast_router);
+>   int br_multicast_toggle(struct net_bridge *br, unsigned long val,
+>   			struct netlink_ext_ack *extack);
+>   int br_multicast_set_querier(struct net_bridge_mcast *brmctx, unsigned long val);
+> -int br_multicast_set_hash_max(struct net_bridge *br, unsigned long val);
+>   int br_multicast_set_igmp_version(struct net_bridge_mcast *brmctx,
+>   				  unsigned long val);
+>   #if IS_ENABLED(CONFIG_IPV6)
 
-Reviewed-by: Simon Horman <simon.horman@corigine.com>
+Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
 
