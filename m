@@ -1,90 +1,87 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7007697D2
-	for <lists.bridge@lfdr.de>; Mon, 31 Jul 2023 15:38:41 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73FF17697D5
+	for <lists.bridge@lfdr.de>; Mon, 31 Jul 2023 15:38:43 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id D66EC8142A;
-	Mon, 31 Jul 2023 13:38:36 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D66EC8142A
+	by smtp1.osuosl.org (Postfix) with ESMTP id BEF8080F26;
+	Mon, 31 Jul 2023 13:38:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org BEF8080F26
 Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=fWz9AGo6
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=hJgIvldL
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id OdkWiEwtLZS6; Mon, 31 Jul 2023 13:38:36 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id E562581397;
-	Mon, 31 Jul 2023 13:38:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E562581397
+	with ESMTP id 5a7Q2m_astId; Mon, 31 Jul 2023 13:38:36 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 2952080EE1;
+	Mon, 31 Jul 2023 13:38:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2952080EE1
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 160DDC0DDC;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 94F40C008D;
 	Mon, 31 Jul 2023 13:38:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 5DBA0C0032
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:42 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1614EC0032
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:46 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 39291402DC
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:42 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 39291402DC
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
- header.a=rsa-sha256 header.s=20221208 header.b=fWz9AGo6
+ by smtp1.osuosl.org (Postfix) with ESMTP id E607081DF4
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E607081DF4
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id g5gOALaNmkvB for <bridge@lists.linux-foundation.org>;
- Mon, 31 Jul 2023 07:17:41 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 30617400A4
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 30617400A4
-Received: by mail-wm1-x334.google.com with SMTP id
- 5b1f17b1804b1-3fe1a17f983so10025355e9.3
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 00:17:40 -0700 (PDT)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 1R5ig4Cx2Chk for <bridge@lists.linux-foundation.org>;
+ Mon, 31 Jul 2023 07:17:43 +0000 (UTC)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 92ACF81DEF
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:43 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 92ACF81DEF
+Received: by mail-wr1-x430.google.com with SMTP id
+ ffacd0b85a97d-3178fa77b27so2615149f8f.2
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 00:17:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690787859; x=1691392659;
+ d=gmail.com; s=20221208; t=1690787862; x=1691392662;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=n8WLnI9NId3N3IQiFQMWfeeUSr/hiuHAn49PsdG5OBk=;
- b=fWz9AGo64wf2+C7stN9V8xlGYS4jyeYSZJ8G3McUGqYEoWgaOcr/WYoGJihB+IvgQ5
- zrRoDN05ZS7sjdNjgtlwTbetshiZpgTJJzbo7fHFXy8P5FCMpFcb/qq1fhRMp1Dcp/8/
- bEj8fLGxqRjff8cDAgkwGM6/8C9vS+E0cDa9Jo7NjzXABkw20TB993m6EW77S36Glnd0
- UCsvpAt9lMm1yb6xwJPs6QIDyVGtp7uXiEwKVBNw5mL6QaXZlYiUhcAjjqpe+Fx7wnuj
- pDlLRmjux6hHckW7kFTIEsvv95a4EAIzWQDHsgnOdky9tbq3MZlsxOKxJPjVBTrTaZpj
- b9nw==
+ bh=Jc/kMJ2DPFYVg7IBTR4njcXwjXlJ4l2BnySUNEp3oa4=;
+ b=hJgIvldLZA0OhGFpk11i3Fjk/VJsj9CVT2ooNjiYKvtcHZqAqiDONo5VGSYD87a86L
+ MPIA6zwApEoQ52sxaPBoXFj7HyegND2jDBUHzLOdUIiZyhfVsQT/r2dN70mLtWHegO74
+ a+qt+vSg07/Xjo57Djls3PrxV4aFXk3C/myDIbvcjeoscDHMDnkUmtu9ZEqF2T5VWnkQ
+ /bIwD+PmPzdzzLkvtyeedsU8FopQf9Ily6U/+VGKcIMZO97c66UjPVTRrK/Wh1HHu8tG
+ 4xz1rppsaeXkF/0rts/CIkaA30DkRr2Sk+rAs5M2wTVET++k1/m7A/URXDWimehHstFx
+ 7YNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690787859; x=1691392659;
+ d=1e100.net; s=20221208; t=1690787862; x=1691392662;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=n8WLnI9NId3N3IQiFQMWfeeUSr/hiuHAn49PsdG5OBk=;
- b=QLolqfsm6Hg5k4KtRXolpvr6jyEX93nN5YcuiCDcc6sh4izInNUwev6KbCbT87xAz6
- BBdVfX3fb2lUSdj6SGGwDr1PJ2mDnSIns+Ke7UdwDfo/6ppNQ56sKURzHmP3zoINLmve
- UvDaMkaaws4patDZ9Y3QFifcSQiksyUFk5H+Wejjw7Gw8mE/6gDUdvJ3hbZBNyfTV+xv
- 3BYuU9y9eiUTgMYDhvNMjFV3GPNcx7egK4vtkght4i6RUS/gVj+CLdDqRsOJ6+UZsQBk
- irxk95n1uyA0oKzwlzvtjSb4Z+dgXXL3Or685F3kFaCVQVNk2hep2uJafwDEceHa7olz
- Avpw==
-X-Gm-Message-State: ABy/qLapfc1U2VkBTub/pOfuOrdzLHOv/ICSaNxVPXuoeUiuj9ST0aye
- vcocTEB8Oj+XdHPpsrLr2X4=
-X-Google-Smtp-Source: APBJJlE/tfGc7ouwVvYnFyNaWImrlPw9R+EtfJcUj5qbB9QBTsW4yLCrdtAsqwQmtmAlQ+oXjGTgvw==
-X-Received: by 2002:a7b:cd8c:0:b0:3fb:fa9f:5292 with SMTP id
- y12-20020a7bcd8c000000b003fbfa9f5292mr6305379wmj.25.1690787859243; 
- Mon, 31 Jul 2023 00:17:39 -0700 (PDT)
+ bh=Jc/kMJ2DPFYVg7IBTR4njcXwjXlJ4l2BnySUNEp3oa4=;
+ b=I+ClhlRFP3HE1PBFT0vPGZP/RGoFq38SNF24I93V7Zhrfi65rGSEzbP2UYYSWK7SdS
+ 1sDBNs9bFtx51yDc2hMQgoCDn2hMmalyAJpZoLCADtTssfTEf1bFeFvjQvX0SW/wys1r
+ wOQbpAe4gKl4zNNiSxHyTJRn/LZDDgAOW8gq4TUSPja/auxaAPRbwaKqc4yfCu4ZVqvD
+ d7nMargLH1XnBVCJr2092aBCHRSuREWFAVR3Gx3tz/FyugA/xpdaPfvmN0YDIF39eSQP
+ 9iG6fJRmgUyPsBjlWlXYSeYmKFkmz8a32jZrC5whW6FzEJRY8ggeAfBzcb1BuVzMCG3I
+ XT+g==
+X-Gm-Message-State: ABy/qLYzS0q8nZUQqKN1/419STdG5XI8g4smOhuDvgLRfydaUnuk5MKg
+ v7sVg7xFbzkLzVaqII0+38M=
+X-Google-Smtp-Source: APBJJlEkndri5iKKElKNpvM4/AhUkEJ9RgqlNXNMfQZzTr3EtpOlGhhkXp0kRAqy1eJva50jl0udAA==
+X-Received: by 2002:a5d:6390:0:b0:317:686f:4e8b with SMTP id
+ p16-20020a5d6390000000b00317686f4e8bmr7490646wru.40.1690787861650; 
+ Mon, 31 Jul 2023 00:17:41 -0700 (PDT)
 Received: from localhost ([165.225.194.214]) by smtp.gmail.com with ESMTPSA id
- y7-20020a05600c364700b003fe24681b10sm420838wmq.28.2023.07.31.00.17.38
+ e40-20020a5d5968000000b0031431fb40fasm12040335wri.89.2023.07.31.00.17.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 31 Jul 2023 00:17:38 -0700 (PDT)
+ Mon, 31 Jul 2023 00:17:41 -0700 (PDT)
 From: Joel Granados <joel.granados@gmail.com>
 X-Google-Original-From: Joel Granados <j.granados@samsung.com>
 To: mcgrof@kernel.org
-Date: Mon, 31 Jul 2023 09:17:19 +0200
-Message-Id: <20230731071728.3493794-6-j.granados@samsung.com>
+Date: Mon, 31 Jul 2023 09:17:20 +0200
+Message-Id: <20230731071728.3493794-7-j.granados@samsung.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230731071728.3493794-1-j.granados@samsung.com>
 References: <20230731071728.3493794-1-j.granados@samsung.com>
@@ -122,10 +119,10 @@ Cc: Joel Granados <j.granados@samsung.com>, Wen Gu <guwen@linux.alibaba.com>,
  linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
  "David S. Miller" <davem@davemloft.net>, netfilter-devel@vger.kernel.org,
  Sven Schnelle <svens@linux.ibm.com>, "D. Wythe" <alibuda@linux.alibaba.com>,
- linux-fsdevel@vger.kernel.org, Matthieu Baerts <matthieu.baerts@tessares.net>,
- linux-wpan@vger.kernel.org, Karsten Graul <kgraul@linux.ibm.com>
-Subject: [Bridge] [PATCH v2 05/14] sysctl: Add a size arg to
-	__register_sysctl_table
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-fsdevel@vger.kernel.org,
+ Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
+ Karsten Graul <kgraul@linux.ibm.com>
+Subject: [Bridge] [PATCH v2 06/14] sysctl: Add size to register_sysctl
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -140,179 +137,189 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-We make these changes in order to prepare __register_sysctl_table and
-its callers for when we remove the sentinel element (empty element at
-the end of ctl_table arrays). We don't actually remove any sentinels in
-this commit, but we *do* make sure to use ARRAY_SIZE so the table_size
-is available when the removal occurs.
+This commit adds table_size to register_sysctl in preparation for the
+removal of the sentinel elements in the ctl_table arrays (last empty
+markers). And though we do *not* remove any sentinels in this commit, we
+set things up by either passing the table_size explicitly or using
+ARRAY_SIZE on the ctl_table arrays.
 
-We add a table_size argument to __register_sysctl_table and adjust
-callers, all of which pass ctl_table pointers and need an explicit call
-to ARRAY_SIZE. We implement a size calculation in register_net_sysctl in
-order to forward the size of the array pointer received from the network
-register calls.
-
-The new table_size argument does not yet have any effect in the
-init_header call which is still dependent on the sentinel's presence.
-table_size *does* however drive the `kzalloc` allocation in
-__register_sysctl_table with no adverse effects as the allocated memory
-is either one element greater than the calculated ctl_table array (for
-the calls in ipc_sysctl.c, mq_sysctl.c and ucount.c) or the exact size
-of the calculated ctl_table array (for the call from sysctl_net.c and
-register_sysctl). This approach will allows us to "just" remove the
-sentinel without further changes to __register_sysctl_table as
-table_size will represent the exact size for all the callers at that
-point.
+We replace the register_syctl function with a macro that will add the
+ARRAY_SIZE to the new register_sysctl_sz function. In this way the
+callers that are already using an array of ctl_table structs do not
+change. For the callers that pass a ctl_table array pointer, we pass the
+table_size to register_sysctl_sz instead of the macro.
 
 Signed-off-by: Joel Granados <j.granados@samsung.com>
+Suggested-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- fs/proc/proc_sysctl.c  | 23 ++++++++++++-----------
- include/linux/sysctl.h |  2 +-
- ipc/ipc_sysctl.c       |  4 +++-
- ipc/mq_sysctl.c        |  4 +++-
- kernel/ucount.c        |  3 ++-
- net/sysctl_net.c       |  8 +++++++-
- 6 files changed, 28 insertions(+), 16 deletions(-)
+ arch/arm64/kernel/armv8_deprecated.c |  2 +-
+ arch/s390/appldata/appldata_base.c   |  2 +-
+ fs/proc/proc_sysctl.c                | 30 +++++++++++++++-------------
+ include/linux/sysctl.h               | 10 ++++++++--
+ kernel/ucount.c                      |  2 +-
+ net/sysctl_net.c                     |  2 +-
+ 6 files changed, 28 insertions(+), 20 deletions(-)
 
+diff --git a/arch/arm64/kernel/armv8_deprecated.c b/arch/arm64/kernel/armv8_deprecated.c
+index 1febd412b4d2..e459cfd33711 100644
+--- a/arch/arm64/kernel/armv8_deprecated.c
++++ b/arch/arm64/kernel/armv8_deprecated.c
+@@ -569,7 +569,7 @@ static void __init register_insn_emulation(struct insn_emulation *insn)
+ 		sysctl->extra2 = &insn->max;
+ 		sysctl->proc_handler = emulation_proc_handler;
+ 
+-		register_sysctl("abi", sysctl);
++		register_sysctl_sz("abi", sysctl, 1);
+ 	}
+ }
+ 
+diff --git a/arch/s390/appldata/appldata_base.c b/arch/s390/appldata/appldata_base.c
+index bbefe5e86bdf..3b0994625652 100644
+--- a/arch/s390/appldata/appldata_base.c
++++ b/arch/s390/appldata/appldata_base.c
+@@ -365,7 +365,7 @@ int appldata_register_ops(struct appldata_ops *ops)
+ 	ops->ctl_table[0].proc_handler = appldata_generic_handler;
+ 	ops->ctl_table[0].data = ops;
+ 
+-	ops->sysctl_header = register_sysctl(appldata_proc_name, ops->ctl_table);
++	ops->sysctl_header = register_sysctl_sz(appldata_proc_name, ops->ctl_table, 1);
+ 	if (!ops->sysctl_header)
+ 		goto out;
+ 	return 0;
 diff --git a/fs/proc/proc_sysctl.c b/fs/proc/proc_sysctl.c
-index fa1438f1a355..b8dd78e344ff 100644
+index b8dd78e344ff..80d3e2f61947 100644
 --- a/fs/proc/proc_sysctl.c
 +++ b/fs/proc/proc_sysctl.c
-@@ -1312,6 +1312,7 @@ static struct ctl_dir *sysctl_mkdir_p(struct ctl_dir *dir, const char *path)
-  * 	 should not be free'd after registration. So it should not be
-  * 	 used on stack. It can either be a global or dynamically allocated
-  * 	 by the caller and free'd later after sysctl unregistration.
-+ * @table_size : The number of elements in table
+@@ -43,7 +43,7 @@ static struct ctl_table sysctl_mount_point[] = {
+  */
+ struct ctl_table_header *register_sysctl_mount_point(const char *path)
+ {
+-	return register_sysctl(path, sysctl_mount_point);
++	return register_sysctl_sz(path, sysctl_mount_point, 0);
+ }
+ EXPORT_SYMBOL(register_sysctl_mount_point);
+ 
+@@ -1399,7 +1399,7 @@ struct ctl_table_header *__register_sysctl_table(
+ }
+ 
+ /**
+- * register_sysctl - register a sysctl table
++ * register_sysctl_sz - register a sysctl table
+  * @path: The path to the directory the sysctl table is in. If the path
+  * 	doesn't exist we will create it for you.
+  * @table: the table structure. The calller must ensure the life of the @table
+@@ -1409,25 +1409,20 @@ struct ctl_table_header *__register_sysctl_table(
+  * 	to call unregister_sysctl_table() and can instead use something like
+  * 	register_sysctl_init() which does not care for the result of the syctl
+  * 	registration.
++ * @table_size: The number of elements in table.
   *
-  * Register a sysctl table hierarchy. @table should be a filled in ctl_table
+  * Register a sysctl table. @table should be a filled in ctl_table
   * array. A completely 0 filled entry terminates the table.
-@@ -1354,27 +1355,20 @@ static struct ctl_dir *sysctl_mkdir_p(struct ctl_dir *dir, const char *path)
+  *
+  * See __register_sysctl_table for more details.
   */
- struct ctl_table_header *__register_sysctl_table(
- 	struct ctl_table_set *set,
--	const char *path, struct ctl_table *table)
-+	const char *path, struct ctl_table *table, size_t table_size)
+-struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table)
++struct ctl_table_header *register_sysctl_sz(const char *path, struct ctl_table *table,
++					    size_t table_size)
  {
- 	struct ctl_table_root *root = set->dir.header.root;
- 	struct ctl_table_header *header;
--	struct ctl_table_header h_tmp;
- 	struct ctl_dir *dir;
+-	int count = 0;
 -	struct ctl_table *entry;
- 	struct ctl_node *node;
--	int nr_entries = 0;
+-	struct ctl_table_header t_hdr;
 -
--	h_tmp.ctl_table = table;
--	list_for_each_table_entry(entry, (&h_tmp))
--		nr_entries++;
+-	t_hdr.ctl_table = table;
+-	list_for_each_table_entry(entry, (&t_hdr))
+-		count++;
+ 	return __register_sysctl_table(&sysctl_table_root.default_set,
+-					path, table, count);
++					path, table, table_size);
+ }
+-EXPORT_SYMBOL(register_sysctl);
++EXPORT_SYMBOL(register_sysctl_sz);
  
- 	header = kzalloc(sizeof(struct ctl_table_header) +
--			 sizeof(struct ctl_node)*nr_entries, GFP_KERNEL_ACCOUNT);
-+			 sizeof(struct ctl_node)*table_size, GFP_KERNEL_ACCOUNT);
- 	if (!header)
- 		return NULL;
- 
- 	node = (struct ctl_node *)(header + 1);
--	init_header(header, root, set, node, table, nr_entries);
-+	init_header(header, root, set, node, table, table_size);
- 	if (sysctl_check_table(path, header))
- 		goto fail;
- 
-@@ -1423,8 +1417,15 @@ struct ctl_table_header *__register_sysctl_table(
-  */
- struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table)
+ /**
+  * __register_sysctl_init() - register sysctl table to path
+@@ -1452,10 +1447,17 @@ EXPORT_SYMBOL(register_sysctl);
+ void __init __register_sysctl_init(const char *path, struct ctl_table *table,
+ 				 const char *table_name)
  {
+-	struct ctl_table_header *hdr = register_sysctl(path, table);
 +	int count = 0;
 +	struct ctl_table *entry;
-+	struct ctl_table_header t_hdr;
++	struct ctl_table_header t_hdr, *hdr;
 +
 +	t_hdr.ctl_table = table;
 +	list_for_each_table_entry(entry, (&t_hdr))
 +		count++;
- 	return __register_sysctl_table(&sysctl_table_root.default_set,
--					path, table);
-+					path, table, count);
- }
- EXPORT_SYMBOL(register_sysctl);
++	hdr = register_sysctl_sz(path, table, count);
  
+ 	if (unlikely(!hdr)) {
+-		pr_err("failed when register_sysctl %s to %s\n", table_name, path);
++		pr_err("failed when register_sysctl_sz %s to %s\n", table_name, path);
+ 		return;
+ 	}
+ 	kmemleak_not_leak(hdr);
 diff --git a/include/linux/sysctl.h b/include/linux/sysctl.h
-index 33252ad58ebe..0495c858989f 100644
+index 0495c858989f..b1168ae281c9 100644
 --- a/include/linux/sysctl.h
 +++ b/include/linux/sysctl.h
-@@ -226,7 +226,7 @@ extern void retire_sysctl_set(struct ctl_table_set *set);
+@@ -215,6 +215,9 @@ struct ctl_path {
+ 	const char *procname;
+ };
  
++#define register_sysctl(path, table)	\
++	register_sysctl_sz(path, table, ARRAY_SIZE(table))
++
+ #ifdef CONFIG_SYSCTL
+ 
+ void proc_sys_poll_notify(struct ctl_table_poll *poll);
+@@ -227,7 +230,8 @@ extern void retire_sysctl_set(struct ctl_table_set *set);
  struct ctl_table_header *__register_sysctl_table(
  	struct ctl_table_set *set,
--	const char *path, struct ctl_table *table);
-+	const char *path, struct ctl_table *table, size_t table_size);
- struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table);
+ 	const char *path, struct ctl_table *table, size_t table_size);
+-struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table);
++struct ctl_table_header *register_sysctl_sz(const char *path, struct ctl_table *table,
++					    size_t table_size);
  void unregister_sysctl_table(struct ctl_table_header * table);
  
-diff --git a/ipc/ipc_sysctl.c b/ipc/ipc_sysctl.c
-index ef313ecfb53a..8c62e443f78b 100644
---- a/ipc/ipc_sysctl.c
-+++ b/ipc/ipc_sysctl.c
-@@ -259,7 +259,9 @@ bool setup_ipc_sysctls(struct ipc_namespace *ns)
- 				tbl[i].data = NULL;
- 		}
+ extern int sysctl_init_bases(void);
+@@ -262,7 +266,9 @@ static inline struct ctl_table_header *register_sysctl_mount_point(const char *p
+ 	return NULL;
+ }
  
--		ns->ipc_sysctls = __register_sysctl_table(&ns->ipc_set, "kernel", tbl);
-+		ns->ipc_sysctls = __register_sysctl_table(&ns->ipc_set,
-+							  "kernel", tbl,
-+							  ARRAY_SIZE(ipc_sysctls));
- 	}
- 	if (!ns->ipc_sysctls) {
- 		kfree(tbl);
-diff --git a/ipc/mq_sysctl.c b/ipc/mq_sysctl.c
-index fbf6a8b93a26..ebb5ed81c151 100644
---- a/ipc/mq_sysctl.c
-+++ b/ipc/mq_sysctl.c
-@@ -109,7 +109,9 @@ bool setup_mq_sysctls(struct ipc_namespace *ns)
- 				tbl[i].data = NULL;
- 		}
- 
--		ns->mq_sysctls = __register_sysctl_table(&ns->mq_set, "fs/mqueue", tbl);
-+		ns->mq_sysctls = __register_sysctl_table(&ns->mq_set,
-+							 "fs/mqueue", tbl,
-+							 ARRAY_SIZE(mq_sysctls));
- 	}
- 	if (!ns->mq_sysctls) {
- 		kfree(tbl);
+-static inline struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table)
++static inline struct ctl_table_header *register_sysctl_sz(const char *path,
++							  struct ctl_table *table,
++							  size_t table_size)
+ {
+ 	return NULL;
+ }
 diff --git a/kernel/ucount.c b/kernel/ucount.c
-index ee8e57fd6f90..2b80264bb79f 100644
+index 2b80264bb79f..4aa6166cb856 100644
 --- a/kernel/ucount.c
 +++ b/kernel/ucount.c
-@@ -104,7 +104,8 @@ bool setup_userns_sysctls(struct user_namespace *ns)
- 		for (i = 0; i < UCOUNT_COUNTS; i++) {
- 			tbl[i].data = &ns->ucount_max[i];
- 		}
--		ns->sysctls = __register_sysctl_table(&ns->set, "user", tbl);
-+		ns->sysctls = __register_sysctl_table(&ns->set, "user", tbl,
-+						      ARRAY_SIZE(user_table));
- 	}
- 	if (!ns->sysctls) {
- 		kfree(tbl);
+@@ -365,7 +365,7 @@ static __init int user_namespace_sysctl_init(void)
+ 	 * default set so that registrations in the child sets work
+ 	 * properly.
+ 	 */
+-	user_header = register_sysctl("user", empty);
++	user_header = register_sysctl_sz("user", empty, 0);
+ 	kmemleak_ignore(user_header);
+ 	BUG_ON(!user_header);
+ 	BUG_ON(!setup_userns_sysctls(&init_user_ns));
 diff --git a/net/sysctl_net.c b/net/sysctl_net.c
-index 4b45ed631eb8..8ee4b74bc009 100644
+index 8ee4b74bc009..d9cbbb51b143 100644
 --- a/net/sysctl_net.c
 +++ b/net/sysctl_net.c
-@@ -163,10 +163,16 @@ static void ensure_safe_net_sysctl(struct net *net, const char *path,
- struct ctl_table_header *register_net_sysctl(struct net *net,
- 	const char *path, struct ctl_table *table)
- {
-+	int count = 0;
-+	struct ctl_table *entry;
-+
- 	if (!net_eq(net, &init_net))
- 		ensure_safe_net_sysctl(net, path, table);
- 
--	return __register_sysctl_table(&net->sysctls, path, table);
-+	for (entry = table; entry->procname; entry++)
-+		count++;
-+
-+	return __register_sysctl_table(&net->sysctls, path, table, count);
- }
- EXPORT_SYMBOL_GPL(register_net_sysctl);
- 
+@@ -101,7 +101,7 @@ __init int net_sysctl_init(void)
+ 	 * registering "/proc/sys/net" as an empty directory not in a
+ 	 * network namespace.
+ 	 */
+-	net_header = register_sysctl("net", empty);
++	net_header = register_sysctl_sz("net", empty, 0);
+ 	if (!net_header)
+ 		goto out;
+ 	ret = register_pernet_subsys(&sysctl_pernet_ops);
 -- 
 2.30.2
 
