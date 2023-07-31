@@ -1,87 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC747697CE
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 608F27697CF
 	for <lists.bridge@lfdr.de>; Mon, 31 Jul 2023 15:38:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id C33EF8140A;
-	Mon, 31 Jul 2023 13:38:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C33EF8140A
-Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=aa90vhrz
+	by smtp4.osuosl.org (Postfix) with ESMTP id 2914141741;
+	Mon, 31 Jul 2023 13:38:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 2914141741
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=oqsIryt2
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id BOOWX5OZRDDO; Mon, 31 Jul 2023 13:38:35 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 0EBA180FB9;
-	Mon, 31 Jul 2023 13:38:34 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 0EBA180FB9
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1BB4AC0DD2;
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id gA4WRLAClReA; Mon, 31 Jul 2023 13:38:34 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id B590E40986;
 	Mon, 31 Jul 2023 13:38:33 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B590E40986
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B18C2C0DDB;
+	Mon, 31 Jul 2023 13:38:32 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 90DA5C0032
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 005FAC0032
  for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id 5FB2181DEF
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 5FB2181DEF
+ by smtp3.osuosl.org (Postfix) with ESMTP id CF3E560B32
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CF3E560B32
+Authentication-Results: smtp3.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20221208 header.b=oqsIryt2
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id WzuQF5sN9Nle for <bridge@lists.linux-foundation.org>;
- Mon, 31 Jul 2023 07:17:33 +0000 (UTC)
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com
- [IPv6:2a00:1450:4864:20::235])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 971B081DF4
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 971B081DF4
-Received: by mail-lj1-x235.google.com with SMTP id
- 38308e7fff4ca-2b9bb097c1bso60877911fa.0
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 00:17:33 -0700 (PDT)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id TjM8uk1g1Fll for <bridge@lists.linux-foundation.org>;
+ Mon, 31 Jul 2023 07:17:36 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 391E0608A5
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 391E0608A5
+Received: by mail-wm1-x32d.google.com with SMTP id
+ 5b1f17b1804b1-3fbc54cab6fso38846665e9.0
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 00:17:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690787851; x=1691392651;
+ d=gmail.com; s=20221208; t=1690787854; x=1691392654;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=9/+5UTOZSoINBQX5Idlq9s7Q/YjlqMmFruSJ92+I5og=;
- b=aa90vhrzpcWfje6OipbZcbSYmqsQOrKCRcOH+mXZEBSAe4e9SYO9KbJpgMCHttr/yA
- zdFVQR1LOnV+D7hAiD+KrUS2ISlvjUkq+b7yUFbiR01dxQnjTtlB3gUvsDsEdzqxQBra
- VtmXCBuFRC2NHa/MDl3j3RRH7oueh+fFARArWcE6cGtzhOQHhoEyDoaWBNB9BNxyNorT
- Vsk7HiljVefekG81Lh7gDtS9SFSWp6bx3r/GStCaxRX7m39RSXK/U9SkwJ+la8Y3+Sa+
- bicaAOoBwyN9hsG7EPZFDiSfvHQfnOEmdljFsJjOX5Tmk2pevqcpTLWxI8xhB+d6ZiQD
- aq0g==
+ bh=rF1J0XzJl2jEuCsHx7nkNs1OdRX43SORnh/9oIIv32k=;
+ b=oqsIryt2GxpgDCAITNIaXCxHDdR3cVtpe2f7ZX5yNWH+iIKTDyP9HWjuJrFs2+sMti
+ nz/dszslpzNl5CmOVyIxo9flstqLOG9Lkm0NZCdBEnmTU+I1vw89cMQ0SF9WwdKUoM4I
+ XcWmm1bGPvIhG5CX3epdf8PQz1b9WroQTsn7rnMMDg3nS9g5zr+JNBzD7ERJU2+AinRX
+ MHXofl3ANcJEAvB+CVk869XpKrsp2b0FvWFR9bdzEstXBE+7GTB2bqaK0C1x6sILTPh1
+ c3jM3t7rPPIdEypAnu4qsrcw5JUJFj3cl1pq/Q4VBS9yMtigqyYg0I4nF13M1FXKdD6i
+ UhMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690787851; x=1691392651;
+ d=1e100.net; s=20221208; t=1690787854; x=1691392654;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=9/+5UTOZSoINBQX5Idlq9s7Q/YjlqMmFruSJ92+I5og=;
- b=ZiT3/LlxG9W9fF+wfwcvFa/K2T/yJFDwNh/3WY/DTXq7qXdd+uDEhqPhXi4X27GMky
- +AO+XPcr9FVHNVoqiU9ZxRXN5WqZEgYifYHLv/soHzFaCaag+1ZdhCOT2u2KZK6tRGo9
- QJuv0N7ctP+hSSc4tZ/9Im5EWlCAU0jyurHep+NGJIspg33YqpJcXHAy2obXLJoa23U8
- Oxnbk4rPGSllFVjB4ff29yBQMjPcYXR0HqXX9yuBFgxAs2wAUHUHe7bCdVmtalxEfbA3
- WREclRmlnZdZnBUU7sLl4rNGxGJ6Jj9LVpaBW3IGhomkaO6j8ptSY5ITL53K5TuesTOl
- 7a2Q==
-X-Gm-Message-State: ABy/qLYqmixqSwoZMrSyIAfubdiyA6D3L3LgVZu5XTc0QwUcVxyBDpdM
- 1Gww2jYMm5JRFt01Ox+RH9Q=
-X-Google-Smtp-Source: APBJJlE6KY81A+y/Zffxll1xcr19Ku9HmdfKGgsWDibukZ1vJlgJ0JdG40X5D63FdYACFRgqNamN3g==
-X-Received: by 2002:a2e:8784:0:b0:2b9:ea5f:36b with SMTP id
- n4-20020a2e8784000000b002b9ea5f036bmr1193678lji.52.1690787851280; 
- Mon, 31 Jul 2023 00:17:31 -0700 (PDT)
+ bh=rF1J0XzJl2jEuCsHx7nkNs1OdRX43SORnh/9oIIv32k=;
+ b=csOX3Nxf97vPsFp4NH5vocY7rlRnj/3kMc+ZF6Xm4USlW76TLBuCsHxgFAeriscMxI
+ dhebkViPnIHDTWa9ZCCIgQM8kiWen9UfX5UCLuU4u775Wa03FjRG1r/SU6HQGLop8Ut1
+ wBnpnmUc+sBJ0y/MNVqKxTe+u6EEfGX/Il2hg0NE7gHDXzZqiMYoWWMbjAjde+FMAWg9
+ CKqeE4sxmo9VhnCy7PM23/QbvHTs92WynU5XOtyO9fao24yeLw4c1e43eOQsKLHytLFM
+ 3+eUT+mRANWm/CStY68I+48xIPLewbSSKhVZNMjBHNzwkCV7XP3edsfcK7oIMXDeZg8a
+ IDdQ==
+X-Gm-Message-State: ABy/qLa3ToJceaXjslpvhgNVxfuydDSomh+bINnjaFEpZxxrNiwo/qem
+ iULum0HDsNYN/M6YcJQpqoU=
+X-Google-Smtp-Source: APBJJlH/snPYxm7GXwa1Rggof5k5STEqlwm0FtiAchadIGMCtE1ufLHfEJ1/mE1z3ZZ7UCj5VHH5Tw==
+X-Received: by 2002:a5d:60cb:0:b0:316:f3f3:a1db with SMTP id
+ x11-20020a5d60cb000000b00316f3f3a1dbmr5784721wrt.32.1690787853763; 
+ Mon, 31 Jul 2023 00:17:33 -0700 (PDT)
 Received: from localhost ([165.225.194.214]) by smtp.gmail.com with ESMTPSA id
- l10-20020a5d410a000000b00317495f88fasm12011116wrp.112.2023.07.31.00.17.30
+ m14-20020adffa0e000000b003177e9b2e64sm11978068wrr.90.2023.07.31.00.17.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 31 Jul 2023 00:17:30 -0700 (PDT)
+ Mon, 31 Jul 2023 00:17:33 -0700 (PDT)
 From: Joel Granados <joel.granados@gmail.com>
 X-Google-Original-From: Joel Granados <j.granados@samsung.com>
 To: mcgrof@kernel.org
-Date: Mon, 31 Jul 2023 09:17:15 +0200
-Message-Id: <20230731071728.3493794-2-j.granados@samsung.com>
+Date: Mon, 31 Jul 2023 09:17:16 +0200
+Message-Id: <20230731071728.3493794-3-j.granados@samsung.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230731071728.3493794-1-j.granados@samsung.com>
 References: <20230731071728.3493794-1-j.granados@samsung.com>
@@ -121,8 +124,8 @@ Cc: Joel Granados <j.granados@samsung.com>, Wen Gu <guwen@linux.alibaba.com>,
  Sven Schnelle <svens@linux.ibm.com>, "D. Wythe" <alibuda@linux.alibaba.com>,
  linux-fsdevel@vger.kernel.org, Matthieu Baerts <matthieu.baerts@tessares.net>,
  linux-wpan@vger.kernel.org, Karsten Graul <kgraul@linux.ibm.com>
-Subject: [Bridge] [PATCH v2 01/14] sysctl: Prefer ctl_table_header in
-	proc_sysctl
+Subject: [Bridge] [PATCH v2 02/14] sysctl: Use ctl_table_header in
+	list_for_each_table_entry
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -137,139 +140,130 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-This is a preparation commit that replaces ctl_table with
-ctl_table_header as the pointer that is passed around in proc_sysctl.c.
-This will become necessary in subsequent commits when the size of the
-ctl_table array can no longer be calculated by searching for an empty
-sentinel (last empty ctl_table element) but will be carried along inside
-the ctl_table_header struct.
+We replace the ctl_table with the ctl_table_header pointer in
+list_for_each_table_entry which is the macro responsible for traversing
+the ctl_table arrays. This is a preparation commit that will make it
+easier to add the ctl_table array size (that will be added to
+ctl_table_header in subsequent commits) to the already existing loop
+logic based on empty ctl_table elements (so called sentinels).
 
 Signed-off-by: Joel Granados <j.granados@samsung.com>
 ---
- fs/proc/proc_sysctl.c | 36 ++++++++++++++++++------------------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+ fs/proc/proc_sysctl.c | 26 ++++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
 
 diff --git a/fs/proc/proc_sysctl.c b/fs/proc/proc_sysctl.c
-index 5ea42653126e..94d71446da39 100644
+index 94d71446da39..884460b0385b 100644
 --- a/fs/proc/proc_sysctl.c
 +++ b/fs/proc/proc_sysctl.c
-@@ -1125,11 +1125,11 @@ static int sysctl_check_table_array(const char *path, struct ctl_table *table)
- 	return err;
+@@ -19,8 +19,8 @@
+ #include <linux/kmemleak.h>
+ #include "internal.h"
+ 
+-#define list_for_each_table_entry(entry, table) \
+-	for ((entry) = (table); (entry)->procname; (entry)++)
++#define list_for_each_table_entry(entry, header) \
++	for ((entry) = (header->ctl_table); (entry)->procname; (entry)++)
+ 
+ static const struct dentry_operations proc_sys_dentry_operations;
+ static const struct file_operations proc_sys_file_operations;
+@@ -204,7 +204,7 @@ static void init_header(struct ctl_table_header *head,
+ 	if (node) {
+ 		struct ctl_table *entry;
+ 
+-		list_for_each_table_entry(entry, table) {
++		list_for_each_table_entry(entry, head) {
+ 			node->header = head;
+ 			node++;
+ 		}
+@@ -215,7 +215,7 @@ static void erase_header(struct ctl_table_header *head)
+ {
+ 	struct ctl_table *entry;
+ 
+-	list_for_each_table_entry(entry, head->ctl_table)
++	list_for_each_table_entry(entry, head)
+ 		erase_entry(head, entry);
  }
  
--static int sysctl_check_table(const char *path, struct ctl_table *table)
-+static int sysctl_check_table(const char *path, struct ctl_table_header *header)
+@@ -242,7 +242,7 @@ static int insert_header(struct ctl_dir *dir, struct ctl_table_header *header)
+ 	err = insert_links(header);
+ 	if (err)
+ 		goto fail_links;
+-	list_for_each_table_entry(entry, header->ctl_table) {
++	list_for_each_table_entry(entry, header) {
+ 		err = insert_entry(header, entry);
+ 		if (err)
+ 			goto fail;
+@@ -1129,7 +1129,7 @@ static int sysctl_check_table(const char *path, struct ctl_table_header *header)
  {
  	struct ctl_table *entry;
  	int err = 0;
--	list_for_each_table_entry(entry, table) {
-+	list_for_each_table_entry(entry, header->ctl_table) {
+-	list_for_each_table_entry(entry, header->ctl_table) {
++	list_for_each_table_entry(entry, header) {
  		if ((entry->proc_handler == proc_dostring) ||
  		    (entry->proc_handler == proc_dobool) ||
  		    (entry->proc_handler == proc_dointvec) ||
-@@ -1159,8 +1159,7 @@ static int sysctl_check_table(const char *path, struct ctl_table *table)
- 	return err;
- }
- 
--static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table *table,
--	struct ctl_table_root *link_root)
-+static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table_header *head)
- {
- 	struct ctl_table *link_table, *entry, *link;
- 	struct ctl_table_header *links;
-@@ -1170,7 +1169,7 @@ static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table
+@@ -1169,7 +1169,7 @@ static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table_
  
  	name_bytes = 0;
  	nr_entries = 0;
--	list_for_each_table_entry(entry, table) {
-+	list_for_each_table_entry(entry, head->ctl_table) {
+-	list_for_each_table_entry(entry, head->ctl_table) {
++	list_for_each_table_entry(entry, head) {
  		nr_entries++;
  		name_bytes += strlen(entry->procname) + 1;
  	}
-@@ -1189,12 +1188,12 @@ static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table
+@@ -1188,7 +1188,7 @@ static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table_
  	link_name = (char *)&link_table[nr_entries + 1];
  	link = link_table;
  
--	list_for_each_table_entry(entry, table) {
-+	list_for_each_table_entry(entry, head->ctl_table) {
+-	list_for_each_table_entry(entry, head->ctl_table) {
++	list_for_each_table_entry(entry, head) {
  		int len = strlen(entry->procname) + 1;
  		memcpy(link_name, entry->procname, len);
  		link->procname = link_name;
- 		link->mode = S_IFLNK|S_IRWXUGO;
--		link->data = link_root;
-+		link->data = head->root;
- 		link_name += len;
- 		link++;
- 	}
-@@ -1205,15 +1204,16 @@ static struct ctl_table_header *new_links(struct ctl_dir *dir, struct ctl_table
- }
- 
- static bool get_links(struct ctl_dir *dir,
--	struct ctl_table *table, struct ctl_table_root *link_root)
-+		      struct ctl_table_header *header,
-+		      struct ctl_table_root *link_root)
- {
--	struct ctl_table_header *head;
-+	struct ctl_table_header *tmp_head;
+@@ -1211,7 +1211,7 @@ static bool get_links(struct ctl_dir *dir,
  	struct ctl_table *entry, *link;
  
  	/* Are there links available for every entry in table? */
--	list_for_each_table_entry(entry, table) {
-+	list_for_each_table_entry(entry, header->ctl_table) {
+-	list_for_each_table_entry(entry, header->ctl_table) {
++	list_for_each_table_entry(entry, header) {
  		const char *procname = entry->procname;
--		link = find_entry(&head, dir, procname, strlen(procname));
-+		link = find_entry(&tmp_head, dir, procname, strlen(procname));
+ 		link = find_entry(&tmp_head, dir, procname, strlen(procname));
  		if (!link)
- 			return false;
- 		if (S_ISDIR(link->mode) && S_ISDIR(entry->mode))
-@@ -1224,10 +1224,10 @@ static bool get_links(struct ctl_dir *dir,
+@@ -1224,7 +1224,7 @@ static bool get_links(struct ctl_dir *dir,
  	}
  
  	/* The checks passed.  Increase the registration count on the links */
--	list_for_each_table_entry(entry, table) {
-+	list_for_each_table_entry(entry, header->ctl_table) {
+-	list_for_each_table_entry(entry, header->ctl_table) {
++	list_for_each_table_entry(entry, header) {
  		const char *procname = entry->procname;
--		link = find_entry(&head, dir, procname, strlen(procname));
--		head->nreg++;
-+		link = find_entry(&tmp_head, dir, procname, strlen(procname));
-+		tmp_head->nreg++;
- 	}
- 	return true;
- }
-@@ -1246,13 +1246,13 @@ static int insert_links(struct ctl_table_header *head)
+ 		link = find_entry(&tmp_head, dir, procname, strlen(procname));
+ 		tmp_head->nreg++;
+@@ -1356,12 +1356,14 @@ struct ctl_table_header *__register_sysctl_table(
+ {
+ 	struct ctl_table_root *root = set->dir.header.root;
+ 	struct ctl_table_header *header;
++	struct ctl_table_header h_tmp;
+ 	struct ctl_dir *dir;
+ 	struct ctl_table *entry;
+ 	struct ctl_node *node;
+ 	int nr_entries = 0;
+ 
+-	list_for_each_table_entry(entry, table)
++	h_tmp.ctl_table = table;
++	list_for_each_table_entry(entry, (&h_tmp))
+ 		nr_entries++;
+ 
+ 	header = kzalloc(sizeof(struct ctl_table_header) +
+@@ -1471,7 +1473,7 @@ static void put_links(struct ctl_table_header *header)
  	if (IS_ERR(core_parent))
- 		return 0;
+ 		return;
  
--	if (get_links(core_parent, head->ctl_table, head->root))
-+	if (get_links(core_parent, head, head->root))
- 		return 0;
- 
- 	core_parent->header.nreg++;
- 	spin_unlock(&sysctl_lock);
- 
--	links = new_links(core_parent, head->ctl_table, head->root);
-+	links = new_links(core_parent, head);
- 
- 	spin_lock(&sysctl_lock);
- 	err = -ENOMEM;
-@@ -1260,7 +1260,7 @@ static int insert_links(struct ctl_table_header *head)
- 		goto out;
- 
- 	err = 0;
--	if (get_links(core_parent, head->ctl_table, head->root)) {
-+	if (get_links(core_parent, head, head->root)) {
- 		kfree(links);
- 		goto out;
- 	}
-@@ -1371,7 +1371,7 @@ struct ctl_table_header *__register_sysctl_table(
- 
- 	node = (struct ctl_node *)(header + 1);
- 	init_header(header, root, set, node, table);
--	if (sysctl_check_table(path, table))
-+	if (sysctl_check_table(path, header))
- 		goto fail;
- 
- 	spin_lock(&sysctl_lock);
+-	list_for_each_table_entry(entry, header->ctl_table) {
++	list_for_each_table_entry(entry, header) {
+ 		struct ctl_table_header *link_head;
+ 		struct ctl_table *link;
+ 		const char *name = entry->procname;
 -- 
 2.30.2
 
