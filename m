@@ -1,60 +1,112 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA63776DE1
-	for <lists.bridge@lfdr.de>; Thu, 10 Aug 2023 04:07:33 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A2C7777C1
+	for <lists.bridge@lfdr.de>; Thu, 10 Aug 2023 14:03:48 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id F22AB83B77;
-	Thu, 10 Aug 2023 02:07:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org F22AB83B77
+	by smtp3.osuosl.org (Postfix) with ESMTP id 8D01660C2B;
+	Thu, 10 Aug 2023 12:03:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8D01660C2B
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=O1VpJucJ
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
-	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yKMt3zbswnB8; Thu, 10 Aug 2023 02:07:29 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 0C08083B7F;
-	Thu, 10 Aug 2023 02:07:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 0C08083B7F
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XbyZ-JjJ4vxD; Thu, 10 Aug 2023 12:03:40 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 92C9860AEB;
+	Thu, 10 Aug 2023 12:03:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 92C9860AEB
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 8E311C0DD4;
-	Thu, 10 Aug 2023 02:07:28 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id EBC91C008D;
+	Thu, 10 Aug 2023 12:03:38 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 86B49C0032
- for <bridge@lists.linux-foundation.org>; Thu, 10 Aug 2023 02:07:27 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 020EAC0032
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 18:30:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 42DB7401C7
- for <bridge@lists.linux-foundation.org>; Thu, 10 Aug 2023 02:07:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 42DB7401C7
+ by smtp2.osuosl.org (Postfix) with ESMTP id C596E4148A
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 18:30:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org C596E4148A
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=O1VpJucJ
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id FFEsC9Cm0BDh for <bridge@lists.linux-foundation.org>;
- Thu, 10 Aug 2023 02:07:25 +0000 (UTC)
-Received: from mail.aperture-lab.de (mail.aperture-lab.de
- [IPv6:2a01:4f8:c2c:665b::1])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 88EE5401C1
- for <bridge@lists.linux-foundation.org>; Thu, 10 Aug 2023 02:07:25 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 88EE5401C1
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id C708E40CCB
- for <bridge@lists.linux-foundation.org>; Thu, 10 Aug 2023 04:07:18 +0200 (CEST)
-Date: Thu, 10 Aug 2023 04:07:17 +0200
-From: Linus =?utf-8?Q?L=C3=BCssing?= <linus.luessing@c0d3.blue>
-To: bridge@lists.linux-foundation.org
-Message-ID: <ZNRGVfk0vAYYlfVU@sellars>
-References: <ZNGMVUNsZWWUd7so@sellars> <20230807182051.47d4d613@hermes.local>
- <ZNQZsl9YZXeCc7cf@sellars>
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ObBl-geaC06S for <bridge@lists.linux-foundation.org>;
+ Mon, 31 Jul 2023 18:30:36 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 0C91B41030
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 18:30:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0C91B41030
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CF34D6126D;
+ Mon, 31 Jul 2023 18:30:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 082BDC433C7;
+ Mon, 31 Jul 2023 18:30:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1690828234;
+ bh=azdNP8cF85m7UDvgXMTAEEGyM/wWyMIGFgmuwIc8ul0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=O1VpJucJ8qJ4G6AE1OKV3xdN/xK/FDklzv/nwqYZajcZtRy+LSUQU50X+sHs9AxvB
+ xsU2buC2SUK4CZR3jjYJZtrydR9Bbqd9WCPwdG5zMYEjJLfGD0nXQIDtdar/ei7qKh
+ Q4AFqyXfVyBH57dywLI4uw0Frcitouu9e42wpiwCGypovk04FOzCfl60zxzFG2eyak
+ ANZHJkor5YlN+5saTB/xwrXYhgw16Q93h89m9IIkWKyhNAHwsbqX1ZrfONEa6iuY6k
+ btG9dsvLFpB0/w7f/xaTE6xEYGtgYWH7rF7vGs2JSC6YVtwrN6iixwxcTNdpmmdRV2
+ wiQHQ/+OXxCxw==
+Date: Mon, 31 Jul 2023 20:30:21 +0200
+From: Simon Horman <horms@kernel.org>
+To: Joel Granados <joel.granados@gmail.com>
+Message-ID: <ZMf9vZpGE98oM9W2@kernel.org>
+References: <20230731071728.3493794-1-j.granados@samsung.com>
+ <20230731071728.3493794-4-j.granados@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZNQZsl9YZXeCc7cf@sellars>
-X-Last-TLS-Session-Version: TLSv1.3
-Subject: Re: [Bridge] Getting + maintaining a consistent MDB view in
- userspace?
+In-Reply-To: <20230731071728.3493794-4-j.granados@samsung.com>
+X-Mailman-Approved-At: Thu, 10 Aug 2023 12:03:37 +0000
+Cc: Joel Granados <j.granados@samsung.com>, Wen Gu <guwen@linux.alibaba.com>,
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Alexander Aring <alex.aring@gmail.com>, linux-sctp@vger.kernel.org,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Jan Karcher <jaka@linux.ibm.com>,
+ Mat Martineau <martineau@kernel.org>, Will Deacon <will@kernel.org>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Stefan Schmidt <stefan@datenfreihafen.org>,
+ Steffen Klassert <steffen.klassert@secunet.com>, linux-s390@vger.kernel.org,
+ rds-devel@oss.oracle.com, Xin Long <lucien.xin@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org,
+ Tony Lu <tonylu@linux.alibaba.com>, bridge@lists.linux-foundation.org,
+ willy@infradead.org, Jozsef Kadlecsik <kadlec@netfilter.org>,
+ lvs-devel@vger.kernel.org, Julian Anastasov <ja@ssi.bg>,
+ coreteam@netfilter.org, Roopa Prabhu <roopa@nvidia.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Joerg Reuter <jreuter@yaina.de>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Kees Cook <keescook@chromium.org>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>,
+ Santosh Shilimkar <santosh.shilimkar@oracle.com>, josh@joshtriplett.org,
+ Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
+ linux-hams@vger.kernel.org, mptcp@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, Iurii Zaikin <yzaikin@google.com>,
+ Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+ David Ahern <dsahern@kernel.org>, Florian Westphal <fw@strlen.de>,
+ linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
+ "David S. Miller" <davem@davemloft.net>, mcgrof@kernel.org,
+ netfilter-devel@vger.kernel.org, Sven Schnelle <svens@linux.ibm.com>,
+ "D. Wythe" <alibuda@linux.alibaba.com>, linux-fsdevel@vger.kernel.org,
+ Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
+ Karsten Graul <kgraul@linux.ibm.com>
+Subject: Re: [Bridge] [PATCH v2 03/14] sysctl: Add ctl_table_size to
+	ctl_table_header
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -69,93 +121,69 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Thu, Aug 10, 2023 at 12:56:50AM +0200, Linus Lüssing wrote:
-> [...]
-> When setting a bridge's "multicast_mld_version" to 2 it looks to me like
-> there is quite a bit of redundancy in both "bridge mdb show"
-> and "bridge monitor mdb" output. And addition and deletion notifications
-> don't look that symmetric to me then anymore. There doesn't
-> happen to exist some documentation about these (netlink specific)
-> additions that came with the IGMPv3/MLDv2 implementation, or does
-> it?
+On Mon, Jul 31, 2023 at 09:17:17AM +0200, Joel Granados wrote:
+> The new ctl_table_size element will hold the size of the ctl_table
+> arrays contained in the ctl_table_header. This value should eventually
+> be passed by the callers to the sysctl register infrastructure. And
+> while this commit introduces the variable, it does not set nor use it
+> because that requires case by case considerations for each caller.
+> 
+> It provides two important things: (1) A place to put the
+> result of the ctl_table array calculation when it gets introduced for
+> each caller. And (2) the size that will be used as the additional
+> stopping criteria in the list_for_each_table_entry macro (to be added
+> when all the callers are migrated)
+> 
+> Signed-off-by: Joel Granados <j.granados@samsung.com>
+> ---
+>  include/linux/sysctl.h | 14 ++++++++++++--
+>  1 file changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/include/linux/sysctl.h b/include/linux/sysctl.h
+> index 59d451f455bf..33252ad58ebe 100644
+> --- a/include/linux/sysctl.h
+> +++ b/include/linux/sysctl.h
+> @@ -159,12 +159,22 @@ struct ctl_node {
+>  	struct ctl_table_header *header;
+>  };
+>  
+> -/* struct ctl_table_header is used to maintain dynamic lists of
+> -   struct ctl_table trees. */
+> +/**
+> + * struct ctl_table_header - maintains dynamic lists of struct ctl_table trees
+> + * @ctl_table: pointer to the first element in ctl_table array
+> + * @ctl_table_size: number of elements pointed by @ctl_table
+> + * @used: The entry will never be touched when equal to 0.
+> + * @count: Upped every time something is added to @inodes and downed every time
+> + *         something is removed from inodes
+> + * @nreg: When nreg drops to 0 the ctl_table_header will be unregistered.
+> + * @rcu: Delays the freeing of the inode. Introduced with "unfuck proc_sysctl ->d_compare()"
+> + *
+> + */
 
-And just a few examples which confuse me a bit:
+Hi Joel,
 
-1) ASM, single listener:
+Please consider also adding kernel doc entries for the other fields of
+struct ctl_table_header. According to ./scripts/kernel-doc -none
+they are:
 
-$ ./mcjoin -d -i veth0 "[ff12::125]
-
-bridge monitor mdb:
-
-```
-dev br0 port veth1 grp ff12::125 temp filter_mode include proto kernel
-dev br0 port veth1 grp ff12::125 temp filter_mode exclude proto kernel
-```
-
--> first line seems to be superfluous / no-op?
-   Can I always ignore such an event with:
-   "n->nlmsg_type == RTM_NEWMDB && mode == MCAST_INCLUDE &&
-    !tb[MDBA_MDB_EATTR_SOURCE] && !tb[MDBA_MDB_EATTR_SRC_LIST]" ?
-
-Leave only creates one event:
-
-$ kill <mcjoin ...>
-
-```
-Deleted dev br0 port veth1 grp ff12::125 temp filter_mode include proto kernel
-```
-
-2) SSM, two listeners:
-
-$ ./mcjoin -d -i veth0 "[fe80::130],[ff12::130]"
-
-```
-dev br0 port veth1 grp ff12::130 temp filter_mode include proto kernel
-dev br0 port veth1 grp ff12::130 src fe80::130 temp filter_mode include proto kernel
-dev br0 port veth1 grp ff12::130 temp filter_mode include source_list fe80::130/260.00 proto kernel
-```
-
--> again first line superfluous / no-op?
-   and second + third line identical?
-
-Adding a second join:
-
-$ ./mcjoin -d -i veth0 "[fe80::131],[ff12::130]"
-
-```
-dev br0 port veth1 grp ff12::130 src fe80::131 temp filter_mode include proto kernel
-dev br0 port veth1 grp ff12::130 temp filter_mode include source_list fe80::131/260.00,fe80::130/247.86 proto kernel
-```
-
--> so looks like the source_list line is actually always a (superfluous /
-   redundant?) summary of all sources for this group+port?
-
-And deleting here creates three events:
-
-$ kill <mcjoin -d -i veth0 "[fe80::131],[ff12::130]">
-
-```
-Deleted dev br0 port veth1 grp ff12::130 src fe80::131 temp filter_mode include proto kernel
-```
-
-$ kill <mcjoin -d -i veth0 "[fe80::130],[ff12::130]">
-
-```
-Deleted dev br0 port veth1 grp ff12::130 src fe80::130 temp filter_mode include proto kernel
-Deleted dev br0 port veth1 grp ff12::130 temp filter_mode include proto kernel
-```
-
-And here the last line seems to be superfluous / redundant?
-And the behaviour seems to differ from 1) / ASM, where
-I would always only get one event when leaving?
+  unregistering
+  ctl_table_arg
+  root
+  set
+  parent
+  node
+  inodes
 
 
-----------
-
-So this currently confuses me a bit regarding which of these netlink
-notifications I might be able to ignore safely and which not. And
-how to interpret them, which ones are supposed to be a singular update
-I would need to add and which ones are supposed to be summaries
-that are supposed to potentially update/replace multiple entries.
-
-Regards, Linus
+>  struct ctl_table_header {
+>  	union {
+>  		struct {
+>  			struct ctl_table *ctl_table;
+> +			int ctl_table_size;
+>  			int used;
+>  			int count;
+>  			int nreg;
+> -- 
+> 2.30.2
+> 
