@@ -1,87 +1,90 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5E97697DA
-	for <lists.bridge@lfdr.de>; Mon, 31 Jul 2023 15:38:46 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FE17697D8
+	for <lists.bridge@lfdr.de>; Mon, 31 Jul 2023 15:38:44 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id ADAB7610C4;
-	Mon, 31 Jul 2023 13:38:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org ADAB7610C4
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=IpykfJb7
+	by smtp4.osuosl.org (Postfix) with ESMTP id 439A94176F;
+	Mon, 31 Jul 2023 13:38:40 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 439A94176F
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=SdrDkcAX
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id KxuJG1sqLfoz; Mon, 31 Jul 2023 13:38:38 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id FrLKb4tSME_Q; Mon, 31 Jul 2023 13:38:39 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 0F462610BA;
+	by smtp4.osuosl.org (Postfix) with ESMTPS id 6BA6D41778;
 	Mon, 31 Jul 2023 13:38:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0F462610BA
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6BA6D41778
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7A24BC0DD3;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C045FC0DD2;
 	Mon, 31 Jul 2023 13:38:36 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 93E9DC0032
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:56 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DBCC4C0032
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 61D8A608A5
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 61D8A608A5
+ by smtp1.osuosl.org (Postfix) with ESMTP id C417681DF4
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:57 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C417681DF4
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20221208 header.b=SdrDkcAX
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id VM9QuB0oDzvV for <bridge@lists.linux-foundation.org>;
- Mon, 31 Jul 2023 07:17:55 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 92CC360B32
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 92CC360B32
-Received: by mail-wm1-x32c.google.com with SMTP id
- 5b1f17b1804b1-3fbd33a57b6so47995075e9.2
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 00:17:55 -0700 (PDT)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id OuS0qJT2M-X7 for <bridge@lists.linux-foundation.org>;
+ Mon, 31 Jul 2023 07:17:57 +0000 (UTC)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id E79C781DEF
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 07:17:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E79C781DEF
+Received: by mail-wm1-x330.google.com with SMTP id
+ 5b1f17b1804b1-3fbc54cab6fso38849175e9.0
+ for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 00:17:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690787874; x=1691392674;
+ d=gmail.com; s=20221208; t=1690787875; x=1691392675;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=WLmPwUxElpGPIItGBie9qSPLiGC8xTssPnC4wjmH8Co=;
- b=IpykfJb7hcUQStL2f0jwevdksgcPlej76+9Dvlr1etAys3iM7VBIf1dA9mPPbAYwEb
- ovJ3JqI/719OJKxsZ6C+Z8AKuT8aGJ8b4PaOI4zBQOwthNmU3T7saorlPq0OFGxCpSve
- zgNuz5M+is0YyrITjMyHTZmRVk7n/qm4sjOgmkOO54OTjqAif6/SwiRsLOZuEL+B98qp
- GAICvEE8SmvklGodmsUNzWyuYtuSW1QtXfHA5t9EADp21BbKXmmGvog+lzyPMjWS0+o9
- YAQafxqNi3TE5xfJHhmTEkye+I77LFFqaIu/Xim5e2O7+IpfnM5rQvYU0EPtAIag7AvX
- 7qPA==
+ bh=5noSV5uL5R3dSrbr/R0oWH8ijMnn3jtlsPFspVagWKY=;
+ b=SdrDkcAXByY0sJ7+rsAQdKfwmVG3c5WCPbN//BnCCScfOVUkasmGjo067IR+VtoRFo
+ D6fwH8JniXv/Aup+rPGRbJrL8OTu9SbMmBiODdKPF8oMnV5nnhT5Dk8pAsrGnQ1wlSD+
+ ZPSjKJj0Pl4FANdos20Y/es0ysWL5w8sQZmI+ZHUBkv+tuJ1lk6dlgDvkzs/df09zXrj
+ ozr7xMnnfqrKvmouPpdXKljCbCEOiFQv0X/hWykCE2eIqIt79Ja2MJK+869pNwih6sKq
+ TE5UeaBofIs4fRFHFLZTtsmqowO2I2B2j/4dl6w9Zz7MLeQMomK17YoLSMVAB2k5xiif
+ a5kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690787874; x=1691392674;
+ d=1e100.net; s=20221208; t=1690787875; x=1691392675;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WLmPwUxElpGPIItGBie9qSPLiGC8xTssPnC4wjmH8Co=;
- b=gp/gTBQdUu6X47hnobS/udwzSfmdufTYzVLoy5miJNHa8GEowkg6XLSLX67DKlWmn3
- 5UtTTYeRDGgbyrviusK6gOhfYfTf5GW8iEjZLWdYz/4/1wWjxSzLTBz+7U8hJywHq+D1
- bsln2qWdb/1ChTiWUWU8pa3g/aAuCuL7VoVUQUAJMf1F/XtuCKBXy6xfFyOXSOe+LJEo
- qY/EtITi2nhWFJxyR5tWx2fpNhVKaQ00up72cI6HbFUWoTBB1koJjQyhGorWCG2go4GN
- 396YcRIv3hUpyGyMFf9sH3WGJsBwT+fe32G7UvG19nYVSGAR0Ieyy55hEXSum4zlva7p
- ugyA==
-X-Gm-Message-State: ABy/qLY7beaPJrteBJubbzbtTBQ18S4P+xUqEgWxmaInRvbTFidtFJM4
- H0JonZ6EngiI7TLgFRRHqvw=
-X-Google-Smtp-Source: APBJJlEWJpIRsYgvvSuwbjUjC75DanD11Vxqj9Uy7oRYPl2tqIHO5CFVTD3oPksJ5zp8xbINTXCHDg==
-X-Received: by 2002:a5d:474c:0:b0:317:52d2:d196 with SMTP id
- o12-20020a5d474c000000b0031752d2d196mr6971143wrs.33.1690787873675; 
- Mon, 31 Jul 2023 00:17:53 -0700 (PDT)
+ bh=5noSV5uL5R3dSrbr/R0oWH8ijMnn3jtlsPFspVagWKY=;
+ b=bxC0tVUHWxpEAjc2orIlzy+6AMTc05zjH8L3ykZ4IQepPRa5JGvBwvEToAGfdlfv9w
+ H8YQpCcnsNMLs4pjLBmovr52xWlbv8AeApDl1ST0XYDrVwUkkWgjMeXKhJzzjvTsoarM
+ kPsJOt7aSe+XOX8d02N8sXCxZPqJqYfrQ9nx9CtUHL5abiEAT1Zuq+iym4Abyti2gkbc
+ q8cBvjcFdz91mzvmoZIKRynijyIDAX0HH0xzI8rAHL7T1Z1zq7LXe/R08PqW37pLDDOa
+ G3CMhT5REvRqYpKOj2abgbVO7EBlsb1U2DfQanmK9JJo/Vm/F9K26hooB8ERVW0rc5aW
+ zH1A==
+X-Gm-Message-State: ABy/qLaBBUUSj9fNtahKCQpsw3g48x33eHvZ+NiHxCRYpA+J6pAXvSWR
+ e2K4X3D4qwBllL66OmsbwFY=
+X-Google-Smtp-Source: APBJJlHpAH3o3EDSC2u2zI8yHuEQrXycm/dtoKdWekhqyBYm7o6lNwNkDT7RDClIujTk2ibrxiYYXQ==
+X-Received: by 2002:a7b:c4d0:0:b0:3fb:ac9c:e6f with SMTP id
+ g16-20020a7bc4d0000000b003fbac9c0e6fmr6026875wmk.38.1690787875090; 
+ Mon, 31 Jul 2023 00:17:55 -0700 (PDT)
 Received: from localhost ([165.225.194.214]) by smtp.gmail.com with ESMTPSA id
- r8-20020adfe688000000b0031434c08bb7sm12018523wrm.105.2023.07.31.00.17.53
+ s10-20020a7bc38a000000b003fbfc61d36asm10570517wmj.5.2023.07.31.00.17.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 31 Jul 2023 00:17:53 -0700 (PDT)
+ Mon, 31 Jul 2023 00:17:54 -0700 (PDT)
 From: Joel Granados <joel.granados@gmail.com>
 X-Google-Original-From: Joel Granados <j.granados@samsung.com>
 To: mcgrof@kernel.org
-Date: Mon, 31 Jul 2023 09:17:26 +0200
-Message-Id: <20230731071728.3493794-13-j.granados@samsung.com>
+Date: Mon, 31 Jul 2023 09:17:27 +0200
+Message-Id: <20230731071728.3493794-14-j.granados@samsung.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230731071728.3493794-1-j.granados@samsung.com>
 References: <20230731071728.3493794-1-j.granados@samsung.com>
@@ -111,17 +114,19 @@ Cc: Joel Granados <j.granados@samsung.com>, Wen Gu <guwen@linux.alibaba.com>,
  Kees Cook <keescook@chromium.org>, Vasily Gorbik <gor@linux.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>,
  Santosh Shilimkar <santosh.shilimkar@oracle.com>, josh@joshtriplett.org,
- Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
- linux-hams@vger.kernel.org, mptcp@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Iurii Zaikin <yzaikin@google.com>,
- Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
- David Ahern <dsahern@kernel.org>, Florian Westphal <fw@strlen.de>,
- linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
- "David S. Miller" <davem@davemloft.net>, netfilter-devel@vger.kernel.org,
- Sven Schnelle <svens@linux.ibm.com>, "D. Wythe" <alibuda@linux.alibaba.com>,
- linux-fsdevel@vger.kernel.org, Matthieu Baerts <matthieu.baerts@tessares.net>,
- linux-wpan@vger.kernel.org, Karsten Graul <kgraul@linux.ibm.com>
-Subject: [Bridge] [PATCH v2 12/14] vrf: Update to register_net_sysctl_sz
+ Jani Nikula <jani.nikula@linux.intel.com>, Wenjia Zhang <wenjia@linux.ibm.com>,
+ Simon Horman <horms@verge.net.au>, linux-hams@vger.kernel.org,
+ mptcp@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Iurii Zaikin <yzaikin@google.com>, Eric Dumazet <edumazet@google.com>,
+ netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ Ralf Baechle <ralf@linux-mips.org>, "David S. Miller" <davem@davemloft.net>,
+ netfilter-devel@vger.kernel.org, Sven Schnelle <svens@linux.ibm.com>,
+ "D. Wythe" <alibuda@linux.alibaba.com>, linux-fsdevel@vger.kernel.org,
+ Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
+ Karsten Graul <kgraul@linux.ibm.com>
+Subject: [Bridge] [PATCH v2 13/14] sysctl: SIZE_MAX->ARRAY_SIZE in
+	register_net_sysctl
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -136,33 +141,40 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Move from register_net_sysctl to register_net_sysctl_sz and pass the
-ARRAY_SIZE of the ctl_table array that was used to create the table
-variable. We need to move to the new function in preparation for when we
-change SIZE_MAX to ARRAY_SIZE() in the register_net_sysctl macro.
-Failing to do so would erroneously allow ARRAY_SIZE() to be called on a
-pointer. The actual change from SIZE_MAX to ARRAY_SIZE will take place
-in subsequent commits.
+Replace SIZE_MAX with ARRAY_SIZE in the register_net_sysctl macro. Now
+that all the callers to register_net_sysctl are actual arrays, we can
+call ARRAY_SIZE() without any compilation warnings. By calculating the
+actual array size, this commit is making sure that register_net_sysctl
+and all its callers forward the table_size into sysctl backend for when
+the sentinel elements in the ctl_table arrays (last empty markers) are
+removed. Without it the removal would fail lacking a stopping criteria
+for traversing the ctl_table arrays.
+
+Stopping condition continues to be based on both table size and the
+procname null test. This is needed in order to allow for the systematic
+removal al the sentinel element in subsequent commits: Before removing
+sentinel the stopping criteria will be the last null element. When the
+sentinel is removed then the (correct) size will take over.
 
 Signed-off-by: Joel Granados <j.granados@samsung.com>
+Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
 ---
- drivers/net/vrf.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ include/net/net_namespace.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/vrf.c b/drivers/net/vrf.c
-index bdb3a76a352e..f4c3df15a0e5 100644
---- a/drivers/net/vrf.c
-+++ b/drivers/net/vrf.c
-@@ -1979,7 +1979,8 @@ static int vrf_netns_init_sysctl(struct net *net, struct netns_vrf *nn_vrf)
- 	/* init the extra1 parameter with the reference to current netns */
- 	table[0].extra1 = net;
+diff --git a/include/net/net_namespace.h b/include/net/net_namespace.h
+index e4e5fe75a281..75dba309e043 100644
+--- a/include/net/net_namespace.h
++++ b/include/net/net_namespace.h
+@@ -470,7 +470,7 @@ void unregister_pernet_device(struct pernet_operations *);
+ struct ctl_table;
  
--	nn_vrf->ctl_hdr = register_net_sysctl(net, "net/vrf", table);
-+	nn_vrf->ctl_hdr = register_net_sysctl_sz(net, "net/vrf", table,
-+						 ARRAY_SIZE(vrf_table));
- 	if (!nn_vrf->ctl_hdr) {
- 		kfree(table);
- 		return -ENOMEM;
+ #define register_net_sysctl(net, path, table)	\
+-	register_net_sysctl_sz(net, path, table, SIZE_MAX)
++	register_net_sysctl_sz(net, path, table, ARRAY_SIZE(table))
+ #ifdef CONFIG_SYSCTL
+ int net_sysctl_init(void);
+ struct ctl_table_header *register_net_sysctl_sz(struct net *net, const char *path,
 -- 
 2.30.2
 
