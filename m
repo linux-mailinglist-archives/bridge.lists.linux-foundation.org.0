@@ -1,111 +1,100 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECE57777C2
-	for <lists.bridge@lfdr.de>; Thu, 10 Aug 2023 14:03:48 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id E90577777BD
+	for <lists.bridge@lfdr.de>; Thu, 10 Aug 2023 14:03:45 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 1EB1840B7D;
-	Thu, 10 Aug 2023 12:03:45 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1EB1840B7D
+	by smtp2.osuosl.org (Postfix) with ESMTP id 2857D4173C;
+	Thu, 10 Aug 2023 12:03:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 2857D4173C
 Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=qNrewbNA
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=boeing.com header.i=@boeing.com header.a=rsa-sha256 header.s=boeing-s1912 header.b=QcP2rmRI
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jXLor7PfKBaC; Thu, 10 Aug 2023 12:03:40 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 0429D405B7;
+	with ESMTP id tQp6ZygfKRyU; Thu, 10 Aug 2023 12:03:41 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 718CC40A5F;
 	Thu, 10 Aug 2023 12:03:40 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 0429D405B7
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 718CC40A5F
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 2958CC0DD8;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 510B4C0DDC;
 	Thu, 10 Aug 2023 12:03:39 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8C824C0032
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 19:07:21 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id DEE80C0032
+ for <bridge@lists.linux-foundation.org>; Wed,  2 Aug 2023 03:46:45 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 5A89E40C1F
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 19:07:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5A89E40C1F
+ by smtp1.osuosl.org (Postfix) with ESMTP id A88AF81443
+ for <bridge@lists.linux-foundation.org>; Wed,  2 Aug 2023 03:46:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A88AF81443
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=boeing.com header.i=@boeing.com
+ header.a=rsa-sha256 header.s=boeing-s1912 header.b=QcP2rmRI
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id qvjshI1olOjn for <bridge@lists.linux-foundation.org>;
- Mon, 31 Jul 2023 19:07:19 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp2.osuosl.org (Postfix) with ESMTPS id CE35A41479
- for <bridge@lists.linux-foundation.org>; Mon, 31 Jul 2023 19:07:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org CE35A41479
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 16D7561278;
- Mon, 31 Jul 2023 19:07:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B762C433CA;
- Mon, 31 Jul 2023 19:07:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1690830438;
- bh=nmClbRXgHNUMiULKcf/Jk+DyC9Yg7VyUEy4VtDl2IjU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=qNrewbNAX17gBaT9Awc7kLxyeODJt9zjauiKu558BxEajhl+UBhYRZwqRx6cWeHYn
- /zuVvbQaNBiuopq/kD+gx3SiMgrrB4MgcqFzkwka4tmMi/XAbA2FIpu1zJo3jHGMFS
- jhyimOaJ5FACsZvRjzfBSFnEPlg+YWjqbMAHWa9UE/JGz7oIMYGNYBV6v2pi6RxtNy
- TeakImoXcXW120Qu2jjSuApH00LkcbYkihQNLUz9k0og5rn3y7lNctSODiL9scopmi
- iB0tVmAKbMsbEb2SJqgvXUVTq2OVJTiNE9RZH6YtQ8C4wGrxz5CbDS2228aNpuQVLk
- 0MIPw+3+S2ZKg==
-Date: Mon, 31 Jul 2023 21:07:06 +0200
-From: Simon Horman <horms@kernel.org>
-To: Joel Granados <joel.granados@gmail.com>
-Message-ID: <ZMgGWm4sT+VqDZ3u@kernel.org>
-References: <20230731071728.3493794-1-j.granados@samsung.com>
- <20230731071728.3493794-4-j.granados@samsung.com>
- <ZMf9vZpGE98oM9W2@kernel.org>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id As2jT2pvHNNL for <bridge@lists.linux-foundation.org>;
+ Wed,  2 Aug 2023 03:46:44 +0000 (UTC)
+X-Greylist: delayed 344 seconds by postgrey-1.37 at util1.osuosl.org;
+ Wed, 02 Aug 2023 03:46:44 UTC
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 85A1681427
+Received: from clt-mbsout-01.mbs.boeing.net (clt-mbsout-01.mbs.boeing.net
+ [130.76.144.162])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 85A1681427
+ for <bridge@lists.linux-foundation.org>; Wed,  2 Aug 2023 03:46:44 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by clt-mbsout-01.mbs.boeing.net (8.15.2/8.15.2/DOWNSTREAM_MBSOUT) with SMTP id
+ 3723ev72007194; Tue, 1 Aug 2023 23:40:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boeing.com;
+ s=boeing-s1912; t=1690947658;
+ bh=50Ll3XaXPT0vyhJOWSCNmNihoMoZX7WF3UOmYI6/TDM=;
+ h=From:To:CC:Subject:Date:From;
+ b=QcP2rmRIXPDH8xbfkMEHJrZEN5FWqQ0FffgJb6u59NvJlvh+45U79tgltiQCJKGib
+ ecukLSQXt2TPXCLdZOUrssA8tquA3a1qnw+UPFFQ4Lb5Tc1WYczoN4vqHotrU8KP9C
+ lZ9h+0O0jyzGBktRy52TkGuulSYANWhnkdA1jzt6Fhs8X+IpsJM/JEc47mG1sOiQNL
+ 4yqqRxrSbPPVf/v4RtyCpFzi+rtuS/MzO587XvM0m3sStvtujPlsmwL96gKDwXSna8
+ tZetNmGzBj6Pz5U4unZ9ipgr9D2GKx6/ACwxYIqP/uVyglLrYU2yjWFKgUTYZazGhJ
+ DDxqsL9HX5CpQ==
+Received: from XCH16-09-08.nos.boeing.com (xch16-09-08.nos.boeing.com
+ [144.115.66.156])
+ by clt-mbsout-01.mbs.boeing.net (8.15.2/8.15.2/8.15.2/UPSTREAM_MBSOUT) with
+ ESMTPS id 3723elGG007140
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 1 Aug 2023 23:40:47 -0400
+Received: from XCH16-09-12.nos.boeing.com (144.115.66.161) by
+ XCH16-09-08.nos.boeing.com (144.115.66.156) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 1 Aug 2023 20:40:34 -0700
+Received: from XCH16-09-12.nos.boeing.com ([fe80::c591:b386:9cff:58f6]) by
+ XCH16-09-12.nos.boeing.com ([fe80::c591:b386:9cff:58f6%5]) with mapi id
+ 15.01.2507.027; Tue, 1 Aug 2023 20:40:34 -0700
+From: "Hasenbosch, Samuel J" <Samuel.J.Hasenbosch@boeing.com>
+To: "bugs.a.b@free.fr" <bugs.a.b@free.fr>
+Thread-Topic: Re: [bridge]: STP: no port in blocking state despite a loop when
+ in a network namespace
+Thread-Index: AdnE8ssxH5pBaxffQ16ZpDApu/J7Pw==
+Date: Wed, 2 Aug 2023 03:40:33 +0000
+Message-ID: <b1b77fe134e64bfc85394050bd40dff6@boeing.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.137.12.6]
+x-tm-snts-smtp: 8C8D7A85BB361818A346D41B1714D6D5EBDDA8899D5299DDDE2C7865C0F5179E2000:8
+Content-Type: multipart/alternative;
+ boundary="_000_b1b77fe134e64bfc85394050bd40dff6boeingcom_"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZMf9vZpGE98oM9W2@kernel.org>
+X-TM-AS-GCONF: 00
 X-Mailman-Approved-At: Thu, 10 Aug 2023 12:03:37 +0000
-Cc: Joel Granados <j.granados@samsung.com>, Wen Gu <guwen@linux.alibaba.com>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Pablo Neira Ayuso <pablo@netfilter.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Alexander Aring <alex.aring@gmail.com>, linux-sctp@vger.kernel.org,
- Miquel Raynal <miquel.raynal@bootlin.com>, Jan Karcher <jaka@linux.ibm.com>,
- Mat Martineau <martineau@kernel.org>, Will Deacon <will@kernel.org>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Stefan Schmidt <stefan@datenfreihafen.org>,
- Steffen Klassert <steffen.klassert@secunet.com>, linux-s390@vger.kernel.org,
- rds-devel@oss.oracle.com, Xin Long <lucien.xin@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org,
- Tony Lu <tonylu@linux.alibaba.com>, bridge@lists.linux-foundation.org,
- willy@infradead.org, Jozsef Kadlecsik <kadlec@netfilter.org>,
- lvs-devel@vger.kernel.org, Julian Anastasov <ja@ssi.bg>,
- coreteam@netfilter.org, Roopa Prabhu <roopa@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Joerg Reuter <jreuter@yaina.de>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Kees Cook <keescook@chromium.org>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>,
- Santosh Shilimkar <santosh.shilimkar@oracle.com>, josh@joshtriplett.org,
- Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
- linux-hams@vger.kernel.org, mptcp@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Iurii Zaikin <yzaikin@google.com>,
- Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
- David Ahern <dsahern@kernel.org>, Florian Westphal <fw@strlen.de>,
- linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
- "David S. Miller" <davem@davemloft.net>, mcgrof@kernel.org,
- netfilter-devel@vger.kernel.org, Sven Schnelle <svens@linux.ibm.com>,
- "D. Wythe" <alibuda@linux.alibaba.com>, linux-fsdevel@vger.kernel.org,
- Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
- Karsten Graul <kgraul@linux.ibm.com>
-Subject: Re: [Bridge] [PATCH v2 03/14] sysctl: Add ctl_table_size to
-	ctl_table_header
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "bridge@lists.linux-foundation.org" <bridge@lists.linux-foundation.org>,
+ "nikolay@nvidia.com" <nikolay@nvidia.com>,
+ "roopa@nvidia.com" <roopa@nvidia.com>
+Subject: Re: [Bridge] [bridge]: STP: no port in blocking state despite a
+ loop when in a network namespace
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -120,74 +109,84 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, Jul 31, 2023 at 08:30:34PM +0200, Simon Horman wrote:
-> On Mon, Jul 31, 2023 at 09:17:17AM +0200, Joel Granados wrote:
-> > The new ctl_table_size element will hold the size of the ctl_table
-> > arrays contained in the ctl_table_header. This value should eventually
-> > be passed by the callers to the sysctl register infrastructure. And
-> > while this commit introduces the variable, it does not set nor use it
-> > because that requires case by case considerations for each caller.
-> > 
-> > It provides two important things: (1) A place to put the
-> > result of the ctl_table array calculation when it gets introduced for
-> > each caller. And (2) the size that will be used as the additional
-> > stopping criteria in the list_for_each_table_entry macro (to be added
-> > when all the callers are migrated)
-> > 
-> > Signed-off-by: Joel Granados <j.granados@samsung.com>
-> > ---
-> >  include/linux/sysctl.h | 14 ++++++++++++--
-> >  1 file changed, 12 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/include/linux/sysctl.h b/include/linux/sysctl.h
-> > index 59d451f455bf..33252ad58ebe 100644
-> > --- a/include/linux/sysctl.h
-> > +++ b/include/linux/sysctl.h
-> > @@ -159,12 +159,22 @@ struct ctl_node {
-> >  	struct ctl_table_header *header;
-> >  };
-> >  
-> > -/* struct ctl_table_header is used to maintain dynamic lists of
-> > -   struct ctl_table trees. */
-> > +/**
-> > + * struct ctl_table_header - maintains dynamic lists of struct ctl_table trees
-> > + * @ctl_table: pointer to the first element in ctl_table array
-> > + * @ctl_table_size: number of elements pointed by @ctl_table
-> > + * @used: The entry will never be touched when equal to 0.
-> > + * @count: Upped every time something is added to @inodes and downed every time
-> > + *         something is removed from inodes
-> > + * @nreg: When nreg drops to 0 the ctl_table_header will be unregistered.
-> > + * @rcu: Delays the freeing of the inode. Introduced with "unfuck proc_sysctl ->d_compare()"
-> > + *
-> > + */
-> 
-> Hi Joel,
-> 
-> Please consider also adding kernel doc entries for the other fields of
-> struct ctl_table_header. According to ./scripts/kernel-doc -none
-> they are:
-> 
->   unregistering
->   ctl_table_arg
->   root
->   set
->   parent
->   node
->   inodes
+--_000_b1b77fe134e64bfc85394050bd40dff6boeingcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Sorry, I now realise that I made the same comment on v1.
-And I didn't see your response to that until after I wrote the above.
+Forwarding related issue:
 
-> 
-> 
-> >  struct ctl_table_header {
-> >  	union {
-> >  		struct {
-> >  			struct ctl_table *ctl_table;
-> > +			int ctl_table_size;
-> >  			int used;
-> >  			int count;
-> >  			int nreg;
-> > -- 
-> > 2.30.2
-> > 
+
+
+https://lore.kernel.org/netdev/20230711174934.3871fb61@kernel.org/T/#m4d530=
+64313393cdee86f12ef9313523aa734d681
+
+
+--_000_b1b77fe134e64bfc85394050bd40dff6boeingcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-AU" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Forwarding related issue:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://lore.kernel.org/netdev/2023071117=
+4934.3871fb61@kernel.org/T/#m4d53064313393cdee86f12ef9313523aa734d681">http=
+s://lore.kernel.org/netdev/20230711174934.3871fb61@kernel.org/T/#m4d5306431=
+3393cdee86f12ef9313523aa734d681</a><o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_b1b77fe134e64bfc85394050bd40dff6boeingcom_--
+
