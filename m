@@ -1,91 +1,94 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4D37777BF
-	for <lists.bridge@lfdr.de>; Thu, 10 Aug 2023 14:03:46 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4436B7777C0
+	for <lists.bridge@lfdr.de>; Thu, 10 Aug 2023 14:03:47 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 73F614185E;
+	by smtp1.osuosl.org (Postfix) with ESMTP id B98EE813B0;
 	Thu, 10 Aug 2023 12:03:44 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 73F614185E
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=hk+jDZrl
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B98EE813B0
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20221208 header.b=MIB1dRWN
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jhygsMph1BDI; Thu, 10 Aug 2023 12:03:43 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id W2wIm_0g2g5R; Thu, 10 Aug 2023 12:03:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 5A36441936;
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 7BEF08220E;
 	Thu, 10 Aug 2023 12:03:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 5A36441936
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7BEF08220E
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id EA19DC0DE5;
-	Thu, 10 Aug 2023 12:03:39 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2C7E7C0DE9;
+	Thu, 10 Aug 2023 12:03:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id CDDF5C0032
- for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:50:57 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 9777AC0032
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 03:07:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id A0653409A1
- for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:50:57 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A0653409A1
+ by smtp2.osuosl.org (Postfix) with ESMTP id 6AF9140350
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 03:07:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6AF9140350
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20221208 header.b=MIB1dRWN
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id t1uhIWgBU22t for <bridge@lists.linux-foundation.org>;
- Tue,  8 Aug 2023 02:50:56 +0000 (UTC)
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com
- [IPv6:2607:f8b0:4864:20::1130])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 9F47D409A0
- for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:50:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 9F47D409A0
-Received: by mail-yw1-x1130.google.com with SMTP id
- 00721157ae682-584034c706dso55058117b3.1
- for <bridge@lists.linux-foundation.org>; Mon, 07 Aug 2023 19:50:56 -0700 (PDT)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 6Xliny4d4O5C for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Aug 2023 03:07:36 +0000 (UTC)
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com
+ [IPv6:2607:f8b0:4864:20::1132])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 624E440102
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 03:07:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 624E440102
+Received: by mail-yw1-x1132.google.com with SMTP id
+ 00721157ae682-586bacac98aso24253387b3.2
+ for <bridge@lists.linux-foundation.org>; Mon, 07 Aug 2023 20:07:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1691463055; x=1692067855;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=To5RXdgTZuuS1AHvSrlZPoAVtMBfYbQuZKe1V5PCHGU=;
- b=hk+jDZrl3g+o4sMGmZCabtN/5AnLtuwYSMj/gPgSP5jEYRltMDEp8gR1KR3PAoQdbl
- 1mPD04e7QwuBYp8dQtUhan7IrsHCz9nRfLpKT2kV9/mlU+mh7iLzNzoUSrFPVWwipOD6
- q1TBPuDV4nRSRSBp4V/lOBEhKgMReru3RolSHSEN0f12SXGiqxPgWA4lemQjUrXgfP0b
- 9eSMaS0Lrlh3Hp5R6eNkjFGOMxplIuqi6pgCBrEZ/rsfKVThX0JpHq6AykEIQJrm9ZkH
- +wvjvoi0OZeiAqnoiw+ZytKa3+4s6OOqLNTXelwoIk85Wm8mUEBMLgOG45iVyn8pij86
- aDKg==
+ d=gmail.com; s=20221208; t=1691464055; x=1692068855;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=0G2Gm44L7ws5E/quoPqMuJmdghfzOor5wGEa6AaRIig=;
+ b=MIB1dRWNV6Yb3HUd1qPb/bgwaoUzAlGVu8CxiiwIDYwN4TMseNzdPMVbuAfPyciWjI
+ AZzeBtiA00C4EVQ8EGlp9e8Q3pbBFc8aCRl+HJu3YtRoio8lAQY1qu2UvIE5hChxs5Q1
+ PKMC/y7tlRiDWg5YOtPXbZsaYs//GKuhiSEDo5WpI7edOLzGAaAJjqvFIOQWWQAuLo7Z
+ JBsPnB5UvxOuJ1p76ZyxSuA7+KQWE3J2jS89kM5pl3PIv+dMsBBD/LquAyRZomdcC7zN
+ v+sSG+iPprRQeQoEH+XZP/GEzjEboCjqHBhNwHzm7vxhsHdZplrvrz31A5i2G+xxBQ4/
+ u+EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691463055; x=1692067855;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=To5RXdgTZuuS1AHvSrlZPoAVtMBfYbQuZKe1V5PCHGU=;
- b=ByZhTe+k9MBDawrUi8EPGF9I3wiaoj31CaZwZ5WxZ38hPUPu1YM2CnUQ8tyqFY9qp5
- Fy5H7BgMx9F+9hPX9TxrT/B755AMEW7Zke6X1u6OJd359dBTPEaqsB6fYS3GG0F1PYfQ
- lJpZ4x7Tc5pdgy8h2R3VRh/ISgCta2+uFPbrBlSeWM0OuzstgXX9JiS7Gc96iJTWvf+F
- j6HrxmWrhGSMpEYZkHQdl7mc242RXec304Tb1qHYcyQdvctr3ClGAHtjpzSvw0V1TZsr
- kSFiXCPjUxl7bfD4yKRNsnzfzT9cj7rg9VsnCvyqNPfjnB5iHqo7nm842jHHHYe4sWrS
- jQPg==
-X-Gm-Message-State: AOJu0YwgVsJS7aFEqTfe/nFs7E+zmHzlAaGtTdrkrLtXjhxEphTNhFxv
- obZTtritUokAiGEUb5WDAKPZQupxLJXAWvdKCsQ=
-X-Google-Smtp-Source: AGHT+IHSbsxoEBIVRycBoxXUeft0G8ZFjbq4hkHa5qDquFTqGRH0j9u4YIDSq+t+KyYatv1w3tPVNwgPVd1vEaLOCH8=
-X-Received: by 2002:a0d:cac5:0:b0:577:d44:a163 with SMTP id
- m188-20020a0dcac5000000b005770d44a163mr11720738ywd.6.1691463055272; Mon, 07
- Aug 2023 19:50:55 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1691464055; x=1692068855;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=0G2Gm44L7ws5E/quoPqMuJmdghfzOor5wGEa6AaRIig=;
+ b=fFyoYkixz47ooa/GH8f4rClkAgZuXeKT8ExEjn133Gi9So8sf8sshoKEQe1xzXXrjl
+ 3tAz3pp6vjDPd2vkyW+UoI5PloGeCvtqI01RaUUXH77hd4n/79PXo3OnqNVJ3vLl7VMr
+ 9ZicSH1foPdlE7lphkSDY0cVAE5DMDDOcG/FLoUWSWrV4qpZnVJv/MtvYQIzE76ZkugO
+ RdyyE/e5tPeoaPE6GkuLFuCnMTIww5HAP2IZ5+iAEJCS36L3dr6bnFQNAAli4DhpI2Sb
+ WQ5ayhLJr6NDm7P7armR1E8ppphBYnOUt5BU3QhGm2QDaUf9n45nrI6ORSh1+1c63onp
+ /6Qg==
+X-Gm-Message-State: AOJu0YyOG91jNkmQ26Dg1npkRpjLyrz6UhPhgzRo8D4WnVmqWVzpVeqm
+ FCoWhA7iFkgZlIw078JSIjzeC76KPrX2OGwqlXA=
+X-Google-Smtp-Source: AGHT+IHQrIvich9PHSVbgRXTdmB7iIbb8QzxP6y5/ZjBG6gKIk1MkGZwx3L/64MT/J6/QOrL9i/+Y+FD0/7A7U+VjlM=
+X-Received: by 2002:a0d:dd4a:0:b0:589:642d:6d84 with SMTP id
+ g71-20020a0ddd4a000000b00589642d6d84mr2728002ywe.23.1691464055184; Mon, 07
+ Aug 2023 20:07:35 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230731071728.3493794-1-j.granados@samsung.com>
  <ZMgpck0rjqHR74sl@bombadil.infradead.org>
  <ZNFlqwwvE6w6HyHl@bombadil.infradead.org>
  <CANnsUMG3WO_19GpnsNaXPqu6eEnpBvYUpkrf1QbHwsc9wEoCZQ@mail.gmail.com>
  <ZNGBrkP7J2g/BAWV@bombadil.infradead.org>
-In-Reply-To: <ZNGBrkP7J2g/BAWV@bombadil.infradead.org>
+ <CANnsUMGRBnatKB4-3eYjb5aG7YnXDiZG6cjuwSgtjvVF6ErJNg@mail.gmail.com>
+ <ZNGv3Q5VBsS2/w4e@bombadil.infradead.org>
+In-Reply-To: <ZNGv3Q5VBsS2/w4e@bombadil.infradead.org>
 From: Chris Maness <christopher.maness@gmail.com>
-Date: Mon, 7 Aug 2023 19:50:44 -0700
-Message-ID: <CANnsUMGRBnatKB4-3eYjb5aG7YnXDiZG6cjuwSgtjvVF6ErJNg@mail.gmail.com>
+Date: Mon, 7 Aug 2023 20:07:24 -0700
+Message-ID: <CANnsUMGHnurbph9F7mex=1s0mxhwpNgeQbKJ6j1r37Qmd6LAMQ@mail.gmail.com>
 To: Luis Chamberlain <mcgrof@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 10 Aug 2023 12:03:37 +0000
 Cc: Joel Granados <j.granados@samsung.com>,
  Alexander Aring <alex.aring@gmail.com>,
@@ -136,32 +139,26 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-I tried running the current mainline kernel (current Arch Linux) with
-simple single MUX socket (ax0) using LinFBB.  I was a happy camper as
-it seemed to work fine at first, then the system just slowed to a
-crawl.  I am wondering if any of these patches are addressing this
-behavior.  No kernel panic like before, but not what I was hoping for.
-I have also tried sixpack, and that explodes instantly the last time I
-have checked.   That goes all the way back to the v4 kernels.  v2 is
-fine there.
-
-73 de Chris KQ6UP
-
-On Mon, Aug 7, 2023 at 4:43=E2=80=AFPM Luis Chamberlain <mcgrof@kernel.org>=
- wrote:
 >
-> On Mon, Aug 07, 2023 at 04:00:49PM -0700, Chris Maness wrote:
-> > When are these likely to hit the mainline release code?
+> Are you reporting a separate regression that goes all the way back to v4 kernels?
 >
-> linux-next tomorrow. The first 7 patches are scheduled for mainline
-> as they were merged + tested without any hiccups. These last few patches
-> I'll wait and see. If nothing blows up on linux-next perhaps I'll
-> include them to Linux for mainline during the next merge window.
+
+I am not certain what you mean by regression.
+
+> > v2 is fine there.
+>
+> What does this mean?
+
+I have to go all the way back to kernel version 2 for the serial 6PACK
+driver to work.  If I try to use it in Kernel version 4, 5, or 6 the
+kernel panics as soon as I attempt to connect to another station.
+
 >
 >   Luis
 
+Chris KQ6UP
 
 
---=20
+-- 
 Thanks,
 Chris Maness
