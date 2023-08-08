@@ -1,77 +1,72 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7221D773641
-	for <lists.bridge@lfdr.de>; Tue,  8 Aug 2023 04:09:27 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32AD67736BB
+	for <lists.bridge@lfdr.de>; Tue,  8 Aug 2023 04:34:44 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id A3BB140447;
-	Tue,  8 Aug 2023 02:09:25 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A3BB140447
-Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=kfyzdKVH
+	by smtp1.osuosl.org (Postfix) with ESMTP id B809181EB3;
+	Tue,  8 Aug 2023 02:34:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B809181EB3
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LFTrjMpE
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id VTmBbN3iUehR; Tue,  8 Aug 2023 02:09:25 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 3B1F940350;
-	Tue,  8 Aug 2023 02:09:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3B1F940350
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7jl6rMQJie1o; Tue,  8 Aug 2023 02:34:42 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 3A81F8191E;
+	Tue,  8 Aug 2023 02:34:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3A81F8191E
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B4F53C008D;
-	Tue,  8 Aug 2023 02:09:23 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id D407CC008D;
+	Tue,  8 Aug 2023 02:34:40 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D059FC0032
- for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:09:21 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 8CE16C0032
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:34:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id A48A760BC5
- for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:09:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A48A760BC5
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
- header.a=rsa-sha256 header.s=k20201202 header.b=kfyzdKVH
+ by smtp2.osuosl.org (Postfix) with ESMTP id 618F240447
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:34:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 618F240447
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org
+ header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LFTrjMpE
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id SqmpDaHgt4Ow for <bridge@lists.linux-foundation.org>;
- Tue,  8 Aug 2023 02:09:20 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 482A060AE6
- for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:09:20 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 482A060AE6
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 3651C6236C;
- Tue,  8 Aug 2023 02:09:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEFA9C433C7;
- Tue,  8 Aug 2023 02:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1691460558;
- bh=K3rT1tMnJnj38jr/g9b0xYkr68We3HjPQOUUOlFXffQ=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=kfyzdKVH4OgGOyi5OtD6F24v25o2XDZ5m6SvveMEOszRKEfZZ9SylUaGPkfodN407
- 7/mPqRmYpPbp2dPcTKlrEIJC1Zv5LRh+2JzB18DxJOynATxXwotatsdvn/NN5ZyIbh
- xI+yzS42slBVvOmIzuzIZ6xOpvVg9Aci3OwoLZalL/uth32GZhSMU/Wd7rI2yT3/O0
- 8Adq7sCyzqTTK9WNmXggxjvLnQQRycaDNcLAjqz5Xumgx4CBBdd3EH6PcwJH0/qRJv
- JwU8b8s4wpS/lSbZzxiGwrvY+tzvlO3JN8W9VVJoIsZYauX65nm8kTPwSMSOK7oodS
- bvwbazvAzKZwg==
-Date: Mon, 7 Aug 2023 19:09:14 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Luis Chamberlain <mcgrof@kernel.org>
-Message-ID: <20230807190914.4ff3eb36@kernel.org>
-In-Reply-To: <ZNFlqwwvE6w6HyHl@bombadil.infradead.org>
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Q2NO_eabAiTz for <bridge@lists.linux-foundation.org>;
+ Tue,  8 Aug 2023 02:34:36 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id A4C0F40350
+ for <bridge@lists.linux-foundation.org>; Tue,  8 Aug 2023 02:34:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org A4C0F40350
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=2sy570se2d1y/tNUc5KxUhtFZdHaIMpjXMloRWfAQC8=; b=LFTrjMpESf0K2WDYsgcYshMVZb
+ XVav8xxO1YOSh/f7kB16OzY0uBkVxWCZvBuYbhPMnpSryFVcJMA4U85MD7ki5SJW+wKWHz7l/i5Ud
+ asF14iLCZhDvbu3bBlUZpGHDWWZShHGraWmRr0zUN9avXuF4GiC3kbqxQlKmcOfQpYDAw17HvvUYa
+ g7VEp36XJrjJHaC6TZnT+EHhXr0jTCtQtZf/X0ow7oIwBOlWCyLO9p3mX//iCo46M6JmQGR0Xskpr
+ kQ5/2g384H8/rcW5PZkcI/7KwR40BJHcWTCqG1O79Ofbz7S65Cn4CzgMg7znP4sOgksRuXlcNy/uI
+ O/5mNnZA==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.96 #2 (Red
+ Hat Linux)) id 1qTCXt-001YkT-2X; Tue, 08 Aug 2023 02:34:05 +0000
+Date: Mon, 7 Aug 2023 19:34:05 -0700
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Message-ID: <ZNGpnSCkVYAnfSfa@bombadil.infradead.org>
 References: <20230731071728.3493794-1-j.granados@samsung.com>
  <ZMgpck0rjqHR74sl@bombadil.infradead.org>
  <ZNFlqwwvE6w6HyHl@bombadil.infradead.org>
+ <20230807190914.4ff3eb36@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230807190914.4ff3eb36@kernel.org>
 Cc: Joel Granados <j.granados@samsung.com>,
  Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
  Pablo Neira Ayuso <pablo@netfilter.org>,
@@ -102,10 +97,9 @@ Cc: Joel Granados <j.granados@samsung.com>,
  David Ahern <dsahern@kernel.org>, Florian Westphal <fw@strlen.de>,
  linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
  "David S. Miller" <davem@davemloft.net>, netfilter-devel@vger.kernel.org,
- Sven Schnelle <svens@linux.ibm.com>, "D.
- Wythe" <alibuda@linux.alibaba.com>, linux-fsdevel@vger.kernel.org,
- Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
- Karsten Graul <kgraul@linux.ibm.com>
+ Sven Schnelle <svens@linux.ibm.com>, "D. Wythe" <alibuda@linux.alibaba.com>,
+ linux-fsdevel@vger.kernel.org, Matthieu Baerts <matthieu.baerts@tessares.net>,
+ linux-wpan@vger.kernel.org, Karsten Graul <kgraul@linux.ibm.com>
 Subject: Re: [Bridge] [PATCH v2 00/14] sysctl: Add a size argument to
  register functions in sysctl
 X-BeenThere: bridge@lists.linux-foundation.org
@@ -122,14 +116,22 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Mon, 7 Aug 2023 14:44:11 -0700 Luis Chamberlain wrote:
-> > This is looking great thanks, I've taken the first 7 patches above
-> > to sysctl-next to get more exposure / testing and since we're already
-> > on rc4.  
+On Mon, Aug 07, 2023 at 07:09:14PM -0700, Jakub Kicinski wrote:
+> On Mon, 7 Aug 2023 14:44:11 -0700 Luis Chamberlain wrote:
+> > > This is looking great thanks, I've taken the first 7 patches above
+> > > to sysctl-next to get more exposure / testing and since we're already
+> > > on rc4.  
+> > 
+> > Ok I havent't heard much more feedback from networking folks
 > 
-> Ok I havent't heard much more feedback from networking folks
+> What did you expect to hear from us?
 
-What did you expect to hear from us?
+Just a sanity review would be nice.
 
-My only comment is to merge the internal prep changes in and then send
-us the networking changes in the next release cycle.
+> My only comment is to merge the internal prep changes in and then send
+> us the networking changes in the next release cycle.
+
+OK we can do that, I can soak them on linux-next from now so to be sure
+it gets wider testing. But review on those parts would be nice.
+
+  Luis
