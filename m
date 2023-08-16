@@ -1,104 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C69677D5F4
-	for <lists.bridge@lfdr.de>; Wed, 16 Aug 2023 00:28:19 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA5477E01F
+	for <lists.bridge@lfdr.de>; Wed, 16 Aug 2023 13:17:00 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 182A7611BE;
-	Tue, 15 Aug 2023 22:28:16 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 182A7611BE
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m+Hvj3w2
-X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PxTI_6bpaopr; Tue, 15 Aug 2023 22:28:15 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 16F18605BE;
-	Tue, 15 Aug 2023 22:28:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 16F18605BE
-Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A4EA8C008D;
-	Tue, 15 Aug 2023 22:28:13 +0000 (UTC)
-X-Original-To: bridge@lists.linux-foundation.org
-Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id DC88BC0032
- for <bridge@lists.linux-foundation.org>; Tue, 15 Aug 2023 22:28:11 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id A890C82009
- for <bridge@lists.linux-foundation.org>; Tue, 15 Aug 2023 22:28:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A890C82009
+	by smtp1.osuosl.org (Postfix) with ESMTP id C4FC5828BA;
+	Wed, 16 Aug 2023 11:16:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C4FC5828BA
 Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org
- header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m+Hvj3w2
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=NI7KTXyn
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id GI6DFP0uqFWz for <bridge@lists.linux-foundation.org>;
- Tue, 15 Aug 2023 22:28:08 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 1A7E68200A
- for <bridge@lists.linux-foundation.org>; Tue, 15 Aug 2023 22:28:07 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1A7E68200A
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=aFm90R+tDTFvDBLdwRCYQE4Y41kg8AEvvcWG6AcDlHc=; b=m+Hvj3w2nGUh/z5FvuS2WaFvCP
- E9VTMTriBBsaYE1DW7gg45cfxPOHyZo+qnJy5YDlRNwx/8IEd6QSy1kFsWmCaI6Ayn2U1e18uzlwr
- 1+Iy9qd60pMllaFg/MtWE7G1QlLCx82ZCCAIzB8O5VbfxRwp9DMOrRwt9Ca10lMltY10Km8PtNXu/
- L6WobTanJRf/8tEi6GPMdzrRmGdH4Dw9KByfrbTqLo06X3hWeNkANUIM+i1BPRo1BIMLMC8dpsrXD
- Hz59LovBcm5X+3VH7+EtsxrFP7ARkSjVCRHEyC2IZkI52jv17UdFdX7UcYwBUjCHLaKBVrUaPumbs
- W9PGgB4A==;
-Received: from mcgrof by bombadil.infradead.org with local (Exim 4.96 #2 (Red
- Hat Linux)) id 1qW2VM-002iR6-1x; Tue, 15 Aug 2023 22:27:12 +0000
-Date: Tue, 15 Aug 2023 15:27:12 -0700
-From: Luis Chamberlain <mcgrof@kernel.org>
-To: Joel Granados <joel.granados@gmail.com>
-Message-ID: <ZNv7wOmUPpCUFnHA@bombadil.infradead.org>
-References: <20230809105006.1198165-1-j.granados@samsung.com>
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZVPcr6155Vho; Wed, 16 Aug 2023 11:16:58 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id F11BE828B3;
+	Wed, 16 Aug 2023 11:16:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org F11BE828B3
+Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 909A6C0DD4;
+	Wed, 16 Aug 2023 11:16:56 +0000 (UTC)
+X-Original-To: bridge@lists.linux-foundation.org
+Delivered-To: bridge@lists.linuxfoundation.org
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 885F4C0032
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Aug 2023 11:16:54 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by smtp2.osuosl.org (Postfix) with ESMTP id 5657D40541
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Aug 2023 11:16:54 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5657D40541
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=NI7KTXyn
+X-Virus-Scanned: amavisd-new at osuosl.org
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Y4gkRd4sgb7a for <bridge@lists.linux-foundation.org>;
+ Wed, 16 Aug 2023 11:16:53 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 8611B400D1
+ for <bridge@lists.linux-foundation.org>; Wed, 16 Aug 2023 11:16:53 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8611B400D1
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 5741962512;
+ Wed, 16 Aug 2023 11:16:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E48C433C7;
+ Wed, 16 Aug 2023 11:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1692184611;
+ bh=wfhySSnPK75SKJ9vyK9+QFR5+bImMQwF+/PIQmTua/o=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=NI7KTXynb5crT3rAJwh9tudjya++J9+kamFqQjnVdxIWmv+inAgkrelMfl8d+Vg4U
+ KU5PNDU4WAmY24PvegTFeIysG1P5Av4P/WgCg+FOu384kbsN7M4w7FEH2MTNu9k4DO
+ P1RVMmI7lwqMXeZYwcGw7+bSh2fpVfy2K8Y8OvDraxNASkMGn+UYoYnMsoXflMwdKA
+ O1HUknXRSyp8upNJfiT0CJ542nONDCsz8oFucll8yfF68QFhw8+W5Pzvjtul7sHzWw
+ gFHQAk8LKUKLYmtQGFq6/SUKjAziJfDhEgw2xuj6HFg1SAX6WSvfjpQ2uh4oEduXqE
+ PrGbtWqgXM2Kw==
+Date: Wed, 16 Aug 2023 13:16:46 +0200
+From: Simon Horman <horms@kernel.org>
+To: "GONG, Ruiqi" <gongruiqi@huaweicloud.com>
+Message-ID: <ZNywHiWhaL6pRZsd@vergenet.net>
+References: <20230816093443.1460204-1-gongruiqi@huaweicloud.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230809105006.1198165-1-j.granados@samsung.com>
-Cc: Joel Granados <j.granados@samsung.com>,
- Alexander Aring <alex.aring@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Nikolay Aleksandrov <razor@blackwall.org>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- linux-sctp@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Mat Martineau <martineau@kernel.org>, Will Deacon <will@kernel.org>,
- Jan Karcher <jaka@linux.ibm.com>, Stefan Schmidt <stefan@datenfreihafen.org>,
- Steffen Klassert <steffen.klassert@secunet.com>, linux-s390@vger.kernel.org,
- rds-devel@oss.oracle.com, Xin Long <lucien.xin@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org,
- Tony Lu <tonylu@linux.alibaba.com>, bridge@lists.linux-foundation.org,
- willy@infradead.org, Jozsef Kadlecsik <kadlec@netfilter.org>,
- lvs-devel@vger.kernel.org, Julian Anastasov <ja@ssi.bg>,
- coreteam@netfilter.org, Iurii Zaikin <yzaikin@google.com>,
- Roopa Prabhu <roopa@nvidia.com>, Wen Gu <guwen@linux.alibaba.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Joerg Reuter <jreuter@yaina.de>, Sven Schnelle <svens@linux.ibm.com>,
- keescook@chromium.org, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>,
- Santosh Shilimkar <santosh.shilimkar@oracle.com>, josh@joshtriplett.org,
- Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
- Jakub Kicinski <kuba@kernel.org>, linux-hams@vger.kernel.org,
- mptcp@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
- netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
- Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
- Ralf Baechle <ralf@linux-mips.org>, Karsten Graul <kgraul@linux.ibm.com>,
- netfilter-devel@vger.kernel.org, Pablo Neira Ayuso <pablo@netfilter.org>,
- "D. Wythe" <alibuda@linux.alibaba.com>, linux-fsdevel@vger.kernel.org,
- Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [Bridge] [PATCH v3 00/14] sysctl: Add a size argument to
- register functions in sysctl
+In-Reply-To: <20230816093443.1460204-1-gongruiqi@huaweicloud.com>
+Cc: coreteam@netfilter.org, Kees Cook <keescook@chromium.org>,
+ linux-kernel@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, Florian Westphal <fw@strlen.de>,
+ "Gustavo A . R . Silva" <gustavoars@kernel.org>, gongruiqi1@huawei.com,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, Eric Dumazet <edumazet@google.com>,
+ netdev@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, "David S . Miller" <davem@davemloft.net>,
+ Pablo Neira Ayuso <pablo@netfilter.org>
+Subject: Re: [Bridge] [PATCH net-next v2] netfilter: ebtables: replace
+ zero-length array members
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -113,24 +95,29 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Wed, Aug 09, 2023 at 12:49:52PM +0200, Joel Granados wrote:
-> What?
-> These commits set things up so we can start removing the sentinel elements.
-> They modify sysctl and net_sysctl internals so that registering a ctl_table
-> that contains a sentinel gives the same result as passing a table_size
-> calculated from the ctl_table array without a sentinel. We accomplish this by
-> introducing a table_size argument in the same place where procname is checked
-> for NULL. The idea is for it to keep stopping when it hits ->procname == NULL,
-> while the sentinel is still present. And when the sentinel is removed, it will
-> stop on the table_size (thx to jani.nikula@linux.intel.com for the discussion
-> that led to this). This allows us to remove sentinels from one (or several)
-> files at a time.
+On Wed, Aug 16, 2023 at 05:34:43PM +0800, GONG, Ruiqi wrote:
+> From: "GONG, Ruiqi" <gongruiqi1@huawei.com>
 > 
-> These commits are part of a bigger set containing the removal of ctl_table sentinel
-> (https://github.com/Joelgranados/linux/tree/tag/sysctl_remove_empty_elem_V3).
-> The idea is to make the review process easier by chunking the 65+ commits into
-> manageable pieces.
+> As suggested by Kees[1], replace the old-style 0-element array members
+> of multiple structs in ebtables.h with modern C99 flexible array.
+> 
+> [1]: https://lore.kernel.org/all/5E8E0F9C-EE3F-4B0D-B827-DC47397E2A4A@kernel.org/
+> 
+> Link: https://github.com/KSPP/linux/issues/21
+> Signed-off-by: GONG, Ruiqi <gongruiqi1@huawei.com>
+> Reviewed-by: Kees Cook <keescook@chromium.org>
+> ---
+> 
+> v2: designate to net-next; cc more netdev maintainers
 
-Thanks, I've dropped the old set and merged this updated one onto sysctl-next.
+It's slightly unclear to me if this should be targeting
+net-next or nf-next. But regardless, it doesn't seem
+to apply cleanly to the main branch of either tree.
 
-  Luis
+Please consider resolving that and posting again,
+being sure to allow 24h before postings.
+
+Link: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html
+
+-- 
+pw-bot: changes-requested
