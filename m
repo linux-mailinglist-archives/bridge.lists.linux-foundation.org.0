@@ -1,117 +1,103 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07BA785465
-	for <lists.bridge@lfdr.de>; Wed, 23 Aug 2023 11:38:56 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4570278CDC3
+	for <lists.bridge@lfdr.de>; Tue, 29 Aug 2023 22:46:04 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 6DA1E40860;
-	Wed, 23 Aug 2023 09:38:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6DA1E40860
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.a=rsa-sha256 header.s=s2048 header.b=KSXvdKHM
+	by smtp3.osuosl.org (Postfix) with ESMTP id 8F3C9607E1;
+	Tue, 29 Aug 2023 20:46:02 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8F3C9607E1
+Authentication-Results: smtp3.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dve5+6o8
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id T3OEniNbJvCz; Wed, 23 Aug 2023 09:38:54 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 3FF724085D;
-	Wed, 23 Aug 2023 09:38:53 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3FF724085D
+Received: from smtp3.osuosl.org ([127.0.0.1])
+	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 0xqpzJabjy-z; Tue, 29 Aug 2023 20:46:01 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 03FA160AAE;
+	Tue, 29 Aug 2023 20:46:00 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 03FA160AAE
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E0E87C0DD5;
-	Wed, 23 Aug 2023 09:38:52 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 3B57FC0DD3;
+	Tue, 29 Aug 2023 20:46:00 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3B6AFC0032
- for <bridge@lists.linux-foundation.org>; Wed, 23 Aug 2023 09:38:51 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C9F2CC0032
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Aug 2023 20:45:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 16737404F4
- for <bridge@lists.linux-foundation.org>; Wed, 23 Aug 2023 09:38:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 16737404F4
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com
- header.a=rsa-sha256 header.s=s2048 header.b=KSXvdKHM
+ by smtp4.osuosl.org (Postfix) with ESMTP id A360441882
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Aug 2023 20:45:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A360441882
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org
+ header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dve5+6o8
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id RGyXmpzkmMRG for <bridge@lists.linux-foundation.org>;
- Wed, 23 Aug 2023 09:38:50 +0000 (UTC)
-Received: from sonic311-23.consmr.mail.gq1.yahoo.com
- (sonic311-23.consmr.mail.gq1.yahoo.com [98.137.65.204])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 1CD87404D3
- for <bridge@lists.linux-foundation.org>; Wed, 23 Aug 2023 09:38:50 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 1CD87404D3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1692783529; bh=+w0Wm6hyHlWivjBgD62leWRc9RGZrULFgUCRifIBJP8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From:Subject:Reply-To;
- b=KSXvdKHMTxWHxK4vL3v/uVmEYg3AejG9NLZbluoF8tdjYQctcQDOQciFNISLS2LAe6yXGmihisqllrTtLSLaNoPPhQL8Tvgkni16Ol6smpwasXWy2AwOvu1IDmICk5R/DCjmQj7/CKzz8qZa4ret4AP8zXKzRfoKSNgIY7sypWnocimBt4wc2IlthtMqjr3lgGIY4BNCateLfwWoYEBdik0J3qBQ5pzoLWhIwzyBG98s9jNXD50aEK0RP7zWp7aUzrOxYIqLyAiEhIaIR6BUnMxpL/5cllfIZUhnb9T81B+kBHeFu83w+ERS0R3hpjZiLBsol+8niejQQLKBBEWFmw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1692783529; bh=tGk6qV/3/aPkj7TosgncTQa92JWRR1OYxU15hEVYqdP=;
- h=X-Sonic-MF:Date:From:To:Subject:From:Subject;
- b=lsLxh3m4lDG0GslaX1LyXefpW/jmMGUIUxlhAUhxwAjqu7gQjAcenWwZIomZGFRlY+btaHLvJsS5pLwPKaUJbtX1BGzUpsBlmILMtj57+bjjWQ45IKs8JAwg1dCN7NcFc5fTiRE72Z6pSs8poC/VpYYGDj50583F+K/YlJYJUbBdZ3KVHZ73iZhQhRZIzMax8w3tUsRiQY/RGlf5s50IePUqAz0ncXqzl0myXz9Qu24vjjfRUN2MYVY/oFq7iDOWAXn7cGaRX/1Hc4qxn3nySImcty4Yus8xnWkbK2f1emU5GyxvoFH/ksCJK06zwi/QC6ul/88UZifBYYT6UIPLGg==
-X-YMail-OSG: gOhcsBQVM1m5V90zERBUK.6oevDHUVjGD7KM60zfAVnbQRcqDygoYsUlCrR.2vI
- ijGOeKJN27DYMxyEcFIRZWJHId40vCotrEnSNoNWvV6.z4HS77JycWWLlmBfc7k3eqQAC3q0PCl3
- JLL75KXTsSNGxtJg2ArPmj4NGNd2Yo17vuRa2dcJw3UaF3kMAmjVOSXra4gp75BiE2DXc_T6roGb
- XFT9iJFQMbWsBF5vv2iDmUwxrburtkPvdrkfATedB2jQtgHljfvKius3ejzzipPX43xAUvqYUwN5
- ePLDWX5.O_8GEiuD58s6GJClKDiL9P7HDuEYU382Z3xub7bPDh6_nWD4v2UaXvxIhq5jox4L3NGS
- 7Ex6B0mZeLxsE7iGU3fhxpAZKDBRCetam3eMJnTl.tTnM7.Ga3Ndfr3GfZMWi5brqchZF40mBhrj
- oJGABPpUJ8Lu.ukHStcd.MsBTcjdmsnanAgDsFYPVFyj4prlgL4bgxH5KyczGT.ne_nY.pOCxpOK
- KMtvtNkBXhJo63SJK8gOafmUxi.MjJVcn.Eff5RrC6IpMGoNNWJsyMmymFwTK7IRGM5kUNmKqfOE
- A5hgpWYojZferZOq8.5Ie8jFQ6GwaZG_2TGdPyK3z05mVBWDDzbY5RDiKMYRd0p0GUYAr8ry_vRm
- xvRH6UL6AplsalJucMtybfkDzssLA5Oq.IlFKXWxGwlJyYXt9uhgOJSSgr6HtbWGFfzYh.IdKQBM
- lWb2NDZjJOnKBEX2ygu5T1RuEVQbFneHgmJKMbpQppjhI6doArrV2T7QGZslmewhTkpf3Hvncdia
- UUkE5BYNw5p7.6yGDTg3F06ZfQgcgWoUCmsI9nnlAkLWuGyPI3f5dB.e2JGY9vcBrmTdZNX2_Es_
- QK1DmlGhyBS6V0nZIxTmppVlgJ2p6M5It3Zu6231tz.Rr5VE7RRoW8KIRsWzD_BfUON.8ysV9ACE
- nTqGVIAAEC.BSfCSq9hpN1dkXW9FTDf_PVWDI4PknaliPKcoabwwzfFbaU_n9nYLaeHwB8KUJC8W
- eHTSnaZT34x17Za4.Xne9ZKBHa8NStdBFF_9XlwDvaTl3CRYCgdhhwZEzbWUp18WoZBLo24fDKia
- FWBFQeXCfdNqSkzatHTjC6xutjVjhBQjixbMou64jZd0lmTvMQ5MUaRZmTBdP9aHLjK038zp6jfg
- _cj.0gMPDejGIO_uQnc.hxVGZRlJeRNUtUr7vrEuH05khRMv_XkdEb5H.vLzSy.fSNosFn_bZU8u
- OISrG4uPNkiGYheDZIb053Ne.qzuoZeNoN8gCmZAE02JOv5W8j9m7lO1WClHpypEekCa2UfZgqKl
- Fh_VRnC.Mn11IEvvRG0egxZ3WpOayg.kgiuAiM.ju8uu9ZDd638IGFackftLRmU5zqwfKj2Xrti6
- s2hD7bkXfSZHV9h19XVfNtrxPiWMWfTZEh7Qq5c..Ki8INIzL5.Q4NWX5lJlw4Sa7fzMm6BmPqOi
- ZxR9LZRKjkrongVfBggzBxf7JZPlHG6j_X1z0GAou5REIiT5Bvv.Sey2Ev0kyP_abMehKD.FFi9w
- OsgguvqNw4EIu48cPxM5ZMAvMDZvmpn20mGIboa4BNk2urAahEwAIYN.64fmG.mPrvdsoyXiQrEo
- FBHE2S.b92O12lt3v8i4wUMxOpTzV9ZxmnT8cNJdXncA9uv25GVnNy1mA5z2jnpHuHvVwQjXW4vh
- r0oP6kG.66Zgnu25EGoSsw2NJtIGvOYT0Z5EoFjBoPAQUI84jm3I2.5fEc.IjNHApqxTaI2zxkAs
- R1FCGJQeynpy1mS0FT1n14yhNpvkVbqRfKm51gxXoTWygs52Q8mpwhTQnaNBAIqUALTwAMJlgKKT
- rp07_mFHDQuwgxROxYLmXfEYWrA9ACR0nzIUubwjhD.OyjZjQHlnCbpQXJJ4TPrpfN1q8BS_VqIg
- nPYE3KVvyjH2qNLzqGLNkbQZaCOGG4w2LRouVwuEM1x9UKhH9skPsfU2BDt7P6kjbkzEiS8Vm3lW
- sCiLRWQSk.6L.Yo3EkagmX5eeiQ_UN0OHa8G2MMqbkEnuVFENuThJIdjmNjI9fwf39L3.f9VdJd5
- E4zD2Njq_2PJv_DxpzpfFzcsFliYNi9ZqO6l7fcHRFkKPLYXFv.xZEt2t3ulrysa9wG8lA1pgPPJ
- gfivbgKa19W.MERu2PU5c4zstOmccOMr9F8.J2hShl_eMOBJysF.Hdo7JiL1yD4UR0SIZ5fx0MSo
- k8Uj2Yx19uZhq2VOurPH.Agz83Ewi
-X-Sonic-MF: <astrajoan@yahoo.com>
-X-Sonic-ID: e296bae2-b9ee-4be7-81a7-aa85f7cd568e
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic311.consmr.mail.gq1.yahoo.com with HTTP; Wed, 23 Aug 2023 09:38:49 +0000
-Received: by hermes--production-gq1-6b7c87dcf5-qfzfj (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID 80bd736a20866ad4598eb86d929b5af7; 
- Wed, 23 Aug 2023 09:38:48 +0000 (UTC)
-Date: Wed, 23 Aug 2023 02:38:46 -0700
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Message-ID: <20230823093846.7wzrhnqdk2wyqud2@Astras-Ubuntu>
-References: <00000000000051197705fdbc7e54@google.com>
- <20230819081057.330728-1-astrajoan@yahoo.com>
- <df28eac7-ee6e-431c-acee-36a1c29a4ae0@blackwall.org>
- <20230819225048.dxxzv47fo64g24qx@Astras-Ubuntu>
- <c81340d8-25f3-4014-b881-5afe01b56f6b@blackwall.org>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id UI40WTc81U5i for <bridge@lists.linux-foundation.org>;
+ Tue, 29 Aug 2023 20:45:56 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 3DFE5417CD
+ for <bridge@lists.linux-foundation.org>; Tue, 29 Aug 2023 20:45:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 3DFE5417CD
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Sender:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=qqpCUFR3P/c8X+gNxuXmGaV/FqFgRToVQytMVMpzzZU=; b=Dve5+6o8hMnkJ5nWqXTD/1k5Ig
+ c+eL+0Tiv6N9rCEFJgeCjKJ4omPyPHn9fnqB3Jf8MqMaOyZqL+1UBHqlsS5YXH7+VQoXGOrthij6U
+ wXE8kb0bhwdeKsa8zyMuKPbVXAZmTXwfMMt3f1XiBd7bIzJsMtP+il1X36DMva9FrwpSsxX2Bbm+7
+ EuvcibeFMzWbVd3TNrqT4ZRzkQJ0Q9NQiatktpBmVWsXjDxGZFkVQEKbevr1IsN647m6SvvMo+viz
+ Yvy04a63uv+YPdHNtPwsUdAKlVbW2MWxd4cief6pa6kf+sxylyo5091Al/BfKdZkegt5uFBdYqewR
+ nJDOB6Og==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.96 #2 (Red
+ Hat Linux)) id 1qb5a3-00CF5F-1u; Tue, 29 Aug 2023 20:44:55 +0000
+Date: Tue, 29 Aug 2023 13:44:55 -0700
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <ZO5Yx5JFogGi/cBo@bombadil.infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <c81340d8-25f3-4014-b881-5afe01b56f6b@blackwall.org>
-X-Mailer: WebService/1.1.21732
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-Cc: f.fainelli@gmail.com, ivan.orlov0322@gmail.com, keescook@chromium.org,
- arnd@arndb.de, vladimir.oltean@nxp.com, bridge@lists.linux-foundation.org,
- syzkaller-bugs@googlegroups.com, mudongliangabcd@gmail.com,
- linux-kernel@vger.kernel.org, edumazet@google.com, netdev@vger.kernel.org,
- nikolay@nvidia.com, roopa@nvidia.com,
- syzbot+881d65229ca4f9ae8c84@syzkaller.appspotmail.com, kuba@kernel.org,
- skhan@linuxfoundation.org, pabeni@redhat.com, davem@davemloft.net,
- hkallweit1@gmail.com
-Subject: Re: [Bridge] [PATCH] net: bridge: Fix refcnt issues in dev_ioctl
+Content-Transfer-Encoding: 8bit
+Cc: Joel Granados <j.granados@samsung.com>,
+ Alexander Aring <alex.aring@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+ linux-sctp@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Mat Martineau <martineau@kernel.org>, Will Deacon <will@kernel.org>,
+ Jan Karcher <jaka@linux.ibm.com>, Stefan Schmidt <stefan@datenfreihafen.org>,
+ Steffen Klassert <steffen.klassert@secunet.com>, linux-s390@vger.kernel.org,
+ rds-devel@oss.oracle.com, Xin Long <lucien.xin@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org,
+ Tony Lu <tonylu@linux.alibaba.com>, bridge@lists.linux-foundation.org,
+ willy@infradead.org, Jozsef Kadlecsik <kadlec@netfilter.org>,
+ lvs-devel@vger.kernel.org, Julian Anastasov <ja@ssi.bg>,
+ coreteam@netfilter.org, Iurii Zaikin <yzaikin@google.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Wen Gu <guwen@linux.alibaba.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Joerg Reuter <jreuter@yaina.de>, Sven Schnelle <svens@linux.ibm.com>,
+ Joel Granados <joel.granados@gmail.com>, keescook@chromium.org,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Santosh Shilimkar <santosh.shilimkar@oracle.com>, josh@joshtriplett.org,
+ Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
+ Jakub Kicinski <kuba@kernel.org>, linux-hams@vger.kernel.org,
+ mptcp@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+ netdev@vger.kernel.org, David Ahern <dsahern@kernel.org>,
+ Florian Westphal <fw@strlen.de>, linux-kernel@vger.kernel.org,
+ Ralf Baechle <ralf@linux-mips.org>, Karsten Graul <kgraul@linux.ibm.com>,
+ mcgrof@kernel.org, netfilter-devel@vger.kernel.org,
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ "D. Wythe" <alibuda@linux.alibaba.com>, linux-fsdevel@vger.kernel.org,
+ Matthieu Baerts <matthieu.baerts@tessares.net>, linux-wpan@vger.kernel.org,
+ "David S. Miller" <davem@davemloft.net>
+Subject: [Bridge] [GIT PULL] sysctl changes for v6.6-rc1
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -123,49 +109,117 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ziqi Zhao via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ziqi Zhao <astrajoan@yahoo.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On Tue, Aug 22, 2023 at 01:40:45PM +0300, Nikolay Aleksandrov wrote:
+The following changes since commit 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5:
 
-> Thank you for testing, but we really need to understand what is going on and
-> why the device isn't getting deleted for so long. Currently I don't have the
-> time to debug it properly (I'll be able to next week at the earliest). We
-> can't apply the patch based only on tests without understanding the
-> underlying issue. I'd look into what
-> the reproducer is doing exactly and also check the system state while the
-> deadlock has happened. Also you can list the currently held locks (if
-> CONFIG_LOCKDEP is enabled) via magic sysrq + d for example. See which
-> process is holding them, what are their priorities and so on.
-> Try to build some theory of how a deadlock might happen and then go
-> about proving it. Does the 8021q module have the same problem? It uses
-> similar code to set its hook.
+  Linux 6.5-rc1 (2023-07-09 13:53:13 -0700)
 
-Hi Nik,
+are available in the Git repository at:
 
-Thank you so much for the instructions! I was able to obtain a decoded
-stacktrace showing the reproducer behavior in my QEMU VM running kernel
-6.5-rc4, in case that would give us more context for pinpointing the
-problem. Here's a link to the output:
+  git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux.git/ tags/sysctl-6.6-rc1
 
-https://pastecat.io/?p=IlKZlflN9j2Z2mspjKe7
+for you to fetch changes up to 53f3811dfd5e39507ee3aaea1be09aabce8f9c98:
 
-Basically, after running the reproducer (line 1854) for about 180
-seconnds or so, the unregister_netdevice warning was shown (line 1856),
-and then after another 50 seconds, the kernel detected that some tasks
-have been stalled for more than 143 seconds (line 1866), so it panicked
-on the blocked tasks (line 2116). Before the panic, we did get to see
-all the locks held in the system (line 2068), and it did show that many
-processes created by the reproducer were contending the br_ioctl_mutex.
-I'm now starting to wonder whether this is really a deadlock, or simply
-some tasks not being able to grab the lock because so many processes
-are trying to acquire it.
+  sysctl: Use ctl_table_size as stopping criteria for list macro (2023-08-15 15:26:18 -0700)
 
-Let me know what you think about the situation shown in the above log,
-and let's keep in touch for any future debugging. Thank you again for
-guiding me through the problem!
+----------------------------------------------------------------
+sysctl-6.6-rc1
 
-Best regards,
-Ziqi
+Long ago we set out to remove the kitchen sink on kernel/sysctl.c arrays and
+placings sysctls to their own sybsystem or file to help avoid merge conflicts.
+Matthew Wilcox pointed out though that if we're going to do that we might as
+well also *save* space while at it and try to remove the extra last sysctl
+entry added at the end of each array, a sentintel, instead of bloating the
+kernel by adding a new sentinel with each array moved.
+
+Doing that was not so trivial, and has required slowing down the moves of
+kernel/sysctl.c arrays and measuring the impact on size by each new move.
+
+The complex part of the effort to help reduce the size of each sysctl is being
+done by the patient work of el señor Don Joel Granados. A lot of this is truly
+painful code refactoring and testing and then trying to measure the savings of
+each move and removing the sentinels. Although Joel already has code which does
+most of this work, experience with sysctl moves in the past shows is we need to
+be careful due to the slew of odd build failures that are possible due to the
+amount of random Kconfig options sysctls use.
+
+To that end Joel's work is split by first addressing the major housekeeping
+needed to remove the sentinels, which is part of this merge request. The rest
+of the work to actually remove the sentinels will be done later in future
+kernel releases.
+
+At first I was only going to send his first 7 patches of his patch series,
+posted 1 month ago, but in retrospect due to the testing the changes have
+received in linux-next and the minor changes they make this goes with the
+entire set of patches Joel had planned: just sysctl house keeping. There are
+networking changes but these are part of the house keeping too.
+
+The preliminary math is showing this will all help reduce the overall build
+time size of the kernel and run time memory consumed by the kernel by about
+~64 bytes per array where we are able to remove each sentinel in the future.
+That also means there is no more bloating the kernel with the extra ~64 bytes
+per array moved as no new sentinels are created.
+
+Most of this has been in linux-next for about a month, the last 7 patches took
+a minor refresh 2 week ago based on feedback.
+
+----------------------------------------------------------------
+Joel Granados (14):
+      sysctl: Prefer ctl_table_header in proc_sysctl
+      sysctl: Use ctl_table_header in list_for_each_table_entry
+      sysctl: Add ctl_table_size to ctl_table_header
+      sysctl: Add size argument to init_header
+      sysctl: Add a size arg to __register_sysctl_table
+      sysctl: Add size to register_sysctl
+      sysctl: Add size arg to __register_sysctl_init
+      sysctl: Add size to register_net_sysctl function
+      ax.25: Update to register_net_sysctl_sz
+      netfilter: Update to register_net_sysctl_sz
+      networking: Update to register_net_sysctl_sz
+      vrf: Update to register_net_sysctl_sz
+      sysctl: SIZE_MAX->ARRAY_SIZE in register_net_sysctl
+      sysctl: Use ctl_table_size as stopping criteria for list macro
+
+ arch/arm64/kernel/armv8_deprecated.c    |  2 +-
+ arch/s390/appldata/appldata_base.c      |  2 +-
+ drivers/net/vrf.c                       |  3 +-
+ fs/proc/proc_sysctl.c                   | 90 +++++++++++++++++----------------
+ include/linux/sysctl.h                  | 31 +++++++++---
+ include/net/ipv6.h                      |  2 +
+ include/net/net_namespace.h             | 10 ++--
+ ipc/ipc_sysctl.c                        |  4 +-
+ ipc/mq_sysctl.c                         |  4 +-
+ kernel/ucount.c                         |  5 +-
+ net/ax25/sysctl_net_ax25.c              |  3 +-
+ net/bridge/br_netfilter_hooks.c         |  3 +-
+ net/core/neighbour.c                    |  8 ++-
+ net/core/sysctl_net_core.c              |  3 +-
+ net/ieee802154/6lowpan/reassembly.c     |  8 ++-
+ net/ipv4/devinet.c                      |  3 +-
+ net/ipv4/ip_fragment.c                  |  3 +-
+ net/ipv4/route.c                        |  8 ++-
+ net/ipv4/sysctl_net_ipv4.c              |  3 +-
+ net/ipv4/xfrm4_policy.c                 |  3 +-
+ net/ipv6/addrconf.c                     |  3 +-
+ net/ipv6/icmp.c                         |  5 ++
+ net/ipv6/netfilter/nf_conntrack_reasm.c |  3 +-
+ net/ipv6/reassembly.c                   |  3 +-
+ net/ipv6/route.c                        |  9 ++++
+ net/ipv6/sysctl_net_ipv6.c              | 16 ++++--
+ net/ipv6/xfrm6_policy.c                 |  3 +-
+ net/mpls/af_mpls.c                      |  6 ++-
+ net/mptcp/ctrl.c                        |  3 +-
+ net/netfilter/ipvs/ip_vs_ctl.c          |  8 ++-
+ net/netfilter/ipvs/ip_vs_lblc.c         | 10 ++--
+ net/netfilter/ipvs/ip_vs_lblcr.c        | 10 ++--
+ net/netfilter/nf_conntrack_standalone.c |  4 +-
+ net/netfilter/nf_log.c                  |  7 +--
+ net/rds/tcp.c                           |  3 +-
+ net/sctp/sysctl.c                       |  4 +-
+ net/smc/smc_sysctl.c                    |  3 +-
+ net/sysctl_net.c                        | 26 +++++++---
+ net/unix/sysctl_net_unix.c              |  3 +-
+ net/xfrm/xfrm_sysctl.c                  |  8 ++-
+ 40 files changed, 222 insertions(+), 113 deletions(-)
