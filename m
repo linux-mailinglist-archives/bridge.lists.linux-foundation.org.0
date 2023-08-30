@@ -1,79 +1,125 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E1817970B7
-	for <lists.bridge@lfdr.de>; Thu,  7 Sep 2023 10:23:22 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2F77970BA
+	for <lists.bridge@lfdr.de>; Thu,  7 Sep 2023 10:23:27 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 4D329403EA;
+	by smtp1.osuosl.org (Postfix) with ESMTP id AD0B48224B;
 	Thu,  7 Sep 2023 08:23:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 4D329403EA
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org AD0B48224B
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=ADgZbQku
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
-	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vKydxjoqCHt6; Thu,  7 Sep 2023 08:23:18 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 9636640525;
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vDLkFfJkWFaT; Thu,  7 Sep 2023 08:23:19 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 00E07821E8;
 	Thu,  7 Sep 2023 08:23:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9636640525
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 00E07821E8
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 974FBC0DDB;
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C0DC2C008D;
 	Thu,  7 Sep 2023 08:23:16 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id C460FC0032
- for <bridge@lists.linux-foundation.org>; Wed, 16 Aug 2023 12:41:28 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 43491C0032
+ for <bridge@lists.linux-foundation.org>; Wed, 30 Aug 2023 03:58:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id AB93A611A9
- for <bridge@lists.linux-foundation.org>; Wed, 16 Aug 2023 12:41:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org AB93A611A9
+ by smtp1.osuosl.org (Postfix) with ESMTP id 1749B82154
+ for <bridge@lists.linux-foundation.org>; Wed, 30 Aug 2023 03:58:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1749B82154
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id GlJ1t4dDM5KA for <bridge@lists.linux-foundation.org>;
- Wed, 16 Aug 2023 12:41:27 +0000 (UTC)
-X-Greylist: delayed 987 seconds by postgrey-1.37 at util1.osuosl.org;
- Wed, 16 Aug 2023 12:41:26 UTC
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org DC43360A6B
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by smtp3.osuosl.org (Postfix) with ESMTPS id DC43360A6B
- for <bridge@lists.linux-foundation.org>; Wed, 16 Aug 2023 12:41:26 +0000 (UTC)
-Received: from dggpemm500016.china.huawei.com (unknown [172.30.72.54])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4RQnNk3X8vz1GDcX;
- Wed, 16 Aug 2023 20:23:34 +0800 (CST)
-Received: from [10.67.110.48] (10.67.110.48) by dggpemm500016.china.huawei.com
- (7.185.36.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Wed, 16 Aug
- 2023 20:24:54 +0800
-Message-ID: <e5624b47-52f1-e01c-6e5c-e8192132edf9@huawei.com>
-Date: Wed, 16 Aug 2023 20:24:53 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Simon Horman <horms@kernel.org>, "GONG, Ruiqi" <gongruiqi@huaweicloud.com>
-References: <20230816093443.1460204-1-gongruiqi@huaweicloud.com>
- <ZNywHiWhaL6pRZsd@vergenet.net>
-In-Reply-To: <ZNywHiWhaL6pRZsd@vergenet.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.110.48]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500016.china.huawei.com (7.185.36.25)
-X-CFilter-Loop: Reflected
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id HvtHjOGzjlOb for <bridge@lists.linux-foundation.org>;
+ Wed, 30 Aug 2023 03:58:09 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 564608148F
+ for <bridge@lists.linux-foundation.org>; Wed, 30 Aug 2023 03:58:09 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 564608148F
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 2DC856226F;
+ Wed, 30 Aug 2023 03:58:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 87F31C433C8;
+ Wed, 30 Aug 2023 03:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1693367887;
+ bh=mPKk2+swFtGFWy8pTYH1vfYUh7/3u0eFDl38x3vBbbc=;
+ h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+ b=ADgZbQkup9SM4uuEjVXPl0kZb5qU5cRxcBUYIV68ssaOHHCZrS2+ntwfLz0HT21Ih
+ e386cEZAZNnNJznyld2KJf/v8fe7MjFSYHeqn2jCi/au5X8+GFJAJs2UqaMkjl13Pt
+ tBWufYtEAuzWRPX8V1l2CtngKltT6f7/s0ANkfkNNyVfix0L9B91QYMTHLJdOVoFVq
+ IlamCyGNhuWsTR9+yFkPDS5wrnr9z9xFHderl/6D+AsGosodrxgWcJDG1GU30wgN9F
+ bxisMSAemfMVycuM7wn1I11u7D6rtj9+5B2G88KHjzTBzjQzbN1UyndsBWNsRv7wH+
+ v1R8ONmU6MaSg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
+ 6A11CE29F34; Wed, 30 Aug 2023 03:58:07 +0000 (UTC)
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <ZO5Yx5JFogGi/cBo@bombadil.infradead.org>
+References: <ZO5Yx5JFogGi/cBo@bombadil.infradead.org>
+X-PR-Tracked-List-Id: <linux-s390.vger.kernel.org>
+X-PR-Tracked-Message-Id: <ZO5Yx5JFogGi/cBo@bombadil.infradead.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux.git/
+ tags/sysctl-6.6-rc1
+X-PR-Tracked-Commit-Id: 53f3811dfd5e39507ee3aaea1be09aabce8f9c98
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: adfd671676c922bada16477eb68b5eb5f065addc
+Message-Id: <169336788741.6268.886734446514047714.pr-tracker-bot@kernel.org>
+Date: Wed, 30 Aug 2023 03:58:07 +0000
+To: Luis Chamberlain <mcgrof@kernel.org>
 X-Mailman-Approved-At: Thu, 07 Sep 2023 08:23:15 +0000
-Cc: coreteam@netfilter.org, Kees Cook <keescook@chromium.org>,
- linux-kernel@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
- bridge@lists.linux-foundation.org, Florian Westphal <fw@strlen.de>,
- "Gustavo A . R . Silva" <gustavoars@kernel.org>,
- Jozsef Kadlecsik <kadlec@netfilter.org>, Eric Dumazet <edumazet@google.com>,
- netdev@vger.kernel.org, netfilter-devel@vger.kernel.org,
- Roopa Prabhu <roopa@nvidia.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, "David S .
- Miller" <davem@davemloft.net>, Pablo Neira Ayuso <pablo@netfilter.org>
-Subject: Re: [Bridge] [PATCH net-next v2] netfilter: ebtables: replace
- zero-length array members
+Cc: Joel Granados <j.granados@samsung.com>,
+	Alexander Aring <alex.aring@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	coreteam@netfilte.lists.linuxfoundation.org,
+	Nikolay Aleksandrov <razor@blackwall.org>,
+	Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+	linux-sctp@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jan Karcher <jaka@linux.ibm.com>,
+	Mat Martineau <martineau@kernel.org>, Will Deacon <will@kernel.org>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Stefan Schmidt <stefan@datenfreihafen.org>,
+	Steffen Klassert <steffen.klassert@secunet.com>,
+	linux-s390@vger.kernel.org, rds-devel@oss.oracle.com,
+	Xin Long <lucien.xin@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org,
+	Tony Lu <tonylu@linux.alibaba.com>,
+	bridge@lists.linux-foundation.org, willy@infradead.org,
+	Jozsef Kadlecsik <kadlec@netfilter.org>, lvs-devel@vger.kernel.org,
+	Julian Anastasov <ja@ssi.bg>, Iurii Zaikin <yzaikin@google.com>,
+	r.org@osuosl.org, Wen Gu <guwen@linux.alibaba.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Joerg Reuter <jreuter@yaina.de>, Sven Schnelle <svens@linux.ibm.com>,
+	Joel Granados <joel.granados@gmail.com>, keescook@chromium.org,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Heiko Carstens <hca@linux.ibm.com>, Roopa Prabhu <roopa@nvidia.com>,
+	josh@joshtriplett.org, Wenjia Zhang <wenjia@linux.ibm.com>,
+	Simon Horman <horms@verge.net.au>, Jakub Kicinski <kuba@kernel.org>,
+	linux-hams@vger.kernel.org, mptcp@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Santosh Shilimkar <santosh.shilimkar@oracle.com>,
+	Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+	Linus Torvalds <torvalds@linux-foundation.org>,
+	David Ahern <dsahern@kernel.org>, Florian Westphal <fw@strlen.de>,
+	linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
+	Karsten Graul <kgraul@linux.ibm.com>, mcgrof@kernel.org,
+	netfilter-devel@vger.kernel.org,
+	Pablo Neira Ayuso <pablo@netfilter.org>,
+	"D. Wythe" <alibuda@linux.alibaba.com>, netdev@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org,
+	Matthieu Baerts <matthieu.baerts@tessares.net>,
+	linux-wpan@vger.kernel.org, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [GIT PULL] sysctl changes for v6.6-rc1
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -85,45 +131,18 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Gong Ruiqi via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Gong Ruiqi <gongruiqi1@huawei.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
+The pull request you sent on Tue, 29 Aug 2023 13:44:55 -0700:
 
+> git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux.git/ tags/sysctl-6.6-rc1
 
-On 2023/08/16 19:16, Simon Horman wrote:
-> On Wed, Aug 16, 2023 at 05:34:43PM +0800, GONG, Ruiqi wrote:
->> From: "GONG, Ruiqi" <gongruiqi1@huawei.com>
->>
->> As suggested by Kees[1], replace the old-style 0-element array members
->> of multiple structs in ebtables.h with modern C99 flexible array.
->>
->> [1]: https://lore.kernel.org/all/5E8E0F9C-EE3F-4B0D-B827-DC47397E2A4A@kernel.org/
->>
->> Link: https://github.com/KSPP/linux/issues/21
->> Signed-off-by: GONG, Ruiqi <gongruiqi1@huawei.com>
->> Reviewed-by: Kees Cook <keescook@chromium.org>
->> ---
->>
->> v2: designate to net-next; cc more netdev maintainers
-> 
-> It's slightly unclear to me if this should be targeting
-> net-next or nf-next. But regardless, it doesn't seem
-> to apply cleanly to the main branch of either tree.
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/adfd671676c922bada16477eb68b5eb5f065addc
 
-I find out that it's because this patch depends on a previous patch I've
-just sent:
+Thank you!
 
-[v4] netfilter: ebtables: fix fortify warnings in size_entry_mwt()
-
-Maybe I should make them two into a patch set? Otherwise if I adapt this
-patch to net-next, it won't be applied either if the above patch is
-applied ...
-
-> 
-> Please consider resolving that and posting again,
-> being sure to allow 24h before postings.
-> 
-> Link: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html
->
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
