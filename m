@@ -1,132 +1,185 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDD9793A66
-	for <lists.bridge@lfdr.de>; Wed,  6 Sep 2023 12:52:19 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF261793CBA
+	for <lists.bridge@lfdr.de>; Wed,  6 Sep 2023 14:35:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 5F70A60E36;
-	Wed,  6 Sep 2023 10:52:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5F70A60E36
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=odCclGV8
+	by smtp2.osuosl.org (Postfix) with ESMTP id 513D34026A;
+	Wed,  6 Sep 2023 12:35:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 513D34026A
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=m+6wDQ82
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XgeHgCZKNaV0; Wed,  6 Sep 2023 10:52:16 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id E668460B70;
-	Wed,  6 Sep 2023 10:52:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E668460B70
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2OwOog3kBOnM; Wed,  6 Sep 2023 12:35:36 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 37015414FF;
+	Wed,  6 Sep 2023 12:35:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 37015414FF
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 75B50C0DD3;
-	Wed,  6 Sep 2023 10:52:15 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 79D95C0DD3;
+	Wed,  6 Sep 2023 12:35:34 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 326AEC0032
- for <bridge@lists.linux-foundation.org>; Wed,  6 Sep 2023 10:52:13 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4AFBCC0032
+ for <bridge@lists.linux-foundation.org>; Wed,  6 Sep 2023 12:35:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id CE8608176B
- for <bridge@lists.linux-foundation.org>; Wed,  6 Sep 2023 10:52:12 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org CE8608176B
-Authentication-Results: smtp1.osuosl.org; dkim=pass (2048-bit key,
- unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256
- header.s=selector2 header.b=odCclGV8
+ by smtp4.osuosl.org (Postfix) with ESMTP id 1044E41B1B
+ for <bridge@lists.linux-foundation.org>; Wed,  6 Sep 2023 12:35:33 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1044E41B1B
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com
+ header.a=rsa-sha256 header.s=mail20170921 header.b=m+6wDQ82
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id aj2KiOqkYJE8 for <bridge@lists.linux-foundation.org>;
- Wed,  6 Sep 2023 10:52:11 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20601.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::601])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 4770E813EF
- for <bridge@lists.linux-foundation.org>; Wed,  6 Sep 2023 10:52:11 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4770E813EF
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b5WTkUZp4PRxnQCtxWvkQI7iRXHhDYWnarGnvDGkxWuZLDB0stj15C3IesnrYztio4AYLysyGPbDBaYp12DKsvfmxtOJ+X6D2598L17NMhc8bzLDbz9WtKPpPvaqTv4IVspuILEJPfkcLZwZXbLJK8bQj6uDOrRnIp4ZOm+noC6xD2BNBQ0XFW1ATUZWYEUEyJfadHz2FFyqhkQ2MZmMBxzkLxRp5H3SKkITnMR3ybw5pBYRSSwFvr/W6DHjzxfOf7D2j9ZpMbA5d+LrY+KZ+74dyUyLvTb0A9imfpl8H/BJ3rpTYH/KbdfvbfeioCPU0m2ek6NMw0b1EX2hrEtYHQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F6h3CdCR32rD2K1EUffRq6loThkZ3P48GIGqQxAcE8I=;
- b=NYHSgUCzTRmFsHbPAAXIxlZw6zhgnKI01PaQiISkdTYtwEsyOMbnbH7kYXLrjSGUrbnjX8dQWBG+eV9Wx9Ll3+/7ivOAvCdyWSnD+1rC5Oe0kmbN4IJOIQ1bm+xyANAncZQkKN4y1MbQYvvqIPlsHmq+NJPsDfa0BsxMGH7/Buy7kY1ba66kzHToNEvnzLaghBqPiRiIME9to3h8irqHSS/BBTg4PJXWSU52fSIW2wEUoUDQGwbhyJ2hSRFrLu32vs0YfYRBUwH/nd+lHZCN/DWwwXZa5ufPlOHPyEhQS3EhcyBzZJ6ri+ZDzeAkHbOZEHmmVBRnVm+84zwcfRMtFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=lists.linux-foundation.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F6h3CdCR32rD2K1EUffRq6loThkZ3P48GIGqQxAcE8I=;
- b=odCclGV8JYi3Hnt/Qw9engq9DD0UyAjDMplkqpTToBbyysdSH3vQJC4Ignx3cnbG09KWP/MuC8JHhcTNcEVR/N/EN5bLZa0Ov24I8vFzGcRun4RtqfFqDL9plvQins2bWxxJNn3rZ+ADc8h/EzvxkX9E8a5UUygvSyWhlikAzL5i1NOBRLDVirzYPse2Juw3cJIAN8L027fgwRRIFESP6zSESOhADBS7ZynEiPHxf09ySUiqRYcveUSD4UzUnQD5vJpdJO1Bui1LpHsc2uokh9Qtp5+O+YfvLaKap11YA3t4f99s+28vZR82ykQtX3HvxxCUNPwJdVVMwnsywMP4jg==
-Received: from CH3P221CA0029.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:1e7::24)
- by DM6PR12MB4251.namprd12.prod.outlook.com (2603:10b6:5:21e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
- 2023 10:52:07 +0000
-Received: from DS3PEPF000099DC.namprd04.prod.outlook.com
- (2603:10b6:610:1e7:cafe::be) by CH3P221CA0029.outlook.office365.com
- (2603:10b6:610:1e7::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.36 via Frontend
- Transport; Wed, 6 Sep 2023 10:52:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DS3PEPF000099DC.mail.protection.outlook.com (10.167.17.198) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6768.25 via Frontend Transport; Wed, 6 Sep 2023 10:52:06 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 6 Sep 2023
- 03:51:50 -0700
-Received: from yaviefel (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Wed, 6 Sep 2023
- 03:51:48 -0700
-References: <20230905-fdb_limit-v3-1-34bb124556d8@avm.de>
-User-agent: mu4e 1.8.11; emacs 28.2
-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
-Date: Wed, 6 Sep 2023 12:32:32 +0200
-In-Reply-To: <20230905-fdb_limit-v3-1-34bb124556d8@avm.de>
-Message-ID: <87msxzmv5q.fsf@nvidia.com>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id LOJcy8AcPv5H for <bridge@lists.linux-foundation.org>;
+ Wed,  6 Sep 2023 12:35:28 +0000 (UTC)
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com
+ [210.118.77.11])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 54D1C41B1A
+ for <bridge@lists.linux-foundation.org>; Wed,  6 Sep 2023 12:35:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 54D1C41B1A
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20230906123525euoutp01aef263d18f43afc5e0f456b68b34412b~CT2m_4MNh1721017210euoutp01T;
+ Wed,  6 Sep 2023 12:35:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20230906123525euoutp01aef263d18f43afc5e0f456b68b34412b~CT2m_4MNh1721017210euoutp01T
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1694003725;
+ bh=kSfDM2PxptQrTVQMPAG5rz9E3Gh0CgYjQq2vX1wh1u8=;
+ h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+ b=m+6wDQ82ef/d8/4nlWMYTE9kfnIAoWlhMhdqHBBfihfqWuP8iM3eVNlzJjRaHltMU
+ 2l4lDxXybgq/aUTbfAyOFFW1c/WG3S6g0Slu0hR8E1wgIfPIBWUX5aRY9fX8h2g49x
+ 0RiNloUw+2A+/56qP9XBwg7AqfowYcMjmZDUd1vg=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20230906123525eucas1p15d5663db311f0d147c190276abfe8f84~CT2mw_TAz2306723067eucas1p1U;
+ Wed,  6 Sep 2023 12:35:25 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id 5D.86.37758.C0278F46; Wed,  6
+ Sep 2023 13:35:25 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20230906123524eucas1p22d0bf30fe10ce0ee7ca45eca03ef3235~CT2mJczO42726327263eucas1p29;
+ Wed,  6 Sep 2023 12:35:24 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20230906123524eusmtrp28aa6f6cde31078bfe52b8c173cbb675a~CT2mG2adp0571505715eusmtrp2L;
+ Wed,  6 Sep 2023 12:35:24 +0000 (GMT)
+X-AuditID: cbfec7f5-815ff7000002937e-38-64f8720cdaa5
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id 02.16.14344.C0278F46; Wed,  6
+ Sep 2023 13:35:24 +0100 (BST)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20230906123524eusmtip2c81fad208fd37b2f2d78a8b26ceda34c~CT2ltQB-30461004610eusmtip2c;
+ Wed,  6 Sep 2023 12:35:24 +0000 (GMT)
+Received: from localhost (106.210.248.249) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Wed, 6 Sep 2023 13:35:23 +0100
+Date: Wed, 6 Sep 2023 14:35:21 +0200
+From: Joel Granados <j.granados@samsung.com>
+To: Alexey Gladkov <legion@kernel.org>
+Message-ID: <20230906123521.xrqcmr3ilpvp2ze6@localhost>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099DC:EE_|DM6PR12MB4251:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c5b5027-a657-439f-1b87-08dbaec74fe4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IsMw+WUNdS+bmas8xUiQSQWND0Uktq9urE8vgs0fDjxLV3AiH2uVaanxcL/JUrIcgCNN3lBDMRmsu5IMu+z8tuvtO0HI1ps9uggOTpjC8BZKlmneL6+DFsOI8fTIslfGebkIa63hQFl6g+Ge7DThrchL9NJRVM85r3c87xwwaj9kKExpChEGeN0bF+7kGup605I88uiEiZGfskcAS9JrUSFbRkOzayBk+lUeHDFEKnKHhTRCIvA4mE5ZEPoBUXOQ47dD0OvZvJmxfVhaL2qOkbtByuSXrPkWOSn8DP5vgKoBeIPCgF5nNVrIbwIoBGVcyvvvcGQPKomTb5S6M6Lu6u4ndsHJ7KfLz6U+b3ZlPWSHs4zNHn4VrtNl6tZrt+QrV4RLDWENqCCi86zYwr0H5L++Ii9iO82paWy9Pfqf62bhXjhCPc7dcpjxm5MtSddcAyq289FAwneiOZqbRFmvEAmPqCvaaeVTmosrGn/anJRqkSwi9kAh4lkLjLmrBkC+Opy4Ang8NqGDo4nDF1zSwi9xXBW58sN2rwDj5vUfKFJqL5Cn6jz//B4c+uY9gkntxwKRKf5yjwGNxby5dkgfKOIG5kj4kK5TaFQ3BikS/MxqhHDpFbMwmoKYxGWfJHalMb6EREwyUTiENBgaiFUf+ZHNbK5JPqhi9zohT58SUAjTOtpcdEYrInPbTsbNHJgIo5JFpmirujT3Rv/FyjexrIUnyv0ueknsZtzEk3TE6Ue7p7Nh3EStCbml8xU5YKs6
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230031)(4636009)(396003)(376002)(136003)(346002)(39860400002)(451199024)(82310400011)(1800799009)(186009)(36840700001)(46966006)(40470700004)(36756003)(86362001)(40480700001)(6666004)(478600001)(5660300002)(26005)(16526019)(336012)(70206006)(316002)(426003)(6916009)(70586007)(54906003)(41300700001)(2616005)(8936002)(4326008)(8676002)(40460700003)(2906002)(47076005)(356005)(82740400003)(7636003)(83380400001)(36860700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 10:52:06.3568 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c5b5027-a657-439f-1b87-08dbaec74fe4
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099DC.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4251
-Cc: David Ahern <dsahern@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- netdev@vger.kernel.org, Roopa Prabhu <roopa@nvidia.com>
-Subject: Re: [Bridge] [PATCH iproute2-next v3] iplink: bridge: Add support
- for bridge FDB learning limits
+Content-Type: multipart/signed; micalg="pgp-sha512";
+ protocol="application/pgp-signature"; boundary="l5htxkzwtgg23zjg"
+Content-Disposition: inline
+In-Reply-To: <ZPhpedWW6RwTd9Hf@example.org>
+X-Originating-IP: [106.210.248.249]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA2WTe0xTZxjG851zelrQmkNh+gWMbhWJA1YBcb5TcJq4eWbMLon+ITNznZwg
+ GRRtxcvYMqR4AUWr6JDikKorhRYYiFUqm1CUe7h4CzjUlYu6FgEHVcAAKxzYTPbf733f58n3
+ PH98IlIyJvQWRSt2c0qFPEZKu1Pm6pHm98TK4cig5E4ExQ1/0WBNXAG28lQBdI1Zaag1/SGE
+ fv0xBGNlh0k415xMQaHlIAE91Z1CMKcZEbRoXwrg6tNXNDiy8xEctc8H9RUngu4TnQK4qx+g
+ 4VSSGCZy4mDk+CzITFUT0Hg0Fvp/yiKgxXzc9ZDuEyjpui+A8t/qKLh/9SEBdyznaHhiTaNA
+ o1OT0JPjEEBHup6CzqJ+AtTn/yZh1FAjgKa0CRIMjU8IaNP0IKg6/LsAGouShFCdMxc0hfUU
+ vGzoRZDRe4+E2+W+UD80QUDT5UEBDJ5bAjZNMwXphlICrqcMC0FfVCCErldPaeg8/lwIBxrN
+ QkjuWA6vh11h9GWfrgljTdkmxPY11SE225TAZiW2UuzoiD9bmtdOsGXah0LWXLGYzSmJZy8b
+ /NkHjnC2JD+FZmvPvqbYW3kFLo3tA1ZzoQJ9vjDCPSySi4newymXrv7afUeLJoPceSh834GL
+ Q2QiehWYitxEmAnF15+MEanIXSRhDAjrqh7T/DCE8FDFzGUQ4YkJu2DGoh1tJSdZwuQifK8r
+ 4F+R0Xqb4odShG2JxWhSRTG+uPZ29pSDZgJxc2/HFHsxfviaWjf1Hsmc8cCOvoEpgyezDDtt
+ FmKSxcwKXFCpI3n2wHWZ3dQkk8w+fEF7yRVJ5GIfnDsumly7MQE4t+AgzSddhKvTOiief8D1
+ pQ+m6mCmcDY+1n8L8Yd1uNpaOy3yxPaaUiHP8/FE2flpQzrCN8YHhPxgRFh/wEnwqlU4+W73
+ tGMtvljsmEqEmTm47bkHH3QOPmXOIPm1GB85JOHVftj4qJfSoEXaN6pp36im/a8av5bhtjOn
+ 6f+tA7Be5yB5DseFhf1UDhLmo3lcvCo2ilMtU3B7ZSp5rCpeESXbHhdbgly/smG8xnkNGewv
+ ZFZEiJAV+brMnb8aW5A3pYhTcFIvcd/Cl5EScaR8/3ecMm6bMj6GU1mRj4iSzhMHhNdtlzBR
+ 8t3ctxy3k1POXAmRm3cicWQT2ZrllfvxrK/ujZjMlpE567asvBz0y7Etf561+Szotvs3V/px
+ ydmDs9XG8tnPdFLLl+Vh+z+KH2WCKnIUzo3GD+/c+GIkO3iBbeBsn8Ueu3d5iF/gBumjx+9U
+ 7nohS4pI+l42/+TW02t/zKxNGP2ssc/0VtahBTdfyMGwPjBgx/pvAol6OuyZ4bW6inHfuXpT
+ 8PJrlUdT1g6U7tofMuv9n0NjnIsS9jh8S6o898Rm2psyotZcqQ4VrZIMb8hTc/VP41OWPgse
+ KqIXH34Usp2au3TzCVtD+Fi76ZJHiiX67ZWbQ51lTunWAaujR2bJ3xiavqR9W413WkKGm0/X
+ Te1FFFH+LpZSqh3yYH9SqZL/Ax5eSy0QBQAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA2WTe1BUZRjG+845e3ZRseWSnCEamY1SgRZYbu8mUFNDHZoGo+lCpUObnECB
+ XWYXMKxmkEXJ5RJeSlkJdjWXOySwrBCl4bCAIDdh0VyYuOyaQBIid5EW1yZn+u/3Pe/zPt/7
+ fTMvB7fPZztz9omTGKlYFM8jNxAdD1uHX9okXYz2Pqeygwsdd0hoTguEkSYFC8ZWm0loq7jF
+ hmlNNoLVhkwcCrozCKhqPIyBST/KhvqccgQ9ynkW6G4vkDBZWIYga8IF5No5BOPfjrKgX/M3
+ CcfTbWFNJYGl3I2Qr5Bj0JmVANPfn8Ggpz7XcpE6DGrGDCxo+qWdAINuCIPrjQUkmJtzCMhT
+ y3EwqSZZYDyhIWC0ehoDedE9HJZLWlnQlbOGQ0mnGYMbeSYEVzJ/ZUFndTob9KotkFd1lYD5
+ jikEp6YGcOhrcoOr99cw6KqdZcFswXYYyesm4ERJHQY/H11kg6a6kg1jC7dJGM39iw2HOuvZ
+ kGH0h5VFyzCahvBXg+iKwgpE3+1qR3RhxZf0mbRegl5ecqfrSm9idINyiE3XX36BVtUk07Ul
+ 7vTvk8F0TdlRkm47vULQLaWVFs+IkM47exm9s/VjfpBUkpzEuMZKZEnBvE98QMD3EQJf4Cfk
+ +/gG7nlZ4M/zCgmKZuL3pTBSr5BP+bF9Vb0oMSP4C8UpLZaG5jwVyIZDcf0o5XIvrkAbOPbc
+ 84hauXGSsBZcqAv3B1hWdqAeGBSk1TSDKMW5Nsx6qEPU8K0ifN1FcN2otr7CR0xyPanuKeMj
+ duS+SF2Uq8l1xrnf2VGDhanr7MD1peZGGrF1tuUGUpW/qR+PUYYo/eketrVgR7XnjxPW5hRK
+ P2y2mDgWfpYqfshZl224HlRx5WHSOunzlD7H+PgFX1Ozq2aUhxyUTyQpn0hS/pdklT2pBq2R
+ /J/sQWnUk7iVg6mqqmlChdhlyJFJliXEJMgEfJkoQZYsjuHvlSTUIMte1OuX6i6i0okZfjPC
+ OKgZuVk6R38q70HOhFgiZniOtne3zkfb20aLUg8yUkmUNDmekTUjf8svHsOdn9krsSyZOCnK
+ J8Db38cvQOjtLwzw5TnZhiV+I7LnxoiSmDiGSWSk//ZhHBvnNEw3Mag1eJmIoTT+/voIbceo
+ 3EDUptrsuOfE27gYodoWrg4TX/9sl3fR8ked+tTAOu2PuwpCU1C264htnF7CuSTYXp4dlxWy
+ c6Bf0X/tUpYp5uSOA+Sfd/K3tHgLpJHHh4vVrV/5blp4/axGnhkujB7xHN49qBGmV8QYQx+4
+ Dhue08VsZjb/sPa0yRwRa3hlv/nwW64BODqk2+PM//x9oX48NE4vPJg8E9BgVh6QyCvZbWJc
+ IFY5XOkwvhfZEjldVpNZex5LfK194e0j4rgx08xiGjPbeUTUTqLoeB33g+53d/4R2FLU/+bN
+ p8ort9nHhr3ROx7uEnVN6KRbbjv24W4PHiGLFfm441KZ6B9l6Qk3rAQAAA==
+X-CMS-MailID: 20230906123524eucas1p22d0bf30fe10ce0ee7ca45eca03ef3235
+X-Msg-Generator: CA
+X-RootMTR: 20230906115909eucas1p2fcf08f26861b318571224dad6bf5e864
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230906115909eucas1p2fcf08f26861b318571224dad6bf5e864
+References: <ZO5Yx5JFogGi/cBo@bombadil.infradead.org>
+ <CGME20230906115909eucas1p2fcf08f26861b318571224dad6bf5e864@eucas1p2.samsung.com>
+ <ZPhpedWW6RwTd9Hf@example.org>
+Cc: Alexander Aring <alex.aring@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Nikolay Aleksandrov <razor@blackwall.org>,
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
+ linux-sctp@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Jan Karcher <jaka@linux.ibm.com>, Mat Martineau <martineau@kernel.org>,
+ Will Deacon <will@kernel.org>, Alexander Gordeev <agordeev@linux.ibm.com>,
+ Stefan Schmidt <stefan@datenfreihafen.org>,
+ Steffen Klassert <steffen.klassert@secunet.com>, linux-s390@vger.kernel.org,
+ rds-devel@oss.oracle.com, Xin Long <lucien.xin@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, linux-rdma@vger.kernel.org,
+ Tony Lu <tonylu@linux.alibaba.com>, bridge@lists.linux-foundation.org,
+ willy@infradead.org, Jozsef Kadlecsik <kadlec@netfilter.org>,
+ lvs-devel@vger.kernel.org, Julian Anastasov <ja@ssi.bg>,
+ coreteam@netfilter.org, Iurii Zaikin <yzaikin@google.com>,
+ Roopa Prabhu <roopa@nvidia.com>, Wen Gu <guwen@linux.alibaba.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Joerg Reuter <jreuter@yaina.de>, Sven Schnelle <svens@linux.ibm.com>,
+ Joel Granados <joel.granados@gmail.com>, keescook@chromium.org,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Santosh Shilimkar <santosh.shilimkar@oracle.com>, josh@joshtriplett.org,
+ Wenjia Zhang <wenjia@linux.ibm.com>, Simon Horman <horms@verge.net.au>,
+ Jakub Kicinski <kuba@kernel.org>, linux-hams@vger.kernel.org,
+ mptcp@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Ahern <dsahern@kernel.org>, Florian Westphal <fw@strlen.de>,
+ linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
+ Karsten Graul <kgraul@linux.ibm.com>, Luis Chamberlain <mcgrof@kernel.org>,
+ netfilter-devel@vger.kernel.org, Pablo Neira Ayuso <pablo@netfilter.org>, "D.
+ Wythe" <alibuda@linux.alibaba.com>, netdev@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, Matthieu Baerts <matthieu.baerts@tessares.net>,
+ linux-wpan@vger.kernel.org, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [GIT PULL] sysctl changes for v6.6-rc1
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -138,40 +191,193 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Petr Machata via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Petr Machata <petrm@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-(I pruned the CC list, hopefully I didn't leave out anybody who cares.)
+--l5htxkzwtgg23zjg
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Johannes Nixdorf via Bridge <bridge@lists.linux-foundation.org> writes:
+On Wed, Sep 06, 2023 at 01:58:49PM +0200, Alexey Gladkov wrote:
+> On Tue, Aug 29, 2023 at 01:44:55PM -0700, Luis Chamberlain wrote:
+> > The following changes since commit 06c2afb862f9da8dc5efa4b6076a0e48c3fb=
+aaa5:
+> >=20
+> >   Linux 6.5-rc1 (2023-07-09 13:53:13 -0700)
+> >=20
+> > are available in the Git repository at:
+> >=20
+> >   git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux.git/ tags/=
+sysctl-6.6-rc1
+> >=20
+> > for you to fetch changes up to 53f3811dfd5e39507ee3aaea1be09aabce8f9c98:
+> >=20
+> >   sysctl: Use ctl_table_size as stopping criteria for list macro (2023-=
+08-15 15:26:18 -0700)
+> >=20
+> > ----------------------------------------------------------------
+> > sysctl-6.6-rc1
+> >=20
+> > Long ago we set out to remove the kitchen sink on kernel/sysctl.c array=
+s and
+> > placings sysctls to their own sybsystem or file to help avoid merge con=
+flicts.
+> > Matthew Wilcox pointed out though that if we're going to do that we mig=
+ht as
+> > well also *save* space while at it and try to remove the extra last sys=
+ctl
+> > entry added at the end of each array, a sentintel, instead of bloating =
+the
+> > kernel by adding a new sentinel with each array moved.
+> >=20
+> > Doing that was not so trivial, and has required slowing down the moves =
+of
+> > kernel/sysctl.c arrays and measuring the impact on size by each new mov=
+e.
+> >=20
+> > The complex part of the effort to help reduce the size of each sysctl i=
+s being
+> > done by the patient work of el se=F1or Don Joel Granados. A lot of this=
+ is truly
+> > painful code refactoring and testing and then trying to measure the sav=
+ings of
+> > each move and removing the sentinels. Although Joel already has code wh=
+ich does
+> > most of this work, experience with sysctl moves in the past shows is we=
+ need to
+> > be careful due to the slew of odd build failures that are possible due =
+to the
+> > amount of random Kconfig options sysctls use.
+> >=20
+> > To that end Joel's work is split by first addressing the major housekee=
+ping
+> > needed to remove the sentinels, which is part of this merge request. Th=
+e rest
+> > of the work to actually remove the sentinels will be done later in futu=
+re
+> > kernel releases.
+>=20
+> This is very interesting for me. I'm also refactoring sysctl based on
+> discussion with Linus a while ago.
+>=20
+> Could you please add me to the Cc in the next patches?
+I just sent the next batch for this set for review. You can see it here
+https://lore.kernel.org/all/20230906-jag-sysctl_remove_empty_elem_arch-v1-0=
+-3935d4854248@samsung.com/
+Will add you for the next ones.
 
-> Support setting the FDB limit through ip link. The arguments is:
->  - fdb_max_learned_entries: A 32-bit unsigned integer specifying the
->                             maximum number of learned FDB entries, with 0
->                             disabling the limit.
+Best
 
-...
+>=20
+> > At first I was only going to send his first 7 patches of his patch seri=
+es,
+> > posted 1 month ago, but in retrospect due to the testing the changes ha=
+ve
+> > received in linux-next and the minor changes they make this goes with t=
+he
+> > entire set of patches Joel had planned: just sysctl house keeping. Ther=
+e are
+> > networking changes but these are part of the house keeping too.
+> >=20
+> > The preliminary math is showing this will all help reduce the overall b=
+uild
+> > time size of the kernel and run time memory consumed by the kernel by a=
+bout
+> > ~64 bytes per array where we are able to remove each sentinel in the fu=
+ture.
+> > That also means there is no more bloating the kernel with the extra ~64=
+ bytes
+> > per array moved as no new sentinels are created.
+> >=20
+> > Most of this has been in linux-next for about a month, the last 7 patch=
+es took
+> > a minor refresh 2 week ago based on feedback.
+> >=20
+> > ----------------------------------------------------------------
+> > Joel Granados (14):
+> >       sysctl: Prefer ctl_table_header in proc_sysctl
+> >       sysctl: Use ctl_table_header in list_for_each_table_entry
+> >       sysctl: Add ctl_table_size to ctl_table_header
+> >       sysctl: Add size argument to init_header
+> >       sysctl: Add a size arg to __register_sysctl_table
+> >       sysctl: Add size to register_sysctl
+> >       sysctl: Add size arg to __register_sysctl_init
+> >       sysctl: Add size to register_net_sysctl function
+> >       ax.25: Update to register_net_sysctl_sz
+> >       netfilter: Update to register_net_sysctl_sz
+> >       networking: Update to register_net_sysctl_sz
+> >       vrf: Update to register_net_sysctl_sz
+> >       sysctl: SIZE_MAX->ARRAY_SIZE in register_net_sysctl
+> >       sysctl: Use ctl_table_size as stopping criteria for list macro
+> >=20
+> >  arch/arm64/kernel/armv8_deprecated.c    |  2 +-
+> >  arch/s390/appldata/appldata_base.c      |  2 +-
+> >  drivers/net/vrf.c                       |  3 +-
+> >  fs/proc/proc_sysctl.c                   | 90 +++++++++++++++++--------=
+--------
+> >  include/linux/sysctl.h                  | 31 +++++++++---
+> >  include/net/ipv6.h                      |  2 +
+> >  include/net/net_namespace.h             | 10 ++--
+> >  ipc/ipc_sysctl.c                        |  4 +-
+> >  ipc/mq_sysctl.c                         |  4 +-
+> >  kernel/ucount.c                         |  5 +-
+> >  net/ax25/sysctl_net_ax25.c              |  3 +-
+> >  net/bridge/br_netfilter_hooks.c         |  3 +-
+> >  net/core/neighbour.c                    |  8 ++-
+> >  net/core/sysctl_net_core.c              |  3 +-
+> >  net/ieee802154/6lowpan/reassembly.c     |  8 ++-
+> >  net/ipv4/devinet.c                      |  3 +-
+> >  net/ipv4/ip_fragment.c                  |  3 +-
+> >  net/ipv4/route.c                        |  8 ++-
+> >  net/ipv4/sysctl_net_ipv4.c              |  3 +-
+> >  net/ipv4/xfrm4_policy.c                 |  3 +-
+> >  net/ipv6/addrconf.c                     |  3 +-
+> >  net/ipv6/icmp.c                         |  5 ++
+> >  net/ipv6/netfilter/nf_conntrack_reasm.c |  3 +-
+> >  net/ipv6/reassembly.c                   |  3 +-
+> >  net/ipv6/route.c                        |  9 ++++
+> >  net/ipv6/sysctl_net_ipv6.c              | 16 ++++--
+> >  net/ipv6/xfrm6_policy.c                 |  3 +-
+> >  net/mpls/af_mpls.c                      |  6 ++-
+> >  net/mptcp/ctrl.c                        |  3 +-
+> >  net/netfilter/ipvs/ip_vs_ctl.c          |  8 ++-
+> >  net/netfilter/ipvs/ip_vs_lblc.c         | 10 ++--
+> >  net/netfilter/ipvs/ip_vs_lblcr.c        | 10 ++--
+> >  net/netfilter/nf_conntrack_standalone.c |  4 +-
+> >  net/netfilter/nf_log.c                  |  7 +--
+> >  net/rds/tcp.c                           |  3 +-
+> >  net/sctp/sysctl.c                       |  4 +-
+> >  net/smc/smc_sysctl.c                    |  3 +-
+> >  net/sysctl_net.c                        | 26 +++++++---
+> >  net/unix/sysctl_net_unix.c              |  3 +-
+> >  net/xfrm/xfrm_sysctl.c                  |  8 ++-
+> >  40 files changed, 222 insertions(+), 113 deletions(-)
+>=20
+> --=20
+> Rgrds, legion
+>=20
 
-> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
+--=20
 
-Code looks good to me. A couple points though:
+Joel Granados
 
-- The corresponding kernel changes have not yet been merged, have they?
-  This patch should obviously only be merged after that happens.
+--l5htxkzwtgg23zjg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- The UAPI changes should not be part of the patch, the maintainers will
-  update themselves.
+-----BEGIN PGP SIGNATURE-----
 
-- The names fdb_n_learned_entries, fdb_max_learned_entries... they are
-  somewhat unwieldy IMHO. Just for consideration, I don't feel strongly
-  about this:
+iQGzBAABCgAdFiEErkcJVyXmMSXOyyeQupfNUreWQU8FAmT4cgkACgkQupfNUreW
+QU9+Cwv+PGlN6idIMQ5c8C0f+ZfC5w4Z+JE4kmlQCz1bP2MeE/pPTaPtyWYqpG8L
+fCfed2PJj3OndPFVZ8htgmNw43rVuzq+FLpoXoS6A+GQTwt+oFYhkmEHImix1EHY
+LgHQwS53MI/8uswyrLCgFK1wB3oWOl2iSsNmafe2N9DNQnjtNMHWA45X9zejzEu3
+yIroWgdeLsDjCje7bCASIxWYMQ0mLCcHYnHhLi9t3oLmtCxrfqz/YvUoAtuUGJId
+EsmlWY0oVOSbUnAv7/CUX6Vh0zXFxtT91spcvDNl8S1araoo1HlooVdK96Odh/Ly
+hiP9KFjySgIdD5HpsT1tSMbEgdx/r1Iv8z4HWJDcpoz4vXeBJRTrdu+H4XJcvXlB
+r9R97zixnSmMaNnAIsNh37llJAYe2pmy9I9/lXAB12U/Z/WQ47aMUZCzIHcuyX8F
+RTLOFn64GT9n7pWmFNOllKMnkTWbxeCJhzmDbbndW5RhtVt5XbxCBYL8RZ9ne9PD
+fMmoGngO
+=CaN7
+-----END PGP SIGNATURE-----
 
-  Your kconfig option is named BRIDGE_DEFAULT_FDB_MAX_LEARNED, and that
-  makes sense to me, because yeah, given the word "learned" in context
-  of FDB, "entries" is the obvious continuation, so why mention it
-  explicitly. Consider following suit with the other source artifacts --
-  the attribute names, struct fields, keywords in this patch.
-  "fdb_n_learned", "fdb_max_learned" is IMHO just as understandable and
-  will be easier to type.
+--l5htxkzwtgg23zjg--
