@@ -1,79 +1,76 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2CB798C99
-	for <lists.bridge@lfdr.de>; Fri,  8 Sep 2023 20:17:30 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF4E798CF3
+	for <lists.bridge@lfdr.de>; Fri,  8 Sep 2023 20:19:17 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D559941E78;
-	Fri,  8 Sep 2023 18:17:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D559941E78
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=KShTskjB
+	by smtp1.osuosl.org (Postfix) with ESMTP id 21277822D8;
+	Fri,  8 Sep 2023 18:19:15 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 21277822D8
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=i6N89X5t
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 2pMCjLZjQ7r8; Fri,  8 Sep 2023 18:17:27 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Ka-1B5YKkHY1; Fri,  8 Sep 2023 18:19:14 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 1C38541E74;
-	Fri,  8 Sep 2023 18:17:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 1C38541E74
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 9D6198213A;
+	Fri,  8 Sep 2023 18:19:13 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9D6198213A
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B8261C0DD3;
-	Fri,  8 Sep 2023 18:17:25 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 2548AC0DD3;
+	Fri,  8 Sep 2023 18:19:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BD636C0032
- for <bridge@lists.linux-foundation.org>; Fri,  8 Sep 2023 18:17:24 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 0F1E8C0032
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Sep 2023 18:19:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 8FD1860A8B
- for <bridge@lists.linux-foundation.org>; Fri,  8 Sep 2023 18:17:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8FD1860A8B
-Authentication-Results: smtp3.osuosl.org;
- dkim=fail reason="signature verification failed" (2048-bit key)
- header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256
- header.s=k20201202 header.b=KShTskjB
+ by smtp1.osuosl.org (Postfix) with ESMTP id D029B82012
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Sep 2023 18:19:11 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D029B82012
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id Q55rM2GoJjtA for <bridge@lists.linux-foundation.org>;
- Fri,  8 Sep 2023 18:17:24 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 8E91660A70
- for <bridge@lists.linux-foundation.org>; Fri,  8 Sep 2023 18:17:23 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8E91660A70
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id BYyZ5ys9iX49 for <bridge@lists.linux-foundation.org>;
+ Fri,  8 Sep 2023 18:19:11 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id E700D81FAF
+ for <bridge@lists.linux-foundation.org>; Fri,  8 Sep 2023 18:19:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E700D81FAF
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits))
  (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id CF55FCE1C00;
- Fri,  8 Sep 2023 18:17:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FFDDC32778;
- Fri,  8 Sep 2023 18:17:14 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 188D8B821CC;
+ Fri,  8 Sep 2023 18:19:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4F53C43395;
+ Fri,  8 Sep 2023 18:19:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1694197036;
+ s=k20201202; t=1694197147;
  bh=liMbP5RMQjvARMjT61+20zvhPE+McbXIwRmdFix/leU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KShTskjBSEmHNHrVnu90QULPrg5EIsel2UXzzyfZjMKSA5CA3XN661LFfPsUict/5
- yis3u2+gekFo8iaoKCWnqhxxDMTYUmRz6YunVmKD6nIy/Pjy0EujYdyibBfZ8PUTU7
- INCLaxBVzZFQXjbdLFYcxjEt1SSOysjlUiGZHENiTFZ/okAVhUenSRdGdS4iLWyHxu
- 0d3aBC3yj//H6G/otagM7OjhXP85RJO2k7FNXhU8IAUIuIkiUiKSG2VVt7iO9C44X9
- aak4P+WCNvngeKMzCSBAmYkmfP+eXmmQD+bNo2aQNhVNOf3XpzogasHildHJrRTF/h
- nAM8hIrB9Bd5g==
+ b=i6N89X5toUuB97pYw0PNV15tjpX78URPGyBsR63Kach3vARXAE9Oo9D9CPPeCIiAQ
+ NA85tsUyStoP55ijIFONhuS69vDelKLeRbrfUXV7SGPR0JrSCsu8vu3WQ31Ru7H290
+ XCSerQojIAWQLE7tbBfS1L6rmfy/tzFaXd/MFMTkdDS+S3jDBZ52RS8iKk6XFIpqXI
+ 2lftNR386Fl9110t8+nnt35xXVgsjMxrRIqsDnqJlQ5D/LMlUPnsyUwOh4SIdgEcto
+ ZydZ6FOX77AVQrfVbAQSwFWsPzmiw5Zs5+zZY4mUwINNfjcqdrSjFhL2BioQFd5Q2c
+ dlvvShoXTf7GQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Fri,  8 Sep 2023 14:15:44 -0400
-Message-Id: <20230908181555.3459640-30-sashal@kernel.org>
+Date: Fri,  8 Sep 2023 14:17:58 -0400
+Message-Id: <20230908181806.3460164-20-sashal@kernel.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230908181555.3459640-1-sashal@kernel.org>
-References: <20230908181555.3459640-1-sashal@kernel.org>
+In-Reply-To: <20230908181806.3460164-1-sashal@kernel.org>
+References: <20230908181806.3460164-1-sashal@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.4.15
+X-stable-base: Linux 6.1.52
 Content-Transfer-Encoding: 8bit
 Cc: Sasha Levin <sashal@kernel.org>, bridge@lists.linux-foundation.org,
  GONG@osuosl.org, netdev@vger.kernel.org, razor@blackwall.org, roopa@nvidia.com,
@@ -82,7 +79,7 @@ Cc: Sasha Levin <sashal@kernel.org>, bridge@lists.linux-foundation.org,
  edumazet@google.com, coreteam@netfilter.org, netfilter-devel@vger.kernel.org,
  "GONG, Ruiqi" <gongruiqi1@huawei.com>, kuba@kernel.org, pabeni@redhat.com,
  davem@davemloft.net, pablo@netfilter.org, Kees Cook <keescook@chromium.org>
-Subject: [Bridge] [PATCH AUTOSEL 6.4 30/41] netfilter: ebtables: fix fortify
+Subject: [Bridge] [PATCH AUTOSEL 6.1 20/26] netfilter: ebtables: fix fortify
 	warnings in size_entry_mwt()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
