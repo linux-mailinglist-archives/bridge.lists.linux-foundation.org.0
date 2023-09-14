@@ -2,106 +2,79 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B967A08C7
-	for <lists.bridge@lfdr.de>; Thu, 14 Sep 2023 17:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 786547A0945
+	for <lists.bridge@lfdr.de>; Thu, 14 Sep 2023 17:30:39 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 6504260FAD;
-	Thu, 14 Sep 2023 15:15:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 6504260FAD
+	by smtp3.osuosl.org (Postfix) with ESMTP id 8907C60DA5;
+	Thu, 14 Sep 2023 15:30:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8907C60DA5
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=qeekKOhX
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=V7ZpHgLH
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id euykPKfEF5uw; Thu, 14 Sep 2023 15:15:31 +0000 (UTC)
+	with ESMTP id pAk69AJrOXCb; Thu, 14 Sep 2023 15:30:36 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id CFA9960FD9;
-	Thu, 14 Sep 2023 15:15:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org CFA9960FD9
+	by smtp3.osuosl.org (Postfix) with ESMTPS id E6EBB60FE6;
+	Thu, 14 Sep 2023 15:30:35 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E6EBB60FE6
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 778C7C008C;
-	Thu, 14 Sep 2023 15:15:30 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id B82BEC0032;
+	Thu, 14 Sep 2023 15:30:35 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 677ECC0032
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:15:29 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A104DC0032
+ for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:30:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 41A1660FD9
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:15:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 41A1660FD9
+ by smtp3.osuosl.org (Postfix) with ESMTP id 8362960FAD
+ for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:30:33 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8362960FAD
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
  by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id hYFOdmZG41ax for <bridge@lists.linux-foundation.org>;
- Thu, 14 Sep 2023 15:15:28 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
- [IPv6:2a00:1450:4864:20::12f])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1021460FAD
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:15:27 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1021460FAD
-Received: by mail-lf1-x12f.google.com with SMTP id
- 2adb3069b0e04-501ce655fcbso1793692e87.2
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 08:15:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1694704526; x=1695309326;
- darn=lists.linux-foundation.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=BrNzThEUI5fLlkgWOlz9qpDOnszAeALvT3xNb1ip2FY=;
- b=qeekKOhXUk/4hFrq77ecY+9c5k7sAhE3v2BBdMpq3F4atfoGVbmeXBslfOfbdsseuE
- 4wYZXqRdmJMQSBFE9ZEkizgWXxpRsAz4hKzq2QqnCGgX8NQBwPOtvD80lCMjniukYi8b
- GCwEe4E/2F2RTAA/recYxHyQbcEDFS/K9fXs5Xt+Ru1ImvvbmOJL8cDqnedRNrYtOP00
- CAQFhgDtYsZ03SIVD4AGsSH2jkTW8G8jCnK5u8Vkdeb07WbjLbb8lnkI3EXThm/ZE36x
- cDWAzbCcBCyd0+pn8FuQhc02sneQz27vH9jGmZUIYAwsLNlMj3bQxjF9xYci0r54GshK
- QAFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694704526; x=1695309326;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=BrNzThEUI5fLlkgWOlz9qpDOnszAeALvT3xNb1ip2FY=;
- b=rNR0R/Crqb0Xt+ldAfM4aSVOdfa6HI3l3jgKhqqFkdnoUSmsR8PpYzsia1Tq36C8bv
- d5rV42zDV1I33SOy/Wg7VFHJYs2IVcVCLXPNCJPbBmi75Kzgm8JkjK7meX93j7LO/sUm
- xwiqwI6BM/6Vt8KPeiZHayYaOaCghMFfkLiiC9Ey3xkedgaxHNGL/FttMlU4a4zuU/gz
- zvOWkB+ZJ+mchMgEyLmV2c3AfoiISjj8yjgm3f8oaoh6RKecnqL7nBSJFaVomE7nSlWL
- YxqbR5GZ5IiNryb3KZjhjU3Lf2jq5s7weZBNqxnKSzlu2ty9MbI7Z1oAnNWeY7R2xShk
- CEcg==
-X-Gm-Message-State: AOJu0YyrkJFfrTqRWg5FXqOh00z4pvvcJidBesc/uQpRfHiiiTG+W00j
- EmK7g+TvW1J5MBt9ZWPjj5Twqg==
-X-Google-Smtp-Source: AGHT+IGuZpid9Pql/7rrl1nbTO+5IU95A25NhAduCC4gw0hgKPktdsfXi98hVZe6tk2xRNGo6LKKUg==
-X-Received: by 2002:a05:6512:b98:b0:500:b3fe:916e with SMTP id
- b24-20020a0565120b9800b00500b3fe916emr5284069lfv.2.1694704525548; 
- Thu, 14 Sep 2023 08:15:25 -0700 (PDT)
-Received: from [192.168.0.105] (haunt.prize.volia.net. [93.72.109.136])
- by smtp.gmail.com with ESMTPSA id
- qx15-20020a170906fccf00b009a5f1d15644sm1127905ejb.119.2023.09.14.08.15.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 14 Sep 2023 08:15:25 -0700 (PDT)
-Message-ID: <e0b3861a-18eb-80ad-1cf8-c563f97e2157@blackwall.org>
-Date: Thu, 14 Sep 2023 18:15:23 +0300
+ with ESMTP id iJcxqBFR8gvw for <bridge@lists.linux-foundation.org>;
+ Thu, 14 Sep 2023 15:30:32 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org
+ [IPv6:2604:1380:40e1:4800::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 64F2560DA5
+ for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:30:32 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 64F2560DA5
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 86EB0CE27B0;
+ Thu, 14 Sep 2023 15:30:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CCA83C433C9;
+ Thu, 14 Sep 2023 15:30:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1694705426;
+ bh=Q3w4ykEz2lEoSofN+SUjn3Lth1qicuxOdvzXmwjElDc=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=V7ZpHgLH0+pP0LQ20nb4Po9U5jDnLjpSoKh6Lz9Q+aE5oVg6Vu1mIJfsaS9u6S4SD
+ wy0WFNXZQ23HUUZ+VXyPosavhhRxlzBUs5kVtLFBbqScHWC93u4puDUQ0uSVfIdtxG
+ 4vp/1WhIcStzgokacvADnZxW6NA35CC74Ik7aSFB4Y8ZO67fMOnypWjMv86T2YhQ/J
+ gBfJy8P63xcosxGKx08L3h5GTaBZGiJRWV7oH9Qi0D1r4XMsWgw/bJfA2EkYEkNNOB
+ KX/vRGhYYA0zjMtYrn6fbYbE7a6OYbxFOVJu1hfzAetJAwVHvJfTLql0hHaNVCGLch
+ a+1G1xEFHiTgg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
+ B0A25E1C28E; Thu, 14 Sep 2023 15:30:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Johannes Nixdorf <jnixdorf-oss@avm.de>,
- "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
- David Ahern <dsahern@gmail.com>, Eric Dumazet <edumazet@google.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Oleksij Rempel <linux@rempel-privat.de>,
- Paolo Abeni <pabeni@redhat.com>, Roopa Prabhu <roopa@nvidia.com>,
- Shuah Khan <shuah@kernel.org>, Vladimir Oltean <vladimir.oltean@nxp.com>
-References: <20230905-fdb_limit-v3-0-7597cd500a82@avm.de>
- <20230905-fdb_limit-v3-3-7597cd500a82@avm.de>
-Content-Language: en-US
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230905-fdb_limit-v3-3-7597cd500a82@avm.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [Bridge] [PATCH net-next v3 3/6] net: bridge: Track and limit
- dynamically learned FDB entries
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <169470542671.22890.15589088948266236796.git-patchwork-notify@kernel.org>
+Date: Thu, 14 Sep 2023 15:30:26 +0000
+References: <cover.1694625043.git.aclaudi@redhat.com>
+In-Reply-To: <cover.1694625043.git.aclaudi@redhat.com>
+To: Andrea Claudi <aclaudi@redhat.com>
+Cc: netdev@vger.kernel.org, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, roopa@nvidia.com, dsahern@gmail.com
+Subject: Re: [Bridge] [PATCH iproute2-next 0/2] configure: add support for
+	color
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -116,158 +89,34 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 9/5/23 14:47, Johannes Nixdorf wrote:
-> A malicious actor behind one bridge port may spam the kernel with packets
-> with a random source MAC address, each of which will create an FDB entry,
-> each of which is a dynamic allocation in the kernel.
-> 
-> There are roughly 2^48 different MAC addresses, further limited by the
-> rhashtable they are stored in to 2^31. Each entry is of the type struct
-> net_bridge_fdb_entry, which is currently 128 bytes big. This means the
-> maximum amount of memory allocated for FDB entries is 2^31 * 128B =
-> 256GiB, which is too much for most computers.
-> 
-> Mitigate this by maintaining a per bridge count of those automatically
-> generated entries in fdb_n_learned_entries, and a limit in
-> fdb_max_learned_entries. If the limit is hit new entries are not learned
-> anymore.
-> 
-> For backwards compatibility the default setting of 0 disables the limit.
-> 
-> User-added entries by netlink or from bridge or bridge port addresses
-> are never blocked and do not count towards that limit.
-> 
-> Introduce a new fdb entry flag BR_FDB_DYNAMIC_LEARNED to keep track of
-> whether an FDB entry is included in the count. The flag is enabled for
-> dynamically learned entries, and disabled for all other entries. This
-> should be equivalent to BR_FDB_ADDED_BY_USER and BR_FDB_LOCAL being unset,
-> but contrary to the two flags it can be toggled atomically.
-> 
-> Atomicity is required here, as there are multiple callers that modify the
-> flags, but are not under a common lock (br_fdb_update is the exception
-> for br->hash_lock, br_fdb_external_learn_add for RTNL).
-> 
-> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
-> ---
->   net/bridge/br_fdb.c     | 34 ++++++++++++++++++++++++++++++++--
->   net/bridge/br_private.h |  4 ++++
->   2 files changed, 36 insertions(+), 2 deletions(-)
-> 
-> diff --git a/net/bridge/br_fdb.c b/net/bridge/br_fdb.c
-> index 06e28ef8d9ff..f8a96ed9a338 100644
-> --- a/net/bridge/br_fdb.c
-> +++ b/net/bridge/br_fdb.c
-> @@ -329,11 +329,18 @@ static void fdb_delete(struct net_bridge *br, struct net_bridge_fdb_entry *f,
->   	hlist_del_init_rcu(&f->fdb_node);
->   	rhashtable_remove_fast(&br->fdb_hash_tbl, &f->rhnode,
->   			       br_fdb_rht_params);
-> +	if (test_bit(BR_FDB_DYNAMIC_LEARNED, &f->flags))
+Hello:
 
-this is racy with br_fdb_update(), the fdb entry is still visible 
-because a grace period hasn't passed, so in theory br_fdb_update() can
-unset the bit after this test and...
-> +		atomic_dec(&br->fdb_n_learned_entries);
-... this will decrease once more wrongly
+This series was applied to iproute2/iproute2-next.git (main)
+by David Ahern <dsahern@kernel.org>:
 
->   	fdb_notify(br, f, RTM_DELNEIGH, swdev_notify);
->   	call_rcu(&f->rcu, fdb_rcu_free);
->   }
->   
-> -/* Delete a local entry if no other port had the same address. */
-> +/* Delete a local entry if no other port had the same address.
-> + *
-> + * This function should only be called on entries with BR_FDB_LOCAL set,
-> + * so even with BR_FDB_ADDED_BY_USER cleared we never need to increase
-> + * the accounting for dynamically learned entries again.
-> + */
->   static void fdb_delete_local(struct net_bridge *br,
->   			     const struct net_bridge_port *p,
->   			     struct net_bridge_fdb_entry *f)
-> @@ -388,9 +395,20 @@ static struct net_bridge_fdb_entry *fdb_create(struct net_bridge *br,
->   					       __u16 vid,
->   					       unsigned long flags)
->   {
-> +	bool learned = !test_bit(BR_FDB_ADDED_BY_USER, &flags) &&
-> +		       !test_bit(BR_FDB_LOCAL, &flags);
-> +	u32 max_learned = READ_ONCE(br->fdb_max_learned_entries);
->   	struct net_bridge_fdb_entry *fdb;
->   	int err;
->   
-> +	if (likely(learned)) {
-> +		int n_learned = atomic_read(&br->fdb_n_learned_entries);
-> +
-> +		if (unlikely(max_learned && n_learned >= max_learned))
-> +			return NULL;
-> +		__set_bit(BR_FDB_DYNAMIC_LEARNED, &flags);
-> +	}
-> +
->   	fdb = kmem_cache_alloc(br_fdb_cache, GFP_ATOMIC);
->   	if (!fdb)
->   		return NULL;
-> @@ -407,6 +425,9 @@ static struct net_bridge_fdb_entry *fdb_create(struct net_bridge *br,
->   		return NULL;
->   	}
->   
-> +	if (likely(learned))
-> +		atomic_inc(&br->fdb_n_learned_entries);
-> +
->   	hlist_add_head_rcu(&fdb->fdb_node, &br->fdb_list);
->   
->   	return fdb;
-> @@ -893,8 +914,11 @@ void br_fdb_update(struct net_bridge *br, struct net_bridge_port *source,
->   					clear_bit(BR_FDB_LOCKED, &fdb->flags);
->   			}
->   
-> -			if (unlikely(test_bit(BR_FDB_ADDED_BY_USER, &flags)))
-> +			if (unlikely(test_bit(BR_FDB_ADDED_BY_USER, &flags))) {
->   				set_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
-> +				if (test_and_clear_bit(BR_FDB_DYNAMIC_LEARNED, &fdb->flags))
-> +					atomic_dec(&br->fdb_n_learned_entries);
-> +			}
->   			if (unlikely(fdb_modified)) {
->   				trace_br_fdb_update(br, source, addr, vid, flags);
->   				fdb_notify(br, fdb, RTM_NEWNEIGH, true);
-> @@ -1071,6 +1095,8 @@ static int fdb_add_entry(struct net_bridge *br, struct net_bridge_port *source,
->   		}
->   
->   		set_bit(BR_FDB_ADDED_BY_USER, &fdb->flags);
-> +		if (test_and_clear_bit(BR_FDB_DYNAMIC_LEARNED, &fdb->flags))
-> +			atomic_dec(&br->fdb_n_learned_entries);
->   	}
->   
->   	if (fdb_to_nud(br, fdb) != state) {
-> @@ -1445,6 +1471,10 @@ int br_fdb_external_learn_add(struct net_bridge *br, struct net_bridge_port *p,
->   		if (!p)
->   			set_bit(BR_FDB_LOCAL, &fdb->flags);
->   
-> +		if ((swdev_notify || !p) &&
-> +		    test_and_clear_bit(BR_FDB_DYNAMIC_LEARNED, &fdb->flags))
-> +			atomic_dec(&br->fdb_n_learned_entries);
-> +
->   		if (modified)
->   			fdb_notify(br, fdb, RTM_NEWNEIGH, swdev_notify);
->   	}
-> diff --git a/net/bridge/br_private.h b/net/bridge/br_private.h
-> index a63b32c1638e..675cc40ae1dc 100644
-> --- a/net/bridge/br_private.h
-> +++ b/net/bridge/br_private.h
-> @@ -274,6 +274,7 @@ enum {
->   	BR_FDB_NOTIFY,
->   	BR_FDB_NOTIFY_INACTIVE,
->   	BR_FDB_LOCKED,
-> +	BR_FDB_DYNAMIC_LEARNED,
->   };
->   
->   struct net_bridge_fdb_key {
-> @@ -554,6 +555,9 @@ struct net_bridge {
->   	struct kobject			*ifobj;
->   	u32				auto_cnt;
->   
-> +	atomic_t			fdb_n_learned_entries;
-> +	u32				fdb_max_learned_entries;
-> +
->   #ifdef CONFIG_NET_SWITCHDEV
->   	/* Counter used to make sure that hardware domains get unique
->   	 * identifiers in case a bridge spans multiple switchdev instances.
+On Wed, 13 Sep 2023 19:58:24 +0200 you wrote:
+> This series add support for the color parameter in iproute2 configure
+> script. The idea is to make it possible for iproute2 users and packagers
+> to set a default value for the color option different from the current
+> one, COLOR_OPT_NEVER, while maintaining the current default behaviour.
 > 
+> Patch 1 add the color option to the configure script. Users can set
+> three different values, never, auto and always, with the same meanings
+> they have for the -c / -color ip option. Default value is 'never', which
+> results in ip, tc and bridge to maintain their current output behaviour
+> (i.e. colorless output).
+> 
+> [...]
+
+Here is the summary with links:
+  - [iproute2-next,1/2] configure: add the --color option
+    https://git.kernel.org/pub/scm/network/iproute2/iproute2-next.git/commit/?id=5e704f4b5ba2
+  - [iproute2-next,2/2] treewide: use configured value as the default color output
+    https://git.kernel.org/pub/scm/network/iproute2/iproute2-next.git/commit/?id=b5d0273fdbab
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
