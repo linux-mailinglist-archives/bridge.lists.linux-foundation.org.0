@@ -1,87 +1,107 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19417A4645
-	for <lists.bridge@lfdr.de>; Mon, 18 Sep 2023 11:44:28 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D94D7A4647
+	for <lists.bridge@lfdr.de>; Mon, 18 Sep 2023 11:44:29 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id C6BE361419;
-	Mon, 18 Sep 2023 09:44:24 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org C6BE361419
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=E4nWVITv
+	by smtp2.osuosl.org (Postfix) with ESMTP id 030A140593;
+	Mon, 18 Sep 2023 09:44:25 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 030A140593
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=caYd3g/O
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id PpYLAgjEWsrb; Mon, 18 Sep 2023 09:44:24 +0000 (UTC)
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5O6oxK3YsfZn; Mon, 18 Sep 2023 09:44:24 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 2BAD460BCC;
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 6B1AD414B4;
 	Mon, 18 Sep 2023 09:44:23 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 2BAD460BCC
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 6B1AD414B4
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id E1932C0DDF;
-	Mon, 18 Sep 2023 09:44:21 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 222E0C0071;
+	Mon, 18 Sep 2023 09:44:22 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [IPv6:2605:bc80:3010::133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1106BC0032
- for <bridge@lists.linux-foundation.org>; Wed, 13 Sep 2023 17:58:53 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C8281C0032
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 19:52:34 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id D258E40159
- for <bridge@lists.linux-foundation.org>; Wed, 13 Sep 2023 17:58:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D258E40159
-Authentication-Results: smtp2.osuosl.org;
- dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com
- header.a=rsa-sha256 header.s=mimecast20190719 header.b=E4nWVITv
+ by smtp2.osuosl.org (Postfix) with ESMTP id 8F48C40207
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 19:52:34 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 8F48C40207
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id kcsiaxIn6RMP for <bridge@lists.linux-foundation.org>;
- Wed, 13 Sep 2023 17:58:52 +0000 (UTC)
+ with ESMTP id aUHnojA6oI2p for <bridge@lists.linux-foundation.org>;
+ Fri, 15 Sep 2023 19:52:32 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 16621400CF
- for <bridge@lists.linux-foundation.org>; Wed, 13 Sep 2023 17:58:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 16621400CF
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 68BB24010D
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 19:52:32 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 68BB24010D
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1694627930;
+ s=mimecast20190719; t=1694807551;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=LEtiwNiM9PzpjRqi6jakAaaVv0eVpRImxmmfOJbw9+M=;
- b=E4nWVITvjdg6c9psb7qda+ghFKEQLGFyXAxc/06WTgsSGi5gC+uEvc2Dk6XyZRFZoU62NQ
- six6y1li9DU35Q9PuQd5J7rx4lOmi203n+UWo9o2hflcUGZZc8j0KHSIKUGwJ+liHqwcd5
- R97rIyFvvG/O9EQxZ444K+0vJPvZdbI=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-556-NaXQbMMjPkOpPhfNncG2hg-1; Wed, 13 Sep 2023 13:58:47 -0400
-X-MC-Unique: NaXQbMMjPkOpPhfNncG2hg-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
- [10.11.54.2])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 222B681B08C;
- Wed, 13 Sep 2023 17:58:47 +0000 (UTC)
-Received: from renaissance-vector.redhat.com (unknown [10.39.193.129])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 8A97740C6EA8;
- Wed, 13 Sep 2023 17:58:44 +0000 (UTC)
+ bh=HNgfdJeO076tImx6jFh9hOiFdIPM4yz7+TlZmmONbfo=;
+ b=caYd3g/OTvPdRkqJGjSUOni9v8dLL1ubt/idcXL2Pgv5sQztmarzgqw9LAmU0ZRAl+T6WF
+ Kyw8+9gfA3zlTzVvsxV+2GiEwlrVYWO3PXB2ymx1b4MiCBqdg4Q6ErBA40DHGMFW7B16u1
+ fJw0WJ4y0JDmXv3lA2fRRZtau9WZDYM=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-402-6J39nRCWPBOaeRrvHLWrCA-1; Fri, 15 Sep 2023 15:52:29 -0400
+X-MC-Unique: 6J39nRCWPBOaeRrvHLWrCA-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-3fd0fa4d08cso19429605e9.1
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 12:52:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1694807547; x=1695412347;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HNgfdJeO076tImx6jFh9hOiFdIPM4yz7+TlZmmONbfo=;
+ b=tkpIYZs0u8qq70+JLgsbHu4yrmjxoIM+5/A/JOfnpa0G7zu+kDwOw/z7d7ClSW2Ze6
+ qVRijg5Mdg1XCF3+AdeEGd6pUHOFHfIxUUafSAJCH8VYD813PT84KB2WKRqvNPB6de6r
+ ROXkXGwEMUC4mcpxi7CWNU5JJ51fMIpwHUtys8tR3A5VwUdV2TJkusug5voJcpm5YgoZ
+ v3Wr3YFhUu7kppZfdBTEtad+UraS+SMi00pBts8dHYk66XsAOT28/00lJnvOjwFTq64v
+ wJ3G693MZj88St91L3rtw1hbTF/yB4OCIw0t1TqDDl00ezjSY85fCyHZG4fbKJdGobfz
+ Aicg==
+X-Gm-Message-State: AOJu0YwzIO35GdxLsPmB6xzB9C+rAkKw4K/aAU7oFwL2Wq8V+4GZ2U/e
+ UgBvTxA8O7Jpu3kyhcSq6xw0KJs3v5RctYIx1HnM55poolfZaYZNMu5Bq4XDGtzgt9SA4Hep50F
+ Q0X8WS0tF4mHxpe58vGgaf0SaQ8kEkIE=
+X-Received: by 2002:a7b:c40d:0:b0:403:bb3:28bf with SMTP id
+ k13-20020a7bc40d000000b004030bb328bfmr2261440wmi.23.1694807547636; 
+ Fri, 15 Sep 2023 12:52:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEmlmT0ooNTnsAwr0JuC93RZbtPuUICSBkNB34kVLhlyWNQHIW9rl6cri/YkGGKH+2LXdQkpA==
+X-Received: by 2002:a7b:c40d:0:b0:403:bb3:28bf with SMTP id
+ k13-20020a7bc40d000000b004030bb328bfmr2261420wmi.23.1694807547265; 
+ Fri, 15 Sep 2023 12:52:27 -0700 (PDT)
+Received: from localhost ([37.163.8.26]) by smtp.gmail.com with ESMTPSA id
+ n12-20020a05600c294c00b003ff3b964a9asm8289732wmd.39.2023.09.15.12.52.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Sep 2023 12:52:26 -0700 (PDT)
+Date: Fri, 15 Sep 2023 21:52:22 +0200
 From: Andrea Claudi <aclaudi@redhat.com>
-To: netdev@vger.kernel.org
-Date: Wed, 13 Sep 2023 19:58:26 +0200
-Message-ID: <ccc21b33a1a338bc943ac5d0fb40a5bb7ad5fa43.1694625043.git.aclaudi@redhat.com>
-In-Reply-To: <cover.1694625043.git.aclaudi@redhat.com>
+To: Stephen Hemminger <stephen@networkplumber.org>
+Message-ID: <ZQS19lwZlso1AMAR@renaissance-vector>
 References: <cover.1694625043.git.aclaudi@redhat.com>
+ <844947000ac7744a3b40b10f9cf971fd15572195.1694625043.git.aclaudi@redhat.com>
+ <20230915085912.78ffd25c@hermes.local>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.2
+In-Reply-To: <20230915085912.78ffd25c@hermes.local>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Mon, 18 Sep 2023 09:44:19 +0000
-Cc: Nikolay Aleksandrov <razor@blackwall.org>,
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
  bridge@lists.linux-foundation.org, David Ahern <dsahern@gmail.com>,
  Roopa Prabhu <roopa@nvidia.com>
-Subject: [Bridge] [PATCH iproute2-next 2/2] treewide: use configured value
-	as the default color output
+Subject: Re: [Bridge] [PATCH iproute2-next 1/2] configure: add the --color
+	option
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -96,74 +116,48 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-With Makefile providing -DCONF_COLOR, we can use its value as the
-default color output.
+On Fri, Sep 15, 2023 at 08:59:12AM -0700, Stephen Hemminger wrote:
+> On Wed, 13 Sep 2023 19:58:25 +0200
+> Andrea Claudi <aclaudi@redhat.com> wrote:
+> 
+> > This commit allows users/packagers to choose a default for the color
+> > output feature provided by some iproute2 tools.
+> > 
+> > The configure script option is documented in the script itself and it is
+> > pretty much self-explanatory. The default value is set to "never" to
+> > avoid changes to the current ip, tc, and bridge behaviour.
+> > 
+> > Signed-off-by: Andrea Claudi <aclaudi@redhat.com>
+> > ---
+> 
+> More build time config is not the answer either.
+> Don't want complaints from distribution users about the change.
+> Needs to be an environment variable or config file.
+>
 
-This effectively allow users and packagers to define a default for the
-color output feature without using shell aliases, and with minimum code
-impact.
+Hi Stephen,
+This is not modifying the default behaviour; as David noted color output
+will be off as it is right now. If packagers want to make use of this,
+it's up to them to choose a sane default for their environment. After
+all, we are providing options such as '--prefix' and '--libdir', and
+there are endless possibilities to choose obviously wrong values for
+these vars. Packagers are gonna deal with their own choices.
 
-Signed-off-by: Andrea Claudi <aclaudi@redhat.com>
----
- bridge/bridge.c | 3 ++-
- ip/ip.c         | 2 +-
- tc/tc.c         | 2 +-
- 3 files changed, 4 insertions(+), 3 deletions(-)
+I think I can improve this in two ways:
 
-diff --git a/bridge/bridge.c b/bridge/bridge.c
-index 704be50c..339101a8 100644
---- a/bridge/bridge.c
-+++ b/bridge/bridge.c
-@@ -23,7 +23,6 @@ int preferred_family = AF_UNSPEC;
- int oneline;
- int show_stats;
- int show_details;
--static int color;
- int compress_vlans;
- int json;
- int timestamp;
-@@ -103,6 +102,8 @@ static int batch(const char *name)
- int
- main(int argc, char **argv)
- {
-+	int color = CONF_COLOR;
-+
- 	while (argc > 1) {
- 		const char *opt = argv[1];
- 
-diff --git a/ip/ip.c b/ip/ip.c
-index 8c046ef1..860ff957 100644
---- a/ip/ip.c
-+++ b/ip/ip.c
-@@ -168,7 +168,7 @@ int main(int argc, char **argv)
- 	const char *libbpf_version;
- 	char *batch_file = NULL;
- 	char *basename;
--	int color = 0;
-+	int color = CONF_COLOR;
- 
- 	/* to run vrf exec without root, capabilities might be set, drop them
- 	 * if not needed as the first thing.
-diff --git a/tc/tc.c b/tc/tc.c
-index 25820500..082c6677 100644
---- a/tc/tc.c
-+++ b/tc/tc.c
-@@ -35,7 +35,6 @@ int use_iec;
- int force;
- bool use_names;
- int json;
--int color;
- int oneline;
- int brief;
- 
-@@ -254,6 +253,7 @@ int main(int argc, char **argv)
- {
- 	const char *libbpf_version;
- 	char *batch_file = NULL;
-+	int color = CONF_COLOR;
- 	int ret;
- 
- 	while (argc > 1) {
--- 
-2.41.0
+1. Exclude 'always' from the allowed color choices
+This is the setting with the highest chance to produce complaints, since
+it is enabling color output regardless of stdout state. 'auto' instead
+produces color output only on stdout that are terminals. Of course
+'always' will remain as a param choice for the command line.
+
+2. Add packaging guidelines to README (or README.packaging)
+iproute packaging is a bit tricky, since some packaging systems simply
+assume that configure comes from autotools. We even leverage this to our
+advantage, providing configure options that packaging systems use
+flawlessly as the autotools ones. I can provide some info about this,
+and add some recommendations about sane configure defaults, especially
+about the --color option.
+
+What do you think? Is this approach fine for you?
 
