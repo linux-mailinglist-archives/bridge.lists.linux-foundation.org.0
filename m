@@ -1,80 +1,102 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786547A0945
-	for <lists.bridge@lfdr.de>; Thu, 14 Sep 2023 17:30:39 +0200 (CEST)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+	by mail.lfdr.de (Postfix) with ESMTPS id E78167A231D
+	for <lists.bridge@lfdr.de>; Fri, 15 Sep 2023 17:59:20 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 8907C60DA5;
-	Thu, 14 Sep 2023 15:30:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8907C60DA5
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=V7ZpHgLH
+	by smtp2.osuosl.org (Postfix) with ESMTP id 5567C41935;
+	Fri, 15 Sep 2023 15:59:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 5567C41935
+Authentication-Results: smtp2.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=networkplumber-org.20230601.gappssmtp.com header.i=@networkplumber-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=UHH2QGaW
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pAk69AJrOXCb; Thu, 14 Sep 2023 15:30:36 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id E6EBB60FE6;
-	Thu, 14 Sep 2023 15:30:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E6EBB60FE6
+Received: from smtp2.osuosl.org ([127.0.0.1])
+	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 8cKG73LDU3hP; Fri, 15 Sep 2023 15:59:18 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id E43BC41952;
+	Fri, 15 Sep 2023 15:59:17 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E43BC41952
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id B82BEC0032;
-	Thu, 14 Sep 2023 15:30:35 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 6677DC0DD3;
+	Fri, 15 Sep 2023 15:59:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A104DC0032
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:30:33 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id AF100C0032
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 15:59:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 8362960FAD
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:30:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 8362960FAD
+ by smtp4.osuosl.org (Postfix) with ESMTP id 829B64220E
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 15:59:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 829B64220E
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=networkplumber-org.20230601.gappssmtp.com
+ header.i=@networkplumber-org.20230601.gappssmtp.com header.a=rsa-sha256
+ header.s=20230601 header.b=UHH2QGaW
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id iJcxqBFR8gvw for <bridge@lists.linux-foundation.org>;
- Thu, 14 Sep 2023 15:30:32 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 64F2560DA5
- for <bridge@lists.linux-foundation.org>; Thu, 14 Sep 2023 15:30:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 64F2560DA5
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 86EB0CE27B0;
- Thu, 14 Sep 2023 15:30:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CCA83C433C9;
- Thu, 14 Sep 2023 15:30:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1694705426;
- bh=Q3w4ykEz2lEoSofN+SUjn3Lth1qicuxOdvzXmwjElDc=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=V7ZpHgLH0+pP0LQ20nb4Po9U5jDnLjpSoKh6Lz9Q+aE5oVg6Vu1mIJfsaS9u6S4SD
- wy0WFNXZQ23HUUZ+VXyPosavhhRxlzBUs5kVtLFBbqScHWC93u4puDUQ0uSVfIdtxG
- 4vp/1WhIcStzgokacvADnZxW6NA35CC74Ik7aSFB4Y8ZO67fMOnypWjMv86T2YhQ/J
- gBfJy8P63xcosxGKx08L3h5GTaBZGiJRWV7oH9Qi0D1r4XMsWgw/bJfA2EkYEkNNOB
- KX/vRGhYYA0zjMtYrn6fbYbE7a6OYbxFOVJu1hfzAetJAwVHvJfTLql0hHaNVCGLch
- a+1G1xEFHiTgg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- B0A25E1C28E; Thu, 14 Sep 2023 15:30:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <169470542671.22890.15589088948266236796.git-patchwork-notify@kernel.org>
-Date: Thu, 14 Sep 2023 15:30:26 +0000
-References: <cover.1694625043.git.aclaudi@redhat.com>
-In-Reply-To: <cover.1694625043.git.aclaudi@redhat.com>
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id K_siYFCHwi6w for <bridge@lists.linux-foundation.org>;
+ Fri, 15 Sep 2023 15:59:15 +0000 (UTC)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com
+ [IPv6:2607:f8b0:4864:20::42c])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 782ED4159C
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 15:59:15 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 782ED4159C
+Received: by mail-pf1-x42c.google.com with SMTP id
+ d2e1a72fcca58-68fb85afef4so2218080b3a.1
+ for <bridge@lists.linux-foundation.org>; Fri, 15 Sep 2023 08:59:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=networkplumber-org.20230601.gappssmtp.com; s=20230601; t=1694793555;
+ x=1695398355; darn=lists.linux-foundation.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=625PTN5iP3Dr6oBoYQ7/1bjc8m/xWKXKVAqc5lWfFNw=;
+ b=UHH2QGaW1M0Uq580e7rcgmUjvBBoD98UvhLRSnvTY6F3uXVRywLO9gTvyFKyMn7Urv
+ OvKHIdSmGn8Z3W1WKNr7HGp5Gfg+4AjRZVbo2kAwthLgYQkP2TJ1EQ/1/NOkBw/u/i+P
+ PycAbOqPcXnjp6utal3hk8/+E2smFQ2KpXZSsQqIJU4QxmJoYyz6VW9uEP7pBRk6h8iq
+ 5XHJUchEl58OkdPRRgUA7OBt+yhcKlU4m3068/XtckJ32Xo6VTDjtkGiq/as5JAjvxq5
+ 49bsxlckCvFCO7B6/rAZifmchMLDgCFOCKr80uUI6E1wVGhGdS4pvvYZo3jtomZdZqZm
+ lzuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1694793555; x=1695398355;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=625PTN5iP3Dr6oBoYQ7/1bjc8m/xWKXKVAqc5lWfFNw=;
+ b=dAs8GyKpMk8pCuN3RYb+M3j2JRb1uYztkerFM4zSoK5NlQ6h1DvWWBk9+X6MxoQxM1
+ Ij/r9PXCLfwSXTiB6ScqK2dj/VQyLOfltksNMAX1Dyy+BUeAbW+cA5bvRcAxBybdZXVj
+ WHJTTsEEoiq2du3Oz3YJnZ/liu0a5FDE3WhmAbQWhlMk17jX5uH7urUVJhS4H0RPX4T8
+ nPEDU2QrNmhcTTsfRv/D1tz92e6XCe2aLr2+eh5bMIn72o+ATnsKkLHFgflNKuWFwcMI
+ MiSk9q3nhkN5EJFP4oVqH9BVgfkUULJ3aMM/3IxDI+jbvAQUZPNQq/Ll2qAF5AjNIJ8e
+ 9J4Q==
+X-Gm-Message-State: AOJu0YwSiOUUPNWVlS6YwilzLDW1ktzy+oSJsKg2ZZAO3lM/L7bu+R4m
+ XN0J1G3p7afPTK2hnyhoLODJqQ==
+X-Google-Smtp-Source: AGHT+IHlQjsEpd/kcKbjiSPyEafUVB3sz9Jmtg4RIRoOVLIOycKkvsfjaWmAswtR1K0lVFYcnXh8Vw==
+X-Received: by 2002:a05:6a20:3c86:b0:13d:df16:cf29 with SMTP id
+ b6-20020a056a203c8600b0013ddf16cf29mr2803322pzj.15.1694793554716; 
+ Fri, 15 Sep 2023 08:59:14 -0700 (PDT)
+Received: from hermes.local (204-195-112-131.wavecable.com. [204.195.112.131])
+ by smtp.gmail.com with ESMTPSA id
+ u26-20020aa7849a000000b00686bef8e55csm3159946pfn.39.2023.09.15.08.59.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Sep 2023 08:59:14 -0700 (PDT)
+Date: Fri, 15 Sep 2023 08:59:12 -0700
 To: Andrea Claudi <aclaudi@redhat.com>
-Cc: netdev@vger.kernel.org, razor@blackwall.org,
- bridge@lists.linux-foundation.org, roopa@nvidia.com, dsahern@gmail.com
-Subject: Re: [Bridge] [PATCH iproute2-next 0/2] configure: add support for
-	color
+Message-ID: <20230915085912.78ffd25c@hermes.local>
+In-Reply-To: <844947000ac7744a3b40b10f9cf971fd15572195.1694625043.git.aclaudi@redhat.com>
+References: <cover.1694625043.git.aclaudi@redhat.com>
+ <844947000ac7744a3b40b10f9cf971fd15572195.1694625043.git.aclaudi@redhat.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, Nikolay Aleksandrov <razor@blackwall.org>,
+ bridge@lists.linux-foundation.org, David Ahern <dsahern@gmail.com>,
+ Roopa Prabhu <roopa@nvidia.com>
+Subject: Re: [Bridge] [PATCH iproute2-next 1/2] configure: add the --color
+	option
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -86,37 +108,24 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Stephen Hemminger via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Stephen Hemminger <stephen@networkplumber.org>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+On Wed, 13 Sep 2023 19:58:25 +0200
+Andrea Claudi <aclaudi@redhat.com> wrote:
 
-This series was applied to iproute2/iproute2-next.git (main)
-by David Ahern <dsahern@kernel.org>:
-
-On Wed, 13 Sep 2023 19:58:24 +0200 you wrote:
-> This series add support for the color parameter in iproute2 configure
-> script. The idea is to make it possible for iproute2 users and packagers
-> to set a default value for the color option different from the current
-> one, COLOR_OPT_NEVER, while maintaining the current default behaviour.
+> This commit allows users/packagers to choose a default for the color
+> output feature provided by some iproute2 tools.
 > 
-> Patch 1 add the color option to the configure script. Users can set
-> three different values, never, auto and always, with the same meanings
-> they have for the -c / -color ip option. Default value is 'never', which
-> results in ip, tc and bridge to maintain their current output behaviour
-> (i.e. colorless output).
+> The configure script option is documented in the script itself and it is
+> pretty much self-explanatory. The default value is set to "never" to
+> avoid changes to the current ip, tc, and bridge behaviour.
 > 
-> [...]
+> Signed-off-by: Andrea Claudi <aclaudi@redhat.com>
+> ---
 
-Here is the summary with links:
-  - [iproute2-next,1/2] configure: add the --color option
-    https://git.kernel.org/pub/scm/network/iproute2/iproute2-next.git/commit/?id=5e704f4b5ba2
-  - [iproute2-next,2/2] treewide: use configured value as the default color output
-    https://git.kernel.org/pub/scm/network/iproute2/iproute2-next.git/commit/?id=b5d0273fdbab
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+More build time config is not the answer either.
+Don't want complaints from distribution users about the change.
+Needs to be an environment variable or config file.
