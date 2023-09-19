@@ -2,105 +2,95 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06467A45E6
-	for <lists.bridge@lfdr.de>; Mon, 18 Sep 2023 11:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD037A625B
+	for <lists.bridge@lfdr.de>; Tue, 19 Sep 2023 14:16:48 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 2830D81D0C;
-	Mon, 18 Sep 2023 09:30:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 2830D81D0C
+	by smtp1.osuosl.org (Postfix) with ESMTP id A0CED83443;
+	Tue, 19 Sep 2023 12:16:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org A0CED83443
 Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=bR7NzoD3
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=haFjko9n
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ZS4YyKwMLIi1; Mon, 18 Sep 2023 09:30:00 +0000 (UTC)
+	with ESMTP id zqiryA6EfFtj; Tue, 19 Sep 2023 12:16:44 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id 7422E81D21;
-	Mon, 18 Sep 2023 09:29:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7422E81D21
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 7BA91834D5;
+	Tue, 19 Sep 2023 12:16:43 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 7BA91834D5
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 12E07C0DD3;
-	Mon, 18 Sep 2023 09:29:59 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 50BB3C0DDD;
+	Tue, 19 Sep 2023 12:16:43 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 3727EC0032
- for <bridge@lists.linux-foundation.org>; Mon, 18 Sep 2023 09:29:57 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 4A96AC008D
+ for <bridge@lists.linux-foundation.org>; Tue, 19 Sep 2023 12:16:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 0B29E60EF6
- for <bridge@lists.linux-foundation.org>; Mon, 18 Sep 2023 09:29:57 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 0B29E60EF6
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com
- header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256
- header.s=20230601 header.b=bR7NzoD3
+ by smtp4.osuosl.org (Postfix) with ESMTP id 19A7841DAF
+ for <bridge@lists.linux-foundation.org>; Tue, 19 Sep 2023 12:16:40 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 19A7841DAF
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256
+ header.s=mail header.b=haFjko9n
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id I2PIz8hBvEON for <bridge@lists.linux-foundation.org>;
- Mon, 18 Sep 2023 09:29:56 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by smtp3.osuosl.org (Postfix) with ESMTPS id B8F1F60A9C
- for <bridge@lists.linux-foundation.org>; Mon, 18 Sep 2023 09:29:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org B8F1F60A9C
-Received: by mail-ed1-x52b.google.com with SMTP id
- 4fb4d7f45d1cf-530ea522f5eso1351918a12.3
- for <bridge@lists.linux-foundation.org>; Mon, 18 Sep 2023 02:29:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1695029393; x=1695634193;
- darn=lists.linux-foundation.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=rCF0Horr2h7qpSaWZlXlmtXAqYL8heykh2jju7r+Kn8=;
- b=bR7NzoD3KYv2/jmiz6HoFr15t8QVahzPS4eP1Zc5lDAE6zuuzbxt5szA1r0RWixFcy
- FI/N5yRAID/D1SErHcG326XnjoyuBSCTFm1NFBLVh1xm0crrQcDZe6DgBU9D1Y8un2KI
- smnxlvoKVAO3gMEkGDOoz2rJ80ZYXBLd1TMErjLXC6wFTQCVyIcKiz/qScRdWJjeRjqs
- /IcVCMOeQfyNl56v8eOyUS1hIV9u+H58mMLsXFGmgxUr2fcpz1MzSSx5dJwUOMxmvRAa
- wLYwM+9M6MZimiHZI9tbBnFyM+aJDMW9A4/97nHai7i90S5nkRIaefwFZmmLDaavjYEE
- Hgaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695029393; x=1695634193;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=rCF0Horr2h7qpSaWZlXlmtXAqYL8heykh2jju7r+Kn8=;
- b=i5Jug3rBukPMRl0ctdz6WaaL3oi/Hd4vt3OqWybesi7NN+N0X8aCqateI6F/KpkftJ
- XSXYFkCzRLgFt5j69lkca4oPvzLmK9PJSi70NtsE3axgAiykqA7XZZB5tWJC9Ow5fJJ5
- zmeJkd4oQeCQqgmhN31JS0WTxTYzx3DQx2QdOCyCccAdB3bBl1aF5BB5xUkfIWxUOb/1
- tujy/pubUnvvBWxTts69gxh6NWCzwCgVqBdfMGXM8O6w9cgCoYYqPRcQUSTMjIyOkaNT
- h7AL3LmHr/aNE7ARWHnHyE4GNsfGSpL+1OTyYnf5BV0xYarXBQC9aQZjd7SjwVHwx6OH
- 0OBw==
-X-Gm-Message-State: AOJu0YzFfOI6AP/WD4WsdNPzGecGo+2RX2MPYYwMKoXb8j+pquAi1JNE
- sv2A3zrXLrAO94FdU8R3PamjWQ==
-X-Google-Smtp-Source: AGHT+IGkgJG2oi+1IiOAdsDSHRZapGsHpsvkPvqvWhbn1ZX0g4zjjyu/H3CqgyuqFMT7pBJybUpaXg==
-X-Received: by 2002:a05:6402:22d3:b0:530:8d55:9c6f with SMTP id
- dm19-20020a05640222d300b005308d559c6fmr7051153edb.2.1695029393531; 
- Mon, 18 Sep 2023 02:29:53 -0700 (PDT)
-Received: from [192.168.0.105] (haunt.prize.volia.net. [93.72.109.136])
- by smtp.gmail.com with ESMTPSA id
- cn10-20020a0564020caa00b00530be302f08sm3165002edb.49.2023.09.18.02.29.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 18 Sep 2023 02:29:53 -0700 (PDT)
-Message-ID: <cf8b9040-46dd-21af-b92f-78af1f1536c7@blackwall.org>
-Date: Mon, 18 Sep 2023 12:29:52 +0300
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id GIf2RZMn3fYY for <bridge@lists.linux-foundation.org>;
+ Tue, 19 Sep 2023 12:16:37 +0000 (UTC)
+Received: from mail.avm.de (mail.avm.de [212.42.244.94])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 09A9F41DBC
+ for <bridge@lists.linux-foundation.org>; Tue, 19 Sep 2023 12:16:36 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 09A9F41DBC
+Received: from mail-auth.avm.de (unknown [IPv6:2001:bf0:244:244::71])
+ by mail.avm.de (Postfix) with ESMTPS;
+ Tue, 19 Sep 2023 14:16:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
+ t=1695125793; bh=jgojT0/qkebdX/NC1gyN3feF5ayFu9EmWsCehwSIYls=;
+ h=From:Date:Subject:To:Cc:From;
+ b=haFjko9n28nV72CXQgz81q6PwmeRhDS8I9cFSTA81OttFj+baVhE+vsARmXSz7QAe
+ bhgTCHfOvNxywxQdwpGVsS7FqtXzdOf9Oq7pqNgbwMk9QeEeZaxOHX+HuO9Ru54s93
+ uqujaj8wnO58x1wUf7H3tI6X3mL62u0znAZjVbSE=
+Received: from localhost (unknown [172.17.88.63])
+ by mail-auth.avm.de (Postfix) with ESMTPSA id BBE0981FF3;
+ Tue, 19 Sep 2023 14:16:33 +0200 (CEST)
+Date: Tue, 19 Sep 2023 10:08:13 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Eric Dumazet <edumazet@google.com>, "David S . Miller"
- <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>
-References: <20230918091351.1356153-1-edumazet@google.com>
-Content-Language: en-US
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230918091351.1356153-1-edumazet@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Cc: bridge@lists.linux-foundation.org, netdev@vger.kernel.org,
- syzbot <syzkaller@googlegroups.com>, eric.dumazet@gmail.com,
- Roopa Prabhu <roopa@nvidia.com>
-Subject: Re: [Bridge] [PATCH net] net: bridge: use DEV_STATS_INC()
+Message-Id: <20230919-fdb_limit-v4-1-b4d2dc4df30f@avm.de>
+X-B4-Tracking: v=1;
+ b=H4sIAOxWCWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyT20230919-fdb_limit-v4-0-1a2a59694d67@avm.deE
+ vPSU3UzU4B8JSMDI2MDSwNT3bSUpPiczNzMEt3E5FRDEzPzZLNECxMloPqCotS0zAqwWdFKmQV
+ F+aUlqUa6eakVJSDZIDdnpdjaWgAVJ3dscQAAAA==
+To: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>, 
+ David Ahern <dsahern@gmail.com>, Eric Dumazet <edumazet@google.com>, 
+ Florian Fainelli <f.fainelli@gmail.com>, Ido Schimmel <idosch@nvidia.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Nikolay Aleksandrov <razor@blackwall.org>, 
+ Oleksij Rempel <linux@rempel-privat.de>, Paolo Abeni <pabeni@redhat.com>, 
+ Roopa Prabhu <roopa@nvidia.com>, Shuah Khan <shuah@kernel.org>, 
+ Vladimir Oltean <vladimir.oltean@nxp.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1695110892;
+ 20230919-fdb_limit-v4-0-1a2a59694d67@avm.de; 
+ i=jnixdorf-oss@avm.de; s=20230906; h=from:subject:message-id;
+ bh=x8E7QgYAbZ3xfWXTk6mu0Nx+hGD/dY7CVIChh66zl7M=;
+ b=AaFY/zE3nQ6DpF2PqqmH4gHuw/8M41ZtXy/U9Q23gG+yh0+8wDsku9PtzLqfdERVvW92sDEBB
+ lu5YL52t7CYDDtR1qxAbiXtDqpkTBQIKpq7exbeQ8vzw7XR20230919-fdb_limit-v4-0-1a2a59694d67@avm.deL
+X-Developer-Key: i=jnixdorf-oss@avm.de; a=ed25519;
+ pk=KMraV4q7ANHRrwjf9EVhvU346JsqGGNSbPKeNILOQfo=
+X-purgate-ID: 149429::1695125793-5CE17D5A-53E64937/0/0
+X-purgate-type: clean
+X-purgate-size: 5244
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for
+ further information)
+X-purgate: clean
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ Johannes Nixdorf <jnixdorf-oss@avm.de>, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org
+Subject: [Bridge] [RFC PATCH iproute2-next v4] iplink: bridge: Add
+ sup20230919-fdb_limit-v4-0-1a2a59694d67@avm.der bridge FDB learning limits
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -112,94 +102,164 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Johannes Nixdorf via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 9/18/23 12:13, Eric Dumazet wrote:
-> syzbot/KCSAN reported data-races in br_handle_frame_finish() [1]
-> This function can run from multiple cpus without mutual exclusion.
-> 
-> Adopt SMP safe DEV_STATS_INC() to update dev->stats fields.
-> 
-> Handles updates to dev->stats.tx_dropped while we are at it.
-> 
-> [1]
-> BUG: KCSAN: data-race in br_handle_frame_finish / br_handle_frame_finish
-> 
-> read-write to 0xffff8881374b2178 of 8 bytes by interrupt on cpu 1:
-> br_handle_frame_finish+0xd4f/0xef0 net/bridge/br_input.c:189
-> br_nf_hook_thresh+0x1ed/0x220
-> br_nf_pre_routing_finish_ipv6+0x50f/0x540
-> NF_HOOK include/linux/netfilter.h:304 [inline]
-> br_nf_pre_routing_ipv6+0x1e3/0x2a0 net/bridge/br_netfilter_ipv6.c:178
-> br_nf_pre_routing+0x526/0xba0 net/bridge/br_netfilter_hooks.c:508
-> nf_hook_entry_hookfn include/linux/netfilter.h:144 [inline]
-> nf_hook_bridge_pre net/bridge/br_input.c:272 [inline]
-> br_handle_frame+0x4c9/0x940 net/bridge/br_input.c:417
-> __netif_receive_skb_core+0xa8a/0x21e0 net/core/dev.c:5417
-> __netif_receive_skb_one_core net/core/dev.c:5521 [inline]
-> __netif_receive_skb+0x57/0x1b0 net/core/dev.c:5637
-> process_backlog+0x21f/0x380 net/core/dev.c:5965
-> __napi_poll+0x60/0x3b0 net/core/dev.c:6527
-> napi_poll net/core/dev.c:6594 [inline]
-> net_rx_action+0x32b/0x750 net/core/dev.c:6727
-> __do_softirq+0xc1/0x265 kernel/softirq.c:553
-> run_ksoftirqd+0x17/0x20 kernel/softirq.c:921
-> smpboot_thread_fn+0x30a/0x4a0 kernel/smpboot.c:164
-> kthread+0x1d7/0x210 kernel/kthread.c:388
-> ret_from_fork+0x48/0x60 arch/x86/kernel/process.c:147
-> ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
-> 
-> read-write to 0xffff8881374b2178 of 8 bytes by interrupt on cpu 0:
-> br_handle_frame_finish+0xd4f/0xef0 net/bridge/br_input.c:189
-> br_nf_hook_thresh+0x1ed/0x220
-> br_nf_pre_routing_finish_ipv6+0x50f/0x540
-> NF_HOOK include/linux/netfilter.h:304 [inline]
-> br_nf_pre_routing_ipv6+0x1e3/0x2a0 net/bridge/br_netfilter_ipv6.c:178
-> br_nf_pre_routing+0x526/0xba0 net/bridge/br_netfilter_hooks.c:508
-> nf_hook_entry_hookfn include/linux/netfilter.h:144 [inline]
-> nf_hook_bridge_pre net/bridge/br_input.c:272 [inline]
-> br_handle_frame+0x4c9/0x940 net/bridge/br_input.c:417
-> __netif_receive_skb_core+0xa8a/0x21e0 net/core/dev.c:5417
-> __netif_receive_skb_one_core net/core/dev.c:5521 [inline]
-> __netif_receive_skb+0x57/0x1b0 net/core/dev.c:5637
-> process_backlog+0x21f/0x380 net/core/dev.c:5965
-> __napi_poll+0x60/0x3b0 net/core/dev.c:6527
-> napi_poll net/core/dev.c:6594 [inline]
-> net_rx_action+0x32b/0x750 net/core/dev.c:6727
-> __do_softirq+0xc1/0x265 kernel/softirq.c:553
-> do_softirq+0x5e/0x90 kernel/softirq.c:454
-> __local_bh_enable_ip+0x64/0x70 kernel/softirq.c:381
-> __raw_spin_unlock_bh include/linux/spinlock_api_smp.h:167 [inline]
-> _raw_spin_unlock_bh+0x36/0x40 kernel/locking/spinlock.c:210
-> spin_unlock_bh include/linux/spinlock.h:396 [inline]
-> batadv_tt_local_purge+0x1a8/0x1f0 net/batman-adv/translation-table.c:1356
-> batadv_tt_purge+0x2b/0x630 net/batman-adv/translation-table.c:3560
-> process_one_work kernel/workqueue.c:2630 [inline]
-> process_scheduled_works+0x5b8/0xa30 kernel/workqueue.c:2703
-> worker_thread+0x525/0x730 kernel/workqueue.c:2784
-> kthread+0x1d7/0x210 kernel/kthread.c:388
-> ret_from_fork+0x48/0x60 arch/x86/kernel/process.c:147
-> ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
-> 
-> value changed: 0x00000000000d7190 -> 0x00000000000d7191
-> 
-> Reported by Kernel Concurrency Sanitizer on:
-> CPU: 0 PID: 14848 Comm: kworker/u4:11 Not tainted 6.6.0-rc1-syzkaller-00236-gad8a69f361b9 #0
-> 
-> Fixes: 1c29fc4989bc ("[BRIDGE]: keep track of received multicast packets")
-> Reported-by: syzbot <syzkaller@googlegroups.com>
-> Signed-off-by: Eric Dumazet <edumazet@google.com>
-> Cc: Roopa Prabhu <roopa@nvidia.com>
-> Cc: Nikolay Aleksandrov <razor@blackwall.org>
-> Cc: bridge@lists.linux-foundation.org
-> ---
->   net/bridge/br_forward.c | 4 ++--
->   net/bridge/br_input.c   | 4 ++--
->   2 files changed, 4 insertions(+), 4 deletions(-)
-> 
+Support setting the FDB limit through ip link. The arguments is:
+ - fdb_max_learned: A 32-bit unsigned integer specifying the maximum
+                    number of learned FDB entries, with 0 disabling
+                    the limit.
 
-Thanks,
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+Also support reading back the current number of learned FDB entries in
+the bridge by this count. The returned value's name is:
+ - fdb_n_learned: A 32-bit unsigned integer specifying the current number
+                  of learned FDB entries.
 
+Example:
+
+ # ip -d -j -p link show br0
+[ {
+...
+        "linkinfo": {
+            "info_kind": "bridge",
+            "info_data": {
+...
+                "fdb_n_learned": 2,
+                "fdb_max_learned": 0,
+...
+            }
+        },
+...
+    } ]
+ # ip link set br0 type bridge fdb_max_learned 1024
+ # ip -d -j -p link show br0
+[ {
+...
+        "linkinfo": {
+            "info_kind": "bridge",
+            "info_data": {
+...
+                "fdb_n_learned": 2,
+                "fdb_max_learned": 1024,
+...
+            }
+        },
+...
+    } ]
+
+Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
+---
+I will resend this mail as non-rfc after the kernel UAPI changes landed.
+
+Link to the kernel changes: https://lore.kernel.org/netdev/20230919-fdb_limit-v4-0-39f0293807b8@avm.de/
+---
+Changes in v4:
+ - Removed _entries from the names. (from review)
+ - Removed the UAPI change, to be synced from linux separately by the
+   maintainer. (from review)
+   For local testing e.g. `make CCOPTS="-O2 -pipe
+   -I${path_to_dev_kernel_headers}"` works as a workaround.
+ - Downgraded to an RFC until the kernel changes land.
+ - Link to v3: https://lore.kernel.org/netdev/20230905-fdb_limit-v3-1-34bb124556d8@avm.de/
+
+Changes in v3:
+ - Properly split the net-next and iproute2-next threads. (from review)
+ - Changed to *_n_* instead of *_cur_*. (from review)
+ - Use strcmp() instead of matches(). (from review)
+ - Made names in code and documentation consistent. (from review)
+ - Various documentation fixes. (from review)
+ - Link to v2: https://lore.kernel.org/netdev/20230619071444.14625-1-jnixdorf-oss@avm.de/
+
+Changes in v2:
+ - Sent out the first corresponding iproute2 patches.
+ - Link to v1: https://lore.kernel.org/netdev/20230515085046.4457-1-jnixdorf-oss@avm.de/
+---
+ ip/iplink_bridge.c    | 21 +++++++++++++++++++++
+ man/man8/ip-link.8.in | 10 ++++++++++
+ 2 files changed, 31 insertions(+)
+
+diff --git a/ip/iplink_bridge.c b/ip/iplink_bridge.c
+index 462075295308..6b70ffbb6f5f 100644
+--- a/ip/iplink_bridge.c
++++ b/ip/iplink_bridge.c
+@@ -34,6 +34,7 @@ static void print_explain(FILE *f)
+ 		"		  [ group_fwd_mask MASK ]\n"
+ 		"		  [ group_address ADDRESS ]\n"
+ 		"		  [ no_linklocal_learn NO_LINKLOCAL_LEARN ]\n"
++		"		  [ fdb_max_learned FDB_MAX_LEARNED ]\n"
+ 		"		  [ vlan_filtering VLAN_FILTERING ]\n"
+ 		"		  [ vlan_protocol VLAN_PROTOCOL ]\n"
+ 		"		  [ vlan_default_pvid VLAN_DEFAULT_PVID ]\n"
+@@ -168,6 +169,14 @@ static int bridge_parse_opt(struct link_util *lu, int argc, char **argv,
+ 				bm.optval |= no_ll_learn_bit;
+ 			else
+ 				bm.optval &= ~no_ll_learn_bit;
++		} else if (strcmp(*argv, "fdb_max_learned") == 0) {
++			__u32 fdb_max_learned;
++
++			NEXT_ARG();
++			if (get_u32(&fdb_max_learned, *argv, 0))
++				invarg("invalid fdb_max_learned", *argv);
++
++			addattr32(n, 1024, IFLA_BR_FDB_MAX_LEARNED, fdb_max_learned);
+ 		} else if (matches(*argv, "fdb_flush") == 0) {
+ 			addattr(n, 1024, IFLA_BR_FDB_FLUSH);
+ 		} else if (matches(*argv, "vlan_default_pvid") == 0) {
+@@ -544,6 +553,18 @@ static void bridge_print_opt(struct link_util *lu, FILE *f, struct rtattr *tb[])
+ 	if (tb[IFLA_BR_GC_TIMER])
+ 		_bridge_print_timer(f, "gc_timer", tb[IFLA_BR_GC_TIMER]);
+ 
++	if (tb[IFLA_BR_FDB_N_LEARNED])
++		print_uint(PRINT_ANY,
++			   "fdb_n_learned",
++			   "fdb_n_learned %u ",
++			   rta_getattr_u32(tb[IFLA_BR_FDB_N_LEARNED]));
++
++	if (tb[IFLA_BR_FDB_MAX_LEARNED])
++		print_uint(PRINT_ANY,
++			   "fdb_max_learned",
++			   "fdb_max_learned %u ",
++			   rta_getattr_u32(tb[IFLA_BR_FDB_MAX_LEARNED]));
++
+ 	if (tb[IFLA_BR_VLAN_DEFAULT_PVID])
+ 		print_uint(PRINT_ANY,
+ 			   "vlan_default_pvid",
+diff --git a/man/man8/ip-link.8.in b/man/man8/ip-link.8.in
+index 7365d0c6b14f..e82b2dbb0070 100644
+--- a/man/man8/ip-link.8.in
++++ b/man/man8/ip-link.8.in
+@@ -1630,6 +1630,8 @@ the following additional arguments are supported:
+ ] [
+ .BI no_linklocal_learn " NO_LINKLOCAL_LEARN "
+ ] [
++.BI fdb_max_learned " FDB_MAX_LEARNED "
++] [
+ .BI vlan_filtering " VLAN_FILTERING "
+ ] [
+ .BI vlan_protocol " VLAN_PROTOCOL "
+@@ -1741,6 +1743,14 @@ or off
+ When disabled, the bridge will not learn from link-local frames (default:
+ enabled).
+ 
++.BI fdb_max_learned " FDB_MAX_LEARNED "
++- set the maximum number of learned FDB entries. If
++.RI ( FDB_MAX_LEARNED " == 0) "
++the feature is disabled. Default is
++.BR 0 .
++.I FDB_MAX_LEARNED
++is a 32bit unsigned integer.
++
+ .BI vlan_filtering " VLAN_FILTERING "
+ - turn VLAN filtering on
+ .RI ( VLAN_FILTERING " > 0) "
+
+---
+base-commit: c31fd80a2268c0b1b77e1d65827003a2327315b8
+change-id: 20230905-fdb_limit-ace1467c6a84
+
+Best regards,
+-- 
+Johannes Nixdorf <jnixdorf-oss@avm.de>
 
