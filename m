@@ -1,107 +1,84 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C047A79F0
-	for <lists.bridge@lfdr.de>; Wed, 20 Sep 2023 13:01:21 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F91D7A9204
+	for <lists.bridge@lfdr.de>; Thu, 21 Sep 2023 09:23:58 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id AD5DB41EE3;
-	Wed, 20 Sep 2023 11:01:19 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org AD5DB41EE3
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=hSYhlYhJ
+	by smtp1.osuosl.org (Postfix) with ESMTP id 8031E83BDB;
+	Thu, 21 Sep 2023 07:23:56 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 8031E83BDB
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=avm.de header.i=@avm.de header.a=rsa-sha256 header.s=mail header.b=lMv+D89S
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id esoT8xIWXcI5; Wed, 20 Sep 2023 11:01:18 +0000 (UTC)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1aq0EnlmEm-d; Thu, 21 Sep 2023 07:23:55 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id E773741ED8;
-	Wed, 20 Sep 2023 11:01:17 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org E773741ED8
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 08D3283BB8;
+	Thu, 21 Sep 2023 07:23:55 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 08D3283BB8
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 9F01EC008C;
-	Wed, 20 Sep 2023 11:01:17 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 834E0C0DD3;
+	Thu, 21 Sep 2023 07:23:54 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 8DD2BC0032
- for <bridge@lists.linux-foundation.org>; Wed, 20 Sep 2023 11:01:15 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [IPv6:2605:bc80:3010::138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id CB4E7C0032
+ for <bridge@lists.linux-foundation.org>; Thu, 21 Sep 2023 07:23:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp4.osuosl.org (Postfix) with ESMTP id 7455A41DBD
- for <bridge@lists.linux-foundation.org>; Wed, 20 Sep 2023 11:01:15 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 7455A41DBD
+ by smtp1.osuosl.org (Postfix) with ESMTP id 926C383BD1
+ for <bridge@lists.linux-foundation.org>; Thu, 21 Sep 2023 07:23:52 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 926C383BD1
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
- by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id gbHbKc76Xwr4 for <bridge@lists.linux-foundation.org>;
- Wed, 20 Sep 2023 11:01:14 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by smtp4.osuosl.org (Postfix) with ESMTPS id 8E67241BD6
- for <bridge@lists.linux-foundation.org>; Wed, 20 Sep 2023 11:01:14 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8E67241BD6
-Received: by mail-ed1-x530.google.com with SMTP id
- 4fb4d7f45d1cf-52f9a45b4bdso8353627a12.3
- for <bridge@lists.linux-foundation.org>; Wed, 20 Sep 2023 04:01:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1695207672; x=1695812472;
- darn=lists.linux-foundation.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=fFCnzCVFLsbuhvtZ9EHw9SNjPT4ld8559k/OSp8m+oI=;
- b=hSYhlYhJW38iCWXGL0adIs9wqFItoIU/7fJKfZ07yY6PsKZGrPfSl+ZwvmSjLv/R9H
- Nd1TwzqekEWvgq3m2O0EA3V+OyOIRxdt3IsUq3MU4+Sbs9Wx+wS/e0iJ09oxalu59YqL
- KFrs0AoC6RtJOJRNiN0ef3o9XJ3EGRAKJBEAw0qjsKnPMiSjXAn56GA/P7x9ofi0mWhM
- PL9jwanzXtuwA60BUEWh6ZG84IErxouAZlMH1/cDZlZD7FJcUbktkPZOau2MlxT5zZRE
- rJd6YkD2lsZzheG44zi0BEYROpsUrmRWjmaIfu6tE59Wn1uUo9lDOiSbiQMWrw9BZaJC
- Y3Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695207672; x=1695812472;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fFCnzCVFLsbuhvtZ9EHw9SNjPT4ld8559k/OSp8m+oI=;
- b=SuYpPHpj2nyKyW9rzDjsFNkSvf/XJwphuX04oUhsAKE5nkuk1EsCbMHIVkLV/i3fY5
- 2YyouV1LVTpA6YwAOFxcwiKCjSsaWZQ3YLIb2b/BpdtDA3T5HkXc0tWd1M8EWm7lhnKL
- iib2ocEwYznVb2s/o8vrVeNme1GZgQCy8b7c2acrvHnF2sXmotf/fjyKwKKaVigbHi35
- 4jPDRp29mCgIS+Ph2+8SKKOVULaLdU5EYQAdf+zVRm21W74SPe+4GLqKtx73QEac7UJK
- U0aN2fF8Q9ao0K6YiXmdi+ACrkgyHpZ1JBkEOO/ikoxAfyv6Aa70IVpEzJ/pko3br2TX
- W0wQ==
-X-Gm-Message-State: AOJu0YzskJaYn54/PthDXQfWEQFIbBqqRJDCT5wg6EfRul3sSP2jhKUX
- lw06hHmwinr/qihC5GeDgZwOig==
-X-Google-Smtp-Source: AGHT+IG3UkUHhXRFKHx1etLPK3jZZNjDhVAwE4UIfgjnZzVOtLR39Gca5U0GPsI8uvAEiDai68jh1Q==
-X-Received: by 2002:a17:907:a087:b0:9aa:186:959a with SMTP id
- hu7-20020a170907a08700b009aa0186959amr1644862ejc.31.1695207672595; 
- Wed, 20 Sep 2023 04:01:12 -0700 (PDT)
-Received: from [192.168.0.105] (haunt.prize.volia.net. [93.72.109.136])
- by smtp.gmail.com with ESMTPSA id
- o2-20020a1709062e8200b009ad8338aafasm9320070eji.13.2023.09.20.04.01.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 20 Sep 2023 04:01:12 -0700 (PDT)
-Message-ID: <e1c0f5ac-a0bc-dc2c-0638-c580498670e4@blackwall.org>
-Date: Wed, 20 Sep 2023 14:01:10 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-To: Johannes Nixdorf <jnixdorf-oss@avm.de>,
- "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
- David Ahern <dsahern@gmail.com>, Eric Dumazet <edumazet@google.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Ido Schimmel <idosch@nvidia.com>,
- Jakub Kicinski <kuba@kernel.org>, Oleksij Rempel <linux@rempel-privat.de>,
- Paolo Abeni <pabeni@redhat.com>, Roopa Prabhu <roopa@nvidia.com>,
- Shuah Khan <shuah@kernel.org>, Vladimir Oltean <vladimir.oltean@nxp.com>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id WhjkF9U7sEf1 for <bridge@lists.linux-foundation.org>;
+ Thu, 21 Sep 2023 07:23:51 +0000 (UTC)
+Received: from mail.avm.de (mail.avm.de [IPv6:2001:bf0:244:244::120])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 0E74783BB8
+ for <bridge@lists.linux-foundation.org>; Thu, 21 Sep 2023 07:23:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 0E74783BB8
+Received: from mail-auth.avm.de (dovecot-mx-01.avm.de [212.42.244.71])
+ by mail.avm.de (Postfix) with ESMTPS;
+ Thu, 21 Sep 2023 09:23:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
+ t=1695281026; bh=MGHRpPfMK3dwPqFHNJENwclFJsK7s432jc0AWt8qpKo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=lMv+D89SeUIroDzj3vpDvYr7y3M0PoPLmr9tkOthBnQGSLo+hcx1XT9UFQM0hgSlH
+ xHaAXKtsZeL6XEjJmPq0Q4wHjoS0ePKH/Wgj4XjyHyUqWm4LTZ6KyEeZ6ykYL7Hb2p
+ 9EHrhm5VgBl1R5uzbSvyn+aOT7kXqu9MTNT9n8oM=
+Received: from localhost (unknown [172.17.88.63])
+ by mail-auth.avm.de (Postfix) with ESMTPSA id E88A582147;
+ Thu, 21 Sep 2023 09:23:46 +0200 (CEST)
+Date: Thu, 21 Sep 2023 09:23:46 +0200
+To: Nikolay Aleksandrov <razor@blackwall.org>
+Message-ID: <ZQvvgiz4rE8u6vba@u-jnixdorf.ads.avm.de>
 References: <20230919-fdb_limit-v4-0-39f0293807b8@avm.de>
- <20230919-fdb_limit-v4-6-39f0293807b8@avm.de>
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20230919-fdb_limit-v4-6-39f0293807b8@avm.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [Bridge] [PATCH net-next v4 6/6] selftests: forwarding:
- bridge_fdb_learning_limit: Add a new selftest
+ <20230919-fdb_limit-v4-2-39f0293807b8@avm.de>
+ <1c12b8f2-b28b-f326-b24f-f1ea602832d7@blackwall.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1c12b8f2-b28b-f326-b24f-f1ea602832d7@blackwall.org>
+X-purgate-ID: 149429::1695281026-306BAD89-D1FD54B6/0/0
+X-purgate-type: clean
+X-purgate-size: 1728
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: This mail is considered clean (visit http://www.eleven.de for
+ further information)
+X-purgate: clean
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ bridge@lists.linux-foundation.org, Ido Schimmel <idosch@nvidia.com>,
+ Roopa Prabhu <roopa@nvidia.com>, linux-kernel@vger.kernel.org,
+ Oleksij Rempel <linux@rempel-privat.de>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, Eric Dumazet <edumazet@google.com>,
+ netdev@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ David Ahern <dsahern@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Shuah Khan <shuah@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>
+Subject: Re: [Bridge] [PATCH net-next v4 2/6] net: bridge: Set
+ strict_start_type for br_policy
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -113,21 +90,46 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
+From: Johannes Nixdorf via Bridge <bridge@lists.linux-foundation.org>
+Reply-To: Johannes Nixdorf <jnixdorf-oss@avm.de>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 9/19/23 11:12, Johannes Nixdorf wrote:
-> Add a suite covering the fdb_n_learned and fdb_max_learned bridge
-> features, touching all special cases in accounting at least once.
+On Wed, Sep 20, 2023 at 01:46:02PM +0300, Nikolay Aleksandrov wrote:
+> On 9/19/23 11:12, Johannes Nixdorf wrote:
+> > Set any new attributes added to br_policy to be parsed strictly, to
+> > prevent userspace from passing garbage.
+> > 
+> > Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
+> > ---
+> >   net/bridge/br_netlink.c | 2 ++
+> >   1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+> > index 10f0d33d8ccf..505683ef9a26 100644
+> > --- a/net/bridge/br_netlink.c
+> > +++ b/net/bridge/br_netlink.c
+> > @@ -1229,6 +1229,8 @@ static size_t br_port_get_slave_size(const struct net_device *brdev,
+> >   }
+> >   static const struct nla_policy br_policy[IFLA_BR_MAX + 1] = {
+> > +	[IFLA_BR_UNSPEC]	= { .strict_start_type =
+> > +				    IFLA_BR_MCAST_QUERIER_STATE + 1 },
+> >   	[IFLA_BR_FORWARD_DELAY]	= { .type = NLA_U32 },
+> >   	[IFLA_BR_HELLO_TIME]	= { .type = NLA_U32 },
+> >   	[IFLA_BR_MAX_AGE]	= { .type = NLA_U32 },
+> > 
 > 
-> Signed-off-by: Johannes Nixdorf <jnixdorf-oss@avm.de>
-> ---
->   tools/testing/selftests/net/forwarding/Makefile    |   3 +-
->   .../net/forwarding/bridge_fdb_learning_limit.sh    | 283 +++++++++++++++++++++
->   2 files changed, 285 insertions(+), 1 deletion(-)
-> 
+> instead of IFLA_BR_MCAST_QUERIER_STATE + 1, why not move around the patch
+> and just use the new attribute name?
+> These are uapi, they won't change.
 
-Always nice to see new tests. Thanks,
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+I wanted to avoid having a state between the two commits where the new
+attributes are already added, but not yet strictly verified. Otherwise
+they would present a slightly different UAPI at that one commit boundary
+than after this commit.
 
-
+This is also not the only place in the kernel where strict_start_type
+is specified that way. See e.g. commit c00041cf1cb8 ("net: bridge: Set
+strict_start_type at two policies"), even though that seems mostly be
+done to turn on strict_start_type preemtively, not in the same series
+that adds the new attribute.
