@@ -1,80 +1,112 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF017BE194
-	for <lists.bridge@lfdr.de>; Mon,  9 Oct 2023 15:51:45 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27CBA7C03C1
+	for <lists.bridge@lfdr.de>; Tue, 10 Oct 2023 20:53:10 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 8C7164191D;
-	Mon,  9 Oct 2023 13:51:43 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 8C7164191D
+	by smtp4.osuosl.org (Postfix) with ESMTP id 4676741DC5;
+	Tue, 10 Oct 2023 18:53:07 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 4676741DC5
 Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=pjfzOyML
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=canonical.com header.i=@canonical.com header.a=rsa-sha256 header.s=20210705 header.b=j2ApeW2x
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp4.osuosl.org ([127.0.0.1])
 	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rf7gk1fcXLIX; Mon,  9 Oct 2023 13:51:42 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 542A04177C;
-	Mon,  9 Oct 2023 13:51:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 542A04177C
+	with ESMTP id hNykoYkcEa0k; Tue, 10 Oct 2023 18:53:05 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp4.osuosl.org (Postfix) with ESMTPS id B0D8A41750;
+	Tue, 10 Oct 2023 18:53:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org B0D8A41750
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 0D20CC0DD3;
-	Mon,  9 Oct 2023 13:51:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id E51B1C0DD3;
+	Tue, 10 Oct 2023 18:53:03 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E3C56C0032
- for <bridge@lists.linux-foundation.org>; Mon,  9 Oct 2023 13:51:39 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id C2F20C0032
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 08:06:45 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id BF2B9408C8
- for <bridge@lists.linux-foundation.org>; Mon,  9 Oct 2023 13:51:39 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org BF2B9408C8
+ by smtp2.osuosl.org (Postfix) with ESMTP id 91A6F4051B
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 08:06:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 91A6F4051B
 Authentication-Results: smtp2.osuosl.org;
- dkim=pass (1024-bit key) header.d=linuxfoundation.org
- header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg
- header.b=pjfzOyML
+ dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com
+ header.a=rsa-sha256 header.s=20210705 header.b=j2ApeW2x
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cFhnhFJuhaJa for <bridge@lists.linux-foundation.org>;
- Mon,  9 Oct 2023 13:51:38 +0000 (UTC)
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 41A6F4019E
- for <bridge@lists.linux-foundation.org>; Mon,  9 Oct 2023 13:51:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 41A6F4019E
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by ams.source.kernel.org (Postfix) with ESMTP id 70E7CB811FC;
- Mon,  9 Oct 2023 13:51:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A3D8C433C9;
- Mon,  9 Oct 2023 13:51:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1696859493;
- bh=APIMEqMiAeOIRiyQ/SQ00CplohIcuIfXHLjrPZIneWk=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=pjfzOyMLaJ6ljgQzu/kNLywteS2VWZ8Sc+SDppABBaOtnAADBYV8CtkP1XOlQapqM
- 5fTv7f2QpGD8uZemZ2WvCYdyLdrMcXmPJ+SCzkRLsy+x7Lf5JTVx23RPLcEJ55nA/n
- RCzi8Rst9q7qA9cnmd4z5hjwrq69LpIw/p59OwYg=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Date: Mon,  9 Oct 2023 15:05:43 +0200
-Message-ID: <20231009130111.927090456@linuxfoundation.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231009130111.518916887@linuxfoundation.org>
-References: <20231009130111.518916887@linuxfoundation.org>
-User-Agent: quilt/0.67
-X-stable: review
-X-Patchwork-Hint: ignore
+ with ESMTP id GqA4tBf9fnMH for <bridge@lists.linux-foundation.org>;
+ Wed, 27 Sep 2023 08:06:43 +0000 (UTC)
+X-Greylist: delayed 528 seconds by postgrey-1.37 at util1.osuosl.org;
+ Wed, 27 Sep 2023 08:06:43 UTC
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9FBEE4014D
+Received: from smtp-relay-internal-1.canonical.com
+ (smtp-relay-internal-1.canonical.com [185.125.188.123])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 9FBEE4014D
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 08:06:43 +0000 (UTC)
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com
+ [209.85.210.197])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B73593F641
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 07:57:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1695801472;
+ bh=ip6/ccZiNvOX6hccEjrHN08lTPqfzJb4ULfAfkXBgJM=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+ b=j2ApeW2x05hDbbSseCK5OFJGwMUDtu7AwAqJibNbPWR8XMRLfgg94QcaUW82WUhmE
+ 6epeOkdojGKynyxY1++uET1fEvanGgi4+A6WX2420PfkBgCkpBt2WirEgBpA7IXvKB
+ +5phKPvUMOPtzunDXweVwbaVfN/A2qpT2jvLo6nBg6PtmT7eHqGMaby5Ao7d0LzfLe
+ WDdJdgLvezfI5E/elZJON385pzSYxffqGhDB33HBLZeVdPLB2+/nBKkc1DNCEZmTpp
+ KpQTGr0d3eH5Nk+eJQXgNjkLqCD8eYhVa4toP3UhUWuiO04FxiZ69jXfXYm5tAc5Cd
+ 2ZuNLkB+Lv9vQ==
+Received: by mail-pf1-f197.google.com with SMTP id
+ d2e1a72fcca58-690cd1e39a6so12023743b3a.3
+ for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 00:57:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695801471; x=1696406271;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ip6/ccZiNvOX6hccEjrHN08lTPqfzJb4ULfAfkXBgJM=;
+ b=bhloMTS8KK/NMEGXwR0QGI22/c71pQq9gfrpQBWQ7i+KSSfmUN7a91hNfAgp+9xE4u
+ AiqR6VUwa/FBGuKpSokf51TJmNtpYnfNJHY9VSEjmpl4SWUQ4dcFEkl+XRWGR8AKs+1P
+ X0058S628LGksFu9OnUSWUYpPpkGIE3i38iv4HJ8JU62LDRuw7sYQflC9fDwrvrW0Vmm
+ XktChOiUmkD2v/JDLyGoL8B4Ps0B3LgDMkI18EkxNG0jbnaBCv96ZuL37N9wzArGhiYg
+ UOoYRNLNyiZkiH0+CvaG/GFHn5addy0m3DfrkFxaBR3j8E5wrJuIPaYIY/cqe3qIr009
+ E/nQ==
+X-Gm-Message-State: AOJu0YwDZC7p7vVd5rx1pOzHFMKlqvES96giaEeKX4x0ULL/87ARue16
+ k4PpBY8albJMp32rCaSC8R6e8a9L2x2+zaNJSvfVtWZEWN3itgGzYvtHMFtQ2DRRbcySozQH2U1
+ Erd8w8uSuZY/P0gI+Rs3sCDjMqge2draO7UjOK4+EeKuHdVtt
+X-Received: by 2002:a05:6a00:3908:b0:68b:e6e0:5047 with SMTP id
+ fh8-20020a056a00390800b0068be6e05047mr1315126pfb.14.1695801470956; 
+ Wed, 27 Sep 2023 00:57:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHx/mG27sIh93gB6l2LsEMvHdKnrXh9xI6T0JaEJiOHd6Tv23J+iWR3GET7sPIMo+r+pFJuyQ==
+X-Received: by 2002:a05:6a00:3908:b0:68b:e6e0:5047 with SMTP id
+ fh8-20020a056a00390800b0068be6e05047mr1315106pfb.14.1695801470608; 
+ Wed, 27 Sep 2023 00:57:50 -0700 (PDT)
+Received: from zlab.. ([2403:5814:1313:1:68e8:66ff:feab:9acb])
+ by smtp.gmail.com with ESMTPSA id
+ s4-20020a056a00178400b00692b6fe1c7asm8660643pfg.179.2023.09.27.00.57.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Sep 2023 00:57:50 -0700 (PDT)
+From: Trent Lloyd <trent.lloyd@canonical.com>
+To: Roopa Prabhu <roopa@nvidia.com>, Nikolay Aleksandrov <razor@blackwall.org>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Shuah Khan <shuah@kernel.org>
+Date: Wed, 27 Sep 2023 07:57:12 +0000
+Message-Id: <20230927075713.1253681-1-trent.lloyd@canonical.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Cc: Sasha Levin <sashal@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
- patches@lists.linux.dev, Eric Dumazet <edumazet@google.com>,
- syzbot <syzkaller@googlegroups.com>, Roopa Prabhu <roopa@nvidia.com>,
- Paolo Abeni <pabeni@redhat.com>
-Subject: [Bridge] [PATCH 4.19 11/91] net: bridge: use DEV_STATS_INC()
+X-Mailman-Approved-At: Tue, 10 Oct 2023 18:53:02 +0000
+Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
+ Trent Lloyd <trent.lloyd@canonical.com>, linux-kselftest@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: [Bridge] [PATCH] bridge: MTU auto tuning ignores IFLA_MTU on NEWLINK
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,143 +121,237 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-4.19-stable review patch.  If anyone has any objections, please let me know.
+Commit 804b854d374e ("net: bridge: disable bridge MTU auto tuning if it
+was set manually") disabled auto-tuning of the bridge MTU when the MTU
+was explicitly set by the user, however that would only happen when the
+MTU was set after creation. This commit ensures auto-tuning is also
+disabled when the MTU is set during bridge creation.
 
-------------------
+Currently when the br_netdev_ops br_change_mtu function is called, the
+flag BROPT_MTU_SET_BY_USER is set. However this function is only called
+when the MTU is changed after interface creation and is not called if
+the MTU is specified during creation with IFLA_MTU (br_dev_newlink).
 
-From: Eric Dumazet <edumazet@google.com>
+br_change_mtu also does not get called if the MTU is set to the same
+value it currently has, which makes it difficult to work around this
+issue (especially for the default MTU of 1500) as you have to first
+change the MTU to some other value and then back to the desired value.
 
-[ Upstream commit 44bdb313da57322c9b3c108eb66981c6ec6509f4 ]
+Add new selftests to ensure the bridge MTU is handled correctly:
+ - Bridge created with user-specified MTU (1500)
+ - Bridge created with user-specified MTU (2000)
+ - Bridge created without user-specified MTU
+ - Bridge created with user-specified MTU set after creation (2000)
 
-syzbot/KCSAN reported data-races in br_handle_frame_finish() [1]
-This function can run from multiple cpus without mutual exclusion.
+Regression risk: Any workload which erroneously specified an MTU during
+creation but accidentally relied upon auto-tuning to a different value
+may be broken by this change.
 
-Adopt SMP safe DEV_STATS_INC() to update dev->stats fields.
-
-Handles updates to dev->stats.tx_dropped while we are at it.
-
-[1]
-BUG: KCSAN: data-race in br_handle_frame_finish / br_handle_frame_finish
-
-read-write to 0xffff8881374b2178 of 8 bytes by interrupt on cpu 1:
-br_handle_frame_finish+0xd4f/0xef0 net/bridge/br_input.c:189
-br_nf_hook_thresh+0x1ed/0x220
-br_nf_pre_routing_finish_ipv6+0x50f/0x540
-NF_HOOK include/linux/netfilter.h:304 [inline]
-br_nf_pre_routing_ipv6+0x1e3/0x2a0 net/bridge/br_netfilter_ipv6.c:178
-br_nf_pre_routing+0x526/0xba0 net/bridge/br_netfilter_hooks.c:508
-nf_hook_entry_hookfn include/linux/netfilter.h:144 [inline]
-nf_hook_bridge_pre net/bridge/br_input.c:272 [inline]
-br_handle_frame+0x4c9/0x940 net/bridge/br_input.c:417
-__netif_receive_skb_core+0xa8a/0x21e0 net/core/dev.c:5417
-__netif_receive_skb_one_core net/core/dev.c:5521 [inline]
-__netif_receive_skb+0x57/0x1b0 net/core/dev.c:5637
-process_backlog+0x21f/0x380 net/core/dev.c:5965
-__napi_poll+0x60/0x3b0 net/core/dev.c:6527
-napi_poll net/core/dev.c:6594 [inline]
-net_rx_action+0x32b/0x750 net/core/dev.c:6727
-__do_softirq+0xc1/0x265 kernel/softirq.c:553
-run_ksoftirqd+0x17/0x20 kernel/softirq.c:921
-smpboot_thread_fn+0x30a/0x4a0 kernel/smpboot.c:164
-kthread+0x1d7/0x210 kernel/kthread.c:388
-ret_from_fork+0x48/0x60 arch/x86/kernel/process.c:147
-ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
-
-read-write to 0xffff8881374b2178 of 8 bytes by interrupt on cpu 0:
-br_handle_frame_finish+0xd4f/0xef0 net/bridge/br_input.c:189
-br_nf_hook_thresh+0x1ed/0x220
-br_nf_pre_routing_finish_ipv6+0x50f/0x540
-NF_HOOK include/linux/netfilter.h:304 [inline]
-br_nf_pre_routing_ipv6+0x1e3/0x2a0 net/bridge/br_netfilter_ipv6.c:178
-br_nf_pre_routing+0x526/0xba0 net/bridge/br_netfilter_hooks.c:508
-nf_hook_entry_hookfn include/linux/netfilter.h:144 [inline]
-nf_hook_bridge_pre net/bridge/br_input.c:272 [inline]
-br_handle_frame+0x4c9/0x940 net/bridge/br_input.c:417
-__netif_receive_skb_core+0xa8a/0x21e0 net/core/dev.c:5417
-__netif_receive_skb_one_core net/core/dev.c:5521 [inline]
-__netif_receive_skb+0x57/0x1b0 net/core/dev.c:5637
-process_backlog+0x21f/0x380 net/core/dev.c:5965
-__napi_poll+0x60/0x3b0 net/core/dev.c:6527
-napi_poll net/core/dev.c:6594 [inline]
-net_rx_action+0x32b/0x750 net/core/dev.c:6727
-__do_softirq+0xc1/0x265 kernel/softirq.c:553
-do_softirq+0x5e/0x90 kernel/softirq.c:454
-__local_bh_enable_ip+0x64/0x70 kernel/softirq.c:381
-__raw_spin_unlock_bh include/linux/spinlock_api_smp.h:167 [inline]
-_raw_spin_unlock_bh+0x36/0x40 kernel/locking/spinlock.c:210
-spin_unlock_bh include/linux/spinlock.h:396 [inline]
-batadv_tt_local_purge+0x1a8/0x1f0 net/batman-adv/translation-table.c:1356
-batadv_tt_purge+0x2b/0x630 net/batman-adv/translation-table.c:3560
-process_one_work kernel/workqueue.c:2630 [inline]
-process_scheduled_works+0x5b8/0xa30 kernel/workqueue.c:2703
-worker_thread+0x525/0x730 kernel/workqueue.c:2784
-kthread+0x1d7/0x210 kernel/kthread.c:388
-ret_from_fork+0x48/0x60 arch/x86/kernel/process.c:147
-ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
-
-value changed: 0x00000000000d7190 -> 0x00000000000d7191
-
-Reported by Kernel Concurrency Sanitizer on:
-CPU: 0 PID: 14848 Comm: kworker/u4:11 Not tainted 6.6.0-rc1-syzkaller-00236-gad8a69f361b9 #0
-
-Fixes: 1c29fc4989bc ("[BRIDGE]: keep track of received multicast packets")
-Reported-by: syzbot <syzkaller@googlegroups.com>
-Signed-off-by: Eric Dumazet <edumazet@google.com>
-Cc: Roopa Prabhu <roopa@nvidia.com>
-Cc: Nikolay Aleksandrov <razor@blackwall.org>
-Cc: bridge@lists.linux-foundation.org
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
-Link: https://lore.kernel.org/r/20230918091351.1356153-1-edumazet@google.com
-Signed-off-by: Paolo Abeni <pabeni@redhat.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Link: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2034099
+Fixes: 804b854d374e ("net: bridge: disable bridge MTU auto tuning if it was set manually")
+Signed-off-by: Trent Lloyd <trent.lloyd@canonical.com>
 ---
- net/bridge/br_forward.c | 4 ++--
- net/bridge/br_input.c   | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ net/bridge/br_netlink.c                       |   3 +
+ .../selftests/drivers/net/bridge/Makefile     |  10 ++
+ .../drivers/net/bridge/bridge-user-mtu.sh     | 148 ++++++++++++++++++
+ .../drivers/net/bridge/net_forwarding_lib.sh  |   1 +
+ 4 files changed, 162 insertions(+)
+ create mode 100644 tools/testing/selftests/drivers/net/bridge/Makefile
+ create mode 100755 tools/testing/selftests/drivers/net/bridge/bridge-user-mtu.sh
+ create mode 120000 tools/testing/selftests/drivers/net/bridge/net_forwarding_lib.sh
 
-diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index 48ddc60b4fbde..c07a47d65c398 100644
---- a/net/bridge/br_forward.c
-+++ b/net/bridge/br_forward.c
-@@ -122,7 +122,7 @@ static int deliver_clone(const struct net_bridge_port *prev,
- 
- 	skb = skb_clone(skb, GFP_ATOMIC);
- 	if (!skb) {
--		dev->stats.tx_dropped++;
-+		DEV_STATS_INC(dev, tx_dropped);
- 		return -ENOMEM;
+diff --git a/net/bridge/br_netlink.c b/net/bridge/br_netlink.c
+index 10f0d33d8ccf..8aff7d077848 100644
+--- a/net/bridge/br_netlink.c
++++ b/net/bridge/br_netlink.c
+@@ -1559,6 +1559,9 @@ static int br_dev_newlink(struct net *src_net, struct net_device *dev,
+ 		spin_unlock_bh(&br->lock);
  	}
  
-@@ -261,7 +261,7 @@ static void maybe_deliver_addr(struct net_bridge_port *p, struct sk_buff *skb,
- 
- 	skb = skb_copy(skb, GFP_ATOMIC);
- 	if (!skb) {
--		dev->stats.tx_dropped++;
-+		DEV_STATS_INC(dev, tx_dropped);
- 		return;
- 	}
- 
-diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 14c2fdc268eac..f3938337ff874 100644
---- a/net/bridge/br_input.c
-+++ b/net/bridge/br_input.c
-@@ -146,12 +146,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
- 			if ((mdst && mdst->host_joined) ||
- 			    br_multicast_is_router(br)) {
- 				local_rcv = true;
--				br->dev->stats.multicast++;
-+				DEV_STATS_INC(br->dev, multicast);
- 			}
- 			mcast_hit = true;
- 		} else {
- 			local_rcv = true;
--			br->dev->stats.multicast++;
-+			DEV_STATS_INC(br->dev, multicast);
- 		}
- 		break;
- 	case BR_PKT_UNICAST:
++	if (tb[IFLA_MTU])
++		br_opt_toggle(br, BROPT_MTU_SET_BY_USER, true);
++
+ 	err = br_changelink(dev, tb, data, extack);
+ 	if (err)
+ 		br_dev_delete(dev, NULL);
+diff --git a/tools/testing/selftests/drivers/net/bridge/Makefile b/tools/testing/selftests/drivers/net/bridge/Makefile
+new file mode 100644
+index 000000000000..23e407c75a7f
+--- /dev/null
++++ b/tools/testing/selftests/drivers/net/bridge/Makefile
+@@ -0,0 +1,10 @@
++# SPDX-License-Identifier: GPL-2.0
++# Makefile for net selftests
++
++TEST_PROGS := \
++	bridge-user-mtu.sh
++
++TEST_FILES := \
++	net_forwarding_lib.sh
++
++include ../../../lib.mk
+diff --git a/tools/testing/selftests/drivers/net/bridge/bridge-user-mtu.sh b/tools/testing/selftests/drivers/net/bridge/bridge-user-mtu.sh
+new file mode 100755
+index 000000000000..07e0ac972b00
+--- /dev/null
++++ b/tools/testing/selftests/drivers/net/bridge/bridge-user-mtu.sh
+@@ -0,0 +1,148 @@
++#!/bin/bash
++# SPDX-License-Identifier: GPL-2.0
++#
++# Ensure a bridge MTU does not automatically change when it has been specified
++# by the user.
++#
++# To run independently:
++# make TARGETS=drivers/net/bridge kselftest
++
++ALL_TESTS="
++	bridge_created_with_user_specified_mtu
++	bridge_created_without_user_specified_mtu
++	bridge_with_late_user_specified_mtu
++"
++
++REQUIRE_MZ=no
++NUM_NETIFS=0
++lib_dir=$(dirname "$0")
++source "${lib_dir}"/net_forwarding_lib.sh
++
++setup_prepare()
++{
++	for i in 1 3 5; do
++		ip link add "vtest${i}" mtu 9000 type veth peer name "vtest${i}b" mtu 9000
++	done
++}
++
++cleanup()
++{
++	for interface in vtest1 vtest3 vtest5 br-test0 br-test1 br-test2; do
++		if [[ -d "/sys/class/net/${interface}" ]]; then
++			ip link del "${interface}" &> /dev/null
++		fi
++	done
++}
++
++check_mtu()
++{
++	cur_mtu=$(<"/sys/class/net/$1/mtu")
++	[[ ${cur_mtu} -eq $2 ]]
++	exit_status=$?
++	return "${exit_status}"
++}
++
++check_bridge_user_specified_mtu()
++{
++	if [[ -z $1 ]]
++	then
++		exit 1
++	fi
++	mtu=$1
++
++	RET=0
++
++	ip link add dev br-test0 mtu "${mtu}" type bridge
++	ip link set br-test0 up
++	check_mtu br-test0 "${mtu}"
++	check_err $? "Bridge was not created with the user-specified MTU"
++
++	check_mtu vtest1 9000
++	check_err $? "vtest1 does not have MTU 9000"
++
++	ip link set dev vtest1 master br-test0
++	check_mtu br-test0 "${mtu}"
++	check_err $? "Bridge user-specified MTU incorrectly changed after adding an interface"
++
++	log_test "Bridge created with user-specified MTU (${mtu})"
++
++	ip link del br-test0
++}
++
++bridge_created_with_user_specified_mtu() {
++	# Check two user-specified MTU values
++	# - 1500: To ensure the default MTU (1500) is not special-cased, you
++	#         should be able to lock a bridge to the default MTU.
++	# - 2000: Ensure bridges are actually created with a user-specified MTU
++	check_bridge_user_specified_mtu 1500
++	check_bridge_user_specified_mtu 2000
++}
++
++bridge_created_without_user_specified_mtu()
++{
++	RET=0
++	ip link add dev br-test1 type bridge
++	ip link set br-test1 up
++	check_mtu br-test1 1500
++	check_err $? "Bridge was not created with the user-specified MTU"
++
++	ip link set dev vtest3 master br-test1
++	check_mtu br-test1 9000
++	check_err $? "Bridge without user-specified MTU did not change MTU"
++
++	log_test "Bridge created without user-specified MTU"
++
++	ip link del br-test1
++}
++
++check_bridge_late_user_specified_mtu()
++{
++	if [[ -z $1 ]]
++	then
++		exit 1
++	fi
++	mtu=$1
++
++	RET=0
++	ip link add dev br-test2 type bridge
++	ip link set br-test2 up
++	check_mtu br-test2 1500
++	check_err $? "Bridge was not created with default MTU (1500)"
++
++	ip link set br-test2 mtu "${mtu}"
++	check_mtu br-test2 "${mtu}"
++	check_err $? "User-specified MTU set after creation was not set"
++	check_mtu vtest5 9000
++	check_err $? "vtest5 does not have MTU 9000"
++
++	ip link set dev vtest5 master br-test2
++	check_mtu br-test2 "${mtu}"
++	check_err $? "Bridge late-specified MTU incorrectly changed after adding an interface"
++
++	log_test "Bridge created without user-specified MTU and changed after (${mtu})"
++
++	ip link del br-test2
++}
++
++bridge_with_late_user_specified_mtu()
++{
++	# Note: Unfortunately auto-tuning is not disabled when you set the MTU
++	# to it's current value, including the default of 1500. The reason is
++	# that dev_set_mtu_ext skips notifying any handlers if the MTU is set
++	# to the current value. Normally that makes sense, but is confusing
++	# since you might expect "ip link set br0 mtu 1500" to lock the MTU to
++	# 1500 but that will only happen if the MTU was not already 1500. So we
++	# only check a non-default value of 2000 here unlike the earlier
++	# bridge_created_with_user_specified_mtu test
++
++	# Check one user-specified MTU value
++	# - 2000: Ensure bridges actually change to a user-specified MTU
++	check_bridge_late_user_specified_mtu 2000
++}
++
++trap cleanup EXIT
++
++setup_prepare
++tests_run
++
++exit "${EXIT_STATUS}"
+diff --git a/tools/testing/selftests/drivers/net/bridge/net_forwarding_lib.sh b/tools/testing/selftests/drivers/net/bridge/net_forwarding_lib.sh
+new file mode 120000
+index 000000000000..39c96828c5ef
+--- /dev/null
++++ b/tools/testing/selftests/drivers/net/bridge/net_forwarding_lib.sh
+@@ -0,0 +1 @@
++../../../net/forwarding/lib.sh
+\ No newline at end of file
 -- 
-2.40.1
-
-
+2.34.1
 
