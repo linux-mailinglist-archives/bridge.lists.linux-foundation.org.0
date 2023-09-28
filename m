@@ -1,90 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351087AFEAE
-	for <lists.bridge@lfdr.de>; Wed, 27 Sep 2023 10:35:08 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14EB27B1C94
+	for <lists.bridge@lfdr.de>; Thu, 28 Sep 2023 14:36:07 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 5F06F61052;
-	Wed, 27 Sep 2023 08:35:06 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 5F06F61052
+	by smtp3.osuosl.org (Postfix) with ESMTP id BA0D56159B;
+	Thu, 28 Sep 2023 12:36:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BA0D56159B
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=UUuOu1DI
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=pU/9Ly49
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9aktjl8fbUXE; Wed, 27 Sep 2023 08:35:05 +0000 (UTC)
+	with ESMTP id bdgm1fW0vsck; Thu, 28 Sep 2023 12:36:03 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id A13926100D;
-	Wed, 27 Sep 2023 08:35:04 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A13926100D
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 103CD61598;
+	Thu, 28 Sep 2023 12:36:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 103CD61598
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 460B4C0DD3;
-	Wed, 27 Sep 2023 08:35:04 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A4C81C008C;
+	Thu, 28 Sep 2023 12:36:02 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D6D41C0032
- for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 08:35:02 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id A8691C0032
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 12:36:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp1.osuosl.org (Postfix) with ESMTP id B19B982861
- for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 08:35:02 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B19B982861
-Authentication-Results: smtp1.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com
- header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256
- header.s=20230601 header.b=UUuOu1DI
+ by smtp3.osuosl.org (Postfix) with ESMTP id 835126111F
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 12:36:00 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 835126111F
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp1.osuosl.org ([127.0.0.1])
- by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id eQoPJztw8X9s for <bridge@lists.linux-foundation.org>;
- Wed, 27 Sep 2023 08:35:01 +0000 (UTC)
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by smtp1.osuosl.org (Postfix) with ESMTPS id 451DD82849
- for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 08:35:01 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 451DD82849
-Received: by mail-wm1-x32c.google.com with SMTP id
- 5b1f17b1804b1-405361bb949so113180385e9.1
- for <bridge@lists.linux-foundation.org>; Wed, 27 Sep 2023 01:35:01 -0700 (PDT)
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id xHzHdXaf50AU for <bridge@lists.linux-foundation.org>;
+ Thu, 28 Sep 2023 12:35:58 +0000 (UTC)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 42C7C60F88
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 12:35:58 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 42C7C60F88
+Received: by mail-wr1-x435.google.com with SMTP id
+ ffacd0b85a97d-32167a4adaaso12289851f8f.1
+ for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 05:35:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1695803699; x=1696408499;
+ d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1695904556; x=1696509356;
  darn=lists.linux-foundation.org; 
  h=content-transfer-encoding:in-reply-to:references:cc:to:from
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=6EzRH8HpBFbjaPAR694gwUNSGbvhoAReDe5zSrIsMYc=;
- b=UUuOu1DIpz+ZvOvluwmWpYFcVNL6+pXD7L9rzuA9hmzHFSb2IXRemucMSnoLU5xwEc
- nq8WDYiDom/6vdkQ23yrgWgG/xbi6I7tU+RW7LW1WiQwXMKFExKACAJLHIxONMlyvU/b
- J2MkNMk4OxikwOCZXc1FHm+V/efrjdRloO5tHzQ+mDOTUkFBHQwKXgwJb6fBJ+cXdxlz
- 8wKL8tXSXmhlqI9VqStLo1GREmO2x8Dm9lrfsKg44ij1dZzApJRwlSR0AqSW58U4wPRK
- sLZb2+eLfptkRJQyAUMhsevwqkPzA8j0lNzUiUMWNjDe0HS05u557Z7LaLDsBF5MyW1i
- Q61Q==
+ bh=OPk2ZzrID8Ruy/e6ubyOdQXDCXqUez+jUlvGZE9CHoc=;
+ b=pU/9Ly4920tGnk+JMFchvVfPAyrPS+m8kTkcWqnOs/uiCIltU1RL2Dnb2lqwQzTvWq
+ 7MFOB9thJPwwQrWwYqV9MNPcP5zoky4mfYM4VIGqv4zVRuUdmQMaoxcBMNyKTrJFj5uA
+ C5QWZcvmvnL9Z9wQeRfnlQM6AvKUnnKJmUodnLakFjKeTHYMOCiwHO6pgG/i7D2Z9DT8
+ EgeJIVAFczZTh2BTIH8bydWN4x/v82AnPNtcTKGAOOpqQVdiRPmpCtzy/WkToDXfztg3
+ 0f0DnCkFYP3mvJoV//n+xGOeHf5f/2O15xU0NykmivoYFM3h61PGeqSxtUbNNiBeSkR2
+ yxoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695803699; x=1696408499;
+ d=1e100.net; s=20230601; t=1695904556; x=1696509356;
  h=content-transfer-encoding:in-reply-to:references:cc:to:from
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6EzRH8HpBFbjaPAR694gwUNSGbvhoAReDe5zSrIsMYc=;
- b=nbiMWGc2V0Dzcu+GY2WTeiffGvRWMRuSA2loDLBCyfzu8Ek0xPzy6vAnIRXIOr1yZc
- pOR8wJRK1NMYYnSvMbK1DID7adhxVxvH6wgVuw1zvFns9pZ2Z7caK1OqmjY3LDYQQKvI
- 3psxPnL+ct4WpFfTWZ3iQVxujqIE7aYqwtM+7JvnmLAUB7g/17bqShFjnf9uj8NUrJqf
- Klhh4xwh870+uB6GXmjl99m4qEIFPM0hUreb0A6xQpomCkgghu2pju1eMV4UpRBuN5IV
- 6kf2W+kd9UAftzB2Ip0goLbjdTe721Ak8D+Q1C+fVF/cyivMtSE6FsbT3NIRhl1u4Qs1
- t9aw==
-X-Gm-Message-State: AOJu0YwtUn+gV5i3xQIkuPJshtUM6KAPj7PNrUtzAgAYAq7J5mol478e
- rD+8tQ8zAHUHOr5Rg3QVpvzElg==
-X-Google-Smtp-Source: AGHT+IFuym5R8Qhlx0EFOvWxJLW34MZWMA5h5QfqPC2FB+6Of5cJKCozwBEzMLcTtleEgixAGH9LwQ==
-X-Received: by 2002:a05:600c:365a:b0:405:36d7:4579 with SMTP id
- y26-20020a05600c365a00b0040536d74579mr1220226wmq.28.1695803699132; 
- Wed, 27 Sep 2023 01:34:59 -0700 (PDT)
+ bh=OPk2ZzrID8Ruy/e6ubyOdQXDCXqUez+jUlvGZE9CHoc=;
+ b=MKPa+G9yHHNd24t/F5LWB+4y0svrBSsLjtTP8oaHtvP0VZn3wePvCL1E0h+jAh1WK4
+ UZ1AQG8ir+bMbGlYGTU762JnJ2M+FpwOyPCe6r8s9hl6bwjrMKBJC5fhumBBoRkvOE7Y
+ EtHGbrUNDeWOWn4WRw76Ym/P8XxwpuUPv9+Bu7nj0ji0x9aGTReDjgWCGp+VUhBv4HZO
+ GqnHjVAh5r/vARXCUKDpC8S1TeAapJ1sbmBvMLW+jNOX9KyWHmHiBMV26yhAe8+Qc447
+ 27w7zSxH5lO/w1XeWIClIk0S9xTNneee+eMn8CmCRgbI/TcsLKfxFumYNqFFP1nSw86y
+ GnLg==
+X-Gm-Message-State: AOJu0YzGhuvx3gHZpCiZPsI1V+bz1A2eRqppZ5bQOG/mLwZ390ZcEpKm
+ j7BIFTSqhwRWl/fBPhHtauSZkg==
+X-Google-Smtp-Source: AGHT+IG+ptZJRlwen4reypsH0+PwYcAGCXwddHDZkmlJP4KAaSG4l2LCo5phyY7HK5it2f8kKzCUsw==
+X-Received: by 2002:a05:6000:985:b0:320:9e7:d525 with SMTP id
+ by5-20020a056000098500b0032009e7d525mr1391079wrb.46.1695904555860; 
+ Thu, 28 Sep 2023 05:35:55 -0700 (PDT)
 Received: from [192.168.0.105] (haunt.prize.volia.net. [93.72.109.136])
  by smtp.gmail.com with ESMTPSA id
- k12-20020a7bc40c000000b003fc04d13242sm20153631wmi.0.2023.09.27.01.34.58
+ iw7-20020a05600c54c700b003fc16ee2864sm18319287wmb.48.2023.09.28.05.35.54
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 27 Sep 2023 01:34:58 -0700 (PDT)
-Message-ID: <9ac9b0bf-88e9-5156-a01c-507ae331dd9e@blackwall.org>
-Date: Wed, 27 Sep 2023 11:34:57 +0300
+ Thu, 28 Sep 2023 05:35:55 -0700 (PDT)
+Message-ID: <2c985516-88a3-9fee-dbd1-134aecd323e5@blackwall.org>
+Date: Thu, 28 Sep 2023 15:35:53 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
@@ -153,13 +149,26 @@ On 9/27/23 11:10, Nikolay Aleksandrov wrote:
 > differently when set to 1500 as you've mentioned. I think they should 
 > act the same, also bridge's fake rtable RTAX_MTU is not set.
 > 
-
-The last part about RTAX_MTU is probably a separate issue. :)
-
 >> Link: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2034099
 >> Fixes: 804b854d374e ("net: bridge: disable bridge MTU auto tuning if 
 >> it was set manually")
 >> Signed-off-by: Trent Lloyd <trent.lloyd@canonical.com>
 >> ---
 > 
+
+So I've been thinking about this and to elaborate - my concerns are two
+first is inconsistency between setting MTU at create vs later when it's 
+the default (i.e. this way disables auto-tuning, while later it doesn't)
+and second is potential breakage as some network managers always set the 
+mtu when creating devices. That would suddenly start disabling 
+auto-tuning and that will surprise some people which expect it to work.
+
+I think if you make them both act the same and leave out that case with 
+a big comment why, this would be good for -net. To fully solve the 
+problem without breaking anyone I think we should add control over the 
+autotuning flag so it can be turned on/off by the users. That would be 
+explicit and will work for all cases, but that is net-next material.
+
+Thanks,
+  Nik
 
