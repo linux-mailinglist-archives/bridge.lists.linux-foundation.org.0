@@ -1,68 +1,67 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1B47B899B
-	for <lists.bridge@lfdr.de>; Wed,  4 Oct 2023 20:27:47 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF7D87B8831
+	for <lists.bridge@lfdr.de>; Wed,  4 Oct 2023 20:13:34 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id D394C42251;
-	Wed,  4 Oct 2023 18:27:43 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D394C42251
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=xUrChtYj
+	by smtp1.osuosl.org (Postfix) with ESMTP id 1290581E15;
+	Wed,  4 Oct 2023 18:13:33 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1290581E15
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=SAc83pbq
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id tx96-3nfmyAD; Wed,  4 Oct 2023 18:27:42 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id A3F8242252;
-	Wed,  4 Oct 2023 18:27:41 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A3F8242252
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id WtV_G3fZl77m; Wed,  4 Oct 2023 18:13:31 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id EF32382193;
+	Wed,  4 Oct 2023 18:13:30 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EF32382193
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 5229CC008C;
-	Wed,  4 Oct 2023 18:27:41 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id AAA09C008C;
+	Wed,  4 Oct 2023 18:13:30 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id D5934C0032
- for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:27:39 +0000 (UTC)
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 1AC1FC0032
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:13:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 9E16E4044F
- for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:27:39 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9E16E4044F
+ by smtp2.osuosl.org (Postfix) with ESMTP id E3788404F7
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:13:28 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E3788404F7
 Authentication-Results: smtp2.osuosl.org;
  dkim=pass (1024-bit key) header.d=linuxfoundation.org
  header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg
- header.b=xUrChtYj
+ header.b=SAc83pbq
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
  by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wo-b8RiHJRpO for <bridge@lists.linux-foundation.org>;
- Wed,  4 Oct 2023 18:27:37 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 927FA4016B
- for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:27:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 927FA4016B
+ with ESMTP id J1kVXa1-px7k for <bridge@lists.linux-foundation.org>;
+ Wed,  4 Oct 2023 18:13:27 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id D7F954016B
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:13:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D7F954016B
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B192C6167C;
- Wed,  4 Oct 2023 18:27:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16350C433CA;
- Wed,  4 Oct 2023 18:27:34 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id B656B61659;
+ Wed,  4 Oct 2023 18:13:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F3F2C433C7;
+ Wed,  4 Oct 2023 18:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1696444055;
- bh=vAm6fDH+6Nq9KjMdGGQfis/8R1nPViYVsc2UaBvWWTc=;
+ s=korg; t=1696443205;
+ bh=/Y4qqHvTqWQMY3wudMHiiIUG/mFmCjdPzcCZb8PyLDc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=xUrChtYjEyNe2ZRcNGmWwPLI5/qN8aYMKMzHXgmvlCmxmmKi3KeMhxJdO4lUqnu3M
- NGsx/2dz02HofzakGT7SJGRecrdkou/4ZiZFF8Cyl/WO3w4+coCvvUz9Etc14HNTSn
- jFIH/oO/rip2l0S5JvCTjbm7CzeOXUhR7gFjqflE=
+ b=SAc83pbq7G2o9LddZEQxiKsAOZhfa1JPdapmXF9z3sZCKIp1QeQHn7VyQz7twbJF9
+ Hb6udQdZGeUwtrfPdJgqyPlcRh+N8OQKxT7Joq/JnDo2348vYFfbaUHUv+pMVAZxOV
+ xe/eNmJdrOR1e0xfVHjoU5kMj3r+NXVCVOF8/z1Y=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Wed,  4 Oct 2023 19:53:52 +0200
-Message-ID: <20231004175233.241968684@linuxfoundation.org>
+Date: Wed,  4 Oct 2023 19:54:07 +0200
+Message-ID: <20231004175220.784507505@linuxfoundation.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231004175229.211487444@linuxfoundation.org>
-References: <20231004175229.211487444@linuxfoundation.org>
+In-Reply-To: <20231004175217.404851126@linuxfoundation.org>
+References: <20231004175217.404851126@linuxfoundation.org>
 User-Agent: quilt/0.67
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -74,7 +73,7 @@ Cc: Sasha Levin <sashal@kernel.org>,
  patches@lists.linux.dev, Eric Dumazet <edumazet@google.com>,
  syzbot <syzkaller@googlegroups.com>, Roopa Prabhu <roopa@nvidia.com>,
  Paolo Abeni <pabeni@redhat.com>
-Subject: [Bridge] [PATCH 6.5 087/321] net: bridge: use DEV_STATS_INC()
+Subject: [Bridge] [PATCH 6.1 074/259] net: bridge: use DEV_STATS_INC()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -89,7 +88,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-6.5-stable review patch.  If anyone has any objections, please let me know.
+6.1-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -184,7 +183,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index 6116eba1bd891..bb1ab53e54e03 100644
+index bd54f17e3c3d8..4e3394a7d7d45 100644
 --- a/net/bridge/br_forward.c
 +++ b/net/bridge/br_forward.c
 @@ -124,7 +124,7 @@ static int deliver_clone(const struct net_bridge_port *prev,
@@ -196,7 +195,7 @@ index 6116eba1bd891..bb1ab53e54e03 100644
  		return -ENOMEM;
  	}
  
-@@ -267,7 +267,7 @@ static void maybe_deliver_addr(struct net_bridge_port *p, struct sk_buff *skb,
+@@ -263,7 +263,7 @@ static void maybe_deliver_addr(struct net_bridge_port *p, struct sk_buff *skb,
  
  	skb = skb_copy(skb, GFP_ATOMIC);
  	if (!skb) {
@@ -206,10 +205,10 @@ index 6116eba1bd891..bb1ab53e54e03 100644
  	}
  
 diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index c34a0b0901b07..c729528b5e85f 100644
+index 68b3e850bcb9d..6bb272894c960 100644
 --- a/net/bridge/br_input.c
 +++ b/net/bridge/br_input.c
-@@ -181,12 +181,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+@@ -164,12 +164,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
  			if ((mdst && mdst->host_joined) ||
  			    br_multicast_is_router(brmctx, skb)) {
  				local_rcv = true;
