@@ -2,66 +2,67 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7D87B8831
-	for <lists.bridge@lfdr.de>; Wed,  4 Oct 2023 20:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAEDC7B8759
+	for <lists.bridge@lfdr.de>; Wed,  4 Oct 2023 20:04:17 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 1290581E15;
-	Wed,  4 Oct 2023 18:13:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 1290581E15
+	by smtp1.osuosl.org (Postfix) with ESMTP id 09BC783216;
+	Wed,  4 Oct 2023 18:04:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 09BC783216
 Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=SAc83pbq
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=YLBzcnf5
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id WtV_G3fZl77m; Wed,  4 Oct 2023 18:13:31 +0000 (UTC)
+	with ESMTP id GNhMyRFYjFgd; Wed,  4 Oct 2023 18:04:15 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id EF32382193;
-	Wed,  4 Oct 2023 18:13:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EF32382193
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 12558831FB;
+	Wed,  4 Oct 2023 18:04:14 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 12558831FB
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id AAA09C008C;
-	Wed,  4 Oct 2023 18:13:30 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id A3796C008C;
+	Wed,  4 Oct 2023 18:04:13 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 1AC1FC0032
- for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:13:29 +0000 (UTC)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 43544C0032
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:04:12 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id E3788404F7
- for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:13:28 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org E3788404F7
-Authentication-Results: smtp2.osuosl.org;
+ by smtp3.osuosl.org (Postfix) with ESMTP id 107F561479
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:04:12 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 107F561479
+Authentication-Results: smtp3.osuosl.org;
  dkim=pass (1024-bit key) header.d=linuxfoundation.org
  header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg
- header.b=SAc83pbq
+ header.b=YLBzcnf5
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id J1kVXa1-px7k for <bridge@lists.linux-foundation.org>;
- Wed,  4 Oct 2023 18:13:27 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by smtp2.osuosl.org (Postfix) with ESMTPS id D7F954016B
- for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:13:26 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org D7F954016B
+Received: from smtp3.osuosl.org ([127.0.0.1])
+ by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id OhVuT9PxVxNM for <bridge@lists.linux-foundation.org>;
+ Wed,  4 Oct 2023 18:04:11 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by smtp3.osuosl.org (Postfix) with ESMTPS id 9943B6132D
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:04:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 9943B6132D
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B656B61659;
- Wed,  4 Oct 2023 18:13:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F3F2C433C7;
- Wed,  4 Oct 2023 18:13:24 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTP id 792DCB81FBA;
+ Wed,  4 Oct 2023 18:04:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A0FEC433C8;
+ Wed,  4 Oct 2023 18:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1696443205;
- bh=/Y4qqHvTqWQMY3wudMHiiIUG/mFmCjdPzcCZb8PyLDc=;
+ s=korg; t=1696442646;
+ bh=Xbjj30rsgR61X1ArDeh7+gS3wOBGatK8pgtYoGGMA50=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SAc83pbq7G2o9LddZEQxiKsAOZhfa1JPdapmXF9z3sZCKIp1QeQHn7VyQz7twbJF9
- Hb6udQdZGeUwtrfPdJgqyPlcRh+N8OQKxT7Joq/JnDo2348vYFfbaUHUv+pMVAZxOV
- xe/eNmJdrOR1e0xfVHjoU5kMj3r+NXVCVOF8/z1Y=
+ b=YLBzcnf5PJ0+IYUw3KAwtljNMo/avABgqx96IDRt5S4PUYdC8Aruko+hLEyVY9PvR
+ rEFgyau8QgTZXPVvXy8oiUIB4WdkBvgPex79r9ctWZYOSreosmUGuYYw9OuwxNDLrR
+ ezhqz5Xd7mkB+rMM4GcR9owLnM64LiBhmwlMrrjc=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Wed,  4 Oct 2023 19:54:07 +0200
-Message-ID: <20231004175220.784507505@linuxfoundation.org>
+Date: Wed,  4 Oct 2023 19:54:49 +0200
+Message-ID: <20231004175206.335671894@linuxfoundation.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231004175217.404851126@linuxfoundation.org>
-References: <20231004175217.404851126@linuxfoundation.org>
+In-Reply-To: <20231004175203.943277832@linuxfoundation.org>
+References: <20231004175203.943277832@linuxfoundation.org>
 User-Agent: quilt/0.67
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -73,7 +74,7 @@ Cc: Sasha Levin <sashal@kernel.org>,
  patches@lists.linux.dev, Eric Dumazet <edumazet@google.com>,
  syzbot <syzkaller@googlegroups.com>, Roopa Prabhu <roopa@nvidia.com>,
  Paolo Abeni <pabeni@redhat.com>
-Subject: [Bridge] [PATCH 6.1 074/259] net: bridge: use DEV_STATS_INC()
+Subject: [Bridge] [PATCH 5.15 058/183] net: bridge: use DEV_STATS_INC()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -88,7 +89,7 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-6.1-stable review patch.  If anyone has any objections, please let me know.
+5.15-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -183,7 +184,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
-index bd54f17e3c3d8..4e3394a7d7d45 100644
+index 3d69ad5463a9f..011bd3c59da19 100644
 --- a/net/bridge/br_forward.c
 +++ b/net/bridge/br_forward.c
 @@ -124,7 +124,7 @@ static int deliver_clone(const struct net_bridge_port *prev,
@@ -205,10 +206,10 @@ index bd54f17e3c3d8..4e3394a7d7d45 100644
  	}
  
 diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
-index 68b3e850bcb9d..6bb272894c960 100644
+index 6743c8a0fe8e1..54bfcdf692732 100644
 --- a/net/bridge/br_input.c
 +++ b/net/bridge/br_input.c
-@@ -164,12 +164,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+@@ -146,12 +146,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
  			if ((mdst && mdst->host_joined) ||
  			    br_multicast_is_router(brmctx, skb)) {
  				local_rcv = true;
