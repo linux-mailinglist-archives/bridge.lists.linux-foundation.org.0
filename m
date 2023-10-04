@@ -1,104 +1,80 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14EB27B1C94
-	for <lists.bridge@lfdr.de>; Thu, 28 Sep 2023 14:36:07 +0200 (CEST)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [IPv6:2605:bc80:3010::137])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1B47B899B
+	for <lists.bridge@lfdr.de>; Wed,  4 Oct 2023 20:27:47 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id BA0D56159B;
-	Thu, 28 Sep 2023 12:36:04 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BA0D56159B
-Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=pU/9Ly49
+	by smtp4.osuosl.org (Postfix) with ESMTP id D394C42251;
+	Wed,  4 Oct 2023 18:27:43 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org D394C42251
+Authentication-Results: smtp4.osuosl.org;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=xUrChtYj
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
-	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bdgm1fW0vsck; Thu, 28 Sep 2023 12:36:03 +0000 (UTC)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id tx96-3nfmyAD; Wed,  4 Oct 2023 18:27:42 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id 103CD61598;
-	Thu, 28 Sep 2023 12:36:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 103CD61598
+	by smtp4.osuosl.org (Postfix) with ESMTPS id A3F8242252;
+	Wed,  4 Oct 2023 18:27:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org A3F8242252
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id A4C81C008C;
-	Thu, 28 Sep 2023 12:36:02 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 5229CC008C;
+	Wed,  4 Oct 2023 18:27:41 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id A8691C0032
- for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 12:36:00 +0000 (UTC)
+Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id D5934C0032
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:27:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 835126111F
- for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 12:36:00 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 835126111F
+ by smtp2.osuosl.org (Postfix) with ESMTP id 9E16E4044F
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:27:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 9E16E4044F
+Authentication-Results: smtp2.osuosl.org;
+ dkim=pass (1024-bit key) header.d=linuxfoundation.org
+ header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg
+ header.b=xUrChtYj
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id xHzHdXaf50AU for <bridge@lists.linux-foundation.org>;
- Thu, 28 Sep 2023 12:35:58 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 42C7C60F88
- for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 12:35:58 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 42C7C60F88
-Received: by mail-wr1-x435.google.com with SMTP id
- ffacd0b85a97d-32167a4adaaso12289851f8f.1
- for <bridge@lists.linux-foundation.org>; Thu, 28 Sep 2023 05:35:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1695904556; x=1696509356;
- darn=lists.linux-foundation.org; 
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=OPk2ZzrID8Ruy/e6ubyOdQXDCXqUez+jUlvGZE9CHoc=;
- b=pU/9Ly4920tGnk+JMFchvVfPAyrPS+m8kTkcWqnOs/uiCIltU1RL2Dnb2lqwQzTvWq
- 7MFOB9thJPwwQrWwYqV9MNPcP5zoky4mfYM4VIGqv4zVRuUdmQMaoxcBMNyKTrJFj5uA
- C5QWZcvmvnL9Z9wQeRfnlQM6AvKUnnKJmUodnLakFjKeTHYMOCiwHO6pgG/i7D2Z9DT8
- EgeJIVAFczZTh2BTIH8bydWN4x/v82AnPNtcTKGAOOpqQVdiRPmpCtzy/WkToDXfztg3
- 0f0DnCkFYP3mvJoV//n+xGOeHf5f/2O15xU0NykmivoYFM3h61PGeqSxtUbNNiBeSkR2
- yxoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695904556; x=1696509356;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=OPk2ZzrID8Ruy/e6ubyOdQXDCXqUez+jUlvGZE9CHoc=;
- b=MKPa+G9yHHNd24t/F5LWB+4y0svrBSsLjtTP8oaHtvP0VZn3wePvCL1E0h+jAh1WK4
- UZ1AQG8ir+bMbGlYGTU762JnJ2M+FpwOyPCe6r8s9hl6bwjrMKBJC5fhumBBoRkvOE7Y
- EtHGbrUNDeWOWn4WRw76Ym/P8XxwpuUPv9+Bu7nj0ji0x9aGTReDjgWCGp+VUhBv4HZO
- GqnHjVAh5r/vARXCUKDpC8S1TeAapJ1sbmBvMLW+jNOX9KyWHmHiBMV26yhAe8+Qc447
- 27w7zSxH5lO/w1XeWIClIk0S9xTNneee+eMn8CmCRgbI/TcsLKfxFumYNqFFP1nSw86y
- GnLg==
-X-Gm-Message-State: AOJu0YzGhuvx3gHZpCiZPsI1V+bz1A2eRqppZ5bQOG/mLwZ390ZcEpKm
- j7BIFTSqhwRWl/fBPhHtauSZkg==
-X-Google-Smtp-Source: AGHT+IG+ptZJRlwen4reypsH0+PwYcAGCXwddHDZkmlJP4KAaSG4l2LCo5phyY7HK5it2f8kKzCUsw==
-X-Received: by 2002:a05:6000:985:b0:320:9e7:d525 with SMTP id
- by5-20020a056000098500b0032009e7d525mr1391079wrb.46.1695904555860; 
- Thu, 28 Sep 2023 05:35:55 -0700 (PDT)
-Received: from [192.168.0.105] (haunt.prize.volia.net. [93.72.109.136])
- by smtp.gmail.com with ESMTPSA id
- iw7-20020a05600c54c700b003fc16ee2864sm18319287wmb.48.2023.09.28.05.35.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Sep 2023 05:35:55 -0700 (PDT)
-Message-ID: <2c985516-88a3-9fee-dbd1-134aecd323e5@blackwall.org>
-Date: Thu, 28 Sep 2023 15:35:53 +0300
+Received: from smtp2.osuosl.org ([127.0.0.1])
+ by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id wo-b8RiHJRpO for <bridge@lists.linux-foundation.org>;
+ Wed,  4 Oct 2023 18:27:37 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by smtp2.osuosl.org (Postfix) with ESMTPS id 927FA4016B
+ for <bridge@lists.linux-foundation.org>; Wed,  4 Oct 2023 18:27:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 927FA4016B
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id B192C6167C;
+ Wed,  4 Oct 2023 18:27:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16350C433CA;
+ Wed,  4 Oct 2023 18:27:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1696444055;
+ bh=vAm6fDH+6Nq9KjMdGGQfis/8R1nPViYVsc2UaBvWWTc=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=xUrChtYjEyNe2ZRcNGmWwPLI5/qN8aYMKMzHXgmvlCmxmmKi3KeMhxJdO4lUqnu3M
+ NGsx/2dz02HofzakGT7SJGRecrdkou/4ZiZFF8Cyl/WO3w4+coCvvUz9Etc14HNTSn
+ jFIH/oO/rip2l0S5JvCTjbm7CzeOXUhR7gFjqflE=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Date: Wed,  4 Oct 2023 19:53:52 +0200
+Message-ID: <20231004175233.241968684@linuxfoundation.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231004175229.211487444@linuxfoundation.org>
+References: <20231004175229.211487444@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-From: Nikolay Aleksandrov <razor@blackwall.org>
-To: Trent Lloyd <trent.lloyd@canonical.com>, Roopa Prabhu <roopa@nvidia.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Shuah Khan <shuah@kernel.org>
-References: <20230927075713.1253681-1-trent.lloyd@canonical.com>
- <3dccacd8-4249-87f8-690c-6083374dc9d1@blackwall.org>
-In-Reply-To: <3dccacd8-4249-87f8-690c-6083374dc9d1@blackwall.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [Bridge] [PATCH] bridge: MTU auto tuning ignores IFLA_MTU on
-	NEWLINK
+Cc: Sasha Levin <sashal@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Nikolay Aleksandrov <razor@blackwall.org>, bridge@lists.linux-foundation.org,
+ patches@lists.linux.dev, Eric Dumazet <edumazet@google.com>,
+ syzbot <syzkaller@googlegroups.com>, Roopa Prabhu <roopa@nvidia.com>,
+ Paolo Abeni <pabeni@redhat.com>
+Subject: [Bridge] [PATCH 6.5 087/321] net: bridge: use DEV_STATS_INC()
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -113,62 +89,143 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 9/27/23 11:10, Nikolay Aleksandrov wrote:
-> On 9/27/23 10:57, Trent Lloyd wrote:
->> Commit 804b854d374e ("net: bridge: disable bridge MTU auto tuning if it
->> was set manually") disabled auto-tuning of the bridge MTU when the MTU
->> was explicitly set by the user, however that would only happen when the
->> MTU was set after creation. This commit ensures auto-tuning is also
->> disabled when the MTU is set during bridge creation.
->>
->> Currently when the br_netdev_ops br_change_mtu function is called, the
->> flag BROPT_MTU_SET_BY_USER is set. However this function is only called
->> when the MTU is changed after interface creation and is not called if
->> the MTU is specified during creation with IFLA_MTU (br_dev_newlink).
->>
->> br_change_mtu also does not get called if the MTU is set to the same
->> value it currently has, which makes it difficult to work around this
->> issue (especially for the default MTU of 1500) as you have to first
->> change the MTU to some other value and then back to the desired value.
->>
-> 
-> Yep, I think I also described this in the commit message of my patch.
-> 
->> Add new selftests to ensure the bridge MTU is handled correctly:
->>   - Bridge created with user-specified MTU (1500)
->>   - Bridge created with user-specified MTU (2000)
->>   - Bridge created without user-specified MTU
->>   - Bridge created with user-specified MTU set after creation (2000)
->>
->> Regression risk: Any workload which erroneously specified an MTU during
->> creation but accidentally relied upon auto-tuning to a different value
->> may be broken by this change.
->>
-> 
-> Hmm, you're right. There's a risk of regression. Also it acts 
-> differently when set to 1500 as you've mentioned. I think they should 
-> act the same, also bridge's fake rtable RTAX_MTU is not set.
-> 
->> Link: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2034099
->> Fixes: 804b854d374e ("net: bridge: disable bridge MTU auto tuning if 
->> it was set manually")
->> Signed-off-by: Trent Lloyd <trent.lloyd@canonical.com>
->> ---
-> 
+6.5-stable review patch.  If anyone has any objections, please let me know.
 
-So I've been thinking about this and to elaborate - my concerns are two
-first is inconsistency between setting MTU at create vs later when it's 
-the default (i.e. this way disables auto-tuning, while later it doesn't)
-and second is potential breakage as some network managers always set the 
-mtu when creating devices. That would suddenly start disabling 
-auto-tuning and that will surprise some people which expect it to work.
+------------------
 
-I think if you make them both act the same and leave out that case with 
-a big comment why, this would be good for -net. To fully solve the 
-problem without breaking anyone I think we should add control over the 
-autotuning flag so it can be turned on/off by the users. That would be 
-explicit and will work for all cases, but that is net-next material.
+From: Eric Dumazet <edumazet@google.com>
 
-Thanks,
-  Nik
+[ Upstream commit 44bdb313da57322c9b3c108eb66981c6ec6509f4 ]
+
+syzbot/KCSAN reported data-races in br_handle_frame_finish() [1]
+This function can run from multiple cpus without mutual exclusion.
+
+Adopt SMP safe DEV_STATS_INC() to update dev->stats fields.
+
+Handles updates to dev->stats.tx_dropped while we are at it.
+
+[1]
+BUG: KCSAN: data-race in br_handle_frame_finish / br_handle_frame_finish
+
+read-write to 0xffff8881374b2178 of 8 bytes by interrupt on cpu 1:
+br_handle_frame_finish+0xd4f/0xef0 net/bridge/br_input.c:189
+br_nf_hook_thresh+0x1ed/0x220
+br_nf_pre_routing_finish_ipv6+0x50f/0x540
+NF_HOOK include/linux/netfilter.h:304 [inline]
+br_nf_pre_routing_ipv6+0x1e3/0x2a0 net/bridge/br_netfilter_ipv6.c:178
+br_nf_pre_routing+0x526/0xba0 net/bridge/br_netfilter_hooks.c:508
+nf_hook_entry_hookfn include/linux/netfilter.h:144 [inline]
+nf_hook_bridge_pre net/bridge/br_input.c:272 [inline]
+br_handle_frame+0x4c9/0x940 net/bridge/br_input.c:417
+__netif_receive_skb_core+0xa8a/0x21e0 net/core/dev.c:5417
+__netif_receive_skb_one_core net/core/dev.c:5521 [inline]
+__netif_receive_skb+0x57/0x1b0 net/core/dev.c:5637
+process_backlog+0x21f/0x380 net/core/dev.c:5965
+__napi_poll+0x60/0x3b0 net/core/dev.c:6527
+napi_poll net/core/dev.c:6594 [inline]
+net_rx_action+0x32b/0x750 net/core/dev.c:6727
+__do_softirq+0xc1/0x265 kernel/softirq.c:553
+run_ksoftirqd+0x17/0x20 kernel/softirq.c:921
+smpboot_thread_fn+0x30a/0x4a0 kernel/smpboot.c:164
+kthread+0x1d7/0x210 kernel/kthread.c:388
+ret_from_fork+0x48/0x60 arch/x86/kernel/process.c:147
+ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
+
+read-write to 0xffff8881374b2178 of 8 bytes by interrupt on cpu 0:
+br_handle_frame_finish+0xd4f/0xef0 net/bridge/br_input.c:189
+br_nf_hook_thresh+0x1ed/0x220
+br_nf_pre_routing_finish_ipv6+0x50f/0x540
+NF_HOOK include/linux/netfilter.h:304 [inline]
+br_nf_pre_routing_ipv6+0x1e3/0x2a0 net/bridge/br_netfilter_ipv6.c:178
+br_nf_pre_routing+0x526/0xba0 net/bridge/br_netfilter_hooks.c:508
+nf_hook_entry_hookfn include/linux/netfilter.h:144 [inline]
+nf_hook_bridge_pre net/bridge/br_input.c:272 [inline]
+br_handle_frame+0x4c9/0x940 net/bridge/br_input.c:417
+__netif_receive_skb_core+0xa8a/0x21e0 net/core/dev.c:5417
+__netif_receive_skb_one_core net/core/dev.c:5521 [inline]
+__netif_receive_skb+0x57/0x1b0 net/core/dev.c:5637
+process_backlog+0x21f/0x380 net/core/dev.c:5965
+__napi_poll+0x60/0x3b0 net/core/dev.c:6527
+napi_poll net/core/dev.c:6594 [inline]
+net_rx_action+0x32b/0x750 net/core/dev.c:6727
+__do_softirq+0xc1/0x265 kernel/softirq.c:553
+do_softirq+0x5e/0x90 kernel/softirq.c:454
+__local_bh_enable_ip+0x64/0x70 kernel/softirq.c:381
+__raw_spin_unlock_bh include/linux/spinlock_api_smp.h:167 [inline]
+_raw_spin_unlock_bh+0x36/0x40 kernel/locking/spinlock.c:210
+spin_unlock_bh include/linux/spinlock.h:396 [inline]
+batadv_tt_local_purge+0x1a8/0x1f0 net/batman-adv/translation-table.c:1356
+batadv_tt_purge+0x2b/0x630 net/batman-adv/translation-table.c:3560
+process_one_work kernel/workqueue.c:2630 [inline]
+process_scheduled_works+0x5b8/0xa30 kernel/workqueue.c:2703
+worker_thread+0x525/0x730 kernel/workqueue.c:2784
+kthread+0x1d7/0x210 kernel/kthread.c:388
+ret_from_fork+0x48/0x60 arch/x86/kernel/process.c:147
+ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
+
+value changed: 0x00000000000d7190 -> 0x00000000000d7191
+
+Reported by Kernel Concurrency Sanitizer on:
+CPU: 0 PID: 14848 Comm: kworker/u4:11 Not tainted 6.6.0-rc1-syzkaller-00236-gad8a69f361b9 #0
+
+Fixes: 1c29fc4989bc ("[BRIDGE]: keep track of received multicast packets")
+Reported-by: syzbot <syzkaller@googlegroups.com>
+Signed-off-by: Eric Dumazet <edumazet@google.com>
+Cc: Roopa Prabhu <roopa@nvidia.com>
+Cc: Nikolay Aleksandrov <razor@blackwall.org>
+Cc: bridge@lists.linux-foundation.org
+Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+Link: https://lore.kernel.org/r/20230918091351.1356153-1-edumazet@google.com
+Signed-off-by: Paolo Abeni <pabeni@redhat.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ net/bridge/br_forward.c | 4 ++--
+ net/bridge/br_input.c   | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/net/bridge/br_forward.c b/net/bridge/br_forward.c
+index 6116eba1bd891..bb1ab53e54e03 100644
+--- a/net/bridge/br_forward.c
++++ b/net/bridge/br_forward.c
+@@ -124,7 +124,7 @@ static int deliver_clone(const struct net_bridge_port *prev,
+ 
+ 	skb = skb_clone(skb, GFP_ATOMIC);
+ 	if (!skb) {
+-		dev->stats.tx_dropped++;
++		DEV_STATS_INC(dev, tx_dropped);
+ 		return -ENOMEM;
+ 	}
+ 
+@@ -267,7 +267,7 @@ static void maybe_deliver_addr(struct net_bridge_port *p, struct sk_buff *skb,
+ 
+ 	skb = skb_copy(skb, GFP_ATOMIC);
+ 	if (!skb) {
+-		dev->stats.tx_dropped++;
++		DEV_STATS_INC(dev, tx_dropped);
+ 		return;
+ 	}
+ 
+diff --git a/net/bridge/br_input.c b/net/bridge/br_input.c
+index c34a0b0901b07..c729528b5e85f 100644
+--- a/net/bridge/br_input.c
++++ b/net/bridge/br_input.c
+@@ -181,12 +181,12 @@ int br_handle_frame_finish(struct net *net, struct sock *sk, struct sk_buff *skb
+ 			if ((mdst && mdst->host_joined) ||
+ 			    br_multicast_is_router(brmctx, skb)) {
+ 				local_rcv = true;
+-				br->dev->stats.multicast++;
++				DEV_STATS_INC(br->dev, multicast);
+ 			}
+ 			mcast_hit = true;
+ 		} else {
+ 			local_rcv = true;
+-			br->dev->stats.multicast++;
++			DEV_STATS_INC(br->dev, multicast);
+ 		}
+ 		break;
+ 	case BR_PKT_UNICAST:
+-- 
+2.40.1
+
+
 
