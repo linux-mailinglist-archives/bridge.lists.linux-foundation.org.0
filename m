@@ -2,104 +2,95 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3537C03B8
-	for <lists.bridge@lfdr.de>; Tue, 10 Oct 2023 20:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36EFF7C0425
+	for <lists.bridge@lfdr.de>; Tue, 10 Oct 2023 21:11:21 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp1.osuosl.org (Postfix) with ESMTP id 6042281DF9;
-	Tue, 10 Oct 2023 18:50:55 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 6042281DF9
+	by smtp1.osuosl.org (Postfix) with ESMTP id B96458186A;
+	Tue, 10 Oct 2023 19:11:19 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org B96458186A
 Authentication-Results: smtp1.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=eFcmCUPo
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20230601 header.b=KTn2NLxz
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp1.osuosl.org ([127.0.0.1])
 	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id litwO5lU793e; Tue, 10 Oct 2023 18:50:54 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp1.osuosl.org (Postfix) with ESMTPS id EBEB781DEC;
-	Tue, 10 Oct 2023 18:50:53 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org EBEB781DEC
+	with ESMTP id 79XRhd9odvwG; Tue, 10 Oct 2023 19:11:18 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 9D30B81699;
+	Tue, 10 Oct 2023 19:11:17 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 9D30B81699
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 81023C0DD3;
-	Tue, 10 Oct 2023 18:50:53 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 38736C0DD3;
+	Tue, 10 Oct 2023 19:11:17 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 67E65C0032
- for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 18:50:52 +0000 (UTC)
+Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 3B486C0032
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 19:11:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 43CF96144F
- for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 18:50:52 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 43CF96144F
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com
- header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256
- header.s=20230601 header.b=eFcmCUPo
+ by smtp4.osuosl.org (Postfix) with ESMTP id 02319404CA
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 19:11:16 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 02319404CA
+Authentication-Results: smtp4.osuosl.org;
+ dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com
+ header.a=rsa-sha256 header.s=20230601 header.b=KTn2NLxz
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 8iOXq_bDP8PN for <bridge@lists.linux-foundation.org>;
- Tue, 10 Oct 2023 18:50:51 +0000 (UTC)
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 376E261376
- for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 18:50:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 376E261376
-Received: by mail-ed1-x530.google.com with SMTP id
- 4fb4d7f45d1cf-533f193fc8dso10599559a12.2
- for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 11:50:50 -0700 (PDT)
+Received: from smtp4.osuosl.org ([127.0.0.1])
+ by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id oIUJn321LYH9 for <bridge@lists.linux-foundation.org>;
+ Tue, 10 Oct 2023 19:11:14 +0000 (UTC)
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
+ [IPv6:2001:4860:4864:20::2f])
+ by smtp4.osuosl.org (Postfix) with ESMTPS id 6C757404A6
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 19:11:14 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 6C757404A6
+Received: by mail-oa1-x2f.google.com with SMTP id
+ 586e51a60fabf-1e1e25ab32bso4120735fac.1
+ for <bridge@lists.linux-foundation.org>; Tue, 10 Oct 2023 12:11:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1696963849; x=1697568649;
+ d=gmail.com; s=20230601; t=1696965073; x=1697569873;
  darn=lists.linux-foundation.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=0gwxmekZJHXGMm97urkxFALVTBAcR9EJxHGti0iGF1E=;
- b=eFcmCUPogmgIm62WVkS4WlBAZtqe9lSMv0IwIP/NQxEBmAscMBDpml3H/84B/me46e
- QkvUBMSXeT4fpAukiyb/9asV9xanz/d8zEvwFin5pNqO1jvmYkY069Ed1Hcl8/cNXC6q
- j5fmm3fK6XlL3NVJTG/OYlpbrdQasRqJRKktSzZFzMnBjV7PvFLxHLSOQXdomyoN+NrR
- MW1bHs898PjQlcbH7FYT/2HUZ7zXvhEc3h6KlKHrKhSPQRDjUIlb4cq8RKZuzLz0jI8E
- yVZC8FhFPOwNr3qmlP0LCjE0XnReBmDyxpL8Shz4eOtmgnvgmsDWQEeAKz0rH7gBLNx/
- nGpA==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=fyqFSwEqGkCcQPfwOFtHoe2igNX6NDHv3HLE4cXNq50=;
+ b=KTn2NLxzv2b+55f63CtOfudc1Cl1gFpWfSsqcqcQJ7lWVfcrskIjUovkM5SlU1jygQ
+ KWQnFIrXhX835hm1I93WQvJ+X9lNP0oKw3R8Gqr6qT8hOLub+TjBdKdjR9qQdPhi9rnI
+ xJvr2GD9fhtFp7msM8S/YmsAbH4AJZMNRtNry2Fee0eB22DlqWCtQ5xOg/JvkiXRFJp0
+ eDvUQDnKfC53jPbNxBI0uYwoPGob4cHTKlANLuAZeOjBIYABurpNGjI6FPgBMFYs9esh
+ O2roV761Ki5ApdgLUa5i+vR5YDV3gW1rWeCWM9BnU8mSctw8zhu+xkJntm4Az+Q01FSn
+ GJhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1696963849; x=1697568649;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0gwxmekZJHXGMm97urkxFALVTBAcR9EJxHGti0iGF1E=;
- b=cLCTa0cSPidH485YiUNPypCBfQq+OvpGj9ppLHZBcilKI4RUOLrKXZfOrYq+YgwRnd
- ZImwvTyT5GD6QbwrM3X/GuIDkFyN/G1R8OiishFmED+ZO+hffbs2WJ6SAYKksb75OPUh
- 9o1lCewX7jAB/YYC99AjJ0K8BZ7jgOvW5R5Nk88ksdh4rUtYPQUfeZPpx3NSqu1QqAch
- yrj1mezFpX4IG96t+8dJB65X+ZVHK+2kZJT1kAQ1DvLaROUuxLifTraXfDtr1Y6RLF/F
- t1ni4JOKXhxR51ICqp6NxRPjXhEEtm2Xju5vKHXgFtLdFk1jwBSPqXyGIKSvRe1J6Fg7
- 1YUg==
-X-Gm-Message-State: AOJu0YxhFvS2nSyU6X+MngI+edh/CVpdIu0Q2b30KbwSX/aAZxc2BiG3
- vJF/tjIIWDneEKTxnJcMVHErVg==
-X-Google-Smtp-Source: AGHT+IHrAowWJlFlabG6aYlY6Zdd0ztf2Dg4p0C675+6jMf7XUJ/dVtAnJOOBpOTMtL0KnCILEZUuw==
-X-Received: by 2002:aa7:d996:0:b0:522:2d1b:5a38 with SMTP id
- u22-20020aa7d996000000b005222d1b5a38mr17428012eds.10.1696963848854; 
- Tue, 10 Oct 2023 11:50:48 -0700 (PDT)
-Received: from [192.168.0.105] (haunt.prize.volia.net. [93.72.109.136])
- by smtp.gmail.com with ESMTPSA id
- j17-20020aa7c411000000b0053635409213sm8044249edq.34.2023.10.10.11.50.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 10 Oct 2023 11:50:48 -0700 (PDT)
-Message-ID: <4bf848f2-94a6-d941-645b-42309def1900@blackwall.org>
-Date: Tue, 10 Oct 2023 21:50:42 +0300
+ d=1e100.net; s=20230601; t=1696965073; x=1697569873;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=fyqFSwEqGkCcQPfwOFtHoe2igNX6NDHv3HLE4cXNq50=;
+ b=JRaCuQUUqfQspomuoytiAe5D/DLCiMcxvpLpnPQFpONTZW19fmwVkSDcBzI6Fh7PkW
+ Vl6WC5WLxeRc6n8EoWMCd6hqpJ+i3adPvqOIrDhIGtIQUVVBo82uA9l/KTxPZ/VC9QhJ
+ Sv1VYaKR3rvhi1bmzAgg6tBs3t5hXlpkKSxKBCeIOHDeUO3r/MjLNZM4/W5fgUsmzHcV
+ N0t96iAYrZNHgyygmvQmI430HCLsjc3gYYYxDf/0KR0alwdFkeAcfZqFPv+4ux+TsAlF
+ coSr00e8rH7pxCJ4I2Ap8nOmo8+twS6vbDJA69UBKz95/1dKEAaTH37jCKQai2tVfyjD
+ 1Tyw==
+X-Gm-Message-State: AOJu0Yx2gY/CJko11vTCeB6jAyCDvyOdTR0fP1rAOTsGNZvmRmPWqwXU
+ bAWiiYUcQjEpl14FPX8p9pQy7rKRpfAWceER1XI=
+X-Google-Smtp-Source: AGHT+IHA026gyiV2khJNHmLjeacEYi97XHNf71Z6PuIojX/ca4RBXJX9I6th2TCzAgCVimrXba+0lUDpsDHOLFLP3J0=
+X-Received: by 2002:a05:6870:1615:b0:1d5:9b34:94e1 with SMTP id
+ b21-20020a056870161500b001d59b3494e1mr21373977oae.59.1696965073165; Tue, 10
+ Oct 2023 12:11:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-To: Amit Cohen <amcohen@nvidia.com>, netdev@vger.kernel.org
 References: <20231009100618.2911374-1-amcohen@nvidia.com>
-Content-Language: en-US
-From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20231009100618.2911374-1-amcohen@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Cc: mlxsw@nvidia.com, dsahern@kernel.org, bridge@lists.linux-foundation.org,
- idosch@nvidia.com, linux-kselftest@vger.kernel.org, roopa@nvidia.com,
- kuba@kernel.org, pabeni@redhat.com, shuah@kernel.org, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 00/11] Extend VXLAN driver to support
- FDB flushing
+ <20231009100618.2911374-12-amcohen@nvidia.com>
+In-Reply-To: <20231009100618.2911374-12-amcohen@nvidia.com>
+From: Scott Wadkins <scottwadkins1@gmail.com>
+Date: Tue, 10 Oct 2023 12:11:00 -0700
+Message-ID: <CAAvfbz8cBQ__5vRqd6=3_6VcyYaHk8LT2qtKYJkFdM7gr6__aQ@mail.gmail.com>
+To: Amit Cohen <amcohen@nvidia.com>
+Content-Type: multipart/alternative; boundary="00000000000061e37206076178dd"
+Cc: netdev@vger.kernel.org, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, roopa@nvidia.com, davem@davemloft.net,
+ mlxsw@nvidia.com, linux-kselftest@vger.kernel.org, idosch@nvidia.com,
+ kuba@kernel.org, pabeni@redhat.com, shuah@kernel.org, dsahern@kernel.org
+Subject: Re: [Bridge] [PATCH net-next 11/11] selftests: fdb_flush: Add test
+ cases for FDB flush with bridge device
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -114,62 +105,353 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-On 10/9/23 13:06, Amit Cohen wrote:
-> The merge commit 92716869375b ("Merge branch 'br-flush-filtering'") added
-> support for FDB flushing in bridge driver. Extend VXLAN driver to support
-> FDB flushing also. Add support for filtering by fields which are relevant
-> for VXLAN FDBs:
-> * Source VNI
-> * Nexthop ID
-> * 'router' flag
-> * Destination VNI
-> * Destination Port
-> * Destination IP
-> 
-> Without this set, flush for VXLAN device fails:
-> $ bridge fdb flush dev vx10
-> RTNETLINK answers: Operation not supported
-> 
-> With this set, such flush works with the relevant arguments, for example:
-> $ bridge fdb flush dev vx10 vni 5000 dst 193.2.2.1
-> < flush all vx10 entries with VNI 5000 and destination IP 193.2.2.1>
-> 
-> Some preparations are required, handle them before adding flushing support
-> in VXLAN driver. See more details in commit messages.
-> 
-> Patch set overview:
-> Patch #1 prepares flush policy to be used by VXLAN driver
-> Patches #2-#3 are preparations in VXLAN driver
-> Patch #4 adds an initial support for flushing in VXLAN driver
-> Patches #5-#9 add support for filtering by several attributes
-> Patch #10 adds a test for FDB flush with VXLAN
-> Patch #11 extends the test to check FDB flush with bridge
-> 
-> Amit Cohen (11):
->    net: Handle bulk delete policy in bridge driver
->    vxlan: vxlan_core: Make vxlan_flush() more generic for future use
->    vxlan: vxlan_core: Do not skip default entry in vxlan_flush() by
->      default
->    vxlan: vxlan_core: Add support for FDB flush
->    vxlan: vxlan_core: Support FDB flushing by source VNI
->    vxlan: vxlan_core: Support FDB flushing by nexthop ID
->    vxlan: vxlan_core: Support FDB flushing by destination VNI
->    vxlan: vxlan_core: Support FDB flushing by destination port
->    vxlan: vxlan_core: Support FDB flushing by destination IP
->    selftests: Add test cases for FDB flush with VXLAN device
->    selftests: fdb_flush: Add test cases for FDB flush with bridge device
-> 
->   drivers/net/vxlan/vxlan_core.c           | 207 +++++-
->   include/linux/netdevice.h                |   8 +-
->   net/bridge/br_fdb.c                      |  29 +-
->   net/bridge/br_private.h                  |   3 +-
->   net/core/rtnetlink.c                     |  27 +-
->   tools/testing/selftests/net/Makefile     |   1 +
->   tools/testing/selftests/net/fdb_flush.sh | 812 +++++++++++++++++++++++
->   7 files changed, 1049 insertions(+), 38 deletions(-)
->   create mode 100755 tools/testing/selftests/net/fdb_flush.sh
-> 
+--00000000000061e37206076178dd
+Content-Type: text/plain; charset="UTF-8"
 
-Nice use of the flush api. :)
-The set looks good to me. For the set:
-Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
+On Tue, Oct 10, 2023, 11:53 AM Amit Cohen via Bridge <
+bridge@lists.linux-foundation.org> wrote:
+
+> Extend the test to check flushing with bridge device, test flush by device
+> and by VID.
+>
+> Add test case for flushing with "self" and "master" and attributes that are
+> supported only in one driver, this is unrecommended configuration, check it
+> to verify that user gets an error.
+>
+> Signed-off-by: Amit Cohen <amcohen@nvidia.com>
+> ---
+>  tools/testing/selftests/net/fdb_flush.sh | 96 ++++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>
+> diff --git a/tools/testing/selftests/net/fdb_flush.sh
+> b/tools/testing/selftests/net/fdb_flush.sh
+> index 3050b031f46d..90e7a29e0476 100755
+> --- a/tools/testing/selftests/net/fdb_flush.sh
+> +++ b/tools/testing/selftests/net/fdb_flush.sh
+> @@ -32,6 +32,9 @@ TESTS="
+>         $FLUSH_BY_FLAG_TESTS
+>         vxlan_test_flush_by_several_args
+>         vxlan_test_flush_by_remote_attributes
+> +       bridge_test_flush_by_dev
+> +       bridge_test_flush_by_vlan
+> +       bridge_vxlan_test_flush
+>  "
+>
+>  : ${VERBOSE:=0}
+> @@ -647,6 +650,93 @@ vxlan_test_flush_by_remote_attributes()
+>         log_test $? 0 "Check how many entries were flushed"
+>  }
+>
+> +bridge_test_flush_by_dev()
+> +{
+> +       local dst_ip=192.0.2.1
+> +       local br0_n_ent_t0=$($BRIDGE fdb show dev br0 | wc -l)
+> +       local br1_n_ent_t0=$($BRIDGE fdb show dev br1 | wc -l)
+> +
+> +       fdb_add_mac_pool_1 br0 dst $dst_ip
+> +       fdb_add_mac_pool_2 br1 dst $dst_ip
+> +
+> +       # Each 'fdb add' command adds one extra entry in the bridge with
+> the
+> +       # default vlan.
+> +       local exp_br0_n_ent=$(($br0_n_ent_t0 + 2 * $mac_pool_1_len))
+> +       local exp_br1_n_ent=$(($br1_n_ent_t0 + 2 * $mac_pool_2_len))
+> +
+> +       fdb_check_n_entries_by_dev_filter br0 $exp_br0_n_ent
+> +       fdb_check_n_entries_by_dev_filter br1 $exp_br1_n_ent
+> +
+> +       run_cmd "$BRIDGE fdb flush dev br0"
+> +       log_test $? 0 "Flush FDB by dev br0"
+> +
+> +       # The default entry should not be flushed
+> +       fdb_check_n_entries_by_dev_filter br0 1
+> +       log_test $? 0 "Flush FDB by dev br0 - test br0 entries"
+> +
+> +       fdb_check_n_entries_by_dev_filter br1 $exp_br1_n_ent
+> +       log_test $? 0 "Flush FDB by dev br0 - test br1 entries"
+> +}
+> +
+> +bridge_test_flush_by_vlan()
+> +{
+> +       local vlan_1=10
+> +       local vlan_2=20
+> +       local vlan_1_ent_t0
+> +       local vlan_2_ent_t0
+> +
+> +       $BRIDGE vlan add vid $vlan_1 dev br0 self
+> +       $BRIDGE vlan add vid $vlan_2 dev br0 self
+> +
+> +       vlan_1_ent_t0=$($BRIDGE fdb show dev br0 | grep "vlan $vlan_1" |
+> wc -l)
+> +       vlan_2_ent_t0=$($BRIDGE fdb show dev br0 | grep "vlan $vlan_2" |
+> wc -l)
+> +
+> +       fdb_add_mac_pool_1 br0 vlan $vlan_1
+> +       fdb_add_mac_pool_2 br0 vlan $vlan_2
+> +
+> +       local exp_vlan_1_ent=$(($vlan_1_ent_t0 + $mac_pool_1_len))
+> +       local exp_vlan_2_ent=$(($vlan_2_ent_t0 + $mac_pool_2_len))
+> +
+> +       fdb_check_n_entries_by_dev_filter br0 $exp_vlan_1_ent vlan $vlan_1
+> +       fdb_check_n_entries_by_dev_filter br0 $exp_vlan_2_ent vlan $vlan_2
+> +
+> +       run_cmd "$BRIDGE fdb flush dev br0 vlan $vlan_1"
+> +       log_test $? 0 "Flush FDB by dev br0 and vlan $vlan_1"
+> +
+> +       fdb_check_n_entries_by_dev_filter br0 0 vlan $vlan_1
+> +       log_test $? 0 "Test entries with vlan $vlan_1"
+> +
+> +       fdb_check_n_entries_by_dev_filter br0 $exp_vlan_2_ent vlan $vlan_2
+> +       log_test $? 0 "Test entries with vlan $vlan_2"
+> +}
+> +
+> +bridge_vxlan_test_flush()
+> +{
+> +       local vlan_1=10
+> +       local dst_ip=192.0.2.1
+> +
+> +       $IP link set dev vx10 master br0
+> +       $BRIDGE vlan add vid $vlan_1 dev br0 self
+> +       $BRIDGE vlan add vid $vlan_1 dev vx10
+> +
+> +       fdb_add_mac_pool_1 vx10 vni 3000 dst $dst_ip self master
+> +
+> +       fdb_check_n_entries_by_dev_filter vx10 $mac_pool_1_len vlan $vlan_1
+> +       fdb_check_n_entries_by_dev_filter vx10 $mac_pool_1_len vni 3000
+> +
+> +       # Such command should fail in VXLAN driver as vlan is not
+> supported,
+> +       # but the command should flush the entries in the bridge
+> +       run_cmd "$BRIDGE fdb flush dev vx10 vlan $vlan_1 master self"
+> +       log_test $? 255 \
+> +               "Flush FDB by dev vx10, vlan $vlan_1, master and self"
+> +
+> +       fdb_check_n_entries_by_dev_filter vx10 0 vlan $vlan_1
+> +       log_test $? 0 "Test entries with vlan $vlan_1"
+> +
+> +       fdb_check_n_entries_by_dev_filter vx10 $mac_pool_1_len dst $dst_ip
+> +       log_test $? 0 "Test entries with dst $dst_ip"
+> +}
+> +
+>  setup()
+>  {
+>         IP="ip -netns ns1"
+> @@ -656,10 +746,16 @@ setup()
+>
+>         $IP link add name vx10 type vxlan id 1000 dstport "$VXPORT"
+>         $IP link add name vx20 type vxlan id 2000 dstport "$VXPORT"
+> +
+> +       $IP link add br0 type bridge vlan_filtering 1
+> +       $IP link add br1 type bridge vlan_filtering 1
+>  }
+>
+>  cleanup()
+>  {
+> +       $IP link del dev br1
+> +       $IP link del dev br0
+> +
+>         $IP link del dev vx20
+>         $IP link del dev vx10
+>
+> --
+> 2.40.1
+>
+>
+
+--00000000000061e37206076178dd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Tue, Oct 10, 2023, 11:53 AM Amit Cohen via Bridge &lt;=
+<a href=3D"mailto:bridge@lists.linux-foundation.org">bridge@lists.linux-fou=
+ndation.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Extend t=
+he test to check flushing with bridge device, test flush by device<br>
+and by VID.<br>
+<br>
+Add test case for flushing with &quot;self&quot; and &quot;master&quot; and=
+ attributes that are<br>
+supported only in one driver, this is unrecommended configuration, check it=
+<br>
+to verify that user gets an error.<br>
+<br>
+Signed-off-by: Amit Cohen &lt;<a href=3D"mailto:amcohen@nvidia.com" target=
+=3D"_blank" rel=3D"noreferrer">amcohen@nvidia.com</a>&gt;<br>
+---<br>
+=C2=A0tools/testing/selftests/net/fdb_flush.sh | 96 +++++++++++++++++++++++=
++<br>
+=C2=A01 file changed, 96 insertions(+)<br>
+<br>
+diff --git a/tools/testing/selftests/net/fdb_flush.sh b/tools/testing/selft=
+ests/net/fdb_flush.sh<br>
+index 3050b031f46d..90e7a29e0476 100755<br>
+--- a/tools/testing/selftests/net/fdb_flush.sh<br>
++++ b/tools/testing/selftests/net/fdb_flush.sh<br>
+@@ -32,6 +32,9 @@ TESTS=3D&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $FLUSH_BY_FLAG_TESTS<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 vxlan_test_flush_by_several_args<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 vxlan_test_flush_by_remote_attributes<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0bridge_test_flush_by_dev<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0bridge_test_flush_by_vlan<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0bridge_vxlan_test_flush<br>
+=C2=A0&quot;<br>
+<br>
+=C2=A0: ${VERBOSE:=3D0}<br>
+@@ -647,6 +650,93 @@ vxlan_test_flush_by_remote_attributes()<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 log_test $? 0 &quot;Check how many entries were=
+ flushed&quot;<br>
+=C2=A0}<br>
+<br>
++bridge_test_flush_by_dev()<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local dst_ip=3D192.0.2.1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local br0_n_ent_t0=3D$($BRIDGE fdb show dev br0=
+ | wc -l)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local br1_n_ent_t0=3D$($BRIDGE fdb show dev br1=
+ | wc -l)<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_add_mac_pool_1 br0 dst $dst_ip<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_add_mac_pool_2 br1 dst $dst_ip<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# Each &#39;fdb add&#39; command adds one extra=
+ entry in the bridge with the<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# default vlan.<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local exp_br0_n_ent=3D$(($br0_n_ent_t0 + 2 * $m=
+ac_pool_1_len))<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local exp_br1_n_ent=3D$(($br1_n_ent_t0 + 2 * $m=
+ac_pool_2_len))<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br0 $exp_br0_=
+n_ent<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br1 $exp_br1_=
+n_ent<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0run_cmd &quot;$BRIDGE fdb flush dev br0&quot;<b=
+r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Flush FDB by dev br0&quot;<=
+br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# The default entry should not be flushed<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br0 1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Flush FDB by dev br0 - test=
+ br0 entries&quot;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br1 $exp_br1_=
+n_ent<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Flush FDB by dev br0 - test=
+ br1 entries&quot;<br>
++}<br>
++<br>
++bridge_test_flush_by_vlan()<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local vlan_1=3D10<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local vlan_2=3D20<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local vlan_1_ent_t0<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local vlan_2_ent_t0<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$BRIDGE vlan add vid $vlan_1 dev br0 self<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$BRIDGE vlan add vid $vlan_2 dev br0 self<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0vlan_1_ent_t0=3D$($BRIDGE fdb show dev br0 | gr=
+ep &quot;vlan $vlan_1&quot; | wc -l)<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0vlan_2_ent_t0=3D$($BRIDGE fdb show dev br0 | gr=
+ep &quot;vlan $vlan_2&quot; | wc -l)<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_add_mac_pool_1 br0 vlan $vlan_1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_add_mac_pool_2 br0 vlan $vlan_2<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local exp_vlan_1_ent=3D$(($vlan_1_ent_t0 + $mac=
+_pool_1_len))<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local exp_vlan_2_ent=3D$(($vlan_2_ent_t0 + $mac=
+_pool_2_len))<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br0 $exp_vlan=
+_1_ent vlan $vlan_1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br0 $exp_vlan=
+_2_ent vlan $vlan_2<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0run_cmd &quot;$BRIDGE fdb flush dev br0 vlan $v=
+lan_1&quot;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Flush FDB by dev br0 and vl=
+an $vlan_1&quot;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br0 0 vlan $v=
+lan_1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Test entries with vlan $vla=
+n_1&quot;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter br0 $exp_vlan=
+_2_ent vlan $vlan_2<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Test entries with vlan $vla=
+n_2&quot;<br>
++}<br>
++<br>
++bridge_vxlan_test_flush()<br>
++{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local vlan_1=3D10<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0local dst_ip=3D192.0.2.1<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$IP link set dev vx10 master br0<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$BRIDGE vlan add vid $vlan_1 dev br0 self<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$BRIDGE vlan add vid $vlan_1 dev vx10<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_add_mac_pool_1 vx10 vni 3000 dst $dst_ip se=
+lf master<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter vx10 $mac_poo=
+l_1_len vlan $vlan_1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter vx10 $mac_poo=
+l_1_len vni 3000<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# Such command should fail in VXLAN driver as v=
+lan is not supported,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# but the command should flush the entries in t=
+he bridge<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0run_cmd &quot;$BRIDGE fdb flush dev vx10 vlan $=
+vlan_1 master self&quot;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 255 \<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;Flush FDB by =
+dev vx10, vlan $vlan_1, master and self&quot;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter vx10 0 vlan $=
+vlan_1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Test entries with vlan $vla=
+n_1&quot;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0fdb_check_n_entries_by_dev_filter vx10 $mac_poo=
+l_1_len dst $dst_ip<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0log_test $? 0 &quot;Test entries with dst $dst_=
+ip&quot;<br>
++}<br>
++<br>
+=C2=A0setup()<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 IP=3D&quot;ip -netns ns1&quot;<br>
+@@ -656,10 +746,16 @@ setup()<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $IP link add name vx10 type vxlan id 1000 dstpo=
+rt &quot;$VXPORT&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $IP link add name vx20 type vxlan id 2000 dstpo=
+rt &quot;$VXPORT&quot;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$IP link add br0 type bridge vlan_filtering 1<b=
+r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$IP link add br1 type bridge vlan_filtering 1<b=
+r>
+=C2=A0}<br>
+<br>
+=C2=A0cleanup()<br>
+=C2=A0{<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$IP link del dev br1<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0$IP link del dev br0<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $IP link del dev vx20<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 $IP link del dev vx10<br>
+<br>
+-- <br>
+2.40.1<br>
+<br>
+</blockquote></div>
+
+--00000000000061e37206076178dd--
