@@ -1,90 +1,86 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp4.osuosl.org (smtp4.osuosl.org [140.211.166.137])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76EE07CBE65
-	for <lists.bridge@lfdr.de>; Tue, 17 Oct 2023 11:05:24 +0200 (CEST)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73ACD7CBE6C
+	for <lists.bridge@lfdr.de>; Tue, 17 Oct 2023 11:05:47 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp4.osuosl.org (Postfix) with ESMTP id 75AEE4179A;
-	Tue, 17 Oct 2023 09:05:22 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 75AEE4179A
-Authentication-Results: smtp4.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=ndYyrG+j
+	by smtp1.osuosl.org (Postfix) with ESMTP id C93B281799;
+	Tue, 17 Oct 2023 09:05:45 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org C93B281799
+Authentication-Results: smtp1.osuosl.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=bBPDx/fW
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp4.osuosl.org ([127.0.0.1])
-	by localhost (smtp4.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id b0ovbEJwjkOY; Tue, 17 Oct 2023 09:05:21 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp4.osuosl.org (Postfix) with ESMTPS id 175A8417CE;
-	Tue, 17 Oct 2023 09:05:21 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp4.osuosl.org 175A8417CE
+Received: from smtp1.osuosl.org ([127.0.0.1])
+	by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Gj6c7_oksXyr; Tue, 17 Oct 2023 09:05:45 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
+	by smtp1.osuosl.org (Postfix) with ESMTPS id 4817D81211;
+	Tue, 17 Oct 2023 09:05:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4817D81211
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id C350EC0DD3;
-	Tue, 17 Oct 2023 09:05:20 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 0018AC0DD3;
+	Tue, 17 Oct 2023 09:05:43 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 234BBC0032
- for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 09:05:19 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7F41AC0032
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 09:05:42 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id E4B6A60D58
- for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 09:05:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E4B6A60D58
-Authentication-Results: smtp3.osuosl.org;
- dkim=pass (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com
- header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256
- header.s=20230601 header.b=ndYyrG+j
+ by smtp1.osuosl.org (Postfix) with ESMTP id 59C5181000
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 09:05:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 59C5181000
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id eySU4tjfpUtg for <bridge@lists.linux-foundation.org>;
- Tue, 17 Oct 2023 09:05:18 +0000 (UTC)
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 1A5D660C1A
- for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 09:05:18 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 1A5D660C1A
-Received: by mail-wm1-x32b.google.com with SMTP id
- 5b1f17b1804b1-40776b20031so30720255e9.0
- for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 02:05:17 -0700 (PDT)
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id EpsUTZ51HiOG for <bridge@lists.linux-foundation.org>;
+ Tue, 17 Oct 2023 09:05:41 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 4DFAF811F9
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 09:05:41 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 4DFAF811F9
+Received: by mail-lf1-x134.google.com with SMTP id
+ 2adb3069b0e04-5079f3f3d7aso4986254e87.1
+ for <bridge@lists.linux-foundation.org>; Tue, 17 Oct 2023 02:05:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1697533516; x=1698138316;
+ d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1697533539; x=1698138339;
  darn=lists.linux-foundation.org; 
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=cQobCh/g2E6pWLZRUcsnyARFUdw85tRKijfEAX7VrEw=;
- b=ndYyrG+jkTgpf9sbGXdDItdnlyQ++vUWyc0DlynphO8KHXC5+U+A0XIibTdhlt+yj9
- IWgr0bglcHblez3cKw/Y5YoZ7tyGNLQpfeMhxknlcMdwLq06mCAzgcjPJVbCxGmpXQqL
- 6XlMRyLVsnruox7fur/iY5KhjVNOUuJ5+aucBvtbqRKK855Ay2cQaQCTouE129cIkWMp
- uUxumasPraeu7ptqgGyHAQuwQVwcg1Ug1UA8EaptTOMNt9agYEA1NpUmSf57694Adwmt
- Ok+RGPzcoJaX2ywI9fPisGisU7UjzcfVBsnnbq53qW2rLQXpF7VZnsX+OrX185dBNB4w
- B+UA==
+ bh=iZa4jSa9DeYf42hNR0hEqm7HskiNNDncoqwV74WZCOY=;
+ b=bBPDx/fWNdYMtSFNXybNiKEErtbZzwa6s39jRZ3R1W39XwNSbIa7SrLDjO8ZjmnvIM
+ 9jj/4JAhpg9vzLuCk3JJJY7GgoBWAH1z6mI0AqshFtFCFcCBs1oonoLl3wiuDGfdwxUL
+ vtoCMuCaaXJdvyiYJ5e1yKFNkqvX8JzXWgQikcP71ImnQRcN2EvvNi3C7Hl4k7Qj9Ddf
+ gVtne4e+d488Tw9rmAqt4vaNrDlk2Y4MtEK2XB4+/SafjngERz6V/kr7TrgTpRh18XZE
+ 27ey1rV4XzuBrhUcWUkOGoRjAtRAW4+xoQoqGcC7MwEocm72CTjVfnyMa75KjWa5xw/P
+ G6HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1697533516; x=1698138316;
+ d=1e100.net; s=20230601; t=1697533539; x=1698138339;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=cQobCh/g2E6pWLZRUcsnyARFUdw85tRKijfEAX7VrEw=;
- b=Z9WPa47aAKvK2mGE08n8nKNxycodgUK52iVaIsrIANd8/2Op3woafLFDPsk7oChdpF
- lVNGs+4VLKDtTSjCqSPUt1EMnj8pHs/lvs9g70LqupaDPalvi9EthnFPu4anmNOCuXv5
- d6Rgscee2pD+MBCSWcIAO9qREnphnZuJVl7iqBQMan1BfOdOChc2S/TEwA9mE5UZQub5
- mpMk2sh+Gq1jDBcKhcl8U3o3lgrinpwp32wbwAxWKRmle3QqS12Xj3FvXDJmpSHRcSV5
- wHK6Plr/Re0QtDNjxGdsnTRutrNv8Yao7q3896L4se843rVP/vdUV1rK6lKek4Nj0HQ6
- MoTg==
-X-Gm-Message-State: AOJu0YyeGXVgZv67qBDvBUPrLxSS6l5NqRoZ0wHwJitVNV0S/Pk4wIr3
- Z56+F8PKhrbdvP0gSsWoJSDaQA==
-X-Google-Smtp-Source: AGHT+IF0nPcEY5QCyjfcGXmi5f3ifq4uFLj55kLfSAzlvZhLPfQaDvBmGoIMXsJrBvIbuQB70/dPqA==
-X-Received: by 2002:a05:600c:468d:b0:407:566c:a9e3 with SMTP id
- p13-20020a05600c468d00b00407566ca9e3mr1160630wmo.21.1697533516073; 
- Tue, 17 Oct 2023 02:05:16 -0700 (PDT)
+ bh=iZa4jSa9DeYf42hNR0hEqm7HskiNNDncoqwV74WZCOY=;
+ b=fFlemT0VbaXdDKeV8GgHDlUSSgw4zXTvSD00Wr5x7nUmIQqBjNFnDNVtW6Salqmqd9
+ AAE9s+LNP/rlJomUxzvcgVJTcjx4mTpbnZ1+4FUmN1J3UJAG6LtyZKWm9uuWKscr+JXX
+ Sj3ZG93KVOMrD9ik3uCJOmsUnjzqpz+D3Tp8eZRz352aroba6cjgLwNw5YbCncw7CfgI
+ vwDsi2/tNe/Ab1QfdIAz5b5DCbMIcxTzpR+KU7c/b0evoBHmQqZA2BJKtqJwObEpQnL8
+ alQxQ7eKdWJKd1X9ADPh2g1y4sGgUzr2G8UiuAmY4vfhCmhOtGI5PCvNMPZR3RzA0HsM
+ fq8g==
+X-Gm-Message-State: AOJu0YyTIJxqihBQLIAYbV727PIP4L5GAFSihro+BnuXCkHMSk/ZVyBf
+ LZB327VLOfxl95aa3MHphSHbDg==
+X-Google-Smtp-Source: AGHT+IE8dxfJKfC4+jZzTbx5iphUVdczDo3vmj167ld5bxxc1ryi87YlDVraI6DOFRC+EbBkS1qEfA==
+X-Received: by 2002:ac2:4893:0:b0:504:7e12:4846 with SMTP id
+ x19-20020ac24893000000b005047e124846mr1291198lfc.30.1697533539195; 
+ Tue, 17 Oct 2023 02:05:39 -0700 (PDT)
 Received: from [192.168.0.106] (haunt.prize.volia.net. [93.72.109.136])
  by smtp.gmail.com with ESMTPSA id
- bg5-20020a05600c3c8500b00405bbfd5d16sm1371218wmb.7.2023.10.17.02.05.14
+ w11-20020a5d608b000000b0031f3ad17b2csm1198396wrt.52.2023.10.17.02.05.38
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Oct 2023 02:05:15 -0700 (PDT)
-Message-ID: <48fcf444-f411-b4de-7ece-9ec2dfe89d47@blackwall.org>
-Date: Tue, 17 Oct 2023 12:05:14 +0300
+ Tue, 17 Oct 2023 02:05:38 -0700 (PDT)
+Message-ID: <2ba8e4fd-7dd1-0a6d-fc83-be8595cf7bef@blackwall.org>
+Date: Tue, 17 Oct 2023 12:05:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
@@ -92,15 +88,15 @@ Content-Language: en-US
 To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
  bridge@lists.linux-foundation.org
 References: <20231016131259.3302298-1-idosch@nvidia.com>
- <20231016131259.3302298-3-idosch@nvidia.com>
+ <20231016131259.3302298-4-idosch@nvidia.com>
 From: Nikolay Aleksandrov <razor@blackwall.org>
-In-Reply-To: <20231016131259.3302298-3-idosch@nvidia.com>
+In-Reply-To: <20231016131259.3302298-4-idosch@nvidia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Cc: mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com, kuba@kernel.org,
  pabeni@redhat.com, davem@davemloft.net
-Subject: Re: [Bridge] [PATCH net-next 02/13] bridge: mcast: Account for
- missing attributes
+Subject: Re: [Bridge] [PATCH net-next 03/13] bridge: mcast: Factor out a
+ helper for PG entry size calculation
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -116,42 +112,67 @@ Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
 On 10/16/23 16:12, Ido Schimmel wrote:
-> The 'MDBA_MDB' and 'MDBA_MDB_ENTRY' nest attributes are not accounted
-> for when calculating the size of MDB notifications. Add them along with
-> comments for existing attributes.
+> Currently, netlink notifications are sent for individual port group
+> entries and not for the entire MDB entry itself.
+> 
+> Subsequent patches are going to add MDB get support which will require
+> the bridge driver to reply with an entire MDB entry.
+> 
+> Therefore, as a preparation, factor out an helper to calculate the size
+> of an individual port group entry. When determining the size of the
+> reply this helper will be invoked for each port group entry in the MDB
+> entry.
+> 
+> No functional changes intended.
 > 
 > Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 > ---
->   net/bridge/br_mdb.c | 15 +++++++++++----
->   1 file changed, 11 insertions(+), 4 deletions(-)
+>   net/bridge/br_mdb.c | 20 +++++++++++++-------
+>   1 file changed, 13 insertions(+), 7 deletions(-)
 > 
 > diff --git a/net/bridge/br_mdb.c b/net/bridge/br_mdb.c
-> index fb58bb1b60e8..08de94bffc12 100644
+> index 08de94bffc12..42983f6a0abd 100644
 > --- a/net/bridge/br_mdb.c
 > +++ b/net/bridge/br_mdb.c
-> @@ -452,11 +452,18 @@ static int nlmsg_populate_mdb_fill(struct sk_buff *skb,
+> @@ -450,18 +450,13 @@ static int nlmsg_populate_mdb_fill(struct sk_buff *skb,
+>   	return -EMSGSIZE;
+>   }
 >   
->   static size_t rtnl_mdb_nlmsg_size(struct net_bridge_port_group *pg)
+> -static size_t rtnl_mdb_nlmsg_size(struct net_bridge_port_group *pg)
+> +static size_t rtnl_mdb_nlmsg_pg_size(const struct net_bridge_port_group *pg)
 >   {
-> -	size_t nlmsg_size = NLMSG_ALIGN(sizeof(struct br_port_msg)) +
-> -			    nla_total_size(sizeof(struct br_mdb_entry)) +
-> -			    nla_total_size(sizeof(u32));
 >   	struct net_bridge_group_src *ent;
-> -	size_t addr_size = 0;
-> +	size_t nlmsg_size, addr_size = 0;
-> +
-> +	nlmsg_size = NLMSG_ALIGN(sizeof(struct br_port_msg)) +
-> +		     /* MDBA_MDB */
-> +		     nla_total_size(0) +
-> +		     /* MDBA_MDB_ENTRY */
-> +		     nla_total_size(0) +
-> +		     /* MDBA_MDB_ENTRY_INFO */
-> +		     nla_total_size(sizeof(struct br_mdb_entry)) +
-> +		     /* MDBA_MDB_EATTR_TIMER */
-> +		     nla_total_size(sizeof(u32));
+>   	size_t nlmsg_size, addr_size = 0;
 >   
->   	if (!pg)
->   		goto out;
+> -	nlmsg_size = NLMSG_ALIGN(sizeof(struct br_port_msg)) +
+> -		     /* MDBA_MDB */
+> -		     nla_total_size(0) +
+> -		     /* MDBA_MDB_ENTRY */
+> -		     nla_total_size(0) +
+>   		     /* MDBA_MDB_ENTRY_INFO */
+> -		     nla_total_size(sizeof(struct br_mdb_entry)) +
+> +	nlmsg_size = nla_total_size(sizeof(struct br_mdb_entry)) +
+>   		     /* MDBA_MDB_EATTR_TIMER */
+>   		     nla_total_size(sizeof(u32));
+>   
+> @@ -511,6 +506,17 @@ static size_t rtnl_mdb_nlmsg_size(struct net_bridge_port_group *pg)
+>   	return nlmsg_size;
+>   }
+>   
+> +static size_t rtnl_mdb_nlmsg_size(const struct net_bridge_port_group *pg)
+> +{
+> +	return NLMSG_ALIGN(sizeof(struct br_port_msg)) +
+> +	       /* MDBA_MDB */
+> +	       nla_total_size(0) +
+> +	       /* MDBA_MDB_ENTRY */
+> +	       nla_total_size(0) +
+> +	       /* Port group entry */
+> +	       rtnl_mdb_nlmsg_pg_size(pg);
+> +}
+> +
+>   void br_mdb_notify(struct net_device *dev,
+>   		   struct net_bridge_mdb_entry *mp,
+>   		   struct net_bridge_port_group *pg,
 
 Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
 
