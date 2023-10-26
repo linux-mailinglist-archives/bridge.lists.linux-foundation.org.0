@@ -1,130 +1,106 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 703987D6BA8
-	for <lists.bridge@lfdr.de>; Wed, 25 Oct 2023 14:32:02 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C4247D7CD1
+	for <lists.bridge@lfdr.de>; Thu, 26 Oct 2023 08:22:53 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id E1DA9708B8;
-	Wed, 25 Oct 2023 12:32:00 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E1DA9708B8
+	by smtp3.osuosl.org (Postfix) with ESMTP id F30F460FD0;
+	Thu, 26 Oct 2023 06:22:50 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org F30F460FD0
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=rX5VeudG
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=M7kZHiOS
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Gc7Uf4-63gNu; Wed, 25 Oct 2023 12:31:59 +0000 (UTC)
+	with ESMTP id sH6Dv4yhfvQT; Thu, 26 Oct 2023 06:22:50 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id A924C708B4;
-	Wed, 25 Oct 2023 12:31:58 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org A924C708B4
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 7C54B6106A;
+	Thu, 26 Oct 2023 06:22:49 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7C54B6106A
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 1C462C0032;
-	Wed, 25 Oct 2023 12:31:58 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id 08D71C008C;
+	Thu, 26 Oct 2023 06:22:49 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id BBDF5C0032
- for <bridge@lists.linux-foundation.org>; Wed, 25 Oct 2023 12:31:56 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 17311C0032
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 06:22:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id 89EB9708AC
- for <bridge@lists.linux-foundation.org>; Wed, 25 Oct 2023 12:31:56 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 89EB9708AC
+ by smtp1.osuosl.org (Postfix) with ESMTP id D406181D4F
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 06:22:47 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org D406181D4F
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=blackwall-org.20230601.gappssmtp.com
+ header.i=@blackwall-org.20230601.gappssmtp.com header.a=rsa-sha256
+ header.s=20230601 header.b=M7kZHiOS
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id IYWLSzGYJbJ2 for <bridge@lists.linux-foundation.org>;
- Wed, 25 Oct 2023 12:31:54 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::600])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 43161708B1
- for <bridge@lists.linux-foundation.org>; Wed, 25 Oct 2023 12:31:54 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 43161708B1
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OlG6GYxzG6bKbhBhowwijGzdzGhLm7kaeVsbKpLznjDTz5JNZjTaTh+RYPqN/2ShkdeVOZBZu84y/onUfG35SOqkxb5bUPwDkii/qjT6qVE8RE1yTD/x5/GX/VJmViJ7tqEH4dvtHkOT6/rKJkkjmg0lksBmwz+3UzuUFQi4j5nTnd6VGPU1nM5Yzc1P7dw6veKExrBVD3j1ghf2SyohTBcwxRkXlS2QX9BukUQBOPlBfLPg4mbr8ZsD+ihawlMrFWft5spBK6uEnX19cPVrURRsoXoXNERoKIfcjPeQ129VtvdhazqRHeCHG9erwYn0vO1zDhSHyX1pm8gNghHZTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G+zh9gRdw8UrafnO5YqJh1AgtyFjEhsxv9FcaQ82aGs=;
- b=DlT+hf4P3Uo72ozKiylDvDa5cyqMYcm+P//etAwyT3y0JofMNU8ELAkS1rqEMzsgrKcieVJ7nfJddxGsKDP1U/Jj1hhx0SzTCDRog2jUbLRkFQfe6J5TWldsMk1swtSNIJmJgWKL9ydvNHhb7hu9UqTV17Sntri8pWC9KrnkH3urvncickPqzA2vMl+tidsKDUsX0vJCue1K7jotp/TS2wVrfHhT9EfJHyv+BYgawSXqCO8O8wLroHkdbAOVse/bPz69PV0exyzZew7pavZJyJJpiUYjDZ5Bew4ofzhQftrVQEFoBZxRHtnlKG0o5cZGJF1uF5g26WP0weioWpx2Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G+zh9gRdw8UrafnO5YqJh1AgtyFjEhsxv9FcaQ82aGs=;
- b=rX5VeudG1X6XF6XQV3Opt8uI10RI1zU10houS1g5/kwWt1CuQyN68TdklHx7Rv9gYG1yx4VUBkvm1yhJHpiGgZ5+ubzPYClq4zGXm8KaNI5w18VsOzGHuflHGNvZhljQbiMgoFqZFMJvnCDk4Tgyk8LvtfMT96eNm/Kfiyps0sciK+71vLann4ubi6k2CCIE+p0EcPid96f4JLCVmKfsjUC80/Z2xKr/Jvd6DJ+HibTLmMxkq17DyM+I65KdPXdMhaNNXMEN7/G8OFjsP9Sxr0RsJbdBoxPwdBHceIeJp9SoM/vzlv0E9FxNQ/S28feAv9rrZjSxUPJ4hd0SWyptDg==
-Received: from DM6PR02CA0100.namprd02.prod.outlook.com (2603:10b6:5:1f4::41)
- by MN6PR12MB8565.namprd12.prod.outlook.com (2603:10b6:208:47d::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.31; Wed, 25 Oct
- 2023 12:31:51 +0000
-Received: from DS2PEPF0000343F.namprd02.prod.outlook.com
- (2603:10b6:5:1f4:cafe::eb) by DM6PR02CA0100.outlook.office365.com
- (2603:10b6:5:1f4::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19 via Frontend
- Transport; Wed, 25 Oct 2023 12:31:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DS2PEPF0000343F.mail.protection.outlook.com (10.167.18.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6933.18 via Frontend Transport; Wed, 25 Oct 2023 12:31:50 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 25 Oct
- 2023 05:31:36 -0700
-Received: from dev-r-vrt-155.mtr.labs.mlnx (10.126.231.35) by
- rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Wed, 25 Oct 2023 05:31:33 -0700
-To: <netdev@vger.kernel.org>, <bridge@lists.linux-foundation.org>
-Date: Wed, 25 Oct 2023 15:30:20 +0300
-Message-ID: <20231025123020.788710-14-idosch@nvidia.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231025123020.788710-1-idosch@nvidia.com>
-References: <20231025123020.788710-1-idosch@nvidia.com>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id A4cntOO9Mqe5 for <bridge@lists.linux-foundation.org>;
+ Thu, 26 Oct 2023 06:22:47 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
+ [IPv6:2a00:1450:4864:20::12a])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 15F7A81CFE
+ for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 06:22:46 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 15F7A81CFE
+Received: by mail-lf1-x12a.google.com with SMTP id
+ 2adb3069b0e04-50802148be9so547231e87.2
+ for <bridge@lists.linux-foundation.org>; Wed, 25 Oct 2023 23:22:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=blackwall-org.20230601.gappssmtp.com; s=20230601; t=1698301365; x=1698906165;
+ darn=lists.linux-foundation.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=aMs/lnDVBosAB87SvMFfqFQ68LKhkyMZWsGdReytLiw=;
+ b=M7kZHiOSuxkDtmPPvFXGYKp7SG4b2sD1ZSTfLphxE2/4f7jsIfVbN8Hi4PA2PmCbqj
+ 7+Zi1UMNXFfOL4FhnKPD6aFqMTRsoPLB60J2LWuI1k++8wbHo88i/1IGw+QJhfISU2Mv
+ rmqoo7Lhj1HhliP4O+WM5jEg2673CQKjfcWXxjR/TO6viMvz1UunL/RS4JuEWBOSgB5O
+ qWllKqKB2Px3nBMHP+Ue8yGRmTduzzloLOtNHhw+h56Nz+NfCd2qZccaH4cCA7hUN3US
+ Zqbin26i1RqnyI0Qeqk7FqIDiiidluctbbsWNRFmn2y5yRfYc3Ed9TWlrYnoBT24GPBt
+ mkUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1698301365; x=1698906165;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=aMs/lnDVBosAB87SvMFfqFQ68LKhkyMZWsGdReytLiw=;
+ b=mKVXXVqW21+JFCZaiF0HEOTyKmUaLOJrPDmxRS8jG/xY5fGz8ZazwQ7mIaXv0McimP
+ gvWxwA46ztXBMk1Db25Mcspett+DxGKhFqUXI8SHEJgt1G2QgIHKVhKdgZsEvcs+bALW
+ PK8jaQ3K+b+2ZKGyOVGkQft/scKGOARaeh77WWwMoqAZDdcNZ0S3g86mD8T9CDnIkUmi
+ m3WHAo7Z0RkkIj3t81FjZiNHs1Ggpc8F7kSEeHgy66K4TMSgPp+WVQ12gWEL2SIZr2I3
+ 5uFq676sryNB9gRS37HG6CZiuIFr8quO6iOqYC7EA+QrsUgHQimbEPVAs/8XXEwoqhGn
+ CG+g==
+X-Gm-Message-State: AOJu0YzKvzwb961XXscMffNYFknSjoEUyaQHEQ0FRdbCzPgSI15rraad
+ am5aksZpMh8D9APIyhzFL8feZA==
+X-Google-Smtp-Source: AGHT+IE1vtXM3TiHv1a9F6ZOnwo0mWn9W2yM6p1bH9mZrKinEREfvo+2//4udq2k56A2T9knjWolDg==
+X-Received: by 2002:a19:7509:0:b0:507:c763:27b7 with SMTP id
+ y9-20020a197509000000b00507c76327b7mr12735192lfe.40.1698301364502; 
+ Wed, 25 Oct 2023 23:22:44 -0700 (PDT)
+Received: from [192.168.0.106] (haunt.prize.volia.net. [93.72.109.136])
+ by smtp.gmail.com with ESMTPSA id
+ n1-20020a5d4001000000b0032dc1fc84f2sm13634262wrp.46.2023.10.25.23.22.43
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 25 Oct 2023 23:22:44 -0700 (PDT)
+Message-ID: <debc87e7-f3b9-8f46-e496-cd96b0202047@blackwall.org>
+Date: Thu, 26 Oct 2023 09:22:43 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.126.231.35]
-X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343F:EE_|MN6PR12MB8565:EE_
-X-MS-Office365-Filtering-Correlation-Id: 069cc0b0-57fe-4028-20c0-08dbd5565d2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TzQjTVD44UxQxXGce1NjyFbzniYrb7IuFoFsoSywflc4F10VACfSZn2c4dv5gI+MgMBymTpTKb6/uR71qc06MWdMhQtT589DuNECNuxUOtII/q1zDRircylfc3pdC0Brye4hx9J7gvIi7wXSKw7MKJ2KRJr2DzsI5sJYxjOVlfuI+f1zMb8o85GoxUZeAkkV2Df8xi5Tvf2HtH8iMXpf/K78ELfva0bayQZeKFXC5qzOq+zSe6ak15ONYn4m4duISaQYU40uCDWpbRHvV3xNZcev8+NYgtXZexBUTnJnU3Or8ExlS8kgHf6nsex7koefxSXUFYcQF0vPcsC2StV1vNydqa9vPyikfIlEarNc3YPBbtXIT8AqNCfLHnuSvQdBD0MpISPxQ43nx/zVF46kaSOpZ9WqOH8i1RZyGwvr7HfPrWp4TzdA+ya0gzfi8PeLkXUZcNYwpgEt3LTOQ7s+R77n2P2z5oXPieGGmppE8AQcadEnbqYZhU6lgBtONN9J+XT1hOLBW8s6BvwtizKkuyd5Q6YyG0ha5T9CL1t6hfqkUbkn4VO727GsWu7rQdctn7xTee5hxAkXfCVNq1Q6Gbh5NXszWFANgqG5Z2UQ+mSGDo8QlcZceLTuwLp6NaAToJQzGhg7FB+hNek3ly/yu6Xl50lBUVk6d0bq3UgxLv+Z17Q8/eQBLasiQGYxOR+fV1lyFDC7QDtZKDViT/a3Zs30uiKecMsnF/IoOLO7T7X0IZy2ma7rDltPyCntIq0b
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230031)(4636009)(39860400002)(346002)(376002)(136003)(396003)(230922051799003)(82310400011)(451199024)(1800799009)(64100799003)(186009)(46966006)(36840700001)(40470700004)(30864003)(41300700001)(40460700003)(2906002)(70206006)(6666004)(54906003)(82740400003)(478600001)(16526019)(356005)(7636003)(47076005)(40480700001)(336012)(426003)(83380400001)(110136005)(86362001)(36756003)(5660300002)(2616005)(107886003)(36860700001)(1076003)(8676002)(8936002)(4326008)(70586007)(26005)(316002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 12:31:50.8793 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 069cc0b0-57fe-4028-20c0-08dbd5565d2d
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343F.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8565
-Cc: mlxsw@nvidia.com, razor@blackwall.org, Ido Schimmel <idosch@nvidia.com>,
- edumazet@google.com, roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com,
- davem@davemloft.net
-Subject: [Bridge] [PATCH net-next v2 13/13] selftests: vxlan_mdb: Use MDB
-	get instead of dump
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Content-Language: en-US
+To: Ido Schimmel <idosch@nvidia.com>, netdev@vger.kernel.org,
+ bridge@lists.linux-foundation.org
+References: <20231025123020.788710-1-idosch@nvidia.com>
+ <20231025123020.788710-8-idosch@nvidia.com>
+From: Nikolay Aleksandrov <razor@blackwall.org>
+In-Reply-To: <20231025123020.788710-8-idosch@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Cc: mlxsw@nvidia.com, edumazet@google.com, roopa@nvidia.com, kuba@kernel.org,
+ pabeni@redhat.com, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next v2 07/13] bridge: add MDB get uAPI
+	attributes
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -136,287 +112,38 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Ido Schimmel via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Ido Schimmel <idosch@nvidia.com>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Test the new MDB get functionality by converting dump and grep to MDB
-get.
+On 10/25/23 15:30, Ido Schimmel wrote:
+> Add MDB get attributes that correspond to the MDB set attributes used in
+> RTM_NEWMDB messages. Specifically, add 'MDBA_GET_ENTRY' which will hold
+> a 'struct br_mdb_entry' and 'MDBA_GET_ENTRY_ATTRS' which will hold
+> 'MDBE_ATTR_*' attributes that are used as indexes (source IP and source
+> VNI).
+> 
+> An example request will look as follows:
+> 
+> [ struct nlmsghdr ]
+> [ struct br_port_msg ]
+> [ MDBA_GET_ENTRY ]
+> 	struct br_mdb_entry
+> [ MDBA_GET_ENTRY_ATTRS ]
+> 	[ MDBE_ATTR_SOURCE ]
+> 		struct in_addr / struct in6_addr
+> 	[ MDBE_ATTR_SRC_VNI ]
+> 		u32
+> 
+> Signed-off-by: Ido Schimmel <idosch@nvidia.com>
+> ---
+> 
+> Notes:
+>      v2:
+>      * Add comment.
+> 
+>   include/uapi/linux/if_bridge.h | 18 ++++++++++++++++++
+>   1 file changed, 18 insertions(+)
+> 
 
-Signed-off-by: Ido Schimmel <idosch@nvidia.com>
 Acked-by: Nikolay Aleksandrov <razor@blackwall.org>
----
- tools/testing/selftests/net/test_vxlan_mdb.sh | 108 +++++++++---------
- 1 file changed, 54 insertions(+), 54 deletions(-)
-
-diff --git a/tools/testing/selftests/net/test_vxlan_mdb.sh b/tools/testing/selftests/net/test_vxlan_mdb.sh
-index 31e5f0f8859d..6e996f8063cd 100755
---- a/tools/testing/selftests/net/test_vxlan_mdb.sh
-+++ b/tools/testing/selftests/net/test_vxlan_mdb.sh
-@@ -337,62 +337,62 @@ basic_common()
- 	# Basic add, replace and delete behavior.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010"
- 	log_test $? 0 "MDB entry addition"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010"
- 	log_test $? 0 "MDB entry presence after addition"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010"
- 	log_test $? 0 "MDB entry replacement"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010"
- 	log_test $? 0 "MDB entry presence after replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 $grp_key dst $vtep_ip src_vni 10010"
- 	log_test $? 0 "MDB entry deletion"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\""
--	log_test $? 1 "MDB entry presence after deletion"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010"
-+	log_test $? 254 "MDB entry presence after deletion"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 $grp_key dst $vtep_ip src_vni 10010"
- 	log_test $? 255 "Non-existent MDB entry deletion"
- 
- 	# Default protocol and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \"proto static\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \"proto static\""
- 	log_test $? 0 "MDB entry default protocol"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 $grp_key permanent proto 123 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \"proto 123\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \"proto 123\""
- 	log_test $? 0 "MDB entry protocol replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 $grp_key dst $vtep_ip src_vni 10010"
- 
- 	# Default destination port and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \" dst_port \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \" dst_port \""
- 	log_test $? 1 "MDB entry default destination port"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 $grp_key permanent dst $vtep_ip dst_port 1234 src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \"dst_port 1234\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \"dst_port 1234\""
- 	log_test $? 0 "MDB entry destination port replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 $grp_key dst $vtep_ip src_vni 10010"
- 
- 	# Default destination VNI and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \" vni \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \" vni \""
- 	log_test $? 1 "MDB entry default destination VNI"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 $grp_key permanent dst $vtep_ip vni 1234 src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \"vni 1234\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \"vni 1234\""
- 	log_test $? 0 "MDB entry destination VNI replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 $grp_key dst $vtep_ip src_vni 10010"
- 
- 	# Default outgoing interface and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \" via \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \" via \""
- 	log_test $? 1 "MDB entry default outgoing interface"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 $grp_key permanent dst $vtep_ip src_vni 10010 via veth0"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep \"$grp_key\" | grep \"via veth0\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 $grp_key src_vni 10010 | grep \"via veth0\""
- 	log_test $? 0 "MDB entry outgoing interface replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 $grp_key dst $vtep_ip src_vni 10010"
-@@ -550,127 +550,127 @@ star_g_common()
- 	# Basic add, replace and delete behavior.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
- 	log_test $? 0 "(*, G) MDB entry addition with source list"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010"
- 	log_test $? 0 "(*, G) MDB entry presence after addition"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry presence after addition"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
- 	log_test $? 0 "(*, G) MDB entry replacement with source list"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010"
- 	log_test $? 0 "(*, G) MDB entry presence after replacement"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry presence after replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
- 	log_test $? 0 "(*, G) MDB entry deletion"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \""
--	log_test $? 1 "(*, G) MDB entry presence after deletion"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
--	log_test $? 1 "(S, G) MDB entry presence after deletion"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010"
-+	log_test $? 254 "(*, G) MDB entry presence after deletion"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010"
-+	log_test $? 254 "(S, G) MDB entry presence after deletion"
- 
- 	# Default filter mode and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep exclude"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep exclude"
- 	log_test $? 0 "(*, G) MDB entry default filter mode"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode include source_list $src1 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep include"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep include"
- 	log_test $? 0 "(*, G) MDB entry after replacing filter mode to \"include\""
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry after replacing filter mode to \"include\""
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\" | grep blocked"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep blocked"
- 	log_test $? 1 "\"blocked\" flag after replacing filter mode to \"include\""
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep exclude"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep exclude"
- 	log_test $? 0 "(*, G) MDB entry after replacing filter mode to \"exclude\""
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grep grp $grp src $src1 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry after replacing filter mode to \"exclude\""
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\" | grep blocked"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep blocked"
- 	log_test $? 0 "\"blocked\" flag after replacing filter mode to \"exclude\""
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
- 
- 	# Default source list and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep source_list"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep source_list"
- 	log_test $? 1 "(*, G) MDB entry default source list"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1,$src2,$src3 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry of 1st source after replacing source list"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src2\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src2 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry of 2nd source after replacing source list"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src3\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src3 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry of 3rd source after replacing source list"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1,$src3 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src1\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry of 1st source after removing source"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src2\""
--	log_test $? 1 "(S, G) MDB entry of 2nd source after removing source"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \"src $src3\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src2 src_vni 10010"
-+	log_test $? 254 "(S, G) MDB entry of 2nd source after removing source"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src3 src_vni 10010"
- 	log_test $? 0 "(S, G) MDB entry of 3rd source after removing source"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
- 
- 	# Default protocol and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \"proto static\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \"proto static\""
- 	log_test $? 0 "(*, G) MDB entry default protocol"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \"proto static\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \"proto static\""
- 	log_test $? 0 "(S, G) MDB entry default protocol"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 proto bgp dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \"proto bgp\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \"proto bgp\""
- 	log_test $? 0 "(*, G) MDB entry protocol after replacement"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \"proto bgp\""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \"proto bgp\""
- 	log_test $? 0 "(S, G) MDB entry protocol after replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
- 
- 	# Default destination port and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \" dst_port \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \" dst_port \""
- 	log_test $? 1 "(*, G) MDB entry default destination port"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \" dst_port \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \" dst_port \""
- 	log_test $? 1 "(S, G) MDB entry default destination port"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip dst_port 1234 src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \" dst_port 1234 \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \" dst_port 1234 \""
- 	log_test $? 0 "(*, G) MDB entry destination port after replacement"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \" dst_port 1234 \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \" dst_port 1234 \""
- 	log_test $? 0 "(S, G) MDB entry destination port after replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
- 
- 	# Default destination VNI and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \" vni \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \" vni \""
- 	log_test $? 1 "(*, G) MDB entry default destination VNI"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \" vni \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \" vni \""
- 	log_test $? 1 "(S, G) MDB entry default destination VNI"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip vni 1234 src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \" vni 1234 \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \" vni 1234 \""
- 	log_test $? 0 "(*, G) MDB entry destination VNI after replacement"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \" vni 1234 \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \" vni 1234 \""
- 	log_test $? 0 "(S, G) MDB entry destination VNI after replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
- 
- 	# Default outgoing interface and replacement.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \" via \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \" via \""
- 	log_test $? 1 "(*, G) MDB entry default outgoing interface"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \" via \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \" via \""
- 	log_test $? 1 "(S, G) MDB entry default outgoing interface"
- 
- 	run_cmd "bridge -n $ns1 mdb replace dev vx0 port vx0 grp $grp permanent filter_mode exclude source_list $src1 dst $vtep_ip src_vni 10010 via veth0"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep -v \" src \" | grep \" via veth0 \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src_vni 10010 | grep \" via veth0 \""
- 	log_test $? 0 "(*, G) MDB entry outgoing interface after replacement"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep \" src \" | grep \" via veth0 \""
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src1 src_vni 10010 | grep \" via veth0 \""
- 	log_test $? 0 "(S, G) MDB entry outgoing interface after replacement"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp dst $vtep_ip src_vni 10010"
-@@ -772,7 +772,7 @@ sg_common()
- 
- 	# Default filter mode.
- 	run_cmd "bridge -n $ns1 mdb add dev vx0 port vx0 grp $grp src $src permanent dst $vtep_ip src_vni 10010"
--	run_cmd "bridge -n $ns1 -d -s mdb show dev vx0 | grep $grp | grep include"
-+	run_cmd "bridge -n $ns1 -d -s mdb get dev vx0 grp $grp src $src src_vni 10010 | grep include"
- 	log_test $? 0 "(S, G) MDB entry default filter mode"
- 
- 	run_cmd "bridge -n $ns1 mdb del dev vx0 port vx0 grp $grp src $src permanent dst $vtep_ip src_vni 10010"
-@@ -2296,9 +2296,9 @@ if [ ! -x "$(command -v jq)" ]; then
- 	exit $ksft_skip
- fi
- 
--bridge mdb help 2>&1 | grep -q "src_vni"
-+bridge mdb help 2>&1 | grep -q "get"
- if [ $? -ne 0 ]; then
--   echo "SKIP: iproute2 bridge too old, missing VXLAN MDB support"
-+   echo "SKIP: iproute2 bridge too old, missing VXLAN MDB get support"
-    exit $ksft_skip
- fi
- 
--- 
-2.40.1
 
