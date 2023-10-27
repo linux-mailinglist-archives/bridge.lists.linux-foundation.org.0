@@ -2,91 +2,78 @@ Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
 Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8817D8779
-	for <lists.bridge@lfdr.de>; Thu, 26 Oct 2023 19:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7730F7D948E
+	for <lists.bridge@lfdr.de>; Fri, 27 Oct 2023 12:00:46 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp2.osuosl.org (Postfix) with ESMTP id 96A2E42497;
-	Thu, 26 Oct 2023 17:21:39 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 96A2E42497
+	by smtp2.osuosl.org (Postfix) with ESMTP id 348D543381;
+	Fri, 27 Oct 2023 10:00:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 348D543381
 Authentication-Results: smtp2.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=networkplumber-org.20230601.gappssmtp.com header.i=@networkplumber-org.20230601.gappssmtp.com header.a=rsa-sha256 header.s=20230601 header.b=Cmc5Gz1b
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=AVZ/8YyO
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp2.osuosl.org ([127.0.0.1])
 	by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HD-ubufnDx1s; Thu, 26 Oct 2023 17:21:38 +0000 (UTC)
-Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [IPv6:2605:bc80:3010:104::8cd3:938])
-	by smtp2.osuosl.org (Postfix) with ESMTPS id 64D3142493;
-	Thu, 26 Oct 2023 17:21:37 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 64D3142493
+	with ESMTP id gKptSulG_Oip; Fri, 27 Oct 2023 10:00:43 +0000 (UTC)
+Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
+	by smtp2.osuosl.org (Postfix) with ESMTPS id 3246B4336C;
+	Fri, 27 Oct 2023 10:00:42 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 3246B4336C
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 141EAC008C;
-	Thu, 26 Oct 2023 17:21:37 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id C6FADC008C;
+	Fri, 27 Oct 2023 10:00:41 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp2.osuosl.org (smtp2.osuosl.org [140.211.166.133])
- by lists.linuxfoundation.org (Postfix) with ESMTP id 2D341C0032
- for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 17:21:35 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 16C82C0032
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Oct 2023 10:00:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp2.osuosl.org (Postfix) with ESMTP id 066DB42493
- for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 17:21:35 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 066DB42493
+ by smtp1.osuosl.org (Postfix) with ESMTP id E64B782085
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Oct 2023 10:00:39 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org E64B782085
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org
+ header.a=rsa-sha256 header.s=k20201202 header.b=AVZ/8YyO
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp2.osuosl.org ([127.0.0.1])
- by localhost (smtp2.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id wG7ZbkUPo9bK for <bridge@lists.linux-foundation.org>;
- Thu, 26 Oct 2023 17:21:33 +0000 (UTC)
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
- [IPv6:2607:f8b0:4864:20::62b])
- by smtp2.osuosl.org (Postfix) with ESMTPS id 25C20415D0
- for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 17:21:32 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp2.osuosl.org 25C20415D0
-Received: by mail-pl1-x62b.google.com with SMTP id
- d9443c01a7336-1c9bf22fe05so9074185ad.2
- for <bridge@lists.linux-foundation.org>; Thu, 26 Oct 2023 10:21:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=networkplumber-org.20230601.gappssmtp.com; s=20230601; t=1698340891;
- x=1698945691; darn=lists.linux-foundation.org; 
- h=content-transfer-encoding:mime-version:message-id:subject:cc:to
- :from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=LiGuJE8jLMnIocTKaNAa+F2ri7OFuPjhrH8s+cGGXVM=;
- b=Cmc5Gz1bSyFmisuia0vNjZoRmUAvpUgmQE1AVmOnm723BsUj4Tz+bHwT2yZbH3Zq4T
- 5Elmr8WzykajtmaQB6yYAByKUn4XMek2X+Akz123PNZCLKGO+GtJgQfynxH6lyjB7mVP
- Bnk1w6Gv15R8RVUfpylsNpLOdrdJIvuTpvKUgKN+7KFRJJSMaJP77m8kM4FeHRB7W0GJ
- A2vuSAGeEHicTui6kEyyeCpmgme3K9dxw4q9s2exphjA67lFQWzG+MsE/Rh1DnW/3F0/
- nHgTUREZ4mqTBGxqk0aIrIAd++VKdLoqixVv+OPfJxESzJJ5pfIKDmGg+zGWY+6a52gZ
- l3iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698340891; x=1698945691;
- h=content-transfer-encoding:mime-version:message-id:subject:cc:to
- :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=LiGuJE8jLMnIocTKaNAa+F2ri7OFuPjhrH8s+cGGXVM=;
- b=eqBaglsH1DdmcEhpko8uYB4gfx2E/vbfSOvzSVD2B5ORGPSvIMnRswfmOu0WnBrcFj
- vrf7Z2yFV9SWBM13jW/QmxfQO4GAcCOeEj0TExJlhbjOz2JnmOcNb3uLz6VLQ+dSG48E
- 8fnklyFyWRFhGWjcXAUsYh3uroficIhV7lUPKy9kTe63kjrLGg3Q7Oc6T3nwX9nzArL1
- Pd1Qsgwg3myZmUqwXPJk9WSK96Uyb2kGPnzGKOKJfTQ+hSJzaqeo+aZ3vA5zUeG8OV7n
- kynUSzmosjtU+wy3ZrPlZWXhiQQU8SjGHiiSfwzJRLTZZjaSBnvbuMzQN14eQMm9/nKu
- 16Ew==
-X-Gm-Message-State: AOJu0YwHCFwjuR21mTEDK4ou55+WVP2F/ESEodjqpVOCxkRbIwuBqakJ
- hGBhAG/E/m78luy+jyIz/abg+b8IN07GFWBwgFJN5w==
-X-Google-Smtp-Source: AGHT+IEUq2fW+cSJWtQE8zBpWBVsXRJ2FH1D4WDEx8F2+EclahjUaXcJaP7nk3Kr9BboTlNiwD4w/A==
-X-Received: by 2002:a17:903:1246:b0:1bc:6861:d746 with SMTP id
- u6-20020a170903124600b001bc6861d746mr87267plh.58.1698340891086; 
- Thu, 26 Oct 2023 10:21:31 -0700 (PDT)
-Received: from hermes.local (204-195-126-68.wavecable.com. [204.195.126.68])
- by smtp.gmail.com with ESMTPSA id
- j6-20020a63ec06000000b0059b782e8541sm10773473pgh.28.2023.10.26.10.21.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Oct 2023 10:21:30 -0700 (PDT)
-Date: Thu, 26 Oct 2023 10:21:29 -0700
-To: razor@blackwall.org, roopa@nvidia.com
-Message-ID: <20231026102129.2c4e1976@hermes.local>
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id UmOYoPuga1SB for <bridge@lists.linux-foundation.org>;
+ Fri, 27 Oct 2023 10:00:37 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 826A381EC9
+ for <bridge@lists.linux-foundation.org>; Fri, 27 Oct 2023 10:00:37 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 826A381EC9
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id CAE7EB8398E;
+ Fri, 27 Oct 2023 10:00:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 29D37C433CA;
+ Fri, 27 Oct 2023 10:00:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1698400833;
+ bh=/WkRM2i922a3Ow+G7b6etkF/sP9cPHvui0KbyLXDWEU=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+ b=AVZ/8YyO3A5t0hfO1Jna9jP2FbRvk1gcEV4M7pArJ94QmBXMgxgvBfeSHMAFf1mhF
+ an5J48HoTRGx0+VXlVleKPGg3A1g7Uh/aTUnsBGcCL3IKNrgl1FdljdnxoQ5barKYn
+ xd9cppL/tqOadw/xKgJL53Iz1ot9vtpM+6MqifQAeByqaOCLx2VsW9stUWUui8cC/O
+ JJ7eH+2ZcQ0FclBMF9EnsNGjSZXnaw1V/rEqsbpqKysPkbGKoCvrDeshSAQutDKZx+
+ bpvMVFsImTbsnskedgMLzo/Gjbj1bbEXDwvkRwuJshyL4WXrSJb2n8MRAm4+2u7BrQ
+ QSsmhT7JIs9iA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
+ 1101FC39563; Fri, 27 Oct 2023 10:00:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Cc: bridge@lists.linux-foundation.org
-Subject: [Bridge] Fw: [Bug 218047] New: linux network bridge kernel set
- group_fwd_mask 65535
+Content-Transfer-Encoding: 8bit
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <169840083306.2931.12879417140055385524.git-patchwork-notify@kernel.org>
+Date: Fri, 27 Oct 2023 10:00:33 +0000
+References: <20231025123020.788710-1-idosch@nvidia.com>
+In-Reply-To: <20231025123020.788710-1-idosch@nvidia.com>
+To: Ido Schimmel <idosch@nvidia.com>
+Cc: netdev@vger.kernel.org, razor@blackwall.org,
+ bridge@lists.linux-foundation.org, edumazet@google.com, mlxsw@nvidia.com,
+ roopa@nvidia.com, kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
+Subject: Re: [Bridge] [PATCH net-next v2 00/13] Add MDB get support
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -98,123 +85,57 @@ List-Post: <mailto:bridge@lists.linux-foundation.org>
 List-Help: <mailto:bridge-request@lists.linux-foundation.org?subject=help>
 List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
  <mailto:bridge-request@lists.linux-foundation.org?subject=subscribe>
-From: Stephen Hemminger via Bridge <bridge@lists.linux-foundation.org>
-Reply-To: Stephen Hemminger <stephen@networkplumber.org>
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-The kernel intentionally does not allow forwarding of IEEE pause frames.
-These need to be handled dropped in the bridge.
-Any mask without bit 1 set should work.
+Hello:
 
-Originally LACP, STP and MACPAUSE frames were always blocked and could not be
-changed. The restriction was relaxed for LACP and STP frames.
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-Begin forwarded message:
+On Wed, 25 Oct 2023 15:30:07 +0300 you wrote:
+> This patchset adds MDB get support, allowing user space to request a
+> single MDB entry to be retrieved instead of dumping the entire MDB.
+> Support is added in both the bridge and VXLAN drivers.
+> 
+> Patches #1-#6 are small preparations in both drivers.
+> 
+> Patches #7-#8 add the required uAPI attributes for the new functionality
+> and the MDB get net device operation (NDO), respectively.
+> 
+> [...]
 
-Date: Thu, 26 Oct 2023 05:16:24 +0000
-From: bugzilla-daemon@kernel.org
-To: stephen@networkplumber.org
-Subject: [Bug 218047] New: linux network bridge kernel set group_fwd_mask 65535
+Here is the summary with links:
+  - [net-next,v2,01/13] bridge: mcast: Dump MDB entries even when snooping is disabled
+    https://git.kernel.org/netdev/net-next/c/b9109b5b77f0
+  - [net-next,v2,02/13] bridge: mcast: Account for missing attributes
+    https://git.kernel.org/netdev/net-next/c/1b6d993509c1
+  - [net-next,v2,03/13] bridge: mcast: Factor out a helper for PG entry size calculation
+    https://git.kernel.org/netdev/net-next/c/62ef9cba98a2
+  - [net-next,v2,04/13] bridge: mcast: Rename MDB entry get function
+    https://git.kernel.org/netdev/net-next/c/6d0259dd6c53
+  - [net-next,v2,05/13] vxlan: mdb: Adjust function arguments
+    https://git.kernel.org/netdev/net-next/c/ff97d2a956a1
+  - [net-next,v2,06/13] vxlan: mdb: Factor out a helper for remote entry size calculation
+    https://git.kernel.org/netdev/net-next/c/14c32a46d992
+  - [net-next,v2,07/13] bridge: add MDB get uAPI attributes
+    https://git.kernel.org/netdev/net-next/c/83c1bbeb864f
+  - [net-next,v2,08/13] net: Add MDB get device operation
+    https://git.kernel.org/netdev/net-next/c/62f47bf9e2c0
+  - [net-next,v2,09/13] bridge: mcast: Add MDB get support
+    https://git.kernel.org/netdev/net-next/c/68b380a395a7
+  - [net-next,v2,10/13] vxlan: mdb: Add MDB get support
+    https://git.kernel.org/netdev/net-next/c/32d9673e96dc
+  - [net-next,v2,11/13] rtnetlink: Add MDB get support
+    https://git.kernel.org/netdev/net-next/c/ddd17a54e692
+  - [net-next,v2,12/13] selftests: bridge_mdb: Use MDB get instead of dump
+    https://git.kernel.org/netdev/net-next/c/e8bba9e83c88
+  - [net-next,v2,13/13] selftests: vxlan_mdb: Use MDB get instead of dump
+    https://git.kernel.org/netdev/net-next/c/0514dd05939a
 
-
-https://bugzilla.kernel.org/show_bug.cgi?id=218047
-
-            Bug ID: 218047
-           Summary: linux network bridge kernel set group_fwd_mask 65535
-           Product: Networking
-           Version: 2.5
-          Hardware: All
-                OS: Linux
-            Status: NEW
-          Severity: normal
-          Priority: P3
-         Component: Other
-          Assignee: stephen@networkplumber.org
-          Reporter: ne-vlezay80@yandex.ru
-        Regression: No
-
-If trying set the parameter from network bridge? going error:
-
-[root@arch user]# ip link set bridge0  type bridge group_fwd_mask 65535
-RTNETLINK answers: Invalid argument
-
-setting this parameter is desirable if the switching is routed to a separate
-virtual machine on the hypervisor, and on the host it looks like this:
-
-ip link add dev ns-switch.0 up mtu 16384 master bridge0 type veth peer name
-host0 address $SWMAC  netns switch mtu 16384
-ip link add dev ns-host1.0 up mtu 16384 master bridge0 type veth peer name
-host0 netns host1 mtu 16384
-ip link add dev ns-host2.0 up mtu 16384 master bridge0 type veth peer name
-host0 netns host2 mtu 16384
-ip link add dev ns-host3.0 up mtu 16384 master bridge0 type veth peer name
-host0 netns host3 mtu 16384
-ip link add dev ns-host4.0 up mtu 16384 master bridge0 type veth peer name
-host0 netns host4 mtu 16384
-
-tc qdisc add dev ns-switch.0 handle ffff: ingress
-tc qdisc add dev ns-host1.0 handle ffff: ingress
-tc qdisc add dev ns-host2.0 handle ffff: ingress
-tc qdisc add dev ns-host3.0 handle ffff: ingress
-tc qdisc add dev ns-host4.0 handle ffff: ingress
-
-tc qdisc add dev gt-ll0 handle ffff: ingress
-tc qdisc add dev gt-ll0 handle 1: root htb default 10
-
-tc qdisc add dev ns-switch.0 handle 1: root htb default 10
-tc qdisc add dev ns-host1.0 handle 1: root htb default 10
-tc qdisc add dev ns-host2.0 handle 1: root htb default 10
-tc qdisc add dev ns-host3.0 handle 1: root htb default 10
-tc qdisc add dev ns-host4.0 handle 1: root htb default 10
-
-
-tc filter add dev ns-host1.0 parent ffff: prio 9 protocol all flower dst_mac
-01:00:00:00:00:00/8 action vlan push id 10 action mirred egress redirect dev
-gt-ll0
-tc filter add dev ns-host2.0 parent ffff: prio 9 protocol all flower dst_mac
-01:00:00:00:00:00/8 action vlan push id 11 action mirred egress redirect dev
-gt-ll0
-tc filter add dev ns-host3.0 parent ffff: prio 9 protocol all flower dst_mac
-01:00:00:00:00:00/8 action vlan push id 12 action mirred egress redirect dev
-gt-ll0
-tc filter add dev ns-host4.0 parent ffff: prio 9 protocol all flower dst_mac
-01:00:00:00:00:00/8 action vlan push id 13 action mirred egress redirect dev
-gt-ll0
-
-tc filter add dev ns-host1.0 parent ffff: prio 10 protocol all matchall action
-vlan push id 10 
-tc filter add dev ns-host2.0 parent ffff: prio 10 protocol all matchall action
-vlan push id 11
-tc filter add dev ns-host3.0 parent ffff: prio 10 protocol all matchall action
-vlan push id 12
-tc filter add dev ns-host4.0 parent ffff: prio 10 protocol all matchall action
-vlan push id 13
-
-tc filter add dev ns-host1.0 parent 1: prio 65535 protocol all matchall action
-drop
-tc filter add dev ns-host1.0 parent 1: prio 1 protocol 802.1Q flower vlan_id 10
-action vlan pop
-
-tc filter add dev ns-host2.0 parent 1: prio 65535 protocol all matchall action
-drop
-tc filter add dev ns-host2.0 parent 1: prio 1 protocol 802.1Q flower vlan_id 11
-action vlan pop
-
-tc filter add dev ns-host3.0 parent 1: prio 65535 protocol all matchall action
-drop
-tc filter add dev ns-host3.0 parent 1: prio 1 protocol 802.1Q flower vlan_id 12
-action vlan pop
-
-tc filter add dev ns-host4.0 parent 1: prio 65535 protocol all matchall action
-drop
-tc filter add dev ns-host4.0 parent 1: prio 1 protocol 802.1Q flower vlan_id 13
-action vlan pop 
-
-the config example from be network lab.
-
+You are awesome, thank you!
 -- 
-You may reply to this email to add a comment.
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-You are receiving this mail because:
-You are the assignee for the bug.
+
