@@ -1,77 +1,68 @@
 Return-Path: <bridge-bounces@lists.linux-foundation.org>
 X-Original-To: lists.bridge@lfdr.de
 Delivered-To: lists.bridge@lfdr.de
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [140.211.166.136])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1147D9518
-	for <lists.bridge@lfdr.de>; Fri, 27 Oct 2023 12:20:35 +0200 (CEST)
+Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B437DE6B3
+	for <lists.bridge@lfdr.de>; Wed,  1 Nov 2023 21:11:12 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by smtp3.osuosl.org (Postfix) with ESMTP id 7189F70651;
-	Fri, 27 Oct 2023 10:20:33 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7189F70651
+	by smtp3.osuosl.org (Postfix) with ESMTP id 7B8D4704C8;
+	Wed,  1 Nov 2023 20:11:10 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 7B8D4704C8
 Authentication-Results: smtp3.osuosl.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20201202 header.b=RVk3/sIi
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=yBcGlUHA
 X-Virus-Scanned: amavisd-new at osuosl.org
 Received: from smtp3.osuosl.org ([127.0.0.1])
 	by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id cCrjVmGEDSGX; Fri, 27 Oct 2023 10:20:32 +0000 (UTC)
+	with ESMTP id 2IvAYGIQ0trj; Wed,  1 Nov 2023 20:11:09 +0000 (UTC)
 Received: from lists.linuxfoundation.org (lf-lists.osuosl.org [140.211.9.56])
-	by smtp3.osuosl.org (Postfix) with ESMTPS id E8F90705F9;
-	Fri, 27 Oct 2023 10:20:31 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org E8F90705F9
+	by smtp3.osuosl.org (Postfix) with ESMTPS id 26F55704CF;
+	Wed,  1 Nov 2023 20:11:06 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 26F55704CF
 Received: from lf-lists.osuosl.org (localhost [127.0.0.1])
-	by lists.linuxfoundation.org (Postfix) with ESMTP id 7AFA0C008C;
-	Fri, 27 Oct 2023 10:20:31 +0000 (UTC)
+	by lists.linuxfoundation.org (Postfix) with ESMTP id CB6C3C008D;
+	Wed,  1 Nov 2023 20:11:05 +0000 (UTC)
 X-Original-To: bridge@lists.linux-foundation.org
 Delivered-To: bridge@lists.linuxfoundation.org
-Received: from smtp3.osuosl.org (smtp3.osuosl.org [IPv6:2605:bc80:3010::136])
- by lists.linuxfoundation.org (Postfix) with ESMTP id E2028C0032
- for <bridge@lists.linux-foundation.org>; Fri, 27 Oct 2023 10:20:30 +0000 (UTC)
+Received: from smtp1.osuosl.org (smtp1.osuosl.org [140.211.166.138])
+ by lists.linuxfoundation.org (Postfix) with ESMTP id 7B52AC0032
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Nov 2023 20:11:04 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by smtp3.osuosl.org (Postfix) with ESMTP id BD18070655
- for <bridge@lists.linux-foundation.org>; Fri, 27 Oct 2023 10:20:30 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org BD18070655
+ by smtp1.osuosl.org (Postfix) with ESMTP id 3FB2C84CC9
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Nov 2023 20:11:04 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3FB2C84CC9
+Authentication-Results: smtp1.osuosl.org;
+ dkim=pass (1024-bit key) header.d=linuxfoundation.org
+ header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg
+ header.b=yBcGlUHA
 X-Virus-Scanned: amavisd-new at osuosl.org
-Received: from smtp3.osuosl.org ([127.0.0.1])
- by localhost (smtp3.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9s3TjlI3uiXH for <bridge@lists.linux-foundation.org>;
- Fri, 27 Oct 2023 10:20:29 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by smtp3.osuosl.org (Postfix) with ESMTPS id 4BA1F70651
- for <bridge@lists.linux-foundation.org>; Fri, 27 Oct 2023 10:20:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp3.osuosl.org 4BA1F70651
+Received: from smtp1.osuosl.org ([127.0.0.1])
+ by localhost (smtp1.osuosl.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id pvt482jsJr3w for <bridge@lists.linux-foundation.org>;
+ Wed,  1 Nov 2023 20:10:59 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by smtp1.osuosl.org (Postfix) with ESMTPS id 3CC188494D
+ for <bridge@lists.linux-foundation.org>; Wed,  1 Nov 2023 20:10:59 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.osuosl.org 3CC188494D
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 61971CE4256;
- Fri, 27 Oct 2023 10:20:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 90170C433C9;
- Fri, 27 Oct 2023 10:20:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1698402024;
- bh=T+3V1QPNWQUYBlU7Bsq22khHxGFNFrur7XQd590rXoM=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=RVk3/sIiGmoj19UD63rK9A/Liipt6WZ7nQRvTYjjUPMlNONrHvLbOeh1ww0EvhqME
- fR44vLwFwb1b0dzcnCVvpJdL64T7tXkDSxghrsxb6GjdCqv483/9DBtHFQI84qLB4i
- itWWLS6LTni1sMBtNBoVxyEG9HKCZO0KCLzg3y0UE+WdtWJnXxaELw6aS77hRxCum6
- zul82YK/Nslnz5DFHsiHOeQIHjhbWw8fA+Ol/zJY+ANLboWavKBHSqg7ytbsgz3bqU
- EypIcRM2yU7DwTUtbg4W24Lxt2IQd2Wk1UZzwP3uqRDq7DLUfKoL5av1I+4WEVtcIa
- uqPummy4+KTNA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 7697AC41620; Fri, 27 Oct 2023 10:20:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by dfw.source.kernel.org (Postfix) with ESMTP id 6797660244;
+ Wed,  1 Nov 2023 20:10:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3081C433C7;
+ Wed,  1 Nov 2023 20:10:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1698869458;
+ bh=qWq60dsjYKVO5hHhs5WPNbgi5lyED87df/YUqtTpgb8=;
+ h=Date:From:To:Subject:From;
+ b=yBcGlUHAIH4+DORbqzS0Ces0g4jwdZo1rmaYs/M0DGlcASToPqKqMsHfugv4Yjdnq
+ bVGBpN+/DztApGFk+Ne4Jq45zZyq7AhAXFpEyuwLLqvf4XSf7KdsjK+5VXw9aYeZJz
+ 74DAmfNNgWgU7atxpZtp7zJUThscdqf0MtX1D64w=
+Date: Wed, 1 Nov 2023 16:10:56 -0400
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: bridge@lists.linux-foundation.org
+Message-ID: <20231101-enormous-salmon-of-coffee-7ebb9a@nitro>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <169840202448.15376.8674341343569691359.git-patchwork-notify@kernel.org>
-Date: Fri, 27 Oct 2023 10:20:24 +0000
-References: <20231027100549.1695865-1-razor@blackwall.org>
-In-Reply-To: <20231027100549.1695865-1-razor@blackwall.org>
-To: Nikolay Aleksandrov <razor@blackwall.org>
-Cc: netdev@vger.kernel.org, bridge@lists.linux-foundation.org, roopa@nvidia.com,
- kuba@kernel.org
-Subject: Re: [Bridge] [PATCH net-next] net: bridge: fill in
-	MODULE_DESCRIPTION()
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Subject: [Bridge] PSA: the bridge list will be moving to lists.linux.dev
 X-BeenThere: bridge@lists.linux-foundation.org
 X-Mailman-Version: 2.1.15
 Precedence: list
@@ -86,27 +77,43 @@ List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/bridge>,
 Errors-To: bridge-bounces@lists.linux-foundation.org
 Sender: "Bridge" <bridge-bounces@lists.linux-foundation.org>
 
-Hello:
+Hello, all:
 
-This patch was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+The mailman-2 system running on lists.linux-foundation.org is being
+decommissioned, so all lists currently hosted there will be found new homes.
+*On November 7*, The bridge list will be migrated to live on lists.linux.dev,
+but the impact of this move should be minor:
 
-On Fri, 27 Oct 2023 13:05:49 +0300 you wrote:
-> Fill in bridge's module description.
-> 
-> Suggested-by: Jakub Kicinski <kuba@kernel.org>
-> Signed-off-by: Nikolay Aleksandrov <razor@blackwall.org>
-> ---
->  net/bridge/br.c | 1 +
->  1 file changed, 1 insertion(+)
+1. The new canonical list address will be bridge@lists.linux.dev.
 
-Here is the summary with links:
-  - [net-next] net: bridge: fill in MODULE_DESCRIPTION()
-    https://git.kernel.org/netdev/net-next/c/6808918343a8
+2. *The old address will continue to work* for the foreseeable future, so any
+   existing conversations can continue and any new messages sent to the old
+   list address will be properly delivered to all subscribers.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+3. All members will be automatically subscribed to the new list, so no action
+   is required on anyone's part to keep receiving list mail.
 
+4. The list will be archived on https://lore.kernel.org/bridge/ with all prior
+   archives automatically imported.
 
+5. The List-ID header will change, regardless to which address the message is
+   sent:
+
+   before: List-Id: <bridge.lists.linux-foundation.org>
+    after: List-Id: <bridge.lists.linux.dev>
+
+   You will need to update your filtering rules if you filter based on the
+   contents of that header (on or after November 7).
+
+6. The mailman footer will no longer be added to message bodies and the
+   subject will no longer be modified to insert [bridge] (because this
+   violates DMARC).
+
+7. Subscribing and unsubscribing will be done using the mlmmj supported
+   commands, documented at https://subspace.kernel.org/subscribing.html
+
+Please let me know if you have any questions or concerns. Otherwise, I will
+follow up on November 7 after the move has been completed.
+
+Best regards,
+-K
